@@ -72,18 +72,111 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/ui/Ui.java)
 
+The `UI` is responsible for the GUI of VMS. It does so with the aid of JavaFX UI framework. To simplify the creation of GUI layouts of different parts, several classes extends `UiPart` which is responsible for the creation of JavaFX scene graph structures through `.fxml` files. The `.fxml` files of these UI parts are stored in `src/main/resources/view` in with matching names to the class using them. For example, the `.fxml` file of [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/master/src/main/java/seedu/vms/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
+
+<div markdown="span" class="alert alert-info">
+:information_source: **NOTE**: Not all UI classes responsible for displaying something graphically extends `UiPart`. `UiPart` is used as a tool to simplify the creation of complicated GUI layout. Simple GUI parts such as `DetailedView` and `ListViewPanel` do not extend `UiPart`.
+</div>
+
+Below shows a (partial) class diagram of the main parts of `Ui` component.
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+<div markdown="span" class="alert alert-info">
+:information_source: **NOTE**: `UiPart` has been omitted as the purpose of this diagram is to show the structure between the main parts of the `UI` component.
+</div>
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+As seen from the class diagram above, `MainWindow` has composition type relationship with several other classes. Namely,
 
-The `UI` component,
+* `DetailedView` - responsible for the graphical display of the **detail panels**.
+  * 1 each for patients and vaccinations.
+* `CommandBox` - responsible for gathering the user's command input.
+* `HelpWindow` - responsible for the graphical display of the help window.
+* `ListViewPanel` - responsible for the graphical display of the **list view panels**.
+  * 1 each for patients, vaccinations and appointments
+* `ResultDisplay` - responsible for displaying messages to the user.
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Patient` object residing in the `Model`.
+The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state after `fillInnerParts()` has been called. Generics have been omitted for clarity.
+
+![State of MainWindow](images/UiObjectDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **INFO**: `LogicManager` is a concrete implementation of `Logic`. `LogicManager` was not shown in the complementing class diagram as it is not involved in the structure of the UI component. see [Logic component](#logic-component) to learn more about `LogicManager`.
+</div>
+
+#### Refreshing
+
+In order to maintain the responsiveness of the GUI, the FX Application thread is used solely for GUI related processes such as event handling and display updates. For parsing and the execution of commands, their processes are dispatched on a separate thread. To learn more about this, see [Logic component](#logic-component).
+
+To handle display changes due to changes in the state of data that the different GUI parts are displaying, all classes of the `UI` component in the class diagram above with the exception of `HelpWindow` implements `Refreshable`. This is a functional interface whose functional method is `refresh()`. Calling this method will cause the implementing UI classes to check for changes in the data that they are displaying and update their display accordingly. To invoke the `refresh()` method continuously, a `ScheduledThreadPoolExecutor` is created in `MainApp` that is tasked to call `refresh()` of `UiManager` 30 times every second.
+
+Unlike the implementation where the displays are updated as soon as it a change happens, this implementation is able to accumulate and differ the displaying of changes. This improves the responsiveness of the GUI in scenarios where there is a spike in the number of changes in data as the GUI does not update for every change. Such scenarios may happen when the use uses patient's `clear` command when there are a large number of patient.
+
+#### `DetailedView`
+
+To display its contents, `DetailedView` uses an observer pattern to observe for the data that it needs to display. It observes an `ObjectProperty` through a `ChangeListener`, both of which are defined by JavaFX. To convert the observed object to the `Node` object that JavaFX can display, `DetailedView` will also have a `Function`, that is provided on construction, which will handle this conversion.
+
+To collect and store changes to be displayed, 2 private class fields are defined:
+
+* `isUpdated` of type `boolean`.
+  * Will be `true` if the change has been displayed and `false` otherwise.
+* `value` of type `T` where `T` is the type of the object being detailed.
+  * The object that has to be displayed.
+  * Can be `null` which will signify that nothing should be displayed.
+
+`isUpdated` is required as `value` can be `null`. Thus checks to see if `value` is `null` will not work.
+
+Below shows the class diagram, showing the structure of `DetailedView`. Notice how that there are no external dependencies to other parts of VMS.
+
+![Class diagram of DetailedView](images/UiDetailedViewClassDiagram.png)
+
+Below shows the object diagram showing the state after `fillInnerParts()` of `MainWindow` is called for the patient detail panel to highlight the listener pattern structure that `DetailView` implements. A similar object diagram can be drawn for the vaccination detail panel by changing the relevant variable names and types.
+
+![Object diagram of DetailedView](images/UiDetailedViewPatientObjectDiagram.png)
+
+The activity diagram below shows how `DetailedDisplay` checks for changes and update its display when `refresh()` is invoked.
+
+![Activity diagram of DetailedView](images/UiDetailedViewRefreshActivityDiagram.png)
+
+As seen, no display updates are done if `isUpdate` is `true`, which signifies that the display has already been updated. This improves efficiency as the display is only updated when necessary.
+
+#### `ListViewPanel`
+
+Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `Function` to convert the observed object to a `Node`. However, it observes an `ObservableMap` through a `MapChangeListener`, both of which also defined by JavaFX. Only the values of the observed map will be displayed and the `Function` of `ListViewPanel` is used to convert these values to their equivalent `Node` representations. The order in which the values of the observed map are displayed is defined by a `Comparator` by default is the comparator produced from `Comparator.naturalOrder()`. This comparator is stored in an `ObjectProperty` in `ListViewPanel`
+
+To collect changes to be displayed for the refresh, the latest `MapChangeListener.Change` (referred to as `Change` in this section) is stored in an `ObjectProperty`. `Change` is an inner class of `MapChangeListener` and defines a method, `getMap()` which allows the retrieval of the state of the map to be displayed. Unlike `DetailedView`, a `null` check to the value of this `ObjectProperty` can be done to verify if a an update to the display is required as its value will only be `null` if there is nothing to update.
+
+Below shows the class diagram of `ListViewPanel` to graphically view this structure.
+
+![Class diagram of ListViewPanel](images/UiListViewPanelClassDiagram.png)
+
+The complementing object diagram for appointment list view is shown below. Some `AppointmentManager` components are also added to detail the observer pattern structure of `ListViewPanel`. A similar diagram can be done for the patient list view panel.
+
+![Object diagram of Appointment ListViewPanel](images/UiListViewPanelApptObjectDiagram.png)
+
+To be able to refer to vaccinations by the index that they are displayed in the vaccination list panel, `ModelManager` will need to have a list view that describes the order in which the vaccinations are displayed. To avoid coupling, `ModelManager` observes the `ListViewPanel`, that is responsible for displaying the vaccination list panel, through the observer pattern. The items and order in which `ListViewPanel` is displaying is kept in an `ObservableList` as defined by JavaFX `ListView` which `ListViewPanel` extends. As such, obtain the required list view, `ModelManager` keeps another `ObservableList` that is bounded to the `ObservableList` defined by `ListView` through the observer pattern. Refer to the object diagram below for a graphical visualization of the structure described. The object diagram shows the state after `fillInnerParts()` is called.
+
+![Object diagram of Vaccination ListViewPanel](images/UiListViewPanelVaxObjectDiagram.png)
+
+Below show the activity diagram when the `refresh()` method is invoked. The item list referred to in the diagram is the `ObservableList` that `ListView` defines. Updates to this list will update the display.
+
+![Activity diagram of ListViewPanel](images/UiListViewPanelActivityDiagram.png)
+
+#### `ResultDisplay`
+
+To display messages to the user after every command that they have inputted, a `Consumer`, that accepts a list of `CommandMessage`, is used to update `ResultDisplay` whenever `Logic` has completed the execution of a command regardless if it was successful. The `Consumer` only function is to call the `queueMessages(List<CommandMessage>)` method of `ResultDisplay`. This method will queue all `CommandMessage` to be displayed in the order of the given list. When the `refresh()` method is called, elements in the queue will be polled and converted to their `Node` representation until the queue is emptied. To understand more about when this `Consumer` is called within `Logic`, read [Executing a command](#executing-a-command).
+
+Below shows the class diagram of the described structure. `Logic`, `LogicManager` and `Consumer` are not shown as there are no dependencies between these classes/interfaces and `ResultDisplay`.
+
+![Class diagram of ResultDisplay](images/UiResultDisplayClassDiagram.png)
+
+Below shows the object diagram of `ResultDisplay` after the `fillInnerParts()` method has been called. This diagram reveals the observer pattern structure which the class diagram does not.
+
+![Object diagram of ResultDisplay](images/UiResultDisplayObjectDiagram.png)
+
+The following diagram shows the activity diagram when the `refresh()` method is called. On top of how messages are displayed, the procedure of how the 30 message history limit is maintained is shown as well.
+
+![Activity diagram of ResultDisplay](images/UiResultDisplayActivityDiagram.png)
 
 ### Logic component
 
@@ -91,7 +184,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" />
 
 `LogicManager` is a concrete implementation of `Logic` which handles the logical components of VMS. Its main responsibility is to handle the execution of user entered commands.
 
@@ -135,12 +228,19 @@ When the created `Thread` in `startNext()` is started, Java Virtual Machine will
 
 <img src="images/LogicCommandExecutionSequenceDiagram.png" id="logic-command-execution-sequence-diagram">
 
+<div markdown="span" class="alert alert-info">
+:information_source: **INFO**: The parsing of commands are handled in `Model` to allow for user custom keywords.
+</div>
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+Here's a (partial) class diagram of the Model component:
 
+![Class Diagram for Model component](images%2FModelClassDiagram.png)
+
+`ModelManager` is a concrete implementation of `Model` which handles the model components of VMS.
 The responsibilities of `Model` component,
 
 * stores the runtime state of the other managers:
@@ -148,13 +248,22 @@ The responsibilities of `Model` component,
   * `VaxTypeManager`
   * `AppointmentManager`
   * `KeywordManager`
-* stores the objects to be displayed as a separate filtered map which is exposed to outsiders as an unmodifiable `ObservableMap<K, V>` where `V` is the type of object being stored (eg. `IdData<Patient>`) and `K` is the type of the key the stored object is mapped to (for `Patient` and `Appointment`, this is an `Integer` and as for `VaxType`, this is a `String`).
-* stores the object to be detailed as a `ObjectProperty<V>` where `V` is the type of the object to be displayed (eg. `IdData<Patient>`).
-* store a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+* stores the objects to be displayed as a separate filtered map which is exposed to outsiders as an unmodifiable 
+`ObservableMap<K, V>`, where `V` is the type of object being stored (eg. `IdData<Patient>`) and `K` is the type of the 
+key the stored object is mapped to (for `Patient` and `Appointment`, this is an `Integer` and as for `VaxType`, this 
+is a `String`).
+* stores the object to be detailed as a `ObjectProperty<V>` where `V` is the type of the object to be displayed (eg. 
+`IdData<Patient>`).
+* store a `UserPref` object that represents the user's preferences. This is exposed to the outside as a 
+`ReadOnlyUserPref` object.
 
 ### Patient component
 
 **API** : [`Patient.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/patient/Patient.java)
+
+Here's a (partial) class diagram of the Patient component:
+
+![Class Diagram of Patient](images%2FModelPatientClassDiagram.png)
 
 To represent a patient, `Patient` contains the Identity and Medical information using the following attributes:
 
@@ -171,6 +280,8 @@ To represent a patient, `Patient` contains the Identity and Medical information 
 
 #### PatientManager
 
+**API** : [`PatientManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/patient/PatientManager.java)
+
 On top of storing `Patient` objects, `PatientManager` ensures the patient's vaccination records are updated if the name of a vaccination changes. It also ensures that there is a maximum limit of `Patient` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
 
 ### Vaccination component
@@ -178,6 +289,12 @@ On top of storing `Patient` objects, `PatientManager` ensures the patient's vacc
 Vaccinations are represented as `VaxType` objects and stored within `VaxTypeManager`.
 
 #### VaxType
+
+**API** : [`VaxType.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/vaccination/VaxType.java)
+
+Here's a (partial) class diagram of the VaxType component:
+
+![Class Diagram of VaxType](images%2FModelVaxTypeClassDiagram.png)
 
 To represent a vaccination, `VaxType` contains the following attributes:
 
@@ -190,11 +307,17 @@ To represent a vaccination, `VaxType` contains the following attributes:
 
 #### VaxTypeManager
 
+**API** : [`VaxTypeManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/vaccination/VaxTypeManager.java)
+
 On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there is a maximum limit of `VaxType` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
 
 ### Appointment component
 
 **API** : [`Appointment.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/Appointment.java)
+
+Here's a (partial) class diagram of the Appointment component:
+
+![Class Diagram of Appointment](images%2FModelAppointmentClassDiagram.png)
 
 The `Appointment` component,
 
@@ -204,6 +327,38 @@ The `Appointment` component,
   * The type and dose of `vaccine` to be administered
   * The `status` of the appointment
 
+#### AppointmentManager
+
+**API** : [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java)
+
+On top of storing `Appointment` objects, `AppointmentManager` ensures the uniqueness of `Appointment`. It also ensures that there is a maximum limit of `Appointment` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
+
+### Keyword component
+
+**API** : [`Keyword.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/keyword/Keyword.java)
+
+Here's a (partial) class diagram of the Keyword component:
+
+![Class Diagram of Keyword](images%2FModelKeywordClassDiagram.png)
+
+The `Keyword` component,
+
+* Contains the mapping of a custom keyword to a main keyword
+  * The custom' `<keyword>`
+  * The main `<keyword>`:
+    * `appointment` for `Appointment` class
+    * `basic`
+    * `exit`
+    * `help`
+    * `patient` for `Patient` class
+    * `vaccination` for `VaxType` class
+
+#### KeywordManager
+
+**API** : [`KeywordManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/keyword/KeywordManager.java)
+
+The `KeywordManager` main responsibility is the storing of `Keyword` objects.
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/storage/Storage.java)
@@ -211,10 +366,6 @@ The `Appointment` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component is responsible for the reading and writing of the states of the different managers in `Model` to and from the hard disk. As shown in the diagram above, it inherits from `PatientManagerStorage`, `UserPrefsStorage`, `VaxTypeStorage`, `AppointmentStorage` and `KeywordStorage`. As such, it can be treated as either one (if only the functionality of only one is needed).
-
-### Keyword component
-
-<!-- TODO -->
 
 #### Cascading delete
 
@@ -703,7 +854,7 @@ _{Explain here how the data archiving feature will be implemented}_ -->
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                          | I want to …​                                                                               | So that I can …​                                                                  |
-| -------- | -------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+|----------|----------------------------------|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | `* * *`  | Receptionist                     | check the list of patients details                                                         | verify and mark the new arrival's attendance                                      |
 | `* * *`  | Receptionist                     | check the patient's medical records                                                        | prepare the right type of vaccination                                             |
 | `* * *`  | Receptionist                     | get the patient's contact easily                                                           | contact them when needed.                                                         |

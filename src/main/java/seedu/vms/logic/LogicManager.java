@@ -34,7 +34,8 @@ import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.Storage;
 
 /**
- * The main LogicManager of the app.
+ * The concrete implementation of {@code Logic}. Responsible for initializing
+ * {@code Model} state and command executions.
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
@@ -84,6 +85,13 @@ public class LogicManager implements Logic {
     }
 
 
+    /**
+     * Attempts the given process command process. All uncaught runtime
+     * exceptions will be handled by displaying a {@code Death} state
+     * {@code CommandMessage} of the thrown exception.
+     *
+     * @param process - the process to run.
+     */
     private void attemptProcess(Runnable process) {
         try {
             process.run();
@@ -204,17 +212,15 @@ public class LogicManager implements Logic {
 
     @Override
     public void loadManagers(BiConsumer<String, String> beyondDeathErrHandler) {
-        new Thread(() -> performLoadSequence(beyondDeathErrHandler)).start();
-    }
-
-
-    private void performLoadSequence(BiConsumer<String, String> beyondDeathErrHandler) {
         if (Path.of("data").toFile().isFile()) {
             beyondDeathErrHandler.accept(
                     "[data] already exists and is not a directory",
                     "Close the application and remove [data] file before restarting.");
+            return;
         }
 
+        // @@author francisyzy
+        // load patients
         ReadOnlyPatientManager patientManager = new PatientManager();
         try {
             patientManager = storage.readPatientManager();
@@ -226,11 +232,13 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_DEFAULT_FORMAT, "patients"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
-                    "patients", deathEx.getMessage()));
+                    "patients", deathEx.toString()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "patients"));
         }
         model.setPatientManager(patientManager);
 
+        // @@author daitenshionyan
+        // load vaccinations
         VaxTypeManager vaxTypeManager = new VaxTypeManager();
         try {
             vaxTypeManager = storage.loadUserVaxTypes();
@@ -242,12 +250,13 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_DEFAULT_FORMAT, "vaccinations"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
-                    "vaccinations", deathEx.getMessage()));
+                    "vaccinations", deathEx.toString()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "vaccinations"));
         }
         model.setVaxTypeManager(vaxTypeManager);
 
-
+        // @@author nusE0726844
+        // load appointments
         AppointmentManager appointmentManager = new AppointmentManager();
         try {
             appointmentManager = storage.loadAppointments();
@@ -258,12 +267,14 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "appointments"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
-                    "appointments", deathEx.getMessage()));
+                    "appointments", deathEx.toString()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "appointments"));
         }
         validateAppointments(appointmentManager, patientManager, vaxTypeManager);
         model.setAppointmentManager(appointmentManager);
 
+        // @@author slackernoob
+        // load keywords
         KeywordManager keywordManager = new KeywordManager();
         try {
             keywordManager = storage.loadKeywords();
@@ -275,11 +286,12 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_DEFAULT_FORMAT, "keywords"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
-                    "keywords", deathEx.getMessage()));
+                    "keywords", deathEx.toString()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "keywords"));
         }
         model.setKeywordManager(keywordManager);
 
+        // @@author
         isExecuting = false;
     }
 
@@ -361,7 +373,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObjectProperty<VaxType> detailedVaxTypeProperty() {
-        return model.detailedVaxTypeProperty();
+        return model.detailedVaccinationProperty();
     }
 
 

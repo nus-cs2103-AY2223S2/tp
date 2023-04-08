@@ -93,7 +93,8 @@ public class VaxTypeBuilder {
 
     /**
      * Creates the a vaccination of the specified name with parameters that the
-     * builder is set to produce.
+     * builder is set to produce. Any unset attributes will result in its
+     * default value to be used.
      *
      * @return the built {@code VaxType}.
      * @throws IllegalValueException if the vaccination cannot be created due
@@ -116,6 +117,8 @@ public class VaxTypeBuilder {
      * Creates a vaccination based on the given reference and the parameters
      * that the builder is set to produce.
      *
+     * @param reference - the reference {@code VaxType} to build from.
+     * @param isSet - if list like attributes should be SET operation.
      * @return the built {@code VaxType}.
      * @throws IllegalValueException if the vaccination cannot be created due
      *      to illegally set parameters.

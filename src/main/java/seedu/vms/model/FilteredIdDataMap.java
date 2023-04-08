@@ -38,7 +38,7 @@ public class FilteredIdDataMap<T> extends FilteredMapView<Integer, IdData<T>> {
 
 
     /**
-     * Applies a set of filters.
+     * Applies a collection of filters.
      *
      * @param filters - the list of filters to use.
      */

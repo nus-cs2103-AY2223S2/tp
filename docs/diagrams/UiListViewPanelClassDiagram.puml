@@ -1,0 +1,33 @@
+@startuml UiListViewPanelClassDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+package Ui UI_COLOR_T1 {
+    Class ListViewPanel<T extends Comparable<T>> UI_COLOR {
+        -changeProperty: ObjectProperty<Change<?, ? extends T>>
+        -comparatorProperty: ObjectProperty<Comparator<T>>
+    }
+}
+show ListViewPanel fields
+
+package JavaFX {
+    Class "<<interface>>\nObservableMap<?, T>" as ObservableMap #000000
+    Class "<<interface>>\nMapChangeListener<? super Object, ? super T>" as MapChangeListener #000000
+    Class ListView<T> #000000
+}
+
+package Java {
+    Class "<<interface>>\nBiFunction<Integer, T, Node>" as BiFunction #000000
+}
+
+ListViewPanel --|> ListView
+ListViewPanel ..> ObservableMap
+ListViewPanel ..> MapChangeListener
+ListViewPanel -> BiFunction
+
+ObservableMap .right.> MapChangeListener
+
+@enduml

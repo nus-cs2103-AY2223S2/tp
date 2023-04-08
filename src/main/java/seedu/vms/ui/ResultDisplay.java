@@ -46,17 +46,16 @@ public class ResultDisplay extends UiPart<Region> implements Refreshable {
         });
     }
 
-    public void setFeedbackToUser(List<CommandMessage> commandResult) {
-        requireNonNull(commandResult);
-        messageQueue.addAll(commandResult);
-    }
 
-
-    @Override
-    public void refresh() {
-        for (int i = 0; i < messageQueue.size(); i++) {
-            displayMessage(messageQueue.poll());
-        }
+    /**
+     * Displays the given list of {@code CommandMessage}. The order that the
+     * messages are displayed will follow the order of the given list.
+     *
+     * @param messages - the list of {@code CommandMessage} to display.
+     */
+    public void queueMessages(List<CommandMessage> messages) {
+        requireNonNull(messages);
+        messageQueue.addAll(messages);
     }
 
 
@@ -64,6 +63,14 @@ public class ResultDisplay extends UiPart<Region> implements Refreshable {
         displayArea.getChildren().add(new ResultMessageBox(commandResult).getRoot());
         if (displayArea.getChildren().size() > DISPLAY_LIMIT) {
             displayArea.getChildren().remove(0);
+        }
+    }
+
+
+    @Override
+    public void refresh() {
+        for (int i = 0; i < messageQueue.size(); i++) {
+            displayMessage(messageQueue.poll());
         }
     }
 }

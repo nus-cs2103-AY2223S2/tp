@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-An increasing number of vaccination are now having more complicated prerequisites to take them and Vaccination Management System (VMS) aims to make this validation easier. VMS is a **desktop application for validating and keeping track of vaccination appointments** its operations are **optimized for fast typist who prefer the use of a Command Line Interface** (CLI). If you type fast, VMS can get your vaccination appointment validated with great efficiency!
+An increasing number of vaccinations now have more complicated prerequisites to take them, and Vaccination Management System (VMS) aims to make this validation easier. VMS is a **desktop application for validating and keeping track of vaccination appointments**; its operations are **optimized for fast typists who prefer using a Command Line Interface (CLI)** while maintaining the benefits of a Graphical User Interface (GUI). If you type fast, VMS can efficiently validate your vaccination appointment!vaccination appointment validated with great efficiency!
 
 * Table of Contents
 {:toc}
@@ -56,8 +56,8 @@ If this is not your first time using VMS, do **<u>NOT</u>** attempt to execute a
 
 Before diving into VMS, first initialize the data of the vaccinations that your clinic supports.
 
-* VMS is initialized with a few COVID-19 vaccinations by default. If your clinic do not offer these vaccinations, these data can be purged by running vaccination's [`clear`](#clear---clears-all-vaccination-data) command.
-* See [`add`](#add---add-a-vaccination-type) on how you can add a vaccination.
+* VMS is initialized with a few COVID-19 vaccinations by default. If your clinic do not offer these vaccinations, these data can be purged by running vaccination's [`clear`](#clear---clear-all-vaccination-data) command.
+* See [`add`](#add---add-a-vaccination) on how you can add a vaccination.
 
 ##### Normal usage
 
@@ -67,7 +67,7 @@ After initializing the vaccination data of your clinic, you are ready to go! All
 2. If they do not exist in the system yet, add them into the system using patient's [`add`](#add---add-a-patient) command.
 3. Schedule an appointment for them by running appointment's ['add'](#add---add-an-appointment) command.
 4. If the patient is eligible to take the vaccination that they want, the appointment will be added into VMS. Otherwise, an error message will show and you can inform them about their ineligibility to take the vaccination.
-5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's ['detail'](#detail---displays-the-detail-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
+5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's ['detail'](#detail---view-details-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
 
 ##### Example scenario
 
@@ -75,8 +75,10 @@ Here is an scenario example usage using <u>VMS start up sample data</u> immediat
 
 1. A patient calls, he provides information that his name is **Tan Xiao Ming**, born on **1999 April 15**, blood type **A+**, allergic to nothing and has already taken **Dose 1 (Moderna)**. From your clinic phone, the number is **97643158**. The following command will add this patient into the system:
 ```text
-patient add --n Tan Xiao Ming --p 97643158 --d 1999-04-15 --b A+ --v Dose 1 (Moderna)
+patient add --n Tan Xiao Ming --p 97643158 --d 1999-04-15 \
+        --b A+ --v Dose 1 (Moderna)
 ```
+<sub>:clipboard: <code>patient add --n Tan Xiao Ming --p 97643158 --d 1999-04-15 --b A+ --v Dose 1 (Moderna)</code></sub>
 2. He mentions that he wishes to take **Dose 2 (Pfizer)** on **2024 March 5th at 1600**. You clinic's average vaccination appointment take roughly about 30mins. From step 2, it is shown that Xiao Ming has an ID of **7** as well. The following command will attempt to schedule an appointment for him:
 ```text
 appointment add --p 7 --v Dose 2 (Pfizer) --s 2024-3-5 1600 --e 2024-3-5 1630
@@ -86,6 +88,10 @@ appointment add --p 7 --v Dose 2 (Pfizer) --s 2024-3-5 1600 --e 2024-3-5 1630
 appointment add --p 7 --v 4 --s 2024-3-5 1600 --e 2024-3-5 1630
 ```
 4. The appointment get successfully added and you inform him that you have schedule the appointment for him.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **INFO**: The backslash character (`\`) in step 1 is just for presentation purposes. Only the text after the clipboard (:clipboard:) should be copied and paste into VMS. See <a href="#CLI-presentation-format">CLI presentation format</a> for more information.
+</div>
 
 With this, VMS has automated the validation of patient's appointment scheduling, making your receptionist duties easier!
 
@@ -110,9 +116,10 @@ This example also highlights the adaptive nature of VMS CLI syntax from steps 2 
   <pre>
   appointment add --p <var>PATIENT_ID</var> --s <var>START_TIME</var> --e <var>END_TIME</var> --v <var>VAX_NAME</var>
   </pre>
+  For CLI input examples, a clipboard (:clipboard:) will follow which represents the copy and paste version.
 * **Square brackets** (`[` and `]`) around arguments indicate that the argument is _optional_. For example,
-  <br><code>[--n <var>NEW_NAME</var>]</code> would mean that <wbr><code>--n <var>NEW_NAME</var></code> is optional.
-* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of argument can be repeated. For example <wbr><code>[--r <var>REQUIREMENT</var>]...</code> would mean that <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
+  <br><code>[--n <var>NEW_NAME</var>]</code> would mean that <code>--n <var>NEW_NAME</var></code> is optional.
+* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of argument can be repeated. For example <code>[--r <var>REQUIREMENT</var>]...</code> would mean that <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
 * **Plus** (`+`) indicates that the argument before must occur at least once but may be repeated multiple times.
 * **Three dots with no space** (`...`) <u>before</u> and <u>after</u> an argument would indicate that a _list_ of that argument is required. The elements of a list are delimited by commas (`,`) and the keyword `<EMPTY>` (case sensitive) is used to represent an empty list. For example, <code>--g ...<var>GROUP</var>...</code> would mean that a list of <code><var>GROUP</var></code> is required. Accepted arguments may be <code>--g <var>GROUP_1</var>, <var>GROUP_2</var>, <var>GROUP_3</var></code> for a list of 3 groups or `--g <EMPTY>` for an empty list of groups.
 * **Triangle brackets** (`<` and `>`) around words represent a [type](#types).
@@ -166,15 +173,6 @@ Therefore, the following values are allowed an will evaluate to `false`:
 * `123`
 * A blank argument.
 
-#### `<string>`
-
-Strings can take on any character sequence that do not contain `--` or new line characters.
-
-#### `<group-name>`
-
-A non-blank character sequence consisting of only alphanumeric character and all brackets excluding triangle brackets
-(`<` and `>`). The character limit is **30** characters.
-
 #### `<integer>`
 
 An integer value between `-2147483648` and `2147483647`.
@@ -188,6 +186,36 @@ An extension of `<integer>` allowing only positive non-zero values (ie. `x > 0`)
 An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is
 allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max
 value will be evaluated to be equal.
+
+#### `<string>`
+
+Strings can take on any character sequence that do not contain `--` or new line characters.
+
+#### `<main-keyword>`
+
+Only these values (case sensitive) are allowed:
+
+* `patient`
+* `vaccination`
+* `appointment`
+
+#### `<keyword>`
+
+A non-empty string that takes on any character sequence that do not contain spaces.
+
+The following values (case sensitive) are not allowed:
+* `patient`
+* `vaccination`
+* `appointment`
+* `keyword`
+* `basic`
+* `help`
+* `exit`
+
+#### `<group-name>`
+
+A non-blank character sequence consisting of only alphanumeric character and all brackets excluding triangle brackets
+(`<` and `>`). The character limit is **30** characters.
 
 #### `<blood-type>`
 
@@ -271,10 +299,13 @@ Only the following values are allowed:
 
 * `ALL` - all groups of the requirement set must be present to pass.
   * **Example**: a vaccination requirement of `G1, G2, G3` will require a patient to have taken a vaccination with all 3 groups. A vaccination with `G1, G2, G3` and `G1, G2, G3, G4` will pass but a vaccination with `G1, G2` groups will not.
+  * Displayed as a blue tag (<span class="tag tag-all">ALL</span>).
 * `ANY` - at least one group within the requirement set must be present to pass.
   * **Example**: a vaccination requirement of `G1, G2, G3` will require the patient to have taken a vaccination that has any of the 3 groups. A vaccination with `G1` and `G1, G3` will pass but a vaccination with `G4, G5` groups will not.
+  * Displayed as a green tag (<span class="tag tag-any">ANY</span>).
 * `NONE` - none of the groups within the requirement set must be present to pass.
-  * **Example** a requirement with `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will break the testing process of the patient and the patient will immediately fail the history requirement of the vaccination. In other words, the patient will not be able to take that vaccination.
+  * **Example**: a requirement with `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will break the testing process of the patient and the patient will immediately fail the history requirement of the vaccination. In other words, the patient will not be able to take that vaccination.
+  * Displayed as a red tag (<span class="tag tag-none">NONE</span>).
 
 ## Components
 
@@ -299,12 +330,26 @@ help
 Keywords are identified by their sub and main keywords. Following is the list of the attributes that a keyword has.
 
 * **Keyword name** : `<keyword>` - the name of the user-defined keyword.
-* **Main Keyword** : `<string>` - the main keyword that the user-defined keyword is paired to.
+* **Main Keyword** : `<main-keyword>` - the main keyword that the user-defined keyword is paired to.
 
 Default keywords implemented are shown in the list below.
 * pat-->patient
 * appt-->appointment
 * vacc-->vaccination
+
+`<main-keyword>` is limited to the following values (case sensitive):
+* `patient`
+* `vaccination`
+* `appointment`
+
+The following values (case sensitive) are not allowed for `<keyword>`:
+* `patient`
+* `vaccination`
+* `appointment`
+* `keyword`
+* `basic`
+* `help`
+* `exit`
 
 #### `add` - Add a keyword
 
@@ -316,7 +361,7 @@ Adds a new keyword as defined in the command into the system.
 keyword add --k <var>MAIN_KEYWORD</var> --n <var>KEYWORD</var>
 </pre>
 
-* <code><var>MAIN_KEYWORD</var></code> : `<keyword>`
+* <code><var>MAIN_KEYWORD</var></code> : `<main-keyword>`
 * <code><var>KEYWORD</var></code> : `<string>`
 
 ##### Example
@@ -350,7 +395,7 @@ keyword delete <var>KEYWORD</var>
 Example assumes that the keyword already exists.
 
 ```text
-keyword delete pat
+keyword delete pa
 ```
 
 Output:
@@ -401,7 +446,11 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
 ##### Example
 
 ```text
-patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax
+patient add --n John Doe --p 98765432 --d 2001-03-19 \
+    --b B+ --a catfur --a pollen --v covax
+```
+
+```text
 patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+
 ```
 
@@ -413,7 +462,7 @@ Output:
 
 ![Patient Add Detail Card](images/patient/ug/PatientAddDetailCard.png)
 
-#### `detail` - Displays the detail of a patient
+#### `detail` - View details of a patient
 
 ##### Syntax
 
@@ -493,6 +542,9 @@ However, the following exceptions apply:
 
 ```text
 patient find john
+```
+
+```text
 patient find --n john --b B+
 ```
 
@@ -507,6 +559,10 @@ Output:
 #### `edit` - Edit a patient
 
 Updates the Patient using it's PATIENT_ID. It will update the attributes of the specified patient to the attributes provided. If any of the optional arguments are omitted, the values will not be updated.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **WARNING**: VMS does not re-check if the edited patient is still able to take the vaccinations of the active appointments that they have been scheduled if any. As such if the patient is updated such that they are now ineligible to take the vaccination of their upcoming appointment, no warning or error messages will show and the state of all appointment will remain.
+</div>
 
 ##### Syntax
 
@@ -550,7 +606,7 @@ patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ \
     --a dogfur --a fern --v norovax
 ```
 
-Copy and paste: `patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax`
+<sub>:clipboard: : <code>patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax</code></sub>
 
 Output:
 
@@ -568,8 +624,7 @@ Setting patient's allergies and vaccination details, values prior will be overri
 patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ \
     --a nofur --a grass --v protovax --set true
 ```
-
-Copy and paste: `patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --a grass --v protovax --set true`
+<sub>:clipboard: : <code>patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --a grass --v protovax --set true</code></sub>
 
 Output:
 
@@ -609,7 +664,7 @@ Output:
 
 * <code><var>PATIENT_ID</var></code> must exist in the system.
 
-#### `clear` - Clear Patients
+#### `clear` - Clear all patient data
 
 Deletes all Patients from VMS. It is for users to clear the dummy patients out from VMS
 
@@ -674,9 +729,9 @@ When checking if a patient satisfies the history requirements of a vaccination, 
 In other words, a patient can satisfy a requirement by taking vaccinations with certain group types for `ALL` and `ANY` requirement types or not taking any vaccinations with certain group types for `NONE` requirement types.
 </div>
 
-#### `add` - Add a vaccination type
+#### `add` - Add a vaccination
 
-Adds a new vaccination type as defined in the command into the system. If any of the optional arguments are omitted,
+Adds a new vaccination as defined in the command into the system. If any of the optional arguments are omitted,
 they will be set to their default values.
 
 ##### Syntax
@@ -704,7 +759,7 @@ The flags `--lal` and `--ual` for minimum and maximum age stand for **<u>L</u>ow
 <div markdown="block" class="alert alert-success" id="vaccination-add-command-tip">
 :bulb: **Breaking up vaccination `add` syntax**
 
-Attempting to add the entire data of a vaccination may result in very long input which is error prone. Users may and are advised to break the arguments up into smaller and more manageable pieces with the aid of the [`edit`](#edit---edit-a-vaccination-type) command.
+Attempting to add the entire data of a vaccination may result in very long input which is error prone. Users may and are advised to break the arguments up into smaller and more manageable pieces with the aid of the [`edit`](#edit---edit-a-vaccination) command.
 
 This can be done by:
 
@@ -720,6 +775,14 @@ For example, to add the same vaccination as in the <a href="#vaccination-add-exa
 4. `vaccination edit ABC VAX --i ALC-0315, ALC-0159`
 5. `vaccination edit ABC VAX --h NONE::ABC`
 
+<span id="vax-filter-no-reset-usage">**Using `find` to improve efficiency**</span><br>
+If the name of the vaccination is long, one can use the vaccination's [`find`](#find---locate-vaccinations) to filter down to that vaccination and then use indexing to refer to that vaccination while editing. This step can be done before adding or editing the vaccination. So to perform the same action as before one can execute the following sequence of commands:
+
+1. `vaccination find ABC VAX`
+2. `vaccination add ABC VAX`
+3. `vaccination edit 1 --g ABC, VACCINATION`
+4. The remaining follow a similar pattern by replacing `ABC VAX` with `1`.
+
 </div>
 
 <h5 id="vaccination-add-example">Example</h5>
@@ -733,7 +796,7 @@ vaccination add ABC VAX --g ABC, VACCINATION \
     --h NONE::ABC
 ```
 
-Copy and paste: `vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC`
+<sub>:clipboard: : <code>vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC</code></sub>
 
 Output:
 
@@ -747,7 +810,7 @@ Output:
 
 * The name of the vaccination being added must not exist in the system.
 
-#### `detail` - Displays the detail of a vaccination
+#### `detail` - View details of a vaccination
 
 ##### Syntax
 
@@ -777,7 +840,7 @@ Output:
 
 * <code><var>VACCINATION</var></code> must exist in the system.
 
-#### `list` - Lists all vaccination
+#### `list` - List all vaccination
 
 Clears previously set filters and list all vaccinations in the list view.
 
@@ -787,7 +850,7 @@ Clears previously set filters and list all vaccinations in the list view.
 vaccination list
 </pre>
 
-#### `find` - Finds a vaccination
+#### `find` - Locate vaccinations
 
 Given a `<string>`, search and filter out only vaccination whose names contains the character sequence of the given `<string>` in the given order. Whitespace characters within the given `<string>` are ignored and taken to be that any number of characters may between the two character sequences that the whitespace separates. The search is case-insensitive.
 
@@ -802,6 +865,14 @@ However, the following will not:
 * `1 Dose Dose` - Wrong order.
 * `Dose dose` - Missing `1`.
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Filter does not reset on `add` or `edit`**
+
+The filters applied by the last `find` command will not be resetting by vaccination's `add` or `edit` commands. Vaccinations added or edited by might not show up on the vaccination list panel. This is intended to allow for a more efficient `edit`. See <a href="#vax-filter-no-reset-usage">here</a> on how one can utilize this feature.
+
+To reset the filters applied, use the vaccination's [`list`](#list---list-all-vaccination) command.
+</div>
+
 ##### Syntax
 
 <pre>
@@ -812,6 +883,8 @@ vaccination find <var>VAX_NAME</var>
   * The character sequence in the vaccination's name to search for.
 
 ##### Example
+
+Example assumes that none of the start-up vaccination data are deleted yet.
 
 ```text
 vaccination find dose 1
@@ -829,10 +902,14 @@ Output:
 
 * <code><var>VAX_NAME</var></code> cannot be blank.
 
-#### `edit` - Edit a vaccination type
+#### `edit` - Edit a vaccination
 
 Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
 are omitted, they will be set to what they were before.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **WARNING**: VMS does not re-check the eligibility of patients with active appointments of the edited vaccination. As such, if a vaccination is edited such that a patient with an active appointment is now unable to take that vaccination, no warning or error messages will be shown and the state of all appointments will remain.
+</div>
 
 ##### Syntax
 
@@ -891,7 +968,7 @@ Output:
 * <code><var>VACCINATION</var></code> must exist in the system.
 * <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as the vaccination being updated.
 
-#### `delete` - Deletes a vaccination
+#### `delete` - Delete a vaccination
 
 Deletion of a vaccination may cause appointments to be come invalid as the vaccination will no longer exist in the system. `VMS` will check for this and prevent such deletions from happening. However, an additional `--force true` argument will force the change to happen which will delete all invalid appointments after the change.
 
@@ -908,7 +985,7 @@ vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 
 ##### Example
 
-Examples follow after vaccination clear and then add command examples.
+Examples follow after vaccination [`clear`](#clear---clear-all-vaccination-data) and then [`add`](#add---add-a-vaccination) command examples.
 
 ```text
 vaccination delete 1
@@ -936,7 +1013,7 @@ vaccination: ABC VAX deleted
 
 * <code><var>VACCINATION</var></code> must exist in the system.
 
-#### `clear` - Clears all vaccination data
+#### `clear` - Clear all vaccination data
 
 Similar to vaccination delete, deletion of vaccinations may cause some appointment to become invalid. Add an additional `--force true` to force the change.
 
@@ -993,11 +1070,11 @@ appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Modern
 
 ##### Restrictions
 
-* The patient id must be an existing PATIENT_ID in the patient manager.
-* The patient id must for a patient that does not already have an upcoming appointment.
-* The starting time must be after the current locale time.
-* The ending time must be after the given starting time.
-* The vaccination must be an existing vaccination type in the vaxtype manager.
+* <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
+* The patient referred to by <code><var>PATIENT_ID</var></code> must not have any upcoming appointments that are not yet completed.
+* <code><var>START_TIME</var></code> must be after the current locale time.
+* <code><var>END_TIME</var></code> must be after the given starting time.
+* <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
 
 #### `list` - List all appointments
 
@@ -1009,7 +1086,7 @@ Resets the view of the appointment pane to display all the appointments. Useful 
 appointment list
 </pre>
 
-#### `find` - Find all matching appointments
+#### `find` - Locate appointments
 
 List all the appointments that matches the predicates provided.
 
@@ -1040,6 +1117,9 @@ appointment find {...<var>KEYWORDS</var>... | [--<var>ATTRIBUTE_FLAG</var> <var>
 
 ```text
 appointment find --p 1
+```
+
+```text
 appointment find Dose 1
 ```
 
@@ -1069,14 +1149,15 @@ appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfi
 
 ##### Restrictions
 
-* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
-* The <code><var>APPOINTMENT_ID</var></code> must be of an appointment that has not yet passed.
-* The <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
-* The <code><var>START_TIME</var></code> must be after the current locale time.
-* The <code><var>END_TIME</var></code> must be after the given starting time.
-* The <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
+* <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
+* <code><var>APPOINTMENT_ID</var></code> must be of an appointment that has not yet passed.
+* <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
+* The patient referred to by <code><var>PATIENT_ID</var></code> must not have any upcoming appointments that are not yet completed.
+* <code><var>START_TIME</var></code> must be after the current locale time.
+* <code><var>END_TIME</var></code> must be after the given starting time.
+* <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
 
-#### `mark` - Marks an appointment as completed
+#### `mark` - Mark an appointment as completed
 
 Marks an existing appointment as completed.
 
@@ -1099,9 +1180,13 @@ appointment mark 1
 * The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
 * The specified appointment should not already be done.
 
-#### `unmark` - Changes an appointment's status to not done
+#### `unmark` - Unmark a completed appointment
 
 Changes the completion status to not done.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **WARNING**: VMS does not check if the patient is still eligible to take the vaccination of the unmarked appointment. Thus, no warming messages or error messages will show if the patient is unable to take the vaccination of the unmarked appointment.
+</div>
 
 ##### Syntax
 
@@ -1146,30 +1231,123 @@ appointment delete 5
 
 ## Data files
 
-VMS data are saved as a JSON files in `[JAR file location]/data`. Advanced users are welcome to update data directly by editing that data file.
+VMS automatically saves your data after every successful command execution to `[JAR file location]/data`. They are saved as JSON files and users are welcomed to update the data directly by editing these files.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Errors while editing JSON file**
+
+In most cases, if there are errors present in the data file, VMS will ignore these files and start with the default start up data for that component with some exceptions to appointment. However, a warning message will always show and and users should review them to ensure that they are expected before executing any commands.
+
+**If any commands were to successfully be executed, <u>ALL</u> previous data in the data folder, if present, will be overwritten and lost forever.**
 </div>
 
 <div markdown="block" class="alert alert-info">
-
-**:information_source: JSON syntax presentation**<br>
+**:information_source: JSON syntax presentation**
 
 * The following will have the same meaning as <a href="#CLI-presentation-format">CLI presentation</a>.
   * **Pink italicized bolded capitalized words** (<code><var>PLACEHOLDER_EXAMPLE</var></code>)
   * **Three dots with no spaces** (<code><var>ARG</var>...</code> and <code>...<var>ARG</var>...</code>)
   * **Triangle brackets** (`<` and `>`)
-* **Square brackets** (`[` and `]`) will no longer mean an optional argument, instead it will be a required character
-  for JSON syntax.
+* **Square brackets** (`[` and `]`) and **braces** (`{` and `}`) will have no unique meaning other than being a required character for JSON syntax.
 
 </div>
 
-### Vaccination type JSON
+### Keyword data files
 
-Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.json`. It has the following syntax
+Keyword data are stored in `[JAR file location]/data/keyword.json`.
 
-##### Overall file
+##### Overall file format
+
+<pre>
+{
+  "keywords": [...<var>KEYWORD</var>...]
+}
+</pre>
+
+##### `<keyword>` format
+
+<pre>
+{
+  "keyword": <var>KEYWORD</var>,
+  "mainKeyword": <var>MAIN_KEYWORD</var>
+}
+</pre>
+
+* <code><var>KEYWORD</var></code> : `<keyword>`
+* <code><var>MAIN_KEYWORD</var></code> : `<main-keyword>`
+
+### Patient data files
+
+Patient data are stored in `[JAR file location]/data/patientmanager.json`.
+
+##### Overall file format
+
+<pre>
+{
+  "datas": [...<var>PATIENT</var>...]
+}
+</pre>
+
+* <code><var>PATIENT</var></code> : [`<patient>`](#patient-format)
+
+##### `<patient>` format
+
+<pre>
+{
+  "isActive": <var>IS_ACTIVE</var>,
+  "id": <var>PATIENT_ID</var>,
+  "patient": {
+    "name": <var>PATIENT_NAME</var>,
+    "phone": <var>PHONE</var>,
+    "dob": <var>DATE_OF_BIRTH</var>,
+    "bloodType": <var>BLOODTYPE</var>,
+    "allergies": [...<var>ALLERGY</var>...],
+    "vaccines": [...<var>VACCINE</var>...]
+  }
+}
+</pre>
+
+* <code><var>IS_ACTIVE</var></code> : `<boolean>`
+  * This value does not do anything but there to aid in future developments.
+* <code><var>PATIENT_ID</var></code> : `<integer>`
+  * **0 based** indexing.
+* <code><var>NAME</var></code> : `<name>`
+* <code><var>PHONE</var></code> : `<phone-number>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* <code><var>BLOODTYPE</var></code> : `<blood-type>`
+* <code><var>ALLERGY</var></code> : `<group-name>`
+* <code><var>VACCINE</var></code> : `<group-name>`
+
+###### Restrictions
+
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the patient invalid. In all cases, VMS will ignore the entire patient data file if an invalid patient is present.
+
+* <code><var>DATE_OF_BIRTH</var></code> must be a date before the time the application is launched.
+
+##### Example
+
+```json
+{
+  "datas" : [ {
+    "isActive" : true,
+    "id" : 0,
+    "patient" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "dob" : "1983-12-23T00:00:00",
+      "bloodType" : "A+",
+      "allergies" : [ ],
+      "vaccines" : [ "Dose 1 (Moderna)" ]
+    }
+  } ]
+}
+```
+
+### Vaccination data files
+
+Vaccination data are stored in `[JAR file location]/data/vaxtype.json`.
+
+##### Overall file format
 
 <pre>
 {
@@ -1177,7 +1355,9 @@ Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.
 }
 </pre>
 
-##### Vaccination
+* <code><var>VACCINATION</var></code> : [`<vaccination>`](#vaccination-format)
+
+##### `<vaccination>` format
 
 <pre>
 {
@@ -1195,13 +1375,19 @@ Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.
 * <code><var>MIN_AGE</var></code> : `<age>`
 * <code><var>MAX_AGE</var></code> : `<age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
-* <code><var>REQUIREMENT</var></code> : `<req>`
+* <code><var>REQUIREMENT</var></code> : [`<req>`](#req-format)
 
-###### Notes
+<div markdown="span" class="alert alert-info">
+:information_source: **INFO**: All nodes are optional except for "name". If the optional nodes are omitted, they will be assumed to be their default values as described [here](#vaccination---vaccination-functionalities).
+</div>
 
-* All nodes are optional except for `"name"`.
+###### Restrictions
 
-##### Requirement
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the vaccination invalid. In all cases, VMS will ignore the entire vaccination data file if an invalid vaccination is present.
+
+* <code><var>MIN_AGE</var></code> must not be greater than <code><var>MAX_AGE</var></code>.
+
+##### `<req>` format
 
 <pre>
 {
@@ -1217,28 +1403,124 @@ Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.
 
 ```json
 {
-  "types": [
-    {
-      "name": "Dose 1 (Pfizer)",
-      "groups": ["DOSE 1", "Pfizer", "Vaccination"],
-      "minAge": 5,
-      "historyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": ["DOSE 1"]
-        }
-      ],
-      "ingredients": [
-        "ALC-0315",
-        "ALC-0159",
-        "DSPC",
-        "Cholesterol",
-        "Sucrose",
-        "Phosphate",
-        "Tromethamine",
-        "Tromethamine hydrochloride"
-      ]
-    }
-  ]
+  "types" : [ {
+    "name" : "Dose 3 (Pfizer)",
+    "groups" : [ "Pfizer", "Vaccination", "DOSE 3" ],
+    "minAge" : 5,
+    "maxAge" : 200,
+    "ingredients" : [
+      "ALC-0159",
+      "DSPC",
+      "Sucrose",
+      "Phosphate",
+      "ALC-0315",
+      "Tromethamine hydrochloride",
+      "Cholesterol",
+      "Tromethamine" ],
+    "historyReqs" : [ {
+      "reqType" : "NONE",
+      "reqSet" : [ "DOSE 3" ]
+    }, {
+      "reqType" : "ANY",
+      "reqSet" : [ "DOSE 2" ]
+    } ]
+  } ]
 }
 ```
+
+### Appointment data files
+
+Appointment data are stored in `[JAR file location]/data/appointment.json`.
+
+##### Overall file format
+
+<pre>
+{
+  "datas": [...<var>APPOINTMENT</var>...]
+}
+</pre>
+
+* <code><var>APPOINTMENT</var></code> : [`<appointment>`](#appointment-format)
+
+##### `<appointment>` format
+
+<pre>
+{
+  "isActive": <var>IS_ACTIVE</var>,
+  "id": <var>APPOINTMENT_ID</var>,
+  "appointment": {
+    "patientId": <var>PATIENT_ID</var>,
+    "startTime": <var>START_TIME</var>,
+    "endTime": <var>END_TIME</var>,
+    "vaccine": <var>VAX_NAME</var>,
+    "isComplete": <var>IS_COMPLETE</var>
+  }
+}
+</pre>
+
+* <code><var>IS_ACTIVE</var></code> : `<boolean>`
+  * This value does not do anything but there to aid in future developments.
+* <code><var>APPOINTMENT_ID</var></code> : `<integer>`
+  * **0 based** indexing.
+* <code><var>PATIENT_ID</var></code> : `<integer>`
+  * **1 based** indexing.
+* <code><var>START_TIME</var></code> : `<date>`
+* <code><var>END_TIME</var></code> : `<date>`
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>IS_COMPLETE</var></code> : `<boolean>`
+
+###### Restrictions
+
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the appointment invalid. In all cases unless specified, VMS will ignore the entire appointment data file if an invalid appointment is present.
+
+* <code><var>APPOINTMENT_ID</var></code> must not be negative.
+* Within the entire data file, there should not be a case where there are duplicated <code><var>APPOINTMENT_ID</var></code>.
+* Within the entire data file, there should not be a case where a patient has 2 active appointments.
+* <code><var>PATIENT_ID</var></code> must map to an existing patient.
+  * This error will only cause that appointment to not be loaded.
+* <code><var>VAX_NAME</var></code> must map to an existing vaccination.
+  * This error will only cause that appointment to not be loaded.
+* <code><var>START_TIME</var></code> must be before <code><var>END_TIME</var></code>.
+
+##### Example
+
+```json
+{
+  "datas" : [ {
+    "isActive" : true,
+    "id" : 1,
+    "appointment" : {
+      "patientId" : 1,
+      "startTime" : "2024-03-05T16:00:00",
+      "endTime" : "2024-03-05T16:30:00",
+      "vaccine" : "Dose 2 (Moderna)",
+      "isCompleted" : false
+    }
+  } ]
+}
+```
+
+## Planned features
+
+1. Delete and edit specific elements in list like attributes such as patient's **allergies** or vaccination's **history requirements**.
+2. Auto add vaccination to the patient's vaccination records when marking appointments as complete.
+3. Validations and warning to check if the patient can still take the vaccination on these scenarios:
+   1. Unmarking a previously marked appointment.
+   2. Changing the requirements of a vaccination while there are still patients with appointments for that vaccination.
+   3. Changing the patients records while that patient still has upcoming appointments.
+4. Command to clear all marked appointments.
+5. Command to clear all appointments.
+
+## FAQ
+
+### How do I delete/edit a specific element in list like attributes?
+
+At the moment, VMS does not offer a quick CLI way to delete/edit specific elements in such lists. However, this is a <u>planned feature</u> in future updates!
+
+A work around this is to **edit the data files directly**.
+
+### I added a vaccination but it does not appear in the the vaccination list panel
+
+The filters applied from your last [`find`](#find---locate-vaccinations) command are most likely still active. Use vaccination's [`list`](#list---list-all-vaccination) command to clear the filters.
+
+This feature is intended to increase the efficiency of vaccination's [`edit`](#edit---edit-a-vaccination). Specifically the referring to vaccinations by indexes. You can learn more about this <a href="#vax-filter-no-reset-usage">here</a>.

@@ -1,0 +1,15 @@
+@startuml UiDetailedViewRefreshActivityDiagram
+!include style.puml
+
+start
+if () then ([is not updated])
+    :Clear display;
+    if () then ([value is not null])
+        :Update display with value;
+    else ([else])
+    endif
+else ([else])
+endif
+stop
+
+@enduml

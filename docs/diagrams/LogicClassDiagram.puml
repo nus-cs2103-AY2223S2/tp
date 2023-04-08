@@ -1,46 +1,58 @@
-@startuml
+@startuml LogicClassDiagram
 !include style.puml
+
+skinparam RoundCorner 0
+
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic {
+hide <<hidden>> stereotype
 
-Class VmsParser
-Class XYZCommand
-Class CommandResult
-Class "{abstract}\nCommand" as Command
+<style>
+    .hidden {
+        BackGroundColor transparent
+        BorderColor transparent
+        FontColor transparent
+        LineColor transparent
+        StereotypeFontColor transparent
+    }
+</style>
 
+package Logic LOGIC_COLOR_T1 {
 
-Class "<<interface>>\nLogic" as Logic
-Class LogicManager
+    Class CommandMessage
+    Class "{abstract}\nCommand" as Command
+    Class "<<interface>>\nLogic" as Logic
+
+    Class ParseResult
+
+    Class LogicManager
+
 }
 
-package Model{
-Class HiddenModel #FFFFFF
+package Model MODEL_COLOR_T1 {
 }
 
-package Storage{
+package Storage STORAGE_COLOR_T1 {
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+Class HiddenOut <<hidden>>
 
-LogicManager .right.|> Logic
-LogicManager -right->"1" VmsParser
-VmsParser ..> XYZCommand : creates >
+HiddenOut .left.> Logic
 
-XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+LogicManager .up.|> Logic
+LogicManager ..> Command : executes >
+Command .left.> CommandMessage : produces >
 
-LogicManager --> Model
-LogicManager --> Storage
-Storage --[hidden] Model
-Command .[hidden]up.> Storage
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+LogicManager -down-> Model
+LogicManager -right-> Storage
 
-Logic ..> CommandResult
-LogicManager .down.> CommandResult
-Command .up.> CommandResult : produces >
+Model ..> ParseResult : creates >
+ParseResult -up-> "1" Command
+ParseResult -> "0..1" CommandMessage
+
+Command ..> Model
+LogicManager ..> CommandMessage
+
 @enduml

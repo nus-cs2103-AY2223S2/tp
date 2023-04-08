@@ -105,24 +105,7 @@ public class EditCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-    }
-
-    /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of patient manager
-     */
-    @Test
-    public void execute_invalidPatientIndexFilteredList_failure() {
-        showPatientAtIndex(model, INDEX_FIRST_PATIENT);
-        Index outOfBoundIndex = INDEX_SECOND_PATIENT;
-        // ensures that outOfBoundIndex is still in bounds of patient manager list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPatientManager().getMapView().size());
-
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_ID);
     }
 
     @Test

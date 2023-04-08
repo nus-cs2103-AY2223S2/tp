@@ -1,0 +1,33 @@
+@startuml UiDetailedViewClassDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+package Ui UI_COLOR_T1 {
+    Class DetailedView<T> UI_COLOR {
+        -isUpdated: boolean
+        -value: T
+    }
+}
+show DetailedView fields
+
+package JavaFX {
+    Class "<<interface>>\nObjectProperty<T>" as ObjectProperty #000000
+    Class "<<interface>>\nChangeListener<? super T>" as ChangeListener #000000
+    Class VBox #000000
+}
+
+package Java {
+    Class "<<interface>>\nFunction<T, Node>" as Function #000000
+}
+
+DetailedView --|> VBox
+DetailedView -> Function
+DetailedView ..> ObjectProperty
+DetailedView ..> ChangeListener
+
+ObjectProperty .right.> ChangeListener
+
+@enduml

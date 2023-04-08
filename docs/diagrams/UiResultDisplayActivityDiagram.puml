@@ -1,0 +1,17 @@
+@startuml UiResultDisplayActivityDiagram
+!include style.puml
+
+start
+while () is ([else])
+    :Dequeue CommandMessage;
+    :Convert CommandMessage\nto ResultMessageBox;
+    :Create Node;
+    :Display Node;
+    if () then ([messages displayed > 30])
+        :Remove earliest displayed message;
+    else ([else])
+    endif
+endwhile ([queue empty])
+stop
+
+@enduml

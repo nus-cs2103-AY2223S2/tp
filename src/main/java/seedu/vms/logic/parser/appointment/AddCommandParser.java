@@ -20,6 +20,7 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.vaccination.VaxType;
 
+// @@author nusE0726844
 /**
  * Parses input arguments and creates a new AddCommand object
  */

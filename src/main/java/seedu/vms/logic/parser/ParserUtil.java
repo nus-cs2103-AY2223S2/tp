@@ -8,6 +8,7 @@ import static seedu.vms.model.keyword.Keyword.MAIN_APPOINTMENT_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_BASIC_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_EXIT_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_HELP_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_KEYWORD_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_PATIENT_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_VACCINATION_STRING;
 
@@ -213,7 +214,7 @@ public class ParserUtil {
      * Parses a requirement type.
      */
     public static Requirement.RequirementType parseReqType(String reqTypeString)
-            throws ParseException {
+                throws ParseException {
         try {
             return Requirement.RequirementType.valueOf(reqTypeString.toUpperCase());
         } catch (IllegalArgumentException illArgEx) {
@@ -240,9 +241,11 @@ public class ParserUtil {
         }
 
         if (argParts.size() > 1) {
+            // if 2 parts
             retrieverType = argParts.get(0);
             retrieverValue = argParts.get(1);
         } else if (retrieverValue.matches("\\d+")) {
+            // if one part and is digits
             retrieverType = RETRIEVER_TYPE_INDEX;
         }
 
@@ -286,7 +289,7 @@ public class ParserUtil {
         if (!Keyword.isNotMainKeyword(trimmedKeyword)) {
             throw new ParseException(String.format(MESSAGE_INVALID_SUB_KEYWORD,
             MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING,
-            MAIN_HELP_STRING, MAIN_BASIC_STRING, MAIN_EXIT_STRING));
+            MAIN_HELP_STRING, MAIN_BASIC_STRING, MAIN_EXIT_STRING, MAIN_KEYWORD_STRING));
         }
 
         return trimmedKeyword;
@@ -338,7 +341,6 @@ public class ParserUtil {
         try {
             return Integer.parseInt(intString);
         } catch (NumberFormatException numEx) {
-            // TODO: make this nicer
             throw new ParseException("Must be an integer between -2147483647 to 2147483647");
         }
     }

@@ -58,6 +58,49 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
 
+    /**
+     * Validates if a patient change will result in appointments to be deleted.
+     * Returns a list of messages of the deletion change that will happen if
+     * the specified change were to occur. If no deletion change in appointment
+     * will happen, an empty {@code List} will be returned.
+     *
+     * @param change - the change in state of a patient to check.
+     * @return a list of messages describing the deletion change that will
+     *      occur if the specified change were to happen.
+     */
+    List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change);
+
+
+    /**
+     * Handles the specified change in state of a patient.
+     *
+     * @param change - the change to handle.
+     */
+    void handlePatientChange(ValueChange<IdData<Patient>> change);
+
+
+    /**
+     * Validates if a vaccination change will result in appointments to be
+     * deleted. Returns a list of messages of the deletion change that will
+     * happen if the specified change where to occur. If no deletion change in
+     * appointment will happen, an empty {@code List} will be returned.
+     *
+     * @param change - the change in state of vaccination to check.
+     * @return a list of messages describing the deletion change that will
+     *      occur if the specified change were to happen.
+     */
+    List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change);
+
+
+    /**
+     * Handles the specified change in state of a vaccination.
+     *
+     * @param change - the change to handle.
+     */
+    void handleVaccinationChange(ValueChange<VaxType> change);
+
+
+    // @@author slackernoob
     /*
      * ========================================================================
      * Keywords
@@ -91,6 +134,7 @@ public interface Model {
      */
     Keyword deleteKeyword(String keyword);
 
+    // @@author francisyzy
     /*
      * ========================================================================
      * Patients
@@ -115,6 +159,12 @@ public interface Model {
      * The patient must exist in the patient manager.
      */
     void deletePatient(int id, boolean isForce) throws UnexpectedChangeException;
+
+
+    /**
+     * Resets patient manager's ID count.
+     */
+    void resetPatientIds();
 
     /**
      * Adds the given patient.
@@ -150,6 +200,7 @@ public interface Model {
     void setDetailedPatient(IdData<Patient> patient);
 
 
+    // @@author daitenshionyan
     /*
      * ========================================================================
      * Vaccination
@@ -157,38 +208,90 @@ public interface Model {
      */
 
 
+    /**
+     * Sets the state of the {@code VaxTypeManager} to use.
+     */
     void setVaxTypeManager(VaxTypeManager manager);
 
 
-    /** Returns the {@code VaxTypeManager} the model is using. */
+    /**
+     * Returns the {@code VaxTypeManager} the model is using as a
+     * {@code ReadOnlyVaxTypeManager}.
+     */
     ReadOnlyVaxTypeManage getVaxTypeManager();
 
+
+    /**
+     * Adds the given {@code VaxType} to the stored {@code VaxTypeManager}.
+     *
+     * @return a {@code ValueChange} that describes the change that has
+     *      occurred.
+     * @throws IllegalValueException if the name of the given {@code VaxType}
+     *      is already present.
+     */
     ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException;
 
+
+    /**
+     * Updates by the {@code VaxType} with the specified name with the
+     * given {@code VaxType}.
+     *
+     * @return a {@code ValueChange} that describes the change that has
+     *      occurred.
+     * @throws IllegalValueException if the specified {@code VaxType} cannot be
+     *      updated to the given.
+     */
     ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException;
 
+
+    /**
+     * Deletes the {@code VaxType} with the given name.
+     *
+     * @throws IllegalValueException if the specified {@code VaxType} cannot be
+     *      deleted.
+     * @throws UnexpectedChangeException if {@code isFalse} and the deletion
+     *      leads to unexpected changes.
+     */
     ValueChange<VaxType> deleteVaccination(GroupName vaxName, boolean isForce)
             throws IllegalValueException, UnexpectedChangeException;
 
 
+    /** Sets the filters to use for vaccination. */
     void setVaccinationFilters(Collection<Predicate<VaxType>> filters);
+
 
     /** Returns an unmodifiable view of the filtered vaccination type map. */
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
 
-    ObjectProperty<VaxType> detailedVaxTypeProperty();
+    /**
+     * Returns an {@code ObjectProperty} of the {@code VaxType} that should
+     * be detailed.
+     */
+    ObjectProperty<VaxType> detailedVaccinationProperty();
 
 
+    /** Sets {@code VaxType} to be detailed. */
     void setDetailedVaxType(VaxType vaxType);
 
 
+    /**
+     * Gets the {@code VaxType} that the specified {@code Retriever} refers to.
+     *
+     * @throws IllegalValueException if the {@code VaxType} cannot be
+     *      retrieved.
+     */
     VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException;
 
 
+    /**
+     * Binds the given {@code ObservableList} of {@code VaxType} to this
+     * {@code Model}.
+     */
     void bindVaccinationDisplayList(ObservableList<VaxType> displayList);
 
 
+    // @@author nusE0726844
     /*
      * ========================================================================
      * Appointment
@@ -242,46 +345,4 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered appointment map. */
     ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
-
-
-    /**
-     * Validates if a patient change will result in appointments to be deleted.
-     * Returns a list of messages of the deletion change that will happen if
-     * the specified change were to occur. If no deletion change in appointment
-     * will happen, an empty {@code List} will be returned.
-     *
-     * @param change - the change in state of a patient to check.
-     * @return a list of messages describing the deletion change that will
-     *      occur if the specified change were to happen.
-     */
-    List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change);
-
-
-    /**
-     * Handles the specified change in state of a patient.
-     *
-     * @param change - the change to handle.
-     */
-    void handlePatientChange(ValueChange<IdData<Patient>> change);
-
-
-    /**
-     * Validates if a vaccination change will result in appointments to be
-     * deleted. Returns a list of messages of the deletion change that will
-     * happen if the specified change where to occur. If no deletion change in
-     * appointment will happen, an empty {@code List} will be returned.
-     *
-     * @param change - the change in state of vaccination to check.
-     * @return a list of messages describing the deletion change that will
-     *      occur if the specified change were to happen.
-     */
-    List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change);
-
-
-    /**
-     * Handles the specified change in state of a vaccination.
-     *
-     * @param change - the change to handle.
-     */
-    void handleVaccinationChange(ValueChange<VaxType> change);
 }

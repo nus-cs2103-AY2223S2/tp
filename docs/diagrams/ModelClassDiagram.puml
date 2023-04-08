@@ -3,50 +3,73 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyVms" as ReadOnlyVms
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class Vms
-Class ModelManager
-Class UserPrefs
+Package \nModel <<Rectangle>>{
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<interface>>\nModel" as Model
 
-Class UniquePatientList
-Class Patient
-Class BloodType
-Class Dob
-Class Name
-Class Phone
-Class Allergy
-Class Vaccine
+    Class ModelManager
+    Class UserPrefs
 
+    Class PatientManager
+    Class AppointmentManager
+    Class VaxTypeManager
+    Class KeywordManager
+
+    class Patient MODEL_COLOR {
+        -name: Name
+        -phone: Phone
+        -dateOfBirth: Dob
+        -bloodType: BloodType
+        -allergies: Set<GroupName>
+        -vaccines: Set<GroupName>
+    }
+
+    class Appointment MODEL_COLOR {
+        -patientId: Index
+        -startTime: LocalDateTime
+        -endTime: LocalDateTime
+        -vaccine: GroupName
+        -isCompleted: Boolean
+    }
+
+    class VaxType MODEL_COLOR {
+        -name: GroupName
+        -groups: HashSet<GroupName>
+        -minAge: Age
+        -maxAge: Age
+        -ingredients: HashSet<GroupName>
+        -historyReqs: List<Requirement>
+    }
+
+    class Keyword MODEL_COLOR {
+        -keyword: String
+        -mainKeyword: String
+    }
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
-
-Vms .up.|> ReadOnlyVms
+HiddenOutside .down.> Model
+Model .right.> ReadOnlyUserPrefs
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyVms
-ModelManager -left-> "1" Vms
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Vms *--> "1" UniquePatientList
-UniquePatientList --> "~* all" Patient
-Patient *--> Name
-Patient *--> Phone
-Patient *--> Dob
-Patient *--> BloodType
-Patient *--> "*" Allergy
-Patient *--> "*" Vaccine
+ModelManager *--> "1" PatientManager
+ModelManager *--> "1" AppointmentManager
+ModelManager *--> "1" VaxTypeManager
+ModelManager *--> "1" KeywordManager
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> BloodType
-BloodType -[hidden]right-> Dob
+PatientManager *-down-> "0..1000" Patient
+AppointmentManager *-down-> "0..1000" Appointment
+VaxTypeManager *-down-> "0..30" VaxType
+KeywordManager *-down-> "0..*" Keyword
 
-ModelManager -->"~* filtered" Patient
+show Patient fields
+show Appointment fields
+show VaxType fields
+show Keyword fields
+
 @enduml

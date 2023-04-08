@@ -1,0 +1,21 @@
+@startuml UiListViewPanelActivityDiagram
+!include style.puml
+
+start
+:Get value of changeProperty;
+note right
+    value referred to as
+    "change" from now
+    onwards
+end note
+if () then ([change not null])
+    :Get map from change;
+    :Get values of map;
+    :Reset items list with values from map;
+    :Sort new item list;
+    :Set changeProperty value to null;
+else ([else])
+endif
+stop
+
+@enduml

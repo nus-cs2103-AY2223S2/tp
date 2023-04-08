@@ -69,14 +69,16 @@ class JsonSerializableAppointmentManager {
             try {
                 appointmentManager.add(appointmentData);
             } catch (LimitExceededException limitEx) {
-                // TODO: better message
                 throw new IllegalValueException("ID limit reached");
+            } catch (IllegalArgumentException illArgEx) {
+                throw new IllegalValueException(illArgEx.getMessage());
             }
         }
         return appointmentManager;
     }
 
 
+    // @@author nusE0726844
     private boolean isDuplicate(AppointmentManager manager, IdData<Appointment> appointmentData) {
         if (appointmentData.getValue().getStatus()) {
             return false;

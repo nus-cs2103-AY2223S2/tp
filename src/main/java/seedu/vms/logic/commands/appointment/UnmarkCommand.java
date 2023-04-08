@@ -46,6 +46,7 @@ public class UnmarkCommand extends Command {
 
         Appointment appointmentToUnmark = appointmentList.get(targetIndex.getZeroBased()).getValue();
 
+        // @@author nusE0726844
         Index patientId = appointmentToUnmark.getPatient();
         for (Map.Entry<Integer, IdData<Appointment>> entry : model.getAppointmentManager().getMapView().entrySet()) {
             Appointment appointment = entry.getValue().getValue();

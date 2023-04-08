@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,8 +61,6 @@ public class IdDataMapTest {
     @Test
     public void add_dataOverLimit_exceptionThrown() {
         assertThrows(LimitExceededException.class,
-                () -> idMap.add(new IdData<>(true, -1, -1)));
-        assertThrows(LimitExceededException.class,
                 () -> idMap.add(new IdData<>(true, TESTING_LIMIT, TESTING_LIMIT)));
     }
 
@@ -87,6 +84,25 @@ public class IdDataMapTest {
         // limit
         assertThrows(LimitExceededException.class,
                 () -> idMap.add(new IdData<>(true, TESTING_LIMIT, TESTING_LIMIT)));
+    }
+
+
+    @Test
+    public void addAndDeleteTest() {
+        /*
+         * Test ensures that ID increases on an add operation after the recently added
+         * element was deleted immediately
+         */
+
+        // first so 0
+        int idDel = idMap.add(0).getId();
+        idMap.remove(idDel);
+
+        // second so 1
+        int idNext = idMap.add(2).getId();
+
+        assertEquals(0, idDel);
+        assertEquals(1, idNext);
     }
 
 
@@ -124,28 +140,12 @@ public class IdDataMapTest {
 
 
     @Test
-    public void setDatas_overLimit_exceptionThrown() {
-        List<Integer> idValues = List.of(-1, TESTING_LIMIT);
-        for (Integer id : idValues) {
-            for (int i = 0; i < TESTING_LIMIT; i++) {
-                ArrayList<IdData<Integer>> datas = formRandDataList();
-                datas.remove(i);
-                datas.add(i, new IdData<>(true, id, id));
-                assertThrows(LimitExceededException.class, () -> idMap.setDatas(datas));
-            }
-        }
-    }
-
-
-    @Test
     public void set() {
         int initial = 0;
         int change = 1;
         idMap.add(initial);
         idMap.set(0, change);
         assertEquals(change, idMap.get(0).getValue());
-
-        assertThrows(NoSuchElementException.class, () -> idMap.set(1, change));
     }
 
 

@@ -42,7 +42,6 @@ public class JsonUtil {
      *      folder as a String.
      * @param valueType - the type of the object to deserialize to.
      * @throws IOException if an I/O error occurs.
-     * @throws NullPointerException if any parameter is {@code null}.
      */
     public static <T> T deserializeFromResource(String pathString, Class<T> valueType)
                 throws IOException {
@@ -59,7 +58,6 @@ public class JsonUtil {
      * @param path - path to the file to deserialize from.
      * @param valueType - the type of the object to deserialize to.
      * @throws IOException if an I/O exception occurs.
-     * @throws NullPointerException if any parameter is {@code null}.
      */
     public static <T> T deserializeFromFile(Path path, Class<T> valueType)
                 throws IOException {

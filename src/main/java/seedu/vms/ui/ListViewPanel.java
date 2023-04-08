@@ -7,7 +7,6 @@ import java.util.function.Function;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -24,8 +23,6 @@ public class ListViewPanel<T extends Comparable<T>> extends ListView<T> implemen
 
     private final ObjectProperty<MapChangeListener.Change<?, ? extends T>> changeProperty =
             new SimpleObjectProperty<>();
-
-    private final ObservableList<T> displayList = FXCollections.unmodifiableObservableList(getItems());
 
 
     /**
@@ -65,7 +62,7 @@ public class ListViewPanel<T extends Comparable<T>> extends ListView<T> implemen
 
 
     public ObservableList<T> getDisplayList() {
-        return displayList;
+        return itemsProperty().get();
     }
 
 

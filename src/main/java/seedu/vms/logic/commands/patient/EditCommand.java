@@ -92,13 +92,13 @@ public class EditCommand extends Command {
     @Override
     public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
-        Map<Integer, IdData<Patient>> lastShownList = model.getFilteredPatientList();
+        Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
 
-        if (!lastShownList.containsKey(index.getZeroBased())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        if (!patientList.containsKey(index.getZeroBased())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_ID);
         }
 
-        Patient patientToEdit = lastShownList.get(index.getZeroBased()).getValue();
+        Patient patientToEdit = patientList.get(index.getZeroBased()).getValue();
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
         model.setPatient(index.getZeroBased(), editedPatient);

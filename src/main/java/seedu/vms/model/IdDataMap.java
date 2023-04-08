@@ -1,7 +1,6 @@
 package seedu.vms.model;
 
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import javafx.collections.FXCollections;
@@ -52,12 +51,14 @@ public class IdDataMap<T> {
      * Adds the value to the map.
      *
      * @param value - the value to add.
+     * @return the data added.
      * @throws LimitExceededException if the number of data has reached its
      *      limit.
      */
     public IdData<T> add(T value) throws LimitExceededException {
         Objects.requireNonNull(value);
         IdData<T> data = new IdData<>(getNextId(), value);
+        nextId++;
         return add(data);
     }
 
@@ -67,14 +68,21 @@ public class IdDataMap<T> {
      * data's ID, that ID associated value is replaced with the given.
      *
      * @param data - the data to add.
+     * @return the data added.
+     * @throws LimitExceededException if the ID limit has been reached.
+     * @throws IllegalArgumentException if the given ID of the data is invalid.
      */
     public IdData<T> add(IdData<T> data) throws LimitExceededException {
         Objects.requireNonNull(data);
-        if (!isValidId(data.getId())) {
+        if (!isWithinLimit(data.getId())) {
+            // if ID exceeds limit
             throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
+        } else if (!isValidId(data.getId())) {
+            // all other cases of invalid ID
+            throw new IllegalArgumentException("Invalid ID");
         }
         internalMap.put(data.getId(), data);
-        nextId = Math.max(nextId, data.getId());
+        nextId = Math.max(nextId, data.getId() + 1);
         return data;
     }
 
@@ -86,13 +94,10 @@ public class IdDataMap<T> {
      *
      * @param id - the id to set.
      * @param value - the value to set.
-     * @throws NoSuchElementException if the ID is not present.
+     * @return the {@code ValueChange} that describes the change that
+     *      has occurred.
      */
     public ValueChange<IdData<T>> set(int id, T value) {
-        if (!internalMap.containsKey(id)) {
-            // TODO: this exception is unhandled by utilising methods.
-            throw new NoSuchElementException(String.format("ID [%d] not found", id));
-        }
         IdData<T> newValue = new IdData<>(id, value);
         IdData<T> oldValue = internalMap.put(id, newValue);
         return new ValueChange<>(oldValue, newValue);
@@ -103,13 +108,20 @@ public class IdDataMap<T> {
      * Removes the data associated to the specified ID.
      *
      * @param id - the ID of the data to remove.
+     * @return the {@code ValueChange} that describes the change that
+     *      has occurred.
      */
     public ValueChange<IdData<T>> remove(int id) {
         IdData<T> removedData = internalMap.remove(id);
-        if (internalMap.isEmpty()) {
-            nextId = 0;
-        }
         return new ValueChange<>(removedData, null);
+    }
+
+
+    /**
+     * Resets the ID count.
+     */
+    public void resetIdCount() {
+        nextId = STARTING_INDEX;
     }
 
 
@@ -129,9 +141,12 @@ public class IdDataMap<T> {
      * Clears and sets the stored data to the given collection of datas.
      *
      * @param datas - the collection of data to set to.
+     * @throws LimitExceededException if there exists a data whose ID is over
+     *      the limit of this {@code IdDataMap}.
+     * @throws IllegalArgumentException if there exists a data whose ID is
+     *      invalid.
      */
     public void setDatas(Collection<IdData<T>> datas) {
-        // TODO: Check for duplicate ID
         internalMap.clear();
         nextId = STARTING_INDEX;
         for (IdData<T> data : datas) {
@@ -143,9 +158,11 @@ public class IdDataMap<T> {
     /**
      * Clears and sets the stored value to the given collection of values.
      *
-     * <p>The ID is reseted as well.
+     * <p>The ID will be reset as well.
      *
      * @param values - the collection of values to set to.
+     * @throws LimitExceededException if the limit has been reached. The first
+     *      few values before the limit is reached will still be added.
      */
     public void setValues(Collection<T> values) {
         internalMap.clear();
@@ -156,6 +173,10 @@ public class IdDataMap<T> {
     }
 
 
+    /**
+     * Returns the data mapped to the specified ID or {@code null} if there are
+     * no mappings.
+     */
     public IdData<T> get(int id) {
         return internalMap.get(id);
     }
@@ -175,9 +196,10 @@ public class IdDataMap<T> {
         if (internalMap.size() >= limit) {
             throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
-        while (contains(nextId)) {
-            nextId++;
-            if (!isValidId(nextId)) {
+        while (contains(nextId) || !isValidId(nextId)) {
+            if (isValidId(nextId)) {
+                nextId++;
+            } else {
                 nextId = 0;
             }
         }
@@ -185,7 +207,14 @@ public class IdDataMap<T> {
     }
 
 
+    /** Returns if the given ID is valid. */
     private boolean isValidId(int id) {
         return 0 <= id && id < limit;
+    }
+
+
+    /** Returns if the given ID is within the set limit. */
+    private boolean isWithinLimit(int id) {
+        return id < limit;
     }
 }

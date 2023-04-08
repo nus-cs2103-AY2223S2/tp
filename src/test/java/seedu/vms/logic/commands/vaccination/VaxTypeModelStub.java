@@ -134,19 +134,16 @@ public class VaxTypeModelStub implements Model {
 
     @Override
     public void addAppointment(Appointment appointment) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'addAppointment'");
     }
 
     @Override
     public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getFilteredAppointmentMap'");
     }
 
     @Override
     public AppointmentManager getAppointmentManager() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAppointmentManager'");
     }
 
@@ -175,31 +172,26 @@ public class VaxTypeModelStub implements Model {
 
     @Override
     public void setKeywordManager(KeywordManager manager) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
     }
 
     @Override
     public ParseResult parseCommand(String userCommand) throws ParseException {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
     }
 
     @Override
     public void setVaxTypeManager(VaxTypeManager manager) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
     }
 
     @Override
     public void setAppointmentManager(AppointmentManager manager) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
     }
 
     @Override
     public void setPatientFilters(Collection<Predicate<Patient>> filters) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setPatientFilters'");
     }
 
@@ -210,55 +202,46 @@ public class VaxTypeModelStub implements Model {
 
     @Override
     public List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'validatePatientChange'");
     }
 
     @Override
     public void handlePatientChange(ValueChange<IdData<Patient>> change) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handlePatientChange'");
     }
 
     @Override
     public List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'validateVaccinationChange'");
     }
 
     @Override
     public void handleVaccinationChange(ValueChange<VaxType> change) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handleVaccinationChange'");
     }
 
     @Override
-    public ObjectProperty<VaxType> detailedVaxTypeProperty() {
-        // TODO Auto-generated method stub
+    public ObjectProperty<VaxType> detailedVaccinationProperty() {
         throw new UnsupportedOperationException("Unimplemented method 'detailVaxTypeProperty'");
     }
 
     @Override
     public void setDetailedVaxType(VaxType vaxType) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDetailedVaxType'");
     }
 
     @Override
     public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'detailedPatientProperty'");
     }
 
     @Override
     public void setDetailedPatient(IdData<Patient> patient) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDetailedPatient'");
     }
 
     @Override
     public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'bindDisplayList'");
     }
 
@@ -282,8 +265,12 @@ public class VaxTypeModelStub implements Model {
 
     @Override
     public void deletePatient(int id, boolean isForce) throws UnexpectedChangeException {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deletePatient'");
+    }
+
+    @Override
+    public void resetPatientIds() {
+        throw new UnsupportedOperationException("Unimplemented method 'resetPatientIds'");
     }
 
 }

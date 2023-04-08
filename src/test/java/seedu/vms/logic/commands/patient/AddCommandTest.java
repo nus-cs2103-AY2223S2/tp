@@ -198,140 +198,122 @@ public class AddCommandTest {
 
         @Override
         public void setKeywordManager(KeywordManager manager) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredAppointmentMap'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public KeywordManager getKeywordManager() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getKeywordManager'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public AppointmentManager getAppointmentManager() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getAppointmentManager'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setVaxTypeManager(VaxTypeManager manager) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setAppointmentManager(AppointmentManager manager) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ParseResult parseCommand(String userCommand) throws ParseException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setPatientFilters(Collection<Predicate<Patient>> filters) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setVaccinationFilters(Collection<Predicate<VaxType>> filters) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");
+            throw new AssertionError("This method should not be called.");
         }
         @Override
         public void setAppointmentFilters(Collection<Predicate<Appointment>> filters) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setAppointmentFilters'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'validatePatientChange'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void handlePatientChange(ValueChange<IdData<Patient>> change) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'handlePatientChange'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'validateVaccinationChange'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void handleVaccinationChange(ValueChange<VaxType> change) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'handleVaccinationChange'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObjectProperty<VaxType> detailedVaxTypeProperty() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'detailVaxTypeProperty'");
+        public ObjectProperty<VaxType> detailedVaccinationProperty() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setDetailedVaxType(VaxType vaxType) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setDetailedVaxType'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'detailedPatientProperty'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setDetailedPatient(IdData<Patient> patient) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setDetailedPatient'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'bindDisplayList'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getVaccination'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addVaccination'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'editVaccination'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ValueChange<VaxType> deleteVaccination(GroupName vaxName, boolean isForce)
-                throws IllegalValueException, UnexpectedChangeException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deleteVaccination'");
+                    throws IllegalValueException, UnexpectedChangeException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetPatientIds() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

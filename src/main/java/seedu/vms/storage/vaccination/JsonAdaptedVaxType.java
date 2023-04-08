@@ -69,8 +69,7 @@ public class JsonAdaptedVaxType {
 
 
     /**
-     * Converts this JSON friendly version to an {@link VaxType} instance. The
-     * type is added in to the vaccination type map in the process.
+     * Converts this JSON friendly version to an {@link VaxType} instance.
      *
      * @throws IllegalValueException if name field is missing.
      */

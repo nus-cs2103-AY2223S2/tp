@@ -85,6 +85,17 @@ public class VaxTypeManager implements ReadOnlyVaxTypeManage {
     }
 
 
+    /**
+     * Replaces the {@code VaxType} with the specified name with the given
+     * {@code VaxType}.
+     *
+     * @return a {@code ValueChange} that describes the change that has
+     *      occurred.
+     * @throws IllegalValueException if the {@code VaxType} with the specified
+     *      name cannot be found or if the given {@code VaxType} has the same
+     *      name as an already existing {@code VaxType} that is not the
+     *      specified name.
+     */
     public ValueChange<VaxType> set(String name, VaxType newValue) throws IllegalValueException {
         if (!typeMap.containsKey(name)) {
             throw new IllegalValueException(String.format(ERROR_FORMAT_NONEXISTENT_VACCINATION,

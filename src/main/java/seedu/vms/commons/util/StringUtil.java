@@ -152,6 +152,7 @@ public class StringUtil {
 
         int count = 0;
         for (IdData<Appointment> appointment : appointments) {
+            // Magic number to display 25 appointments a line.
             if (count % 25 == 0) {
                 builder.append("\n");
             }

@@ -35,6 +35,14 @@ public interface Logic {
     void setOnExecutionCompletion(Consumer<List<CommandMessage>> onExecutionComplete);
 
 
+    /**
+     * Loads all managers for {@code Model}.
+     *
+     * @param beyondDeathErrHandler - the {@code BiConsumer} that will be
+     *      called if an error that cannot be handled occurs. The first
+     *      parameter is the title of the error while the second is the
+     *      description.
+     */
     void loadManagers(BiConsumer<String, String> beyondDeathErrHandler);
 
 
@@ -65,16 +73,42 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
 
+    /**
+     * Returns the {@code ObjectProperty} of the patient to be detailed.
+     */
     ObjectProperty<IdData<Patient>> detailedPatientProperty();
 
 
+    /**
+     * Returns the {@code ObjectProperty} of the vaccination to be detailed.
+     */
     ObjectProperty<VaxType> detailedVaxTypeProperty();
 
 
+    /**
+     * Binds the given {@code ObservableList} to the {@code Model} within this
+     * {@code Logic}. The list is used to refer to {@code VaxType} by index if
+     * needed.
+     *
+     * @param displayList - the {@code ObservableList} to bind to
+     *      {@code Model}.
+     */
     void bindVaccinationDisplayList(ObservableList<VaxType> displayList);
 
+
+    /**
+     * Sets the action that should be performed if a exit command is received.
+     *
+     * @param closeAction - a {@code Runnable} that defines the close action.
+     */
     void setCloseAction(Runnable closeAction);
 
 
+    /**
+     * Sets the action that should be performed if a help command is received.
+     *
+     * @param showHelpAction - a {@code Runnable} that defines the show help
+     *      action.
+     */
     void setShowHelpAction(Runnable showHelpAction);
 }

@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
@@ -41,7 +42,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ObjectProperty<IdData<Patient>> detailedPatientProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<VaxType> detailedVaxTypeProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<VaxType> detailedVaccinationProperty = new SimpleObjectProperty<>();
 
     private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
@@ -55,7 +56,7 @@ public class ModelManager implements Model {
 
     private final VmsParser vmsParser;
 
-    private ObservableList<VaxType> displayList = null;
+    private ObservableList<VaxType> vaxDisplayList = null;
 
     /**
      * Initializes a ModelManager with the given patientManager and userPrefs.
@@ -128,7 +129,6 @@ public class ModelManager implements Model {
 
     @Override
     public ParseResult parseCommand(String userCommand) throws ParseException {
-        // TODO: Avoid creating a new parser everytime
         return vmsParser.parseCommand(userCommand);
     }
 
@@ -169,6 +169,11 @@ public class ModelManager implements Model {
         // deletion
         patientManager.remove(id);
         handlePatientChange(change);
+    }
+
+    @Override
+    public void resetPatientIds() {
+        patientManager.resetIdCount();
     }
 
     @Override
@@ -321,26 +326,26 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ObjectProperty<VaxType> detailedVaxTypeProperty() {
-        return detailedVaxTypeProperty;
+    public ObjectProperty<VaxType> detailedVaccinationProperty() {
+        return detailedVaccinationProperty;
     }
 
 
     @Override
     public void setDetailedVaxType(VaxType vaxType) {
-        detailedVaxTypeProperty.set(vaxType);
+        detailedVaccinationProperty.set(vaxType);
     }
 
 
     @Override
     public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
-        this.displayList = displayList;
+        this.vaxDisplayList = FXCollections.unmodifiableObservableList(displayList);
     }
 
 
     @Override
     public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
-        return retriever.retrieve(vaxTypeManager.asUnmodifiableObservableMap(), displayList);
+        return retriever.retrieve(vaxTypeManager.asUnmodifiableObservableMap(), vaxDisplayList);
     }
 
     // =========== KeywordManager ==============================================================================
@@ -432,10 +437,10 @@ public class ModelManager implements Model {
 
     private void updateVaccinationDetail(ValueChange<VaxType> change) {
         boolean isUpdated = change.getOldValue()
-                .map(oldValue -> oldValue.equals(detailedVaxTypeProperty.get()))
+                .map(oldValue -> oldValue.equals(detailedVaccinationProperty.get()))
                 .orElse(false);
         if (isUpdated || change.getNewValue().isPresent()) {
-            detailedVaxTypeProperty.set(change.getNewValue().orElse(null));
+            detailedVaccinationProperty.set(change.getNewValue().orElse(null));
         }
     }
 

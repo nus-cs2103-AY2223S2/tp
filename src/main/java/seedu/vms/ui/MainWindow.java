@@ -131,6 +131,8 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // @@author francisyzy
+        // patients
         patientListPanel = new ListViewPanel<>(
                 logic.getFilteredPatientMap(),
                 idData -> new SimplifiedPatientCard(idData).getRoot());
@@ -139,6 +141,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
                 data -> new PatientCard(data.getValue(), data.getId() + 1).getRoot());
         detailedPatientPanel.getChildren().add(detailedPatientView);
 
+        // @@author daitenshionyan
         vaxTypeListPanel = new ListViewPanel<>(
                 logic.getFilteredVaxTypeMap(),
                 (index, vaxType) -> new SimplifiedVaxTypeCard(index, vaxType).getRoot());
@@ -149,15 +152,17 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
         detailedVaxTypePanel.getChildren().add(detailedVaxTypeView);
         logic.bindVaccinationDisplayList(vaxTypeListPanel.getDisplayList());
 
+        // @@author nusE0726844
         appointmentListPanel = new ListViewPanel<>(
                 logic.getFilteredAppointmentMap(),
                 idData -> new AppointmentCard(idData.getValue(), idData.getId() + 1).getRoot());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel);
 
+        // @@author
         resultDisplay = new ResultDisplay();
         Region resultDisplayRegion = resultDisplay.getRoot();
         resultDisplayPlaceholder.getChildren().add(resultDisplayRegion);
-        logic.setOnExecutionCompletion(resultDisplay::setFeedbackToUser);
+        logic.setOnExecutionCompletion(resultDisplay::queueMessages);
 
         CommandBox commandBox = new CommandBox(logic::queue);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
