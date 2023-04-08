@@ -235,11 +235,11 @@ public class Person {
                 .append(getAddress())
                 .append("\nStatus: ")
                 .append(getStatus())
-                .append("\nApplication Date: ")
+                .append("\nApplication DateTime: ")
                 .append(getApplicationDateTimeString());
 
         if (interviewDateTime.isPresent()) {
-            builder.append("\nInterviewDateTime: ")
+            builder.append("\nInterview DateTime: ")
                     .append(interviewDateTime.get());
         }
 
