@@ -842,8 +842,8 @@ The following is a description of the code execution flow:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                       |
-| -------- | ---------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | --- |
+| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                     |
+| -------- | ---------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------|
 | `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                              |                                    |     |
 | `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                      |
 | `* * *`  | user             | add a lecture                                                                      | track my watch progress by lectures and organise my videos by lectures                                                | <!-- TODO: Verify by hingen -->    |
@@ -851,11 +851,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user             | edit details of existing modules                                                   | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | edit details of existing lectures                                                  | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | edit details of existing videos                                                    | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
-| `* * *`  | user             | delete specific modules                                                            | remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed)         | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | delete specific lectures                                                           | remove lectures that were added by accident                                                                           | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | delete specific videos                                                             | remove videos that were added by accident                                                                             | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | mark videos that I have watched                                                    | track which videos I have watched                                                                                     | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | unmark videos that I have previously marked as watched                             | correct my mistakes when I mark a video by accident                                                                   | <!-- TODO: Verify by joytqt -->    |
+| `* * *`  | user             | delete specific modules                                                          | remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed)         |
+| `* * *`  | user             | delete specific lectures                                                         | remove lectures that were added by accident                                                                           |
+| `* * *`  | user             | delete specific videos                                                           | remove videos that were added by accident                                                                             |
+| `* * *`  | user             | mark videos that I have watched                                                  | keep track of which videos I have watched                                                                             |
+| `* * *`  | user             | unmark videos that I have previously marked as watched                           | correct my mistakes when I mark a video by accident                                                                   |
 | `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                     |                                    |
 | `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                          |                                    |
 | `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                           |                                    |
@@ -866,7 +866,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user             | remove tags from modules                                                           | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | remove tags from lectures                                                          | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
-| `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over                                                              | <!-- TODO: Verify by joytqt -->    |
+| `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over or clear sample modules                                    |
 | `* *`    | user             | set timestamps on videos                                                           | track where I last left off on a video                                                                                | <!-- TODO: Verify by hingen -->    |
 | `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                         |                                    |
 | `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                        |                                    |
@@ -874,11 +874,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user             | import my progress data                                                            | restore my tracker should I change or wipe my device                                                                  | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | forgetful user   | be reminded of where to find the guide                                             | relearn how to use the app                                                                                            |                                    |
 | `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | not type the same lengthy arguments each time I type a command.                                                       |                                    |
-| `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                   | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                      | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                        | <!-- TODO: Verify by joytqt -->    |
+| `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove multiple modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) |    |
+| `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                   |    |
+| `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     |    |
+| `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                    |
+| `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                      |
 | `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                         |                                    |
 | `*`      | unmotivated user | feel rewarded for making progress in watching lecture videos                       | be motivated to keep up or catch up with the syllabus                                                                 |                                    |
 | `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                      |                                    |
@@ -2087,3 +2087,73 @@ Expected:
 | 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find math /byTag`    | Same as previous                            |
 | `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
 | 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |
+
+### Tag a Module
+
+| Test Case                       |                   Expected Result                    |
+|:--------------------------------|:----------------------------------------------------:|
+| `tag CS2040S /tags fun, cool`   |    CS2040S should be tagged with [`fun`, `cool`]     |
+| `tag CS2040S /tags Heavy`       | There should be no change no current tags of CS2040S |
+| `tag CS2040S /tags cool, cool`  |   CS2040S should only be tagged with [`cool`] once   |
+| `tag CS2040S /tags @@`          |          `Tag(s) @@ should be alphanumeric`          |
+| `tag CS2040S`                   |                   Invalid command                    |
+
+### Tag a Lecture
+
+| Test Case                                                                           |               Expected Result                |
+|:------------------------------------------------------------------------------------|:--------------------------------------------:|
+| 1. `tag Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav CS2040S`                 | Week 1 should be tagged with [`fun`, `cool`] |
+| 1. `nav CS2040S` <br/> 2. `tag Week 1 /tags fun, cool`                              |               Same as previous               |
+| 1. `nav ST2334` <br/> 2. `tag CS2040S /tags fun, cool` <br/> 3. `nav /mod CS2040S`  |               Same as previous               |
+
+### Tag a Video
+
+| Test Case                                                                                                                               |               Expected Result               |
+|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------:|
+| 1. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should be tagged with [`fun`, `cool`] |
+| 1. `nav CS2040S` <br/> 2. `tag Vid 3 /lec Week 1 /tags fun, cool` <br/> 3. `nav Week 1`                                                 |              Same as previous               |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `tag Vid 3 /tags fun, cool`                                                                  |              Same as previous               |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 3. `nav /lec Week 1 /mod CS2040S` |              Same as previous               |
+
+### Untag a Module
+
+| Test Case                          |                      Expected Result                      |
+|:-----------------------------------|:---------------------------------------------------------:|
+| `untag CS2040S /tags Heavy, Math`  | CS2040S should no longer be tagged with [`Heavy`, `Math`] |
+| `untag CS2040S /tags Heavy, Hehe`  |        `Tag Hehe of Module CS2040S does not exist`        |
+| `untag CS2040S /tags Heavy, Heavy` |     CS2040S should no longer be tagged with [`Heavy`]     |
+| `untag CS2040S`                    |                      Invalid Command                      |
+
+### Untag a Lecture
+
+| Test Case                                                                                    |                Expected Result                 |
+|:---------------------------------------------------------------------------------------------|:----------------------------------------------:|
+| 1. `untag Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav CS2040S`                            | Week 1 should no long be tagged with [`Intro`] |
+| 1. `nav CS2040S` <br/> 2. `untag Week 1 /tags Intro`                                         |                Same as previous                |
+| 1. `nav ST2334` <br/> 2. `untag Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /mod CS2040S` |                Same as previous                |
+
+### Untag a Video
+
+| Test Case                                                                                                                             |                 Expected Result                 |
+|:--------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------:|
+| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should no longer be tagged with [`Intro`] |
+| 1. `nav CS2040S` <br/> 2. `untag Vid 3 /lec Week 1 /tags Intro` <br/> 3. `nav Week 1`                                                 |                Same as previous                 |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `untag Vid 3 /tags Intro`                                                                  |                Same as previous                 |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /lec Week 1 /mod CS2040S` |                Same as previous                 |
+
+### Export All Modules to a File
+
+| Test Case                                                |                                      Expected Result                                       |
+|:---------------------------------------------------------|:------------------------------------------------------------------------------------------:|
+| `export hello.json`                                      |                A hello.json file should appear in {JAR_file_location}/data                 |
+| 1. `export hi.json` <br/> 2. `export hi.json`            | `File already exist. If you want to overwrite this file, insert /overwrite in the command` |
+| 1. `export ha.json` <br/> 2. `export ha.json /overwrite` |                             `All modules archived to ha.json`                              |
+| `export letracker.json /overwrite`                       |               `Cannot export to the current working directory of Le Tracker`               |
+
+### Import Modules from a File
+
+| Test Case                                                                             |                                                  Expected Result                                                  |
+|:--------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------:|
+| 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` |                    `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker                     |
+| 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | `ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` |
+| 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  |                           `CS2040S` should be deleted and imported back into Le Tracker                           |

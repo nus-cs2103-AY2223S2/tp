@@ -19,6 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.trackereventsystem.TrackerEventSystem;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.Tracker;
@@ -101,7 +102,7 @@ public class ArchiveTest {
     public void importFromArchive_fileNotFound_throwCommandException() {
         assertThrows(CommandException.class, () -> archive.importFromArchive(
                 testFolder.resolve(NON_EXISTING_FILE_IN_ARCHIVE),
-                        new ModelStubWithFilledTracker(), true, false, new HashSet<>()));
+                        new ModelStubWithFilledTracker(), true, false, new HashSet<>(), new TrackerEventSystem()));
     }
 
     @Test
@@ -110,7 +111,7 @@ public class ArchiveTest {
         Archive archiveThrowIoe = new Archive(storageThrowIoe);
         assertThrows(CommandException.class, () -> archiveThrowIoe.importFromArchive(
                 testFolder.resolve(EXISTING_FILE_IN_ARCHIVE),
-                        new ModelStubWithFilledTracker(), true, false, new HashSet<>()));
+                        new ModelStubWithFilledTracker(), true, false, new HashSet<>(), new TrackerEventSystem()));
     }
 
     @Test
@@ -119,7 +120,7 @@ public class ArchiveTest {
         Archive archiveThrowDataConversionError = new Archive(storageThrowDataConversionError);
         assertThrows(CommandException.class, () -> archiveThrowDataConversionError.importFromArchive(
                 testFolder.resolve(EXISTING_FILE_IN_ARCHIVE),
-                        new ModelStubWithFilledTracker(), true, false, new HashSet<>()));
+                        new ModelStubWithFilledTracker(), true, false, new HashSet<>(), new TrackerEventSystem()));
     }
 
     @Test
@@ -130,7 +131,7 @@ public class ArchiveTest {
         Archive importArchive = new Archive(importStorage);
         Model model = new ModelStubWithEmptyTracker();
         importArchive.importFromArchive(testFolder.resolve(EXISTING_FILE_IN_ARCHIVE_FOR_IMPORT),
-                model, true, false, new HashSet<>());
+                model, true, false, new HashSet<>(), new TrackerEventSystem());
         assertTrue(model.hasModule(TypicalModules.getCs2040s().getCode()));
     }
 
@@ -143,7 +144,7 @@ public class ArchiveTest {
         Model model = new ModelStubWithEmptyTracker();
         Set<ModuleCode> moduleCodesToAdd = new HashSet<>(List.of(TypicalModules.getSt2334().getCode()));
         importArchive.importFromArchive(testFolder.resolve(EXISTING_FILE_IN_ARCHIVE_FOR_IMPORT),
-                model, false, false, moduleCodesToAdd);
+                model, false, false, moduleCodesToAdd, new TrackerEventSystem());
         assertTrue(model.hasModule(TypicalModules.getSt2334().getCode()));
     }
 
@@ -156,7 +157,7 @@ public class ArchiveTest {
         Set<ModuleCode> moduleCodesToAdd = new HashSet<>(List.of(TypicalModules.getCs2040s().getCode()));
         assertThrows(CommandException.class, () -> archive.importFromArchive(
                 testFolder.resolve(EXISTING_FILE_IN_ARCHIVE),
-                        model, false, false, moduleCodesToAdd));
+                        model, false, false, moduleCodesToAdd, new TrackerEventSystem()));
     }
 
     @Test
@@ -167,7 +168,7 @@ public class ArchiveTest {
         Set<ModuleCode> moduleCodesToAdd = new HashSet<>(List.of(TypicalModules.getCs2107().getCode()));
         assertThrows(CommandException.class, () -> archive.importFromArchive(
                 testFolder.resolve(EXISTING_FILE_IN_ARCHIVE),
-                        model, false, false, moduleCodesToAdd));
+                        model, false, false, moduleCodesToAdd, new TrackerEventSystem()));
     }
 
     @Test
@@ -177,7 +178,7 @@ public class ArchiveTest {
         Model model = new ModelStubWithFilledTracker();
         Set<ModuleCode> moduleCodesToAdd = new HashSet<>(List.of(TypicalModules.getCs2040s().getCode()));
         archive.importFromArchive(testFolder.resolve(EXISTING_FILE_IN_ARCHIVE),
-                model, false, true, moduleCodesToAdd);
+                model, false, true, moduleCodesToAdd, new TrackerEventSystem());
         assertTrue(model.hasModule(TypicalModules.getCs2040s().getCode()));
         assertTrue(model.hasModule(TypicalModules.getCs2107().getCode()));
     }
@@ -191,7 +192,7 @@ public class ArchiveTest {
         Model model = new ModelStubWithFilledTracker();
         Set<ModuleCode> moduleCodesToAdd = new HashSet<>();
         archive.importFromArchive(testFolder.resolve(EXISTING_FILE_IN_ARCHIVE),
-                model, true, true, moduleCodesToAdd);
+                model, true, true, moduleCodesToAdd, new TrackerEventSystem());
         assertTrue(model.hasModule(TypicalModules.getCs2040s().getCode()));
         assertTrue(model.hasModule(TypicalModules.getSt2334().getCode()));
     }
