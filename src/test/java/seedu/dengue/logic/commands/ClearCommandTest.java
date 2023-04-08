@@ -30,7 +30,6 @@ import seedu.dengue.model.range.StartAge;
 import seedu.dengue.model.range.StartDate;
 import seedu.dengue.model.variant.Variant;
 
-
 public class ClearCommandTest {
     @Test
     public void execute_emptyDengueHotspotTracker_success() {
@@ -44,7 +43,6 @@ public class ClearCommandTest {
         assertCommandSuccess(new ClearCommand(), model, expectedMessage, expectedModel);
     }
 
-
     @Test
     public void execute_unfilteredNonEmptyDengueHotspotTracker_success() {
         Model model = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
@@ -57,7 +55,6 @@ public class ClearCommandTest {
         String expectedMessage = String.format(ClearCommand.MESSAGE_SUCCESS, referenceCopy.size());
         assertCommandSuccess(new ClearCommand(), model, expectedMessage, expectedModel);
     }
-
 
     @Test
     public void execute_filteredNonEmptyDengueHotspotTracker_success() {
