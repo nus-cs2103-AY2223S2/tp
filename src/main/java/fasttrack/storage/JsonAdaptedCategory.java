@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import fasttrack.commons.exceptions.IllegalValueException;
 import fasttrack.model.category.Category;
+import fasttrack.model.category.MiscellaneousCategory;
 import fasttrack.model.category.UserDefinedCategory;
+
 
 
 /**
@@ -53,6 +55,10 @@ class JsonAdaptedCategory {
         }
 
         final String modelDescription = summary;
+
+        if (categoryName.equalsIgnoreCase("misc")) {
+            return new MiscellaneousCategory();
+        }
         return new UserDefinedCategory(modelCategoryName, modelDescription);
     }
 

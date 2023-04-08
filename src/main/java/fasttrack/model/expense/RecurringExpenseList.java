@@ -1,13 +1,17 @@
 package fasttrack.model.expense;
 
 import static fasttrack.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import fasttrack.model.category.Category;
+import fasttrack.model.category.MiscellaneousCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 /**
  * Represents a List of Recurring Expenses in the Expense Tracker.
  */
@@ -18,13 +22,14 @@ public class RecurringExpenseList {
     private final ObservableList<RecurringExpenseManager> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(recurringExpenseList);
 
+    private final Category misc = new MiscellaneousCategory();
+
     /**
      * Adds a recurring expense to the internal list of recurring expenses.
      * @param recurringExpense Recurring expense to add.
      */
     public void addRecurringExpense(RecurringExpenseManager recurringExpense) {
         recurringExpenseList.add(recurringExpense);
-
     }
 
 
@@ -116,5 +121,18 @@ public class RecurringExpenseList {
             sb.append(recurringExpense.toString());
         }
         return sb.toString();
+    }
+
+    /**
+     * Replace recurring expenses with {@code target} category with Misc object
+     * @param target
+     */
+    public void replaceDeletedCategory(Category target) {
+        requireNonNull(target);
+        recurringExpenseList.forEach(recurringExpenseManager -> {
+            if (recurringExpenseManager.getExpenseCategory().equals(target)) {
+                recurringExpenseManager.setExpenseCategory(misc);
+            }
+        });
     }
 }

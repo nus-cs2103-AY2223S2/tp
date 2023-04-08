@@ -53,7 +53,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "CLEAR\n"
             + "    - Clears all the expenses and categories stored in FastTrack\n\n";
 
-    public static final String HELP_MESSAGE = HELP_MESSAGE_COMMAND + "For more info, refer to the user guide: "
+    public static final String HELP_MESSAGE = "For more info, refer to the FastTrack user guide: "
             + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

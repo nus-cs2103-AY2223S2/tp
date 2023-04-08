@@ -10,8 +10,8 @@ import fasttrack.logic.commands.exceptions.CommandException;
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Prices should only contain numbers, and should not be negative";
-    public static final String VALIDATION_REGEX = "^(0|[1-9]\\d*)(\\.\\d+)?$";
+            "Amounts should only contain numbers, and should not be negative or empty.";
+    public static final String VALIDATION_REGEX = "^(-0|[1-9]\\d*)(\\.\\d+)?$";
     private String value;
 
     /**
@@ -31,7 +31,7 @@ public class Price {
      */
     public Price(double price) {
         requireNonNull(price);
-        if (!(price >= -0.0)) {
+        if (!(price > -0.0)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         value = String.valueOf(price);
@@ -41,7 +41,7 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-        return test.matches(VALIDATION_REGEX) && Double.parseDouble(test) >= -0;
+        return test.matches(VALIDATION_REGEX) && Double.parseDouble(test) > -0;
     }
 
 
