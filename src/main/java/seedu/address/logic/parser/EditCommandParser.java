@@ -47,11 +47,11 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE,
                         PREFIX_TAG, PREFIX_UNWATCH, PREFIX_WATCH, PREFIX_TIMESTAMP);
 
-        if (EditModuleCommandParserUtil.hasAllArguments(argMultimap)) {
+        if (EditModuleCommandParserUtil.isArgumentsForEditingModule(argMultimap)) {
             return EditModuleCommandParserUtil.parse(argMultimap);
-        } else if (EditLectureCommandParserUtil.hasAllArguments(argMultimap)) {
+        } else if (EditLectureCommandParserUtil.isArgumentsForEditingLecture(argMultimap)) {
             return EditLectureCommandParserUtil.parse(argMultimap);
-        } else if (EditVideoCommandParserUtil.hasAllArguments(argMultimap)) {
+        } else if (EditVideoCommandParserUtil.isArgumentsForEditingVideo(argMultimap)) {
             return EditVideoCommandParserUtil.parse(argMultimap);
         } else {
             throw createInvalidCommandFormatException();
@@ -88,14 +88,13 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     private static class EditModuleCommandParserUtil {
         /**
-         * Returns true if {@code argMultimap} contains all the arguments needed for creating an
-         * {@code EditModuleCommand} object.
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to edit a module.
          *
          * @param argMultimap A map of the arguments and their values.
-         * @return True if {@code argMultimap} contains all the arguments needed for creating an
-         *         {@code EditModuleCommand} object. Otherwise, false.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to edit a
+         *         module. Otherwise, false.
          */
-        public static boolean hasAllArguments(ArgumentMultimap argMultimap) {
+        public static boolean isArgumentsForEditingModule(ArgumentMultimap argMultimap) {
             requireNonNull(argMultimap);
 
             return !argMultimap.getPreamble().isEmpty()
@@ -172,14 +171,13 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     private static class EditLectureCommandParserUtil {
         /**
-         * Returns true if {@code argMultimap} contains all the arguments needed for creating an
-         * {@code EditLectureCommand} object.
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to edit a lecture.
          *
          * @param argMultimap A map of the arguments and their values.
-         * @return True if {@code argMultimap} contains all the arguments needed for creating an
-         *         {@code EditLectureCommand} object. Otherwise, false.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to edit a
+         *         lecture. Otherwise, false.
          */
-        public static boolean hasAllArguments(ArgumentMultimap argMultimap) {
+        public static boolean isArgumentsForEditingLecture(ArgumentMultimap argMultimap) {
             requireNonNull(argMultimap);
 
             return !argMultimap.getPreamble().isEmpty()
@@ -256,14 +254,13 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     private static class EditVideoCommandParserUtil {
         /**
-         * Returns true if {@code argMultimap} contains all the arguments needed for creating an
-         * {@code EditVideoCommand} object.
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to edit a video.
          *
          * @param argMultimap A map of the arguments and their values.
-         * @return True if {@code argMultimap} contains all the arguments needed for creating an
-         *         {@code EditVideoCommand} object. Otherwise, false.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to edit a
+         *         video. Otherwise, false.
          */
-        public static boolean hasAllArguments(ArgumentMultimap argMultimap) {
+        public static boolean isArgumentsForEditingVideo(ArgumentMultimap argMultimap) {
             requireNonNull(argMultimap);
 
             return !argMultimap.getPreamble().isEmpty()
