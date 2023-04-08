@@ -57,7 +57,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public String suggestCommand(String userInput) throws CommandException {
+    public String suggestCommand(String userInput) throws ParseException {
         return autocompleteEngine.suggestCommand(userInput);
     }
 
