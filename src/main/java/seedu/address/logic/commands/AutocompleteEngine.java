@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
@@ -17,10 +19,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
 //Solution below adapted from https://github.com/AY2223S1-CS2103T-T12-2/tp
@@ -110,9 +112,9 @@ public class AutocompleteEngine {
      *
      * @param userInput User input.
      * @return Suggested command (including the user input).
-     * @throws CommandException If the user input is invalid.
+     * @throws ParseException If the user input is invalid.
      */
-    public String suggestCommand(String userInput) throws CommandException {
+    public String suggestCommand(String userInput) throws ParseException {
         assert userInput != null : "'userInput' should not be 'null'";
 
         if (userInput.isBlank()) {
@@ -127,21 +129,20 @@ public class AutocompleteEngine {
         String commandWord = splitArr[0];
         String commandBody = splitArr.length > 1 ? " " + splitArr[1] : "";
 
-        CommandException noSuchCommandException = new CommandException(
-            String.format("No command starting with \"%s\" found.", commandWord));
+        ParseException unknownParseException = new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         boolean isCommandComplete = strippedLeadingInput.contains(" ");
         if (!isCommandComplete) {
             String suggestedCommand = COMMAND_LIST.stream()
                     .filter(command -> command.startsWith(commandWord))
                     .findFirst()
-                    .orElseThrow(() -> noSuchCommandException);
+                    .orElseThrow(() -> unknownParseException);
             return inputLeadingSpaces + suggestedCommand + suggestArguments(suggestedCommand, commandBody);
         }
 
         boolean isInvalidCommand = !COMMAND_LIST.contains(commandWord);
         if (isInvalidCommand) {
-            throw noSuchCommandException;
+            throw unknownParseException;
         }
 
         return userInput + suggestArguments(commandWord, commandBody);
@@ -183,9 +184,9 @@ public class AutocompleteEngine {
      * @param command The command to suggest arguments for.
      * @param commmandBody The command body of the current user input.
      * @return Suggested arguments.
-     * @throws CommandException If the user input is invalid.
+     * @throws ParseException If the user input is invalid.
      */
-    private String suggestArguments(String command, String commmandBody) throws CommandException {
+    private String suggestArguments(String command, String commmandBody) throws ParseException {
         ArrayList<Prefix> argPrefixes = ARGUMENT_PREFIX_MAP.get(command);
         assert argPrefixes != null;
         ArgumentMultimap argumentMultimap =
@@ -218,7 +219,7 @@ public class AutocompleteEngine {
                     .allMatch(word -> word.matches("\\d+"));
 
             if (!areAllValidIndexes) {
-                throw new CommandException("Invalid index.");
+                throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
         }
 
@@ -279,4 +280,5 @@ public class AutocompleteEngine {
                 .collect(Collectors.joining(" "));
         return remainingArgs;
     }
+
 }
