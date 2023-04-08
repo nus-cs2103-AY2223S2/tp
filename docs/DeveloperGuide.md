@@ -909,6 +909,10 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a subsection
+
+1. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. **Appendix: Planned Enhancements**
