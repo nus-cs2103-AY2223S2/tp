@@ -12,10 +12,10 @@ import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditItemCommand;
 import trackr.model.ModelEnum;
 import trackr.model.item.ItemDescriptor;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderDescriptor;
-import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.Customer;
@@ -52,7 +52,7 @@ public class EditOrderCommand extends EditItemCommand<Order> {
 
     /**
      * @param index               of the order in the filtered order list to edit
-     * @param editOrderDescriptor details to edit the order with
+     * @param editItemDescriptor details to edit the order with
      */
     public EditOrderCommand(Index index, OrderDescriptor editItemDescriptor) {
         super(index, new OrderDescriptor(editItemDescriptor), ModelEnum.ORDER);
@@ -62,9 +62,8 @@ public class EditOrderCommand extends EditItemCommand<Order> {
         assert itemToEdit != null;
 
         OrderDescriptor orderDescriptor = (OrderDescriptor) itemDescriptor;
-
-        OrderName updatedOrderName =
-                orderDescriptor.getOrderName().orElse(itemToEdit.getOrderName());
+        MenuItem updatedOrderItem =
+                orderDescriptor.getOrderItem().orElse(itemToEdit.getOrderItem());
         OrderDeadline updatedOrderDeadline =
                 orderDescriptor.getOrderDeadline().orElse(itemToEdit.getOrderDeadline());
         OrderStatus updatedOrderStatus =
@@ -79,7 +78,7 @@ public class EditOrderCommand extends EditItemCommand<Order> {
                 orderDescriptor.getCustomerAddress().orElse(itemToEdit.getCustomer().getCustomerAddress());
         Customer updatedCustomer = new Customer(updatedCustomerName, updatedCustomerPhone, updatedCustomerAddress);
 
-        return new Order(updatedOrderName, updatedOrderDeadline, updatedOrderStatus,
+        return new Order(updatedOrderItem, updatedOrderDeadline, updatedOrderStatus,
                 updatedOrderQuantity, updatedCustomer);
     }
 }
