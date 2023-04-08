@@ -58,7 +58,24 @@ main {
   display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
 }
 
-
+/**
+  * Keyboard buttons
+  */
+kbd {
+    background-color: #ebebeb;
+    color: #303030;
+    border-radius: 0.25rem;
+    border: 1px solid #a1a1a1;
+    box-shadow: 0 2px 0 1px #a1a1a1;
+    min-width: 0.75rem;
+    line-height: 1;
+    padding: 2px 5px;
+    font-size: 0.75em;
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
 
 /**
  * Images
