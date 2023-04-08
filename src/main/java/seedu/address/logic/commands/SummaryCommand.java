@@ -22,7 +22,7 @@ public class SummaryCommand extends Command {
             + "Percentage of applicants with interview: %.1f";
 
     public static final String MESSAGE_NO_INTERVIEW =
-            "No summary statistic is available at the moment because there has been no scheduled interviews!";
+            "No summary statistic is available at the moment because there are no scheduled interviews currently!";
 
 
     /**

@@ -807,17 +807,15 @@ Precondition: There are shortlisted applicants in HMHero.
 
 **MSS**
 
-1.  User requests to list applicants.
-2.  HMHero shows a list of applicants.
-3.  User enters the command to view interview dates and times of all `SHORTLISTED` applicants.
-4.  HMHero shows the interview date and times of all `SHORTLISTED` applicants, sorted from earliest to latest.
+1.  User enters the command to view interview dates and times of all `SHORTLISTED` applicants.
+2.  HMHero shows the interview date and times of all `SHORTLISTED` applicants, sorted from earliest to latest.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. HMHero detects that the command entered is of invalid formatting.
-    * 3a1. HMHero shows an error message
+* 1a. HMHero detects that the command entered is of invalid formatting.
+    * 1a1. HMHero shows an error message
 
       Use case resumes at step 3.
 
@@ -1130,8 +1128,6 @@ to latest.
 
 
 ### View summary statistics
-
-Precondition: There are applicants added into HMHero.
 
 Test case: `summary`<br>
 Expected: Statistic of overall hiring process is shown in output box.
