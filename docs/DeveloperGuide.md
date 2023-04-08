@@ -27,6 +27,7 @@ Here are some notations used in this guide.
 ### Format
 * `Command` is used to label commands and components.
 * {Placeholder} are used to label placeholders.
+* [Optional], square brackets are used to notate optional fields.
 
 ---
 
@@ -145,7 +146,7 @@ Here's a (partial) class diagram of the `Logic` component, to help guide you alo
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-How the `Logic` component works:
+#### **How the `Logic` component works:**
 1. When `Logic` is called upon to execute a command, it uses the `ExpenseTrackerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses' subclass e.g., `AddCategoryCommand`, which implements `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a category).
@@ -166,7 +167,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
-How the parsing works:
+#### **How the parsing works:**
 * When called upon to parse a user command, the `ExpenseTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCategoryParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCategoryCommand`) which the `ExpenseTrackerParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCategoryParser`, `DeleteCategoryParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -234,69 +235,71 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Add Category feature
+
+#### **Command format:**
+`addcat c/NAME [s/SUMMARY]` where `NAME` is the new category name and an optional `SUMMARY` of the category. 
+
+#### **What is the feature about:**
+This command allows the user to add a new category to FastTrack. If the new category has the same name as an existing category in the database, the command will not be executed. 
+
+#### **Sequence of actions:**
+
+1. The user enters `addcat c/food s/expense on food` in the command box.<br><br>
+
+2. The input is then [parsed](#how-the-parsing-works) and a `AddCategoryCommand` object is created with the new `Category` object. <br><br>
+3. `AddCategoryCommand#execute()` is called, which will trigger the model to add a category. Note if the new category has the same name as an existing category, a `CommandException` will be thrown and displayed to the user.<br><br>
+
+4. `Model#addCategory()` is called, which further calls `ExpenseTracker#addCategory()`. <br><br>
+
+5. `UniqueCategoryList#add()` is called to add the new category to FastTrack.<br><br>
+
+6. A `CommandResult` is returned.<br><br>
+
+
 ### \[Implemented\] Delete Category feature
 
-The delete category feature, `delcat` command, is implemented similarly to the command add category. The command takes in one parameter index, which is the index of the category to delete when `lcat` is called. The specified category will be removed from the database.
+#### **Command format:**
+`delcat INDEX` where `INDEX` refers to the index of the category to be deleted when `lcat` is called.
 
-The index of the category to delete is obtained using a `DeleteCategoryParser` before passing to a `DeleteCategoryCommand`.
+#### **What is the feature about:**
+This command allows user to delete a category of choice, expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`. The category will be removed from the user's database.
 
-To check if the user has entered a valid index, the `DeleteCategoryCommand#execute()` throws a `CommandException` when the index provided is out of bounds.
+#### **Sequence of actions:**
 
-After a successful removal of a `Category`, all `Expense` with the deleted `Category` will have its category field replaced with `MiscellaneousCategory`. This is to reflect the deletion on existing expenses added.
+1. The user enters `delcat 1` in the command box.<br><br>
 
-Given below is an example usage scenario of how the Delete Category behaves:
+2. The input is then [parsed](#how-the-parsing-works) and a `DeleteCategoryCommand` object is created using the given `INDEX`. Note if an invalid `INDEX` is given, a `CommandException` will be thrown and displayed to the user.<br><br>
 
-Step 1. The user launches the application with prior data.
+3. `DeleteCategoryCommand#execute()` is called, this will retrieve the category object to be deleted from the list of categories. Note if the `INDEX` given is out of range, a `CommandException` will be thrown and displayed to the user.<br><br>
 
-//Insert pictures of launched app.
+4. This will call `Model#deleteCategory()`, which will further call `ExpenseTracker#removeCategory()`.<br><br>
 
-Step 2. The user uses the `lcat` command to list out all categories.
+5. `UniqueCategoryList#remove()` is called to remove the `Category` at index 2, and `ExpenseList#replaceDeletedCategory()` is called to replace all expenses with the deleted `Category` with `MiscellaneousCategory`.<br><br>
 
-//Insert pictures of results of lcat.
-
-Step 3. The user executes `delcat 2` command to delete the 2nd category in the category list. `LogicManager#execute()` will call `ExpenseTrackerParser#parseCommand()`, resulting in a `DeleteCategoryParser`.
-
-Step 4. `DeleteCategoryParser#parse()` is called, extracting the `Index` 2 from the command. A `DeleteCategoryCommand` will be returned. `DeleteCategoryCommand#execute()` is then called, a check on the `Index` provided will be done to ensure that it is a valid category, else a `CommandException` will be thrown.
-
-Step 5. `Model#deleteCategory()` is then called, which will further call `ExpenseTracker#removeCategory()`.
-
-Step 6. `UniqueCategoryList#remove()` is called to remove the `Category` at index 2, and `ExpenseList#replaceDeletedCategory()` is called to replace all expenses with the deleted `Category` with `MiscellaneousCategory`.
+6. A `CommandResult` object is returned.<br><br>
 
 ### \[Implemented\] Edit Category feature
 
-The edit category feature is implemented similarly to all the other commands, such as the add category and delete category
-feature. However, the method of handling the user input is slightly more complicated as it falls into one of the following:
-1. The user wishes to edit both the category's name and summary.
-2. The user only wishes to edit the category's name.
-3. The user only wishes to edit the category's summary.
-4. The user is calling the command with no arguments.
+#### **Command format:**
+`edcat INDEX [c/NAME] [s/SUMMARY]` where `INDEX` refers to the index of the category to be edited when `lcat` is called, `NAME` is the new name of the category, `SUMMARY` is the new summary of the category. Note that either a `NAME` or `SUMMARY` must be present for the command to be executed.
 
-In order to deal with the multiple scenarios, especially with the difficulty of segregating the second and third cases,
-`EditCategoryParser#parse()` checks the arguments provided by the user and passes them in accordingly to `EditCategory()`,
-whereby missing arguments in lieu of a full edit (Defined by our team as editing both the category's name and summary) are
-passed in as `null` and checked later in `EditCategory#execute()`.
+#### **What is the feature about:**
+This command allows user to edit a category of choice. We allow users to edit either the category's name, summary or both in this command. 
 
-To edit the category, we check that the index provided by the user is correct and return the `Category` object which matches
-the index (If it is a valid input.). Thereafter, `UserDefinedCategory#setCategoryName()` and `UserDefinedCategory#setDescription()`
-are used to edit the `Category` object.
+#### **Sequence of actions:**
 
-Given below is an example usage scenario of how the Edit Category behaves:
+1. User enters `edcat 1 c/food s/expense on food` in the command box.<br><br>
 
-Step 1. The user launches the application with prior data.
+2. The input is then [parsed](#how-the-parsing-works) and a `EditCategoryCommand` object is created using the given index `1`, new category name `food` and new summary `expense on food`. Note if an invalid `INDEX` is given or **both** `c/NAME` and `s/SUMMARY` is missing, a `CommandException` will be thrown and displayed to the user.<br><br>
 
-//Insert pictures of launched app.
+3. `EditCategoryCommand#execute()` is called. The category to edit is obtained from the `Model` and stored as `categoryToEdit`. <br><br>
 
-Step 2. The user uses the `lcat` command to list out all categories.
+4. The function checks that a new category name is present, thus it calls `UserDefinedCategory#setCategoryName()` on `categoryToEdit`, changing the name of the target category to the given new name. Note if there is a category with the same name as the new name given, a `CommandException` is thrown.<br><br>
 
-//Insert pictures of results of lcat.
+5. The function checks that a new category summary is present, thus is calls `UserDefinedCategory#setDescription()` on `categoryToEdit`, changing the summary of the target category with the given new summary.<br><br>
 
-Step 3. The user uses the `ecat 1 c/newname s/newsummary` command.
-
-//Insert pictures of executing command.
-
-The following sequence diagram shows the order of operations of the Edit Category command:
-
-//Insert sequence diagram of how the edit category command works.
+6. A `CommandResult` object is returned.<br><br>
 
 #### Design considerations:
 **Aspect: How the category object is edited**:
@@ -310,41 +313,79 @@ that uses the same name and summary before replacing the required name or summar
   * Pros: Enforces immutability by replacing the previous `Category` object.
   * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
 
-### \[Implemented\] List feature
-The list feature is implemented similarly to all the other commands. It has two optional fields for the category and timespan. The method of handling the user input falls into the following:
+### **\[Implemented\] Recurring Expense feature:**
 
-1. The user wishes to list all expenses.
-2. The user wishes to only list expenses in a category.
-3. The user wishes to only list expenses in the past week/month/year.
-4. The user wishes to list expenses in a category from the past week/month/year.
+#### **What is the feature about:**
+Since recurring expenses are prominent in today's society (e.g. Netflix, Transportation), therefore having a feature to allows FastTrack to regularly add recurring expenses automatically is a must.
 
-In order to deal with the multiple scenarios, `ListCommand` constructor uses `Optional<Predicate>` parameters in the case that the user did not specify a certain filter. `ListCommandParser#parse()` allows for optional tags of category and timespan, passing in `Optional<Predicate>` objects into the `ListCommand` constructor, and returning a `ListCommand` object with the required predicates.
+To implement this feature, 3 classes were added:
+1. [`RecurringExpenseManager`](#the-recurringexpensemanager-class)
+2. [`RecurringExpenseList`](#the-recurringexpenselist-class)
+3. `RecurringExpenseType`
 
-To list expenses, we pass in the predicates (if given) into the model, with `Model#updateFilteredExpensesList()`, updating the `ObservableList` in the model.
+##### **The `RecurringExpenseManager` class:**
+The `RecurringExpenseManager` class is used as a generator of recurring expenses. When a user wants to add a recurring expense in FastTrack, the user can use the `addrec` command to create a new `RecurringExpenseManager` object. This object will have the following fields:
+* `expenseName` - Name of the recurring expense.
+* `amount` - Unit price of the recurring expense.
+* `category` - The category of the recurring expense.
+* `startDate` - The date to start adding the recurring expenses.
+* `[endDate]` - An optional ending date of the recurring expense.
+* `nextExpenseDate` - The next date to charge the recurring expense.
+* `recurringExpenseType` - The interval to charge the recurring expense (day, week, month, year).
 
-Given below is an example usage scenario of how the List Command behaves:
+##### **The `RecurringExpenseList` class:**
+The `RecurringExpenseList` class works similar to the `ExpenseList` and `UniqueCategoryList` classes where is stores all the `RecurringExpenseManager` object created by the user. 
 
-Step 1. The user launches the application with prior data.
+##### **The `RecurringExpenseType` class:**
+This is an enum class that stores the valid intervals (day, week, month, year) for a recurring expense. It also contains the `RecurringExpenseType#getNextExpenseDate()` method that calculates the next date given the interval and target date.
 
-//Insert pictures of launched app.
+#### **Sequence of actions:**
+1. The user adds a new recurring expense into FastTrack using the `addrec` command. Recurring expenses from the `startDate` till today's date/ `endDate` (depending on which is earlier) is generated. If `endDate` is before today's date or not specified, `nextExpenseDate` is updated to reflect the next date to add a new expense into FastTrack. <br><br>
+2. When the user closes and reopens FastTrack, `Mainapp` will instantiate a new `ExpenseTracker` object with the saved data. This will call `ExpenseTracker#resetData()`. <br><br>
+3. `ExpenseTracker#generateRetroactiveExpenses()` is then called, this method goes through the user's `RecurringExpenseList` and checks each `RecurringExpenseManager` object. <br><br>
+4. If the `nextExpenseDate` of the `RecurringExpenseManager` object is equal or before today's date, a new expense will be added to FastTrack based on the expense parameters in the `RecurringExpenseManager` object until `nextExpenseDate` is after today's date or `endDate` if specified.
 
-Step 2. The user uses the `list` command to list out all expenses.
+#### **Design considerations:**
+##### Aspect: Making `RecurringExpenseManager` a class:
 
-// Insert pictures of results of `list`
+* **Alternative 1:** Have a RecurringExpenseManager extend from Expense. Consist of another list of expenses made by the RecurringExpenseManager. 
+  * Pros: 
+  * 
 
-Step 2a. The user uses the `list c/category` command.
+### **\[Implemented\] Budget feature:**
 
-// Insert pictures of command
+#### **Command format:**
+`set p/AMOUNT` where `AMOUNT` refers to the monthly budget amount. 
 
-Step 2b. The user uses the `list t/(week/month/year)` command.
+#### **What is the feature about:**
+This feature allows users to add a monthly budget to FastTrack. A weekly budget will be calculated for users by taking `AMOUNT` / 4. The `Budget` class is meant to be coupled with `AnalyticModel` to allow users to view helpful statistics such as remaining budget etc. 
 
-//Insert pictures of command
+#### **Sequence of actions:**
+1. User enters `set p/1000` in the command box.<br><br>
 
-The following sequence diagram shows the order of operations of the ListCommand command:
+2. The input is then [parsed](#how-the-parsing-works) and a `SetBudgetCommand` object is created with the amount `1000`. Note if an invalid amount is given, a `CommandException` will be thrown. <br><br>
 
-// Insert sequence diagram of how listcommand works.
+3. `SetBudgetCommand#execute()` is called, this will further call `Model#setBudget()` and `ExpenseTracker#setBudget()`. <br><br>
+
+4. A `CommandResult` object is returned.<br><br>
+
+#### **Design considerations:**
+
+##### Aspect: Making `Budget` a class:
+* **Alternative 1:** Make budget a field with `Double` type in `ExpenseTracker` rather than creating a new class.
+  * Pros: Easier to implement as there is no need for a creation of a class. 
+  * Cons: Budget related calculations have to be done within the `ExpenseTracker` class, adding clutter. Modifications to the budget will also be more tedious as we have to locate these methods within `ExpenseTracker`.<br><br>
+  
+* **Alternative 2 (Current choice):** Make a new `Budget` class.
+  * Pros: Abstract all budget related operations to a class to maintain clean code. Modifications to budget related operations are also easier. 
+  * Cons: Less convenient as it requires the creation of a new class. 
+
+**Alternative 2** was chosen as it abides to the separation of concerns principle. This is to achieve better modularity and readability of the code base. 
 
 ### \[Implemented\] Expense Statistics Feature
+
+#### **What is the feature about:**
+
 FastTrack allows the user to view a summary of their expense statistics for both the current week and month.
 These statistics are displayed on the expense summary screen on the right window of the application and are updated automatically everytime the user adds, edits or deletes an expense from FastTrack.
 
@@ -370,6 +411,7 @@ The following Class Diagram describes the structure of the `AnalyticModelManager
 `AnalyticModelManager` requires an instance of `ExpenseTracker` to read and obtain the following unmodifiable, `ObservableList` objects containing data from FastTrack:
 1. `allExpenses`: an `ObservableList` of Expense objects representing all expenses in the expense tracker
 2. `allCategories`: an `ObservableList` of Category objects representing all expense categories in the expense tracker
+3. `simpleBudget`: a `ObjectProperty<Budget>` object representing the monthly budget of the user.
 
 The fields contained within `AnalyticModelManager` are of type `DoubleProperty` which implement the `Observable` interface. This allows the `UI` to establish bindings to each property.
 A binding is a mechanism of JavaFX allows for the establishment of relationships between variables. The `UI` observes each `DoubleProperty` for changes, and then updates the GUI automatically when it detects that the `DoubleProperty` has changed.
