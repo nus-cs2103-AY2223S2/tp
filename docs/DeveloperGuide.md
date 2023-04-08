@@ -192,10 +192,6 @@ object.
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-Original AddressBook Storage Component
-
-<img src="images/StorageClassDiagram.png" width="550" />
-
 OfficeConnect Storage Component
 
 <img src="images/OfficeStorageClassDiagram.png" width="750" />
