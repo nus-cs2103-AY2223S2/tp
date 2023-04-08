@@ -347,7 +347,7 @@ Examples:
 
 <p align=center>
     <img alt="remark during" src="images/user-guide/remark_after.jpg" />
-    <br><i><b>Above:</b> After pressing `CTRL + S`</i>
+    <br><i><b>Above:</b> After pressing <code>CTRL + S</code></i>
 </p>
 
 <div markdown="span" class="alert alert-info">
@@ -368,9 +368,9 @@ Displays all the details, including the full remark of a specified student. This
 
 Examples:
 
-- `show 4`
+- `show 1`
 
-**Using the following input** `show 4`:
+**Using the following input** `show 1`:
 <p align=center>
     <img alt="show before" src="images/user-guide/show_remark_before_and_after.png" />
     <br><i><b>Above:</b> Before and after entering <code>show 1</code> command</i>
@@ -434,13 +434,8 @@ Examples:
 
 **Using the following input** `find n/a m/CS2103T`:
 <p align=center>
-    <img alt="find before" src="images/user-guide/find_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>find</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="find after" src="images/user-guide/find_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>find</code> command</i>
+    <img alt="find before" src="images/user-guide/find_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>find n/a m/CS2103T</code> command</i>
 </p>
 
 <div markdown="block" class="alert alert-info">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
@@ -448,13 +443,8 @@ Examples:
 
 **Using the following input** `filter n/a m/CS2103T` :
 <p align=center>
-    <img alt="filter before" src="images/user-guide/filter_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>filter</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="filter after" src="images/user-guide/filter_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>filter</code> command</i>
+    <img alt="filter before" src="images/user-guide/filter_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>filter n/a m/CS2103T</code> command</i>
 </p>
 
 <div markdown="span" class="alert alert-info">:bulb: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
@@ -486,7 +476,12 @@ Examples:
 - `list` followed by `undo` will cause TeachMeSenpai to give you an error message since `list` is not **undoable**
 - `delete 2` followed by `list` then `undo` will reverse the deletion done before `list`!
 
-Example: `delete 1 4` followed by `undo`.
+**Using the following inputs** `delete 1 4` followed by `undo`:
+
+<p align=center>
+    <img alt="undo before and after" src="images/user-guide/undo_before_and_after.png" />
+    <br><i><b>Above:</b> Original state before entering <code>delete 1 4</code>, before entering <code>undo</code> command and after entering <code>undo</code> command</i>
+</p>
 
 ### Redo a previous `undo`: `redo`
 
