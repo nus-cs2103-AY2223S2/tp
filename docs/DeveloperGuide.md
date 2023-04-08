@@ -865,7 +865,7 @@ Expected Output in the Result Display Box: Same as test 2.
 
 Expected Output in the Role List Box: Same as test 2.
 
-### Finding by Company
+### Finding by Name
 
 **Prerequisites:** There are at least 2 roles in the Role List Box - one must have its name as `Software Developer`, 
 and the other must have its name as `Data Analyst`.
@@ -874,18 +874,63 @@ and the other must have its name as `Data Analyst`.
 
 Expected Output in the Result Display Box: Display the number of roles found.
 
-Expected Output in the Role List Box: Display roles that has either `analyst` or `software` in its name.
+Expected Output in the Role List Box: Only display roles that has either `analyst` or `software` in its name.
 
 3. Test case: `name software`<br>
-   Expected: One role is displayed.
 
 Expected Output in the Result Display Box: Display the number of roles found.
 
-Expected Output in the Role List Box: Display roles that has `software` in its name.
+Expected Output in the Role List Box: Only display roles that has `software` in its name.
 
 5. Test case: `name`<br>
 
 Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `name` command is included.
+
+Expected Output in the Role List Box: No changes.
+
+### Finding by Company
+
+**Prerequisites:** There are at least 2 roles in the Role List Box - one must have its company as `Tampines Street`,
+and the other must have its company as `Mega Soft`.
+
+2. Test case: `company tampines soft`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has either `tampines` or `soft` in its company.
+
+3. Test case: `company tampines`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has `tampines` in its company.
+
+5. Test case: `company`<br>
+
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `company` command is included.
+
+Expected Output in the Role List Box: No changes.
+
+### Finding by tags
+
+**Prerequisites:** There are at least 2 roles in the Role List Box - one must have one of its tags as `Applied`,
+and the other must have one of its tags as `Offered`.
+
+2. Test case: `tag applied offered`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has either `applied` or `offered` in its company.
+
+3. Test case: `tag applied`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has `applied` in its company.
+
+5. Test case: `tag`<br>
+
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `tag` command is included.
 
 Expected Output in the Role List Box: No changes.
 
@@ -927,14 +972,43 @@ Expected Output in the Result Display Box: Error message displayed. Details on h
 
 Expected Output in the Role List Box: No changes.
 
+### Clear
 
-### Saving data
+1. Test Case: `clear`
 
-1. Dealing with missing/corrupted data files
+Expected Output in the Result Display Box: Success message for the `clear` command is displayed.
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Expected Output in the Role List Box: All roles are deleted.
 
-1. _{ more test cases …​ }_
+### List
+
+1. Test Case: `list`
+
+Expected Output in the Result Display Box: Success message for the `list` command is displayed.
+
+Expected Output in the Role List Box: All current existing roles of TechTrack are displayed.
+
+### Help
+
+1. Test Case: `help`
+
+Expected Output: Help window pops out.
+
+Expected Output in the Result Display Box: Success message for the `help` command is displayed.
+
+2. Test Case: `help 123`
+
+Expected Output: Help window pops out.
+
+Expected Output in the Result Display Box: Success message for the `help` command is displayed.
+
+
+### Exit
+
+1. Test Case: `exit`
+
+Expected Output: TechTrack closes.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -949,42 +1023,39 @@ feature flaws, therefore the team will not be addressing these flaws for now.
    that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more
    websites.
    We have thought of one approach to this fix:
-
-* Letting the website format be `[any char].[any char]`
-    * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
-    * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
+   * Letting the website format be `[any char].[any char]`
+       * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
+       * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
 
 ### Changing command parameter for salary
 
 1. Unnecessarily complicated (or hard-to-type) command formats can be considered a `type.FeatureFlaw` as it is expected
-   that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special
-   characters such as `$/` in the format when it is possible to avoid them.
-   Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
+that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special
+characters such as `$/` in the format when it is possible to avoid them.
+Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
 
 ### Displaying very long description and numbers
 
 1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the
-   screen size. We believe that the `view` command is a way for users to view truncated texts for now. In the future, we
-   would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
-2. This also affects the `view` command,
-   as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
-   is not written to handle extremely long texts. Although the attributes of each role would be visible, it is not ideal
-   for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox`
-   object,
-   and setting proper widths for each property.
+screen size. We believe that the `view` command is a way for users to view truncated texts for now. In the future, we
+would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
+2. This also affects the `view` command, as 
+[`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
+is not written to handle extremely long texts. Although the attributes of each role would be visible, it is not ideal
+for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox`
+object, and setting proper widths for each property.
 
 ### Display error messages when storage data is incorrectly modified
 
 1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed.
-   Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage
-   data
-   is incorrectly modified. This could be done through editing the `initModelManager` function in the
-   [`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
-   file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the
-   [`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
-   class and subsequently, the
-   [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
-   class to render the message on startup.
+Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage
+data is incorrectly modified. This could be done through editing the `initModelManager` function in the
+[`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
+file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the
+[`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
+class and subsequently, the
+[`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
