@@ -39,7 +39,6 @@ import seedu.address.testutil.FishBuilder;
  */
 public class EditCommandTest {
 
-
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
             getTypicalTankList(), getTypicalFullReadingLevels());
     private Tank firstTankInModel = model.getFilteredTankList().get(0);
@@ -58,7 +57,7 @@ public class EditCommandTest {
                 getTypicalTankList(), getTypicalFullReadingLevels());
         expectedModel.setFish(model.getFilteredFishList().get(0), editedFish);
 
-        firstTankInModel.addFish(editedFish);
+        firstTankInModel.addFish(editedFish); //this line doesnt affect outcome of test case
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -102,6 +101,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
+                getTypicalTankList(), getTypicalFullReadingLevels());
         showFishAtIndex(model, INDEX_FIRST_FISH);
 
         Fish fishInFilteredList = model.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased());
@@ -113,8 +114,11 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTaskList(),
-                getTypicalTankList(), getTypicalFullReadingLevels());
+                getTypicalTankList(),
+                getTypicalFullReadingLevels());
         expectedModel.setFish(model.getFilteredFishList().get(0), editedFish);
+
+        firstTankInModel.addFish(editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
