@@ -22,7 +22,7 @@ public class EditDeckCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the name of the deck "
             + "by the index number used in the displayed deck list. "
-            + "Parameters: INDEX (must be a positive integer) " + "DECK NAME\n"
+            + "Parameters: INDEX (must be a positive integer) " + "DECK_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 " + "CS2107";
 
     public static final String MESSAGE_EDIT_DECK_SUCCESS = "Deck %1$s is successfully renamed to \"%2$s\".";
