@@ -19,7 +19,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.AppointmentDataMap;
-import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.CustomerDataMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
@@ -55,8 +55,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        model.resetMaps();
-        logger.info("Maps reset");
 
         try {
             storage.saveShop(model.getShop());
@@ -129,28 +127,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CustomerVehicleMap getCustomerVehicleMap() {
-        return model.getCustomerVehicleMap();
+    public CustomerDataMap getCustomerVehicleMap() {
+        return model.getShop().getCustomerDataMap();
     }
 
     @Override
     public VehicleDataMap getVehicleDataMap() {
-        return model.getVehicleDataMap();
+        return model.getShop().getVehicleDataMap();
     }
 
     @Override
     public ServiceDataMap getServiceDataMap() {
-        return model.getServiceDataMap();
+        return model.getShop().getServiceDataMap();
     }
 
     @Override
     public AppointmentDataMap getAppointmentDataMap() {
-        return model.getAppointmentDataMap();
+        return model.getShop().getAppointmentDataMap();
     }
 
     @Override
     public TechnicianDataMap getTechnicianDataMap() {
-        return model.getTechnicianDataMap();
+        return model.getShop().getTechnicianDataMap();
     }
 
     @Override

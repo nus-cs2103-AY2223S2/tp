@@ -15,39 +15,51 @@ import seedu.address.model.service.appointment.UniqueAppointmentList;
  * Represents a mapping between technicians with their associated services and appointments.
  */
 public class TechnicianDataMap {
+    private final Map<Integer, Technician> idToTechnicianMap = new HashMap<>();
+    private final Map<Integer, Service> idToServiceMap = new HashMap<>();
+    private final Map<Integer, Appointment> idToAppointmentMap = new HashMap<>();
     private final Map<Technician, ServiceList> technicianToServiceMap = new HashMap<>();
     private final Map<Technician, UniqueAppointmentList> technicianToAppointmentsMap = new HashMap<>();
 
     /**
-     * Constructs a TechnicianDataMap object.
+     * Initialises the id mappings based on the provided lists.
      *
      * @param technicians The list of technicians.
-     * @param services  The list of services.
-     * @param appointments  The list of appointments.
+     * @param services The list of services.
+     * @param appointments The list of appointments.
      */
-    public TechnicianDataMap(List<Technician> technicians, List<Service> services, List<Appointment> appointments) {
-        reset(technicians, services, appointments);
-    }
-
-    /**
-     * Resets the mapping of technicians to their associated appointments and services
-     * based on the global lists provided
-     *
-     * @param technicians The list of technicians.
-     * @param services  The list of services.
-     * @param appointments  The list of appointments.
-     */
-    public void reset(List<Technician> technicians, List<Service> services, List<Appointment> appointments) {
-        Map<Integer, Service> idToServiceMap = new HashMap<>();
+    public void initialiseIdMappings(List<Technician> technicians, List<Service> services,
+                                     List<Appointment> appointments) {
+        for (Technician technician : technicians) {
+            idToTechnicianMap.put(technician.getId(), technician);
+        }
         for (Service service : services) {
             idToServiceMap.put(service.getId(), service);
         }
-        Map<Integer, Appointment> idToAppointmentMap = new HashMap<>();
         for (Appointment appointment : appointments) {
             idToAppointmentMap.put(appointment.getId(), appointment);
         }
+    }
 
-        for (Technician technician : technicians) {
+    /**
+     * Clears all mappings.
+     */
+    public void clearAll() {
+        idToTechnicianMap.clear();
+        idToServiceMap.clear();
+        idToAppointmentMap.clear();
+        technicianToServiceMap.clear();
+        technicianToAppointmentsMap.clear();
+    }
+
+    /**
+     * Process the mappings of technicians to their associated appointments
+     * and services based on the current id maps
+     *
+     */
+    public void processMappings() {
+        for (int key : idToTechnicianMap.keySet()) {
+            Technician technician = idToTechnicianMap.get(key);
             ServiceList technicianServices = new ServiceList();
             UniqueAppointmentList technicianAppointments = new UniqueAppointmentList();
             for (int serviceId : technician.getServiceIds()) {
@@ -65,6 +77,66 @@ public class TechnicianDataMap {
             this.technicianToServiceMap.put(technician, technicianServices);
             this.technicianToAppointmentsMap.put(technician, technicianAppointments);
         }
+    }
+
+
+    /**
+     * Modifies the provided technician and updates the mappings.
+     *
+     * @param technician The technician to add or update.
+     * @param isRemove A flag to indicate whether to remove given technician.
+     */
+    public void modifyTechnician(Technician technician, boolean isRemove) {
+        if (isRemove) {
+            idToTechnicianMap.remove(technician.getId());
+        } else {
+            idToTechnicianMap.put(technician.getId(), technician);
+        }
+        processMappings();
+    }
+
+    /**
+     * Modifies the provided service and updates the mappings.
+     *
+     * @param service The service to add or update.
+     * @param isRemove A flag to indicate whether to remove given service.
+     */
+    public void modifyService(Service service, boolean isRemove) {
+        if (isRemove) {
+            idToServiceMap.remove(service.getId());
+        } else {
+            idToServiceMap.put(service.getId(), service);
+        }
+        processMappings();
+    }
+
+    /**
+     * Modifies the provided appointment and updates the mappings.
+     *
+     * @param appointment The appointment to add or update.
+     * @param isRemove A flag to indicate whether to remove given appointment.
+     */
+    public void modifyAppointment(Appointment appointment, boolean isRemove) {
+        if (isRemove) {
+            idToAppointmentMap.remove(appointment.getId());
+        } else {
+            idToAppointmentMap.put(appointment.getId(), appointment);
+        }
+        processMappings();
+    }
+
+    /**
+     * Resets the mappings based on the lists provided and process the technician
+     * associated mappings again
+     *
+     * @param technicians The list of technicians.
+     * @param services The list of services.
+     * @param appointments The list of appointments.
+     */
+    public void reset(List<Technician> technicians, List<Service> services, List<Appointment> appointments) {
+        clearAll();
+        initialiseIdMappings(technicians, services, appointments);
+        processMappings();
     }
 
     /**

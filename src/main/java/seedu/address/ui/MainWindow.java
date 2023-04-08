@@ -42,7 +42,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private CustomerListPanel customerListPanel;
     private VehicleListPanel vehicleListPanel;
     private ServiceListPanel serviceListPanel;
@@ -273,10 +272,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     private void updateSelectedTab(CommandResult commandResult) {
         int tabIndex = commandResult.getType().ordinal();
         if (commandResult.getType() != Tab.UNCHANGED && commandResult.getType() != Tab.ALL) {
@@ -330,7 +325,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             initSelected();
 
-            // TODO: Hack to display updated parts on ui, need to make parts into observable map/list
+            // TODO: Hack to display updated parts on ui, need to convert ui to use ListView for observables
             if (commandResult.getType() == Tab.PARTS) {
                 initPartListPanel();
             }
