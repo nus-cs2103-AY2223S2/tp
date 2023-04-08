@@ -29,9 +29,11 @@ deactivate TagCommandParser
 TrackerParser -> TagCommandParser : parse(\n"CS2040S /tags fun")
 activate TagCommandParser
 
-ref over TagCommandParser
-    Parsing "fun" and "CS2040S"
-end ref
+TagCommandParser -> TagCommandParser : isTaggingMod(tag prefix "/tags")
+activate TagCommandParser
+
+TagCommandParser --> TagCommandParser : true
+deactivate TagCommandParser
 
 create TagCommand
 TagCommandParser -> TagCommand : tag, module code

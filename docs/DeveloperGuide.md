@@ -654,9 +654,6 @@ The following sequence diagram depicts a `tag` command execution for adding a `T
 
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
-![TagSequenceDiagram](images/TagSequenceDiagramRefParsing.png)
-
-
 Below is an activity diagram that showcase the events that occurs when a `tag` command is executed.
 
 TODO: ADD ACTIVITY DIAGRAM
