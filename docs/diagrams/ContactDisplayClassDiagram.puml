@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+left to right direction
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+skinparam dpi 250
+
+package ContactDisplay <<Rectangle>> {
+Class ContactDisplay
+
+package EnlargedInfoCard <<Rectangle>> {
+Class "{abstract}\nEnlargedInfoCard" as EnlargedInfoCard
+Class EnlargedDoctorInfoCard
+Class EnlargedPatientInfoCard
+}
+
+package Panels <<Rectangle>> {
+Class DoctorCard
+Class DoctorListPanel
+Class PatientCard
+Class PatientListPanel
+Class "{abstract}\nContactCard" as ContactCard
+}
+
+ContactDisplay --> Logic
+ContactDisplay *-up-> DoctorListPanel
+ContactDisplay *-up-> PatientListPanel
+ContactDisplay *--> EnlargedDoctorInfoCard
+ContactDisplay *-up-> EnlargedPatientInfoCard
+
+EnlargedDoctorInfoCard -right-|> EnlargedInfoCard
+EnlargedPatientInfoCard ---|> EnlargedInfoCard
+
+DoctorCard -up-|> ContactCard
+DoctorCard --> ContactDisplay
+PatientCard -up-|> ContactCard
+PatientCard --> ContactDisplay
+
+DoctorListPanel *-up DoctorCard
+PatientListPanel *-up PatientCard
+
+ContactCard ..> Model
+EnlargedInfoCard .up.> Model
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+@enduml

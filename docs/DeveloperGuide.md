@@ -27,14 +27,15 @@ Refer to the guide [_Setting up and getting started._](./SettingUp.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Design
+## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
-Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
-diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the
+[diagrams](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/docs/diagrams/) folder.
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
+to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
@@ -47,10 +48,10 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
-is responsible for,
+**`Main`** has two classes called
+[`Main`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/Main.java) and
+[`MainApp`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
+It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -90,35 +91,103 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts
-e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
-inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
-visible GUI.
+The UI consists of a `MainWindow` that is made up of multiple smaller components. Some notable examples are
+`CommandBox`, `ResultDisplay` and `ContactDisplay`. All these, including the `MainWindow`,
+inherit from the abstract `UiPart` class which captures the commonalities between classes that
+represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
-are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
-is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching
+`.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the
+[`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/##view/MainWindow.fxml)
 
-The `UI` component,
-
+The `UI` component does the following
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Doctor` or `Patient` object residing in the `Model`.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Main Window
+
+The `MainWindow` houses all the components that make up the visual display of Docedex. Its primary
+function is to listen to user input through the `CommandBox`, initiate the execution of the command,
+and display the result through the `ResultDisplay` and/or `ContactDisplay`.
+
+Here is a table containing a brief description of the purpose of the smaller components within `MainWindow`.
+
+| **Name of component** | **Description**                                                                                                                                                                            |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CommandBox`          | Allows users to enter Docedex commands.                                                                                                                                                    |
+| `ResultDisplay`       | Provides CLI-based feedback upon a user command.<br/>Allows users to see if their command was successful or not.<br/>Provides error messages to guide user on how to use Docedex commands. |
+| `ContactDisplay`      | Contains components that provide visual feedback upon manipulation of doctors and patients.<br/><br/>More details about these components can be found [here](#contact-display).            |
+| `HelpWindow`          | Displays a help window containing a link to the User Guide.                                                                                                                                |
+| `StatusBarFooter`     | Shows the location of the Docedex storage.                                                                                                                                                 |
+
+
+The implementations of `CommandBox`, `ResultDisplay`, `StatusBarFooter`, and `HelpWindow` are relatively
+straightforward. Therefore, this guide will not dive deeper into how these components are implemented.
+
+You may refer to their implementations here
+* [Classes](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui)
+* [FXML](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/view)
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Contact Display
+
+The `ContactDisplay` houses all the components that provide visual feedback after the manipulation
+of doctors and patients within Docedex.
+
+Here is a table containing a brief description of the purpose of the smaller components within `ContactDisplay`.
+
+| **Name of component**       | **Description**                                                                                                                                                                                                                                                             |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `DoctorListPanel`         | Shows a list of `DoctorCard`. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all doctors in Docedex.<br/><br/>Upon selection of a `PatientCard`, this list will filter to show doctors assigned to said patient.  |
+| `DoctorCard`              | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                        |
+| `PatientListPanel`        | Shows a list of `PatientCard`. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all patients in Docedex.<br/><br/>Upon selection of a `DoctorCard`, this list will filter to show patients assigned to said doctor. |
+| `PatientCard`             | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                       |
+| `EnlargedDoctorInfoCard`  | Displays all information about a selected doctor.                                                                                                                                                                                                                           |
+| `EnlargedPatientInfoCard` | Displays all information about a selected patient.                                                                                                                                                                                                                          |
+
+Here is a class diagram of how these components come together within the `ContactDisplay`.
+
+![Structure of the Contact Display](images/ContactDisplayClassDiagram.png)
+
+How the `ContactDisplay` works:
+1. Upon a user command through the `CommandBox`, the `setFeedbackToUser(CommandResult commandResult)` method
+  takes in the result of the command entered. The `CommandResult` contains information on whether the command
+  requires an update to the GUI. If such an update is required, `ContactDisplay` will proceed to update
+  all relevant components. 
+2. Upon a mouse click on a `DoctorCard` or `PatientCard`, the following sequence of actions is similar to
+  that described above. However, instead of `setFeedbackToUser(CommandResult commandResult)` being called,
+  either `setFeedbackUponSelectingDoctor(Doctor doctor)` or `setFeedbackUponSelectingPatient(Patient patient)`
+  is called respectively.
+
+To illustrate how these interactions work, let's say that the user selects a doctor through the `sd` command.
+The Sequence Diagram below illustrates the interactions within the `ContactDisplay` component upon such a command.
+
+![Sequence Diagram of the Contact Display Upon Command](images/ContactDisplaySequenceDiagram.png)
+
+Upon a user command, we see from the diagram that the `setFeedbackToUser(CommandResult commandResult)` method
+accomplished the following:
+- Update filtered patients list in `LogicManager` to show the patients assigned to the selected doctor.
+- Select the requested doctor within the `DoctorListPanel`. (This is a purely cosmetic selection, to provide
+visual feedback to the user)
+- Update the `EnlargedDoctorInfoCard` to display the information of the selected doctor.
+- Place the updated `EnlargedDoctorInfoCard` onto the placeholder `StackPane` which resides on the right-most
+column of the `ContactDisplay`. For more information on this specific step, click [here](#enlarged-info-card-feature).
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Logic component
 
-**API
-** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -157,8 +226,7 @@ How the parsing works:
 
 ### Model component
 
-**API
-** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagram.png" width="450" alt="UpdatedModelClassDiagram"/>
 
@@ -177,23 +245,46 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
+![Structure of the Storage](images/StorageClassDiagram.png)
 
-* can save both address book data and user preference data in json format, and read them back into corresponding
-  objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
-  the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
-  that belong to the `Model`)
+
+The `Storage` component does the following:
+* Saves both address book and user preference data in JSON format after every command
+* Read saved data and create the corresponding objects when starting up Docedex.
+
+Notes about the `Storage` component
+* Inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as
+either one (if only the functionality of only one is needed).
+* Depends on some classes in the `Model` component (because the `Storage` component's
+job is to save/load objects that belong to the `Model`)
+
+#### Notes about storing assignments between doctors and patients
+{: .no_toc}
+
+In our `Model`, the `Doctor` contains a list of `Patient` that they are assigned to,
+and the `Patient` contains a list of `Doctor` that they are assigned to.
+
+However, this causes issues when we try to store these objects as is, since the bidirectional
+navigability will result in an endless loop if we try to convert these objects into their JSON
+format. While the creation of an association class to store information about assignment is ideal,
+this will be implemented in the future due to time constraints.
+
+Therefore, as of v1.4, `Storage` only stores the information of assignment within the `JsonAdaptedDoctor`.
+In essence, it stores the doctors together with their assigned patients. So each doctor will have a JSON key
+named `patients` that stores a dictionary of `JsonAdaptedPatient` that represent each assigned patient.
+
+That leaves us with the unassigned patients within the `Model`. These patients are stored separately
+under another JSON key named `unassignedPatients`.
+
+`JsonAdaptedPatient` does not store any information about the doctors that were assigned to each patient.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -282,10 +373,9 @@ h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Edit Doctor Feature
+### Edit Doctor Feature
 
-### What it does
-
+#### What it does
 {: .no_toc}
 
 Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be
@@ -294,8 +384,8 @@ the doctor's index.
 
 Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
 
-### Implementation
 
+#### Implementation
 {: .no_toc}
 
 Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
@@ -402,10 +492,10 @@ The following sequence diagram illustrates how the delete patient operation work
 {: .no_toc}
 
 As triage staff manage the contacts of doctors and patients, they may wish to pull up
-the personal information of the doctor or patient. Therefore, the right-most column within
+the information related to the doctor or patient. Therefore, the right-most column within
 Docedex has been reserved to show the personal information of the selected doctor or patient.
 
-![](images/enlarged-contact-card-display.png)
+![](images/NewUi.png)
 
 ##### Brief introduction to the components involved
 
@@ -416,9 +506,10 @@ displayed for a doctor compared to a patient has a few differences. Thus, two di
 are required - one to display patient information and one to display doctor information.
 
 Let's call these cards `EnlargedDoctorInfoCard` and `EnlargedPatientInfoCard`. However, we
-only have one `StackPane` to display the information of the queried doctor or patient.
-So, we need a way to toggle between displaying either card, depending on whether the user
-has selected a doctor or patient to view.
+only have one `StackPane` to display the information of the queried doctor or patient. This 
+`StackPane` spans over the right-most column seen in the GUI above, and serves as a placeholder
+for the info cards. So, we now need a way to toggle between displaying either card, depending
+on whether the user has selected a doctor or patient to view.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -429,7 +520,7 @@ has selected a doctor or patient to view.
 To explore how this is implemented, we will focus on the user clicking on a `DoctorListViewCell`
 representing a doctor, though the ideas below can be extended to the user clicking on a
 `PatientListViewCell`, as well as other ways of querying for a doctor or patient
-(ie. through select-doc or select-ptn command).
+(ie. through [`sd`](./UserGuide.md#select-doctor) or [`sp`](./UserGuide.md#select-patient) command).
 
 Below, we see the sequence diagram of how a mouse click from the user on the `DoctorListViewCell`
 causes the display of information related to the doctor card through the `EnlargedDoctorInfoCard`.
@@ -442,34 +533,43 @@ causes the display of information related to the doctor card through the `Enlarg
 
 {: .no_toc}
 
-When the user clicks on a `DoctorListViewCell`, the `displayDoctor()` call sets the state of the
-`EnlargedInfoCardDisplayController` to show the doctor. After which, the `ContactDisplay`
-is prompted to feedback this change to the user, by displaying the `EnlargedDoctorInfoCard`
-containing the information of the doctor represented by the clicked `DoctorListViewCell`.
-
-A similar process happens when the user clicks on a `PatientListViewCell`.
+Before diving into the details, here are a few key points to note:
+- The `ContactDisplay` contains all three columns shown in the middle of the GUI.
+These columns represent the doctors list, patients list and an info card respectively,
+from left to right.
+- There is always only one instance of the `EnlargedDoctorInfoCard`,
+`EnlargedPatientInfoCard`, `ContactDisplay` and placeholder `StackPane`.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-##### How is the state of the application stored
+When the user clicks on a `DoctorListViewCell`, the `setFeedbackUponSelectingDoctor()`
+call initiates the process of updating the relevant UI components to display
+information about the doctor. As part of this function, the `ContactDisplay` updates the
+doctor displayed in the `EnlargedDoctorInfoCard`. Lastly, the `ContactDisplay` clears the
+current display within the placeholder `StackPane`, and adds the `EnlargedDoctorInfoCard`
+as the child node of the `StackPane`.
 
-{: .no_toc}
+At the end of this journey, the `EnlargedDoctorInfoCard` containing the information
+of the selected doctor is displayed on the right-most column on the Docedex GUI.
 
-Within `EnlargedInfoCardDisplayController`, two booleans corresponding to displaying doctor
-and patient information respectively store the state of the application.
-
-<div markdown="span" class="alert alert-primary">
-These booleans should never contain the same value for the following reasons:
-1) If both booleans are `false`, then no information is displayed.
-2) If both booleans are `true`, then both doctor and patient information will be
-displayed over each other.
-</div>
+A similar process happens when the user clicks on a `PatientListViewCell`, with
+the `EnlargedPatientInfoCard` being populated with the appropriate data and displayed instead.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### Alternatives considered
 
-*_This section is still in progress_*
+{: .no_toc}
+
+In the past, we had a different implementation of this feature, where the `DoctorListViewCell`
+called a function in a controller named `EnlargedInfoCardController` instead of the `ContactDisplay`.
+The controller would be in charge of keeping the state of whether to display the doctor or patient.
+All UI components would then refer to this controller to update themselves.
+
+However, upon implementation, it was realised that the `ContactDisplay` contained all the UI components
+that needs to be updated when a user selects a doctor or patient. Therefore, it was simpler and more
+purposeful to let the `ContactDisplay` handle this update. Hence, the controller was removed and the
+current design was favoured.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -493,7 +593,7 @@ Here are some useful links on the following!
 
 ### User Interface
 
-#### Problem 1: Clearing selections on list
+#### Problem 1: Clearing selections on execution of other commands
 
 - Scenario: User selected a patient, before using the [`list-doc` command](./UserGuide.md#listing-all-doctors).
 - What you see: The user interface does not clear the selection on the previously selected card. However, all the
@@ -507,7 +607,7 @@ Note to users and developers: This problem exists if you select a doctor and the
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 2: Lack of visual cues to highlight filtering of doctors/patient lists
+#### Problem 2: Non-descriptive patient/doctor list titles
 
 - Scenario: User adds a doctor using the [`add-doc` command](./UserGuide.md#adding-a-doctor).
 - What you see: Docedex automatically selects the newly added doctor. The patients list disappears, as the newly added
