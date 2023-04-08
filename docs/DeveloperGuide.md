@@ -799,3 +799,16 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+### Allow Customers to have similar Orders
+
+Currently, a customer cannot have two orders with the same product name, quantity, and address on the same day.
+This is because the orders will be considered as duplicates, as defined by `Order::isSameOrder`.
+
+To improve this, we plan to assign a unique ID for each order such that two orders are considered duplicates if they have the same ID.
+
+This ID can initially be randomly generated, but we then allow the user to define their own format as required by their business (e.g. some users may want to incorporate the order's created date into the identifier).
