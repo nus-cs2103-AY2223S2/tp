@@ -625,7 +625,7 @@ Precondition: Applicant does not exist in HMHero yet.
 
 **Use case: Delete an applicant**
 
-Precondition: Applicant to delete exists in HMHero.
+Precondition: HMHero already has some applicants stored.
 
 **MSS**
 
@@ -689,23 +689,30 @@ stored.
       Use case resumes at step 3.
 
 
-* 3c. The given applicant’s current status is `APPLIED` but no interview date and time was given. 
+* 3c. The given applicant's name and corresponding phone number combination for an applicant does not exist.
 
     * 3c1. HMHero shows an error message.
 
       Use case resumes at step 3.
 
 
-* 3d. The given applicant’s current status is not `APPLIED` but an interview date and time was given.
+* 3d. The given applicant’s current status is `APPLIED` but no interview date and time was given. 
 
     * 3d1. HMHero shows an error message.
 
       Use case resumes at step 3.
 
 
-* 3e. The given interview date time is of invalid formatting.
+* 3e. The given applicant’s current status is `SHORTLISTED` but an interview date and time was given.
 
     * 3e1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+
+* 3f. The given interview date time is of invalid formatting.
+
+    * 3f1. HMHero shows an error message.
 
       Use case resumes at step 3.
 
@@ -736,6 +743,13 @@ Precondition: Status of Applicant to reject is not `REJECTED` and HMHero already
 * 3b. The given applicant's phone number does not exist.
 
     * 3b1. HMHero shows an error message.
+
+      Use case resumes at step 3.
+
+
+* 3c. The given applicant's name and corresponding phone number combination for an applicant does not exist.
+
+    * 3c1. HMHero shows an error message.
 
       Use case resumes at step 3.
 
