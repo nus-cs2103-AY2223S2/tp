@@ -209,11 +209,12 @@ Format: `tags`
 
 ### Genres:
 A genre in a bookmark indicates the genre of the content the bookmark is tracking.
-In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib.
 
-This fixed list of genres can be viewed using the `genre` command. 
+In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib. This fixed list of genres can be viewed using the `genre` command. 
 
-The format is as follows: `genre`
+The format for the command is as follows: 
+
+`genre`
 
 The command should display the list of available genres in the `Result Box`.
 
