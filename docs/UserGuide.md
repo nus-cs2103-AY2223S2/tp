@@ -464,7 +464,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 Edit the details of a module.
 
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module to be edited
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`updated_code`</span>](#module-code-format) : The updated module code
   - Must be unique among the module code of the modules in Le Tracker
 - [<span style="color:#e46c0a">`updated_name`</span>](#module-name-format) : The updated module name
@@ -486,12 +486,11 @@ When in a module or lecture context, the navigation system will inject the `/mod
 Edit the details of a lecture.
 
 - [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to be edited
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
+  - Must belong to an existing lecture in the module specified in `module_code`
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+  - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`updated_name`</span>](#lecture-name-format) : The updated lecture name
-  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code`
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags that will replace the current tags applied to the lecture
   - Repeated tags (if any) will be ignored
 
@@ -510,13 +509,13 @@ Edit the details of a video.
 - <span style="color:#e46c0a">`/unwatch`</span> : If specified, the video will be marked as "not watched"
   - If this argument is specified, then `/watch` should not be specified
 - [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video to be edited
-  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is case sensitive)
+  - Must belong to an existing video in the lecture specified in `lecture_name`
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture that contains the video specified in `video_name`
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
+  - Must belong to an existing lecture in the module specified in `module_code`
 - [<span style="color:#e46c0a">`updated_name`</span>](#video-name-format) : The updated video name
-  - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name` (:exclamation:Uniqueness is case sensitive)
+  - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
 - [<span style="color:#e46c0a">`updated_timestamp`</span>](#timestamp-format) : The updated timestamp of the video where the user last stopped watching at
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags that will replace the current tags applied to the lecture
   - Repeated tags (if any) will be ignored
