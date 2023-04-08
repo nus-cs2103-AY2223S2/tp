@@ -21,8 +21,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to SudoHR. "
-            + "Id field must be positive.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to SudoHR.\n"
             + "Parameters: "
             + PREFIX_ID + "EMPLOYEE_ID "
             + PREFIX_NAME + "NAME "
@@ -30,6 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Note: Only tags are optional. Id field must be a positive.\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "777 "
             + PREFIX_NAME + "John Doe "
