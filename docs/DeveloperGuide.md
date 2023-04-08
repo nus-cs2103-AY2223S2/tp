@@ -1,7 +1,7 @@
 ## PowerConnect Developer Guide
 
-PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. While it has limited features at this stage, plans for future PowerConnect releases to update features and usage capabilites have been made with detailed timeline.
-The aim of this product is to eventually be a useful tool that is used in conjunction with Learning Managment System (LMS) tools currently in the market to aid teachers in managing students. <br>
+PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. While it has limited features at this stage, plans for future PowerConnect releases to update features and usage capabilities have been made with detailed timeline.
+The aim of this product is to eventually be a useful tool that is used in conjunction with Learning Management System (LMS) tools currently in the market to aid teachers in managing students. <br>
 
 PowerConnect is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). PowerConnect helps teachers in tracking and updating students' particulars.
 
@@ -50,7 +50,24 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
       5. [Glossary](#glossary)
    2. [Appendix-Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
       1. [Launch and Shutdown](#launch-and-shutdown)
-      2. [Saving data](#saving-data)
+      2. [Adding a student](#addingstudent)
+      3. [Marking attendance](#markingattendance)
+      4. [Adding a grade](#addinggrade)
+      5. [Deleting a grade](#deletinggrade)
+      6. [Adding a comment](#addingcomment)
+      7. [Editing student](#editingstudent)
+      8. [Listing student](#listingstudent)
+      9. [Finding student](#findingstudent)
+      10. [Deleting student](#deletingstudent)
+      11. [Adding a parent](#addingparent)
+      12. [Listing all parents](#listingparent)
+      13. [Editing a parent](#editingparent)
+      14. [Finding a parent](#findingparent)
+      15. [Deleting a parent](#deletingparent)
+      16. [Saving preferences](#savingwindow)
+      17. [Shutdown of application](#shutdown)
+      18. [Saving data](#saving-data)
+      
    3. [Appendix-Effort](#effort)
 
 <div style="page-break-after: always;"></div>
@@ -118,7 +135,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -292,7 +309,7 @@ Sequence diagram for student delete
 #### Aspect 1: How to delete students
 
 * **Alternative 1 (current choice):** Delete student from their class's student list
-    * pros: Provides flexibility in adding new features. eg. deleting all students in a class 
+    * pros: Provides flexibility in adding new features. e.g. deleting all students in a class 
     * Cons: Harder to implement
 
 * **Alternative 2:** Delete student from a student list containing all students
@@ -346,14 +363,14 @@ Step 4. The attendance is saved to the storage file automatically after each com
 <div style="page-break-after: always;"></div>
 
 ### Design considerations
-We want to make it easy for the user to set current date as present. Thus we allowed the user to set attendance as T which will automatically register as present today
+We want to make it easy for the user to set current date as present. Thus, we allowed the user to set attendance as T which will automatically register as present today
 
 #### Aspect: How to store attendance
 
 * **Alternative 1 (current choice):** Store attendance as a JsonAdaptedAttendance object that records the string representation of LocalDate
     * Pros: Easy to access and manipulate attendance data
     * Pros: Easy to read and write to storage
-    * Pros: Flexible to add more features if more features are added eg. mark as MC, Late..
+    * Pros: Flexible to add more features if more features are added e.g. mark as MC, Late..
     * Cons: Hard to implement
 
 * **Alternative 2:** Store attendance as a string representation of LocalDate
@@ -361,7 +378,7 @@ We want to make it easy for the user to set current date as present. Thus we all
     * Pros: Use less memory
     * Cons: Hard to access and manipulate attendance data
     * Cons: Hard to read and write to storage
-    * Cons: Hard to add more features if more features are added eg. mark as MC, Late..
+    * Cons: Hard to add more features if more features are added e.g. mark as MC, Late..
 <br><br>
 
 [Back to Table of Contents](#table-of-contents)
@@ -521,7 +538,7 @@ We also do not want to trouble user with inputting multiple **PREFIXES** to edit
     * Pro: Minimal input by user to edit `Parent / NOK` particulars
     * Con: Slightly harder than Alternative 2 to implement
     * Con: Need to test the ***Parent Edit Command*** exhaustively / come up with automated tests to ensure when creating the new `Parent / NOK`, system takes input from original `Parent / NOK` for particulars that are not amended.
-* **Alternative 2:** User provides **ALL** particulars of the `Parent / NOK` to be edited even if **SOME** of the particulars are the **SAME** as original. From these details, system will create a new `Parent / NOK` and replace the original copy of `Parent / NOK` with it.
+* **Alternative 2:** User provides **ALL** particulars of the `Parent / NOK` to be edited even if **SOME** particulars are the **SAME** as original. From these details, system will create a new `Parent / NOK` and replace the original copy of `Parent / NOK` with it.
     * Pro: Easy to implement
     * Pro: Makes use of existing features **Parent Add** and **Parent Delete**
     * Con: Troublesome for the user as there is a need to input **ALL** particulars of a `Parent / NOK` even if he/she is just amending one of the particulars of the `Parent / NOK`.
@@ -650,7 +667,7 @@ Fix: Update `Attendance` feature such that it allows users to set it to `Absent`
 
 **Target user profile**:
 
-* This product mainly targets tuition teachers and in the future, secondary school teachers that prefer CLI over GUI,  manage large groups of students and require ease of access to students' information.
+* This product mainly targets tuition teachers and in the future, secondary school teachers that prefer CLI to GUI,  manage large groups of students and require ease of access to students' information.
 
 **Value proposition**: <br>
 Provides teachers with the ability to manage students administration and academics efficiently by operating on CLI, to complement existing LMS.
@@ -659,7 +676,7 @@ Provides teachers with the ability to manage students administration and academi
 * Our application can be used individually without internet connection (currently supports single user usage ONLY)
 * Helps to keep track of students’ parents / next-of-kins’ contact information for emergency purposes
 * Teachers may not be able to match students names and faces well and so this app serves as an easy way to identify students (since there are too many students)
-* Streamline administration processes because there’s plenty of students’ information to keep track of (eg. attendance, assignments, grades, contact details)
+* Streamline administration processes because there’s plenty of students’ information to keep track of (e.g. attendance, assignments, grades, contact details)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -700,7 +717,7 @@ Provides teachers with the ability to manage students administration and academi
 | 26  | Teacher                     | Identify weaker students                                                    | I can give them more attention in class                                                                                                    | Duplicate to Point 20                                                                                                                     | NA       |
 | 27  | Teacher                     | Manage my consultation timings                                              | I am able to organise my schedule                                                                                                          |                                                                                                                                           | NA       |
 | 28  | Teacher                     | Set reminders for my consultation timings                                   | I am able to ensure I am not late for consultations                                                                                        |                                                                                                                                           | NA       |
-| 29  | Teacher                     | Marks my students’ assignments automatically                                | I am able to use time and effort spent on it on other use, such as thinking of ways to improve my students’ learning                       | Difficult to implement Autograder                                                                                                         | NA       |
+| 29  | Teacher                     | Marks my students’ assignments automatically                                | I am able to use time and effort spent on it on other use, such as thinking of ways to improve my students’ learning                       | Difficult to implement autograder                                                                                                         | NA       |
 | 30  | Teacher                     | Have an application that is used as CLI instead of GUI                      | I am able to make use of my fast typing speed to sort out all the administrative work                                                      | Too Vague                                                                                                                                 | NA       |
 | 31  | Busy Teacher                | Easily manage my schedule                                                   | I am able to spend more time on other things                                                                                               | Out of scope                                                                                                                              | NA       |
 | 32  | Busy Teacher                | Know which tasks to prioritise                                              | I am able to ensure all of my responsibilities are taken care of in a timely and efficient manner.                                         |                                                                                                                                           | NA       |
@@ -722,7 +739,7 @@ Provides teachers with the ability to manage students administration and academi
 
 #### Use Case: UC01 - Adding a new `student` to an existing `class`.
 
-**Preconditions:** User knows the `index number` for the `student` and the `class` the student belongs to has already been created.
+**Preconditions:** User knows the `index number` for the `student` and the `class` the student belongs to have already been created.
 
 **MSS:**
 1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details for student’s particulars.
@@ -839,7 +856,7 @@ Provides teachers with the ability to manage students administration and academi
 **Preconditions:** User knows the `class` of the `student` he/she wishes to locate.
 
 **MSS:**
-1. User keys in a section of student’s name (eg Mary Goh - `Mary`) along with the `class` where the user wishes to find from.
+1. User keys in a section of student’s name (e.g. Mary Goh - `Mary`) along with the `class` where the user wishes to find from.
 2. System finds matching students and displays it to user.<br>
    Use case ends.
 
@@ -860,7 +877,7 @@ Provides teachers with the ability to manage students administration and academi
 
 #### Use Case: UC06 - Deleting `student` from class.
 
-**Preconditions**: User knows the `index number` for the `student` and the `class` the student belongs to has already been created.
+**Preconditions**: User knows the `index number` for the `student` and the `class` the student belongs to have already been created.
 
 **MSS:**
 1. User keys in the student `index number` and `class`.
@@ -950,7 +967,7 @@ Provides teachers with the ability to manage students administration and academi
    Use case ends.
 
 **Extensions:**
-+ 1a. User keyed in invalid `phone number` or `name` of the parent/NOK to be delete.
++ 1a. User keyed in invalid `phone number` or `name` of the parent/NOK to be deleted.
     + 1a1. System displays an error message indicating the parent does not exist.
     + 1a2. User checks for the `phone number` and `name` of the parent/NOK via the parent/NOK list displayed on the application and keys in the correct value.<br>
       Use case ends.
@@ -1033,13 +1050,16 @@ testers are expected to do more *exploratory* testing.
    1. Ensure you have Java `11` or above installed in your Computer.
    2. Download the latest `PowerConnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
    3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
-   4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`.
-   5. Double click the jar file.
+   4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. e.g. student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`.
+   5. Double-click the jar file.
       <br> **OR** <br>
       Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PowerConnect.jar` command to run the application.
    6. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. The window size may not be optimum.<br>
       ![Ui](images/Ui.png)
    <br><br>
+
+<a name = "addingstudent"/>
+
 2. Adding a student
    1. Prerequisites: There should be no student with the same class and index number as the student you are adding. Same name is allowed. List all the students with `list student` command.
    2. Test case 1: `student 1A add n/TanAhCow in/03 pn/TanAhNiu pnP/91234567 rls/Father` <br>
@@ -1047,13 +1067,17 @@ testers are expected to do more *exploratory* testing.
    3. Test case 2: `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T` <br>
       Expected: A student with more optional details is added and displayed in the student list and a parent is added to the Parents/Next Of Kins(NOK) list
    <br><br>
+<a name = "markingattendance"/>
+
 3. Marking attendance
-   1. Prerequisites: The date of attendance should be known or you can mark it as T/F (True/False) for today's date. List all the students with `list student` command.
+   1. Prerequisites: The date of attendance should be known, or you can mark it as T/F (True/False) for today's date. List all the students with `list student` command.
    2. Test case 1: `student 3A attendance in/25 att/T`
       Expected: The attendance of the student is marked as T (present) for today's date.
    3. Test case 2: `student 3A attendance in/25 att/25/02/2023`
       Expected: The attendance of the student is marked as F if today's date is not 25/02/2023. PowerConnect V1.4 only supports display of today's date for attendance. 
    <br><br>
+<a name = "addinggrade"/>
+
 4. Adding grade (homework/test) for student
    1. Prerequisites: The test should not have duplicate names and must be known. List all the students with `list student` command.
    2. Test case 1: `student 1A grade in/13 test/CA1 score/75 weightage/10`
@@ -1061,69 +1085,95 @@ testers are expected to do more *exploratory* testing.
    3. student 1A grade in/13 hw/Chapter 1 score/75 deadline/25/04/2023 weightage/10 hwdone/true
       Expected: A homework named Chapter 1, 75 score, 10 weightage and deadline of 25/04/2023 is added to the student with index number 13.
    <br><br>
+<a name = "deletinggrade"/>
+
 5. Deleting a grade (homework/test) for student
    1. Prerequisites: You know the deleted grade name and the student index number.
    2. Test case 1: `student 1A gradedelete in/13 hw/Chapter 1`
       Expected: The homework named Chapter 1 is deleted from the student with index number 13.
    <br><br>
+<a name = "addingcomment"/>
+
 6. Adding comments for a student
    1. Prerequisites: You know the student index number. List all the students with `list student` command.
    2. Test case 1: `student 1A comment in/25 com/Quiet person, needs to interact more with classmates`
       Expected: The comment is added to the student with index number 25.
    <br><br>
+<a name = "editingstudent"/>
+
 7. Edit a student
    1. Prerequisites: List all the students with `list student` command.
    2. Test case 1: `student 1A edit in/3 cca/basketball`
       Expected: The student with index number 3 will have the cca changed to basketball.
    <br><br>
+<a name = "listingstudent"/>
+
 8. Listing all students in a specified class
    1. Prerequisites: List all the students with `list student` command.
    2. Test case 1: `student 1A list`
       Expected: All students in class 1A will be listed.
    <br><br>
+<a name = 'findingstudent'/>
+
 9. Finding a student
    1. Prerequisites: List all the students with `list student` command.
    2. Test case 1: `student 1A find n/TanAhCow`
       Expected: All students with name TanAhCow in class 1A will be listed.
    <br><br>
+<a name = "deletingstudent"/>
+
 10. Deleting a student 
     1. Prerequisites: List all the students with `list student` command.
     2. Test case 1: `student 1A delete in/3`
        Expected: The student with index number 3 will be deleted.
     <br><br>
+<a name = "addingparent"/>
+
 11. Adding a parent
     1. Prerequisites: List all the parents with `list parent` command. Parents can have the same name but phone numbers must be unique!
     2. Test case 1: `parent add n/TanAhNiu pnP/91234567`
        Expected: A parent is added and displayed in the parent list.
     <br><br>
+<a name = "listingparent"/>
+
 12. Listing all parents
     1. Prerequisites: List all the parents with `list parent` command.
     2. Test case 1: `parent list`
        Expected: All parents will be listed.
     <br><br>
+<a name = "editingparent"/>
+
 13. Editing a parent
     1. Prerequisites: List all the parents with `list parent` command.
     2. Test case 1: `parent edit n/TanAhNiu pnP/91234567 npnP/65656565`
        Expected: The parent with name TanAhNiu will have the phone number changed to 65656565.
     <br><br>
+<a name = "findingparent"/>
+
 14. Finding a parent
     1. Prerequisites: List all the parents with `list parent` command.
     2. Test case 1: `parent find TanAhNiu`
        Expected: All parents with name TanAhNiu will be listed.
     <br><br>
+<a name = "deletingparent"/>
+
 15. Deleting a parent
     1. Prerequisites: List all the parents with `list parent` command.
     2. Test case 1: `parent delete n/TanAhCow pnP/91234566`
        Expected: The parent with name TanAhNiu and phone number 9123456 will be deleted.
-    3. Note: You CANNOT delete the parent/NOK if the parent/NOK has students BINDED to him/her. System will display an error message for this. Delete the student using student delete command first.
+    3. Note: You CANNOT delete the parent/NOK if the parent/NOK has students BOUND to him/her. System will display an error message for this. Delete the student using student delete command first.
     <br><br>
+<a name = "savingwindow"/>
+
 16. Saving window preferences
      1. Resize the window to an optimum size. Move the window to a different location. Close the window.
      2. Re-launch the app by double-clicking the jar file.<br>
         Expected: The most recent window size and location is retained. 
      <br><br> 
+<a name = "shutdown"/>
+
 17. Shutdown of Application
-     1. Run the `exit` command: `exit` or press the `X` button located at the top right corner of the application.
+     1. Run the `exit` command: `exit` or press the `X` button located in the top right corner of the application.
      2. The application should close within 3 seconds.
      <br><br>
 
@@ -1198,12 +1248,12 @@ Testers **SHOULD NOT** change directory name for `images/`, **ANY CHANGE** to im
 ### Appendix: Effort
 The hardest part of the project was modifying the whole storage class to fit our model correctly. As we created both
 students and parents that inherited from persons, the AB3 model storage could not fit our model correctly. As such, we had
-to overhaul the whole storage package and we also supported class functionality for students which made things even harder.<br>
+to overhaul the whole storage package, and we also supported class functionality for students which made things even harder.<br>
 
 We also made linkages between parents and students to better model the relationship between students and parents. This was
-quite time consuming as we had to make sure each command we implemented adjusted this relationship accordingly. 
+quite time-consuming as we had to make sure each command we implemented adjusted this relationship accordingly. 
 
-The UI package also took us quite a while as we were not really familiar with JavaFX and we had to make sure the information 
+The UI package also took us quite a while as we were not really familiar with JavaFX, and we had to make sure the information 
 displays correctly especially with expanding number of information (tests/homework)
 
 The novelty of giving users both the option to specify an image path or use the images folder method to store images for students
