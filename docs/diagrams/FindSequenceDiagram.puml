@@ -6,13 +6,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SocketParser" as SocketParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "personPredicate:FindCommandPersonPredicate" as FindCommandPersonPredicate LOGIC_COLOR
-participant ":FindCommandNamePredicate" as FindCommandNamePredicate LOGIC_COLOR
-participant ":FindCommandProfilePredicate" as FindCommandProfilePredicate LOGIC_COLOR
-participant ":FindCommandPhonePredicate" as FindCommandPhonePredicate LOGIC_COLOR
-participant ":FindCommandEmailPredicate" as FindCommandEmailPredicate LOGIC_COLOR
-participant ":FindCommandAddressPredicate" as FindCommandAddressPredicate LOGIC_COLOR
-participant ":FindCommandLanguagePredicate" as FindCommandLanguagePredicate LOGIC_COLOR
-participant ":FindCommandTagPredicate" as FindCommandTagPredicate LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -38,57 +31,12 @@ SocketParser -> FindCommandParser : parse("n/alex t/friend")
 activate FindCommandParser
 
 create FindCommandPersonPredicate
-FindCommandParser-> FindCommandPersonPredicate : FindCommandPersonPredicate("alex", " ", " ", " ", " ", " ", "friend")
+FindCommandParser-> FindCommandPersonPredicate
 activate FindCommandPersonPredicate
 
-create FindCommandNamePredicate
-FindCommandPersonPredicate-> FindCommandNamePredicate : FindCommandNamePredicate("alex")
-activate FindCommandNamePredicate
-
-FindCommandNamePredicate --> FindCommandPersonPredicate
-deactivate FindCommandNamePredicate
-
-create FindCommandProfilePredicate
-FindCommandPersonPredicate-> FindCommandProfilePredicate
-activate FindCommandProfilePredicate
-
-FindCommandProfilePredicate --> FindCommandPersonPredicate
-deactivate FindCommandProfilePredicate
-
-create FindCommandPhonePredicate
-FindCommandPersonPredicate-> FindCommandPhonePredicate
-activate FindCommandPhonePredicate
-
-FindCommandPhonePredicate --> FindCommandPersonPredicate
-deactivate FindCommandPhonePredicate
-
-create FindCommandEmailPredicate
-FindCommandPersonPredicate-> FindCommandEmailPredicate
-activate FindCommandEmailPredicate
-
-FindCommandEmailPredicate --> FindCommandPersonPredicate
-deactivate FindCommandEmailPredicate
-
-create FindCommandAddressPredicate
-FindCommandPersonPredicate-> FindCommandAddressPredicate
-activate FindCommandAddressPredicate
-
-FindCommandAddressPredicate --> FindCommandPersonPredicate
-deactivate FindCommandAddressPredicate
-
-create FindCommandLanguagePredicate
-FindCommandPersonPredicate-> FindCommandLanguagePredicate
-activate FindCommandLanguagePredicate
-
-FindCommandLanguagePredicate --> FindCommandPersonPredicate
-deactivate FindCommandLanguagePredicate
-
-create FindCommandTagPredicate
-FindCommandPersonPredicate-> FindCommandTagPredicate : FindCommandTagPredicate("friend")
-activate FindCommandTagPredicate
-
-FindCommandTagPredicate --> FindCommandPersonPredicate
-deactivate FindCommandTagPredicate
+ref over FindCommandPersonPredicate
+FindCommandPersonPredicate inner working
+end ref
 
 FindCommandPersonPredicate --> FindCommandParser : personPredicate
 deactivate FindCommandPersonPredicate
