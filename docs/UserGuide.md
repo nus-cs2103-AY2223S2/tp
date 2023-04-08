@@ -8,7 +8,7 @@ title: User Guide
 
 Are you a university student struggling to manage your modules or classes and track your degree progress? Introducing **MODTrek**, here to help you with that!
 
-**MODTrek** is a desktop application for managing your modules and degree progress, optimised for Command Line Interface (CLI) users who prefer typing over using their mouse. Equipped with an eye-catching Graphical User Interface (GUI), the app provides a convenient platform for you to access and update your modules within presses of a keyboard. Module and degree progress tracking have never been easier!
+Say goodbye to the days of learning complicated spreadsheet formulas and manual grade average calculations! **MODTrek** is a desktop application for managing your modules and degree progress, optimised for Command Line Interface (CLI) users who prefer typing over using their mouse. Equipped with an eye-catching Graphical User Interface (GUI), the app provides a convenient platform for you to access and update your modules within presses of a keyboard. Module and degree progress tracking have never been easier!
 
 Disclaimer: This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort. To other students, fret not! We plan to expand our application’s scope to more majors, cohorts and universities in the coming years, so keep a lookout!
 
