@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class FindMeetingCommandParserTest {
     private final FindMeetingCommandParser parser = new FindMeetingCommandParser();
 
-    private final String startDate = "09/11/2001";
+    private final String startDate = "09-11-2001";
     private final LocalDate date = LocalDate.of(2001, 11, 9);
 
     @Test
