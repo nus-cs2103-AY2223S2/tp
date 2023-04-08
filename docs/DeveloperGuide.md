@@ -1404,12 +1404,6 @@ Before every test case, ensure that the there are no patients. This can be done 
   `patient find --b A+ --n John`
   **Expected**: 1 patients listed! (John Doe)
 
-### Editing a patient
-
-### Deleting a patient
-
-### Clearing all patient data
-
 ### Adding a vaccination
 
 In all cases, vaccination "a" will be added but its state is determined through the display.
