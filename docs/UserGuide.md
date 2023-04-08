@@ -17,12 +17,12 @@ features in mind so you can always find the recipe you need! Make use of ***RIZZ
 Let's get you _rizzed_ up in the fastest way possible!
 
 1. Ensure you have Java `11` or above installed in you computer.
-UG:2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
+2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar
    rizzipe.jar` command to run the application.
 5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have crafted
-some sample recipes for you already.
+some sample recipes for you already.<br/><br/>
 ![UI QuickStart](images/UiQuickStart.png)
 6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using `up` and `down` arrow keys!
 7. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) Section.
