@@ -10,6 +10,7 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
@@ -72,7 +73,7 @@ public class SessionCommandTest {
         SessionCommand command3 = new SessionCommand(INDEX_SECOND);
 
         SelectCommand differentCommand = new SelectCommand(INDEX_FIRST);
-//        MarkPresentCommand differentCommand = new MarkPresentCommand(Index.fromZeroBased(0));
+        //MarkPresentCommand differentCommand = new MarkPresentCommand(Index.fromZeroBased(0));
 
 
 
@@ -86,42 +87,44 @@ public class SessionCommandTest {
         assertNotEquals(command1, differentCommand);
 
     }
-//    @Test
-//    public void equals_sameObject_returnsTrue() {
-//        SessionCommand sessionCommand = new SessionCommand(Index.fromZeroBased(0));
-//
-//        assertTrue(sessionCommand.equals(sessionCommand));
-//    }
-//
-//    @Test
-//    public void equals_sameValues_returnsTrue() {
-//        SessionCommand sessionCommand1 = new SessionCommand(Index.fromZeroBased(0));
-//        SessionCommand sessionCommand2 = new SessionCommand(Index.fromZeroBased(0));
-//
-//        assertTrue(sessionCommand1.equals(sessionCommand2));
-//    }
-//
-//    @Test
-//    public void equals_differentTypes_returnsFalse() {
-//        SessionCommand sessionCommand = new SessionCommand(Index.fromZeroBased(0));
-//        DeleteCommand deleteCommand = new DeleteCommand(Index.fromZeroBased(0));
-//
-//        assertFalse(sessionCommand.equals(deleteCommand));
-//    }
-//
-//    @Test
-//    public void equals_null_returnsFalse() {
-//        SessionCommand sessionCommand = new SessionCommand(Index.fromZeroBased(0));
-//
-//        assertFalse(sessionCommand.equals(null));
-//    }
-//
-//    @Test
-//    public void equals_differentValues_returnsFalse() {
-//        SessionCommand sessionCommand1 = new SessionCommand(Index.fromZeroBased(0));
-//        SessionCommand sessionCommand2 = new SessionCommand(Index.fromZeroBased(1));
-//
-//        assertFalse(sessionCommand1.equals(sessionCommand2));
-//    }
+    /*
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        SessionCommand sessionCommand = new SessionCommand(Index.fromZeroBased(0));
+
+        assertTrue(sessionCommand.equals(sessionCommand));
+    }
+
+    @Test
+    public void equals_sameValues_returnsTrue() {
+        SessionCommand sessionCommand1 = new SessionCommand(Index.fromZeroBased(0));
+        SessionCommand sessionCommand2 = new SessionCommand(Index.fromZeroBased(0));
+
+        assertTrue(sessionCommand1.equals(sessionCommand2));
+    }
+
+    @Test
+    public void equals_differentTypes_returnsFalse() {
+        SessionCommand sessionCommand = new SessionCommand(Index.fromZeroBased(0));
+        DeleteCommand deleteCommand = new DeleteCommand(Index.fromZeroBased(0));
+
+        assertFalse(sessionCommand.equals(deleteCommand));
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        SessionCommand sessionCommand = new SessionCommand(Index.fromZeroBased(0));
+
+        assertFalse(sessionCommand.equals(null));
+    }
+
+    @Test
+    public void equals_differentValues_returnsFalse() {
+        SessionCommand sessionCommand1 = new SessionCommand(Index.fromZeroBased(0));
+        SessionCommand sessionCommand2 = new SessionCommand(Index.fromZeroBased(1));
+
+        assertFalse(sessionCommand1.equals(sessionCommand2));
+    }
+*/
 }
 

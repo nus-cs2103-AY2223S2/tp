@@ -70,7 +70,8 @@
 
 //     @Test
 //     public void parseCommand_exit() throws Exception {
-//         assertTrue(RosterParser.parseCommand(ExitCommand.COMMAND_WORD, TEST_CURRENT_SELECTION) instanceof ExitCommand);
+//         assertTrue(RosterParser.parseCommand(ExitCommand.COMMAND_WORD, TEST_CURRENT_SELECTION)
+//                 instanceof ExitCommand);
 //         assertTrue(RosterParser.parseCommand(ExitCommand.COMMAND_WORD + " 3", TEST_CURRENT_SELECTION)
 //                 instanceof ExitCommand);
 //     }
@@ -86,21 +87,24 @@
 
 //     @Test
 //     public void parseCommand_help() throws Exception {
-//         assertTrue(RosterParser.parseCommand(HelpCommand.COMMAND_WORD, TEST_CURRENT_SELECTION) instanceof HelpCommand);
+//         assertTrue(RosterParser.parseCommand(HelpCommand.COMMAND_WORD, TEST_CURRENT_SELECTION)
+//                 instanceof HelpCommand);
 //         assertTrue(RosterParser.parseCommand(HelpCommand.COMMAND_WORD + " 3", TEST_CURRENT_SELECTION)
 //                 instanceof HelpCommand);
 //     }
 
 //     @Test
 //     public void parseCommand_list() throws Exception {
-//         assertTrue(RosterParser.parseCommand(ListCommand.COMMAND_WORD, TEST_CURRENT_SELECTION) instanceof ListCommand);
+//         assertTrue(RosterParser.parseCommand(ListCommand.COMMAND_WORD, TEST_CURRENT_SELECTION)
+//                 instanceof ListCommand);
 //         assertTrue(RosterParser.parseCommand(ListCommand.COMMAND_WORD + " 3", TEST_CURRENT_SELECTION)
 //                 instanceof ListCommand);
 //     }
 
 //     @Test
 //     public void parseCommand_unrecognisedInput_throwsParseException() {
-//         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+//         assertThrows(ParseException.class,
+//             String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
 //             -> RosterParser.parseCommand("", TEST_CURRENT_SELECTION));
 //     }
 

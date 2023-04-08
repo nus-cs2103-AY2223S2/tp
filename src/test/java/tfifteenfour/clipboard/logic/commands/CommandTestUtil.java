@@ -129,8 +129,8 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() <
-                model.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList().size());
+        assertTrue(targetIndex.getZeroBased()
+                < model.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList().size());
 
         Student student = model.getCurrentSelection().getSelectedGroup()
                 .getUnmodifiableFilteredStudentList().get(targetIndex.getZeroBased());
