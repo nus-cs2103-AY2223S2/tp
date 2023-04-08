@@ -285,7 +285,7 @@ Sorts the list using the following format:
         * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
         * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
         * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
-        * Else if both tasks have the same number of tags, the task with a smaller lexicgraphical name is listed above the other.
+        * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
 
 
 Format: `sort`
@@ -664,6 +664,6 @@ _Details coming soon ..._
 
 ## 7. Glossary
 1. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
-2. Long date: Date in the format YYYY-MM-DD HHMM
-3. Short date: Date in the format YYYY-MM-DD
+2. Long date: Date in the format YYYY-MM-DD HHMM.
+3. Short date: Date in the format YYYY-MM-DD.
 4. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.
