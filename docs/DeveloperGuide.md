@@ -6,8 +6,8 @@ title: Developer Guide
 <img src="images/logo_DG.png" width="300">
 </p>
 
-* Table of Contents
-  {:toc}
+* Table of Contents 
+{:toc}
 
 ## About
 
