@@ -14,6 +14,7 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented**:
   * Added the text box for the feature `remark` [\#107]()
+  * Added the ability to add Telegram handles for student entries [\#140]()
   * Added the regular expression to validate Telegram handles [\#211]()
   * Fixed a bug where the text box for the feature `remark` does not close when the app terminates [\#148]()
 
