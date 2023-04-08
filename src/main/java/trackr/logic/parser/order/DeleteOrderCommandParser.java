@@ -4,13 +4,14 @@ import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.order.DeleteOrderCommand;
+import trackr.logic.parser.Parser;
 import trackr.logic.parser.ParserUtil;
 import trackr.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteOrderCommand object
  */
-public class DeleteOrderCommandParser {
+public class DeleteOrderCommandParser implements Parser<DeleteOrderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteOrderCommand
      * and returns a DeleteOrderCommand object for execution.

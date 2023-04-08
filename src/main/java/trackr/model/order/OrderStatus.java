@@ -55,7 +55,6 @@ public class OrderStatus extends Status {
      *         1 if this order status has a lower sorting priority,
      *         0 if both statuses are the same.
      */
-
     @Override
     public int compare(Status other) {
         if (toJsonString().equalsIgnoreCase(other.toJsonString())) {

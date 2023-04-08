@@ -23,16 +23,26 @@ public class OrderQuantity {
     }
 
     /**
-     * Returns true if a given string is a valid order quantity.
+     * Returns true if a given string matches the validation regex for quantity.
+     * @param test the string to test for validity as a quantity value
+     * @return true if test is a valid quantity value, false otherwise
      */
     public static boolean isValidQuantity(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a quantity value in the form of an int from a string value
+     * @return int form of value string
+     */
     public int getOrderQuantity() {
         return Integer.parseInt(value);
     }
 
+    /**
+     * Returns a quantity value in the form of a string
+     * @return value in the form of a string
+     */
     public String getValue() {
         return value;
     }

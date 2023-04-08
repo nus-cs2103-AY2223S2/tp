@@ -37,7 +37,6 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
     protected UniqueItemList(ModelEnum itemType) {
         this.itemType = itemType;
     }
-
     /**
      * Returns true if the list contains an equivalent item as the given argument.
      */
@@ -107,6 +106,13 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
         internalList.setAll(items);
     }
 
+
+    /**
+     * Sorts the items in the list according to the order imposed by the specified comparator.
+     *
+     * @param comparator the comparator used to compare the items in the list
+     * @throws NullPointerException if {@code comparator} is null
+     */
     public void sortItems(Comparator<T> comparator) {
         internalList.sort(comparator);
     }
