@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.event.exceptions.NoteLengthException;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
@@ -16,6 +17,6 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException, ParseException;
+    public abstract CommandResult execute(Model model) throws CommandException, ParseException, NoteLengthException;
 
 }

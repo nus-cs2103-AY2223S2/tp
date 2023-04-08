@@ -17,6 +17,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
+import seedu.address.model.event.exceptions.NoteLengthException;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -41,7 +42,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, NoteLengthException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
