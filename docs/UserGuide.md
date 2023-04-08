@@ -723,7 +723,9 @@ Format: `exit`
 
 ### Saving the data
 
-MATHUTORING data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+* MATHUTORING data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+* If the user would like to save the MATHUTORING data in a different location, they can use the [`export`](#1-exporting-the-data-of-the-students-export)
+command.
 
 [Back to top](#table-of-contents)
 
