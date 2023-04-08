@@ -40,6 +40,7 @@ public class EditByNameCommand extends EditCommand {
         model.updateFilteredPersonList(predicate);
         List<Person> updatedList = model.getFilteredPersonList();
         if (updatedList.isEmpty()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
         if (updatedList.size() == 1) {

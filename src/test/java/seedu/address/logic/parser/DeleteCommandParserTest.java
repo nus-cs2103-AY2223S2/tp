@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -10,6 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteByNameCommand;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteMultipleIndexCommand;
 import seedu.address.logic.commands.DeleteSingleIndexCommand;
 import seedu.address.model.person.NameContainsAllKeywordsPredicate;
@@ -38,5 +41,9 @@ public class DeleteCommandParserTest {
     public void parse_validArgs_returnsDeleteByNameCommand() {
         assertParseSuccess(parser, "John Doe",
                 new DeleteByNameCommand(new NameContainsAllKeywordsPredicate(List.of("John", "Doe"))));
+    }
+    @Test
+    public void parse_invalidArgs_returnsMessageUsage() {
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

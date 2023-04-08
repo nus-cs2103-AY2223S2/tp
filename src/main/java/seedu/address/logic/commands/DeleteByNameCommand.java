@@ -28,7 +28,9 @@ public class DeleteByNameCommand extends DeleteCommand {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         List<Person> updatedList = model.getFilteredPersonList();
+
         if (updatedList.isEmpty()) {
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(Messages.MESSAGE_PERSON_NOT_FOUND));
         }
         if (updatedList.size() == 1) {
@@ -37,6 +39,7 @@ public class DeleteByNameCommand extends DeleteCommand {
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         } else {
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(
                     String.format(Messages.MESSAGE_MULTIPLE_PERSONS_FOUND));
         }

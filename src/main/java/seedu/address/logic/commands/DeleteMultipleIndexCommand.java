@@ -59,7 +59,7 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
     public boolean isIndexesValid(List<Person> lastShownList) throws CommandException {
         for (Index targetIndex : indexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_MULTIPLE_INDEX);
             }
         }
         return true;
