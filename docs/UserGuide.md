@@ -901,7 +901,7 @@ Examples:
 
 ### Import Data
 
-> `import {file_path} [/mod {module_1}[, {module_2}[, {module_3}[, ...]]]] [/overwrite]`
+> `import {file_path} [/mod {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]] [/overwrite]`
 
 Import data from a specified file path to the current tracker.
 
@@ -913,12 +913,13 @@ Import data from a specified file path to the current tracker.
   - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must
     exist in the default saving directory at `{JAR_file_location}/data`)
 - <span style="color:#e46c0a">`/mod`</span> : If specified, Le Tracker will only import progress from the modules 
-  specified in `{module_1}[, {module_2}[, {module_3}[, ...]]]`
-  - If specified, `{module_1}[, {module_2}[, {module_3}[, ...]]]` must also be specified
+  specified in `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
+  - If specified, `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]` must also be specified
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-- <span style="color:#e46c0a">`module_1, module_2, module_3}, ...`</span> : The modules to import from 
+- <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span> : The modules to import from 
   `file_path`
-  - If `/overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker
+  - If `/overwrite` is not specified, `module_code_1, module_code_2, module_code_3, ...` must not exist in the current 
+    tracker
   - Must belong to existing modules in the file specified in `file_path`
   - Repeated modules (if any) will be ignored
 - <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules
