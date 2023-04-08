@@ -34,7 +34,7 @@ public class CompanyTest {
         // valid company
         assertTrue(Company.isValidCompany("singtelcorp")); // alphabets only and no spaces
         assertTrue(Company.isValidCompany("12345")); // numbers only
-        assertTrue(Company.isValidCompany("damiths boys")); // mix of punctuation and alphabets
+        assertTrue(Company.isValidCompany("damiths students")); // have spaces
         assertTrue(Company.isValidCompany("Carls jr")); // with capital letters
         assertTrue(Company.isValidCompany("software engineering is really tedious")); // long names
 
