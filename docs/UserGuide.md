@@ -199,7 +199,8 @@ Examples:
 Lists all contacts in SOCket based on language and tag.
 
 Format: `list [l/LANGUAGE] [t/TAG]`
-
+* The search is carried out on ***all*** contacts stored in SOCket, not just the currently displayed list of contacts.
+   * e.g. `list t/friend` will list out contacts tagged with `friend` from the original contact list when filtered list is currently displayed.
 * The search for language or tag is case-sensitive.
 * If no language or tag fields are given, all contacts are displayed.
     * e.g. `list` will list out all contacts.
@@ -282,6 +283,7 @@ Clears all contacts from SOCket based on the given tag(s); if tags are not inclu
 
 Format: `clear [t/TAG]...`
 
+* `clear` is carried out on ***all*** contacts stored in SOCket, not just the currently displayed list of contacts
 * Removes all contacts with the specified tags.
 * Any tag included is **case-insensitive**.
   * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
@@ -298,6 +300,7 @@ Sorts and displays contacts according to the provided category. Sorts contacts b
 
 Format: `sort [CATEGORY]`
 
+* `sort` is carried out on ***all*** contacts stored in SOCket, not just the currently displayed list of contacts
 * If no category is provided, the contacts are sorted by their names alphanumerically.
 * If a category is provided, the contacts are sorted by that category alphanumerically.
     * e.g. `sort address` will sort the contacts by their addresses alphanumerically. Contacts without addresses will be at the bottom.

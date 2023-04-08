@@ -38,8 +38,6 @@ activate ListCommandLanguagePredicate
 ListCommandLanguagePredicate --> ListCommandParser
 deactivate ListCommandLanguagePredicate
 
-ListCommandLanguagePredicate -[hidden]-> ListCommandParser
-destroy ListCommandLanguagePredicate
 
 create ListCommandTagPredicate
 ListCommandParser-> ListCommandTagPredicate
@@ -47,9 +45,6 @@ activate ListCommandTagPredicate
 
 ListCommandTagPredicate --> ListCommandParser
 deactivate ListCommandTagPredicate
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-ListCommandTagPredicate -[hidden]-> ListCommandParser
-destroy ListCommandTagPredicate
 
 create ListCommand
 ListCommandParser -> ListCommand
