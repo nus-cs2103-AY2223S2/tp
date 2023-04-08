@@ -1236,23 +1236,6 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a patient
-
-1. Deleting a patient while all patients are being shown
-
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
 ### Adding a vaccination
 
 In all cases, vaccination "a" will be added but its state is determined through the display.
