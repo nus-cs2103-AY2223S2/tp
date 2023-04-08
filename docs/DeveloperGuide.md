@@ -94,7 +94,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component usels the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -137,6 +137,30 @@ How the parsing works:
 
 - When called upon to parse a user command, the `TrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddVideoCommand`) which the `TrackerParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `NavCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+### Navigation component
+
+**API**: `Navigation.java`
+
+Here's a (partial) class diagram of the `Navigation` component:
+
+<img src="images/NavigationClassDiagram.png" width="550"/>
+
+\*\* This class diagram omits some classes and dependencies in the `Navigation` component for the purpose of simplicity.
+
+What the `Navigation` component does:
+
+- Tracking the current working context.
+- Tracking navigation through the hierarchy.
+- Enforcing valid navigation between adjacent layers in the module-lecture-video hierarchy.
+
+What the `Navigation` component is **NOT RESPONSIBLE** for:
+
+- Ensuring that contexts exists in the `Model` component.
+  - This avoids circular dependency as the `Model` component already depends on the `Navigation` component.
+  - This enforces the single responsibility principle as the `Navigation` component does not need to verify the existence of actual module or lecture data in the Tracker system.
+
+For more information on the Navigation system and how to develop **context-sensitive** commands that work with the Navigation system, please refer the [navigation feature](#navigation-feature).
 
 ### Model component
 
@@ -611,11 +635,29 @@ The following is a description of the code execution flow:
 
 > The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
 
-Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
+#### How the navigation system works
+
+Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the module-lecture-video hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
 
 Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
 
-**Usage scenario**
+#### Navigation injection
+
+Here's a (partial) class diagram for the `NavigationInjector` component.
+
+[NavigationInjectorClassDiagram](images//NavigationInjectorClassDiagram.png)
+
+How `NavigationInjector` injects the correct arguments into the command based on the current working context:
+
+1. When `Logic` is called upon to execute a command, the command text string is first passed to the `Injector` object via its `inject(String, Model)` method.
+
+2. The `NavigationInjector` implementation of `Injector` then obtains the `NavigationContext` object which represents the current working context by communicating with the `Model`.
+
+3. The `NavigationInjector` then injects the appropriate `/mod` and `/lec` arguments that represent the current working context into the command text string based on the arguments obtained from the `NavigationContext` object.
+
+4. The modified command text string is then returned back from `NavigationInjector` to `Logic`.
+
+#### Usage scenario
 
 Given below is an example usage scenario and how the navigation system behaves at each step.
 
@@ -623,13 +665,31 @@ Steps:
 
 1. The user launches the application. The Navigation system is initialized with a root context as the current working context.
 
-2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
-
+2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command. The following sequence diagram depicts `nav CS2040S`'s execution:
    ![FindActivityDiagram](images/NavSequenceDiagram0.png)
 
 3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
 
-4. The user wants to list the videos of the CS2040S/Week 1 context and executes `list` command.
+#### Designing context-sensitive commands
+
+We want to reduce the need for similar sounding command names such as `add-module`, `add-lecture`, `add-video` which all involve the "adding" operation. Hence, these context-sensitive commands share a single command name such as `add`. To determine whether a module, lecture or video is being processed for a given command, we instead parse the context-specifying arguments such as `/mod`, `/lec` to instantiate the **context specific command**.
+
+Hence, we define a common format for context-sensitive commands:
+> `command [/mod {module_code}] [/lec {lecture_name}]`
+
+Parsing context-specifying arguments to determine context:
+  | Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
+  | :-----------------: | :-----------------: | :------------------: | :-------------------:    |
+  |         No          |         No          | Root Context         |  `XYZModuleCommand`      |
+  |         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
+  |         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
+
+If you are *confused* about why there appears to be a mismatch between Context and Context Specific Command (i.e. Module Context -> `XYZLectureCommand`), remember that a context specific command does **NOT** manipulate the **context** itself but the objects that are **contained** under that context (i.e. modules contain lectures).
+
+For concrete examples on how to implement a context-sensitive command, you can refer to the
+[add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
+
+Implementing your context-sensitive command based on this standard will ensure seamless integration with the navigation system.
 
 ### Tag module, lecture, and video feature
 
@@ -1870,11 +1930,13 @@ Maintainability:
 
 ### Glossary
 
+- **Context**: A *module code* or *module code - lecture name* pair that represents a location in the module-lecture-video hierarchy
+- **Current Working Context**: A specified context that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Module Code**: Unique code identifier for each module
+- **Navigate**: To specify a current working context
 - **Lecture Name**: Unique name identifier for each lecture
 - **Video Name**: Unique name identifier for each video
-- **Current Working Context**: A specified module code or module code - lecture name pair that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command.
 - **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
 
 ## Appendix: Instructions for manual testing
