@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 <b style="font-size: 20px">_LoyaltyLift_</b> is a desktop application designed for small business owners to manage their customers and orders efficiently, allowing you to **improve customer relations** and **increase customer loyalty**.
-It is optimized for use via commands typed into a command panel and also has the advantages of a visual interface.
+It is optimized for users who are fast typists while still having the benefits of a visual interface.
 
 With LoyaltyLift, you can easily keep track of your customers' preferences, purchase history, and contact information, enabling you to provide personalized service that will keep them coming back. 
 Our application makes it easy to manage orders and provide rewards, helping you grow your business while delivering an exceptional customer experience. 
@@ -515,8 +515,8 @@ editc CINDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/{ind|env}]
 * `editc 1 p/91234567 e/johndoe@example.com`<br>
   Edits the phone number and email address of the 1st customer to be `91234567` and `johndoe@example.com` respectively.
 
-* `editc 2 ct/ind n/Betsy Crower t/`<br>
-  Edits the name of the 2nd customer to be `Betsy Crower` and clears all existing tags.
+* `editc 2 ct/ind n/Betsy Crower`<br>
+  Edits the name of the 2nd customer to be `Betsy Crower`.
 
 </div>
 
@@ -722,7 +722,7 @@ addpoints CINDEX pt/POINTS
 ```
 
 * Adds or subtracts the points of the customer at the specified `CINDEX` by `POINTS`.
-* If the points subtracted is greater than what the user has, the command will not be executed.
+* If the points subtracted is greater than what the customer has, the command will not be executed.
 * If the points added will result in points or cumulative points being greater than 999999, 
 the command will not be executed.
 
@@ -1127,14 +1127,6 @@ help
 ### Saving the data
 
 Customer and order data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-All data are saved as a JSON file `[JAR file location]/data/loyaltylift.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, LoyaltyLift will discard all data and start with an empty data file at the next run.
-</div>
 
 [🠕 Back To Top](#table-of-contents)
 
