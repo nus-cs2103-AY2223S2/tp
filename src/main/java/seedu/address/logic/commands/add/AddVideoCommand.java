@@ -20,7 +20,10 @@ import seedu.address.model.video.Video;
  */
 public class AddVideoCommand extends AddCommand {
 
+    /** The message for when a {@code Video} is successfully added. */
     public static final String MESSAGE_SUCCESS = "New video added to module %s of lecture %s: %s";
+
+    /** The error message for when a duplicate {@code Video} is detected. */
     public static final String MESSAGE_DUPLICATE_VIDEO = "This video already exists in lecture %s of module %s.";
 
     private final ModuleCode moduleCode;
@@ -28,7 +31,7 @@ public class AddVideoCommand extends AddCommand {
     private final Video toAdd;
 
     /**
-     * Creates an {@code AddVideoCommand} to add {@code video} to the lecture with name {@code lectureName} which
+     * Constructs an {@code AddVideoCommand} to add {@code video} to the lecture with name {@code lectureName} which
      * belongs to module with code {@code moduleCode}
      *
      * @param moduleCode The code of the module which the lecture with name {@code lectureName} belongs to.
@@ -47,24 +50,14 @@ public class AddVideoCommand extends AddCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasModule(moduleCode)) {
-            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
-        }
+        ReadOnlyModule module = getContainingModule(model);
+        ReadOnlyLecture lecture = getContainingLecture(module);
 
-        if (!model.hasLecture(moduleCode, lectureName)) {
-            throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
-        }
+        validateVideoIsNotDuplicate(lecture);
 
-        if (model.hasVideo(moduleCode, lectureName, toAdd.getName())) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_VIDEO, lectureName, moduleCode));
-        }
-
-        ReadOnlyModule module = model.getModule(moduleCode);
-        ReadOnlyLecture lecture = module.getLecture(lectureName);
         model.addVideo(lecture, toAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, lectureName, toAdd),
-                new VideoEditInfo(moduleCode, lectureName, null, toAdd));
+        return createSuccessResult();
     }
 
     @Override
@@ -79,8 +72,38 @@ public class AddVideoCommand extends AddCommand {
 
         AddVideoCommand otherCommand = (AddVideoCommand) other;
 
-        return lectureName.equals(otherCommand.lectureName)
+        return moduleCode.equals(otherCommand.moduleCode)
+                && lectureName.equals(otherCommand.lectureName)
                 && toAdd.equals(otherCommand.toAdd);
+    }
+
+    private ReadOnlyModule getContainingModule(Model model) throws CommandException {
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
+        }
+
+        return model.getModule(moduleCode);
+    }
+
+    private ReadOnlyLecture getContainingLecture(ReadOnlyModule module) throws CommandException {
+        if (!module.hasLecture(lectureName)) {
+            throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
+        }
+
+        return module.getLecture(lectureName);
+    }
+
+    private void validateVideoIsNotDuplicate(ReadOnlyLecture lecture) throws CommandException {
+        if (lecture.hasVideo(toAdd)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_VIDEO, lectureName, moduleCode));
+        }
+    }
+
+    private CommandResult createSuccessResult() {
+        String message = String.format(MESSAGE_SUCCESS, moduleCode, lectureName, toAdd);
+        VideoEditInfo editInfo = new VideoEditInfo(moduleCode, lectureName, null, toAdd);
+
+        return new CommandResult(message, editInfo);
     }
 
 }

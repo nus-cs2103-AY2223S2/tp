@@ -73,18 +73,19 @@ public class AddCommandParserTest {
     @Test
     public void parse_allAddModuleFields_success() {
         Module module = new ModuleBuilder(TypicalModules.getCs2040s()).withLectures().build();
-        AddModuleCommand command = new AddModuleCommand(module);
 
         String noDuplicateUserInput = ModuleUtil.getModuleDetails(module);
 
+        AddModuleCommand expectedCommand = new AddModuleCommand(module);
+
         // no duplicate fields
         String userInput = noDuplicateUserInput;
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // multiple names - last name accepted
         String toReplace = PREFIX_NAME + " " + module.getName().name;
         userInput = noDuplicateUserInput.replaceFirst(toReplace, MODULE_NAME_DESC_2103 + " " + toReplace);
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // duplicate tags - duplicates ignored
         List<Tag> tagsWithDuplicates = new ArrayList<>();
@@ -94,23 +95,33 @@ public class AddCommandParserTest {
         toReplace = PREFIX_TAG + " " + TagUtil.getTagsStr(module.getTags());
         userInput = noDuplicateUserInput.replaceFirst(
                 toReplace, PREFIX_TAG + " " + TagUtil.getTagsStr(tagsWithDuplicates));
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_addModuleFieldsMissingModuleNameField_success() {
+        /* Setup */
         Module module = new ModuleBuilder(TypicalModules.getCs2040s()).withName("").withLectures().build();
-
         String userInput = ModuleUtil.getModuleDetails(module);
-        assertParseSuccess(parser, userInput, new AddModuleCommand(module));
+
+        /* Create expected results */
+        AddModuleCommand expectedCommand = new AddModuleCommand(module);
+
+        /* Execute test */
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_addModuleFieldsMissingTagField_success() {
+        /* Setup */
         Module module = new ModuleBuilder(TypicalModules.getCs2040s()).withTags().withLectures().build();
-
         String userInput = ModuleUtil.getModuleDetails(module);
-        assertParseSuccess(parser, userInput, new AddModuleCommand(module));
+
+        /* Create expected results */
+        AddModuleCommand expectedCommand = new AddModuleCommand(module);
+
+        /* Execute test */
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -142,17 +153,18 @@ public class AddCommandParserTest {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).withVideos().build();
 
-        AddLectureCommand command = new AddLectureCommand(moduleCode, lecture);
         String noDuplicateUserInput = LectureUtil.getLectureDetails(moduleCode, lecture);
+
+        AddLectureCommand expectedCommand = new AddLectureCommand(moduleCode, lecture);
 
         // no duplicate fields
         String userInput = noDuplicateUserInput;
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // multiple module codes - last module code accepted
         String toReplace = PREFIX_MODULE + " " + moduleCode.toString();
         userInput = noDuplicateUserInput.replaceFirst(toReplace, MODULE_CODE_DESC_2040 + " " + toReplace);
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // duplicate tags - duplicates ignored
         List<Tag> tagsWithDuplicates = new ArrayList<>();
@@ -162,18 +174,22 @@ public class AddCommandParserTest {
         toReplace = PREFIX_TAG + " " + TagUtil.getTagsStr(lecture.getTags());
         userInput = noDuplicateUserInput.replaceFirst(toReplace,
                 PREFIX_TAG + " " + TagUtil.getTagsStr(tagsWithDuplicates));
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_addLectureFieldsMissingTagField_success() {
+        /* Setup */
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).withVideos().withTags().build();
 
-        AddLectureCommand command = new AddLectureCommand(moduleCode, lecture);
         String userInput = LectureUtil.getLectureDetails(moduleCode, lecture);
 
-        assertParseSuccess(parser, userInput, command);
+        /* Create expected results */
+        AddLectureCommand expectedCommand = new AddLectureCommand(moduleCode, lecture);
+
+        /* Execute test */
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -181,6 +197,10 @@ public class AddCommandParserTest {
         String userInput = MODULE_CODE_DESC_2040 + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
+
+    /* Note */
+    // There is no missing module code test for the "add a lecture" intent
+    // This is because a missing module code would result in the command intent being interpreted as "add a module"
 
     @Test
     public void parse_addLectureFieldsInvalidModuleCodeValue_failure() {
@@ -204,30 +224,30 @@ public class AddCommandParserTest {
     public void parse_allAddVideoFields_success() {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
-
         Video video = TypicalVideos.ANALYSIS_VIDEO;
 
-        AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
         String noDuplicateUserInput = VideoUtil.getVideoDetails(moduleCode, lectureName, video);
+
+        AddVideoCommand expectedCommand = new AddVideoCommand(moduleCode, lectureName, video);
 
         // no duplicate fields
         String userInput = noDuplicateUserInput;
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // multiple module codes - last module code accepted
         String toReplace = PREFIX_MODULE + " " + moduleCode.toString();
         userInput = noDuplicateUserInput.replaceFirst(toReplace, MODULE_CODE_DESC_2040 + " " + toReplace);
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // multiple lecture names - last lecture name accepted
         toReplace = PREFIX_LECTURE + " " + lectureName.toString();
         userInput = noDuplicateUserInput.replaceFirst(toReplace, LECTURE_NAME_DESC_L2 + " " + toReplace);
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
-        // multiple watch flags - duplicates ignored
+        // multiple watch flags - same behaviour as when only one watch flag is provided
         toReplace = PREFIX_WATCH.toString();
         userInput = noDuplicateUserInput.replaceFirst(toReplace, PREFIX_WATCH + " " + PREFIX_WATCH);
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // multiple timestamps - last timestamp accepted
         toReplace = PREFIX_TIMESTAMP + " " + video.getTimestamp().toString();
@@ -241,48 +261,57 @@ public class AddCommandParserTest {
         toReplace = PREFIX_TAG + " " + TagUtil.getTagsStr(video.getTags());
         userInput = noDuplicateUserInput.replaceFirst(
                 toReplace, PREFIX_TAG + " " + TagUtil.getTagsStr(tagsWithDuplicates));
-        assertParseSuccess(parser, userInput, command);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_addVideoFieldsMissingTimestampField_success() {
+        /* Setup */
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
-
         Video video = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO)
                 .withTimestamp(VideoTimestamp.DEFAULT_TIMESTAMP).build();
 
-        AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
         String userInput = VideoUtil.getVideoDetails(moduleCode, lectureName, video)
                 .replace(PREFIX_TIMESTAMP + " " + VideoTimestamp.DEFAULT_TIMESTAMP, "");
 
-        assertParseSuccess(parser, userInput, command);
+        /* Create expected results */
+        AddVideoCommand expectedCommand = new AddVideoCommand(moduleCode, lectureName, video);
+
+        /* Execute test */
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_addVideoFieldsMissingTagField_success() {
+        /* Setup */
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
-
         Video video = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO).withTags().build();
 
-        AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
         String userInput = VideoUtil.getVideoDetails(moduleCode, lectureName, video);
 
-        assertParseSuccess(parser, userInput, command);
+        /* Create expected results */
+        AddVideoCommand expectedCommand = new AddVideoCommand(moduleCode, lectureName, video);
+
+        /* Execute test */
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_addVideoFieldsNoWatchFlag_success() {
+        /* Setup */
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
-
         Video video = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO).withWatched(false).build();
 
-        AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
         String userInput = VideoUtil.getVideoDetails(moduleCode, lectureName, video);
 
-        assertParseSuccess(parser, userInput, command);
+        /* Create expected results */
+        AddVideoCommand expectedCommand = new AddVideoCommand(moduleCode, lectureName, video);
+
+        /* Execute test */
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -296,6 +325,10 @@ public class AddCommandParserTest {
         String userInput = VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1 + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
+
+    /* Note */
+    // There is no missing lecture name test for the "add a video" intent
+    // This is because a missing lecture name would result in the command intent being interpreted as "add a lecture"
 
     @Test
     public void parse_addVideoFieldsInvalidModuleCodeValue_failure() {

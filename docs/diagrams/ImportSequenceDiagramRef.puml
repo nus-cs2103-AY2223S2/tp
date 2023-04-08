@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+box Import module from file path
+
+participant "r:Archive" as Archive LOGIC_COLOR
+participant ":Storage" as Storage STORAGE_COLOR
+participant ":Model" as Model MODEL_COLOR
+
+
+end box
+
+activate Archive
+
+Archive -> Storage : readTracker(file path)
+activate Storage
+
+Storage --> Archive : archive tracker
+deactivate Storage
+
+Archive -> Archive : checkIfModuleExistInArchive()
+activate Archive
+
+Archive --> Archive : true
+deactivate Archive
+
+Archive -> Archive : checkIfModuleExistInCurrentTracker()
+activate Archive
+
+Archive --> Archive : false
+deactivate Archive
+
+Archive -> Model : hasModule(module)
+activate Model
+
+Model --> Archive : false
+deactivate Model
+
+Archive -> Model : addModule(module)
+activate Model
+
+Model --> Archive
+deactivate Model
+
+@enduml
