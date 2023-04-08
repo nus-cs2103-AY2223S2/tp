@@ -171,6 +171,11 @@ public class UniquePersonList implements Iterable<Person> {
                 && person.isSamePersonByNric(toCheck));
     }
 
+    /**
+     * Returns name of the person if the list contains an equivalent person identified by NRIC as the given argument.
+     * @param nric
+     * @return name
+     */
     public Name getNameByNric(Nric nric) {
         requireNonNull(nric);
         Optional<Person> optionalPerson = internalList.stream()
@@ -179,6 +184,11 @@ public class UniquePersonList implements Iterable<Person> {
         return optionalPerson.map(Person::getName).orElse(null);
     }
 
+    /**
+     * Returns person if the list contains an equivalent person identified by NRIC as the given argument.
+     * @param nric
+     * @return person
+     */
     public Person retrievePersonByNric(Nric nric) {
         requireNonNull(nric);
         Optional<Person> optionalPerson = internalList.stream()
