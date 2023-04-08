@@ -4,8 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
-Class "<<interface>>\nUi" as Ui
+package Ui <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui_
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
@@ -34,54 +34,52 @@ Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
+HiddenOutside .down.> Ui_
 
-UiManager .left.|> Ui
+UiManager .up.|> Ui_
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" RecipeListPanel
-MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-->  "1" CommandBox
+MainWindow *--> "1" ResultDisplay
+MainWindow *---> "1" RecipeListPanel
+MainWindow *---> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
-MainWindow ..> DeleteRecipeEvent
+MainWindow .down> DeleteRecipeEvent
 
-RecipeListPanel *-down-> "*" RecipeCard
+RecipeListPanel *--> "*" RecipeCard
 
-MainWindow -left-|> UiPart
+MainWindow --|> UiPart
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-RecipeListPanel -left--|> UiPart
-RecipeCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+ResultDisplay -|> UiPart
+CommandBox -|> UiPart
+RecipeListPanel --|> UiPart
+RecipeCard -|> UiPart
+StatusBarFooter -|> UiPart
+HelpWindow -|> UiPart
 RecipeForm --|> UiPart
 RecipePopup --|> UiPart
 
-RecipeCard ..> Model
+RecipeCard .up.> Model
 
 RecipeCard ..> RecipePopup
 RecipeCard ..>  RecipeForm
-RecipeCard ..>  DeleteRecipeEvent
+RecipeCard .up>  DeleteRecipeEvent
 
 RecipeAddForm -left-|>  RecipeForm
 RecipeEditForm --|> RecipeForm
-RecipeAddForm -->  Logic
+RecipeAddForm -up->  Logic
 
-RecipeEditForm .left.> EditRecipeEvent
-RecipeEditForm ..> MainWindow
+RecipeEditForm .down.> EditRecipeEvent
+RecipeEditForm .up.> MainWindow
 
-UiManager -right-> Logic
-MainWindow -left-> Logic
+UiManager -left> Logic
+MainWindow -right> Logic
 
-CommandExecutor ..> Logic
-MainWindow ..> CommandExecutor
-
+CommandExecutor .up.> Logic
+MainWindow .down.> CommandExecutor
 
 RecipeListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
-MainWindow -[hidden]-|> UiPart
 @enduml
