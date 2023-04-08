@@ -323,12 +323,16 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+1. If impact of loading save file:
+    * Save file leads to complete file loss, warn user and attempt to load save backup.
+    * If that fails, warn user that data is not recoverable and advice not to perform any action.
+2. Archive after every few saves, so that the user can revert to a specific save.
+3. Upon exit, save backup should be made.
 
 
 ### Planned Enhancements
 
-**Mitigating the effects of malicious savefile edit**
+**Mitigating the effects of malicious save file edit**
 
 * Issue 1: An malicious user is able to modify the save file 
   * Proposed solution: encrypting the save file and storing hash
