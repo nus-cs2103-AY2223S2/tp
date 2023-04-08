@@ -199,7 +199,8 @@ Examples:
 Lists all contacts in SOCket based on language and tag.
 
 Format: `list [l/LANGUAGE] [t/TAG]`
-
+* The search is carried out on ***all*** contacts stored in SOCket, not just the currently displayed list of contacts.
+   * e.g. `list t/friend` will list out contacts tagged with `friend` from the original contact list whe already filtered list is displayed.
 * The search for language or tag is case-sensitive.
 * If no language or tag fields are given, all contacts are displayed.
     * e.g. `list` will list out all contacts.
