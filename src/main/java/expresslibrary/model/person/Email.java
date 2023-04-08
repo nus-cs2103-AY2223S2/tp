@@ -22,6 +22,7 @@ public class Email {
             + "The domain name must conform to the DNS naming conventions, including restrictions on the characters "
             + "that can be used and the maximum length of each label.\n"
             + "The overall length of the email address cannot exceed 256 characters.";
+    //Regex created by reading RFC5322 specification from this site https://www.rfc-editor.org/rfc/rfc5322
     public static final String VALIDATION_REGEX = "^(?=.{1,256}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]"
             + "+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@([a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$";
     public final String value;
