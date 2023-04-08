@@ -794,12 +794,12 @@ Shows a list of orders in the **Table Panel**.
 listo [s/{created|name|status}] [f/STATUS]
 ```
 
-* Lists orders with the specified sort and filter option.
+* List orders with the specified sort and filter option.
 
-| Prefix  | Parameter | Optional | Description                              |
-|---------|-----------|:--------:|------------------------------------------|
-| `s/`    | Sort      | ✅       | `created` - Sort by created date<br>`name` - Sort by name<br>`points` - Sort by points<br>By default, orders are sorted by created date |
-| `f/`    | Filter    | ✅       | Show only orders with the specified status<br>By default, all orders are shown |
+| Prefix  | Parameter | Optional | Description                                                                                                                             |
+|---------|-----------|:--------:|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `s/`    | Sort      | ✅       | `created` - Sort by created date<br>`name` - Sort by name<br>`status` - Sort by status<br>By default, orders are sorted by created date |
+| `f/`    | Filter    | ✅       | Show only orders with the specified status<br>By default, all orders are shown                                                          |
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Currently, you are unable to add the same order name and quantity for the same customer twice on the same day!
@@ -832,7 +832,7 @@ Find orders whose names contain any of the given keywords.
 findo KEYWORD [MORE_KEYWORDS]
 ```
 
-* The search is case-insensitive. e.g `chocolate` will match `Chocolate`
+* The search is case-insensitive. e.g. `chocolate` will match `Chocolate`
 * The order of the keywords does not matter. e.g. `chocolate cake` will match ` cake chocolate`.
 * Only the order name is searched.
 * Only full words will be matched e.g. `chocolate` will not match `chocolatey`
@@ -1146,7 +1146,7 @@ If your changes to the data file makes its format invalid, LoyaltyLift will disc
 **A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name such as `senotec 1 nt/Jôse`.
 
 **Q**: Why are orders deleted or missing after deleting a customer with `deletec`? <br />
-**A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all of his/her orders needs to be cleared. If this is not ideal, we recommend to avoid deleting any customers.
+**A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all the customer's orders needs to be cleared. If this is not ideal, we recommend to avoid deleting any customers.
 
 **Q**: Can my orders have a different address than the customer's address? <br />
 **A**: Yes! When you create an order using `addo`, you can specify the new address with the parameter `a/`. If this is not specified, the customer's address is used instead for your convenience.
