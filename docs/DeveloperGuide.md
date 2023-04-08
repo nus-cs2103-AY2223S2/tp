@@ -793,7 +793,7 @@ Similar to the manual testing of [sort all roles by salary section](#Sort all ro
 
 Prerequisite: There is at least 1 role shown in the Role List Box
 
-`view 1`
+Format: `view 1`
 
 Expected Output in the Role List Box : Still showing the same list as before.
 
