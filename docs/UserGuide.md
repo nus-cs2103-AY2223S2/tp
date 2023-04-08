@@ -45,17 +45,17 @@ than current GUI apps in the industry.
 3. Move the jar file to a folder where you want to store the data of the doctors and patients.
 - Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.).
 - Move the downloaded jar file to this folder as shown below.
-  - For Mac Users:
+  - For Mac Users:<br>
   <img src="images/DownloadDocedexMac.png" alt="DownloadDocedexMac" width="70%" height="70%">
-  - For Windows Users:
+  - For Windows Users:<br>
   <img src="images/DocedexInFileWin.png" alt="DocedexInFileWin" width="70%" height="70%">
   
 4. Launch Docedex
-- For Mac Users:<br>
+- For Mac Users:
   - Right-click `docedex.jar` > Open With > JavaLauncher.app
   <img src="images/LaunchDocedexMac.png" alt="LaunchDocedexMac" width="70%" height="70%">
   - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
-- For Windows Users:<br>
+- For Windows Users:
   - Double-click `docedex.jar` to launch the application.
 - If this still does not work follow the instructions listed [here.](#launching-docedex)
 - You should notice the GUI of the application pop up.
