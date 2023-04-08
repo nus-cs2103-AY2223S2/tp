@@ -11,14 +11,27 @@ Advis.io (AIO) is a all-in-one solution for financial advisors with problems man
 * [**Design**](#Design)
   * [Architecture](#architecture)
   * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
 * [**Implementation**](#implementation)
+  * [Add policy feature](#add-policy-feature)
+  * [Delete policy feature](#delete-policy-feature)
+  * [Edit policy feature](#edit-policy-feature)
+  * [Add appointment feature](#add-appointment-feature)
+  * [Delete appointment feature](#delete-appointment-feature)
+  * [Undo/redo feature](#undoredo-feature)
+  * [[Proposed] Upcoming Aggregated data feature](#proposed-aggregated-data-feature)
 * [**Documentation**](#documentation-logging-testing-configuration-dev-ops)
 * [**Appendix: Requirements**](#appendix-requirements)
+  * [**Product scope**](#product-scope)
+  * [**User stories**](#user-stories)
+  * [**Use cases**](#use-cases)
+  * [**Non-Functional Requirements**](#non-functional-requirements)
+  * [**Glossary](#glossary)
 * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+* [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -55,8 +68,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/Main.java
+and [`MainApp`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -93,10 +106,15 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
+<br>
+<br>
+
+---
+
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -105,12 +123,21 @@ e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `PolicyListPanel` etc. All
 inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
 visible GUI.
 
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
+
 The Sequence Diagram below illustrates the interactions within the `Ui` component for the `start(primaryStage)` API
 call.
 
 ![Interactions Inside the Ui Component for the launching the application](images/StartSequenceDiagram.png)
 
-#### MainWindow
+**MainWindow**
 
 The `MainWindow` controller class is composed of the following classes:
 
@@ -133,12 +160,12 @@ The `MainWindow#fillInnerParts` method is as follows:
 3. Populate the `resultDisplay`.
 4. Populate the `commandBox`.
 
-#### ClientLabel
+**ClientLabel**
 
 The `ClientLabel` is composed of the labels: `name`, `id`, `phone`, `address`, `email`, `tags` which display the
 information of the `Client`.
 
-#### ClientListPanel
+**ClientListPanel**
 
 The `ClientListPanel` contains a `clientListView:ListView<Client>` to store the most updated list of `Client` objects.
 The
@@ -148,7 +175,7 @@ Each `Client` in the `ObservableList<Client>` is mapped to a `ClientListViewCell
 This `ClientListViewCell` overides the `ListCell<T>#updateItem` method to register any changes made to a `Client`
 within the `Model` and reflects it onto the `UI`.
 
-#### PolicyListPanel
+**PolicyListPanel**
 
 The `PolicyListPanel` works similarly to the `ClientListPanel`. The `PolicyListPanel` contains a
 `policyListView:ListView<Client>` to store the most updated list of `Policy` objects. The constructor takes in an
@@ -158,7 +185,7 @@ Each `Policy` in the `ObservableList<Policy>` is mapped to a `PolicyListViewCell
 This `PolicyListViewCell` overides the `ListCell<T>#updateItem` method to register any changes made to a `Policy`
 within the `Model` and reflects it onto the `UI`.
 
-### Design considerations:
+**Design considerations:**
 
 Preview of the UI design.
 
@@ -177,36 +204,27 @@ quickly.
 Having a separate panel to display the Client information and Policies enables users to present the information clearly
 to their clients.
 
-#### Alternatives considered:
-
+**Alternatives considered:**
 * We considered keeping to a consolidated panel where each `ClientCard` would display the client information as well as
   their list of `PolicyCard`. However, we found this design to be overwhelming and did not provide a layout that was
   quick and easy to comprehend.
 
-### Selecting a Client
+
+<!--
+#### Selecting a Client
 
 The command `select INDEX` selects a given `Client` from the client list to be spotlighted in the GUI. The logic of
-the `select` command can be found [here](#select-feature).
+-->
 
-### JavaFX
+<br>
+<br>
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
-are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
-is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
-
-The `UI` component,
-
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+---
 
 ### Logic component
 
 **API**
-: [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+: [`Logic.java`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -240,13 +258,17 @@ How the parsing works:
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
+ 
+<br>
+<br>
 
+---
 ### Model component
 
 **API**
-: [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+: [`Model.java`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagramss.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -257,28 +279,33 @@ The `Model` component,
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
+* stores the previous address book data after modifying data in the `AddressBook` through the use of Linked List in `VersionedAddressBook`.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
-  should make sense on their own without depending on other components)
+  should make sense on their own without depending on other components).
 
 The `Client` component,
-* Contains 6 classes : `Name`, `Phone`, `Address`, `Email`, `Tag`, `UniquePolicyList`
+* Contains 7 classes : `Name`, `Phone`, `Address`, `Email`, `Tag`, `UniquePolicyList`, `Appointment`
 * All `Policy` objects are stored in a `UniquePolicyList` object, similar to `UniqueClientList` object.
 * Stores the currently 'selected' `Policy` objects as a separate filtered list which is exposed to outsiders as an unmodifiable `ObservableList<Policy>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+**Alternative considered:**
 * Considered using simple `ArrayList<Policy>` to store all `Policy` objects, but it would make UI's automatic updates access harder.
+* Instead of treating each object in a `Policy` as a string, `CustomDate` is in the form of a `LocalDate` class, while `Premium` is in the form of `double`. This allows for future addition of features such as sorting, finding or aggregating of specific data.
 
-The `Policy` component,
-* Instead of treating each object in a `Policy` as a string, `CustomDate` is in the form of a `LocalDate` class, while `Premium` is in the form of `double`.
-* This allows for future addition of features such as sorting, finding or aggregating of specific data.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Client` references. Likewise, it has a `Policy` list in the `AddressBook`, which `Client` can reference. This allows `AddressBook` to only require one `Tag` object per unique tag and one `Policy` object per unique policy, instead of each `Client` needing their own `Tag` and `Policy` objects.<br>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Client` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagramss.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
+<br>
+<br>
+
+---
+
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -323,7 +350,10 @@ The following sequence diagram shows how the select operation works:
 
 ### Sort Feature
 
-There are three sorting features available.
+There are three sorting features available. 
+1. `SortByClientName`
+2. `SortByClientEmail`
+3. `SortByClientPhone`
 
 Their mechanisms are similar. So only take `SortByClientName` as an example
 
@@ -346,22 +376,24 @@ The following sequence diagram shows how the sort operation works:
 ![SortCommand.png](images/SortCommand.png)
 
 ### Add Policy Feature
-
 The add policy mechanism is facilitated by `AddPolicyCommand` and `AddPolicyCommandParser`.
 
-`AddPolicyCommand` extends from `Command` by overriding methods from its parent class.
-The logic of this class follows the sequence.
-
-1. Get the `Client` based on the most updated client list in the `Model`.
-2. Create a new `Policy` based on the given `Policy` details.
-3. Add the `Policy` to the `Client` given, and update the `Client` in the `Model`.
-
-`AddPolicyCommandParser` implements `Parser<AddPolicyCommand>`.
-The logic of this class follows the sequence.
-
+`AddPolicyCommandParser` implements `Parser<AddPolicyCommand>`. `AddPolicyCommandParser#parse()` is exposed in the `Parser` interface as `Parser#parse()` and the logic of this method follows the sequence.
 1. Get the client index from the preamble of the input.
-2. Get the policy details from the prefix "pn/", "pd/", "pp/", "pf/",
+2. Get the policy details from the prefix `pn/`, `pd/`, `pp/`, `pf/`,
    which are the Policy Name, Policy Date, Policy Premium, and Policy Frequency respectively.
+
+`AddPolicyCommand` extends from `Command` by overriding methods from its parent class. `AddPolicyCommand#execute()` logic of this method follows the sequence.
+1. `Model#getFilteredClientList()`: Get the `Client` based on the most updated client list in the `Model`.
+2. Create a new `Policy` based on the given `Policy` details.
+3. `Model#setClient(Client, Client)`: Add the `Policy` to the `Client` given, and update the `Client` in the `Model`.
+
+
+**Example usage**: To add a policy to a client
+* `Select 1`: selects the client at index 1 in the given client list.
+* `addPolicy 1 pn/Travel Insurance pd/01.01.2024 pp/1000 pf/yearly`: Adds a policy to client indexed at 1. 
+
+The sequence diagram for the add policy operation works similarly to how the delete policy operation works over [here](#delete-policy-feature)
 
 ### Delete Policy feature
 
@@ -369,23 +401,20 @@ The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeleteP
 
 These classes are implemented this way because, like other commands, such as `DeleteCommand` we first have to retrieve the client list followed by executing the delete feature.
 
-`DeletePolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class
-follows the sequence.
-
-1. Get the `Client` based on the most updated client list in the `Model`.
-2. Delete the `Policy` associated to the given `Policy` index from the `Client` given.
-
-`DeletePolicyCommandParser` implements `Parser<DeletePolicyCommand>`. The logic of this class follows the sequence.
-
+`DeletePolicyCommandParser` implements `Parser<DeletePolicyCommand>`. `DeletePolicyCommandParser#parse()` is exposed in the `Parser` interface as `Parser#parse()` and the logic of this class follows the sequence.
 1. Get the client index from the preamble of the input.
-2. Get the policy index from the prefix "pi/".
+2. Get the policy index from the prefix `pi/`.
+
+`DeletePolicyCommand` extends from `Command` by overriding methods from its parent class. `DeletePolicyCommand#execute()` logic of this method follows the sequence. 
+1. `Model#getFilteredClientList()`: Get the `Client` based on the most updated client list in the `Model`.
+2. `Model#setClient(Client, Client)`: Delete the `Policy` associated to the given `Policy` index from the `Client` given.
 
 The following sequence diagram shows how the delete policy operation works:
 ![DeletePolicySequenceDiagram0](images/DeletePolicySequenceDiagram.png)
 
 **Alternatives Considered**:
-- We are considering if we could receive the policies from the model instead of the client.
-- We are also considering to execute a `SelectCommand` in the process of `DeleteCommand` so that the user will automatically move to the targeted client that he or she wishes to delete a policy from.
+- We considered if we could receive the policies from the model instead of the client. 
+- We also considered to execute a `SelectCommand` in the process of `DeleteCommand` so that the user will automatically move to the targeted client that he or she wishes to delete a policy from. 
 
 ### Edit Policy feature
 
@@ -393,24 +422,54 @@ The edit policy mechanism is facilitated by `EditPolicyCommand` and `EditPolicyC
 
 These classes are implemented this way because, like other commands, such as `EditCommand` we first have to retrieve the client list followed by executing the edit feature.
 
-`EditPolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class follows the sequence.
-
-1. Get the `Client` based on the most updated client list in the `Model`.
-2. Edit the`Policy` associated to the given `Policy` index from the `Client` given.
-3. The `Policy` is edited based on the prefixes given by the user input.
-
-Note that not all prefixes of the policy have to be stated.
-
-`EditPolicyCommandParser` implements `Parser<EditPolicyCommand>`. The logic of this class follows the sequence.
-
+`EditPolicyCommandParser` implements `Parser<EditPolicyCommand>`. `EditPolicyCommandParser#parse()` is exposed in the `Parser` interface as `Parser#parse()` and the logic of this class follows the sequence.
 1. Get the client index from the preamble of the input.
-2. Get the policy index from the prefix "pi/".
-3. Get the policy name from the prefix "pn/", policy start date from the prefix "pd/", policy premium from the prefix "pf/", policy frequency from the prefix "pf/"
+2. Get the policy index from the prefix `pi/`.
+3. Get the policy name from the prefix `pn/`, policy start date from the prefix `pd/`, policy premium from the prefix `pf/`, policy frequency from the prefix `pf/`
+
+`EditPolicyCommand` extends from `Command` by overriding methods from its parent class. `EditPolicyCommand#execute()` logic of this class follows the sequence.
+1. `Model#getFilteredClientList()`: Get the `Client` based on the most updated client list in the `Model`.
+2. Edit the`Policy` associated to the given `Policy` index from the `Client` given.
+3. `Model#setClient(Client, Client)`: The `Policy` is edited based on the prefixes given by the user input.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Entering `PolicyName`, `CustomDate`, `Premium` and `Frequency` are completely optional.
+</div>
+
 
 The sequence diagram for the edit policy operation works similarly to how the delete policy operation works over [here](#delete-policy-feature)
-## Undo/redo feature
 
-### Implementation
+### Add Appointment feature
+The add appointment mechanism is facilitated by `AddAppointmentCommand` and `AddAppointmentCommandParser`.
+
+`AddAppointmentCommandParser` implements `Parser<AddAppointmentCommand>`. `AddAppointmentCommandParser#parse()` is exposed in the `Parser` interface as `Parser#parse()` and the logic of this method follows the sequence.
+1. Get the client index from the preamble of the input.
+2. Get the appointment details from the prefix `an/`, `ad/`, which represents the `AppointmentName` and `MeetupDate` classes respectively.
+
+
+`AddAppointmentCommand` extends from `Command` by overriding methods from its parent class. `AddAppointmentCommand#execute()` logic of this method follows the sequence.
+1. `Model#getFilteredClientList()`: Get the `Client` based on the most updated client list in the `Model`
+2. Create a new `Appointment` based on the given `Appointment` details
+3. `Model#setClient(Client, Client)`: Add the `Appointment` to the `Client` given, and update the `Client` in the `Model`.
+
+The following sequence diagram shows how the add appointment operation works:
+![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+
+### Delete Appointment feature
+The delete appointment mechanism is facilitated by `DeleteAppointmentCommand` and `DeleteAppointmentCommandParser`.
+
+`DeleteAppointmentCommandParser` implements `Parser<DeleteAppointmentCommand>`. `DeleteAppointmentCommandParser#parse()` is exposed in the `Parser` interface as `Parser#parse()` and the logic of this method follows the sequence.
+1. Get the client index from the preamble of the input.
+
+`DeleteAppointmentCommand` extends from `Command` by overriding methods from its parent class. `DeleteAppointmentCommand#execute()` logic of this method follows the sequence.
+1. `Model#getFilteredClientList()`: Get the `Client` based on the most updated client list in the `Model`
+2. `Model#setClient(Client, Client)`: Delete the `Appointment` from the `Client` given, and update the `Client` in the `Model`.
+
+The sequence diagram for the delete appointment operation works similarly to how the add policy operation works over [here](#add-appointment-feature). The only difference are the name of the classes and the parameter passed into the methods. 
+
+### Undo/redo feature
+
+#### Implementation
 
 The undo/redo mechanism is facilitated by `VersionedAddressBook`. It stored internally as an `addressBookStateList`
 and `currentStatePointer`. Additionally, it implements the
@@ -492,7 +551,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-### Design considerations:
+#### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -513,7 +572,7 @@ The following activity diagram summarizes what happens when a user executes a ne
       objects.
     * Don't directly make changes on original objects (eg.Client and Policy)
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Aggregated data feature
 
 _{Explain here how the data archiving feature will be implemented}_
 
@@ -537,7 +596,9 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * For student financial advisors managing a growing client base
-* Needs to keep track of individual client information
+* Need to keep track of individual client information
+* Need to keep track of clients' policies
+* Need to keep track of clients' appointments
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
@@ -546,7 +607,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 * Provide a way to view all clients' records easily and compare and analyze their financial information.
-* Keep track of client information such as financial goals, current financial status, and investment plans purchased.
+* Keep track of client information such as financial goals and current financial status through the use of policies 
 * Make it easier to remind financial advisors on follow-up tasks and future advising sessions.
 * Personalized recommendations: propose personalized financial advice and recommendations tailored to the student’s
   unique needs and circumstances
@@ -584,7 +645,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                | I can …​                                                        | So that I can…​                       |
 |----------|------------------------|-----------------------------------------------------------------|---------------------------------------|
 | `***`    | As a financial advisor | set reminders for follow-up tasks and future advising sessions  | don't miss any important appointments |
-| `***`    | As a financial advisor | send automated reminders to clients about their financial goals | stay on track.                        |
 
 ### **General**
 
@@ -593,18 +653,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***`    | As a financial advisor | generate reports on client financial information       | analyze trends and make informed decisions                                  |
 | `***`    | As a financial advisor | share client information with colleagues               | collaborate and provide the best advice.                                    |
 | `***`    | As a financial advisor | store client financial documents securely              | ensure their sensitive information is protected                             |
-| `***`    | As a financial advisor | access the platform on any device                      | manage my clients' information even when I am on-the-go                     |
+| `***`    | As a financial advisor | access the platform on any device                      | manage my clients' information on any device that supports the platform     |
 | `***`    | As a financial advisor | create custom categories for client information        | I can organize and categorize their data in a way that makes sense to me    |
 | `***`    | As a financial advisor | view a summary of my clients' overall financial health | I can quickly assess their current situation and make recommendations       |
-| `***`    | As a financial advisor | access real-time market data                           | make informed recommendations and stay up-to-date on current market trends. |
 
 ### **Novice**
 
 | Priority | As a …​                | I can …​                                                   | So that I can…​                                                             |
 |----------|------------------------|------------------------------------------------------------|-----------------------------------------------------------------------------|
 | `***`    | As a financial advisor | view clients' information in a visual and intuitive format | quickly understand their financial situation and recommend a plan of action |
-| `***`    | As a financial advisor | have access to a library of pre-written financial plans    | provide my clients with best-practices advice and recommendations           |
-| `***`    | As a financial advisor | track my clients' investment performance                   | monitor the success of my advice and identify areas for improvement.        |
+| `***`    | As a financial advisor | track my clients' policies performance                     | monitor the success of my advice and identify areas for improvement.        |
 
 ### **Expert**
 
@@ -683,17 +741,17 @@ specified otherwise)
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
-4. As a financial advisor, I can access the platform offline, so that I can manage client information even when I don't
-   have an internet connection.
-5. As a user, I want the application to have a user-friendly interface, so that I can navigate the platform with ease
-   and efficiency.
-6. As a user, I want the application to be easily scalable, so that it can handle a growing client base.
-
-*{More to be added}*
+4. Should be accessible offline so financial advisors can manage client information without internet connection
+5. Should have a user-friendly interface so that target users can navigate the platform with ease without any technological knowledge.
+6. Should be a safe and secure platform to prevent sensitive client information from being hacked or leaked out.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CLI**: Command line interface
+* **GUI**: Graphical user interface
+* **MSS**: Main success scenario
+* **AddressBook**: This term is used to represent where we store all the clients' information and their respect policies
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
@@ -750,3 +808,5 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Planned Enhancements**
