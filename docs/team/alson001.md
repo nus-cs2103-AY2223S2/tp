@@ -15,14 +15,14 @@ Given below are my contributions to the project.
 * **New Feature**:
 * **Import** ([\#144](), [\#175]())
     * What it does: Allows users to import a JSON file that parses correctly to a RecipeBook
-    * Justification: Enables users to quickly and easily add a large number of recipe at once from other sources
-        * Implemented a file chooser to let user pick JSON file from their chosen directory
+    * Justification: Enables users to quickly and easily add a large number of recipes at once from other sources
+        * Implemented a file chooser to let the user pick a JSON file from their chosen directory
         * Made use of the existing `JsonUtil` class to parse the recipes information
 * **Export** ([\#144](), [\#186]())
     * What it does: Allows users to export a JSON file that contains information detailing the current RecipeBook
     * Justification: Enables users to export JSON file to another user or other sources so they can import these recipes
     * with ease
-        * Implemented a file chooser to let user a chosen directory to export the file to.
+        * Implemented a file chooser to let the user choose a directory to export the file to.
         * Made use of the existing data file to build the JSON file copy
 
 * **Project management**:

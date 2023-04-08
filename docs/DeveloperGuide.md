@@ -331,8 +331,8 @@ results of the `sub` command return ingredients instead of recipes.
 ### Feature: Import RecipeBook
 
 #### Overview
-The `import` command allows the user to select a file in JSON format. If the file parse correctly into a RecipeBook, 
-the recipes in the RecipeBook are successfully imported while ignoring duplicates. If the file does not parse correctly,
+The `import` command allows the user to select a file in JSON format. If the file parses correctly into a RecipeBook,
+the recipes in the JSON file are successfully imported while ignoring duplicates. If the file does not parse correctly,
 the import will fail and be cancelled.
 
 <img class="diagram" src="images/ImportSequenceDiagram.png" width="1128" />
@@ -343,10 +343,10 @@ The `import` command goes through the standard command execution pipeline, skipp
 During the execution of the import command, we will call `execute()` on `ImportManager` class which is a part of 
 the `Storage` package which allows the user to select a JSON file that parses correctly into a RecipeBook. The parsing
 is done by the parse methods in `JsonUtil` class.
-Afterwards we will check with our own Model of RecipeBook to filter out the duplicates and add rest of the recipes.
+Afterwards, we will check with our own RecipeBook to filter out duplicates and add the remaining non-duplicate recipes.
 
 :information_source: Note: If the user clicks the "Cancel" button or closes the file explorer when selecting the JSON
-file, the current recipes will not change.
+file, the RecipeBook will remain unchanged.
 
 ### Feature: Export RecipeBook
 
