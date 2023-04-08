@@ -184,31 +184,35 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 ## Argument Formats
 
-- <a name="module-code">**Module Code**</a>\
+- <div id="module-code-format"><strong>Module Code</strong></div>
+
   Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally followed by more uppercase alphabet characters.\
   e.g. CS2040S
 
-- **Module Name**\
+- <div id="module-name-format"><strong>Module Name</strong></div>
+
   Module names should only contain alphanumeric characters and spaces, and it can be blank.\
   e.g. Data Structures and Algorithms
 
-- **Lecture Name**\
+- <div id="lecture-name-format"><strong>Lecture Name</strong></div>
+
   Lecture names should only contain alphanumeric characters and spaces, and it should not be blank.\
   e.g. Week 1
 
-- **Video Name**\
+- <div id="video-name-format"><strong>Video Name</strong></div>
+
   Video names should only contain alphanumeric characters and spaces, and it should not be blank.\
   e.g. Video 1
 
-- **Tag**\
+- <div id="tag-format"><strong>Tag</strong></div>
+
   Tags should only contain alphanumeric characters, and it should not be blank.\
   e.g. 4MCs
 
-- **Timestamp**\
+- <div id="timestamp-format"><strong>Timestamp</strong></div>
+
   Timestamp should be of the format `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being exactly 2 digits long.\
   e.g. 01:20:03
-
-[Anchor test](#module-code)
 
 ---
 
