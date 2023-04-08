@@ -138,8 +138,6 @@ How the parsing works:
 - When called upon to parse a user command, the `TrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddVideoCommand`) which the `TrackerParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `NavCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Injector component
-
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -613,9 +611,9 @@ The following is a description of the code execution flow:
 
 > The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
 
-Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation family of commands allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the /mod or /lec arguments for commands related to the current context.
+Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
 
-Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
+Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
 
 **Usage scenario**
 
@@ -623,7 +621,7 @@ Given below is an example usage scenario and how the navigation system behaves a
 
 Steps:
 
-1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
+1. The user launches the application. The Navigation system is initialized with a root context as the current working context.
 
 2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
 
@@ -1876,6 +1874,7 @@ Maintainability:
 - **Module Code**: Unique code identifier for each module
 - **Lecture Name**: Unique name identifier for each lecture
 - **Video Name**: Unique name identifier for each video
+- **Current Working Context**: A specified module code or module code - lecture name pair that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command.
 - **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
 
 ## Appendix: Instructions for manual testing
