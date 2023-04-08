@@ -1119,7 +1119,7 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 </div>
 
-<div markdown=span class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :information_source: **NOTE**: If copying and pasting commands exactly, it is important to execute them in the order instructed. If you wish to mix up the order, ID/index related arguments such as <code><var>PATIENT_ID</var></code> will have to be changed accordingly.
 </div>
 
@@ -1193,7 +1193,7 @@ Before every test case, ensure that the there are no patients and vaccinations.
 * `patient clear --force true`
 * `vaccination clear --force true`
 
-<div markdown=span class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :information_source: **NOTE**: If copying and pasting commands exactly, it is important to execute them in the order instructed. If you wish to mix up the order, ID/index related arguments such as <code><var>PATIENT_ID</var></code> will have to be changed accordingly.
 </div>
 
