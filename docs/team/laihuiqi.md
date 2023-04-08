@@ -10,7 +10,7 @@ Given below are my contributions to the project. <br/>
 **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=laihuiqi&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) <br/>
 **Credits**: Some code reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
 
-**New Feature**: Add the ability to plan an internship application by introducing a `task package` with subpackage `todo` and `note`.
+**New Feature**: Adds the ability to plan an internship application by introducing a `task package` with subpackages `todo` and `note`.
 * Allows user to plan future internship applications and record long-lasting reminders to enhance future internship applications and interviews.
 * `task` package : `find_task` and `list_task`. 
 * `todo` package : `add_todo`, `clear_todo`, `delete_todo`, `edit_deadline`, `edit_content` and `list_todo`.
@@ -18,12 +18,12 @@ Given below are my contributions to the project. <br/>
 * Justification: Provides functional spaces for planning internships and preparing interviews.
 * Highlights: An independent structure of logic, model, storage and ui is implemented for this side features package to avoid ambiguity.
   
-**New Feature**: Clear the internship applications with specified attributes and keywords
+**New Feature**: Clears the internship applications with specified attributes and keywords
 * Allows user to delete internship applications at once by `company name`, `job title` or `status` with keywords specified (`clear_by`).
 * Justification: Enable more efficient cleaned-up for unwanted internship applications. 
 * Highlights: The implementation of different class constructors and their respective parse functions is slightly challenging.
 
-**New Feature**: Revert the recent deletion of internship application
+**New Feature**: Reverts the recent deletion of internship application
 * Allows user to restore the most recent internship application from the CacheList.
 * Justification: Resolves the situation when the user accidentally deletes an internship application with many important particulars.
 * Highlights: CacheList is implemented to be the data structure to hold the deleted or cleared internship applications temporarily. 
