@@ -485,6 +485,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Sort a person**
+
+**MSS**
+
+1.  User requests to sort persons based on an attribute
+2.  SalesPunch shows a list of sorted persons
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 1a. SalesPunch detects an error in the entered data.
+
+    - 1a1. SalesPunch requests for the correct data.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
+
+  Use case ends.
+
 **Use case: Delete a person**
 
 **MSS**
