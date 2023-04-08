@@ -1308,19 +1308,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Removing a project while all projects are being shown
    1. Prerequisites: At least one project in the shown list.
-   
+
    1. Test case: `removepj 1 h/`<br>
       Expected: First project repo host field is removed. Repo host in the project card becomes `Not Available`.
-   
+
    1. Test case: `removepj 1 h/ r/`<br>
       Expected: First project repo host and repo name fields are removed. Repo host and Repo name in the project card becomes `Not Available`.
-   
+
    1. Test case: `removepj 1 r/first-project`<br>
       Expected: First project repo name field is removed only if its repo name previously was `first-project`. Otherwise, an error message is shown as the field does not exist in the project.
-   
+
    1. Test case: `removepj 0 h/`<br>
       Expected: No project field is removed. An error message is shown as the given index is invalid. An error is logged in the console.
-   
+
    1. Test case: `removepj 0`<br>
       Expected: No project field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
 
