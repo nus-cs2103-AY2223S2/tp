@@ -609,74 +609,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC5 - Delete a project**
-
-**MSS:**
-1. User lists all existing projects.
-2. User requests to delete a project.
-3. SudoHR deletes the project.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given argument is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC6 - List projects**
-
-**MSS:**
-1. User lists all existing projects.
-
-   Use case ends.
-
-**Use case: UC7 - Add employee to a project**
-
-**MSS:**
-1. User lists all existing projects.
-2. User lists all employees.
-3. User requests to add employee to a specific project.
-4. SudoHR adds employee to the project.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given argument(s) is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 3.
-
-**Use case: UC8 - Remove employee from a project**
-
-**MSS:**
-1. User lists all existing projects.
-2. User lists all employees.
-3. User requests to remove employee from a specific project.
-4. SudoHR removes employee from the project.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given argument(s) is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 3.
-
-**Use case: UC9 - List all employees doing a project**
-
-**MSS:**
-1. User lists all existing projects.
-2. User requests to list all employees doing a project.
-3. SudoHR lists all the employees doing a project
-
-   Use case ends.
 
 **Extensions**
 
@@ -686,169 +618,159 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC10 - Add event**
+**Use case: UC10 - Add employee's leave**
 **MSS:**
-1. User request to add event with corresponding event title description and date
-2. SudoHR adds event.
-3. Use case ends.
+1. User inputs command to add leave for a employee with a specific eid on a specific day.
+2. SudoHR informs user that employee's leave has been successfully added.
+
+Use case ends.
 
 **Extensions**
 
-* 1a. The given argument has invalid fields.
+* 1a. The given command has invalid inputs
 
    * 1a1. SudoHR shows an error message.
 
      Use case resumes at step 1.
 
-* 1b. The given argument has missing fields.
+* 1b. The given command has missing inputs.
 
     * 1b1. SudoHR shows an error message.
 
       Use case resumes at step 1.
 
+* 1c. The employee has already taken leave on the date specified
+    * 1c1. SudoHR shows an error message.
 
+      Use case resumes at step 1
 
+* 1d. There is no employee with the eid given as input.
+    * 1d1. SudoHR shows an error message.
 
-**Use case: UC11 - Delete event**
+      Use case resumes at step 1
+
+**Use case: UC10 - Add employee's leave in range**
 **MSS:**
-1. User request to __list events(UC6)__
-2. SudoHR shows all events
-3. User requests to delete event from SudoHR
-4. SudoHR deletes event.
-5. Use case ends.
+1. User inputs a command that adds leaves for a employee with a specific eid from a start date till end date inclusive.
+2. SudoHR informs user that all the employee's leaves has been successfully added.
+
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given command has invalid inputs
 
-  Use case ends.
+   * 1a1. SudoHR shows an error message.
 
-* 3a. The given index is invalid.
+     Use case resumes at step 1.
 
-    * 3a1. SudoHR shows an error message.
+* 1b. The given command has missing inputs.
 
-      Use case resumes at step 2.
+    * 1b1. SudoHR shows an error message.
 
+      Use case resumes at step 1.
 
-**Use case: UC12 - Update event**
+* 1c. The employee has already taken leave on any of the dates in the range of the dates.
+    * 1c1. SudoHR shows an error message.
+
+      Use case resumes at step 1
+
+* 1d. The end date is more than 6 days away from the start date.
+    * 1d1. SudoHR shows an error message.
+
+* 1e. There is no employee with the eid given as input.
+    * 1e1. SudoHR shows an error message.
+
+      Use case resumes at step 1
+    
+
+**Use case: UC11 - Delete employee's leave**
 **MSS:**
-1. User requests to __list events(UC6)__
-2. SudoHR shows all events and their details
-3. User requests to update event details on SudoHR
-4. SudoHR update event.
-5. Use case ends.
+UPDATE UC to include list employees leave
+1. User requests to delete leave from SudoHR for the employee on a specific day.
+2. SudoHR informs user that employee's leave has been successfully deleted.
+3. Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
+* 1a. The given command has invalid inputs.
 
     * 3a1. SudoHR shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
-* 3b. The given argument is empty.
-
+* 1b. The given command has missing inputs.
     * 3b1. SudoHR shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
+* 1c. The employee has not taken leave on the specific day
+    * 3c1. SudoHR shows an error message.
 
-**Use case: UC13 - List event**
+      Use case resumes at step 3
+
+* 1d. There is no employee with the eid given as input.
+    * 1d1. SudoHR shows an error message.
+
+      Use case resumes at step 1      
+
+**Use case: UC13 - List leaves**
 **MSS:**
-1. User requests SudoHR to list all events
-2. SudoHR shows all events and their details
+1. User requests SudoHR to list all days where any employee has taken leave
+2. SudoHR shows all leaves
 
 
-**Use case: UC14 - Add employee to event**
+**Use case: UC15 - List employees on leave on a specific day**
 **MSS:**
-1. User requests to __list events(UC6)__
-2. SudoHR shows all events and their details
-3. User requests to list employees
-4. SudoHR shows all employees and their details
-5. User requests to add employee to event on SudoHR
-6. SudoHR adds employee to event.
-7. Use case ends.
+1. User requests to see all employees taking leave on a specific day.
+2. SudoHR shows all employees taking leave on a specific day.
+3. Use case ends.
 
 **Extensions**
 
-* 2a. The event list is empty.
+* 1a. The given command has invalid inputs.
 
-  Use case ends.
+    * 1a1. SudoHR shows an error message.
 
-* 4a. The employee list is empty.
+      Use case resumes at step 3.
 
-  Use case ends.
+* 1b. The given command has missing inputs.
+    * 1b1. SudoHR shows an error message.
 
-* 5a. The given Employeeindex is invalid.
+      Use case resumes at step 3.
 
-    * 5a1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
-* 5b. The given Eventindex is invalid.
-
-    * 5b1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
-**Use case: UC15 - List employees in an event**
+**Use case: UC15 - List leaves taken by an employee**
 **MSS:**
-1. User requests to __list events(UC6)__
-2. SudoHR shows all events and their details
-3. User requests to __list employees in a event(UC8)__
-4. SudoHR shows all employees added to an event and their details
-5. Use case ends.
+1. User requests to see all the leaves taken by a employee with a specific eid.
+2. SudoHR shows all employees taking leave on a specific day.
+3. Use case ends.
 
 **Extensions**
 
-* 2a. The event list is empty.
+* 1a. The given command has invalid inputs.
 
-  Use case ends.
+    * 1a1. SudoHR shows an error message.
 
-* 3a. The given Index is invalid.
+      Use case resumes at step 1.
 
-    * 3a1. SudoHR shows an error message.
+* 1b. The given command has missing inputs.
+    * 1b1. SudoHR shows an error message.
 
-      Use case resumes at step 4.
+      Use case resumes at step 1.
 
-**Use case: UC16 - Delete employee from event**
-**MSS:**
-1. User requests to __list events(UC6)__
-2. SudoHR shows all events and their details
-3. User requests to __list employees in a event(UC8)__
-4. SudoHR shows all employees added to an event and their details
-5. User requests to delete employee to event on SudoHR
-6. SudoHR delete employee from event.
-7. Use case ends.
+* 1c. There is no employee with the eid given as input.
+    * 1d1. SudoHR shows an error message.
 
-**Extensions**
-
-* 2a. The event list is empty.
-
-  Use case ends.
-
-* 4a. The employee list is empty.
-
-  Use case ends.
-
-* 5a. The given Employeeindex is invalid.
-
-    * 5a1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
-* 5b. The given Eventindex is invalid.
-
-    * 5b1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
+      Use case resumes at step 1      
 
 *{More to be added}*
+
+Add employee's leave
+Add employee's leave in range
+Delete employee's leave
+List leaves
+List employee on leave on a specific day
+List leaves taken by an employee
 
 ### 6.4. Non-Functional Requirements
 
