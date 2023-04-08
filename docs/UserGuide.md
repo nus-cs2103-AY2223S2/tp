@@ -289,7 +289,6 @@ Format: `clear [t/TAG]...`
 * If tags are provided, only remove existing tags.
   * e.g. `clear t/cs2103t t/cs2103` will only remove the contacts associated with the tag `cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
 * If no tag field is provided, remove all contacts in SOCket.
-* A confirmation prompt will appear before removal of contacts.
 
 <div style="page-break-after: always;"></div>
 
