@@ -59,25 +59,30 @@ Now it's time to **CONQUER** the semester!
 
 ### Prerequisite
 
-> Make sure you have Java `11` installed on your computer by typing `java --version` from your terminal.\
-> If not, please download it from the [Oracle website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+Make sure you have Java `11` installed on your computer by typing `java --version` from your terminal. Output should be something similar to below's.
+
+![Java 11](images/java-11.png)
+
+If not, please download it from the [Oracle website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
 ### Installation and Setup
 
-1. Download the latest version of [leTracker.jar](https://github.com/AY2223S2-CS2103-F10-2/tp/releases).
+1. Download the latest version of [letracker.jar](https://github.com/AY2223S2-CS2103-F10-2/tp/releases).
 
 2. Open your terminal and navigate to the directory of the downloaded jar file.
 
-3. Run the jar file by `java -jar leTracker.jar`.
+3. Run the jar file by `java -jar letracker.jar`.
 
 ### User Interface and Getting Started
 
 <img src="images/GettingAround.png" width="1024" />
 
-1. Type anything in the command box, using the :arrow_up: and :arrow_down: arrows to toggle through the texts you have typed.
+1. Type any input in the command box.
 
 2. Press `Enter` to execute a command.\
-   For example, typing "help" and pressing `Enter` will open the help window.
+   For example, typing `help` and pressing `Enter` will open the help window.
+
+3. Use :arrow_up: and :arrow_down: arrow keys to scroll through previous commands that were executed successfully.
 
 ### A Brief Guide to Navigation
 
@@ -241,10 +246,15 @@ After navigating to a lecture or module context, the navigation system will **in
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
   1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture Week 1 of module CS2040S.
+
   > `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+
   2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture Week 1 of module CS2040S.
+
   > `list` -> `list /mod CS2040S /lec Week 1`
+
   3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture Week 1 of module CS2040S.
+
   > `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ### Specifying Your Own Context In Commands
@@ -266,7 +276,9 @@ The following can be performed at **any** [current working context](#current-wor
 To make it easier to specify that share the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
 
 - e.g. <img src="images/LectureContext.png" height="20" /> List videos of lecture Week 5 of module CS2040S
+
 > `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
+
 - Note that the lecture week is different from the current working context and that only the `/mod` prefix has been injected into the command input.
 
 ---
@@ -318,52 +330,48 @@ Navigates backwards to the a parent context unless already at root context
 
 ### List
 
-> Items are listed in an alphabetical order sorted by `module_code` for `Module`, `lecture_name` for `Lecture` and `video_name` for `Video`.
+:information_source: Items are listed in an alphabetical order sorted by `module_code` for `Module`, `lecture_name` for `Lecture` and `video_name` for `Video`.
 
 #### List Modules
 
 > `list`
 
-<img src="images/RootContext.png" height="20" />
-has to be appended at the end of the command if you are not in the root context.
-
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures](#list-lectures) or [List Videos](#list-videos)
 
-(refer to [Navigation](#navigation) for more information)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures](#list-lectures) or [List Videos](#list-videos) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### List Lectures
 
 > `list /mod {module_code}`
 
-Lists all lectures belonging to a specified module code
+Lists all lectures of a module.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to list the lectures from.
+  - Must belong to an existing module in Le Tracker
 
-Examples:
-
-- `list /mod CS2040S` lists lectures belonging to CS2040S
+<details>
+  <summary>Example</summary>
+  <code>list /mod CS2040S</code>
+  lists lectures belonging to CS2040S
+</details>
 
 #### List Videos
 
 > `list /mod {module_code} /lec {lecture_name}`
 
-Lists all videos belonging to a specified lecture name of a specified module code
+Lists all videos of a lecture in a module.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+  - Must belong to an existing module in Le Tracker
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
-  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+  - Must belong to an existing lecture in the specified `module_code`
 
-Examples:
-
-- `list /mod CS2040 /lec Week 1`
+<details>
+  <summary>Example</summary>
+  <code>list /mod CS2040 /lec Week 1</code>
+  lists videos in lecture Week 1 belonging to CS2040S
+</details>
 
 ### Add
 
@@ -532,6 +540,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 > `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
 Deletes the specified module(s) and all its embodied content from the application
+
 - <span style="color:#e46c0a">`module_code_1`, `module_code_2`, `module_code_3`, ...</span>: The codes of modules to be deleted
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
   - Must exist in Le Tracker
@@ -545,7 +554,6 @@ Examples:
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
 When in a module or lecture context, the navigation system will automatically inject the `/mod` and/or `/lec` arguments, transforming the user's command into the command specified in [Delete Lecture](#delete-lecture) or [Delete Video](#delete-video) (refer to [Navigation Injection](#navigation-injection) for more information)
-
 
 #### Delete Lecture
 
@@ -597,7 +605,6 @@ Marks video(s) as **watched** in lecture of its specified module
 > `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
 Marks video(s) as **unwatched** in a lecture of its specified module.
-
 
 - <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be marked
   - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
@@ -756,8 +763,9 @@ Examples:
 
 ### Find
 
-:exclamation: This is a case insensitive search and matches a target that starts with the search term.
+:exclamation: This is a case insensitive search and matches a target that starts with the search term.\
 E.g:
+
 |Type|Data|Keyword|Matched|
 |-|-|-|-|
 |ModuleCode|[CS2040S, CS2103, ST2334, MA2001]|cs21|[CS2103]|
@@ -875,7 +883,7 @@ Import modules progress from a JSON-format file to the current tracker.
     file location}/data`)
   - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must
     exist in the default saving directory at `{JAR file location}/data`)
-- <span style="color:#e46c0a">`/mod {module_1}[, {module_2}[, {module_3}, ...]] `</span> : If specified, Le Tracker will only import progress
+- <span style="color:#e46c0a">`/mod {module_1}[, {module_2}[, {module_3}, ...]]`</span> : If specified, Le Tracker will only import progress
   of these modules from the file specified in `file_path`
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
   - If `/overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker
@@ -892,7 +900,6 @@ Examples:
 - `import /../../haha.json /overwrite`
 - `import hehe.json /mod CS2040, MA2401`
 - `import hihi.json /mod EG2310 /overwrite`
-
 
 ---
 
