@@ -175,16 +175,25 @@ you can use the `view-exams` command to view the list of exams.
 
 #### Create a new Student Profile
 
-Creates a new profile for a student given the student’s name.
+Creates a new profile for a student, given the student’s name.
 
 Format: `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE] [email/EMAIL] [school/SCHOOL] [level/GRADE_LEVEL]`
-
-Example:
-`new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8`
 
 * SCHOOL and GRADE_LEVEL are optional.
 * SCHOOL and GRADE_LEVEL consist of numbers and letters only (no symbols or spaces).
 
+Example:
+* `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8`
+
+#### View a Student Profile
+
+Displays one or many students' profiles, given parameters.
+
+Format `view-profile [name/STUDENTS_NAME]`
+* Shows a list of students that match the given `STUDENT_NAME`
+* If no `STUDENT_NAME` is given, then shows all students.
+
+Example:
 
 #### Update Student Information
 
