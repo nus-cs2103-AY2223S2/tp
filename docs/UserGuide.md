@@ -211,7 +211,7 @@ Examples:
      ```
 
 - `copy 2` will show this when your clipboard is not accessible.
-  ![no clipboard for `copy 2` width=800](images/copy2_noclipboard.png)
+  ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
 
 <div markdown="span" class="alert alert-primary">
 
