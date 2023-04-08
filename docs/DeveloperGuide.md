@@ -639,45 +639,47 @@ testers are expected to do more *exploratory* testing.
 
 ## 8.2 User stories
 
+In the user stories, **user** refers to an NUS student unless specified otherwise.
+
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                      | I want to …​                                                            | So that I can…​                                                                           |
 |----------|----------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | `* * *`  | new user                                     | see usage instructions                                                  | refer to instructions when I forget how to use the App                                    |
-| `* * *`  | user                                         | add a new person                                                        |                                                                                           |
-| `* * *`  | user                                         | delete a person                                                         | remove entries that I no longer need                                                      |
-| `* * *`  | user                                         | find a person by name                                                   | locate details of persons without having to go through the entire list                    |
-| `* * *`  | user with many different modules             | add module tags to a person                                             | remember which module I met them from                                                     |
-| `* * *`  | user with many different CCAs                | add CCA tags to a person                                                | remember which CCA I met them from                                                        |
-| `* * *`  | user with many different CCAs                | add CCA post tags to a person                                           | remember which post they hold in the CCA                                                  |
+| `* * *`  | user                                         | add a new contact                                                       |                                                                                           |
+| `* * *`  | user                                         | delete a contact                                                        | remove entries that I no longer need                                                      |
+| `* * *`  | user                                         | find a contact by name                                                  | locate details of persons without having to go through the entire list                    |
+| `* * *`  | user with many different modules             | add module tags to a contact                                            | remember which module I met them from                                                     |
+| `* * *`  | user with many different CCAs                | add CCA tags to a contact                                               | remember which CCA I met them from                                                        |
+| `* * *`  | user with many different CCAs                | add CCA post tags to a contact                                          | remember which post they hold in the CCA                                                  |
 | `* * *`  | user                                         | add a new contact without adding their email                            | add people when I don't know their email id                                               |
 | `* * *`  | user                                         | add a new contact without adding their phone number                     | add people when I don't know their phone number                                           |
 | `* * *`  | user                                         | add a new contact without adding their Telegram                         | add people when I don't know their telegram                                               |
 | `* * *`  | user                                         | add a new contact without adding any tags                               | add people who don't have a common CCA or module with me                                  |
-| `* * *`  | student                                      | easily add my friends' Telegram information to the app                  | quickly connect with them on the platform                                                 |
-| `* * *`  | student                                      | easily add my friends' Instagram information to the app                 | quickly connect with them on the platform                                                 |
-| `* * *`  | student                                      | easily add my friends' WhatsApp information to the app                  | quickly connect with them on the platform                                                 |
+| `* * *`  | user                                         | easily add my friends' Telegram information to the app                  | quickly connect with them on the platform                                                 |
+| `* * *`  | user                                         | easily add my friends' Instagram information to the app                 | quickly connect with them on the platform                                                 |
+| `* * *`  | user                                         | easily add my friends' WhatsApp information to the app                  | quickly connect with them on the platform                                                 |
 | `* * *`  | user                                         | add a birthday for my contacts                                          | remember them                                                                             |
 | `* *`    | user                                         | open Instagram directly from the CLI                                    | message someone without having to find them on Instagram                                  |
 | `* *`    | user                                         | open Telegram directly from the CLI                                     | message someone without having to find them on Telegram                                   |
 | `* *`    | user                                         | open WhatsApp directly from the CLI                                     | message someone without having to find them on WhatsApp                                   |
-| `* *`    | student with many CCAs                       | find the exco of a specific CCA                                         | submit a proposal for an event to them                                                    |
-| `* *`    | student with many CCAs                       | find the friends of a specific CCA                                      | find their contact easily                                                                 |
+| `* *`    | user with many CCAs                          | find the exco of a specific CCA                                         | submit a proposal for an event to them                                                    |
+| `* *`    | user with many CCAs                          | find the friends of a specific CCA                                      | find their contact easily                                                                 |
 | `* *`    | exco of a CCA who is also part of other CCAs | find the contacts of the CCA members (of which I am an exco of)         | find their contact easily to contact them regarding CCA events/other needs                |
 | `* *`    | exco of a CCA                                | find the exco of my CCA                                                 | contact them to plan an event for the members of the CCA                                  |
-| `* *`    | student with new friends                     | find their contact details                                              | easily ask them out to lunch to get to know them                                          |
-| `* *`    | student taking many modules                  | find other friends who are taking the same modules as me                | study together with them                                                                  |
-| `* *`    | student taking many modules                  | find other friends who are taking the same modules as me                | easily form groups with them prior to the start of the module                             |
-| `* *`    | student TA                                   | find the contact details of the students I am TA-ing                    | so that I can easily inform them about important information related to the module/class  |
-| `* *`    | student                                      | receive notifications when my friends change their telegram information | stay up to date with their latest details                                                 |
-| `* *`    | student                                      | search for my friends' telegram information within the app              | don't have to manually go through my contacts list every time I want to reach out to them |
+| `* *`    | user with new friends                        | find their contact details                                              | easily ask them out to lunch to get to know them                                          |
+| `* *`    | user taking many modules                     | find other friends who are taking the same modules as me                | study together with them                                                                  |
+| `* *`    | user taking many modules                     | find other friends who are taking the same modules as me                | easily form groups with them prior to the start of the module                             |
+| `* *`    | user who is a teaching assistant (TA)        | find the contact details of the students I am TA-ing                    | so that I can easily inform them about important information related to the module/class  |
+| `* *`    | user                                         | receive notifications when my friends change their telegram information | stay up to date with their latest details                                                 |
+| `* *`    | user                                         | search for my friends' telegram information within the app              | don't have to manually go through my contacts list every time I want to reach out to them |
 | `* *`    | user                                         | view a list of upcoming birthdays for my contacts                       | plan ahead for their birthday                                                             |
-| `*`      | user with friends from different years       | add year tags to a person                                               | remember which year they are in                                                           |
+| `*`      | user with friends from different years       | add year tags to a contact                                              | remember which year they are in                                                           |
 | `*`      | user                                         | receive notifications for my friends' birthday                          | prepare for it and wish them                                                              |
-| `*`      | user with many persons saved in the app      | sort persons by name                                                    | locate a person easily                                                                    |
+| `*`      | user with many contacts saved in the app     | search contacts by specific information fields                          | locate a contact easily                                                                   |
 | `*`      | user                                         | send short messages on WhatsApp directly from the app                   | message someone without having to juggle between apps                                     |
-| `*`      | user with friends from other schools         | add school tags to a person                                             | remember which school they are from                                                       |
-| `*`      | user with friends from companies             | add company tags to a person                                            | remember which company they are from                                                      |
+| `*`      | user with friends from other schools         | add school tags to a contact                                            | remember which school they are from                                                       |
+| `*`      | user with friends from companies             | add company tags to a contact                                           | remember which company they are from                                                      |
 
 <div style="page-break-after: always"></div>
 
