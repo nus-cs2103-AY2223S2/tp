@@ -23,6 +23,8 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.SupplierList;
+import trackr.model.menu.ItemNameContainsKeywordsPredicate;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDescriptor;
@@ -272,6 +274,16 @@ public class CommandTestUtil {
                 ModelEnum.SUPPLIER);
 
         assertEquals(1, model.getFilteredSupplierList().size());
+    }
+
+    public static void showMenuItemAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMenu().size());
+
+        MenuItem menuItem = model.getFilteredMenu().get(targetIndex.getZeroBased());
+        final String[] splitName = menuItem.getItemName().getName().split("\\s+");
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0])),
+                ModelEnum.MENUITEM);
+        assertEquals(1, model.getFilteredMenu().size());
     }
 
     /**
