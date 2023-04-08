@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Person's business size in the address book.
  * Guarantees: is valid as declared in {@link #isValidTransactionCount(String)} (String)}
@@ -8,7 +10,8 @@ public class TransactionCount implements Comparable<TransactionCount> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Transaction Count will start and zero and be incremented to a value 0 <= amount <= 922337203685477580"
+            "Transaction Count will start and zero and be incremented to a value 0 <= amount <= Maximum value of long" +
+                    "(unlikely that you will actually need this"
                     + "\n"
                     + "Transaction Count only takes on integer values, hence decimals, alphabets,"
                     + " and other characters are disallowed.";
@@ -26,6 +29,7 @@ public class TransactionCount implements Comparable<TransactionCount> {
      */
     public TransactionCount(String transactionCount) {
         if (transactionCount != null) {
+            checkArgument(isValidTransactionCount(transactionCount), MESSAGE_CONSTRAINTS);
             this.value = transactionCount;
         } else {
             this.value = String.valueOf(0);

@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents the Company that a person belongs to in the address book.
  * Guarantees: is valid as declared in {@link #isValidCompany(String)} (String)}
@@ -8,8 +11,8 @@ public class Company {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Company cannot be blank and must be a valid String";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*"; //check if this actually works
+            "Company cannot be blank and must be a valid String consisting of alphanumeric characters";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String value;
 
     /**
@@ -18,6 +21,8 @@ public class Company {
      * @param companyName valid address.
      */
     public Company(String companyName) {
+        requireNonNull(companyName);
+        checkArgument(isValidCompany(companyName), MESSAGE_CONSTRAINTS);
         this.value = String.valueOf(companyName);
     }
 
