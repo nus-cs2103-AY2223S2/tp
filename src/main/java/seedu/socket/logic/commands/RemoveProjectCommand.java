@@ -42,7 +42,7 @@ public class RemoveProjectCommand extends Command {
             + PREFIX_DEADLINE + " "
             + PREFIX_MEETING + "01/01/23-2359";
 
-    public static final String MESSAGE_REMOVE_FIELD_SUCCESS = "Remove field: %1$s";
+    public static final String MESSAGE_REMOVE_FIELD_SUCCESS = "Removed field from Project: %1$s";
 
     public static final String MESSAGE_NOT_REMOVE = "At least one field to remove must be provided.";
 
