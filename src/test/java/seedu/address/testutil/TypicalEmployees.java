@@ -74,6 +74,12 @@ public class TypicalEmployees {
             .withDateOfJoining(CommandTestUtil.VALID_DATE_OF_JOINING_BOB)
             .withPicturePath(CommandTestUtil.VALID_PICTURE_PATH_BOB)
             .withTags(CommandTestUtil.VALID_TAG_SOFTWARE_ENGINEER, CommandTestUtil.VALID_TAG_MANAGER).build();
+    public static final Employee JANE = new EmployeeBuilder().withName("Jane Doe").withPhone("83148842")
+            .withDepartment("Frontend Engineer").withPayroll("1000 15").build();
+
+    public static final Employee JOHN = new EmployeeBuilder().withName("John Smith").withPhone("84922331")
+            .withDepartment("Backend Engineer").withPayroll("1200 20").build();
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
