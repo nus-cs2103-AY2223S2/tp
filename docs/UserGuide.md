@@ -207,10 +207,16 @@ Lists all tags in the tag list.
 
 Format: `tags`
 
-### Listing available Genres: `genre`
-Shows list of all valid Genres.
+### Genres:
+A genre in a bookmark indicates the genre of the content the bookmark is tracking.
+In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib.
 
-Format: `genre`
+This fixed list of genres can be viewed using the `genre` command. 
+
+The format is as follows: `genre`
+
+The command should display the list of available genres in the `Result Box`.
+
 <div style="page-break-after: always;"></div>
 
 ### Adding a bookmark
