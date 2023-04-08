@@ -256,13 +256,8 @@ Examples:
 
 **Using the following input** `delete 1 4`
 <p align=center>
-    <img alt="delete before" src="images/user-guide/delete_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>delete</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="delete after" src="images/user-guide/delete_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>delete</code> command</i>
+    <img alt="delete before" src="images/user-guide/delete_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>delete 1 4</code> command</i>
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
@@ -304,10 +299,10 @@ Examples:
 - `edit 1 n/Lao Hong`
 - `edit 3 a/ p/` _(removes student's address & phone number)_
 
-**Using the following input** `edit 1 edu/Sec 1`
+**Using the following input** `edit 1 edu/Year 1`
 <p align=center>
     <img alt="edit before and after" src="images/user-guide/edit_before_and_after.png" />
-    <br><i><b>Above:</b> Before and after entering <code>edit 1 edu/Sec 1</code> command</i>
+    <br><i><b>Above:</b> Before and after entering <code>edit 1 edu/Year 1</code> command</i>
 </p>
 
 <div markdown="block" class="alert alert-info"> :bulb: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
@@ -342,17 +337,17 @@ Examples:
 **Using the following input** `remark 2`:
 <p align=center>
     <img alt="remark before" src="images/user-guide/remark_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>
+    <br><i><b>Above:</b> Before entering <code>remark 2</code> command</i>
 </p>
 
 <p align=center>
     <img alt="remark after" src="images/user-guide/remark_during.jpg" />
-    <br><i><b>Above:</b> After pressing Ctrl + S <code>remark</code> command</i>
+    <br><i><b>Above:</b> Editing remarks using the <code>remark 2</code> command</i>
 </p>
 
 <p align=center>
     <img alt="remark during" src="images/user-guide/remark_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>remark</code> command</i>
+    <br><i><b>Above:</b> After pressing `CTRL + S`</i>
 </p>
 
 <div markdown="span" class="alert alert-info">
