@@ -24,7 +24,12 @@ import seedu.address.model.person.Person;
  */
 public class Session implements Comparable<Session> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Start date time should be before end date time.";
+    public static final String MESSAGE_START_AFTER_END = "Start date time should be before end date time.";
+    public static final String MESSAGE_SAME_DATE_TIME = "Start date time must be different from end date time.";
+    public static final String MESSAGE_INVALID_LOCATION = "Invalid Location.";
+    public static final String MESSAGE_INVALID_NAME = "Invalid Name.";
+    public static final String MESSAGE_INVALID_DATES = "Invalid Date Input Format (DD-MM-YYYY HH:mm). "
+            + "Please input valid digits.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private String command;
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -52,8 +57,16 @@ public class Session implements Comparable<Session> {
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
-        if (!this.isValidSession()) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+
+        int bug = this.isValidSession();
+        if (bug == 1) {
+            throw new IllegalArgumentException(MESSAGE_SAME_DATE_TIME);
+        } else if (bug == 2) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_NAME);
+        } else if (bug == 3) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_LOCATION);
+        } else if (bug == 4) {
+            throw new IllegalArgumentException(MESSAGE_START_AFTER_END);
         }
     }
 
@@ -75,8 +88,16 @@ public class Session implements Comparable<Session> {
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
-        if (!this.isValidSession()) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+
+        int bug = this.isValidSession();
+        if (bug == 1) {
+            throw new IllegalArgumentException(MESSAGE_SAME_DATE_TIME);
+        } else if (bug == 2) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_NAME);
+        } else if (bug == 3) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_LOCATION);
+        } else if (bug == 4) {
+            throw new IllegalArgumentException(MESSAGE_START_AFTER_END);
         }
     }
     /**
@@ -107,8 +128,16 @@ public class Session implements Comparable<Session> {
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
-        if (!this.isValidSession()) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+
+        int bug = this.isValidSession();
+        if (bug == 1) {
+            throw new IllegalArgumentException(MESSAGE_SAME_DATE_TIME);
+        } else if (bug == 2) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_NAME);
+        } else if (bug == 3) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_LOCATION);
+        } else if (bug == 4) {
+            throw new IllegalArgumentException(MESSAGE_START_AFTER_END);
         }
     }
 
@@ -157,29 +186,6 @@ public class Session implements Comparable<Session> {
     public boolean contains(String name) {
         return attendanceMap.containsKey(name);
     }
-
-    //    /**
-    //     * Represents a session that a person can have.
-    //     * A session consists of a start date time and an end date time.
-    //     * @param sessionString
-    //     * @throws IllegalValueException
-    //     */
-    //    public Session(String sessionString) throws IllegalValueException {
-    //        String[] parts = sessionString.split(" to ");
-    //        if (parts.length != 2) {
-    //            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
-    //        }
-    //
-    //        String startDateTime = parts[0];
-    //        String endDateTime = parts[1];
-    //
-    //        if (!Session.isValidDateTimeFormat(startDateTime) || !Session.isValidDateTimeFormat(endDateTime)) {
-    //            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
-    //        }
-    //
-    //        this.startDateTime = startDateTime;
-    //        this.endDateTime = endDateTime;
-    //    }
 
     /**
      * Returns true if the given string is a valid date format.
@@ -247,12 +253,7 @@ public class Session implements Comparable<Session> {
      * This defines a stronger notion of equality between two sessions.
      */
     public boolean isSameSession(Session otherSession) {
-        if (otherSession == this) {
-            return true;
-        }
-
-        return otherSession != null
-                && otherSession.getName().equals(getName());
+        return otherSession.getName().equalsIgnoreCase(this.getName());
     }
 
     /**
@@ -275,12 +276,30 @@ public class Session implements Comparable<Session> {
                 && otherSession.getLocation().equals(getLocation());
     }
 
-    public boolean isValidSession() {
-        return LocalDateTime.parse(startDateTime, DateTimeFormatter
+    /**
+     * Checks if the session is valid based on the start and end date/time, session name, and location.
+     * @return an integer value representing the validity of the session:
+     */
+    public int isValidSession() {
+        boolean isSameDateTime = startDateTime.equalsIgnoreCase(endDateTime);
+        boolean isBeforeTest = LocalDateTime.parse(startDateTime, DateTimeFormatter
                         .ofPattern("dd-MM-yyyy HH:mm"))
                 .isBefore(LocalDateTime.parse(endDateTime, DateTimeFormatter
-                        .ofPattern("dd-MM-yyyy HH:mm")))
-                && Name.isValidName(getName()) && Location.isValidLocation(getLocation().toString());
+                        .ofPattern("dd-MM-yyyy HH:mm")));
+        boolean validNameTest = Name.isValidName(getName());
+        boolean validLocationTest = Location.isValidLocation(getLocation().toString());
+
+        if (isSameDateTime) {
+            return 1;
+        } else if (!validNameTest) {
+            return 2;
+        } else if (!validLocationTest) {
+            return 3;
+        } else if (!isBeforeTest) {
+            return 4;
+        } else {
+            return 0;
+        }
     }
 
     /**

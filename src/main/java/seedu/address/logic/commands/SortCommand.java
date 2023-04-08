@@ -16,7 +16,7 @@ public class SortCommand extends Command {
             + "Parameters: ATTRIBUTE (1 - Name or 2 - Pay rate)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all athletes.\n";
+    public static final String MESSAGE_SUCCESS = "Sorted all athletes successfully.\n";
 
     private final int attribute;
 
