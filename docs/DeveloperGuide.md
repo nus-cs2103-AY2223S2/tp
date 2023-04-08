@@ -400,11 +400,7 @@ Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
 The activity diagram is as such:
-[add in later]()
-
-Here is the activity diagram showing the process of the `edit` command:
-[EditApplicantActivityDiagram]()
-
+![EditApplicantActivityDiagram](images/EditApplicantActivityDiagram.png)
 
 ##### Feature Details
 

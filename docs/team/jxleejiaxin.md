@@ -7,7 +7,7 @@ title: <Lee Jia Xin> Project Portfolio Page
 
 ### What should be included
 
-- [x] Code contirbuted
+- [x] Code contributed
 - [x] Enhancements implemented
 - [x] Contributions to the UG (Optional)
 - [x] Contributions to the DG (Optional)
@@ -25,10 +25,6 @@ title: <Lee Jia Xin> Project Portfolio Page
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jxleejiaxin&breakdown=true)
 
-- **Project management**:
-
-  - to be added soon
-
 (**Enhancements implemented**)
 
 - **New Features Added**:
@@ -38,7 +34,7 @@ title: <Lee Jia Xin> Project Portfolio Page
 - **Enhancements to existing features**:
 
   - Added Status field to Person class and updating JsonAdaptedPerson.
-  - Update JsonAdaptedPerson for all subsequent fields added.
+  - Updated JsonAdaptedPerson for all subsequent fields added (interview date, applied date)
   - Improve find command to find based on note prefix (adapted to skill command)
 
 - **Documentation**:
@@ -50,9 +46,10 @@ title: <Lee Jia Xin> Project Portfolio Page
 - **Community**:
 
   - Reviewed PRs from team members.
+  - Created some issues for TODOs.
 
 - **Tools**:
 
-  - to be added soon
+  - Git & Github
+  - Java
 
-- _{you can add/remove categories in the list above}_

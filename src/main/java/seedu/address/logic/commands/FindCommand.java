@@ -22,7 +22,7 @@ public class FindCommand extends Command {
             + "Parameters: n/NAME p/PHONE NUMBER\n"
             + "Providing just one of name or phone prefix is sufficient.\n"
             + "Providing both name and phone prefixes narrows down the scope.\n\n"
-            + "Example: " + COMMAND_WORD + "n/alice p/98752354";
+            + "Example: " + COMMAND_WORD + " n/alice p/98752354";
 
     private final Predicate<Person> findPredicate;
 

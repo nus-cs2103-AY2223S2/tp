@@ -1,7 +1,11 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -13,11 +17,17 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
+    private static final String VALID_PHONE_ALICE = "94351253";
+    private static final String VALID_NAME_ALICE = "Alice Pauline";
+    private static final String INVALID_PHONE = "9999999999";
+    private static final String INVALID_NAME = "John Doe of DoeLand";
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -48,32 +58,58 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    // Commented out as new FindCommand will cause these tests to fail
-    // TODO: add new similar test cases
-    //@Test
-    //public void execute_zeroKeywords_errorThrown() {
-    //    String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-    //    NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-    //    FindCommand command = new FindCommand(predicate);
-    //    expectedModel.updateFilteredPersonList(predicate);
-    //    assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //    assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    //}
-    //
-    //@Test
-    //public void execute_multipleKeywords_multiplePersonsFound() {
-    //    String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-    //    NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-    //    FindCommand command = new FindCommand(predicate);
-    //    expectedModel.updateFilteredPersonList(predicate);
-    //    assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //    assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
-    //}
+
+    @Test
+    public void execute_validNameInvalidPhone_noPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate(VALID_NAME_ALICE);
+        PhoneContainsKeywordsPredicate phonePredicate = preparePhonePredicate(INVALID_PHONE);
+        FindCommand command = new FindCommand(predicate.and(phonePredicate));
+        expectedModel.updateFilteredPersonList(predicate.and(phonePredicate));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_invalidNameValidPhone_noPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate(INVALID_NAME);
+        PhoneContainsKeywordsPredicate phonePredicate = preparePhonePredicate(VALID_PHONE_ALICE);
+        FindCommand command = new FindCommand(predicate.and(phonePredicate));
+        expectedModel.updateFilteredPersonList(predicate.and(phonePredicate));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_validNameValidPhone_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate(VALID_NAME_ALICE);
+        PhoneContainsKeywordsPredicate phonePredicate = preparePhonePredicate(VALID_PHONE_ALICE);
+        FindCommand command = new FindCommand(predicate.and(phonePredicate));
+        expectedModel.updateFilteredPersonList(predicate.and(phonePredicate));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    private PhoneContainsKeywordsPredicate preparePhonePredicate(String userInput) {
+        return new PhoneContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
