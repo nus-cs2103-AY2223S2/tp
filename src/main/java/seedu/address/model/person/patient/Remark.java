@@ -14,7 +14,7 @@ public class Remark {
      * Remark should not be blank
      */
     public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
-    public final String remark;
+    private final String remark;
 
     /**
      * Constructs a {@code Remarks}.
@@ -46,5 +46,9 @@ public class Remark {
     @Override
     public int hashCode() {
         return remark.hashCode();
+    }
+
+    public String getValue() {
+        return remark;
     }
 }

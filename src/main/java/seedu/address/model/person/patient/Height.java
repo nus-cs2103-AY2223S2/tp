@@ -19,7 +19,7 @@ public class Height {
      */
     public static final String VALIDATION_REGEX = "^\\s*\\d{1}\\.\\d{2}\\s*$";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Height}.
@@ -55,5 +55,9 @@ public class Height {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public String getValue() {
+        return value;
     }
 }

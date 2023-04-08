@@ -12,9 +12,9 @@ public class Weight {
     public static final String MESSAGE_CONSTRAINTS =
             "Weight should be in kilograms (kg), can have at most 1 decimal place, and not equal to 0.";
 
-    public static final String VALIDATION_REGEX = "^\\s*\\d+(\\.\\d)?\\s*$";
+    private static final String VALIDATION_REGEX = "^\\s*\\d+(\\.\\d)?\\s*$";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Weight}.
@@ -50,5 +50,9 @@ public class Weight {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public String getValue() {
+        return value;
     }
 }

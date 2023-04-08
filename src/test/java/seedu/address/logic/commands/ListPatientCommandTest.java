@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -28,12 +29,27 @@ public class ListPatientCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListPatientCommand(), model, ListPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListPatientCommand(), model, ListPatientCommand.getMessageSuccess(), expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPatientAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListPatientCommand(), model, ListPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListPatientCommand(), model, ListPatientCommand.getMessageSuccess(), expectedModel);
+    }
+
+    @Test
+    public void execute_getCommandUsageSuccessful() {
+        String messageUsage = ListPatientCommand.COMMAND_WORD + ": Lists all patients in Docedex.\n"
+                + "Example: " + ListPatientCommand.COMMAND_WORD;
+
+        assertEquals(messageUsage, ListPatientCommand.getCommandUsage());
+    }
+
+    @Test
+    public void execute_getMessageSuccessSuccessful() {
+        String messageSuccess = "Listed all patients";
+
+        assertEquals(messageSuccess, ListPatientCommand.getMessageSuccess());
     }
 }

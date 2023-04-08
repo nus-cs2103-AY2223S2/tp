@@ -19,7 +19,7 @@ import seedu.address.logic.commands.DeletePatientCommand;
 public class DeletePatientCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT = String.format("%s\n%s", ParserUtil.MESSAGE_INVALID_INDEX,
-            DeletePatientCommand.MESSAGE_USAGE);
+            DeletePatientCommand.getCommandUsage());
     private DeletePatientCommandParser parser = new DeletePatientCommandParser();
 
     @Test

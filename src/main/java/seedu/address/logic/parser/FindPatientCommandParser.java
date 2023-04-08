@@ -38,7 +38,8 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         if (!hasAtLeastOnePrefix(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HEIGHT, PREFIX_WEIGHT,
                 PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_REMARK, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindPatientCommand.getCommandUsage()));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).orElse("").trim();
@@ -55,7 +56,8 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
         if (name.isEmpty() && phone.isEmpty() && email.isEmpty() && height.isEmpty() && weight.isEmpty()
                 && diagnosis.isEmpty() && status.isEmpty() && remark.isEmpty() && tagList.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindPatientCommand.getCommandUsage()));
         }
 
         PatientFilter patientFilter = new PatientFilter(name, phone, email, height, weight,

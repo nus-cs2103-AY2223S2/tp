@@ -35,9 +35,9 @@ public class JsonAdaptedPatientTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = ZAYDEN.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_HEIGHT = ZAYDEN.getHeight().value;
-    private static final String VALID_WEIGHT = ZAYDEN.getWeight().value;
-    private static final String VALID_DIAGNOSIS = ZAYDEN.getDiagnosis().diagnosis;
+    private static final String VALID_HEIGHT = ZAYDEN.getHeight().getValue();
+    private static final String VALID_WEIGHT = ZAYDEN.getWeight().getValue();
+    private static final String VALID_DIAGNOSIS = ZAYDEN.getDiagnosis().getValue();
     private static final String VALID_STATUS = ZAYDEN.getStatus().toString();
     private static final String VALID_REMARK = ZAYDEN.getRemark().toString();
 
