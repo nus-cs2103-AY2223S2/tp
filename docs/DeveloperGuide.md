@@ -240,7 +240,7 @@ Below is a sequence diagram that illustrates how a user adds new tasks into Offi
 
 * **Alternative 1 (current choice):** Deadline is optional.
   * Pros: Increase convenience for users, as they will have to key in one less input. Not all tasks may have a set deadline.
-  * Cons: Users may be lazy to key in specific deadlines as it is optional.
+  * Cons: As it is optional, users may choose to prioritise convenience and not enter a deadline even if it will benefit the task description. 
 
 * **Alternative 2:** Make deadline compulsory.
   * Pros: Easier to implement.
