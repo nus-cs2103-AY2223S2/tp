@@ -17,7 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.HMHero;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHMHero;
 
 public class JsonHMHeroStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -30,7 +30,7 @@ public class JsonHMHeroStorageTest {
         assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyHMHero> readAddressBook(String filePath) throws Exception {
         return new JsonHMHeroStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -68,7 +68,7 @@ public class JsonHMHeroStorageTest {
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        ReadOnlyHMHero readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new HMHero(readBack));
 
         // Modify data, overwrite exiting file, and read back
@@ -94,7 +94,7 @@ public class JsonHMHeroStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
+    private void saveAddressBook(ReadOnlyHMHero addressBook, String filePath) {
         try {
             new JsonHMHeroStorage(Paths.get(filePath))
                     .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));

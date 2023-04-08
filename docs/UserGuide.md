@@ -1,20 +1,18 @@
 ---
 layout: page
-title: HMHero User Guide
+title: User Guide
 ---
-
 ## Table of Contents
 
-
-1. [About HMHero](#1-about-hmhero)
-2. [Features](#2-features)
+* [About HMHero](#1-about-hmhero)
+* [Features](#2-features)
    * [Applicant Management System](#21-applicant-management-system)
    * [Hiring Process Analytics](#22-hiring-process-analytics)
-3. [How to use this User Guide](#3-how-to-use-this-user-guide)
+* [How to use this User Guide](#3-how-to-use-this-user-guide)
    * [Icons and Hyperlinks](#31-icons-and-hyperlinks)
    * [Purpose of User Guide](#32-purpose-of-user-guide)
-4. [Installation](#4-installation)
-5. [Quick Start](#5-quick-start)
+* [Installation](#4-installation)
+* [Quick Start](#5-quick-start)
    * [User Interface](#51-user-interface)
    * [Key Definitions](#52-key-definitions)
      * [Applicant](#521-applicant)
@@ -23,7 +21,7 @@ title: HMHero User Guide
      * [Placeholders](#524-placeholders)
    * [Command Format](#53-command-format)
    * [Trying your First Command](#54-trying-your-first-command)
-6. [Commands](#6-commands)
+* [Commands](#6-commands)
    * [Applicant Commands](#61-applicant-commands)
      * [Create a new applicant `add`](#611-create-a-new-applicant-add)
      * [Search for an applicant `find`](#612-search-for-an-applicant-find)
@@ -38,14 +36,14 @@ title: HMHero User Guide
    * [General Commands](#63-general-commands)
      * [Receive help during usage `help`](#631-receive-help-during-usage-help)
      * [Exit HMHero `exit`](#632-exit-hmhero-exit)
-7. [Command summary](#7-command-summary)
+* [Command summary](#7-command-summary)
    * [Applicant Commands](#71-applicant-commands)
    * [Statistics Commands](#72-statistics-commands)
    * [General Commands](#73-general-commands)
-8. [Troubleshooting](#8-troubleshooting)
-9. [FAQ](#9-faq)
-10. [Acknowledgements](#10-acknowledgements)
-11. [Glossary](#11-glossary)
+* [Troubleshooting](#8-troubleshooting)
+* [FAQ](#9-faq)
+* [Acknowledgements](#10-acknowledgements)
+* [Glossary](#11-glossary)
 
 ---
 
@@ -175,9 +173,8 @@ are already familiar with the application!
 
 ## 5. Quick Start
 This section covers everything you should know about HMHero, as well as a tutorial on 
-[trying your first command](#54-trying-your-first-command). The special note is the 
-[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, 
-which covers essential knowledge to using HMHero's features.
+[trying your first command](#54-trying-your-first-command). Take note that  the
+[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections covers essential knowledge to using HMHero's features.
 
 
 ### 5.1 User Interface
@@ -185,14 +182,14 @@ When you launch HMHero, HMHero appears on your screen as a Graphical User Interf
 layout of the different components of HMHero.
 
 HMHero's GUI consists of a single main window consisting of 3 main sections.
-1. [Command Input Box](#command-input-box)
-2. [Command Output Box](#command-output-box)
-3. [Applicant List Box](#applicant-list-box)
+1. [Command Input Box](#command-input-box): Input command text field
+2. [Command Output Box](#command-output-box): Command result
+3. [Applicant List Box](#applicant-list-box): List of applicants 
 
 The following picture of the main window shows the three components, numbered accordingly:
 ![components.png](images%2Fcomponents.png)
 
-Besides the main window, HMHero also has the Help Window. It is not part of the main GUI and is only
+HMHero also has the Help Window. It is not part of the main GUI and is only
 shown after a [Help Command](#631-receive-help-during-usage-help) is run.
 
 The Help Window looks like the following:
@@ -219,7 +216,7 @@ The following are the attributes stored for each `Applicant`
 * Interview Date
 * Notes
 
-Applicants are unique by name and phone number and are Case Sensitive.
+Applicants are unique by name and phone number and are case sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
 
@@ -238,7 +235,7 @@ are optional.
 
 Feel free to make use of notes as you fit to highlight skill-sets of an applicant. Examples of such notes
 can include:
-* Highlight applicant's:
+
   * Technical proficiency, e.g. `Python`, `Java`, `Flask`
   * Soft Skills, e.g. `Project Management`, `Event Planning`
 
@@ -259,48 +256,36 @@ You may find the following image taken from the subsequent <a href="#53-command-
 <img src="./images/CommandExample.png">
 </div>
 
-Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+Placeholders refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
-| Action   | Corresponding Placeholder |
-|----------|---------------------------|
-| n/       | `NAME`                    |
-| p/       | `PHONE`                   |
-| e/       | `EMAIL`                   |
-| a/       | `ADDRESS`                 |
-| note/    | `NOTE`                    |
-| d/       | `INTERVIEW DATETIME`      |
-| applied/ | `APPLICATION DATETIME`    |
-
-Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
-and [Placeholders](#524-placeholders) are used together.
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
 #### 5.2.4 Placeholders
-Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+Placeholders refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
 Please refer to the subsequent [Command Format](#53-command-format) 
 section to see how Flags and Placeholders are used together.
 
-| Placeholder  | Corresponding Flag | Description                                                                                                                              |
-|--------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                                             |
-| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                                                                    |
-| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                                             |
-| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                                                    |
-| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant. Notes can contain symbols but cannot be longer than 45 characters long. |
-| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.                                                         |
+| Placeholder          | Corresponding Flag | Description                                                                                                        | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|----------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INDEX                | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                       | The INDEX is restricted to the number of applicants in HMHero and cannot be negative.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| NAME                 | n/                 | The NAME is the text we use to identify an Applicant.                                                              | The NAME of an applicant must be alphabetic characters and no numbers are allowed.                                                                                                                                                                                                                                                                                                                                                                                                     |
+| PHONE                | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                       | The PHONE of an applicant must have at least 3 numbers and must be numeric characters.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| EMAIL                | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                              | EMAIL must be in the format username@domain  <br><br>   `username`:    <li>Should only contain alphanumeric characters and these special characters (`+`, `_`, `.`, `-`) </li>     <li>Should not start or end with any special characters. </li>  <br> `domain`:   <li>Should be at least 2 characters long. </li>    <li>Each domain label should start and end with alphanumeric characters. </li>    <li>Each domain label consists of alphanumeric characters, separated only by hyphens, if any.</li>|
+| NOTE                 | note/              | The NOTE is the text we use to identify a skill of an Applicant.                                                   | NOTE cannot be longer than 45 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| APPLICATION DATETIME | applied/           | The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job. | Format of datetime is `DD-MM-YYYY HH:mm`                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm` <br><br> INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                |
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
 ### 5.3 Command Format
-You will encounter HMHero commands throughout this User Guide.
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
 
 Here is an example:
@@ -320,11 +305,9 @@ For example, `NAME` in `n/NAME` can be replaced with `n/John`.
 
 To let you become more familiar with HMHero, let's practise executing some commands.
 
-To start off, let's try out the `add` command! This command lets you add an [applicant](#521-applicant) to HMHero.
-
 One of the available commands in HMHero is the command to create a new applicant.
 
-**Format:** `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
+**Format:** `add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIED DATE TIME] [note/NOTE]`
 <br>
 <br>
 
@@ -335,7 +318,7 @@ parameters supplied by you without ambiguity
 * [Placeholders](#524-placeholders) such as `NAME` and `PHONE` shows you what you should place in each portion of the 
 command
 
-Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE`
+Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE` and `applied/APPLICATION DATE TIME`
 in the format. This indicates that the parameter is **optional**. Each of these placeholders in the parameters 
 have a default value based on the commands. These are documented in the [Commands](#6-commands) section for each command.
 
@@ -347,76 +330,27 @@ the format of PHONE, certain characters you cannot use and the limit and precisi
 
 **Let's try an example!**
 
-Suppose you just add Thomas, 91918153, thomas@gmail.com, living at 6 Sims Drive (s)543230, and you do not
+Suppose you just add Thomas, 98765432, thomas@gmail.com, living at 1 Sims Drive (s)543210, and you do not
 feel the need to record a note for this applicant.
 
 `NAME`: Thomas
 
-`PHONE`: 91918153
+`PHONE`: 98765432
 
 `EMAIL`: thomas@gmail.com
 
-`ADDRESS`: 6 Sims Drive (s)543230
+`ADDRESS`: 1 Sims Drive (s)543210
 
 The command you would like to enter into the command box would be:
 
 ```
 add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230
 ```
-<br>
-
-Alternatively, executing these would do the same thing:
-
-* `add n/Thomas e/thomas@gmail.com p/91918153 a/6 Sims Drive (s)543230`
-
-  This is because the order of the flags does not matter.
-<br> <br>
-
-* `add n/Thomas p/91918153 e/thomas@gmail.com n/Sally p/97833468 a/6 Sims Drive (s)543230`
-
-    In this case, the name "Thomas" will be overridden by "Sally", and the phone "91918153" 
-will be overridden by "97833468".
-<br> <br>
-
-However, note that the following executions are invalid:
-
-* `add n/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230`
-
-  There must be spacings between the placeholders and flags.
-
-* `add n/ThomaŚ p/91918153 e/thomas@gmail.com a/6 Sims Drivè (s)543230`
-
-  The restrictions of placeholders are not followed.
-
-* `add`
-
-  There is insufficient information provided; you must minimally provide a name.
 
 Find out more about restrictions in the sections [Flags](#523-flags), [Placeholders](#524-placeholders) 
-and [Commands](#6-commands).
+and [Commands](#6-commands). 
 
 ---
-
-
-Let's try out another command -- the `list` command! `list` lets you see the list of the applicants.
-
-<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
-The format for different commands are not always identical. For example, executing the `add` command and the `list` 
-command will have different formats! 
-</div>
-
-For example, after adding an applicant, you decided to see the list of applicant.
-
-**Format:** `list`
-
-The command you would like to enter into the [Command Input Box](#51-user-interface) would be:
-
-```
-list
-```
-
-You should now have a better understanding of how commands are formatted and used. All commands are consolidated
-in the [Command Summary](#7-command-summary).
 
 Here is a checklist you can use before running a command:
 
@@ -434,21 +368,10 @@ Here is a checklist you can use before running a command:
 
 This section shares with you on how to use each command in detail.
 
-Before continuing, ensure you have read the section on [Flags](#523-flags) and [Placeholders](#524-placeholders).
-
-What you should expect to find:
-
-* A description of the command
-* The format of the command
-* The expected behaviour of the command
-* A few valid and invalid examples of the command
-* Important points to note
-
-
-<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-<li> For each command, "Format" indicates the syntax of the command.</li>
-    <li>Square brackets indicates an optional parameter.</li>
+    <li>Square brackets indicates an optional parameter.
+</li>
     <li>In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
 </li> 
 </ul>
@@ -457,40 +380,38 @@ What you should expect to find:
 [Back to Table of Contents](#table-of-contents)
 
 
-
-
 ### 6.1 Applicant Commands
 
 #### 6.1.1 Create a new applicant `add`
 
 **Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIED DATE TIME] [note/NOTE]`
 
-> Creates a new applicant with the provided information
+> You can create a new applicant with the provided information
 
-**Info**
-* All fields apart from `APPLIED DATE TIME` and `NOTE` are compulsory.
-* All `NAME` and `PHONE` must be unique.
-* `NAME` is case-sensitive. (e.g. "Thomas" is different from "thomas").
-* `PHONE` does not require you to include the country code. Only include the numbers.
-* The value of `APPLIED DATE TIME` will be the time you add a new applicant if it is not provided.
-* The value of `NOTE` will be `-` if it is not provided.
-
-
-<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li> If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+    <li>All fields apart from `APPLIED DATE TIME` and `NOTE` are compulsory.</li>
+    <li>Both `NAME` and `PHONE` together must be unique.</li>
+    <li>`NAME` is case-sensitive. (e.g. "Thomas" is different from "thomas").</li>
+    <li>`PHONE` does not require you to include the country code. Only include the numbers.</li>
+    <li>The value of `APPLIED DATE TIME` will be the time you add a new applicant if it is not provided.</li>
+    <li>The value of `NOTE` will be empty if it is not provided.</li>
+    <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 </li>
-    <li> However, if two or more `NOTE` are added, all the notes will be added to the applicant.
+    <li>However, if two or more `NOTE` are added, all the notes will be added to the applicant.
 </li>
 </ul> </div>
 
 
-**Example:**
+**Example:** 
+<br>
+* You want to create a new applicant named Adam whose information does not exist in HMHero yet.
 
-**Assumption:**
+Command Input Box: `add n/Adam p/91918153 e/adam@gmail.com a/6 Sims Drive`
 
-HMHero does not already contain an applicant with the name "Adam" and phone number 91918153.
-
+What you should see:
+1. Adam is added into the Applicant list.
+2. Command Output Box shows that Adam is added and his details.
 ![add_command.png](images%2Fadd_command.png)
 
 
@@ -503,22 +424,13 @@ HMHero does not already contain an applicant with the name "Adam" and phone numb
 
 **Format**: `find n/[NAME] p/[PHONE]`
 
-> Finds all applicants in HMHero using name, phone or both
+> You can find all applicants in HMHero using name, phone or both
 
-**Info**
-* We take in name, phone or both.
-  In this case, at least `NAME` or `PHONE` is required.
-* The `n/[NAME]` is case-insensitive. (e.g. "thomas" will match "Thomas").
-* This means that providing both `NAME` and `PHONE` narrows down the scope.
-
-
-<div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li> You can use the <a href="#613-list-all-applicants-list">List Command</a> in the next section to display all applicants again!</li> 
-</ul> </div>
-
-<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<ul>
+    <li>We take in name, phone or both. In this case, at least `NAME` or `PHONE` is required.</li>
+    <li>The `n/[NAME]` is case-insensitive. (e.g. "thomas" will match "Thomas").</li>
+    <li>This means that providing both `NAME` and `PHONE` narrows down the scope.</li>
     <li> The <code>find</code> command only finds applicants which has a name, phone or both 
 that fully matches the specified search of the full name, phone or both!</li>
     <li> This means that if the <code>NAME</code> <code>Thomas Lee</code> and <code>Thomas Tan</code> is in HMHero, 
@@ -531,8 +443,20 @@ it will work the same as finding individually! </li>
     </li>
 </ul> </div>
 
-**Example:**
+<div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
+<ul>
+    <li> You can use the <a href="#613-list-all-applicants-list">List Command</a> in the next section to display all applicants again!</li> 
+</ul> </div>
 
+**Example:**
+<br>
+* You want to search for an applicant named Adam whose information exist in HMHero.
+
+Command Input Box: `find n/Adam p/91918153`
+
+What you should see:
+1. Adam is found in the Applicant list.
+2. Command Output Box shows that 1 person is listed.
 ![find_command.png](images%2Ffind_command.png)
 
 
@@ -545,14 +469,28 @@ it will work the same as finding individually! </li>
 
 **Format**: `list`
 
-> List all applicants in HMHero
+> You can list all applicants in HMHero
+
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
+<ul>
+    <li>This command is useful to view all applicants again after using the 
+[Find Command](#612-search-for-an-applicant-find).</li>
+</ul> </div>
 
 **Info**
-* This command is useful to view all applicants again after using the [Find Command](#612-search-for-an-applicant-find).
+* This command is useful to view all applicants again after using the <a href="#612-search-for-an-applicant-find">
+Find Command</a>
 
 
 **Example:**
+<br>
+* You want to list all applicants who exist in HMHero.
 
+Command Input Box: `list`
+
+What you should see:
+1. The whole list of applicants in the Applicant list.
+2. Command Output Box shows the total applicants and numbers of applicants in each stage.
 ![list_command.png](images%2Flist_command.png)
 
 
@@ -565,27 +503,25 @@ it will work the same as finding individually! </li>
 
 **Format**: `delete n/NAME p/PHONE`
 
-> Deletes an applicant in HMHero using name and phone
+> You can delete an applicant in HMHero using name and phone
 
-**Info**
-* All fields are compulsory.
-
-
-<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
+    <li>All fields are compulsory.</li>
     <li> The <code>delete</code> command only deletes <code>Applicant</code> which has a name and phone 
 that fully matches the specified search.</li> 
 </ul> </div>
 
 
 **Example:**
+<br>
+* You want to delete an applicant who exist in HMHero.
 
-Applicant list before deleting the applicant Bernice Yu with phone number 99272758:
+Command Input Box: `delete n/Bernice Yu p/99272758`
 
-![delete_command_before.png](images%2Fdelete_command_before.png)
-
-After:
-
+What you should see:
+1. Bernice Yu is deleted from the Applicant list.
+2. Command Output Box shows that Bernice Yu is deleted and her details.
 ![delete_command_after.png](images%2Fdelete_command_after.png)
 
 
@@ -598,9 +534,9 @@ After:
 
 **Format**: `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]`
 
-> Advances an applicant in HMHero using name, phone and interview datetime
+> You can advance an applicant in HMHero using name, phone and interview datetime
 
-<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
     <li>The <code>advance</code> command only advances <code>Applicant</code> which has a name and phone that
 fully matches the specified search.</li> 
@@ -609,34 +545,34 @@ fully matches the specified search.</li>
 </li> 
     <li> However, <code>INTERVIEW DATETIME</code> is not required to advance <code>Applicant</code> from <code>status
 </code> <code>SHORTLISTED</code> to <code>status</code> <code>ACCEPTED</code>. </li>
-    <li> The format for <code>INTERVIEW DATETIME</code> should follow: "dd-mm-yyyy HH:MM".
-        <ul>
-            <li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
-            <li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
-For example, “05” would represent May. </li>
-            <li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
-            <li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
-            For example, "15" would represent 15th hour of the day. </li>
-            <li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 50th minute of the 
-hour.</li>
-        </ul> 
-    </li> 
 </ul> </div>
 
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
-<code>INTERVIEW DATETIME</code> cannot be earlier than current time when you advance an applicant! </div>
-
+<code>INTERVIEW DATETIME</code> cannot be earlier than current time and application date time 
+when you advance an applicant! 
+</div>
 
 
 **Example:**
+<br>
+* You want to advance an applicant's status `APPLIED` who exist in HMHero.
 
-Advancing an applicant with the status `APPLIED` requires an interview date and time.
+Command Input Box: `advance n/Adam p/91918153 d/20-05-2023 12:12`
 
+What you should see:
+1. Adam is advanced from status `APPLIED` to status `SHORTLISTED` in the Applicant list.
+2. Command Output Box shows that Adam is advanced, his old and new status.
 ![advance_command_applied.png](images%2Fadvance_command_applied.png)
 
+**Example:**
+<br>
+* You want to advance an applicant's status `SHORTLISTED` who exist in HMHero.
 
-Advancing an applicant with the status `SHORTLISTED` does not require an interview date and time.
+Command Input Box: `advance n/Adam p/91918153 `
 
+What you should see:
+1. Adam is advanced from status `SHORTLISTED` to status `ACCEPTED` in the Applicant list.
+2. Command Output Box shows that Adam is advanced, his old and new status.
 ![advance_command_shortlisted.png](images%2Fadvance_command_shortlisted.png)
 
 
@@ -649,14 +585,11 @@ Advancing an applicant with the status `SHORTLISTED` does not require an intervi
 
 **Format**: `reject n/NAME p/PHONE`
 
-> Rejects an applicant in HMHero using name and phone
+> You can reject an applicant in HMHero using name and phone
 
-**Info**
-* All fields are compulsory.
-
-
-<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
+    <li>All fields are compulsory.</li>
     <li> The <code>reject</code> command only rejects <code>Applicant</code> which has a name and phone that 
 fully matches the specified search.</li> 
     <li> The <code>NAME</code> and <code>PHONE</code> is required to reject <code>Applicant</code> from <code>status</code> 
@@ -666,11 +599,18 @@ fully matches the specified search.</li>
 
 
 **Example:**
+<br>
+* You want to reject an applicant's status `SHORTLISTED` who exist in HMHero.
 
+Command Input Box: `reject n/Alex Yeoh p/87438807`
+
+What you should see:
+1. Adam is rejected from status `SHORTLISTED` to status `REJECTED` in the Applicant list.
+2. Command Output Box shows that Adam is rejected.
 ![reject_command.png](images%2Freject_command.png)
 
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
-Applicants with the status <code>REJECTED</code> cannot be rejected!
+Applicants with the status <code>REJECTED</code> cannot be rejected again!
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -681,15 +621,22 @@ Applicants with the status <code>REJECTED</code> cannot be rejected!
 
 **Format**: `interview`
 
-> List all interview dates of shortlisted applicants in HMHero in chronological order
+> You can list all interview dates of shortlisted applicants in HMHero in chronological order
 
-**Info**
-* This command is useful to view all the applicants' interview dates again after
-  using the [Advance Command](#615-advance-an-applicant-advance).
-
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
+<ul>
+    <li>This command is useful to view all applicants again after using the [Advance Command]
+(#615-advance-an-applicant-advance).</li>
+</ul> </div>
 
 **Example:**
+<br>
+* You want to list the interview dates of the shortlisted applicants who exist in HMHero.
 
+Command Input Box: `interview`
+
+What you should see:
+1. All the interview dates of the shortlisted applicants in the Applicant list.
 ![interview_command.png](images%2Finterview_command.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -701,39 +648,35 @@ Applicants with the status <code>REJECTED</code> cannot be rejected!
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/NOTE]`
 
-> Edits an existing applicant with the provided information
+> You can edit an existing applicant with the provided information
 
-**Info**
-* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
-
-<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li> All fields apart from <code>INDEX</code> are optional. However, you need to include at least one optional 
-parameter. </li>
-    <li> The format for <code>INTERVIEW DATETIME</code> should follow: "dd-mm-yyyy HH:MM".
+    <li>All fields apart from <code>INDEX</code> are optional. However, you need to include at least one optional 
+parameter.</li>
+    <li> However for <code>NOTE</code>:
         <ul> 
-            <li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
-            <li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
-For example, “05” would represent May. </li>
-            <li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
-            <li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
-For example, "15" would represent 15th hour of the day. </li>
-            <li> "MM": Minute of the day, ranging from 0-59. For example, 
-"50" would represent the 50th minute of the hour. </li> 
+            <li>If two or more values for <code>NOTE</code> are provided, both parameters will be taken in.</li>
+            <li>If an empty <code>NOTE</code> is provided, all notes will be removed.</li>
         </ul>
     </li>
-    <li> You are allow to change <code>INTERVIEW DATETIME</code> to a time before the current time using edit command. 
+    <li>You are allow to change <code>INTERVIEW DATETIME</code> to a time before the current time and application
+date time using edit command. 
+</li>
+    <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 </li>
 </ul> </div>
 
 
 **Example:**
+<br>
+* You want to edit the phone number and notes of an applicant who exist in HMHero.
 
-Applicant list before editing:
-![edit_command_before.png](images%2Fedit_command_before.png)
+Command Input Box: `edit 2 p/91234567 note/Kotlin note/Python note/leadership`
 
-After editing Bernice Yu's phone and notes:
+What you should see:
+1. Bernice's phone number and notes are edited in the Applicant list.
+2. Command Output Box shows that Bernice is edited with her new information shown.
 ![edit_command_after.png](images%2Fedit_command_after.png)
 
 
@@ -742,30 +685,91 @@ After editing Bernice Yu's phone and notes:
 ---
 
 
-#### 6.1.9. Remind upcoming interviews `remind`
+#### 6.1.9. Get reminders for upcoming interviews `remind`
 
 **Format:** `remind`
 
-> Lists all applicants with interviews within the next three days.
+> You can list all applicants with interviews within the next three days.
+
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
+<ul>
+    <li>Reminder for upcoming interview will show all applicants with interviews in the next three days. (e.g. On Monday, 
+it will show all applicants with interviews till Thursday)</li>
+</ul> </div>
 
 **Example:**
+<br>
+* You want to see all the applicants with interview within the next three days who exist in HMHero.
 
+Command Input Box: `remind`
+
+What you should see:
+1. Adam's interview date is within the next three days which is shown in the Applicant list.
+2. Command Output Box shows the success message.
 ![remind_command.png](images%2Fremind_command.png)
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
+
+#### 6.1.10 Filter applicants with specific skill(s) `skill`
+
+**Format**: `skill KEYWORD(s)`
+
+> You can filter all applicants in HMHero using specific skill keyword(s)
+
+<div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
+<ul>
+    <li>We take in <code>KEYWORD</code>. In this case, at least one <code>KEYWORD</code> is required.</li>
+    <li>The <code>KEYWORD</code> is case-insensitive. (e.g. "java" will match "Java").</li>
+    <li>Each <code>KEYWORD</code> is separated with a space.</li>
+    <li>The <code>KEYWORD</code> provided must match the whole word. (e.g. "jav" will not match "java")</li>
+    <li>If two or more <code>KEYWORD</code> are provided, it will only match with applicant(s) with all the skills 
+specified. 
+        (e.g. if Adam has <code>python</code> and <code>java</code>, while Thomas has 
+        <code>java</code> only in HMHero, executing <code>skill java python</code> will only find Adam)</li>
+</ul> </div>
+
+<div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
+<ul>
+    <li> You can use the <a href="#613-list-all-applicants-list">List Command</a> to display all applicants again!</li> 
+</ul> </div>
+
+**Example:**
+<br>
+* You want to search for applicants with java skill that exist in HMHero.
+
+Command Input Box: `skill java`
+
+What you should see:
+1. Adam who has java skill is found in the Applicant list.
+2. Command Output Box shows that 1 person is listed.
+![skill_command.png](images%2Fskill_command.png)
+
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+
+
 ### 6.2. Statistics Commands
 
-#### 6.4.1. Summary Statistics `summary`
+#### 6.2.1. Summary Statistics `summary`
 
 **Format:** `summary`
 
-> Shows a statistical summary of the company's hiring processes.
+> You can show a statistical summary of the company's hiring processes.
 
 **Example:**
+<br>
+* You want to see the statistics for your hiring cycle in HMHero.
 
+Command Input Box: `summary`
+
+What you should see:
+1. A list of all applicants found in the Applicant list.
+2. Command Output Box shows the statistics for your hiring cycle.
 ![summary_command.png](images%2Fsummary_command.png)
 
 
@@ -773,16 +777,16 @@ After editing Bernice Yu's phone and notes:
 
 ---
 
+
 ### 6.3. General Commands
 
 #### 6.3.1. Receive help during usage `help`
 
 **Format**: `help`
 
-> Displays help window for HMHero which contains link to User Guide.
+> You can display help window for HMHero which contains link to User Guide.
 
 **Example:**
-
 ![help_command.png](images%2Fhelp_command.png)
 
 
@@ -790,33 +794,19 @@ After editing Bernice Yu's phone and notes:
 
 ---
 
+
 #### 6.3.2. Exit HMHero `exit`
 
 **Format**: `exit`
 
-> Exits HMHero
-
-<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
-This command is the only guaranteed way for the data file to be saved when you exit the application.
-To prevent losing data, always exit the application using this command instead of any other way.
-</div>
-
-**Example:**
-
-**Command Input Box:**
-
-Possible inputs:
-```
-exit
-```
+> You can exit HMHero
 
 **Expected Outcomes:**
 
 * All HMHero application windows will close
 * Your data is saved locally in your computer.
 
-
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 If your data cannot be saved successfully, HMHero will not close in order to prevent data loss.
 </div>
 
@@ -829,19 +819,19 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### 7.1. Applicant Commands
 
-| Action                                 | Format                                                                                                                                                               | Example                                                                     |
-|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                   | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
-| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Tom p/98763213`                                                     |
-| List all applicants                    | `list`                                                                                                                                                               | `list`                                                                      |
-| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Tom p/98763213`                                                   |
-| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
-| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Tom p/98763213`                                                   |
-| View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
-| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
-| Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
-| View summary statistics                | `summary`                                                                                                                                                            | `remind`                                                                    |
-
+| Action                                   | Format                                                                                                                                                                        | Example                                                                     |
+|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Add a new applicant                      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                            | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
+| Search for an applicant                  | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                                      | `find n/Tom p/98763213`                                                     |
+| List all applicants                      | `list`                                                                                                                                                                        | `list`                                                                      |
+| Delete an applicant                      | `delete n/NAME p/PHONE`                                                                                                                                                       | `delete n/Tom p/98763213`                                                   |
+| Advance an applicant                     | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide an `INTERVIEW DATETIME` to advance an applicant's status from `APPLIED` to `ACCEPTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
+| Reject an applicant                      | `reject n/NAME p/PHONE`                                                                                                                                                       | `reject n/Tom p/98763213`                                                   |
+| View the interview dates of applicants   | `interview`                                                                                                                                                                   | `interview`                                                                 |
+| Edit the information of an applicant     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                     | `edit 1 n/Marry p/98763245`                                                 |
+| Remind an applicant's interview date     | `remind`                                                                                                                                                                      | `remind`                                                                    |
+| Filter applicants with specific skill(s) | `skill KEYWORD(s)`                                                                                                                                                            | `skill java`                                                                |
+ 
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -859,10 +849,10 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### 7.3. General Commands
 
-| Action                                                | Format | Example |
-|-------------------------------------------------------|--------|---------|
-| Shows a help dialog with a list of available commands | `help` | `help`  |
-| Exits HMHero                                          | `exit` | `exit`  |
+| Action                                               | Format | Example |
+|------------------------------------------------------|--------|---------|
+| Shows a help dialog with a link to HMHero User Guide | `help` | `help`  |
+| Exits HMHero                                         | `exit` | `exit`  |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -952,7 +942,6 @@ Documentation dependencies:
 ### Quick Reference
 - [ADDRESS (Placeholder)](#address-placeholder)
 - [Address](#address)
-- [Admonitions](#admonitions)
 - [Applicant](#applicant)
 - [Applicant List Box](#applicant-list-box)
 - [Application Cycle](#application-cycle)
@@ -995,9 +984,6 @@ Documentation dependencies:
 > <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Address
 > The address of the applicant provided by the user.
-> #### Admonitions
-> Admonition boxes (or simply “admonitions”) are coloured boxes containing highlighted pieces of text.
-> <br>For details on various type of admonitions used in HMHero, refer to the [Admonitions Boxes](#31-admonition-boxes) section of the User Guide
 > #### Applicant
 > The person who apply to the company for the job.
 > #### Applicant List Box
@@ -1028,7 +1014,7 @@ Documentation dependencies:
 > The EMAIL is a text representing the email address of the applicants.
 > <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Email
-> The email address of the applicant provided by the user.
+> The email address of the applicant provided by the user. Emails should end with a valid domain name (e.g. gmail.com, hotmail.com, etc.)
 
 ### F
 > #### Flags

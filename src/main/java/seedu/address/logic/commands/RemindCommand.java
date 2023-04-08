@@ -17,7 +17,7 @@ import seedu.address.model.util.SortByInterviewDate;
  */
 public class RemindCommand extends Command {
     public static final String COMMAND_WORD = "remind";
-    public static final String MESSAGE_SUCCESS_FORMAT_WITH_APPLICANTS = "Listed all applicants that have an "
+    public static final String MESSAGE_SUCCESS_FORMAT_WITH_APPLICANTS = "Listed all applicants that has an "
             + "interview in the next three days!";
 
     public static final String MESSAGE_SUCCESS_FORMAT_WITHOUT_APPLICANTS = "There are no upcoming interviews "
