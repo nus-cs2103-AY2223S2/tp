@@ -1224,7 +1224,18 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting contacts
 
-1. _{ more test cases …​ }_
+1. Sorting contacts while all contacts are shown
+   1. Prerequisites: At least two contacts in the list.
+   2. Test case: 'sort' <br>
+      Expected: Contacts are sorted by name in alphanumerical order.
+   3. Test case: 'sort name' <br>
+      Expected: Contacts are sorted by name in alphanumerical order.
+   4. Test case: 'sort address' <br>
+      Expected: Contacts are sorted by address in alphanumerical order. Contacts without an address are at the back.
+   5. Other categories to try: 'phone', 'email', 'github' <br>
+      Expected: Contacts are sorted by the given category in alphanumerical order. Contacts without the given category are at the back.
+   6. Test case: 'sort invalid' <br>
+      Expected: An error message is shown as an invalid category was given. An error is logged in the console.
 
 ### Viewing a contact's detailed information
 
@@ -1327,7 +1338,18 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting projects
 
-1. _{ more test cases …​ }_
+1. Sorting projects while all projects are being shown
+   1. Prerequisites: At least two projects in the list.
+   2. Test case: 'sortpj' <br>
+      Expected: Projects are sorted by deadline in chronological order. Projects without a deadline are at the back.
+   3. Test case: 'sortpj name' <br>
+      Expected: Projects are sorted by name in alphanumerical order.
+   4. Test case: 'sortpj reponame' <br>
+      Expected: Projects are sorted by repo name in alphanumerical order. Projects without a repo name are at the back.
+   5. Other categories to try: 'repohost', 'deadline', 'meeting' <br>
+      Expected: Projects are sorted by the given category in alphanumerical order. Projects without the given category are at the back.
+   6. Test case: 'sortpj invalid' <br>
+      Expected: Projects are not sorted. An error message is shown as an invalid category was given. An error is logged in the console.
 
 ### Assigning a contact to a project
 
@@ -1346,9 +1368,14 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `assign 1 b`<br>
        Expected: An error message is shown as the given syntax is invalid.
 
-### Unassigning a contact to a project
+### Unassigning a contact from a project
 
-1. _{ more test cases …​ }_
+1. Unassigning a contact from a project while all projects are being shown
+   1. Prerequisites: At least one project with an existing contact named 'Amy Bee' assigned to the first project
+   2. Test case: `unassign 1 n/Amy Bee`<br>
+      Expected: Amy Bee is unassigned from the first project.
+   3. Test case: `unassign 1 n/Bob Choo'`<br>
+      Expected: No contact is unassigned from the first project. An error message is shown as the contact is not assigned to the project.
 
 ### Saving data
 
