@@ -162,7 +162,7 @@ The *Sequence Diagram* below illustrates the interactions within the `Logic` com
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The *ClassDiagram* below outlines classes in `Logic` used for parsing a user command:
+The *Class Diagram* below outlines classes in `Logic` used for parsing a user command:
 
 <p align="center">
 
@@ -240,79 +240,11 @@ Classes used by multiple components are in the [`seedu.internship.commons`](http
  
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Event feature
-The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship.
-
-#### Implementation
- 1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`.
-
- 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an Event to their selected internship.
-
-    2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship.
-
-The Activity Diagram for Add event is
-
-<p align="center">
-
-<img src="images/EventAddActivityDiagram.png" width="550" />
-
-</p>
-
-3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
-4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
-5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
-6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
-7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
-8. `Event` object is then added to the `UniqueEventsList` using the `addEvent` method of `model`.
-
-The Sequence Diagram for the adding the event is
-
-<p align="center">
- 
-<img src="images/EventAddSequenceDiagram.png" width="550" />
-
-</p>
-
-### View Calendar feature
-The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
-It is accessible by the command `calendar`.
-
-#### Implementation
-Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
-
-Step 1. The user enters `calendar` command into the CommandBox.
-
-Step 2. `MainWindow` receives the input and calls `execute('calendar')`. `execute(String)` is a method declared in LogicManager.
-
-Step 3. `InternshipCatalogueParser` parses the input and extracts the command String `calendar`. A `CalendarCommand` is then created.
-
-Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.
-
-Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains a list of all added `Events`.
-
-Step 6. The `execute` method then obtains the list of all `Event`s generated in `Model` instance, and creates a `CommandResult` that encapsulates it. The `CommandResult` is returned to `LogicManager`.
-
-Step 7. `LogicManager` returns the `CommandResult` to `MainWindow`.
-
-Step 8. In `MainWindow`'s `executeCommand` method, the `ResultType` of the `CommandResult` is recognized as `CALENDAR`, and `Page.of(CommandResult)` is called.
-
-Step 9. `Page.of(CommandResult)` again detects that `ResultType` of the `CommandResult` is `CALENDAR`, and calls `new CalendarPage(commandResult.getEvents())`.
-
-Step 10. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
-Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all events it receives, whereas `MonthPage` is a composite CalendarFX control that showcases all events by month in grids.
-
-Step 11. Then, the list of `Event`s received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`, a CalendarFX class that represents an event. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
-
-Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI.
-
-To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
-
- 
 ### Select command feature
 
-#### Implementation
+**Implementation**
 
-The `select` command feature is standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
+The `select` command feature is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
 
 * Update `currentInternship` field in `InternshipCatalogue` which stores the current selected `Internship` for use in other commands.
 * Obtains a list of all the `Event` belonging to that `Internship`.
@@ -338,12 +270,81 @@ The following sequence diagram shows how the select command works:
 
 <p align="center">
 
-![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+<img src="images/SelectSequenceDiagram.png" width="550" />
 
- </p>
+</p>
  
 Note: The lifeline for `SelectCommand` should end at the destroy marker(X) but due to a limitation of PlantUML, the
 lifeline reaches the end of diagram.
+
+### Add Event feature
+The Add Event feature allows users to add instances of `Event` to a selected `Internship`.
+
+**Implementation**
+Here is an example usage of the Add Event feature. 
+
+ 1. User selects the `Internship` they want to add the event to by executing `select <id>`, where `<id>` refers to the index of the `Internship` on the list.
+
+ 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an `Event` to the selected `Internship`.
+
+    2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
+
+The *Activity Diagram* for the above logic flow is below: 
+
+<p align="center">
+
+<img src="images/EventAddActivityDiagram.png" width="550" />
+
+</p>
+
+3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
+4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
+5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
+6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
+7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
+8. `Event` object is then added to the `UniqueEventList` using the `addEvent` method of `model`.
+
+The Sequence Diagram for the adding the event is
+
+<p align="center">
+ 
+<img src="images/EventAddSequenceDiagram.png" width="550" />
+
+</p>
+
+### View Calendar feature
+The View Calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
+It is accessible by the command `calendar`.
+
+**Implementation**
+Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
+
+Step 1. The user enters `calendar` command into the CommandBox.
+
+Step 2. `MainWindow` receives the input and calls `execute('calendar')`. `execute(String)` is a method declared in LogicManager.
+
+Step 3. `InternshipCatalogueParser` parses the input and extracts the command String `calendar`. A `CalendarCommand` is then created.
+
+Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.
+
+Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains an `ObservableList` of all `Event` instances from all existing `Internship`.
+
+Step 6. The `execute` method creates a `CommandResult` that encapsulates the `ObservableList` of all `Event`s. The `CommandResult` is passed to `LogicManager` and subsequently back to `MainWindow` for the GUI to display. 
+
+Step 7. In `MainWindow`'s `executeCommand` method, `Page.of(CommandResult)` is called to create a `Page` to show on the UI.
+
+Step 8. `Page.of(CommandResult)` recognizes that `ResultType` of the `CommandResult` is `CALENDAR`, and creates a `CalendarPage` to be shown by calling `new CalendarPage(commandResult.getEvents())`.
+
+Step 9. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
+* Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all `Event` (in the form of `Entry`), whereas `MonthPage` is a composite CalendarFX control that showcases all `Event` in a month in grids.
+
+Step 10. The `ObservableList` of `Event` received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`. 
+* `Entry` is a CalendarFX class that represents an event in the `Calendar`. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
+
+Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI.
+
+To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
+
 
 ### Clash Command feature
 
