@@ -217,6 +217,8 @@ The format is as follows: `genre`
 
 The command should display the list of available genres in the `Result Box`.
 
+<img width="680" src="images/genres.png">
+
 <div style="page-break-after: always;"></div>
 
 ### Adding a bookmark
