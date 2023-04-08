@@ -41,15 +41,18 @@ public class IsolatedEventList {
      * @param endDate of which event to be added ends at.
      * @return
      */
-    public IsolatedEvent checkClashingIsolatedEvent(LocalDateTime startDate, LocalDateTime endDate) {
+    public IsolatedEvent checkClashingIsolatedEvent(LocalDateTime startDate, LocalDateTime endDate)
+            throws EventConflictException {
         Iterator<IsolatedEvent> it = isolatedEvents.iterator();
         IsolatedEvent currEvent;
         int counter = 0;
 
         while (it.hasNext()) {
             currEvent = it.next();
-            if (currEvent.occursBetween(startDate, endDate)) {
-                return currEvent;
+
+            if (startDate.isBefore(currEvent.getEndDate()) && currEvent.getStartDate().isBefore(endDate)) {
+                int index = counter + 1;
+                throw new EventConflictException("Isolated Event List:\n" + index + ". " + currEvent);
             }
             counter++;
         }
@@ -187,5 +190,4 @@ public class IsolatedEventList {
         }
         return output.toString();
     }
-
 }

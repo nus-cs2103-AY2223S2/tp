@@ -7,7 +7,7 @@ title: Lyndon Lim's Project Portfolio Page
 
 Where Got Time (WGT) a perfect desktop app dedicate to managing your events and plan out your meetings with your friends and family. It is developed for university student, who can type fast to efficiently keep track of all of their events and their friends' events via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, WGT can help you find a date that all your friends are free to meet instead of having to manually compare timetables with each other.
 
-Contributions to my project are given below. [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=CS2103T-t09-2&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
+Contributions to my project are given below. [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=CS2103T-t09-2&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=lyndonlim27&tabRepo=AY2223S2-CS2103T-T09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### New Features:
 * Group create and delete
@@ -36,7 +36,7 @@ Contributions to my project are given below. [RepoSense link](https://nus-cs2103
   * Contributions: Implemented the new prefix and updated the `EditCommand` and `EditCommandParser` accordingly
 
 * Updated UI
-  * Contributions: Changed the layout and colouring scheme
+  * Contributions: Changed the layout, colouring scheme and fixed UI bugs
 
 * **Contributions to the UG**:
   * Added documentation for the features `group create`, `group delete`, `group add`, `group remove`, `group list`, `group find` and `export`.
@@ -46,6 +46,7 @@ Contributions to my project are given below. [RepoSense link](https://nus-cs2103
   * Updated details for non-functional requirements
   * Added details for implementation of `Group Create`, `Group Delete`, `Group Find`, `Edit` and `Export` features, including justifications, sequence and activity diagrams. 
   * Added details in manual testing for `Editing a person`, `Creating a group`, `Deleting a group`, `Finding a group` and `Export a person`.
+  * Added details in Appendix: Planned enhancements for `Group name case-sensitive`, `Data file editable` and `Event names`.
 
 * **Contributions to team-based tasks**:
   * Set-up team's organisation and repository

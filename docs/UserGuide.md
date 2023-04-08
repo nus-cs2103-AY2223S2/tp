@@ -321,7 +321,7 @@ Examples:
 
 Displays the time slots in a week when all members of the specified group are free (no events).
 
-Format: `free GROUP_INDEX [START_DATE]`
+Format: `free GROUP_INDEX [f/START_DATE]`
 
 * Finds unoccupied time slots within members of the group at the specified `GROUP_INDEX`. The index refers to the index number
   shown in the displayed group list. The index *must be a positive* 1, 2, 3 ...
@@ -413,4 +413,4 @@ If your changes to the data file makes its format invalid, the app will discard 
 | **Recurring Event delete** | `re_delete INDEX_OF_PERSON INDEX_OF_EVENT`                                                                                                                                  |
 | **Recurring Event update** | `re_edit INDEX_OF_PERSON INDEX_OF_EVENT [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`                                                                              |
 | **Export person**          | `export [INDEX_OF_PERSON]`                                                                                                                                                  |                                                                                                                                                     |
-| **Free**                   | `free GROUP_INDEX [START_DATE]`                                                                                                                                             |
+| **Free**                   | `free GROUP_INDEX [f/START_DATE]`                                                                                                                                           |
