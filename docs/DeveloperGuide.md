@@ -149,93 +149,13 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `arb.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### Projects
 
@@ -270,10 +190,14 @@ Users have the ability to link projects to clients.
 
 #### Implementation
 
+{_object diagram for an example of two linked clients/projects_}
+
 #### Future improvements
 Currently, projects are only allowed to be linked to a single client. This was done to avoid introducing too much complexity such that it was feasible to complete this feature before the deadline.
 
 In future, projects could be linked to multiple clients. This could be implemented by storing a list of `Client` objects, perhaps using a `UniqueClientList`. The below class diagram showcases this  implementation.
+
+{_class diagram showing the new implementation_}
 
 ### Better filtering
 
@@ -317,6 +241,34 @@ The ProjectCard class has been updated to run the aforementioned isOverdue
 method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
 The OVERDUE status is shown for existing projects in the list that are overdue, and
 if a user adds a project with a deadline with a data that has already past.
+
+### Marking projects
+
+Users have the ability to mark a certain project as DONE.
+
+#### Implementation
+
+
+### Unmarking projects
+
+Users have the ability to mark a certain project as NOT DONE/OVERDUE.
+
+#### Implementation
+
+### Listing Clients
+
+Users have the ability to list all their clients.
+
+#### Implementation
+
+
+### Listing Projects
+
+Users have the ability to list all their projects. A summary of how many overdue, done, and not done projects is also displayed.
+
+#### Implementation
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -353,41 +305,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* *` | artist with many ongoing commissioned projects to keep track of | view my current commissioned projects in order of deadline recency | not miss any deadlines |
 | `*` | artist inexperienced in command line commands | use commands that are closer to natural language | better understand and more effectively use commands |
-| `* * *` | user | add a deadline to a project | record when a project needs to be done |
+| `* * *` | artist | add a deadline to a project | record when a project needs to be done |
 | `*` | artist working with commissions | import a list of clients from a CSV file | use an editable format |
 | `* *` | first-time user of the application | view a guide on how to use the app | learn how to use the app |
 | `*` | artist who wants to increase my earnings | add a large number of commissioned projects at any time | increase my income |
 | `*` | expert in using the application | setup shortcuts for commands I often use | execute them quickly |
 | `* *` | artist who does not want to be overwhelmed by too many ongoing commission projects | quickly see how many ongoing projects I have | deliver for my clients |
-| `* *` | user | tag projects in the list | filter by the tags if necessary |
-| `* *` | user | see projects by their deadlines | finish work on time |
+| `* *` | artist | tag clients in the list | filter by the tags if necessary |
+| `* *` | artist | tag projects in the list | filter by the tags if necessary |
 | `*` | inexperienced user | undo commands | remedy mistakes |
 | `* *` | first-time user of the application | see sample data in the application | understand what the application can do |
 | `* * *` | artist | add clients to the application | keep track of all of my clients |
-| `* * *` | user | remove clients from my list | keep the list accurate |
-| `* *` | user | edit client info | keep client info up to date in case of changes |
-| `* *` | user | edit project info | keep project info up to date in case of changes |
+| `* * *` | artist | remove clients from my list | keep the list accurate |
+| `* *` | artist | edit client info | keep client info up to date in case of changes |
+| `* *` | artist | edit project info | keep project info up to date in case of changes |
 | `* *` | artist who wants to know which of my ongoing projects are most lucrative | quickly sort my ongoing projects based on commission size | prioritize higher commissioned projects |
+| `* *` | artist | add to a project how much money it will make me | know the profit of my projects |
 | `* *` | artist | search for clients using keywords | find specific clients quickly |
-| `* *` | user | ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
+| `* *` | artist | ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
 | `*` | artist | quickly see how many times a specific client has commissioned me for a project before | know if clients are returning |
+| `* *` | artist | see how much profit a client has made me so far | know which client is making me the most profit |
+| `* *` | artist | sort clients by how much profit they have made me so far | know which clients are making me the most profit |
 | `* *` | artist | sort clients by the number of times they have commissioned me before | know if a given client and I have a long-standing relationship |
 | `* * *`| artist | add contact info to clients | know how to reach them if needed |
 | `*` | artist | blacklist certain clients | know who to avoid |
-| `* *` | artist | add projects to clients | know what projects are for what clients |
+| `* *` | artist | link projects to clients | know what projects are for what clients |
 | `* *` | artist | get asked if I am sure I want to delete an ongoing project | be prevented from accidentally deleting an ongoing project |
 | `* * *`| artist | mark a certain project as done | know it is no longer ongoing |
 | `*` | user | easily generate text to share client information | send it to someone else if required |
-| `* * *` | user | unmark a project as done | ensure my list is accurate in case I accidentally marked a project as done |
+| `* * *` | artist | unmark a project as done | ensure my list is accurate in case I accidentally marked a project as done |
 | `*` | artist | add dates in different formats without being asked to give it in a certain format | not have to memorize providing dates in a certain format |
 | `* *`| artist | see all projects due within a specific time period | know what is due at different times and plan my work |
 | `*` | artist | have the application convert different time zones to my local one and state which country the client is from | add times for clients from various countries and not have to do the conversion myself |
-
-*{More to be added}*
+| `* *` | artist | see all tags I have used | know what tags to use to find clients/projects |
+| `*` | experienced user | directly edit the data file | change stored information without having to open the app |
+| `* *` | artist | find specific clients | see their information |
+| `* *`| artist | find specific projects | see their information |
+| `* *` | artist | search for projects using keywords | find specific projects quickly |
+| `* *` | busy artist | see what projects are due in a certain timeframe | better plan my schedule |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ArB` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -412,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Use case - Delete Project**
+**Use case: Delete Project**
 
 **MSS**:
 1. User enters command for deleting project of certain client.
@@ -428,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Use case ends.
 
 
-**Use case: Use case - Edit Project**
+**Use case: Edit Project**
 
 **MSS**:
 1. User enters command to editing project, including project ID and details to edit
@@ -449,6 +408,46 @@ Use case ends.
 
 Use case ends.
 
+**Use case: Find Project**
+
+**MSS**:
+1. User enters command to find projects, including parameters such as name, deadline, tags or linked clients.
+2. ArB lists all projects that match the provided parameters.<br>
+   Use case ends.
+
+**Extension**:
+
+* 1a. ArB detects that none of the parameters provided are valid.
+  * 1a1. ArB informs user that no valid parameters were provided.<br>
+  Use case ends.
+
+**Use case: Find Client**
+
+**MSS**:
+1. User enters command to find clients, including parameters such as name or tags.
+2. ArB lists all clients that match the provided parameters.<br>
+   Use case ends.
+
+**Extension**:
+* 1a. ArB detects that none of the parameters provided are valid.
+  * 1a1. ArB informs user that no valid parameters were provided.<br>
+  Use case ends.
+
+**Use case: Link Project To Client**
+
+**MSS**:
+1. User indicates that they want to link a specific project to a client, providing ArB with client name keywords.
+2. ArB lists all clients that match the provided client name keywords.
+3. User selects the client they want to link the project to.
+4. ArB links the project to the selected client.<br>
+   Use case ends.
+
+**Extension**:
+* 3a. User chooses to cancel the linking.<br>
+  Use case ends.
+* 3b. User makes an invalid selection.
+  * 3b1. ArB shows an error message.<br>
+    Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
@@ -481,7 +480,7 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Clients**: A person who has commissioned the user
 * **Project**: A piece of (art)work to be completed
-* **Contact info**: Email, Phone Number, Social media
+* **Contact info**: Email, Phone Number
 * **Project status**: How close to completion a project is
 
 --------------------------------------------------------------------------------------------------------------------
@@ -499,9 +498,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. [Download the jar file](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases) and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file.<br>
+      Expected: Shows the GUI with a set of sample clients and projects. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -510,28 +510,362 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Saving data
 
-### Deleting a person
+   1. Delete a client from the client list. Close the window.
 
-1. Deleting a person while all persons are being shown
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The client should remain deleted. 
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Listing all clients
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Listing all clients while some clients are hidden
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Filter the client list using the `find-client` command such that only some clients are visible.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Enter the command: `list-client`<br>
+      Expected: All clients shown. Success message shown.
+
+1. Listing all clients while viewing another list
+
+   1. Show a list other than the client list using either the `list-project` or `list-tag` commands.
+
+   1. Enter the command: `list-client`<br>
+      Expected: All clients shown. Success message shown.
+
+### Listing all projects
+
+1. Listing all projects while some projects are hidden
+
+   1. Filter the project list using the `find-project` command such that only some projects are visible.
+
+   1. Enter the command: `list-project`<br>
+      Expected: All projects shown. Success message shown.
+
+1. Listing all projects while viewing another list
+
+   1. Show a list other than the project list using either the `list-client` or `list-tag` commands.
+
+   1. Enter the command: `list-project`<br>
+      Expected: All projects shown. Success message shown.
+
+### Listing all tags
+
+1. Listing all tags while viewing another list
+
+   1. Show a list other than the tag list using either the `list-client` or `list-project` commands.
+
+   1. Enter the command: `list-tag`<br>
+      Expected: All tags shown. Success message shown.
+
+### Adding a client
+
+1. Specifying all details
+
+   1. Enter the command: `add-client name/John Doe phone/12345678 email/john@example.com tag/friends`<br>
+      Expected: A client with the specified details added. Details of added client shown in status message.
+
+1. Specifying only compulsory details
+
+   1. Enter the command: `add-client name/David Leong`<br>
+      Expected: Same as previous.
+
+1. Adding a duplicate client
+
+   1. Add a client by the name `John Doe` to the client list.
+
+   1. Enter the command: `add-client name/John Doe`<br>
+      Expected: Client is not added. Error message shown.
+
+### Adding a project
+
+1. Specifying all details
+
+   1. Enter the command: `add-project name/Oil Painting deadline/tomorrow price/500 tag/friends`<br>
+      Expected: A project with the specified details added. Details of added project shown in status message.
+
+1. Specifying only compulsory details
+
+   1. Enter the command: `add-project name/Sky Painting`<br>
+      Expected: Same as previous.
+
+1. Adding a duplicate project
+
+   1. Add a project by the name `Oil Painting` to the project list.
+
+   1. Enter the command: `add-project name/Oil Painting`<br>
+      Expected: Project is not added. Error message shown.
+
+1. Linking added project to client
+
+   1. Prerequisites: Add a client by the name `Alice Leong` to the client list. Enter the command: `add-project name/Self Portrait client/alice`<br>
+      Expected: Details of added project shown in status message. Filtered client list shown.
+
+   1. Test case: `1`<br>
+      Expected: Success message shown. Added project linked to first client in filtered client list.
+
+   1. Test case: `0`<br>
+      Expected: Cancel message shown. Added project not linked to any client.
+
+   1. Test case: `x` where x is larger than the length of the filtered client list<br>
+      Expected: Error message shown.
+
+### Editing a client
+
+1. Editing a client while all clients are being shown
+
+   1. Prerequisites: List all clients using the `list-client` command. There should be multiple clients in the list.
+
+   1. Test case: `edit-client 1 name/John Doe phone/12345678 email/john@example.com tag/friends`<br>
+      Expected: First client's details are edited. Details of edited client shown in status message.
+
+   1. Test case: `edit-client 0 name/John Doe`<br>
+      Expected: No client is edited. Error details shown in the status message. 
+
+   1. Other incorrect edit commands to try: `edit-client`, `edit-client x name/John`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Editing a client while only some clients are shown
 
-### Saving data
+   1. Prerequisites: Filter the client list using the `find-client` command such that only some clients are visible.
+
+   1. Test case: `edit-client 1 name/John Doe phone/12345678 email/john@example.com tag/friends`<br>
+      Expected: First client's details are edited. Details of edited client shown in status message.
+
+   1. Test case: `edit-client 0 name/John Doe`<br>
+      Expected: No client is edited. Error details shown in the status message.
+
+   1. Test case: `edit-client x name/John` where x is smaller than the entire client list size but is larger than the visible list size<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect edit commands to try: `edit-client`<br>
+      Expected: Similar to previous.
+
+1. Editing a client while the client list is not being shown
+
+   1. Prerequisites: Show a list other than the client list using either the `list-project` or `list-tag` commands. There should be multiple clients in the client list.
+
+   1. Test case: `edit-client 1 name/John`<br>
+      Expected: No client is edited. Error details shown in the status message.
+
+### Editing a project
+
+1. Editing a project while all projects are being shown
+
+   1. Prerequisites: List all projects using the `list-project` command. There should be multiple projects in the list.
+
+   1. Test case: `edit-project 1 name/Sky Painting deadline/next week price/50 tag/friends`<br>
+      Expected: First project's details are edited. Details of edited project shown in status message.
+
+   1. Test case: `edit-project 0 name/Sky Painting`<br>
+      Expected: No project is edited. Error details shown in the status message. 
+
+   1. Other incorrect edit commands to try: `edit-project`, `edit-project x name/Sky Painting`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Editing a project while only some projects are shown
+
+   1. Prerequisites: Filter the project list using the `find-project` command such that only some projects are visible.
+
+   1. Test case: `edit-project 1 name/Sky Painting deadline/next week price/50 tag/friends`<br>
+      Expected: First project's details are edited. Details of edited project shown in status message.
+
+   1. Test case: `edit-project 0 name/Sky Painting`<br>
+      Expected: No project is edited. Error details shown in the status message.
+
+   1. Test case: `edit-project x name/Sky Painting` where x is smaller than the entire project list size but is larger than the visible list size<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect edit commands to try: `edit-project`<br>
+      Expected: Similar to previous.
+
+1. Editing a project while the project list is not being shown
+
+   1. Prerequisites: Show a list other than the project list using either the `list-client` or `list-tag` commands. There should be multiple projects in the project list.
+
+   1. Test case: `edit-project 1 name/Sky Painting`<br>
+      Expected: No project is edited. Error details shown in the status message.
+
+1. Linking edited project to client
+
+   1. Prerequisites: Add a client by the name `Alice Leong` to the client list. Display the project list with `list-project`. Enter the command: `edit-project 1 client/alice`<br>
+      Expected: Details of edited project shown in status message. Filtered client list shown.
+
+   1. Test case: `1`<br>
+      Expected: Success message shown. Edited project linked to first client in filtered client list.
+
+   1. Test case: `0`<br>
+      Expected: Cancel message shown. Edited project not linked to any client.
+
+   1. Test case: `x` where x is larger than the length of the filtered client list<br>
+      Expected: Error message shown.
+
+### Deleting a client
+
+1. Deleting a client while all clients are being shown
+
+   1. Prerequisites: List all clients using the `list-client` command. There should be multiple clients in the list.
+
+   1. Test case: `delete-client 1`<br>
+      Expected: First client is deleted from the client list. Details of the deleted client shown in the status message.
+
+   1. Test case: `delete-client 0`<br>
+      Expected: No client is deleted. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `delete-client`, `delete-client x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Deleting a client while only some clients are shown
+
+   1. Prerequisites: Filter the client list using the `find-client` command such that only some clients are visible.
+
+   1. Test case: `delete-client 1`<br>
+      Expected: First client is deleted from the client list. Details of the deleted client shown in the status message.
+
+   1. Test case: `delete-client 0`<br>
+      Expected: No client is deleted. Error details shown in the status message.
+
+   1. Test case: `delete-client x` where x is smaller than the entire client list size but is larger than the visible list size<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect delete commands to try: `delete-client`<br>
+      Expected: Similar to previous.
+
+1. Deleting a client while the client list is not being shown
+
+   1. Prerequisites: Show a list other than the client list using either the `list-project` or `list-tag` commands. There should be multiple clients in the client list.
+
+   1. Test case: `delete-client 1`<br>
+      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+
+### Deleting a project
+
+1. Deleting a project while all projects are being shown
+
+   1. Prerequisites: List all projects using the `list-project` command. There should be multiple projects in the list.
+
+   1. Test case: `delete-project 1`<br>
+      Expected: First project is deleted from the project list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete-project 0`<br>
+      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `delete-project`, `delete-project x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Deleting a project while only some projects are shown
+
+   1. Prerequisites: Filter the project list using the `find-project` command such that only some projects are visible.
+
+   1. Test case: `delete-project 1`<br>
+      Expected: First project is deleted from the project list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete-project 0`<br>
+      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `delete-project x` where x is smaller than the entire project list size but is larger than the visible list size<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect delete commands to try: `delete-project`<br>
+      Expected: Similar to previous.
+
+1. Deleting a project while the project list is not being shown
+
+   1. Prerequisites: Show a list other than the project list using either the `list-client` or `list-tag` commands. There should be multiple projects in the project list.
+
+   1. Test case: `delete-project 1`<br>
+      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+
+### Finding clients
+
+1. Finding clients
+
+   1. Prerequisites: Add a client by the name of `Alice Lim` to the client list.
+
+   1. Test case: `find-client name/Alice`<br>
+      Expected: Client list with one client is shown. Status message states that one client was found.
+   
+   1. Test case: `find-client`<br>
+      Expected: Error message is shown.
+
+### Finding projects
+
+1. Finding projects
+
+   1. Prerequisites: Add a project by the name of `Self Portrait` to the project list.
+
+   1. Test case: `find-project name/self`<br>
+      Expected: Project list with one project is shown. Status message states that one project was found.
+   
+   1. Test case: `find-project`<br>
+      Expected: Error message is shown.
+
+### Sorting clients
+
+1. Sorting clients when entire client list is shown
+
+   1. Prerequisites: Client list should have multiple clients.
+
+   1. Test case: `sort-client`<br>
+      Expected: Client list is sorted by name. Status message states that client list was sorted.
+
+1. Sorting clients when some clients are hidden
+
+   1. Prerequisites: Filter the client list with the `find-client` command. Client list should have multiple clients.
+
+   1. Test case: `sort-client`<br>
+      Expected: Visible clients are sorted by name. Status message states that client list was sorted.
+
+### Sorting projects
+
+1. Sorting projects when entire project list is shown
+
+   1. Prerequisites: Project list should have multiple projects.
+
+   1. Test case: `sort-project option/name`<br>
+      Expected: Project list is sorted by name. Status message states that project list was sorted.
+
+1. Sorting projects when some projects are hidden
+
+   1. Prerequisites: Filter the project list with the `find-project` command. Project list should have multiple projects.
+
+   1. Test case: `sort-project option/name`<br>
+      Expected: Visible projects are sorted by name. Status message states that project list was sorted.
+
+### Editing the data file
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-1. _{ more test cases …​ }_
+   1. Test case: delete the data file<br>
+      Delete the JSON file in the `data` folder that is found in the same folder the jar file before launching the app.<br>
+      Expected: Status message should state that a data file could not be found. The app should be filled with sample data.
+   
+   1. Test case: corrupt the data file<br>
+      Open the JSON file and delete the `name` attribute of a client before launching the app.<br>
+      Expected: Status message should state that the data file was not in the correct format. The app should start with no data.
+
+1. Correctly editing the data file
+
+   1. Test case: Change the name attribute of a client to another valid value such as `David` before launching the app<br>
+      Expected: Status message should state that the data file was found, and the app should reflect the edited data.
+
+   1. Other edits to try: Editing other attributes such as phone number<br>
+      Expected: Similar to previous.
+      
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+### Difficulty Level
+
+### Challenges Faced
+
+### Effort Required
+
+### Achievements
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. {_some feature flaw and how we plan to fix it in future_}
