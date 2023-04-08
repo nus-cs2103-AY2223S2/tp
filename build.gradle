@@ -28,7 +28,7 @@ test {
             'testfx.headless': 'true',
             'prism.order': 'sw',
             'prism.text': 't2k',
-            'illegal-access': 'permit'
+            'sun.miscillegalAccessWarning': 'permit'
     ]
 }
 
