@@ -43,7 +43,7 @@ I worked on the backend mainly and documentation. I was mainly in charge of impl
 
 
 * **Refactoring**: Refactored all instances of `Person` to `role` in all the files.
-  * What it does: Renamed all methods, classes and variables that contain `Person` or `person`
+  * What it does: Renamed all methods, classes and variables that contained `person`
     to `role`.
   * Justification: Roles fits towards TechTrack instead of person in AB3 and would be clearer for future developments.
   * Highlights: Refactored AB3 code and tests.
@@ -51,29 +51,27 @@ I worked on the backend mainly and documentation. I was mainly in charge of impl
 
 * **Testing**: Tests new implementation and class created.
   * What it does: Allow the code to be covered by more tests and making it more robust.
-  * Justification: New classes such as `CompanyCommandParser`, `Salary` and `CompanyCommand` have test cases in their
+  * Justification: New classes such as `CompanyCommandParser`, `salary` and `CompanyCommand` have test cases in their
     respective test classes. These tests are written to ensure the reliability of these classes.
   * Highlights: Better code coverage and robustness of TechTrack.
 
 ## Enhancements
 
-* Implementation of `Salary` in TechTrack.
+* Implementation of `salary` in TechTrack.
 * Implementation of `CompanyCommand` where users can filter for various companies.
-* ...
 
 ## Bug Fixes
-* Fixed UG bugs. (missing commands in command summary)
-* ...
+* Fixed UG bugs reported in PE-Dry run. (missing commands in command summary)
 
 * **Documentation:**
   * User Guide:
     * Added the `$/` parameter for the `salary` field in the `add` command
     * Wrote and provided the screenshots of `company` command.
-  * Developer Guide (TO BE ADDED):
-    * Wrote the implementation of CompanyCommand.
-    * Wrote the alternatives of CompanyCommand.
+  * Developer Guide:
+    * Wrote the implementation and alternatives of CompanyCommand.
+    * Edited the implementation of DeleteCommand and its dependencies.
     * Constructed the sequence diagram of CompanyCommand.
-    * Added Use cases for TechTrack v2 commands. 
+    * Added all Use cases for TechTrack v2 commands. 
 
 ## Links to Contributions
 
