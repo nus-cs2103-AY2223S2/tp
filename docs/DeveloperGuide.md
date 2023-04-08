@@ -88,6 +88,8 @@ Java libraries used in this project:
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+[↑ Back to table of contents](#table-of-contents)
+
 ---
 
 <div style="page-break-after: always"></div>
@@ -124,6 +126,10 @@ The Developer Guide has six main sections:
 - If you are in the **marketing or product team**, or are interested in knowing why ConnectUS was created, the [Requirements](#8-requirements) section addresses our [Product Scope](#81-product-scope), [User Stories](#82-user-stories), [Use Cases](#83-use-cases), and [Non-Functional Requirements (NFRs)](#84-non-functional-requirements).
 
 - Refer to the [Glossary](#9-glossary) for definitions of terms used in ConnectUS.
+
+[↑ Back to top of section](#2-how-to-use-the-developer-guide)
+
+[↑ Back to table of contents](#table-of-contents)
 
 ---
 
@@ -205,6 +211,10 @@ In this Developer Guide, contacts that users add to the [ConnectUS contact list]
 
 </div>
 
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 3.2 UI component
@@ -223,6 +233,10 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -259,6 +273,10 @@ How the parsing works:
 * When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a <u>placeholder</u> for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 3.4 Model component
@@ -281,6 +299,10 @@ An alternative (arguably, a more OOP) model is given below. It has a `Tag` list 
 
 </div>
 
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 3.5 Storage component
@@ -294,6 +316,10 @@ The `Storage` component,
 * inherits from both `ConnectUsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 3.6 Common classes
@@ -301,6 +327,10 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.connectus.commons` package.
 
 **API** : [`Commons.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/src/main/java/seedu/connectus/commons)
+
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
 
 ---
 
@@ -350,6 +380,10 @@ The following sequence diagram shows how `add` works:
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 4.2 Edit Command
@@ -397,6 +431,10 @@ The following sequence diagram provides details on how the `informationFields` a
 
 ![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 4.3 Delete Command
@@ -404,6 +442,10 @@ The following sequence diagram provides details on how the `informationFields` a
 **Overview:**
 
 **Feature Details:**
+
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -424,6 +466,10 @@ The following activity diagram shows the logic of the `help` command.
 
 ![HelpCommandActivityDiagram](images/HelpCommandActivityDiagram.png)
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 4.5 Adding Additional Tags Command
@@ -431,6 +477,10 @@ The following activity diagram shows the logic of the `help` command.
 **Overview:**
 
 **Feature Details:**
+
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -440,6 +490,10 @@ The following activity diagram shows the logic of the `help` command.
 
 **Feature Details:**
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 4.7 Search Command
@@ -447,6 +501,10 @@ The following activity diagram shows the logic of the `help` command.
 **Overview:**
 
 **Feature Details:**
+
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -456,6 +514,10 @@ The following activity diagram shows the logic of the `help` command.
 
 **Feature Details:**
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 4.9 Open Command
@@ -463,6 +525,10 @@ The following activity diagram shows the logic of the `help` command.
 **Overview:**
 
 **Feature Details:**
+
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -503,6 +569,10 @@ However, such an address would be considered invalid in real life, as it would a
 
 However, such an Instagram username would be considered valid in real life.
 
+[↑ Back to top of section](#5-planned-enhancements)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 5.3 More Language Support
@@ -532,6 +602,10 @@ For example, our testers have noted that:
 
 We plan to address and improve our UI in V1.6.
 
+[↑ Back to top of section](#5-planned-enhancements)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 5.6 Improve Tag Deletion Command
@@ -554,6 +628,8 @@ We plan to address this constraint in the next iteration of this product (V1.5).
 
 [↑ Back to top of section](#5-planned-enhancements)
 
+[↑ Back to table of contents](#table-of-contents)
+
 ---
 
 <div style="page-break-after: always"></div>
@@ -565,6 +641,8 @@ We plan to address this constraint in the next iteration of this product (V1.5).
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[↑ Back to table of contents](#table-of-contents)
 
 ---
 
@@ -600,6 +678,10 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 7.2 Adding a person:
@@ -610,6 +692,10 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `add n/ e/email@example.com`<br>
        Expected: No `Person` is created. Error details shown in status message.
     4. _{ more test cases …​ }_
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -631,6 +717,10 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 7.4 Saving data
@@ -640,6 +730,10 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
 
 ---
 
@@ -660,6 +754,8 @@ testers are expected to do more *exploratory* testing.
 * is reasonably comfortable using <u>CLI</u> apps
 
 **Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends' information, saving time and effort as users can access this information at their fingertips.
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -707,6 +803,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                         | send short messages on WhatsApp directly from the app                   | message someone without having to juggle between apps                                     |
 | `*`      | user with friends from other schools         | add school tags to a contact                                            | remember which school they are from                                                       |
 | `*`      | user with friends from companies             | add company tags to a contact                                           | remember which company they are from                                                      |
+
+[↑ Back to top of section](#8-requirements)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -928,6 +1028,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. WhatsApp is launched but it does not fill the message.
   Use case resumes from step 3.
 
+[↑ Back to top of section](#8-requirements)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 8.4 Non-Functional Requirements
@@ -943,6 +1047,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. Should not cause have its <u>GUI</u> cause any resolution-related inconveniences to the user for standard screen resolutions (1920x1080 and higher), and resolutions of 1280x720 and higher.
 10. Should be packaged into a single JAR file not exceeding 100MB.
 11. Should not have any hard-to-test features or features that make it hard-to-test.
+
+[↑ Back to top of section](#8-requirements)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -1030,6 +1138,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > **User Story:**
 > User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new feature. It is typically of the format: "As a [user type], I can [function] so that [benefit]."
 
-[↑ Back to top](#table-of-contents)
+[↑ Back to top of section](#8-requirements)
+
+[↑ Back to table of contents](#table-of-contents)
 
 
