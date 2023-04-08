@@ -1332,4 +1332,22 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.appointmentDataMap.modifyTechnician(technician, isRemove);
         this.serviceDataMap.modifyTechnician(technician, isRemove);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Shop // instanceof handles nulls
+                && customers.equals(((Shop) other).customers)
+                && vehicles.equals(((Shop) other).vehicles)
+                && services.equals(((Shop) other).services)
+                && appointments.equals(((Shop) other).appointments)
+                && technicians.equals(((Shop) other).technicians)
+                && parts.equals(((Shop) other).parts));
+    }
+
+    @Override
+    public int hashCode() {
+        return customers.hashCode() + vehicles.hashCode() + services.hashCode()
+                + appointments.hashCode() + technicians.hashCode() + parts.hashCode();
+    }
 }
