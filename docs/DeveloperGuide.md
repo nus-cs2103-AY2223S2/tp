@@ -163,9 +163,9 @@ Based on the flag, either a new `PresentAttendanceListCard` (with a green backgr
 
 ![Student Page](images/UiStudentPageDesign.png)
 
-*Figure 6: Screenshot of Student Page*
+*Figure 7: Screenshot of Student Page*
 
-In Figure 6, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
+In Figure 7, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
 The user interface has a straightforward dashboard layout that uses a list panel to display Courses, Groups, Sessions, Tasks, or Students in the Left Pane.
 Since we are on the student page, a list of students is shown. 
 
@@ -175,14 +175,14 @@ Since we are on the student page, a list of students is shown.
 
 ![StudentListCard](images/UiStudentListCard.png)
 
-*Figure 7: A student list card*
+*Figure 8: A student list card*
 
 Instead of `StudentId`, we initially considered displaying the `Course` and `Group` the student belongs to in their individual student cards.
-However, this information is already displayed in the navigation bar (shown in Figure 6, above the `StudentListPanel` in "CS2103T > T15").
+However, this information is already displayed in the navigation bar (shown in Figure 7, above the `StudentListPanel` in "CS2103T > T15").
 Furthermore, since each `Student` is uniquely identified by their `StudentId` (i.e adding another student with the same `StudentId` to the same `Group` will throw an error message), it would be more useful to display their `StudentId` instead.
 
 Another alternative we considered was displaying the full information of a `Student` in each `StudentListCard`, however doing so will quickly overwhelm the `StudentListPanel` if there were many students in the group.
-As such, we have implemented a separate `StudentViewCard` that will be shown in the Right Pane (as shown in Figure 6) when the user enters a `select` command on the Student Page.
+As such, we have implemented a separate `StudentViewCard` that will be shown in the Right Pane (as shown in Figure 7) when the user enters a `select` command on the Student Page.
 
    
 
