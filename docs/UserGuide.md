@@ -901,6 +901,10 @@ Table 8 provides a glossary for the technical terms used in this user guide.
   the [SE-EDU initiative](https://se-education.org).
 * Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
-* Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-  (primarily for the purposes of GUI testing and the feature of navigating through past commands).
+* GUI testing is implemented with references from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp). We utilised code from these projects to set
+  up GUI testing and added our own test cases to test the UI components that we created.
+* The feature of Navigating Through Past Commands is primarily adapted from  [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp),
+  but we added code modifications and test cases.
+* The sections on explaining the formatting standards and GUI interface in the User and Developer Guides are
+  inspired by [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
