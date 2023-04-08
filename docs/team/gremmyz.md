@@ -20,12 +20,14 @@ Given below are my contributions to the project.
     * All commands and tests of AB3 were modified to create ConnectUS.
   * Pull requests: [\#92]()
 
+<br>
 
 * **New Feature**: Added the user interface for new tag types.
   * What it does: Creates tags in the UI in different colors based on the tag type (i.e. module, CCA, major, remark).
   * Justification: This feature allows the user to differentiate between different tag types more easily.
   * Pull requests: [\#119]()
 
+<br>
 
 * **Enhancements to existing features**:
   * Enhanced the `help` command to provide help for individual commands specified by the user, rather than a generic message.
@@ -38,12 +40,14 @@ Given below are my contributions to the project.
     * Justification: Users will be more inclined to use an application with a nicer looking UI.
   * Added JUnit tests for new and existing features.
 
+<br>
 
 * **Project Management**:
   * Overall team lead in charge of deciding on direction of product.
   * Created the following milestones: `V1.1, V1.2, V1.2b, V1.3, V1.3b, V1.4`
     * These milestones were essential in ensuring the group kept on track throughout our assigned tasks.
 
+<br>
 
 * **Documentation**:
   * User Guide:
@@ -66,14 +70,17 @@ Given below are my contributions to the project.
     * Added Glossary into Developer Guide.
     * Added Non-Functional Requirements into Developer Guide.
 
+<br>
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=gremmyz&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+<br>
 
 * **Community**:
   * PRs reviewed: 24 PRs [reviewed](https://github.com/AY2223S2-CS2103T-W15-1/tp/pulls?q=is%3Apr+reviewed-by%3A%40me).
   * Reported bugs and suggestions for other teams during PE dry run: 15 reports posted as [issues](https://github.com/gremmyz/ped/issues).
 
+<br>
 
 * **Other PRs**:
     * [Link](https://github.com/AY2223S2-CS2103T-W15-1/tp/pulls?q=is%3Apr+assignee%3Agremmyz+) to my PRs.
