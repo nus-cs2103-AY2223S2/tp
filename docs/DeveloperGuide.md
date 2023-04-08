@@ -230,7 +230,7 @@ Here is how `Task` works:
 This is the class representation for the `Menu` class.
 
 <p align ="center">
-  <img src="images/UpdatedMenuClassDiagram.svg" width="550" />
+  <img src="images/MenuClassDiagram.svg" width="550" />
   <br>Figure 11: Menu Class Diagram
 </p>
 
@@ -246,8 +246,8 @@ Here is how `Menu` works:
 **Aspect: Choice to provide a menu package:**
 
 * **Option 1 (our choice):** Separating it into a separate `menu` package.
-    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively when you add an order.
-    * Advantage 2: Less repeated code
+    * Advantage 1: Ensure that the Order name added is a valid item on the menu, which prevents users from accidentally keying in a wrong order name.
+    * Advantage 2: Allows user to see more details of the menu item in a separate tab (e.g. users can see a selling price, cost price and profit for each item)
     * Disadvantage: More time required to implement.
 
 * **Option 2:** Add item name as an attribute in the `Order` class.
@@ -546,15 +546,15 @@ MSS
 
 **Use case: UC22 - Delete a task**
 
-(Similar to UC01)
+(Similar to UC02)
 
 **Use case: UC32 - Delete an order**
 
-(Similar to UC01)
+(Similar to UC02)
 
 **Use case: UC42 - Delete a menu item**
 
-(Similar to UC01)
+(Similar to UC02)
 
 **Use case: UC03 - Edit a contact**
 
@@ -587,15 +587,15 @@ MSS
 
 **Use case: UC23 - Edit a task**
 
-(Similar to UC01)
+(Similar to UC03)
 
 **Use case: UC33 - Edit an order**
 
-(Similar to UC01)
+(Similar to UC03)
 
 **Use case: UC43 - Edit a menu item**
 
-(Similar to UC01)
+(Similar to UC03)
 
 **Use case: UC04 - Finding a supplier**
 
@@ -622,19 +622,19 @@ MSS
 
 **Use case: UC14 - Find a customer**
 
-(Similar to UC01)
+(Similar to UC04)
 
 **Use case: UC24 - Find a task**
 
-(Similar to UC01)
+(Similar to UC04)
 
 **Use case: UC34 - Find an order**
 
-(Similar to UC01)
+(Similar to UC04)
 
 **Use case: UC44 - Find a menu item**
 
-(Similar to UC01)
+(Similar to UC04)
 
 **Use case: UC50 - Switch to another tab**
 
