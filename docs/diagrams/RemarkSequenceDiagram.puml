@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":OpeningDetailsPanel" as OpeningDetailsPanel UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UltronParser" as UltronParser LOGIC_COLOR
+participant ":RemarkCommand" as RemarkCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "filteredOpenings:" as ObservableList MODEL_COLOR
+participant ":Opening" as Opening MODEL_COLOR
+end box
+
+[->MainWindow : executeCommand("remark 1 r/2 OAs")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("remark 1 r/2 OAs")
+activate LogicManager
+
+LogicManager -> UltronParser : parseCommand("remark 1 r/2 OAs")
+activate UltronParser
+
+create RemarkCommand
+
+UltronParser -> RemarkCommand : RemarkCommand()
+activate RemarkCommand
+
+RemarkCommand --> UltronParser
+deactivate RemarkCommand
+
+UltronParser --> LogicManager : command
+deactivate UltronParser
+
+LogicManager -> RemarkCommand : execute()
+activate RemarkCommand
+
+RemarkCommand -> Model : getFilteredOpeningList()
+activate Model
+
+Model --> RemarkCommand
+deactivate Model
+
+RemarkCommand -> ObservableList : get(0)
+activate ObservableList
+
+ObservableList --> RemarkCommand : openingToEdit
+deactivate ObservableList
+
+create Opening
+RemarkCommand -> Opening : new Opening(openingToEdit, remark)
+activate Opening
+
+Opening --> RemarkCommand : editedOpening
+deactivate Opening
+
+RemarkCommand -> Model : setOpening(openingToEdit, editedOpening)
+activate Model
+
+Model --> RemarkCommand
+deactivate Model
+
+RemarkCommand --> LogicManager : commandResult
+deactivate RemarkCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
