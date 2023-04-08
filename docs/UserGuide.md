@@ -143,37 +143,41 @@ Feel free to play around with the sample data to familiarise yourself with the c
 :information_source: Named arguments are arguments which have a prefix while unnamed arguments are arguments without a prefix.\
 e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unnamed argument and "DSAG" is the value of the named argument `/name`.
 
-1. Items in curly braces (i.e. `{}`) are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.
+1. Items in curly braces (i.e. `{}`) are **placeholders** for some actual value. In a command format, they represent the **argument values** to be supplied by the user.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code}</code>, <code>{module_code}</code> is an argument value. The command can be used as <code>add CS2040</code>.
    </details>
 
-2. Items in square brackets (i.e. `[]`) are optional.
+2. Items in square brackets (i.e. `[]`) are **optional**.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} [/name {module_name}]</code>, the <code>/name</code> argument is optional. The command can be used as <code>add CS2040 /name Data Structures and Algorithms</code> or as <code>add CS2040</code>.
    </details>
 
-3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).
+3. Named arguments can be specified in **any order** as long as it is after all unnamed arguments (if any).
    <details>
    <summary>Example</summary>
    For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, the command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
    </details>
 
-4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.
+4. If a named argument is expected only once in the command but the user specified it multiple times, only the **last occurrence** of the argument will be taken.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} [/name {module_name}]</code>, if used as <code>add CS2040 /name Data Structures and Algorithms /name DSAG</code>, <code>DSAG</code> will be taken as the value of the <code>/name</code> argument.
    </details>
 
-5. Extraneous arguments will be ignored.
+5. Extraneous arguments will be **ignored**.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} /name {module_name}</code>, if used as <code>add CS2040 /name DSAG /foo bar</code>, the <code>/foo</code> argument is ignored.
    </details>
 
-6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace or it is the end of the command.
+6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a **named argument** if the following 2 conditions are met:
+
+   1. There is a whitespace before `/{argument_name}`
+   2. `/{argument_name}` is followed by a whitespace or it is the end of the command
+
    <details>
    <summary>Example</summary>
    For the command <code>find Intro /mod CS2040S /byTag</code>, <code>/mod</code> and <code>/byTag</code> are both recognised as named arguments.
