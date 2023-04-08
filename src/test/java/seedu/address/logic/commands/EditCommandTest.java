@@ -32,20 +32,6 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalExecutiveProDb(), new UserPrefs());
 
     //    @Test
-    //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-    //        Employee editedEmployee = new EmployeeBuilder().build();
-    //        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
-    //        EditCommand editCommand = new EditCommand(editedEmployee.getEmployeeId(), descriptor);
-    //
-    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
-    //
-    //        Model expectedModel = new ModelManager(new ExecutiveProDb(model.getAddressBook()), new UserPrefs());
-    //        expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
-    //
-    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    //    }
-
-    //    @Test
     //    public void execute_someFieldsSpecifiedUnfilteredList_success() {
     //        EmployeeId lastEmployeeId = new EmployeeId(String.valueOf(model.getFilteredEmployeeList().size()));
     //        Employee lastEmployee = model.getFilteredEmployeeList().get(model.getFilteredEmployeeList().size());
