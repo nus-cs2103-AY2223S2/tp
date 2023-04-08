@@ -7,12 +7,15 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalScores.SCORE_1;
+import static seedu.address.testutil.TypicalScores.SCORE_2;
+import static seedu.address.testutil.TypicalScores.SCORE_3;
 import static seedu.address.testutil.TypicalStudents.getTypicalMathutoring;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -48,6 +51,16 @@ class AddScoreCommandTest {
                 "Label: " + validScore.getLabel().toString() + "; "
                         + "Score: " + validScore.getValue().toString() + "; "
                         + "Date: " + validScore.getDate().toString()), commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_addScoreDuplicate_throwsCommandException() {
+        assertThrows(CommandException.class, (
+                ) -> {
+            new AddScoreCommand(INDEX_FIRST_STUDENT, SCORE_2).execute(model);
+            new AddScoreCommand(INDEX_FIRST_STUDENT, SCORE_3).execute(model);
+        }
+        );
     }
 
     @Test

@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.SCORE_FULL_DATE_IN_FU
 import static seedu.address.logic.commands.CommandTestUtil.SCORE_FULL_INVALID_DATE_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.SCORE_FULL_MISSING_LABEL_PREFIX;
 import static seedu.address.logic.commands.CommandTestUtil.SCORE_FULL_WRONG_VALUE;
-import static seedu.address.logic.commands.CommandTestUtil.SCORE_MISSING_VARIABLE;
+import static seedu.address.logic.commands.CommandTestUtil.SCORE_MISSING_ALL_VARIABLES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCORE;
@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddScoreCommand;
 import seedu.address.model.score.Date;
-import seedu.address.model.score.Label;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreValue;
 import seedu.address.testutil.ScoreBuilder;
@@ -75,10 +74,10 @@ class AddScoreCommandParserTest {
     }
 
     @Test
-    public void parse_missingVariable() {
-        String expectedMessage = String.format(Label.MESSAGE_CONSTRAINTS);
+    public void parse_missingAllVariables() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddScoreCommand.MESSAGE_USAGE);
 
-        // invalid date format
-        assertParseFailure(parser, "1" + SCORE_MISSING_VARIABLE, expectedMessage);
+        // missing score date
+        assertParseFailure(parser, "1" + SCORE_MISSING_ALL_VARIABLES, expectedMessage);
     }
 }

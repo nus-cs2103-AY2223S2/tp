@@ -10,6 +10,9 @@ import seedu.address.model.score.Score;
  * A utility class containing a list of {@code Score} objects to be used in tests.
  */
 public class TypicalScores {
+    public static final Score SCORE_0 = new ScoreBuilder().withLabel("Final Assessment 2022")
+            .withValue("90")
+            .withDate("2023-02-10").build();
     public static final Score SCORE_1 = new ScoreBuilder().withLabel("Final Assessment 2022")
         .withValue("80")
         .withDate("2023-03-09").build();

@@ -79,9 +79,8 @@ public class CommandTestUtil {
             + PREFIX_SCORE_VALUE + VALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + INVALID_DATE_FORMAT;
     public static final String SCORE_FULL_DATE_IN_FUTURE = " " + PREFIX_SCORE_LABEL + VALID_SCORE_LABEL + " "
             + PREFIX_SCORE_VALUE + VALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + DATE_IN_FUTURE;
-    public static final String SCORE_MISSING_VARIABLE = " " + PREFIX_SCORE_LABEL + " " + PREFIX_SCORE_VALUE
-            + INVALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + VALID_SCORE_DATE;
-
+    public static final String SCORE_MISSING_ALL_VARIABLES = " " + PREFIX_SCORE_LABEL + " "
+            + PREFIX_SCORE_VALUE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PARENT_PHONE_DESC = " " + PREFIX_PARENT_PHONE

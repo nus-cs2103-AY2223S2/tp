@@ -3,9 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.DeleteScoreCommand.MESSAGE_DELETE_SCORE_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCORE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SCORE;
+import static seedu.address.testutil.TypicalScores.SCORE_0;
 import static seedu.address.testutil.TypicalStudents.getTypicalMathutoring;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.student.Student;
 
 class DeleteScoreCommandTest {
 
@@ -24,6 +28,23 @@ class DeleteScoreCommandTest {
     public void constructor_nullIndexes_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new DeleteScoreCommand(null, null));
     }*/
+
+    @Test
+    void execute_validIndexScoreDelete_success() {
+        Student studentToDeleteScore = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        if (studentToDeleteScore.getScoreList().size() == 0) {
+            studentToDeleteScore.addScore(SCORE_0);
+        }
+
+        DeleteScoreCommand scoreToDelete = new DeleteScoreCommand(INDEX_FIRST_STUDENT, INDEX_FIRST_SCORE);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_SCORE_SUCCESS,
+                studentToDeleteScore.getName(), studentToDeleteScore.getScoreList().get(0).toString());
+
+        ModelManager expectedModel = new ModelManager(model.getMathutoring(), new UserPrefs());
+
+        assertCommandSuccess(scoreToDelete, model, expectedMessage, expectedModel);
+    }
 
     @Test
     void execute_invalidStudentIndexUnfilteredList_failure() {
