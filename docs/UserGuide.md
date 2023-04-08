@@ -421,8 +421,7 @@ This section shares with you on how to use each command in detail.
 
 **Example:** 
 <br>
-* You want to create a new applicant named Adam whose information does not exist in HMHero yet. 
-* You run the add command with his details following the above format.
+* You want to create a new applicant named Adam whose information does not exist in HMHero yet.
 
 Command Input Box: `add n/Adam p/91918153 e/adam@gmail.com a/6 Sims Drive`
 
@@ -467,8 +466,7 @@ it will work the same as finding individually! </li>
 
 **Example:**
 <br>
-* You want to search for an applicant named Adam whose information exist in HMHero yet. 
-* You run the find command with his details following the above format.
+* You want to search for an applicant named Adam whose information exist in HMHero.
 
 Command Input Box: `find n/Adam p/91918153`
 
@@ -502,8 +500,7 @@ Find Command</a>
 
 **Example:**
 <br>
-* You want to list all applicants who exist in HMHero yet. 
-* You run the list command.
+* You want to list all applicants who exist in HMHero.
 
 Command Input Box: `list`
 
@@ -534,8 +531,7 @@ that fully matches the specified search.</li>
 
 **Example:**
 <br>
-* You want to delete an applicant who exist in HMHero yet.
-* You run the delete command.
+* You want to delete an applicant who exist in HMHero.
 
 Command Input Box: `delete n/Bernice Yu p/99272758`
 
@@ -575,8 +571,7 @@ when you advance an applicant!
 
 **Example:**
 <br>
-* You want to advance an applicant's status `APPLIED` who exist in HMHero yet.
-* You run the advance command.
+* You want to advance an applicant's status `APPLIED` who exist in HMHero.
 
 Command Input Box: `advance n/Adam p/91918153 d/20-05-2023 12:12`
 
@@ -587,8 +582,7 @@ What you should see:
 
 **Example:**
 <br>
-* You want to advance an applicant's status `SHORTLISTED` who exist in HMHero yet.
-* You run the advance command.
+* You want to advance an applicant's status `SHORTLISTED` who exist in HMHero.
 
 Command Input Box: `advance n/Adam p/91918153 `
 
@@ -622,8 +616,7 @@ fully matches the specified search.</li>
 
 **Example:**
 <br>
-* You want to reject an applicant's status `SHORTLISTED` who exist in HMHero yet.
-* You run the reject command.
+* You want to reject an applicant's status `SHORTLISTED` who exist in HMHero.
 
 Command Input Box: `reject n/Alex Yeoh p/87438807`
 
@@ -654,8 +647,7 @@ Applicants with the status <code>REJECTED</code> cannot be rejected again!
 
 **Example:**
 <br>
-* You want to list the interview dates of the shortlisted applicants who exist in HMHero yet.
-* You run the interview command.
+* You want to list the interview dates of the shortlisted applicants who exist in HMHero.
 
 Command Input Box: `interview`
 
@@ -694,8 +686,7 @@ date time using edit command.
 
 **Example:**
 <br>
-* You want to edit the phone number and notes of an applicant who exist in HMHero yet.
-* You run the edit command.
+* You want to edit the phone number and notes of an applicant who exist in HMHero.
 
 Command Input Box: `edit 2 p/91234567 note/Kotlin note/Python note/leadership`
 
@@ -724,8 +715,7 @@ it will show all applicants with interviews till Thursday)</li>
 
 **Example:**
 <br>
-* You want to see all the applicants with interview within the next three days who exist in HMHero yet.
-* You run the remind command.
+* You want to see all the applicants with interview within the next three days who exist in HMHero.
 
 Command Input Box: `remind`
 
@@ -765,7 +755,6 @@ specified.
 **Example:**
 <br>
 * You want to search for applicants with java skill that exist in HMHero.
-* You run the skill command.
 
 Command Input Box: `skill java`
 
@@ -791,7 +780,6 @@ What you should see:
 **Example:**
 <br>
 * You want to see the statistics for your hiring cycle in HMHero.
-* You run the summary command.
 
 Command Input Box: `summary`
 
