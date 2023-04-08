@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SOFTWARE_ENGINEER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
@@ -73,9 +73,10 @@ public class ExecutiveProDbTest {
     @Test
     public void hasEmployee_employeeWithSameIdentityFieldsInExecutiveProDb_returnsTrue() {
         executiveProDb.addEmployee(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_SOFTWARE_ENGINEER)
                 .build();
-        assertFalse(executiveProDb.hasEmployee(editedAlice));
+        assertTrue(executiveProDb.hasEmployee(editedAlice));
     }
 
     @Test

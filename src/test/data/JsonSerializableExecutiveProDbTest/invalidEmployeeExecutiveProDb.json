@@ -6,7 +6,8 @@
     "email": "invalid@email!3e",
     "address": "4th street",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png"
+    "payroll" : "1000 15",
+    "picturePath" : "data/employeepictures/default.png"
   },  {
     "name": "Person With Invalid Employee ID Field",
     "employeeId": "2a",
@@ -15,7 +16,8 @@
     "position": "Worker",
     "address": "4th street",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png"
+    "payroll" : "1000 15",
+    "picturePath" : "data/employeepictures/default.png"
   },
     {
       "name": "Person With Invalid Phone Field",
@@ -25,7 +27,8 @@
       "position": "Worker",
       "address": "4th street",
       "department" : "Marketing",
-      "picturePath" : "src/main/resources/employeepictures/default.png"
+      "payroll" : "1000 15",
+      "picturePath" : "data/employeepictures/default.png"
     },
     {
       "name": "Person With Invalid Email Field",
@@ -35,7 +38,8 @@
       "position": "Worker",
       "address": "4th street",
       "department" : "Marketing",
-      "picturePath" : "src/main/resources/employeepictures/default.png"
+      "payroll" : "1000 15",
+      "picturePath" : "data/employeepictures/default.png"
     },
     {
       "name": "Person With Invalid Position Field",
@@ -45,7 +49,8 @@
       "position": "",
       "address": "4th street",
       "department" : "Marketing",
-      "picturePath" : "src/main/resources/employeepictures/default.png"
+      "payroll" : "1000 15",
+      "picturePath" : "data/employeepictures/default.png"
     },
     {
       "name": "Person With Invalid Address Field",
@@ -55,7 +60,8 @@
       "position": "Worker",
       "address": "",
       "department" : "Marketing",
-      "picturePath" : "src/main/resources/employeepictures/default.png"
+      "payroll" : "1000 15",
+      "picturePath" : "data/employeepictures/default.png"
     },
     {
       "name": "Person With Invalid Department Field",
@@ -65,7 +71,8 @@
       "position": "Worker",
       "address": "4th street",
       "department" : "",
-      "picturePath" : "src/main/resources/employeepictures/default.png"
+      "payroll" : "1000 15",
+      "picturePath" : "data/employeepictures/default.png"
     },
     {
       "name": "Person With Invalid PicturePath Field",
@@ -75,6 +82,7 @@
       "position": "Worker",
       "address": "4th street",
       "department" : "Marketing",
+      "payroll" : "1000 15",
       "picturePath" : "src/main/resources/doesnotexist.jpg"
     }
   ]

@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SOFTWARE_ENGINEER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BOB;
@@ -33,7 +33,7 @@ public class EmployeeTest {
 
         // same name, all other attributes different -> returns false
         Employee editedAlice = new EmployeeBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SOFTWARE_ENGINEER).build();
         assertFalse(ALICE.isSameEmployee(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,7 +85,7 @@ public class EmployeeTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new EmployeeBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new EmployeeBuilder(ALICE).withTags(VALID_TAG_SOFTWARE_ENGINEER).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

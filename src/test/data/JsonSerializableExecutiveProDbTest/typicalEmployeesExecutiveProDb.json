@@ -7,7 +7,11 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "department" : "Sales",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "15",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -16,7 +20,11 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "department" : "Sales",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "15",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -25,7 +33,11 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "department" : "Sales",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "15",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -34,7 +46,11 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "15",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -43,7 +59,11 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "15",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -52,7 +72,11 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "15",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -61,7 +85,11 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "15",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged" : [ ]
   } ]
 }
