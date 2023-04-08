@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final PowerConnectParser addressBookParser;
+    private final PowerConnectParser powerConnectParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new PowerConnectParser();
+        powerConnectParser = new PowerConnectParser();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = powerConnectParser.parseCommand(commandText);
         commandResult = command.execute(model);
         try {
             storage.savePC(model.getPcClass());
