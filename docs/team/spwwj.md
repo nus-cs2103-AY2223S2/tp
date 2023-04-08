@@ -16,6 +16,14 @@ managers to efficiently delegate tasks in an organised manner.
 
 Given below are my contributions to the project.
 
+* **Enhancements to existing features**:
+  ![Ui](../images/Ui.png)
+  ![Ui](../images/UiDark.png)
+  * What it does: This new feature provides users with the option to toggle between a light and dark theme in the app's user interface. Users can switch between the two themes using F2 and F3 keyboard shortcuts.
+  * Justification: The addition of this feature enhances the user experience of the app by providing a better UI and mood. This quality of life improvement can help users avoid eye strain or discomfort and make the app more enjoyable to use.
+  * Highlights: Users can choose between a light or dark theme, which can help them personalize their experience and make it easier to use the app in different lighting conditions. The keyboard shortcut makes it convenient to switch between themes quickly.
+
+
 * **New Feature**: Local Storage for OfficeConnect.
   * What it does: With this new feature, users can now save OfficeConnect data to a local file, enabling them to easily
     restore their data from local storage.
@@ -27,55 +35,12 @@ Given below are my contributions to the project.
     component of the software's architecture. With Local Storage, OfficeConnect provides a more comprehensive and
     user-friendly solution for managing data, enabling users to work more efficiently and effectively.
 
-* **New Feature**: View assigned persons for OfficeConnect.
-  * What it does: With this new feature, users can view all assigned persons in the address book. The assigned persons
-    are filtered based on the assignment status provided by the user.
-  * Justification: The addition of this feature provides a quick and easy way for users to view assigned persons. This
-    feature enhances the usability of OfficeConnect and helps users manage their assignments more efficiently.
-  * Highlights: The feature provides a flexible filter that can be set to display only assigned persons. It allows users
-    to focus on specific persons that are assigned to them.
+    
+* **New Feature**: View assigned and unassigned elements for OfficeConnect.
+  * What it does: With this new feature, users can view assigned and unassigned persons, tasks, and persons to tasks in the address book. The elements are filtered based on the assignment status provided by the user.
+  * Justification: The addition of this feature provides a quick and easy way for users to view assigned and unassigned elements, enhancing the usability of OfficeConnect and helping users manage their assignments more efficiently.
+  * Highlights: The feature provides a flexible filter that can be set to display only specific types of elements (e.g., assigned persons, unassigned tasks, etc.). It allows users to focus on particular elements relevant to their needs.
 
-* **New Feature**: View unassigned persons for OfficeConnect.
-  * What it does: With this new feature, users can view all unassigned persons in the address book. The unassigned
-    persons are filtered based on the assignment status provided by the user.
-  * Justification: The addition of this feature provides a quick and easy way for users to view unassigned persons. This
-    feature enhances the usability of OfficeConnect and helps users manage their assignments more efficiently.
-  * Highlights: The feature provides a flexible filter that can be set to display only unassigned persons. It allows
-    users to focus on specific persons that are not assigned to them.
-
-* **New Feature**: View assigned tasks for OfficeConnect.
-  * What it does: With this new feature, users can view all assigned tasks in the address book. The assigned tasks are
-    filtered based on the assignment status provided by the user.
-  * Justification: The addition of this feature provides a quick and easy way for users to view assigned tasks. This
-    feature enhances the usability of OfficeConnect and helps users manage their assignments more efficiently.
-  * Highlights: The feature provides a flexible filter that can be set to display only assigned tasks. It allows users
-    to focus on specific tasks that are assigned to them.
-
-* **New Feature**: View unassigned tasks for OfficeConnect.
-  * What it does: With this new feature, users can view all unassigned tasks in the address book. The unassigned tasks
-    are filtered based on the assignment status provided by the user.
-  * Justification: The addition of this feature provides a quick and easy way for users to view unassigned tasks. This
-    feature enhances the usability of OfficeConnect and helps users manage their assignments more efficiently.
-  * Highlights: The feature provides a flexible filter that can be set to display only unassigned tasks. It allows users
-    to focus on specific tasks that are not assigned to them.
-
-* **New Feature**: View assigned persons to tasks for OfficeConnect.
-  * What it does: With this new feature, users can view all assigned persons to tasks in the address book. The assigned
-    persons to tasks are filtered based on the assignment status provided by the user.
-  * Justification: The addition of this feature provides a quick and easy way for users to view assigned persons to
-    tasks. This feature enhances the usability of OfficeConnect and helps users manage their assignments more
-    efficiently.
-  * Highlights: The feature provides a flexible filter that can be set to display only assigned persons to tasks. It
-    allows users to focus on specific persons that are assigned to specific tasks.
-
-* **New Feature**: View unassigned persons to tasks for OfficeConnect.
-  * What it does: With this new feature, users can view all unassigned persons to tasks in the address book. The
-    unassigned persons to tasks are filtered based on the assignment status provided by the user.
-  * Justification: The addition of this feature provides a quick and easy way for users to view unassigned persons to
-    tasks. This feature enhances the usability of OfficeConnect and helps users manage their assignments more
-    efficiently.
-  * Highlights: The feature provides a flexible filter that can be set to display only unassigned persons to tasks. It
-    allows users to focus on specific persons that are not assigned to specific tasks.
 
 * **New Feature**: Unassign people from a task for OfficeConnect.
   * What it does: With this new feature, users can unassign people from a specific task in the address book. The
@@ -87,15 +52,11 @@ Given below are my contributions to the project.
     task.
 
 
-* **Code contributed
-  **: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=spwwj&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=spwwj&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
 * **Project management**:
   * Release [v1.2](https://github.com/AY2223S2-CS2103-F10-1/tp/releases/tag/v1.2)
-  * On time on all task
-
-* **Enhancements to existing features**:
-  * To be added.
+  * On time on all tasks
 
 * **Documentation**:
   * User Guide:

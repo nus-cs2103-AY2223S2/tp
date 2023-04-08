@@ -19,14 +19,15 @@ ModelManager .up.|> ModelC
 
 }
 
-package OfficeConnectModel{
-Class OfficeConnectModel
+package OfficeConnectModel {
+Class "OfficeConnectModel" as om
 Class "RepositoryModelManager<Task>"  as repoTask
 Class "RepositoryModelManager<AssignTask>" as repoAssign
 Class "Model" as personModel
 OfficeConnectModel --> repoTask
 OfficeConnectModel --> repoAssign
 OfficeConnectModel --> personModel
+
 Class "RepositoryModelManager<T>" as repo
 repoTask ..up.|> "<<bind>>T::Task" repo
 repoAssign ..up.|> "<<bind>>T::AssignTask" repo
@@ -47,6 +48,6 @@ HiddenOutside ..> LogicC
 
 
 LogicManager ---> ModelC
-LogicManager -> OfficeConnectModel
+LogicManager ---> om
 LogicManager ---> StorageC
 @enduml
