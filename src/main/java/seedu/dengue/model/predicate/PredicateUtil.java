@@ -2,6 +2,7 @@ package seedu.dengue.model.predicate;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import seedu.dengue.model.person.Age;
@@ -74,6 +75,38 @@ public abstract class PredicateUtil<T> implements Predicate<T> {
         requireNonNull(variant);
         String trimmedVariant = variant.trim();
         return Variant.isValidVariantName(trimmedVariant);
+    }
+
+    /**
+     * Checks the validity of the date range
+     * @param start the start
+     * @param end the end
+     * @return true if the start date begins after the end date, false otherwise.
+     */
+    public static boolean isDateRangeValid(Date start, Date end) {
+        assert start != null;
+        assert end != null;
+        requireNonNull(start);
+        requireNonNull(end);
+        LocalDate d1 = LocalDate.parse(start.value);
+        LocalDate d2 = LocalDate.parse(end.value);
+        return !d1.isAfter(d2);
+    }
+
+    /**
+     * Checks the validity of the age range
+     * @param start the start
+     * @param end the end
+     * @return true if the start age begins after the end age, false otherwise.
+     */
+    public static boolean isAgeRangeValid(Age start, Age end) {
+        assert start != null;
+        assert end != null;
+        requireNonNull(start);
+        requireNonNull(end);
+        int a1 = Integer.parseInt(start.value);
+        int a2 = Integer.parseInt(end.value);
+        return a1 <= a2;
     }
 
     /**

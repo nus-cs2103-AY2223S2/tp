@@ -41,17 +41,17 @@ public class StartAge implements Start<Age> {
      *
      * @param end An EndAge.
      */
-    public boolean isValidStartAge(EndAge end) {
-        if (!(end.age.isPresent() && age.isPresent())) {
+    public boolean isValidStart(End<Age> end) {
+        if (!(end.get().isPresent() && age.isPresent())) {
             return true;
         }
         int a1 = Integer.parseInt(age.get().value);
-        int a2 = Integer.parseInt(end.age.get().value);
+        int a2 = Integer.parseInt(end.get().get().value);
         return a1 <= a2;
     }
 
-    public Age get() {
-        return age.get();
+    public Optional<Age> get() {
+        return age;
     }
 
     @Override

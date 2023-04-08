@@ -14,6 +14,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.dengue.logic.commands.DeleteCommand;
+import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.predicate.DeleteDatePredicate;
@@ -72,7 +73,7 @@ public class DeleteCommandParserTest {
     // date
 
     @Test
-    public void parse_validArgsDate_returnsDeleteCommand() {
+    public void parse_validArgsDate_returnsDeleteCommand() throws ParseException {
         DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.of(new Date(VALID_DATE_ALICE)));
         assertParseSuccess(parser, " d/2023-03-05", new DeleteCommand(predicate));
     }
@@ -80,7 +81,7 @@ public class DeleteCommandParserTest {
     // range
 
     @Test
-    public void parse_validArgsCompleteRange_returnsDeleteCommand() {
+    public void parse_validArgsCompleteRange_returnsDeleteCommand() throws ParseException {
 
         Range<Date> range = ContinuousData.generateRange(
                 new StartDate(Optional.of(new Date(VALID_DATE_BENSON))),
@@ -91,7 +92,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_validArgsPartialRangeStartGiven_returnsDeleteCommand() {
+    public void parse_validArgsPartialRangeStartGiven_returnsDeleteCommand() throws ParseException {
 
         Range<Date> range = ContinuousData.generateRange(
                 new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
@@ -102,7 +103,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_validArgsPartialRangeEndGiven_returnsDeleteCommand() {
+    public void parse_validArgsPartialRangeEndGiven_returnsDeleteCommand() throws ParseException {
 
         Range<Date> range = ContinuousData.generateRange(
                 new StartDate(Optional.empty()),
@@ -113,7 +114,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_validArgsCompleteRangeSameDates_returnsDeleteCommand() {
+    public void parse_validArgsCompleteRangeSameDates_returnsDeleteCommand() throws ParseException {
 
         Range<Date> range = ContinuousData.generateRange(
                 new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),

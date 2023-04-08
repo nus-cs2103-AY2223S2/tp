@@ -15,6 +15,7 @@ import seedu.dengue.logic.comparators.PersonAgeComparator;
 import seedu.dengue.logic.comparators.PersonDateComparator;
 import seedu.dengue.logic.comparators.PersonNameComparator;
 import seedu.dengue.logic.comparators.PersonPostalComparator;
+import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
@@ -128,7 +129,7 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_sortFilteredDengueHotspotTracker_success() {
+    public void execute_sortFilteredDengueHotspotTracker_success() throws ParseException {
 
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
@@ -60,7 +61,7 @@ public class ClearCommandTest {
 
 
     @Test
-    public void execute_filteredNonEmptyDengueHotspotTracker_success() {
+    public void execute_filteredNonEmptyDengueHotspotTracker_success() throws ParseException {
         Model model = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
 

@@ -42,17 +42,17 @@ public class StartDate implements Start<Date> {
      *
      * @param end An EndDate.
      */
-    public boolean isValidStartDate(EndDate end) {
-        if (!(date.isPresent() && end.date.isPresent())) {
+    public boolean isValidStart(End<Date> end) {
+        if (!(date.isPresent() && end.get().isPresent())) {
             return true;
         }
         LocalDate d1 = LocalDate.parse(date.get().value);
-        LocalDate d2 = LocalDate.parse(end.date.get().value);
+        LocalDate d2 = LocalDate.parse(end.get().get().value);
         return d1.compareTo(d2) <= 0;
     }
 
-    public Date get() {
-        return date.get();
+    public Optional<Date> get() {
+        return date;
     }
 
     @Override
