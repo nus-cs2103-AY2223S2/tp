@@ -282,21 +282,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket. 
-The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes. 
-`ListCommand` extends `Command` and implements the following operation: 
-* `ListCommand#execute()` - Displays the list of persons in SOCket that contains the given keyword of each respective fields. 
+The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket.
+The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes.
+`ListCommand` extends `Command` and implements the following operation:
+* `ListCommand#execute()` - Displays the list of persons in SOCket that contains the given keyword of each respective fields.
 
-The `ListCommandParser` class is used to parse and verify the user input to create the list command. 
-Once the input is parsed by `ListCommandParser`, a list of keywords for each respective field is then used to create the respective Predicate class to check if any keyword matches the given field of a Person. 
+The `ListCommandParser` class is used to parse and verify the user input to create the list command.
+Once the input is parsed by `ListCommandParser`, a list of keywords for each respective field is then used to create the respective Predicate class to check if any keyword matches the given field of a Person.
 
-The Predicates relevant to `ListCommand` differ from `FindCommand` in the way that it looks for full keyword matches in Person(s). If no fields are given, list of persons will be update by `PREDICATE_SHOW_ALL_PERSONS`/ a true predicate. 
-Otherwise, this list of Predicate classes include: 
+The Predicates relevant to `ListCommand` differ from `FindCommand` in the way that it looks for full keyword matches in Person(s). If no fields are given, list of persons will be update by `PREDICATE_SHOW_ALL_PERSONS`/ a true predicate.
+Otherwise, this list of Predicate classes include:
 * `ListCommandLanguagePredicate`
 * `ListCommandTagPredicate`
 
 This Predicate class will return True as long as any of the Predicate classes inside it returns True.
-The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
+The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person.
 
 <div style="page-break-after: always;"></div>
 
@@ -305,7 +305,7 @@ The following sequence diagram shows how the `list` operation works:
 
 #### Design considerations
 
-**Aspect: Filtering by other fields** 
+**Aspect: Filtering by other fields**
 
 * Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
   * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
