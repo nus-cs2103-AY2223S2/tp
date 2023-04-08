@@ -15,7 +15,6 @@ import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.EditCommandParser.EditStudentDescriptor;
-import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
@@ -68,7 +67,7 @@ public class EditStudentCommand extends EditCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, ParseException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         CurrentSelection currentSelection = model.getCurrentSelection();
 

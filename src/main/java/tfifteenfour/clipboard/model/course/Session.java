@@ -19,7 +19,8 @@ import tfifteenfour.clipboard.model.student.UniqueStudentList;
  */
 public class Session {
 
-    public static final String MESSAGE_CONSTRAINTS = "Session names can only contain alphanumeric and special characters";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Session names can only contain alphanumeric and special characters";
     public static final String VALIDATION_REGEX = "^[\\p{Alnum}\\p{Punct}]+$";
 
     private final String sessionName;

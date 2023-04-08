@@ -24,6 +24,7 @@ public class SessionCommand extends Command {
             + ": Views the sessions of the selected group at the index number in the current displayed list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_SUCCESS = "[SESSION PAGE]\nViewing: sessions of group %s";
 
     private final Index targetIndex;
 
@@ -56,7 +57,7 @@ public class SessionCommand extends Command {
         Group selectedGroup = handleSelectGroup(model, currentSelection);
         currentSelection.setCurrentPage(PageType.SESSION_PAGE);
         return new CommandResult(this,
-                String.format("[SESSION PAGE]\nViewing: sessions of group %s", selectedGroup), willModifyState);
+                String.format(MESSAGE_SUCCESS, selectedGroup), willModifyState);
     }
 
     /**

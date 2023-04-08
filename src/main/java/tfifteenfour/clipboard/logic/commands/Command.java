@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.logic.commands;
 
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.Model;
 
 /**
@@ -24,7 +23,7 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model)
-            throws CommandException, ParseException;
+            throws CommandException;
 
     public boolean getWillModifyState() {
         return this.willModifyState;

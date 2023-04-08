@@ -7,9 +7,12 @@ title: User Guide
 
 CLIpboard is a desktop app that helps educators (like you!), especially those that tutor multiple classes, by managing their students’ particulars<strong> in an organised manner.</strong>
 
-CLIpboard is optimized **for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It can get your student management tasks done faster than traditional GUI apps. CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
+CLIpboard is designed to work efficiently through typing keyword commands and also has a user-friendly interface with graphical elements. It can get your student management tasks done faster than traditional apps.
+
+CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
 
 ![image](./images/Ui.png)
+###### Figure 1
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -36,19 +39,46 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest clipboard.jar from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
-4. Open a command terminal, cd into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
-<br>e.g. your clipboard.jar is stored in `user/app/task/`, you run `cd user/app/task/` then `java -jar clipboard.jar`
-<br>A GUI similar to the above should appear in a few seconds. Note how the app contains some sample data.
-
-5. Type the command in the command box and press Enter to execute it.
-<br>e.g. typing `help` and pressing Enter will open the help window.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
+<br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
+<br>A GUI similar to [<i>Figure 1</i>](#introduction) should appear in a few seconds.
+<br><i>Note how the app contains some sample data.</i>
+5. You will start on the `Course page` (Refer to [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide).
+6. Type your command in the command box (Refer to [<i>Figure 2</i>](#visual-guide) below for the Visual Guide) and press Enter/Return to execute it.
+<br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
     <br>Some example commands you can try:
-    1. `select 1` : Selects the first item in the list displayed in the list panel.
-    2. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named John Doe with the particulars to the list at Student Page.
-    3. `delete student 3` : Deletes the 3rd student shown in the student list when you are at Student Page.
-    4. `undo` : Returns to the state before the last command you entered.
-    5. `exit` : Exits the app.
-6. Refer to the commands list below for a detailed description for each command.
+   1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
+   2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
+   3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list on the `Student Page`.
+   4. `delete student 3` : Deletes the 3rd student (eg. `Lim Kim Choo`) shown in the student list.
+   5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list.
+   6. `exit` : Exits the app.
+6. Refer to the [commands list](#commands) below for a detailed description for each command.
+
+--------------------------------------------------------------------------------------------------------------
+
+## Visual Guide
+
+Look through the visual guide before you get started. It will provide you with a clear and easy-to-follow overview
+of the basic elements and features of the product's interface, making it easier for you to navigate and use the
+product effectively.
+
+![image](./images/VisualGuide.png)
+###### Figure 2
+
+1. Clickable File and Help Tabs
+   * You can manually exit the app with your mouse by clicking `File>Exit` or open the
+   help window with `Help>Help`.
+2. Navigation Route
+   * You can view what courses and groups you have selected, and what page you are currently on here.
+3. Navigation Tabs
+   * Compared to the Navigation Route, the Navigation Tabs give you a quick overview on what type of page you are currently on.
+   * Refer to the [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide on the different pages in CLIpboard.
+4. Command Box
+   * Here is where you will type in your commands.
+5. Log Box
+   * Clipboard will give you feedback on whether or not your command was successful here.
+   * Help messages on the valid arguments of the command you are typing will also appear here if your command has failed.
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -56,9 +86,10 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 
 Moving between pages is easy with our navigation tools.
 Simply use a combination of `select`, `back`, `session`, and `task` commands.
-If you need more information on how to use these commands, just refer to our handy navigation guide below.
+If you need more information on how to use these commands, just refer to our handy navigation guide below (Figure 3).
 
 ![image](./images/navigation.png)
+###### Figure 3
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -79,6 +110,7 @@ List of commands:
     - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
     - [Editing a course: ](#editing-a-course-edit-course) `edit course`
     - [Selecting a course to display its Group Page: ](#selecting-a-course-select) `select`
+    - [Finding a course: ](#finding-a-course-find-course) `find course`
 - [Group Page Commands: ](#group-page-commands)
     - [Adding a group: ](#adding-a-group-add-group) `add group`
     - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
@@ -86,6 +118,7 @@ List of commands:
     - [Selecting a group to display its Student Page: ](#selecting-a-group-select) `select`
     - [Displaying sessions of a group: ](#displaying-sessions-of-a-group-session) `session`
     - [Displaying tasks of a group: ](#displaying-tasks-of-a-group-task) `task`
+    - [Finding a group: ](#finding-a-group-find-group) `find group`
 - [Students Page Commands: ](#students-page-commands)
     - [Adding a student: ](#adding-a-student-add-student) `add student`
     - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
@@ -102,15 +135,17 @@ List of commands:
     - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
     - [Editing a session: ](#editing-a-session-edit-session) `edit session`
     - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
+    - [Finding a session: ](#finding-a-session-find-session) `find session`
 - [Attendance Page Commands: ](#attendance-page-commands)
     - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
     - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
     - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
-- [Task Page Commands: ](#task-page-commands) 
+- [Task Page Commands: ](#task-page-commands)
     - [Adding a task: ](#adding-a-task-add-task) `add task`
     - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
     - [Editing a task: ](#editing-a-task-edit-task) `edit task`
     - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
+    - [Finding a task: ](#finding-a-task-find-task) `find task`
 - [Grades Page Commands: ](#grades-page-commands)
     - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
 
@@ -143,7 +178,7 @@ List of commands:
 </div>
 
 ## General Commands
-Before navigating through pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
+Before navigating through the different pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
 
 
 ### Displaying the home page (Course Page): `home`
@@ -244,6 +279,7 @@ exit
 
 ## Course Page Commands
 ![image](./images/UiCoursePage.png)
+###### Figure 4
 
 
 ### Adding a course: `add course`
@@ -256,10 +292,10 @@ add course <COURSE>
 ```
 
 - Adding a course with the same module code is not allowed.
-    - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message.
+    - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message inside the log box.
 <div markdown="block" class="alert alert-info">
 This command is case-sensitive.<br>
-e.g. <code>CS2103T</code>, <code>cs2103t</code> are treated as different course.
+e.g. <code>CS2103T</code> and <code>cs2103t</code> are treated as different courses.
 </div>
 
 Examples:
@@ -321,10 +357,29 @@ Examples:
 
 [Back to list of commands](#commands)
 
+### Finding a course: `find course`
+
+Finds course(s) that contains any of the given keywords(s) in the module code.
+
+Format:
+```
+find course <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+- This command is case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
+- Keywords are separated by spaces.
+
+Examples:
+- `find course CS` returns `CS2103T`, `CS2101`.
+- `find course 03` returns `CS2103T`.
+
+[Back to list of commands](#commands)
+
 --------------------------------------------------------------------------------------------------------------
 
 ## Group Page Commands
 ![image](./images/UiGroupPage.png)
+###### Figure 5
 
 ### Adding a group: `add group`
 
@@ -336,12 +391,12 @@ add group <GROUP>
 ```
 
 - Adding a group with the same group name is not allowed.
-    - For example, if a group with group name `T15` already exists in CLIpboard, 
-  entering `add group T15` will display an error message.
+    - For example, if a group with group name `T15` already exists in CLIpboard,
+  entering `add group T15` will display an error message inside the log box.
 
 <div markdown="block" class="alert alert-info">
 This command is case-sensitive.<br>
-e.g. <code>T15</code>, <code>t15</code> are treated as different group.
+e.g. <code>T15</code> and <code>t15</code> are treated as different groups.
 </div>
 
 Examples:
@@ -385,7 +440,6 @@ Examples:
 - `edit group 1 T16` will rename the first group listed in the group list to `T16`.
 
 [Back to list of commands](#commands)
-
 
 
 ### Selecting a group: `select`
@@ -435,10 +489,28 @@ Examples:
 
 [Back to list of commands](#commands)
 
+### Finding a group: `find group`
+
+Finds group(s) that contains any of the given keywords(s) in the group name.
+
+Format:
+```
+find group <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+- This command is case-insensitive. (e.g. `find group T15` and `find group t15` will give you the same result)
+- Keywords are separated by spaces.
+
+Examples:
+- `find group 15` returns `T15`.
+
+[Back to list of commands](#commands)
+
 --------------------------------------------------------------------------------------------------------------
 
 ## Students Page Commands
 ![image](./images/UiStudentPage.png)
+###### Figure 6
 
 
 ### Adding a student: `add student`
@@ -451,11 +523,11 @@ add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
 - Adding a student with the same student ID is not allowed.
-    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message.
+    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message inside the log box.
 
 Examples:
-- `add student n/Han Wei Jiew p/98765432 e/hanwj@example.com sid/A6789012F`
-- `add student n/Siti Aisyah p/92624417 e/saisyah@example.com sid/A7890123G`
+- `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
+- `add student n/Amirul Bin Othman p/98884417 e/amirul@example.com sid/A1324356G`
 
 [Back to list of commands](#commands)
 
@@ -528,17 +600,14 @@ Format:
 find student <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- You can find students using either name or student ID for the keyword(s).
+- You can find students using either `name` or `student ID` for the keyword(s).
 - Keywords are separated by spaces.
-- Student IDs of invalid format will not return any students
-    - For example, `find student A1234` will not return the student with student ID A1234567X.
-    
+- This command is key-insensitive.
 
 Examples:
-- `find student John` returns John.
-- `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`. 
-
-- `find A1234567X` returns the student whose student ID is A1234567X.
+- `find student John` returns `John`.
+- `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`.
+- `find student A123` returns students whose student ID contains `A123`, such as `A123` and `A1234567X`.
 
 [Back to list of commands](#commands)
 
@@ -564,6 +633,7 @@ Examples:
 ### Displays a student's information: `select`
 
 ![image](./images/UiStudentView.png)
+###### Figure 7
 
 Select a particular student and display his / her particulars.
 
@@ -587,7 +657,7 @@ remark <INDEX> [<REMARK>]
 ```
 
 - Adds a remark to student in the student list whose index is specified in the `<INDEX>` field.
-- If there is already an existing remark, this command will replace current remark with `<REMARK>`
+- If there is already an existing remark, this command will replace current remark with `<REMARK>`.
 
 Format for deleting a remark:
 ```
@@ -597,7 +667,7 @@ remark <INDEX>
 - Deletes a remark from a student in the student list whose index is specified in the `<INDEX>` field.
 
 Examples:
-- `remark 1 Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student 
+- `remark 1 Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student
 listed in the student list.
 - `remark 2` will delete the remark from the second student listed in the student list.
 
@@ -618,18 +688,18 @@ Format:
 upload <LOCAL_FILE_PATH>
 ```
 - File path to the photo can be either absolute file path or relative file path.
-- For student photo to be displayed as the profile picture of a student in CLIpboard, photo must be named after the said 
+- For student photo to be displayed as the profile picture of a student in CLIpboard, photo must be named after the said
 student's student ID (i.e. `<STUDENT_ID>.png`)
 - If a new photo with the same name as an existing photo in CLIpboard is uploaded, existing photo will be replaced.
 - Only images of file type `.png` can be uploaded
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Images not named correctly can still be uploaded (e.g. <code>Alex.png</code>), but only those named correctly 
+Images not named correctly can still be uploaded (e.g. <code>Alex.png</code>), but only those named correctly
 (e.g. <code>A0123456X.png</code>) will be displayed in the profile of corresponding student.
 </div>
 
 Examples:
-- `upload C:/Users/AlexYeoh/Desktop/A0123456X.png` will upload `A0123456X.png` to the CLIpboard data folder and the 
+- `upload C:/Users/AlexYeoh/Desktop/A0123456X.png` will upload `A0123456X.png` to the CLIpboard data folder and the
 photo will be displayed in the profile of student with student ID `A0123456X`
 
 [Back to list of commands](#commands)
@@ -638,6 +708,7 @@ photo will be displayed in the profile of student with student ID `A0123456X`
 ### Viewing a student's attendance throughout the course: `attendance`
 
 ![image](./images/UiStudentAttendanceView.png)
+###### Figure 8
 
 Shows a summary of a student's attendance in the view pane.
 
@@ -656,6 +727,7 @@ attendance
 ## Session Page Commands
 
 ![image](./images/UiSessionPage.png)
+###### Figure 9
 
 ### Adding a session: `add session`
 
@@ -668,12 +740,12 @@ add session <SESSION>
 
 - Adding a session with the same session name is not allowed.
     - For example, if a session with name `Tutorial1` already exists in CLIpboard,
-      entering `add session Tutorial1` will display an error message.
+      entering `add session Tutorial1` will display an error message inside the log box.
     - Note: whitespaces are not allowed in session names.
 
 Examples:
-- `add session Tutorial1`
-- `add session Tutorial2`
+- `add session Tutorial4`
+- `add session Lab3`
 
 [Back to list of commands](#commands)
 
@@ -727,10 +799,29 @@ Examples:
 
 [Back to list of commands](#commands)
 
+### Finding a session: `find session`
+
+Finds session(s) that contains any of the given keywords(s) in the session name.
+
+Format:
+```
+find session <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+- This command is case-insensitive. (e.g. `find session tutorial1` and `find session Tutorial1`
+will give you the same result)
+- Keywords are separated by spaces.
+
+Examples:
+- `find session 1` returns `Tutorial1` and `Lab1`.
+
+[Back to list of commands](#commands)
+
 --------------------------------------------------------------------------------------------------------------
 
 ## Attendance Page Commands
 ![images](./images/UiAttendancePage.png)
+###### Figure 10
 
 ### Marking selected students as present: `mark`
 
@@ -773,8 +864,9 @@ Examples:
 Displays the overall attendance of the session you are at in the command box. (Pictured below.)
 
 ![image](images/UiAttendance.png)
+###### Figure 11
 
-Format: 
+Format:
 ```
 attendance
 ```
@@ -785,6 +877,7 @@ attendance
 
 ## Task Page Commands
 ![image](./images/UiTaskPage.png)
+###### Figure 12
 
 ### Adding a task: `add task`
 
@@ -797,11 +890,11 @@ add task <TASK NAME>
 
 - Adding a task with the same task name is not allowed.
     - For example, if a task with name `OP1` already exists in CLIpboard,
-      entering `add task OP1` will display an error message.
+      entering `add task OP1` will display an error message inside the log box.
 
 Examples:
-- `add task OP1`
-- `add task Critical Reflection 1`
+- `add task OP3`
+- `add task Critical Reflection 3`
 
 [Back to list of commands](#commands)
 
@@ -856,10 +949,29 @@ Examples:
 
 [Back to list of commands](#commands)
 
+### Finding a task: `find task`
+
+Finds task(s) that contains any of the given keywords(s) in the task name.
+
+Format:
+```
+find task <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+- This command is case-insensitive. (e.g. `find task op1` and `find task OP1`
+  will give you the same result)
+- Keywords are separated by spaces.
+
+Examples:
+- `find task 1` returns `OP1` and `Critical Reflection 1`.
+
+[Back to list of commands](#commands)
+
 
 
 ## Grades Page Commands
 ![images](./images/UiGradesPage.png)
+###### Figure 13
 
 ### Assigning a grade to student: `assign`
 Assigns a grade to a student.

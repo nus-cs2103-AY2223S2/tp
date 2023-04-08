@@ -11,16 +11,15 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
+import tfifteenfour.clipboard.logic.parser.EditCommandParser;
+import tfifteenfour.clipboard.logic.predicates.StudentParticularsContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.Roster;
-import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.EditStudentDescriptorBuilder;
 
@@ -65,19 +64,18 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditStudentDescriptor DESC_AMY;
-    public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditCommandParser.EditStudentDescriptor DESC_AMY;
+    public static final EditCommandParser.EditStudentDescriptor DESC_BOB;
 
     public static final CurrentSelection TEST_CURRENT_SELECTION = new CurrentSelection();
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withStudentId(VALID_STUDENTID_AMY)
-                .withModules(VALID_MODULE_CS2105).withTags(VALID_TAG_TEAM1).build();
+                .build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withStudentId(VALID_STUDENTID_BOB)
-                .withModules(VALID_MODULE_CS2105, VALID_MODULE_CS2103)
-                .withTags(VALID_TAG_TEAM1, VALID_TAG_TEAM2).build();
+                .build();
     }
 
     /**
@@ -88,7 +86,10 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel, TEST_CURRENT_SELECTION);
+            CommandResult result = command.execute(actualModel);
+            System.out.println("expected feedback:" + expectedCommandResult.getFeedbackToUser());
+            System.out.println("actual feedback:" + result.getFeedbackToUser());
+
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -110,31 +111,37 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered student list and selected student in {@code actualModel} remain unchanged
+     * - the roster, filtered student list and selected student in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-        // only do so by copying its components.
-        Roster expectedRoster = new Roster(actualModel.getRoster());
-        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getUnmodifiableFilteredStudentList());
+        Roster expectedRoster = actualModel.getRoster().copy();
+        List<Student> expectedFilteredList = new ArrayList<>(
+                actualModel.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList());
 
         assertThrows(CommandException.class,
-                expectedMessage, () -> command.execute(actualModel, TEST_CURRENT_SELECTION));
+                expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedRoster, actualModel.getRoster());
-        assertEquals(expectedFilteredList, actualModel.getUnmodifiableFilteredStudentList());
+        assertEquals(expectedFilteredList,
+                actualModel.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getUnmodifiableFilteredStudentList().size());
+        assertTrue(targetIndex.getZeroBased()
+                < model.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList().size());
 
-        Student student = model.getUnmodifiableFilteredStudentList().get(targetIndex.getZeroBased());
-        final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Student student = model.getCurrentSelection().getSelectedGroup()
+                .getUnmodifiableFilteredStudentList().get(targetIndex.getZeroBased());
+        final String studentId = student.getStudentId().toString();
+        String[] tempSidArray = new String[1];
+        tempSidArray[0] = studentId;
+        model.getCurrentSelection().getSelectedGroup().updateFilteredStudents(
+                new StudentParticularsContainsPredicate(tempSidArray));
 
-        assertEquals(1, model.getUnmodifiableFilteredStudentList().size());
+        assertEquals(1, model.getCurrentSelection().getSelectedGroup()
+                .getUnmodifiableFilteredStudentList().size());
     }
 
 }
