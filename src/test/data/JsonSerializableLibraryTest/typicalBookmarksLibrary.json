@@ -1,17 +1,17 @@
 {
   "_comment": "Library save file which contains the same Bookmark values as in TypicalBookmarks#getTypicalLibrary()",
   "bookmarks": [ {
-    "title": "Alice Pauline",
+    "title": "Attack on Titans",
     "progress": {
       "volume": "1",
       "chapter": "2",
       "page": "~"
     },
     "genre": "Action",
-    "author": "123, Jurong West Ave 6, #08-111",
-    "url": "",
+    "author": "Hajime Isayama",
+    "url": "https://aotmanga.com/attack-on-titan/chapter-139/",
     "tagged" : [ {
-      "tag": "friends"
+      "tag": "MaleProtagonist"
     }]
   }, {
     "title": "Benson Meier",
