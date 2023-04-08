@@ -203,7 +203,7 @@ Examples:
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
 
-### Deleting a tag from your tag list:
+#### Deleting a tag from your tag list:
 To delete a tag from your tag list, use the `dtag` command.
 
 Format: `dtag TAG`
