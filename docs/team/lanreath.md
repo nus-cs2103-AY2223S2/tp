@@ -24,9 +24,14 @@ Ultron is an application to help students track their internship applications as
   * Developer Guide:
     * Appendix: Effort
     * Implementation: Show command
+    * Planned enhancements: Optional contact field
 
-* **Testing**:
-  * To be added soon
+* **Team-based tasks**
+  * Setup of GitHub team org/repo
+  * Editing of product name/icon
+  * Setup of Gradle
+  * Issue tracker maintenance
+  * Weekly updates
 
 * **Review/mentoring contributions**:
   * Reviewed, approved and merged [most implementation PRs](https://github.com/AY2223S2-CS2103T-F12-4/tp/pulls?q=is%3Apr+reviewed-by%3Alanreath)
