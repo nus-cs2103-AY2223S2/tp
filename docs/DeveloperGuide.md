@@ -89,7 +89,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `InternshipApplication` object residing in the `Model`.
 * listens on each other in the `Ui` component, as `CommandBox` calls functions in `MainWindow` to `execute()` `Logic`.
-* keeps a reference to other `Ui` component, as `MainWindow` keeps references of `NoteListPanel`, `InternshipListPanel` and `NoteListPanel` to implement the switching between each panel.
+* keeps a reference to other `Ui` component, as `MainWindow` keeps references of `MixedPanel`, `NoteListPanel`, `InternshipListPanel` and `TodoListPanel` to implement the switching between each panel.
 
 ### Logic component
 
@@ -307,7 +307,7 @@ by using its prefix, i.e. in this form `find s/PENDING`.
 
 
 ### Clear feature
-This section elaborated the `clear` feature by its functionality and the path of execution together with the `ClearCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `clear` feature by its functionality and the path of execution together with the `ClearCommand` implementation. Uml diagram is used to aid this description.
 
 #### How CLEAR Feature is implemented
 
@@ -400,7 +400,7 @@ The other implementation aspects of `clear_by` feature follow the convention of 
 
 
 ### Delete feature
-This section elaborated the `delete` feature by its functionality and the path of execution together with the `DeleteCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `delete` feature by its functionality and the path of execution together with the `DeleteCommand` implementation. Uml diagram is used to aid this description.
 
 #### How DELETE Feature is implemented
 
@@ -437,7 +437,7 @@ The `DeleteCommand` is a common, must-have feature which helps to clean-up unwan
 
 
 ### Revert feature
-This section elaborated the `revert` feature by its functionality and the path of execution together with the `RevertCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `revert` feature by its functionality and the path of execution together with the `RevertCommand` implementation. Uml diagram is used to aid this description.
 
 #### How REVERT Feature is implemented
 
@@ -480,13 +480,13 @@ a temporary data-storing data structure that acts as a buffer for the current se
     * Pros: Shorter command, easy to implement.
     * Cons: Less efficient as compared to Alternative 2.
 
-* **Alternative 2:** We can also make it in such format revert <INDEX>, e.g. revert 3, reverts 3 most recent deleted internship applications.
+* **Alternative 2:** We can also make it in such format `revert INDEX`, e.g. revert 3 (reverts 3 most recent deleted internship applications).
     * Pros: More powerful feature.
     * Cons: More complicate to implement.
   
 
 ### Revert All feature
-This section elaborated the `revert_all` feature by its functionality and the path of execution together with the `RevertAllCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `revert_all` feature by its functionality and the path of execution together with the `RevertAllCommand` implementation. Uml diagram is used to aid this description.
 
 #### How REVERT_ALL Feature is implemented
 
@@ -516,7 +516,7 @@ The `RevertAllFeature` is an enhanced extension for the `RevertFeature`. It prov
 
 
 ### Exit feature
-This section elaborated the `exit` feature by its functionality and the path of execution together with the `ExitCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `exit` feature by its functionality and the path of execution together with the `ExitCommand` implementation. Uml diagram is used to aid this description.
 
 #### How Exit Feature is implemented
 
@@ -598,16 +598,15 @@ adding a new internship application. This prevents the `AddCommand` from getting
 
 For example, the main differences in these features are on the specific functions used to carry out the execution and the specific lists used to store the relevant items. <br/>
   - `Task` is a combination of `Todo` and `Note`.<br/>
-  - `TodoList` or `NoteList` are used instead of `InternshipApplicationList`, and other relevant data structure.<br/>
+  - `TodoList` or `NoteList` are used instead of `InternshipApplicationList` and other related methods.<br/>
   - Methods with `Todo` or `Note` are used instead of `Application` or `Internship` (e.g., updateFiltered`Todo`List and updateFiltered`Note`List are used instead of updateFiltered`Internship`List).<br/>
-  - CacheList is not applicable.<br/>
+  - CacheList is not applicable here.<br/>
   - All the commands (include main features) can be executed in any of the panels. It will automatically switch to the related panel and display the results after every execution.<br/>
-  - All commands need to go through the `TaskParser` after being processed in the `InternEaseParser`.<br/>
+  - All commands here need to go through the `TaskParser` after being processed in the `InternEaseParser`.<br/>
   - For GUI settings, `Todo` uses `TodoListPanel`, `Note` uses `NoteListPanel`, while `Task` uses `MixedPanel`.<br/>
   
   
 ### Task related features
-
 ### Find Task feature
 #### How is the feature implemented
 
@@ -634,16 +633,15 @@ The execution process of `list_task` is demonstrated by the activity diagram bel
 
 #### Why is it implemented this way
 
-By implementing the listing of both `TodoList` and `NoteList` together, user can have a quick overview of current available `Tasks` and long-lasting reminders (Notes).
+By implementing the listing of both `TodoList` and `NoteList` together, user can have a quick overview of current available `Todo Tasks` and long-lasting reminders -- `Notes`.
 
 
 ### Todo related features
-
 ### Add Todo feature
 #### How is the feature implemented
 
 The `AddTodoFeature` enables the adding of new `InternshipTodo` instance into the current `TodoList`.
-The execution of `AddTodoCommand` is similar to `AddCommand`, the main difference is `AddTodoCommand` comes with an extra mandatory attribute of `ApplicaionDeadline`.
+The execution of `AddTodoCommand` is similar to `AddCommand`, the main difference is `AddTodoCommand` comes with an extra mandatory attribute of `ApplicationDeadline`.
 
 The execution process of `add_todo` is demonstrated by the activity diagram below.<br/>
 ![AddTodoActivityDiagram](images/AddTodoActivityDiagram.png)
@@ -1020,72 +1018,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC12 Add a todo task entry**
 
-**MSS**
-
 Similar to `UC01 Add an internship application entry` except todo task is added instead of an internship application.
 
 **Use case: UC13 List todo**
-
-**MSS**
 
 Similar to `UC10 List`except todo tasks are listed instead of internship applications.
 
 **Use case: UC14 Edit the note content of a todo task**
 
-**MSS**
-
 Similar to `UC08 Edit the status of an internship application`except the note content of a todo task is edited.
 
 **Use case: UC15 Edit the deadline of a todo task**
 
-**MSS**
 Similar to `UC08 Edit the status of an internship application` except the deadline of a todo task is edited.
 
 **Use case: UC16 Delete a todo task entry**
-
-**MSS**
 
 Similar to `UC05 Delete an internship application entry` except the specified todo task is deleted.
 
 **Use case: UC17 Clear all todo task entries**
 
-**MSS**
-
 Similar to `UC07 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
 
 **Use case: UC18 Add a note**
-
-**MSS**
 
 Similar to `UC01 Add an internship application entry` except a note entry is added instead of an internship application.
 
 **Use case: UC19 List note**
 
-**MSS**
-
 Similar to `UC10 List`except note entries are listed instead of internship applications.
 
 **Use case: UC20 Delete a note entry**
-
-**MSS**
 
 Similar to `UC05 Delete an internship application entry` except the specified note entry is deleted.
 
 **Use case: UC21 Clear all note entries**
 
-**MSS**
-
 Similar to `UC07 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
 
 **Use case: UC22 List task**
 
-**MSS**
-
 Similar to `UC10 List` except todo task entries and note entries are listed instead of internship applications.
 
 **Use case: UC23 Find a task by its field**
-
-**MSS**
 
 Similar to `UC06 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
 
