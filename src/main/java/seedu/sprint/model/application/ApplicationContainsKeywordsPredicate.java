@@ -16,7 +16,7 @@ import seedu.sprint.logic.parser.Prefix;
  * Tests that an Application's Role, Company Name or Status matches any of the keywords given.
  */
 public class ApplicationContainsKeywordsPredicate implements Predicate<Application> {
-    private static final Prefix[] prefixes = {PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS};
+    private static final Prefix[] PREFIXES = {PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS};
     private final List<String> keywords;
     private final HashMap<Prefix, List<String>> keywordsMap;
 
@@ -66,9 +66,9 @@ public class ApplicationContainsKeywordsPredicate implements Predicate<Applicati
      * @return a boolean indicating whether the application contains keyword for prefixes
      */
     private boolean keywordsMapChecks(Application application) {
-        boolean[] prefixChecks = new boolean[prefixes.length];
-        for (int i = 0; i < prefixes.length; i++) {
-            final Prefix prefix = prefixes[i]; // declare as a final variable
+        boolean[] prefixChecks = new boolean[PREFIXES.length];
+        for (int i = 0; i < PREFIXES.length; i++) {
+            final Prefix prefix = PREFIXES[i]; // declare as a final variable
             List<String> keywords = keywordsMap.get(prefix);
             if (keywords != null) {
                 prefixChecks[i] = keywords.stream()
@@ -148,7 +148,7 @@ public class ApplicationContainsKeywordsPredicate implements Predicate<Applicati
             List<String>> prefixMap) {
         HashMap<String, List<String>> stringMap = new HashMap<>();
         for (Prefix key : prefixMap.keySet()) {
-            assert(Arrays.asList(prefixes).contains(key));
+            assert(Arrays.asList(PREFIXES).contains(key));
             stringMap.put(key.toString(), prefixMap.get(key));
         }
         return stringMap;
