@@ -78,6 +78,8 @@ Given below are my contributions to the project.
     * Added documentation for the command format [\#146](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/146/files)
   * Developer Guide
     * Added the UML diagram for Parser
+    * Added the description, usage, and implementation for the features `add`, `find`, and `only` [\#252](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/252)
+    * Created the UML sequence diagrams for `add`, `find`, and `only` [\#261](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/261)
 * **Community**:
   * PRs reviewed (with non-trival review comments): [\#94](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/94#discussion_r1131842351),
   [\#94](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/94#discussion_r1131842857),
