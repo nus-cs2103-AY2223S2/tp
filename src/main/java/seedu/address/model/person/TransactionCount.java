@@ -8,9 +8,13 @@ public class TransactionCount implements Comparable<TransactionCount> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Transaction Count will start and zero and be incremented to a value >= 0"
-                    + " less than or equal to 9223372036854775807.\n"
-                    + " It should be a whole number.";
+            "Transaction Count will start and zero and be incremented to a value 0 <= amount <= 922337203685477580"
+                    + "\n"
+                    + "Transaction Count only takes on integer values, hence decimals, alphabets,"
+                    + " and other characters are disallowed.";
+
+    public static final String POTENTIAL_OVERFLOW_MESSAGE = "Incrementing past your current value is not supported";
+
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
 
     public final String value;

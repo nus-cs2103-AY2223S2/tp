@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DecrementCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.IncrementCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,6 +37,10 @@ public class DecrementCommandParser implements Parser<DecrementCommand> {
         if (argMultimap.getValue(PREFIX_TRANSACTION_COUNT).isPresent()) {
             editPersonDescriptor.setTransactionCount(ParserUtil.parseTransactionCount(
                     argMultimap.getValue(PREFIX_TRANSACTION_COUNT).get()));
+        }
+
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(DecrementCommand.MESSAGE_MISSING_DECREMENT_VALUE);
         }
 
         return new DecrementCommand(index, editPersonDescriptor);
