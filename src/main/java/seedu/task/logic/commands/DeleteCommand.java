@@ -10,7 +10,7 @@ import seedu.task.model.Model;
 import seedu.task.model.task.Task;
 
 /**
- * Deletes a task identified using it's displayed index from the task book.
+ * Deletes a task identified using displayed index from the task book.
  */
 public class DeleteCommand extends Command {
 
@@ -25,6 +25,9 @@ public class DeleteCommand extends Command {
 
     private final IndexList targetList;
 
+    /**
+     * Creates a new {@code DeleteCommand} with indices user input.
+     */
     public DeleteCommand(IndexList targetList) {
         this.targetList = targetList;
     }

@@ -14,7 +14,7 @@ public class Effort {
 
     /**
      * Creates an effort instance which is an abstraction on the estimated effort required to complete a task.
-     * @param effort
+     * @param effort estimated effort level for a task
      */
     public Effort(long effort) {
         if (effort < 0) {
@@ -23,6 +23,9 @@ public class Effort {
         this.effort = effort;
     }
 
+    /**
+     * Default value assigned to effort if user did not specify an effort level for the task.
+     */
     public Effort() {
         this.effort = DEFAULT_DAILY_EFFORT;
     }
