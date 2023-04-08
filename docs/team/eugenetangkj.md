@@ -59,14 +59,6 @@ My code contributions can be found on
   * GUI testing improved code coverage for InternBuddy.
 
 ### Documentation
-- **Updated README**
-  [\#13](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/13),
-  [\#127](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/127)
-  * Removed AB3-related content and added InternBuddy-related content.
-
-- **Updated Landing Page**
-  [\#127](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/127)
-  * Removed AB3-related content and added InternBuddy-related content.
 
 - **Contributed to User Guide**
   [\#21](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/21),
