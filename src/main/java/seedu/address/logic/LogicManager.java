@@ -12,7 +12,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
@@ -24,8 +23,6 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
-
-    private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
     private final OfficeConnectModel officeConnectModel;
@@ -33,8 +30,7 @@ public class LogicManager implements Logic {
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage) {
-        this.model = model;
+    public LogicManager(Storage storage) {
         this.storage = storage;
         addressBookParser = new AddressBookParser();
         this.officeConnectModel = new OfficeConnectModel();
@@ -44,8 +40,7 @@ public class LogicManager implements Logic {
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage, OfficeConnectModel officeConnectModel) {
-        this.model = model;
+    public LogicManager(Storage storage, OfficeConnectModel officeConnectModel) {
         this.storage = storage;
         addressBookParser = new AddressBookParser();
         this.officeConnectModel = officeConnectModel;
@@ -57,10 +52,10 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model, officeConnectModel);
+        commandResult = command.execute(officeConnectModel.getPersonModelManager(), officeConnectModel);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(officeConnectModel.getPersonModelManager().getAddressBook());
             storage.saveTaskBook(officeConnectModel.getTaskModelManager().getReadOnlyRepository());
             storage.savePersonTaskBook(officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository());
 
@@ -73,12 +68,12 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+        return officeConnectModel.getAddressBook();
     }
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+        return officeConnectModel.getPersonModelManager().getFilteredPersonList();
     }
     @Override
     public OfficeConnectModel getOfficeConnectModel() {
@@ -87,16 +82,16 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return officeConnectModel.getPersonModelManager().getAddressBookFilePath();
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        return model.getGuiSettings();
+        return officeConnectModel.getPersonModelManager().getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        model.setGuiSettings(guiSettings);
+        officeConnectModel.getPersonModelManager().setGuiSettings(guiSettings);
     }
 }

@@ -71,7 +71,7 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#22-ui-component): The UI of the App.
 * [**`Logic`**](#23-logic-component): The command executor.
-* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`OfficeConnectModel`**](#24-model-component): Holds the data of the App in memory.
 * [**`Storage`**](#26-storage-component): Reads data from, and writes data to, the hard disk.
 
 #### 2.1.2 How the architecture components interact with each other
@@ -86,17 +86,17 @@ the command `deletet 1` to delete the task at index 1.
 
 <img src="images/ArchitectureSequenceDiagramTwo.png" width="574" />
 
-Each of the four main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the same name as the Component. implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
+OfficeConnectModel is a concrete class that contains two repository model managers and a person model manager. 
+Of the two repository model managers, one is used to keep track of tasks (i.e. `Task` objects) and the other is used 
+to keep track of the assignment of tasks to persons (i.e `AssignTask` objects). Meanwhile, 
+the person model manager implements the Model interface and is used to keep track of persons stored in OfficeConnect.
+
+Each of the other three main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the same name as the Component. implements its functionality using a concrete `{Component Name}Manager` class.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
-using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
-component through its interface rather than the concrete class (reason: to prevent outside component's being coupled
-to the implementation of a component), as illustrated in the (partial) class diagram below.
+using the `LogicManager.java` class which follows the `Logic` interface. All 4 components work together as illustrated in the (partial) class diagram below.
 
 <img src="images/OfficeComponentManagers.png" width="750" />
-
-As can be seen from the diagram above, OfficeConnectModel is instead a class that contains two repository model managers, one used 
-to keep track of tasks (i.e. `Task` objects) and the other used to keep track of the assignment of tasks to persons (i.e `AssignTask` objects).
 
 ### 2.2 UI component
 

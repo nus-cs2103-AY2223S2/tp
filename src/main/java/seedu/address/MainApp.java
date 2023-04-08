@@ -77,7 +77,7 @@ public class MainApp extends Application {
 
         officeConnectModel = initOfficeConnectModel(storage, model);
 
-        logic = new LogicManager(model, storage, officeConnectModel);
+        logic = new LogicManager(storage, officeConnectModel);
 
         ui = new UiManager(logic);
     }
