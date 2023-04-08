@@ -1,15 +1,25 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
-h2, h3, h4 {
+h1, h2, h3, h5 {
+  font-weight: bold;
+}
+
+h2 {
+  background-color: #e46c0a;
+  color: white;
+  padding-left: 10px;
+}
+
+h2::after {
+  width: 100%;
+}
+
+h3, h4 {
   color: #e46c0a;
 }
 
 h5, h6 {
   color: black;
-}
-
-h5 {
-  font-weight: bold;
 }
 
 h6 {
@@ -26,6 +36,30 @@ h6 {
   border-radius: 50%;
   line-height: 30px;
   width: 30px;
+}
+
+// Vaccination requirement tags
+.tag {
+  background-color: #3e7b91;
+  color: white;
+  padding: 0px 4px;
+
+  display: inline-block;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 11;
+}
+
+.tag.tag-all {
+  background-color: #151790;
+}
+
+.tag.tag-any {
+  background-color: #119654;
+}
+
+.tag.tag-none {
+  background-color: #901515;
 }
 
 // Bootstrap style alerts
