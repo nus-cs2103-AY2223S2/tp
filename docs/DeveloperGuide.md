@@ -347,29 +347,23 @@ ungrade
 
 Mark and Unmark is very similar in nature and their implementation. <br>
 
-Below is the main success scenario of Mark/Unmark
+Below is the main success scenario of Mark (Unmark is not given but very similar to Mark)
 
 
 **MSS**
 
-1. User requests to list all students in a class
-2. TAA shows a list of students
-3. User requests to mark attendance of a specific student in the list for a specified week
-4. TAA marks attendance
+1. User requests to mark attendance of a specific student in the list for a specified week
+2. TAA marks attendance
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index/week is invalid.
 
-  Use case ends.
+    * 1a1. TAA shows an error message.
 
-* 3a. The given index/week is invalid.
-
-    * 3a1. TAA shows an error message.
-
-      Use case resumes at step 2.
+      Use case ends.
 * 3b. The given week's attendance is already marked
 
     * 3a1. TAA shows message that attendance for that week is already marked.
@@ -378,47 +372,39 @@ Below is the main success scenario of Mark/Unmark
 
 The Mark/Unmark commands are similar, and explanation will be done for Mark command
 
-Mark command is facilitated by `MarkCommandParser`, `MarkAddressCommand` and `Model`
-
-* `MarkCommandParser`-- Parse the input of users
-* `MarkAttendanceCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the attendance of student
-
 Below is the sequence diagram for Marking attendane of a student
 
 <img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
 
 ## **Insert Participation**
 
-Below is the main success scenario of Mark/Unmark
+Below is the main success scenario of Insert Participation
 
 
 **MSS**
 
-1. User requests to insert participation points of student
-2. TAA shows a list of students
-3. User requests to insert participation points for a specific student in the list for a specified week
-4. TAA inserts participation points
+
+1. User requests to insert participation points for a specific student for a specified week
+2. TAA inserts participation points
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index/week/participation points is invalid.
 
-  Use case ends.
+    * 1a1. TAA shows an error message.
 
-* 3a. The given index/week/participation points is invalid.
+      Use case ends.
+* 1b. The given week's attendance is not marked
 
-    * 3a1. TAA shows an error message.
+    * 1bTAA shows message that attendance must be marked first before adding participation points.
 
-      Use case resumes at step 2.
-* 3b. The given week's attendance is not marked
+      Use case ends.
 
-    * 3a1. TAA shows message that attendance must be marked first before adding participation points.
+Below is the sequence diagram for inserting participation points
 
-      Use case resumes at step 2.
-
+<img src="images/InsertParticipationSequenceDiagram.png" width="574" />
 
 ## **Add Assignment**
 

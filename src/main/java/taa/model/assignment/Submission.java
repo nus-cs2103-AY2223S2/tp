@@ -9,6 +9,7 @@ import taa.model.student.Student;
  * An assignment submission for a particular student.
  */
 public class Submission {
+    public static final String STR_SEP = ",";
     private final Assignment assignment;
     private final Student student;
     private boolean isGraded = false;
@@ -118,15 +119,14 @@ public class Submission {
 
     /**
      * Creates a string for a submission to store into our storage. The data given is separated by commas, in the
-     * following manner: "assignmentName,isGraded,isLate,marks,totalMarks"
+     * following format: "assignmentName,isGraded,isLate,marks"
      *
      * @return The storage string
      */
     public String toStorageString() {
-        String assignmentName = assignment.getName();
-        int graded = isGraded ? 1 : 0;
-        int late = isLateSubmission ? 1 : 0;
-        return String.format("%s,%d,%d,%d,%d", assignmentName, graded, late, marks, assignment.getTotalMarks());
+        final String assignmentName = assignment.getName();
+        final int graded = isGraded ? 1 : 0;
+        final int late = isLateSubmission ? 1 : 0;
+        return assignmentName + STR_SEP + graded + STR_SEP + late + STR_SEP + marks;
     }
-
 }

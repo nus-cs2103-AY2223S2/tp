@@ -27,6 +27,8 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
+    private static final List<String> VALID_SUBIT_STRS = List.of();
+
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedStudent person = new JsonAdaptedStudent(TypicalPersons.BENSON);
@@ -36,15 +38,15 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedStudent person =
-                new JsonAdaptedStudent(INVALID_NAME, VALID_ATTENDANCE, VALID_PART_POINTS, VALID_TAGS);
+                new JsonAdaptedStudent(INVALID_NAME, VALID_ATTENDANCE, VALID_PART_POINTS, VALID_TAGS, VALID_SUBIT_STRS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(null, VALID_ATTENDANCE,
-                VALID_PART_POINTS, VALID_TAGS);
+        JsonAdaptedStudent person = new JsonAdaptedStudent(null, VALID_ATTENDANCE, VALID_PART_POINTS, VALID_TAGS,
+                VALID_SUBIT_STRS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -54,7 +56,7 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedStudent person =
-                new JsonAdaptedStudent(INVALID_NAME, VALID_ATTENDANCE, VALID_PART_POINTS, VALID_TAGS);
+                new JsonAdaptedStudent(INVALID_NAME, VALID_ATTENDANCE, VALID_PART_POINTS, VALID_TAGS, VALID_SUBIT_STRS);
         Assert.assertThrows(IllegalValueException.class, person::toModelType);
     }
 
