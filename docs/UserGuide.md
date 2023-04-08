@@ -515,8 +515,16 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 
 **:information_source: Note about format of `DATE`:**<br>
 * The format of `DATE` must be `yyyy-MM-DD`. For example, `2022-02-20` represents 20 February 2022.
-* If the `DATE` entered by user is in the future will be not allowed.
+* If the `DATE` entered by user is in the future will not be allowed.
 
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:exclamation: Caution:**<br>
+* In order to avoid potential confusion, we only allow one score per day and the full mark of each score is 100.
+* If there are two exams in one day, e.g. `Midterm Math Paper 1` and `Midterm Math Paper 2`, user can either combine these two exams to one score with label `Midterm Math` or add them in separate dates.
+* If the full score of a test is not 100, please convert the score value with a full score of 100 before entering. 
 </div>
 
 Examples:
@@ -774,7 +782,7 @@ However, the chart tooltip will only display the first 11 letters, with the rema
 | [**Add a Task**](#1-adding-a-task-for-a-student-addtask)                               | `addtask INDEX t/TITLE`<br> e.g `addtask 2 t/Homework Assignment 1`                                                                                                                           |
 | [**Delete a Task**](#2-deleting-a-task-of-a-student-deletetask)                        | `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deletetask 2 1`                                                                                                                          |
 | [**Mark a Task**](#3-marking-a-task-of-a-student-markcomplete-markinprogress-marklate) | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markcomplete`, `marklate` or `markinprogress`)<br> e.g. `markComplete 1 2`<br>                                   |
-| [**Add a Score**](#1-adding-a-score-for-a-student-addscore)                            | `addscore INDEX_OF_STUDENT l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addscore l/CA2 A Math v/70 d/2022-03-03`                                                                                 |
+| [**Add a Score**](#1-adding-a-score-for-a-student-addscore)                            | `addscore INDEX_OF_STUDENT l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addscore 1 l/CA2 A Math v/70 d/2022-03-03`                                                                               |
 | [**Delete a Score**](#2-deleting-a-score-of-a-student-deletescore)                     | `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deletescore 3 4`                                                                                                                      |
 | [**Switch Score Tab**](#3-switching-between-score-tabs-switch)                         | `switch`                                                                                                                                                                                      |
 | [**Export Data**](#1-exporting-the-data-of-the-students-export)                        | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                                        |
