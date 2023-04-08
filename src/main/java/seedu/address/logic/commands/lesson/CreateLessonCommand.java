@@ -91,6 +91,16 @@ public class CreateLessonCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
         }
 
+        Lesson lesson = new Lesson(lessonName, startTime, endTime);
+
+        if (model.hasConflictingLessonTime(lesson)) {
+            throw new CommandException(Messages.MESSAGE_CONFLICTING_LESSON_TIME);
+        }
+
+        //        if (model.hasConflictingExamTime(lesson)) {
+        //            throw new CommandException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
+        //        }
+
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();
@@ -107,8 +117,6 @@ public class CreateLessonCommand extends Command {
             endTime).toHours() > 3) {
             throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DURATION);
         }
-
-        Lesson lesson = new Lesson(lessonName, startTime, endTime);
 
         try {
             for (Student student : studentList) {

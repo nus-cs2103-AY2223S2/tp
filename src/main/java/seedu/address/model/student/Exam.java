@@ -222,4 +222,14 @@ public class Exam {
                 .append(getStringGrade());
         return builder.toString();
     }
+
+    /**
+     * Returns true if the given lesson is the same as this one.
+     * @param lesson The other lesson to compare with.
+     * @return True if the given lesson has the same time slot as this one.
+     */
+    public boolean isSameTimeLesson(Lesson lesson) {
+        return lesson != null
+            && lesson.getStartTime().isBefore(getEndTime()) && lesson.getEndTime().isAfter(getStartTime());
+    }
 }

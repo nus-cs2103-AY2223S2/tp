@@ -42,7 +42,7 @@ public class ViewExamCommand extends Command {
         + PREFIX_NAME + "John Doe "
         + PREFIX_DATE + "2023-05-21 "
         + PREFIX_EXAM + "Math MYE "
-        + PREFIX_DONE + "done";
+        + PREFIX_DONE + "done(or not done)";
     private static final Predicate<Exam> SHOW_ALL_EXAMS = exam -> true;
     private final Predicate<Student> namePredicate;
     private final Predicate<Exam> examDatePredicate;

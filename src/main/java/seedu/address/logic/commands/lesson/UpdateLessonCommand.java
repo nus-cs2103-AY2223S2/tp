@@ -100,7 +100,12 @@ public class UpdateLessonCommand extends Command {
         List<Student> studentList = model.getFilteredStudentList();
 
         Student student = studentList.get(0);
-        Lesson lessonToUpdate = student.getLesson(index);
+        Lesson lessonToUpdate;
+        try {
+            lessonToUpdate = student.getLesson(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
+        }
 
         String newLessonName = this.lessonName.orElse(lessonToUpdate.getTitle());
         LocalDateTime newStartTime = this.startTime.orElse(lessonToUpdate.getStartTime());
@@ -115,6 +120,16 @@ public class UpdateLessonCommand extends Command {
         }
 
         Lesson newLesson = new Lesson(newLessonName, newStartTime, newEndTime);
+        model.updateFilteredStudentList(s -> s != student);
+
+        if (model.hasConflictingLessonTime(newLesson)) {
+            throw new CommandException(Messages.MESSAGE_CONFLICTING_LESSON_TIME);
+        }
+
+        if (model.hasConflictingExamTime(newLesson)) {
+            throw new CommandException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
+        }
+
         try {
             student.setLesson(index.getZeroBased(), newLesson);
         } catch (Exception e) {

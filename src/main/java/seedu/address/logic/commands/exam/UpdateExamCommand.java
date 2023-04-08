@@ -111,7 +111,12 @@ public class UpdateExamCommand extends Command {
         List<Student> studentList = model.getFilteredStudentList();
 
         Student student = studentList.get(0);
-        Exam examToUpdate = student.getExam(index);
+        Exam examToUpdate;
+        try {
+            examToUpdate = student.getExam(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
+        }
 
         String newExamName = this.examName.orElse(examToUpdate.getDescription());
         LocalDateTime newStartTime = this.startTime.orElse(examToUpdate.getStartTime());
