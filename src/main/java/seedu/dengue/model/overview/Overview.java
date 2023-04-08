@@ -14,7 +14,6 @@ import seedu.dengue.model.person.Person;
  * The API of the Overview list.
  */
 public abstract class Overview {
-
     /**
      * Returns the title {@code String} of the overview.
      *
