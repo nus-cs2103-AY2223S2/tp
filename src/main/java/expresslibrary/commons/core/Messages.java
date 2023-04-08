@@ -25,5 +25,6 @@ public class Messages {
     public static final String MESSAGE_BORROW_DATE_AFTER_DUE_DATE = "Borrowed date cannot be past due date!";
     public static final String MESSAGE_INVALID_DATE = "Date(s) must be valid and provided in the form dd/mm/yyyy!";
     public static final String MESSAGE_EARLY_DATE = "Due date must be after today's date!";
+    public static final String MESSAGE_INVALID_EDIT_BORROW_DATE = "Book is not borrowed!";
 
 }
