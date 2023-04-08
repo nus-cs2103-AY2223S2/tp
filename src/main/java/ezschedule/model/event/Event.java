@@ -2,6 +2,7 @@ package ezschedule.model.event;
 
 /**
  * Represents an Event in the scheduler.
+ * When comparing, earlier events come first, then later events (chronological order)
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event implements Comparable<Event> {
@@ -70,9 +71,9 @@ public class Event implements Comparable<Event> {
             return 0;
         }
 
-        int result = getDate().compareTo(otherEvent.getDate());
-        if (result != 0) {
-            return result;
+        int daysDelta = getDate().compareTo(otherEvent.getDate());
+        if (daysDelta != 0) {
+            return daysDelta;
         }
 
         return getStartTime().compareTo(otherEvent.getStartTime());
