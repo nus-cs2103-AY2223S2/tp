@@ -17,7 +17,6 @@ import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
-import seedu.loyaltylift.model.order.Status;
 
 /**
  * Adds an order to LoyaltyLift.
@@ -80,7 +79,6 @@ public class AddOrderCommand extends Command {
         Name name = addOrderDescriptor.getName();
         Address address = addOrderDescriptor.getAddress().orElse(taggedCustomer.getAddress());
         Quantity quantity = addOrderDescriptor.getQuantity().orElse(new Quantity(1));
-        Status status = new Status();
 
         return new Order(taggedCustomer, name, quantity, address);
     }
