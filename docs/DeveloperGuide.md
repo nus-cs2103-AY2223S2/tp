@@ -199,6 +199,16 @@ This section describes some noteworthy details on how certain features are imple
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+
+## **Glossary**
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Event**: A task with a starting time and an ending time
+* **Ongoing Event**: An event that has started, but not ended
+* **Upcoming Event**: An event that has not started
+* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
+
+
 ## **Appendices**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -364,6 +374,7 @@ that can be followed to perform manual testing of the application.
 testers are expected to do more *exploratory* testing.
 </div>
 
+
 #### **Launch and Shutdown**
 
 #### Scenario 1  
@@ -395,6 +406,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:**  The existing data should remain unchanged
 
+
 #### **Adding an Event**
 
 #### Scenario 1
@@ -423,6 +435,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** The Response Box will display the message "Another event already exists at the chosen time"
 
+
 #### **Recurring an Event**
 
 #### Scenario 1
@@ -443,6 +456,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** The Response Box will display the message "Unable to recur. 10 May has a clashing event."
 
+
 #### **Editing an Event**
 
 #### Scenario 1
@@ -460,6 +474,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute `edit` command with arguments identical to another existing `Event`
 
 **Result:** The Response Box will display the message "This event already exists in the scheduler"
+
 
 #### **Deleting Events**
 
@@ -492,6 +507,7 @@ testers are expected to do more *exploratory* testing.
 **Result:** 
 * The Response Box will display the message "The event index 10 provided is invalid"
 * None of the `Event` with valid index will be removed from _Ez-Schedule_
+
 
 #### **Finding Events**
 
@@ -535,6 +551,7 @@ testers are expected to do more *exploratory* testing.
 * The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
+
 #### **Show Next Events**
 
 #### Scenario 1
@@ -556,6 +573,7 @@ testers are expected to do more *exploratory* testing.
 **Result:**
 * The Response Box will display the message "2 events listed!"
 * The Upcoming Events Panel will display the next 2 upcoming or ongoing event that you have
+
 
 #### **Undo a Command**
 
@@ -608,10 +626,3 @@ testers are expected to do more *exploratory* testing.
 * The `Event` with index 1 that was deleted is added back into _Ez-Schedule_
 
 
-### **Glossary**
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Event**: A task with a starting time and an ending time
-* **Ongoing Event**: An event that has started, but not ended
-* **Upcoming Event**: An event that has not started
-* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
