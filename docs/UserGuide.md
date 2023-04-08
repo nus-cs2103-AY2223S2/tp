@@ -401,7 +401,7 @@ Specify exactly one parameter in `<command>`. This can be from one of the comman
 
 #### 5.9 Exit MODTrek : `exit` <a name="exit-app"></a>
 
-Once your done keying in your modules and their details, you can use this command to exit **MODTrek**. Alternatively, you may exit by clicking the top-right X button to close the window.
+Once you're done keying in your modules and their details, you can use this command to exit **MODTrek**. Alternatively, you may exit by clicking the top-right X button to close the window.
 
 **Syntax:** `exit`
 
@@ -436,7 +436,7 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 ## 6. Frequently Asked Questions (FAQ) <a name="faq"></a>
 
 **Q**: Why is it that I can add in modules not offered in NUS?<br>
-**A**: Unfortunately we do not have a database to store all the available modules in NUS.
+**A**: Unfortunately, we do not have a database to store all the available modules in NUS.
 We can only check if the module code is formatted correctly, and we trust users to key in modules that
 are provided only by NUS.
 
@@ -450,11 +450,11 @@ Any deviations from these constraints for any reason (eg. Exchange modules, Reta
 For example, one may use dummy module codes like TEST1001 to include these modules in their degree progression and CAP calculation.
 
 **Q**: Why is "W" grade not allowed?<br>
-**A**: We do not think adding "W" grade will be of any value. It is equivalent to deleting the module from the
+**A**: We did not believe "W" grades in the application would be essential. It is equivalent to deleting the module from the
 record since credits will no longer count towards degree progression.
 
 **Q**: Why are "CS", "CU" grades not allowed?<br>
-**A**: We do not think adding "CS", "CU" grades will be of any value. They function similarly to "S" and "U" grades respectively, 
+**A**: We did not believe adding "CS", "CU" grades would be essential. They function similarly to "S" and "U" grades respectively, 
 where "CS" and "S" count towards MCs completed, while "CU" and "U" do not count towards MCs completed. All of them do not affect the CAP as well.
 Hence, you may record "CS" and "CU" grades as "S" and "U" respectively.
 
