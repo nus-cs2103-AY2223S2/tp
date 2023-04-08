@@ -45,6 +45,18 @@ class IsolatedEventListTest {
     }
 
     @Test
+    void checkClashingIsolatedEvent_throwsEventConflictException() {
+        isolatedEventList.insert(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        IsolatedEventStub event = new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID, THREE_O_CLOCK_VALID);
+        assertThrows(EventConflictException.class, () -> isolatedEventList.checkOverlapping(event, 1));
+    }
+
+    @Test
     void testToString() {
         isolatedEventList.insert(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
                 THREE_O_CLOCK_VALID));
