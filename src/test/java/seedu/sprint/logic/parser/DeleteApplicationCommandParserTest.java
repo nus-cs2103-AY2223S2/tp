@@ -4,6 +4,7 @@ import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sprint.logic.parser.ApplicationCommandParserTestUtil.assertParseFailure;
 import static seedu.sprint.logic.parser.ApplicationCommandParserTestUtil.assertParseSuccess;
 import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_FIRST_APPLICATION;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.commands.DeleteApplicationCommand;

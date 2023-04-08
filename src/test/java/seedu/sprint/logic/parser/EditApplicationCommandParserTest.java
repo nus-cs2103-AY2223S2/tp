@@ -29,6 +29,7 @@ import static seedu.sprint.logic.parser.ApplicationCommandParserTestUtil.assertP
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_THIRD_APPLICATION;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.commons.core.index.Index;
@@ -42,12 +43,12 @@ import seedu.sprint.testutil.EditApplicationDescriptorBuilder;
 
 public class EditApplicationCommandParserTest {
 
-    private EditApplicationCommandParser parser = new EditApplicationCommandParser();
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditApplicationCommand.MESSAGE_USAGE);
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditApplicationCommand.MESSAGE_USAGE);
+    private EditApplicationCommandParser parser = new EditApplicationCommandParser();
 
 
     @Test
@@ -104,8 +105,8 @@ public class EditApplicationCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_SCHOOL + TAG_DESC_HIGHSALARY, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_COMPANY_NAME_DESC + INVALID_COMPANY_EMAIL_DESC +
-                        STATUS_DESC_GRAB + COMPANY_EMAIL_DESC_GRAB, CompanyName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_COMPANY_NAME_DESC + INVALID_COMPANY_EMAIL_DESC
+                + STATUS_DESC_GRAB + COMPANY_EMAIL_DESC_GRAB, CompanyName.MESSAGE_CONSTRAINTS);
     }
     @Test
     public void parse_allFieldsSpecified_success() {
