@@ -13,7 +13,11 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline {
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
+    public static final String INVALID_DEADLINE = "Deadline should be in this format: {YYYY-MM-DD}";
+    public static final String IS_NOT_PASSED = "Deadline should be in this format: {YYYY-MM-DD}";
+    public static final String DOES_NOT_EXIST = "Deadline does not exist. Please key in a date that exists.";
     private static String messageConstraint = "";
+
     public final String deadline;
 
     /**
@@ -35,7 +39,7 @@ public class Deadline {
             LocalDate lDate = LocalDate.parse(test);
             return true;
         } else {
-            setMessageConstraint("Deadline should be in this format: {YYYY-MM-DD}");
+            setMessageConstraint(INVALID_DEADLINE);
             return false;
         }
     }
@@ -48,7 +52,7 @@ public class Deadline {
         if (lDate.isAfter(LocalDate.now()) || lDate.isEqual(LocalDate.now())) {
             return true;
         } else {
-            setMessageConstraint("Deadline should not have passed. Please enter a date that has not passed.");
+            setMessageConstraint(IS_NOT_PASSED);
             return false;
         }
     }
@@ -60,7 +64,7 @@ public class Deadline {
         try {
             LocalDate lDate = LocalDate.parse(test);
         } catch (DateTimeParseException e) {
-            setMessageConstraint("Deadline does not exist. Please key in a date that exists.");
+            setMessageConstraint(DOES_NOT_EXIST);
             return false;
         }
         return true;

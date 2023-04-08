@@ -33,8 +33,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_CONTACT_AMY = "11111111";
+    public static final String VALID_CONTACT_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_WEB_AMY = "www.google.com";
     public static final String VALID_WEB_BOB = "www.google.com";
@@ -55,17 +55,19 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_CONTACT + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_CONTACT + VALID_PHONE_BOB;
+    public static final String CONTACT_DESC_AMY = " " + PREFIX_CONTACT + VALID_CONTACT_AMY;
+    public static final String CONTACT_DESC_BOB = " " + PREFIX_CONTACT + VALID_CONTACT_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
+    public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
+    public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
     public static final String JOBDESCRIPTION_DESC_AMY = " " + PREFIX_JOBDESCRIPTION + VALID_JOBDESCRIPTION_AMY;
     public static final String JOBDESCRIPTION_DESC_BOB = " " + PREFIX_JOBDESCRIPTION + VALID_JOBDESCRIPTION_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String WEBSITE = " " + PREFIX_WEBSITE + "www.google.com";
+    public static final String WEBSITE_DESC_AMY = " " + PREFIX_WEBSITE + "www.google.com";
+
+    public static final String WEBSITE_DESC_BOB = " " + PREFIX_WEBSITE + "www.helloworld.com";
     public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
     public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
     public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
@@ -73,15 +75,14 @@ public class CommandTestUtil {
     public static final String EXPERIENCE_DESC_AMY = " " + PREFIX_EXPERIENCE + VALID_EXPERIENCE_AMY;
     public static final String EXPERIENCE_DESC_BOB = " " + PREFIX_EXPERIENCE + VALID_EXPERIENCE_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_COMPANY; // empty string not allowed for addresses
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY; // empty string not allowed for addresses
     public static final String INVALID_JOBDESCRIPTION_DESC = " " + PREFIX_JOBDESCRIPTION; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_WEBSITE = " " + PREFIX_WEBSITE + "ww.com";
+    public static final String INVALID_WEBSITE_DESC = " " + PREFIX_WEBSITE + "ww.com";
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "dn1"; // Characters not allowed in salaries
-    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
-            + "2023-10-2a"; // Characters not allowed in deadline
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2023-10-2a"; // Characters not allowed
     public static final String INVALID_EXPERIENCE_DESC = " " + PREFIX_EXPERIENCE;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -91,16 +92,15 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditRoleDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
+                .withPhone(VALID_CONTACT_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
                 .withTags(VALID_TAG_FRIEND).withWebsite(VALID_WEB_AMY).withJobDescription(VALID_JOBDESCRIPTION_AMY)
-                .withTags(VALID_TAG_FRIEND).withSalary(VALID_SALARY_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withExperience(VALID_EXPERIENCE_AMY).build();
+                .withSalary(VALID_SALARY_AMY).withDeadline(VALID_DEADLINE_AMY).withExperience(VALID_EXPERIENCE_AMY)
+                .build();
         DESC_BOB = new EditRoleDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB)
+                .withPhone(VALID_CONTACT_BOB).withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withWebsite(VALID_WEB_BOB)
-                .withJobDescription(VALID_JOBDESCRIPTION_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .withSalary(VALID_SALARY_BOB).withDeadline(VALID_DEADLINE_BOB)
-                .withExperience(VALID_EXPERIENCE_BOB).build();
+                .withJobDescription(VALID_JOBDESCRIPTION_AMY).withSalary(VALID_SALARY_BOB)
+                .withDeadline(VALID_DEADLINE_BOB).withExperience(VALID_EXPERIENCE_BOB).build();
     }
 
     /**
@@ -108,7 +108,7 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult<?> expectedCommandResult,
                                             Model expectedModel) {
         try {
             CommandResult<?> result = command.execute(actualModel);

@@ -12,7 +12,7 @@ import seedu.techtrack.model.role.Role;
 
 
 /**
- * Edits the details of an existing role in the company book.
+ * Views the details of an existing role in the company book.
  */
 public class ViewCommand extends Command {
 

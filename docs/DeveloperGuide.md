@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
@@ -34,6 +34,11 @@ Third-party software used in this project:
 * [Codecov](https://codecov.io/)
 * [JavaFx](https://openjfx.io/)
 * [JUnit](https://junit.org/)
+
+Documentation referred from:
+
+* https://github.com/kxrt/tp/blob/master/docs/DeveloperGuide.md
+* https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -286,12 +291,12 @@ input. An instance of the `DeleteCommandParser` to parse the `INDEX` is created 
 method in `ParserUtil`.
 
 The `RoleBookParser` will instantiate the `DeleteCommandParser` object and call the parse method with `INDEX` as arguments.
-The parse method will create and return a new `DeleteCommand`. The `LogicManager` then executes the `DeleteCommand`, which deletes and updates 
+The parse method will create and return a new `DeleteCommand`. The `LogicManager` then executes the `DeleteCommand`, which deletes and updates
 the `Role` from the `Model` based on the `INDEX`.
 
 The following sequence diagram shows how the `delete` command works:
 
-![Delete Command Sequence Diagram](images/DeleteCommandSequenceDiagram.png)
+![Delete Command Sequence Diagram](images/DeleteSequenceDiagram.png)
 
 ### Salary and Deadline Command Feature
 
@@ -358,18 +363,18 @@ Given below is an example usage of how CompanyCommand and its dependencies is be
     - The user executes `company {keyword}` command to filter roles with the given company name in the form of `keyword`.
 
 3. When `company {keyword}` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
-input. This then creates an instance of the `CompanyCommandParser` to parse the keyword. 
+   input. This then creates an instance of the `CompanyCommandParser` to parse the keyword.
 
-4. Invoking the parse method 
-of `CompanyCommandParser` creates a `CompanyContainsKeywordsPredicate` object that implements the `predicate<Role>` interface.
-`CompanyContainsKeywordsPredicate` is used to check if any of the company field of the rolelist contains the keyword.
-If any of the inputs formats are invalid, a `ParseException` will be thrown.
+4. Invoking the parse method
+   of `CompanyCommandParser` creates a `CompanyContainsKeywordsPredicate` object that implements the `predicate<Role>` interface.
+   `CompanyContainsKeywordsPredicate` is used to check if any of the company field of the rolelist contains the keyword.
+   If any of the inputs formats are invalid, a `ParseException` will be thrown.
 
-4. The `CompanyCommandParser` then creates a `CompanyCommand` which uses `Model` interface's `Model#updateFilteredRoleList()` 
-to filter the roles based on the `predicate`, which in this case is the keyword.
+4. The `CompanyCommandParser` then creates a `CompanyCommand` which uses `Model` interface's `Model#updateFilteredRoleList()`
+   to filter the roles based on the `predicate`, which in this case is the keyword.
 
-5. `LogicManager` executes the returned `CompanyCommand` and updates the filtered role list in `Model`. Subsequently, the `CommandResult` 
-is returned.
+5. `LogicManager` executes the returned `CompanyCommand` and updates the filtered role list in `Model`. Subsequently, the `CommandResult`
+   is returned.
 
 The following sequence diagram shows how the `company` command works:
 
@@ -431,11 +436,10 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how NameCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book. <img src="images/startUp.png" width="800" />
+   current role book.
 
 2. The user can choose to use the `Name Command` to filter names.
     - The user executes `name <keyword>` command to filter roles by their name.
-      <img src="images/UICommandImages/NameCommand.png" width="800" />
 
 The following sequence diagram shows how the `name` command works:
 
@@ -496,10 +500,10 @@ TechTrack's UI components are highlighted below:
 
 ![UI Overlay](images/UICommandImages/UiEnhancement0.png)
 
-The main window comprises three key components: namely the Command Input Box located at the bottom half, 
-the Role List Box on the left half, and the Result Display Box on the right half. The Command Input Box provides users 
-with a text field to input their commands, and it remains unchanged every time it is rendered. The Role List Box displays 
-a list of roles, which may differ in number, but it is rendered using JavaFX's `ListView` component. Thus, executing a 
+The main window comprises three key components: namely the Command Input Box located at the bottom half,
+the Role List Box on the left half, and the Result Display Box on the right half. The Command Input Box provides users
+with a text field to input their commands, and it remains unchanged every time it is rendered. The Role List Box displays
+a list of roles, which may differ in number, but it is rendered using JavaFX's `ListView` component. Thus, executing a
 command allows for straightforward updates to these two components.
 
 This is not the case for Result Display Box, as we might potentially need to render different types of displays
@@ -508,10 +512,10 @@ was refactored to support custom displays.
 
 #### What was refactored
 
-The [`ResultDisplay`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/ResultDisplay.java) 
-component was changed from a `TextArea` object to a `VBox` object. Both of these are JavaFX `Node` objects. A method 
-named `place` was created, which takes in a JavaFX `node` object, clears all children nodes in the `ResultDisplay` and 
-places the new `node` in the `VBox`. This allows us to update the `ResultDisplay` to support custom displays based on 
+The [`ResultDisplay`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/ResultDisplay.java)
+component was changed from a `TextArea` object to a `VBox` object. Both of these are JavaFX `Node` objects. A method
+named `place` was created, which takes in a JavaFX `node` object, clears all children nodes in the `ResultDisplay` and
+places the new `node` in the `VBox`. This allows us to update the `ResultDisplay` to support custom displays based on
 the command provided.
 
 As mentioned above in the [View Command Section](#view-command-feature), the `CommandResult` class was also updated to be generic.
@@ -530,13 +534,13 @@ illustrates how the `MainWindow.java` file determines the type of display render
 
 #### Possible Future Enhancements
 
-1. The render logic to determine which display to render is written in the `execute` method of `MainWindow.java`. 
-It could be abstracted out to a new class, named `DisplayManager` for instance, which handles which display to place
-under `ResultDisplay`.
+1. The render logic to determine which display to render is written in the `execute` method of `MainWindow.java`.
+   It could be abstracted out to a new class, named `DisplayManager` for instance, which handles which display to place
+   under `ResultDisplay`.
 2. The current way of determining which display to render is not very extendible, since we're using the type `T` from `CommandResult`
-to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point 1), 
-using a common interface to implement the required operations through dynamic binding. One possible way to do 
-this is shown below in the form of a class diagram:
+   to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point 1),
+   using a common interface to implement the required operations through dynamic binding. One possible way to do
+   this is shown below in the form of a class diagram:
 
 ![Enhanced UI Class Diagram](images/EnhancedUIClassDiagram.png)
 
@@ -559,28 +563,31 @@ this is shown below in the form of a class diagram:
 
 **Target user profile**:
 
-* Students studying computing-related courses looking for internships
-* Reasonably comfortable using CLI apps
-* Has a need to manage a significant number of internship positions
+* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search for their job efficiently.
 
-**Value Proposition**: manage jobs faster than a typical mouse/GUI driven app
+**Value Proposition**: Manage jobs faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a…. | I want to …                                | So that I can…                                                              |
-|----------|--------|--------------------------------------------|-----------------------------------------------------------------------------|
-| ***      | user   | add contacts for companies                 | save these contacts to the corresponding role and send my application.      |
-| ***      | user   | add a job/internship to the program        | save all jobs/internship that im interested in applying for.                |
-| ***      | user   | view all the internships that I have added | view all the jobs/internship that I'm interested in.                        |
-| ***      | user   | delete company internship                  | Remove jobs/internship that might not interest me anymore.                  |
-| ***      | user   | Save data                                  | view my jobs/internship opportunities even after the application is closed. |
-| **       | user   | find by tags                               | filter by certain skills or notes of the job                                |
-| **       | user   | sort by salary                             | know which jobs/internship has a higher starting salary.                    |
-| **       | user   | sort by deadline                           | know which jobs/internship has upcoming deadlines.                          |
-| **       | user   | find companies                             | find relevant companies and their respective roles.                         |
-| **       | user   | use the UI with ease                       | quickly perform certain app operations                                      |
+| Priority | As a… | I want to…                           | So that I can…                                                        |
+|----------|-------|--------------------------------------|-----------------------------------------------------------------------|
+| ***      | user  | add contacts for roles               | save these contacts to the corresponding role and send my application |
+| ***      | user  | add salary for roles                 | compare the salaries of my roles                                      |
+| ***      | user  | add website for roles                | visit the websites of the companies for more information              |
+| ***      | user  | add deadline for roles               | understand when I need to apply the roles                             |
+| ***      | user  | add job description for roles        | find out more about the role before applying for the role             |
+| ***      | user  | add experience                       | convince my employer about my merits                                  |
+| ***      | user  | add a role to the program            | save all roles that I'm interested in applying for                    |
+| ***      | user  | view all the roles that I have added | view all the roles that I'm interested in                             |
+| ***      | user  | delete company role                  | remove roles that might not interest me anymore                       |
+| ***      | user  | save data                            | view my roles opportunities even after the application is closed      |
+| **       | user  | find by tags                         | filter by certain skills or notes of the role                         |
+| **       | user  | find by roles                        | find relevant companies and their respective roles                    |
+| **       | user  | sort by salary                       | know which roles have a higher starting salary                        |
+| **       | user  | sort by deadline                     | know which roles have the most urgent deadlines                       |
+| **       | user  | use the UI with ease                 | perform operations easier                                             |
 
 ### Use cases
 
@@ -745,15 +752,42 @@ Use case ends.
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. The CLI should be easy to use, with intuitive commands and clear error messages.
 5. The CLI should be reliable and stable, with no crashes or data corruption unless a user corrupts the data file.
-6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
-7. The CLI should be accessible to users with different abilities and needs, including support for assistive
-   technologies and localization.
+6. The Program and Data stored should be functional to users with other OSes and versions of the application.
+7. The application should load up within 3-5 seconds.
+8. Users must be able to access the application without an internet connection.
+9. A user should be able to use the app after reading the help instructions.
+10. A user must be able to view at least 3 roles with minimal scrolling.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Instructions for manual testing**
 
 Given below are instructions to test the app manually.
+
+### Sort all roles by salary
+
+Prerequisite: There are roles stored in RoleBook with different salaries.
+
+Format: `salary asc`
+
+Expected Output in the Role List Box : Roles are sorted in ascending order starting from the highest salary.
+
+Expected Output Command Output Box : Salaries sorted in asc.
+
+### Sort all roles by deadline
+
+Similar to the manual testing of [sort all roles by salary section](#Sort all roles by salary).
+
+### View the information of a Role
+
+Prerequisite: There is at least 1 role shown in the Role List Box
+
+`view 1`
+
+Expected Output in the Role List Box : Still showing the same list as before.
+
+Expected Output Command Output Box : Details of first role in Role List Box shown. Displayed information includes the
+name, company, salary, deadline, experience, job description, email, contact and website of the role.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -775,13 +809,46 @@ testers are expected to do more *exploratory* testing.
 1. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Adding a Role
+1. Adding a Role to role book.
+
+1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, tags, salary, deadline, experience required are shown. The rest of roles in the list remains.
+
+1. Test case: `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+
+   Expected: Role is not added, Error details shown in the status message. Missing compulsory field.
+
+1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
+   
+1. Other incorrect delete commands to try: `add`, `add 1`, `...`<br>
+   Expected: Error details shown in the status message.
+   
+
+### Editing a Role
+1. Editing a existing role.
+
+1. Prerequisities: `view 1` and index 1 of the list exists.
+   Expected: Name appearing on the list changes to `Software Developer`, `view 1` shows name to be `Software Developer`.
+
+1. Test case: `edit 0`<br>
+   Expected: No role is edited. Error details shown in the status message. Status bar remains the same.
+
+1. Test case: `edit 1`<br>
+   Expected: No role is edited. Error details shown in the status message, asking user to input at least one field. Status bar remains the same.
+   
+1. Other incorrect delete commands to try: `edit n/`, `edit -1`, `...`<br>
+   Expected: Similar to previous.
 
 ### Deleting a Role
 
 1. Deleting a role while all roles are being shown
 
-1. Prerequisites: List all roles using the `list` command. Multiple roles will be displayed in the list.
+1. Prerequisites: List all roles using the `list` command. Multiple roles should be displayed in the list.
 
 1. Test case: `delete 1`<br>
    Expected: First role is deleted from the list. Details of the deleted role shown in the status message.
@@ -794,6 +861,23 @@ testers are expected to do more *exploratory* testing.
    Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Finding by Company 
+1. Finding role by company name.
+
+1. Prerequisites: List all roles using the `list` command. Roles with role name `software engineer` and `data analyst` should exist.
+
+1. Test case: `name analyst software`<br>
+   Expected: Two roles are displayed.
+   
+1. Test case: `name software`<br>
+   Expected: One role is displayed.
+   
+1. Test case: `name`<br>
+   Expected: Error details shown in the status message. 
+   
+1. Other incorrect delete commands to try: `name /n`, `name x`, `...`<br>
+   Expected: Similar to previous.
 
 ### Saving data
 
@@ -890,4 +974,3 @@ Ideas:
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Role**: Refers to internships or full-time jobs
 * **Attribute**: Refers to the parameters a role can have
-
