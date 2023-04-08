@@ -306,6 +306,10 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredSupplierList().size());
     }
 
+    /**
+     * Updates {@code moedl}'s filtered task list to show only the task at the given {@code targetIndex}
+     * {@code model} menu.
+     */
     public static void showMenuItemAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMenu().size());
 

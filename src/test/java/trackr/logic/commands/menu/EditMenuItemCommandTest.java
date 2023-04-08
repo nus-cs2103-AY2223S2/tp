@@ -30,8 +30,8 @@ import trackr.model.TaskList;
 import trackr.model.UserPrefs;
 import trackr.model.menu.MenuItem;
 import trackr.model.menu.MenuItemDescriptor;
-import trackr.testutil.MenuItemDescriptorBuilder;
 import trackr.testutil.MenuItemBuilder;
+import trackr.testutil.MenuItemDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditMenuItemCommand.
@@ -104,8 +104,10 @@ public class EditMenuItemCommandTest {
     public void execute_filteredList_success() throws ParseException {
         showMenuItemAtIndex(model, INDEX_FIRST_OBJECT);
 
-        MenuItem MenuItemInFilteredList = model.getFilteredMenu().get(INDEX_FIRST_OBJECT.getZeroBased());
-        MenuItem editedMenuItem = new MenuItemBuilder(MenuItemInFilteredList).withItemName(VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES).build();
+        MenuItem menuItemInFilteredList = model.getFilteredMenu().get(INDEX_FIRST_OBJECT.getZeroBased());
+        MenuItem editedMenuItem = new MenuItemBuilder(menuItemInFilteredList)
+                                        .withItemName(VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES)
+                                        .build();
         EditMenuItemCommand editCommand = new EditMenuItemCommand(INDEX_FIRST_OBJECT,
                 new MenuItemDescriptorBuilder().withName(VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES).build());
 
@@ -137,9 +139,9 @@ public class EditMenuItemCommandTest {
         showMenuItemAtIndex(model, INDEX_FIRST_OBJECT);
 
         // edit MenuItem in filtered list into a duplicate in address book
-        MenuItem MenuItemInList = model.getMenu().getItemList().get(INDEX_SECOND_OBJECT.getZeroBased());
+        MenuItem menuItemInList = model.getMenu().getItemList().get(INDEX_SECOND_OBJECT.getZeroBased());
         EditMenuItemCommand editCommand = new EditMenuItemCommand(INDEX_FIRST_OBJECT,
-                new MenuItemDescriptorBuilder(MenuItemInList).build());
+                new MenuItemDescriptorBuilder(menuItemInList).build());
 
         assertCommandFailure(editCommand,
                 model,
@@ -149,7 +151,9 @@ public class EditMenuItemCommandTest {
     @Test
     public void execute_invalidMenuItemIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMenu().size() + 1);
-        MenuItemDescriptor descriptor = new MenuItemDescriptorBuilder().withName(VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES).build();
+        MenuItemDescriptor descriptor = new MenuItemDescriptorBuilder()
+                                        .withName(VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES)
+                                        .build();
         EditMenuItemCommand editCommand = new EditMenuItemCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand,
@@ -180,7 +184,8 @@ public class EditMenuItemCommandTest {
 
     @Test
     public void equals() {
-        final EditMenuItemCommand standardCommand = new EditMenuItemCommand(INDEX_FIRST_OBJECT, DESC_CHOCOLATE_COOKIE_M);
+        final EditMenuItemCommand standardCommand = new EditMenuItemCommand(
+                                                        INDEX_FIRST_OBJECT, DESC_CHOCOLATE_COOKIE_M);
 
         // same values -> returns true
         MenuItemDescriptor copyDescriptor = new MenuItemDescriptor(DESC_CHOCOLATE_COOKIE_M);
