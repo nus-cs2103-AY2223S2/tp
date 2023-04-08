@@ -9,8 +9,8 @@ Class "{abstract}\nEvent" as Event
 AddressBook *-> "1" UniquePersonList
 AddressBook *--> "1" UniqueTutorialList
 
-UniquePersonList -right-> Person
-UniqueTutorialList -right-> Tutorial
+UniquePersonList -right-> "*" Person
+UniqueTutorialList -right-> "*" Tutorial
 
 Tutorial -up-|> Event
 
