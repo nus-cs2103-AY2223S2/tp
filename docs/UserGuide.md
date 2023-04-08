@@ -219,12 +219,12 @@ Format: `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE`
 
 Examples:
 
-* To allow the 2nd person in the contact list to borrow the 3rd book in the book list
-  * `listBook` and `listPerson` will show the lists containing the books and the stored contacts
+* To allow the 2nd person in the person list to borrow the 3rd book in the book list:
+  * `listBook` and `listPerson` will show the lists containing the books and the stored persons.
   * `borrow 2 b/3 d/17/10/2024` allows the 2nd user in the person list to borrow the 3rd book in the book list, with a due date of Oct. 17, 2024.
-* To RENEW the book due date
-  * Simply borrow the book again for the same person with the same title, but with a different date
-  * `borrow 2 b/3 d/20/11/2024` will renew the book due date for the previous example
+* To **edit** the book's due date only:
+  * Simply borrow the book again for the same person but with a different date.
+  * `borrow 2 b/3 d/20/11/2024` will renew the book due date for the previous example.
 
 #### Returning a book : `return`
 
