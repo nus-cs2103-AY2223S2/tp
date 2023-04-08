@@ -1,4 +1,90 @@
-import static org.junit.jupiter.api.Assertions.*;
+package tfifteenfour.clipboard.logic.commands;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_OUT_OF_BOUND;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.testutil.TypicalModel;
+
 class CopyCommandTest {
-  
+    private Model model;
+    private Model expectedModel;
+    private Course selectedCourse;
+    private Group selectedGroup;
+    private Student selectedStudent;
+    private CurrentSelection actualSelection;
+
+    @BeforeEach
+    public void setUp() {
+        this.model = new TypicalModel().getTypicalModel();
+        expectedModel = model.copy();
+        selectedCourse = model.getCurrentSelection().getSelectedCourse();
+        selectedGroup = model.getCurrentSelection().getSelectedGroup();
+        selectedStudent = model.getCurrentSelection().getSelectedStudent();
+
+        actualSelection = this.model.getCurrentSelection();
+        actualSelection.setCurrentPage(PageType.STUDENT_PAGE);
+    }
+
+    @Test
+    public void execute_copyCommand_success() throws CommandException {
+//        Clipboard clipboard = new Clipboard("clipboard");
+        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST);
+        String expectedMessage = CopyCommand.MESSAGE_SUCCESS;
+//        List<Student> students = selectedGroup.getUnmodifiableStudentList();
+
+        assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
+        copyCommand.execute(model);
+        // Assert that email was copied to clipboard
+//        assertEquals(students.get(0).getEmail().toString(), clipboard.getData(DataFlavor.stringFlavor));
+    }
+
+    @Test
+    public void execute_indexOutOfBounds_throwsCommandException() {
+        CopyCommand copyCommand = new CopyCommand(INDEX_OUT_OF_BOUND);
+        assertThrows(CommandException.class, () -> copyCommand.execute(model));
+    }
+
+    @Test
+    public void execute_wrongPage_throwsCommandException() {
+        actualSelection.setCurrentPage(PageType.COURSE_PAGE);
+        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST);
+        assertThrows(CommandException.class, () -> copyCommand.execute(model));
+    }
+
+    @Test
+    public void equals() {
+        CopyCommand copyCommand1 = new CopyCommand(INDEX_FIRST);
+        CopyCommand copyCommand2 = new CopyCommand(INDEX_FIRST);
+
+        // same object -> returns true
+        assertEquals(copyCommand1, copyCommand1);
+
+        // same values -> returns true
+        assertEquals(copyCommand1, copyCommand2);
+
+        // different types -> returns false
+        assertNotEquals(1, copyCommand1);
+
+        // null -> returns false
+        assertNotEquals(null, copyCommand1);
+
+        // different index -> returns false
+        CopyCommand copyCommand3 = new CopyCommand(INDEX_SECOND);
+        assertNotEquals(copyCommand1, copyCommand3);
+    }
+
 }
