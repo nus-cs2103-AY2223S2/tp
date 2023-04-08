@@ -184,6 +184,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * @param handler
      */
     public void setSelectHandler(BiConsumer<Integer, DeliveryJob> handler) {
+        assert handler != null;
+
         this.onSelectHandler = Optional.of(handler);
     }
 
@@ -193,6 +195,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * @param handler
      */
     public void setCheckHandler(Consumer<DeliveryJob> handler) {
+        assert handler != null;
+
         this.onCheckHandler = Optional.of(handler);
     }
 
@@ -202,6 +206,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * @param handler
      */
     public void setDeleteHandler(Consumer<DeliveryJob> handler) {
+        assert handler != null;
+
         this.onDeleteHandler = Optional.of(handler);
     }
 
@@ -211,7 +217,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * @param handler
      */
     public void setOrderByHandler(BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>> handler) {
-        // orderOption = Optional.of(handler);
+        assert handler != null;
+
         sortHandler = Optional.of(handler);
         orderOption.setVisible(true);
     }
@@ -220,6 +227,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * Sets handler to filter
      */
     public void setFilterHandler(Consumer<DeliveryFilterOption> con) {
+        assert con != null;
+
         filterOption.setVisible(true);
         filterDelivered.setToggleGroup(toggleGroup);
         filterPending.setToggleGroup(toggleGroup);

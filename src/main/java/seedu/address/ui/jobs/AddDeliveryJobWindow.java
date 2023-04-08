@@ -236,6 +236,8 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
      * @param handler
      */
     public void setResultHandler(Consumer<CommandResult> handler) {
+        assert handler != null;
+
         this.completeEditCallback = Optional.of(handler);
     }
 
