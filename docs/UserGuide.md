@@ -418,15 +418,12 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Add a lecture to a module.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to add the lecture to
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module to add the lecture to
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the lecture
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the lecture
   - Repeated tags (if any) will be ignored
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
 Examples:
 
@@ -439,21 +436,16 @@ Examples:
 Add a video to a lecture.
 
 - <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched", else, it will be marked as "not watched"
-- <span style="color:#e46c0a">`video_name`</span> : The name of the video
+- [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video
   - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to add the video to
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to add the video to
   - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`timestamp`</span> : The timestamp of the video where the user last stopped watching at
+- [<span style="color:#e46c0a">`timestamp`</span>](#timestamp-format) : The timestamp of the video where the user last stopped watching at
   - Defaults to `00:00:00` if the `/timestamp` argument is not specified
-  - Refer to [Argument Formats](#argument-formats) for the "Timestamp" format
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the video
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the video
   - Repeated tags (if any) will be ignored
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
 Examples:
 
