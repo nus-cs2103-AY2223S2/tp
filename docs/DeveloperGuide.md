@@ -124,7 +124,7 @@ Figure 4's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` component
 
 To display the Group Page after a user selects a `Course` from the Course Page, the `UI` first obtains the `PageType` to be displayed in the GUI from the `Logic` component. Then, the `UI` retrieves the selected `Course` from `CurrentSelection` and subsequently invokes the `showGroupPane` method based on the selected `Course`.
 
-Before creating the `GroupListPanel` to display the groups in the selected `Course`, the UI obtains an `ObservableList<Group>` from the selected `Course` in the `Model` component. 
+Before creating the `GroupListPanel` to display the groups in the selected `Course`, the UI obtains an `ObservableList<Group>` from the selected `Course` in the `Model` component.
 Each `Group` in the `ObservableList<Group>` is then mapped into a `GroupListViewCell` in `GroupListPanel`.
 At the end of the `showGroupPane` method call, the Left Pane, previously occupied by the `CourseListPanel`, will be refreshed to show the `GroupListPanel`
 
