@@ -11,7 +11,7 @@ title: Developer Guide
 
 * [CS2103/T instructors](https://nus-cs2103-ay2223s2.github.io/website/admin/instructors.html) for helping us answer our queries.
 * [AB3](https://github.com/se-edu/addressbook-level3) for providing us with a brownfield project to work on.
-* [JavaFX](https://openjfx.io/) which the project is based on.
+* [JavaFX](https://openjfx.io/), because project is based on it.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -132,17 +132,11 @@ The `Model` component,
 * It might seem strange at first as to why can Tutorial, Lab and Consultation exist without students. How can a Tutorial or Lab or Consultation be conducted without students in the first place? That is because the purpose of our application is to remind TAs that they are supposed to attend an event. During the event itself, the TA will add students to the event for attendance taking.
 * Thereafter, the TA will be able to edit the performance (score) of the student for the event related task.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Event` abstract class in the `AddressBook`, which `Tutorial` inherits from.<br>
+<div markdown="span" class="alert alert-info">:information_source: An alternative (arguably, a more OOP) model is given below. It has a `Event` abstract class in the `AddressBook`, which `Tutorial` inherits from.<br>
 <img src="images/BetterTutorialClassDiagram.png" width="450" />
 </div>
+The model for lab and consultation is the same as well, except that Tutorial is replaced with Lab and Consultation respectively.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Event` abstract class in the `AddressBook`, which `Lab` inherits from.<br>
-<img src="images/BetterLabClassDiagram.png" width="450" />
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Event` abstract class in the `AddressBook`, which `Consultation` inherits from.<br>
-<img src="images/BetterConsultationClassDiagram.png" width="450" />
-</div>
 
 ### Storage component
 
@@ -179,7 +173,7 @@ The CRUD (Create, Read, Update and Delete) mechanism for events is facilitated b
 The following activity diagram summarizes what happens when a TA executes an add event.
 For simplicity, it is assumed that valid data format is keyed in by the TA.
 
-<img src="images/TrAcker-activity-diagrams/AddEventActivityDiagram.png" width="250" />
+<img src="images/TrAcker-activity-diagrams/AddEventActivityDiagram.png" width="550" />
 
 The activity diagram for edit event is similar to the add event, except that the first action is execute edit event.
 
@@ -187,7 +181,7 @@ The activity diagram for edit event is similar to the add event, except that the
 The following activity diagram summarizes what happens when a TA executes an delete event.
 For simplicity, it is assumed that valid data format is keyed in by the TA.
 
-<img src="images/TrAcker-activity-diagrams/DeleteEventActivityDiagram.png" width="250" />
+<img src="images/TrAcker-activity-diagrams/DeleteEventActivityDiagram.png" width="550" />
 
 #### Design considerations:
 
@@ -306,7 +300,7 @@ for helps with deeper abstractions.
 
 The following activity diagram summarizes what happens when a user executes a help command, assuming valid command format.
 
-<img src="images/TrAcker-activity-diagrams/HelpActivityDiagram.png" width="550" />
+<img src="images/TrAcker-activity-diagrams/HelpActivityDiagram.png" width="750" />
 
 As seen from the Activity diagram above, Help is split into 3 categories: Student, Event and Organisation.
 
