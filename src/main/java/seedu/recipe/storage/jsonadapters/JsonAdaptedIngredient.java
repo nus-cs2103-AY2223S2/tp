@@ -25,8 +25,6 @@ import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
  */
 @JsonInclude(Include.NON_NULL)
 public class JsonAdaptedIngredient {
-    private static final String MESSAGE_CONSTRAINTS = "The Ingredient Name in the JSON file cannot be null or empty";
-
     @JsonProperty("ingredientName")
     private final String ingredientName;
 

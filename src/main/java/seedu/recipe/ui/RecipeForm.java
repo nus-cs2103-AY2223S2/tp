@@ -64,8 +64,8 @@ public abstract class RecipeForm extends UiPart<Region> {
      * Creates a new RecipeForm with a given recipe and a StringBuilder to store data in.
      * If the recipe is not null, the form fields are pre-populated with the given recipe's data.
      *
-     * @param data   The StringBuilder used to store form data.
      * @param recipe The given recipe to seed form data with.
+     * @param data   The StringBuilder used to store form data.
      * @param title  The title of the form window.
      */
     public RecipeForm(Recipe recipe, StringBuilder data, String title) {
