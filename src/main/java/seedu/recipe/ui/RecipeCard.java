@@ -23,7 +23,6 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 import seedu.recipe.model.util.IngredientUtil;
-import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 import seedu.recipe.ui.events.EditRecipeEvent;
 
@@ -44,7 +43,6 @@ public class RecipeCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/recipebook-level4/issues/336">The issue on RecipeBook level 4</a>
      */
     public final Recipe recipe;
-    private final CommandExecutor commandExecutor;
     private boolean isRecipeSelected = false;
     @FXML
     private HBox cardPane;
@@ -78,15 +76,15 @@ public class RecipeCard extends UiPart<Region> {
      *
      * @param recipe         the {@code Recipe} to display
      * @param displayedIndex the index of the {@code Recipe} in the list
+     * @param isSelected     indicates if the card is being selected in the list panel
      */
-    public RecipeCard(Recipe recipe, int displayedIndex, CommandExecutor executor, boolean isSelected) {
+    public RecipeCard(Recipe recipe, int displayedIndex, boolean isSelected) {
         super(FXML);
         borderContainer.minHeightProperty().bind(this.getRoot().heightProperty().multiply(0.8));
         this.recipe = recipe;
-        this.commandExecutor = executor;
         this.isRecipeSelected = isSelected;
         cardPane.setFocusTraversable(true);
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + ". ");  
         name.setText(recipe.getName().recipeName);
 
         //Duration
