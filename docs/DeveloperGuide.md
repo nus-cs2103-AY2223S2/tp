@@ -425,7 +425,7 @@ The following activity diagram shows the logic flow as the user inputs the `sort
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
 #### Design considerations
-*Aspect: Command to sort the modules*
+**Aspect: Command to sort the modules**
 
 As the user adds more modules, he/she might find it more useful to look at the list of modules in different categories. However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
 
