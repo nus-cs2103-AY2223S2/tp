@@ -477,17 +477,12 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 
 </div>
 
-### 3.7.5. Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 # 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PCs home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data in your previous PC's home folder.
 
 **Q**: Will my data be automatically saved?<br>
 **A**: **Yes**, PowerCards automatically saves your data after every command entered.
@@ -502,12 +497,12 @@ _Details coming soon ..._
 **A**: PowerCards operates on a self-testing basis. You can check your answer by writing it down before flipping the card to verify if you got it right or wrong.
 
 **Q**: Can I have two cards with the same question?<br>
-**A**: **No**. `QUESTION` field of Card is case-sensitive and Cards with the same `QUESTION` cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`. However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
+**A**: **No**, if the two cards are in the same deck. `QUESTION` field of Card is case-sensitive and cannot be duplicated within the same deck. **However**, two cards with the same question can exist **if they belong to different decks**.
 
 **Q**: Can I have two decks with the same name? <br>
 **A**: **No**. The name of the deck is case-sensitive and cannot be duplicated, e.g., if you already have a deck named `Science`, you cannot create another deck named `Science`. However, you can create a deck named `SCIENCE` since `SCIENCE` may be an acronym.
 
-**Q**: What if I like to include the prefix within my card (question or answer) or deck name? (For example `addCard q\What is q\a a\It means q slash a` should add a card with question `What is q\a` instead of `a`)<br>
+**Q**: What if I would like to include the prefix within my card (question or answer) or deck name? (For example `addCard q\What is q\a a\It means q slash a` should add a card with question `What is q\a` instead of `a`)<br>
 **A**: At the moment we do not support that. However, we plan to support this feature in the next iteration. We also like to point out that this is the reason why we used backslash `&#92;` rather than forward slash `/` for this current iteration as backslash is less commonly use than forward slash.  
 --------------------------------------------------------------------------------------------------------------------
 
