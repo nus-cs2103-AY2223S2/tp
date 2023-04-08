@@ -43,13 +43,13 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called
-[`Main`](./src/main/java/ezschedule/Main.java)
-and [`MainApp`](blob/master/src/main/java/ezschedule/MainApp.java).
-// https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/
+**`Main`** has two classes called [`Main`][MainClass] and [`MainApp`][MainAppClass].
 It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
+[MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
