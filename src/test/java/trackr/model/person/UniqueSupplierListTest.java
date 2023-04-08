@@ -1,4 +1,4 @@
-package trackr.model.supplier;
+package trackr.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,8 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import trackr.model.item.exceptions.DuplicateItemException;
 import trackr.model.item.exceptions.ItemNotFoundException;
-import trackr.model.person.Supplier;
-import trackr.model.person.UniqueSupplierList;
 import trackr.testutil.SupplierBuilder;
 
 public class UniqueSupplierListTest {
@@ -45,7 +43,7 @@ public class UniqueSupplierListTest {
     public void contains_supplierWithSameIdentityFieldsInList_returnsTrue() {
         uniqueSupplierList.add(ALICE);
         Supplier editedAlice = new SupplierBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+                                       .build();
         assertTrue(uniqueSupplierList.contains(editedAlice));
     }
 
@@ -88,7 +86,7 @@ public class UniqueSupplierListTest {
     public void setSupplier_editedSupplierHasSameIdentity_success() {
         uniqueSupplierList.add(ALICE);
         Supplier editedAlice = new SupplierBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+                                       .build();
         uniqueSupplierList.setItem(ALICE, editedAlice);
         UniqueSupplierList expectedUniqueSupplierList = new UniqueSupplierList();
         expectedUniqueSupplierList.add(editedAlice);
@@ -166,8 +164,8 @@ public class UniqueSupplierListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueSupplierList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                        uniqueSupplierList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test

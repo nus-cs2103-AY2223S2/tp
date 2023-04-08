@@ -98,4 +98,26 @@ public class OrderStatusTest {
         assertFalse(done.equals("N")); //different types
     }
 
+    @Test
+    public void compare() {
+        OrderStatus done = new OrderStatus("D");
+        OrderStatus doneCopy = new OrderStatus("d");
+        OrderStatus notDone = new OrderStatus("N");
+        OrderStatus inProgress = new OrderStatus("I");
+
+        // same value -> 0
+        assertEquals(0, done.compare(done));
+        assertEquals(0, done.compare(doneCopy));
+
+        // higher priority
+        assertEquals(1, done.compare(notDone));
+        assertEquals(1, done.compare(inProgress));
+        assertEquals(1, inProgress.compare(notDone));
+
+        // lower priority
+        assertEquals(-1, notDone.compare(done));
+        assertEquals(-1, inProgress.compare(done));
+        assertEquals(-1, notDone.compare(inProgress));
+    }
+
 }

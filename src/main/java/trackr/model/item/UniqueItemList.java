@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import trackr.model.ModelEnum;
 import trackr.model.item.exceptions.DuplicateItemException;
 import trackr.model.item.exceptions.ItemNotFoundException;
 
@@ -28,12 +29,12 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
     private final ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    private String itemType = "Item";
+    private ModelEnum itemType = ModelEnum.Item;
 
     protected UniqueItemList() {
     }
 
-    protected UniqueItemList(String itemType) {
+    protected UniqueItemList(ModelEnum itemType) {
         this.itemType = itemType;
     }
 
@@ -52,7 +53,7 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
     public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateItemException(itemType);
+            throw new DuplicateItemException(itemType.toString());
         }
         internalList.add(toAdd);
     }
@@ -71,7 +72,7 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
         }
 
         if (!target.isSameItem(editedItem) && contains(editedItem)) {
-            throw new DuplicateItemException(itemType);
+            throw new DuplicateItemException(itemType.toString());
         }
 
         internalList.set(index, editedItem);
@@ -100,7 +101,7 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
     public void setItems(List<T> items) {
         requireAllNonNull(items);
         if (!itemsAreUnique(items)) {
-            throw new DuplicateItemException(itemType);
+            throw new DuplicateItemException(itemType.toString());
         }
 
         internalList.setAll(items);

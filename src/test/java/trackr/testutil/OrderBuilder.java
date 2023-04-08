@@ -2,6 +2,8 @@ package trackr.testutil;
 
 import static trackr.testutil.TypicalMenuItems.CHOCOLATE_COOKIE_M;
 
+import java.time.LocalDateTime;
+
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
@@ -24,6 +26,7 @@ public class OrderBuilder {
     public static final String DEFAULT_CUSTOMER_NAME = "John Doe";
     public static final String DEFAULT_CUSTOMER_PHONE = "98765432";
     public static final String DEFAULT_CUSTOMER_ADDRESS = "123 Main Street";
+    public static final String DEFAULT_TIME_ADDED = "2007-12-03T10:15:30";
 
     private MenuItem orderItem;
     private OrderQuantity orderQuantity;
@@ -32,6 +35,7 @@ public class OrderBuilder {
     private PersonName customerName;
     private PersonPhone customerPhone;
     private PersonAddress customerAddress;
+    private LocalDateTime timeAdded;
 
     /**
      * Creates a {@code OrderBuilder} with the default details.
@@ -44,6 +48,7 @@ public class OrderBuilder {
         customerName = new PersonName(DEFAULT_CUSTOMER_NAME);
         customerPhone = new PersonPhone(DEFAULT_CUSTOMER_PHONE);
         customerAddress = new PersonAddress(DEFAULT_CUSTOMER_ADDRESS);
+        timeAdded = LocalDateTime.parse(DEFAULT_TIME_ADDED);
     }
 
     /**
@@ -57,6 +62,7 @@ public class OrderBuilder {
         customerName = orderToCopy.getCustomer().getCustomerName();
         customerPhone = orderToCopy.getCustomer().getCustomerPhone();
         customerAddress = orderToCopy.getCustomer().getCustomerAddress();
+        timeAdded = orderToCopy.getTimeAdded();
     }
 
     /**
@@ -124,11 +130,19 @@ public class OrderBuilder {
     }
 
     /**
+     * Sets the {@code TimeAdded} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withTimeAdded(LocalDateTime timeAdded) {
+        this.timeAdded = timeAdded;
+        return this;
+    }
+
+    /**
      * builds the order
      */
     public Order build() {
         Customer c = new Customer(customerName, customerPhone, customerAddress);
-        return new Order(orderItem, orderDeadline, orderStatus, orderQuantity, c);
+        return new Order(orderItem, orderDeadline, orderStatus, orderQuantity, c, timeAdded);
     }
 
 }

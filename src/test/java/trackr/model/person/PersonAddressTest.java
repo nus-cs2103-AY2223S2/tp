@@ -1,12 +1,11 @@
-package trackr.model.supplier;
+package trackr.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import trackr.model.person.PersonAddress;
 
 public class PersonAddressTest {
 
@@ -50,4 +49,11 @@ public class PersonAddressTest {
         assertFalse(personAddress.equals(differentPersonAddress)); //different address
         assertFalse(personAddress.equals(1)); //different type
     }
+
+    @Test
+    public void hashCode_success() {
+        String address = "Test Address";
+        assertEquals(address.hashCode(), new PersonAddress(address).hashCode());
+    }
+
 }

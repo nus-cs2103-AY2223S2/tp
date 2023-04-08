@@ -13,6 +13,7 @@ Abstract Class "{abstract}\nStatus" as Status
 Class "UniqueItemList<T> " as UniqueItemList
 Class ItemList<T extends Item>
 
+Class LocalDateTime
 Class Order
 Class MenuItem
 Class Customer
@@ -34,6 +35,7 @@ Order *--> "1" OrderDeadline
 Order *--> "1 " OrderStatus
 Order *--> "1 " Customer
 Order *--> "1 " Quantity
+Order *--> "timeAdded 1" LocalDateTime
 Order -u|> Item
 
 OrderDeadline --|> Deadline
