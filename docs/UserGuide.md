@@ -213,11 +213,13 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` or `
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
+* When editing by `NAME`, if there are multiple people with the same specified name, no edit will be done, and a list of people with those specified name will be returned. 
 
 Examples:
-*  `edit 1 p/91164512` Edits the phone number of the 1st person to be `91164512`.
+*  `edit Bernice p/91164512` Edits the phone number of the Bernice to be `91164512`.
 *  `edit 3 p/90011009 e/bernice512@example.com` Edits the phone number and email address of the 3rd person to be
    90011009 and bernice512@example.com respectively
+*  `edit 1 p/91164512` Edits the phone number of the 1st person to be `91164512`.
    ![editCommandExample](images/editCommandExample.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -230,12 +232,15 @@ Format: `delete INDEX` or `delete INDEXES` or `delete NAME`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index or indexes **must be a positive integer** …​
+* Any index **must be a positive integer** …​
+* `delete` followed by a positive integer will be interpreted as an index, and not a name.
+* When deleting by `NAME`, if there are multiple people with the same specified name, no deletion will be done, and a list of people with those specified name will be returned.
+
 
 Examples:
-* `list` followed by `delete 3` deletes the 3rd person in the list.
-* `list` followed by `delete 1,2,3` deletes the 1st, 2nd and 3rd person in the list.
 * `list` followed by `delete Betsy` deletes Betsy if there is only one Betsy in the list.
+* `list` followed by `delete 1,2,3` deletes the 1st, 2nd and 3rd person in the list.
+* `list` followed by `delete 3` deletes the 3rd person in the list.
 
 ![viewContactDetails](images/delete/deleteContact.png)
 
