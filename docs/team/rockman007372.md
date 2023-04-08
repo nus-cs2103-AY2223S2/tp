@@ -35,6 +35,11 @@ Given below are my contributions to the project.
   * Justifications: Users usually only know how difficult a card is during review, not when they create a card. It is much more convenient to tag cards during review, instead of using the `editCard` command in Main Mode.
   * Highlights: I understood the behavior of Javafx `ObservableList` class better, and practiced the Observer pattern.
 
+* **Feature 5**: Modify Storage components to allow Cards and Decks to be saved as JSON data.
+  * What it does: Allows user-created decks and cards to be saved in a JSON file named `masterdeck.json`.
+  * Justification: Users can save and load their data after every usage of the application.
+  * Highlights: I learned more about serialization and deserialization of JSON formats. 
+
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=rockman007372&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
