@@ -212,36 +212,4 @@ public class ParserUtil {
         }
     }
 
-    /**
-     * Parses a {@code Optional<String> variant} into a {@code Optional<Variant>}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code variant} is invalid.
-     */
-    public static Optional<Variant> parseOptionalVariant(Optional<String> variant) throws ParseException {
-        if (variant.isPresent()) {
-            if (!PredicateUtil.isVariantValid(variant.get())) {
-                throw new ParseException(Variant.MESSAGE_CONSTRAINTS);
-            }
-            String trimmedVariant = variant.get().trim();
-            return Optional.of(new Variant(trimmedVariant));
-        } else {
-            return Optional.empty();
-        }
-    }
-
-    /**
-     * Parses {@code Collection<Optional<String>> variants} into a {@code Set<Optional<Variant>>}.
-     *
-     * @throws ParseException if the given {@code Set<Optional<Variant>>} is invalid.
-     */
-    public static Set<Optional<Variant>> parseOptionalVariants(Collection<Optional<String>> variants)
-            throws ParseException {
-        requireNonNull(variants);
-        final Set<Optional<Variant>> variantSet = new HashSet<>();
-        for (Optional<String> variantName : variants) {
-            variantSet.add(parseOptionalVariant(variantName));
-        }
-        return variantSet;
-    }
 }

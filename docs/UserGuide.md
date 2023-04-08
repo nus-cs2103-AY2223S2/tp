@@ -17,29 +17,70 @@ than traditional GUI apps.
 
 ### Purpose of this application
 
-Dengue fever is a prevalent mosquito-borne disease in many parts of the world, including Singapore. The National 
-Environmental Agency (NEA) of Singapore is responsible for monitoring and controlling the spread of this disease. 
-To aid in this task, a new application called DengueHotspotTracker (DHT) has been developed, which allows NEA to 
-track all reported cases of dengue fever in Singapore.
+Dengue fever is a prevalent mosquito-borne disease in many parts of the world, including Singapore.
+The National Environmental Agency (NEA) of Singapore is responsible for monitoring and controlling the spread of this disease.
+To aid in this task, a new application called DengueHotspotTracker (DHT) has been developed, which allows NEA to track all reported cases of dengue fever in Singapore.
 
-This application serves as an case tracker, containing the name, postal code, age, date, and (optional) variant type
+This application serves as a case tracker, containing the name, postal code, age, date, and (optional) variant type
 of the reported case. The user-friendly interface provides an easy-to-view overview of the cases, enabling NEA to 
 monitor the trends of the disease in different areas, spread in different age groups, and spread of
 different variant types of dengue. Overall, this application would allow NEA to stay informed about the latest trends
 and take proactive measures to prevent the spread of the disease.
 
+### Purpose of this guide
+This guide will introduce you to the various features offered by DengueHotspotTracker.
+Use this guide as a tutorial to get started with DengueHotspotTracker.
+
+This guide is:
+* A summary of all the *features* offered by DengueHotspotTracker, and provides a high-level overview on how it operates.
+* An overview of what user *input* is considered as valid so you can quickly get started with tracing cases on DengueHotspotTracker.
+
+This guide is not:
+* An exhaustive case study of every single way to use DengueHotspotTracker as well as its features.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## How to use this guide
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Thank you for taking your time to learn how to use DengueHotspotTracker!
+
+Here are some tips on how to look through this guide more effectively and efficiently,
+so you can improve your knowledge on the use of DengueHotspotTracker.
+
+### Navigating the guide
+
+1. First, you can read the [Quick Start](#quick-start) section to ensure that your system is compatible with DengueHotspotTracker.
+We recommend that you follow along the instructions to download and use DengueHotspotTracker with the commands introduced in this guide.
+2. Do have a glance at [Conventions](#conventions) to understand the symbols and formatting used across this guide.
+3. Now that you have had an initial look at DengueHotspotTracker, we have a detailed listing of how to understand the user interface [here](#navigating-the-user-interface).
+4. Now that you understand how to use the interface of DengueHotspotTracker, you are ready to take a deeper dive into our commands. 
+We have some general guidelines on what user input is considered as valid. You should refer to [commands](#commands) to get a detailed coverage of the available commands.
+
+### Conventions
+
+Symbols | Meaning
+--------|------------------
+:information_source: | This is general information that improves your background understanding of this guide as well as DengueHotspotTracker.
+:bulb: | This is additional information/tips that may help you to use DengueHotspotTracker more effectively.
+:exclamation: | This is something important that you should be aware of.
+
+
+Formatting | Meaning
+--------|------------------
+*italics* | This is used to give slight emphasis to certain words.
+**boldface** | This is used to emphasise certain words. The degree of emphasis is stronger than *italics*.
+`code` | This is used to denote user input or special text.
+
+
+## Quick Start
+
+1. Ensure you have Java `11` installed on your Computer.
 
 2. Download the latest `dht.jar` from [here](https://github.com/AY2223S2-CS2103-W17-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the home folder for your DengueHotspotTracker.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dht.jar` 
-command to run
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dht.jar` command to run
 the application.<br>
 
    A GUI similar to the following image should appear in a few seconds. Note how the app contains some sample data.<br><br>
@@ -71,7 +112,43 @@ open the help window.<br>
 
 ## Navigating the User Interface
 
-placeholder
+![NavigatingUi](images/NavigatingUserInterface.png)
+The user interface is split into the input and output sections, as well as
+two view columns for **Person List** and **Overview**.
+
+Item | Description
+--------|------------------
+**command box** | This is where you enter your commands to DengueHotspotTracker.
+**output box** | The output box displays additional information from a command. <br> :bulb: For a *successful* command, the output box may contain information such as the number of entries listed. <br> :bulb: For an *unsuccessful* command, such as invalid input, the output box will give detailed feedback about which part of the command is invalid and how to fix it.
+**person list** | A list of people and their details.
+**overview** | Provides an overview of the total number of cases and cases per category.
+
+<div style="page-break-after: always;"></div>
+Here is the breakdown of an individual **person card**.
+
+![PersonCardUi](images/PersonCardUi.png)
+
+Item | Description
+--------|------------------
+**id** | Current index of the person in the list.
+**Name** | Name of person who got dengue.
+**Age** | Age of the person who got dengue.
+**Postal** | Postal code of the person who got dengue.
+**Date** | Date that the person got dengue.
+**Variant** | Dengue variant of the case (DENV1, DENV2, DENV3, or DENV4).
+
+<div style="page-break-after: always;"></div>
+Here is the breakdown of an individual **bin card**.
+
+![OverviewCardUi](images/OverviewCardUi.png)
+
+Item | Description
+--------|------------------
+**id** | Index in the overview list.
+**Overview Category** | Overview category currently being displayed.  <br> :bulb: The default overview category is by location.
+**Bin Name** | Bin that cases belong to in the chosen category.
+**Count** | The number of cases on the displayed list belonging to the bin.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -84,7 +161,7 @@ placeholder
 | **Delete**   | `delete INDEX...` or <code>delete { d/DATE &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                                                                                                                         |
 | **Clear**    | `clear`                                                                                                                                                                                                                                                                                     |
 | **List**     | `list`                                                                                                                                                                                                                                                                                      |
-| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \\</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \\</code><br><code>; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
 | **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                                                                                              |
 | **Undo**     | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                                                                                          |
 | **Redo**     | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                                                                                          |
@@ -97,7 +174,9 @@ placeholder
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Command Syntax Guide
+
+This section helps you to understand the format of the commands listed above and in the [command section](#commands).
 
 <div markdown="block" class="alert alert-info">
 
@@ -252,10 +331,9 @@ Format: `delete INDEX...` or `delete d/DATE` or `delete [sd/START_DATE] [ed/END_
 
 Examples:
 * `find n/Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
-* `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find` 
+* `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find`
 command.
-* * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 
-2023 inclusive in the results of the `find` command.
+* `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
 
 * `list` followed by `delete 2 3` deletes the second and third cases in DengueHotspotTracker.
 
@@ -277,17 +355,33 @@ Examples:
 
 ### Listing all cases: `list`
 
-Displays all cases in DengueHotspotTracker.
+Use this command to reset the find filters and display all cases in DengueHotspotTracker.
 
 Format: `list`
 
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip:**<br>
+
+As `list` resets all active filters, one of the most common uses of the `list` command to reset the display lists to display all the cases in `DengueHotspotTracker`.
+You might like to use `list` in conjunction with the following commands:
+* [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
+* [`overview`](#changing-the-overview-type--overview), which shows an overview of the cases in the current list view
+* [`find`](#finding-cases-by-prefixes-find) which filters the current list view
+
+You may wish to use `list` **before** any of these commands in order to process the *full* list of data within `DengueHotspotTracker`.
+
+You may wish to use `list` **after** any of these commands in order to return to the *full* list.
+
+</div>
+
 <br>
 
-### Finding cases by prefixes: `find` 
+### Finding cases by prefixes: `find`
 
 Finds cases which match the given prefixes.
 
-Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/END_AGE] } \`<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] | [sd/START_DATE] [ed/END_DATE] }</code>
+Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/END_AGE] } \`<br><code>{ [d/DATE] | [sd/START_DATE] [ed/END_DATE] }</code>
 
 * The search is case-insensitive for all prefixes.
   * e.g. `n/hans` will match `Hans` or `hAns`
@@ -328,8 +422,7 @@ Sorts the entire case list based on the specified criterion.
 Format: `sort { n/ | a/ | p/ | d/ }`
 
 * Sorts cases based on the specified criterion.
-* One and only one of the prefixes must be specified: `n/` for name, `a/` for age, `p/` for postal code, and 
-`d/` for date.
+* One and only one of the prefixes must be specified: `n/` for name, `a/` for age, `p/` for postal code, and `d/` for date.
 
 <br>
 
@@ -408,8 +501,11 @@ Format: `import [FILENAME]`
 
 **:exclamation: Caution:**
 As DengueHotspotTracker does not allow cases with duplicate **names, postal codes, and ages**, 
-please ensure that the cases you are importing do not conflict with existing data within DengueHotspotTracker. 
+please ensure that the cases you are importing do not conflict with existing data within DengueHotspotTracker.
 This applies to **all** cases, not just those currently displayed.
+
+**:exclamation: Caution:**
+DengueHotSpotTracker only supports import from CSV files, and other file formats are to be used at your own risk.
 
 </div>
 
@@ -465,12 +561,16 @@ Closes DengueHotspotTracker.
 
 Format: `exit`
 
-<br>
-
 ### Saving the data
 
 DengueHotspotTracker data are saved in the hard disk automatically after any command that changes
 the data. There is no need to save manually.
+
+<br>
+
+## Advanced features
+
+This section contains features intended for advanced users.
 
 ### Editing the data file
 

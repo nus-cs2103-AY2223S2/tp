@@ -17,13 +17,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.dengue.commons.core.GuiSettings;
-//import seedu.dengue.model.person.Age;
-//import seedu.dengue.model.person.Date;
-//import seedu.dengue.model.person.Name;
-//import seedu.dengue.model.person.SubPostal;
-//import seedu.dengue.model.predicate.FindPredicate;
-//import seedu.dengue.model.variant.Variant;
-//import seedu.dengue.testutil.DengueHotspotTrackerBuilder;
+
 
 public class ModelManagerTest {
 

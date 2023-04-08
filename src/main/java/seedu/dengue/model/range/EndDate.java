@@ -63,4 +63,11 @@ public class EndDate implements End<Date> {
             return "the end of time";
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EndDate // instanceof handles nulls
+                && date.equals(((EndDate) other).date));
+    }
 }
