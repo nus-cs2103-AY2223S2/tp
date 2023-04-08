@@ -258,7 +258,7 @@ Notes:
 
 Finds meetings from the address book based on the date of meeting or person index but not both
 
-Format: `meetingFind DATE | CLIENT_INDEX `
+Format: `meetingFind DATE|CLIENT_INDEX `
 
 Required Information:
 
