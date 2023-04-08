@@ -254,4 +254,14 @@ public class ModelManager implements Model {
         addressBook.deleteAppointment(appointment);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    /**
+     * Returns the person with the given {@code nric}, returns it. This person must exist.
+     * @param nric of the person
+     * @return Person with a given Nric
+     */
+    @Override
+    public Person getPersonByNric(Nric nric) {
+        return addressBook.getPersonByNric(nric);
+    }
 }

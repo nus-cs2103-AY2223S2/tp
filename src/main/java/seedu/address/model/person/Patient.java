@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
@@ -41,8 +42,12 @@ public class Patient extends Person {
                 && otherPerson.getNric().equals(getNric());
     }
 
+    /**
+     * Returns a copy of the prescriptions
+     * @return a copy of the patient's set of prescriptions
+     */
     public Set<Prescription> getPrescriptions() {
-        return prescriptions;
+        return new HashSet<>(prescriptions);
     }
 
     /**
