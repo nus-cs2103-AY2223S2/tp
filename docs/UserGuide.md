@@ -108,9 +108,15 @@ for a keyword.
 | :bulb:               | Tips that will optimize your usage of MedInfo.              |
 | :exclamation:        | Information that is crucial to know before using a command. |
 
-<br><br>
-Our commands follow a certain format for ease of use. Below are some notes on how you should interpret each command
-format.
+## Features
+
+The section below describes the commands available in MedInfo. The commands fall under 3 categories:
+- [Patient Features](#patient-features)
+- [Ward Features](#ward-features)
+- [Utility Features](#utility-features)
+
+Our commands follow a certain format for ease of use. If you are new to MedInfo, do take some time to familiarise 
+yourself with the command format from the notes below.
 
 <div markdown="block" class="alert alert-info">
 
@@ -129,20 +135,15 @@ format.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `name/NAME s/STATUS`, `s/STATUS name/NAME` is also acceptable.
 
-- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of 
-the parameter will be taken.<br>
+- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+  the parameter will be taken.<br>
   e.g. if you specify `nric/S1234567X nric/S1234567A`, only `nric/S1234567A` will be taken.
 
-- Commands that do not take in parameters (such as `help`, `list`, and `exit`) will ignore any parameters supplied 
-along with it.<br>
+- Commands that do not take in parameters (such as `help`, `list`, and `exit`) will ignore any parameters supplied
+  along with it.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-## Features
-
-These are all the commands available in MedInfo. It is mainly classified into **Patient** and 
-**Ward** commands.
 
 ## Patient Features
 ### Adding a patient to the system: `add`
@@ -385,15 +386,16 @@ the file that contains the data of your previous MedInfo home folder.<br>
 | Action          | Format, Examples                                                                           |
 |-----------------|--------------------------------------------------------------------------------------------|
 | **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN` |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
+| **List**        | `list`                                                                                     |
 | **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                   |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
 | **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
 | **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                        |
 | **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                  |
 | **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
-| **List**        | `list`                                                                                     |
+| **Clear**       | `clear`                                                                                    |
 | **Help**        | `help`                                                                                     |
-| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
-| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
+| **Exit**        | `exit`                                                                                     |
 
 [Back to Table of Contents](#table-of-contents)
