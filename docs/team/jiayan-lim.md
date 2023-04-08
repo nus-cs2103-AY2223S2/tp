@@ -45,7 +45,7 @@ Careflow can get your patient and drugs management tasks done faster than tradit
         * Added Glossary of UG (Pull request: [\#214](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/214))
         * Added label for table and image (Pull request: [\#214](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/214))
     * Developer Guide:
-        * Added implementation details and UML diagram of the model component. (Pull requests [\#167](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/167), [\#180](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/180),[\#184](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/184))
+        * Added implementation details and UML diagram of the model component. (Pull requests [\#180](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/180), [\#184](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/184))
         * Added use cases for each important feature. (Pull requests [\#31](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/31), [\#40](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/40), [\#114](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/114))
         * Added glossary of DG. (Pull request [\#31](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/31))
         * Update DG with target user profile and value proposition. (Pull request [\#77](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/77))
