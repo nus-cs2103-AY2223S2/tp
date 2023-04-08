@@ -1242,8 +1242,7 @@ testers are expected to do more *exploratory* testing.
 
 Before every test case, ensure that the patient "John Doe" does not exist. This can be done by executing the following before every test case:
 
-* `patient clear --force true`
-* `patient list`
+`patient clear --force true`
 
 #### Test: All optional parameters omitted
 
@@ -1260,6 +1259,25 @@ Before every test case, ensure that the patient "John Doe" does not exist. This 
 ##### Expected
 
 ![Expected display](images/patient/dg/PatientAdd_NotBlank.png)
+
+### Patient attribute validation
+
+Before every test case, ensure that the there are no patients and vaccinations.
+
+`patient clear --force true`
+
+
+#### Test: Name validation
+
+#### Test: Phone validation
+
+#### Test: Dob validation
+
+#### Test: Blood Type validation
+
+#### Test: Allergies validation
+
+#### Test: Vaccines validation
 
 ### Viewing details of a patient
 
