@@ -6,6 +6,7 @@ import static seedu.sprint.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a deadline for a task.
@@ -16,7 +17,8 @@ public class Deadline {
     public static final String DEADLINE_HAS_PASSED =
             "Warning: sprINT detected a deadline that has already passed. Please check and "
                     + "update task details accordingly.\n";
-    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+            .withResolverStyle(ResolverStyle.STRICT);
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     public final LocalDate deadline;

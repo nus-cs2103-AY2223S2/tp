@@ -40,6 +40,8 @@ public class Statistic {
             count++;
             statsMap.put(status, count);
         }
+
+        assert statsMap.size() == 4;
     }
 
     public HashMap<Status, Integer> getStatsMap() {

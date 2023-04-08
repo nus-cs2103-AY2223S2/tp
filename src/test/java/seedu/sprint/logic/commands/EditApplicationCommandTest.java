@@ -37,27 +37,6 @@ public class EditApplicationCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
 
-    /*
-    @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Application editedApplication = new ApplicationBuilder().build();
-        EditApplicationCommand.EditApplicationDescriptor descriptor =
-                new EditApplicationDescriptorBuilder(editedApplication).build();
-        EditApplicationCommand editCommand =
-                new EditApplicationCommand(INDEX_FIRST_APPLICATION, descriptor);
-
-        String expectedMessage =
-                String.format(EditApplicationCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
-
-        Model expectedModel = new ModelManager(
-                new InternshipBook(model.getInternshipBook()), new UserPrefs());
-        expectedModel.setApplication(model.getSortedApplicationList().get(0), editedApplication);
-        expectedModel.commitInternshipBookChange();
-
-        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
-    }
-    */
-
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredApplicationList().size());

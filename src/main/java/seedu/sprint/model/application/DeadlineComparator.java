@@ -51,4 +51,11 @@ public class DeadlineComparator implements Comparator<Application> {
             return -compareAscending(appOne, appTwo);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeadlineComparator // instanceof handles nulls
+                && sortingSequence.equals(((DeadlineComparator) other).sortingSequence)); // sequence check
+    }
 }

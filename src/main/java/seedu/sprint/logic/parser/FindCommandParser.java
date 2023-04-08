@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.sprint.logic.commands.FindCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
-import seedu.sprint.model.application.NameContainsKeywordsPredicate;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindApplicationCommand object.
@@ -37,10 +37,25 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS)) {
             String[] keywords = trimmedArgs.split("\\s+");
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new ApplicationContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         Prefix[] prefixArray = {PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS};
+
+        boolean definedFormat = false;
+
+        for (Prefix prefix : prefixArray) {
+            if (trimmedArgs.substring(0, 2).equals(prefix.toString())) {
+                definedFormat = true;
+                break;
+            }
+        }
+
+        if (!definedFormat) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommand.MESSAGE_USAGE));
+        }
+
         HashMap<Prefix, List<String>> map = new HashMap<>();
 
         for (Prefix prefix : prefixArray) {
@@ -56,7 +71,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 }
             }
         }
-        return new FindCommand(new NameContainsKeywordsPredicate(map));
+        return new FindCommand(new ApplicationContainsKeywordsPredicate(map));
     }
 
 
