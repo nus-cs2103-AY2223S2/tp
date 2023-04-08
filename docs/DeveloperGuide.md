@@ -139,7 +139,7 @@ Here's a (partial) *Class Diagram* of the `Logic` component:
 
 <p align="center">
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" width="350"/>
 
  </p>
  
@@ -149,7 +149,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an Internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The *Sequence Diagram* below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <p align="center">
 
@@ -164,7 +164,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <p align="center">
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="400"/>
 
  </p>
  
@@ -180,6 +180,8 @@ How the parsing works:
 <img src="images/ModelClassDiagram.png" width="450" />
 
  </p>
+ 
+<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
