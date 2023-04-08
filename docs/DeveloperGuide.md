@@ -5,11 +5,12 @@ title: Developer Guide
 <p align="center" width="100%">
     <img src="images/Logo.svg" width="100%">
 </p>
-CookHub is a desktop application for student chefs who have limited time and resources on their hands, 
+**CookHub** is a desktop application for student chefs who have limited time and resources on their hands, 
 optimized for use via the Command Line Interface (CLI) while still having the benefits of a Graphical User 
 Interface (GUI).
 
-CookHub is a powerful, but lightweight application that allows you to manage your recipes efficiently and 
+**CookHub** is a powerful, but lightweight application that allows you to manage your recipes efficiently 
+and 
 effectively. 
 
 * Table of Contents
@@ -796,39 +797,36 @@ In the near future, we hope to be able to enhance our application as stated belo
    `list` command to re-order the list to its original **unsorted** order. This is so that users will 
    still have a way to view recipes according to the time they have saved the recipe.
 
-3. The find command when used on two separate ingredients (e.g. egg and tomatoes) will find all the 
-   recipes that use either eggs or tomatoes and not recipes that include both egg and tomatoes.
-
-4. Currently, the `edit` command allows users to change a recipe title to one that already exists in 
+3. Currently, the `edit` command allows users to change a recipe title to one that already exists in 
    the recipe book but in uppercase letters (e.g. Users can change a recipe's title to `ORANGE JUICE` despite 
    another recipe having the title of `Orange Juice`). We hope to restrict this in the near future in a 
    way that uppercase letters are detected to be the same as lowercase letters (i.e. `ORANGE JUICE` = `Orange 
    Juice`).
 
-5. Currently, the `UNIT_OF_MEASUREMENT` field in the `Ingredient` class allow 
+4. Currently, the `UNIT_OF_MEASUREMENT` field in the `Ingredient` class allow 
    users to input any words or sentences. We want to restrict this field to only accept valid 
-   measurement units as inputs (e.g. restrict to specific strings `cups`, `tbsp`, `tsp`, `ml`, `g`, `kg` 
+   measurement units as inputs (e.g. restrict to specific strings `cup`, `tbsp`, `tsp`, `ml`, `g`, `kg` 
    using Java's Enums). This allows for error detection when user inputs a random erroneous string as a 
    unit of measurement.
 
-6. In the future, we hope to modify all command words, flags and arguments to be case-insensitive to mimic 
+5. In the future, we hope to modify all command words, flags and arguments to be **case-insensitive** to 
+   mimic 
    environments in the real world.
 
-7. We hope to enhance the `find` command such that it searches for **substrings** and not just by the 
-   words. For instance, `find t/egg` should be able to find a recipe with the title 'eggs'.
+6. We hope to enhance the `find` command such that it searches for **substrings** and not just the word itself. For instance, `find t/egg` should be able to find a recipe with the title 'eggs'.
 
-8. Currently, our application calculates the cost of each recipe using the `PRICE_PER_UNIT` and 
-   `UNIT_OF_MEASUREMENT` fields. In the case where the `UNIT_OF_MEASUREMENT` is a *tablespoon* for an 
+7. Currently, our application calculates the cost of each recipe using the `PRICE_PER_UNIT` and 
+   `UNIT_OF_MEASUREMENT` fields. In the case when the `UNIT_OF_MEASUREMENT` is a *tablespoon* for an 
    ingredient like *Olive Oil*, it will be challenging for users to estimate the price of a tablespoon of the 
    ingredient. As such, we hope to increase the intuitiveness of our application by allowing users to 
    enter an additional input of the price of such ingredients with everyday quantities (e.g. $7 for a bottle of olive oil).
 
-9. Currently, our `find` by *tag* command restricts to only **one** tag. We hope to allow the command to 
+8. Currently, our `find` by *tag* command restricts to only **one** tag. We hope to allow the command to 
    search for **more than one** tag for more flexibility.
 
-10. Currently, duplicate ingredients are allowed to be entered into a recipe. Thus, we hope to 
-    modify this. In the case when a duplicate recipe is entered by the user, the result display will 
-    display an error message: `You have entered a duplicate ingredient!`.
+9. Currently, duplicate ingredients are allowed to be entered into a recipe. We hope to 
+   modify this. In the case when a duplicate recipe is entered by the user, the result display will 
+   display an error message: `You have entered a duplicate ingredient!`.
 
 
 --------------------------------------------------------------------------------------------------------------------
