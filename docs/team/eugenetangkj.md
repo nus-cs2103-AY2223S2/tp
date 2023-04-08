@@ -55,7 +55,7 @@ My code contributions can be found on
 
 - **Co-implemented GUI testing for InternBuddy**
   [\#52](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/52)
-  * With code references from [AB4](https://github.com/se-edu/addressbook-level4)
+  * With code references from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
     and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp), I managed to implement
     test cases for UI components such as in the class `InternshipCardTest`.
   * Worked with my teammate, Christopher, to implement this.
