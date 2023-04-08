@@ -2,11 +2,9 @@ package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import vimification.model.task.Priority;
-import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 /**
@@ -40,7 +38,6 @@ public class TaskCard extends UiPart<HBox> {
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
-        // this.task = task;
         id.setText(displayedIndex + ". ");
 
         title.setText(task.getTitle());

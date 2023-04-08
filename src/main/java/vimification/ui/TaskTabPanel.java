@@ -48,10 +48,6 @@ public class TaskTabPanel extends UiPart<VBox> {
         completedTaskListPanel.setMainScreen(mainScreen);
         overdueTaskListPanel.setMainScreen(mainScreen);
 
-        ongoingTaskListComponent.getChildren().add(ongoingTaskListPanel.getRoot());
-        completedTaskListComponent.getChildren().add(completedTaskListPanel.getRoot());
-        overdueTaskListComponent.getChildren().add(overdueTaskListPanel.getRoot());
-
         ongoingTaskListPanel.getRoot().prefHeightProperty()
                 .bind(this.getRoot().prefHeightProperty());
         completedTaskListPanel.getRoot().prefHeightProperty()
@@ -59,8 +55,9 @@ public class TaskTabPanel extends UiPart<VBox> {
         overdueTaskListPanel.getRoot().prefHeightProperty()
                 .bind(this.getRoot().prefHeightProperty());
 
-
-        initializeOnTabChange();
+        ongoingTaskListComponent.getChildren().add(ongoingTaskListPanel.getRoot());
+        completedTaskListComponent.getChildren().add(completedTaskListPanel.getRoot());
+        overdueTaskListComponent.getChildren().add(overdueTaskListPanel.getRoot());
     }
 
 
@@ -126,24 +123,22 @@ public class TaskTabPanel extends UiPart<VBox> {
 
     @FXML
     private void initialize() {
-        this.getRoot().setFocusTraversable(true);
-        ongoingTaskListComponent.setFocusTraversable(true);
-        completedTaskListComponent.setFocusTraversable(true);
-        overdueTaskListComponent.setFocusTraversable(true);
+        // this.getRoot().setFocusTraversable(true);
+        // ongoingTaskListComponent.setFocusTraversable(true);
+        // completedTaskListComponent.setFocusTraversable(true);
+        // overdueTaskListComponent.setFocusTraversable(true);
 
         Platform.runLater(() -> {
             taskTabPane.requestFocus(); // Hackish way of requesting focus after everything has been
             // loaded.
         });
+        initializeHandleTabChange();
     }
 
 
-    private void initializeOnTabChange() {
+    private void initializeHandleTabChange() {
         taskTabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
-            System.err.println("changed");
             int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
-            // Tab selectedTab = taskTabPane.getSelectionModel().getSelectedItem();
-
             switch (selectedTabIndex) {
             case 0: {
                 uiTaskList.setPredicate(task -> task.hasStatus(Status.NOT_DONE));
@@ -161,6 +156,7 @@ public class TaskTabPanel extends UiPart<VBox> {
         });
     }
 
-
-
+    public void requestTabFocus() {
+        taskTabPane.requestFocus();
+    }
 }

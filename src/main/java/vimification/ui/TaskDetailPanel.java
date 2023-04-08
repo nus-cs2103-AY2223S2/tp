@@ -90,14 +90,4 @@ public class TaskDetailPanel extends UiPart<VBox> {
         statusMessage.setText(message);
     }
 
-    /**
-     * Get the String of the Task instance.
-     *
-     * @param task
-     * @return {@code Deadline} or {@code Todo}
-     */
-    private String getTaskType(Task task) {
-        return task.getClass().getSimpleName();
-    }
-
 }

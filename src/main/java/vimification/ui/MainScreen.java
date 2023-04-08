@@ -119,10 +119,23 @@ public class MainScreen extends UiPart<VBox> {
     private void handleKeyPressed(KeyEvent event) {
         KeyCodeCombination colonKey =
                 new KeyCodeCombination(KeyCode.SEMICOLON, KeyCombination.SHIFT_DOWN);
+
+        KeyCodeCombination macControlTab =
+                new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.CONTROL_DOWN);
+
+        KeyCodeCombination windowsControlTab =
+                new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.ALT_DOWN);
+
+
         boolean isKeyPressedColon = colonKey.match(event);
+        boolean isContorlTab = macControlTab.match(event) || windowsControlTab.match(event);
 
         if (isKeyPressedColon) {
             loadCommandInputComponent();
+            return;
+        }
+        if (isContorlTab) {
+            taskTabPanel.requestTabFocus();
             return;
         }
 
