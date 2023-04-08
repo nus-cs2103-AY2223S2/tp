@@ -11,6 +11,11 @@ class Shop {
     - ObservableList<Appointment> appointments
     - ObservableList<Technician> technicians
     - ObservableMap<String, Integer> parts
+    - CustomerDataMap customerDataMap
+    - VehicleDataMap vehicleDataMap
+    - ServiceDataMap serviceDataMap
+    - AppointmentDataMap appointmentDataMap
+    - TechnicianDataMap technicianDataMap
 
     + ObservableList<X> getXList()
     + void addX(X's attributes)
