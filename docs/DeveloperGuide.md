@@ -634,7 +634,7 @@ After help/export/import window is minimized, clicking help/export/import on the
 the window again.
 
 **Solution proposed:**
-* Similarly to how ```getRoot().isShowing()``` is used to show the window, there is also a function called ```getRoot().isIconified()``` to check whether the window is minimised (returns ```true``` if minimised). We can then return ```getRoot().setIconified(false)``` to restore the window to its previous state.
+* Similarly to how ```getRoot().isShowing()``` is used to check if the window is shown, there is also a function called ```getRoot().isIconified()``` to check whether the window is minimised (returns ```true``` if minimised). We can then return ```getRoot().setIconified(false)``` to restore the window to its previous state.
 
 #### 4. Exams are not allowed to be on the same date
 
