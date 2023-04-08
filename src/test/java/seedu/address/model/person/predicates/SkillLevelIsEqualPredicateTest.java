@@ -35,31 +35,31 @@ class SkillLevelIsEqualPredicateTest {
     public void test_skillLevelIsEqual_returnsTrue() {
         // exact skill level match
         SkillLevelIsEqualPredicate<Volunteer> predicate = new SkillLevelIsEqualPredicate<>("advanced");
-        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("cpr advanced").build()));
+        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("cpr,advanced").build()));
 
         // case insensitive
-        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("cpr ADVANCED").build()));
+        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("cpr,ADVANCED").build()));
 
         // different skill type
-        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("ekg advanced").build()));
+        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("ekg,advanced").build()));
 
         // one match out of many
         assertTrue(predicate.test(new VolunteerBuilder()
-                .withMedicalTags("cpr advanced", "ekg basic", "Injections intermediate").build()));
+                .withMedicalTags("cpr,advanced", "ekg,basic", "Injections,intermediate").build()));
     }
 
     @Test
     public void test_skillLevelIsNotEqual_returnsFalse() {
         // Non-matching skill level
         SkillLevelIsEqualPredicate<Volunteer> predicate = new SkillLevelIsEqualPredicate<>("advanced");
-        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("cpr basic").build()));
-        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("cpr intermediate").build()));
+        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("cpr,basic").build()));
+        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("cpr,intermediate").build()));
 
         // skill type has same name as skill level
-        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("advanced basic").build()));
+        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("advanced,basic").build()));
 
         // multiple skill level without match
         assertFalse(predicate.test(new VolunteerBuilder()
-                .withMedicalTags("cpr basic", "ekg basic", "Injections intermediate").build()));
+                .withMedicalTags("cpr,basic", "ekg,basic", "Injections,intermediate").build()));
     }
 }

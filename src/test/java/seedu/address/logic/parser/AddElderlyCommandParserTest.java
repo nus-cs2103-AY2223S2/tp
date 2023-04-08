@@ -33,11 +33,14 @@ import static seedu.address.logic.commands.CommandTestUtil.RISK_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_STRONG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
@@ -47,6 +50,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseOptionalSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalElderly.AMY;
 import static seedu.address.testutil.TypicalElderly.BOB;
@@ -141,11 +145,85 @@ public class AddElderlyCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Elderly expectedElderly = new ElderlyBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+
+        // missing phone
+        Elderly expectedElderly1 = new ElderlyBuilder().withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB)
+                        .withAddress(VALID_ADDRESS_BOB).withNric(VALID_NRIC_BOB)
+                        .withBirthDate(VALID_BIRTH_DATE_BOB).withRegion(VALID_REGION_BOB)
+                        .withRiskLevel(VALID_RISK_LEVEL_BOB).withTags(VALID_TAG_STRONG)
+                        .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing email
+        Elderly expectedElderly2 = new ElderlyBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB).withRegion(VALID_REGION_BOB)
+                .withRiskLevel(VALID_RISK_LEVEL_BOB).withTags(VALID_TAG_STRONG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing address
+        Elderly expectedElderly3 = new ElderlyBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB).withRegion(VALID_REGION_BOB)
+                .withRiskLevel(VALID_RISK_LEVEL_BOB).withTags(VALID_TAG_STRONG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing region
+        Elderly expectedElderly4 = new ElderlyBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withRiskLevel(VALID_RISK_LEVEL_BOB).withTags(VALID_TAG_STRONG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + RISK_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing risk level
+        Elderly expectedElderly5 = new ElderlyBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withRegion(VALID_REGION_BOB).withTags(VALID_TAG_STRONG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing available date
+        Elderly expectedElderly6 = new ElderlyBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withRegion(VALID_REGION_BOB).withTags(VALID_TAG_STRONG)
+                .withRiskLevel(VALID_RISK_LEVEL_BOB).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
+                + TAG_DESC_STRONG);
+
+        // missing tags
+        Elderly expectedElderly7 = new ElderlyBuilder(AMY).withTags().build();
+        assertParseOptionalSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + NRIC_DESC_AMY + BIRTH_DATE_DESC_AMY + REGION_DESC_AMY
-                + RISK_DESC_AMY, new AddElderlyCommand(expectedElderly));
+                + RISK_DESC_AMY);
+
+        // all optional fields missing
+        Elderly expectedElderly8 = new ElderlyBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY)
+                        .withBirthDate(VALID_BIRTH_DATE_AMY).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY + BIRTH_DATE_DESC_AMY);
     }
 
     @Test
@@ -220,6 +298,14 @@ public class AddElderlyCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + INVALID_REGION_DESC
                 + RISK_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + INVALID_NRIC_DESC + BIRTH_DATE_DESC_BOB + INVALID_REGION_DESC
+                + RISK_DESC_BOB, Nric.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + NRIC_DESC_BOB + INVALID_BIRTH_DATE_DESC + INVALID_REGION_DESC
+                + RISK_DESC_BOB, BirthDate.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB

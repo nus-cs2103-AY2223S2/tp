@@ -32,10 +32,10 @@ class AvailableDateTest {
         assertFalse(AvailableDate.isValidDate("23-03-2020")); // not correct format
         assertFalse(AvailableDate.isValidDate("2020-02-21", "23-03-2020")); // one fails
 
-
         // valid birth date
         assertTrue(AvailableDate.isValidDate("2023-03-23"));
         assertTrue(AvailableDate.isValidDate("2000-12-28", "1955-05-17"));
+        assertTrue(AvailableDate.isValidDate("1945-12-20", "1956-02-28", "2000-01-01"));
     }
 
 
