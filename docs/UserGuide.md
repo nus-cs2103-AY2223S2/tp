@@ -478,16 +478,16 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                             |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**    | `n/MODULE_NAME t/TAG… [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]​` <br> e.g., `add n/CS2103T t/Lecture e/Friday 12:00 14:00 a/i3-AUD s/Professor Damith d/07042023 13:59 r/Can attend online! c/https://nus-cs2103-ay2223s2.github.io/website/` |
-| **delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                          |
-| **edit**   | `edit INDEX [n/MODULE_NAME] [t/TAG]… [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE] ​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`                                                                                                                  |
-| **sort**   | `sort timeslot` or `sort deadline​`                                                                                                                                                                                                                                          |
-| **list**   | `list`                                                                                                                                                                                                                                                                       |
-| **find**   | `find KEYWORD`<br> e.g., `find CS`                                                                                                                                                                                                                                           |
-| **clear**  | `clear`                                                                                                                                                                                                                                                                      |
-| **help**   | `help`                                                                                                                                                                                                                                                                       |
-| **exit**   | `exit`                                                                                                                                                                                                                                                                       |
+| Action     | Format                                                                                                                |
+|------------|-----------------------------------------------------------------------------------------------------------------------|
+| **list**   | `list`                                                                                                                |
+| **add**    | `add n/MODULE_NAME t/DESCRIPTION [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`             |
+| **delete** | `delete INDEX`                                                                                                        |
+| **edit**   | `edit INDEX [n/MODULE_NAME] [t/DESCRIPTION]… [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]` |
+| **find**   | `find KEYWORD`                                                                                                        |
+| **sort**   | `sort timeslot`  `sort deadline`                                                                                      |
+| **clear**  | `clear`                                                                                                               |
+| **help**   | `help`                                                                                                                |
+| **exit**   | `exit`                                                                                                                |
 
 
