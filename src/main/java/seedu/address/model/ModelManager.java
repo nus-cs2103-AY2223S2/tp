@@ -237,6 +237,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasOverlap(Appointment appointment) {
+        requireNonNull(appointmentList);
+        return appointmentList.hasOverlap(appointment);
+    }
+
+    @Override
     public void deleteAppointment(Appointment target) {
         appointmentList.removeAppointment(target);
     }

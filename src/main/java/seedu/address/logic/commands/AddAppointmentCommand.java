@@ -21,7 +21,7 @@ public class AddAppointmentCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_TIMESLOT + "TIMESLOT "
-            + PREFIX_DESCRIPTION + "DESCRIPTION"
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DOCTOR + "DOCTOR\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -51,7 +51,7 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_PATIENT_DOES_NOT_EXIST);
         }
 
-        if (model.hasAppointment(toAdd)) {
+        if (model.hasAppointment(toAdd) || model.hasOverlap(toAdd)) {
             throw new CommandException(MESSAGE_TIMESLOT_OCCUPIED);
         }
 
@@ -59,6 +59,7 @@ public class AddAppointmentCommand extends Command {
             model.addAppointment(toAdd);
             CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
         }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

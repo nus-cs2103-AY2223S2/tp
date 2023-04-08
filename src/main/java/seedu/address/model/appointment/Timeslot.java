@@ -80,20 +80,21 @@ public class Timeslot {
      */
     public boolean hasOverlap(Timeslot otherTimeslot) {
         return this.startingDateTime.equals(otherTimeslot.startingDateTime)
+            || this.endingDateTime.equals(otherTimeslot.endingDateTime)
             || (this.startingDateTime.isBefore(otherTimeslot.endingDateTime)
             && otherTimeslot.startingDateTime.isBefore(this.endingDateTime));
     }
 
-    ///**
-    // * Checks if the first datetime is before or equal to the second datetime.
-    // *
-    // * @param thisTime The first datetime that should be before or equal to the second datetime.
-    // * @param thatTime The second datetime.
-    // * @return if the first datetime is before or equal to the second datetime.
-    // */
-    //private boolean isBeforeOrEqual(LocalDateTime thisTime, LocalDateTime thatTime) {
-    //    return thisTime.isBefore(thatTime) || thisTime.isEqual(thatTime);
-    //}
+    /**
+     * Checks if the first datetime is before or equal to the second datetime.
+     *
+     * @param thisTime The first datetime that should be before or equal to the second datetime.
+     * @param thatTime The second datetime.
+     * @return if the first datetime is before or equal to the second datetime.
+     */
+    private boolean isBeforeOrEqual(LocalDateTime thisTime, LocalDateTime thatTime) {
+        return thisTime.isBefore(thatTime) || thisTime.isEqual(thatTime);
+    }
 
     /**
      * Returns true if a given string is a valid timeslot.
