@@ -1,0 +1,20 @@
+@startuml
+!pragma useVerticalIf on
+
+start
+:User executes `deltag` command;
+if () then ([else])
+    :Error: Invalid Command;
+    stop;
+([Valid command]) elseif () then ([else])
+    :Error: Invalid Tag Name;
+    stop;
+([Valid tag name]) elseif () then ([else])
+    :Error: Tag Does Not Exist;
+    stop;
+else ([Tag exist])
+endif
+    :deltag command executes successfully;
+stop
+
+@enduml

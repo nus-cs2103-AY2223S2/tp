@@ -6,6 +6,7 @@ import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.INVALID_EXPIRY_DATE_DESC;
 import static seedu.wife.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.wife.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
+import static seedu.wife.logic.commands.CommandTestUtil.INVALID_QUANTITY_STRING;
 import static seedu.wife.logic.commands.CommandTestUtil.INVALID_UNIT_DESC;
 import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_MEIJI;
@@ -101,6 +102,10 @@ public class AddCommandParserTest {
         // invalid quantity
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + INVALID_QUANTITY_DESC
                 + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE, Quantity.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + INVALID_QUANTITY_STRING
+                + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE,
+                Quantity.MESSAGE_CHAR_CONSTRAINTS);
 
         // invalid expiry date
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE

@@ -1,10 +1,10 @@
 package seedu.wife.logic.parser.foodcommandparser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import seedu.wife.commons.core.index.Index;
+import seedu.wife.commons.util.StringUtil;
 import seedu.wife.logic.commands.foodcommands.DecreaseCommand;
 import seedu.wife.logic.commands.foodcommands.DecreaseCommand.DecreaseFoodDescriptor;
 import seedu.wife.logic.parser.ArgumentMultimap;
@@ -31,11 +31,7 @@ public class DecreaseCommandParser implements Parser<DecreaseCommand> {
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecreaseCommand.MESSAGE_USAGE), pe);
-        }
+        index = StringUtil.getIndexFromCommand(argMultimap.getPreamble().trim(), DecreaseCommand.MESSAGE_USAGE);
 
         DecreaseFoodDescriptor decreaseFoodDescriptor = new DecreaseFoodDescriptor();
         //quantity needs to be > 0

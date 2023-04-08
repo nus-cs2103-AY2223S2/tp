@@ -81,6 +81,7 @@ to execute it.
 You should see your food list be updated as such!
 
   ![Ui_updated](images/UG/Ui_updated.png)
+
 Congratulations, you just added your first item!
 
 To see what the command format means, you can refer to the [Features](#features) below for details of each command to maximise your productivity with WIFE.
@@ -527,6 +528,9 @@ There is no support for mobile devices yet.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
-
-* **GUI:** Graphical User Interface - It is the view of the application that you see!
+* **Command Terminal** The typing interface that you use in WIFE. You can open a separate command terminal on your operating
+system for installation purposes.
 * **Destructive Command:** It will wipe out all current data in WIFE.
+*  **Extraneous parameters**  Additional parameters for a command that are not needed or unnecessary.
+* **GUI:** Graphical User Interface - It is the view of the application that you see!
+* **Home Folder** The working folder that `wife.jar` is currently located in.

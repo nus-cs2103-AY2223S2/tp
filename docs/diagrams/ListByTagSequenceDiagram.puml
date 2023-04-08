@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+'all logic entities
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WifeParser" as WifeParser LOGIC_COLOR
+participant ":ListByTagCommandParser" as ListByTagCommandParser LOGIC_COLOR
+participant ":ListByTagCommand" as ListByTagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+'model entity
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("listbytag n/tagname")
+activate LogicManager
+
+LogicManager -> WifeParser : parseCommand("n/tagname")
+activate WifeParser
+
+create ListByTagCommandParser
+WifeParser -> ListByTagCommandParser
+activate ListByTagCommandParser
+
+ListByTagCommandParser --> WifeParser
+deactivate ListByTagCommandParser
+
+WifeParser -> ListByTagCommandParser :parse("n/tagname")
+activate ListByTagCommandParser
+
+create ListByTagCommand
+ListByTagCommandParser -> ListByTagCommand : ListByTagCommand(tag)
+activate ListByTagCommand
+
+ListByTagCommand --> ListByTagCommandParser
+deactivate ListByTagCommand
+
+ListByTagCommandParser --> WifeParser
+deactivate ListByTagCommandParser
+
+ListByTagCommandParser -[hidden]-> WifeParser
+destroy ListByTagCommandParser
+
+WifeParser --> LogicManager
+deactivate WifeParser
+
+LogicManager -> ListByTagCommand : execute(model)
+activate ListByTagCommand
+
+ListByTagCommand -> Model : updateFilteredFoodList()
+activate Model
+
+Model --> ListByTagCommand
+deactivate Model
+
+create CommandResult
+ListByTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListByTagCommand
+deactivate CommandResult
+
+ListByTagCommand --> LogicManager
+deactivate ListByTagCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

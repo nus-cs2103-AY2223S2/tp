@@ -77,6 +77,9 @@ public class ParserUtil {
     public static Quantity parseQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
+        if (!Quantity.isNotChar(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CHAR_CONSTRAINTS);
+        }
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }

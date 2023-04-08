@@ -12,6 +12,7 @@ import seedu.wife.logic.commands.exceptions.CommandException;
  */
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS = "Quantity must be a value larger than 0";
+    public static final String MESSAGE_CHAR_CONSTRAINTS = "Quantity must be a number";
     public static final String DECREASE_CONSTRAINTS = "Quantity to decrease cannot be greater than or equal to the "
             + "current quantity!";
     public static final String VALIDATION_REGEX = "-?\\d+(\\.\\d+)?";
@@ -48,6 +49,32 @@ public class Quantity {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Returns true if the quantity is not a character.
+     * @param quantity
+     * @return True if quantity is a valid quantity, else False.
+     */
+    public static boolean isNotChar(String quantity) {
+        try {
+            Integer.parseInt(quantity);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Updates the quantity to another valid integer.
+     * @param newQuantity Value of new quantity.
+     */
+    public void updateQuantity(String newQuantity) {
+        checkArgument(isValid(newQuantity), MESSAGE_CONSTRAINTS);
+        this.quantity = Integer.parseInt(newQuantity);
+    }
+
+    /**
+>>>>>>> 4f1ef61b278dcf99de300e589904a569c2c2750c
      * Increases the current quantity by a valid integer.
      *
      * @param increasedQuantity Value of the quantity to increase by.

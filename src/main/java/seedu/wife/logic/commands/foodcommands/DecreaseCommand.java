@@ -74,6 +74,24 @@ public class DecreaseCommand extends Command {
                 foodToDecrease.getExpiryDate(), foodToDecrease.getTags());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DecreaseCommand)) {
+            return false;
+        }
+
+        // state check
+        DecreaseCommand e = (DecreaseCommand) other;
+        return index.equals(e.index)
+                && decreaseFoodDescriptor.equals(e.decreaseFoodDescriptor);
+    }
+
     /**
      * Stores the quantity to decrease the quantity of the food item with. A non-negative value will decrease the
      * corresponding quantity of the food item by that value.
@@ -82,7 +100,9 @@ public class DecreaseCommand extends Command {
 
         private Quantity quantity;
 
-        public DecreaseFoodDescriptor() {}
+        public DecreaseFoodDescriptor() {
+            this.quantity = new Quantity("1");
+        }
 
         /**
          * Copy constructor.
