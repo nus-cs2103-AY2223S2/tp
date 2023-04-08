@@ -1,33 +1,26 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Sze SHao Hong's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: TeachMeSenpai
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of
+students to keep track of. It is tailored to assist the user in monitoring their students' progress, and details. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** so users can easily edit their student's details, with the benefits of a **Graphical User Interface (GUI)** so users can conveniently view their student entries.
 
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=sheemo&breakdown=true)
 
 * **Enhancements implemented**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Added the text box for the feature `remark` [\#107]()
+  * Added the ability to add Telegram handles for student entries [\#140]()
+  * Added the regular expression to validate Telegram handles [\#211]()
+  * Fixed a bug where the text box for the feature `remark` does not close when the app terminates [\#148]()
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added images to show the expected output of running all the commands
+    * Edited the descriptions for the `remark` feature
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Contributions beyond the project team**:
-  * Responded to forum posts ([\#42]())
-  * Reported bugs found in other team's products ([\#42]())
+    * Added use cases for the `remark` feature [\#70]()
