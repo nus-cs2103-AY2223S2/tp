@@ -24,15 +24,15 @@ Given below are my contributions to the project.
   * Highlights: Users can choose between a light or dark theme, which can help them personalize their experience and make it easier to use the app in different lighting conditions. The keyboard shortcut makes it convenient to switch between themes quickly.
 
 
-* **New Feature**: Local Storage for OfficeConnect.
-  * What it does: With this new feature, users can now save OfficeConnect data to a local file, enabling them to easily
+* **Enhancement to existing features**: Local Storage for OfficeConnect.
+  * What it does: With this new enhancement, users can now save OfficeConnect data to a local file, enabling them to easily
     restore their data from local storage.
-  * Justification: The addition of Local Storage is a crucial enhancement for OfficeConnect. It provides users with a
-    convenient and reliable way to store their data, which can be easily accessed and restored as needed. This feature
+  * Justification: The enhancement of Local Storage is a crucial enhancement for OfficeConnect. It provides users with a
+    convenient and reliable way to store their data, which can be easily accessed and restored as needed. This enhancement
     ensures that users have complete control over their data, helping to improve productivity and streamline workflows.
-  * Highlights: The addition of Local Storage is a significant update that impacts the existing data structure of
-    OfficeConnect. This feature is a fundamental building block for all other OfficeConnect features, making it a key
-    component of the software's architecture. With Local Storage, OfficeConnect provides a more comprehensive and
+  * Highlights: The enhancement of Local Storage is a significant update that impacts the existing data structure of
+    OfficeConnect. This enhancement is a fundamental building block for all other OfficeConnect features, making it a key
+    component of the software's architecture. With new Local Storage, OfficeConnect provides a more comprehensive and
     user-friendly solution for managing data, enabling users to work more efficiently and effectively.
 
     
