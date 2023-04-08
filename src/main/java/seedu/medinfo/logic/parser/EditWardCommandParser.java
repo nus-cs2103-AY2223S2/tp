@@ -36,7 +36,11 @@ public class EditWardCommandParser implements Parser<EditWardCommand> {
 
         EditWardDescriptor editWardDescriptor = new EditWardCommand.EditWardDescriptor();
         if (argMultimap.getValue(PREFIX_WARD).isPresent()) {
-            editWardDescriptor.setWard(ParserUtil.parseWardName(argMultimap.getValue(PREFIX_WARD).get()));
+            if (index.getOneBased() == 1) {
+                throw new ParseException(EditWardCommand.MESSAGE_WAITING_ROOM_NAME_EDIT);
+            } else {
+                editWardDescriptor.setWard(ParserUtil.parseWardName(argMultimap.getValue(PREFIX_WARD).get()));
+            }
         }
         if (argMultimap.getValue(PREFIX_CAPACITY).isPresent()) {
             editWardDescriptor.setCapacity(ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get()));
