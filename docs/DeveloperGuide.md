@@ -1144,9 +1144,12 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: **Note**: These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
+</div>
 
+<div markdown=span class="alert alert-info">
+:information_source: **NOTE**: If copying and pasting commands exactly, it is important to execute them in the order instructed. If you wish to mix up the order, ID/index related arguments such as <code><var>PATIENT_ID</var></code> will have to be changed accordingly.
 </div>
 
 ### Launch and shutdown
@@ -1183,10 +1186,127 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### Adding a vaccination
 
-1. Dealing with missing/corrupted data files
+In all cases, vaccination "a" will be added but its state is determined through the display.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behaviour}_
+#### Prerequisites
 
-1. _{ more test cases …​ }_
+Before every test case, ensure that the vaccination "a" does not exist and that there are no vaccination filters applied. This can be done by executing the following before every test case:
+
+* `vaccination clear --force true`
+* `vaccination list`
+
+#### Test: All optional parameters omitted
+
+`vaccination add a`
+
+##### Expected
+
+![Expected display](images/vaccination/dg/VaxAdd_AllBlank.png)
+
+#### Test: Optional parameters present
+
+`vaccination add a --lal 45 --g a,b,c --i a,b,c --h all::all --h any::any --h none::none`
+
+##### Expected
+
+![Expected display](images/vaccination/dg/VaxAdd_NotBlank.png)
+
+### Vaccination validation
+
+#### Prerequisites
+
+Before every test case, ensure that the there are no patients and vaccinations.
+
+* `patient clear --force true`
+* `vaccination clear --force true`
+
+<div markdown=span class="alert alert-info">
+:information_source: **NOTE**: If copying and pasting commands exactly, it is important to execute them in the order instructed. If you wish to mix up the order, ID/index related arguments such as <code><var>PATIENT_ID</var></code> will have to be changed accordingly.
+</div>
+
+#### Test: History requirement - ALL
+
+1. Add vaccination "TAKING" which will be the vaccination to be taken with `ALL` type history requirement.<br>
+  `vaccination add TAKING --h ALL::G1, G2, G3`
+2. Add vaccination "LACKING" that will lack a required group.<br>
+  `vaccination add LACKING --g G1, G2`
+3. Add vaccination "ALL" that will have all required groups.<br>
+  `vaccination add ALL --g G1, G2, G3`
+4. Add vaccination "EXTRA" that will have all required groups and extra.<br>
+  `vaccination add EXTRA --g G1, G2, G3, G4`
+5. Add patient "LACKING" who has taken a vaccination with lacking required groups.<br>
+  `patient add --n LACKING --p 445 --d 0001-1-1 --b A+ --v LACKING`
+6. Add patient "ALL" who has taken a vaccination with all required groups.<br>
+  `patient add --n ALL --p 445 --d 0001-1-1 --b A+ --v ALL`
+7. Add patient "EXTRA" who has taken a vaccination with all required groups and extra.<br>
+  `patient add --n EXTRA --p 445 --d 0001-1-1 --b A+ --v EXTRA`
+8. Schedule an appointment for patient "LACKING"<br>
+  `appointment add --p 1 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Patient cannot take the vaccination
+9. Schedule an appointment for patient "ALL"<br>
+  `appointment add --p 2 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Appointment added
+10. Schedule an appointment for patient "EXTRA"<br>
+  `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Appointment added
+
+#### Test: History requirement - ANY
+
+1. Add vaccination "TAKING" which will be the vaccination to be taken with `ANY` type history requirement.<br>
+  `vaccination add TAKING --h ANY::G1, G2, G3`
+1. Add vaccination "LACKING" that will lack required groups.<br>
+  `vaccination add LACKING --g G1`
+1. Add vaccination "ALL" that will have all required groups.<br>
+  `vaccination add ALL --g G1, G2, G3`
+1. Add vaccination "EXTRA" that will have all required groups and extra.<br>
+  `vaccination add EXTRA --g G1, G2, G3, G4`
+1. Add vaccination "NONE" that will have none of the required groups.<br>
+  `vaccination add NONE --g G4, G5`
+1. Add patient "LACKING" who has taken a vaccination with lacking required groups.<br>
+  `patient add --n LACKING --p 445 --d 0001-1-1 --b A+ --v LACKING`
+1. Add patient "ALL" who has taken a vaccination with all required groups.<br>
+  `patient add --n ALL --p 445 --d 0001-1-1 --b A+ --v ALL`
+1. Add patient "EXTRA" who has taken a vaccination with all required groups and extra.<br>
+  `patient add --n EXTRA --p 445 --d 0001-1-1 --b A+ --v EXTRA`
+1. Add patient "NONE" who has taken a vaccination with none of the required groups.<br>
+  `patient add --n NONE --p 445 --d 0001-1-1 --b A+ --v NONE`
+1. Schedule an appointment for patient "LACKING"<br>
+  `appointment add --p 1 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Appointment added
+1. Schedule an appointment for patient "ALL"<br>
+  `appointment add --p 2 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Appointment added
+1. Schedule an appointment for patient "EXTRA"<br>
+  `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Appointment added
+1. Schedule an appointment for patient "NONE"<br>
+  `appointment add --p 4 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Patient cannot take the vaccination
+
+#### Test: History requirement - NONE
+
+1. Add vaccination "TAKING" which will be the vaccination to be taken with `NONE` type history requirement.<br>
+  `vaccination add TAKING --h NONE::G1, G2, G3`
+1. Add vaccination "PRESENT" which will have a group that cannot be present.<br>
+  `vaccination add PRESENT --g G1`
+1. Add vaccination "PRESENT EXTRA" which will have a group that cannot be present and another that can.<br>
+  `vaccination add PRESENT EXTRA --g G1, G4`
+1. Add vaccination "NONE" that will have none of the groups that cannot be present.<br>
+  `vaccination add NONE --g G4, G5`
+1. Add patient "PRESENT" who has taken a vaccination with a group that cannot be present.<br>
+  `patient add --n PRESENT --p 445 --d 0001-1-1 --b A+ --v PRESENT`
+1. Add patient "PRESENT EXTRA" who has taken a vaccination with a group that cannot be present and another that can.<br>
+  `patient add --n PRESENT EXTRA --p 445 --d 0001-1-1 --b A+ --v PRESENT EXTRA`
+1. Add patient "NONE" who has taken a vaccination with a groups that can be present.<br>
+  `patient add --n NONE--p 445 --d 0001-1-1 --b A+ --v NONE`
+1. Schedule an appointment for patient "PRESENT"<br>
+  `appointment add --p 1 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Patient cannot take the vaccination
+1. Schedule an appointment for patient "PRESENT EXTRA"<br>
+  `appointment add --p 2 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Patient cannot take the vaccination
+1. Schedule an appointment for patient "NONE"<br>
+  `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
+  **Expected**: Appointment added
