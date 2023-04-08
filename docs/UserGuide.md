@@ -207,10 +207,19 @@ Lists all tags in the tag list.
 
 Format: `tags`
 
-### Listing available Genres: `genre`
-Shows list of all valid Genres.
+### Genres:
+A genre in a bookmark indicates the genre of the content the bookmark is tracking.
 
-Format: `genre`
+In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib. This fixed list of genres can be viewed using the `genre` command. 
+
+The format for the command is as follows: 
+
+`genre`
+
+The command should display the list of available genres in the `Result Box`.
+
+<img width="680" src="images/genres.png">
+
 <div style="page-break-after: always;"></div>
 
 ### Adding a bookmark
@@ -221,28 +230,13 @@ The format for the `add` command is as follows:
 
 `add n/TITLE g/GENRE [a/AUTHOR] [p/PROGRESS] [r/RATING] [u/URL] [t/TAG]…​`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-    
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `n/TITLE`, `TITLE` should be replaced by the title you want to give the bookmark.   
-    
-* Items in square brackets are optional.<br>
-  e.g `[a/AUTHOR]`, `[p/PROGRESS]`, `[r/RATING]`, `[u/URL]`, `[t/TAG]` are optional items
-    
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Novel`, `t/Novel t/Japanese` etc.
-
-</div>
-
 The `add` command accepts the following items as user input:
 
 | Prefix | Parameter | Description                                                                                                                                                                                                                                                                                                                                        |
 |:------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |  `n/`  |   TITLE   | This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is tracking. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                        |
 |  `a/`  |  AUTHOR   | This is the author of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                                                                                                                |
-|  `p/`  | PROGRESS  | This is used to remember your progress with the content being tracked by this bookmark. For example, if the bookmark is tracking a novel, the progress can be used to denote the latest read chapter.<br/><br/> PROGRESS should have the format: `VOLUME CHAPTER PAGE`. <br/><br/> `VOLUME`, `CHAPTER` and `PAGE` should either be a number (without any additional symbols such as +/-) or `~`.<br/> `~` is used to denote an empty `VOLUME`, `CHAPTER` and `PAGE`. For example, if you only want to use `CHAPTER` to track your progress you would do: `~ CHAPTER ~`. At least one of `VOLUME`, `CHAPTER` and `PAGE` must not be `~`.|
+|  `p/`  | PROGRESS  | This is used to remember your progress with the content being tracked by this bookmark. For example, if the bookmark is tracking a novel, the progress can be used to denote the latest read chapter.<br/><br/> PROGRESS should have the format: `VOLUME CHAPTER PAGE`. <br/><br/> `VOLUME`, `CHAPTER` and `PAGE` should either be a positive number (without +) or `~`.<br/> `~` is used to denote an empty `VOLUME`, `CHAPTER` and `PAGE`. For example, if you only want to use `CHAPTER` to track your progress you would do: `~ CHAPTER ~`. At least one of `VOLUME`, `CHAPTER` and `PAGE` must not be `~`.|
 |  `g/`  |   GENRE   | The genre of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>MyLib provides a fixed list of genres.<br/> Only genres in that list can be used as the genre of a bookmark.<br/> To find out more about this list, go to the [Genres](#genres) section.                   |
 |  `u/`  |    URL    | This is the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
 |  `r/`  |  RATING   | This is the rating to give the bookmark.<br/><br/>**Restrictions:**<br/>Must be a number from 0 to 5 (without any additional symbols like +/-)                                                                                                                                                                                                                                             |
@@ -473,7 +467,7 @@ _Details coming soon ..._
 |:------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |  `n/`  |   TITLE   | This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is tracking. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                        |
 |  `a/`  |  AUTHOR   | This is the author of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                                                                                                                |
-|  `p/`  | PROGRESS  | This is used to remember your progress with the content being tracked by this bookmark. For example, if the bookmark is tracking a novel, the progress can be used to denote the latest read chapter.<br/><br/> PROGRESS should have the format: `VOLUME CHAPTER PAGE`. <br/><br/> `VOLUME`, `CHAPTER` and `PAGE` should either be a number (without any additional symbols such as +/-) or `~`.<br/> `~` is used to denote an empty `VOLUME`, `CHAPTER` and `PAGE`. For example, if you only want to use `CHAPTER` to track your progress you would do: `~ CHAPTER ~`. At least one of `VOLUME`, `CHAPTER` and `PAGE` must not be `~`.|
+|  `p/`  | PROGRESS  | This is used to remember your progress with the content being tracked by this bookmark. For example, if the bookmark is tracking a novel, the progress can be used to denote the latest read chapter.<br/><br/> PROGRESS should have the format: `VOLUME CHAPTER PAGE`. <br/><br/> `VOLUME`, `CHAPTER` and `PAGE` should either be a positive number (without +) or `~`.<br/> `~` is used to denote an empty `VOLUME`, `CHAPTER` and `PAGE`. For example, if you only want to use `CHAPTER` to track your progress you would do: `~ CHAPTER ~`. At least one of `VOLUME`, `CHAPTER` and `PAGE` must not be `~`.|
 |  `g/`  |   GENRE   | The genre of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>MyLib provides a fixed list of genres.<br/> Only genres in that list can be used as the genre of a bookmark.<br/> To find out more about this list, go to the [Genres](#genres) section.                   |
 |  `u/`  |    URL    | This is the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
 |  `r/`  |  RATING   | This is the rating to give the bookmark.<br/><br/>**Restrictions:**<br/>Must be a number from 0 to 5 (without any additional symbols like +/-)                                                                                                                                                                                                                                             |
