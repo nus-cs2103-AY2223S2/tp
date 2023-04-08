@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor NAV_COLOR_T4
+skinparam ClassBackgroundColor NAV_COLOR
+
+package Navigation <<Rectangle>>{
+Class "<<interface>>\nNavigation" as Navigation
+Class NavigationStack
+Class NavigationContext
+}
+
+package Model <<Rectangle>>{
+Class ModuleCode
+Class LectureName
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Navigation
+
+NavigationStack .left.|> Navigation
+NavigationStack -down-> "1" NavigationContext
+NavigationContext -right-> "1" ModuleCode
+NavigationContext -right-> "1" LectureName

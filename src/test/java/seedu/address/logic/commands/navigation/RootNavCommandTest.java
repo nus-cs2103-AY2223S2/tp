@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Navigation;
+import seedu.address.model.NavigationStack;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.navigation.NavigationContext;
@@ -18,7 +19,7 @@ public class RootNavCommandTest {
 
     @Test
     void execute_navAtRoot_noChange() throws CommandException {
-        Model model = new ModelStubWithNavigation(new Navigation());
+        Model model = new ModelStubWithNavigation(new NavigationStack());
         RootNavCommand cmd = new RootNavCommand();
 
         CommandResult result = cmd.execute(model);
@@ -30,8 +31,7 @@ public class RootNavCommandTest {
     @Test
     void execute_navAtMod_shouldBeAtRoot() throws CommandException {
         Module mod = TypicalModules.getCs2040s();
-
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         nav.navigateTo(mod.getCode());
         Model model = new ModelStubWithNavigation(nav);
 
@@ -47,7 +47,7 @@ public class RootNavCommandTest {
         Module mod = TypicalModules.getCs2040s();
         Lecture lec = TypicalLectures.getCs2040sWeek1();
 
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         nav.navigateTo(mod.getCode(), lec.getName());
         Model model = new ModelStubWithNavigation(nav);
 

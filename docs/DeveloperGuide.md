@@ -92,7 +92,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -101,7 +101,7 @@ The `UI` component,
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Module`, `Lecture`, `Video` objects residing in the `Model`.
 
 ### Logic component
 
@@ -113,16 +113,20 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, several observers subscribe to the `TrackerEventSystem.`
+1. The command text is first pre-processed (e.g. `NavigationInjector` could modify the command text by inserting `/mod CS2040S /lec Week 1`).
+1. `Logic` then uses the `TrackerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a module).
+1. The result of the command execution is encapsulated as a `CommandResult`.
+1. Based on the `CommandResult`, several systems such as `Navigation` are notified through the `TrackerEventSystem`.
+1. The `CommandResult` object is then returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add CS2040S")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add CS2040S` Command](images/AddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -131,8 +135,32 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `TrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddVideoCommand`) which the `TrackerParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `NavCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+### Navigation component
+
+**API**: `Navigation.java`
+
+Here's a (partial) class diagram of the `Navigation` component:
+
+<img src="images/NavigationClassDiagram.png" width="550"/>
+
+\*\* This class diagram omits some classes and dependencies in the `Navigation` component for the purpose of simplicity.
+
+What the `Navigation` component does:
+
+- Tracking the current working context.
+- Tracking navigation through the hierarchy.
+- Enforcing valid navigation between adjacent layers in the module-lecture-video hierarchy.
+
+What the `Navigation` component is **NOT RESPONSIBLE** for:
+
+- Ensuring that modules or lectures exist in the `Model` component.
+  - This avoids circular dependency as the `Model` component already depends on the `Navigation` component.
+  - This enforces the single responsibility principle as the `Navigation` component does not need to verify the existence of actual module or lecture data in the Tracker system.
+
+For more information on the Navigation system and how to develop **context-sensitive** commands that work with the Navigation system, please refer the [navigation feature](#navigation-feature).
 
 ### Model component
 
@@ -607,25 +635,62 @@ The following is a description of the code execution flow:
 
 > The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
 
-Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation family of commands allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the /mod or /lec arguments for commands related to the current context.
+#### How the navigation system works
 
-Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
+Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the module-lecture-video hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
 
-**Usage scenario**
+Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, context-sensitive commands will be able to infer the specified module or lecture from these arguments without being directly coupled to the navigation system.
+
+#### Navigation injection
+
+Here's a (partial) class diagram for the `NavigationInjector` component.
+
+![NavigationInjectorClassDiagram](images//NavigationInjectorClassDiagram.png)
+
+How `NavigationInjector` injects the correct arguments into the command based on the current working context:
+
+1. When `Logic` is called upon to execute a command, the command text string is first passed to the `Injector` object via its `inject(String, Model)` method.
+
+2. The `NavigationInjector` implementation of `Injector` then obtains the `NavigationContext` object which represents the current working context by communicating with the `Model`.
+
+3. The `NavigationInjector` then injects the appropriate `/mod` and `/lec` arguments that represent the current working context into the command text string based on the arguments obtained from the `NavigationContext` object.
+
+4. The modified command text string is then returned back from `NavigationInjector` to `Logic`.
+
+#### Usage scenario
 
 Given below is an example usage scenario and how the navigation system behaves at each step.
 
 Steps:
 
-1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
+1. The user launches the application. The Navigation system is initialized with a root context as the current working context.
 
-2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
-
+2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command. The following sequence diagram depicts `nav CS2040S`'s execution:
    ![FindActivityDiagram](images/NavSequenceDiagram0.png)
 
 3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
 
-4. The user wants to list the videos of the CS2040S/Week 1 context and executes `list` command.
+#### Designing context-sensitive commands
+
+We want to reduce the need for similar sounding command names such as `add-module`, `add-lecture`, `add-video` which all involve the "adding" operation. Hence, these context-sensitive commands share a single command name such as `add`. To determine whether a module, lecture or video is being processed for a given command, we instead parse the context-specifying arguments such as `/mod`, `/lec` to instantiate the **context specific command**.
+
+Hence, we define a common format for context-sensitive commands:
+> `command [/mod {module_code}] [/lec {lecture_name}]`
+
+Parsing context-specifying arguments to determine context:
+
+| Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
+| -----------------   | -----------------   | ------------------   | ----------------------   |
+|         No          |         No          | Root Context         |  `XYZModuleCommand`      |
+|         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
+|         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
+
+If you are *confused* about why there appears to be a mismatch between Context and Context Specific Command (i.e. Module Context -> `XYZLectureCommand`), remember that a context specific command does **NOT** manipulate the **context** itself but the objects that are **contained** under that context (i.e. modules contain lectures).
+
+Implementing your context-sensitive command based on this format will ensure seamless integration with the navigation system.
+
+For concrete examples on how to implement a context-sensitive command, you can refer to the
+[add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
 
 ### Tag module, lecture, and video feature
 
@@ -733,6 +798,10 @@ The following is a description of the code execution flow:
 
 - This implementation allows for adherence to basic Object Oriented Programming principles
 
+**Possible further implementation**
+
+- add a prompt to check with user whether they really want to clear everything since the command is irreversible
+
 ## Documentation, logging, testing, configuration, dev-ops
 
 - [Documentation guide](Documentation.md)
@@ -803,12 +872,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over or clear sample modules                                    |
 | `* *`    | user             | set timestamps on videos                                                           | track where I last left off on a video                                                                                | <!-- TODO: Verify by hingen -->    |
-| `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                         | <!-- TODO: Verify by jedidiahC --> |
-| `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                        | <!-- TODO: Verify by jedidiahC --> |
+| `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                         |                                    |
+| `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                        |                                    |
 | `* *`    | user             | export my progress data                                                            | backup my data or transfer it to a new device                                                                         | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | import my progress data                                                            | restore my tracker should I change or wipe my device                                                                  | <!-- TODO: Verify by lennoxtr -->  |
-| `* *`    | forgetful user   | be reminded of where to find the guide                                             | recall how to use the app                                                                                             | <!-- TODO: Verify by jedidiahC --> |
-| `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | TODO:                                                                                                                 | <!-- TODO: Verify by jedidiahC --> |
+| `* *`    | forgetful user   | be reminded of where to find the guide                                             | relearn how to use the app                                                                                            |                                    |
+| `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | not type the same lengthy arguments each time I type a command.                                                       |                                    |
 | `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove multiple modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) |    |
 | `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                   |    |
 | `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     |    |
@@ -822,6 +891,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Navigate to a lecture context**
+
+**MSS**
+
+1. User requests to navigate to a specific lecture belonging to a specific module.
+2. Le Tracker navigates to the specified lecture and displays a confirmation message.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The user does not enter sufficient details for the lecture.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. The specified lecture or module does not exist.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
 
 **Use case: List modules**
 
@@ -1209,152 +1302,365 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Mark/Unmark a video**
 
-**Preconditions**: User has added a module and a lecture and a video
+**Preconditions**: User has added a module, a lecture and a video
 
 **MSS**
 
-1. User requests to mark/unmark a video as watched.
-2. User specifies the module code, lecture index number and video index number to mark/unmark.
-3. Video shows a marked/unmarked indicator.
+1. User wants to mark/unmark a video
+2. User specifies the module code, lecture name and video name to mark/unmark the video as watched/unwatched.
+3. LeTracker marks/unmarks the video as watched/unwatched
 
    Use case ends.
 
 **Extensions**
 
-- 2a. Module code does not exist.
+- 2a. Invalid module code that does not follow module code format is supplied.
 
   - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. Lecture index does not exist.
+- 2b. Invalid lecture name that does not follow lecture name format is supplied.
 
   - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. Video index does not exist.
+- 2c. Invalid video name that does not follow video name format is supplied.
 
-  - 2b1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Lecture of lecture name that is supposed to contain the video of video name does not exist in module of module code.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. Video name does not exist in lecture of lecture name in module of module code.
+
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 3a. Video to mark is already marked as watched.
 
-  3a1. LeTracker shows an error message.
+  - 3a1. LeTracker shows an error message.
 
-  Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 3b. Video to unmark is already unmarked.
 
-  3b1. LeTracker shows an error message.
+  - 3b1. LeTracker shows an error message.
 
-  Use case resumes at step 1.
+    Use case resumes at step 1.
+
+**Use case: Mark/Unmark multiple videos**
+
+**Preconditions**: User has added a module, a lecture and a few videos
+
+**MSS**
+
+1. User wants to mark/unmark a few videos under the same module lecture as watched/unwatched.
+2. User specifies the module code, lecture name and multiple video names to mark/unmark as watched/unwatched.
+3. LeTracker marks/unmarks the videos as watched/unwatched.
+
+  Use case ends
+
+**Extensions**
+
+- 2a. Invalid module code that does not follow module code format is supplied.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Invalid lecture name that does not follow lecture name format is supplied.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one of video names supplied does not follow video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The video names contain duplicates.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. Lecture of lecture name that is supposed to contain the videos of the multiple video name does not exist in module of module code.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2g. At least one of the videos of video names do not exist in lecture of lecture name in module of module code.
+
+  - 2g1. LeTracker shows an error message.
+
+- 3a. At least one of the videos to mark is already marked as watched.
+
+  - 3a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Delete a Module**
 
+**Preconditions**: User has added a module
+
 **MSS**
 
-1. User requests to list modules
-2. Le Tracker shows a list of modules
-3. User requests to delete a specific module in the list
-4. Le Tracker deletes the module
+1. User wants to delete a module
+2. User requests to delete the specific module by specifying the module code
+3. LeTracker deletes the module
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There are no modules.
+- 2a. The given module code does not follow the module code format.
 
-  Use case ends.
+  - 2a1. LeTracker shows an error message.
 
-- 4a. The given module code is invalid. (does not exist or does not follow the module code format)
+    Use case resumes at step 1.
 
-  4a1. Le Tracker shows an error message.
+  2b. Module of module code does not exist in LeTracker.
 
-  Use case resumes at step 1.
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Modules**
+
+**Preconditions**: User has added a few modules
+
+**MSS**
+
+1. User wants to delete multiple modules
+2. User requests to delete specific modules by specifying their respective module codes
+3. LeTracker deletes the specified modules
+
+**Extensions**
+
+- 2a. At least one of module codes supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Module codes supplied contains duplicates.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one Module of module codes do not exist in LeTracker.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Delete a Lecture**
 
+**Preconditions**: User has added a module and a lecture
+
 **MSS**
 
-1. User requests to list lectures of a specific module
-2. Le Tracker shows a list of lectures of the specified module
-3. User requests to delete a specific lecture in the list, while citing the correct *module code*
-4. Le Tracker deletes the lecture
+1. User wants to delete a lecture
+2. User requests to delete a specific lecture by specifying a module code and lecture name
+3. LeTracker deletes the lecture
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There is no lecture in the specified module.
+- 2a. The supplied module code does not follow the module code format.
 
-  Use case ends.
-
-- 2b. There is no such module.
-
-  - 2b1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 3a. The given index is invalid.
+- 2b. The supplied lecture name does not follow the lecture name format.
 
-  - 3a1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3b. The given module code is invalid.
+- 2c. The Module of module code that is supposed to contain the lecture of lecture name does not exist.
 
-  - 3b1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-**Use case: Delete a Lecture Video**
+- 2d. The lecture of lecture name does not exist in module of module code.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Lectures**
+
+**Preconditions**: User has added a module and a few lectures
 
 **MSS**
 
-1. User requests to list lecture videos of a specific lecture of a specific module
-2. Le Tracker shows a list of lecture videos of such specifications
-3. User requests to delete a specific video in the list, while citing the correct *module code* and \_lecture id
-4. Le Tracker deletes the lecture video
+1. User wants to delete multiple lectures under the same module
+2. User specifies multiple lecture names to be deleted and a module code
+3. LeTracker deletes the specified lectures of lecture names from the specified module of module code.
+
+**Extensions**
+
+- 2a. The module code specified does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. At least one of the lecture names supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. Lecture names supplied contains duplicates.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case ends.
+
+- 2d. The Module of module code does not exist in LeTracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. At least one Lecture of the supplied lecture names does not exist in the Module of module code.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete a Video**
+
+**Preconditions**: User has added a module, a lecture and a video
+
+**MSS**
+
+1. User wants to delete a specific video in a lecture of a module
+2. User requests to delete a specific video by citing its video name, lecture name of the lecture that contains it, and the module code of the module that contains the lecture.
+3. Le Tracker deletes the video from the lecture of the module
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There is no video in the specified module lecture.
+- 2a. Module code supplied does not follow the module code format.
 
-  Use case ends.
-
-- 2b. There is no such lecture in the module.
-
-  - 2b1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. There is no such module.
+- 2b. Lecture name supplied does not follow the lecture name format.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 3a. The given index of the video is invalid.
+- 2c. Video name supplied does not follow the video name format.
 
-  - 3a1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3b. The given index of the lecture is invalid.
+- 2d. There is no such module of module code in LeTracker.
 
-  - 3b1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3c. The given index of the module is invalid.
+- 2e. There is no such lecture in the module.
 
-  - 3c1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
+
+- 2f. There is no such video in the lecture.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Videos**
+
+**Precondition**: User has added a module, a lecture and a few videos
+
+**MSS**
+
+1. User wants to delete multiple videos under the same lecture of the same module
+2. User requests to delte the specific videos by supplying their video names, the lecture name of the lecture containing them and the module code of the module containing the lecture.
+3. LeTracker deletes the specified videos from the lecture of the module.
+
+**Extensions**
+
+- 2a. Module code supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Lecture name supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one of the video names supplied does not follow the video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The video names supplied contains duplicates.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. There is no such module of module code in LeTracker.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. There is no such lecture in the module.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2g. At least one of the videos do not exist in the lecture.
+
+  - 2g1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Tag a module**
 
@@ -1806,6 +2112,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
+**Use Case: Clear all Modules**
+**MSS**
+1. User requests to clear all modules
+2. Le Tracker clears all modules
+
 ### Non-Functional Requirements
 
 Usability:
@@ -1842,8 +2153,11 @@ Maintainability:
 
 ### Glossary
 
+- **Context**: A *module code* or *module code - lecture name* pair that represents a location in the module-lecture-video hierarchy
+- **Current Working Context**: A specified context that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Module Code**: Unique code identifier for each module
+- **Navigate**: To specify a current working context
 - **Lecture Name**: Unique name identifier for each lecture
 - **Video Name**: Unique name identifier for each video
 - **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
@@ -1901,6 +2215,24 @@ TODO: to be removed
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_ -->
+
+### Current working context affected by deletion
+
+1. `nav CS2040S`
+1. `delete /r CS2040S`
+
+Expected:
+
+- Current working context should be "/r".
+
+### Current working context affected by edit
+
+1. `nav CS2040S`
+1. `edit CS2040S /r /code CS2040`
+
+Expected:
+
+- Current working context should be "/r/CS2040".
 
 ### List Modules
 
