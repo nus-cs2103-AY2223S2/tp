@@ -45,4 +45,19 @@ public class OverviewCommand extends Command {
         model.setOverview(this.overview);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.type));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof OverviewCommand)) {
+            return false;
+        }
+
+        // state check
+        OverviewCommand other = (OverviewCommand) obj;
+        return type.equals(other.type);
+    }
 }
