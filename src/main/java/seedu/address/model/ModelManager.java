@@ -124,16 +124,54 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
     @Override
     public void setSession(Session target, Session editedSession) {
         requireAllNonNull(target, editedSession);
-
         addressBook.setSession(target, editedSession);
     }
+
+    @Override
+    public boolean hasSession(Session toAdd) {
+        return addressBook.hasSession(toAdd);
+    }
+
+    @Override
+    public void addSession(Session toAdd) {
+        addressBook.addSession(toAdd);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void removeSession(Session toRemove) {
+        addressBook.removeSession(toRemove);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void addPersonToSession(Person person, Session session) {
+        addressBook.addPersonToSession(person, session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void removePersonFromSession(Person person, Session session) {
+        addressBook.removePersonFromSession(person, session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public Session getSessionFromName(SessionName name) {
+        return addressBook.getSessionFromName(name);
+    }
+
+    @Override
+    public boolean hasSessionName(SessionName sessionName) {
+        return addressBook.hasSessionName(sessionName);
+    }
+
 
     @Override
     public void commitAddressBook() {
@@ -176,45 +214,6 @@ public class ModelManager implements Model {
     public void updateFilteredSessionList(Predicate<Session> predicate) {
         requireNonNull(predicate);
         filteredSessions.setPredicate(predicate);
-    }
-
-    @Override
-    public boolean hasSession(Session toAdd) {
-        return addressBook.hasSession(toAdd);
-    }
-
-    @Override
-    public void addSession(Session toAdd) {
-        addressBook.addSession(toAdd);
-        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-    }
-
-    @Override
-    public void removeSession(Session toRemove) {
-        addressBook.removeSession(toRemove);
-        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-    }
-
-    @Override
-    public void addPersonToSession(Person person, Session session) {
-        addressBook.addPersonToSession(person, session);
-        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-    }
-
-    @Override
-    public void removePersonFromSession(Person person, Session session) {
-        addressBook.removePersonFromSession(person, session);
-        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-    }
-
-    @Override
-    public Session getSessionFromName(SessionName name) {
-        return addressBook.getSessionFromName(name);
-    }
-
-    @Override
-    public boolean hasSessionName(SessionName sessionName) {
-        return addressBook.hasSessionName(sessionName);
     }
 
     @Override

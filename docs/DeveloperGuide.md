@@ -122,16 +122,16 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the AddressBook data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the AddressBook data i.e., all `Person` and `Session` objects (which are contained in a `UniquePersonList` and `UniqueSessionList` object respectively).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the Coach’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
+The `Addressbook` component, contained under `Model` is responsible for supporting the main functionalities of our app. Mainly the `Person` class facilitates that contact list functionality, while the `Session` class
+facilitates the scheduling, calendar and data Analytics functionality. 
 
 
 ### Storage component
@@ -141,7 +141,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both AddressBook data and Coach preference data in json format, and read them back into corresponding objects.
+* can save both AddressBook data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -254,6 +254,94 @@ The following activity diagram summarizes what happens when a Coach executes a n
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the `Person` being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+### Session feature
+
+#### Implementation
+
+The proposed session feature is facilitated by a `Session`, contained in a `UniqueSessionList`, which is subsequently contained an `addressbook`.
+
+It supports the following sub-features:
+* Adding/Removing students from a session
+* Taking the attendance of a student in a session
+* Data Analytics
+
+To better understand how each sub-feature is implemented, we need to have a better picture of the attributes of `Session` object.
+
+<img src="images/SessionClassDiagram.png" width="" />
+
+As seen above, a Session needs a:
+* SessionName: to uniquely identify a session
+* Location: extra information for the Coach
+* AttendanceMap: to store references of participating athletes
+* PayRateMap: to support the Data-Analytics functionality
+
+The `Session` object implements the following operations to enable the respective sub-features:
+
+##### Adding/Removing athletes from a session
+* `Session#addPersonToSession()` — Adds a person reference to a `Session` object's attendanceMap.
+* `Session#removePersonFromSession()` — Removes a person reference from a `Session` object's attendanceMap.
+
+##### Taking the attendance of an athlete in a session
+* `Session#markStudentPresent()` —  set person reference in a `Session` object's attendanceMap as present.
+* `Session#markStudentAbsent()` —  set person reference in a `Session` object's attendanceMap as absent.
+
+
+These operations are exposed in the `Model` interface as `Model#addPersonToSession()`, `Model#removePersonFromSession()` and `Model#setSession()`.
+
+Given below is an example usage scenario and for each sub-feature:
+
+### Adding/Removing athletes from a session
+
+To enable this feature, we need to have a data structure that can store references to athletes in a session. A naive way to do this would be to have a `UniquePersonList` in a `Session` object. However, since we also need to track the attendance of every student, we propose using a `HashMap` class to store key-value pairs where the key is a `String` (the athlete's name), and the value is a `Boolean` (to indicate attendance).
+
+<img src="images/StudentAddRemoveSequenceDiagram.png" width="" />
+
+Step 1. The coach decides to create a new session object named "Hall". A session is initialized, creating an empty `AttendanceMap`.
+
+Step 2. The coach decides to add athlete Bob (a `Person` object) to the Hall session.
+- We first find the `Name` of Bob and convert it to its `String` equivalent.
+- We then insert a key-value pair of `String`: "Bob" and `Boolean`: `false` into our `AttendanceMap`.
+- We now have a reference to athlete Bob in our `AttendanceMap` in the `Session`.
+- Note that attendance is set to `false` by default since the session hasn't started yet.
+
+Step 3. Bob decides to quit the session, and the coach decides to remove Bob from the Hall `Session`.
+- We first find the `Name` of Bob and convert it to its `String` equivalent.
+- We then check our `AttendanceMap` to make sure Bob is an existing student, i.e., an existing key in the `HashMap`.
+- We then remove the key of `String`: "Bob" from our `AttendanceMap`.
+- We no longer have a reference to Bob in our Hall `Session` object.
+
+### Taking Attendance of an Athlete in a Session
+
+Similar to adding/removing athletes, marking/unmarking the attendance of an athlete relies on the `AttendanceMap` object.
+
+<img src="images/MarkUnmarkSequenceDiagram.png" width="" />
+
+Marking and unmarking an athlete undergo the same steps, with the only difference being that marking sets the value of the key as `true`, while unmarking sets it to `false`. Here's an example scenario where the coach decides to mark Bob as present in the Hall `Session` object:
+
+Step 1. We check if Bob is a key in the `AttendanceMap` of Hall.
+
+Step 2. We then set the key using the `HashMap#put()` method to set the value of the key Bob as `true`.
+
+
+### Generating Data Analytics for a Coach
+
+Our data analytics feature currently supports the following statistics for our coach:
+1. Daily earnings
+2. Weekly earnings
+3. Monthly earnings
+4. All-time earnings
+
+These statistics are implemented with the help of the `PayRateMap` in the `Session` class, which maps all participating athletes with their `PayRate`. Note that `PayRate` is a float indicating the hourly rate an athlete would pay the Coach.
+
+Since we are not storing full `Person` objects in a `Session`, we cannot find an athlete's `Payrate` by simply calling a method in the `Session` itself. The only thing stored in `AttendanceMap` is the athlete's name. Therefore, we need to access the `UniquePersonList` in the `AddressBook` class to find the `Payrate`.
+
+The `Session` class uses the `getTotalPay()` method to find the total `Payrate` of all athletes in the `Session`. This method follows a set formula.
+
+To find the daily, weekly, and monthly earnings, we iterate through our `UniqueSessionList` and find all sessions that fall between a specified period.
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
