@@ -297,6 +297,8 @@ To make it easier to specify that share the same module code as your current wor
 :information_source: Note that the matching of values (module code, module name, lecture name, video name, tag etc.) is case sensitive unless otherwise stated.\
 e.g. The lecture names "Week 1" and "week 1" are not the same
 
+:information_source: Note that if an argument requires a specific format, click the :grey_question: icon beside the argument description to go to the section containing the format.
+
 ### Nav
 
 #### Navigate to the Root Context
@@ -397,13 +399,10 @@ Examples:
 
 Add a module to Le Tracker.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module
+- <span style="color:#e46c0a">`module_code`</span>[[:grey_question:]](#module-code-format) : The code of the module
   - Must be unique among the module code of the modules in Le Tracker
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-- <span style="color:#e46c0a">`module_name`</span> : The name of the module
-  - Refer to [Argument Formats](#argument-formats) for the "Module Name" format
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the module
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- <span style="color:#e46c0a">`module_name`</span>[[:grey_question:]](#module-name-format) : The name of the module
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span>[[:grey_question:]](#tag-format) : The tags to apply to the module
   - Repeated tags (if any) will be ignored
 
 Examples:
