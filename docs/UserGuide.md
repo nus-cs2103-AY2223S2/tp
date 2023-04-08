@@ -208,6 +208,7 @@ Edits an existing person in ModCheck.
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` or `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX` or `NAME`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* `edit` followed by a positive integer will be interpreted as an index, and not a name.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -233,13 +234,14 @@ Format: `delete INDEX` or `delete INDEXES` or `delete NAME`
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * Any index **must be a positive integer** …​
+* When deleting multiple persons with indexes, each index must be separated by a comma, without any whitespace between any index.
 * `delete` followed by a positive integer will be interpreted as an index, and not a name.
 * When deleting by `NAME`, if there are multiple people with the same specified name, no deletion will be done, and a list of people with those specified name will be returned.
 
 
 Examples:
 * `list` followed by `delete Betsy` deletes Betsy if there is only one Betsy in the list.
-* `list` followed by `delete 1,2,3` deletes the 1st, 2nd and 3rd person in the list.
+* `list` followed by `delete 1,2,3` deletes the 1st, 2nd and 3rd person in the list. However, `list` followed by `delete 1,2, 3` is invalid due to the whitespace between index 2 and 3. 
 * `list` followed by `delete 3` deletes the 3rd person in the list.
 
 ![viewContactDetails](images/delete/deleteContact.png)

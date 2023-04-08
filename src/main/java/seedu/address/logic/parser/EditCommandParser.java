@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TAG;
@@ -75,12 +76,16 @@ public class EditCommandParser implements Parser<EditCommand> {
                 return new EditByIndexCommand(index, editPersonDescriptor);
             } else {
                 String nameArg = argMultimap.getPreamble();
-                String[] splitArgs = nameArg.trim().split("\\s");
-                return new EditByNameCommand(new NameContainsAllKeywordsPredicate(Arrays.asList(splitArgs)),
-                        editPersonDescriptor);
+                if (ParserUtil.isValidName(nameArg)) {
+                    String[] splitArgs = nameArg.trim().split("\\s");
+                    return new EditByNameCommand(new NameContainsAllKeywordsPredicate(Arrays.asList(splitArgs)),
+                            editPersonDescriptor);
+                } else {
+                    throw new ParseException(MESSAGE_INVALID_TAG);
+                }
             }
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_INVALID_TAG);
         }
     }
 
