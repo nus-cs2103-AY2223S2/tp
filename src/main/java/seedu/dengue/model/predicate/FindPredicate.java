@@ -60,10 +60,6 @@ public class FindPredicate extends PredicateUtil<Person> {
                 && isAgeRangeEmpty;
     }
 
-<<<<<<< HEAD
->>>>>>> 068753cd (Add more abstraction from delete's parser and find's parser to ParserUtil)
-=======
->>>>>>> 3092ba363d0c2a81bc5db3cde32ff4b2893e89c5
     @Override
     public boolean test(Person person) {
         assert !(isEveryPrefixEmpty(name, subPostal, age, date, variants, dateRange, ageRange));
