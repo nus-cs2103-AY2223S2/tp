@@ -33,13 +33,14 @@ class BatchAddCommandTest {
         assertCommandFailure(batchAddCommand, model, String.format("%s does not have any data", "emptyFile.csv"));
     }
 
-//    @Test
-//    void execute_batchAddFileWithDuplicates_throwsCommandException() {
-//        Path testData = Paths.get("src", "test", "data", "BatchAddTest", "duplicates.csv");
-//        BatchAddCommand batchAddCommand = new BatchAddCommand("duplicates.csv");
-//        batchAddCommand.setFilePath(testData);
-//        assertCommandFailure(batchAddCommand, model, "One person in the list is found to be a duplicate. Call aborted");
-//    }
+    // @Test
+    // void execute_batchAddFileWithDuplicates_throwsCommandException() {
+    //     Path testData = Paths.get("src", "test", "data", "BatchAddTest", "duplicates.csv");
+    //     BatchAddCommand batchAddCommand = new BatchAddCommand("duplicates.csv");
+    //     batchAddCommand.setFilePath(testData);
+    //     assertCommandFailure(batchAddCommand, model, "One person in the list is found to be a duplicate. "
+    //             + "Call aborted");
+    // }
 
 
     //    @Test
