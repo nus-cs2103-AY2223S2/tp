@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.commons.core.index.Index;
@@ -20,8 +21,12 @@ public class AppointmentTest {
     private final GroupName vaccine = new GroupName("Test Vaccine");
     private final Boolean isCompleted = false;
 
-    private final Appointment appointment = new Appointment(patientId, startTime, endTime, vaccine, isCompleted);
+    private Appointment appointment;
 
+    @BeforeEach
+    void setUp() {
+        appointment = new Appointment(patientId, startTime, endTime, vaccine, isCompleted);
+    }
 
     @Test
     public void getPatient() {
