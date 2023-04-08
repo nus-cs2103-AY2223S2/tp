@@ -411,11 +411,29 @@ The Tag mechanism is facilitated by `ELister`. It extends `ELister` with an Tag 
 
 These operations are exposed in the `Model` interface as `Model#addTag()`
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the Tag mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedELister` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 Step 2. The user executes `Tag 5 good` command to Tag the 5th person in the address book with a new Tag `good`. The `Tag` command calls `Model#addTag()`, causing the modified state of the address book after the `Tag 5 good` command executes to be saved in the `eListerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+![TagSequenceDiagram](images/TagSequenceDiagram.png)
+
+### Mass feature
+
+#### Implementation
+
+The mass mechanism is facilitated by `Elister`. It extends `tag`/`delete` person/`delete_tag` /`edit` by providing a way to use those functions to the current list of people in the addressbook.
+* `ELister#MassOp()` — MassOp to every Person in the list.
+
+Given below is an example usage scenario and how the MassOp mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedELister` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `mass tag good` command to tag all the people in the address book with a new Tag `good`. The `mass` command creates `tag` command in a loop and each `tag` command calls `Model#addTag()`, causing the modified state of the address book after the `mass tag good` command executes to be saved in the `eListerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state. The end result is that
+every person in the addressbook list is `tag` with good.
+
+![TagSequenceDiagram](images/MassOpSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

@@ -1,0 +1,128 @@
+@startuml
+
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":<<class>> AddressBookParser" as classAddressBookParser LOGIC_COLOR
+participant ":MassOPCommandParser" as MassOpCommandParser LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":MassOpCommand" as MassOpCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":TagCommand" as TagCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Common STORAGE_COLOR_T1
+participant ":<<class>> Index" as Index STORAGE_COLOR
+
+[-> LogicManager : execute("mass tag gay")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("mass tag gay")
+activate AddressBookParser
+
+create MassOpCommandParser
+AddressBookParser -> MassOpCommandParser : 
+activate MassOpCommandParser
+
+MassOpCommandParser --> AddressBookParser
+deactivate
+
+AddressBookParser --> MassOpCommandParser: parse(tag gay)
+activate MassOpCommandParser
+
+create Index
+MassOpCommandParser --> Index : fromZeroBased(0)
+activate Index
+
+Index --> MassOpCommandParser :
+deactivate Index
+
+MassOpCommandParser --> classAddressBookParser : parseCommandWithIndex(args, Index.fromZeroBased(0))
+activate classAddressBookParser
+
+create TagCommandParser
+classAddressBookParser -> TagCommandParser
+activate TagCommandParser
+
+TagCommandParser --> classAddressBookParser
+deactivate TagCommandParser
+deactivate classAddressBookParser
+
+create MassOpCommand
+MassOpCommandParser -> MassOpCommand
+activate MassOpCommand
+
+MassOpCommand --> MassOpCommandParser : command
+deactivate MassOpCommand
+
+MassOpCommandParser --> AddressBookParser : command
+deactivate MassOpCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MassOpCommandParser -[hidden]-> AddressBookParser
+destroy MassOpCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> MassOpCommand : execute()
+activate MassOpCommand
+
+MassOpCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> MassOpCommand : lastShownList
+deactivate
+loop for i in lastShownList.size()
+    create Index
+    MassOpCommand --> Index : fromZeroBased(i)
+    activate Index
+
+    Index --> MassOpCommand
+    deactivate Index
+
+    MassOpCommand --> classAddressBookParser : parseCommandWithIndex(args, Index.fromZeroBased(0))
+    activate classAddressBookParser
+
+    create TagCommandParser
+    classAddressBookParser -> TagCommandParser
+    activate TagCommandParser
+    
+    create TagCommand
+    TagCommandParser --> TagCommand
+    activate TagCommand
+
+    TagCommand --> TagCommandParser
+    deactivate TagCommand
+
+    TagCommandParser --> classAddressBookParser
+    deactivate TagCommandParser
+
+    classAddressBookParser --> MassOpCommand
+    deactivate classAddressBookParser
+
+    MassOpCommand --> TagCommand : execute(model)
+    activate TagCommand
+    TagCommand --> Model : addTag()
+    activate Model
+    deactivate Model
+    deactivate TagCommand
+end
+
+create CommandResult
+MassOpCommand --> CommandResult
+activate CommandResult
+
+CommandResult --> MassOpCommand
+deactivate
+
+MassOpCommand --> LogicManager
+deactivate MassOpCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
