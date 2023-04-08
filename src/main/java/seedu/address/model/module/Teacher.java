@@ -5,7 +5,7 @@ package seedu.address.model.module;
  */
 public class Teacher {
     public static final String MESSAGE_CONSTRAINTS =
-            "Teacher should only contain alphabet characters and spaces, and it should not be blank";
+            "Teacher should only contain alphabet characters, spaces, periods, and commas. It should not be blank";
     public static final String VALIDATION_REGEX = "[a-zA-Z., ]+";
     public final String value;
 

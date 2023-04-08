@@ -17,7 +17,8 @@ import java.time.temporal.TemporalAdjusters;
 public class TimeSlot implements Comparable<TimeSlot> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Timeslot should be of format 'Day StartTime EndTime' (Example: Tuesday 12:00 14:00)";
+            "Timeslot should be of format 'Day-Of-Week HH:MM HH:MM', with the timing being the starting time" +
+                    "and the second timing being the ending time. (Example: Tuesday 12:00 14:00)";
     public static final String MESSAGE_STARTTIME_BEFORE_ENDTIME = "Start time must be before end time!";
     public static final String VALIDATION_REGEX = "^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)"
             + "\\s(([01]?[0-9]|2[0-3]):[0-5][0-9])\\s(([01]?[0-9]|2[0-3]):[0-5][0-9])$";
