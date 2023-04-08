@@ -509,6 +509,51 @@ testers are expected to do more *exploratory* testing.
 
 #### **Undo a Command**
 
+#### Scenario 1
+{: .no_toc}  
+**Context:** None needed  
+**Action:**
+1. Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
+2. Execute the command: `undo`  
+
+**Result:** 
+* The Response Box will display the message "Action undone: add"
+* The Tennis `Event` that was added will be removed from _Ez-Schedule_
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** No conflicting `Event` scheduled during the recurring time frame specified  
+**Action:**
+1. Execute the command: `recur 1 d/2023-05-10 every/recur`
+2. Execute the command: `undo`
+
+**Result:**
+* The Response Box will display the message "Action undone: recur"
+* All the `Event` that was added will be removed from _Ez-Schedule_
+
+#### Scenario 3
+{: .no_toc}  
+**Context:** There exists an `Event` with an `index` 1 and a `Name` of Tennis in _Ez-Schedule_
+**Action:**
+1. Execute the command: `edit n/Basketball`
+2. Execute the command: `undo`
+
+**Result:**
+* The Response Box will display the message "Action undone: edit"
+* The Tennis `Event` that was edited to Basketball will be changed back to Tennis
+
+#### Scenario 4
+{: .no_toc}  
+**Context:** There exists an `Event` with an `index` 1 in _Ez-Schedule_
+**Action:**
+1. Execute the command: `delete 1`
+2. Execute the command: `undo`
+
+**Result:**
+* The Response Box will display the message "Action undone: delete"
+* The `Event` with an `index` 1 that was deleted is added back into _Ez-Schedule_
+
+
 ### **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
