@@ -27,24 +27,14 @@ Given below are my contributions to the project.
     gender of his/her clients which makes it easier to keep track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-* **New Feature**: Added *export* functionality.
-  * What it does: allows the user to export the compulsory data fields of a client which are Name, Phone Number,Email, Address, Weight and Gender. 
+* **New Feature**: Added *export* and *exportRoutine* functionality.
+  * What it does: allows the user to export the compulsory data fields of a client which are Name, Phone Number,Email, Address, Weight and Gender. Also allows the user to export Routine details into a csv file.
   * Justification: This feature improves the product significantly because user gets to save their data into a csv format locally on his computer. Which he/she is then able to open the csv file using applications like Microsoft Excel to do further analysis.
   * Highlights: It required an in-depth analysis of design alternatives.
 
-* **New Feature**: Added *exportRoutine* functionality.
-  * What it does: allows the user to export the data fields of a Routine along with the exercises tagged to that routine.
-  * Justification: This feature improves the product significantly because user gets to save their routine data into a csv format locally on his computer. Which he/she is then able to open the csv file using applications like Microsoft Excel to do further analysis.
-  * Highlights: It required an in-depth analysis of design alternatives.
-
-* **New Feature**: Added *deleteRoutine* functionality for Routine Class.
-  * What it does: allows the user to delete Routines in the Routine Storage, and it will be updated in the current model for Routine.
+* **New Feature**: Added *deleteRoutine* and *deleteExercise* functionality for Routine Class.
+  * What it does: allows the user to delete Routines and exercises in the Routine Storage, and it will be updated in the current model for Routine.
   * Justification: This feature improves the product significantly because user gets to delete a specific Routine in the Routine Storage.
-  * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
-
-* **New Feature**: Added *deleteExercise* functionality for Routine Class.
-  * What it does: allows the user to delete exercises that is tagged to the specific Routine in the Routine Storage, and it will be updated in the current model for Routine.
-  * Justification: This feature improves the product significantly because it allows user to delete a specific Exercise that could be outdated in the specific Routine in the Routine Storage.
   * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
 
 * **New Feature**: Added *addExercise* functionality for Routine Class.
@@ -57,21 +47,17 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because it allows user to look at what Routines have been stored in the Routine's Storage.
   * Highlights: It required an in-depth analysis of design alternatives.
 
-* **New Feature**: Added *findRoutines* functionality for Routine Class.
-  * What it does: allows the user to find specific Routines in FitBook by keywords.
-  * Justification: This feature improves the product significantly because it allows user to filter and search Routines that have been stored in the Routine's Storage.
-  * Highlights: It required an in-depth analysis of design alternatives.
-
-* **New Feature**: Added *clearRoutines* functionality for Routine Class.
-  * What it does: allows the user to clear all Routines in FitBook.
-  * Justification: This feature improves the product significantly because it allows user to easily delete all Routines that have been stored in the Routine's Storage.
+* **New Feature**: Added *findRoutines* and *clearRoutines* functionality for Routine Class.
+  * What it does: allows the user to find specific Routines in FitBook by keywords as well as clear all Routines in FitBook.
+  * Justification: This feature improves the product significantly because it allows user to filter and search Routines that have been stored in the Routine's Storage. Additionally, allows users to clear all Routines in the storage.
   * Highlights: It required an in-depth analysis of design alternatives.
 
 * **Testing**: Added tests for Gender, Goal, Weight, listRoutines, findRoutines, clearRoutines.
   * What it does: run automated checks for features for this app to mitigate some bugs.
   * Justification: This feature improves the product significantly by mitigating any potential bugs.
   * Highlights: Testing has to be done on a case to case basis. Testings for features are not simple and required an in-depth analysis of design alternatives.
-
+  
+<div style="page-break-after: always;"></div>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=dfordarius&tabRepo=AY2223S2-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
@@ -90,9 +76,11 @@ Given below are my contributions to the project.
     * Added documentation for the features `export`, `exportRoutine`, `findRoutine`, `clearRoutine`, `deleteRoutine`, `addExercise`, `deleteExercise`, `listRoutines` [\#146](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/146/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb)
     * Did cosmetic tweaks to existing documentation of features: [\#155](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/155/files)
   * Developer Guide:
+    * Added user stories [\#64](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/64/files)
     * Added use case for  `edit` feature. [\#79](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/79/files)
     * Added use case for `listRoutines`, `export`, `exportRoutines`,`clearRoutines`, `deleteRoutine`, `deleteExercise`,`findRoutine`. [\#115](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/115/files)
-    * Added manual testing for `delete`, `addRoutine`,`findRoutine`,`deleteExercise`,
+    * Added Implementation for `export`, `addExercie`, `deleteRoutine`. [\#136](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/136/files)
+    * Added manual testing for `delete`, `addRoutine`,`findRoutine`,`deleteExercise`[\#202](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/202/files)
 * **Community**:
    * PRs reviewed: [\#162](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/162), [\#117](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/117), [\#105](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/105), [\#99](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/99), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#84](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/84), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#82](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/82), [\#77](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/77), [\#74](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/74), [\#57](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/57)
    * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/dfordarius/ped))
