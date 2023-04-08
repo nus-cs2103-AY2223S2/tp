@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.CommandResult;
+import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.ResultType;
 import seedu.internship.model.*;
 import seedu.internship.model.event.*;
@@ -19,6 +20,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.logic.commands.CommandTestUtil.*;
 import static seedu.internship.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
@@ -105,6 +108,30 @@ public class EventFindCommandTest {
 
         assertCommandFailure(eventFindCommand, model, String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventFindCommand.MESSAGE_USAGE));
     }
+
+//    @Test
+//    public void equals() {
+//        final EventFindCommand standardCommand = new EventFindCommand();
+//
+//        // same values -> returns true
+//        EventFindCommand.FilterEventDescriptor copyDescriptor = new EventFindCommand.FilterEventDescriptor(FDESC_ML1);
+//        EventFindCommand commandWithSameValues = new EventFindCommand(copyDescriptor);
+//        assertTrue(standardCommand.equals(commandWithSameValues));
+//
+//        // same object -> returns true
+//        assertTrue(standardCommand.equals(standardCommand));
+//
+//        // null -> returns false
+//        assertFalse(standardCommand.equals(null));
+//
+//        // different types -> returns false
+//        // uncomment when clear command is implemented.
+//        //assertFalse(standardCommand.equals(new ClearCommand()));
+//
+//        // different descriptor -> returns false
+//        assertFalse(standardCommand.equals(new FindCommand(FDESC_SE1)));
+//    }
+
 
 
 }

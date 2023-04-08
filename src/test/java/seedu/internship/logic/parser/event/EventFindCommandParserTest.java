@@ -24,7 +24,6 @@ import static seedu.internship.testutil.TypicalIndexes.*;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 public class EventFindCommandParserTest {
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventFindCommand.MESSAGE_USAGE);
@@ -79,10 +78,10 @@ public class EventFindCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        String userInput = NAME_DESC_EM11;
+        String userInput = " na/Interview";
 
         EventFindCommand.FilterEventDescriptor descriptor = new EventFindCommand.FilterEventDescriptor();
-        descriptor.setName(new Name(VALID_NAME_EM11));
+        descriptor.setName(new Name("Interview"));
         EventFindCommand expectedCommand = new EventFindCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

@@ -1,6 +1,7 @@
 package seedu.internship.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
@@ -13,6 +14,7 @@ import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.ResultType;
 import seedu.internship.logic.commands.exceptions.CommandException;
+import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.Model;
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Event;
@@ -48,6 +50,9 @@ public class EventFindCommand extends EventCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (!filterEventDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventFindCommand.MESSAGE_USAGE));
+        }
         requireNonNull(model);
         Predicate<Event> filterName = unused -> true;
         Predicate<Event> filterStart = unused -> true;

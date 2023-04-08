@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.internship.commons.core.index.Index;
+import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.Model;
@@ -138,6 +139,18 @@ public class CommandTestUtil {
                 .withCompany(VALID_COMPANY_SE1).withStatus(VALID_STATUS_SE1).withDescription(VALID_DESCRIPTION_SE1)
                 .withTags(VALID_TAG_IMPORTANT, VALID_TAG_FUN).build();
     }
+
+//    public static final EventFindCommand.FilterEventDescriptor EDESC_EM11;
+//    public static final EventFindCommand.FilterEventDescriptor EDESC_SE1;
+//
+//    static {
+//        EDESC_EM11 = new FilterInternshipDescriptorBuilder().withPosition(VALID_POSITION_ML1)
+//                .withCompany(VALID_COMPANY_ML1).withStatus(VALID_STATUS_ML1).withDescription(VALID_DESCRIPTION_ML1)
+//                .withTags(VALID_TAG_IMPORTANT).build();
+//        FDESC_SE1 = new FilterInternshipDescriptorBuilder().withPosition(VALID_POSITION_SE1)
+//                .withCompany(VALID_COMPANY_SE1).withStatus(VALID_STATUS_SE1).withDescription(VALID_DESCRIPTION_SE1)
+//                .withTags(VALID_TAG_IMPORTANT, VALID_TAG_FUN).build();
+//    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
