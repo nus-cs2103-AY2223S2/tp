@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "edit"
+
+package Clients <<rectangle>> {
+    class Client1 as "__r0:Client__"
+    class Client2 as "__r1:Client__"
+    class Client3 as "__r2:Client__"
+    class Client4 as "__:null__"
+}
+
+Client1 -[hidden]right-> Client2
+Client2 -[hidden]right-> Client3
+Client3 -[hidden]right-> Client4
+
+class Pointer as "Current Index" #FF0000
+class Error as "ParseException"
+Pointer -up-> Client4 : Out of index range >
+CommandParser -up-> Pointer
+Pointer --> Error : Cause >
+@enduml

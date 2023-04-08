@@ -174,6 +174,65 @@ Classes used by multiple components are in the `seedu.fitbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add/Edit Client feature
+#### Implementation
+The proposed add client mechanism is facilitated by `FitBook`. It extends `FitBook` with a FitBook storage, stored in a `fitbook.json` file. Additionally, it implements the following operations:
+
+* `AddCommand#execute()` — Adds the new client into the FitBook storage of the FitBook.
+* `EditCommand#execute()` — Edits the target routine in the FitBook storage of the FitBook.
+
+These operations are exposed in the `Command` interface as `Command:execute()`.
+
+Diagram below shows an example of a client called `c0` after using the `add` command to add `c0`.
+The `Client` consists of these objects after adding. Objects that are a `Set` can contain 0 or more objects. Goal object can contain a String `client has not added a goal` to represent that there is no goal. Calorie object can contain `0000` value to represent there is no recommended calorie input.
+All objects must contain non-null attributes. All objects must be present after adding/editing the client other than objects in the `Set` objects.
+
+![ClientObject](images/ClientObject.png)
+
+Given below is an example usage scenario and how the add/edit mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClient` and all the other JsonAdapted classes accordingly.
+
+![AddEditState0](images/AddEditState0.png)
+
+Step 2. The user executes `add n/John Doe p/32692562 …​` command to add the Client in the FitBook. The `add` command calls `AddCommandParser`, causing the command to be parsed and checked for any errors before executing the command and calling `AddCommand:execute()` to execute the command to add the Client in the FitBook.
+* The add command has a similar UML diagram as `Step 1`. The only changes are the addCommand to editCommand, edits the client and add it into storage and edits the client in the model.
+
+Step 3. The user executes `edit 1 w/50.0 …​` to edit the 1st client (target `Client`) in the FitBook. The `edit` command also calls `EditCommandParser`, causing it to check if the command is appropriate and calling `EditCommand:execute()` to execute the command to be edited in the client for FitBook Model.
+
+Step 2.5/3.5. These commands (from Steps 2 and 3) will therefore go through updates for the FitBookModel and also update the FitBook Storages for each command functionality.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddCommand:execute()` or `EditCommand:execute()`, so the updated client will not be saved in the FitBook.
+
+</div>
+
+![AddEditState2](images/AddEditState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `edit` command is at index 4, pointing at an invalid `Client`, it will return an error to the user, prompting the user that he/she has used an invalid client index.
+
+</div>
+
+The following sequence diagram shows how the add operation works:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommand` should end at to destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How add & edit client executes:**
+
+* **Alternative 1 (current choice):** Add or edit the Client that allows multiple attributes and save the entire model into the FitBook.
+    * Pros: Easy to implement.
+    * Cons: May cause some performance issues in terms of memory usage and speed.
+
+* **Alternative 2:** Individual command knows how to add/edit by
+  itself.
+    * Pros: Will use less memory (e.g. for `edit`, just allocate an array for any edits of the same client before adding the latest edit of that client only).
+    * Cons: Each command implementation must be correct which is hard to maintain.
+
 ### Past 30 days weight data graph
 #### Implementation
 The weight data graph will be displayed in a pop-up window in the Ui component. It contains a LineChart of `Date` date against `Number` weight, and is populated 
@@ -211,6 +270,7 @@ graph. `updateSeries` method is called to ensure the data populating the graph i
   generate each graph in a separate pop-up windows.
     * pros: Users can easily view multiple clients' weight data graphs side-by-side without having to switch between different views.
     * cons: If the user opens multiple pop-up windows to view different weight data graphs, this may clutter the user's desktop and make it difficult to manage.
+
 
 ### Edit appointments feature
 #### Implementation
@@ -459,7 +519,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: This implementation may be more complex and harder to understand for someone unfamiliar with the code.
 
 ### Add/Edit Routine feature
-
+#### Implementation
 The proposed add routine mechanism is facilitated by `FitBook`. It extends `FitBook` with a Routine storage, stored in a `exerciseroutine.json` file. Additionally, it implements the following operations:
 
 * `AddRoutineCommand#execute()` — Adds the new routine into the Exercise Routines of the FitBook.
@@ -467,26 +527,32 @@ The proposed add routine mechanism is facilitated by `FitBook`. It extends `FitB
 
 These operations are exposed in the `Command` interface as `Command:execute()`.
 
-Given below is an example usage scenario and how the add/edit mechanism behaves at each step.
+Given below is an example usage scenario and how the addRoutine/editRoutine mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine` will be initialized with the FitBook on start up, and the information from the Storage will be converted into 'JsonAdaptedRoutine' and 'JsonAdapatedRoutine' accordingly.
+Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedRoutine` and `JsonAdaptedExercise` accordingly.
 
 ![AddEditRoutineState0](images/AddEditRoutineState0.png)
 
-Step 2. The user executes `addRoutine r/Cardio …​` command to add the Routine in the FitBookExerciseRoutine. The `addRoutine` command calls `AddRoutineCommandParser`, causing the command to be parsed and checked for any errors before executing the command and calling `AddCommand:execute()` to execute the command to add the New Routine in the Exercise Routine.
+Step 2. The user executes `addRoutine r/Cardio …​` command to add the Routine in the FitBookExerciseRoutine. The `addRoutine` command calls `AddRoutineCommandParser`, causing the command to be parsed and checked for any errors before executing the command and calling `AddRoutineCommand:execute()` to execute the command to add the New Routine in the Exercise Routine.
 * The addRoutine command has a similar UML diagram as `Step 1`. The only changes are the AddRoutineCommand to EditRoutineCommand, edits the routine and add it into storage and edits the routine in the model instead.
 
-Step 3. The user executes `editRoutine 1 r/HIIT …​` to edit the 1st Routine (target Routine) in the Exercise Routine of FitBook. The `editRoutine` command also calls `EditRoutineCommandParser`, causing it to check if the command is appropriate and calling `EditCommand:execute()` to execute the command to be edited in the Exercise Routine.
+Step 3. The user executes `editRoutine 1 r/HIIT` to edit the 1st Routine (target Routine) in the Exercise Routine of FitBook. The `editRoutine` command also calls `EditRoutineCommandParser`, causing it to check if the command is appropriate and calling `EditRoutineCommand:execute()` to execute the command to be edited in the Exercise Routine.
 
-Step 2.5/3.5. These commands will therefore go through updates for the FitBookModel and also update the FitBookExerciseRoutineStorages for each command functionality.
+Step 4. The user executes `editRoutine 1 exno/3 ex/Push Ups` to edit the 1st Routine (target Routine) in the Exercise Routine of the FitBook. This command works in the same way as step 3 but instead of changing the `RoutineName`, it changes the `Exercise` in the routine.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddCommand:execute()` or `EditCommand:execute()`, so the updated Routine will not be saved in the FitBookExerciseRoutine .
+<div markdown="span" class="alert alert-info">:information_source: **Note:** editRoutine Command can be used in two different ways. editRoutine for the `RoutineName` or the `Exercise` in the `Routine`. However, it cannot be used together. (eg, `editRoutine 1 r/HIIT exno/2 ex/Pushups` is not allowed as there is a mix for the command.)
+
+</div>
+
+Step 5. These commands (Steps 2, 3 and 4) will therefore go through updates for the FitBookModel and also update the FitBookExerciseRoutineStorages for each command functionality.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddRoutineCommand:execute()` or `EditRoutineCommand:execute()`, so the updated Routine will not be saved in the FitBookExerciseRoutine .
 
 </div>
 
 ![AddEditRoutineState2](images/AddEditRoutineState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `editRoutine` command is at index 4, pointing at an invalid Routine, it will return an error to the user, prompting the user that he/she has used an invalid routine index.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `editRoutine` command is at index 4, pointing at an invalid `Routine`, it will return an error to the user, prompting the user that he/she has used an invalid routine index.
 
 </div>
 
@@ -1200,3 +1266,47 @@ testers are expected to do more *exploratory* testing.
    D. Test case: Launch the application
       Expected: Application launches successfully but has no data.
 
+>## **Appendix: Effort**
+ 
+### Difficulty level
+
+* Programming level: High
+* Documentation level: High
+* Testing level: Middle
+* Design level: High
+
+### Challenges faced
+
+* Setting up of the graph for the client's weight.
+  * Require changes to the storage and UI part.
+  * AB3 only has fixed attributes for each Person. Storing the Weight History requires modification to the storage to achieve sequential weight and date.
+  * AB3 only has one stage which is the `primaryStage`. Implementing graph has some difficulty as it requires new `Stage` to show the updated graph. Found a workaround by creating a new `Stage` as a popup.
+* Creating a new Exercise Routine storage to separate Exercise and Client.
+  * AB3 only has one storage. Adding a storage requires knowledge of AB3 design through its developer guide.
+* Arranging Exercises in order.
+  * Since most of the stored collections are used as sets. Saving it to the storage was a problem at the start as Set is unordered. Found a workaround by tweaking the program to accept a list where it is ordered.
+* Comparing of Appointment to put the earliest appointment at the top in the schedule.
+  * Appointment has to sort accordingly from earliest to latest. Required to use a comparator class to compare the different dates and delete the overdue dates.
+* View command for Summary panel.
+  * Putting all the different client's attributes into a single card and automatically update. Learn from AB3, use ObservableList to make the changes to automatically update.
+
+### Achievements
+
+* Displaying out all the different tabs and panels for UI
+* Creating new storage and improved storage for the FitBook from previous AB3 template.
+* Exporting and importing of client and routine details to csv file.
+* Excellent design of the UI.
+* Refactored all the code and updated User Guide and Developer Guide.
+* User Friendly application with excellent User Guide.
+* Link between Clients and Exercises are prominent.
+
+>## **Appendix: Planned Enhancements** 
+
+* FitBook lowering the computer's resources.
+  * FitBook causes some minor lag after some usage. Future enhancement: Hide the other panels as the other panels are still active (stacking on top of each other) which is probably the main cause of using a lot of ram and gpu.
+
+* FitBook's validating of correct details.
+  * FitBook is unable to check the validity of addresses and phone numbers currently. Future enhancement: Check against with the online database (for phone, addresses and email) to validate if it is a valid attribute before adding/changing it for the client.
+
+* FitBook's indexing for negative value and large numbers.
+  * FitBook will throw a different error after using a large number (more than Integer.MAX_VALUE) and throw a generic error for negative value. Future enhancement: Deal with this error by using a bigger size class like double and provide a better message for negative value input (even though the current one is correct).
