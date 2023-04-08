@@ -19,7 +19,7 @@ import seedu.loyaltylift.model.customer.Customer;
 public class Order {
 
     // Comparators
-    public static final Comparator<Order> SORT_CREATED_DATE = Comparator.comparing(Order::getCreatedDate);
+    public static final Comparator<Order> SORT_CREATED_DATE = Comparator.comparing(Order::getCreatedDate).reversed();
     public static final Comparator<Order> SORT_NAME = Comparator.comparing(Order::getName)
             .thenComparing(SORT_CREATED_DATE);
     public static final Comparator<Order> SORT_STATUS = Comparator.comparing(Order::getStatus)
@@ -146,11 +146,20 @@ public class Order {
 
 
     /**
-     * Returns true if both orders have the same name.
+     * Returns true if both orders belongs to the same customer and have the same name and quantity,
+     * on the same day.
      * This defines a weaker notion of equality between two orders.
      */
     public boolean isSameOrder(Order otherOrder) {
-        return equals(otherOrder);
+        if (otherOrder == this) {
+            return true;
+        }
+
+        return otherOrder != null
+                && otherOrder.getCustomer().equals(getCustomer())
+                && otherOrder.getName().equals(getName())
+                && otherOrder.getQuantity().equals(getQuantity())
+                && otherOrder.getCreatedDate().equals(getCreatedDate());
     }
 
     /**

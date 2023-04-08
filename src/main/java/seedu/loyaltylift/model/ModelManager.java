@@ -34,6 +34,10 @@ public class ModelManager implements Model {
     private final SortedList<Customer> sortedCustomers;
     private final SortedList<Order> sortedOrders;
 
+    // Customer / Order objects to display
+    private Customer displayCustomer;
+    private Order displayOrder;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -49,6 +53,9 @@ public class ModelManager implements Model {
         filteredCustomerOrders = new FilteredList<>(this.addressBook.getOrderList());
         sortedCustomers = new SortedList<>(filteredCustomers, Customer.SORT_NAME);
         sortedOrders = new SortedList<>(filteredOrders, Order.SORT_CREATED_DATE);
+
+        displayCustomer = null;
+        displayOrder = null;
     }
 
     public ModelManager() {
@@ -128,6 +135,16 @@ public class ModelManager implements Model {
         addressBook.setCustomer(target, editedCustomer);
     }
 
+    @Override
+    public void setCustomerToDisplay(Customer customer) {
+        displayCustomer = customer;
+    }
+
+    @Override
+    public Customer getCustomerToDisplay() {
+        return displayCustomer;
+    }
+
     //=========== Order List =================================================================================
 
     @Override
@@ -152,6 +169,16 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrder);
 
         addressBook.setOrder(target, editedOrder);
+    }
+
+    @Override
+    public void setOrderToDisplay(Order order) {
+        displayOrder = order;
+    }
+
+    @Override
+    public Order getOrderToDisplay() {
+        return displayOrder;
     }
 
     //=========== Filtered Customer List Accessors =============================================================

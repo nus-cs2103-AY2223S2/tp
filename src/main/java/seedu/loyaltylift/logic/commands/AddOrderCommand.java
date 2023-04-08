@@ -34,6 +34,7 @@ public class AddOrderCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS]";
 
     public static final String MESSAGE_SUCCESS = "New order added: \n%1$s";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists for the customer today";
 
     private final Index customerIndex;
     private final AddOrderDescriptor addOrderDescriptor;
@@ -55,11 +56,15 @@ public class AddOrderCommand extends Command {
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (customerIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
 
         Customer taggedCustomer = lastShownList.get(customerIndex.getZeroBased());
         Order createdOrder = createOrder(taggedCustomer, addOrderDescriptor);
+
+        if (model.hasOrder(createdOrder)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+        }
 
         model.addOrder(createdOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);

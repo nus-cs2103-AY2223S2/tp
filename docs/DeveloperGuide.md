@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CustomerListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Customer` and `Order` objects residing in the `Model`.
 
 ### Logic component
 
@@ -501,7 +501,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C4 - Update Customer
+#### Use case: UC C4 - Edit Customer
 
 **MSS**
 
@@ -543,31 +543,13 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C6 - Assign Individual to Enterprise
-
-**MSS**
-
-1.  User gets <u>list of customers (UC C1)</u>.
-2.  User requests to assign an individual to an enterprise.
-3.  LL assigns the individual to the enterprise and displays the enterprise information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested individual or enterprise does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC C7 - Create Customer Note
+#### Use case: UC C6 - Set/Append Customer Note
 
 **MSS**
 
 1.  User <u>gets list of customers (UC C1)</u>.
 2.  User enters note for a customer.
-3.  LL adds note to the customer and displays the customer information.
+3.  LL adds/appends note to the customer and displays the customer information.
 
     Use case ends.
 
@@ -579,13 +561,13 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C8 - Append Customer Note
+#### Use case: UC C7 - Set/Add Customer Points
 
 **MSS**
 
 1.  User <u>gets list of customers (UC C1)</u>.
-2.  User enters new note data to append.
-3.  LL updates the note and displays the customer information.
+2.  User enters customer points.
+3.  LL updates the customer's points and displays the customer.
 
     Use case ends.
 
@@ -597,33 +579,15 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-* 2b. Requested note does not exist.
+* 2b. LL detects invalid input data.
 
     * 2b1. LL shows an error message.
 
       Use case resumes from step 1.
 
-#### Use case: UC C9 - Delete Customer Note
+* 3a. Update results in invalid value.
 
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User requests to delete a customer note.
-3.  LL deletes the note and displays the customer information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested customer does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. Requested note does not exist.
-
-    * 2b1. LL shows an error message.
+    * 3a1. LL shows an error message.
 
       Use case resumes from step 1.
 
@@ -647,7 +611,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 **MSS**
 
 1.  User gets <u>list of customers (UC O1)</u>.
-2.  User enters customer id and new data order.
+2.  User enters customer id and new order data.
 3.  LL creates the order and assigns the order to the customer.
 4.  LL displays the order information.
 
@@ -703,7 +667,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O5 - Update Order
+#### Use case: UC O5 - Edit Order
 
 **MSS**
 
@@ -727,12 +691,12 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O6 - Advance Order Status
+#### Use case: UC O6 - Advance/Revert/Cancel Order Status
 
 **MSS**
 
 1.  User <u>gets list of orders (UC O1)</u>.
-2.  User requests to advance an order's status.
+2.  User requests to advance/revert/cancel an order's status.
 3.  LL updates the order's status and displays the order information.
 
     Use case ends.
@@ -745,142 +709,29 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-* 2b. Requested order is already at last stage.
+* 2b. Order status cannot be advanced/reverted/cancelled.
 
     * 2b1. LL shows an error message.
 
       Use case resumes from step 1.
 
-#### Use case: UC R1 - List Rewards
+#### Use case: UC O7 - Set/Append Order Note
 
 **MSS**
 
-1.  User requests list of rewards.
-2.  LL displays list of rewards.
+1.  User <u>gets list of orders (UC O1)</u>.
+2.  User enters note for an order.
+3.  LL adds/appends note to the order and displays the order information.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Reward list is empty.
-
-  Use case ends.
-
-#### Use case: UC R2 - View Reward
-
-**MSS**
-
-1.  User gets <u>list of rewards (UC R1)</u>.
-2.  User requests to view a reward.
-3.  LL displays the reward information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
+* 2a. Requested order does not exist.
 
     * 2a1. LL shows an error message.
 
       Use case resumes from step 1.
-
-#### Use case: UC R3 - Delete Reward
-
-**MSS**
-
-1.  User gets <u>list of rewards (UC R1)</u>.
-2.  User requests to delete a reward.
-3.  LL deletes the reward.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R4 - Update Reward
-
-**MSS**
-
-1.  User <u>gets list of rewards (UC R1)</u>.
-2.  User enters new data for a reward.
-3.  LL updates the reward and displays the reward information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. LL detects invalid input data.
-
-    * 2b1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R5 - Set/Add Customer Points
-
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User enters customer points.
-3.  LL updates the customer's points and displays the customer.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested customer does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. LL detects invalid input data.
-
-    * 2b1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R6 - Give Reward to Customer
-
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User <u>gets list of rewards (UC R1)</u>.
-3.  User requests to give a reward to a customer.
-4.  LL deducts points from the customer.
-5.  LL adds the reward to the customer and displays the customer information.
-
-    Use case ends.
-
-**Extensions**
-
-* 3a. Requested reward does not exist.
-
-    * 3a1. LL shows an error message.
-
-      Use case resumes from step 2.
-
-* 3b. Requested customer does not exist.
-
-    * 3b1. LL shows an error message.
-
-      Use case resumes from step 2.
-
-* 4a. Customer does not have enough points.
-
-    * 4a1. LL shows an error message.
-
-      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
@@ -948,3 +799,16 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+### Allow Customers to have similar Orders
+
+Currently, a customer cannot have two orders with the same product name, quantity, and address on the same day.
+This is because the orders will be considered as duplicates, as defined by `Order::isSameOrder`.
+
+To improve this, we plan to assign a unique ID for each order such that two orders are considered duplicates if they have the same ID.
+
+This ID can initially be randomly generated, but we then allow the user to define their own format as required by their business (e.g. some users may want to incorporate the order's created date into the identifier).

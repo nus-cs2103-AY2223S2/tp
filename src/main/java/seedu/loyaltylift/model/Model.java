@@ -80,6 +80,18 @@ public interface Model {
      */
     void setCustomer(Customer target, Customer editedCustomer);
 
+    /**
+     * Sets the {@code Customer} object to be displayed in the information panel.
+     * @param customer A Customer object.
+     */
+    void setCustomerToDisplay(Customer customer);
+
+    /**
+     * Returns the {@code Customer} object to be displayed in the information panel.
+     * @return A Customer object.
+     */
+    Customer getCustomerToDisplay();
+
     /** Returns an unmodifiable view of the filtered customer list */
     ObservableList<Customer> getFilteredCustomerList();
 
@@ -118,6 +130,18 @@ public interface Model {
      * The order identity of {@code editedOrder} must not be the same as another existing order in the address book.
      */
     void setOrder(Order target, Order editedOrder);
+
+    /**
+     * Sets the {@code Order} object to be displayed in the information panel.
+     * @param order An Order object.
+     */
+    void setOrderToDisplay(Order order);
+
+    /**
+     * Returns the {@code Order} object to be displayed in the information panel.
+     * @return An Order object.
+     */
+    Order getOrderToDisplay();
 
     /** Returns an unmodifiable view of the filtered order list */
     ObservableList<Order> getFilteredOrderList();

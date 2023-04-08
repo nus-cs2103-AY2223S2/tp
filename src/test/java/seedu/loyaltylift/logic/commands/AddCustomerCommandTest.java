@@ -148,6 +148,16 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public void setCustomerToDisplay(Customer customer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Customer getCustomerToDisplay() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Customer> getFilteredCustomerList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,6 +184,16 @@ public class AddCustomerCommandTest {
 
         @Override
         public void setOrder(Order target, Order editedOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOrderToDisplay(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Order getOrderToDisplay() {
             throw new AssertionError("This method should not be called.");
         }
 
