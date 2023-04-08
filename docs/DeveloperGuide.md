@@ -46,7 +46,7 @@ license, making it open source and available for anyone to use and modify.
     * [List Foods by tag(s)](#list-foods-by-tags)
     * [Delete Foods by tag(s)](#delete-foods-by-tags)
     * [Delete tag(s)](#delete-tags)
-  * [General features](#general-features)
+  * [General Features](#general-features)
     * [help](#dynamic-help)
   * [Documentation and other guides](#documentation-logging-testing-configuration-dev-ops)
   * [Requirements](#appendix-requirements)
@@ -655,7 +655,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/DeleteTagActivityDiagram.png" width="700" />
 
-### Dynamic Help
+### General Features
+
+#### Dynamic Help
 ![HelpCommandActivityDiagram.png](images%2FHelpCommandActivityDiagram.png)
 
 The dynamic help mechanism allows the user to receive in-app help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only received general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
