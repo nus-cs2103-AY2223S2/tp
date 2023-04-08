@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Description must be alphanumeric (A-Z, 0-9) and can contain spaces. " +
-            "It cannot be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Description must be alphanumeric (A-Z, 0-9) and can "
+            + "contain spaces. It cannot be blank.";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String tagName;

@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import java.util.Collection;
-import java.util.Collections;
+//import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -91,11 +91,22 @@ public class EditCommandParser implements Parser<EditCommand> {
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
+        boolean tagsAreEmpty = tags.isEmpty();
+        boolean tagsContainEmptyString = tags.contains("");
+
+        /*
         if (tags.isEmpty()) {
             return Optional.empty();
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        */
+
+        if (tagsAreEmpty) {
+            return Optional.empty();
+        } if (tagsContainEmptyString) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        Collection<String> tagSet = tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }
