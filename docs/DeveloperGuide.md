@@ -384,7 +384,7 @@ The following activity diagram shows what happens when a user executes a `delete
 ### **Sort modules feature** <a name="sort-modules-feature"></a>
 
 #### About this feature
-The sort feature allows users to categorise their modules in ModTrek via the command `sort <flag>`.
+The sort feature allows users to categorise their modules in MODTrek via the command `sort <flag>`.
 The flag parameter indicates which category to sort by.
 
 The available categories are:
