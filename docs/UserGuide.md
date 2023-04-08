@@ -793,7 +793,7 @@ Find all modules whose code starts with any of the keyword(s).
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures](#find-lectures) or [Find Videos](#find-videos) (refer to [Navigation](#navigation) for more information)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures](#find-lectures) or [Find Videos](#find-videos) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 <details>
 <summary>Example</summary>
