@@ -183,14 +183,7 @@ you can use the `view-exams` command to view the list of exams.
   - This is because `John Doe` is in the original student list, and the command will be executed on the original student list.
       
   - ![Entire List](images/entireList3.jpg)
-    
-### Search by Name Mechanism
 
-* TutorPro uses Students' Names as primary keys to identify students.
-* Most of the commands (except) in TutorPro allow you to search for a student by name, rather than by index, which is more intuitive for the user and eliminates the need to remember the index of the student.
-* Therefore, duplicate names are not allowed. Names that are substrings of other names or vice versa are not allowed. For example, `John Doe` and `John` are not allowed. If you have students with the exact name, say `John Doe`, you can add a number to the end of the name to differentiate them. For example, `John Doe 1` and `John Doe 2`.
-* The search by name mechanism is case-insensitive, meaning that the search will be case-insensitive. For Example, `john doe` and `John Doe` will be treated as the same name.
-* Partial names can be used as well. For example, `doe` will return all students with the name `John Doe` and `Jane Doe`.
 
 ### Profile Commands
 
@@ -423,17 +416,17 @@ Format: `view-lesson (optional)[name/STUDENT_NAME] (optional)[subject/SUBJECT] (
 * To view the lessons for specific students, specify the names using `name/STUDENT_NAME`s.
 * To view the lessons for a specific subject, specify the subject using `subject/SUBJECT`.
 * To view the lessons for a specific date, specify the date using `date/DATE`.
-* To view the lessons that have been completed, include `done/done`.
-* To view the lessons that have not been completed, include `done/not done`.
+* To view the lessons that'd been completed, include `done/done`.
+* To view the lessons that haven't been completed, include `done/not done`.
 
 Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
 * `view-lesson name/John` Displays the lesson history for the student named John.
 * `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, which are of subject Math, on the day 2023-05-03.
-* `view-lesson done/done` Displays all lessons that have been completed
-* `view-lesson done/not done` Displays all lessons that have not been completed
-* `view-lesson name/John done/done` Displays all lessons that have been completed for student John
-* `view-lesson name/John name/Bernice done/not done` Displays all lessons that have not been completed for students John and Bernice
+* `view-lesson done/done` Displays all lessons that'd been completed
+* `view-lesson done/not done` Displays all lessons that haven't been completed
+* `view-lesson name/John done/done` Displays all lessons that'd been completed for student John
+* `view-lesson name/John name/Bernice done/not done` Displays all lessons that haven't been completed for students John and Bernice
 
 ![View Lesson](images/view-lesson.jpg)
 
@@ -558,6 +551,26 @@ student.
 
 Examples:
 * `update-exam name/John index/1 grade/20/25`
+
+## Unique Mechanisms
+
+### Search by Name Mechanism
+
+* TutorPro uses Students' Names as primary keys to identify students.
+* Most of the commands (except) in TutorPro allow you to search for a student by name, rather than by index, which is more intuitive for the user and eliminates the need to remember the index of the student.
+* Therefore, duplicate names aren't allowed. Names that are substrings of other names or vice versa aren't allowed. For example, `John Doe` and `John` are not allowed. If you have students with the exact name, say `John Doe`, you can add a number to the end of the name to differentiate them. For example, `John Doe 1` and `John Doe 2`.
+* The search by name mechanism is case-insensitive, meaning that the search will be case-insensitive. For Example, `john doe` and `John Doe` will be treated as the same name.
+* Partial names can be used as well. For example, `doe` will return all students with the name `John Doe` and `Jane Doe`.
+
+### Schedule Clash Detection Mechanism for Lessons
+* TutorPro will detect if there is a clash in the schedule of students when adding a new lesson.
+* Since TutorPro is meant for one tutor, it is assumed that the tutor will not be teaching two lessons at the same time.
+* We also Assume that tutors will only teach one student at a time. Therefore, if the lesson is the same day and time, it will be considered a clash.
+* For example, if you run command `new-lesson name/John Doe lesson/Math Lesson start/2023-05-21 12:00 end/2023-05-21 14:00`, which adds a new lesson for `John Doe` on `2023-05-21` from `12:00` to `14:00`. Then, if you run command `new-lesson name/Irfan Ibrahim lesson/Math Lesson start/2023-05-21 12:00 end/2023-05-21 14:00`, which adds a new lesson for `Irfan Ibrahim` on `2023-05-21` from `12:00` to `14:00`, TutorPro will detect that there is a clash in the schedule and will not add the lesson for `Irfan Ibrahim` as a tutor can't teach two students at the same time.
+
+### Schedule Clash Detection Mechanism for Exams
+* TutorPro will detect if there is a clash in the schedule of students when adding a new exam.
+* Unlike lessons, exam schedule is only checked for clashes within one student. This means that multiple students can have different exams on the same day and time, but one student can't have two exams on the same day and time.
 
 
 --------------------------------------------------------------------------------------------------------------------
