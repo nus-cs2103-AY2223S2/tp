@@ -540,10 +540,19 @@ Deletes the specified module(s) and all its embodied content from the applicatio
   - Must belong to an existing module in Le Tracker
   - Must not contain duplicates
 
-Examples:
-
-- `delete CS2040`
-- `delete CS2040, ST2334`
+<details open>
+  <summary>Examples:</summary>
+  <ul>
+    <li>
+      <code>delete CS2040</code><br/>
+      deletes <code>CS2040</code> module
+    </li>
+    <li>
+      <code>delete CS2040, ST2334</code><br/>
+      deletes <code>CS2040</code> and <code>ST2334</code> modules
+    </li>
+  </ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -562,12 +571,18 @@ Deletes the specified lecture(s) and all its embodied content from the same spec
 - <span style="color:#e46c0a">`module_code`</span>: The code of module that contains the lectures specified by the names of lectures
   - Must belong to an existing module in Le Tracker
 
-<details>
-<summary>Examples:</summary>
-- <code>delete lecture 1 /mod CS2040</code>
-  - deletes <code>lecture 1</code> lecture found in module <code>CS2040</code>
-- <code>delete lecture 1, lecture 2 /mod ST2334</code>
-  - deletes <code>lecture 1</code> and <code>lecture 2</code> lectures found in module <code>ST2334</code>
+<details open>
+  <summary>Examples:</summary>
+  <ul>
+    <li>
+      <code>delete lecture 1 /mod CS2040</code><br/>
+      deletes <code>lecture 1</code> lecture found in module <code>CS2040</code>
+    </li>
+    <li>
+      <code>delete lecture 1, lecture 2 /mod ST2334</code><br/>
+      deletes <code>lecture 1</code> and <code>lecture 2</code> lectures found in module <code>ST2334</code>
+    </li>
+  </ul>
 </details>
 
 #### Delete Video
@@ -576,21 +591,31 @@ Deletes the specified lecture(s) and all its embodied content from the same spec
 
 Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
 
-- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be deleted
-  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-  - Must exist in the Lecture of `lecture_name` in the Module of `module_code`
+- <span style="color:#e46c0a">`video_name_1, video_name_2, video_name_3, ...`</span>: The names of videos
+  - Must belong to existing videos in the lecture specified in `lecture_name`
   - Must not contain duplicates
-- <span style="color:#e46c0a">`module_code`</span>: The Code of the Module that contains the lecture to delete from
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span>: The Name of the Lecture to delete from
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Must exist in the Module of `module_code`
+- <span style="color:#e46c0a">`module_code`</span>: The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker
+- <span style="color:#e46c0a">`lecture_name`</span>: The name of the lecture that contains the videos specified by the names of videos
+  - Must belong to an existing lecture in the module specified in `module_code`
 
-Examples:
+<details open>
+  <summary>Examples:</summary>
+  <ul>
+    <li>
+      <code>delete video 3 /mod CS2040 /lec lecture 1</code><br/>
+      deletes <code>video 3</code> from lecture <code>lecture 1</code> of module `CS2040`
+    </li>
+    <li>
+      <code>delete video 1, video 3 /mod CS2040 /lec lecture 1</code><br/>
+      deletes <code>video 1</code> and <code>video 3</code> from lecture <code>lecture 1</code> of module <code>CS2040</code>
+    </li>
+  </ul>
+</details>
 
-- `delete video 3 /mod CS2040 /lec lecture 1` deletes `video 3` from lecture `lecture 1` of module `CS2040`
-- `delete video 1, video 3 /mod CS2040 /lec lecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
+When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Mark or Unmark Video
 
@@ -602,23 +627,27 @@ Marks video(s) as **watched** in lecture of its specified module
 
 Marks video(s) as **unwatched** in a lecture of its specified module.
 
+- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The names of videos
+  - Must belong to existing videos in the lecture specified in `lecture_name`
+  - For `mark`, must not contain duplicates
+- <span style="color:#e46c0a">`module_code`</span>: The code of the module
+  - Must belong to an existing module in Le Tracker
+- <span style="color:#e46c0a">`lecture_name`</span>: The name of the lecture
+  - Must belong to an existing lecture in the module specified in `module_code`
 
-- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be marked
-  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-  - Must exist in the Lecture of `lecture_name` in the Module of `module_code`
-- <span style="color:#e46c0a">`module_code`</span>: The Code of the Module containing the lecture that contains the videos
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span>: The Name of the Lecture containing the videos
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Must exist in the Module of `module_code`
-
-Examples:
-
-- `mark Vid 1 /mod CS2040 /lec Week 1`
-- `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
-- `unmark Vid 2 /mod CS2040 /lec Week 1`
-- `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
+<details open>
+  <summary>Examples:</summary>
+  <ul>
+    <li><code>mark Vid 1 /mod CS2040 /lec Week 1</code><br/>
+    marks `Vid 1` in `Week 1` lecture of `CS2040` module as watched</li>
+    <li><code>mark Vid 1, Vid 2 /mod CS2040 /lec Week 1</code><br/>
+    marks `Vid 1` and `Vid 2` in lecture of `Week 1` of `CS2040` module as watched</li>
+    <li><code>unmark Vid 2 /mod CS2040 /lec Week 1</code><br/>
+    marks `Vid 2` in lecture `Week 1` of module `CS2040` as unwatched</li>
+    <li><code>unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1</code><br/>
+    marks `Vid 1` and `Vid 2` in lecture `Week 1` of `CS2040` module as unwatched</li>
+  </ul>
+</details>
 
 ### Tag a module
 
