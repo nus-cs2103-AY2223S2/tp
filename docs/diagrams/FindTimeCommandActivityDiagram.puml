@@ -1,0 +1,20 @@
+@startuml
+
+start
+:User executes command;
+
+if() then ([valid arguments])
+    if() then ([index of group present in model])
+        :creates a completely empty 7-day parent timetable;
+        :checks through the Events of all Persons in specified Group\nand updates the parent timetable;
+        :UI will display the resulting timetable;
+
+    else([else])
+        endif
+
+else([else])
+    endif
+
+stop
+
+@enduml
