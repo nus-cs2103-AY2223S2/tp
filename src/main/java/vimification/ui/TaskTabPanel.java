@@ -123,11 +123,6 @@ public class TaskTabPanel extends UiPart<VBox> {
 
     @FXML
     private void initialize() {
-        // this.getRoot().setFocusTraversable(true);
-        // ongoingTaskListComponent.setFocusTraversable(true);
-        // completedTaskListComponent.setFocusTraversable(true);
-        // overdueTaskListComponent.setFocusTraversable(true);
-
         Platform.runLater(() -> {
             taskTabPane.requestFocus(); // Hackish way of requesting focus after everything has been
             // loaded.
@@ -158,5 +153,21 @@ public class TaskTabPanel extends UiPart<VBox> {
 
     public void requestTabFocus() {
         taskTabPane.requestFocus();
+    }
+
+    public void refreshTaskDetailPanel() {
+        int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
+
+        switch (selectedTabIndex) {
+        case 0:
+            ongoingTaskListPanel.refreshTaskDetailPanel();
+            break;
+        case 1:
+            completedTaskListPanel.refreshTaskDetailPanel();
+            break;
+        case 2:
+            overdueTaskListPanel.refreshTaskDetailPanel();
+            break;
+        }
     }
 }
