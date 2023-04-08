@@ -241,6 +241,7 @@ Step 2. The card is now deleted from the deck.
 The following activity diagram summarizes the action taken when `deleteCard` is executed:
 
 
+
 ### Implementation of Review Mode Features
 
 ### Implementation of MasterDeck
