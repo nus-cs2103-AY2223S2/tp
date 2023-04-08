@@ -369,6 +369,7 @@ testers are expected to do more *exploratory* testing.
 **Action:**
 1. Download the jar file and copy into an empty folder
 2. Double-click the jar file  
+
 **Result:**  Displays the GUI with the window size set to full-screen
 
 #### Scenario 2 
@@ -376,7 +377,8 @@ testers are expected to do more *exploratory* testing.
 **Context:**  Restarting the application  
 **Action:**
 1. Right-click on the X button located in the top-right corner of the screen
-2. Double-click the jar file  
+2. Double-click the jar file
+
 **Result:**  The existing data should remain unchanged
 
 #### **Adding an Event**
@@ -433,24 +435,59 @@ testers are expected to do more *exploratory* testing.
 {: .no_toc}  
 **Context:** There exists an `Event` with the `index` 1 in _Ez-Schedule_  
 **Action:** Execute the command: `delete 1`  
-**Result:** The `Event` is removed from _Ez-Schedule_.
-Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
+**Result:** 
+* The `Event` is removed from _Ez-Schedule_
+* Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
 **Context:** There exists multiple `Event` with the indexes 1, 2 and 3 in _Ez-Schedule_  
 **Action:** Execute the command: `delete 1 2 3`  
-**Result:** All the `Event` is removed from _Ez-Schedule_.
-Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
+**Result:** 
+* All the `Event` is removed from _Ez-Schedule_
+* Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 3
 {: .no_toc}  
 **Context:** One of the specified indexes, `index` 10, does not exist in _Ez-Schedule_  
 **Action:** Execute the command: `delete 1 2 3 10`  
-**Result:** Response Box will display the message "The event index 10 provided is invalid", 
-and none of the events will be deleted from _Ez-Schedule_
+**Result:** 
+* Response Box will display the message "The event index 10 provided is invalid"
+* None of the `Event` with valid `index` will be deleted from _Ez-Schedule_
 
 #### **Finding Events**
+
+#### Scenario 1
+{: .no_toc}  
+**Context:** There exists at least one `Event` whose `Name` includes the word 'Tennis'  
+**Action:** Execute the command: `find n/Tennis`  
+**Result:** 
+* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word 'Tennis' 
+* The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** There exists at least one `Event` whose `Name` partially matches the word 'Ten'  
+**Action:** Execute the command: `find n/Ten`  
+**Result:**
+* The Events List Panel will be updated to display only `Event` whose `Name` includes 'Ten', which may include `Name` such as 'Tennis'
+* The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
+
+#### Scenario 3
+{: .no_toc}  
+**Context:** There exists at least 1 `Event` whose `Date` correspond to May 1, 2023  
+**Action:** Execute the command: `find d/2023-05-01`  
+**Result:**
+* The Events List Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
+* The date box for May 1, 2023 will be highlighted on the Calendar
+
+#### Scenario 4
+{: .no_toc}  
+**Context:** There exists at least one `Event` whose `Name` includes the word 'Tennis' and `Date` corresponds to May 1, 2023  
+**Action:** Execute the command: `find n/Tennis d/2023-05-01`  
+**Result:**
+* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word 'Tennis' and `Date` are May 1, 2023
+* The date box for May 1, 2023 will be highlighted on the Calendar
 
 #### **Show Next Events**
 
