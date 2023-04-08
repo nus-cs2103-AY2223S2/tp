@@ -23,9 +23,11 @@ My code contributions can be found on
 
 - **Redesigned the GUI of InternBuddy**
   [\#52](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/52),
-  [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78)
+  [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78),
+  [\#191](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/191)
   * Created a new look for the List Panel.
   * Implemented a new View Panel for the viewing of internship information.
+  * Ensured that the UI is responsive where the wrapping width of text scales with Window size.
 
 - **Implemented feature to add optional field,** `COMMENT`
   [\#79](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/79)
@@ -36,7 +38,7 @@ My code contributions can be found on
 
 <div style="page-break-after: always;"></div>
 
-- **Implemented the `view` command**
+- **Implemented the** `view` **command**
   [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78)
   * Users can now view the detailed information of a selected internship entry.
   * Details are displayed in the View Panel.
@@ -47,6 +49,7 @@ My code contributions can be found on
 
 - **Redesigned the Help Window**
   [\#81](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/81)
+  [\#132](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/132)
   * Inserted the command summary and hyperlink to InternBuddy's user guide in the Help Window.
   * Created a new look for the Help Window.
 
@@ -57,6 +60,12 @@ My code contributions can be found on
     test cases for UI components such as in the class `InternshipCardTest`.
   * Worked with my teammate, Christopher, to implement this.
   * GUI testing improved code coverage for InternBuddy.
+
+### Project Management
+- Set up milestones `v1.2`, `v1.2b`, `v1.3`, `v.13b` and `v1.4`.
+- Managed releases for `v1.3.1` and `v1.3.3`.
+
+<div style="page-break-after: always;"></div>
 
 ### Documentation
 - **Updated README**
@@ -72,7 +81,8 @@ My code contributions can be found on
   [\#21](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/21),
   [\#34](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/34),
   [\#102](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/102),
-  [\#109](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/109)
+  [\#109](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/109),
+  [\#204](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/204)
   * Documented the explanation for the different parts in InternBuddy's GUI, accompanied by a graphic.
   * Wrote up the command information, explaining the format and constraints of commands and
     fields in InternBuddy.
@@ -90,9 +100,9 @@ My code contributions can be found on
   * Defined product scope by identifying InternBuddy's target audience and value proposition.
   * Drafted user stories on how Computing undergraduates would use InternBuddy.
   * Added test cases for instructions on manual testing, such as for the `add` and `view` commands.
+  * Created the appendix on `Effort` to illustrate the challenges and achievements of the InternBuddy project.
 
-<div style="page-break-after: always;"></div>
-
+  
 ### Others
 - Provided non-trivial PR reviews for
   [\#47](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/47),
