@@ -42,12 +42,8 @@ Now it's time to **CONQUER** the semester!
   - [Edit](#edit)
   - [Delete](#delete)
   - [Mark or Unmark Video](#mark-or-unmark-video)
-  - [Tag a module](#tag-a-module)
-  - [Tag a lecture](#tag-a-lecture)
-  - [Tag a video](#tag-a-video)
-  - [Untag a module](#untag-a-module)
-  - [Untag a lecture](#untag-a-lecture)
-  - [Untag a video](#untag-a-video)
+  - [Tag](#tag)
+  - [Untag](#untag)
   - [Find](#find)
   - [Clear all Modules](#clear-all-modules)
   - [Exit the App](#exit-the-app)
@@ -620,6 +616,8 @@ Examples:
 - `unmark Vid 2 /mod CS2040 /lec Week 1`
 - `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
 
+### Tag
+
 ### Tag a module
 
 > `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]`
@@ -687,6 +685,8 @@ Tag a specified video.
 Examples:
 
 - `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
+
+### Untag
 
 ### Untag a module
 
