@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 
 import java.util.List;
@@ -70,7 +71,9 @@ public class AddPointsCommand extends Command {
         Customer editedCustomerWithPoints = createEditedCustomer(customerToEdit);
 
         model.setCustomer(customerToEdit, editedCustomerWithPoints);
-        return new CommandResult(generateSuccessMessage(editedCustomerWithPoints));
+        model.setCustomerToDisplay(editedCustomerWithPoints);
+        return new CommandResult(generateSuccessMessage(editedCustomerWithPoints),
+                LIST_AND_SHOW_CUSTOMER);
     }
 
     /**

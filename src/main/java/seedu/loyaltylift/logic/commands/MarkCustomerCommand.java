@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 
 import java.util.List;
 import java.util.Set;
@@ -54,8 +55,11 @@ public class MarkCustomerCommand extends Command {
 
         Customer customerToMark = lastShownList.get(index.getZeroBased());
         Customer markedCustomer = createMarkedCustomer(customerToMark);
+
         model.setCustomer(customerToMark, markedCustomer);
-        return new CommandResult(String.format(MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer));
+        model.setCustomerToDisplay(markedCustomer);
+        return new CommandResult(String.format(MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
     }
 
     /**

@@ -1,6 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_CUSTOMERS_ONLY;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.model.Model;
@@ -32,7 +33,8 @@ public class FindCustomerCommand extends Command {
         model.sortFilteredCustomerList(Customer.SORT_NAME);
         model.updateFilteredCustomerList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
+                String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()),
+                LIST_CUSTOMERS_ONLY);
     }
 
     @Override

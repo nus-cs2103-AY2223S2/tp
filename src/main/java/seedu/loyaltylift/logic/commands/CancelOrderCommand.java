@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 
 import java.util.List;
 
@@ -50,8 +51,9 @@ public class CancelOrderCommand extends Command {
         Order cancelledOrder = orderToCancel.cancel();
 
         model.setOrder(orderToCancel, cancelledOrder);
-
-        return new CommandResult(generateSuccessMessage(cancelledOrder));
+        model.setOrderToDisplay(cancelledOrder);
+        return new CommandResult(generateSuccessMessage(cancelledOrder),
+                LIST_AND_SHOW_ORDER);
     }
 
     /**

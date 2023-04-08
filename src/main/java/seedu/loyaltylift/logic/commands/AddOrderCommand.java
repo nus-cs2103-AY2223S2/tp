@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -65,7 +66,9 @@ public class AddOrderCommand extends Command {
         }
 
         model.addOrder(createdOrder);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, createdOrder));
+        model.setOrderToDisplay(createdOrder);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, createdOrder),
+                LIST_AND_SHOW_ORDER);
     }
 
     /**
