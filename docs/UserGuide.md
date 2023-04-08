@@ -41,7 +41,7 @@ Disclaimer: This application is currently geared towards NUS Computer Science St
 
 ## 1. How to Use This Guide <a name="how-to"></a>
 
-Not sure how to begin using **MODTrek**? This user guide will give you all the information you need so
+Not sure how to start using **MODTrek**? This user guide will give you all the information you need so
 that you can use **MODTrek** to its full potential.
 
 To get started, we have prepared a [Quick Start](#quick-start) section to help you set up the **MODTrek** with ease.
