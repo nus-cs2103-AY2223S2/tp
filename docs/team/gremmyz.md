@@ -22,6 +22,8 @@ Given below are my contributions to the project.
   * All commands and tests of AB3 were modified to create ConnectUS.
 * Related pull requests: [\#92](https://github.com/AY2223S2-CS2103T-W15-1/tp/pull/92)
 
+<div style="page-break-after: always"></div>
+
 ### New Feature: Added the user interface for new tag types.
 * What it does: Creates tags in the UI in different colors based on the tag type (i.e. module, CCA, major, remark).
 * Justification: This feature allows the user to differentiate between different tag types more easily.
@@ -44,6 +46,8 @@ Given below are my contributions to the project.
   * Created the following milestones: `V1.1, V1.2, V1.2b, V1.3, V1.3b, V1.4`
     * These milestones were essential in ensuring the group kept on track throughout our assigned tasks.
 
+<div style="page-break-after: always"></div>
+
 ### Documentation:
 * **User Guide:**
   * Added target audience, value proposition of ConnectUS in the User Guide.
@@ -65,6 +69,8 @@ Given below are my contributions to the project.
   * Added Glossary into Developer Guide.
   * Added Non-Functional Requirements into Developer Guide.
   * Related pull requests: [\#214](https://github.com/AY2223S2-CS2103T-W15-1/tp/pull/214)
+
+<div style="page-break-after: always"></div>
 
 ### Code contributed:
 As of 8th April 2023, I have contributed ~5.5k LoC. For the most recent update, refer to this [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=gremmyz&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
