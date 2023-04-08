@@ -262,6 +262,9 @@ In general, the command format is as follows:<br>
 > :exclamation: Warning: Remember to input 2 digits for `DD` and `MM`. 
 > <br> For example, `DD` and `MM` for the 9th of April should be `09` and `04` respectively.
 
+> :bulb: Tip: *Fish Ahoy!* automatically corrects invalid dates like 30th February to the closest
+> lower valid date. For example, 30th Feb becomes 29th Feb on leap years and 28th Feb on non leap years
+
 #### Species `s/<SPECIES>`
 * Type: `Fish`
 * `<SPECIES>` should only contain alphanumeric characters and spaces
@@ -575,6 +578,8 @@ Parameters:
 > :information_source: Additional information: syntax we use for tags are enclosed in square brackets followed by '...' `[tg/<TAG>]...`, to show that a fish can contain 0 or more tags.
 
 > :exclamation: Warning: You **cannot** add two fishes of the same name to *Fish Ahoy!*
+
+> :bulb: Tip: See what happens to [invalid last fed dates!](#last-fed-date-lfdlast_fed_date)
 
 Example:
 * `fish add n/Nemo s/Clown Fish lfd/04/04/2023 11:30 fi/2d0h tk/1` adds a new fish with the following details:
