@@ -224,7 +224,38 @@ The following sequence diagram shows how the addDeck operation works:
 ### Implementation of Card Mode Features
 
 ### Implementation of Review Mode Features
-The 
+A `Review` object is stored within the `Model` and represents the current review. 
+- If the current review object is `null`, it indicates that there is currently no ongoing review, thus the application in the Main mode.
+- To construct a `Review` object, the `Model` will pass in a list of cards to be reviewed (as filtered by `CardInDeckPredicate` and `CardHasTagPredicate`), the `Deck` to be reviewed and an integer representing the review limit set by user if any. 
+
+Within the `Review` object, the list of cards to be reviewed are stored in a `UniqueCardList`.
+- Note that this list of cards are not the same card objects as those in the `MasterDeck` and hence any changes to be made on a card during review will need to be made on the equivalent cards in both the `MasterDeck` and the current review's `UniqueCardList`. 
+- The `UniqueCardList` is used to construct the `ObservableList` and `FilteredList` of cards which is passed upwards to the UI to display the current card under review. 
+
+Each time a `Review` object is constructed, a list of integers representing a shuffled order of indices of the cards is created.
+- A pointer representing the current card index is used to iterate across this list of shuffled indices to get the current card under review from the `UniqueCardList`.
+- The pointer is incremented when the user moves on to the next card and decremented when the user moves back to the previous card
+
+Within the `Review` object, there is an `ObservableList` of a `Pair` of strings representing the following statistics of the current review: deck name, current card number, current tag count for each difficulty and the navigation guide. 
+- The statistics are displayed on the left panel during the review mode.
+- In a `Pair` of strings, the first string represents the title of the statistic while the second contains information about that respective statistic. (e.g. String 1: "Deck Name", String 2: "Chemistry")
+- These statistics are constantly updated whenever a command executed (e.g. tag current card with new difficulty) changes any of the above statistics of the review.
+
+#### nextCard Feature
+`Review#goToNextCard()` is the operation that allows the user to move to the next card during a review.
+
+This operation is exposed in the Model interface as `Model#goToNextCard()`.
+
+Given below is an example usage scenario and how the `goToNextCard()` mechanism behaves at each step.
+
+Step 1. The user starts a review. A `Review` object is created within the `Model` class. The current mode of the application is changed to `REVIEW_MODE`.
+
+Step 2. The user reviews the first card by testing their knowledge on the question, flipping the card to see the answer, then tagging the appropriate difficulty of the card.
+
+Step 3. The user moves on to the next card by executing `]` in the command line interface. `]` is the command word for the `NextCardCommand`.
+
+The following activity diagram summarizes what happens when a user executes `NextCard` command:
+
 
 
 ### Implementation of MasterDeck
