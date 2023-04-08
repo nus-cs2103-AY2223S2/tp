@@ -203,7 +203,7 @@ An elderly can have any number of [tags](#tags) and available dates.
 Examples:
 * `add_elderly n/Betsy Crowe p/98765432 a/John street ic/S5034567C bd/1950-02-03 r/HIGH` Adds an elderly named `Betsy Crowe` with [NRIC](#nric)
   `S5034567C` to FriendlyLink, with [birth date](#birthdate) `1950-02-03`, [address](#address) `John street`, [risk level](#risk-level) `HIGH` and [phone number](#phone-number) `98765432`.
-* `add_elderly n/Sarah Zest ic/S3334567C bd/1933-02-03` Adds an elderly named `Sally White` with [NRIC](#nric)
+* `add_elderly n/Sarah Zest ic/S3334567C bd/1933-02-03` Adds an elderly named `Sarah Zest` with [NRIC](#nric)
   `S3334567C` to FriendlyLink, with [birth date](#birthdate) `1933-02-03`.
 
 ![](images/userGuide/addElderly.png)
