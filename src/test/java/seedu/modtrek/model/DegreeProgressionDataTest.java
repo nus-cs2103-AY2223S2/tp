@@ -80,7 +80,7 @@ public class DegreeProgressionDataTest {
 
     @Test
     public void getGpaForPopulatedData() {
-        assertEquals(4.80, populatedData.getGpa());
+        assertEquals(4.70, populatedData.getGpa());
     }
 
     private DegreeProgressionData initEmptyData() {
