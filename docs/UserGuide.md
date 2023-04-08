@@ -294,9 +294,8 @@ solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
-<span markdown="span" class="alert alert-warning">:information_source: Visit Section <a
-href="#42-patient-commands">4.2 Patient Commands</a> for more information on how to manage patient data in CareFlow.
-</span>
+<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a href="#42-patient-commands">4.2 Patient Commands</a> for more information on how to manage patient data in CareFlow.
+</div>
 
 
 ## 3.2 Drug Inventory Management
@@ -305,20 +304,18 @@ If you find struggle to keep track of your drug inventory, CareFlow is here to h
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<span markdown="span" class="alert alert-warning">:information_source: Visit Section <a href="#43-drug-commands">4.3
-Drug Commands</a> for more information on how to manage drug inventory in CareFlow.
-</span>
+<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a href="#43-drug-commands">4.3 Drug Commands</a> for more information on how to manage drug inventory in CareFlow.</div>
 
 
 ## 3.3 Hospital Information Directory
 
 if you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
 
-<span markdown="span" class="alert alert-warning">:information_source: Please note that you are not allowed to edit or
+<div markdown="block" class="alert alert-warning">:information_source: Please note that you are not allowed to edit or
 change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please
 feel free to <a href="https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html">contact us</a> and let us know. We
 are committed to constantly improving our software to meet your needs.
-</span>
+</div>
 
 [↑ Back to top](#top)
 
@@ -341,8 +338,8 @@ drug of CareFlow.
   </p>
   <br/>
 * **Format:** `g help`
-* <span markdown="span" class="alert alert-info">:information_source:  Clicking on `Open URL` button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
-</span>
+<div markdown="block" class="alert alert-info">:information_source:  **Note:** Clicking** on `Open URL` button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
+</div>
 <br/>
 
 [↑ Back to top](#top)
@@ -352,7 +349,7 @@ drug of CareFlow.
 ### Exit the program
 * Done with your session? You can exit the program with this command, your data will be automatically saved to the hard disk.
 * **Format:** `g exit`
-* <span markdown="span" class="alert alert-info">:information_source:   Executing this command has the same effect as directly closing the application window</span>
+<div markdown="block" class="alert alert-info">:information_source:   **Note:** Executing this command has the same effect as directly closing the application window</div>
 <br/>
 
 [↑ Back to top](#top)
@@ -400,8 +397,8 @@ ___
         <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:100%">
       </p>
       <br/>
-* <span markdown="span" class="alert alert-info">:information_source: You can indicate patient information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as `NAME`, `NRIC`, `PHONE`, etc). </span>
-* <span markdown="span" class="alert alert-info">:information_source: In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as `DATE_OF_BIRTH` and `EMAIL` are prone to error, so be careful with those when you enter patient information.</span>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate patient information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as `NAME`, `NRIC`, `PHONE`, etc). </div>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as `DATE_OF_BIRTH` and `EMAIL` are prone to error, so be careful with those when you enter patient information.</div>
 
 <br/>
 
@@ -472,7 +469,21 @@ ___
         </p>
 
       <br/>
-* <span markdown="span" class="alert alert-info">:information_source: Note that the index of a patient can change depending on the filter you currently apply on the patient list. For example, if you execute the `p list` command, all filter will be removed and the patient's index will be his or her position in the main patient list. However, if you execute a `p find PATIENT_NAME` command, the patient's index will be his or her position in the **filtered** patient list. Subsequent deletion by index will be with respect to the list you're currently viewing.</span>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** 
+  <ul style="list-style-type:none;">
+    <li>
+    The index of a patient can change depending on the filter you currently apply on the patient list.</li>
+    <li>
+    For example, if you execute the `p list` command, all filter will be removed and the patient's index will be his or her position in the main patient list.
+    </li>
+    <li>
+    However, if you execute a `p find PATIENT_NAME` command, the patient's index will be his or her position in the **filtered** patient list.
+    </li>
+    <li>
+    Subsequent deletion by index will be with respect to the list you're currently viewing.
+    </li>
+  </ul>   
+</div>
 
 <br/>
 
@@ -504,8 +515,8 @@ ___
       </p>
       <br/>
     * Suppose we wish to update the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively. The command would be:`p update Bety -n Betsy Crower -da Aspirin`
-<div markdown="div" class="alert alert-info">:information_source: 
-  <ul>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** 
+  <ul style="list-style-type:none;">
     <li>You can update 1 to 9 items, 9 being all pieces of information of a patient.</li>
     <li> When updating, it is necessary that you use the full name of the patient. Since we do not allow duplicated names, indicating full name would be sufficient to eliminate any ambiguity duing update.</li>
   </ul>
@@ -536,7 +547,7 @@ ___
     * You can click on either record to see detailed information.
 
 <br/>
-* <span markdown="span" class="alert alert-info">:information_source: Note that you can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter `p find Yu Yeoh`, both `Bernice Yu` and `Alex Yeoh` will be shown.</span>
+* <span markdown="span" class="alert alert-info">:information_source: **Note:** You can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter `p find Yu Yeoh`, both `Bernice Yu` and `Alex Yeoh` will be shown.</span>
 
 <br/>
 
@@ -610,7 +621,7 @@ Use this with command with caution!
 * **Format:** `p list`
 \
 &nbsp; 
-* <span markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as `p list hellothere` or `p list 1234?!` will not cause errors in the system</span>
+* <div markdown="block" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as `p list hellothere` or `p list 1234?!` will not cause errors in the system</div>
   \
   &nbsp;
 * **Example:**
@@ -649,7 +660,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:100%">
       </p>
-* <span markdown="span" class="alert alert-info">:information_source: You can indicate drug information in any order that you wish. But do make sure that you have entered all compulsory parameters. </span>
+* <div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate drug information in any order that you wish. But do make sure that you have entered all compulsory parameters. </div>
 
 <br/>
 
@@ -717,7 +728,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:100%">
       </p>
-* <span markdown="span" class="alert alert-info">:information_source: Note that the index of a drug can change depending on the filter you currently apply on the drug list. For example, if you execute the `d list` command, all filter will be removed and the drug's index will be its position in the main drug list. However, if you execute a `d find TRADE_NAME` command, the drug's index will be its position in the **filtered** drug list. Subsequent deletion by index will be with respect to the list you're currently viewing.</span>
+* <div markdown="block" class="alert alert-info">:information_source: **Note:** The index of a drug can change depending on the filter you currently apply on the drug list. For example, if you execute the `d list` command, all filter will be removed and the drug's index will be its position in the main drug list. However, if you execute a `d find TRADE_NAME` command, the drug's index will be its position in the **filtered** drug list. Subsequent deletion by index will be with respect to the list you're currently viewing.</div>
 
 <br/>
 
@@ -732,11 +743,6 @@ ___
 ### Update storage count of a drug entry
 * Dispensed or restocked a certain drug? You can update the storage count of specified drug entry
 by specifying the trade name.
-<div markdown="span" class="alert alert-info">:information_source: **Note:** You will need to prefix the value with + or - for addition and subtraction respectively.
-</div>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the decremented amount exceeds current storage count, updated storage count will be 0 (lower limit of storage count).
-</div>
-
   \
   &nbsp;
 * **Format:** `d update TRADE_NAME -by +VALUE` OR `d update TRADE_NAME -by -VALUE`
@@ -760,7 +766,9 @@ by specifying the trade name.
           <img src="images/UIscreenshots/drugSS/drugCurrentCount.png" style="zoom:25%">
         </p>
         <br/>
-* <span markdown="span" class="alert alert-info">:information_source: Note that the storage of a drug should be between 0 and 499. If you attempt to increase the storage of a drug to below the threshold or above the upper limit, the system will automatically set the storage to the boundary values without reporting an error.</span>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** You will need to prefix the value with + or - for addition and subtraction respectively.
+</div>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The storage of a drug should be between 0 and 499. If you attempt to increase the storage of a drug to below the threshold or above the upper limit, the system will automatically set the storage to the boundary values of 0 and 499 respectively, without reporting an error.</div>
 <br/>
 
 [↑ Go to Drug Commands](#43-drug-commands)
@@ -806,6 +814,7 @@ by specifying the trade name.
 
 ### Clear all drug entries
 * Need to empty your dispensary and drug records? You can clear all records of drugs.
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**Use this with command with caution!</div>
   \
   &nbsp;
 * **Format:** `d clear`
@@ -816,8 +825,6 @@ by specifying the trade name.
       <p align="center">
             <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:100%">
       </p>
-      <br/>
-* <span markdown="span" class="alert alert-warning">:exclamation: **Caution:**Use this with command with caution!</span>
 <br />
 
 [↑ Go to Drug Commands](#43-drug-commands)
@@ -842,7 +849,7 @@ by specifying the trade name.
             <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:100%">
       </p>
       <br/>
-* <span markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For example: commands such as`d list hellothere` or `d list 1234?!` will not cause any errors in the system.</span>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For example: commands such as`d list hellothere` or `d list 1234?!` will not cause any errors in the system.</div>
 <br />
 
 [↑ Go to Drug Commands](#43-drug-commands)

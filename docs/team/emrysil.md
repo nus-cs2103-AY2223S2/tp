@@ -40,6 +40,7 @@ Click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=emrysil&
     - Accompanied instructions with rich screenshots to further support non-tech users.
   - Added screenshots for various features to illustrate the expected interaction and outcome.
   - Reformatted each feature for better visual presentation.
+  - Added notes and tips for various features to help user better understand the functionality of each feature.
 ### **Developer Guide**
   - Added implementation details and UML diagram for `storage` component.
   - Added execution detail and sequence diagram for `d find` command, using `d find Panadol` as the example input.
