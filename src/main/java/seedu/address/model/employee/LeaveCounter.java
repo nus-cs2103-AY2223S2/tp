@@ -31,6 +31,10 @@ public class LeaveCounter {
         this.leaveCount = DEFAULT_LEAVE_COUNT;
     }
 
+    public LeaveCounter(String leaveCounter) {
+        this(Integer.parseInt(leaveCounter));
+    }
+
     /**
      * Returns true if a given leave number is valid .
      */
@@ -72,7 +76,7 @@ public class LeaveCounter {
 
     @Override
     public String toString() {
-        return leaveCount + " days of leave";
+        return String.valueOf(leaveCount);
     }
 
     @Override

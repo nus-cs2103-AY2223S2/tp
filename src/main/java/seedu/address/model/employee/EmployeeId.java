@@ -1,6 +1,7 @@
 package seedu.address.model.employee;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import java.util.Objects;
 
 /**
  * Class represents an employee's employee ID in the database.

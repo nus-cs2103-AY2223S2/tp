@@ -1,14 +1,19 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Department;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.LeaveCounter;
 import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Payroll;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.PicturePath;
 import seedu.address.model.tag.Tag;
@@ -24,7 +29,11 @@ public class EmployeeBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DEPARTMENT = "Marketing";
-    public static final String DEFAULT_PICTURE_PATH = "src/main/resources/employeepictures/default.png";
+    public static final String DEFAULT_PAYROLL = "1000 15";
+    public static final int DEFAULT_LEAVE_COUNTER = 15;
+    public static final String DEFAULT_DATE_OF_BIRTH = "2000-04-21";
+    public static final String DEFAULT_DATE_OF_JOINING = "2022-01-01";
+    public static final String DEFAULT_PICTURE_PATH = "data/employeepictures/default.png";
 
     private Name name;
     private EmployeeId employeeId;
@@ -32,7 +41,11 @@ public class EmployeeBuilder {
     private Email email;
     private Address address;
     private Department department;
-    private PicturePath picturePath;
+    private Payroll payroll;
+    private LeaveCounter leaveCounter;
+    private Optional<LocalDate> dateOfBirth;
+    private Optional<LocalDate> dateOfJoining;
+    private Optional<PicturePath> picturePath;
     private Set<Tag> tags;
 
     /**
@@ -45,7 +58,15 @@ public class EmployeeBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         department = new Department(DEFAULT_DEPARTMENT);
-        picturePath = new PicturePath(DEFAULT_PICTURE_PATH);
+        try {
+            payroll = new Payroll(DEFAULT_PAYROLL);
+        } catch (IllegalValueException e) {
+            throw new RuntimeException(e);
+        }
+        leaveCounter = new LeaveCounter(DEFAULT_LEAVE_COUNTER);
+        dateOfBirth = Optional.ofNullable(LocalDate.parse(DEFAULT_DATE_OF_BIRTH));
+        dateOfJoining = Optional.ofNullable(LocalDate.parse(DEFAULT_DATE_OF_JOINING));
+        picturePath = Optional.of(new PicturePath(DEFAULT_PICTURE_PATH));
         tags = new HashSet<>();
     }
 
@@ -59,7 +80,11 @@ public class EmployeeBuilder {
         email = employeeToCopy.getEmail();
         address = employeeToCopy.getAddress();
         department = employeeToCopy.getDepartment();
-        picturePath = employeeToCopy.getPicturePath();
+        payroll = employeeToCopy.getPayroll();
+        leaveCounter = employeeToCopy.getLeaveCounter();
+        dateOfBirth = employeeToCopy.getDateOfBirthOptional();
+        dateOfJoining = employeeToCopy.getDateOfJoiningOptional();
+        picturePath = Optional.ofNullable(employeeToCopy.getPicturePath());
         tags = new HashSet<>(employeeToCopy.getTags());
     }
 
@@ -125,15 +150,55 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code PicturePath} of the {@code Employee} that we are building.
+     * Sets the {@code Payroll} of the {@code Employee} that we are building.
      */
-    public EmployeeBuilder withPicturePath(String picturePath) {
-        this.picturePath = new PicturePath(picturePath);
+    public EmployeeBuilder withPayroll(String payroll) {
+        try {
+            this.payroll = new Payroll(payroll);
+        } catch (IllegalValueException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
+    /**
+     * Sets the {@code LeaveCounter} of the {@code Employee} that we are building.
+     */
+    public EmployeeBuilder withLeaveCounter(String leaveCounter) {
+        this.leaveCounter = new LeaveCounter(leaveCounter);
+        return this;
+    }
+
+    /**
+     * Sets the {@code dateOfBirth} of the {@code Employee} that we are building.
+     */
+    public EmployeeBuilder withDateOfBirth(String date) {
+        this.dateOfBirth = Optional.ofNullable(LocalDate.parse(date));
+        return this;
+    }
+
+    /**
+     * Sets the {@code dateOfJoining} of the {@code Employee} that we are building.
+     */
+    public EmployeeBuilder withDateOfJoining(String date) {
+        this.dateOfJoining = Optional.ofNullable(LocalDate.parse(date));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PicturePath} of the {@code Employee} that we are building.
+     */
+    public EmployeeBuilder withPicturePath(String picturePath) {
+        this.picturePath = Optional.of(new PicturePath(picturePath));
+        return this;
+    }
+
+    /**
+     * Builds an {@code Employee} with the given fields.
+     */
     public Employee build() {
-        return new Employee(name, employeeId, phone, email, address, department, picturePath, tags);
+        return new Employee(name, employeeId, phone, email, address, department, payroll, leaveCounter,
+                dateOfBirth, dateOfJoining, picturePath, tags);
     }
 
     /**
