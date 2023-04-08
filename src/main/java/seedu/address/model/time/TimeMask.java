@@ -70,6 +70,7 @@ public class TimeMask {
 
             if (endTime < 0) {
                 endTime = LAST_HOUR_INDEX;
+                endIndex = getUpdatedEndDay(endIndex);
             }
 
             if (startIndex != endIndex) {
@@ -78,6 +79,14 @@ public class TimeMask {
             } else {
                 occupySlots(startIndex, startTime, endTime);
             }
+        }
+    }
+
+    private int getUpdatedEndDay(int endIndex) {
+        if (endIndex == 0) {
+            return 6;
+        } else {
+            return endIndex - 1;
         }
     }
 
@@ -109,7 +118,7 @@ public class TimeMask {
         curr = curr == 6 ? 0 : curr+1;
 
         while (curr < endDay) {
-            startBits = Integer.parseInt("1".repeat(23), 2);
+            startBits = Integer.parseInt("1".repeat(24), 2);
             mask = startBits << 0;
             weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
             curr = curr == 6 ? 0 : curr + 1;
