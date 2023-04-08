@@ -6,12 +6,12 @@ import seedu.techtrack.model.Model;
 import seedu.techtrack.model.RoleBook;
 
 /**
- * Clears the address book.
+ * Clears the role book.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Company book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Role book has been cleared!";
 
 
     @Override

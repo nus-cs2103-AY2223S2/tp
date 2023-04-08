@@ -9,7 +9,7 @@ import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.UniqueRoleList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the role-book level
  * Duplicates are not allowed (by .isSameRole comparison)
  */
 public class RoleBook implements ReadOnlyRoleBook {
@@ -59,7 +59,7 @@ public class RoleBook implements ReadOnlyRoleBook {
     //// role-level operations
 
     /**
-     * Returns true if a role with the same identity as {@code role} exists in the address book.
+     * Returns true if a role with the same identity as {@code role} exists in the role book.
      */
     public boolean hasRole(Role role) {
         requireNonNull(role);
@@ -67,8 +67,8 @@ public class RoleBook implements ReadOnlyRoleBook {
     }
 
     /**
-     * Adds a role to the address book.
-     * The role must not already exist in the address book.
+     * Adds a role to the role book.
+     * The role must not already exist in the role book.
      */
     public void addRole(Role p) {
         roles.add(p);
@@ -76,8 +76,8 @@ public class RoleBook implements ReadOnlyRoleBook {
 
     /**
      * Replaces the given role {@code target} in the list with {@code editedRole}.
-     * {@code target} must exist in the address book.
-     * The role identity of {@code editedRole} must not be the same as another existing role in the address book.
+     * {@code target} must exist in the role book.
+     * The role identity of {@code editedRole} must not be the same as another existing role in the role book.
      */
     public void setRole(Role target, Role editedRole) {
         requireNonNull(editedRole);
@@ -87,7 +87,7 @@ public class RoleBook implements ReadOnlyRoleBook {
 
     /**
      * Removes {@code key} from this {@code RoleBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the role book.
      */
     public void removeRole(Role key) {
         roles.remove(key);

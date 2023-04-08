@@ -11,7 +11,7 @@ import seedu.techtrack.model.Model;
 import seedu.techtrack.model.role.Role;
 
 /**
- * Deletes a role identified using it's displayed index from the address book.
+ * Deletes a role identified using it's displayed index from the role book.
  */
 public class DeleteCommand extends Command {
 

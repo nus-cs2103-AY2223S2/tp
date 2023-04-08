@@ -6,7 +6,7 @@ import static seedu.techtrack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.techtrack.model.Model;
 
 /**
- * Lists all roles in the address book to the user.
+ * Lists all roles in the role book to the user.
  */
 public class ListCommand extends Command {
 

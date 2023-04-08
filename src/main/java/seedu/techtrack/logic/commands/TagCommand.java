@@ -7,7 +7,7 @@ import seedu.techtrack.model.Model;
 import seedu.techtrack.model.role.TagContainsKeywordsPredicate;
 
 /**
- * Finds and lists all Roles in address book whose tags contains any of the argument keywords.
+ * Finds and lists all Roles in role book whose tags contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class TagCommand extends Command {

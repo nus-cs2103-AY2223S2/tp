@@ -17,7 +17,7 @@ import seedu.techtrack.logic.parser.OrderParser;
 import seedu.techtrack.model.role.Role;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the role book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyRoleBook roleBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(roleBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + roleBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with role book: " + roleBook + " and user prefs " + userPrefs);
 
         this.roleBook = new RoleBook(roleBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -118,7 +118,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Role} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedRoleBook}
      */
     @Override
     public ObservableList<Role> getFilteredRoleList() {
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
                 return Integer.compare(s2, s1);
             }
         });
-        logger.info("AddressBook is sorted: " + this.roleBook);
+        logger.info("RoleBook is sorted: " + this.roleBook);
 
         this.roleBook.setRoles(roles);
     }
@@ -161,7 +161,7 @@ public class ModelManager implements Model {
             }
         });
 
-        logger.info("AddressBook is sorted: " + this.roleBook);
+        logger.info("RoleBook is sorted: " + this.roleBook);
 
         this.roleBook.setRoles(roles);
     }
