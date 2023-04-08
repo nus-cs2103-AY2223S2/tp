@@ -12,7 +12,6 @@ import javafx.application.Platform;
 public abstract class FxTest {
     @BeforeAll
     static void initJfxRuntime() {
-        System.setProperty("jdk.gtk.version", "2");
         Platform.startup(() -> {
         });
     }
