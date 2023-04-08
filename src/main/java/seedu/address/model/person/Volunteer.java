@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.AvailableDate;
@@ -87,8 +88,10 @@ public class Volunteer extends Person {
         }
         Set<MedicalQualificationTag> medicalTags = getMedicalTags();
         if (!medicalTags.isEmpty()) {
-            builder.append("; Medical qualifications: ");
-            medicalTags.forEach(builder::append);
+            builder.append("; Medical Qualifications: ");
+            builder.append(
+                    medicalTags.stream().map(MedicalQualificationTag::toFullString)
+                            .collect(Collectors.joining(", ")));
         }
         return builder.toString();
     }

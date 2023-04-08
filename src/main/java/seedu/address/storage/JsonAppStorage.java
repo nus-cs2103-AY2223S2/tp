@@ -38,7 +38,7 @@ public abstract class JsonAppStorage<T, K extends T, R extends JsonSerializable<
     /**
      * Reads the file and converts the data to populate {@code FriendlyLink}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param filePath Location of the data. Cannot be null.
      * @param classInfo Information of classes in this app.
      * @param logger Message logger.
      * @param friendlyLink FriendlyLink cache.

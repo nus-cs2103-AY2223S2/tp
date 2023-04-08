@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.RecommendationException;
@@ -13,10 +16,10 @@ import seedu.address.logic.parser.AddPairCommandParser;
 import seedu.address.logic.parser.AddVolunteerCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.AutoPairCommandParser;
 import seedu.address.logic.parser.DeleteElderlyCommandParser;
 import seedu.address.logic.parser.DeletePairCommandParser;
 import seedu.address.logic.parser.DeleteVolunteerCommandParser;
-import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.EditElderlyCommandParser;
 import seedu.address.logic.parser.EditVolunteerCommandParser;
 import seedu.address.logic.parser.ExitCommandParser;
@@ -24,14 +27,34 @@ import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.HelpCommandParser;
 import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.StatsCommandParser;
 
 public class CommandRecommendationEngineTest {
     private static final CommandRecommendationEngine commandRecommendationEngine =
             CommandRecommendationEngine.getInstance();
 
+    private void testCommandParser(String userArgs, String commandWord, Class<?> commandParserClass) {
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                commandRecommendationEngine.getCommandInfoMap()
+                        .get(commandWord)
+                        .getCmdPrompts()
+                        .keySet()
+                        .toArray(new Prefix[]{}));
+        assertThrows(RecommendationException.class, () -> {
+            try {
+                Method validateMethod = commandParserClass.getDeclaredMethod("validate", ArgumentMultimap.class);
+                validateMethod.setAccessible(true);
+                validateMethod.invoke(commandParserClass, argumentMultimap);
+            } catch (InvocationTargetException e) {
+                throw new RecommendationException();
+            }
+        });
+    }
+
     @Test
     public void recommendCommand_validCommand_success() {
         try {
+            // Complete commands
             String expected = "add_volunteer n/NAME ic/NRIC bd/BIRTH_DATE re/[REGION] a/[ADDRESS] p/[PHONE]"
                     + " e/[EMAIL] mt/[MEDICAL_QUALIFICATION] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END] t/[TAG]";
             String actual = commandRecommendationEngine.generateCommandRecommendations("add_volunteer");
@@ -42,25 +65,38 @@ public class CommandRecommendationEngineTest {
             actual = commandRecommendationEngine.generateCommandRecommendations("add_elderly n/Zong Xun ");
             assertEquals(expected, actual);
 
-            expected = "edit <NRIC> n/[NAME] ic/[NRIC] bd/[BIRTH_DATE] re/[REGION] r/[RISK] a/[ADDRESS] p/[PHONE]"
-                    + " e/[EMAIL] mt/[MEDICAL_QUALIFICATION] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END] t/[TAG]";
-            actual = commandRecommendationEngine.generateCommandRecommendations("edit");
-            assertEquals(expected, actual);
-
+            // Incomplete field values
             expected = "edit NRIC n/[NAME]";
             actual = commandRecommendationEngine.generateCommandRecommendations("edit NRIC n");
             assertEquals(expected, actual);
 
+            // Unrecognised field
             expected = "edit NRIC gib";
             actual = commandRecommendationEngine.generateCommandRecommendations("edit NRIC gib");
             assertEquals(expected, actual);
 
+            // Incomplete command
             expected = "exit";
             actual = commandRecommendationEngine.generateCommandRecommendations("ex");
             assertEquals(expected, actual);
 
             expected = "auto_pair";
             actual = commandRecommendationEngine.generateCommandRecommendations("auto_p");
+            assertEquals(expected, actual);
+
+            // With preamble
+            expected = "list <[UNPAIRED \\ PAIRED]>";
+            actual = commandRecommendationEngine.generateCommandRecommendations("list");
+            assertEquals(expected, actual);
+
+            // Without preamble
+            expected = "list paired";
+            actual = commandRecommendationEngine.generateCommandRecommendations("list paired");
+            assertEquals(expected, actual);
+
+            expected = "edit T0046357P n/[NAME] ic/[NRIC] bd/[BIRTH_DATE] re/[REGION] r/[RISK] a/[ADDRESS] p/[PHONE]"
+                    + " e/[EMAIL] mt/[MEDICAL_QUALIFICATION] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END] t/[TAG]";
+            actual = commandRecommendationEngine.generateCommandRecommendations("edit T0046357P ");
             assertEquals(expected, actual);
         } catch (RecommendationException e) {
             fail();
@@ -69,6 +105,7 @@ public class CommandRecommendationEngineTest {
 
     @Test
     public void recommendCommand_invalidCommand_fail() {
+        // Invalid command
         assertThrows(RecommendationException.class, () ->
                 commandRecommendationEngine.generateCommandRecommendations("gibbeish"));
 
@@ -78,111 +115,166 @@ public class CommandRecommendationEngineTest {
 
 
     @Test
-    public void parseArguments_invalidArgs_fail() throws RecommendationException {
-        String userArgs = "notValidInput n/Zong Xun dil/";
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
-                commandRecommendationEngine.getCommandInfoMap()
-                .get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> AddVolunteerCommandParser.validate(finalArgumentMultimap));
+    public void parseArguments_invalidArgs_fail() {
+        // Invalid prefix
+        String userArgs = " n/Zong Xun invalid/Hello World"; // require empty space to simulate preamble
+        testCommandParser(userArgs,
+                AddVolunteerCommand.COMMAND_WORD,
+                AddVolunteerCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(AddElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap1 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> AddElderlyCommandParser.validate(finalArgumentMultimap1));
+        testCommandParser(userArgs,
+                AddElderlyCommand.COMMAND_WORD,
+                AddElderlyCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(AddPairCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap2 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> AddPairCommandParser.validate(finalArgumentMultimap2));
+        testCommandParser(userArgs,
+                AddPairCommand.COMMAND_WORD,
+                AddPairCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(ExitCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap3 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> ExitCommandParser.validate(finalArgumentMultimap3));
+        testCommandParser(userArgs,
+                ExitCommand.COMMAND_WORD,
+                ExitCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(ListCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap4 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> ListCommandParser.validate(finalArgumentMultimap4));
+        testCommandParser(userArgs,
+                ListCommand.COMMAND_WORD,
+                ListCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(HelpCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap5 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> HelpCommandParser.validate(finalArgumentMultimap5));
+        testCommandParser(userArgs,
+                HelpCommand.COMMAND_WORD,
+                HelpCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(DeletePairCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap6 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> DeletePairCommandParser.validate(finalArgumentMultimap6));
+        testCommandParser(userArgs,
+                DeletePairCommand.COMMAND_WORD,
+                DeletePairCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(FindCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap10 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> FindCommandParser.validate(finalArgumentMultimap10));
+        testCommandParser(userArgs,
+                EditElderlyCommand.COMMAND_WORD,
+                EditElderlyCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(EditCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap11 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> EditCommandParser.validate(finalArgumentMultimap11));
+        testCommandParser(userArgs,
+                EditVolunteerCommand.COMMAND_WORD,
+                EditVolunteerCommandParser.class);
 
+        testCommandParser(userArgs,
+                FindCommand.COMMAND_WORD,
+                FindCommandParser.class);
+
+        // Requires non-empty preamble
         userArgs = "";
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(DeleteElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap7 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> DeleteElderlyCommandParser.validate(finalArgumentMultimap7));
+        testCommandParser(userArgs,
+                DeleteElderlyCommand.COMMAND_WORD,
+                DeleteElderlyCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(DeleteVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap8 = argumentMultimap;
-        assertThrows(RecommendationException.class, () ->
-                DeleteVolunteerCommandParser.validate(finalArgumentMultimap8));
+        testCommandParser(userArgs,
+                DeleteVolunteerCommand.COMMAND_WORD,
+                DeleteVolunteerCommandParser.class);
 
-        userArgs = "n/Zon hello/<nric>";
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        ArgumentMultimap finalArgumentMultimap9 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> AddVolunteerCommandParser.validate(finalArgumentMultimap9));
+        // Requires empty preamble
+        userArgs = "non-empty";
+        testCommandParser(userArgs,
+                StatsCommand.COMMAND_WORD,
+                StatsCommandParser.class);
 
-        userArgs = "1";
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
-                .get(EditElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        assertTrue(EditElderlyCommandParser.validate(argumentMultimap));
+        testCommandParser(userArgs,
+                AutoPairCommand.COMMAND_WORD,
+                AutoPairCommandParser.class);
 
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
+        testCommandParser(userArgs,
+                ExitCommand.COMMAND_WORD,
+                ExitCommandParser.class);
+    }
 
-                .get(EditVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        assertTrue(EditVolunteerCommandParser.validate(argumentMultimap));
+    @Test
+    public void parsePreamble_nonEmpty_success() {
+        try {
+            // Non-empty
+            String userArgs = "1";
+            String command = EditElderlyCommand.COMMAND_WORD;
+
+            ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                    commandRecommendationEngine.getCommandInfoMap()
+                    .get(command).getCmdPrompts().keySet()
+                    .toArray(new Prefix[]{}));
+            assertTrue(EditElderlyCommandParser.validate(argumentMultimap));
+
+            argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
+                    .get(EditVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                    .toArray(new Prefix[]{}));
+            assertTrue(EditVolunteerCommandParser.validate(argumentMultimap));
+
+            argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
+                    .get(EditVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                    .toArray(new Prefix[]{}));
+            assertTrue(EditVolunteerCommandParser.validate(argumentMultimap));
+
+            // Valid prefixes
+            userArgs = " n/Zong Xun";
+            argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
+                    .get(FindCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                    .toArray(new Prefix[]{}));
+            assertTrue(FindCommandParser.validate(argumentMultimap));
+
+            argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
+                    .get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                    .toArray(new Prefix[]{}));
+            assertTrue(AddVolunteerCommandParser.validate(argumentMultimap));
+
+            userArgs = " vic/T0046358D";
+            argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
+                    .get(AddPairCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                    .toArray(new Prefix[]{}));
+            assertTrue(AddPairCommandParser.validate(argumentMultimap));
+        } catch (RecommendationException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
     public void parseUserInputForAutocompletion_validInput_success() {
         try {
+            // Incomplete command
             String userInput = "add_v";
             String autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
             assertEquals("add_volunteer", autocomplete);
 
-            userInput = "auto_p";
-            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
-            assertEquals("auto_pair", autocomplete);
-
+            // Complete command
             userInput = "add_elderly";
             autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
             assertEquals("add_elderly n/", autocomplete);
+
+            // No preamble
+            userInput = "auto_pair";
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
+            assertEquals("auto_pair", autocomplete);
+
+            userInput = "exit     "; // with spaces
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
+            assertEquals("exit", autocomplete);
+
+            // With preamble
+            userInput = "list";
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
+            assertEquals("list", autocomplete);
+
+            userInput = "edit";
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
+            assertEquals("edit", autocomplete);
+
+            userInput = "edit_elderly";
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
+            assertEquals("edit_elderly", autocomplete);
+
+            userInput = "edit_volunteer";
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
+            assertEquals("edit_volunteer", autocomplete);
+
+            // Incomplete field value
+            userInput = "add_elderly n/";
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
+            assertEquals("add_elderly n/", autocomplete);
+
+            userInput = "add_elderly n/Zong Xun ";
+            autocomplete = commandRecommendationEngine.autocompleteCommand(userInput);
+            assertEquals("add_elderly n/Zong Xun ic/", autocomplete);
         } catch (RecommendationException e) {
             fail();
         }

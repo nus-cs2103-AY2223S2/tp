@@ -52,7 +52,7 @@ public class JsonUtil {
      * Returns the Json object from the given file or {@code Optional.empty()} object if the file is not found.
      * If any values are missing from the file, default values will be used, as long as the file is a valid json file.
      *
-     * @param filePath Cannot be null.
+     * @param filePath Location of the file.
      * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class given here.
      * @return {@code Optional} containing the object red from the file.
      * @throws DataConversionException If the file format is not as expected.
@@ -82,8 +82,8 @@ public class JsonUtil {
      * Saves the Json object to the specified file.
      * Overwrites existing file if it exists, creates a new file if it doesn't.
      *
-     * @param jsonFile cannot be null.
-     * @param filePath cannot be null.
+     * @param jsonFile Object to save.
+     * @param filePath Location of the file.
      * @throws IOException If there was an error during writing to the file.
      */
     public static <T> void saveJsonFile(T jsonFile, Path filePath) throws IOException {

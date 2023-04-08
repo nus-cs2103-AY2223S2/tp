@@ -175,29 +175,28 @@ ensuring accuracy.
 
 #### Implementation
 
-To provide autocompletion, the `CommandRecommendationEngine` uses an event handler attached to the `commandTextField` 
-which listens for the `TAB` event. When triggered, it autocompletes the user's input by replacing it with the recommended values.
+To provide autocompletion, the `CommandRecommendationEngine` uses an event listener attached to the `commandTextField` 
+When the `TAB` key is triggered, it autocompletes the user's input by replacing the input with the recommended values.
 
-On the other hand, to provide command recommendations, the engine uses the longest prefix matching algorithm. This 
-algorithm first **identifies** the related command based on the user's input and then **verifies** the fields 
-associated with it. For instance, when the user types "add_e" in the command prompt, the engine will first recommend
-"add_elderly", followed by the related fields. If there are ambiguities in the recommendations, the decision is to return 
-the commands based on using lexicographical ordering. 
+Similarly, to provide recommendations, an event handler, which parses the user input and returns the recommendation, is triggered
+on each key pressed. Using the longest prefix match algorithm, the engine first **identifies** the related command
+and then **verifies** the fields associated with it. If there are ambiguities in the recommendations, the recommendation
+will rank the commands using lexicographical ordering. 
 
-The CommandRecommendationEngine also uses the concept of **Full Attribute** commands and **Complete** commands. 
-A _Full Attribute_ command means that all fields of the command, including optional and compulsory, have been specified. 
-On the other hand, a _Complete_ command indicates that a command has been fully typed, but arguments may or may not have been typed. 
-This distinction helps the engine to provide more accurate recommendations based on the user's input.
+To facilitate the implementation, `CommandRecommendationEngine` uses the concept of **Full Attribute** commands and 
+**Complete** commands. A _Full Attribute_ command means that all fields of the command, optional and compulsory, 
+have been specified. On the other hand, a _Complete_ command indicates that a command has been fully typed, but the arguments 
+may or may not have been entered. This distinction helps the engine to provide more accurate recommendations based on the user's input.
 
 The following activity diagram describes the activity flow:
 
 <img src="images/developerGuide/CommandRecommendationActivityDiagram.png"/>
 
-To ensure the correctness of the attributes specified, the CommandRecommendationEngine also uses an event listener 
-to provide immediate feedback to the user. This feedback mechanism helps to minimize errors and ensure that users input 
-the correct command attributes.
+Adding on, the same event handler can be used to provide immediate input validation. Developers can choose to customize the 
+behaviour of the validation for each command. This feedback mechanism helps to minimize errors and ensure that users 
+input the correct command attributes.
 
-Finally, the CommandRecommendationEngine provides a registerCommandInfo method that allows developers to register new commands
+Finally, the `CommandRecommendationEngine` provides a `registerCommandInfo` method that allows developers to register new commands
 and turn on command recommendation for them. This flexibility ensures that the engine can adapt to changes in the application 
 and provide accurate recommendations even as the application evolves.
 

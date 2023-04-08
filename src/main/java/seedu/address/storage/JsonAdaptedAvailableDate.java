@@ -16,7 +16,7 @@ public class JsonAdaptedAvailableDate {
     /**
      * Constructs a {@code JsonAdaptedAvailableDate} with the given {@code dateRange}.
      *
-     * @param dateRange date range for Jackson usage.
+     * @param dateRange Date range for Jackson usage.
      */
     @JsonCreator
     public JsonAdaptedAvailableDate(String dateRange) throws IllegalValueException {

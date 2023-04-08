@@ -26,7 +26,7 @@ public class VolunteerCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Volunteer volunteer;
+    private final Volunteer volunteer;
 
     @FXML
     private HBox cardPane;
