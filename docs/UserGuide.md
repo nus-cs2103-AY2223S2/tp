@@ -284,7 +284,7 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/UR
 
 * Edits the bookmark at the specified `INDEX`. The index refers to the index number shown in the displayed bookmark list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* The genre and tags provided must be in the list of existing genre and tags respectively.
+* The valid values for each item is the same as the [`add` command](#adding-a-bookmark-add).
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the bookmark will be removed i.e adding of tags is not cumulative.
 * You can remove all the bookmark’s tags by typing `t/` without specifying any tags after it.
@@ -323,7 +323,7 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * At least one of the optional fields must be provided.
 * The search for name and author is case-insensitive. e.g. `rankers` will match `Rankers`
 * The search for genre and tag is case-sensitive. e.g. `fantasy` will not match `Fantasy`
-* The genre and tags provided must be in the list of existing genre and tags respectively.
+* The valid values for each items is the same as the [`add` command](#adding-a-bookmark-add).
 * The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
 * Only the fields of the specified prefixes are searched.
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
