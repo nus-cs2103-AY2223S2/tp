@@ -1274,7 +1274,7 @@ Before every test case, ensure that the there are no patients. This can be done 
 * `patient add --n John   Doe --p 98765432 --d 2001-03-19 --b B+`
 * `patient add --n John   Doe2 --p 98765432 --d 2001-03-19 --b B+`
 
-##### Invalid Name
+##### Invalid Name {#invalid-patient-name}
 
 * `patient add --n John-Doe --p 98765432 --d 2001-03-19 --b B+`
 * `patient add --n    --p 98765432 --d 2001-03-19 --b B+`
@@ -1531,4 +1531,4 @@ Before every test case, ensure that the there are no patients and vaccinations.
 
 ## Appendix: Planned enhancements
 
-stuff...
+1. We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
