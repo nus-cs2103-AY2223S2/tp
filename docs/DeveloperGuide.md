@@ -137,7 +137,7 @@ Each `Card` object,
 
 ##### Review 
 
-<img src="images/SimplifiedReviewClassDiagram.png" width="450" />
+<img src="images/SimplifiedReviewClassDiagram.png" width="600" />
 
 The `Review`
 * stores a `Deck` currently being reviewed.
