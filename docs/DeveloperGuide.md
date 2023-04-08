@@ -887,8 +887,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a task
 
 1. Deleting a task while all tasks are being shown
@@ -896,7 +894,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. 
 
    1. Test case: `delete 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
@@ -904,7 +902,21 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Set an alert window
+
+1. Add a task that starts or ends within 24 hours
+   1. Prerequisites: It is the first start-up of Clock-Work with no `alert` command calls. OR <br>
+    User has already called `alert 24`.
+   1. Test case: `add n/Test D/2023-04-08 0900` assuming that is it currently `2023-04-07 1000` <br>
+    Expected: Task added to the task list. Details of added task shown in status message. <br>
+    If it is first time start up of Clock-Work or alert window already set to 24, the task should already appear in the alert window.
+2. Add a task that starts or ends within 48 hours
+   1. Prerequisites: It is the first start-up of Clock-Work with no changes `alert` command calls. OR <br>
+      User has already called `alert` with an alert window less than 48 hours.
+   1. Set up: `add n/Test D/2023-04-09 0900` assuming that is it currently `2023-04-07 1000` <br>
+      Expected: Task added to the task list. Details of added task shown in status message. <br>
+   1. Test case: `alert 48`. <br>
+   Expected: The task should already appear in the alert window.
 
 ### Saving data
 
