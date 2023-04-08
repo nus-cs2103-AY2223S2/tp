@@ -250,15 +250,12 @@ After navigating to a lecture or module context, the navigation system will **in
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
   1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture Week 1 of module CS2040S.
-
   > `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
 
   2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture Week 1 of module CS2040S.
-
   > `list` -> `list /mod CS2040S /lec Week 1`
 
   3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture Week 1 of module CS2040S.
-
   > `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ### Specifying Your Own Context In Commands
