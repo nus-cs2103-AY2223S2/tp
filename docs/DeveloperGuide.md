@@ -16,10 +16,9 @@ Use of PetPal can be scaled to include pet shelters, groomers or trainers.
 
 PetPal uses Java 11, and can be run on most operating systems that supports Java (e.g. Windows, macOS, Linux)
 
---------------------------------------------------------------------------------------------------------------------
+
 
 ## About the Developer Guide
-
 ### Objectives
 This guide is targeted towards potential developers that would want to contribute to the open-source project - PetPal.
 
@@ -28,38 +27,26 @@ the current and proposed features, detailing the design considerations and how i
 
 The Design section makes use of various UML diagrams which were created using [PlantUML](https://plantuml.com/)
 
-### Instructions for use
 
+<br>
+
+### Instructions for use
 #### General formatting conventions
-* Text in [blue](#How-to-use-the-user-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
+* Text in [blue](#about-the-developer-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
 * Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text.
 * Text in `code snippets such as this` are used to show inputs and their format.
 
-<div markdown="block" class="alert alert-block alert-info">
-
-* :white_check_mark: **Input Shortcut:**
-  Shortened forms of commands which can help increase your efficiency in using PetPal
-</div>
 
 <div markdown="block" class="alert alert-block alert-success">
 
 * :bulb: **Note:**
-  Information that might be useful to know to enhance your PetPal experience, might not be compulsory to know
+  Information that is useful to note.
 </div>
 
 <div markdown="block" class="alert alert-block alert-danger">
 
 * :heavy_exclamation_mark: **Caution:**
-  Important information to note which might negatively impact your experience in using PetPal as it might cause fatal
-  errors
-</div>
-
-<div markdown="block" class="alert alert-warning">
-
-* :information_source: **Information**
-
-Information that you need to know
-
+  Important information to note.
 </div>
 
 [Return to Table of Contents](#table-of-contents)
@@ -413,9 +400,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The proposed undo/redo mechanism is facilitated by `VersionedPetPal`. It extends `PetPal` with an undo/redo history, stored internally as an `PetPalStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedPetPal#commit()` — Saves the current address book state in its history.
-* `VersionedPetPal#undo()` — Restores the previous address book state from its history.
-* `VersionedPetPal#redo()` — Restores a previously undone address book state from its history.
+* `VersionedPetPal#commit()`— Saves the current address book state in its history.
+* `VersionedPetPal#undo()`— Restores the previous address book state from its history.
+* `VersionedPetPal#redo()`— Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitPetPal()`, `Model#undoPetPal()` and `Model#redoPetPal()` respectively.
 
@@ -560,62 +547,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `PetPal` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a pet**
+**Use case: View help** 
 
-**MSS**
+[//]: # TODO()
 
-1.  Staff requests to list pets
-2.  PetPal shows a list of pets
-3.  Staff requests to delete a specific pet in the list
-4.  PetPal deletes the pet
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. PetPal shows an error message.
-
-      Use case resumes at step 2.
-
-(For all use cases below, the **System** is the `PetPal` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Add a pet**
-
-**MSS**
-
-1.  Staff requests to add pet
-2. PetPal deletes the pet
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The details are missing
-    * 2a1. PetPal prompts owner/staff to add missing petname.
-
-  Use case ends.
 
 **Use case:List the list of pets**
 
 **MSS**
 
-1. Staff requests to list pets
-2. PetPal displays list
-
+1. Actor requests to list pets
+2. System displays list<br>
    Use case ends.
 
 **Extensions**
-
-* 2a. There are no pet details.
-
+* 2a. There are no pet details.<br>
   Use case ends.
 
+
+**Use case: Add a pet**
+
+**MSS**
+1. Actor requests to add pet
+2. System deletes the pet<br>
+   Use case ends.
+
+**Extensions**
+* 2a. Any required detail(s) are missing
+    * 2a1. System shows an error message.<br>
+      Use case ends.
+
+
+**Use case: View reminders**
+
+[//]: # TODO()
+
+
+**Use case: Find pet by name**
+
+[//]: # TODO()
+
+
+**Use case: Edit a pet**
+
+[//]: # TODO()
+
+
+**Use case: Change rate of Cost**
+
+[//]: # TODO()
+
+
+**Use case: Mark deadline**
+
+[//]: # TODO()
+
+
+**Use case: Delete a pet**
+
+**MSS**
+1.  Actor requests to list pets
+2.  System shows a list of pets
+3.  Actor requests to delete a specific pet in the list
+4.  System deletes the pet<br>
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.<br>
+      Use case resumes at step 2.
+
+
+**Use case: Archive a pet**
+
+[//]: # TODO()
+
+
+**Use case: Clear the pet list**
+
+[//]: # TODO()
+
+
+**Use case: Undo a command**
+
+[//]: # TODO()
+
+
+**Use case: Exit the System**
+
+**MSS**
+1. Actor requests to exit
+2. System exits<br>
+    Use case ends.
+
+
+[Return to Table of Contents](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 
@@ -623,13 +654,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 pets without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
+
+
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+| Term          | Definition                            |
+|---------------|---------------------------------------|
+| Mainstream OS | Refers to Windows, Linux, Unix, MacOS |
 
 [Return to Table of Contents](#table-of-contents)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 

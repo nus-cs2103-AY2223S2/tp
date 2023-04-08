@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 # Welcome to PetPal!
-![Logo](images/UI/logo.png)
+![Logo](images/UI/AlternateLogo.png)
 
 PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI!
 You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
@@ -550,6 +550,6 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 ## Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
-* The logo used makes use of the [Dog icons created by Flat Icons - Flaticon] (https://www.flaticon.com/free-icons/dog)
+* The logo used references the [Dog icons created by Flat Icons - Flaticon](https://www.flaticon.com/free-icons/dog)
 
 [Return to Table of Contents](#table-of-contents)
