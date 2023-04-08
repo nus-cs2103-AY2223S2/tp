@@ -38,7 +38,7 @@ MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 RecipeListPanel -down-> "*" RecipeCard
-RecipeDetailsPanel --* RecipeListPanel
+RecipeDetailsPanel "1" <--* RecipeListPanel
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart

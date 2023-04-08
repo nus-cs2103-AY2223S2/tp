@@ -11,6 +11,8 @@ It is written in Java and uses JavaFX to create a Graphical User Interface (GUI)
 
 Given below are my contributions to the project.
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bernicetoh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=bernicetoh&tabRepo=AY2223S2-CS2103T-W09-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
 * **New Feature**: Added the ability to view a detailed view of a recipe with on-click action. (Pull 
   request [#96](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/96))
   * What it does: allows the user to see a detailed view of a recipe one at a time on the right panel by 
@@ -32,23 +34,30 @@ Given below are my contributions to the project.
 
 * **Enhancement to existing features**: Improved the GUI. (Pull request [#143](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/143), [#122](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/122), 
   [#81](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/81))
-  * Moved the `recipe card list panel` to the left, and added a new `recipe details panel` to the
+  * Moved the `Recipe List Panel` to the left, and added a new `Recipe Details Panel` to the
       right.
   * Updated GUI to fit CookHub's agenda.
   * Made GUI responsive when resizing the application window.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bernicetoh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=bernicetoh&tabRepo=AY2223S2-CS2103T-W09-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
+* **Bug fixing**: Updated error messages displayed. (Pull request [#219](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/219))
+    * Fixed and closed [11 functionality bugs](https://github.com/AY2223S2-CS2103T-W09-1/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Abernicetoh+PE-D) relating to error messages displayed in 
+      the result display found during PE-D.
+    * Error messages were updated to be more specific.
+    
 * **Documentation**:
     * User Guide:
       * Added documentation for the `add`, `edit` and `delete` commands. (Pull request [#144](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/144))
       * Created annotated images of command formats for clearer presentation. (Pull request [#235](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/235))
       * Created annotated GUI images for clearer presentation. (Pull request [#243](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/243))
+      * Cleaned up and standardised presentation and format of images [#250](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/250)
 
     * Developer Guide:
       * Updated architecture diagrams to reflect project design. (Pull request [#118](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/118), [#112](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/112/files))
       * Updated Use Cases (Pull request [#250](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/250)
-      * Updated Instructions for Manual testing (Pull request [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257))
+      * Updated Instructions for Manual Testing (Pull request [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257))
+      * Updated Non-Functional Requirements [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257)
+      * Added Appendix: Effort [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257)
+      * Enhanced Appendix: Planned Enhancements [#259](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/259)
       
 * **Community**:
     * Pull Requests reviewed: 12 [(GitHub)](https://github.com/AY2223S2-CS2103T-W09-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
