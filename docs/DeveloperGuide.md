@@ -763,31 +763,6 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-### Sort roles by salary
-
-Prerequisite: There are roles stored in RoleBook with different salaries.
-
-Format: `salary asc`
-
-Expected Output in the Role List Box : Roles are sorted in ascending order starting from the highest salary.
-
-Expected Output Command Output Box : Salaries sorted in asc.
-
-### Sort roles by deadline
-
-Similar to the manual testing of [sort roles by salary section](#sort-roles-by-salary).
-
-### View the information of a Role
-
-Prerequisite: There is at least 1 role shown in the Role List Box
-
-Format: `view 1`
-
-Expected Output in the Role List Box : Still showing the same list as before.
-
-Expected Output Command Output Box : Details of first role in Role List Box shown. Displayed information includes the
-name, company, salary, deadline, experience, job description, email, contact and website of the role.
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
@@ -877,6 +852,29 @@ testers are expected to do more *exploratory* testing.
    
 1. Other incorrect delete commands to try: `name /n`, `name x`, `...`<br>
    Expected: Similar to previous.
+
+### Sort roles by salary
+
+1. Sorting role by salary.
+2. Prerequisite: There are roles stored in RoleBook with different salaries.
+3. Test case: `salary asc` <br>
+   Expected: Roles are sorted in ascending order starting from the highest salary.
+4. Test case: `salary desc` <br>
+   Expected: Roles are sorted in descending order starting from the lowest salary.
+
+### Sort roles by deadline
+
+Similar to the manual testing of [sort roles by salary section](#sort-roles-by-salary).
+
+### View the information of a Role
+
+1. Viewing information of role
+2. Prerequisite: There is at least 1 role shown in the Role List Box
+3. Test Case: `view 1` <br>
+   Expected: Still showing the same role list as before. Details of first role is shown and display information 
+   that includes the name, company, salary, deadline, experience, job description, email, contact and website 
+   of the role.
+
 
 ### Saving data
 
