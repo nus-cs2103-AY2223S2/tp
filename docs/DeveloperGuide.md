@@ -71,7 +71,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram1.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -234,15 +234,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+### Data Summary feature
 
-### \[Proposed\] Data Summary feature
+#### Implementation
 
-#### Proposed Implementation
-
-The proposed data summary feature. It extends `AddressBook`. Data summary includes contact count, number of tags,...
+It extends `AddressBook`. Data summary includes contact count, number of tags,...
 
 Given below is an example usage scenario and how the data summary mechanism behaves at each step.
 
@@ -252,12 +249,9 @@ Step 2. The user populate the address book with commands such as add, edit, dele
 
 Step 3. The user click on the summary tab.
 
-
 Step 4. The user now sees a summary of his/her data.
 
-
 Step 5. The user then decides to close the tab, he/she clicks on the close button.
-
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -277,14 +271,14 @@ This also allows user to access their summary easily as the summary tab will be 
 
 * **Alternative 2:** Display in the main page.
 
-    * Pros: East to implement.
+    * Pros: Ease to implement.
     * Cons: Information will be cramped together.
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Filter by tag feature
+### Filter by tag feature
 
-#### Proposed Implementation
+#### Implementation
 The proposed feature will allow users to filter persons by the tags they possess.
 It is implemented similar to the `FindCommand`, extending `CommandParser` with a new command to parse.
 
@@ -325,9 +319,9 @@ hence we allow multiple arguments input and require that all arguments are satis
 
 
 
-### \[Proposed\] Sort feature
+### Sort feature
 
-#### Proposed Implementation
+#### Implementation
 The proposed feature will allow users to sort persons 3 ways:
 1. Ascending Business Size `sortAsc`
 2. Descending Business Size `sortDesc`
@@ -343,8 +337,6 @@ Step 2. The respective sort command will be parsed, creating a sort command whic
 Step 3. On execution of the sort command, the database of contacts is sorted accordingly and the new list is displayed.
 
 
-
-
 #### Design considerations:
 
 1. Users would like to be able to sort by the size of leads
@@ -355,25 +347,6 @@ Step 3. On execution of the sort command, the database of contacts is sorted acc
 
 #### Why this implementation
 
-
-
-### \[Proposed\] Lead Receptivity feature
-
-#### Proposed Implementation
-The proposed feature will be added as an additional field in the person class.
-
-#### Design considerations:
-
-1. Users would like to be able to sort by which leads are the most promising
-2. Users would also be able to edit how their leads receptivity have changed over time
-
-{more to be elaborated in the future}
-
-
-#### Why this implementation
-This feature will be implemented as an additional field to the contact that can be added.
-This feature will allow users to sort by which leads they believe are the most promising and thus focus their
-attention on them accordingly
 
 
 
@@ -548,6 +521,16 @@ Use case ends.
 
   Use case ends.
 
+**Use case: Opening Summary Window**
+
+**MSS**
+
+1.  User requests for summary window to be opened.
+2.  NextBigFish opens the summary window.
+3.  User view his/her data summary.
+4.  User close the summary window.
+
+    Use case ends.
 
 *{More to be added}*
 
