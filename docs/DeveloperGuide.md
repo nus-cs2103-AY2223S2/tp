@@ -435,7 +435,6 @@ Given below is an example usage of how NameCommand is being used in the followin
 
 2. The user can choose to use the `Name Command` to filter names.
     - The user executes `name <keyword>` command to filter roles by their name.
-      <img src="images/UICommandImages/NameCommand.png" width="800" />
 
 The following sequence diagram shows how the `name` command works:
 
