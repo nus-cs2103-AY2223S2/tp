@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -579,7 +578,9 @@ illustrates how the `MainWindow.java` file determines the type of display render
 
 **Target user profile**:
 
-* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search for their job efficiently.
+* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for
+  internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search
+  for their job efficiently.
 
 **Value Proposition**: Manage jobs faster than a typical mouse/GUI driven app
 
@@ -818,36 +819,43 @@ testers are expected to do more *exploratory* testing. </div>
 1. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-
 ### Adding a Role
+
 1. Adding a Role to role book.
 
-1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
-   
-   Expected: Role is added to the bottom of the list, on the left side. Role name, company, tags, salary, deadline, experience required are shown. The rest of roles in the list remains.
-   
-1. Test case: `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
-   
+1. Test
+   case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, tags, salary, deadline,
+   experience required are shown. The rest of roles in the list remains.
+
+1. Test
+   case: `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+
    Expected: Role is not added, Error details shown in the status message. Missing compulsory field.
-   
-1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
-   
-   Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
-   
+
+1. Test
+   case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience
+   required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
+
 ### Editing a Role
+
 1. Editing an existing role.
 
 1. Prerequisities: `view 1` and index 1 of the list exists.
 
 1. Test case: `edit 1 n/Software Developer`
-   
+
    Expected: Name appearing on the list changes to `Software Developer`, `view 1` shows name to be `Software Developer`.
-   
+
 1. Test case: `edit 0`<br>
    Expected: No role is edited. Error details shown in the status message. Status bar remains the same.
-   
+
 1. Test case: `edit 1`<br>
-   Expected: No role is edited. Error details shown in the status message, asking user to input at least one field. Status bar remains the same.
+   Expected: No role is edited. Error details shown in the status message, asking user to input at least one field.
+   Status bar remains the same.
 
 ### Deleting a Role
 
