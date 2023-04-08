@@ -29,7 +29,6 @@ public class SortCommand extends Command {
         try {
             model.sortPersonList(attribute);
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
             throw new CommandException(e.getMessage());
         }
 

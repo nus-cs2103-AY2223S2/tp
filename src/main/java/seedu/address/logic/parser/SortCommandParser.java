@@ -17,6 +17,7 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String arg) throws ParseException {
         String trimmedArg = arg.trim();
+
         if (trimmedArg.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
