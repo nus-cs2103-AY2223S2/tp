@@ -70,6 +70,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
     private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
     private final ObservableMap<String, Integer> parts =
             FXCollections.observableMap(new CaseInsensitiveHashMap<>());
+    private final ObservableList<Map.Entry<String, Integer>> partList = FXCollections.observableArrayList();
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
@@ -90,6 +91,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.appointments.setAll(DeepCopy.copyCollection(other.appointments.stream()).collect(Collectors.toList()));
         this.parts.clear();
         this.parts.putAll(other.parts);
+        refreshPartList();
     }
 
     /**
@@ -105,6 +107,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.appointments.setAll(toBeCopied.getAppointmentList());
         this.parts.clear();
         toBeCopied.getPartMap().forEach(e -> this.parts.put(e.getKey(), e.getValue()));
+        refreshPartList();
     }
 
     // Getters =========================================================================================================
@@ -155,7 +158,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
      * @return an unmodifiable view of the parts map.
      */
     public ObservableList<Map.Entry<String, Integer>> getPartMap() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(this.parts.entrySet()));
+        return FXCollections.unmodifiableObservableList(this.partList);
     }
 
     // Individual item
@@ -550,6 +553,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
             this.parts.put(part, qty);
         }
         this.parts.put(part, this.parts.get(part) + qty);
+        refreshPartList();
         logger.info(String.format("%s, %d added", part, qty));
     }
 
@@ -584,6 +588,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.undoStack.push(this.copy());
         this.redoStack.clear();
         this.parts.put(partName, this.parts.get(partName) - qty);
+        refreshPartList();
         service.addPart(partName, qty);
     }
 
@@ -689,6 +694,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
                     this.parts.put(partName, qty);
                 }
             }
+            refreshPartList();
             this.getVehicle(toRemove.getVehicleId()).removeService(toRemove);
             for (int i : toRemove.getAssignedToIds()) {
                 this.getTechnician(i).removeServiceIds(x -> x == serviceId);
@@ -753,6 +759,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.redoStack.clear();
         int newQty = this.getPartQty(name) - quantity;
         this.parts.put(name, newQty);
+        refreshPartList();
         logger.info(String.format("%s x %d removed", name, quantity));
     }
 
@@ -773,6 +780,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.undoStack.push(this.copy());
         this.redoStack.clear();
         this.parts.remove(name);
+        refreshPartList();
         logger.info(String.format("%s deleted", name));
     }
 
@@ -816,6 +824,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
             this.parts.put(partName, qty);
         }
         service.getRequiredParts().remove(partName);
+        refreshPartList();
         logger.info(String.format("%s x % d transferred back to shop", partName, qty));
     }
 
@@ -1168,6 +1177,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
 
         this.parts.clear();
         this.parts.putAll(parts);
+        refreshPartList();
 
         logger.info("Shop data overridden");
     }
@@ -1188,6 +1198,10 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         initializeData(other.idGenerator, other.customers, other.vehicles, other.parts, other.services,
                 other.technicians,
                 other.appointments);
+    }
+
+    private void refreshPartList() {
+        this.partList.setAll(this.parts.entrySet());
     }
 
     // --------------------------------------------------
