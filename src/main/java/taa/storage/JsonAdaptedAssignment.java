@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import taa.commons.exceptions.IllegalValueException;
 import taa.model.assignment.Assignment;
 
-/**
- * Jackson-friendly version of {@link Assignment}.
- */
+/** Jackson-friendly version of {@link Assignment}.*/
 public class JsonAdaptedAssignment {
     private final String name;
     private final String totalMarks;
@@ -32,6 +30,12 @@ public class JsonAdaptedAssignment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Assignment toModelType() throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException("An assignment in JSON file has name value missing.");
+        }
+        if (totalMarks == null) {
+            throw new IllegalValueException("An assignment in JSON file has totalMarks value missing.");
+        }
         try {
             return new Assignment(name, Integer.parseInt(totalMarks));
         } catch (NumberFormatException e) {

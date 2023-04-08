@@ -31,8 +31,12 @@ class JsonSerializableTaaData {
     @JsonCreator
     public JsonSerializableTaaData(@JsonProperty("students") List<JsonAdaptedStudent> students,
                                    @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
-        this.students.addAll(students);
-        this.assignments.addAll(assignments);
+        if (students != null) {
+            this.students.addAll(students);
+        }
+        if (assignments != null) {
+            this.assignments.addAll(assignments);
+        }
     }
 
     /**
@@ -59,6 +63,7 @@ class JsonSerializableTaaData {
             }
             classList.addStudent(student);
         }
+
         final ArrayList<Assignment> asgns = new ArrayList<>(assignments.size());
         for (JsonAdaptedAssignment jsonAssignment : assignments) {
             asgns.add(jsonAssignment.toModelType());

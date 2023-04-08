@@ -89,7 +89,7 @@ public class CommandTestUtil {
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedClassList, actualModel.getTaaData());
+        assertEquals(expectedClassList, actualModel.getTaaData().studentList);
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
     /**
