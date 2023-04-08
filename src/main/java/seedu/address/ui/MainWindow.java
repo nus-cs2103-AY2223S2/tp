@@ -224,6 +224,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         HBox.setHgrow(commandBox.getRoot(), Priority.ALWAYS);
 
+        //@@author kimberlybp-reused
+        //Reused from https://stackoverflow.com/a/56516060
+        //To implement tab selection listener, with minor modifications
         tabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             resultDisplay.setFeedbackToUser(tabResultDisplayMessages[newValue.intValue()]);
             if (newValue.intValue() == Tab.PARTS.ordinal()) {
