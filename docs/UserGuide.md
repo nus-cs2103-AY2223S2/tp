@@ -326,7 +326,7 @@ Additional example:
 
 ### Marking a deadline as done : `mark`
 
-The 'mark' function is designed to help pet owners keep track of their pet's deadlines by marking them as done. 
+The 'mark' function is designed to help pet owners keep track of their pet's deadlines by marking them as done.
 
 Pets that are already marked will not be highlighted.
 
@@ -528,7 +528,7 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 | **Edit**        | `edit p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG...]`<br> e.g `Example: edit 6 t/Golden Retriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`                                                                                                       |                       |
 | **Delete**      | `delete INDEX`<br>e.g. `delete 2`                                                                                                                                                                                                                                       |                       |
 | **Remind**      | `remind`                                                                                                                                                                                                                                                                |                       |
-| **Mark**        | `mark INDEX`                                                                                                                                                                                                                                                            | 
+| **Mark**        | `mark INDEX`                                                                                                                                                                                                                                                            |                       | 
 | **Find**        | `find n/PET_NAME`<br>e.g `find Milo`                                                                                                                                                                                                                                    | `f`                   |
 | **Undo**        | `undo`                                                                                                                                                                                                                                                                  |                       |
 | **Change Cost** | `changecost INDEX RATE FLAT_COST`<br>e.g. `changecost 1 0.1 0.5`                                                                                                                                                                                                        | `cc`                  |

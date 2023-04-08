@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to archive pets
     * What it does: Moves the pet data to another save file (archive.json) and removes it from the active pet list (petpal.json)
-    * Justification: Business owners might have older inactive customers that they wish to keep a record of, while also removing from their current active client list to not clutter the list. 
+    * Justification: Business owners might have older inactive customers that they wish to keep a record of, while also removing from their current active client list to not clutter the list.
     * Highlights: Archive feature works with the undo feature, which can restore the pet data to the current pet list
     * PR: [#36](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/36), [#47](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/47), [#65](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/65)
 

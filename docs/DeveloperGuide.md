@@ -438,12 +438,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | staff               | find a pet by name                     | locate details of pets without having to go through the entire list        |
 | `* * *`  | staff               | tag pets                               | take note of pet personalities or special requirements to know their needs |
 | `* *`    | forgetful pet owner | get a reminder for my pet              | remember to fetch my pets from the daycare                                 |
-| `* *`    | pet owner           | keep track of my own pets              | know that my pets are taken care of well                                   | 
-| `* *`    | staff               | keep track of pet locations            | account for missing pets                                                   | 
+| `* *`    | pet owner           | keep track of my own pets              | know that my pets are taken care of well                                   |
+| `* *`    | staff               | keep track of pet locations            | account for missing pets                                                   |
 | `* *`    | forgetful staff     | get a reminder for pets                | track pets that have overstayed their duration                             |
 | `* *`    | staff               | input pet attendance                   | track pet attendance in the daycare                                        |
-| `* *`    | staff               | view pet appointment dates             | bring pets to vet if necessary                                             | 
-| `* *`    | staff               | search for a pet via tags              | cater different services to different pets                                 | 
+| `* *`    | staff               | view pet appointment dates             | bring pets to vet if necessary                                             |
+| `* *`    | staff               | search for a pet via tags              | cater different services to different pets                                 |
 | `* *`    | staff               | schedule appointment dates             | remember when pet owners are coming to pick up or drop off their pets      |
 | `* *`    | staff               | look at vaccination status of pets     | know what vaccinations required are missing                                |
 | `* *`    | staff               | archive pet information                | keep a record of older pet clients                                         |
@@ -451,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | general staff       | write and save notes for pets          | track additional information if needed                                     |
 | `* *`    | staff               | export pet data                        | backup pet data                                                            |
 | `* *`    | new staff           | import pet data                        |                                                                            |
-| `*`      | staff               | input feedback for pet owners          | let the pet owners know how to better care for their pets behaviours       | 
+| `*`      | staff               | input feedback for pet owners          | let the pet owners know how to better care for their pets behaviours       |
 | `*`      | pet owner           | give staff feedback                    | let the staff know how to improve their services                           |
 | `*`      | pet owner           | check pet attendance                   | track how long my pet has been in daycare                                  |
 | `*`      | pet owner           | look at staff comments on the feedback | acknowledge staff feedback and give clarification                          |
@@ -469,7 +469,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `PetPal` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: View help** 
+**Use case: View help**
 
 1. Actor requests to view help
 2. System shows help message<br>
@@ -564,7 +564,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3b. The given pet exists in the archive
     * 3b1. System shows an error message.<br>
-      Use case resumes at step 2  
+      Use case resumes at step 2.
 
 **Use case: Clear the pet list**
 
@@ -667,7 +667,7 @@ testers are expected to do more *exploratory* testing.
     3. The missing files are re-created in the `data` folder with the sample data populated.
 
     <div markdown="block" class="alert alert-block alert-success">
-    
+
     * :bulb: **Note:**
     `archive.json` does not contain any pet entries by default
     </div>
