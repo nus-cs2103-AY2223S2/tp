@@ -32,16 +32,18 @@ of all the commands and keyboard shortcuts available.
 <div style="page-break-after: always;"></div>
 
 ## Quick Start
+
 Let's get you _rizzed_ up in the fastest way possible!
 
-1. Ensure you have [Java](https://www.oracle.com/sg/java/technologies/downloads/) `11` or above installed in you computer.
+
+1. Ensure you have [Java](https://www.oracle.com/sg/java/technologies/downloads/) `11` or above installed in your computer.
 2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
 4. Open a [command terminal](#Glossary), [`cd`](#Glossary) into the folder you put the jar file in, and input the `java -jar
    rizzipe.jar` command to run the application.
 5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have crafted
-some sample recipes for you already.
-![UI QuickStart](images/UiQuickStart.png)
+some sample recipes for you already.<br/><br/>
+![UI QuickStart](images/UiQuickStart.png)<br/><br/>
 6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using `up` and `down` arrow keys!
 7. Type commands within the [command line interface (CLI)](#Glossary) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) Section.
 8. Some of the previously mentioned executable commands may have keyboard shortcuts to make your life easier! Refer to each command within
@@ -116,8 +118,8 @@ information about your recipe such as ingredients and steps!
 Format: `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]... [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
 
 Example(s) of usage:
-* `add n/Honey Chicken Rice`
-![AddCommandUI](images/AddCommandUI.png)
+* `add n/Honey Chicken Rice`<br/><br/>
+![AddCommandUI](images/AddCommandUI.png)<br/><br/>
 * `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300 g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
 * `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
 butter s/Serve and enjoy.`
@@ -146,7 +148,7 @@ Format:
 
 > An empty pop-up form as shown in the image below will appear!
 > 
-> ![AddCommandWindow](images/addfCommand.jpg)
+> ![AddCommandWindow](images/addfCommand.png)
 >
 > Tab to move on to the next input field, and shift+tab to go to the previous field!
 >
@@ -299,7 +301,7 @@ Unsure or unable to remember our list of commands and how to format your inputs?
 Format:
 `help`
 
-> :bulb: Tip: `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!
+> :bulb: Tip: `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!<br/><br/>
 ![HelpCommandUI](images/HelpCommandUI.png)
 
 ### Exiting the program: `exit`

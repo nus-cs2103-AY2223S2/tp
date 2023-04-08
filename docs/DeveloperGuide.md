@@ -50,7 +50,7 @@ The above _**Architecture Diagram**_ explains the high-level design of the App.
 
 Given below is a quick overview of the main components of the app, and how they interact with each other.
 
-<img class="diagram" src="images/ArchitectureDiagram.png" width="341px">
+<img class="diagram" src="images/ArchitectureDiagram.png" width="400px">
 
 <div style="page-break-after: always;"></div>
 #### Main components of the architecture
@@ -92,6 +92,7 @@ Other components interact with a given component through its interface rather th
 The following sections will give more details on each component.
 
 <div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/ui/Ui.java)
@@ -133,8 +134,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `add n/Aglio Olio i/pasta i/pepper` Command](images/AddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `AddCommandParser` should 
 end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -363,7 +367,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 <div style="page-break-after: always;"></div>
-### Use cases
+
+### **Use cases**
 
 (For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
 
@@ -400,6 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: Add a recipe**
 
 **MSS**
@@ -430,6 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: View a recipe**
 
 **MSS**
@@ -450,6 +457,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: Delete a recipe**
 
 **MSS**
@@ -473,6 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: Find a recipe by name**
 
 **MSS**
@@ -510,6 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: Find an ingredient substitute**
 
 **MSS**
@@ -534,19 +544,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Chef requests to clear recipe book
-2. Book clears itself of all recipes
+1. Chef requests to clear the Book
+2. The Book clears all recipes and returns to an empty state.
+3. Book shows a message that states that the Book has been cleared.
 
-   Use case ends.
+**Extensions**
+* 2a. Book is already empty
+    * 2a1. Book proceeds normally.
+
+  Use case resumes from step 3.
 
 
 <div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
-1.  The app should be able to operate on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The app should be able to hold up to 1000 recipes without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-    able to accomplish most of the tasks faster using commands than using the mouse.
+1. The app should be able to operate on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. The app should be able to hold up to 1000 recipes without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+  able to accomplish most of the tasks faster using commands than using the mouse.
 4. The app should have a high level of test coverage to ensure quality.
 5. The app should have automated testing and deployment processes to facilitate maintenance.
 6. The app should have clean and well-documented code that is easy to maintain and update.
@@ -557,6 +573,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 11. The documentation should be accessible to all users.
 
 <div style="page-break-after: always;"></div>
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -571,11 +588,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
-## **Appendix: Instructions for manual testing**
+
+## **Appendix: Instructions for Manual/User Acceptance Testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
