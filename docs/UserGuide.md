@@ -214,6 +214,13 @@ Feel free to play around with the sample data to familiarise yourself with the c
   Timestamp should be of the format `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being exactly 2 digits long.\
   e.g. 01:20:03
 
+[ModuleCode](#module-code-format)
+[ModuleName](#module-name-format)
+[LectureName](#lecture-name-format)
+[VideoName](#video-name-format)
+[Tag](#tag-format)
+[Timestamp](#timestamp-format)
+
 ---
 
 ## Navigation
