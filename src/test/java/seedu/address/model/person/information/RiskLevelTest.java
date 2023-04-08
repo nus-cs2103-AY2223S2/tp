@@ -9,11 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class RiskLevelTest {
 
-    //    @Test // RiskLevel does not allow RiskLevel(null) constructor
-    //    public void constructor_null_throwsNullPointerException() {
-    //        assertThrows(NullPointerException.class, () -> new RiskLevel(null));
-    //    }
-
     @Test
     public void constructor_invalidRisk_throwsIllegalArgumentException() {
         String invalidRisk = "abc";
