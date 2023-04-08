@@ -157,12 +157,6 @@ Examples:
 
 Shows a list of all persons in the contact list.
 
-Format: `list`
-
-### Sorting all persons : `sort`
-
-Sorts all persons in the contact list based on an attribute.
-
 Format: `sort ATTRIBUTE`
 
 ATTRIBUTE: `name, gender, phone number, email, company, location, occupation, job title, address, status`
@@ -174,6 +168,12 @@ Examples:
 
 - `sort name` Sorts all persons alphabetically by name.
 - `sort occupation` Sorts all persons alphabetically by occupation.
+
+Format: `list`
+
+### Sorting all persons : `sort`
+
+Sorts all persons in the contact list based on an attribute.
 
 ### Editing a person : `edit`
 
