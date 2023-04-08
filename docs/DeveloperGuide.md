@@ -1,3 +1,4 @@
+<style>#header, #footer { padding: 0 !important; }</style>
 ---
 layout: page
 title: Developer Guide
