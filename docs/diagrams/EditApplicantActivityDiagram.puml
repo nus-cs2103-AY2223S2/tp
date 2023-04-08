@@ -11,10 +11,11 @@ if () then ([else])
 ([At least one field to be edited is provided]) elseif () then ([else])
     :Error: Invalid index provided;
     stop
-([Person index is in valid range of Person list]) elseif () then ([else])
+([Person index is in valid range of Applicant list]) elseif () then ([else])
     :Error: Applicant already exists;
     stop
-else ([Edited Person does not share a name and phone with any other Person])
+else ([Edited Applicant does not share a name and phone
+with any other Applicant])
 endif
 :Edit Command successfully executes;
 stop
