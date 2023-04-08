@@ -234,11 +234,14 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The `AddRecipeForm` class extends `RecipeForm` class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details and `Buttons` for saving and closing the form.  
+The `AddRecipeForm` allows users to input the recipe they wish to add over a Graphical User Interface form instead of the command box. The following sequence diagram illustrates how the different components interact with one another in the execution of an add form command.  
+
+<img class="diagram" src="images/AddFormSequenceDiagram.png" width="1128"/>  
+
+The `AddRecipeForm` class inherits from the `RecipeForm` base class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details and `Buttons` for saving and closing the form.  
 
 The class has a constructor that takes a null `Recipe` object, a `StringBuilder` object to be returned to the caller in `AddFormCommand`, and the `title` of the form.
-The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
-<img class="diagram" src="images/AddFormSequenceDiagram.png" width="1128"/>
+The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.  
 
 In addition, it implements the following operations:
 * `RecipeForm#display` —  Displays the form with corresponding UI components such as `Save Changes` button and `TextField` and `TextArea` rows.
