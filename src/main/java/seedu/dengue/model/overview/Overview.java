@@ -65,7 +65,6 @@ public abstract class Overview {
      *
      * @param inputList the List of String arrays to enumerate
      * @return a List of String arrays with each element enumerated
-     * @throws IllegalArgumentException if the input List is null or contains any null elements
      */
     public static List<String[]> enumList(List<String[]> inputList) {
         AtomicInteger index = new AtomicInteger(1);
