@@ -38,6 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -50,16 +51,15 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its _API_ in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -248,13 +248,13 @@ The responsibilities of `Model` component,
   * `VaxTypeManager`
   * `AppointmentManager`
   * `KeywordManager`
-* stores the objects to be displayed as a separate filtered map which is exposed to outsiders as an unmodifiable 
-`ObservableMap<K, V>`, where `V` is the type of object being stored (eg. `IdData<Patient>`) and `K` is the type of the 
-key the stored object is mapped to (for `Patient` and `Appointment`, this is an `Integer` and as for `VaxType`, this 
+* stores the objects to be displayed as a separate filtered map which is exposed to outsiders as an unmodifiable
+`ObservableMap<K, V>`, where `V` is the type of object being stored (eg. `IdData<Patient>`) and `K` is the type of the
+key the stored object is mapped to (for `Patient` and `Appointment`, this is an `Integer` and as for `VaxType`, this
 is a `String`).
-* stores the object to be detailed as a `ObjectProperty<V>` where `V` is the type of the object to be displayed (eg. 
+* stores the object to be detailed as a `ObjectProperty<V>` where `V` is the type of the object to be displayed (eg.
 `IdData<Patient>`).
-* store a `UserPref` object that represents the user's preferences. This is exposed to the outside as a 
+* store a `UserPref` object that represents the user's preferences. This is exposed to the outside as a
 `ReadOnlyUserPref` object.
 
 ### Patient component
@@ -431,7 +431,7 @@ Given below is an example usage scenario when a user enter `patient add --n John
 4. After successfully parsing the args, `AddCommandParser` will create a Patient using the new Name, Phone, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>. Then it will create an `AddCommand` with the new Patient object.
 5. When `AddCommand#execute` is called, `model#addPatient` will be called to add the new Patient into the model. `AddCommand` will then return `CommandMessage` to indicate it's success.
 
-Note that `Allergies` and `Vaccines` are optional, so the user does not need to include `--a ` or `--v` if the it is not applicable.
+Note that `Allergies` and `Vaccines` are optional, so the user does not need to include `--a` or `--v` if the it is not applicable.
 
 The activity diagram below illustrates the workflow of patient `AddCommand` that is described above.
 
@@ -655,8 +655,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <img src="images/keyword/FindKeywordSequenceDiagram.png" width="550" />
 -->
 
-
-
 <!-- Below is given from AB3, commented out for ur own ref, our product does not have these features. -->
 <!-- ### \[Proposed\] Undo/redo feature
 
@@ -742,7 +740,6 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_ -->
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -774,56 +771,37 @@ _{Explain here how the data archiving feature will be implemented}_ -->
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                          | I want to …​                                                                               | So that I can …​                                                                  |
-|----------|----------------------------------|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| `* * *`  | Receptionist                     | check the list of patients details                                                         | verify and mark the new arrival's attendance                                      |
-| `* * *`  | Receptionist                     | check the patient's medical records                                                        | prepare the right type of vaccination                                             |
-| `* * *`  | Receptionist                     | get the patient's contact easily                                                           | contact them when needed.                                                         |
-| `* * *`  | Receptionist                     | be able to key in people with the same name                                                | save the data of people with the same name.                                       |
-| `* * *`  | Receptionist                     | add a patient                                                                              |                                                                                   |
-| `* * *`  | Receptionist                     | update a patient                                                                           |                                                                                   |
-| `* * *`  | Receptionist                     | delete a patient                                                                           |                                                                                   |
-| `* * *`  | Receptionist                     | view appointment details                                                                   | recall the details of an appointment                                              |
-| `* * *`  | Receptionist                     | add an appointment                                                                         |                                                                                   |
-| `* * *`  | Receptionist                     | delete an appointment                                                                      |                                                                                   |
-| `* * *`  | Receptionist                     | update an appointment                                                                      |                                                                                   |
-| `* * *`  | Receptionist                     | view vaccination type details                                                              | recall the details of a vaccination type                                          |
-| `* * *`  | Receptionist                     | add a vaccination type                                                                     |                                                                                   |
-| `* * *`  | Receptionist                     | delete a vaccination type                                                                  |                                                                                   |
-| `* * *`  | Receptionist                     | update a vaccination type                                                                  |                                                                                   |
-| `* * *`  | Receptionist                     | view allergy details                                                                       | recall the details of an allergy                                                  |
-| `* * *`  | Receptionist                     | add an allergy                                                                             |                                                                                   |
-| `* * *`  | Receptionist                     | delete an allergy                                                                          |                                                                                   |
-| `* * *`  | Receptionist                     | update an allergy                                                                          |                                                                                   |
-| `* * *`  | New user wanting to use the app  | purge all the current data                                                                 | get rid of sample/experiment data                                                 |
-| `* *`    | Junior receptionist              | view a quick start guide easily                                                            | learn the basic features of the system quickly                                    |
-| `* *`    | Receptionist                     | update the status of a patient                                                             | they can be tracked and not go missing                                            |
-| `* *`    | Potential user exploring the app | see the app populated with sample data                                                     | use it as a tutorial for how the app will work                                    |
-| `* *`    | Expert user                      | enter arguments in masses                                                                  | type less                                                                         |
-| `* *`    | Receptionist                     | check what is the next free appointment slot                                               | choose the best time for the patient                                              |
-| `* *`    | Expert user                      | enter shortened command names to perform the same command                                  | type less                                                                         |
-| `* *`    | Receptionist                     | filter vaccination types                                                                   | find the vaccination type that I am looking for easier                            |
-| `* *`    | Receptionist                     | add custom reference names to vaccination types                                            | refer to a vaccination type with shortened names                                  |
-| `*`      | Receptionist                     | check the appointment schedule                                                             | see when an open slot is                                                          |
-| `*`      | Receptionist                     | check the status of patients                                                               | know when to let the next waiting in line in                                      |
-| `*`      | Overworked receptionist          | automate checking the number of patients that are still in                                 | know whether to let the next patient in quicker                                   |
-| `*`      | Receptionist                     | view the appointments made for the day                                                     | roughly know how many patients to expect that day to allocate enough vaccinations |
-| `*`      | Receptionist                     | see the status of all patients                                                             | know where they are                                                               |
-| `*`      | Receptionist                     | check the list of patients                                                                 | prepare the correct number of vaccinations                                        |
-| `*`      | New user                         | view the user guide easily                                                                 |                                                                                   |
-| `*`      | Forgetful user                   | see what commands there are                                                                | know what commands I can use                                                      |
-| `*`      | Forgetful user                   | see the syntax of commands                                                                 | know how to use the command                                                       |
-| `*`      | Stock checker                    | see what vaccinations are expiring                                                         | know what I need to dispose                                                       |
-| `*`      | Expert user                      | use bash script to generate reports                                                        | automate the process                                                              |
-| `*`      | Receptionist                     | view the error occurred due to typographical errors                                        | understand exactly what went wrong                                                |
-| `*`      | Receptionist                     | check if a patient is compatible with a vaccination                                        | am able to tell if he can take that vaccination                                   |
-| `*`      | Receptionist                     | know which patients are done with the 30 min monitoring after vaccinate (to check allergy) | tell them to go home                                                              |
-| `*`      | Receptionist                     | rely on the system to verify that the patient has done the order of vaccinations correctly | verify that they can be safe                                                      |
-| `*`      | Forgetful receptionist           | view a list of commands entered into the application                                       | verify that the entries are correct                                               |
-| `*`      | Receptionist                     | find patients who did not come                                                             | send them a reminder to take their vaccination                                    |
-| `*`      | Receptionist                     | archive/hide unused data                                                                   | am not distracted by irrelevant data                                              |
-| `*`      | Receptionist                     | undo my latest action                                                                      | do not accidentally nuke all data                                                 |
-| `*`      | User                             | view the records that I have deleted                                                       | so that I can add them back when needed                                           |
+| Priority | As a …​        | I want to …​                                             | So that I can …​                                                       |
+| -------- | -------------- | -------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | User           | get the patient's contact easily                         | contact them when needed.                                              |
+| `* * *`  | User           | be able to key in people with the same name              | save the data of people with the same name                             |
+| `* * *`  | User           | view patient details                                     | recall the details of a patient                                        |
+| `* * *`  | User           | add a patient                                            |                                                                        |
+| `* * *`  | User           | update a patient                                         |                                                                        |
+| `* * *`  | User           | delete a patient                                         |                                                                        |
+| `* * *`  | User           | view appointment details                                 | recall the details of an appointment                                   |
+| `* * *`  | User           | add an appointment                                       |                                                                        |
+| `* * *`  | User           | delete an appointment                                    |                                                                        |
+| `* * *`  | User           | update an appointment                                    |                                                                        |
+| `* * *`  | User           | view upcoming appointments                               | so that I know what appointments are coming soon                       |
+| `* * *`  | User           | view vaccination details                                 | recall the details of a vaccination type                               |
+| `* * *`  | User           | add a vaccination                                        |                                                                        |
+| `* * *`  | User           | delete a vaccination                                     |                                                                        |
+| `* * *`  | User           | update a vaccination                                     |                                                                        |
+| `* * *`  | User           | check the eligibility of a patient to take a vaccination | verify if I can schedule the appointment that the patient requested    |
+| `* *`    | Forgetful user | view the guide page of the application                   | understand of the parts of the application that I have forgotten works |
+| `* *`    | Forgetful user | see the syntax of commands                               | know how to use the command                                            |
+| `* *`    | New user       | see the app populated with sample data                   | use it as a tutorial for how the app will work                         |
+| `* *`    | New User       | purge all the current data                               | get rid of sample data                                                 |
+| `* *`    | User           | find patients                                            | view details about the patient I am looking for faster                 |
+| `* *`    | User           | list all patients                                        | clear my find filters for patients                                     |
+| `* *`    | User           | find vaccinations                                        | view details about the vaccination I am looking for faster             |
+| `* *`    | User           | list all vaccinations                                    | clear my find filters for vaccinations                                 |
+| `* *`    | User           | find appointments                                        | view details about the appointment I am looking for faster             |
+| `* *`    | User           | list all appointments                                    | clear my find filters for appointments                                 |
+| `*`      | Forgetful user | see what commands there are                              | know what commands I can use                                           |
+| `*`      | User           | check what is the next free appointment slot             | choose the best time for the patient quicker                           |
+| `*`      | User           | undo my latest action                                    | undo my mistakes                                                       |
 
 ### Use cases
 
@@ -840,8 +818,6 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
   Use case ends.
 
---------------------------------------------------------------------------------------------------------------------
-
 #### UC-PAT-002 - List patients
 
 ##### MSS
@@ -850,8 +826,6 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 2. VMS shows a the list of patients with their corresponding IDs.
 
   Use case ends.
-
---------------------------------------------------------------------------------------------------------------------
 
 #### UC-PAT-003 - Update patient
 
@@ -871,7 +845,6 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
   Use case ends.
 
 * 3a. The given ID is invalid.
-
   * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
@@ -894,10 +867,11 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
   Use case ends.
 
 * 3a. The given ID is invalid.
-
   * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### UC-APT-001 - Add appointment
 
@@ -912,7 +886,6 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 ##### Extensions
 
 * 2a. timing format or patient ID is invalid.
-
   * 2a1. VMS shows an error message.
 
       Use case resumes at step 1.
@@ -944,7 +917,6 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
   Use case ends.
 
 * 3a. The given ID is invalid.
-
   * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
@@ -967,72 +939,160 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
   Use case ends.
 
 * 3a. The given ID is invalid.
-
   * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
-#### UC-VAC-001 - Add vaccination type
+--------------------------------------------------------------------------------------------------------------------
+
+#### UC-VAC-001 - Add vaccination
 
 ##### MSS
 
-1. User enters command to add a vaccination type.
-2. VMS adds the vaccination type.<br>
+1. User enters command to add a vaccination.
+2. VMS adds the vaccination.
+
     Use case ends.
 
 ##### Extensions
 
-* 2a. Command contains syntax errors
-  * 2a1. VMS shows an error message.<br>
-    Use case resumes from step 1.
-* 2b. Vaccination type already exists.
-  * 2b1. VMS shows an error message.<br>
-      Use case resumes from step 1.
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
 
-#### UC-VAC-002 - List vaccination types
+    Use case resumes from step 1.
+
+* 1b. User requested to add a vaccination that already exist.
+  * 1a1. VMS shows an error message.
+
+    Use case ends.
+
+#### UC-VAC-002 - List vaccination
 
 ##### MSS
 
-1. User enters the command to list vaccination types.
-2. VMS lists all available vaccination types.
+1. User enters the command to list vaccination.
+2. VMS lists all vaccination.
+
+    Use case ends.
 
 ##### Extensions
 
-* 2a. Command contains syntax errors.
-  * 2a1. VMS shows an error message.<br>
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
     Use case resumes from step 1.
 
-#### UC-VAC-003 - Update vaccination type
+#### UC-VAC-003 - Update vaccination
 
 ##### MSS
 
-1. User enters command to update a vaccination type.
-2. VMS updates the vaccination type.
+1. User enters command to update a vaccination.
+2. VMS updates the vaccination.
+
+    Use case ends.
 
 ##### Extensions
 
-* 2a. Command contains syntax errors.
-  * 2a1. VMS shows an error message.<br>
-    Use case resumes from step 1.
-* 2b. Vaccination type does not exist.
-  * 2a1. VMS shows an error message.<br>
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
     Use case resumes from step 1.
 
-#### UC-VAC-004 - Delete vaccination type
+* 1b. User requested to update a vaccination that does not exist.
+  * 1a1. VMS shows an error message.
+
+    Use case ends.
+
+#### UC-VAC-004 - Delete vaccination
 
 ##### MSS
 
-1. User enters command to delete a vaccination type.
-2. VMS deletes the vaccination type.
+1. User enters command to delete a vaccination.
+2. VMS deletes the vaccination.
+
+    Use case ends.
 
 ##### Extensions
 
-* 2a. Command contains syntax errors.
-  * 2a1. VMS shows an error message.<br>
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
     Use case resumes from step 1.
-* 2b. Vaccination type does not exist.
-  * 2a1. VMS shows an error message.<br>
+
+* 1b. User requested to delete a vaccination that does not exist.
+  * 1a1. VMS shows an error message.
+
+    Use case ends.
+
+* 1c. VMS detects that some appointments will become invalid after deletion.
+  * 1c1. VMS requests user to force the change.
+  * 1c2. User enters command to force the change.
+  * 1c3. VMS deletes the vaccination and all invalid appointments.
+
+    Use case ends.
+
+#### UC-VAC-005 - Clear vaccinations
+
+1. User enters command to clear vaccinations.
+2. VMS deletes all vaccinations.
+
+    Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
     Use case resumes from step 1.
+
+* 1b. VMS detects that some appointments will become invalid after clearing.
+  * 1b1. VMS requests user to force the change.
+  * 1b2. User enters command to force the change.
+  * 1b3. VMS deletes all vaccinations and all invalid appointments.
+
+    Use case ends.
+
+#### UC-VAC-006 - Filter vaccinations
+
+##### MSS
+
+1. User enters command to filter vaccinations.
+2. VMS shows only filtered vaccinations.
+
+    Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
+
+* 1b. User requested to apply no filters.
+  * 1b1. VMS shows an error message.
+
+    Use case ends.
+
+#### UC-VAC-007 - Detail a vaccination
+
+##### MSS
+
+1. User enters command to detail a vaccination.
+2. VMS shows details about that vaccination.
+
+    Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
+
+* 1b. User requested to detail a vaccination that does not exist.
+  * 1a1. VMS shows an error message.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -1064,10 +1124,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 * **Feature**: Group of feature commands
 * **Vaccination**: The Covid-19 vaccine
 * **Patient**: Someone receiving the vaccine
-* **Receptionist**: The user of VMS
 * **Command parameter**: Arguments that affect how the command work
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
