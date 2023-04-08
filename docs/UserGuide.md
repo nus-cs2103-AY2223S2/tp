@@ -303,6 +303,14 @@ that you do not want to edit that field)
 
 </div>
 
+### Traversing commands
+
+Have you ever wanted to input commands similar to one that you have just inputted? With command traversal provided in
+QuickContacts, you will **never** have to copy and paste commands ever again.
+
+All you have to do is to hit the `UP` and `DOWN` arrow keys on your keyboard to go to the previous and next command
+respectively. It is as simple as that!
+
 ### Theme toggling
 
 Toggles the theme from dark to light or vice versa.
