@@ -308,8 +308,6 @@ Classes used by multiple components are in the `seedu.connectus.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<div style="page-break-after: always"></div>
-
 ## 4.1 Add Command
 
 **Overview:**
@@ -317,6 +315,8 @@ This section describes some noteworthy details on how certain features are imple
 The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as <u><code>Module</code></u>, <u><code>CCA</code></u>, <u><code>Major</code></u> and `Remark` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
+
+<div style="page-break-after: always"></div>
 
 **Feature Details:**
 
@@ -328,6 +328,8 @@ The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w1
 The following activity diagram shows the logic of adding a `Person` into the contact list.
 
 ![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The sequence of the `add` command is as follows:
 
@@ -350,8 +352,6 @@ The following sequence diagram provides details on how the `informationFields` a
 
 ![AddCommandParseInformationFieldsDiagram](images/AddCommandParseInformationFieldsDiagram.png)
 
----
-
 <div style="page-break-after: always"></div>
 
 ## 4.2 Edit Command
@@ -361,6 +361,8 @@ The following sequence diagram provides details on how the `informationFields` a
 The `edit` command is used to change the information of an existing `Person` in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and `Birthday` fields.
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
+
+<div style="page-break-after: always"></div>
 
 **Feature Details:**
 
@@ -375,6 +377,8 @@ The following activity diagram shows the logic of editing an existing `Person` i
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
+<div style="page-break-after: always"></div>
+
 The sequence of the `edit` command is as follows:
 
 1. The command `edit INPUT` is entered by the user, where the `INPUT` is an integer index followed by fields to edit (e.g. `edit 1 n/John Doe`).
@@ -388,7 +392,8 @@ The sequence of the `edit` command is as follows:
 The following sequence diagram shows how `edit` works:
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-The following sequence diagram provides details on how the `informationFields` are being parsed by `ParserUtil`:
+The following sequence diagram provides details on how the `informationFields` are being parsed:
+
 ![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
 
 <div style="page-break-after: always"></div>
