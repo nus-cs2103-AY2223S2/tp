@@ -82,7 +82,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <p>
-  <img src="images/ArchitectureDiagram.png" />
+  <img class="diagram" src="images/ArchitectureDiagram.png" />
   <em>Architecture Diagram for GoodMatch</em>
 </p>
 
@@ -111,7 +111,7 @@ The rest of the App consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <p>
-  <img src="images/ArchitectureSequenceDiagram.png" />
+  <img class="diagram" src="images/ArchitectureSequenceDiagram.png" />
   <em>Architecture Sequence Diagram for GoodMatch</em>
 </p>
 
@@ -123,7 +123,7 @@ Each of the four main components (also shown in the diagram above),
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <p>
-  <img src="images/ComponentManagers.png" />
+  <img class="diagram" src="images/ComponentManagers.png" />
   <em>Sequence Diagram for the Managers in GoodMatch</em>
 </p>
 
@@ -132,7 +132,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <p>
-  <img src="images/UiClassDiagram.png" />
+  <img class="diagram" src="images/UiClassDiagram.png" />
   <em>Structure of the UI Component</em>
 </p>
 
@@ -154,7 +154,7 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <p>
-  <img src="images/LogicClassDiagram.png" />
+  <img class="diagram" src="images/LogicClassDiagram.png" />
   <em>Structure of the UI Component</em>
 </p>
 
@@ -167,7 +167,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <p>
-  <img src="images/DeleteSequenceDiagram.png" />
+  <img class="diagram" src="images/DeleteSequenceDiagram.png" />
   <em>Interactions Inside the Logic Component for the `delete 1` Command</em>
 </p>
 
@@ -177,7 +177,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <p>
-  <img src="images/ParserClasses.png" />
+  <img class="diagram" src="images/ParserClasses.png" />
   <em>Class diagram for the Parser classes</em>
 </p>
 
@@ -189,7 +189,7 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <p>
-  <img src="images/ModelClassDiagram.png" />
+  <img class="diagram" src="images/ModelClassDiagram.png" />
   <em>Class diagram for the Model Component</em>
 </p>
 
@@ -203,7 +203,7 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ListingBook`, which `Listing` references. This allows `ListingBook` to only require one `Tag` object per unique tag, instead of each `Listing` needing their own `Tag` objects.<br>
 
 <p>
-  <img src="images/BetterModelClassDiagram.png" />
+  <img class="diagram" src="images/BetterModelClassDiagram.png" />
   <em>A better Class diagram for the Model Component</em>
 </p>
 
@@ -214,7 +214,7 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <p>
-  <img src="images/StorageClassDiagram.png" />
+  <img class="diagram" src="images/StorageClassDiagram.png" />
   <em>Class diagram for the Storage Component</em>
 </p>
 
@@ -255,7 +255,7 @@ When a user use the `add` command:
 Please refer to the activity diagram below to see what happens when the user enters an add command.
 
 <p>
-  <img src="images/AddCommandActivityDiagram.png" />
+  <img class="diagram" src="images/AddCommandActivityDiagram.png" />
   <em>Activity Diagram for the `add` command</em>
 </p>
 
@@ -299,21 +299,21 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 Step 1. The user launches the application for the first time. The `prevListingBookStates` will be initialized with an empty `ArrayList`.
 
 <p>
-  <img src="images/UndoState0.png" />
+  <img class="diagram" src="images/UndoState0.png" />
   <em>Initial state of the application.</em>
 </p>
 
 Step 2. The user executes `delete 5` command to delete the 5th listing in the listing book. The `delete` command calls `Model#commitListingBook()`, causing the modified state of the listing book after the `delete 5` command executes to be saved in the `prevListingBookStates`.
 
 <p>
-  <img src="images/UndoState1.png" />
+  <img class="diagram" src="images/UndoState1.png" />
   <em>Saving `delete` modified listing book state.</em>
 </p>
 
 Step 3. The user executes `add t/Coder d/code​` to add a new listing. The `add` command also calls `Model#commitListingBook()`, causing another modified listing book state to be saved into the `prevListingBookStates`.
 
 <p>
-  <img src="images/UndoState2.png" />
+  <img class="diagram" src="images/UndoState2.png" />
   <em>Saving `add` modified listing book state.</em>
 </p>
 
@@ -324,7 +324,7 @@ Step 3. The user executes `add t/Coder d/code​` to add a new listing. The `add
 Step 4. The user now decides that adding the listing was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which restores the previous listing book state by setting as the `listingBook` and deleting it from `prevListingBookStates`.
 
 <p>
-  <img src="images/UndoState3.png" />
+  <img class="diagram" src="images/UndoState3.png" />
   <em>Restoring the previous listing book state.</em>
 </p>
 
@@ -336,7 +336,7 @@ than attempting to perform the undo.
 The following sequence diagram shows how the undo operation works:
 
 <p>
-  <img src="images/UndoSequenceDiagram.png" />
+  <img class="diagram" src="images/UndoSequenceDiagram.png" />
   <em>Sequence Diagram for the undo command.</em>
 </p>
 
@@ -347,14 +347,14 @@ The following sequence diagram shows how the undo operation works:
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the listing book, such as `list`, will usually not call `Model#commitListingBook()` or `Model#undo()`. Thus, the `prevListingBookStates` remains unchanged.
 
 <p>
-  <img src="images/UndoState4.png" />
+  <img class="diagram" src="images/UndoState4.png" />
   <em>Commands that do not modify the listing book.</em>
 </p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <p>
-  <img src="images/CommitActivityDiagram.png" />
+  <img class="diagram" src="images/CommitActivityDiagram.png" />
   <em>Activity Diagram for the undo command.</em>
 </p>
 
@@ -385,7 +385,7 @@ When a user presses TAB:
 Please refer to the activity diagram below to see what happens when a user uses the autocomplete feature.
 
 <p>
-  <img src="images/AutocompleteActivityDiagram.png" />
+  <img class="diagram" src="images/AutocompleteActivityDiagram.png" />
   <em>Activity Diagram for the autocomplete feature</em>
 </p>
 
