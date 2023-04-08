@@ -73,6 +73,7 @@ public class AddCustomerCommand extends Command {
         requireNonNull(model);
         try {
             model.getShop().addCustomer(name, phone, email, address, tags);
+            model.updateFilteredCustomerList(Model.PREDICATE_SHOW_ALL_CUSTOMERS);
             model.selectCustomer(lst -> lst.get(lst.size() - 1));
             return new CommandResult(MESSAGE_SUCCESS, Tab.CUSTOMERS);
         } catch (Exception e) {

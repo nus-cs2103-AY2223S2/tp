@@ -48,6 +48,7 @@ public class AddPartCommand extends Command {
         requireNonNull(model);
         try {
             model.getShop().addPart(partName, quantity);
+            model.updateFilteredPartMap(Model.PREDICATE_SHOW_ALL_PARTS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, partName, quantity), Tab.PARTS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

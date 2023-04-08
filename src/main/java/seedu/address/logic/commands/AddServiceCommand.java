@@ -68,6 +68,7 @@ public class AddServiceCommand extends Command {
         try {
             model.getShop().addService(vehicleId, entryDate, description,
                     estimatedFinishDate, serviceStatus);
+            model.updateFilteredServiceList(Model.PREDICATE_SHOW_ALL_SERVICES);
             model.selectService(lst -> lst.get(lst.size() - 1));
             return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
         } catch (Exception e) {

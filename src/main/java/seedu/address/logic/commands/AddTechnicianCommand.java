@@ -63,6 +63,7 @@ public class AddTechnicianCommand extends AddStaffCommand {
         requireNonNull(model);
         try {
             model.getShop().addTechnician(this.name, this.phone, this.email, this.address, this.tags);
+            model.updateFilteredTechnicianList(Model.PREDICATE_SHOW_ALL_TECHNICIANS);
             model.selectTechnician(lst -> lst.get(lst.size() - 1));
             return new CommandResult(MESSAGE_SUCCESS, Tab.TECHNICIANS);
         } catch (Exception e) {
