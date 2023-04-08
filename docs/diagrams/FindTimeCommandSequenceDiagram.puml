@@ -48,8 +48,11 @@ activate Model
 Model --> FindTimeCommand : lastShownGroups
 deactivate Model
 
-FindTimeCommand -> Model : get Group
+FindTimeCommand -> Model : get(index)
 activate Model
+
+Model --> FindTimeCommand : targetGroup
+deactivate Model
 
 FindTimeCommand -> Model : updateFilteredTimeSlotList\n(targetGroup,startDate)
 activate Model
