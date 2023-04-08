@@ -51,7 +51,11 @@ ExpressLibrary is a **desktop app created for librarians to better manage librar
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/98102341 p/81234134`, only `p/98102341` will be taken.
+* Only Singapore phone numbers are valid. (Must be 8 digits long and start with 6, 8 or 9.)
+* Emails must abide by RFC5322 standard. For more details, refer to section 3.4.1 of the RFC5322 protocol found here 
+https://www.rfc-editor.org/rfc/rfc5322.
+* You can also refer to the error message which will appear if you key in an invalid email.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listPerson`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -64,9 +68,8 @@ ExpressLibrary is a **desktop app created for librarians to better manage librar
 Adds a person to the ExpressLibrary.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-* Phone number must be 8 digits long and start with 6, 8 or 9
+* You will not be able to add a person with the same email or phone number of an existing person.
 <div markdown="span" class="alert alert-primary">
-
 :bulb: **Tip:**
 A person can have any number of tags. (including 0)
 </div>
@@ -101,6 +104,7 @@ Format: `editPerson PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You will not be able to edit a person's email or phone number to be the same as an existing person.
 * You can remove all the person’s tags by typing `t/` without
  specifying any tags after it.
 
@@ -142,6 +146,7 @@ Examples:
 Adds a book to the book records.
 
 Format: `addBook t/TITLE a/AUTHOR i/ISBN​`
+* You will not be able to add a book with the same ISBN of an existing book.
 
 Examples:
 
@@ -171,11 +176,12 @@ Format: `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/
 
 * Edits the book at the specified `BOOK_INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* You will not be able to edit a book's ISBN to be same as an existing book's ISBN.
 * Existing values will be updated to the input values.
 
 Examples:
 
-* `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title and author and isbn of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
+* `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title and author and ISBN of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
 * `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
 
 #### Listing all books : `listBook`
