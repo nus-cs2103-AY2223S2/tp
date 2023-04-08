@@ -180,17 +180,17 @@ The delete mechanism is facilitated by `MediConnect`. It extends `MediConnect` w
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial list state, with a sample list of names.
 
 ![deleteState0](images/deleteState0.png)
 
-Step 2. The user executes addDoctor n/David Tan …​ to add a new doctor. The add command also calls Model#commitAddressBook(), causing another modified address book state to be saved into the addressBookStateList.
+Step 2. The user executes addDoctor n/David …​ to add a new doctor. The NRIC of the doctor is also included.
 
 ![deleteState1](images/deleteState1.png)
 
 Step 3. The user now wants to delete the person, and decides to carry out the delete operation by executing the `delete` command.
 
-Step 4. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the MediConnect. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete ic/S9876543K` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 4. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the MediConnect. The `delete` command removes the person with the corresponding `NRIC` from the current list.
 
 ![deleteState2](images/deleteState2.png)
 
