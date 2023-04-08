@@ -31,6 +31,9 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define REVIEW_COLOR #A342C4
+!define REVIEW_COLOR_T1 #D8BDDE
+
 !define USER_COLOR #000000
 
 skinparam BackgroundColor #FFFFFFF

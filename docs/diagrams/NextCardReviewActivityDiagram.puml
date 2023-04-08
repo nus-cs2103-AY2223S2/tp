@@ -1,7 +1,7 @@
 @startuml
 
 start
-:User inputs 'review DECK_INDEX' to enter review mode;
+:User inputs 'review DECK_INDEX' to enter REVIEW_MODE;
 :User completes review of the first card;
 :User inputs ']' command to move on to next card;
 
