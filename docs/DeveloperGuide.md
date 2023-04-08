@@ -11,6 +11,8 @@ title: Developer Guide
 
 * COVID-19 vaccination data - [MOH ｜ COVID-19 Vaccination](https://www.moh.gov.sg/covid-19/vaccination)
 * Chemical name synonyms - [PubChem](https://pubchem.ncbi.nlm.nih.gov/)
+* Code snippet in [`ResultMessageBox`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/bd171c0108f75ff1c61c6bca63f618fb758eacda/src/main/java/seedu/vms/ui/ResultMessageBox.java#L44-L54) to size `TextArea` adapted and modified from - [StackOverflow - Javafx textfield resize to text length?](https://stackoverflow.com/a/25643696)
+* CLI presentation format in UG adapted from - [Document command-line syntax](https://developers.google.com/style/code-syntax)
 
 --------------------------------------------------------------------------------------------------------------------
 
