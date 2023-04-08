@@ -171,8 +171,9 @@ The activity diagram below illustrates what happens when a user enters a command
 
 ![CommandValidityActivityDiagram](images/CommandValidityActivityDiagram.png)
 
-It's important to note that the validity of a user's command is not solely determined by the user's input, but also by the **current mode of the application**.
-<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** It's important to note that the validity of a user's command is not solely determined by the user's input, but also by the **current mode of the application**.
+</div>
+
 Our application has three modes: `MAIN_UNSELECTED_MODE`, `MAIN_SELECTED_MODE`, and `REVIEW_MODE`, each with its own set of exclusive commands. 
 To enforce this, the `LogicManager` class checks the current mode of the user and **enables/disables** certain commands as necessary.
 
@@ -187,11 +188,11 @@ To enforce this, the `LogicManager` class checks the current mode of the user an
     - This mode primarily handles **review-related** commands, such as `FlipCardCommand` and `NextCardCommand`.
     - A review is ongoing in this mode, so deck-related and card-related commands are disabled.
 
-### Implementation of Main Mode Features
+### Implementation of `MAIN_UNSELECTED_MODE` Features
+
+Commands in the `MAIN_UNSELECTED_MODE` that are implemented for when a **deck is not selected** behave similarly as the example below: 
 
 List of decks and list of cards are stored separately in `UniqueDeckList` and `UniqueCardList`. Although a card belongs to a deck, it is not stored within a deck. Each card indicates a deck that it belongs to itself.
-
-Commands in the Main Mode that are implemented for when a deck is not selected behave similarly as the example below: 
 
 #### addDeck Feature
 
@@ -209,6 +210,7 @@ Step 2. The user executes `addDeck Math` command to add a new deck. The `addDeck
 Step 3. A new deck is now added on the list and able to execute further functionalities.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** In case of a duplicate deck name, an exception will be thrown and the newly created deck will not be saved in the `MasterDeck`. However, naming a deck is case-sensitive. For example, user cannot create two Math decks but it is allowed to create Math deck and math deck. 
+</div>
 
 The following activity diagram summarizes what happens when a user executes addDeck command:
 
@@ -220,7 +222,24 @@ The following sequence diagram shows how the addDeck operation works:
 
 
 
-### Implementation of Card Mode Features
+### Implementation of `MAIN_SELECTED_MODE` Features
+
+Commands in the `MAIN_SELECTED_MODE` behave similarly as the example of `deleteCard` below:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+The primary distinction between the features found in MAIN_SELECTED_MODE and MAIN_UNSELECTED_MODE is that the former requires the selection of a deck.
+</div>
+
+#### `deleteCard` Feature
+
+Given below is an example usage scenario and how the `deleteCard()` mechanism behaves at each step.
+
+Step 1. The user has a **deck selected** and keys in `deleteCard INDEX` to delete card at the specified index. If the index is invalid, an error will be thrown.
+
+Step 2. The card is now deleted from the deck.
+
+The following activity diagram summarizes the action taken when `deleteCard` is executed:
+
 
 ### Implementation of Review Mode Features
 
