@@ -1138,7 +1138,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > **User Story:**
 > User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new feature. It is typically of the format: "As a [user type], I can [function] so that [benefit]."
 
-[↑ Back to top of section](#8-requirements)
+[↑ Back to top of section](#9-glossary)
 
 [↑ Back to table of contents](#table-of-contents)
 
