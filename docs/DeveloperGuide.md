@@ -974,7 +974,7 @@ For more details regarding the usage, refer to [Toggle between Degree Progress a
 
 ### Requesting for help <a name="requesting-for-help"></a>
 Command: `help`<br>
-For more details regarding the usage, refer to (TO ADD LINK TO UG).
+For more details regarding the usage, refer to [View help](UserGuide.md#view-help).
 
 1. Test case: `help`<br>
    Expected: A response message showing a list of help commands will be displayed on the command screen.
