@@ -303,6 +303,7 @@ Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 * For <span style="color:#FBBC05">Event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
     * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
     * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
+* :warning: Our application currently does not support find by subsections' names or descriptions, the functionality will be implemented in future versions.
 
 Examples:
 * `find n/book` finds **Tasks** with name `read book` and `return books`
@@ -335,7 +336,7 @@ Format: `stats`
 :man_technologist: **Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!**
 
 Displays in the tasks that fall within the window specified on the right panel. If not supplied, assumed to be 24 hours.
-On opening of app, the **alert panel** will open to show **Tasks** which have **start or have deadlines** within the **latest** window specified.
+On opening of app, the **alert panel** will open to show **Tasks** which **start or have deadlines** within the **latest** window specified.
 Have to specify `ALERT WINDOW` in hours and only integers.
 
 Examples:
@@ -658,7 +659,6 @@ _Details coming soon ..._
     </tbody>
 </table>
 
---------------------------------------------------------------------------------------------------------------------
 ## 7. Glossary
 1. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
 2. Long date: Date in the format YYYY-MM-DD HHMM
