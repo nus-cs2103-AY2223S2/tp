@@ -37,3 +37,4 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
+
