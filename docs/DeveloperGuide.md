@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* ControlsFX (https://github.com/controlsfx/controlsfx)
+* ControlsFX [https://github.com/controlsfx/controlsfx](https://github.com/controlsfx/controlsfx)
+* AddressBook 3
 
 --------------------------------------------------------------------------------------------------------------------
 
