@@ -30,11 +30,6 @@ return
 ConnectUsParser -> AddCommandParser:parse(informationFields)
 activate AddCommandParser
 
-ref over AddCommandParser
-  Parse Information
-  Fields
-end
-
 create Person
 AddCommandParser -> Person++
 return person

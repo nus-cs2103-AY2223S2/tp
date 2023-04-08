@@ -5,13 +5,13 @@ title: Developer Guide
 
 # Welcome to ConnectUS!
 
-ConnectUS is a **contact management system** that enables <u>NUS School of Computing (SoC)</u> students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
+ConnectUS is a **contact management system** that enables NUS School of Computing (SoC) students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
 
 ConnectUS focuses on:
-- **Efficiency**: Optimized for use via a <u>Command Line Interface (CLI)</u>, **easily view and edit contacts** with the **contact management system**.
-- **User-friendliness**: With the benefits of having a <u>Graphical User Interface (GUI)</u>, **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
+- **Efficiency**: Optimized for use via a Command Line Interface (CLI), **easily view and edit contacts** with the **contact management system**.
+- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
 
-This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the <u>architecture</u> of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
+This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the architecture of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
 
 You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 
@@ -84,11 +84,11 @@ Java libraries used in this project:
 * [JavaFX](https://openjfx.io/) for UI,
 * [JUnit5](https://github.com/junit-team/junit5) for Testing.
 
----
-
 ## 1.2 Setting Up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[↑ Back to table of contents](#table-of-contents)
 
 ---
 
@@ -127,6 +127,10 @@ The Developer Guide has six main sections:
 
 - Refer to the [Glossary](#9-glossary) for definitions of terms used in ConnectUS.
 
+[↑ Back to top of section](#2-how-to-use-the-developer-guide)
+
+[↑ Back to table of contents](#table-of-contents)
+
 ---
 
 <div style="page-break-after: always"></div>
@@ -135,14 +139,22 @@ The Developer Guide has six main sections:
 
 This section will provide you with a high-level overview of how ConnectUS is structured, as well as information on the key components of ConnectUS.
 
-<div markdown="block" class="alert alert-primary">
+Firstly, the [Architecture](#31-architecture) section gives an overview of how each of the main components in ConnectUS interact with each other.
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+ConnectUS has four main components, namely:
 
-<div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
+1. [UI](#32-ui-component)
+2. [Logic](#33-logic-component)
+3. [Model](#34-model-component)
+4. [Storage](#35-storage-component)
 
-In this Developer Guide, contacts that users add to the [ConnectUS contact list](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#313-contact-list) will be referred to as `Person`.
+Each section of these components will describe the smaller subcomponents within them.
+
+Finally, the [Commons](#36-common-classes) section covers classes that are used by multiple components in ConnectUS.
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:** <br>
+
+The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -155,6 +167,8 @@ In this Developer Guide, contacts that users add to the [ConnectUS contact list]
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always"></div>
 
 **Main components of the <u>architecture</u>**
 
@@ -183,11 +197,23 @@ Each of the four main components (also shown in the diagram above):
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
+
+In this Developer Guide, contacts that users add to the [ConnectUS contact list](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#313-contact-list) will be referred to as `Person`.
+
+</div>
+
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -201,12 +227,18 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+<div style="page-break-after: always"></div>
+
+The `UI` component:
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -216,7 +248,9 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images\LogicClassDiagram.png" width="550"/>
+![Structure of the Logic Component](images/LogicClassDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `ConnectUsParser` class to parse the user command.
@@ -228,24 +262,29 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![ParserClasses](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a <u>placeholder</u> for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
 ## 3.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+![Model Class Diagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -254,11 +293,17 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require either one `Module` object, `CCA` object, `Major` object, or `Remark` object per unique tag, instead of each `Person` needing their own tag type objects. It also ensures that no duplicate tags are created.<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br> 
+
+An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require either one `Module` object, `CCA` object, `Major` object, or `Remark` object per unique tag, instead of each `Person` needing their own tag type objects. It also ensures that no duplicate tags are created.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -266,12 +311,16 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![Storage Class Diagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `ConnectUsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -281,6 +330,10 @@ Classes used by multiple components are in the `seedu.connectus.commons` package
 
 **API** : [`Commons.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/src/main/java/seedu/connectus/commons)
 
+[↑ Back to top of section](#3-design)
+
+[↑ Back to table of contents](#table-of-contents)
+
 ---
 
 <div style="page-break-after: always"></div>
@@ -289,15 +342,15 @@ Classes used by multiple components are in the `seedu.connectus.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<div style="page-break-after: always"></div>
-
 ## 4.1 Add Command
 
 **Overview:**
 
-The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as <u>`Module`</u>, <u>`CCA`</u>, <u>`Major`</u> and `Remark` fields.
+The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as <u><code>Module</code></u>, <u><code>CCA</code></u>, <u><code>Major</code></u> and `Remark` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
+
+<div style="page-break-after: always"></div>
 
 **Feature Details:**
 
@@ -309,6 +362,8 @@ The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w1
 The following activity diagram shows the logic of adding a `Person` into the contact list.
 
 ![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The sequence of the `add` command is as follows:
 
@@ -327,11 +382,9 @@ The following sequence diagram shows how `add` works:
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
-The following sequence diagram provides details on how the `informationFields` are being parsed:
+[↑ Back to top of section](#4-implementation)
 
-![AddCommandParseInformationFieldsDiagram](images/AddCommandParseInformationFieldsDiagram.png)
-
----
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -343,6 +396,8 @@ The `edit` command is used to change the information of an existing `Person` in 
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
 
+<div style="page-break-after: always"></div>
+
 **Feature Details:**
 
 1. The user specifies a person index that represents a `Person` to be edited.
@@ -352,9 +407,13 @@ The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w
 5. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
 6. If step 6 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
 
+<div style="page-break-after: always"></div>
+
 The following activity diagram shows the logic of editing an existing `Person` in the contact list.
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The sequence of the `edit` command is as follows:
 
@@ -367,10 +426,18 @@ The sequence of the `edit` command is as follows:
 7. A `Command Result` is returned with the result of the execution.
 
 The following sequence diagram shows how `edit` works:
+
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-The following sequence diagram provides details on how the `informationFields` are being parsed by `ParserUtil`:
+<div style="page-break-after: always"></div>
+
+The following sequence diagram provides details on how the `informationFields` are being parsed:
+
 ![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
+
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -379,6 +446,10 @@ The following sequence diagram provides details on how the `informationFields` a
 **Overview:**
 
 **Feature Details:**
+
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -399,6 +470,10 @@ The following activity diagram shows the logic of the `help` command.
 
 ![HelpCommandActivityDiagram](images/HelpCommandActivityDiagram.png)
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 4.5 Adding Additional Tags Command
@@ -406,6 +481,10 @@ The following activity diagram shows the logic of the `help` command.
 **Overview:**
 
 **Feature Details:**
+
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -415,6 +494,10 @@ The following activity diagram shows the logic of the `help` command.
 
 **Feature Details:**
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 4.7 Search Command
@@ -422,6 +505,10 @@ The following activity diagram shows the logic of the `help` command.
 **Overview:**
 
 **Feature Details:**
+
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -431,6 +518,10 @@ The following activity diagram shows the logic of the `help` command.
 
 **Feature Details:**
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 4.9 Open Command
@@ -439,19 +530,23 @@ The following activity diagram shows the logic of the `help` command.
 
 **Feature Details:**
 
+[↑ Back to top of section](#4-implementation)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 # 5. Planned Enhancements
 
 This section contains a list of known features that we plan to enhance in future iterations of the application.
 
-<div style="page-break-after: always"></div>
-
 ## 5.1 Improve Edit Command
 
 Currently, the edit command will not return the "Invalid Command Format" error message in the Command Result Feedback box. Instead, it states "At least one field to edit must be provided", which indirectly indicates that the command is of the correct format, when it is actually missing at least one information field to be edited.
 
 The correct format should be: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`, where at least one of the optional fields is indicated.
+
+<div style="page-break-after: always"></div>
 
 ## 5.2 Better Information Field Validation
 
@@ -478,6 +573,10 @@ However, such an address would be considered invalid in real life, as it would a
 
 However, such an Instagram username would be considered valid in real life.
 
+[↑ Back to top of section](#5-planned-enhancements)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 5.3 More Language Support
@@ -485,6 +584,8 @@ However, such an Instagram username would be considered valid in real life.
 Currently, English is the only language that is supported by our application.
 
 As we are aware that there are many international students studying in NUS SoC, we intend to add more language support (such as Chinese, French, Japanese, Korean etc.) so that international students can better enjoy our app!
+
+We plan to address and improve language support in V1.6.
 
 ## 5.4 More Social Media Support
 
@@ -505,13 +606,17 @@ For example, our testers have noted that:
 
 We plan to address and improve our UI in V1.6.
 
+[↑ Back to top of section](#5-planned-enhancements)
+
+[↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
+
 ## 5.6 Improve Tag Deletion Command
 
 Currently, the `delete-t` command can only delete tags one at a time. This may be inefficient if a users wants to delete multiple tags of differing tag types, especially if said user has contacts with many assigned tags.
 
 We plan to address this constraint in the next iteration of this product (V1.5).
-
-<div style="page-break-after: always"></div>
 
 ## 5.7 Improve Consistency of Command Feedback
 
@@ -527,6 +632,8 @@ We plan to address this constraint in the next iteration of this product (V1.5).
 
 [↑ Back to top of section](#5-planned-enhancements)
 
+[↑ Back to table of contents](#table-of-contents)
+
 ---
 
 <div style="page-break-after: always"></div>
@@ -539,6 +646,8 @@ We plan to address this constraint in the next iteration of this product (V1.5).
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+[↑ Back to table of contents](#table-of-contents)
+
 ---
 
 <div style="page-break-after: always"></div>
@@ -547,12 +656,12 @@ We plan to address this constraint in the next iteration of this product (V1.5).
 
 Given below are instructions to test the app manually.
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
-
-<div style="page-break-after: always"></div>
 
 ## 7.1 Launch and shutdown
 
@@ -571,6 +680,10 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 7.2 Adding a person:
@@ -581,6 +694,10 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `add n/ e/email@example.com`<br>
        Expected: No `Person` is created. Error details shown in status message.
     4. _{ more test cases …​ }_
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
@@ -602,6 +719,10 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 7.4 Saving data
@@ -611,6 +732,10 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
 
 ---
 
@@ -632,58 +757,66 @@ testers are expected to do more *exploratory* testing.
 
 **Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends' information, saving time and effort as users can access this information at their fingertips.
 
+[↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 
 ## 8.2 User stories
+
+In the user stories, **user** refers to an NUS student unless specified otherwise.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                      | I want to …​                                                            | So that I can…​                                                                           |
 |----------|----------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | `* * *`  | new user                                     | see usage instructions                                                  | refer to instructions when I forget how to use the App                                    |
-| `* * *`  | user                                         | add a new person                                                        |                                                                                           |
-| `* * *`  | user                                         | delete a person                                                         | remove entries that I no longer need                                                      |
-| `* * *`  | user                                         | find a person by name                                                   | locate details of persons without having to go through the entire list                    |
-| `* * *`  | user with many different modules             | add module tags to a person                                             | remember which module I met them from                                                     |
-| `* * *`  | user with many different CCAs                | add CCA tags to a person                                                | remember which CCA I met them from                                                        |
-| `* * *`  | user with many different CCAs                | add CCA post tags to a person                                           | remember which post they hold in the CCA                                                  |
+| `* * *`  | user                                         | add a new contact                                                       |                                                                                           |
+| `* * *`  | user                                         | delete a contact                                                        | remove entries that I no longer need                                                      |
+| `* * *`  | user                                         | find a contact by name                                                  | locate details of persons without having to go through the entire list                    |
+| `* * *`  | user with many different modules             | add module tags to a contact                                            | remember which module I met them from                                                     |
+| `* * *`  | user with many different CCAs                | add CCA tags to a contact                                               | remember which CCA I met them from                                                        |
+| `* * *`  | user with many different CCAs                | add CCA post tags to a contact                                          | remember which post they hold in the CCA                                                  |
 | `* * *`  | user                                         | add a new contact without adding their email                            | add people when I don't know their email id                                               |
 | `* * *`  | user                                         | add a new contact without adding their phone number                     | add people when I don't know their phone number                                           |
 | `* * *`  | user                                         | add a new contact without adding their Telegram                         | add people when I don't know their telegram                                               |
 | `* * *`  | user                                         | add a new contact without adding any tags                               | add people who don't have a common CCA or module with me                                  |
-| `* * *`  | student                                      | easily add my friends' Telegram information to the app                  | quickly connect with them on the platform                                                 |
-| `* * *`  | student                                      | easily add my friends' Instagram information to the app                 | quickly connect with them on the platform                                                 |
-| `* * *`  | student                                      | easily add my friends' WhatsApp information to the app                  | quickly connect with them on the platform                                                 |
+| `* * *`  | user                                         | easily add my friends' Telegram information to the app                  | quickly connect with them on the platform                                                 |
+| `* * *`  | user                                         | easily add my friends' Instagram information to the app                 | quickly connect with them on the platform                                                 |
+| `* * *`  | user                                         | easily add my friends' WhatsApp information to the app                  | quickly connect with them on the platform                                                 |
 | `* * *`  | user                                         | add a birthday for my contacts                                          | remember them                                                                             |
 | `* *`    | user                                         | open Instagram directly from the CLI                                    | message someone without having to find them on Instagram                                  |
 | `* *`    | user                                         | open Telegram directly from the CLI                                     | message someone without having to find them on Telegram                                   |
 | `* *`    | user                                         | open WhatsApp directly from the CLI                                     | message someone without having to find them on WhatsApp                                   |
-| `* *`    | student with many CCAs                       | find the exco of a specific CCA                                         | submit a proposal for an event to them                                                    |
-| `* *`    | student with many CCAs                       | find the friends of a specific CCA                                      | find their contact easily                                                                 |
+| `* *`    | user with many CCAs                          | find the exco of a specific CCA                                         | submit a proposal for an event to them                                                    |
+| `* *`    | user with many CCAs                          | find the friends of a specific CCA                                      | find their contact easily                                                                 |
 | `* *`    | exco of a CCA who is also part of other CCAs | find the contacts of the CCA members (of which I am an exco of)         | find their contact easily to contact them regarding CCA events/other needs                |
 | `* *`    | exco of a CCA                                | find the exco of my CCA                                                 | contact them to plan an event for the members of the CCA                                  |
-| `* *`    | student with new friends                     | find their contact details                                              | easily ask them out to lunch to get to know them                                          |
-| `* *`    | student taking many modules                  | find other friends who are taking the same modules as me                | study together with them                                                                  |
-| `* *`    | student taking many modules                  | find other friends who are taking the same modules as me                | easily form groups with them prior to the start of the module                             |
-| `* *`    | student TA                                   | find the contact details of the students I am TA-ing                    | so that I can easily inform them about important information related to the module/class  |
-| `* *`    | student                                      | receive notifications when my friends change their telegram information | stay up to date with their latest details                                                 |
-| `* *`    | student                                      | search for my friends' telegram information within the app              | don't have to manually go through my contacts list every time I want to reach out to them |
+| `* *`    | user with new friends                        | find their contact details                                              | easily ask them out to lunch to get to know them                                          |
+| `* *`    | user taking many modules                     | find other friends who are taking the same modules as me                | study together with them                                                                  |
+| `* *`    | user taking many modules                     | find other friends who are taking the same modules as me                | easily form groups with them prior to the start of the module                             |
+| `* *`    | user who is a teaching assistant (TA)        | find the contact details of the students I am TA-ing                    | so that I can easily inform them about important information related to the module/class  |
+| `* *`    | user                                         | receive notifications when my friends change their telegram information | stay up to date with their latest details                                                 |
+| `* *`    | user                                         | search for my friends' telegram information within the app              | don't have to manually go through my contacts list every time I want to reach out to them |
 | `* *`    | user                                         | view a list of upcoming birthdays for my contacts                       | plan ahead for their birthday                                                             |
-| `*`      | user with friends from different years       | add year tags to a person                                               | remember which year they are in                                                           |
+| `*`      | user with friends from different years       | add year tags to a contact                                              | remember which year they are in                                                           |
 | `*`      | user                                         | receive notifications for my friends' birthday                          | prepare for it and wish them                                                              |
-| `*`      | user with many persons saved in the app      | sort persons by name                                                    | locate a person easily                                                                    |
+| `*`      | user with many contacts saved in the app     | search contacts by specific information fields                          | locate a contact easily                                                                   |
 | `*`      | user                                         | send short messages on WhatsApp directly from the app                   | message someone without having to juggle between apps                                     |
-| `*`      | user with friends from other schools         | add school tags to a person                                             | remember which school they are from                                                       |
-| `*`      | user with friends from companies             | add company tags to a person                                            | remember which company they are from                                                      |
+| `*`      | user with friends from other schools         | add school tags to a contact                                            | remember which school they are from                                                       |
+| `*`      | user with friends from companies             | add company tags to a contact                                           | remember which company they are from                                                      |
+
+[↑ Back to top of section](#8-requirements)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
 ## 8.3 Use cases
 
-(For all <u>use cases</u> below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
+(For all <u>use cases</u> below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise). Use case will be referred to as UCXX, where XX is the use case numbering.
 
-**Use case: Add a contact**
+**UC01: Add a contact**
 
 **<u>Main Success Scenario (MSS)</u>**
 
@@ -708,8 +841,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+<div style="page-break-after: always"></div>
 
-**Use case: Delete a contact**
+**UC02: Delete a contact**
 
 **MSS**
 
@@ -728,9 +862,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. ConnectUS shows an error message.
+  
       Use case resumes at step 2.
 
-**Use case: Edit a contact**
+**UC03: Edit a contact**
 
 **MSS**
 
@@ -744,22 +879,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-  Use case ends.
+
+  Use case ends
 
 * 3a. The given index is invalid.
     * 3a1. ConnectUS shows an error message.
+  
       Use case resumes at step 2.
 
 * 3b. There is an error in the given information.
     * 3b1. ConnectUS shows an error message.
+  
       Use case resumes at step 2.
 
+<div style="page-break-after: always"></div>
 
-**Use case: Find a contact**
+**UC04: Add tags to a contact**
 
 **MSS**
 
-1. User requests to find a contact by keywords
+1. User requests to list persons.
+2. ConnectUS shows a list of persons.
+3. User requests to add tags to a specific person's information from the list by giving the tag type to be added, and the tag information.
+4. ConnectUS edits the person's tags.
+
+   Use case ends.
+
+**Extensions**
+
+* UC04's extensions are the same as UC03: Edit a contact.
+
+**UC05: Delete a tag from a contact**
+
+**MSS**
+
+1. User requests to list persons.
+2. ConnectUS shows a list of persons.
+3. User requests to add tags to a specific person's information from the list by giving the tag type to be added, and the tag information.
+4. ConnectUS edits the person's tags.
+
+   Use case ends.
+
+**Extensions**
+
+* UC05's extensions are the same as UC03: Edit a contact.
+
+<div style="page-break-after: always"></div>
+
+**UC06: Search for a contact**
+
+**MSS**
+
+1. User requests to search for a contact by keywords
 2. ConnectUS displays confirmation message
 3. ConnectUS displays all contacts with keywords in name
 
@@ -769,19 +940,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. No keywords are provided
     * 1a1. ConnectUS displays error message
+  
     Use case ends
 
-* 1b. User requests to find a contact by tag
+* 1b. User requests to find a contact by specific tag type
   * 1b1. ConnectUS displays confirmation message
-  * 1b2. ConnectUS displays all contacts with given tag
+  * 1b2. ConnectUS displays all contacts with given tag type
+  
   Use case ends
 
-* 1c. User requests to find a contact by contact information
+* 1c. User requests to find a contact by specific contact information fields
   * 1c1. ConnectUS displays confirmation message
-  * 1c2. ConnectUS displays all contacts with given confirmation message
+  * 1c2. ConnectUS displays all contacts with given contact information fields
+  
   Use case ends
 
-**Use case: List all contacts**
+**UC07: List all contacts**
 
 **MSS**
 
@@ -795,9 +969,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. There is an error in the request
   * 1a1. ConnectUS displays error message
+  
   Use case ends
 
-**Use case: Open a contact's Instagram homepage**
+<div style="page-break-after: always"></div>
+
+**UC08: Viewing help for a specific command**
+
+**MSS**
+
+1. User requests for help regarding usage format of a specific command
+2. ConnectUS displays confirmation message
+3. ConnectUS displays usage format of the given command
+
+   Use case ends
+
+**Extensions**
+
+* 1a. No keywords are provided
+    * 1a1. ConnectUS displays general help message
+  
+      Use case ends
+      
+**UC09: Open a contact's Instagram homepage**
 
 **MSS**
 
@@ -813,8 +1007,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The person has no Instagram record.
   * 3a1. ConnectUS displays error message.
   Use case ends.
-  
-**Use case: Open a contact's WhatsApp with prefilled message**
+
+<div style="page-break-after: always"></div>
+
+**UC10: Open a contact's WhatsApp with prefilled message**
 
 **MSS**
 
@@ -834,13 +1030,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. WhatsApp is launched but it does not fill the message.
   Use case resumes from step 3.
 
-*{More to be added}*
+[↑ Back to top of section](#8-requirements)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
 ## 8.4 Non-Functional Requirements
 
-1. Should work on any <u>_mainstream OS_</u> as long as it has <u>Java `11`</u> or above installed.
+1. Should work on any <u>mainstream OS</u> as long as it has <u>Java <code>11</code></u> installed.
 2. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be for a single user i.e. (not a multi-user product).
@@ -852,13 +1050,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Should be packaged into a single JAR file not exceeding 100MB.
 11. Should not have any hard-to-test features or features that make it hard-to-test.
 
----
+[↑ Back to top of section](#8-requirements)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
 # 9. Glossary
 
 ### A
+> **Alphanumeric:**
+> English alphabet letters and numbers only.
+> 
 > **Architecture:**
 > The architecture of a system describes its major components, their relationships (structures), and how they interact with each other.
 
@@ -881,6 +1084,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > 
 > **CS2103T:**
 > The module code for a Software Engineering module in the National University of Singapore.
+
+<div style="page-break-after: always"></div>
 
 ### F
 > **Format:**
@@ -915,6 +1120,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > **Module:**
 > Modules are courses that students take at the National University of Singapore.
 
+<div style="page-break-after: always"></div>
+
 ### N
 > **NUS:**
 > Short for the National University of Singapore.
@@ -926,6 +1133,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### S
 > **School of Computing:**
 > Also known as SoC. A computing school in the National University of Singapore.
+> 
+> **Special Characters:**
+> Characters that are not alphabetic or numeric.
 
 ### U
 > **Use Case:**
@@ -934,6 +1144,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > **User Story:**
 > User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new feature. It is typically of the format: "As a [user type], I can [function] so that [benefit]."
 
-[↑ Back to top](#table-of-contents)
+[↑ Back to top of section](#9-glossary)
+
+[↑ Back to table of contents](#table-of-contents)
 
 

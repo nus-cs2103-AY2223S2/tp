@@ -8,10 +8,10 @@ title: ConnectUS
 
 ![Ui](images/Ui.png)
 
-* _ConnectUS_ is a desktop application that targets users can type fast, optimized for use via a Command Line Interface (CLI) while still having the visual benefits of a Graphical User Interface (GUI).
+**ConnectUS** is a desktop application that targets users can type fast, optimized for use via a Command Line Interface (CLI) while still having the visual benefits of a Graphical User Interface (GUI).
 
-* If you are interested in using ConnectUS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing ConnectUS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using ConnectUS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start-guide).
+* If you are interested in maintaining, upgrading, and evolving ConnectUS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 **Acknowledgements**
 
