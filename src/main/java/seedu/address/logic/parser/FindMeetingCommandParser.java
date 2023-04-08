@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
-import java.time.LocalDate;
 
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
+
+import java.time.LocalDate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.FindMeetingCommand;
