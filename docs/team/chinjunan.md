@@ -21,7 +21,7 @@ Given below are my contributions to the project.
     * Highlights: This feature required an addition to the data structure of the address book (an additional list to record reminders). This led to additional classes that involved managing the storage and reading from local memory and hard disk. Fortunately, not much have to be done as it was similar to existing codes. Further improvement to this feature involves running process threads to fire notifications while the app is running in the background.
     * Credits: Existing codes from AB3 which involved the models and storage functionality of the app.
 
-* **New Feature**: Added schedule reminder function.
+* **New Feature**: Added schedule notification function.
     * What it does: Notifies users of upcoming and current jobs that have been scheduled.
     * Justification: This feature allows users to keep up with their busy schedule by being notified of upcoming and current jobs. The user is prepared by being reminded every 20 minutes before the next timetable slot.
     * Highlights: This feature worked in conjunction with the timetable feature done by fellow programmer, Ha Duong. It required the extraction of the daily job listing that have been scheduled for that day. Also, with the help of the notification abstraction, creating this feature went really smooth.
@@ -30,10 +30,10 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * Managed releases v1.3 - v1.5rc (3 releases) on GitHub
+  * Managed releases v1.3 - v1.4 (2 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Modified existing a storage and model for handling reminders
+  * Modified existing storage and model to handle storing reminders in the app.
 
 * **Documentation**:
   * User Guide:
