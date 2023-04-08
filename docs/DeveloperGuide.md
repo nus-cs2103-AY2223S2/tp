@@ -295,7 +295,7 @@ Below is an example usage.
 
   <p align="center">
 
-  <img src="images/EventAddActivityDiagram.png" width="550" />
+  <img src="images/EventAddActivityDiagram.png" width="300" />
 
   </p>
 
@@ -310,7 +310,7 @@ The *Sequence Diagram* for the adding the `Event` is below:
 
 <p align="center">
  
-<img src="images/EventAddSequenceDiagram.png" width="300" />
+<img src="images/EventAddSequenceDiagram.png" width="550" />
 
 </p>
 
