@@ -902,19 +902,40 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Sorting a task
+
+1. Sorting different types of tasks
+
+   1. Prerequisites: Add 1 each of `Events`, `Deadline`, `SimpleTask` in the order stated with a tag of liking to it. Then, repeat it again, but with no tags assigned to each.
+
+   1. Test case: `sort`<br>
+     Expected: The order of the tags will be as follows: `SimpleTask` with no tag, `SimpleTask` with tag, `Deadline` with no tags, `Deadline` with tags, `Event` with no tags, `Event` with tags.
+
+2. Sorting a `Deadline` with different deadlines
+   
+   1. Prerequisites: Add 1 `Deadline` task with a deadline of liking (e.g. 2023-04-14 1400) and another `Deadline` task with an earlier deadline (e.g. 2023-04-14 1200).
+  
+   1. Test case: `sort`<br>
+     Expected: The `Deadline` task with an earlier deadline is above the other.
+
+
 ### Set an alert window
 
 1. Add a task that starts or ends within 24 hours
    1. Prerequisites: It is the first start-up of Clock-Work with no `alert` command calls. OR <br>
     User has already called `alert 24`.
+
    1. Test case: `add n/Test D/2023-04-08 0900` assuming that is it currently `2023-04-07 1000` <br>
     Expected: Task added to the task list. Details of added task shown in status message. <br>
     If it is first time start up of Clock-Work or alert window already set to 24, the task should already appear in the alert window.
+
 2. Add a task that starts or ends within 48 hours
    1. Prerequisites: It is the first start-up of Clock-Work with no changes `alert` command calls. OR <br>
       User has already called `alert` with an alert window less than 48 hours.
+
    1. Set up: `add n/Test D/2023-04-09 0900` assuming that is it currently `2023-04-07 1000` <br>
       Expected: Task added to the task list. Details of added task shown in status message. <br>
+
    1. Test case: `alert 48`. <br>
    Expected: The task should already appear in the alert window.
 
@@ -922,9 +943,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Locate the `data` folder in the same directory as where the jar file is located. (If the data folder is not yet generated, add a dummy task `add n/dummyTask` to generate one).
 
-1. _{ more test cases …​ }_
+   1. Exit the application and delete the `data` folder.
+
+   1. Open the application again. <br>
+      Expected: A list of sample Task is displayed.
 
 --------------------------------------------------------------------------------------------------------------------
 

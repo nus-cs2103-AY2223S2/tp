@@ -12,7 +12,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts the list.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String SORT_SUCCESS_MESSAGE = "List sorted.";
+    public static final String SORT_SUCCESS_MESSAGE = "Task list sorted.";
 
     @Override
     public CommandResult execute(Model model) {

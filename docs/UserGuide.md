@@ -217,6 +217,7 @@ Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* `DEADLINE`, `FROMDATE`, `TODATE` can also be altered if and only if the original tasks has these fields. (You are unable to assign a `deadline` to a `SimpleTask`).
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
@@ -282,7 +283,7 @@ Sorts the list using the following format:
         * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
         * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
         * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
-        * Else if both tasks have the same number of tags, the task with a smaller lexicgraphical name is listed above the other.
+        * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
 
 
 Format: `sort`
@@ -314,8 +315,8 @@ Examples:
     * e.g. `find all/ n/try n/try n/lab` is interpreted as `find all/ n/try n/lab`
 * For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
   However, adding `all/` means that a task which contains all your tag inputs will be displayed.
-    * e.g. `find t/very urgent t/important` will match with tags `t/very very urgent t/math t/hard` since it has `very urgent`.
-    * e.g. `find all/ t/very urgent t/important` will match with tags `t/very urgent t/important` since it has both tags.
+    * e.g. `find t/veryUrgent t/important` will match with tags `t/veryVeryUrgent t/math t/hard` since it has `veryurgent`.
+    * e.g. `find all/ t/veryUrgent t/important` will match with tags `t/veryUrgent t/important` since it has both tags.
 
 :warning: When searching for a description `find d/DESCRIPTION`, Tasks without user's input description will not show up!
 
@@ -421,8 +422,6 @@ Format: `help`
 
 
 ### 3.12 Clearing all entries : `clear`
-
-:man_technologist: **Think twice before using this. This action is not reversible.**
 
 Clears all entries from the task book.
 
@@ -661,6 +660,6 @@ _Details coming soon ..._
 
 ## 7. Glossary
 1. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
-2. Long date: Date in the format YYYY-MM-DD HHMM
-3. Short date: Date in the format YYYY-MM-DD
+2. Long date: Date in the format YYYY-MM-DD HHMM.
+3. Short date: Date in the format YYYY-MM-DD.
 4. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.
