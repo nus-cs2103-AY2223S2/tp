@@ -78,7 +78,11 @@ public class BookmarkBuilder {
      * Sets the {@code Author} of the {@code Bookmark} that we are building.
      */
     public BookmarkBuilder withAuthor(String author) {
-        this.author = new Author(author);
+        if (author == null) {
+            this.author = null;
+        } else {
+            this.author = new Author(author);
+        }
         return this;
     }
 
@@ -86,8 +90,12 @@ public class BookmarkBuilder {
      * Sets the {@code Progress} of the {@code Bookmark} that we are building.
      */
     public BookmarkBuilder withProgress(String progress) {
-        String[] splitProgress = progress.split(" ");
-        this.progress = new Progress(splitProgress);
+        if (progress == null) {
+            this.progress = null;
+        } else {
+            String[] splitProgress = progress.split(" ");
+            this.progress = new Progress(splitProgress);
+        }
         return this;
     }
 
