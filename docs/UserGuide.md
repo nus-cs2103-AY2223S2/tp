@@ -191,7 +191,7 @@ Format: `showDecks`
 ### 3.3.6. Selecting a Deck : `selectDeck`
 
 Once a deck has been created, you can access the list of cards inside it with this command. 
-Refer to the [Main Mode - After Selecting a Deck](#Main-Mode---After-Selecting-a-Deck) section to find out what commands you can run with a deck selected!
+Refer to the [Main Mode - After Selecting a Deck](#main-mode-after-selecting-a-deck) section to find out what commands you can run with a deck selected!
 
 <div markdown="block" class="alert alert-info">
 
