@@ -1,0 +1,6 @@
+@startuml ListPatientActivityDiagram
+start
+:Update patient pane to show all patients;
+:Display message to user;
+stop
+@enduml

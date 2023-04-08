@@ -1,0 +1,19 @@
+@startuml FindPatientActivityDiagram
+start
+if() then ([valid input])
+    :Update patient pane to show found patients;
+    ' https://plantuml.com/activity-diagram-beta#9d3afea73e90192d
+    ' do I want to deal with if there is flags or not? hmm
+    ' if() then ([has flags])
+    '     :Create new findPatientDescriptor;
+    ' elseif() then ([has query string])
+    '     :Create new findPatientDescriptor using name;
+    ' else ([else])
+    '     :Throw ParseExeception;
+    ' endif;
+else ([else])
+    :Throw ParseException;
+endif;
+:Display message to user;
+stop
+@enduml

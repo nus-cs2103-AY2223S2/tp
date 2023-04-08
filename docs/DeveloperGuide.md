@@ -433,13 +433,40 @@ Given below is an example usage scenario when a user enter `patient add --n John
 
 Note that `Allergies` and `Vaccines` are optional, so the user does not need to include `--a` or `--v` if the it is not applicable.
 
-The activity diagram below illustrates the workflow of patient `AddCommand` that is described above.
+The activity diagram below summarises the action when the patient `AddCommand` is executed.
 
-<img src="images/patient/AddPatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/AddPatientActivityDiagram.png" />
 
-Given below is an sequence diagram that illustrates the **Adding a Patient** mechanism behaves at every step.
+Given below is an sequence diagram that illustrates the **Adding a Patient** parsing mechanism behaves at every step.
 
-<img src="images/patient/AddPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/AddPatientParsingSequenceDiagram.png" />
+
+
+*Patient parsing detail here:*
+
+<img src="images/patient/dg/AddPatientParseActivityDiagram.png" />
+
+#### Detailing Patients
+
+The **Detailing Patients** mechanism is facilitated by `VMS`. It will update the UI with the Patient requested.
+
+##### Execution Sequence
+
+Given below is an example usage scenario when a user enter `patient detail 1` as a command.
+
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. When `DetailCommandParser` receives the information from `PatientParser`, it will invoke the `ParseUtil#parseIndex` to parse PATIENT_ID. It will throw a `ParseException` if there are no args present.
+4. After successfully parsing the args, `FindCommandParser` will create an `DetailCommand` with the parsed index
+5. When `DetailCommand#execute` is called, `model#setDetailedPatient` will be called to update the ui to display the Patient requested.
+
+The activity diagram below summarises the action when the patient `DetailCommand` is executed.
+
+<img src="images/patient/dg/DetailPatientActivityDiagram.png" />
+
+<!-- Given below is an sequence diagram that illustrates the **Detailing Patients** mechanism behaves at every step.
+
+<img src="images/patient/dg/DetailPatientsSequenceDiagram.png" /> -->
 
 #### Listing Patients
 
@@ -454,13 +481,13 @@ Given below is an example usage scenario when a user enter `patient list` as a c
 3. `PatientParser` will invoke `ListCommandParser`, which will create `ListCommand` directly as they do not use any args.
 4. When `ListCommand#execute` is called, `model#updateFilteredPatientList` will be called to update the list with the `PREDICATE_SHOW_ALL_PATIENTS` to display all Patients.
 
-The activity diagram below illustrates the workflow of patient `ListCommand` that is described above.
+The activity diagram below summarises the action when the patient `ListCommand` is executed.
 
-<img src="images/patient/ListPatientsActivityDiagram.png" width="550" />
+<img src="images/patient/dg/ListPatientActivityDiagram.png" />
 
-Given below is an sequence diagram that illustrates the **Listing Patients** mechanism behaves at every step.
+<!-- Given below is an sequence diagram that illustrates the **Listing Patients** mechanism behaves at every step.
 
-<img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/ListPatientsSequenceDiagram.png" /> -->
 
 #### Finding a Patient
 
@@ -491,13 +518,13 @@ Given below is an example usage scenario when a user enter `patient find --n Joh
     3. The different predicates will be added into a `List<Predicate<Patient>>` and passed to `model#setPatientFilters` to display the filtered Patients.
     4. `FindCommand` will then return `CommandMessage` to indicate it's success and the number of patients found.
 
-The activity diagram below illustrates the workflow of patient `FindCommand` that is described above.
+The activity diagram below summarises the action when the patient `FindCommand` is executed.
 
-<img src="images/patient/FindPatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/FindPatientActivityDiagram.png" />
 
-Given below is an sequence diagram that illustrates the **Finding a Patient** mechanism behaves at every step.
+<!-- Given below is an sequence diagram that illustrates the **Finding a Patient** mechanism behaves at every step.
 
-<img src="images/patient/FindPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/FindPatientSequenceDiagram.png" /> -->
 
 `FindCommandParser#parse` will call `String#trim` to trim the search request. If there is no additional flags, it will fall back to the default of using the search term to find Names.
 
@@ -526,13 +553,13 @@ Given below is an example usage scenario when a user enter `patient edit 5 --n J
     3. Then `model#setPatient` will be called to add the new Patient into the model.
     4. `EditCommand` will then return `CommandMessage` to indicate it's success.
 
-The activity diagram below illustrates the workflow of patient `EditCommand` that is described above.
+The activity diagram below summarises the action when the patient `EditCommand` is executed.
 
-<img src="images/patient/EditPatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/EditPatientActivityDiagram.png" />
 
-Given below is an example usage scenario and how **Editing a Patient** mechanism behaves at each step.
+<!-- Given below is an example usage scenario and how **Editing a Patient** mechanism behaves at each step.
 
-<img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/EditPatientSequenceDiagram.png" /> -->
 
 #### Deleting a Patient
 
@@ -542,10 +569,19 @@ The **Deleting a Patients** mechanism is facilitated by `VMS`. It will delete sp
 
 Given below is an example usage scenario when a user enter `patient delete 5` as a command.
 
-<!-- TODO -->
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. When `DeleteCommandParser` receives the information from `PatientParser`, it will invoke the `ParseUtil#parseIndex` to parse PATIENT_ID. It will throw a `ParseException` if there are no args present.
+4. After successfully parsing the args, `FindCommandParser` will create an `DeleteCommand` with the parsed index
+5. When `DeleteCommand#execute` is called, `model#setDeletedPatient` will be called to update the ui to display the Patient requested.
 
-<img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
-<img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
+The activity diagram below summarises the action when the patient `DeleteCommand` is executed.
+
+<img src="images/patient/dg/DeletePatientActivityDiagram.png" />
+
+<!-- Given below is an sequence diagram that illustrates the **Deleting a Patient** mechanism behaves at every step.
+
+<img src="images/patient/dg/DeletePatientSequenceDiagram.png" /> -->
 
 #### Clearing Patients
 
@@ -560,13 +596,13 @@ Given below is an example usage scenario when a user enter `patient clear` as a 
 3. `PatientParser` will invoke `ClearCommand` which will create `ClearCommand` as they do not use any args.
 4. When `ClearCommand#execute` is called, `model#setPatientManager` will be called to update the list a new PatientManger() with no patients.
 
-The activity diagram below illustrates the workflow of patient `ClearCommand` that is described above.
+The activity diagram below summarises the action when the patient `ClearCommand` is executed.
 
-<img src="images/patient/ClearPatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/ClearPatientActivityDiagram.png" />
 
-Given below is an sequence diagram that illustrates the **Clearing Patients** mechanism behaves at every step.
+<!-- Given below is an sequence diagram that illustrates the **Clearing Patients** mechanism behaves at every step.
 
-<img src="images/patient/ClearPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/ClearPatientSequenceDiagram.png" /> -->
 
 ### Appointment
 
@@ -791,63 +827,123 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ##### MSS
 
-1. User requests to add patient.
+1. User enters command to add a patient.
 2. VMS adds the patient.
 
-  Use case ends.
+    Use case ends.
 
-#### UC-PAT-002 - List patients
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
+
+
+#### UC-PAT-002 - Detail patient
 
 ##### MSS
 
-1. User requests to list patients.
-2. VMS shows a the list of patients with their corresponding IDs.
+1. User enters command to view details of a patient.
+2. VMS shows the details of the patient requested.
 
   Use case ends.
 
-#### UC-PAT-003 - Update patient
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
+
+* 1b. User requested to detail a patient that does not exist.
+  * 1a1. VMS shows an error message.
+
+    Use case ends.
+
+#### UC-PAT-003 - List patients
 
 ##### MSS
 
-1. User requests to list patients.
-2. VMS shows a the list of patients with their corresponding IDs.
-3. User requests to update a specific patient in the list with the args.
-4. VMS updates the patients
+1. User enters command to list patients.
+2. VMS shows the list of patients with their corresponding IDs.
+
+  Use case ends.
+
+#### UC-PAT-004 - Find patients
+
+##### MSS
+
+1. User enter command to find patients.
+2. VMS shows the list of matched patients with their corresponding IDs.
+
+  Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
+
+#### UC-PAT-005 - Edit patient
+
+##### MSS
+
+1. User enters command to edit a specific patient.
+2. VMS edits the patients
 
     Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+* 1b. User requested to edit a patient that does not exist.
+  * 1a1. VMS shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
-#### UC-PAT-004 - Delete patient
+#### UC-PAT-006 - Delete patient
 
 ##### MSS
 
-1. User requests to list patients.
-2. VMS shows a the list of patients with their corresponding IDs.
-3. User requests to delete a specific patient in the list.
-4. VMS soft deletes the patient.
+1. User requests to delete a specific patient in the list.
+2. VMS deletes the patient.
 
     Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
+
+* 1b. User requested to delete a patient that does not exist.
+  * 1a1. VMS shows an error message.
+
+    Use case ends.
+
+* 1c. VMS detects that some appointments will become invalid after deletion.
+  * 1c1. VMS requests user to force the change.
+  * 1c2. User enters command to force the change.
+  * 1c3. VMS deletes the patient and all invalid appointments.
+
+    Use case ends.
+
+#### UC-PAT-007 - Clear patients
+
+##### MSS
+
+1. User requests to list patients.
+2. VMS shows the list of patients with their corresponding IDs.
 
   Use case ends.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
-
-      Use case resumes at step 1.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -877,14 +973,14 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case ends.
 
-#### UC-APT-003 - Update appointment
+#### UC-APT-003 - Edit appointment
 
 ##### MSS
 
 1. User requests to list appointments.
 2. VMS shows a list of appointments.
-3. User requests to update a specific appointment in the list using the ID with the args.
-4. VMS update the appointment.
+3. User requests to edit a specific appointment in the list using the ID with the args.
+4. VMS edit the appointment.
 
     Use case ends.
 
@@ -953,19 +1049,12 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case ends.
 
-##### Extensions
-
-* 1a. VMS detects error in the command entered.
-  * 1a1. VMS shows an error message.
-
-    Use case resumes from step 1.
-
-#### UC-VAC-003 - Update vaccination
+#### UC-VAC-003 - Edit vaccination
 
 ##### MSS
 
-1. User enters command to update a vaccination.
-2. VMS updates the vaccination.
+1. User enters command to edit a vaccination.
+2. VMS edits the vaccination.
 
     Use case ends.
 
@@ -976,7 +1065,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case resumes from step 1.
 
-* 1b. User requested to update a vaccination that does not exist.
+* 1b. User requested to edit a vaccination that does not exist.
   * 1a1. VMS shows an error message.
 
     Use case ends.
@@ -1140,22 +1229,173 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a patient
+### Adding a patient
 
-1. Deleting a patient while all patients are being shown
+#### Prerequisites
 
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+Before every test case, ensure that the patient "John Doe" does not exist. This can be done by executing the following before every test case:
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+`patient clear --force true`
 
-   1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+#### Test: All optional parameters omitted
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+`patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
 
-1. _{ more test cases …​ }_
+##### Expected
+
+![Expected display](images/patient/dg/PatientAdd_Blank.png)
+
+#### Test: Optional parameters present
+
+`patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+
+##### Expected
+
+![Expected display](images/patient/dg/PatientAdd_NotBlank.png)
+
+### Patient attribute validation
+
+Before every test case, ensure that the there are no patients. This can be done by executing the following before every test case:
+
+`patient clear --force true`
+
+#### Test: Name validation
+
+##### Valid Name
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John   Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John   Doe2 --p 98765432 --d 2001-03-19 --b B+`
+
+##### Invalid Name {#invalid-patient-name}
+
+* `patient add --n John-Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n    --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John D. --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John s/o Alex --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n --p 98765432 --d 2001-03-19 --b B+`
+
+#### Test: Phone validation
+
+##### Valid Phone
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 999 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 12345678912345 --d 2001-03-19 --b B+`
+
+##### Invalid Phone
+
+* `patient add --n John Doe --p +65 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 99 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 123-456 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p (123) 2345 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p --d 2001-03-19 --b B+`
+
+#### Test: Dob validation
+
+##### Valid Dob
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 0800 --b B+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 1600 --b B+`
+
+##### Invalid Dob
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19T2000 --b B+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-50 --b B+`
+* `patient add --n John Doe --p 98765432 --d 2040-03-19 --b B+`
+* `patient add --n John Doe --p 98765432 --d --b B+`
+
+#### Test: Blood Type validation
+
+##### Valid Blood Type
+
+*List of valid Blood Type test non exhaustive*
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A-`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b AB+`
+
+##### Invalid Blood Type
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b C+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b C*`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b`
+
+#### Test: Group Name validation
+
+`GroupName` validation will include both allergies and vaccination as their underlying type is the same `GroupName` type
+
+##### Valid Group Name
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur, pollen --v covax`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a cat(fur) --a pol-len --v covax`
+
+##### Invalid Group Name
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a poll*en --v covax`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfurcatfurcatfurcatfurcatfurcatfur --v covax`
+
+### Viewing details of a patient
+
+#### Prerequisites
+
+Before every test case, ensure that the there are no patients. This can be done by executing the following before every test case:
+
+`patient clear --force true`
+
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient detail 1`
+
+#### Expected
+
+![Expected display](images/patient/dg/PatientAdd_NotBlank.png)
+
+### Listing all patients
+
+#### Prerequisites
+
+Before every test case, ensure that the there are no patients. This can be done by executing the following before every test case:
+
+`patient clear --force true`
+
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient list`
+
+#### Expected
+
+![Expected display](images/patient/dg/PatientList.png)
+
+### Locating a patient
+
+#### Prerequisites
+
+Before every test case, ensure that the there are no patients. This can be done by executing the following before every test case:
+
+`patient clear --force true`
+
+1. Add patients with different Names, Blood Type
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A+ --a catfur --a pollen --v covax`
+1. `patient add --n John Does --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient add --n John Po --p 98765432 --d 2001-03-19 --b AB+ --a catfur --a pollen --v covax`
+1. Find patient with name "John Doe"
+  `patient find John Doe`
+  **Expected**: 2 patients listed! (John Doe, John Does)
+1. Find patient with name "John Does"
+  `patient find John Does`
+  **Expected**: 1 patients listed! (John Does)
+1. Find patient with name "John"
+  `patient find John`
+  **Expected**: 3 patients listed! (John Doe, John Does, John Po)
+1. Find patient with "A+" Blood Type
+  `patient find --b A+`
+  **Expected**: 1 patients listed! (John Doe)
+1. Find patient with "A+" Blood Type and named "John"
+  `patient find --b A+ --n John`
+  **Expected**: 1 patients listed! (John Doe)
 
 ### Adding a vaccination
 
@@ -1284,4 +1524,4 @@ Before every test case, ensure that the there are no patients and vaccinations.
 
 ## Appendix: Planned enhancements
 
-stuff...
+1. We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
