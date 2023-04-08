@@ -680,4 +680,3 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 | **Redo**        | `redo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd>                                                    |
 | **Help**        | `help`<br>Keyboard Shortcut: <kbd>F1</kbd>                                                                                                                                       |
 | **Exit**        | `exit`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Q</kbd> / <kbd>command</kbd>+<kbd>Q</kbd>                                                                                      |
->>>>>>> master
