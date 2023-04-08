@@ -558,11 +558,9 @@ this is shown below in the form of a class diagram:
 
 **Target user profile**:
 
-* Students studying computing-related courses looking for internships
-* Reasonably comfortable using CLI apps
-* Has a need to manage a significant number of internship positions
+* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search for their job efficiently.
 
-**Value Proposition**: manage jobs faster than a typical mouse/GUI driven app
+**Value Proposition**: Manage jobs faster than a typical mouse/GUI driven app
 
 ### User stories
 
