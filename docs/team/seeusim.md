@@ -39,6 +39,10 @@ Given below are my contributions to the project:
     * Highlights:
       * Refactored `Ingredient` Field within the `models.Recipe` class from a List of `Ingredient` Objects to a Hash table using `HashMap`, consisting of `Ingredient` keys and `IngredientInformation` value (key-value) pairs
       * Refactored the tests that these changes affected
+  * Add Logic Infrastructure for UI components (Pull request [\#146](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/146))
+    * What it does: Passes the Logic dependency down from the MainWindow to deeply nested UI components
+    * Justification: While it adds dependency injections, certain nested components do need to interact with the Logic instance to send commands and fetch data from the App's backend.
+    * Credits: [James](jamesliuzx.md) for implementing the other UI features within this release.
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
@@ -112,36 +116,15 @@ Given below are my contributions to the project:
     * Added updated, higher resolution class diagrams, as well as tweaks for clarity of language/formatting [\#259](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/259)
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
-    [\#30](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/30),
-    [\#34](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/34),
-    [\#37](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/37),
-    [\#86](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/86),
-    [\#90](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/90),
-    [\#96](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/96),
-    [\#91](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/91),
-    [\#108](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/108),
-    [\#116](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/116),
-    [\#117](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/117),
-    [\#118](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/118),
-    [\#125](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/125),
-    [\#127](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/127),
-    [\#129](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/129),
-    [\#131](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/131),
-    [\#132](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/132),
-    [\#137](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/137),
-    [\#138](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/138),
-    [\#139](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/139),
-    [\#146](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/146),
-    [\#147](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/147),
-    [\#148](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/148),
-    [\#154](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/154),
-    [\#155](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/155),
-    [\#185](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/185),
-    [\#189](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/189),
-    [\#194](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/194),
-    [\#203](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/203),
-    [\#252](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/252),
-    [\#253](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/253),
-    [\#254](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/254),
+    [\#30](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/30), [\#34](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/34), 
+    [\#37](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/37), [\#86](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/86), 
+    [\#90](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/90), [\#96](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/96),
+    [\#108](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/108), [\#117](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/117), 
+    [\#118](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/118),[\#127](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/127), 
+    [\#129](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/129), [\#131](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/131),
+    [\#132](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/132), [\#139](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/139), 
+    [\#147](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/147), [\#148](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/148), 
+    [\#154](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/154), [\#155](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/155), 
+    [\#185](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/185), [\#254](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/254), 
     [\#255](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/255)
   * Reported 12 bugs in the Practical Exam dry run: **[Bug Report](https://github.com/SeeuSim/ped/tree/main/files)**
