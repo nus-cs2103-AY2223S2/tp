@@ -404,7 +404,7 @@ the file that contains the data of your previous MedInfo home folder.<br>
 | **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN` |
 | **List**        | `list`                                                                                     |
 | **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                   |
-| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`, `sort d/desc`                               |
 | **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
 | **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                        |
