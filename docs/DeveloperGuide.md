@@ -119,16 +119,16 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
 
 * stores the master deck data i.e., all `Card` objects (which are contained in a `UniqueCardList` object) and all `Deck` objects (which are contained in a `UniqueDeckList` object).
-* stores the currently 'selected' `Card` objects (e.g., results of a selecting a deck) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Card>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Card` objects (e.g., results of selecting a deck) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Card>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'selected' `Deck` objects (e.g., results of a deck search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Deck>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* stores an optional `Review` object, which handles the cards being reviewed by the user. Refer [below](#Review) for more details. 
+* stores an optional `Review` object, which handles the cards being reviewed by the user. Refer [below](#review) for more details. 
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 Each `Card` object,
@@ -137,7 +137,7 @@ Each `Card` object,
 
 ##### Review 
 
-<img src="images/SimplifiedReviewClassDiagram.png" width="450" />
+<img src="images/SimplifiedReviewClassDiagram.png" width="318" />
 
 The `Review`
 * stores a `Deck` currently being reviewed.
@@ -212,7 +212,13 @@ Step 2. The user executes `addDeck Math` command to add a new deck. The `addDeck
 
 Step 3. A new deck is now added on the list and able to execute further functionalities.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** In case of a duplicate deck name, an exception will be thrown and the newly created deck will not be saved in the `MasterDeck`. However, naming a deck is case-sensitive. For example, user cannot create two Math decks but it is allowed to create Math deck and math deck. 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:**  
+
+- In case of a duplicate deck name, an exception will be thrown and the newly created deck will not be saved in the `MasterDeck`. 
+- However, note that deck names are case-sensitive. For example, user cannot create two "Math" decks, but are allowed to create a "Math" deck and a "math" deck. 
+
 </div>
 
 The following activity diagram summarizes what happens when a user executes addDeck command:
@@ -296,10 +302,6 @@ MasterDeck stores 2 independent lists, a `UniqueCardList` storing all existing u
 Each `Card` instance references an existing instance of `Deck`. This reference denotes that the card belongs to a specific deck.
 
 Below is an object diagram representing an example instance of `MasterDeck` under the current implementation.
-
-
-
-
 
 ![MasterDeck Object Diagram](images/MasterDeckObjectDiagram.png)
 
