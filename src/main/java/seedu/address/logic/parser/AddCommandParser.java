@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -30,7 +31,6 @@ import seedu.address.model.video.VideoTimestamp;
  * Parses input arguments and creates a new {@code AddCommand} object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an {@code AddCommand} object for execution.
@@ -41,8 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TAG, PREFIX_WATCH, PREFIX_TIMESTAMP);
 
-        if (isAddModule(argMultimap)) {
-            return parseAddModuleCommand(argMultimap);
+        if (AddModuleCommandParserUtil.isArgumentsForAddingModule(argMultimap)) {
+            return AddModuleCommandParserUtil.parse(argMultimap);
         } else if (isAddLecture(argMultimap)) {
             return parseAddLectureCommand(argMultimap);
         } else if (isAddVideo(argMultimap)) {
@@ -50,26 +50,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         } else {
             throw createInvalidCommandFormatException();
         }
-    }
-
-    private boolean isAddModule(ArgumentMultimap argMultimap) {
-        return !argMultimap.getPreamble().isEmpty()
-                && argMultimap.getValue(PREFIX_MODULE).isEmpty()
-                && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
-    }
-
-    private AddCommand parseAddModuleCommand(ArgumentMultimap argMultimap) throws ParseException {
-        String moduleCodeStr = argMultimap.getPreamble();
-        String moduleNameStr = argMultimap.getValue(PREFIX_NAME).orElse("");
-        String tagsStr = argMultimap.getValue(PREFIX_TAG).orElse("");
-
-        ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
-        ModuleName moduleName = ParserUtil.parseModuleName(moduleNameStr);
-        Set<Tag> tags = ParserUtil.parseMultiTags(tagsStr);
-
-        Module module = new Module(moduleCode, moduleName, tags, new ArrayList<>());
-
-        return new AddModuleCommand(module);
     }
 
     private boolean isAddLecture(ArgumentMultimap argMultimap) {
@@ -121,4 +101,98 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
+    /**
+     * Contains utility methods utilised by {@code AddModuleCommandParserUtil}, {@code AddLectureCommandParserUtil},
+     * and {@code AddVideoCommandParserUtil}
+     */
+    private static class AddCommandParserUtil {
+        /**
+         * Extracts a set of tags from {@code argMultimap}.
+         *
+         * @param argMultimap A map of the arguments and their values
+         * @return A set of tags extracted from {@code argMultimap}.
+         * @throws ParseException Indicates that a tag did not conform to the expected format.
+         */
+        public static Set<Tag> extractTags(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String tagsStr = argMultimap.getValue(PREFIX_TAG).orElse("");
+            return ParserUtil.parseMultiTags(tagsStr);
+        }
+    }
+
+    /**
+     * Contains utility methods for parsing input arguments and creating a new {@code AddModuleCommand} object
+     * from it.
+     */
+    private static class AddModuleCommandParserUtil {
+        /**
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to add a module.
+         *
+         * @param argMultimap A map of the arguments and their values.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to add a
+         *         module. Otherwise, false.
+         */
+        public static boolean isArgumentsForAddingModule(ArgumentMultimap argMultimap) {
+            requireNonNull(argMultimap);
+
+            return !argMultimap.getPreamble().isEmpty()
+                    && argMultimap.getValue(PREFIX_MODULE).isEmpty()
+                    && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
+        }
+
+        /**
+         * Parses the arguments in {@code argMultimap} and use it to create an {@code AddModuleCommand} object.
+         *
+         * @param argMultimap A map of the arguments and their values.
+         * @return The {@code AddModuleCommand} object created from the arguments.
+         * @throws ParseException Indicates that an argument value did not conform to the expected format.
+         */
+        public static AddModuleCommand parse(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            Module module = createModule(argMultimap);
+            return new AddModuleCommand(module);
+        }
+
+        private static Module createModule(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            ModuleCode moduleCode = extractModuleCode(argMultimap);
+            ModuleName moduleName = extractModuleName(argMultimap);
+            Set<Tag> tags = AddCommandParserUtil.extractTags(argMultimap);
+
+            return new Module(moduleCode, moduleName, tags, new ArrayList<>());
+        }
+
+        private static ModuleCode extractModuleCode(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String moduleCodeStr = argMultimap.getPreamble();
+            return ParserUtil.parseModuleCode(moduleCodeStr);
+        }
+
+        private static ModuleName extractModuleName(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String moduleNameStr = argMultimap.getValue(PREFIX_NAME).orElse("");
+            return ParserUtil.parseModuleName(moduleNameStr);
+        }
+    }
+
+    /**
+     * Contains utility methods for parsing input arguments and creating a new {@code AddLectureCommand} object
+     * from it.
+     */
+    private static class AddLectureCommandParserUtil {
+
+    }
+
+    /**
+     * Contains utility methods for parsing input arguments and creating a new {@code AddVideoCommand} object
+     * from it.
+     */
+    private static class AddVideoCommandParserUtil {
+
+    }
 }
