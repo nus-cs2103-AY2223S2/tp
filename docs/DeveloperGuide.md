@@ -1192,6 +1192,7 @@ of an old applicant (who has changed his/her phone number). Hence, we shall not 
 6. Adding a feature that allows for importing of csv files so that users can transfer existing data into HMHero, instead of having to re-key all the existing entries
 manually into HMHero at the start.
 7. Enhancing the `summary` command to produce useful charts and graphs for Hiring Managers to have a better visualisation of the hiring process.
+8. Enhancing the checking of emails to have a valid domain name such as `@gmail.com` or `@nus.edu.sg` instead of just checking for the presence of `@` in the email.
 
 
 
