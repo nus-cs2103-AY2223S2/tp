@@ -465,7 +465,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System shows total earnings, monthly earnings,
    weekly earnings, daily earnings and top customers visited.
    Use case ends.
-
 <b>Extensions</b>
 * 2a. The list is empty.
       Use case ends.
@@ -503,7 +502,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific job in the list.
 4. System deletes the job.
    Use case ends.
-
 <b>Extensions</b>
 * 2a. The list is empty.
   Use case ends.
@@ -523,7 +521,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. User fill in and submit the changes.
 4. System update the job and list the new information.
    Use case ends.
-
 <b>Extensions</b>
 * 2a. The list is empty.
   Use case ends.
@@ -542,7 +539,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests search for a job with options.
 4. System displays search results that matches the query.
    Use case ends.
-
 <b>Extensions</b>
 * 3a. Invalid search option given.
     * 3a1. System shows an error message.
@@ -584,23 +580,21 @@ If yes, it will count and alert the user through the notification feature.
 4. System runs in the background to only check the timetable for upcoming jobs.
    System will repeat step 2 every hour, 20 mins before the next timetable slot.
    Use case ends.
-
 <b>Extensions:</b>
 * 3a. If the current time is within 20 mins before the next timetable slot
     * 3a1. System will check the next timetable slot and count number of upcoming jobs.
     * 3a2. Alert the user through the notification feature.
 * 3b. If the current time is before the first timetable slot.
-    * 3b1. System will check in the first timetable slot and count number of upcoming jobs. 
+    * 3b1. System will check in the first timetable slot and count number of upcoming jobs.
     * 3b2. Alert the user through the notification feature.
 * 3c. If the current time is after the last timetable slot
     * 3c1. System will not check for any or upcoming scheduled jobs.
-Use case resumes from step 4.
-
+      Use case resumes from step 4.
 </pre>
 </details>
 
 <details>
-<summary><b>[RE1] Alert reminders</b></summary>
+<summary><b>[RE2] Alert reminders</b></summary>
 <pre>
 <b>MSS</b>
 1. User starts up System.
@@ -611,39 +605,36 @@ specified in a reminder, System will count it as an active reminder.
 5. System runs in the background to check against the list of reminders after every minute.
    System will repeat the check at step 3.
    Use case ends.
-
 <b>Extensions:</b>
 * 4a. User can dismiss the reminder. Doing will prevent the app from showing anymore notifications.
     * 4a1. A new reminder is activated.
-Use case resumes from step 4.
+      Use case resumes from step 4.
     * 4a2. No new reminder is activated.
-Use case resumes from step 5
+      Use case resumes from step 5
 </pre>
 </details>
 
 <details>
-<summary><b>[RE2] Add reminders</b></summary>
+<summary><b>[RE3] Add reminders</b></summary>
 <pre>
 <b>MSS</b>
 1. User details the description, date and time of a reminder to the System.
 2. System adds the reminder into the reminder list.
    Use case ends.
-
 <b>Extensions:</b>
 * 2a. date and time of reminder is not provide.
     * 2a1. System will promopt user again.
-    Use case resumes from step 1.
+           Use case resumes from step 1.
 </pre>
 </details>
 
 <details>
-<summary><b>[RE3] Delete reminders</b></summary>
+<summary><b>[RE4] Delete reminders</b></summary>
 <pre>
 <b>MSS</b>
 1. User specifies a reminder to be deleted based on its index number.
 2. System finds the corresponding reminder, and deletes it from the reminder list.
    Use case ends.
-
 <b>Extensions:</b>
 * 2a. Index provided by user is not found in reminder list.
     * 2a1. System will prompt user again.
@@ -652,7 +643,7 @@ Use case resumes from step 5
 </details>
 
 <details>
-<summary><b>[RE4] List reminders</b></summary>
+<summary><b>[RE5] List reminders</b></summary>
 <pre>
 <b>MSS</b>
 1. User request System to show all reminders in reminder list.
@@ -713,13 +704,47 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Adding a delivery job 
+
+1. Add a job through command
+
+   1. Prerequisites: User is in the main window. Valid recipient and sender id. 
+
+   1. Test case: `add_job si/DAVSAM ri/CHASAM earn/1`<br>
+      Expected: A delivery job is created without delivery schedule.  
+                The sender should be DAVSAM and recipient should be CHASAM.  
+                With earning value of $1.
+
+   1. Test case: `add_job si/DAVSAM ri/CHASAM earn/1 date/2024-05-01 slot/1`<br>
+      Expected: A delivery job is created with delivery schedule.  
+                Similar to previous.
+
+   1. Other incorrect add job commands to try:  
+      - `add_job si/invalid_id ri/invalid_id earn/empty` invalid argument supply.  
+      - `add_job si/... ri/... earn/... [date/...] [slot/...]` with either date or slot given.  
+
+1. Add a job through GUI
+
+   1. Prerequisites: User have access to GUI. Access `menu` > `Delivery Job System` > `Create Job`.  
+
+   1. Test case: fill in mandatory fields only (recipient/sender/earning)<br>
+      Expected: Similar to `1.ii`
+
+   1. Test case: fill in all fields<br>
+      Expected: Similar to `1.iii`
+
+   1. Other incorrect approach to try:  
+      - `sender/recipient`, invalid person id.
+      - `earning`, multiple decimal points.  
+      - `date`, invalid date.  
 
 ### Notifications
 
