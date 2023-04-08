@@ -404,7 +404,7 @@ Add a module to Le Tracker.
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the module
   - Repeated tags (if any) will be ignored
 
-<details>
+<details open>
 <summary>Example</summary>
 <ul>
     <li>
@@ -413,7 +413,6 @@ Add a module to Le Tracker.
     </li>
 </ul>
 </details>
-<br/>
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
