@@ -9,6 +9,9 @@ import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import expresslibrary.commons.core.Messages;
@@ -16,7 +19,14 @@ import expresslibrary.commons.core.index.Index;
 import expresslibrary.model.Model;
 import expresslibrary.model.ModelManager;
 import expresslibrary.model.UserPrefs;
+import expresslibrary.model.book.Author;
+import expresslibrary.model.book.Book;
+import expresslibrary.model.book.Isbn;
+import expresslibrary.model.book.Title;
 import expresslibrary.model.person.Person;
+
+
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -45,6 +55,24 @@ public class DeletePersonCommandTest {
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(outOfBoundIndex, false);
 
         assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_deletePersonWithBorrowedBooks_throwsCommandException() {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Set<Book> borrowedBooks = new HashSet<>(personToDelete.getBooks());
+        borrowedBooks.add(new Book(new Title("Book 3"), new Author("Author 3"), new Isbn("1234567890")));
+        Person personWithBorrowedBooks = new Person(personToDelete.getName(), personToDelete.getPhone(),
+                personToDelete.getEmail(), borrowedBooks, personToDelete.getTags());
+        model.setPerson(personToDelete, personWithBorrowedBooks);
+
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_PERSON, false);
+        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_DELETE_PERSON);
+    }
+
+    @Test
+    public void execute_borrowBookNotInList_throwsCommandException() {
+
     }
 
     @Test

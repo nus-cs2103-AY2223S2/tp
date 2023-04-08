@@ -41,7 +41,13 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed:
     * ([#105](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/105))
-    * ([#76](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/76))
+    * ([#76](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/76)
+    * ([#62](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/62))
+    * ([#100](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/100))
+    * ([#109](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/109))
+    * ([#112](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/112))
+    * ([#115](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/115))
+    * ([#178](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/178))
     
 
 * **Tools**:
