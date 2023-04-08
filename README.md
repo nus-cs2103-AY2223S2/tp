@@ -2,7 +2,6 @@
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-W11-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W11-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W11-3/tp/branch/master/graph/badge.svg?token=OXR3WZBSBR)](https://codecov.io/gh/AY2223S2-CS2103T-W11-3/tp)
-![Ui](images/Ui.png)
 
 ![Ui](docs/images/Ui.png)
 1. Main Screen - add new flashcards or decks, edit existing flashcards or decks
