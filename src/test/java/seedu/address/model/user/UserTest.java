@@ -165,7 +165,7 @@ public class UserTest {
     }
 
     @Test
-    public void addEvent_RecurringEvent() {
+    public void addEvent_recurringEvent() {
         //Add recurring event, user contains recurring event and not one-time-event.
         User user = new UserBuilder().build();
         user.addEvent(RECURRING_EVENT);
