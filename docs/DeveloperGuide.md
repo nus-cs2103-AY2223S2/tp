@@ -747,6 +747,9 @@ Use case ends.
 6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
 7. The CLI should be accessible to users with different abilities and needs, including support for assistive
    technologies and localization.
+8. Stored data should be compatible with other OSes and versions of the application.
+9. The application should load up within 3-5 seconds.
+10. Users must be able to access the application without an internet connection.
 
 --------------------------------------------------------------------------------------------------------------------
 
