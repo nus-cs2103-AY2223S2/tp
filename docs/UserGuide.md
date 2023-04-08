@@ -217,6 +217,10 @@ The following values (case sensitive) are not allowed:
 A non-blank character sequence consisting of only alphanumeric character and all brackets excluding triangle brackets
 (`<` and `>`). The character limit is **30** characters.
 
+#### `<name>`
+
+A non-blank character sequence consisting of only alphanumeric character. There is no character limit and does not limit the amount of spaces between the words.
+
 #### `<blood-type>`
 
 The list of blood types are:
