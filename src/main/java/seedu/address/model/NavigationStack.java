@@ -8,6 +8,9 @@ import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.navigation.NavigationContext.NavLayer;
 
 
+/**
+ * Represents a Navigation component that uses a stack implementation.
+ */
 public class NavigationStack implements Navigation {
     private final Stack<NavigationContext> contextStack;
 
