@@ -15,9 +15,7 @@ import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
 
-/**
- * Jackson-friendly version of {@link Student}.
- */
+/** Jackson-friendly version of {@link Student}. */
 class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
@@ -28,24 +26,23 @@ class JsonAdaptedStudent {
     private final ArrayList<String> submissionStrArr = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-    /**
-     * Constructs a {@link JsonAdaptedStudent} with the given student details. Called when reading from JSON.
-     */
+    /** Constructs a {@link JsonAdaptedStudent} with the given student details. Called when reading from JSON. */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("attendance") String attendance,
-                              @JsonProperty("pp") String pp,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("pp") String pp, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("submissionStrArr") List<String> submissionStrArr) {
         this.name = name;
         this.pp = pp;
         this.attendance = attendance;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (submissionStrArr != null) {
+            this.submissionStrArr.addAll(submissionStrArr);
+        }
     }
 
-    /**
-     * Converts a given {@link Student} into this class for Jackson use. Called when saving to JSON.
-     */
+    /** Converts a given {@link Student} into this class for Jackson use. Called when saving to JSON. */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         attendance = source.getAtd().atdStrorageStr();
