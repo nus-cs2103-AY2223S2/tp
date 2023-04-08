@@ -51,11 +51,11 @@ than current GUI apps in the industry.
   <img src="images/DocedexInFileWin.png" alt="DocedexInFileWin" width="70%" height="70%">
   
 4. Launch Docedex
-- For Mac Users:
+- For Mac Users:<br>
   - Right-click `docedex.jar` > Open With > JavaLauncher.app
   <img src="images/LaunchDocedexMac.png" alt="LaunchDocedexMac" width="70%" height="70%">
   - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
-- For Windows Users:
+- For Windows Users:<br>
   - Double-click `docedex.jar` to launch the application.
 - If this still does not work follow the instructions listed [here.](#launching-docedex)
 - You should notice the GUI of the application pop up.
