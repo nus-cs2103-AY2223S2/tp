@@ -97,8 +97,8 @@ and want to classify it by ingredients? Simply run the `add` command, and follow
 Format: `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]... [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
 
 Example(s) of usage:
-* `add n/Honey Chicken Rice`
-![AddCommandUI](images/AddCommandUI.png)
+* `add n/Honey Chicken Rice`<br/><br/>
+![AddCommandUI](images/AddCommandUI.png)<br/><br/>
 * `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300 g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
 * `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
 butter s/Serve and enjoy.`
@@ -280,7 +280,7 @@ Unsure or unable to remember our list of commands and how to format your inputs?
 Format:
 `help`
 
-> :bulb: Tip: `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!
+> :bulb: Tip: `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!<br/><br/>
 ![HelpCommandUI](images/HelpCommandUI.png)
 
 ### Exiting the program: `exit`
