@@ -4,6 +4,7 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertComman
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.model.Model;

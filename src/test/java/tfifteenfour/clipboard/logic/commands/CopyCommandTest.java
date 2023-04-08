@@ -10,30 +10,22 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
-import tfifteenfour.clipboard.model.course.Course;
-import tfifteenfour.clipboard.model.course.Group;
-import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
 class CopyCommandTest {
     private Model model;
     private Model expectedModel;
-    private Course selectedCourse;
-    private Group selectedGroup;
-    private Student selectedStudent;
     private CurrentSelection actualSelection;
 
     @BeforeEach
     public void setUp() {
         this.model = new TypicalModel().getTypicalModel();
         expectedModel = model.copy();
-        selectedCourse = model.getCurrentSelection().getSelectedCourse();
-        selectedGroup = model.getCurrentSelection().getSelectedGroup();
-        selectedStudent = model.getCurrentSelection().getSelectedStudent();
 
         actualSelection = this.model.getCurrentSelection();
         actualSelection.setCurrentPage(PageType.STUDENT_PAGE);
@@ -41,15 +33,11 @@ class CopyCommandTest {
 
     @Test
     public void execute_copyCommand_success() throws CommandException {
-//        Clipboard clipboard = new Clipboard("clipboard");
         CopyCommand copyCommand = new CopyCommand(INDEX_FIRST);
         String expectedMessage = CopyCommand.MESSAGE_SUCCESS;
-//        List<Student> students = selectedGroup.getUnmodifiableStudentList();
 
         assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
         copyCommand.execute(model);
-        // Assert that email was copied to clipboard
-//        assertEquals(students.get(0).getEmail().toString(), clipboard.getData(DataFlavor.stringFlavor));
     }
 
     @Test

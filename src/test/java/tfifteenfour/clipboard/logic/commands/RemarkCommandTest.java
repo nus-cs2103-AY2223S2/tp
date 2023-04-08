@@ -1,96 +1,96 @@
- package tfifteenfour.clipboard.logic.commands;
+package tfifteenfour.clipboard.logic.commands;
 
- import static org.junit.jupiter.api.Assertions.assertEquals;
- import static org.junit.jupiter.api.Assertions.assertNotEquals;
- import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
- import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
- import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST;
- import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_OUT_OF_BOUND;
- import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_OUT_OF_BOUND;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 
- import org.junit.jupiter.api.BeforeEach;
- import org.junit.jupiter.api.Test;
- import tfifteenfour.clipboard.logic.CurrentSelection;
- import tfifteenfour.clipboard.logic.PageType;
- import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
- import tfifteenfour.clipboard.model.Model;
- import tfifteenfour.clipboard.model.course.Course;
- import tfifteenfour.clipboard.model.course.Group;
- import tfifteenfour.clipboard.model.course.Session;
- import tfifteenfour.clipboard.model.student.Remark;
- import tfifteenfour.clipboard.model.student.Student;
- import tfifteenfour.clipboard.testutil.StudentBuilder;
- import tfifteenfour.clipboard.testutil.TypicalModel;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
- /**
-  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
-  */
- class RemarkCommandTest {
-     private Model model;
-     private Course selectedCourse;
-     private Group selectedGroup;
-     private Session selectedSession;
-     private Student selectedStudent;
-     private CurrentSelection actualSelection;
-     private static final Remark REMARK_STUB = new Remark("Some remark");
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.Remark;
+import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.testutil.StudentBuilder;
+import tfifteenfour.clipboard.testutil.TypicalModel;
+
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
+ */
+class RemarkCommandTest {
+    private static final Remark REMARK_STUB = new Remark("Some remark");
+    private Model model;
+    private Course selectedCourse;
+    private Group selectedGroup;
+    private Session selectedSession;
+    private Student selectedStudent;
+    private CurrentSelection actualSelection;
+
+    @BeforeEach
+    public void setUp() {
+        this.model = new TypicalModel().getTypicalModel();
+        this.model.getCurrentSelection().setCurrentPage(PageType.TASK_STUDENT_PAGE);
+        selectedCourse = model.getCurrentSelection().getSelectedCourse();
+        selectedGroup = model.getCurrentSelection().getSelectedGroup();
+        selectedSession = model.getCurrentSelection().getSelectedSession();
+        selectedStudent = model.getCurrentSelection().getSelectedStudent();
+
+        actualSelection = this.model.getCurrentSelection();
+    }
 
 
-     @BeforeEach
-     public void setUp() {
-         this.model = new TypicalModel().getTypicalModel();
-         this.model.getCurrentSelection().setCurrentPage(PageType.TASK_STUDENT_PAGE);
-         selectedCourse = model.getCurrentSelection().getSelectedCourse();
-         selectedGroup = model.getCurrentSelection().getSelectedGroup();
-         selectedSession = model.getCurrentSelection().getSelectedSession();
-         selectedStudent = model.getCurrentSelection().getSelectedStudent();
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
 
-         actualSelection = this.model.getCurrentSelection();
-     }
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
 
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
+                selectedStudent.getName().fullName, REMARK_STUB.value);
 
-     @Test
-     public void execute_validIndexUnfilteredList_success()  {
+        Model expectedModel = model.copy();
 
-         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
+        Group expectedSelectedGroup = expectedModel.getCurrentSelection().getSelectedGroup();
+        expectedSelectedGroup.setStudent(selectedStudent,
+                new StudentBuilder(selectedStudent).withRemark(REMARK_STUB.value).build());
 
-         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-                 selectedStudent.getName().fullName, REMARK_STUB.value);
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
 
-         Model expectedModel = model.copy();
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_OUT_OF_BOUND, REMARK_STUB);
+        assertThrows(CommandException.class, () -> remarkCommand.execute(model));
+    }
 
-         Group expectedSelectedGroup = expectedModel.getCurrentSelection().getSelectedGroup();
-         expectedSelectedGroup.setStudent(selectedStudent,
-                 new StudentBuilder(selectedStudent).withRemark(REMARK_STUB.value).build());
+    @Test
+    void equals() {
+        RemarkCommand remarkCommand1 = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
+        RemarkCommand remarkCommand2 = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
+        RemarkCommand remarkCommand3 = new RemarkCommand(INDEX_SECOND, REMARK_STUB);
+        SelectCommand selectCommand = new SelectCommand(INDEX_SECOND);
 
-         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-     }
+        // Same object -> returns true
+        assertEquals(remarkCommand1, remarkCommand1);
 
-     @Test
-     public void execute_invalidIndex_throwsCommandException() {
-         RemarkCommand remarkCommand = new RemarkCommand(INDEX_OUT_OF_BOUND, REMARK_STUB);
-         assertThrows(CommandException.class, () -> remarkCommand.execute(model));
-     }
+        // Same values -> returns true
+        assertEquals(remarkCommand1, remarkCommand2);
 
-     @Test
-     void equals() {
-         RemarkCommand remarkCommand1 = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
-         RemarkCommand remarkCommand2 = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
-         RemarkCommand remarkCommand3 = new RemarkCommand(INDEX_SECOND, REMARK_STUB);
-         SelectCommand selectCommand = new SelectCommand(INDEX_SECOND);
+        // Different types -> returns false
+        assertNotEquals(1, remarkCommand1);
 
-         // Same object -> returns true
-         assertEquals(remarkCommand1, remarkCommand1);
+        // Different index -> returns false
+        assertNotEquals(remarkCommand1, remarkCommand3);
 
-         // Same values -> returns true
-         assertEquals(remarkCommand1, remarkCommand2);
+        assertNotEquals(remarkCommand1, selectCommand);
+    }
 
-         // Different types -> returns false
-         assertNotEquals(1, remarkCommand1);
-
-         // Different index -> returns false
-         assertNotEquals(remarkCommand1, remarkCommand3);
-
-         assertNotEquals(remarkCommand1, selectCommand);
-     }
-
- }
+}

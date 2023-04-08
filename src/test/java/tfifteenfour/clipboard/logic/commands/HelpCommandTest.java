@@ -5,6 +5,7 @@ import static tfifteenfour.clipboard.logic.commands.HelpCommand.SHOWING_HELP_MES
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
