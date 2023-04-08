@@ -75,7 +75,7 @@
                <children>
                   <HBox fx:id="statusPlaceholder" alignment="TOP_RIGHT" />
                   <Separator orientation="VERTICAL" visible="false" VBox.vgrow="ALWAYS" />
-                  <Label text="Last Updated: " />
+                  <Label />
                </children>
                <padding>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
