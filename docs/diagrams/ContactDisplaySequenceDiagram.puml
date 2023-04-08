@@ -1,20 +1,38 @@
 @startuml
 !include style.puml
-skinparam dpi 200
+skinparam dpi 250
 
 Actor User as user USER_COLOR
+
 box Ui UI_COLOR_T0
-Participant ":DoctorListViewCell" as doctorListViewCell UI_COLOR
+Participant ":MainWindow" as mainWindow UI_COLOR
 Participant ":ContactDisplay" as contactDisplay UI_COLOR
+Participant ":DoctorListPanel" as doctorListPanel UI_COLOR
 Participant ":EnlargedDoctorInfoCard" as enlargedDoctorInfoCard UI_COLOR
 Participant "enlargedInfoCardPlaceholder:StackPane" as enlargedPersonInfoCardPlaceholder UI_COLOR
 end box
 
-user -[USER_COLOR]> doctorListViewCell : MOUSE_CLICKED
-activate doctorListViewCell UI_COLOR
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR
+end box
 
-doctorListViewCell -[UI_COLOR]> contactDisplay : setFeedbackUponSelectingDoctor(doctor)
+user -[USER_COLOR]> mainWindow : "sd 1"
+activate mainWindow UI_COLOR
+
+mainWindow -[UI_COLOR]> contactDisplay : setFeedbackToUser(commandResult)
 activate contactDisplay UI_COLOR
+
+contactDisplay -[UI_COLOR]> logicManager : updateFilteredPatientListBasedOnDoctor(selectedDoctor)
+activate logicManager LOGIC_COLOR
+
+logicManager --[LOGIC_COLOR]> contactDisplay
+deactivate logicManager LOGIC_COLOR
+
+contactDisplay -[UI_COLOR]> doctorListPanel : selectDoctor(selectedDoctor)
+activate doctorListPanel UI_COLOR
+
+doctorListPanel --[UI_COLOR]> contactDisplay
+deactivate doctorListPanel UI_COLOR
 
 contactDisplay -[UI_COLOR]> enlargedDoctorInfoCard : updateSelectedDoctor(doctor)
 activate enlargedDoctorInfoCard UI_COLOR
@@ -34,9 +52,10 @@ activate enlargedPersonInfoCardPlaceholder UI_COLOR
 enlargedPersonInfoCardPlaceholder --[UI_COLOR]> contactDisplay
 deactivate enlargedPersonInfoCardPlaceholder UI_COLOR
 
-contactDisplay --[UI_COLOR]> doctorListViewCell : setFeedbackUponSelectingDoctor(doctor)
+contactDisplay --[UI_COLOR]> mainWindow
 deactivate contactDisplay UI_COLOR
 
-doctorListViewCell--[UI_COLOR]> user
-deactivate doctorListViewCell
+mainWindow --[UI_COLOR]> user
+deactivate mainWindow UI_COLOR
+
 @enduml
