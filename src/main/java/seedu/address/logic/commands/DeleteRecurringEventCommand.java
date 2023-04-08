@@ -26,8 +26,8 @@ public class DeleteRecurringEventCommand extends Command {
             + ": Delete an recurring event into the recurring event list"
             + "by the index number used in the last person listing.\n "
             + "Parameters: index number of the person and index number of the event in the event list"
-            + "1 1 \n"
-            + "Example: " + COMMAND_WORD + "1" + " 1";
+            + " 1 1 \n"
+            + "Example: " + COMMAND_WORD + " 1" + " 1";
 
 
     private Index personIndex;
