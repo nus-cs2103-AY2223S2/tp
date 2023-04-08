@@ -291,7 +291,7 @@ the `Role` from the `Model` based on the `INDEX`.
 
 The following sequence diagram shows how the `delete` command works:
 
-![Delete Command Sequence Diagram](images/DeleteCommandSequenceDiagram.png)
+![Delete Command Sequence Diagram](images/DeleteSequenceDiagram.png)
 
 ### Salary and Deadline Command Feature
 
