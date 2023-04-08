@@ -240,11 +240,11 @@ Classes used by multiple components are in the [`seedu.internship.commons`](http
  
 This section describes some noteworthy details on how certain features are implemented.
 
-### Select command feature
+### Selecting an `Internship`: `select` command
 
 **Implementation**
 
-The `select` command feature is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
+The `select` command is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
 
 * Update `currentInternship` field in `InternshipCatalogue` which stores the current selected `Internship` for use in other commands.
 * Obtains a list of all the `Event` belonging to that `Internship`.
@@ -266,7 +266,7 @@ Step 6. `SelectCommand` also invokes `updateFilteredEventList()` and `getFiltere
 
 Step 7. Finally, a `CommandResult` is created containing that `Internship` and its `ObservableList<Event>` and it is returned to `LogicManager` for use in the UI.
 
-The following sequence diagram shows how the select command works:
+The following *Sequence Diagram* shows how the `select` command works:
 
 <p align="center">
 
@@ -277,11 +277,13 @@ The following sequence diagram shows how the select command works:
 Note: The lifeline for `SelectCommand` should end at the destroy marker(X) but due to a limitation of PlantUML, the
 lifeline reaches the end of diagram.
 
-### Add Event feature
-The Add Event feature allows users to add instances of `Event` to a selected `Internship`.
+### Adding `Event` to an `Internship`: `event add` command
+
+The `event add` command allows users to add instances of `Event` to a selected `Internship`.
 
 **Implementation**
-Here is an example usage of the Add Event feature. 
+
+Below is an example usage. 
 
  1. User selects the `Internship` they want to add the event to by executing `select <id>`, where `<id>` refers to the index of the `Internship` on the list.
 
@@ -304,7 +306,7 @@ The *Activity Diagram* for the above logic flow is below:
 7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
 8. `Event` object is then added to the `UniqueEventList` using the `addEvent` method of `model`.
 
-The Sequence Diagram for the adding the event is
+The *Sequence Diagram* for the adding the `Event` is below: 
 
 <p align="center">
  
@@ -312,11 +314,12 @@ The Sequence Diagram for the adding the event is
 
 </p>
 
-### View Calendar feature
-The View Calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
-It is accessible by the command `calendar`.
+### Viewing all `Event` on a calendar: `calendar` command
+
+The `calendar` command displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
 
 **Implementation**
+
 Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
 
 Step 1. The user enters `calendar` command into the CommandBox.
@@ -346,14 +349,15 @@ Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`,
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
 
-### Clash Command feature
+### View all clashing `Event`: `clash` command
 
-#### Implementation
-The purpose of the `clash` command is for users to finding events with clashing timing, enabling them to reschedule
+The purpose of the `clash` command is for users to finding instances of `Event` with clashing timing, enabling them to reschedule
 clashing events.
 
-The `clash` command feature is standard command that extends `Command` and returns a `CommandResult` in the
+The `clash` command feature is a standard command that extends `Command` and returns a `CommandResult` in the
 `execute()` method.
+
+**Implementation**
 
 Given below is an example usage scenario and how the select command behaves at each step.
 
@@ -368,7 +372,6 @@ Step 4. The `findClashEvents` is then called on `eventCatalogue`, which invokes 
 all events in `eventCatalogue` and find events with clashing datetimes. This returns a hash map of an event to a list
 of events that it clashes with.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -380,6 +383,8 @@ of events that it clashes with.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+ 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -423,8 +428,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about |
 | `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on |
 
-
-*{More to be added}*
 
 ### Use cases
 
@@ -609,6 +612,8 @@ Use Case Ends.
 * **Position**: The name of the internship position/role.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
