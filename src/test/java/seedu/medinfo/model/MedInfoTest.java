@@ -46,8 +46,7 @@ public class MedInfoTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two patients with the same identity fields
-        Patient editedAlice = new PatientBuilder(ALEX).withNric("S1334567A")
-                .build();
+        Patient editedAlice = new PatientBuilder(ALEX).withNric("S1000007A").build();
         List<Patient> newPatients = Arrays.asList(ALEX, editedAlice);
         MedInfoStub newData = new MedInfoStub(newPatients);
 
@@ -89,6 +88,7 @@ public class MedInfoTest {
     private static class MedInfoStub implements ReadOnlyMedInfo {
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
         private final ObservableList<Ward> wards = FXCollections.observableArrayList();
+        private final MedInfo medInfo = new MedInfo();
 
         MedInfoStub(Collection<Patient> patients) {
             this.patients.setAll(patients);
@@ -105,6 +105,11 @@ public class MedInfoTest {
         @Override
         public ObservableList<Ward> getWardList() {
             return wards;
+        }
+
+        @Override
+        public List<String> getStatsInfo() {
+            return medInfo.getStatsInfo();
         }
     }
 

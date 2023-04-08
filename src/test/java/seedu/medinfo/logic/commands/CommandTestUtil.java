@@ -49,6 +49,8 @@ public class CommandTestUtil {
     public static final String DISCHARGE_DESC_BOB = " " + PREFIX_DISCHARGE + VALID_DISCHARGE_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "ORANGE";
+    public static final String INVALID_STATUS = "ORANGE";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
