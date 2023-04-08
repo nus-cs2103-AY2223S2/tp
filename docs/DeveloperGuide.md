@@ -540,9 +540,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 1b. The given command has invalid inputs
+* 1b. The given command has invalid inputs.
 
-   * 1b1. SudoHR shows an error message.
+    * 1b1. SudoHR shows an error message.
 
      Use case resumes at step 1.
 
@@ -568,7 +568,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The list is empty.
 
-  Use case ends.
+      Use case ends.
 
 * 2a. There is no employee with the eid given as input.
 
@@ -576,11 +576,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2
 
-* 2b. The given command has invalid inputs
+* 2b. The given command has invalid inputs.
 
-   * 2b1. SudoHR shows an error message.
+    * 2b1. SudoHR shows an error message.
 
-     Use case resumes at step 2.
+      Use case resumes at step 2.
 
 * 2c. The given command has missing inputs.
 
@@ -593,8 +593,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests SudoHR to __show the details of a employee with a specific eid(UC4)__
-2.  User requests to edit a specific employee with a specific eid
+1.  User requests SudoHR to __show the details of a employee with a specific eid(UC4)__.
+2.  User requests to edit a specific employee with a specific eid.
 3.  SudoHR edits the employee.
 
     Use case ends.
@@ -606,11 +606,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 2b. The given command has invalid inputs
+* 2b. The given command has invalid inputs.
 
-   * 2b1. SudoHR shows an error message.
+    * 2b1. SudoHR shows an error message.
 
-     Use case resumes at step 2.
+      Use case resumes at step 2.
 
 * 2c. The given command has missing inputs.
 
@@ -637,18 +637,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-
-
 **Use case: UC4 - list an employee with eid**
 **MSS:**
-1. User requests SudoHR to list the details of the employee with the specified eid
-2. SudoHR shows the details of the employee with the specified eid
+1. User requests SudoHR to list the details of the employee with the specified eid.
+2. SudoHR shows the details of the employee with the specified eid.
+
+    Use case ends.
 
 * 1a. The given command has invalid inputs
 
-   * 1a1. SudoHR shows an error message.
+    * 1a1. SudoHR shows an error message.
 
-     Use case resumes at step 1.
+      Use case resumes at step 1.
 
 * 1b. The given command has missing inputs.
 
@@ -661,21 +661,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+**Use case: UC5 - list all employees**
+**MSS:**
+1. User requests SudoHR to list all employees.
+2. SudoHR shows all employees.
 
-**Use case: UC5 - Add employee's leave**
+    Use case ends.
+
+
+**Use case: UC6 - Add employee's leave**
 **MSS:**
 1. User requests SudoHR to add leave for a employee with a specific eid on a specific day.
 2. SudoHR informs user that employee's leave has been successfully added.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 1a. The given command has invalid inputs
 
-   * 1a1. SudoHR shows an error message.
+    * 1a1. SudoHR shows an error message.
 
-     Use case resumes at step 1.
+      Use case resumes at step 1.
 
 * 1b. The given command has missing inputs.
 
@@ -686,23 +693,23 @@ Use case ends.
 * 1c. The employee has already taken leave on the date specified
     * 1c1. SudoHR shows an error message.
 
-      Use case resumes at step 1
+      Use case resumes at step 1.
 
 * 1d. There is no employee with the eid given as input.
     * 1d1. SudoHR shows an error message.
 
-      Use case resumes at step 1
+      Use case resumes at step 1.
 
-**Use case: UC6 - Add employee's leave in range**
+**Use case: UC7 - Add employee's leave in range**
 **MSS:**
-1. User inputs a command that adds leaves for a employee with a specific eid from a start date till end date inclusive.
+1. User requests SudoHR to add leaves for a employee with a specific eid from a start date till end date inclusive.
 2. SudoHR informs user that all the employee's leaves has been successfully added.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 1a. The given command has invalid inputs
+* 1a. The given command has invalid inputs.
 
    * 1a1. SudoHR shows an error message.
 
@@ -717,27 +724,40 @@ Use case ends.
 * 1c. The employee has already taken leave on any of the dates in the range of the dates.
     * 1c1. SudoHR shows an error message.
 
-      Use case resumes at step 1
+      Use case resumes at step 1.
 
 * 1d. The end date is more than 6 days away from the start date.
+    
     * 1d1. SudoHR shows an error message.
 
+      Use case resumes at step 1.
+
 * 1e. There is no employee with the eid given as input.
+   
     * 1e1. SudoHR shows an error message.
 
-      Use case resumes at step 1
+      Use case resumes at step 1.
+
+* 1f. The end date is before start date.
+    
+    * 1f1. SudoHR shows an error message.
+
+      Use case resumes at step 1.
     
 
-**Use case: UC7 - Delete employee's leave**
+**Use case: UC8 - Delete employee's leave**
 **MSS:**
-1. User __lists all leaves taken by employee(UC 10).__
+1. User __lists all leaves taken by employee(UC 11).__
 2. User requests to delete leave from SudoHR for the employee on a specific day.
 3. SudoHR informs user that employee's leave has been successfully deleted.
-4. Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
+* 1a. The list is empty.
 
+      Use case ends.
 
 * 2a. The given command has invalid inputs.
 
@@ -760,17 +780,23 @@ Use case ends.
 
       Use case resumes at step 3 
 
-**Use case: UC8 - List leaves**
+
+**Use case: UC9 - List leaves**
 **MSS:**
 1. User requests SudoHR to list all days where any employee has taken leave
 2. SudoHR shows all leaves
 
+    Use case ends.
 
-**Use case: UC9 - List employees on leave on a specific day**
+
+**Use case: UC10 - List employees on leave on a specific day**
 **MSS:**
-1. User requests to see all employees taking leave on a specific day.
+1. User requests SudoHR to list all employees taking leave on a specific day.
 2. SudoHR shows all employees taking leave on a specific day.
 3. Use case ends.
+
+    Use case ends.
+
 
 **Extensions**
 
@@ -785,11 +811,12 @@ Use case ends.
 
       Use case resumes at step 3.
 
-**Use case: UC10 - List leaves taken by an employee**
+**Use case: UC11 - List leaves taken by an employee**
 **MSS:**
-1. User requests to see all the leaves taken by a employee with a specific eid.
+1. User requests SudoHR to list all the leaves taken by a employee with a specific eid.
 2. SudoHR shows all employees taking leave on a specific day.
-3. Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
@@ -814,13 +841,6 @@ Use case ends.
       Use case resumes at step 1      
 
 *{More to be added}*
-
-Add employee's leave
-Add employee's leave in range
-Delete employee's leave
-List leaves
-List employee on leave on a specific day
-List leaves taken by an employee
 
 ### 6.4. Non-Functional Requirements
 
