@@ -566,18 +566,23 @@ this is shown below in the form of a class diagram:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a…. | I want to …                                | So that I can…                                                              |
-|----------|--------|--------------------------------------------|-----------------------------------------------------------------------------|
-| ***      | user   | add contacts for companies                 | save these contacts to the corresponding role and send my application.      |
-| ***      | user   | add a job/internship to the program        | save all jobs/internship that im interested in applying for.                |
-| ***      | user   | view all the internships that I have added | view all the jobs/internship that I'm interested in.                        |
-| ***      | user   | delete company internship                  | Remove jobs/internship that might not interest me anymore.                  |
-| ***      | user   | Save data                                  | view my jobs/internship opportunities even after the application is closed. |
-| **       | user   | find by tags                               | filter by certain skills or notes of the job                                |
-| **       | user   | sort by salary                             | know which jobs/internship has a higher starting salary.                    |
-| **       | user   | sort by deadline                           | know which jobs/internship has upcoming deadlines.                          |
-| **       | user   | find companies                             | find relevant companies and their respective roles.                         |
-| **       | user   | use the UI with ease                       | quickly perform certain app operations                                      |
+| Priority | As a… | I want to…                           | So that I can…                                                        |
+|----------|-------|--------------------------------------|-----------------------------------------------------------------------|
+| ***      | user  | add contacts for roles               | save these contacts to the corresponding role and send my application |
+| ***      | user  | add salary for roles                 | compare the salaries of my roles                                      |
+| ***      | user  | add website for roles                | visit the websites of the companies for more information              |
+| ***      | user  | add deadline for roles               | understand when I need to apply the roles                             |
+| ***      | user  | add job description for roles        | find out more about the role before applying for the role             |
+| ***      | user  | add experience                       | convince my employer about my merits                                  |
+| ***      | user  | add a role to the program            | save all roles that I'm interested in applying for                    |
+| ***      | user  | view all the roles that I have added | view all the roles that I'm interested in                             |
+| ***      | user  | delete company role                  | remove roles that might not interest me anymore                       |
+| ***      | user  | save data                            | view my roles opportunities even after the application is closed      |
+| **       | user  | find by tags                         | filter by certain skills or notes of the role                         |
+| **       | user  | find by roles                        | find relevant companies and their respective roles                    |
+| **       | user  | sort by salary                       | know which roles have a higher starting salary                        |
+| **       | user  | sort by deadline                     | know which roles have the most urgent deadlines                       |
+| **       | user  | use the UI with ease                 | perform operations easier                                             |
 
 ### Use cases
 
