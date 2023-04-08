@@ -185,22 +185,28 @@ Feel free to play around with the sample data to familiarise yourself with the c
 ## Argument Formats
 
 - **Module Code**\
-  Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally followed by more uppercase alphabet characters.
+  Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally followed by more uppercase alphabet characters.\
+  e.g. CS2040S
 
 - **Module Name**\
-  Module names should only contain alphanumeric characters and spaces, and it can be blank.
+  Module names should only contain alphanumeric characters and spaces, and it can be blank.\
+  e.g. Data Structures and Algorithms
 
 - **Lecture Name**\
-  Lecture names should only contain alphanumeric characters and spaces, and it should not be blank.
+  Lecture names should only contain alphanumeric characters and spaces, and it should not be blank.\
+  e.g. Week 1
 
 - **Video Name**\
-  Video names should only contain alphanumeric characters and spaces, and it should not be blank.
+  Video names should only contain alphanumeric characters and spaces, and it should not be blank.\
+  e.g. Video 1
 
 - **Tag**\
-  Tags should only contain alphanumeric characters, and it should not be blank.
+  Tags should only contain alphanumeric characters, and it should not be blank.\
+  e.g. 4MCs
 
 - **Timestamp**\
-  Timestamp should be of the format `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being exactly 2 digits long.
+  Timestamp should be of the format `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being exactly 2 digits long.\
+  e.g. 01:20:03
 
 ---
 
