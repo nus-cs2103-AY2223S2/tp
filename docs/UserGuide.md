@@ -825,18 +825,6 @@ Examples:
 - `find vid1, vid2 /mod CS2040S /lec Week 2`
 - `find content /mod CS2040S /lec Week 2 /byTag`
 
-### Clear all Modules
-
-> `clear`
-
-Clears all data from Le Tracker
-
-### Exit the App
-
-> `exit`
-
-Exit the application.
-
 ### Export Data
 
 > `export {file_path} [/overwrite]`
@@ -890,7 +878,17 @@ Examples:
 - `import hehe.json /mod CS2040, MA2401`
 - `import hihi.json /mod EG2310 /overwrite`
 
+### Clear all Modules
 
+> `clear`
+
+Clears all data from Le Tracker.
+
+### Exit the App
+
+> `exit`
+
+Exit the application.
 ---
 
 ## Note
