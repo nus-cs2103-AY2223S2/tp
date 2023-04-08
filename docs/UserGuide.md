@@ -580,13 +580,16 @@ For example, `john` will match `John Doe` and `john doe`. You can refer to the [
 
 Create an Exam within TutorPro to be tracked for a given student.
 
-Format: `new-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [exam/EXAM_NAME] [start/START_TIME] 
+Format: `new-exam [name/STUDENT_NAME].. [exam/EXAM_NAME] [start/START_TIME] 
 [end/END_TIME] (optional)[weightage/WEIGHTAGE] (optional)[grade/GRADE]`
 
 * Creates an exam that is attributed to one or more students.
 * At least one student name must be provided.
 * `START_TIME` and `END_TIME` provided must be in any of the supported date-time formats (see appendix).
 * the format of `GRADE` should be `grade/ACTUAL_SCORE/TOTAL_SCORE`
+* There can be multiple `STUDENT_NAME`s provided to this command, and each name provided will attempt to match with only
+  one student. eg. `new-exam name/John name/Faye...` will attempt to match each name to a student being tracked,
+  and will result in two exams with the same parameters being attributed to students 'John' and 'Faye'.
 
 Examples:
 * `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
@@ -604,16 +607,21 @@ You can refer to the [search by name mechanism](#search-by-name-mechanism) for m
 
 #### Remove an exam
 
-Format: `delete-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [index/INDEX_OF_EXAM]`
+Format: `delete-exam [name/STUDENT_NAME].. [index/INDEX_OF_EXAM]`
 
 * Removes an exam that TutorPro is currently tracking.
 * At least one student name must be provided.
 * `INDEX_OF_EXAM` is in reference to the indexing of the exams listed when invoking the `view-exam` command on a 
 student.
+* There can be multiple `STUDENT_NAME`s provided to this command, and each name provided will attempt to match with only
+  one student. eg. `delete-exam name/John name/Faye index/1` will attempt to match each name to a student being tracked,
+ and will result in exams of index '1' of students 'John' and 'Faye' being removed from TutorPro.
 
 Examples:
 * `delete-exam name/John Doe index/1`
-* `delete-exam name/John Doe name/Faye Doe index/1`
+* `delete-exam name/John Doe name/Faye Doe index/1` -this command will remove both students John's and Faye's 1st 
+indexed exam, and will behave similarly to `delete-exam name/John Doe index/1` and `delete-exam name/Faye Doe index/1`
+being run one after another.
 
 :bulb: **Tip:** You can use the `view-exam` command to view the list of exams the student currently has.
 
@@ -625,13 +633,17 @@ You can refer to the [search by name mechanism](#search-by-name-mechanism) for m
 
 #### View exams tracked by TutorPro
 
-Format: `view-exam (optional)[name/STUDENT_NAME] (optional)[date/DATE] (optional)[exam/NAME_OF_EXAM] (optional)
+Format: `view-exam (optional)[name/STUDENT_NAME].. (optional)[date/DATE] (optional)[exam/NAME_OF_EXAM] (optional)
 [done/IS_DONE]`
 
-* Lists of exams TutorPro are currently tracking, while filtering for the specified predicates
+* Lists exams TutorPro is currently tracking, while filtering for the specified predicates
 * All predicates are optional, leaving all parameters blank will list all currently tracked exams
 * Field `[IS_DONE]` when filled with parameter 'done' `eg. done/done` will list all completed exams. Leave this field 
-blank `eg. done/` when filtering for upcoming exams 
+blank `eg. done/` when filtering for upcoming exams -> CHANGED BY BOQIAN
+* There can be multiple `STUDENT_NAME`s provided to this command, and each name provided will attempt to match with only
+ one student. eg. `view-exam name/John name/Faye` will attempt to match each name to a student being tracked, and will
+result in exams of students 'John' and 'Faye' being listed.
+
 
 Examples:
 * `view-exam` -lists all exams currently being tracked by TutorPro
@@ -643,6 +655,10 @@ with description 'MYE' which are undone.
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
 For example, `john` will match `John Doe` and `john doe`.
 You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
+
+:exclamation: **Caution:** The only parameter allowed to have more than one value is `STUDENT_NAME`, any other parameter
+ if repeated will have its last repetition taken as the parameter passed. eg. `view-exam date/2023-05-01 date/2023-
+05-02` will behave as `view-exam date/2023-05-02`.
 
 #### Edit exam details
 
@@ -656,7 +672,8 @@ Format: `update-exam [name/STUDENT_NAME] [index/INDEX] (optional)[exam/NEW_EXAM_
 student.
 
 Examples:
-* `update-exam name/John index/1 grade/20/25`
+* `update-exam name/John index/1 grade/20/25` -updates the first exam (index when `view-exam` is invoked with student 
+name) grade to `20/25`.
 
 :bulb: **Tip:** You can use the `view-exam` command to view the list of exams the student currently has.
 
