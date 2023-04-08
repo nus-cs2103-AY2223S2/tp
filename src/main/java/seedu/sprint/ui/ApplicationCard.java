@@ -17,7 +17,7 @@ import seedu.sprint.model.application.Status;
  */
 public class ApplicationCard extends UiPart<Region> {
 
-    private static final String FXML = "ApplicationListCard.fxml";
+    private static final String FXML = "ApplicationCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
