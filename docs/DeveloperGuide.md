@@ -19,6 +19,7 @@ Whether you are an experienced developer looking to expand your skillset or a ne
 ---
 
 ## Table of Contents
+
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
@@ -595,8 +596,6 @@ The following sequence diagram depicts a `list` command execution for listing le
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-![ListSequenceDiagramRefListLectures](images/ListSequenceDiagramRefListLectures.png)
-
 The following is a description of the code execution flow:
 
 1. `ListCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `ListCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
@@ -833,9 +832,11 @@ The following is a description of the code execution flow:
 The `clear` feature supports clearing the entire tracker of all modules, lectures and videos
 
 The feature utilises the following classes:
+
 - `ClearCommand` - executable command to clear modules, lectures and videos in the tracker
 
 The following is a description of the code execution flow:
+
 1. `TrackerParser#parseCommand` parses based on the command word `clear` to identify that the Clear feature is being called.
 2. `ClearCommand#execute(Model)` calls `Model#clearTracker` to clear the tracker
 
@@ -960,13 +961,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-
-**Use case: List modules**
+#### Use case: List modules
 
 **MSS**
 
-1. User wants to see all modules.
-2. User executes list modules command.
+1. User wants to see all modules and executes list modules command.
+2. User .
 3. A list of module is populated.
 
    Use case ends.
@@ -2159,6 +2159,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use Case: Clear all Modules**
 **MSS**
+
 1. User requests to clear all modules
 2. Le Tracker clears all modules
 
@@ -2294,7 +2295,7 @@ Expected:
 
 | Test Case                     | Expected Result                                                          |
 | ----------------------------- | ------------------------------------------------------------------------ |
-| 1.`nav CS2040S`<br/> 2.`list` | List should show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
+| `nav CS2040S`<br/>`list` | List should show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
 | `list /mod CS2040S`           | Same as previous                                                         |
 
 ### List Videos of a Lecture
