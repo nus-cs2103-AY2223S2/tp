@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+'all logic entities
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WifeParser" as WifeParser LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":TagCommand" as TagCommand LOGIC_COLOR
+participant ":Food" as Food LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+'model entity
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("createtag n/tagname")
+activate LogicManager
+
+LogicManager -> WifeParser : parseCommand("n/tagname")
+activate WifeParser
+
+create TagCommandParser
+WifeParser -> TagCommandParser
+activate TagCommandParser
+
+TagCommandParser --> WifeParser
+deactivate TagCommandParser
+
+WifeParser -> TagCommandParser :parse("n/tagname")
+activate TagCommandParser
+
+create TagCommand
+TagCommandParser -> TagCommand : TagCommand(tag)
+activate TagCommand
+
+TagCommand --> TagCommandParser
+deactivate TagCommand
+
+TagCommandParser --> WifeParser
+deactivate TagCommandParser
+
+TagCommandParser -[hidden]-> WifeParser
+destroy TagCommandParser
+
+WifeParser --> LogicManager
+deactivate WifeParser
+
+LogicManager -> TagCommand : execute(model)
+activate TagCommand
+
+create Food
+TagCommand -> Food : createNewFoodWithNewTags(foodToTag, foodTags)
+activate Food
+
+Food --> TagCommand
+deactivate Food
+
+TagCommand -> Model : setFood(foodToTag, editedFood)
+activate Model
+
+Model --> TagCommand
+deactivate Model
+
+create CommandResult
+TagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagCommand
+deactivate CommandResult
+
+TagCommand --> LogicManager
+deactivate TagCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

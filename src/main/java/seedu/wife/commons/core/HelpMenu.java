@@ -61,6 +61,12 @@ public enum HelpMenu {
             return "Sort food items by expiry date - expiry";
         }
     },
+    VIEW("view") {
+        @Override
+        public String getCommandUsage() {
+            return "View food item - view INDEX";
+        }
+    },
     TAG("tag") {
         @Override
         public String getCommandUsage() {

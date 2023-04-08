@@ -19,7 +19,7 @@ end box
 [-> LogicManager : execute("createtag n/tagname")
 activate LogicManager
 
-LogicManager -> WifeParser : parseCommand("n/tagname")
+LogicManager -> WifeParser : parseCommand("createtag n/tagname")
 activate WifeParser
 
 create CreateTagCommandParser

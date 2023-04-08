@@ -37,10 +37,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_UNIT + "UNIT] "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_EXPIRY_DATE + "EXPIRY DATE] "
+            + "[" + PREFIX_EXPIRY_DATE + "EXPIRY DATE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Broccoli "
-            + PREFIX_QUANTITY + "2";
+            + PREFIX_QUANTITY + "10";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited food item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided! \n%s";

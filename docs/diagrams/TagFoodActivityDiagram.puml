@@ -1,0 +1,27 @@
+@startuml
+!pragma useVerticalIf on
+
+start
+:User executes tag command;
+if () then ([else])
+    :Error: Invalid Command Format;
+    stop;
+([Index and TagName Provided]) elseif () then ([else])
+    :Error: Invalid Index;
+    stop;
+([Valid Index]) elseif () then ([else])
+    :Error: Tag does not exist in WIFE;
+    stop;
+([Tag Exists in WIFE]) elseif () then ([else])
+    :Error: Tag limits reached for Food;
+    stop;
+([Tag limit not reached for Food]) elseif () then ([else])
+    :Error: Food already tagged with the Tag;
+    stop;
+else ([Food not tagged with Tag])
+endif
+    :tag command executes successfully
+    and food tagged with specified Tag;
+stop
+
+@enduml
