@@ -24,8 +24,8 @@ InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux
 9. Delete internships by fields
 10. Clear all internships
 11. Get help
-12. Navigating through past commands
-13. Exit
+12. Exit 
+13. Navigating through past commands
 
 In InternBuddy, internship data is auto-saved whenever changes are made.
 
