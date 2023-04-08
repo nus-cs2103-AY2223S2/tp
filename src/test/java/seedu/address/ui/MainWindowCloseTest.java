@@ -1,24 +1,25 @@
 package seedu.address.ui;
 
-import guitests.guihandles.HelpWindowHandle;
-import guitests.guihandles.StageHandle;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Path;
+import java.util.Collections;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.testfx.api.FxToolkit;
+
+import guitests.guihandles.HelpWindowHandle;
+import guitests.guihandles.StageHandle;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.ModelManager;
 import seedu.address.storage.EduMateStorageManager;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-
-import java.nio.file.Path;
-import java.util.Collections;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Contains tests for closing of the {@code MainWindow}.
