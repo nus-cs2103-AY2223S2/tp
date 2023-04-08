@@ -76,6 +76,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `export`, `exportRoutine`, `findRoutine`, `clearRoutine`, `deleteRoutine`, `addExercise`, `deleteExercise`, `listRoutines` [\#146](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/146/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb)
     * Did cosmetic tweaks to existing documentation of features: [\#155](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/155/files)
   * Developer Guide:
+    * Added user stories [\#64](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/64/files)
     * Added use case for  `edit` feature. [\#79](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/79/files)
     * Added use case for `listRoutines`, `export`, `exportRoutines`,`clearRoutines`, `deleteRoutine`, `deleteExercise`,`findRoutine`. [\#115](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/115/files)
     * Added Implementation for `export`, `addExercie`, `deleteRoutine`. [\#136](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/136/files)
