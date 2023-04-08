@@ -308,7 +308,7 @@ The following sequence diagram shows how the `list` operation works:
 **Aspect: Filtering by other fields**
 
 * Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
-  * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
+  * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches
   * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields only.
 
 <div style="page-break-after: always;"></div>
@@ -317,18 +317,18 @@ The following sequence diagram shows how the `list` operation works:
 
 #### Implementation
 
-The sort feature allows users to sort the list of persons and projects in the application. 
-The feature is facilitated by the `SortCommand` and `SortProjectCommand` classes. 
+The sort feature allows users to sort the list of persons and projects in the application.
+The feature is facilitated by the `SortCommand` and `SortProjectCommand` classes.
 They extend `Command` and implements the following operations:
 * `SortCommand#execute()` — Sorts the list of persons in the application.
 * `SortProjectCommand#execute()` — Sorts the list of projects in the application.
 
-The `SortCommandParser` and `SortProjectCommandParser` classes are used to parse the user input and create the respective commands. 
+The `SortCommandParser` and `SortProjectCommandParser` classes are used to parse the user input and create the respective commands.
 The respective classes verify that the user input is valid and create the commands accordingly.
 If no argument is provided, Persons will be sorted by name and Projects will be sorted by deadline by default.
 
 The input is then passed to the `sort` function in `UniquePersonList` and `UniqueProjectList` respectively.
-The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. 
+The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user.
 If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
 
 The following sequence diagram shows how the sort operation works for persons (implementation is similar for projects):
@@ -649,14 +649,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given category is invalid.
 
-  * 3a1. SOCket shows an error message. 
-  
+  * 3a1. SOCket shows an error message.
+
     Use case resumes from step 2.
-  
+
 * 3b. No category is given.
 
   * 3b1. SOCket sorts the list by name and displays the sorted list.
-    
+
      Use case ends.
 
 **Use case: UC05 Find contact(s)**
@@ -672,8 +672,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. No contact matches any of the given keywords in their respective fields.
 
-    * 1a1. SOCket shows an empty list of contacts. 
-      
+    * 1a1. SOCket shows an empty list of contacts.
+
       Use case ends.
 
 * 1b. No keywords are given for all fields.
