@@ -285,13 +285,13 @@ The `event add` command allows users to add instances of `Event` to a selected `
 
 Below is an example usage. 
 
-1. User selects the `Internship` they want to add the event to by executing `select <id>`, where `<id>` refers to the index of the `Internship` on the list.
+Step 1. User selects the `Internship` they want to add the event to by executing `select <id>`, where `<id>` refers to the index of the `Internship` on the list.
 
-2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an `Event` to the selected `Internship`.
+Step 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an `Event` to the selected `Internship`.
 
   * User executes ` event add na/<event name> en/<event end datetime> de/<event description>` instead if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
 
-  The *Activity Diagram* for the above logic flow is below: 
+The *Activity Diagram* for the above logic flow is below: 
 
   <p align="center">
 
@@ -299,12 +299,17 @@ Below is an example usage.
 
   </p>
 
-3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
-4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
-5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
-6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
-7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
-8. `Event` object is then added to the `UniqueEventList` using the `addEvent` method of `model`.
+Step 3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
+
+Step 4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
+
+Step 5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
+
+Step 6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
+
+Step 7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
+
+Step 8. `Event` object is then added to the `UniqueEventList` using the `addEvent` method of `model`.
 
 The *Sequence Diagram* for the adding the `Event` is below: 
 
