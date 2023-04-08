@@ -4,11 +4,11 @@ title: Eugene Tang's Project Portfolio Page
 ---
 
 ## About InternBuddy
-InternBuddy is a desktop application for Computing undergraduates to manage their internship applications. It is
-optimized for typing where it allows you to complete internship management tasks much more efficiently via
-the keyboard as compared to using traditional Graphical User Interface (GUI) applications. If you are a fast
-typist who is seeking for a one-stop platform to systematically organise your internship applications,
-then InternBuddy is the perfect buddy to accompany you during your internship hunt.
+InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+It is optimized for typing where it allows you to complete internship management tasks much more efficiently
+via the keyboard as compared to using traditional Graphical User Interface (GUI) applications.
+If you are a fast typist who is seeking a one-stop platform to systematically organise your internship
+applications, then InternBuddy is the perfect buddy to accompany you during your internship hunt.
 
 ## Project Contributions
 My code contributions can be found on 
@@ -97,7 +97,8 @@ My code contributions can be found on
 - Provided non-trivial PR reviews for
   [\#47](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/47),
   [\#80](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/80),
-  [\#100](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/100).
+  [\#100](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/100),
+  [\#201](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/201).
 - Designed the logo for InternBuddy.
 - Contributed to CS2103T forum discussions for
   [\#45](https://github.com/nus-cs2103-AY2223S2/forum/issues/45),
@@ -105,5 +106,7 @@ My code contributions can be found on
   [\#177](https://github.com/nus-cs2103-AY2223S2/forum/issues/177),
   [\#252](https://github.com/nus-cs2103-AY2223S2/forum/issues/252),
   [\#254](https://github.com/nus-cs2103-AY2223S2/forum/issues/254),
-  [\#266](https://github.com/nus-cs2103-AY2223S2/forum/issues/266).
+  [\#266](https://github.com/nus-cs2103-AY2223S2/forum/issues/266),
+  [\#319](https://github.com/nus-cs2103-AY2223S2/forum/issues/319),
+  [\#322](https://github.com/nus-cs2103-AY2223S2/forum/issues/322).
 
