@@ -39,7 +39,7 @@ deactivate AddressBookParser
 LogicManager -> RemoveMeetingCommand : execute(model)
 activate RemoveMeetingCommand
 
-RemoveMeetingCommand -> Model : getMeetings()
+RemoveMeetingCommand -> Model : removeMeeting(personToEdit, indexMeeting)
 activate Model
 
 Model --> RemoveMeetingCommand
