@@ -436,7 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Add a person**
 
-**MSS**
+**Main Success Scenario (MSS)**
 
 1.  User requests to add a person to the list.
 2.  NextBigFish adds the person and shows confirmation message.
@@ -529,12 +529,72 @@ Use case ends.
 
 **MSS**
 
-1.  User requests for summary window to be opened.
-2.  NextBigFish opens the summary window.
-3.  User view his/her data summary.
-4.  User close the summary window.
+1. User requests for summary window to be opened.
+2. NextBigFish opens the summary window.
+3. User view his/her data summary.
+4. User close the summary window.
 
     Use case ends.
+
+**Use case: Incrementing/Decrementing Transaction Count**
+
+
+**MSS**
+
+1. User requests to list persons.
+2. NextBigFish shows a list of persons.
+3. User requests to increment the transaction count of a particular person in the list
+4. NextBigFish calculates the resultant transaction count after increment/decrement
+and edits the person.
+5. NextBigFish displays the updated list of persons.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. Resultant transaction count exceeds or falls below the valid range
+
+    * 2b1. NextBigFish shows an error message.
+
+  Use case ends.
+
+* 2c. Missing field in updated information.
+
+    * 2c1. NextBigFish displays error message.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. NextBigFish shows an error message.
+
+      Use case resumes at step 2.
+
+    Use case ends.
+
+
+**Use case: Keeping track of high priority leads**
+
+**MSS**
+
+1. User request to list persons. 
+2. NextBigFish shows a list of persons. 
+3. User requests to sort by priority level (Descending).
+4. NextBigFish displays user's contact in order of priority level. 
+
+
+**Extensions**
+
+* 3a. User requests to sort by Potential Sale Value (Descending).
+* 3b. NextBigFish displays the user's contacts in order of priority level, 
+  and within each priority level, in order of Potential Sale Value. 
+
+  Use case ends. 
+
 
 *{More to be added}*
 
