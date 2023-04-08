@@ -94,20 +94,16 @@ The user guide will contain certain visuals to aid in conveying information more
 ## Key Definitions
 This section provides explanations of important terms that will be used in this User Guide.
 
-### Content
-
-Content refers to anything that is tracked with bookmarks. These include, but are not limited to, novels, blogs, reddit posts, manga and web novels.
-
 ### Bookmark
-A bookmark is the primary entity in MyLib and is used to track all your content for all your bookmarking tasks in MyLib. 
+As a bookmarking application, MyLib naturally uses bookmarks to bookmark your content. While MyLib was originally intended to be used for tracking webnovels and comics, its bookmarking features are general enough that your content can basically be anything.
 
-A bookmark may contain:
-* A title - the title of the content that is being tracked by this bookmark
-* An author - the author of the content that is being tracked by this bookmark
-* A progress - consists of volume, chapter and page, and is used to track your progress with the content being tracked by this bookmark.
-* A genre - the genre your content falls under. Examples genres include your typical book genres such as Action and Fantasy.
-* A rating - to indicate how much you enjoyed the content being tracked by this bookmark
-* Tag - a custom label attached to a bookmark for categorization purposes.
+A bookmark in MyLib contains:
+* Title - the title of the content that is being tracked by this bookmark
+* Author - the author of the content that is being tracked by this bookmark
+* Progress - consists of volume, chapter and page, and is used to track your progress with the content being tracked by this bookmark.
+* [Genre](#genre) - the genre your content falls under. Examples genres include your typical book genres such as Action and Fantasy.
+* Rating - to indicate how much you enjoyed the content being tracked by this bookmark
+* [Tags](#tags) - a custom label attached to a bookmark for categorization purposes.
 * URL - to hold the URL of the website that the content being tracked by this bookmark is hosted at.
 
 For a bookmark in MyLib, everything except for title and genre is optional.
