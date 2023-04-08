@@ -26,11 +26,12 @@ public class TitleTest {
         // invalid titles
         assertFalse(Title.isValidTitle("")); // empty string
         assertFalse(Title.isValidTitle(" ")); // spaces only
-        assertFalse(Title.isValidTitle("To Kill a Mockingbird.")); // special characters
+
 
         // valid titles
         assertTrue(Title.isValidTitle("A Game of Thrones"));
         assertTrue(Title.isValidTitle("A")); // one character
         assertTrue(Title.isValidTitle("My Grandmother Asked Me to Tell You She Is Sorry")); // long title
+        assertTrue(Title.isValidTitle("To Kill a Mockingbird.")); // special characters
     }
 }

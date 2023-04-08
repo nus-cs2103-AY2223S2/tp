@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-ExpressLibrary is a **desktop app for managing library users and books, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ExpressLibrary gets your tasks done faster than traditional GUI apps.
+ExpressLibrary is a **desktop app created for librarians to better manage library users and books, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ExpressLibrary gets your tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -26,8 +26,7 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
    Some example commands you can try:
 
    * `listPerson` : Lists all contacts.
-   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com`:
-   Adds a contact named `Bob Tan` to records
+   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com`: Adds a contact named `Bob Tan` to records
    * `deletePerson 3` : Deletes the 3rd user shown in the current list.
    * `clear` : Clears all persons and books in the ExpressLibrary.
    * `exit` : Exits the app.
@@ -54,7 +53,10 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/98102341 p/81234134`, only `p/98102341` will be taken.
+* Only Singapore phone numbers are valid. (Must be 8 digits long and start with 6, 8 or 9.)
+* Emails must abide by RFC5322 standard. For more details, refer to section 3.4.1 of the RFC5322 protocol found here 
+(https://www.rfc-editor.org/rfc/rfc5322)[https://www.rfc-editor.org/rfc/rfc5322]. You can also refer to the error message which will appear if you key in an invalid email.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listPerson`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -66,10 +68,9 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 Adds a person to the ExpressLibrary.
 
-Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
-
+Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+* You will not be able to add a person with the same email or phone number of an existing person.
 <div markdown="span" class="alert alert-primary">
-
 :bulb: **Tip:**
 A person can have any number of tags. (including 0)
 </div>
@@ -103,6 +104,7 @@ Format: `editPerson PERSON_INDEX {[n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…}​`
 * Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You will not be able to edit a person's email or phone number to be the same as an existing person.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
@@ -143,6 +145,7 @@ Examples:
 Adds a book to the book records.
 
 Format: `addBook t/TITLE a/AUTHOR i/ISBN​`
+* You will not be able to add a book with the same ISBN of an existing book.
 
 Examples:
 
@@ -171,11 +174,13 @@ Edits an existing book in the book records.
 Format: `editBook BOOK_INDEX {[t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]}​`
 
 * Edits the book at the specified `BOOK_INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* You will not be able to edit a book's ISBN to be same as an existing book's ISBN.
 * Existing values will be updated to the input values.
 
 Examples:
 
-* `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title, author and ISBN of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
+* `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title, author and ISBN of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136` respectively.
 * `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
 
 #### Listing all books : `listBook`
@@ -219,7 +224,12 @@ Format: `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE`
 
 Examples:
 
-* `listBook/listPerson` followed by `borrow 2 b/3 d/17/10/2024` lends the 3rd book in the book list to the 2nd person in the user records with a due date of Oct. 17, 2024.
+* To allow the 2nd person in the person list to borrow the 3rd book in the book list:
+  * `listBook` and `listPerson` will show the lists containing the books and the stored persons.
+  * `borrow 2 b/3 d/17/10/2024` allows the 2nd user in the person list to borrow the 3rd book in the book list, with a due date of Oct. 17, 2024.
+* To **edit** the book's due date only:
+  * Simply borrow the book again for the same person but with a different date.
+  * `borrow 2 b/3 d/20/11/2024` will renew the book due date for the previous example.
 
 #### Returning a book : `return`
 
@@ -336,7 +346,7 @@ If your changes to the data file makes its format invalid, ExpressLibrary will d
 
 Action | Format, Examples
 --------|------------------
-**AddPerson** | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `addPerson n/James Ho p/92340121 e/jamesho@example.com t/staff`
+**AddPerson** | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `addPerson n/James Ho p/92340121 e/jamesho@example.com t/manager t/hr`
 **DeletePerson** | `deletePerson PERSON_INDEX`<br> e.g., `deletePerson 3`
 **EditPerson** | `editPerson INDEX {[n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…}​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
 **FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
