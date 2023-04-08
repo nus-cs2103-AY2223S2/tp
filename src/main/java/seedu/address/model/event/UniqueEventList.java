@@ -189,4 +189,13 @@ public class UniqueEventList implements Iterable<Event> {
     public int hashCode() {
         return internalList.hashCode();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Event e: this.internalList) {
+            sb.append(e.toString());
+        }
+        return sb.toString();
+    }
 }

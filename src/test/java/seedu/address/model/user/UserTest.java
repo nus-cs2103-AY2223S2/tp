@@ -117,6 +117,11 @@ public class UserTest {
         user = new UserBuilder().withEvents(recurringEvent).build();
         assertFalse(user.hasEvent(oneTimeEvent));
         assertTrue(user.hasEvent(recurringEvent));
+
+        //Add both events, user contains both recurring event and one-time-event.
+        user = new UserBuilder().withEvents(recurringEvent).withEvents(oneTimeEvent).build();
+        assertTrue(user.hasEvent(oneTimeEvent));
+        assertTrue(user.hasEvent(recurringEvent));
     }
 
     @Test
@@ -141,5 +146,14 @@ public class UserTest {
         user.addEvent(recurringEvent);
         assertFalse(user.getEvents().contains(oneTimeEvent));
         assertTrue(user.getEvents().contains(recurringEvent));
+
+        //Add oneTimeEvent twice. Duplicate events are allowed.
+        User finalUser = new UserBuilder().build();
+        finalUser.addEvent(oneTimeEvent);
+        finalUser.addEvent(oneTimeEvent);
+        assertTrue(finalUser.hasEvent(oneTimeEvent));
+        finalUser.deleteEvent(oneTimeEvent);
+        //Should still have one more oneTimeEvent.
+        assertTrue(finalUser.hasEvent(oneTimeEvent));
     }
 }
