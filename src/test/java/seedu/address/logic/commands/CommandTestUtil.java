@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TO_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -55,6 +56,10 @@ public class CommandTestUtil {
     public static final String VALID_RACE_BOB = "Indian";
     public static final String VALID_COMMS_AMY = "Telegram";
     public static final String VALID_COMMS_BOB = "Whatsapp";
+    public static final String VALID_FACULTY_BOB = "Computing";
+    public static final String VALID_FACULTY_AMY = "Science";
+    public static final String VALID_MODULE_BOB = "CS2101";
+    public static final String VALID_MODULE_AMY = "CS2103T";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -70,10 +75,15 @@ public class CommandTestUtil {
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
     public static final String MAJOR_DESC_AMY = " " + PREFIX_MAJOR + VALID_MAJOR_AMY;
     public static final String MAJOR_DESC_BOB = " " + PREFIX_MAJOR + VALID_MAJOR_BOB;
+    public static final String TAGS_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String TAGS_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_HUSBAND
+            + " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String RACE_DESC_AMY = " " + PREFIX_RACE + VALID_RACE_AMY;
     public static final String RACE_DESC_BOB = " " + PREFIX_RACE + VALID_RACE_BOB;
     public static final String COMMS_DESC_AMY = " " + PREFIX_COMMS + VALID_COMMS_AMY;
     public static final String COMMS_DESC_BOB = " " + PREFIX_COMMS + VALID_COMMS_BOB;
+    public static final String FACULTY_DESC_AMY = " " + PREFIX_FACULTY + VALID_FACULTY_AMY;
+    public static final String FACULTY_DESC_BOB = " " + PREFIX_FACULTY + VALID_FACULTY_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol

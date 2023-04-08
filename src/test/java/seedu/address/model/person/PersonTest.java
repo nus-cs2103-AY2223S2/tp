@@ -3,9 +3,15 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FACULTY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RACE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -86,6 +92,34 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different modules -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different major -> returns false
+        editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different race -> returns false
+        editedAlice = new PersonBuilder(ALICE).withRace(VALID_RACE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different gender -> returns false
+        editedAlice = new PersonBuilder(ALICE).withGender(VALID_GENDER_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different communication channel -> returns false
+        editedAlice = new PersonBuilder(ALICE).withComms(VALID_COMMS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different faculty -> returns false
+        editedAlice = new PersonBuilder(ALICE).withFaculty(VALID_FACULTY_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different modules -> returns false
+        editedAlice = new PersonBuilder(ALICE).withModules(VALID_MODULE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }
