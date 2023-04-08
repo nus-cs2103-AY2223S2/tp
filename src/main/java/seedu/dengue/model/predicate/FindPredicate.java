@@ -27,7 +27,7 @@ public class FindPredicate extends PredicateUtil<Person> {
      * A class that represents the predicate which is used to filter through the persons list to test for whether
      * the person belongs to the filtered list.
      * @param name (Optional) Name of the input passed in by user.
-     * @param subPostal (Optional) Substring of a {@Code Postal} of the input passed in by user.
+     * @param subPostal (Optional) Substring of a {@code Postal} of the input passed in by user.
      * @param age (Optional) Age of the input passed in by user.
      * @param date (Optional) Date of the input passed in by user.
      * @param variants Set of Variant of the input passed in by user.
