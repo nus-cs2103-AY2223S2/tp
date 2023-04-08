@@ -308,36 +308,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 
-
-**Use case: Find event by name**
+<details open markdown="block">
+<summary markdown="span">**Use case: Find event by name**</summary>
 
 **MSS**
-
 1. User requests to find an event by name
-2. System shows a list of events matching the name
-
+2. System shows a list of events matching the name  
    Use case ends.
 
 **Extensions**
-
-* 1a. The list is empty.
-
+* 1a. The list is empty.  
   Use case ends.
 
-**Use case: Find next event**
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Find next event**</summary>
 
 **MSS**
-
 1. User requests for next upcoming event
-2. System shows the next upcoming event
-
+2. System shows the next upcoming event  
    Use case ends.
 
 **Extensions**
-
-* 1a. The list is empty.
-
+* 1a. The list is empty.  
   Use case ends.
+
+</details>
 
 *{More to be added}*
 
