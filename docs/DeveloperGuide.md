@@ -159,7 +159,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save delivery job system, address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from `DeliveryJobSystemStroage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `DeliveryJobSystemStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -345,7 +345,7 @@ _{more aspects and alternatives to be added}_
 ### Delivery Job System
 #### Implementation
 
-Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar excution pattern with their own command logics.
+Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar execution pattern with their own command logics.
 
 GUI Mode: 
 Step 1. The user launches the application for the first time. 
@@ -374,7 +374,7 @@ following operations:
 
 * `NotificationManager#checkReminderList()` — Check against the `reminderList` found in `Model` and display a reminder notification with `NotificationManager#show()`.
 * `NotificationManager#checkNowSchedule()` — Check against the timetable to create a notification of scheduled jobs to be carried out at in the present scheduled slot. Displays notification with `NotificationManager#show()`.
-* `NotificationManager#checkNextSchedule()` — Check against the timetable to create a notification of upcoming scheduled jobs to be carried out in the next scheduled slot. Displays notificaiton with `NotificationManager#show()`.
+* `NotificationManager#checkNextSchedule()` — Check against the timetable to create a notification of upcoming scheduled jobs to be carried out in the next scheduled slot. Displays notification with `NotificationManager#show()`.
 * `NotificationManager#show()` — Creates the actual notification with details picked up by the other methods, and displays it on the screen.
 
 Additionally, to allow notifications to display even when the app is running in the background, `TimerTask` and `Timer` from `java.util` is utilised. This mechanism is started by
@@ -437,7 +437,7 @@ Design considerations:
 * prefers typing over mouse interactions
 * is reasonably comfortable using CLI apps
 * delivery man with >50 deliveries in a day
-* drives constanly with a laptop in the van
+* drives constantly with a laptop in the van
 * lazy, doesn't like to micromanage
 * forgetful
 
@@ -636,7 +636,7 @@ specified in a reminder, System will count it as an active reminder.
    Use case ends.
 <b>Extensions:</b>
 * 2a. date and time of reminder is not provide.
-    * 2a1. System will promopt user again.
+    * 2a1. System will prompt user again.
            Use case resumes from step 1.
 </pre>
 </details>
@@ -665,17 +665,12 @@ specified in a reminder, System will count it as an active reminder.
 </pre>
 </details>
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be used for a single user only i.e. (not a multi-user product).
 3.  The system should respond within two seconds (after receiving input from user).
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-
-*{More to be added}*
 
 ### Glossary
 
@@ -698,62 +693,46 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
-
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
-
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
-
    1. Prerequisites: List all persons in Customers Window using the `list` command. Multiple persons in the list.
-
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
-
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Adding a delivery job 
 
 1. Add a job through command
-
    1. Prerequisites: User is in the main window. Valid recipient and sender id. 
-
    1. Test case: `add_job si/DAVSAM ri/CHASAM earn/1`<br>
       Expected: A delivery job is created without delivery schedule.  
                 The sender should be DAVSAM and recipient should be CHASAM.  
                 With earning value of $1.
-
    1. Test case: `add_job si/DAVSAM ri/CHASAM earn/1 date/2024-05-01 slot/1`<br>
       Expected: A delivery job is created with delivery schedule.  
                 Similar to previous.
-
    1. Other incorrect add job commands to try:  
       - `add_job si/invalid_id ri/invalid_id earn/empty` invalid argument supply.  
       - `add_job si/... ri/... earn/... [date/...] [slot/...]` with either date or slot given.  
 
 1. Add a job through GUI
-
-   1. Prerequisites: User have access to GUI. Access `menu` > `Delivery Job System` > `Create Job`.  
-
+   1. Prerequisites: User have access to GUI. Select `menu` > `Delivery Job System` > `Create Job`.  
    1. Test case: fill in mandatory fields only (recipient/sender/earning)<br>
       Expected: Similar to `1.ii`
-
    1. Test case: fill in all fields<br>
       Expected: Similar to `1.iii`
-
    1. Other incorrect approach to try:  
       - `sender/recipient`, invalid person id.
       - `earning`, multiple decimal points.  
