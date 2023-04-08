@@ -3,7 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
@@ -15,10 +16,6 @@ title: Developer Guide
 The TechTrack software application is developed using Java 11 and employs JavaFX for constructing its graphical user
 interface.
 Gradle serves as the project management and build tool. JUnit is utilized for conducting software testing.
-
-### Features
-
-### Functions
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -33,11 +30,8 @@ Third-party software used in this project:
 * [Codecov](https://codecov.io/)
 * [JavaFx](https://openjfx.io/)
 * [JUnit](https://junit.org/)
+* [PlantUML](https://plantuml.com/)
 
-Documentation referred from:
-
-* https://github.com/kxrt/tp/blob/master/docs/DeveloperGuide.md
-* https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -171,7 +165,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![ModelClassDiagram](images/ModelClassDiagram.png)
 
 
 The `Model` component,
@@ -189,7 +183,7 @@ The `Model` component,
 is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. This allows `RoleBook` to only require one 
 `Tag` object per unique tag, instead of each `Role` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="750" />
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
@@ -197,7 +191,7 @@ is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. 
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 
@@ -231,9 +225,9 @@ seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#adding-a-r
 When `add ...` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls the `RoleBookParser` to
 parse the
 input. An instance of the `AddCommandParser` to parse the `args` is created through the respective static
-`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/John n/Tom`), only the last
+`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/SWE n/Data Analyst`), only the last
 instance is taken,
-similar to how [`edit`](#edit-command) are executed.
+similar to how [`edit`](#edit-command) is executed.
 
 The `AddCommandParser` will then create the corresponding `Role` object, parsing to a `AddCommand` object it
 creates and returns. The `LogicManager` then executes the `AddCommand`, which adds the `Role` to the model.
@@ -241,6 +235,12 @@ creates and returns. The `LogicManager` then executes the `AddCommand`, which ad
 The following sequence diagram shows how the `add` command works:
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
+
+In this diagram,
+* `userInput` represents a valid text representation of an `add` command.
+* `toAdd` represents the newly created `Role` object that will be added into the model.
+
+<br>
 
 The following sequence diagram shows how the argument parsing for the `add` command works:
 
@@ -299,27 +299,24 @@ The following sequence diagram shows how the `delete` command works:
 
 ### Salary and Deadline Command Feature
 
-The `salary` command feature is designed to enable the user to sort the roles based on the salaries in either ascending
+The `salary` command feature is designed to enable the user to sort roles in TechTrack based on their 
+salaries, in either ascending or descending order.
+
+The salary command accepts input in the format `salary ORDER`, where `ORDER` is a string that must be either `asc` or `desc`. 
+The purpose of the `ORDER` parameter is to specify whether the sorting of roles based on salary should be in ascending 
 or descending order.
 
-When the user launches the application for the first time, the RoleBook is initialized with the current role book from
-the storage and loads it. The user can then choose to use it by executing either the `salary asc` command to sort
-the salaries in ascending order or `salary desc` command to sort the salaries in descending order.
+When a user enters the command `salary ORDER` in the UI, the `LogicManager` handles the input by calling the `RoleBookParser` 
+to parse it. The `RoleBookParser` then creates an instance of the `SalaryCommandParser`, which is responsible for parsing the 
+`ORDER` of the command using ParserUtil's `parseOrder` method. If the input format is invalid, a ParseException is thrown.
 
-The format accepted by the `salary` command is `salary ORDER` where `ORDER` have to be either `asc` or `desc`.
+The `SalaryCommandParser` creates a `SalaryCommand`, which implements the `Command` interface and uses the `Model` 
+interface to sort the roles based on salary. Specifically, the `displaySortedSalaryList()` method of the Model interface 
+is used to perform the sorting.
 
-When `salary ORDER` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
-input. This then creates an instance of the `SalaryCommandParser` to parse the `ORDER` of `parseOrder`from `ParserUtil`.
-If any of the inputs formats are invalid, a `ParseException` will be thrown.
-
-The `SalaryCommandParser` then creates a `SalaryCommand` which will use operations in the `Model` interface
-as `Model#displaySortedSalaryList()` to sort the roles based on the salary of the given `ORDER`.
-
-The `deadline` command implementation is similar to `salary` command by replacing `deadline` with `salary` in the
-command line to achieve the sorting of roles based on the deadline of the given `ORDER`.
-
-E.g.: Executing `deadline asc` will sort the roles from the earliest deadline to the latest deadline and vice versa for
-`deadline desc`.
+The implementation of the deadline command is similar to that of the salary command, except that the command 
+keyword is replaced with `deadline`, and the method of the `Model` interface used is `displaySortedDeadlineList()`.
+This allows for the sorting of roles based on deadline instead of salary.
 
 The following sequence diagram shows how the `salary` command works:
 
@@ -331,23 +328,28 @@ The following sequence diagram shows how the `deadline` command works:
 
 #### Design considerations:
 
-**Aspect: How `salary` and `deadline` Command executes:**
+**Aspect: How `salary` and `deadline` command executes:**
 
-* **Alternative 1 (current choice):** Sort `salary` or `deadline` of the roles in asc/desc.
+* **Alternative 1 (current choice):** Each attribute of a `Role` has its own specific sorting command (for instance, 
+we have both `salary` and `deadline` commands)
     * Pros: Easy to implement.
-    * Cons: More CLI needs to be added if more attributes are needed to sort.
+    * Cons: 
+      * More commands would have to be implemented. 
+      * The user can only sort roles by one attribute at a time.
 
-* **Alternative 2:** One sort command with the given attribute.
-    * Pros: Easy CLI for the user to use.
-    * Cons: Can be harder to implement and debug if more attributes are being sorted.
+* **Alternative 2:** One sort command with the given attribute (for instance, `sort d/ORDER $/ORDER` to sort the
+roles in TechTrack by deadline first, then salary with `sort` as the command keyword)
+    * Pros: 
+      * Only one command, which potentially is easier for the user to use.
+      * User is free to customize the sorting of roles in TechTrack. 
+    * Cons: Implementation would be more complex.
 
 #### Limitations:
 
-The sorting algorithm for `salary` and `deadline` will sort based on the order given. This will sort the current and old
-view of the roles.
+The current implementation of sorting commands would sort the entire `roleList` in the model. This means that if the user
+used a filtering command like `name` followed by executing `deadline`, it would appear as if only the filtered `roleList`
+is sorted. However, in fact, the entire `roleList` is sorted.
 
-E.g.: filtering the roles based on name, tag and applying this command `salary asc/desc` or `deadline asc/desc`
-will sort both views.
 
 ### Company Command Feature
 
@@ -442,9 +444,10 @@ The following sequence diagram shows how the `name` command works:
 
 ### View Command Feature
 
-The ViewCommand feature allows the user to view more details about a specific role. We decided to hide
+The `view` command allows the user to view more details about a specific role. We decided to hide
 less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
-etc.
+and experience in the list of role cards on the UI. The user can then use the `view` command to view all details of
+a role.
 
 The view command does not affect the role book in any way. In other words, it does not add/edit/delete
 any roles in the role book.
@@ -457,29 +460,21 @@ An example usage of the `View` command is given below:
 
 The following sequence diagram shows how the `view` command works:
 
-<img src="images/ViewCommandSequenceDiagram.png" width="800" />
+![ViewCommandSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
 #### Design considerations:
 
 **Aspect: How the `view` command executes:**
 
-* **Alternative 1 (alternative choice):** Displays the remaining details of a `role` object in the `ResultDisplay`
-  through
-  appending its information to the `feedbackToUser` string.
-    * Pros: Easy to implement, no need to change existing code.
-    * Cons: Limited customization of UI in `ResultDisplay`
-* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node
-  of `ResultDisplay`
-  based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom
-  display).
-  To do so, we can change
-  [`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java)
-  to be a generic class that stores an object `T`. Then, we can modify the `executeCommand` method
-  in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
-  to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the
-  output as per normal. However, if the object `T` is a `Role`, we can render a custom display instead.
-    * Pros: Provides an easy and extendable way to create custom views
-    * Cons: Need to refactor some UI code and `CommandResult.java` class
+Use `ResultDisplay` as a placeholder, changing the children node of `ResultDisplay`based on the `CommandResult` given 
+(in this case, the `view` command should make `ResultDisplay` render a custom display). To do so, we can change
+[`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java)
+to be a generic class that stores an object `T`. Then, we can modify the `executeCommand` method
+in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the
+output as per normal. However, if the object `T` is a `Role`, we can render a custom display instead.
+* Pros: Provides an easy and extendable way to create custom views
+* Cons: Need to refactor some UI code and `CommandResult.java` class
 
 ### UI Enhancement
 
@@ -522,12 +517,12 @@ illustrates how the `MainWindow.java` file determines the type of display render
 #### Possible Future Enhancements
 
 1. The render logic to determine which display to render is written in the `execute` method of `MainWindow.java`.
-   It could be abstracted out to a new class, named `DisplayManager` for instance, which handles which display to place
-   under `ResultDisplay`.
+It could be abstracted out to a new class, named `DisplayManager` for instance, which handles which display to place
+under `ResultDisplay`.
 2. The current way of determining which display to render is not very extendible, since we're using the type `T` from `CommandResult`
-   to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point 1),
-   using a common interface to implement the required operations through dynamic binding. One possible way to do
-   this is shown below in the form of a class diagram:
+to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point 1),
+using a common interface to implement the required operations through dynamic binding. One possible way to do
+this is shown below in the form of a class diagram:
 
 ![Enhanced UI Class Diagram](images/EnhancedUIClassDiagram.png)
 
@@ -550,9 +545,15 @@ illustrates how the `MainWindow.java` file determines the type of display render
 
 **Target user profile**:
 
-* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search for their job efficiently.
+* The user needs to keep track of multiple job/internship applications from various job sites
+* Prefers desktop applications
+* Is familiar with CLI and can type fast
+* Prefers typing rather than using the mouse
 
-**Value Proposition**: Manage jobs faster than a typical mouse/GUI driven app
+**Value Proposition**: TechTrack offers a centralized platform that enables users to efficiently manage (add, delete, edit) 
+and search for their desired jobs and internships through both a command line interface with a graphical user interface (GUI). 
+This platform serves as a one-stop-shop for all aspects of the job search process, allowing users to keep track of their 
+job applications, deadlines, and status updates in one convenient location.
 
 ### User stories
 
@@ -743,121 +744,246 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+Ui components for reference:
+
+![UI Overlay](images/UICommandImages/UiEnhancement0.png)
+
 ### Launch and shutdown
 
-1. Initial launch
+Initial launch on a fresh installation
 
 1. Download the jar file and copy into an empty folder
 
-1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts.
 
-1. Saving window preferences
+3. Move the application window to a different location. Close the window.
 
-1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-1. Re-launch the app by double-clicking the jar file.<br>
-   Expected: The most recent window size and location is retained.
+5. Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window location is retained.
 
 
 ### Adding a Role
-1. Adding a Role to role book.
 
-1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+1. Test case (adding a role): `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
-   Expected: Role is added to the bottom of the list, on the left side. Role name, company, tags, salary, deadline, experience required are shown. The rest of roles in the list remains.
+Expected Output in the Result Display Box: Details of the role added will be displayed.
 
-1. Test case: `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+Expected Output in the Role List Box: Role is added to the bottom of the Role List Box. Name, company, tags, salary, deadline, experience required are shown.
+The rest of roles in the list remains unchanged.
 
-   Expected: Role is not added, Error details shown in the status message. Missing compulsory field.
+2. Test case (missing parameter): `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
-1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `add` command is included.
 
-   Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
-   
-1. Other incorrect delete commands to try: `add`, `add 1`, `...`<br>
-   Expected: Error details shown in the status message.
+Expected Output in the Role List Box: No changes to the role list.
+
+3. Test case (missing optional `tag`): `add n/Software Engineer c/98765432 e/google@example.com coy/Google w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+
+Expected Output in the Result Display Box: Same as test 1.
+
+Expected Output in the Role List Box: Same as test 1.
+
+4. Other incorrect delete commands to try: `add`, `add 1`, `...`<br>
+
+Expected Output in the Result Display Box: Same as test 2.
+
+Expected Output in the Role List Box: Same as test 2.
    
 
 ### Editing a Role
-1. Editing a existing role.
 
-1. Prerequisities: `view 1` and index 1 of the list exists.
-   Expected: Name appearing on the list changes to `Software Developer`, `view 1` shows name to be `Software Developer`.
-
-1. Test case: `edit 0`<br>
-   Expected: No role is edited. Error details shown in the status message. Status bar remains the same.
+**Prerequisites:** There is at least 1 role in the Role List Box.
 
 1. Test case: `edit 1`<br>
-   Expected: No role is edited. Error details shown in the status message, asking user to input at least one field. Status bar remains the same.
+
+Expected Output in the Result Display Box: Updated details of the role added will be displayed.
+
+Expected Output in the Role List Box: Name of the first role on the list changes to `Software Developer`.
+
+2. Test case: `edit 0`<br>
+
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `edit` command is included.
+
+Expected Output in the Role List Box: No changes.
+
+3. Test case: `edit 1`<br>
+
+Expected Output in the Result Display Box: Same as test 2.
+
+Expected Output in the Role List Box: Same as test 2.
    
-1. Other incorrect delete commands to try: `edit n/`, `edit -1`, `...`<br>
-   Expected: Similar to previous.
+4. Other incorrect delete commands to try: `edit n/`, `edit -1`, `...`<br>
+
+Expected Output in the Result Display Box: Same as test 2.
+
+Expected Output in the Role List Box: Same as test 2.
 
 ### Deleting a Role
 
-1. Deleting a role while all roles are being shown
-
-1. Prerequisites: List all roles using the `list` command. Multiple roles should be displayed in the list.
+**Prerequisites:** There is at least 1 role in the Role List Box.
 
 1. Test case: `delete 1`<br>
-   Expected: First role is deleted from the list. Details of the deleted role shown in the status message.
-   Timestamp in the status bar is updated.
 
-1. Test case: `delete 0`<br>
-   Expected: No role is deleted. Error details shown in the status message. Status bar remains the same.
+Expected Output in the Result Display Box: Details of the deleted role will be displayed.
 
-1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to previous.
+Expected Output in the Role List Box: First role is deleted from the list.
 
-1. _{ more test cases …​ }_
+2. Test case: `delete 0`<br>
 
-### Finding by Company 
-1. Finding role by company name.
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `edit` command is included.
 
-1. Prerequisites: List all roles using the `list` command. Roles with role name `software engineer` and `data analyst` should exist.
+Expected Output in the Role List Box: No changes.
 
-1. Test case: `name analyst software`<br>
-   Expected: Two roles are displayed.
-   
-1. Test case: `name software`<br>
-   Expected: One role is displayed.
-   
-1. Test case: `name`<br>
-   Expected: Error details shown in the status message. 
-   
-1. Other incorrect delete commands to try: `name /n`, `name x`, `...`<br>
-   Expected: Similar to previous.
+3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+
+Expected Output in the Result Display Box: Same as test 2.
+
+Expected Output in the Role List Box: Same as test 2.
+
+### Finding by Name
+
+**Prerequisites:** There are at least 2 roles in the Role List Box - one must have its name as `Software Developer`, 
+and the other must have its name as `Data Analyst`.
+
+2. Test case: `name analyst software`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has either `analyst` or `software` in its name.
+
+3. Test case: `name software`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has `software` in its name.
+
+5. Test case: `name`<br>
+
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `name` command is included.
+
+Expected Output in the Role List Box: No changes.
+
+### Finding by Company
+
+**Prerequisites:** There are at least 2 roles in the Role List Box - one must have its company as `Tampines Street`,
+and the other must have its company as `Mega Soft`.
+
+2. Test case: `company tampines soft`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has either `tampines` or `soft` in its company.
+
+3. Test case: `company tampines`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has `tampines` in its company.
+
+5. Test case: `company`<br>
+
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `company` command is included.
+
+Expected Output in the Role List Box: No changes.
+
+### Finding by tags
+
+**Prerequisites:** There are at least 2 roles in the Role List Box - one must have one of its tags as `Applied`,
+and the other must have one of its tags as `Offered`.
+
+2. Test case: `tag applied offered`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has either `applied` or `offered` in its company.
+
+3. Test case: `tag applied`<br>
+
+Expected Output in the Result Display Box: Display the number of roles found.
+
+Expected Output in the Role List Box: Only display roles that has `applied` in its company.
+
+5. Test case: `tag`<br>
+
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `tag` command is included.
+
+Expected Output in the Role List Box: No changes.
 
 ### Sort roles by salary
 
-1. Sorting role by salary.
-2. Prerequisite: There are roles stored in RoleBook with different salaries.
-3. Test case: `salary asc` <br>
-   Expected: Roles are sorted in ascending order starting from the highest salary.
-4. Test case: `salary desc` <br>
-   Expected: Roles are sorted in descending order starting from the lowest salary.
+**Prerequisite:** There is more than 1 role stored in TechTrack with different salaries.
+
+1. Test case: `salary asc` <br>
+
+Expected Output in the Result Display Box: Displays a success message.
+
+Expected Output in the Role List Box: Roles are now sorted according to their salary, in ascending order.
+
+2. Test case: `salary desc` <br>
+
+3. Expected Output in the Result Display Box: Displays a success message.
+
+Expected Output in the Role List Box: Roles are now sorted according to their salary, in descending order.
 
 ### Sort roles by deadline
 
-Similar to the manual testing of [sort roles by salary section](#sort-roles-by-salary).
+Similar to the manual testing of [sort roles by salary section](#sort-roles-by-salary). Replace `salary` with `deadline`
+in the given commands. The roles in the Role List Box would then be sorted according to `salary` instead.
 
 ### View the information of a Role
 
-1. Viewing information of role
-2. Prerequisite: There is at least 1 role shown in the Role List Box
-3. Test Case: `view 1` <br>
-   Expected: Still showing the same role list as before. Details of first role is shown and display information 
-   that includes the name, company, salary, deadline, experience, job description, email, contact and website 
-   of the role.
+**Prerequisite:** There is at least 1 role in the Role List Box.
+
+1. Test Case: `view 1` <br>
+
+Expected Output in the Result Display Box: Display information regarding the first role, including: name, company, 
+salary, deadline, experience, job description, email, contact and website.
+
+Expected Output in the Role List Box: No changes.
+
+2. Test Case: `view 0` <br>
+
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `view` command is included.
+
+Expected Output in the Role List Box: No changes.
+
+### Clear
+
+1. Test Case: `clear`
+
+Expected Output in the Result Display Box: Success message for the `clear` command is displayed.
+
+Expected Output in the Role List Box: All roles are deleted.
+
+### List
+
+1. Test Case: `list`
+
+Expected Output in the Result Display Box: Success message for the `list` command is displayed.
+
+Expected Output in the Role List Box: All current existing roles of TechTrack are displayed.
+
+### Help
+
+1. Test Case: `help`
+
+Expected Output: Help window pops out.
+
+Expected Output in the Result Display Box: Success message for the `help` command is displayed.
+
+2. Test Case: `help 123`
+
+Expected Output: Help window pops out.
+
+Expected Output in the Result Display Box: Success message for the `help` command is displayed.
 
 
-### Saving data
+### Exit
 
-1. Dealing with missing/corrupted data files
+1. Test Case: `exit`
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Expected Output: TechTrack closes.
 
-1. _{ more test cases …​ }_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -872,42 +998,39 @@ feature flaws, therefore the team will not be addressing these flaws for now.
    that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more
    websites.
    We have thought of one approach to this fix:
-
-* Letting the website format be `[any char].[any char]`
-    * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
-    * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
+   * Letting the website format be `[any char].[any char]`
+       * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
+       * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
 
 ### Changing command parameter for salary
 
 1. Unnecessarily complicated (or hard-to-type) command formats can be considered a `type.FeatureFlaw` as it is expected
-   that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special
-   characters such as `$/` in the format when it is possible to avoid them.
-   Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
+that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special
+characters such as `$/` in the format when it is possible to avoid them.
+Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
 
 ### Displaying very long description and numbers
 
 1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the
-   screen size. We believe that the `view` command is a way for users to view truncated texts for now. In the future, we
-   would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
-2. This also affects the `view` command,
-   as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
-   is not written to handle extremely long texts. Although the attributes of each role would be visible, it is not ideal
-   for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox`
-   object,
-   and setting proper widths for each property.
+screen size. We believe that the `view` command is a way for users to view truncated texts for now. In the future, we
+would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
+2. This also affects the `view` command, as 
+[`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
+is not written to handle extremely long texts. Although the attributes of each role would be visible, it is not ideal
+for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox`
+object, and setting proper widths for each property.
 
 ### Display error messages when storage data is incorrectly modified
 
 1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed.
-   Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage
-   data
-   is incorrectly modified. This could be done through editing the `initModelManager` function in the
-   [`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
-   file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the
-   [`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
-   class and subsequently, the
-   [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
-   class to render the message on startup.
+Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage
+data is incorrectly modified. This could be done through editing the `initModelManager` function in the
+[`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
+file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the
+[`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
+class and subsequently, the
+[`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
