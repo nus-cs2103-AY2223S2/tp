@@ -15,9 +15,12 @@ Class RecipeListPanel
 Class RecipeCard
 Class RecipePopup
 Class RecipeForm
+Class RecipeAddForm
+Class RecipeEditForm
 Class StatusBarFooter
 Class CommandBox
 Class DeleteRecipeEvent
+Class EditRecipeEvent
 }
 
 Class "<<interface>>\nCommandExecutor" as CommandExecutor
@@ -60,6 +63,13 @@ RecipeCard ..> Model
 RecipeCard ..> RecipePopup
 RecipeCard ..>  RecipeForm
 RecipeCard ..>  DeleteRecipeEvent
+
+RecipeAddForm -left-|>  RecipeForm
+RecipeEditForm --|> RecipeForm
+RecipeAddForm -->  Logic
+
+RecipeEditForm .left.> EditRecipeEvent
+RecipeEditForm ..> MainWindow
 
 UiManager -right-> Logic
 MainWindow -left-> Logic
