@@ -26,7 +26,7 @@ import seedu.address.model.student.exceptions.DuplicateEntryException;
  */
 public class CreateHomeworkCommand extends Command {
     public static final String COMMAND_WORD = "new-homework";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to a student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to students.\n"
             + "Parameters: "
             + PREFIX_NAME + "STUDENT_NAME "
             + PREFIX_HOMEWORK + "HOMEWORK_NAME "

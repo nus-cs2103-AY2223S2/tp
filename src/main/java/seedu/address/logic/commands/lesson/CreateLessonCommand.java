@@ -28,7 +28,7 @@ public class CreateLessonCommand extends Command {
 
     public static final String COMMAND_WORD = "new-lesson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to a student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to students.\n"
         + "Parameters: "
         + PREFIX_NAME + "STUDENT_NAME "
         + PREFIX_LESSON + "LESSON_NAME "

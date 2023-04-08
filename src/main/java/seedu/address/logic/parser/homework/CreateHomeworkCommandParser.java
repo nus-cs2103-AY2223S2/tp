@@ -5,9 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ParserUtil.checkNotNullNames;
 import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllDeadline;
 import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllHomework;
-import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -47,11 +47,12 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
                     CreateHomeworkCommand.MESSAGE_USAGE));
         }
 
-        checkUniqueNotNUllName(argMultimap);
+        List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+
+        checkNotNullNames(nameKeywords);
         checkUniqueNotNUllHomework(argMultimap);
         checkUniqueNotNUllDeadline(argMultimap);
 
-        List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
         String homeworkName = argMultimap.getValue(PREFIX_HOMEWORK).get();
         LocalDateTime deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         if (deadline.isBefore(LocalDateTime.now())) {
