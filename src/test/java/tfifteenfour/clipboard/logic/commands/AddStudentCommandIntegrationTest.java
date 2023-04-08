@@ -40,7 +40,8 @@
 //     @Test
 //     public void execute_duplicateStudent_throwsCommandException() {
 //         Student studentInList = model.getRoster().getUnmodifiableStudentList().get(0);
-//         assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
+//         assertCommandFailure(new AddStudentCommand(studentInList), model,
+//              AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
 //     }
 
 // }

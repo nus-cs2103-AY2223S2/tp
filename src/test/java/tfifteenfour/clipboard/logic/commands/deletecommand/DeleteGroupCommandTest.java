@@ -8,6 +8,7 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_OUT_OF_BOUND;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
@@ -43,10 +44,10 @@ class DeleteGroupCommandTest {
     public void execute_validIndex_success() {
         DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand(INDEX_FIRST);
 
-//        Group groupToDelete = selectedCourse.getUnmodifiableGroupList().get(INDEX_FIRST.getZeroBased());
+        //Group groupToDelete = selectedCourse.getUnmodifiableGroupList().get(INDEX_FIRST.getZeroBased());
         String expectedMessage = String.format(DeleteGroupCommand.MESSAGE_SUCCESS, selectedCourse, selectedGroup);
         Model expectedModel = model.copy();
-        Course expectedSelectedCourse= expectedModel.getCurrentSelection().getSelectedCourse();
+        Course expectedSelectedCourse = expectedModel.getCurrentSelection().getSelectedCourse();
         expectedSelectedCourse.deleteGroup(
                 expectedSelectedCourse.getUnmodifiableGroupList().get(INDEX_FIRST.getZeroBased()));
 

@@ -43,7 +43,8 @@
 
 //         CommandResult commandResult = new AddStudentCommand(validStudent).execute(modelStub, TEST_CURRENT_SELECTION);
 
-//         assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
+//         assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent),
+//                 commandResult.getFeedbackToUser());
 //         assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
 //     }
 
