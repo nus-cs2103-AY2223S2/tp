@@ -409,7 +409,7 @@ Notice that the keys are all close to the enter key so that you can breeze throu
 Flips the card to reveal the answer. 
 
 Format: `p`
-- `p` is case-insensitive (`P` is also excepted).
+- `p` is case-insensitive (`P` is also a valid command).
   ![FlipCardCommandDisplay](images/FlipCardCommandDisplay.png)
 
 ### 3.6.5. Next Card: `]`
@@ -429,7 +429,7 @@ Format: `[`
 Tags the current card as easy. This replaces any previous tags.
 
 Format: `l`
-- `l` is case-insensitive (`L` is also accepted).
+- `l` is case-insensitive (`L` is also a valid command).
 
 ### 3.6.8. Tagging the Card as Medium: `;`
 
@@ -470,8 +470,11 @@ PCs data are saved in the hard disk automatically after any command that changes
 
 PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PowerCards will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+
+- If your changes to the data file make its format invalid, PowerCards will start with an empty data file at the next run. 
+- Do **not** type in any command as this will overwrite and discard your previous data! Simply close the application manually and edit the data file again until it is in valid format. 
+
 </div>
 
 ### 3.7.5. Archiving data files `[coming in v2.0]`
