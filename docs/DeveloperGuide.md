@@ -84,8 +84,6 @@ Java libraries used in this project:
 * [JavaFX](https://openjfx.io/) for UI,
 * [JUnit5](https://github.com/junit-team/junit5) for Testing.
 
----
-
 ## 1.2 Setting Up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -135,15 +133,22 @@ The Developer Guide has six main sections:
 
 This section will provide you with a high-level overview of how ConnectUS is structured, as well as information on the key components of ConnectUS.
 
+Firstly, the [Architecture](#31-architecture) section gives an overview of how each of the main components in ConnectUS interact with each other.
+
+ConnectUS has four main components, namely:
+
+1. [UI](#32-ui-component)
+2. [Logic](#33-logic-component)
+3. [Model](#34-model-component)
+4. [Storage](#35-storage-component)
+
+Each section of these components will describe the smaller subcomponents within them.
+
+Finally, the [Commons](#36-common-classes) section covers classes that are used by multiple components in ConnectUS.
+
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
-<div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
-
-In this Developer Guide, contacts that users add to the [ConnectUS contact list](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#313-contact-list) will be referred to as `Person`.
-
 </div>
 
 <div style="page-break-after: always"></div>
@@ -154,9 +159,9 @@ In this Developer Guide, contacts that users add to the [ConnectUS contact list]
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-<div style="page-break-after: always"></div>
-
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always"></div>
 
 **Main components of the <u>architecture</u>**
 
@@ -192,6 +197,12 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
+
+In this Developer Guide, contacts that users add to the [ConnectUS contact list](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#313-contact-list) will be referred to as `Person`.
+
+</div>
 
 <div style="page-break-after: always"></div>
 
