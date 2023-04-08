@@ -1,0 +1,18 @@
+@startuml
+
+start
+:User is in MAIN_SELECTED_MODE;
+:User inputs "deleteCard INDEX";
+:Check validity of INDEX;
+
+if () then ([INDEX is valid])
+    :Card is deleted from selected Deck;
+    :Display Command Result on Result Display;
+else ([else])
+    :Throw CommandException;
+    :Display error message on Result Display;
+
+endif
+
+stop
+@enduml
