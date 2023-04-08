@@ -5,15 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sprint.commons.core.Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.sprint.testutil.TypicalApplications.AMAZON;
 import static seedu.sprint.testutil.TypicalApplications.GOOGLE;
 import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.CommandHistory;
+import seedu.sprint.logic.parser.Prefix;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
@@ -68,13 +75,34 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_oneKeywords_oneApplicationFound() {
+    public void execute_oneKeyword_oneApplicationFound() {
         String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 1);
         ApplicationContainsKeywordsPredicate predicate = preparePredicate("Google");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredApplicationList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(GOOGLE), model.getSortedApplicationList());
+    }
+
+    @Test
+    public void execute_multiplePrefixes_oneApplicationFound() {
+        String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 1);
+        List<String> role = Arrays.asList("Intern");
+        List<String> companyName = Arrays.asList("Amazon");
+        List<String> status = Arrays.asList("applied");
+        HashMap<Prefix, List<String>> multiplePrefixesMap = new HashMap<>() {
+            {
+                put(PREFIX_ROLE, role);
+                put(PREFIX_COMPANY_NAME, companyName);
+                put(PREFIX_STATUS, status);
+            }
+        };
+        ApplicationContainsKeywordsPredicate predicate =
+                new ApplicationContainsKeywordsPredicate(multiplePrefixesMap);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredApplicationList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(AMAZON), model.getSortedApplicationList());
     }
 
     /**
