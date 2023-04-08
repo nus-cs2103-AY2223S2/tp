@@ -114,7 +114,7 @@ As mentioned in [Bookmark](#bookmark), a genre in a bookmark indicates the genre
 
 In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib.
 
-To find out how to view this fixed list of genres, go [here](#genre) for the `genre` command.
+To find out how to view this fixed list of genres, go [here](#viewing-genres-genre).
 
 
 ### Tags
@@ -193,14 +193,17 @@ This section provides an in-depth explanation of MyLib's commands. For a quick r
 </div>
 <div style="page-break-after: always;"></div>
 
-### Viewing tags
+### Tag Commands
+This section goes through the commands for viewing and modifying your tag list.
+
+#### Viewing tags: `tags`
 To view your list of tags, use the `tags` command.
 
 The format for the command is simply: `tags`.
 
 Since MyLib comes with a default set of tags, you can expect a non-empty list of tags even as a new user.
 
-### Adding tags
+#### Adding tags: `addtag`
 To add new tags to your tag list, use the `addtag` command.
 
 The format for the `addtag` command is as follows:
@@ -211,7 +214,7 @@ Examples:
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
 
-### Deleting a tag
+#### Deleting a tag: `dtag`
 To delete a tag from your tag list, use the `dtag` command.
 
 Format: `dtag TAG`
@@ -219,7 +222,7 @@ Format: `dtag TAG`
 Example:
 * `dtag MaleProtagonist`
 
-### Genres
+### Viewing genres: `genre`
 You can view MyLib's fixed list of genres using the `genre` command.
 
 The format for the command is simply: `genre`
@@ -230,7 +233,7 @@ The command should display the list of available genres in the `Result Box`.
 
 <div style="page-break-after: always;"></div>
 
-### Adding a bookmark
+### Adding a bookmark: `add`
 
 To create a new bookmark and add it to your bookmark library you will need to use the `add` command.
 
