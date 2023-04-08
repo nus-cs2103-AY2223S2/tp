@@ -15,7 +15,7 @@ Given below are my contributions to the project.
     * Highlights: Places the contacts with empty fields for the selected category at the end of the list.
     * Credits: *{-}*
 
-* **New Feature**: `Project` class and related classes (in collaboration with [@chia-yh](www.github.com/chia-yh)) [\#124](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/124)
+* **New Feature**: `Project` class and related classes (in collaboration with [@chia-yh](https://github.com/chia-yh)) [\#124](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/124)
     * What it does: Allows the user to store information about the projects they are working on, including details on the project name, deadline, meeting, repository host, repository name and members.
     * Justification: Users are able to store and manage information on their projects.
     * Highlights: Makes use of a `UniqueProjectList` as well as various `isValid` methods to ensure that the projects stored is valid and unique.
