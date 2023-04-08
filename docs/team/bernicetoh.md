@@ -47,6 +47,8 @@ Given below are my contributions to the project.
 
     * Developer Guide:
       * Updated architecture diagrams to reflect project design. (Pull request [#118](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/118), [#112](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/112/files))
+      * Updated Use Cases (Pull request [#250](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/250)
+      * Updated Instructions for Manual testing (Pull request [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257))
       
 * **Community**:
     * Pull Requests reviewed: 12 [(GitHub)](https://github.com/AY2223S2-CS2103T-W09-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
