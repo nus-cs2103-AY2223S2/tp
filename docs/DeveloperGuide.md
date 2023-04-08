@@ -351,7 +351,7 @@ The following sequence diagram shows how the deleteRoutine operation works:
     * Pros: Might be faster.
     * Cons: Will be risky as it does not maintain accuracy of data in the model.
 
-### Export client/routine list
+### Export client
 
 #### Implementation
 This feature allows the user to extract data efficiently from FitBook to be used for other purposes such as statistical analysis.
@@ -1044,7 +1044,6 @@ testers are expected to do more *exploratory* testing.
    B. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
 
 ### Deleting a client
 
@@ -1075,7 +1074,42 @@ testers are expected to do more *exploratory* testing.
    D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+### Adding a Routine
+1. Adding a Routine while all routines are being shown
+
+   A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+
+   B. Test case: `addRoutine r/Cardio2 ex/push-ups`<br>
+       Expected: Adds a routine with exercise push-ups to the current list of routines 
+
+   C. Test case: `addRoutine r/Cardio3`<br>
+       Expected: Adds a routine with **no** exercises to the current list of routines
+
+### Adding an Exercise
+1. Deleting an exercise while all routines are being shown
+
+   A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+
+   B. Test case: `addExercise 1 ex/Swimming`<br>
+      Expected: Adds a `Swimming` exercise to the first routine in the list. Details of the added exercise shown in the status message.
+
+   C. Test case: `addExercise 0 `<br>
+      Expected: No exercise is added. Error details shown in the status message.
+
+   D. Other incorrect delete commands to try: `addExercise`, `addExercise x `, (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Finding a Routine
+1. Finds a Routine by keywords
+
+   A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+
+   B. Test case: `findRoutine Cardio`<br>
+   Expected: Displays all Routines matching `Cardio`, Routines names that consist of `Cardio` will be matched. (i.e `Cardio1`, `Cardio2` etc...)
+
+   C. Test case: `findRoutine`<br>
+   Expected: Error details shown in the status message.
+
 
 ### Saving data
 
@@ -1083,4 +1117,3 @@ testers are expected to do more *exploratory* testing.
 
    A. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-2. _{ more test cases …​ }_
