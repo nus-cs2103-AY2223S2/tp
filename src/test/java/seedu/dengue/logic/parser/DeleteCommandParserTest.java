@@ -90,27 +90,27 @@ public class DeleteCommandParserTest {
         assertParseSuccess(parser, " sd/2022-03-05 ed/2023-03-05", new DeleteCommand(predicate));
     }
 
-    //    @Test
-    //    public void parse_validArgsPartialRangeStartGiven_returnsDeleteCommand() {
-    //
-    //        Range<Date> range = ContinuousData.generateRange(
-    //                new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
-    //                new EndDate(Optional.empty()));
-    //        DeleteDatePredicate predicate = new DeleteDatePredicate(range);
-    //
-    //        assertParseSuccess(parser, " sd/2022-03-05", new DeleteCommand(predicate));
-    //    }
-    //
-    //    @Test
-    //    public void parse_validArgsPartialRangeEndGiven_returnsDeleteCommand() {
-    //
-    //        Range<Date> range = ContinuousData.generateRange(
-    //                new StartDate(Optional.empty()),
-    //                new EndDate(Optional.of(new Date(VALID_DATE_ALICE))));
-    //        DeleteDatePredicate predicate = new DeleteDatePredicate(range);
-    //
-    //        assertParseSuccess(parser, " ed/2022-03-05", new DeleteCommand(predicate));
-    //    }
+    @Test
+    public void parse_validArgsPartialRangeStartGiven_returnsDeleteCommand() {
+
+        Range<Date> range = ContinuousData.generateRange(
+                new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
+                new EndDate(Optional.empty()));
+        DeleteDatePredicate predicate = new DeleteDatePredicate(range);
+
+        assertParseSuccess(parser, " sd/2023-03-05", new DeleteCommand(predicate));
+    }
+
+    @Test
+    public void parse_validArgsPartialRangeEndGiven_returnsDeleteCommand() {
+
+        Range<Date> range = ContinuousData.generateRange(
+                new StartDate(Optional.empty()),
+                new EndDate(Optional.of(new Date(VALID_DATE_ALICE))));
+        DeleteDatePredicate predicate = new DeleteDatePredicate(range);
+
+        assertParseSuccess(parser, " ed/2023-03-05", new DeleteCommand(predicate));
+    }
 
     @Test
     public void parse_validArgsCompleteRangeSameDates_returnsDeleteCommand() {

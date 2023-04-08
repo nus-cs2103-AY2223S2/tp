@@ -257,21 +257,22 @@ public class DeleteCommandTest {
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
-    //    @Test
-    //    public void execute_validDateNoMatchFilteredList_success() {
-    //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-    //
-    //        Date dateToDelete = new Date("9999-12-31");
-    //        DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.of(dateToDelete));
-    //
-    //        DeleteCommand deleteCommand = new DeleteCommand(predicate);
-    //
-    //        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_DATE_SUCCESS, 0, dateToDelete);
-    //
-    //        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
-    //
-    //        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_validDateNoMatchFilteredList_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Date dateToDelete = new Date("9999-12-31");
+        DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.of(dateToDelete));
+
+        DeleteCommand deleteCommand = new DeleteCommand(predicate);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_DATE_SUCCESS, 0, dateToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
 
     // delete-by-range tests
 
