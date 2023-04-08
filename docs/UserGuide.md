@@ -399,10 +399,10 @@ Examples:
 
 Add a module to Le Tracker.
 
-- <span style="color:#e46c0a">`module_code`</span>[[:grey_question:]](#module-code-format) : The code of the module
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module
   - Must be unique among the module code of the modules in Le Tracker
-- <span style="color:#e46c0a">`module_name`</span>[[:grey_question:]](#module-name-format) : The name of the module
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span>[[:grey_question:]](#tag-format) : The tags to apply to the module
+- [<span style="color:#e46c0a">`module_name`</span>](#module-name-format) : The name of the module
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the module
   - Repeated tags (if any) will be ignored
 
 Examples:
