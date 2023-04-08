@@ -618,7 +618,7 @@ as the app ensures this
    
 2. The current parameter parsing does not check for nonsensical or invalid values. We plan do execute sanity checks to 
     protect the user from receiving unintentional results for the following parameters:
-   1. Last fed dates: Check for invalid dates like 30th February and reject them
+   1. Last fed dates: Check for invalid dates like 31st April and reject them
    2. Feeding interval: While it makes sense that a feeding interval can be 0 days and 25 hours, it 
    makes our `fish sort by/fi` less intuitive as ours sorts by days then hours. `0d25h` will appear before `1d0h`
    . We can automatically convert feeding intervals such that hours is less than 24 in future iterations
