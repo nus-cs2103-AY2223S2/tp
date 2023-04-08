@@ -22,7 +22,7 @@ title: Developer Guide
   - [Sort feature](#sort-feature)
     - [About](#about-1)
     - [Implementation](#implementation-2)
-  - [Lead Status feature](#lead-status-feature)
+  - [Status features](#status-features)
   - [Tasks Feature](#tasks-feature)
     - [About](#about-2)
     - [Implementation](#implementation-3)
@@ -137,9 +137,9 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -244,7 +244,8 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
-### Status Feature: Abstract Class - `Status`
+### Status Features
+#### Status Feature: Abstract Class - `Status`
 
 During the development of transactions and implementing `TxnStatus`, the realisation of it sharing similar characteristics
 to `LeadStatus` gave rose to the abstract parent class `Status`. These characteristics are:
@@ -576,9 +577,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Contact**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Contact is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc.
-- **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Contact. Lead Statuses are associated with a time they were last updated.  Refer to the Implementation > Lead Status for more information concerning Lead Statuses. 
+- **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Contact. Lead Statuses are associated with a time they were last updated.  Refer to the Implementation > Lead Status for more information concerning Lead Statuses.
 
----
+**Definitions of types of lead statuses**
+- **Uncontacted**: Represents a possible lead status. The user has not gotten in touch with (contacted) the saved person. By default, newly added contacts have this status                                        |
+- **Working**: Represents a possible lead status. The person has been contacted. The user is currently nurturing a relationship with the contact with the hopes of making them a qualified lead.               |
+- **Qualified**: Represents a possible lead status. The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here.   |
+- **Unqualified**: Represents a possible lead status. This status should only be used when it is certain that the customer's intents are not a match for the user's sales, and have no prospects of buying at all.
+
 
 ## **Appendix: Instructions for manual testing**
 
