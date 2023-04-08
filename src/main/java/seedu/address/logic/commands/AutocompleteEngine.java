@@ -112,7 +112,7 @@ public class AutocompleteEngine {
      *
      * @param userInput User input.
      * @return Suggested command (including the user input).
-     * @throws ParseException If the user input is invalid.
+     * @throws ParseException If {@code userInput} is likely invalid (based on heuristics).
      */
     public String suggestCommand(String userInput) throws ParseException {
         assert userInput != null : "'userInput' should not be 'null'";
