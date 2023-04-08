@@ -173,7 +173,7 @@ you can use the `view-exams` command to view the list of exams.
 
 ### Profile Commands
 
-#### Create a new student profile
+#### Create a new Student Profile
 
 Creates a new profile for a student given the student’s name.
 
@@ -188,7 +188,7 @@ Example:
 
 #### Update Student Information
 
-Updates the student's information given the student's label, field to change, and updated field value 
+Updates the student's information, given the student's label, field to change, and updated field value 
 
 Format: `update-info [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`
 
@@ -200,6 +200,15 @@ Examples:
 * `update-info name/John` Displays all students with the name “John” and prompts the user for clarification
 * `update-info name/John f/address` Displays the value stored in the Address Field and prompts the user for a new Address.
 * `update-info name/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
+
+#### Delete a Student Profile
+
+Deletes the student's profile, given the index of the student.
+
+Format: `delete [index/INDEX]`
+
+Examples:
+* `delete index/1` Deletes the first profile in the student list.
 
 ### Homework Commands
 #### Assign Homework to a Student
@@ -487,7 +496,7 @@ Examples:
 | Action                       | Command Format                                                                                                                                                       | Example                                                                                                                |
 |:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | Create new student profile   | `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE] [email/EMAIL] [school/SCHOOL] [level/GRADE_LEVEL]`                                          | `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8` |
-| Update student information   | `update-info [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`                                                                                                                | `update-info name/John f/address v/Block 123 #12-34`                                                                   |
+| Update student information   | `update-info [index/INDEX] [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`                                                                                                  | `update-info index/1 name/John f/address v/Block 123 #12-34`                                                           |
 | Assign homework to a student | `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`                                                                                      | `assign-homework name/John homework/listening comprehension ex1 deadline/02-12-2023-2359`                              |
 | View student's homework      | `view-homework [name/STUDENT_NAME] [status/STATUS]`                                                                                                                  | `view-homework name/John status/pending`                                                                               |
 | Delete student's homework    | `delete-homework [name/STUDENT_NAME] [index/HOMEWORK_INDEX]`                                                                                                         | `delete-homework name/John index/1`                                                                                    |
