@@ -79,7 +79,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <p align="center">
 
-<img src="images/ComponentManagers.png" width="250" />
+<img src="images/ComponentManagers.png" width="180" />
 
 </p> 
  
