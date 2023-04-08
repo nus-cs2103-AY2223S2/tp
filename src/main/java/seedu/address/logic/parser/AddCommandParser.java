@@ -43,33 +43,13 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (AddModuleCommandParserUtil.isArgumentsForAddingModule(argMultimap)) {
             return AddModuleCommandParserUtil.parse(argMultimap);
-        } else if (isAddLecture(argMultimap)) {
-            return parseAddLectureCommand(argMultimap);
+        } else if (AddLectureCommandParserUtil.isArgumentsForAddingLecture(argMultimap)) {
+            return AddLectureCommandParserUtil.parse(argMultimap);
         } else if (isAddVideo(argMultimap)) {
             return parseAddVideoCommand(argMultimap);
         } else {
             throw createInvalidCommandFormatException();
         }
-    }
-
-    private boolean isAddLecture(ArgumentMultimap argMultimap) {
-        return !argMultimap.getPreamble().isEmpty()
-                && argMultimap.getValue(PREFIX_MODULE).isPresent()
-                && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
-    }
-
-    private AddCommand parseAddLectureCommand(ArgumentMultimap argMultimap) throws ParseException {
-        String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
-        String lectureNameStr = argMultimap.getPreamble();
-        String tagsStr = argMultimap.getValue(PREFIX_TAG).orElse("");
-
-        ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
-        LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
-        Set<Tag> tags = ParserUtil.parseMultiTags(tagsStr);
-
-        Lecture lecture = new Lecture(lectureName, tags, new ArrayList<>());
-
-        return new AddLectureCommand(moduleCode, lecture);
     }
 
     private boolean isAddVideo(ArgumentMultimap argMultimap) {
@@ -185,7 +165,59 @@ public class AddCommandParser implements Parser<AddCommand> {
      * from it.
      */
     private static class AddLectureCommandParserUtil {
+        /**
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to add a lecture.
+         *
+         * @param argMultimap A map of the arguments and their values.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to add a
+         *         lecture. Otherwise, false.
+         */
+        public static boolean isArgumentsForAddingLecture(ArgumentMultimap argMultimap) {
+            requireNonNull(argMultimap);
 
+            return !argMultimap.getPreamble().isEmpty()
+                    && argMultimap.getValue(PREFIX_MODULE).isPresent()
+                    && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
+        }
+
+        /**
+         * Parses the arguments in {@code argMultimap} and use it to create an {@code AddLectureCommand} object.
+         *
+         * @param argMultimap A map of the arguments and their values.
+         * @return The {@code AddLectureCommand} object created from the arguments.
+         * @throws ParseException Indicates that an argument value did not conform to the expected format.
+         */
+        public static AddLectureCommand parse(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            ModuleCode moduleCode = extractModuleCode(argMultimap);
+            Lecture lecture = createLecture(argMultimap);
+
+            return new AddLectureCommand(moduleCode, lecture);
+        }
+
+        private static ModuleCode extractModuleCode(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
+            return ParserUtil.parseModuleCode(moduleCodeStr);
+        }
+
+        private static Lecture createLecture(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            LectureName lectureName = extractLectureName(argMultimap);
+            Set<Tag> tags = AddCommandParserUtil.extractTags(argMultimap);
+
+            return new Lecture(lectureName, tags, new ArrayList<>());
+        }
+
+        private static LectureName extractLectureName(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String lectureNameStr = argMultimap.getPreamble();
+            return ParserUtil.parseLectureName(lectureNameStr);
+        }
     }
 
     /**
