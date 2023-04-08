@@ -98,8 +98,6 @@ public abstract class PredicateUtil<T> implements Predicate<T> {
      * @return true if the start age begins after the end age, false otherwise.
      */
     public static boolean isAgeRangeValid(Age start, Age end) {
-        assert start != null;
-        assert end != null;
         requireNonNull(start);
         requireNonNull(end);
         int a1 = Integer.parseInt(start.value);
