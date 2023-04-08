@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.commandresult.CommandResult;
+import seedu.address.logic.commands.deckcommands.ShowDecksCommand;
 import seedu.address.model.Model;
 import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.deck.Deck;
@@ -30,5 +31,11 @@ public class ShowCardsCommand extends Command {
         model.updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS.and(new CardInDeckPredicate(selectedDeck.get())));
         return new CommandResult(MESSAGE_SUCCESS,
                 false, false, false, false, false, false, false, false, true, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ShowCardsCommand); // instanceof handles nulls
     }
 }

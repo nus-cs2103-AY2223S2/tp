@@ -3,6 +3,7 @@ package seedu.address.logic.commands.deckcommands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.cardcommands.ShowCardsCommand;
 import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,5 +23,11 @@ public class UnselectDeckCommand extends Command {
         model.unselectDeck();
         return new CommandResult(MESSAGE_SUCCESS, false, false, false, false,
                 false, true, false, false, false, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnselectDeckCommand); // instanceof handles nulls
     }
 }

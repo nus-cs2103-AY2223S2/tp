@@ -31,4 +31,10 @@ public class TagMediumCommand extends Command {
         model.tagCurrentCardInReview(new Tag(MEDIUM));
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TagMediumCommand); // instanceof handles nulls
+    }
 }

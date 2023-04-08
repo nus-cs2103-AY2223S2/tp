@@ -25,4 +25,10 @@ public class PreviousCardCommand extends Command {
             return new CommandResult(MESSAGE_NO_MORE_PREV_CARD);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PreviousCardCommand); // instanceof handles nulls
+    }
 }

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.commands.cardcommands.ShowCardsCommand;
 import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.model.Model;
 
@@ -19,5 +20,11 @@ public class HelpCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_HELP_MESSAGE,
                 true, false, false, false, false, false, false, false, false, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof HelpCommand); // instanceof handles nulls
     }
 }

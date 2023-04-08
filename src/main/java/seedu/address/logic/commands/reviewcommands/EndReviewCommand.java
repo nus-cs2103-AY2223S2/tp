@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.commandresult.CommandResult;
+import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.model.Model;
 
 /**
@@ -22,5 +23,11 @@ public class EndReviewCommand extends Command {
         model.endReview();
         return new CommandResult(MESSAGE_SUCCESS,
                 false, false, false, true, false, false, false, false, false, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EndReviewCommand); // instanceof handles nulls
     }
 }
