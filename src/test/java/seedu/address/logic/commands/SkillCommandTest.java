@@ -2,9 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -14,7 +12,6 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,7 +22,6 @@ import seedu.address.testutil.PersonBuilder;
 public class SkillCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -57,7 +53,7 @@ public class SkillCommandTest {
     }
 
     @Test
-    public void execute_zeroKeyword_errorThrown() {
+    public void execute_oneKeyword_noPersonFound() {
         Person personToSkill = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getOneBased());
         PersonBuilder personInList = new PersonBuilder(personToSkill);
 
@@ -65,17 +61,21 @@ public class SkillCommandTest {
                 .withNotes("Java")
                 .build();
 
-        NoteContainsKeywordsPredicate emptyNotePredicate = new NoteContainsKeywordsPredicate(" ");
-        SkillCommand skillCommand = new SkillCommand(emptyNotePredicate);
+        Predicate<Person> predicate = x -> true;
+        predicate = predicate.and(new NoteContainsKeywordsPredicate("Python"));
 
-        CommandException exceptionThrown = assertThrows(CommandException.class, () -> {
-            skillCommand.execute(model);
-        });
+        SkillCommand skillCommand = new SkillCommand(predicate);
 
-        System.out.println(exceptionThrown.getMessage());
+        model.setPerson(personToSkill, skillPerson);
+        model.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size());
 
-        assertEquals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SkillCommand.MESSAGE_USAGE),
-                exceptionThrown.getMessage());
+        CommandResult result = skillCommand.execute(model);
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(expectedResult, result);
+
     }
 
     @Test
@@ -122,6 +122,118 @@ public class SkillCommandTest {
 
         Predicate<Person> predicate = x -> true;
         predicate = predicate.and(new NoteContainsKeywordsPredicate(skillPerson1.getNotesString()));
+
+        SkillCommand skillCommand = new SkillCommand(predicate);
+
+        model.setPerson(personToSkill1, skillPerson1);
+        model.setPerson(personToSkill2, skillPerson2);
+        model.updateFilteredPersonList(predicate);
+
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size());
+
+        CommandResult result = skillCommand.execute(model);
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void execute_multipleKeywords_noPersonFound() {
+        Person personToSkill1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getOneBased());
+        PersonBuilder person1InList = new PersonBuilder(personToSkill1);
+
+        Person skillPerson1 = person1InList
+                .withNotes("Python", "Java")
+                .build();
+
+        Person personToSkill2 = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getOneBased());
+        PersonBuilder person2InList = new PersonBuilder(personToSkill2);
+
+        Person skillPerson2 = person2InList
+                .withNotes("Python")
+                .build();
+
+        Predicate<Person> predicate = x -> true;
+        predicate = predicate.and(new NoteContainsKeywordsPredicate("Swift"));
+        SkillCommand skillCommand = new SkillCommand(predicate);
+
+        model.setPerson(personToSkill1, skillPerson1);
+        model.setPerson(personToSkill2, skillPerson2);
+        model.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size());
+
+        CommandResult result = skillCommand.execute(model);
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void execute_multipleKeywords_showOneApplicant() {
+        Person personToSkill1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getOneBased());
+        PersonBuilder person1InList = new PersonBuilder(personToSkill1);
+
+        Person skillPerson1 = person1InList
+                .withNotes("Python", "Java")
+                .build();
+
+        Person personToSkill2 = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getOneBased());
+        PersonBuilder person2InList = new PersonBuilder(personToSkill2);
+
+        Person skillPerson2 = person2InList
+                .withNotes("Python")
+                .build();
+
+        Predicate<Person> predicate = x -> true;
+        String keywords = skillPerson1.getNotesString();
+        String[] keywords_list = keywords.split(" ");
+        for (int i = 0; i < keywords_list.length; i++) {
+            String keyword = keywords_list[i];
+            predicate = predicate.and(new NoteContainsKeywordsPredicate(keyword));
+        }
+
+        SkillCommand skillCommand = new SkillCommand(predicate);
+
+        model.setPerson(personToSkill1, skillPerson1);
+        model.setPerson(personToSkill2, skillPerson2);
+        model.updateFilteredPersonList(predicate);
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size());
+
+        CommandResult result = skillCommand.execute(model);
+        CommandResult expectedResult = new CommandResult(expectedMessage);
+
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void execute_multipleKeywords_showMultipleApplicants() {
+        Person personToSkill1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getOneBased());
+        PersonBuilder person1InList = new PersonBuilder(personToSkill1);
+
+        Person skillPerson1 = person1InList
+                .withNotes("ML", "AI")
+                .build();
+
+        Person personToSkill2 = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getOneBased());
+        PersonBuilder person2InList = new PersonBuilder(personToSkill2);
+
+        Person skillPerson2 = person2InList
+                .withNotes("ML", "AI")
+                .build();
+
+        Predicate<Person> predicate = x -> true;
+        String keywords = skillPerson1.getNotesString();
+        String[] keywords_list = keywords.split(" ");
+        for (int i = 0; i < keywords_list.length; i++) {
+            String keyword = keywords_list[i];
+            predicate = predicate.and(new NoteContainsKeywordsPredicate(keyword));
+        }
 
         SkillCommand skillCommand = new SkillCommand(predicate);
 
