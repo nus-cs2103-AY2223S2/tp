@@ -1275,7 +1275,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Mark/Unmark multiple videos**
 
-**Precondition**: User has added a module, a lecture and a few videos
+**Preconditions**: User has added a module, a lecture and a few videos
 
 **MSS**
 
@@ -1335,6 +1335,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Delete a Module**
 
+**Preconditions**: User has added a module
+
 **MSS**
 
 1. User wants to delete a module
@@ -1358,6 +1360,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 1.
 
 **Use case: Delete multiple Modules**
+
+**Preconditions**: User has added a few modules
 
 **MSS**
 
@@ -1386,6 +1390,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 1.
 
 **Use case: Delete a Lecture**
+
+**Preconditions**: User has added a module and a lecture
 
 **MSS**
 
@@ -1422,6 +1428,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 1.
 
 **Use case: Delete multiple Lectures**
+
+**Preconditions**: User has added a module and a few lectures
 
 **MSS**
 
@@ -1462,6 +1470,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 1.
 
 **Use case: Delete a Video**
+
+**Preconditions**: User has added a module, a lecture and a video
 
 **MSS**
 
@@ -1510,6 +1520,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes at step 1.
 
 **Use case: Delete multiple Videos**
+
+**Precondition**: User has added a module, a lecture and a few videos
 
 **MSS**
 
