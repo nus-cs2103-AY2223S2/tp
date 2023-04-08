@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_CREATEDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -29,7 +28,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_CONTENT, PREFIX_STATUS,
-                PREFIX_TASK_DEADLINE, PREFIX_TASK_CREATEDATE);
+                PREFIX_TASK_DEADLINE);
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -49,16 +48,9 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             editTaskDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
         }
-
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_TASK_DEADLINE).get()));
         }
-
-        if (argMultimap.getValue(PREFIX_TASK_CREATEDATE).isPresent()) {
-            editTaskDescriptor.setCreateDate(ParserUtil.parseDateTime(argMultimap
-                .getValue(PREFIX_TASK_CREATEDATE).get()));
-        }
-
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
