@@ -72,7 +72,7 @@ public class Assignment {
      * @param submissionString
      */
     public void addStudentSubmission(Student stu, String submissionString) {
-        String[] words = submissionString.split(",");
+        String[] words = submissionString.split(Submission.STR_SEP);
         boolean isGraded = Integer.parseInt(words[1]) == 1;
         boolean isLateSubmission = Integer.parseInt(words[2]) == 1;
         Submission sub = new Submission(stu, this, isGraded, isLateSubmission, Integer.parseInt(words[3]));
