@@ -42,6 +42,21 @@ Given below are my contributions to the project.
     * Upload Dry PE Jar file
 
 * **Review/mentoring contributions**:
-    * #16 #38 #48 #49 #76 #91 #92 #93 #99 #100 #102 #103 #144 #146 #147 #151
+[#16](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/16) 
+[#38](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/38)
+[#48](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/48)
+[#49](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/49)
+[#76](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/76)
+[#91](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/91)
+[#92](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/92)
+[#93](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/93)
+[#99](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/99)
+[#100](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/100)
+[#102](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/102)
+[#103](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/103)
+[#144](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/144)
+[#146](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/146) 
+[#147](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/147) 
+[#151](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/151)
 
 
