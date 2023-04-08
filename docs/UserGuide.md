@@ -253,7 +253,12 @@ This is a tutorial for **first-time** Docedex users.
     - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
     - `add-doc n/Gabriel Tan p/98765432 e/gabt@example.com s/Neurosurgery y/5`
 
-Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+<div markdown="span" class="alert alert-heading">
+Adding doctor command, also calls select doctor to display the recently added information in the Enlarged Contact Card.
+If no patients appear in the patients list, it is because none have been assigned to the doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -325,7 +330,13 @@ Examples:
 - Note to user:
   - The index refers to the index number shown in the displayed doctor list.
 
-Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+<div markdown="span" class="alert alert-heading">
+Selecting doctor command displays only the recently queried doctor's information in the Enlarged Contact Card.
+If no patients appear in the patients list, it is because none have been assigned to the doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -349,7 +360,12 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient`
 
-Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+<div markdown="span" class="alert alert-heading">
+Adding patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
+If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -441,7 +457,12 @@ Examples:
 - Note to user:
     - The index refers to the index number shown in the displayed patient list.
 
-Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+<div markdown="span" class="alert alert-heading">
+Selecting patient command only displays the recently queried patients' information in the Enlarged Contact Card.
+If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
