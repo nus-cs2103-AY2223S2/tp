@@ -282,6 +282,9 @@ To make it easier to specify that share the same module code as your current wor
 
 ## Command Manual
 
+:information_source: Note that the matching of values (module code, module name, lecture name, video name, tag etc.) is case sensitive unless otherwise stated.\
+e.g. The lecture names "Week 1" and "week 1" are not the same
+
 ### Nav
 
 #### Navigate to the Root Context
@@ -626,8 +629,8 @@ Example:
 
 - `tag EG2310 /tags fun, hard`
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the 
-user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer 
+:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the
+user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer
 to [Navigation](#navigation) for more information)
 
 ### Tag a lecture
@@ -639,7 +642,7 @@ Tag a specified lecture.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be tagged
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is 
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is
     case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the lecture
   - Refer to [Argument Formats](#argument-formats) for the "Tag" format
@@ -648,7 +651,7 @@ Tag a specified lecture.
 
 Examples:
 
-- `tag Lecture_1 /mod CS2040 /tags Yay` 
+- `tag Lecture_1 /mod CS2040 /tags Yay`
 
 :information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the
 user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer
@@ -663,10 +666,10 @@ Tag a specified video.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is 
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is
     case sensitive)
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video to be tagged
-  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is 
+  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is
     case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the video
   - Refer to [Argument Formats](#argument-formats) for the "Tag" format
@@ -694,7 +697,7 @@ Example:
 - `untag EG2310 /tags fun, hard`
 
 :information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the
-user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video) 
+user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video)
 (refer to [Navigation](#navigation) for more information)
 
 ### Untag a lecture
@@ -706,10 +709,10 @@ Remove specified tags from a lecture.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be untagged
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is 
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is
   case sensitive
   - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the lecture
-  - Must belong to existing tags in the lecture specified in `lecture_name` (:exclamation:Tag matching is case 
+  - Must belong to existing tags in the lecture specified in `lecture_name` (:exclamation:Tag matching is case
     sensitive)
   - Repeated tags (if any) will be ignored
 
@@ -730,10 +733,10 @@ Remove specified tags from a video.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching 
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching
     is case sensitive)
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video to be untagged
-  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is 
+  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is
     case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the video
   - Must belong to existing tags in the video specified in `video_name` (:exclamation:Tag matching is case sensitive)
@@ -835,20 +838,20 @@ Exit the application.
 
 > `export {file_path} [/overwrite]`
 
-Export all modules progress to a JSON-format file. 
+Export all modules progress to a JSON-format file.
 
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file to export the modules progress to
   - User must have writing permission to `file_path`
   - If `/overwrite` is not specified, the file specified in `file_path` must not exist
-  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR 
+  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR
     file location}/data`)
   - Must not coincide with Le Tracker's current tracker file path. (:exclamation:The default tracker file path is `
     {JAR file location}/data/letracker.json`)
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path` 
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path`
   if it exists
   - If the file specified in `file_path` exists, the flag `/overwrite` will be ignored
 
-Examples: 
+Examples:
 
 - `export hello.json`
 - `export /../../haha.json /overwrite`
@@ -864,16 +867,16 @@ Import modules progress from a JSON-format file to the current tracker.
   - Must be a valid Le Tracker data file
   - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR
     file location}/data`)
-  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must 
+  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must
     exist in the default saving directory at `{JAR file location}/data`)
-- <span style="color:#e46c0a">`/mod {module_1}[, {module_2}[, {module_3}, ...]] `</span> : If specified, Le Tracker will only import progress 
+- <span style="color:#e46c0a">`/mod {module_1}[, {module_2}[, {module_3}, ...]] `</span> : If specified, Le Tracker will only import progress
   of these modules from the file specified in `file_path`
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-  - If `/overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker 
-  - Must belong to existing modules in the file specified in `file_path` (:exclamation:Module matching is case 
+  - If `/overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker
+  - Must belong to existing modules in the file specified in `file_path` (:exclamation:Module matching is case
     sensitive)
   - Repeated modules (if any) will be ignored
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules 
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules
   progress with the progress of the imported modules, provided they have the same code (:exclamation:Module matching is case sensitive)
   - If the imported modules do not exist in the current tracker, the flag `/overwrite` will be ignored
 
@@ -893,7 +896,7 @@ Examples:
   Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 - Editing the data file\
-  Le Tracker data are saved as a JSON file `{JAR file location}/data/letracker.json`. Advanced users are welcome to 
+  Le Tracker data are saved as a JSON file `{JAR file location}/data/letracker.json`. Advanced users are welcome to
   update data directly by editing that data file.
 
 ---
