@@ -185,6 +185,8 @@ Format: `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE]
 Example:
 * `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8`
 
+![new-student.png](images/new-student.png)
+
 #### View a Student Profile
 
 Displays one or many students' profiles, given parameters.
@@ -194,6 +196,10 @@ Format `view-profile [name/STUDENTS_NAME]`
 * If no `STUDENT_NAME` is given, then shows all students.
 
 Example:
+* `view-profile` Displays all students in the command line.
+* `view-profile name/John` Displays all students that match the name `John`.
+
+![view-profile.png](images/view-profile.png)
 
 #### Update Student Information
 
@@ -210,6 +216,8 @@ Format: `update-info [index/INDEX] [field/NEW_INFO] ...`
   And their respective new values.
 * At least one updated parameter has to be present.<br>
 
+![Update Info](images/update-info.png)
+
   :bulb: **Tip:** You can edit multiple fields in a student's profile at once by using several of the above prefixes.
 
 Examples:
@@ -224,6 +232,8 @@ Format: `delete [index/INDEX]`
 
 Examples:
 * `delete index/1` Deletes the first profile in the student list.
+
+![Delete Student](images/delete.png)
 
 ### Homework Commands
 #### Assign Homework to a Student
@@ -434,7 +444,7 @@ Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TI
 Example:
 * `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` updates the lesson for John Doe with the new information.
 
-### Exams Commands
+### Exam Commands
 
 #### Add an Exam to be tracked
 
