@@ -1260,6 +1260,11 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
                                ObservableList<Service> services,
                                ObservableList<Technician> technicians,
                                ObservableList<Appointment> appointments) {
+        this.customerDataMap.reset(customers, vehicles, appointments);
+        this.vehicleDataMap.reset(vehicles, customers, services);
+        this.serviceDataMap.reset(services, technicians, vehicles);
+        this.appointmentDataMap.reset(appointments, technicians, customers);
+        this.technicianDataMap.reset(technicians, services, appointments);
 
         this.idGenerator.resetData(idGenerator);
         this.customers.setAll(customers);
@@ -1271,11 +1276,6 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.parts.clear();
         this.parts.putAll(parts);
         refreshPartList();
-        this.customerDataMap.reset(customers, vehicles, appointments);
-        this.vehicleDataMap.reset(vehicles, customers, services);
-        this.serviceDataMap.reset(services, technicians, vehicles);
-        this.appointmentDataMap.reset(appointments, technicians, customers);
-        this.technicianDataMap.reset(technicians, services, appointments);
 
         logger.info("Shop data overridden");
     }
