@@ -943,7 +943,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Exit the application and delete the `data` folder.
 
-   1. Open the application again.
+   1. Open the application again. <br>
       Expected: A list of sample Task is displayed.
 
 --------------------------------------------------------------------------------------------------------------------
