@@ -352,7 +352,7 @@ will sort both views.
 ### Company Command Feature
 
 The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
-user to filter the job list by company which shows all roles pertaining to a certain company.
+user to filter the role list by company which shows all roles pertaining to a certain company.
 
 Given below is an example usage of how CompanyCommand and its dependencies is being used in the following steps.
 
@@ -400,18 +400,11 @@ E.g.: `company Google` is equivalent to `company google`
 
 ### Tag Command Feature
 
-The proposed TagCommand feature allows the user to filter tags based on a given keyword. The idea is that the
-user can filter the job list by tag which shows all roles pertaining to a certain tag.
+The TagCommand feature allows the user to filter tags based on a given keyword. The idea is that the
+user can filter the role list by tag which shows all roles pertaining to a certain tag.
 
-The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
-
-Given below is an example usage of how TagCommand is being used in the following steps.
-
-1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book.
-
-2. The user can choose to use the `Tag Command` to filter tags.
-    - The user executes `tag <keyword>` command to filter roles by their tag.
+The TagCommand follows a similar structure as [`CompanyCommand`](#company-command-feature). Replace `company` with `tag`
+in [`CompanyCommand`](#company-command-feature) for how TagCommand functions.
 
 The following sequence diagram shows how the `tag` command works:
 
@@ -428,17 +421,12 @@ The following sequence diagram shows how the `tag` command works:
 ### Name Command Feature
 
 The proposed NameCommand feature allows the user to filter names based on a given keyword. The idea is that the
-user can filter the job list by name which shows all roles pertaining to a certain name.
+user can filter the role list by name which shows all roles pertaining to a certain name.
 
 The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
 
-Given below is an example usage of how NameCommand is being used in the following steps.
-
-1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book.
-
-2. The user can choose to use the `Name Command` to filter names.
-    - The user executes `name <keyword>` command to filter roles by their name.
+The NameCommand follows a similar structure as [`CompanyCommand`](#company-command-feature). Replace `company` with `name`
+in [`CompanyCommand`](#company-command-feature) for how NameCommand functions.
 
 The following sequence diagram shows how the `name` command works:
 
@@ -454,7 +442,7 @@ The following sequence diagram shows how the `name` command works:
 
 ### View Command Feature
 
-The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
+The ViewCommand feature allows the user to view more details about a specific role. We decided to hide
 less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
 etc.
 
