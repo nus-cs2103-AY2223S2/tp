@@ -92,21 +92,42 @@ public class EditVolunteerCommand extends Command {
         this.editDescriptor = new EditDescriptor(editDescriptor);
     }
 
+    /**
+     * Replaces the volunteer that has been edited with the edited volunteer.
+     *
+     * @param model FriendlyLink's model.
+     * @param volunteerToEdit Volunteer to replace.
+     * @param editedVolunteer Volunteer with new fields.
+     * @return Command result message.
+     */
+    public static String updateVolunteer(Model model, Volunteer volunteerToEdit, Volunteer editedVolunteer) {
+        model.setVolunteer(volunteerToEdit, editedVolunteer);
+
+        @SuppressWarnings("unchecked")
+        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
+        model.updateFilteredVolunteerList(predicate);
+        String finalMessage = String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer);
+
+        if (!model.check(editedVolunteer, Person::isSuitableRegion)) {
+            finalMessage += MESSAGE_WARNING_REGION;
+        }
+        if (!model.check(editedVolunteer, Person::hasSuitableAvailableDates)) {
+            finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
+        }
+
+        model.refreshAllFilteredLists();
+        return finalMessage;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         if (!editDescriptor.isAnyFieldEdited()) {
             throw new CommandException(MESSAGE_NO_FIELD_PROVIDED);
         }
 
-        requireNonNull(model);
-        List<Volunteer> lastShownList = model.getFilteredVolunteerList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
-        }
-        assert index.getZeroBased() >= 0 : "index should not be negative";
-
-        Volunteer volunteerToEdit = lastShownList.get(index.getZeroBased());
+        Volunteer volunteerToEdit = getVolunteerToEdit(model);
         Volunteer editedVolunteer = EditDescriptor.createEditedVolunteer(
                 volunteerToEdit, editDescriptor);
 
@@ -118,21 +139,26 @@ public class EditVolunteerCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
         }
 
-        model.setVolunteer(volunteerToEdit, editedVolunteer);
-        @SuppressWarnings("unchecked")
-        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
-        model.updateFilteredVolunteerList(predicate);
-
-        String finalMessage = String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer);
-        if (!model.check(editedVolunteer, Person::isSuitableRegion)) {
-            finalMessage += MESSAGE_WARNING_REGION;
-        }
-        if (!model.check(editedVolunteer, Person::hasSuitableAvailableDates)) {
-            finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
-        }
-
-        model.refreshAllFilteredLists();
+        String finalMessage = updateVolunteer(model, volunteerToEdit, editedVolunteer);
         return new CommandResult(finalMessage);
+    }
+
+    /**
+     * Returns the volunteer that has been edited.
+     *
+     * @param model FriendlyLink's model.
+     * @return Volunteer that has been edited.
+     * @throws CommandException If index is invalid.
+     */
+    private Volunteer getVolunteerToEdit(Model model) throws CommandException {
+        List<Volunteer> lastShownList = model.getFilteredVolunteerList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
+        }
+        assert index.getZeroBased() >= 0 : "index should not be negative";
+
+        return lastShownList.get(index.getZeroBased());
     }
 
     @Override

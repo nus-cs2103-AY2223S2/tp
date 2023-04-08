@@ -104,9 +104,9 @@ public class EditCommand extends Command {
 
     private CommandResult editElderly(Model model) throws CommandException {
         Elderly elderlyToEdit = model.getElderly(nric);
-        Elderly editedElderly = EditDescriptor.createEditedElderly(
-                elderlyToEdit, editDescriptor);
+        Elderly editedElderly = EditDescriptor.createEditedElderly(elderlyToEdit, editDescriptor);
         Nric editedNric = editedElderly.getNric();
+
         if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedNric)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
         }
@@ -114,10 +114,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
         }
 
-        model.setElderly(elderlyToEdit, editedElderly);
-        model.refreshAllFilteredLists();
-        return new CommandResult(String.format(
-                EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly));
+        String finalMessage = EditElderlyCommand.updateElderly(
+                model, elderlyToEdit, editedElderly);
+        return new CommandResult(finalMessage);
     }
 
     private CommandResult editVolunteer(Model model) throws CommandException {
@@ -132,10 +131,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
         }
 
-        model.setVolunteer(volunteerToEdit, editedVolunteer);
-        model.refreshAllFilteredLists();
-        return new CommandResult(String.format(
-                EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
+        String finalMessage = EditVolunteerCommand.updateVolunteer(
+                model, volunteerToEdit, editedVolunteer);
+        return new CommandResult(finalMessage);
     }
 
     @Override

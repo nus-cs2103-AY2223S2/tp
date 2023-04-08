@@ -92,37 +92,22 @@ public class EditElderlyCommand extends Command {
         this.editDescriptor = new EditDescriptor(editDescriptor);
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        if (!editDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(MESSAGE_NO_FIELD_PROVIDED);
-        }
-
-        requireNonNull(model);
-        List<Elderly> lastShownList = model.getFilteredElderlyList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX);
-        }
-        assert index.getZeroBased() >= 0 : "index should not be negative";
-
-        Elderly elderlyToEdit = lastShownList.get(index.getZeroBased());
-        Elderly editedElderly = EditDescriptor.createEditedElderly(elderlyToEdit, editDescriptor);
-
-        Nric editedNric = editedElderly.getNric();
-        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedNric)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
-        }
-        if (model.hasVolunteer(editedNric)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
-        }
-
+    /**
+     * Replaces the elderly that has been edited with the edited elderly.
+     *
+     * @param model FriendlyLink's model.
+     * @param elderlyToEdit Elderly to replace.
+     * @param editedElderly Elderly with new fields.
+     * @return Command result message.
+     */
+    public static String updateElderly(Model model, Elderly elderlyToEdit, Elderly editedElderly) {
         model.setElderly(elderlyToEdit, editedElderly);
+
         @SuppressWarnings("unchecked")
         Predicate<Elderly> predicate = (Predicate<Elderly>) PREDICATE_SHOW_ALL;
         model.updateFilteredElderlyList(predicate);
-
         String finalMessage = String.format(MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly);
+
         if (!model.check(editedElderly, Person::isSuitableRegion)) {
             finalMessage += MESSAGE_WARNING_REGION;
         }
@@ -131,9 +116,49 @@ public class EditElderlyCommand extends Command {
         }
 
         model.refreshAllFilteredLists();
+        return finalMessage;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (!editDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(MESSAGE_NO_FIELD_PROVIDED);
+        }
+
+        Elderly elderlyToEdit = getElderlyToEdit(model);
+        Elderly editedElderly = EditDescriptor.createEditedElderly(elderlyToEdit, editDescriptor);
+        Nric editedNric = editedElderly.getNric();
+
+        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
+        }
+        if (model.hasVolunteer(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
+        }
+
+        String finalMessage = updateElderly(model, elderlyToEdit, editedElderly);
         return new CommandResult(finalMessage);
     }
 
+    /**
+     * Returns the elderly that has been edited.
+     *
+     * @param model FriendlyLink's model.
+     * @return Elderly that has been edited.
+     * @throws CommandException If index is invalid.
+     */
+    private Elderly getElderlyToEdit(Model model) throws CommandException {
+        List<Elderly> lastShownList = model.getFilteredElderlyList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX);
+        }
+        assert index.getZeroBased() >= 0 : "index should not be negative";
+
+        return lastShownList.get(index.getZeroBased());
+    }
 
     @Override
     public boolean equals(Object other) {
