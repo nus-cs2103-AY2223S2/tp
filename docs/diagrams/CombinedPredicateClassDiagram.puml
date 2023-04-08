@@ -1,0 +1,14 @@
+@startuml
+!include style.puml
+
+Class CombinedPredicate COMMON_COLOR
+Class FindClientCommand LOGIC_COLOR
+Class FindProjectCommand LOGIC_COLOR
+Class "<<interface>>\nPredicate" as Predicate COMMON_COLOR
+
+FindProjectCommand *-down->"1" CombinedPredicate
+FindClientCommand *-down->"1" CombinedPredicate
+FindProjectCommand -[hidden]right-> FindClientCommand
+CombinedPredicate *-down-> "*" Predicate
+Predicate <|.. CombinedPredicate
+@enduml
