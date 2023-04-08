@@ -452,7 +452,7 @@ testers are expected to do more *exploratory* testing.
 **Context:** One of the specified indexes, `index` 10, does not exist in _Ez-Schedule_  
 **Action:** Execute the command: `delete 1 2 3 10`  
 **Result:** 
-* Response Box will display the message "The event index 10 provided is invalid"
+* The Response Box will display the message "The event index 10 provided is invalid"
 * None of the `Event` with valid `index` will be deleted from _Ez-Schedule_
 
 #### **Finding Events**
@@ -490,6 +490,22 @@ testers are expected to do more *exploratory* testing.
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 #### **Show Next Events**
+
+#### Scenario 1
+{: .no_toc}  
+**Context:** None needed  
+**Action:** Execute the command: `next`  
+**Result:**
+* The Response Box will display the message "1 events listed!"
+* The Upcoming Events Panel will display the next upcoming or ongoing event that you have
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** There exists at least two upcoming or ongoing `Event`  
+**Action:** Execute the command: `next 2`  
+**Result:**
+* The Response Box will display the message "2 events listed!"
+* The Upcoming Events Panel will display the next 2 upcoming or ongoing event that you have
 
 #### **Undo a Command**
 
