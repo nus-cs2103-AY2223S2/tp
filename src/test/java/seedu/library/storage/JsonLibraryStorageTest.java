@@ -3,7 +3,7 @@ package seedu.library.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.library.testutil.Assert.assertThrows;
-import static seedu.library.testutil.TypicalBookmarks.ALICE;
+import static seedu.library.testutil.TypicalBookmarks.AOT;
 import static seedu.library.testutil.TypicalBookmarks.HOON;
 import static seedu.library.testutil.TypicalBookmarks.IDA;
 import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
@@ -73,7 +73,7 @@ public class JsonLibraryStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addBookmark(HOON);
-        original.removeBookmark(ALICE);
+        original.removeBookmark(AOT);
         jsonLibraryStorage.saveLibrary(original, filePath);
         readBack = jsonLibraryStorage.readLibrary(filePath).get();
         assertEquals(original, new Library(readBack));

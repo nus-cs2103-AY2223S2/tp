@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.model.Model.PREDICATE_SHOW_ALL_BOOKMARKS;
 import static seedu.library.testutil.Assert.assertThrows;
-import static seedu.library.testutil.TypicalBookmarks.ALICE;
+import static seedu.library.testutil.TypicalBookmarks.AOT;
 import static seedu.library.testutil.TypicalBookmarks.BENSON;
 
 import java.nio.file.Path;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasBookmark_bookmarkNotInLibrary_returnsFalse() {
-        assertFalse(modelManager.hasBookmark(ALICE));
+        assertFalse(modelManager.hasBookmark(AOT));
     }
 
     @Test
     public void hasBookmark_bookmarkInLibrary_returnsTrue() {
-        modelManager.addBookmark(ALICE);
-        assertTrue(modelManager.hasBookmark(ALICE));
+        modelManager.addBookmark(AOT);
+        assertTrue(modelManager.hasBookmark(AOT));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Library library = new LibraryBuilder().withBookmark(ALICE).withBookmark(BENSON).build();
+        Library library = new LibraryBuilder().withBookmark(AOT).withBookmark(BENSON).build();
         Library differentLibrary = new Library();
         UserPrefs userPrefs = new UserPrefs();
         Tags tags = new Tags();
@@ -118,7 +118,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentLibrary, userPrefs, tags)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getTitle().value.split("\\s+");
+        String[] keywords = AOT.getTitle().value.split("\\s+");
         modelManager.updateFilteredBookmarkList(
                 new BookmarkContainsKeywordsPredicate(Arrays.asList(keywords), null, null, null));
         assertFalse(modelManager.equals(new ModelManager(library, userPrefs, tags)));
@@ -142,8 +142,8 @@ public class ModelManagerTest {
     }
     @Test
     public void getUpdatedBookmark_success() {
-        modelManager.updateSelectedBookmark(ALICE);
-        assertEquals(modelManager.getSelectedBookmark(), ALICE);
+        modelManager.updateSelectedBookmark(AOT);
+        assertEquals(modelManager.getSelectedBookmark(), AOT);
     }
     @Test
     public void getUpdatedIndex_success() {
