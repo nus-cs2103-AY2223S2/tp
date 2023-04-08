@@ -359,6 +359,8 @@ After that, the command result is returned.
 
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
+![LeaveClassDiagram](./images/commands/leave/LeaveModelClassDiagram.png)
+
 The attributes of a leave are:
 * `date`: The date of the leave, which is also the unique identifier for a leave
 * `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
@@ -367,7 +369,7 @@ The attributes of a leave are:
 The `aetd` command adds an employee's leave on a specific day:
 
 Activity Diagram:
-![AddEmployeeToLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
+![AddEmployeeToLeaveCommand Activity Diagram](./images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
 Sequence Diagram:
 
@@ -390,7 +392,7 @@ We decided to throw an exception when the employee has already taken leave on th
 The `defl` command delete an employee's leave on a specific day:
 
 Activity Diagram:
-![RemoveEmployeeFromLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
+![RemoveEmployeeFromLeaveCommand Activity Diagram](./images/commands/leave/DeleteEmployeeFromLeaveActivityDiagram.png)
 
 Sequence Diagram:
 
