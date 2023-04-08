@@ -184,7 +184,7 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 ## Argument Formats
 
-- **Module Code**\
+- <a name="module-code">**Module Code**</a>\
   Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally followed by more uppercase alphabet characters.\
   e.g. CS2040S
 
@@ -207,6 +207,8 @@ Feel free to play around with the sample data to familiarise yourself with the c
 - **Timestamp**\
   Timestamp should be of the format `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being exactly 2 digits long.\
   e.g. 01:20:03
+
+[Anchor test](#module-code)
 
 ---
 
