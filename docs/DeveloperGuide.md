@@ -1197,6 +1197,7 @@ in future enhancements.
 of an old applicant (who has changed his/her phone number). Hence, we shall not deny these commands to throw an error but rather we should warn the user when these commands are executed so that the user aware of it.
 6. Adding a feature that allows for importing of csv files so that users can transfer existing data into HMHero, instead of having to re-key all the existing entries
 manually into HMHero at the start.
+7. Enhancing the `summary` command to produce useful charts and graphs for Hiring Managers to have a better visualisation of the hiring process.
 
 
 
