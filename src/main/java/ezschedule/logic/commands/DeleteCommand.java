@@ -44,7 +44,7 @@ public class DeleteCommand extends Command {
         Collections.sort(targetIndexes); // sort index in order
         Collections.reverse(targetIndexes); // reverse index order to prevent exception when deleting
         model.clearRecent();
-        model.recentCommands().add(this);
+        model.addRecentCommand(this);
         for (Index targetIndex : targetIndexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(

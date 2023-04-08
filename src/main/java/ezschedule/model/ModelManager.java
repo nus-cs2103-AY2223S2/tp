@@ -158,6 +158,10 @@ public class ModelManager implements Model {
     public void addRecentEvent(Event event) {
         recentEvent.add(event);
     }
+    @Override
+    public void addRecentCommand(Command command) {
+        recentCommand.add(command);
+    }
 
     @Override
     public void clearRecent() {

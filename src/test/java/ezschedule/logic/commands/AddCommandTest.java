@@ -176,6 +176,10 @@ public class AddCommandTest {
         public void addRecentEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addRecentCommand(Command command) {
+            throw new AssertionError("This method should not be called");
+        }
 
         @Override
         public void clearRecent() {

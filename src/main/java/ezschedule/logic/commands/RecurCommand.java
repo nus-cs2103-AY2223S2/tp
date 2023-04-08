@@ -93,7 +93,7 @@ public class RecurCommand extends Command {
         default:
             break;
         }
-        model.recentCommands().add(this);
+        model.addRecentCommand(this);
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToRecur));

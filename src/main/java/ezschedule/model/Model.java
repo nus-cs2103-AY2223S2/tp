@@ -97,6 +97,10 @@ public interface Model {
      * Adds the given event as recent event.
      */
     void addRecentEvent(Event event);
+    /**
+     * Adds the given command as most recently executed command
+     */
+    void addRecentCommand(Command command);
 
     /**
      * Clears the recent event.

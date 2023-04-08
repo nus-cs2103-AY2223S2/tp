@@ -22,6 +22,9 @@ public class Index implements Comparable<Index> {
 
         this.zeroBasedIndex = zeroBasedIndex;
     }
+    public static Index initIndex(int zeroBasedIndex) {
+        return new Index(zeroBasedIndex);
+    }
 
     public int getZeroBased() {
         return zeroBasedIndex;
