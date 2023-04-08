@@ -373,6 +373,8 @@ Opens Reminder Window.
 
 Format: `list_reminder`
 
+![Reminder List Window](images/reminderListWindow.png)
+
 ### 3.2. Adding a reminder : `add_reminder`
 
 Adds a reminder into Duke Driver.
@@ -494,6 +496,18 @@ Alternative: Click "Help" in menu bar > "Help"
 The `help` command also applies for **Timetable Windows** and **Customer Window**
 </div>
 
+### Notifications
+
+Display notifications for reminders and upcoming scheduled jobs. Click on the respective notification body for 
+more information.
+
+![reminder notification](images/reminderNotification.png)
+
+![schedule notification](images/scheduleNotification.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This is not a command!
+</div>
 
 ### Exiting the program : `exit`
 
