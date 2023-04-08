@@ -173,6 +173,8 @@ sprINT:
 
 **:information_source: Notes about the command format:**<br>
 
+* **You cannot add more than 2147483647 applications, and you cannot delete or edit application that have index greater than 2147483647.**<br>
+
 * **Commands in sprINT are composed minimally of a [command word](#command-word). Most, but not all, commands also 
     consist of [prefixes](#prefix) and [parameters](#parameter).**<br>
 
@@ -280,6 +282,8 @@ Additional things to note:
 * `INDEX` refers to the index of the application to edit, as shown in the Application Card. It must be a **positive 
   [integer](#integer).**
 * **At least one** of the optional fields must be provided.
+* `INDEX` must be of a positive value (1 and above).
+* `INDEX` cannot be greater than 2147483647.
 * Existing values of the application entry will be updated to what you have inputted.
 * Refer to the following section [here](#413-adding-and-editing-tags-for-an-application--using-add-app-and-edit-app)
   to learn more about editing an application's tag(s).
@@ -303,6 +307,7 @@ Format: `delete-app INDEX`
 Additional things to note: 
 * `INDEX` refers to the index of the application to delete, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
+* `INDEX` cannot be greater than 2147483647.
 
 Examples:
 * `list` followed by `delete-app 2`: deletes the 2nd application in the internship book.
@@ -426,6 +431,8 @@ Additional things to note:
 * `INDEX` refers to the index of the application you wish to edit the task of, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
 * **At least one** of the optional fields must be provided.
+* `INDEX` must be of a positive value (1 and above).
+* `INDEX` cannot be greater than 2147483647.
 * Existing description and/or deadline of the task will be updated to what you have inputted.
 * For more information about each parameter's constraints, refer to the table in section [4.2.1](#421-adding-an-application-task--add-task).
 * For more information about each parameter and other sprINT-specific terminology, feel free to refer to our 
@@ -443,6 +450,7 @@ Format: `delete-task INDEX`
 
 * `INDEX` refers to the index of the application you wish to delete the task from, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
+* `INDEX` must be of a positive value (1 and above) but smaller than 2147483647.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Deleting an application's task will not delete the underlying application entry itself.

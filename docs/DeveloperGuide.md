@@ -1334,7 +1334,6 @@ While such role names of such length are uncommon, it is not impossible.
 In the future, we plan to have the role name wrap around (i.e. continue on a second line) if it goes beyond a certain
 length to provide better readability. 
 
-
 #### 5. Applications tags gets truncated if tags are too long or too many tags are added
 
 When a user adds a large number of tags to a single application, or when each tag is excessively lengthy, the display
@@ -1359,4 +1358,16 @@ dependent on the Role length.
 This enables the automatic wrap around to be applied to both the Tags and Role fields, preventing the truncation issue which
 would negatively affect user's readability.
 
+#### 6. Integer overflow, zero or negative index error message for commands that take in an index (edit-app, edit-task, delete-app, delete-task) not specific enough
 
+When a user types in an edit or delete command with a non-positive value for the index, the error message just states
+invalid command format, instead of being specific that the index given is invalid.
+
+![img.png](images/Notspecificerrormessage.png)
+
+A more specific error may be beneficial in bringing a more positive user experience.
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to add an additional check when parsing the command that makes sure
+the user has given a valid positive input for the index, and if not, it will throw an exception that will
+be returned to the user to state specifically that the index they input should be positive.
