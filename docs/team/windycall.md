@@ -20,9 +20,10 @@ Given below are my contributions to the project.
   * Justification: This feature is considered to be one of the core features of our product. It provides a super convenient way for users to make new appointment with patients or reschedule that appointment.
   * Highlights: At this version, we constrain that one patient's can have at most one appointment which is practical. Also, when adding an appointment, there will be some automatic clash check so that we ensure, with high possibility, there will be no clashes for users' schedule. Besides, there are strict checks for the format and value of startTime and endTime, trying to make the appointment reasonable.
 
+
 * **New Feature**: Mark appointment with a patient
   * What it does: User can now mark an appointment when it's done or cancelled by patients.
-  * Justification: This feature enables users to mark an appointment as done so that it's better for them to schedule next appointment with patients
+  * Justification: This feature enables users to mark an appointment as done so that it's easier for them to schedule next appointment with patients
   * Highlights: Users can not mark a patient without appointment. Users should specify an index to indicate a patient. Marked appointment will be cancelled and patients will now have no appointment
 
 
@@ -34,14 +35,17 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=windy&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=WindyCall&zR=AY2223S2-CS2103T-W11-4%2Ftp%5Bmaster%5D&zACS=126&zS=2023-02-17&zFS=windy&zU=2023-04-08&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
+
 * **Project management**:
   * Help manage releases `v1.2` - `v1.4` (5 releases) on GitHub
   * Manage issues
   * Manage PR review and fianl merge
 
+
 * **Enhancements to existing features**:
     * Wrote additional tests for existing features
     * Add Age attribute to existing patient's profile
+
 
 * **Documentation**:
     * User Guide:
@@ -51,6 +55,7 @@ Given below are my contributions to the project.
         * Add detailed Appointment implementation to `Implementation` part of DG. [\#258](https://github.com/AY2223S2-CS2103T-W11-4/tp/pull/258)
         * Modify `DG-Design-Model` part. [\#333](https://github.com/AY2223S2-CS2103T-W11-4/tp/pull/333)
         * Modify `DG-Appendix-Instructions` part. [\#334](https://github.com/AY2223S2-CS2103T-W11-4/tp/pull/334)
+
 
 * **Tools**:
   * IntelliJ IDEA CE
