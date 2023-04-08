@@ -108,12 +108,18 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser`  and `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-This diagram is applicable to all `deleteXCommand` commands.
+This diagram is applicable to all `deleteXCommand` commands except `deletePartCommand` on the point where instead of an integer (i.e. the ID), it takes in a String (i.e. the part name).
 
-Omitted from this image is that the `XCommand`, being an  instance of `RedoableCommand`, methods related to it is handled here. For more information, scroll down to the relevant section below.
+Omitted from this image is regarding `XCommand` are:
+1. How Undo and Redo is utilized by the XCommand
+2. How the cascading delete commands work (i.e. delete vehicles, delete appointments).
+    * This is not added because it similar in nature as to how remove vehicle works.
+    * Cascading may be applicable to other functions such as `addX`
+
+For more information regarding undo and redo., scroll down to the relevant section below.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -166,11 +172,36 @@ The add function is facilitated by `AddXCommand` (`X` is a placeholder for the s
 
 Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
 
-The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("addX args*")` API call.
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("addX args*")` API call, , where `argks*` represents the various arguments needed for the function to run.
 
 <img src="images/AddXSequenceDiagram.png"/>
 
 The `addX(x)` method of `Model` adds the entity into the system via adding the entity into `Shop`.
+
+Limitations of plant UML prevents us from putting an X at the correct spot. 
+
+Omitted from the diagram above is:
+1. How Undo and Redo is implemented
+2. The other relevant add commands. For example, `addvehicle` requires `owner id` which would affect the relevant customer by adding the vehicle to that user. 
+
+### Edit Feature
+
+### Current Implementation
+The edit function is facilitated by `EditXCommand` (`X` is a placeholder for the specific entity to be added e.g. `EditCustomerCommand`)
+
+Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("editX args*")` API call, where `argks*` represents the various arguments needed for the function to run. 
+
+<img src="images/EditXSequenceDiagram.png"/>
+
+The `editX(x)` method of `Model` adds the entity into the system via adding the entity into `Shop`.
+
+Limitations of plant UML prevents us from putting an X at the correct spot.
+
+Omitted from the diagram above is:
+1. How Undo and Redo is implemented
+2. The other relevant add commands. For example, `addvehicle` requires `owner id` which would affect the relevant customer by adding the vehicle to that user.
 
 ### View Feature
 
@@ -292,8 +323,26 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+1. If impact of loading save file:
+    * Save file leads to complete file loss, warn user and attempt to load save backup.
+    * If that fails, warn user that data is not recoverable and advice not to perform any action.
+2. Archive after every few saves, so that the user can revert to a specific save.
+3. Upon exit, save backup should be made.
 
+
+### Planned Enhancements
+
+**Mitigating the effects of malicious save file edit**
+
+* Issue 1: An malicious user is able to modify the save file 
+  * Proposed solution: encrypting the save file and storing hash
+  
+
+* Issue 2: An malicious user is able to modify the save file such that running a command may have adverse effects on other parts of the program.
+  * Example: Malicious user edits save file and adds `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
+  * Effects: Command `Deletecustomer` will delete the vehicle with id 5
+  * Proposed solution: Implement post load save checks to ensure that vehicle to customer mapping is 1:1 on both vehicle and customer end.
+  * Note: This is applicable for all entries that have some form of mapping.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -702,24 +751,22 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a customer
 
-1. Deleting a person while all persons are being shown
+1. Deleting a customer while all customers are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all customers using the `listcustomer` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deletecustomer 1`<br>
+      Expected: Customer with id of 1 is deleted from the list. Details of the deleted contact shown in the status message. 
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `deletecustomer 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deletecustomer`, `deletecustomer x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
