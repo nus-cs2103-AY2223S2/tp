@@ -63,7 +63,7 @@ public class CommandTestUtil {
     public static final String VALID_POSTAL_HOON = "435316";
     public static final String VALID_POSTAL_IDA = "613473";
     public static final String VALID_DATE_ALICE = "2023-03-05";
-    public static final String VALID_DATE_AMY = "2001-01-01";
+    public static final String VALID_DATE_AMY = "2023-03-05";
     public static final String VALID_DATE_BENSON = "2022-03-05";
     public static final String VALID_DATE_BOB = "2002-02-02";
     public static final String VALID_DATE_CARL = "2023-02-02";
@@ -74,7 +74,7 @@ public class CommandTestUtil {
     public static final String VALID_DATE_HOON = "1850-01-02";
     public static final String VALID_DATE_IDA = "1996-10-01";
     public static final String VALID_AGE_ALICE = "21";
-    public static final String VALID_AGE_AMY = "11";
+    public static final String VALID_AGE_AMY = "21";
     public static final String VALID_AGE_BENSON = "85";
     public static final String VALID_AGE_BOB = "22";
     public static final String VALID_AGE_CARL = "35";

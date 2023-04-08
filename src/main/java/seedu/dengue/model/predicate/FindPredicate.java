@@ -73,4 +73,17 @@ public class FindPredicate extends PredicateUtil<Person> {
         return andAll(
                 hasName, hasAge, hasDate, hasVariants, hasPostal, hasDateRange, hasAgeRange).test(person);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindPredicate // instanceof handles nulls
+                && name.equals(((FindPredicate) other).name)
+                && age.equals(((FindPredicate) other).age)
+                && subPostal.equals(((FindPredicate) other).subPostal)
+                && date.equals(((FindPredicate) other).date)
+                && variants.equals(((FindPredicate) other).variants)
+                && dateRange.equals(((FindPredicate) other).dateRange)
+                && ageRange.equals(((FindPredicate) other).ageRange)); // state check
+    }
 }
