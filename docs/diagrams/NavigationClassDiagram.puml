@@ -1,8 +1,8 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor UI_COLOR_T4
-skinparam ClassBackgroundColor UI_COLOR
+skinparam arrowColor NAV_COLOR_T4
+skinparam ClassBackgroundColor NAV_COLOR
 
 package Navigation <<Rectangle>>{
 Class "<<interface>>\nNavigation" as Navigation
