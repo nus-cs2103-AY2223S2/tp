@@ -23,15 +23,12 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
     systemProperties = [
             'testfx.robot': 'glass',
             'testfx.headless': 'true',
             'prism.order': 'sw',
             'prism.text': 't2k',
-    ]
-    jvmArgs = [
-            '--add-opens', 'javafx.graphics/javafx.scene=ALL-UNNAMED',
-            '--add-opens', 'javafx.controls/javafx.scene.control=ALL-UNNAMED'
     ]
 }
 
