@@ -1,8 +1,8 @@
 [![Java CI](https://github.com/AY2223S2-CS2103-F11-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103-F11-1/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/UiOriginal.png)
-![Ui](docs/images/Ui3.png)
-![Ui](docs/images/Ui4.png)
+![Ui](docs/images/Ui2.png)
+
 
 * This is **event tracker project for NUS CS2040 Teaching Assistants (TA)**.<br>
   Example usages:
