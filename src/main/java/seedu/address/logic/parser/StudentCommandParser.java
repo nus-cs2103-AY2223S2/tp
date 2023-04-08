@@ -93,41 +93,33 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
-
         final String studentClass = matcher.group("class");
         final String arguments = matcher.group("arguments");
-
         ArgumentMultimap argMultimapAdd =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ADD, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
                         PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
                         PREFIX_ADDRESS);
-
         ArgumentMultimap argMultimapDelete =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_DELETE, PREFIX_INDEXNUMBER);
-
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_LIST, PREFIX_COMMENTCOMMAND, PREFIX_FIND, PREFIX_COMMENT,
                         PREFIX_ADD, PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME, PREFIX_PHONEPARENT,
                         PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
                         PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK,
                         PREFIX_ADDRESS);
-
         ArgumentMultimap argMultimapGrade =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_GRADE, PREFIX_INDEXNUMBER, PREFIX_TEST,
                         PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE, PREFIX_HOMEWORKDONE);
-
         ArgumentMultimap argMultimapGradeDelete =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_GRADEDELETE, PREFIX_INDEXNUMBER, PREFIX_TEST,
                         PREFIX_HOMEWORK);
-
         ArgumentMultimap argMultimapEdit =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_EDIT, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
                         PREFIX_NEWPARENTNAME, PREFIX_NEWPHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_ADDRESS,
                         PREFIX_NEWCLASS, PREFIX_NEWINDEXNUMBER, PREFIX_NEWNAME, PREFIX_COMMENT);
-
         ArgumentMultimap argumentMultimapAtt =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ADDATTENDANCE, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE);
 
@@ -155,7 +147,6 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             return new StudentListCommand(Class.of(studentClass),
                     new ClassContainsKeywordsPredicate(Class.of(studentClass)));
         } else {
-            //Rest of logic (Need to  edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
     }
@@ -211,15 +202,46 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Test test = ParserUtil.parseTest("Insert student test here!", score, deadline, weightage);
         Comment comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Homework> homeworkSet = new HashSet<>();
-        homeworkSet.add(homework);
-        Set<Test> testSet = new HashSet<>();
-        testSet.add(test);
-        Set<Attendance> attendanceSet = new HashSet<>();
-        attendanceSet.add(attendance);
-        Student student = new Student(name, sc, indexNumber, sex, parentName, parentNumber, rls,
-                age, image, email, phone, cca, address, attendanceSet, homeworkSet, testSet, tagList, comment);
+        Student student = new Student(name, sc, indexNumber, sex, parentName, parentNumber, rls, age, image, email,
+                phone, cca, address, getAttendanceSet(attendance), getHomeworkSet(homework), getTestSet(test),
+                tagList, comment);
         return new StudentAddCommand(student);
+    }
+
+    /**
+     * Helper method to get set containing Attendance.
+     *
+     * @param attendance Attendance to be added into the Attendance set.
+     * @return A set of attendance.
+     */
+    public Set<Attendance> getAttendanceSet(Attendance attendance) {
+        Set<Attendance> newAttendanceSet = new HashSet<>();
+        newAttendanceSet.add(attendance);
+        return newAttendanceSet;
+    }
+
+    /**
+     * Helper method to get set containing Test.
+     *
+     * @param test Test to be added into the Test set.
+     * @return A set of tests.
+     */
+    public Set<Test> getTestSet(Test test) {
+        Set<Test> newTestSet = new HashSet<>();
+        newTestSet.add(test);
+        return newTestSet;
+    }
+
+    /**
+     * Helper method to get set containing homework.
+     *
+     * @param homework Homework to be added into the Homework set.
+     * @return A set of homework.
+     */
+    public Set<Homework> getHomeworkSet(Homework homework) {
+        Set<Homework> newHomeworkSet = new HashSet<>();
+        newHomeworkSet.add(homework);
+        return newHomeworkSet;
     }
 
     /**
@@ -291,8 +313,6 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StudentGradeCommand.MESSAGE_USAGE));
         }
-
-
     }
     /**
      * Function to parse the "student class grade delete" command
@@ -340,7 +360,6 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                 || sc.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentEditCommand.MESSAGE_USAGE));
         }
-
         Name newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NEWNAME).get());
         Phone newStudentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONESTUDENT).get());
         Email newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAILSTUDENT).get());
@@ -357,7 +376,6 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Name newParentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NEWPARENTNAME).get());
         Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_NEWPHONEPARENT).get());
         Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
-
         return new StudentEditCommand(newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,
                 newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca,
                 newComment, newStudentPhoneNumber, newEmail, newAddress);
