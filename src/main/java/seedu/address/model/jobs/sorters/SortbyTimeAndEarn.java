@@ -49,10 +49,14 @@ public class SortbyTimeAndEarn implements Comparator<DeliveryJob> {
      * Sorts by date
      */
     private int compareByDate(DeliveryJob a, DeliveryJob b) {
-        if (a.getDate().compareTo(b.getDate()) == 0) {
-            return a.getSlot() - b.getSlot();
+        if (a.getDeliveryDate().isPresent() && b.getDeliveryDate().isPresent()) {
+            if (a.getDate().compareTo(b.getDate()) == 0) {
+                return a.getSlot() - b.getSlot();
+            } else {
+                return a.getDate().compareTo(b.getDate());
+            }
         } else {
-            return a.getDate().compareTo(b.getDate());
+            return 0;
         }
     }
 }

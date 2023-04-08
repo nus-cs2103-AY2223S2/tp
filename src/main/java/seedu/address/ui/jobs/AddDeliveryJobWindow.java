@@ -52,7 +52,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
-    private Consumer<CommandResult> completeEditCallback;
+    private Optional<Consumer<CommandResult>> completeEditCallback = Optional.empty();
     private AddressBookDialog addressBookWindow;
 
     @FXML
@@ -148,12 +148,11 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     /**
      * Edit mode.
      */
-    public AddDeliveryJobWindow(Stage primaryStage, Logic logic, DeliveryJob job, Consumer<CommandResult> callback) {
+    public AddDeliveryJobWindow(Stage primaryStage, Logic logic, DeliveryJob job) {
         super(FXML, primaryStage);
         this.primaryStage = primaryStage;
         this.logic = logic;
         toEdit = Optional.of(job);
-        completeEditCallback = callback;
     }
 
     /**
@@ -178,9 +177,14 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         inputRecipient.setText(job.getRecipientId());
 
         job.getDeliveryDate().ifPresentOrElse(val -> {
-            inputDeliveryDate.setValue(val.getDate());
+            if (val.getDate().isEqual(DeliveryDate.placeholder().getDate())) {
+                inputDeliveryDate.setValue(null);
+                inputDeliveryDate.getEditor().clear();
+            } else {
+                inputDeliveryDate.setValue(val.getDate());
+            }
         }, () -> {
-            inputDeliveryDate.getEditor().setText("");
+            inputDeliveryDate.getEditor().clear();
         });
 
         job.getDeliverySlot().ifPresentOrElse(val -> {
@@ -226,6 +230,17 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         addressBookWindow.show();
     }
 
+    /**
+     * Sets the result callback handler.
+     *
+     * @param handler
+     */
+    public void setResultHandler(Consumer<CommandResult> handler) {
+        assert handler != null;
+
+        this.completeEditCallback = Optional.of(handler);
+    }
+
     @FXML
     private void editDeliveryJob() {
         logger.info("[Event] editDeliveryJob");
@@ -237,7 +252,9 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         try {
             EditDeliveryJobCommand.EditDeliveryJobDescriptor des = prepareChange();
             CommandResult commandResult = logic.execute(new EditDeliveryJobCommand(des));
-            completeEditCallback.accept(commandResult);
+            completeEditCallback.ifPresent(handler -> {
+                handler.accept(commandResult);
+            });
             getRoot().close();
         } catch (FileNotFoundException | ParseException | CommandException e) {
             logger.warning("[Event] editDeliveryJob" + e.getMessage());
@@ -274,7 +291,10 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                         inputDescription.getText());
             }
 
-            logic.execute(new AddDeliveryJobCommand(job));
+            CommandResult commandResult = logic.execute(new AddDeliveryJobCommand(job));
+            completeEditCallback.ifPresent(handler -> {
+                handler.accept(commandResult);
+            });
             getRoot().close();
         } catch (FileNotFoundException | ParseException | CommandException e) {
             logger.warning("[Event] createDeliveryJob" + e.getMessage());
@@ -426,6 +446,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                 }
             } else {
                 inputDeliverySlot.setValue(null);
+                inputDeliveryDate.getEditor().clear();
                 inputDeliveryDate.setValue(null);
             }
         }

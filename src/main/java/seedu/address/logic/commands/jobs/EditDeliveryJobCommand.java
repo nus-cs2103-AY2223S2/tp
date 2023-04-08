@@ -114,7 +114,7 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
         }, () -> {
             deliveryJobToEdit.getDeliveryDate().ifPresent(val -> {
                 editjobDescriptor.ifClearDeliveryDate(()-> {
-                    toEdit.setDeliveryDate(DeliveryDate.placeholder().date);
+                    toEdit.clearDeliveryDate();
                 }, () -> {
                     toEdit.setDeliveryDate(val.date);
                 });
