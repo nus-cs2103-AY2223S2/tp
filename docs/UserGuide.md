@@ -283,6 +283,8 @@ Toggles the theme from dark to light or vice versa.
 
 Shows a message explaining how to access the help page.
 
+![help message](images/helpMessage.png)
+
 ## Person-Related Commands
 
 ### Adding a person: `add`
