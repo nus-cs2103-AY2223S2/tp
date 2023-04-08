@@ -695,32 +695,37 @@ Preconditions:
 
 1. TA starts TrAcker desktop application.
 2. TA enters help command.
-3. TA confirms the help command.
-4. Help categories displayed.
+3. Help categories (Student, Event and Organisation) displayed.
 
 Use case ends.
 
 **Extensions**
 
-* 3a. TA enters help tutorial command
-    * 3a1. TrAcker displays instructions and syntaxes for all valid tutorial related commands.
+* 2a. TA decides receive help from TrAcker's UserGuide and selects UserGuide.
+    * 2a1. TrAcker displays URL to UserGuide.
+  
+    User case ends
+
+* 3a. TA enters 'help student' command
+    * 3a1. TrAcker displays instructions and syntaxes for all valid student related commands.
     
     Use case ends.
 
-* 3b. TA enters help lab command.
-    * 3b1. TrAcker displays instructions and syntaxes for all valid lab related commands.
+* 3b. TA enters 'help event' command.
+    * 3b1. TrAcker displays event help categories (Tutorial, Lab and Consultation.
+      * 3b1-1. TA enters 'help event tutorial'
+        * 3b1-1a. TrAcker displays instructions and syntaxes for all valid tutorial related commands.
+      * 3b1-2. TA enters 'help event lab'
+        * 3b1-2a. TrAcker displays instructions and syntaxes for all valid lab related commands.
+      * 3b1-3. TA enters 'help event consultation'
+        * 3b1-3a. TrAcker displays instructions and syntaxes for all valid consultation related commands.
 
     Use case ends.
 
-* 3c. TA enters help consultation command.
-    * 3c1. TrAcker displays instructions and syntaxes for all valid consultation related commands.
+* 3c. TA enters 'help organisation' command.
+    * 3c1. TrAcker displays instructions and syntaxes for all valid organisational related commands.
 
     Use case ends.
-
-* 2a. TA decides not to have help from TrAcker.
-    * 2a1. TA removes input from TrAcker.
-
-    Use case ends
 
 ---
 
@@ -1043,10 +1048,10 @@ testers are expected to do more *exploratory* testing.
 
 1. The current mapping of students to student photo is mapped randomly to any 23 icons. This means that two or more students could
 be mapped to the same photo, which undermines the uniqueness of the photo. Since the photo is suppose to simulate the student's profile, it
-is considered a feature flaw that two or more students have the same face, as seen for student index 5 and index 8 below.
+is considered a feature flaw that two or more students have the same face, as seen for student index 5 and index 8 below. 
 
-<img src="images/SameProfile.png" width="550" />
-   
+<img src="images/SameProfile.png" width="550" /> 
+
 We plan to remedy it by restricting the number of students a TA can take. For example, in a usual class size, there can be a maximum of about 20 students to a TA
 for CS2040 events. Therefore, by restricting the class size, we can ensure no two students in the current list have the same profile photo since there are a total of 23 icons.
 However, this does not fully solve an issue, because deleting a student and adding a new student might result in the same profile photo. Hence, we plan to further enhance this by
@@ -1056,3 +1061,9 @@ changing from icons to fetching from a simulated database that ensures a unique 
     We plan to implement a warning window to warn the user that the data is corrupted / garbled and they will have to close the application. Once the application
     is closed, TrAcker will refresh the garbled data with a new original data. Then when the user starts TrAcker again, TrAcker will inform the user that due to a corrupted
     data, the data has been reset to the original one. This way, the user will not have to manually reset and delete the data file without knowing the cause.
+
+3. The current noting-take function does not support editing notes directly on old notes. For example, user can click
+on an old note and edit its content to update the notes. This would be especially useful for super long notes. 
+
+We plan to update the GUI to include an expandable panel that holds the existing note once clicked, and users may edit
+the texts as they like. After finishing editing, there is a yes button to click and exit. 

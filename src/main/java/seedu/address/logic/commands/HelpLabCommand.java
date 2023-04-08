@@ -7,7 +7,7 @@ import seedu.address.model.Model;
  */
 public class HelpLabCommand extends HelpCommand {
 
-    public static final String COMMAND_WORD = "help lab";
+    public static final String COMMAND_WORD = "lab";
 
     public static final String HEADER_1 = "----- Lab Basic Inputs -----\n";
 
@@ -33,7 +33,7 @@ public class HelpLabCommand extends HelpCommand {
             + "deleteStudent STUDENT_INDEX_IN_LIST Lab/LAB_INDEX_IN_LAB_LIST";
 
     public static final String ADD_NOTE = "Add Note:         "
-            + "addNote note content/NOTE type/Lab name/LAB_NAME";
+            + "addNote content/NOTE type/Lab name/LAB_NAME";
 
     public static final String EDIT_NOTE = "Edit Note:          "
             + "editNote content/NEW_NOTE type/Lab name/LAB_NAME index/NOTE_INDEX";
