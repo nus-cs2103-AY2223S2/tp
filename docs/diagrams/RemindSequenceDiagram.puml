@@ -22,14 +22,11 @@ create RemindCommand
 PetPalParser -> RemindCommand
 activate RemindCommand
 
-RemindCommand --> PetPalParser
+RemindCommand --> PetPalParser:d
 deactivate RemindCommand
 
 PetPalParser --> LogicManager : remind
 deactivate PetPalParser
-
-RemindCommand --> PetPalParser : d
-deactivate RemindCommand
 
 LogicManager -> RemindCommand : execute()
 activate RemindCommand
