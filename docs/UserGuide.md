@@ -294,10 +294,9 @@ To make it easier to specify that share the same module code as your current wor
 
 ## Command Manual
 
-:information_source: Note that the matching of values (module code, module name, lecture name, video name, tag etc.) is case sensitive unless otherwise stated.\
-e.g. The lecture names "Week 1" and "week 1" are not the same
+:information_source: The matching of values is case sensitive unless otherwise stated. For example, the lecture names "Week 1" and "week 1" are not the same.
 
-:information_source: Note that if an argument requires a specific format, click the :grey_question: icon beside the argument description to go to the section containing the format.
+:information_source: If an argument value requires a specific format, click the argument value placeholder beside the argument description to go to the section containing the format.
 
 ### Nav
 
