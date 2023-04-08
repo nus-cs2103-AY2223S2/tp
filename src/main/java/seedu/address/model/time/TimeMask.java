@@ -2,11 +2,14 @@ package seedu.address.model.time;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Class to generate the bit masking for the events.
@@ -62,6 +65,9 @@ public class TimeMask {
                 return;
             }
 
+            LocalDateTime start = event.getStartDate();
+            LocalDateTime end = event.getEndDate();
+
             int startIndex = getZeroBasedDayIndex(event.getStartDate().getDayOfWeek());
             int endIndex = getZeroBasedDayIndex(event.getEndDate().getDayOfWeek());
             int startTime = event.getStartDate().getHour();
@@ -73,13 +79,37 @@ public class TimeMask {
                 endIndex = getUpdatedEndDay(endIndex);
             }
 
-            if (startIndex != endIndex) {
-                occupyMultipleDay(startIndex, endIndex, startTime);
-                occupySlots(endIndex, 0, endTime);
+            if (!start.isEqual(end)) {
+                boolean isAfterDateLimit = isEndDateAfterDateLimit(end.toLocalDate(), dateLimit);
+                long daysBetween = getDaysBetween(start.toLocalDate(), end.toLocalDate(), dateLimit);
+                int modifiedEndTime = getUpdatedEndTime(endTime, isAfterDateLimit);
+                occupyMultipleDay(startIndex, daysBetween, startTime, modifiedEndTime);
             } else {
                 occupySlots(startIndex, startTime, endTime);
             }
         }
+    }
+
+    private int getUpdatedEndTime(int endTime, boolean isAfterDateLimit) {
+        if (isAfterDateLimit) {
+            return 23;
+        } else {
+            return endTime;
+        }
+    }
+
+    private boolean isEndDateAfterDateLimit(LocalDate endDate, LocalDate dateLimit) {
+        return endDate.isAfter(dateLimit);
+    }
+
+    private long getDaysBetween(LocalDate start, LocalDate end, LocalDate dateLimit) {
+        long daysBetween;
+        if (end.isAfter(dateLimit)) {
+            daysBetween =  DAYS.between(start, dateLimit);
+        } else {
+            daysBetween = DAYS.between(start, end);
+        }
+        return daysBetween;
     }
 
     private int getUpdatedEndDay(int endIndex) {
@@ -110,19 +140,25 @@ public class TimeMask {
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] | mask;
     }
 
-    private void occupyMultipleDay(int startDay, int endDay, int starHour) {
+    private void occupyMultipleDay(int startDay, long diff, int startHour, int endHour) {
         int curr = startDay;
-        int startBits = Integer.parseInt("1".repeat(23 - starHour + 1), 2);
-        int mask = startBits << starHour;
+        int counter = 1;
+
+        int startBits = Integer.parseInt("1".repeat(23 - startHour + 1), 2);
+        int mask = startBits << startHour;
         weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
         curr = curr == 6 ? 0 : curr + 1;
 
-        while (curr < endDay) {
+        while (counter < diff) {
             startBits = Integer.parseInt("1".repeat(24), 2);
             mask = startBits << 0;
             weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
             curr = curr == 6 ? 0 : curr + 1;
+            counter = counter + 1;
         }
+
+        startBits = Integer.parseInt("1".repeat(endHour + 1), 2);
+        weeklyOccupancy[curr] = weeklyOccupancy[curr] | startBits;
     }
 
     private void checkValidDayIndex(int dayIndex) {
