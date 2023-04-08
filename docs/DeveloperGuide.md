@@ -360,7 +360,7 @@ The `KeywordManager` main responsibility is the storing of `Keyword` objects.
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="1100" />
 
 The `Storage` component is responsible for the reading and writing of the states of the different managers in `Model` to and from the hard disk. As shown in the diagram above, it inherits from `PatientManagerStorage`, `UserPrefsStorage`, `VaxTypeStorage`, `AppointmentStorage` and `KeywordStorage`. As such, it can be treated as either one (if only the functionality of only one is needed).
 
