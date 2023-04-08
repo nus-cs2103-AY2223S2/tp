@@ -199,20 +199,20 @@ application command from the user.
 1. The Ui component receives the user command from the `CommandBox` of the GUI.
 2. The command is passed to `LogicManager` via its `execute()` method.
 3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
-4. The `CookHubParser` in turn creates an `AddCommandParser` that is responsible for the specific purpose of
-   parsing user commands for adding applications.
+4. The `CookHubParser` in turn creates an `AddCommandParser` which has the purpose of parsing `add` commands.
 5. The `CookHubParser` then passes the string input to the `AddCommandParser` via the `parse()` method.
-6. The `AddCommandParser` then identifies the different prefixes in the string and creates respective recipe components.
-7. The recipe components in turn make up a `Recipe` instance.
-8. The newly created `Recipe` instance will then be used to create an `AddCommand`. This command instances
-   is returned back to `LogicManager`.
-9. The `LogicManager` then calls the `execute()` method of the `AddCommand`. 
-10. An instance of `CommandResult` is returned, signifying a successful command execution.
-11. The Ui component displays the contents of the `CommandResult` to the User.
-
+6. The `AddCommandParser` then identifies the different prefixes in the string and creates respective recipe components
+   (i.e. title, description, steps, ingredients) by calling on `ParserUtil`.
+7. `ParserUtil` creates the recipe components and returns it back to `AddCommandParser`.
+8. `AddCommandParser` creates a `Recipe` instance with the recipe components as the parameters.
+9. The newly created `Recipe` instance will then be used to create an `AddCommand`. This command instances
+   is returned to `LogicManager`.
+10. The `LogicManager` then calls the `execute()` method of the `AddCommand`. 
+11. `AddCommand` then calls the `addRecipe(recipe)` of `Model`.
+12. An instance of `CommandResult` is returned, signifying a successful command execution.
+13. The Ui component displays the contents of the `CommandResult` to the User.
 The sequence diagram for the `add` command is as shown below:
-![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
-
+![AddCommandSequenceDiagram](images/AddSequenceDiagram.png)
 
 
 ### Find feature
@@ -245,18 +245,18 @@ The meaning of each prefix is as shown below:
 4. The `CookHubParser` in turn creates an `FindCommandParser`.
 5. The `CookHubParser` then passes the string input to the `FindCommandParser` via the `parse()` method.
 6. The `FindCommandParser` then identifies the different prefixes in the string and creates a list of keywords.
-7. A subtype of `ContainsKeywordsPredicate` is created depending on the different prefixes.
-8. The `parse()` method will return a `FindCommand()` with the subtype of `ContainsKeywordsPredicate` as the parameter
-9. This `FindCommand` is returned back to `LogicManager`.
+7. `FindCommandParser` will then call the respective methods responsible for parsing the predicate related to the current
+command flags (i.e. `parseTitlePredicate`, `parseIngredientsPredicate`, etc.)) in `ParserUtil`.
+8. `ParserUtil` creates an instance of `ContainsKeywordsPredicate`.
+9. `FindCommandParser` will instantiate an instance of `FindCommand` with the previously obtained predicate as the parameter.
 10. The `LogicManager` then calls the `execute()` method of the `FindCommand`.
-11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
-12. `setCurrentPredicate(predicate)` called on `Model`. It updates the predicate that filters through the recipe list.
-13. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`. 
+12. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
     the execution of the command.
-14. The Ui component displays the contents of the `CommandResult` to the User.
+13. The Ui component displays the contents of the `CommandResult` to the User.
 
 The sequence diagram for the `find` command is as shown below:
-![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+![FindCommandSequenceDiagram](images/FindSequenceDiagram.png)
 
 
 ### Only feature
@@ -279,12 +279,11 @@ The `only` command format is as shown below:
    parsing user commands for finding applications.
 5. The `CookHubParser` then passes the string input to the `OnlyCommandParser` via the `parse()` method.
 6. The `OnlyCommandParser` then identifies the different prefixes in the string and creates a list of keywords.
-7. A subtype of `RecipeIngredientsSubsetPredicate` is created depending on the different prefixes.
-8. The `parse()` method will return a `OnlyCommand()` with `RecipeIngredientsSubsetPredicate` as the parameter
-9. This `OnlyCommand` is returned back to `LogicManager`.
+7. An instance of `RecipeIngredientsSubsetPredicate` is created.
+8. An instance of`OnlyCommand()` with `RecipeIngredientsSubsetPredicate` as the parameter
+9. This `OnlyCommand` is returned to `LogicManager`.
 10. The `LogicManager` then calls the `execute()` method of the `OnlyCommand`. 
 11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
-12. `setCurrentPredicate(predicate)` called on `Model`. It updates the predicate that filters through the recipe list.
 12. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
     the execution of the command.
 13. The Ui component displays the contents of the `CommandResult` to the User.

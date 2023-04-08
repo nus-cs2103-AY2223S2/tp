@@ -7,8 +7,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CookHubParser" as CookHubParser LOGIC_COLOR
 participant ":OnlyCommandParser" as OnlyCommandParser LOGIC_COLOR
-participant ":OnlyCommand" as OnlyCommand LOGIC_COLOR
 participant ":RecipeIngredientsSubsetPredicate" as RecipeIngredientsSubsetPredicate LOGIC_COLOR
+participant ":OnlyCommand" as OnlyCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,19 +33,18 @@ deactivate OnlyCommandParser
 CookHubParser -> OnlyCommandParser : parse("eggs onion")
 activate OnlyCommandParser
 
+create RecipeIngredientsSubsetPredicate
+OnlyCommandParser -> RecipeIngredientsSubsetPredicate: new RecipeIngredientsSubsetPredicate(keywords)
+activate RecipeIngredientsSubsetPredicate
+
+RecipeIngredientsSubsetPredicate --> OnlyCommandParser: predicate
+deactivate RecipeIngredientsSubsetPredicate
+
 create OnlyCommand
-OnlyCommandParser -> OnlyCommand
+OnlyCommandParser -> OnlyCommand: new OnlyCommand(predicate)
 
 activate OnlyCommand
 
-create RecipeIngredientsSubsetPredicate
-OnlyCommand -> RecipeIngredientsSubsetPredicate
-
-activate RecipeIngredientsSubsetPredicate
-
-RecipeIngredientsSubsetPredicate --> OnlyCommand : predicate
-
-deactivate RecipeIngredientsSubsetPredicate
 
 OnlyCommand --> OnlyCommandParser : onlyCommand
 
@@ -63,12 +62,6 @@ LogicManager -> OnlyCommand : execute()
 activate OnlyCommand
 
 OnlyCommand -> Model : updateFilteredRecipeList(predicate)
-activate Model
-
-Model --> OnlyCommand
-deactivate Model
-
-OnlyCommand -> Model : setCurrentPredicate(predicate)
 activate Model
 
 Model --> OnlyCommand
