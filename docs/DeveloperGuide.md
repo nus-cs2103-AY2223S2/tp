@@ -253,28 +253,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add an event**
+<details>
+<summary>
+<strong>Use case: Add an event</strong>
+</summary>
 
 **MSS**
-
 1. User requests to add an event
-2. System adds the event
-
+2. System adds the event  
     Use case ends.
 
 **Extensions**
-
 * 1a. The event already exist.
-
-    * 1a1. System shows an error message.
-
+    * 1a1. System shows an error message.  
       Use case ends.
 
 * 2a. The given event format invalid.
-
-    * 2a1. System shows an error message.
-
+    * 2a1. System shows an error message.  
       Use case ends.
+
+</details>
 
 **Use case: Delete an event**
 
