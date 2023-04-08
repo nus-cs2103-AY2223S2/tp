@@ -65,9 +65,9 @@ Adds a person to the ExpressLibrary.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 * Emails must abide by RFC5322 standard. For more details, refer to section 3.4.1 of the RFC5322 protocol found here 
-https://www.rfc-editor.org/rfc/rfc5322
-* You can also refer to the help message which will appear if you key in an invalid email
-
+https://www.rfc-editor.org/rfc/rfc5322.
+* You can also refer to the help message which will appear if you key in an invalid email.
+* You will not be able to add a person with the same email or phone number of an existing person.
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:**
 A person can have any number of tags. (including 0)
