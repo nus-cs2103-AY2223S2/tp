@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title Entity Class Diagram
+entity Part
+Person <|-- Customer
+Person <|-- Technician
+Customer "1" *--  "*" Vehicle : owns >
+Vehicle "1" *-- "*" Service : has >
+Appointment "*" --* "1" Customer : made by >
+Appointment "*" o--o "*" Technician : assigned to >
+Service "*" o--o "*" Technician : assigned to >
+Service --o "*" Part : needs >
+Customer : int id
+Vehicle : int id
+Service : int id
+Appointment : int id
+Technician : int id
+@enduml

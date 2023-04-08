@@ -159,6 +159,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### ID generation
+
+Each entity in AutoM8 has a unique ID (e.g. `Customer` has a unique `customerId`, `Appointment` has a unique `appointmentId`, etc.).
+This is to ensure that each entity can be uniquely identified and referenced without each object storing references to other objects and vice versa.
+Hence, it is important to ensure that each entity has a unique ID which is generated via an API call.
+
+This ID generation is facilitated by the `IdGenerator` class.
+The class consists of `SortedSets` and `PriorityQueues`, one for each entity.
+The `SortedSets` are used to keep track of all the IDs that are in use while the `PriorityQueues` are used to update the `IdGenerator` about all the IDs that are not in use. 
+When the `generateXId()` method is called, the `IdGenerator` will first check if the `PriorityQueue` containing unused IDs is empty.
+If it is empty, it will pop off the smallest ID from the `PriorityQueue` and return it. 
+If it is empty, the `IdGenerator` will check the largest ID in the `SortedSet` of used IDs, return a number one larger than that, and add it to the `SortedSet` of used IDs.
+The API call `setXIdUnused(int)` is used to update the `PriorityQueue` of unused IDs when an entity is deleted.
+
+### Entity Data
+
+AutoM8 consists of 6 entities: `Customer`, `Appointment`, `Service`, `Vehicle`, `Part`, and `Technician` which are related to each other in the following way:
+
+![Entity Relationship](images/EntityRelationshipClassDiagram.png)
+
+All the entity data is stored in the `Shop` class which consists of the following:
+
+![Shop Class Diagram](images/ShopClassDiagram.png)
+
+The shop class simulates a relational database by automating all the cascading deletes and updates between entities.
+The only way to modify the data is via the exposed `Shop` API calls (and other methods necessary for loading data from file).
+
 ### Add Feature
 
 ### Current Implementation

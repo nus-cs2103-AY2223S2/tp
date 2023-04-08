@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Shop Class Diagram
+class Shop {
+    - IdGenerator idGenerator
+    - Stack<Shop> undoStack
+    - Stack<Shop> redoStack
+    - ObservableList<Customer> customers
+    - ObservableList<Vehicle> vehicles
+    - ObservableList<Service> services
+    - ObservableList<Appointment> appointments
+    - ObservableList<Technician> technicians
+    - ObservableMap<String, Integer> parts
+
+    + ObservableList<X> getXList()
+    + void addX(X's attributes)
+    + void removeX(int xId)
+    + void editX(int xId, X's attributes)
+    + void revert()
+    + void redo()
+}
+
+
+@enduml
