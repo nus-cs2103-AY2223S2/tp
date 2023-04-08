@@ -652,7 +652,7 @@ The feature utilises the following classes:
 The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a 
 `Tracker` object.
 
-![TagSequenceDiagram](images/TagSequenceDiagram.png)
+![TagSequenceDiagram](images/TagSequenceDiagra.png)
 
 The following is a description of the code execution flow:
 
@@ -711,7 +711,7 @@ The feature utilises the following classes:
 The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object 
 in a `Tracker` object.
 
-![UntagSequenceDiagram](images/UntagSequenceDiagram.png)
+![UntagSequenceDiagram](images/UntagSequenceDiagra.png)
 
 The following is a description of the code execution flow:
 
@@ -769,9 +769,9 @@ The feature utilises the following classes:
 The following sequence diagram depicts a `import` command execution for importing a single module from a specified 
 file path to the current `Tracker` object
 
-![ImportSequenceDiagram](images/ImportSequenceDiagra.png)
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
-![ImportSequenceDiagramRef](images/ImportSequenceDiagramRe.png)
+![ImportSequenceDiagramRef](images/ImportSequenceDiagramRef.png)
 
 
 The following is a description of the code execution flow:
