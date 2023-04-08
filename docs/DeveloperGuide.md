@@ -758,14 +758,19 @@ _{Explain here how the data archiving feature will be implemented}_ -->
 
 **Target user profile**:
 
-* has a need to manage a significant number of patients
-* has a need to manage patient schedules
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps for speed and efficiency
+* a receptionist of small size private clinics in charge of managing vaccination appointments.
+* prefer desktop apps over other types.
+* can type fast.
+* prefers typing to mouse interactions.
+* is reasonably comfortable using CLI apps for speed and efficiency.
 
-**Value proposition**: VMS provides an efficient solution for managing vaccine stock, determining patient suitability and scheduling appointments, and improving administrative efficiency and patient care. The system is optimised for typist, making it an ideal choice for busy administrative staff who type fast and prefer a CLI-first design.
+**Value proposition**: Application will
+
+* Validate the eligibility of patients to take vaccinations faster than manual means.
+* Manage patients.
+* Manage vaccinations.
+* Manage appointments.
+* All of which faster than a typical mouse/GUI driven app.
 
 ### User stories
 
