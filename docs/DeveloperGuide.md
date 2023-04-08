@@ -721,7 +721,7 @@ _{More to be added}_
 
 - 1d. The department does not exist.
 
-  - 1d1. SudoHr shows and error message.
+  - 1d1. SudoHr shows an error message.
 
     Use case resumes at step 1.
 
