@@ -123,6 +123,7 @@ Add a new food into WIFE. (This is the command when you tried out your first com
 Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`
 Note:
 * All parameters must be present in the command. Date must be in the format of DD-MM-YYYY.
+* `UNIT` of the food item must have at most 10 characters.
 * `QUANTITY` of the food item **must be a positive integer** 1, 2, 3, …​
 * `QUANTITY` of the food item should be less than `1,000,000`.
 * `EXPIRY DATE` of the food item should be in the format `DD-MM-YYYY`. Examples of valid date format:
