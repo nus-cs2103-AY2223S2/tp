@@ -17,6 +17,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /** {@code Predicate} that evaluates to true if person is a Doctor */
     Predicate<Person> PREDICATE_IS_DOCTOR = person -> person instanceof Doctor;
@@ -136,6 +138,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
     void updateFilteredPersonListNric(Nric nric);
 
     boolean hasAppointment(Appointment appointment);
@@ -158,4 +166,6 @@ public interface Model {
     Person getPersonDisplay();
 
     void updatePersonView(Person updatedPerson);
+
+    Person retrievePersonByNric(Nric nric);
 }
