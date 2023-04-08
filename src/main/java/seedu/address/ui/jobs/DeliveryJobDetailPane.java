@@ -138,6 +138,8 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
      * @param handler
      */
     public void setEditHandler(Consumer<DeliveryJob> handler) {
+        assert handler != null;
+
         handleEdit = handler;
     }
 
@@ -147,6 +149,8 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
      * @param handler
      */
     public void setCompleteHandler(Consumer<DeliveryJob> handler) {
+        assert handler != null;
+
         handleComplete = handler;
     }
 
@@ -156,6 +160,8 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
      * @param handler
      */
     public void setDeleteHandler(Consumer<DeliveryJob> handler) {
+        assert handler != null;
+
         handleDelete = handler;
     }
 

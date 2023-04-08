@@ -28,7 +28,7 @@ public class DeliveryDate {
     /**
      * Represents invalid date in storage.
      */
-    private static final String PLACEHOLDER = "0000-00-00";
+    private static final String PLACEHOLDER = "9999-12-31";
 
     public final String date;
 

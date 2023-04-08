@@ -72,6 +72,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Update diagram for `Model` and `Storage`.
     * Added use case for `list delivery job detail`, `delete job`, `edit job` and `find job`.
+    * Added implementation details foe delivery job system in developer guide.
 
 * **Community**:
   * Review PRs.

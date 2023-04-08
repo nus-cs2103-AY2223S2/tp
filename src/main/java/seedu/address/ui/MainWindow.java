@@ -7,7 +7,6 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -94,10 +93,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private Consumer<DeliveryJob> completeDeliveryJobHandler = (job) -> {
         try {
+            logger.info("[completeDeliveryJobHandler] complete: " + job.getJobId());
             CommandResult commandResult = logic
                     .execute(new CompleteDeliveryJobCommand(job.getJobId(), !job.getDeliveredStatus()));
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            refreshDeliveryJobDetailPane();
         } catch (ParseException | CommandException e) {
             logger.warning(e.getMessage());
         } catch (FileNotFoundException | IllegalArgumentException e) {
@@ -106,12 +105,14 @@ public class MainWindow extends UiPart<Stage> {
     };
 
     private Consumer<DeliveryJob> editDeliveryJobHandler = (job) -> {
+        logger.info("[editDeliveryJobHandler] edit: " + job.getJobId());
         if (addDeliveryJobWindow != null) {
             addDeliveryJobWindow.hide();
         }
-        addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, commandResult -> {
+        addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job);
+        addDeliveryJobWindow.setResultHandler(commandResult -> {
+            logger.info("[editDeliveryJobHandler] edit complete: " + job.getJobId());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            refreshDeliveryJobDetailPane();
         });
         addDeliveryJobWindow.show();
         addDeliveryJobWindow.fillInnerParts();
@@ -119,18 +120,17 @@ public class MainWindow extends UiPart<Stage> {
 
     private Consumer<DeliveryJob> deleteDeliveryJobHandler = job -> {
         try {
-            deliveryJobListPanel.selectAvailable();
+            logger.info("[deleteDeliveryJobHandler] delete: " + job.getJobId());
             CommandResult commandResult = logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            refreshDeliveryJobDetailPane();
         } catch (ParseException | CommandException | FileNotFoundException | IllegalArgumentException e) {
             logger.warning(e.getMessage());
         }
     };
 
     private BiConsumer<Integer, DeliveryJob> selectDeliveryJobHandler = (idx, job) -> {
-        logger.info("[JobListView] select: " + idx);
-        deliveryJobDetailPlaceholder.getChildren().clear();
+        logger.info("[selectDeliveryJobHandler] select: " + idx);
+        refreshDeliveryJobListView();
 
         if (idx >= 0) {
             DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job);
@@ -141,11 +141,10 @@ public class MainWindow extends UiPart<Stage> {
             detailPane.setDeleteHandler(deleteDeliveryJobHandler);
             return;
         }
-
-        emptyDeliveryJobListPanelPlaceholder.setVisible(true);
     };
 
     private BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>> sortDeliveryJobHandler = (by, asc) -> {
+        logger.info("[sortDeliveryJobHandler] sort: " + by);
         String feedback = "List empty!";
         if (deliveryJobListPanel.size() > 0) {
             switch (by) {
@@ -168,6 +167,7 @@ public class MainWindow extends UiPart<Stage> {
     };
 
     private Consumer<DeliveryFilterOption> filterDeliveryJobHandler = by -> {
+        logger.info("[filterDeliveryJobHandler] filter: " + by);
         switch (by) {
         case COM:
             logic.updateFilteredDeliveryJobList(job -> job.getDeliveredStatus());
@@ -259,7 +259,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void refreshDeliveryJobListView() {
-        logger.info("[JobListView] Refresh List: " + deliveryJobListPanel.size());
+        logger.info("[refreshDeliveryJobListView] Refresh List (size): " + deliveryJobListPanel.size());
         if (deliveryJobListPanel.size() > 0) {
             emptyDeliveryJobListPanelPlaceholder.setVisible(false);
         } else {
@@ -268,23 +268,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void refreshDeliveryJobDetailPane() {
-        logger.info("[JobListView] Refresh Detail");
-        deliveryJobListPanel.refresh();
-    }
-
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
         // Append views
-        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), selectDeliveryJobHandler,
-                completeDeliveryJobHandler,
-                deleteDeliveryJobHandler);
+        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
+        deliveryJobListPanel.setSelectHandler(selectDeliveryJobHandler);
+        deliveryJobListPanel.setCheckHandler(completeDeliveryJobHandler);
+        deliveryJobListPanel.setDeleteHandler(deleteDeliveryJobHandler);
         deliveryJobListPanel.setOrderByHandler(sortDeliveryJobHandler);
         deliveryJobListPanel.setFilterHandler(filterDeliveryJobHandler);
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
-        deliveryJobListPanel.selectItem(0);
+        deliveryJobListPanel.selectDefault();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -295,15 +291,11 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        // Attach listeners
-        logic.getFilteredDeliveryJobList().addListener(new ListChangeListener<DeliveryJob>() {
-            @Override
-            public void onChanged(Change<? extends DeliveryJob> c) {
-                refreshDeliveryJobListView();
-            }
-        });
         // Set default ordering
         logic.updateSortedDeliveryJobListByComparator(new SortbyDate(true));
+
+        // Initialise detail panel
+        refreshDeliveryJobListView();
     }
 
     /**
@@ -480,6 +472,10 @@ public class MainWindow extends UiPart<Stage> {
             addDeliveryJobWindow.hide();
         }
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic);
+        addDeliveryJobWindow.setResultHandler(commandResult -> {
+            logger.info("[editDeliveryJobHandler] add complete.");
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        });
         addDeliveryJobWindow.show();
         addDeliveryJobWindow.fillInnerParts();
     }
@@ -489,11 +485,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleDeliveryJobSystemImportAction() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Files");
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
-
         try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Files");
+            File selectedFile = fileChooser.showOpenDialog(new Stage());
+
             logic.execute(new ImportDeliveryJobCommand(selectedFile));
         } catch (ParseException | CommandException e) {
             logger.warning("[Event] importDeliveryJob" + e.getMessage());
@@ -578,7 +574,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            refreshDeliveryJobDetailPane();
             return commandResult;
         } catch (CommandException | ParseException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
