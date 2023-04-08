@@ -43,13 +43,12 @@ public class CommandInput extends UiPart<HBox> {
 
         if (isEscEvent || isTextFieldEmpty()) {
             mainScreen.clearBottomComponent();
-            returnFocusToParent();
+            returnFocusToTaskTabPanel();
         }
 
         if (isEnterEvent) {
             String commandString = inputField.getText();
             executeCommand(commandString);
-            returnFocusToParent();
         }
 
     }
@@ -71,7 +70,7 @@ public class CommandInput extends UiPart<HBox> {
 
         CommandResult result = logic.execute(commandString);
         mainScreen.loadCommandResultComponent(result);
-        // mainScreen.getTaskTabPanel().refreshTaskDetailPanel();
+        returnFocusToTaskTabPanel();
     }
 
 
@@ -83,8 +82,8 @@ public class CommandInput extends UiPart<HBox> {
         inputField.requestFocus();
     }
 
-    private void returnFocusToParent() {
-        mainScreen.getRoot().requestFocus();
+    private void returnFocusToTaskTabPanel() {
+        mainScreen.getTaskTabPanel().requestFocus();
     }
 
     @FXML
