@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: `clearpj` command
     * What it does: Allows users to clear off all the project in the project list
-    * Justification: `to be added soon`
+    * Justification: Users are able to clear all projects in a single command.
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*
 
@@ -52,11 +52,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the feature `remove`, `clear`, `clearpj`, `view`
-        * Added screenshot to `add`, `edit`, `remove`, `find`, `sort`, `addpj`, `editpj`, `removepj`, `sortpj`, `assign`, `unassign` and `help` command
+        * Added documentation for the feature `remove`, `clear`, `clearpj`, `view`.
+        * Added "GUI of SOCKet" under Quick start section
+        * Added screenshot to `add`, `edit`, `remove`, `find`, `sort`, `addpj`, `editpj`, `removepj`, `sortpj`, `assign`, `unassign` and `help` command.
     * Developer Guide:
-        * Added use cases `UC06`, `UC13`, `UC17`
-        * Updated existing UI class diagram with `ProjectListPanel`, `ProjectCard`, `PersonDetailPanel` and `PersonDetailCard`
+        * Added use cases `UC06`, `UC13`, `UC17`.
+        * Updated existing UI class diagram with `ProjectListPanel`, `ProjectCard`, `PersonDetailPanel` and `PersonDetailCard`.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): ().
