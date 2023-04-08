@@ -438,7 +438,8 @@ Format: `revert`
 Examples:
 1. Assume the most recent delete command was `delete 2` which has data `n/Tech j/Job`, the data was removed from the applications list.
 2. Command `revert` restores the entries at the back the application list, which has effect similar to `add  n/Tech j/Job`.
-   ** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+   
+**This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
 ### Revert all recently deleted or cleared internship applications : `revert_all`
 
@@ -446,7 +447,7 @@ Reverts all recent delete command or clear command and restores the affected dat
 
 Format: `revert_all`
 
-** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+**This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
 ### Exiting the program : `exit`
 
@@ -464,9 +465,8 @@ Format: `list_task`
 
 Examples:
 
-* `list_task` shows all the todos and notes that the user has written for together in one window.
-* If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown.
-* If there is either no todo or note, it will show `No todo at the moment` or `No note at the moment` respectively. The other list will be displayed normally.
+* `list_task` shows all the todos and notes that the user has written all together in one window.
+* If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown in the result dialog.
 
 ### Search for a task (todo and notes) : `find_task`
 
@@ -551,6 +551,7 @@ Examples:
 Clears all todo application entries from the todo applications list
 
 Format: `clear_todo`
+
 **Note that this action is irreversible**
 
 ### Display list of short note : `list_note`
@@ -592,6 +593,7 @@ Examples:
 Clears all notes from the note.
 
 Format: `clear_note`
+
 **Note that this action is irreversible**
 
 --------------------------------------------------------------------------------------------------------------------
