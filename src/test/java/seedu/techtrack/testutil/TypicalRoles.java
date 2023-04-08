@@ -2,6 +2,8 @@ package seedu.techtrack.testutil;
 
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_AMY;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EXPERIENCE_AMY;
@@ -10,8 +12,6 @@ import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_JOBDESCRIPTIO
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_JOBDESCRIPTION_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 

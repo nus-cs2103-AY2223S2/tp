@@ -75,15 +75,14 @@ public class CommandTestUtil {
     public static final String EXPERIENCE_DESC_AMY = " " + PREFIX_EXPERIENCE + VALID_EXPERIENCE_AMY;
     public static final String EXPERIENCE_DESC_BOB = " " + PREFIX_EXPERIENCE + VALID_EXPERIENCE_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_COMPANY; // empty string not allowed for addresses
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY; // empty string not allowed for addresses
     public static final String INVALID_JOBDESCRIPTION_DESC = " " + PREFIX_JOBDESCRIPTION; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_WEBSITE_DESC = " " + PREFIX_WEBSITE + "ww.com";
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "dn1"; // Characters not allowed in salaries
-    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + ".." // not a valid date
-            + "2023-10-2a"; // Characters not allowed in deadline
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2023-10-2a"; // Characters not allowed
     public static final String INVALID_EXPERIENCE_DESC = " " + PREFIX_EXPERIENCE;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

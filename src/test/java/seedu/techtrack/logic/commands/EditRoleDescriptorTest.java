@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.techtrack.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;

@@ -3,19 +3,21 @@ package seedu.techtrack.logic.parser;
 import static seedu.techtrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.techtrack.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
+import static seedu.techtrack.logic.commands.CommandTestUtil.CONTACT_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.EXPERIENCE_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.EXPERIENCE_DESC_BOB;
-import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_EXPERIENCE_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_JOBDESCRIPTION_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_SALARY_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_WEBSITE_DESC;
@@ -23,8 +25,6 @@ import static seedu.techtrack.logic.commands.CommandTestUtil.JOBDESCRIPTION_DESC
 import static seedu.techtrack.logic.commands.CommandTestUtil.JOBDESCRIPTION_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.techtrack.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.CONTACT_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.techtrack.logic.commands.CommandTestUtil.SALARY_DESC_AMY;
@@ -32,12 +32,12 @@ import static seedu.techtrack.logic.commands.CommandTestUtil.SALARY_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EXPERIENCE_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_JOBDESCRIPTION_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -98,8 +98,8 @@ public class AddCommandParserTest {
 
         // multiple job descriptions - last job descriptions accepted
         assertParseSuccess(parser, NAME_DESC_BOB + CONTACT_DESC_BOB + EMAIL_DESC_BOB + COMPANY_DESC_BOB
-                + JOBDESCRIPTION_DESC_AMY + JOBDESCRIPTION_DESC_BOB + TAG_DESC_FRIEND + WEBSITE_DESC_AMY + SALARY_DESC_BOB
-                + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB, new AddCommand(expectedRole));
+                + JOBDESCRIPTION_DESC_AMY + JOBDESCRIPTION_DESC_BOB + TAG_DESC_FRIEND + WEBSITE_DESC_AMY
+                + SALARY_DESC_BOB + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB, new AddCommand(expectedRole));
 
 
         // multiple tags - all accepted
@@ -170,7 +170,7 @@ public class AddCommandParserTest {
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid contact
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + COMPANY_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_CONTACT_DESC + EMAIL_DESC_BOB + COMPANY_DESC_BOB
                 + JOBDESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + WEBSITE_DESC_AMY + SALARY_DESC_BOB
                         + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB,
                 Contact.MESSAGE_CONSTRAINTS);
@@ -182,7 +182,7 @@ public class AddCommandParserTest {
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid company
-        assertParseFailure(parser, NAME_DESC_BOB + CONTACT_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + CONTACT_DESC_BOB + EMAIL_DESC_BOB + INVALID_COMPANY_DESC
                 + JOBDESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + WEBSITE_DESC_AMY + SALARY_DESC_BOB
                         + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB,
                 Company.MESSAGE_CONSTRAINTS);
@@ -221,15 +221,16 @@ public class AddCommandParserTest {
                 + SALARY_DESC_BOB + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB,
                 Website.MESSAGE_CONSTRAINTS);
 
-        // invalid deadline
+        // invalid deadline (does not exist)
         assertParseFailure(parser, NAME_DESC_BOB + CONTACT_DESC_BOB + EMAIL_DESC_BOB + COMPANY_DESC_BOB
                         + JOBDESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + WEBSITE_DESC_BOB
                         + SALARY_DESC_BOB + INVALID_DEADLINE_DESC + EXPERIENCE_DESC_BOB,
-                Deadline.INVALID_DEADLINE);
+                Deadline.DOES_NOT_EXIST);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + CONTACT_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + JOBDESCRIPTION_DESC_BOB + WEBSITE_DESC_AMY + SALARY_DESC_BOB + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB,
+        assertParseFailure(parser, INVALID_NAME_DESC + CONTACT_DESC_BOB + EMAIL_DESC_BOB
+                + INVALID_COMPANY_DESC + JOBDESCRIPTION_DESC_BOB + WEBSITE_DESC_AMY + SALARY_DESC_BOB
+                + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
