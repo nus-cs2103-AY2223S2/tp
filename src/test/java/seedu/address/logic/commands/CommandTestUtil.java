@@ -24,6 +24,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -40,6 +41,11 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ROLE_HUSBAND = "husband";
     public static final String VALID_ROLE_FRIEND = "friend";
+    public static final String VALID_TASK_DESCRIPTION = "Submit assignment";
+    public static final String VALID_TASK_TYPE_T = "T";
+    public static final String VALID_TASK_TYPE_D = "D";
+    public static final String VALID_COMMENT = "Hard assignment";
+    public static final String VALID_DATE = "10/10/2024";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -63,6 +69,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TASK_1;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TASK_2;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -71,6 +79,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withRoles(VALID_ROLE_HUSBAND, VALID_ROLE_FRIEND).build();
+        DESC_TASK_1 = new EditTaskDescriptorBuilder().withTaskDescription(VALID_TASK_DESCRIPTION)
+                .withComment(VALID_COMMENT).withDate(VALID_DATE).withTaskType(VALID_TASK_TYPE_T).build();
+        DESC_TASK_2 = new EditTaskDescriptorBuilder().withTaskDescription(VALID_TASK_DESCRIPTION)
+                .withComment(VALID_COMMENT).withDate(VALID_DATE).withTaskType(VALID_TASK_TYPE_D).build();
     }
 
     /**
