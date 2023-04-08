@@ -6,10 +6,11 @@ import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.VALID_DEADL
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION_INTERVIEW;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandFailure;
-//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.showApplicationAtIndex;
 import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_SECOND_APPLICATION;
+import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_THIRD_APPLICATION;
 import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook;
 
 import org.junit.jupiter.api.Test;
@@ -18,28 +19,29 @@ import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
-//import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.UserPrefs;
-//import seedu.sprint.model.application.Application;
-//import seedu.sprint.model.task.Task;
-//import seedu.sprint.testutil.ApplicationBuilder;
+import seedu.sprint.model.application.Application;
+import seedu.sprint.model.task.Task;
+import seedu.sprint.testutil.ApplicationBuilder;
 import seedu.sprint.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskCommandTest {
     private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
-    /*
+
     @Test
     public void execute_taskDoesNotExist_throwsCommandException() {
-        Index indexApplicationToEditTask = INDEX_FIRST_APPLICATION;
+        Index indexApplicationToEditTask = INDEX_THIRD_APPLICATION;
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexApplicationToEditTask, editTaskDescriptor);
 
         assertCommandFailure(editTaskCommand, model, commandHistory, EditTaskCommand.MESSAGE_TASK_DOES_NOT_EXIST);
     }
+
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -61,8 +63,10 @@ public class EditTaskCommandTest {
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);
+        expectedModel.commitInternshipBookChange();
         assertCommandSuccess(editTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
+
 
     @Test
     public void execute_oneFieldSpecifiedUnfilteredList_success() {
@@ -84,6 +88,7 @@ public class EditTaskCommandTest {
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);
+        expectedModel.commitInternshipBookChange();
         assertCommandSuccess(editTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
@@ -108,9 +113,10 @@ public class EditTaskCommandTest {
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);
+        expectedModel.commitInternshipBookChange();
         assertCommandSuccess(editTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
-    */
+
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {

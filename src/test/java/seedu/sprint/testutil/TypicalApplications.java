@@ -26,7 +26,7 @@ public class TypicalApplications {
     public static final Application GOOGLE = new ApplicationBuilder().withRole("Software Engineer")
             .withCompanyName("Google").withCompanyEmail("googlehires@gmail.com")
             .withStatus("interested")
-            .withTags("highSalary").build();
+            .withTags("highSalary").withTask("31-12-2023", "Online Assessment").build();
     public static final Application AMAZON = new ApplicationBuilder().withRole("Cloud Engineer Intern")
             .withCompanyName("Amazon").withCompanyEmail("amazonhires@amazon.com")
             .withStatus("applied")
@@ -36,19 +36,24 @@ public class TypicalApplications {
             .withStatus("applied")
             .withTags("employeeDiscounts").build();
     public static final Application MICROSOFT = new ApplicationBuilder().withRole("Software Testing Intern")
-            .withCompanyName("Microsoft").withCompanyEmail("hrthires@hrt.com")
+            .withCompanyName("Microsoft").withCompanyEmail("microsofthires@microsoft.com")
             .withStatus("offered")
             .withTags("windowsSupremacy").build();
     public static final Application META = new ApplicationBuilder().withRole("UX Design Intern")
             .withCompanyName("Meta").withCompanyEmail("metahires@meta.com")
             .withStatus("applied").withTask("01-11-2023", "Online Assessment")
             .build();
-    public static final Application GOVTECH = new ApplicationBuilder().withRole("Cybersecurity Intern")
+    public static final Application GOVTECH = new ApplicationBuilder().withRole("CyberSecurity Intern")
             .withCompanyName("Govtech").withCompanyEmail("govtechhires@govtech.sg")
             .withStatus("applied").withTask("31-10-2023", "Interview")
             .build();
 
-    // Manually added
+    public static final Application ANT_GROUP = new ApplicationBuilder().withRole("Backend Developer Intern")
+            .withCompanyName("Ant Group").withCompanyEmail("antgrouphires@antgroup.com")
+            .withStatus("offered").withTags("china")
+            .withTask("31-10-2023", "Accept Offer").build();
+
+    // Manually added - without tags
     public static final Application HUDSON_RIVER = new ApplicationBuilder().withRole("Junior Trader Analyst")
             .withCompanyName("Hudson River Trading").withCompanyEmail("hrthires@hrt.com")
             .withStatus("offered").build();
@@ -63,6 +68,7 @@ public class TypicalApplications {
     public static final Application GRAB = new ApplicationBuilder().withRole(VALID_ROLE_GRAB)
             .withCompanyName(VALID_COMPANY_NAME_GRAB).withCompanyEmail(VALID_COMPANY_EMAIL_GRAB)
             .withStatus(VALID_STATUS_GRAB).withTags(VALID_TAG_HIGHSALARY, VALID_TAG_SCHOOL).build();
+
 
     public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches Google
 

@@ -154,6 +154,7 @@ public class ApplicationCommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredApplicationList());
         assertEquals(expectedCommandHistory, actualCommandHistory);
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the application at the given {@code targetIndex} in the
      * {@code model}'s internship book.

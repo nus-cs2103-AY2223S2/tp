@@ -16,12 +16,12 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = "Formats: find keyword(s) "
             + "OR find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)] \n"
-            + "Example: " + COMMAND_WORD + " Google c/Meta";
+            + "Example: " + COMMAND_WORD + " r/SWE Intern c/Meta s/Offered";
 
     private final NameContainsKeywordsPredicate predicate;
 
     /**
-     * Creates an FindApplicationCommand to find applications that fulfil the given predicate.
+     * Creates an FindCommand to find applications that fulfil the given predicate.
      */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;

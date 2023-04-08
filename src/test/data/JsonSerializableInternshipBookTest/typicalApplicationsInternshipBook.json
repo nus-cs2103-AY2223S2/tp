@@ -1,0 +1,53 @@
+{
+  "jsonAdaptedApplications" : [
+    {
+      "companyName" : "Govtech",
+      "companyEmail" : "govtechhires@govtech.sg",
+      "status" : "applied",
+      "role" : "CyberSecurity Intern",
+      "taskDescription" : "Interview",
+      "taskDeadline" : "31-10-2023",
+      "tagged" : null
+    }, {
+      "companyName" : "Meta",
+      "companyEmail" : "metahires@meta.com",
+      "status" : "applied",
+      "role" : "UX Design Intern",
+      "taskDescription" : "Online Assessment",
+      "taskDeadline" : "01-11-2023",
+      "tagged" : null
+
+    }, {
+      "companyName" : "Microsoft",
+      "companyEmail" : "microsofthires@microsoft.com",
+      "status" : "offered",
+      "role" : "Software Testing Intern",
+      "taskDescription" : null,
+      "taskDeadline" : null,
+      "tagged" : [ "windowsSupremacy" ]
+    },  {
+      "companyName" : "Apple",
+      "companyEmail" : "applehires@apple.com",
+      "status" : "Applied",
+      "role" : "Design and Innovation Intern",
+      "taskDescription" : null,
+      "taskDeadline" : null,
+      "tagged" : [ "employeeDiscounts" ]
+    }, {
+      "companyName" : "Amazon",
+      "companyEmail" : "amazonhires@amazon.com",
+      "status" : "Applied",
+      "role" : "Cloud Engineer Intern",
+      "taskDescription" : null,
+      "taskDeadline" : null,
+      "tagged" : [ "cloudTechnology" ]
+    }, {
+      "companyName" : "Google",
+      "companyEmail" : "googlehires@gmail.com",
+      "status" : "Interested",
+      "role" : "Software Engineer",
+      "taskDescription" : "Online Assessment",
+      "taskDeadline" : "31-12-2023",
+      "tagged" : [ "highSalary" ]
+    } ]
+}

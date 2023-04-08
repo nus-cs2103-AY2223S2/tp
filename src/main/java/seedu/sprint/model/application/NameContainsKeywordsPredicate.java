@@ -49,7 +49,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
             for (Prefix prefix : prefixArray) {
                 if (keywordsMap.get(prefix) != null) {
                     checks[checkCounter] = keywordsMap.get(prefix).stream()
-                            .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                                     getAttributeString(application, prefix), keyword));
                 } else {
                     checks[checkCounter] = true;
@@ -58,20 +58,19 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
             }
             return checks[0] && checks[1] && checks[2];
         }
-
         boolean roleCheck = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getRole().toString(), keyword));
+
         boolean companyNameCheck = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getCompanyName().toString(), keyword));
-        boolean companyEmailCheck = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        application.getCompanyEmail().toString(), keyword));
+
         boolean statusCheck = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getStatus().toString(), keyword));
-        return roleCheck || companyNameCheck || companyEmailCheck || statusCheck;
+
+        return roleCheck || companyNameCheck || statusCheck;
     }
 
 
@@ -93,8 +92,32 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
 
     @Override
     public boolean equals(Object other) {
+
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                && ((keywords != null && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)))
+                || (keywordsMap != null && ((NameContainsKeywordsPredicate) other).keywordsMap != null
+                && checkKeywordsMapEquality(this.keywordsMap, ((NameContainsKeywordsPredicate) other).keywordsMap)));
+    }
+
+    /**
+     * @param firstHashMap the first HashMap input
+     * @param secondHashMap the second HashMap input
+     * @return return true if they have the same List of keywords as the value for the corresponding prefix key.
+     */
+    public static boolean checkKeywordsMapEquality(HashMap<Prefix, List<String>> firstHashMap,
+                                                   HashMap<Prefix, List<String>> secondHashMap) {
+        HashMap<String, List<String>> transformedFirstMap = new HashMap<>();
+        HashMap<String, List<String>> transformedSecondMap = new HashMap<>();
+
+        for (Prefix key : firstHashMap.keySet()) {
+            transformedFirstMap.put(key.toString(), firstHashMap.get(key));
+        }
+
+        for (Prefix key : secondHashMap.keySet()) {
+            transformedSecondMap.put(key.toString(), secondHashMap.get(key));
+        }
+        return transformedFirstMap.equals(transformedSecondMap);
+
     }
 }

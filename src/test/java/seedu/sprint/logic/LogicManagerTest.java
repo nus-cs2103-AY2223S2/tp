@@ -3,13 +3,13 @@ package seedu.sprint.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX;
 import static seedu.sprint.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.COMPANY_EMAIL_DESC_BYTEDANCE;
-//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.COMPANY_NAME_DESC_BYTEDANCE;
-//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.ROLE_DESC_BYTEDANCE;
-//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.STATUS_DESC_BYTEDANCE;
-//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.TAG_DESC_HIGHSALARY;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.COMPANY_EMAIL_DESC_BYTEDANCE;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.COMPANY_NAME_DESC_BYTEDANCE;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.ROLE_DESC_BYTEDANCE;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.STATUS_DESC_BYTEDANCE;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.TAG_DESC_HIGHSALARY;
 import static seedu.sprint.testutil.Assert.assertThrows;
-//import static seedu.sprint.testutil.TypicalApplications.BYTEDANCE;
+import static seedu.sprint.testutil.TypicalApplications.BYTEDANCE;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-//import seedu.sprint.logic.commands.AddApplicationCommand;
+import seedu.sprint.logic.commands.AddApplicationCommand;
 import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.ListCommand;
 import seedu.sprint.logic.commands.exceptions.CommandException;
@@ -27,11 +27,11 @@ import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.UserPrefs;
-//import seedu.sprint.model.application.Application;
+import seedu.sprint.model.application.Application;
 import seedu.sprint.storage.JsonInternshipBookStorage;
 import seedu.sprint.storage.JsonUserPrefsStorage;
 import seedu.sprint.storage.StorageManager;
-//import seedu.sprint.testutil.ApplicationBuilder;
+import seedu.sprint.testutil.ApplicationBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -45,7 +45,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonInternshipBookStorage internshipBookStorage =
-                new JsonInternshipBookStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonInternshipBookStorage(temporaryFolder.resolve("sprint.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(internshipBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -69,12 +69,13 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    /*
+
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonInternshipBookIoExceptionThrowingStub
         JsonInternshipBookStorage internshipBookStorage =
-                new JsonInternshipBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonInternshipBookIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionInternshipBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(internshipBookStorage, userPrefsStorage);
@@ -87,10 +88,11 @@ public class LogicManagerTest {
         Application expectedApplication = new ApplicationBuilder(BYTEDANCE).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addApplication(expectedApplication);
+        expectedModel.commitInternshipBookChange();
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addApplicationCommand, CommandException.class, expectedMessage, expectedModel);
     }
-    */
+
 
     @Test
     public void getFilteredApplicationList_modifyList_throwsUnsupportedOperationException() {

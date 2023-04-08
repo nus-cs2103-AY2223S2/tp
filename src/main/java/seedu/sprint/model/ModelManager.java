@@ -5,6 +5,7 @@ import static seedu.sprint.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -203,5 +204,10 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredApplications.equals(other.filteredApplications)
                 && sortedApplications.equals(other.sortedApplications);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(versionedInternshipBook, userPrefs, filteredApplications, sortedApplications);
     }
 }

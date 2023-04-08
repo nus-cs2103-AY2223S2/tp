@@ -24,13 +24,13 @@ public class HelpWindow extends UiPart<Stage> {
     private static final ObservableList<HelpCommand> helpCommands =
             FXCollections.observableArrayList(
                     new HelpCommand("Add app",
-                            "add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]\n"),
+                            "add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]\u200B\n"),
                     new HelpCommand("Edit app",
-                            "edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]\n"),
+                            "edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]\n"),
                     new HelpCommand("Delete app",
                             "delete-app INDEX \n"),
                     new HelpCommand("Add app task",
-                            "add-task d/DESCRIPTION by/DEADLINE\n"),
+                            "add-task INDEX d/DESCRIPTION by/DEADLINE\n"),
                     new HelpCommand("Edit app task",
                             "edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]\n"),
                     new HelpCommand("Delete app task",

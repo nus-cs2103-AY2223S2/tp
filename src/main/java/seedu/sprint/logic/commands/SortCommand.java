@@ -69,11 +69,18 @@ public class SortCommand extends Command {
             model.updateFilteredApplicationList(new ApplicationHasTaskPredicate());
         }
         model.updateSortedApplicationList(comparator);
-        model.commitInternshipBookChange();
-        commandHistory.setLastCommandAsModify();
         if (this.sortingOrder == SortingOrder.DEADLINE) {
             return new CommandResult(MESSAGE_SORT_DEADLINE_SUCCESS);
         }
         return new CommandResult(MESSAGE_SORT_ALPHABETICAL_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && sortingOrder.equals(((SortCommand) other).sortingOrder)
+                && sortingSequence.equals(((SortCommand) other).sortingSequence)
+                && comparator.equals(((SortCommand) other).comparator));
     }
 }

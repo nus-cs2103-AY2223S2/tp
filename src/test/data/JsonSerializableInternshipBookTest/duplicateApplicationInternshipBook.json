@@ -1,0 +1,19 @@
+{
+  "jsonAdaptedApplications": [ {
+    "companyName" : "Adobe",
+    "companyEmail" : "adobe_hiring@adobe.com",
+    "status" : "Offered",
+    "role" : "Design Intern",
+    "taskDescription" : "Take home assignment",
+    "taskDeadline" : "15-02-2023",
+    "tagged" : [ "creditBearing" ]
+  }, {
+    "companyName" : "Adobe",
+    "companyEmail" : "adobe_hiring@adobe.com",
+    "status" : "Offered",
+    "role" : "Design Intern",
+    "taskDescription" : "Take home assignment",
+    "taskDeadline" : "15-02-2023",
+    "tagged" : [ "creditBearing" ]
+  } ]
+}
