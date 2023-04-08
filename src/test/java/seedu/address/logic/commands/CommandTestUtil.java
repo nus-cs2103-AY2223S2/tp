@@ -84,7 +84,7 @@ public class CommandTestUtil {
     public static final String VALID_PLATFORMS_DESC = " " + PREFIX_PLATFORM + VALID_PLATFORM_NAME_LINKEDIN
             + " " + PREFIX_PLATFORM + VALID_PLATFORM_NAME_INDEED + " " + PREFIX_PLATFORM + VALID_PLATFORM_NAME_GLINTS;
 
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "TITLE\n"; // '\n' not allowed in titles
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "(*])"; // special char not allowed in titles
     public static final String INVALID_DESCRIPTION_DESC =
             " " + PREFIX_DESCRIPTION + "^"; // '^' only not allowed in descriptions
     public static final String INVALID_APPLICANT_DESC =
@@ -169,5 +169,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getDisplayedListingBook().size());
     }
-
 }

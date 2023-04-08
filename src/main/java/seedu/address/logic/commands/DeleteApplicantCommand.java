@@ -25,7 +25,7 @@ public class DeleteApplicantCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes an applicant from a listing identified by "
             + "the index number used in the displayed listing book.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer within the range of the number of listings shown) "
             + PREFIX_APPLICANT_WITH_ID + "APPLICANT\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_APPLICANT_WITH_ID + "John Doe\n"
             + "*If there are duplicated names, specify the id by adding the 4-digit unique identifier after the name.\n"

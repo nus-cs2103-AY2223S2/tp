@@ -328,7 +328,7 @@ messages shown below will be displayed.
 Invalid command format!
 edit: Edits a listing identified by the index used in the displayed listing book.
       Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...
+Parameters: INDEX (must be a positive integer within the range of the number of listings shown) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...
 Example: edit 1 t/Cool job title a/John a/Sam p/LinkedIn
 ```
 
@@ -378,7 +378,7 @@ If an index is invalid or absent, an error message such as the one below will be
 ```ignorelang
 Invalid command format!
 delete: Deletes the listing identified by the index used in the displayed listing book.
-Parameters: INDEX (must be a positive integer)
+Parameters: INDEX (must be a positive integer within the range of the number of listings shown)
 Example: delete 1
 ```
 
@@ -419,7 +419,7 @@ If an index is invalid or absent, an error message such as the one below will be
 ```ignorelang
 Invalid command format! 
 add_app: Adds an applicant to a listing in the listing book.
-Parameters: INDEX (must be a positive integer) a/APPLICANT
+Parameters: INDEX (must be a positive integer within the range of the number of listings shown) a/APPLICANT
 Example: add_app 1 a/John Doe
 ```
 
@@ -462,7 +462,7 @@ messages shown below will be displayed.
 Invalid command format! 
 edit_app: Edits an applicant's details for a listing. Ordered by the index number of the listing used in the displayed listing book.
       Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer) id/OLD_APPLICANT a/NEW_APPLICANT
+Parameters: INDEX (must be a positive integer within the range of the number of listings shown) id/OLD_APPLICANT a/NEW_APPLICANT
 Example: edit_app 1 id/John a/Sam
 ```
 
@@ -512,7 +512,7 @@ If an index is invalid or the command does not follow the format, an error messa
 ```ignorelang
 Invalid command format! 
 del_app: Deletes an applicant from a listing identified by the index number used in the displayed listing book.
-Parameters: INDEX (must be a positive integer) id/APPLICANT
+Parameters: INDEX (must be a positive integer within the range of the number of listings shown) id/APPLICANT
 Example: del_app 1 id/John Doe
 *If there are duplicated names, specify the id by adding the 4-digit unique identifier after the name.
 Example: del_app 1 id/John Doe#2103
@@ -584,7 +584,7 @@ If there are any other deviations from the expected format of the command, there
 ```ignorelang
 Invalid command format! 
 add_plat: Adds a platform to a listing in the listing book.
-Parameters: INDEX (must be a positive integer) p/PLATFORM
+Parameters: INDEX (must be a positive integer within the range of the number of listings shown) p/PLATFORM
 Example: add_plat 1 p/LinkedIn
 ```
 
@@ -631,7 +631,7 @@ If there are other deviations from the expected command format, an error message
 ```ignorelang
 Invalid command format! 
 del_plat: Deletes a platform from a listing identified by the index number used in the displayed listing book.
-Parameters: INDEX (must be a positive integer) p/PLATFORM
+Parameters: INDEX (must be a positive integer within the range of the number of listings shown) p/PLATFORM
 Example: del_plat 1 p/LinkedIn
 ```
 
