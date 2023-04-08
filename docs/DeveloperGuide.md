@@ -392,6 +392,29 @@ Step 5. The `UI` component listens to changes in this `FilteredList`, and update
 
 Add functionality to find employees based on other details such as Department, Roles etc.
 
+### Filter Feature: `filter`
+This command displays all employees who satisfy the criteria inputted by the user.
+
+
+#### Implementation
+
+The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
+When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
+
+Below is a sequence diagram and the explanation of the `filter` command.
+
+![FilterCommand](images/FilterSequenceDiagram.png)
+
+Step 1. User enters the command `filter pr > 1000`.
+
+Step 2. `LogicManager#execute` method is called on the user input.
+This prompts the `ExecutiveProParser` to parse the user input, which then returns a `FilterCommand` object.
+
+Step 3. The `execute` method of this `FilterCommand` is then called, which uses `ModelManager#UpdateFilteredEmployeeList` to set the `Predicate` of the `FilteredList` to one that filters all the Employees who `Payroll` value is greater than 1000.
+
+Step 4. The `FilteredList` now only contains those employees which satisfy the `Predicate` by satisfying the inputted criteria.
+
+Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of filtered employees to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
