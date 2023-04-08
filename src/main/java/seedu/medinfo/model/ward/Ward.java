@@ -148,7 +148,7 @@ public class Ward {
     public void addPatient(Patient p) throws WardFullException {
         requireNonNull(p);
         if (patients.size() == capacity.getValue()) {
-            throw new WardFullException();
+            throw new WardFullException(value.toString());
         }
         patients.add(p);
     }

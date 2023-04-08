@@ -14,6 +14,7 @@ import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.patient.exceptions.DuplicatePatientException;
 import seedu.medinfo.model.ward.exceptions.DuplicateWardException;
 import seedu.medinfo.model.ward.exceptions.InsufficientCapacityException;
+import seedu.medinfo.model.ward.exceptions.WardFullException;
 import seedu.medinfo.model.ward.exceptions.WardNotFoundException;
 
 /**
@@ -36,7 +37,6 @@ public class UniqueWardList implements Iterable<Ward> {
     private final ObservableList<Ward> internalList = FXCollections.observableArrayList();
     private final ObservableList<Ward> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
-    private static final String MESSAGE_FULL_WARD_SUFFIX = " is full!";
 
     /**
      * Initializes wardlist with default Waiting Room ward with capacity of 30
@@ -110,14 +110,11 @@ public class UniqueWardList implements Iterable<Ward> {
      * 
      * @param p
      */
-    public void addPatient(Patient p) throws CommandException{
+    public void addPatient(Patient p) throws CommandException, WardFullException {
         requireNonNull(p);
         String targetName = p.getWardNameString();
         int index = internalList.indexOf(wardWithName(targetName));
         Ward target = internalList.get(index);
-        if (target.isFull()) {
-            throw new CommandException(target.getNameString() + MESSAGE_FULL_WARD_SUFFIX);
-        }
         target.addPatient(p);
         internalList.set(index, target);
     }
@@ -157,7 +154,7 @@ public class UniqueWardList implements Iterable<Ward> {
      * {@code editedPatient}.
      * {@code target} must exist in the ward.
      */
-    public void setPatient(Patient target, Patient editedPatient) throws CommandException{
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException, WardFullException{
         String targetName = target.getWardNameString();
         String editedName = editedPatient.getWardNameString();
         int targetIndex = internalList.indexOf(wardWithName(targetName));
@@ -179,14 +176,11 @@ public class UniqueWardList implements Iterable<Ward> {
      * @param from   The patient's current ward index in internalList.
      * @param to     The patient's next ward index in internalList.
      */
-    public void changePatientWard(Patient target, int from, int to) throws CommandException {
+    public void changePatientWard(Patient target, int from, int to) throws WardFullException {
         Ward start = internalList.get(from);
         Ward end = internalList.get(to);
-        if (end.isFull()) {
-            throw new CommandException(target.getNameString() + MESSAGE_FULL_WARD_SUFFIX);
-        }
-        start.removePatient(target);
         end.addPatient(target);
+        start.removePatient(target);
         internalList.set(from, start);
         internalList.set(to, end);
     }

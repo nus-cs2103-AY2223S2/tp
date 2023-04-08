@@ -153,7 +153,6 @@ public class ModelManager implements Model {
     @Override
     public void setWard(Ward target, Ward editedWard) {
         requireAllNonNull(target, editedWard);
-
         medInfo.setWard(target, editedWard);
     }
 

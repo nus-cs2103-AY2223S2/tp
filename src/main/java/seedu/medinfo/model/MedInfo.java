@@ -13,6 +13,7 @@ import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.patient.UniquePatientList;
 import seedu.medinfo.model.ward.UniqueWardList;
 import seedu.medinfo.model.ward.Ward;
+import seedu.medinfo.model.ward.exceptions.WardFullException;
 import seedu.medinfo.model.ward.exceptions.WardNotFoundException;
 
 /**
@@ -114,7 +115,12 @@ public class MedInfo implements ReadOnlyMedInfo {
             throw new WardNotFoundException();
         }
         patients.add(p);
-        wards.addPatient(p);
+        try {
+            wards.addPatient(p);
+        } catch (WardFullException e) {
+            patients.remove(p);
+            throw new CommandException(e.toString(), e);
+        }
     }
 
     /**
@@ -127,7 +133,12 @@ public class MedInfo implements ReadOnlyMedInfo {
     public void setPatient(Patient target, Patient editedPatient) throws CommandException{
         requireAllNonNull(target, editedPatient);
         patients.setPatient(target, editedPatient);
-        wards.setPatient(target, editedPatient);
+        try {
+            wards.setPatient(target, editedPatient);
+        } catch (WardFullException e) {
+            patients.setPatient(target, target);
+            throw new CommandException(e.toString(), e);
+        }
     }
 
     /**
