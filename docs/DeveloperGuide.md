@@ -9,7 +9,6 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 * ControlsFX (https://github.com/controlsfx/controlsfx)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -437,23 +436,21 @@ Design considerations:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                         | I want to …​                                | So that I can…​                                                        |
-|----------|-----------------------------------------------------------------|---------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                      | refer to instructions when I forget how to use the App                 |
-| `* * *`  | delivery driver                                                 | add/delete jobs                             | keep track of my upcoming and old jobs                                 |
-| `* * *`  | delivery driver                                                 | mark/unmark jobs                            | keep track of completed jobs                                           |
-| `* * *`  | delivery driver                                                 | add a new person                            | keep in touch with my clients                                          |
-| `* * *`  | delivery driver                                                 | delete a person                             | remove entries that I no longer need                                   |
-| `* * *`  | organised delivery driver                                       | find a person by name                       | locate details of persons without having to go through the entire list |
-| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines | complete all my jobs on time                                           |
-| `* * *`  | organised user                                                  | be reminded of upcoming tasks and deadlines | complete all my jobs on time                                           |
-| `* *`    | busy person                                                     | view timetable of my tasks in a week        | organise my timetable and complete everything on time                  |
-| `* *`    | delivery driver                                                 | hide private contact details                | minimize chance of someone else seeing them by accident                |
-| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information              | track my earnings and other statistics                                 |
-| `*`      | delivery driver with many customers in the address book         | sort persons by name                        | locate a person/client easily and thus increase delivery efficiency    |
-| `*`      | user                                                            | adjust how my notifications are shown       | have a clutter free desktop                                            |
-
-*{More to be added}*
+| Priority | As a …​                                                         | I want to …​                                 | So that I can…​                                                        |
+|----------|-----------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                       | refer to instructions when I forget how to use the App                 |
+| `* * *`  | delivery driver                                                 | add/delete jobs                              | keep track of my upcoming and old jobs                                 |
+| `* * *`  | delivery driver                                                 | mark/unmark jobs                             | keep track of completed jobs                                           |
+| `* * *`  | delivery driver                                                 | add a new person                             | keep in touch with my clients                                          |
+| `* * *`  | delivery driver                                                 | delete a person                              | remove entries that I no longer need                                   |
+| `* * *`  | organised delivery driver                                       | find a person by name                        | locate details of persons without having to go through the entire list |
+| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines  | complete all my jobs on time and not forget a task                     |
+| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines | plan for my next schedule                                              |
+| `* *`    | busy person                                                     | view timetable of my tasks in a week         | organise my timetable and complete everything on time                  |
+| `* *`    | delivery driver                                                 | hide private contact details                 | minimize chance of someone else seeing them by accident                |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information               | track my earnings and other statistics                                 |
+| `*`      | delivery driver with many customers in the address book         | sort persons by name                         | locate a person/client easily and thus increase delivery efficiency    |
+| `*`      | user                                                            | adjust how my notifications are shown        | have a clutter free desktop                                            |
 
 ### Use cases
 
@@ -709,8 +706,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -726,14 +721,20 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Notifications
 
-### Saving data
+1. Display a notification for a reminder
+   1. Prerequisites: Added a reminder using the `add_reminder` command. Make sure the `time/` field is set to an appropriate time.
+   2. Test case: Current time has pass indicated time for Reminder <br> Expected: After adding reminder, notification for that reminder should pop up at the next clock minute.
+   3. Test case: Current time has not pass indicated time for Reminder <br> Expected: No notification should show, unless clock minute has pass time indicated for reminder.
 
-1. Dealing with missing/corrupted data files
+2. Snooze reminder notification
+    1. Prerequisites: Reminder has been added, current time has pass time indicated in reminder, and notification is showing.
+   2. Test case: Clicking on body of notification should open up the Reminder List Window, and dismiss the notification. Notification should not show up again at next clock minute, unless a new reminder
+has been activated. 
+   3. Due to the in-built nature of ControlsFX's notification and how reminders are checked at every minute, expect the notification to disappear and appear again every minute.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
+3. Display a notification for next Scheduled slot
+   1. Prerequisites: Assign a job to an appropriate timetable slot.
+   2. Test case: Once current time is 20 minutes before the next timetable slot (e.g. 10:40 to 10:59), a notification would pop up for the number of jobs assigned to the next timetable slot.
 
