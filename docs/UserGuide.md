@@ -662,9 +662,9 @@ Examples:
 Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING.
 For more detailed information such as how to use the syntax, please refer to the help page.
 
-<img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
-
 Format: `help`
+
+![Viewing help](images/Viewing%20help.png)
 
 [Back to top](#table-of-contents)
 
