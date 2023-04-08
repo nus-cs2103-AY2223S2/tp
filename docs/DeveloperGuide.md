@@ -1049,13 +1049,6 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case ends.
 
-##### Extensions
-
-* 1a. VMS detects error in the command entered.
-  * 1a1. VMS shows an error message.
-
-    Use case resumes from step 1.
-
 #### UC-VAC-003 - Edit vaccination
 
 ##### MSS
