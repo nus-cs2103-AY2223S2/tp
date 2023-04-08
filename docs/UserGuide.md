@@ -955,7 +955,6 @@ Documentation dependencies:
 ### Quick Reference
 - [ADDRESS (Placeholder)](#address-placeholder)
 - [Address](#address)
-- [Admonitions](#admonitions)
 - [Applicant](#applicant)
 - [Applicant List Box](#applicant-list-box)
 - [Application Cycle](#application-cycle)
@@ -998,9 +997,6 @@ Documentation dependencies:
 > <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Address
 > The address of the applicant provided by the user.
-> #### Admonitions
-> Admonition boxes (or simply “admonitions”) are coloured boxes containing highlighted pieces of text.
-> <br>For details on various type of admonitions used in HMHero, refer to the [Admonitions Boxes](#31-admonition-boxes) section of the User Guide
 > #### Applicant
 > The person who apply to the company for the job.
 > #### Applicant List Box
