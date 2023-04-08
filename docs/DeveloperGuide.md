@@ -570,3 +570,14 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+## **Appendix: Planned Enhancements**
+
+Given below are the current known feature flaws and the plans the team have for them in the future versions.
+
+1. The current GUI is not resizable. We plan to add new features; either a dashboard or graph to occupy the extra white space to make it more user-friendly.
+2. The MediConnect currently does not accept name with symbols. We plan to implement that in the next version
+3. Currently, prescriptions do not indicate the doctor that prescribe the medication. We realise this is an important feature to have and plan to implement it in the next version.
+4. The find command currently does not update the display box after filtering the person. We plan to change this in the next version to automatically display the user information after finding the person in the next version.
+5. Currently MediConnect does not set the person's date of birth as a compulsory field. We plan to make the date of birth a compulsory field in the next version.
