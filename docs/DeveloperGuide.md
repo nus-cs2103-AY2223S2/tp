@@ -353,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### **Instructions for Manual Testing**
 
-Presented below are a series of instructions, organized in Context-Action-Result (CAR) format, 
+Presented below are a series of instructions, organized in **Context-Action-Result (CAR) format**, 
 that can be followed to perform manual testing of the application.
 
 <div markdown="span" class="alert alert-info">
@@ -363,7 +363,7 @@ testers are expected to do more *exploratory* testing.
 
 #### **Launch and Shutdown**
 
-#### Scenario: Initial launch
+#### Scenario 1 {: .no_toc}
 
 Context: Initial launch
 
@@ -373,17 +373,32 @@ Action:
 
 Result: Displays the GUI with the window size set to full-screen.
 
-#### Scenario: Shutdown and Restart
+#### Scenario 2 {: .no_toc}
 
-Context: This is the first time you are attempting to shut down the application.
-
-Action:
+**Context:**  This is the first time you are attempting to shut down the application.  
+**Action:**
 1. Right-click on the X button located in the top-right corner of the screen.
-2. Double-click the jar file.
-
-Result: The existing data should remain unchanged.
+2. Double-click the jar file.  
+**Result:**  The existing data should remain unchanged.
 
 #### **Adding an Event**
+
+#### Scenario 1 {: .no_toc}
+**Context:** The event has not yet been added to _Ez-Schedule_.  
+**Action:** Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`.  
+**Result:** The new event has been successfully added to Ez-Schedule.
+
+#### Scenario 2 {: .no_toc}
+
+**Context:** An identical event to the one being added, already exists in _Ez-Schedule_.  
+**Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`.  
+**Result:** Response Box will display the message "This event already exists in the scheduler".
+
+#### Scenario 3 {: .no_toc}
+
+**Context:** The selected time slot for the event is already occupied by another event in _Ez-Schedule_.  
+**Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`.  
+**Result:** Response Box will display the message "Another event already exists at the chosen time".
 
 #### **Recurring an Event**
 
