@@ -475,15 +475,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User adds a person
-2.  AddressBook adds the person to contact list
+2.  SalesPunch adds the person to contact list
 
     Use case ends.
 
 **Extensions**
 
-- 1a. AddressBook detects an error in the entered data.
+- 1a. SalesPunch detects an error in the entered data.
 
-  - 1a1. AddressBook requests for the correct data.
+  - 1a1. SalesPunch requests for the correct data.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.
   - Use case resumes from step 2.
@@ -495,9 +495,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  SalesPunch shows a list of persons
 3.  User requests to edit a specific person in the list
-4.  AddressBook edits the person
+4.  SalesPunch edits the person
 
     Use case ends.
 
@@ -507,9 +507,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-- 3a. AddressBook detects an error in the entered data.
+- 3a. SalesPunch detects an error in the entered data.
 
-  - 3a1. AddressBook requests for the correct data.
+  - 3a1. SalesPunch requests for the correct data.
   - 3a2. User enters new data.
   - Steps 3a1-3a2 are repeated until the data entered is correct.
   - Use case resumes from step 4.
@@ -521,11 +521,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  SalesPunch shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook displays a confirmation message
+4.  SalesPunch displays a confirmation message
 5.  User confirms to delete the specific person in the list
-6.  AddressBook deletes the person
+6.  SalesPunch deletes the person
 
     Use case ends.
 
@@ -537,7 +537,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. The given index is invalid.
 
-  - 3a1. AddressBook shows an error message.
+  - 3a1. SalesPunch shows an error message.
 
     Use case resumes at step 2.
 
