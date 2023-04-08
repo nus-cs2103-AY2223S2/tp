@@ -12,8 +12,6 @@ import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -75,12 +73,12 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA, IDA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     /**
@@ -106,14 +104,14 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleAddressKeyword_multiplePersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         PersonContainsKeywordsPredicate addressPredicate =
                 new PersonContainsKeywordsPredicate()
                         .withField(PredicateKey.ADDRESS, Arrays.asList("wall ave".split("\\s+")));
         FindCommand command = new FindCommand(addressPredicate);
         expectedModel.updateFilteredPersonList(addressPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, ELLE, IDA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, ELLE), model.getFilteredPersonList());
     }
     @Test
     public void execute_numberAddressKeyword_multiplePersonFound() {
@@ -150,14 +148,14 @@ public class FindCommandTest {
     }
     @Test
     public void execute_emailKeyword_multiplePersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 9);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         PersonContainsKeywordsPredicate emailPredicate =
                 new PersonContainsKeywordsPredicate().withField(PredicateKey.EMAIL,
                         Arrays.asList("example".split("\\s+")));
         FindCommand command = new FindCommand(emailPredicate);
         expectedModel.updateFilteredPersonList(emailPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA),
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE),
                 model.getFilteredPersonList());
     }
     @Test
@@ -174,14 +172,14 @@ public class FindCommandTest {
     }
     @Test
     public void execute_genderKeyword_multiplePersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonContainsKeywordsPredicate genderPredicate =
                 new PersonContainsKeywordsPredicate().withField(PredicateKey.GENDER,
                         Arrays.asList("female undefined".split("\\s+")));
         FindCommand command = new FindCommand(genderPredicate);
         expectedModel.updateFilteredPersonList(genderPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, ELLE, FIONA, HOON, IDA),
+        assertEquals(Arrays.asList(ALICE, ELLE, FIONA),
                 model.getFilteredPersonList());
     }
     @Test
@@ -198,31 +196,31 @@ public class FindCommandTest {
     }
     @Test
     public void execute_raceKeyword_multiplePersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         PersonContainsKeywordsPredicate racePredicate =
                 new PersonContainsKeywordsPredicate().withField(PredicateKey.RACE,
                         Arrays.asList("chinese indian".split("\\s+")));
         FindCommand command = new FindCommand(racePredicate);
         expectedModel.updateFilteredPersonList(racePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, ELLE, FIONA, GEORGE, HOON, IDA),
+        assertEquals(Arrays.asList(ALICE, BENSON, ELLE, FIONA, GEORGE),
                 model.getFilteredPersonList());
     }
     @Test
     public void execute_noSplit_multiplePersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonContainsKeywordsPredicate modulesPredicate =
                 new PersonContainsKeywordsPredicate()
                         .withField(PredicateKey.RACE, Arrays.asList("chinese indian"));
         FindCommand command = new FindCommand(modulesPredicate);
         expectedModel.updateFilteredPersonList(modulesPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(GEORGE, HOON, IDA),
+        assertEquals(Arrays.asList(GEORGE),
                 model.getFilteredPersonList());
     }
     @Test
     public void execute_multipleRaceFields_multiplePersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         PersonContainsKeywordsPredicate racePredicate =
                 new PersonContainsKeywordsPredicate()
                         .withField(PredicateKey.RACE, Arrays.asList("chinese ".split("\\s+")))
@@ -230,7 +228,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(racePredicate);
         expectedModel.updateFilteredPersonList(racePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, ELLE, FIONA, GEORGE, HOON, IDA),
+        assertEquals(Arrays.asList(ALICE, BENSON, ELLE, FIONA, GEORGE),
                 model.getFilteredPersonList());
     }
     @Test
