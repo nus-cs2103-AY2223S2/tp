@@ -7,10 +7,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.service.PartMap;
 
 /**
- * Jackson-friendly version of an entry in {@link PartMap}.
+ * Jackson-friendly version of a Part map entry.
  */
 class JsonAdaptedPart {
 
@@ -30,7 +29,7 @@ class JsonAdaptedPart {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Map.Entry} object.
+     * Converts this Jackson-friendly adapted part into the model's {@code Map.Entry} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted part.
      */

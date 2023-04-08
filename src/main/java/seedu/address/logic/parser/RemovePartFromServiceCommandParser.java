@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.RemovePartFromServiceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.service.PartMap;
 
 /**
  * Parses input arguments and creates new RemovePartFromServiceCommand object
@@ -32,8 +31,8 @@ public class RemovePartFromServiceCommandParser implements Parser<RemovePartFrom
         }
 
         String partName = argMultimap.getValue(PREFIX_PART_NAME).get();
-        if (!PartMap.isValidName(partName)) {
-            throw new ParseException(PartMap.MESSAGE_CONSTRAINTS);
+        if (!ParserUtil.isValidPartName(partName)) {
+            throw new ParseException(ParserUtil.PART_MESSAGE_CONSTRAINTS);
         }
         int serviceId = ParserUtil.parseInt(argMultimap.getValue(PREFIX_SERVICE_ID).get());
         int qty = ParserUtil.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
