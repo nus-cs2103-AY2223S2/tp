@@ -45,6 +45,7 @@ public class FindPredicate extends PredicateUtil<Person> {
         this.dateRange = dateRange;
         this.ageRange = ageRange;
     }
+
     @Override
     public boolean test(Person person) {
         PersonContainsNamePredicate hasName = new PersonContainsNamePredicate(name);
@@ -56,5 +57,18 @@ public class FindPredicate extends PredicateUtil<Person> {
         RangeContainsPersonPredicate hasAgeRange = new RangeContainsPersonPredicate(ageRange);
         return andAll(
                 hasName, hasAge, hasDate, hasVariants, hasPostal, hasDateRange, hasAgeRange).test(person);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindPredicate // instanceof handles nulls
+                && name.equals(((FindPredicate) other).name)
+                && age.equals(((FindPredicate) other).age)
+                && subPostal.equals(((FindPredicate) other).subPostal)
+                && date.equals(((FindPredicate) other).date)
+                && variants.equals(((FindPredicate) other).variants)
+                && dateRange.equals(((FindPredicate) other).dateRange)
+                && ageRange.equals(((FindPredicate) other).ageRange)); // state check
     }
 }
