@@ -24,11 +24,12 @@ import seedu.address.model.ReadOnlyAppointmentList;
  * Tuition Connect </a>.
  */
 public class CalendarCard extends UiPart<Region> {
-    private static final CalendarSource source = new CalendarSource("Schedule");
-    private static Calendar calendar = new Calendar("Task");
+    private static CalendarSource source;
+    private static Calendar calendar;
     @FXML
-    private static YearMonthView calendarView = new YearMonthView();
+    private static YearMonthView calendarView;
     private static final String FXML = "CalendarCard.fxml";
+    private static boolean isInstantiated;
     private final Logger logger = LogsCenter.getLogger(CalendarCard.class);
     private DatePopOver datePopOver = null;
 
@@ -37,6 +38,10 @@ public class CalendarCard extends UiPart<Region> {
      */
     public CalendarCard() {
         super(FXML);
+        source = new CalendarSource("Schedule");
+        calendar = new Calendar("Task");
+        isInstantiated = true;
+        calendarView = new YearMonthView();
         calendarView.setRequestedTime(LocalTime.now());
         calendarView.setToday(LocalDate.now());
         calendarView.setShowWeekNumbers(false);
@@ -80,11 +85,14 @@ public class CalendarCard extends UiPart<Region> {
             calendar.addEntry(entry);
         }
         source.getCalendars().add(calendar);
-
     }
 
     @Override
     public YearMonthView getRoot() {
         return calendarView;
+    }
+
+    public static boolean getIsInstantiated() {
+        return isInstantiated;
     }
 }
