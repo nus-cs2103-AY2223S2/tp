@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.entity.person.Customer;
 
 /**
- * Finds and returns the customer details of the provided id.
+ * Finds and selects a specified customer identified by its id
  */
 public class ViewCustomerCommand extends Command {
 

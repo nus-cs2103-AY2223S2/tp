@@ -18,7 +18,7 @@ import seedu.address.model.entity.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Manages adding of technicians
+ * Adds a technician to the shop
  */
 public class AddTechnicianCommand extends AddStaffCommand {
     public static final String COMMAND_WORD = "addtechnician";

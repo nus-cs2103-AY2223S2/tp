@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.entity.shop.exception.CustomerNotFoundException;
 
 /**
- * Manages adding appointments
+ * Adds appointments to the shop
  */
 public class AddAppointmentCommand extends Command {
 
@@ -32,6 +32,7 @@ public class AddAppointmentCommand extends Command {
 
     /**
      * Constructs command that adds appointment to the model
+     *
      * @param customerId ID of customer
      * @param dateTime Date and time of appointment
      */

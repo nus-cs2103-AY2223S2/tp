@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.VehicleType;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing vehicle in the shop.
  */
 public class EditVehicleCommand extends Command {
 

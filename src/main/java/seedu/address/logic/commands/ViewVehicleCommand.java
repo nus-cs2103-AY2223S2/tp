@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.Vehicle;
 
 /**
- * Finds and returns the vehicle details of the provided id.
+ * Finds and selects a vehicle appointment identified by its id
  */
 public class ViewVehicleCommand extends Command {
 

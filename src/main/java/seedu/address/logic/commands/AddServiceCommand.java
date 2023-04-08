@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.ServiceStatus;
 
 /**
- * Manages adding services
+ * Adds a service to the shop and a specific vehicle
  */
 public class AddServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservice";

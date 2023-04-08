@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes a technician identified using it's displayed index from viewtechnician or listtechnicians.
+ * Deletes a technician identified using its id.
  */
 public class DeleteTechnicianCommand extends Command {
 

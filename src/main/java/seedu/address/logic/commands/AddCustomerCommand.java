@@ -18,7 +18,7 @@ import seedu.address.model.entity.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Manages adding of customers
+ * Adds a customer to the shop
  */
 public class AddCustomerCommand extends Command {
     public static final String COMMAND_WORD = "addcustomer";

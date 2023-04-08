@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Manages adding of parts to services
+ * Adds a part to a specific existing service
  */
 public class AddPartToServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservicepart";
@@ -28,6 +28,8 @@ public class AddPartToServiceCommand extends Command {
     private final int quantity;
 
     /**
+     * Constructs command that adds part to a specified service
+     *
      * @param serviceId ID of service
      * @param partName  Name of part
      * @param quantity  Quantity of part

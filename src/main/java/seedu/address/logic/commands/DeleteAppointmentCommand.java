@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes the appointment identified using it's displayed index from viewappointment or listappointments.
+ * Deletes the appointment identified by its id.
  */
 public class DeleteAppointmentCommand extends Command {
 

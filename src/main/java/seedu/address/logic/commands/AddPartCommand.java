@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Command that manages adding parts
+ * Adds a part to the shop
  */
 public class AddPartCommand extends Command {
 
