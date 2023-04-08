@@ -357,7 +357,7 @@ There are three sorting features available.
 
 Their mechanisms are similar. So only take `SortByClientName` as an example
 
-The SortByClientName mechanism is facilitated by `SortByClientNameCommand` 
+The SortByClientName mechanism is facilitated by `SortByClientNameCommand`
 and `SortByClientNameCommandParser`.
 
 `SortByClientNameCommand` extends from `sortCommand` by overriding methods from its parent class.
@@ -371,7 +371,7 @@ The logic of this class follows the sequence.
 The logic of this class follows this sequence.
 
 1. Get the instruction index from the preamble of the input
-   
+
 The following sequence diagram shows how the sort operation works:
 ![SortCommand.png](images/SortCommand.png)
 
@@ -397,9 +397,9 @@ The sequence diagram for the add policy operation works similarly to how the del
 
 ### Delete Policy feature
 
-The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client` object from the model. Given the `Client`object we will retrieve the policies associated to this `Client` and remove the policy based on the index given. 
+The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client` object from the model. Given the `Client`object we will retrieve the policies associated to this `Client` and remove the policy based on the index given.
 
-These classes are implemented this way because, like other commands, such as `DeleteCommand` we first have to retrieve the client list followed by executing the delete feature. 
+These classes are implemented this way because, like other commands, such as `DeleteCommand` we first have to retrieve the client list followed by executing the delete feature.
 
 `DeletePolicyCommandParser` implements `Parser<DeletePolicyCommand>`. `DeletePolicyCommandParser#parse()` is exposed in the `Parser` interface as `Parser#parse()` and the logic of this class follows the sequence.
 1. Get the client index from the preamble of the input.
