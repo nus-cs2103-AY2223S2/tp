@@ -207,7 +207,7 @@ Examples:
 
 Edits an existing person in ModCheck.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` or `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]… [m/MODULE_TAG]…​` or `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/DESCRIPTION] [t/TAG]… [m/MODULE_TAG]…​`
 
 * Edits the person at the specified `INDEX` or `NAME`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
