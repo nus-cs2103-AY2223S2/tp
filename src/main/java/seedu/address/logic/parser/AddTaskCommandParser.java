@@ -51,6 +51,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         } else {
             deadline = new Datetime();
         }
+
         Task task = new Task(title, content, status, createdDate, deadline, id);
         return new AddTaskCommand(task);
     }
