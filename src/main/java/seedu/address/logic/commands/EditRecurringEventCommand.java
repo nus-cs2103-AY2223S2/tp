@@ -34,13 +34,13 @@ public class EditRecurringEventCommand extends Command {
             + "by the index number used in the person listing.\n "
             + "Parameters: "
             + "[index number of the person], "
-            + "[index number of the event] in the event list"
-            + PREFIX_RECURRINGEVENT + "EVENT_NAME"
-            + PREFIX_DAYOFWEEK + "DAY_OF_WEEK"
-            + PREFIX_STARTDATETIME + "START_TIME"
-            + PREFIX_ENDDATETIME + "END_TIME"
-            + "Example: " + COMMAND_WORD + " 1" + " 1" + " ie/biking"
-            + "Example: " + COMMAND_WORD + " 1" + " 1" + " f/14:00" + " t/18:00";
+            + "[index number of the event] in the event list "
+            + PREFIX_RECURRINGEVENT + "EVENT_NAME "
+            + PREFIX_DAYOFWEEK + "DAY_OF_WEEK "
+            + PREFIX_STARTDATETIME + "START_TIME "
+            + PREFIX_ENDDATETIME + "END_TIME "
+            + "\nExample: " + COMMAND_WORD + " 1" + " 1" + " ie/biking"
+            + "\nExample: " + COMMAND_WORD + " 1" + " 1" + " f/14:00" + " t/18:00";
 
     private final Index personIndex;
     private final Index eventIndex;
