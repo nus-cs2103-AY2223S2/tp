@@ -3,10 +3,10 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Introduction**
 
 {{ site.data.techtrack.about.summary }}
@@ -133,8 +133,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -171,8 +170,7 @@ How the parsing works:
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -198,8 +196,7 @@ is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. 
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -283,8 +280,7 @@ The following sequence diagram shows how the argument parsing for the `edit` com
 
 The `delete` command is used to delete the information of an existing role in TechTrack. The command takes in
 an `INDEX` as argument, which corresponds to the role to be deleted. Note that `delete` command uses the
-`FilteredRoleList` for deletion, we can therefore delete roles by their index after invoking other commands such as
-sorting and filtering.
+`FilteredRoleList` for deletion, we can therefore delete roles by their index after invoking other commands such as sorting and filtering.
 
 The format for the `delete` command can be
 seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#deleting-a-role-edit).
@@ -294,10 +290,8 @@ the `RoleBookParser` to parse the
 input. An instance of the `DeleteCommandParser` to parse the `INDEX` is created through the `parseIndex` static
 method in `ParserUtil`.
 
-The `RoleBookParser` will instantiate the `DeleteCommandParser` object and call the parse method with `INDEX` as
-arguments.
-The parse method will create and return a new `DeleteCommand`. The `LogicManager` then executes the `DeleteCommand`,
-which deletes and updates
+The `RoleBookParser` will instantiate the `DeleteCommandParser` object and call the parse method with `INDEX` as arguments.
+The parse method will create and return a new `DeleteCommand`. The `LogicManager` then executes the `DeleteCommand`, which deletes and updates
 the `Role` from the `Model` based on the `INDEX`.
 
 The following sequence diagram shows how the `delete` command works:
@@ -366,25 +360,20 @@ Given below is an example usage of how CompanyCommand and its dependencies is be
 1. The user launches TechTrack, and initializes its role book from preexisting data files.
 
 2. The user can choose to use the `Company Command` to filter companies.
-    - The user executes `company {keyword}` command to filter roles with the given company name in the form of `keyword`
-      .
+    - The user executes `company {keyword}` command to filter roles with the given company name in the form of `keyword`.
 
-3. When `company {keyword}` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse
-   the
+3. When `company {keyword}` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
    input. This then creates an instance of the `CompanyCommandParser` to parse the keyword.
 
 4. Invoking the parse method
-   of `CompanyCommandParser` creates a `CompanyContainsKeywordsPredicate` object that implements the `predicate<Role>`
-   interface.
+   of `CompanyCommandParser` creates a `CompanyContainsKeywordsPredicate` object that implements the `predicate<Role>` interface.
    `CompanyContainsKeywordsPredicate` is used to check if any of the company field of the rolelist contains the keyword.
    If any of the inputs formats are invalid, a `ParseException` will be thrown.
 
-4. The `CompanyCommandParser` then creates a `CompanyCommand` which uses `Model`
-   interface's `Model#updateFilteredRoleList()`
+4. The `CompanyCommandParser` then creates a `CompanyCommand` which uses `Model` interface's `Model#updateFilteredRoleList()`
    to filter the roles based on the `predicate`, which in this case is the keyword.
 
-5. `LogicManager` executes the returned `CompanyCommand` and updates the filtered role list in `Model`. Subsequently,
-   the `CommandResult`
+5. `LogicManager` executes the returned `CompanyCommand` and updates the filtered role list in `Model`. Subsequently, the `CommandResult`
    is returned.
 
 The following sequence diagram shows how the `company` command works:
@@ -405,8 +394,7 @@ The following sequence diagram shows how the `company` command works:
 
 #### Limitations:
 
-The `keyword` used to filter the roles in the Company Command must contain at least one non-space character and
-filtering
+The `keyword` used to filter the roles in the Company Command must contain at least one non-space character and filtering
 is not case-sensitive.
 
 E.g.: `company Google` is equivalent to `company google`
@@ -514,8 +502,7 @@ TechTrack's UI components are highlighted below:
 
 The main window comprises three key components: namely the Command Input Box located at the bottom half,
 the Role List Box on the left half, and the Result Display Box on the right half. The Command Input Box provides users
-with a text field to input their commands, and it remains unchanged every time it is rendered. The Role List Box
-displays
+with a text field to input their commands, and it remains unchanged every time it is rendered. The Role List Box displays
 a list of roles, which may differ in number, but it is rendered using JavaFX's `ListView` component. Thus, executing a
 command allows for straightforward updates to these two components.
 
@@ -531,8 +518,7 @@ named `place` was created, which takes in a JavaFX `node` object, clears all chi
 places the new `node` in the `VBox`. This allows us to update the `ResultDisplay` to support custom displays based on
 the command provided.
 
-As mentioned above in the [View Command Section](#view-command-feature), the `CommandResult` class was also updated to
-be generic.
+As mentioned above in the [View Command Section](#view-command-feature), the `CommandResult` class was also updated to be generic.
 This allows `MainWindow.java` to get different types of output based on the object `T` of `CommandResult`. This diagram
 illustrates how the `MainWindow.java` file determines the type of display rendered:
 
@@ -545,15 +531,14 @@ illustrates how the `MainWindow.java` file determines the type of display render
 | [`StringDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/StringDisplay.java) | Renders a String | All commands except `view` |
 | [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)     | Renders a Role   | Only the `view` command    |
 
+
 #### Possible Future Enhancements
 
 1. The render logic to determine which display to render is written in the `execute` method of `MainWindow.java`.
    It could be abstracted out to a new class, named `DisplayManager` for instance, which handles which display to place
    under `ResultDisplay`.
-2. The current way of determining which display to render is not very extendible, since we're using the type `T`
-   from `CommandResult`
-   to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point
-   1),
+2. The current way of determining which display to render is not very extendible, since we're using the type `T` from `CommandResult`
+   to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point 1),
    using a common interface to implement the required operations through dynamic binding. One possible way to do
    this is shown below in the form of a class diagram:
 
@@ -578,9 +563,7 @@ illustrates how the `MainWindow.java` file determines the type of display render
 
 **Target user profile**:
 
-* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for
-  internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search
-  for their job efficiently.
+* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search for their job efficiently.
 
 **Value Proposition**: Manage jobs faster than a typical mouse/GUI driven app
 
@@ -794,7 +777,7 @@ Similar to the manual testing of [sort all roles by salary section](#Sort all ro
 
 Prerequisite: There is at least 1 role shown in the Role List Box
 
-Format: `view 1`
+`view 1`
 
 Expected Output in the Role List Box : Still showing the same list as before.
 
@@ -802,7 +785,9 @@ Expected Output Command Output Box : Details of first role in Role List Box show
 name, company, salary, deadline, experience, job description, email, contact and website of the role.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing. </div>
+testers are expected to do more *exploratory* testing.
+
+</div>
 
 ### Launch and shutdown
 
@@ -819,30 +804,24 @@ testers are expected to do more *exploratory* testing. </div>
 1. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-### Adding a Role
 
+### Adding a Role
 1. Adding a Role to role book.
 
-1. Test
-   case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
-   Expected: Role is added to the bottom of the list, on the left side. Role name, company, tags, salary, deadline,
-   experience required are shown. The rest of roles in the list remains.
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, tags, salary, deadline, experience required are shown. The rest of roles in the list remains.
 
-1. Test
-   case: `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+1. Test case: `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
    Expected: Role is not added, Error details shown in the status message. Missing compulsory field.
 
-1. Test
-   case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
-   Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience
-   required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
 
 ### Editing a Role
-
-1. Editing an existing role.
+1. Editing a existing role.
 
 1. Prerequisities: `view 1` and index 1 of the list exists.
 
@@ -854,8 +833,7 @@ testers are expected to do more *exploratory* testing. </div>
    Expected: No role is edited. Error details shown in the status message. Status bar remains the same.
 
 1. Test case: `edit 1`<br>
-   Expected: No role is edited. Error details shown in the status message, asking user to input at least one field.
-   Status bar remains the same.
+   Expected: No role is edited. Error details shown in the status message, asking user to input at least one field. Status bar remains the same.
 
 ### Deleting a Role
 
@@ -970,5 +948,3 @@ Ideas:
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Role**: Refers to internships or full-time jobs
 * **Attribute**: Refers to the parameters a role can have
-
- 
