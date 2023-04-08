@@ -6,6 +6,6 @@ package seedu.address.model.student.exceptions;
  */
 public class ConflictingExamsException extends RuntimeException {
     public ConflictingExamsException() {
-        super("The exam clashes with another exam");
+        super("The exam clashes with another exam/lesson");
     }
 }

@@ -70,6 +70,7 @@ public class CreateExamCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        StringBuilder lessonClashMessage = new StringBuilder("\n");
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
@@ -105,6 +106,10 @@ public class CreateExamCommand extends Command {
 
         try {
             for (Student student : studentList) {
+                if (student.hasLessonAtSameTime(exam)) {
+                    lessonClashMessage.append("*******WARNING*******\n").append(student.getName().fullName)
+                        .append(" has a lesson at the same time as the exam\n Consider rescheduling clashing lesson");
+                }
                 student.addExam(exam);
             }
         } catch (Exception e) {
@@ -118,7 +123,7 @@ public class CreateExamCommand extends Command {
         }
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_EXAM_ADDED_SUCCESS, exam, sb));
+                String.format(Messages.MESSAGE_EXAM_ADDED_SUCCESS, exam, sb) + lessonClashMessage);
     }
 
     @Override
