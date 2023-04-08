@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-#### Use case: Delete multiple persons by multiple Indexes
+#### Use case: Delete multiple persons by multiple indexes
 
 **MSS**
 
@@ -388,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. A given index is invalid.
+* 3a. One of the given indexes is invalid.
 
     * 3a1. ModCheck shows an error message.
 
@@ -413,9 +413,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. There is no person with the specified name.
 
-    * 3a1. ModCheck shows an error message and empty list.
+    * 3a1. ModCheck shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
+
 
 * 3b. There are multiple persons with the same name.
 
@@ -476,26 +477,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       * 3b1b. ModChecks shows an error message.
 
 
-#### Use case: Edit a contact by INDEX
+#### Use case: Edit a contact by index
 
 **MSS**
 
-1.  Student requests to edit a contact supplying new values for certain fields 
-2.  ModCheck finds the relevant contact and edits it
+1. Student requests to list contacts.
+2. ModCheck shows a list of contacts.
+3. Student requests to edit a contact supplying new values for certain fields 
+4. ModCheck finds the relevant contact by index and edits it
 
     Use case ends.
 
 **Extensions**
 
-* 1a The new value for the specified field is invalid
-    * 1a1. ModCheck informs student that the given value for the specified field is invalid
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a The new value for the specified field is invalid
+    * 3a1. ModCheck informs student that the given value for the specified field is invalid
+
+      Use case resumes at step 2.
+
+* 4a. The given index is invalid.
+
+    * 4a1. ModCheck shows an error message.
+
+      Use case resumes at step 2.
+
+
+#### Use case: Edit a contact by name
+
+**MSS**
+
+1. Student requests to list contacts.
+2. ModCheck shows a list of contacts.
+3. Student requests to edit a contact supplying new values for certain fields
+4. ModCheck finds the relevant contact by name and edits it
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a The new value for the specified field is invalid
+    * 3a1. ModCheck informs student that the given value for the specified field is invalid
+
+      Use case resumes at step 2.
+
+* 4a. The contact does not exist
+    * 4a1. ModCheck informs student that contact does not exist
+
+      Use case resumes at step 2
+
+* 4b. There are multiple contacts with the same specified name.
+    * 4b1. ModCheck informs student that there are multiple contacts with the same specified name, and returns a list of contacts with the same specified name.
 
       Use case ends.
-
-* 2a. The contact does not exist
-    * 2a1. ModCheck informs student that contact does not exist
-
-        Use case ends.
+  
 
 
 
@@ -572,6 +614,12 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   
+   1. Test case: `delete 1,2,3`<br>
+      Expected: First, second and third contacts are deleted from the list if there are at least three contacts in the list. Success shown in status message.
+
+   1. Test case: `delete Amy`<br>
+      Expected: Amy is deleted from the list if there is only one contact named Amy. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.

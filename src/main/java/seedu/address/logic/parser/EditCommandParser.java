@@ -76,7 +76,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             } else {
                 String nameArg = argMultimap.getPreamble();
                 String[] splitArgs = nameArg.trim().split("\\s");
-                System.out.println(Arrays.toString(splitArgs));
                 return new EditByNameCommand(new NameContainsAllKeywordsPredicate(Arrays.asList(splitArgs)),
                         editPersonDescriptor);
             }
