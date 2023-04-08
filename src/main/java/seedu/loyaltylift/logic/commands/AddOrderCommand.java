@@ -5,7 +5,6 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_D
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,7 +66,6 @@ public class AddOrderCommand extends Command {
         }
 
         model.addOrder(createdOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, createdOrder));
     }
 

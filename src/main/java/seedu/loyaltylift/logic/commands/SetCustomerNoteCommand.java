@@ -3,7 +3,6 @@ package seedu.loyaltylift.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 import java.util.Set;
@@ -67,7 +66,6 @@ public class SetCustomerNoteCommand extends Command {
         Customer editedCustomer = createEditedCustomer(customerToEdit, this.note);
 
         model.setCustomer(customerToEdit, editedCustomer);
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         return new CommandResult(String.format(MESSAGE_SET_NOTE_SUCCESS, editedCustomer));
     }
 
