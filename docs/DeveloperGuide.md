@@ -419,7 +419,7 @@ is created, empty note list will be created and up to 20 notes can be added to a
 * is reasonably comfortable using CLI apps
 * prefer using vim commands
 
-**Value proposition**: manage students and practice using vim commands
+**Value proposition**: manage students and practice using vim and terminal like commands
 
 
 ### User stories
@@ -488,9 +488,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TrAcker` and the **Actor** is the `CS2040 TA`, unless specified otherwise)
 
+---
+
 #### CRUD use cases
 
----
 System: Software System (TrAcker)
 <br>
 Use case: UC01 - Add tutorial lessons
@@ -525,13 +526,10 @@ Use case ends.
   
   Use case ends
 
----
-
 - UC02 - Add lab lessons is the same as UC01 - Add tutorial lessons with minor differences.
 - UC03 - Add consutation lessons is the same as UC01 - Add tutorial lessons with minor differences.
 - The only different is that the event types are replaced accordingly. i.e. replace tutorial with lab for UC02 and replace tutorial with consultation for UC03.
 
----
 System: Software System (TrAcker)
 <br>
 Use case: UC04 - Add students to event
@@ -584,8 +582,6 @@ Use case ends.
 
     Use case ends
 
----
-
 System: Software System (TrAcker)
 <br>
 Use case: UC05 - Delete Event
@@ -635,8 +631,6 @@ Use case ends.
     * 2a1. TA removes input from TrAcker.
 
   Use case ends
-
----
 
 System: Software System (TrAcker)
 <br>
@@ -778,8 +772,6 @@ Use case ends.
 
     Use case ends
 
----
-
 System: Software System (TrAcker)
 <br>
 Use case: UC09 - Filter Students
@@ -828,10 +820,6 @@ Use case ends.
 
 ---
 
-![SortUseCaseDiagram](images/SortUseCaseDiagram.png)
-
----
-
 #### Notes Use Cases
 
 System: Software System (TrAcker)
@@ -859,8 +847,6 @@ Use case ends.
     * 2a1. TrAcker displays an empty card.
 
     Use case ends.
-
---- 
 
 System: Software System (TrAcker)
 <br>
@@ -908,8 +894,6 @@ Use case ends.
 
     Use case ends
 
----
-
 System: Software System (TrAcker)
 <br>
 Use case: UC12 - Edit notes in an event
@@ -939,8 +923,6 @@ Use case ends.
 
     Use case ends
 
----
-
 System: Software System (TrAcker)
 <br>
 Use case: UC13 - Delete notes from an event
@@ -968,9 +950,6 @@ Use case ends.
     * a1. TrAcker cancels note deletion.
 
     Use case ends
-
-![NoteUseCaseDiagram](images/NoteUseCaseDiagram.png)
-
 ---
 
 ### Non-Functional Requirements
@@ -992,6 +971,8 @@ Use case ends.
 15. Data should be saved to local storage after any data change has been made within the application.
 16. Event notes should be pure texts (no images or videos).
 
+---
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -1011,40 +992,58 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   i. Download the TrAcker.jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   ii. Double-click the TrAcker.jar file Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   i. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   ii. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Deleting a student
 
-### Deleting a person
+1. Deleting a student while all students are being shown
 
-1. Deleting a person while all persons are being shown
+   i. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   ii. Test case: `rm 1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
 
-   1. Test case: `rm 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   iii. Test case: `rm 0`<br>
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Test case: `rm 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is larger than the list size)<br>
+   iv. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding a student
+
+1. Adding a student
+
+   i. Prerequisites: Student details to be added does not have the same nus email and telegram handle as anyone in the student list.
+
+   ii. Test case: `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`<br>
+       Expected: Student is added to the list and list gets updated with the new student details.
+
+   iii. Test case: `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`<br>
+       Expected: No student is added since student details (particularly nus email and telegram handle) already exists. Error details shown in the status message. Status bar remains the same.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   i. Pre-requisite: TrAcker.jar file is launched. 
+    
+   ii. To simulate a missing data file: Close TrAcker, delete addressbook.json, and relaunch TrAcker.
+   
+   iii. Expected behaviour: The original json data will be re-generated.
 
-1. _{ more test cases …​ }_
+2. Dealing with corrupted data files
+   
+   i. Pre-requisite: TrAcker.jar file is launched.
+   
+   ii. To simulate a corrupted data file: Close TrAkcer, type random characters in addressbook.json that makes the json file invalid. Relaunch TrAcker.
+   
+   iii. Expected behaviour: Empty student list in student tab and empty events in event tab. TrAcker only expects valid json file and data, and is not responsible for json file manipulations that render the json file data invalid.
