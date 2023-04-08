@@ -905,7 +905,7 @@ testers are expected to do more *exploratory* testing.
 ### Set an alert window
 
 1. Add a task that starts or ends within 24 hours
-   1. Prerequisites: It is the first start-up of Clock-Work with no changes `alert` command calls. OR <br>
+   1. Prerequisites: It is the first start-up of Clock-Work with no `alert` command calls. OR <br>
     User has already called `alert 24`.
    1. Test case: `add n/Test D/2023-04-08 0900` assuming that is it currently `2023-04-07 1000` <br>
     Expected: Task added to the task list. Details of added task shown in status message. <br>
