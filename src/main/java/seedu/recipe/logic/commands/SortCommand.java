@@ -23,7 +23,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts the recipes in your recipe book by price in the order specified.\n"
             + "Format: " + COMMAND_WORD + " ORDER\n"
-            + "ORDER can only be `asc` or `desc`\n"
+            + "ORDER can only be `asc` or `desc`.\n"
             + "Example: " + COMMAND_WORD + " asc";
 
     private final boolean isAsc;
