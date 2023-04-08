@@ -7,44 +7,47 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
+
 - [Table of Contents](#table-of-contents)
 - [Quick start](#quick-start)
-  - [Glossary](#glossary)
+  * [Glossary](#glossary)
 - [GUI](#gui)
-  - [Quick Access Buttons and Detailed Information Section](#quick-access-buttons-and-detailed-information-section)
-    - [Profile Page](#profile-page)
-    - [Homework Page](#homework-page)
-    - [Lessons Page](#lessons-page)
-    - [Exams Page](#exams-page)
+  * [Quick Access Buttons and Detailed Information Section](#quick-access-buttons-and-detailed-information-section)
+    + [Profile Page](#profile-page)
+    + [Homework Page](#homework-page)
+    + [Lessons Page](#lessons-page)
+    + [Exams Page](#exams-page)
 - [Commands](#commands)
-  - [Profile Commands](#profile-commands)
-    - [Create a new student profile](#create-a-new-student-profile)
-    - [Update Student Information](#update-student-information)
-  - [Homework Commands](#homework-commands)
-    - [Assign Homework to a Student](#assign-homework-to-a-student)
-    - [View the Homework of Students](#view-the-homework-of-students)
-    - [Delete Homework from a Student](#delete-homework-from-a-student)
-    - [Mark the Homework of a Student as Done](#mark-the-homework-of-a-student-as-done)
-    - [Unmark Homework of a Student as Undone](#unmark-homework-of-a-student-as-undone)
-    - [Update Homework of a Student](#update-homework-of-a-student)
-  - [Lessons Commands](#lessons-commands)
-    - [Create a New Lesson Plan for the Upcoming Lesson](#create-a-new-lesson-plan-for-the-upcoming-lesson)
-    - [View Lessons](#view-lessons)
-  - [Delete a Lesson from a student](#delete-a-lesson-from-a-student)
-  - [Update a Lesson](#update-a-lesson)
-  - [Exams Commands](#exams-commands)
-    - [Add an Exam to be tracked](#add-an-exam-to-be-tracked)
-    - [Remove an exam](#remove-an-exam)
-    - [View exams tracked by TutorPro](#view-exams-tracked-by-tutorpro)
-    - [Edit exam details](#edit-exam-details)
+  * [How to interpret the Command format](#how-to-interpret-the-command-format)
+  * [Search by Name Mechanism](#search-by-name-mechanism)
+  * [Profile Commands](#profile-commands)
+    + [Create a new student profile](#create-a-new-student-profile)
+    + [Update Student Information](#update-student-information)
+  * [Homework Commands](#homework-commands)
+    + [Assign Homework to a Student](#assign-homework-to-a-student)
+    + [View the Homework of Students](#view-the-homework-of-students)
+    + [Delete Homework from a Student](#delete-homework-from-a-student)
+    + [Mark the Homework of a Student as Done](#mark-the-homework-of-a-student-as-done)
+    + [Unmark Homework of a Student as Undone](#unmark-homework-of-a-student-as-undone)
+    + [Update Homework of a Student](#update-homework-of-a-student)
+  * [Lessons Commands](#lessons-commands)
+    + [Create a New Lesson Plan for the Upcoming Lesson](#create-a-new-lesson-plan-for-the-upcoming-lesson)
+    + [View Lessons](#view-lessons)
+    + [Delete a Lesson from a student](#delete-a-lesson-from-a-student)
+    + [Update a Lesson](#update-a-lesson)
+  * [Exams Commands](#exams-commands)
+    + [Add an Exam to be tracked](#add-an-exam-to-be-tracked)
+    + [Remove an exam](#remove-an-exam)
+    + [View exams tracked by TutorPro](#view-exams-tracked-by-tutorpro)
+    + [Edit exam details](#edit-exam-details)
 - [FAQ](#faq)
 - [Summary](#summary)
-  - [List of Commands](#list-of-commands)
-  - [List of Prefixes](#list-of-prefixes)
-  - [Supported date-time formats](#supported-date-time-formats)
+  * [List of Commands](#list-of-commands)
+  * [List of Prefixes](#list-of-prefixes)
+  * [Supported date-time formats](#supported-date-time-formats)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents
-generated with markdown-toc</a></i></small>
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -87,15 +90,14 @@ The following table provides clarification of the terms commonly used in TutorPr
 |    **Lesson**    | A `Lesson` that the user has scheduled with a `Student`                                                                                                                                                             |
 |     **Exam**     | An `Exam` that a Student is scheduled to sit for                                                                                                                                                                    |
 
-
 --------------------------------------------------------------------------------------------------------------------
 ## GUI
-When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**.
+When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**. 
 
 ![Starting Display Window](images/GUI.jpg)
 
-* The **Command Box** on the left bottom refers to the text field where you can type commands in.
-* The **Display List for Students** on the left top refers to the list of students you are currently displaying.
+* The **Command Box** on the left bottom refers to the text field where you can type in all your commands.
+* The **Display List for Students** on the left top refers to the section where all the students are displayed.
 * The **Detailed Information Section** on the right refers to the section where more specific information of the profile, homework, lessons, or exams of a particular student is displayed.
 
 You may enter the following commands in the Command Box to see how the Display List changes:
@@ -108,6 +110,7 @@ You may also click the quick access buttons one each student card to see how the
 ### Quick Access Buttons and Detailed Information Section
 Upon launching the application or executing a command, a welcome page will be displayed in the Detailed Information Section. 
 Each Student card has four buttons, which are profile, homework, lessons, and exams. When a user clicks on any of the buttons, the corresponding information will be presented in the Detailed Information Section.
+
 #### Profile Page
 Upon clicking the Profile Button, the Detailed Information section will be refreshed and show the detailed particulars of the student, including the student's full name, phone number, address, and email.
 
@@ -134,8 +137,11 @@ showing all the upcoming lessons.
 
 ![Starting Display Window](images/Lessons.jpg)
 
-:bulb: **Tip:** If you want to see the index of the lessons in the list,
+:bulb: **Tip:** Lesson Lists do not have indexes to avoid confusion with the indexes of the lessons in the original list.
+If you want to see the index of the lessons in the list,
 you can use the `view-lessons` command to view the list of lessons.
+
+:bulb: **Tip:** This page only shows the most basic information of the lessons. If you want to see more details of the lessons, you can use the `view-lessons` command to view the list of lessons.
 
 #### Exams Page
 
@@ -143,33 +149,48 @@ Upon clicking the Exam Button,
 the Detailed Information section will be refreshed and show the detailed Exams Information for the student.
 
 It includes a past exams list, showing all the past exams information and all the upcoming exams list,
-showing all the upcoming exams.
+showing all the upcoming exams. 
 
 ![Starting Display Window](images/Exams.jpg)
 
-:bulb: **Tip:**<br> If you want to see the index of the exams in the list,
+:bulb: **Tip:** Exam Lists do not have indexes to avoid confusion with the indexes of the exams in the original list.
+If you want to see the index of the exams in the list,
 you can use the `view-exams` command to view the list of exams.
+
+:bulb: **Tip:** This page only shows the most basic information of the exams. If you want to see more details of the exams, you can use the `view-exams` command to view the list of exams.
 
 ## Commands
 
-
-:information_source: **How to interpret the Command format:**<br>
+### How to interpret the Command format
 
 * The terms in `UPPER_CASE` are placeholders need to replace with your n values. For example, in the command `new-student name/NAME`, `NAME` is a placeholder that can be substituted with a specific name, such as `new-student n/John Doe`.
-
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[name/STUDENT_NAME]…​` can be used as ` ` (i.e. 0 times), `name/John Doe`, `name/John Doe name/Jane Doe` etc.
-
 * Extraneous parameters for commands that don't take in parameters
   (such as `help`, `exit,` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
 * Unless otherwise specified, the order of prefixes doesn't matter.<br>
   e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable unless stated otherwise in a particular command.
+* Parameters can be in any order.
+* TutorPro allows you to execute commands on students in the entire student list, instead of just the displayed list. 
+  For example: 
+  - currently, the displaying list only shows one student, `Bernice Yu`.
+    
+    ![Entire List](images/entireList1.jpg)
+  - However, you can still execute commands to `John Doe` even though he is not displayed in the list.
+    
+    ![Entire List](images/entireList2.jpg)
+  - This is because `John Doe` is in the original student list, and the command will be executed on the original student list.
+      
+  - ![Entire List](images/entireList3.jpg)
+    
+### Search by Name Mechanism
 
-* Parameters can be in any order.<br>
-
-
+* TutorPro uses Students' Names as primary keys to identify students.
+* Most of the commands (except) in TutorPro allow you to search for a student by name, rather than by index, which is more intuitive for the user and eliminates the need to remember the index of the student.
+* Therefore, duplicate names are not allowed. Names that are substrings of other names or vice versa are not allowed. For example, `John Doe` and `John` are not allowed. If you have students with the exact name, say `John Doe`, you can add a number to the end of the name to differentiate them. For example, `John Doe 1` and `John Doe 2`.
+* The search by name mechanism is case-insensitive, meaning that the search will be case-insensitive. For Example, `john doe` and `John Doe` will be treated as the same name.
+* Partial names can be used as well. For example, `doe` will return all students with the name `John Doe` and `Jane Doe`.
 
 ### Profile Commands
 
@@ -223,7 +244,8 @@ Examples:
 
 :bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
 
-:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX,
 and DEADLINE should all only appear at most once and should not be empty.
@@ -251,7 +273,8 @@ Examples:
 
 ![View Homework](images/view-homework.jpg)
 
-:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STATUS should only appear at most once and should not be empty.
 STUDENT_NAME can be zero or multiple, but they all can't be empty.
@@ -275,7 +298,8 @@ Examples:
 
 :bulb: **Tip:** You can use the `view-homework` command to view the list of homework the student currently has.
 
-:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -296,7 +320,8 @@ Examples:
 
 ![Mark Homework](images/mark-homework.jpg)
 
-:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -317,7 +342,8 @@ Examples:
 
 ![Unmark Homework](images/unmark-homework.jpg)
 
-:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -346,7 +372,8 @@ Examples:
 
 :bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
 
-:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX,
 and DEADLINE should all only appear at most once and should not be empty.
@@ -380,6 +407,7 @@ Examples:
 :bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
 
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STUDENT_NAME, LESSON_TITLE, START_TIME, and END_TIME should all appear exactly once and should not be empty.
 
@@ -410,11 +438,12 @@ Examples:
 ![View Lesson](images/view-lesson.jpg)
 
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** SUBJECT, DATE, and DONE should all only appear at most once and should not be empty.
 STUDENT_NAME can appear multiple times, but none should empty.
 
-### Delete a Lesson from a student
+#### Delete a Lesson from a student
 Deletes a lesson for a given student.
 
 Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
@@ -432,11 +461,12 @@ Example:
 :bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
 
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STUDENT_NAME and LESSON_INDEX should all appear exactly once and should not be empty.
 
 
-### Update a Lesson
+#### Update a Lesson
 Updates a lesson for a given student. This includes the lesson title, start time, and/or end time.
 
 Format: `update-lesson [name/STUDENT_NAME] [index/LESSON_INDEX] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
@@ -463,6 +493,7 @@ Example:
 :bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-and-time-formats).
 
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STUDENT_NAME, LESSON_INDEX should appear exactly once and should not be empty.
 
@@ -598,3 +629,4 @@ Examples:
 * `dd MMM yyyy HH:mm `
 * `MMM dd, yyyy HHmm`
 * `MMM dd, yyyy HH:mm `
+
