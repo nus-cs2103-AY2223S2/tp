@@ -350,7 +350,7 @@ Both of which implement the `Predicate<Person>` interface where the `test` metho
 The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
 
 
-Here is a sequence diagram showing the interactions between components when `find n/Alice` is run.:
+Here is a sequence diagram showing the interactions between components when `find n/Alice p/12345678` is run.:
 
 ![find_sequence](images/FindSequenceDiagram.png)
 
@@ -359,7 +359,7 @@ Here is a sequence diagram showing the interactions between components when `fin
 
 ### Feature details
 
-Our implementation extends from the `find` implementation in AB3 by enchancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
+Our implementation extends from the `find` implementation in AB3 by enhancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
 
 > Take a person's name to be `Michelle Yeoh`.  \\
 > An example of finding by `PARTIAL_KEYWORD` is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh".
@@ -409,6 +409,28 @@ Our implementation has some additions such as:
 
 [↑ Back to top](#table-of-contents)
 
+### Filter feature
+
+#### Implementation Details
+
+Filter was implemented on top of find to allow users to find students with fewer restrictions. As `find` only returns the students that satisfy all the specified criteria, filter` on the other hand will allow users to find all students that satisfy at least 1 criteria.
+
+This was done to take improve the flexibility of filtering the student list.
+
+Here is a sequence diagram showing the interactions between components when `filter n/Alice p/12345678` is run:
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Feature details
+
+### General Design Considerations
+
+
+[↑ Back to top](#table-of-contents)
+
 ### List feature
 
 #### Implementation Details
@@ -440,16 +462,16 @@ The proposed remark mechanism will be facilitated by a pop-up text box. This wil
 
 In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs).
 
-Additionally, the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
+Additionally, we opted for a pop-up text window as the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
 
 **Aspect: Command input format**
-* **Alternative 1: (Current implementation)** Adding the `remark` through the command line.
+* **Alternative 1:** Adding the `remark` through the command line.
   * Pros:
     * Easier to implement
   * Cons:
     * Restricts users to a single line or continuous paragraph of remark.
     * Limits formatting options for remark.
-* **Alternative 2: (Future implementation)** Adding remark through a pop-up text window
+* **Alternative 2: (Current implementation)** Adding remark through a pop-up text window
   * Pros:
     * Provides users flexibility in the format of their remarks.
     * Remarks are not restricted to a single line or continuous paragraph.
@@ -457,20 +479,20 @@ Additionally, the command line only provides a restricted view and input option 
     * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting erros.
 
 **Aspect: Remark display**
-* **Alternative 1: (Current choice)** Preview the first line of a student's remarks under all the other attributes
+* **Alternative 1: (Current implementation)** Preview the first line (truncated) of a student's remarks under all the other attributes
   * Pros:
     * Short remarks are instantly visible to users.
     * Easy to implement.
   * Cons:
-    * Remarks are limited to a single line as long as the width of the window.
-    * Formatting of remarks are not visible.
-* **Alternative 2: (Future implementation)** If a remark is present, simply display an indicator in `PersonCard`
+    * A short remark which has a length slightly over the character limit for truncation can only be viewed via the [`show`](#show-feature)
+* **Alternative 2:** If a remark is present, simply display an indicator in `PersonCard`
   * Pros:
     * Easy to implement.
-    * Viewing the remark in `ResultDisplay` is supported by the [show](#show-feature) command.
+    * Viewing the remark in `ResultDisplay` is supported by the [`show`](#show-feature) command.
     * Supports formatting of `remark` since it is not restricted to the `PersonCard` view.
   * Cons:
     * An extra step for users may be inconvenient
+    * Inconvenient for short remarks compared to alternative 1.
 * **Alternative 3:** Show the full remark in `PersonCard` beside all the other attributes
   * Pros:
     * Remark is directly visible from the list.
@@ -478,6 +500,128 @@ Additionally, the command line only provides a restricted view and input option 
   * Cons:
     * Remarks are limited to the view of `PersonCard` and size of the window.
     * Remarks that are too long will be cut off and not visible.
+
+[↑ Back to top](#table-of-contents)
+
+### Show feature
+
+#### Implementation Details
+
+The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature.
+
+Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
+
+#### General Design Considerations
+**Aspect: Display output**
+* **Alternative 1: (Future implementation)** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
+  * Pros:
+    * Allows users to view the student details and remarks all at once.
+    * Supports the `remark` feature as intended
+  * Cons:
+    * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
+    * Harder to implement as the size of the `PersonCard` for the `Student` has to be updated everytime `show` is executed.
+
+* **Alternative 2: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
+  * Pros:
+    * Supports the `remark` feature as intended since scrolling is possible.
+    * Allows users to view the student details and remarks all at once.
+  * Cons:
+    * Harder to implement
+
+[↑ Back to top](#table-of-contents)
+
+### Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `versionStateHistory` and `currentVersionPointer`. Additionally, it implements the following operations:
+
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history as well as the command that was last executed.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentVersionPointer` pointing to that single address book state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentVersionPointer` is shifted to the newly inserted address book state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentVersionPointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#checkUndoable()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works (assuming `VersionedAddressBook is undoable`):
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentVersionPointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+
+The following sequence diagrama shows how the redo operation works (assuming `VersionedAddressBook` is redoable):
+
+![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#checkRedoable()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentVersionPointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentVersionPointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+**Aspect: Command History:**
+
+* **Alternative 1 (Current implementation):** Only saves the commands that modify the address book.
+  * Pros: Easy to implement.
+  * Cons: Reduces user experience as keeping track of all commands will also allow us to improve the error messages by specifying the specific recent command which does not allow `undo` or `redo`
+
+* **Alternative 2 (Future implementation):** Save every command executed regardless of whether it modifies the address book.
+  * Pros: 
+  * Improves user experience by improving the quality of the error message for `undo` and `redo`
+  * Cons: Slightly more complicated to implement as a separate `currentStatePointer` for the command history will have to be added.
 
 [↑ Back to top](#table-of-contents)
 
@@ -523,115 +667,6 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
 
 _{more aspects to be added}_
 
-
-[↑ Back to top](#table-of-contents)
-
-### Show feature
-
-#### Implementation Details
-
-The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature.
-
-Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
-
-#### General Design Considerations
-**Aspect: Display output**
-* **Alternative 1: (Future implementation)** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
-  * Pros:
-    * Allows users to view the student details and remarks all at once.
-    * Supports the `remark` feature as intended
-  * Cons:
-    * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
-    * Harder to implement as the size of the `PersonCard` for the `Student` has to be updated everytime `show` is executed.
-
-* **Alternative 2: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
-  * Pros:
-    * Supports the `remark` feature as intended since scrolling is possible.
-    * Allows users to view the student details and remarks all at once.
-  * Cons:
-    * Harder to implement
-
-[↑ Back to top](#table-of-contents)
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentVersionPointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentVersionPointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentVersionPointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentVersionPointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentVersionPointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentVersionPointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentVersionPointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 [↑ Back to top](#table-of-contents)
 
@@ -900,6 +935,10 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 [↑ Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+
 
 ## **Appendix: Planned enhancements**
 
