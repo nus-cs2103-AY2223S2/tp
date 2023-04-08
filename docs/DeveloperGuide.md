@@ -192,10 +192,6 @@ object.
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-Original AddressBook Storage Component
-
-<img src="images/StorageClassDiagram.png" width="550" />
-
 OfficeConnect Storage Component
 
 <img src="images/OfficeStorageClassDiagram.png" width="750" />
@@ -1083,31 +1079,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.5 Glossary
 
 #### *A*
-  - ##### All: All task and person.
-  - ##### Assign: Assign a task to a person.
+  - ##### All: 
+    - All task and person.
+  - ##### Assign: 
+    - Assign a task to a person.
 
 #### *M*
   - ##### Mark: Mark a task as completed.
   - ##### Mainstream OS: Windows, Linux, Unix, OS-X
 
 #### *P*
-  - ##### P: A person.
-  - ##### PI: View a person's details.
-  - ##### Private contact detail: A contact detail that is not meant to be shared with others
+  - ##### P: 
+    - A person.
+  - ##### PI: 
+    - View a person's details.
+  - ##### Private contact detail: 
+    - A contact detail that is not meant to be shared with others
 
 #### *P*
-  - ##### Quickstart: Launch the application with sample data.
+  - ##### Quickstart: 
+    - Launch the application with sample data.
 
 #### *T*
-  - ##### T: A Task.
-  - ##### TI: View a task's details.
+  - ##### T: 
+    - A Task.
+  - ##### TI: 
+    - View a task's details.
 
 #### *U*
-  - ##### Unassign: Unassign a task from a person.
-  - ##### Unmark: Unmark a completed task.
+  - ##### Unassign: 
+    - Unassign a task from a person.
+  - ##### Unmark: 
+    - Unmark a completed task.
 
 #### *V*
-  - ##### View : A term used in the app to refer to the action of accessing and reviewing detailed information about records, such as person details or task details.
+  - ##### View : 
+    - A term used in the app to refer to the action of accessing and reviewing detailed information about records, such as person details or task details.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1291,7 +1298,7 @@ testers are expected to do more *exploratory* testing.
         Expected: All assigned tasks are displayed. "Displayed all assigned tasks" shown in status message.
 
 
-  1. There are no assigned tasks and persons in OfficeConnect.
+  2. There are no assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons with assignments.
      2. Test case: `viewassignedall` <br>
         Expected: No tasks or persons are displayed. "There are no assigned tasks or persons" shown in status message.
@@ -1300,16 +1307,16 @@ testers are expected to do more *exploratory* testing.
      4. Test case: `viewassignedt` <br>
         Expected: No tasks are displayed. "There are no assigned tasks" shown in status message.
 
-     5. There are unassigned tasks and persons in OfficeConnect.
-        1. Prerequisites: There are tasks and persons without assignments.
-        2. Test case: `viewunassignedall` <br>
-           Expected: All unassigned tasks and persons are displayed. "Displayed all unassigned tasks and persons" shown in status message.
-     6. Test case: `viewunassignedp` <br>
+  3. There are unassigned tasks and persons in OfficeConnect.
+     1. Prerequisites: There are tasks and persons without assignments.
+     2. Test case: `viewunassignedall` <br>
+        Expected: All unassigned tasks and persons are displayed. "Displayed all unassigned tasks and persons" shown in status message.
+     3. Test case: `viewunassignedp` <br>
         Expected: All unassigned persons are displayed. "Displayed all unassigned persons" shown in status message.
-     7. Test case: `viewunassignedt` <br>
+     4. Test case: `viewunassignedt` <br>
         Expected: All unassigned tasks are displayed. "Displayed all unassigned tasks" shown in status message.
 
-  2. There are no unassigned tasks and persons in OfficeConnect.
+  4. There are no unassigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons without assignments.
      2. Test case: `viewunassignedall` <br>
         Expected: No tasks or persons are displayed. "There are no unassigned tasks or persons" shown in status message.
