@@ -8,7 +8,7 @@ the desire to **store**, **access** and **share** your recipes easily?
 
 ***RIZZ***ipe is a **command-based recipe database** that is designed just for chefs _LIKE YOU_ to manage recipes at the touch of a finger!
 
-RIZZipe stars 3 main features:
+**RIZZ**ipe comes equipped with multiple features but stars **3** main ones:
 1. Versatile **tagging** and powerful **searching** function
 2. Recipe **sharing**
 3. Search function for **ingredient substitutions**
@@ -16,15 +16,15 @@ RIZZipe stars 3 main features:
 Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
 
 ## Using this Guide
-* If you want to run RIZZipe for the first time, check out our handy [Quick Start guide](#quick-start).
-* If you want to learn how to use RIZZipe, refer to our [Features](#features) section for a detailed guide on 
+* If you want to run **RIZZ**ipe for the first time, check out our handy [Quick Start guide](#quick-start).
+* If you want to learn how to use **RIZZ**ipe, refer to our [Features](#features) section for a detailed guide on 
 * how to run each different command.
 * If you are an experienced developer and want to learn more about our design decisions, refer to our Developer Guide.
 
 For **experienced users**, you may refer to the [Command summary](#command-summary) and [Keyboard shortcuts summary](#keyboard-shortcuts-summary) 
 for a summarised table of all the commands and keyboard shortcuts available.
 
-* Table of Contents
+## Table of Contents
 {:toc}
 
 ---
