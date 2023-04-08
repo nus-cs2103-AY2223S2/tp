@@ -125,7 +125,7 @@ to toggle between the module list in **MODTrek** or the user's degree progressio
 a query on the module list will navigate you to the module search screen.<br><br><br><br>
 
 The following shows the various screens of the Results Section in **MODTrek's** GUI:
-![UI subsection](images/Ui-Dashboard.png)
+![UI subsection](images/UI-Dashboard.png)
 <p align="center"><em>Screens of Results Section</em><br></p>
 
 1. **Degree Progress Screen:** This screen shows the completion progress of the degree and individual sub requirements of the 
@@ -195,7 +195,7 @@ Additional details:
 * `<grade>` refers to the grade obtained for the module. Ranges from A+ to U, excluding the W, CS, CU grade.
 * `<tag>` refers to the requirement that the module fulfils. This includes:
    * `ULR` University Level Requirements
-   * `CSF` Computer Science Foundations
+   * `CSF` Computer Science Foundation
    * `CSBD` Computer Science Breadth & Depth
    * `UE` Unrestricted Electives
    * `ITP` IT Professionalism
