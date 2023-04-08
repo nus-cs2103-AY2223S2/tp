@@ -133,28 +133,56 @@ As a result, the corresponding Group Page showing a list of groups in the select
 
 The above sequence is similar across each page navigation sequence.
 
-#### Design Considerations
+#### Design considerations
+
+- **Attendance Page Design**
+
+![Attendance Page](images/UiAttendancePageDesign.png)
+
+*Figure 5: Screenshot of Attendance Page*
+
+In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectfully.
+The navigation from Session Page to Attendance Page does not close the `SessionListPanel` in the Left Pane, instead the `SessionListPanel` remains and the `AttendanceListPanel` is displayed in the Right Pane.
+This scenario is similar for two other navigation sequences, namely the navigation from Task Page to Grades Page and when the user selects a student in the Student Page.
+
+Initially, each student in the Attendance Page will be marked as absent and their individual student cards will be shown in red.
+After marking a student's attendance with the `mark` command, the student card will be changed to green. 
+This change occurs immediately after the command execution by generating a new `AttendanceListPanel` when a `mark` command is called.
+Figure 6 shows the Sequence Diagram when a `mark` command is executed.
+
+![Mark Sequence Diagram](images/MarkSequenceDiagram.png)
+
+*Figure 6: Sequence Diagram of mark command*
+
+As shown in Figure 6, when a new `AttendanceListPanel` is initialised, an `AttendanceListViewCell` will be created.
+Similar to the sequence described under Figure 4, the `AttendanceListPanel` takes in an `ObservableList<StudentWithAttendance>` and maps each `StudentWithAttendance` into an `AttendanceListViewCell`.
+Each `StudentWithAttendance` has an `attendance` flag to indicate if they are present or absent for a particular session.
+Based on the flag, either a new `PresentAttendanceListCard` (with a green background) or a new `AbsentAttendanceListCard` (with a red background) will be created for the particular student.
+
+- **Student Page Design**
 
 ![Student Page](images/UiStudentPageDesign.png)
-*Figure 5: Screenshot of Student Page*
 
-In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
-The user interface has a straightforward dashboard layout that uses a list panel to display Courses, Groups, Sessions, Tasks, or Students.
-Since we are on the student page, a list of students is shown.
+*Figure 6: Screenshot of Student Page*
+
+In Figure 6, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
+The user interface has a straightforward dashboard layout that uses a list panel to display Courses, Groups, Sessions, Tasks, or Students in the Left Pane.
+Since we are on the student page, a list of students is shown. 
+
 
 ##### Alternative considerations
-- Student List Card
+
 
 ![StudentListCard](images/UiStudentListCard.png)
 
-*Figure 6: A student list card.*
+*Figure 7: A student list card*
 
 Instead of `StudentId`, we initially considered displaying the `Course` and `Group` the student belongs to in their individual student cards.
-However, this information is already displayed in the navigation bar (shown in Figure 5, above the `StudentListPanel` in "CS2103T > T15").
+However, this information is already displayed in the navigation bar (shown in Figure 6, above the `StudentListPanel` in "CS2103T > T15").
 Furthermore, since each `Student` is uniquely identified by their `StudentId` (i.e adding another student with the same `StudentId` to the same `Group` will throw an error message), it would be more useful to display their `StudentId` instead.
 
 Another alternative we considered was displaying the full information of a `Student` in each `StudentListCard`, however doing so will quickly overwhelm the `StudentListPanel` if there were many students in the group.
-As such, we have implemented a separate `StudentViewCard` that will be shown in the Right Pane (as shown in Figure 5) when the user enters a `select` command on the Student Page.
+As such, we have implemented a separate `StudentViewCard` that will be shown in the Right Pane (as shown in Figure 6) when the user enters a `select` command on the Student Page.
 
    
 
