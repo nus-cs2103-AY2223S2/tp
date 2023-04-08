@@ -47,9 +47,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Add documentation for all Main Mode commands.
-        * Add indices for all headers.
-        * Vet the User Guide thoroughly to fix bugs, e.g., internal file anchors not working properly.
+        * Contribute to the documentation of all Main Mode commands [#319](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/319).
+        * Add indices for all headers [#319](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/319).
+        * Vet the User Guide thoroughly to fix bugs, e.g., [#346](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/346), [#335](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/335), [#322](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/322).
     * Developer Guide:
         * Add UML class diagram for Model component and Review.
         * Add documentation for the MasterDeck Implementation.
