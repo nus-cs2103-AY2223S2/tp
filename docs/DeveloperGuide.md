@@ -652,7 +652,7 @@ The feature utilises the following classes:
 The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a 
 `Tracker` object.
 
-![TagSequenceDiagram](images/TagSequenceDiagrm.png)
+![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
 ![TagSequenceDiagram](images/TagSequenceDiagramRefParsing.png)
 
