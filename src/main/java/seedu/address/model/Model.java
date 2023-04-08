@@ -14,7 +14,7 @@ import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
 /**
- * The API of the Model component.
+ * Makes the API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */

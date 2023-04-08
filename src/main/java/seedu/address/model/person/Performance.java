@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Performance {
 
     public static final String NULL_PERFORMANCE = "None yet!";
-    public static final String MESSAGE_CONSTRAINTS = "Must be an integer between 0 to 100";
+    public static final String MESSAGE_CONSTRAINTS = "Performance (Score) Must be an integer between 0 to 100";
 
 
     public final String value;

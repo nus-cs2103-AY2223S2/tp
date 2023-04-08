@@ -31,6 +31,9 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
 
     /**
      * Returns true if the list contains an equivalent tutorial as the given argument.
+     *
+     * @param toCheck the tutorial to be checked for uniqueness.
+     * @return        the boolean status of whether the tutorial is unique.
      */
     public boolean contains(Tutorial toCheck) {
         requireNonNull(toCheck);
@@ -65,6 +68,11 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
         return this.internalList.get(index);
     }
 
+    /**
+     * The number of tutorials.
+     *
+     * @return the total number of tutorials.
+     */
     public int size() {
         return this.internalList.size();
     }
@@ -72,6 +80,8 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     /**
      * Adds a tutorial to the list.
      * The tutorial must not already exist in the list.
+     *
+     * @param toAdd the tutorial to be added.
      */
     public void add(Tutorial toAdd) {
         requireNonNull(toAdd);
@@ -85,6 +95,9 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
      * Replaces the tutorial {@code target} in the list with {@code editedTutorial}.
      * {@code target} must exist in the list.
      * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the list.
+     *
+     * @param target            the target tutorial to be replaced.
+     * @param editedTutorial    the edited tutorial to replace the target tutorial.
      */
     public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireAllNonNull(target, editedTutorial);
@@ -104,6 +117,8 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     /**
      * Removes the equivalent tutorial from the list.
      * The tutorial must exist in the list.
+     *
+     * @param toRemove the tutorial to remove.
      */
     public void remove(Tutorial toRemove) {
         requireNonNull(toRemove);
@@ -112,6 +127,11 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
         }
     }
 
+    /**
+     * The new list of unique tutorials to set.
+     *
+     * @param replacement   the tutorials to set.
+     */
     public void setTutorials(UniqueTutorialList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -120,6 +140,8 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     /**
      * Replaces the contents of this list with {@code tutorials}.
      * {@code tutorials} must not contain duplicate tutorials.
+     *
+     * @param tutorials the new list of tutorials to replace the old list of tutorials.
      */
     public void setTutorials(List<Tutorial> tutorials) {
         requireAllNonNull(tutorials);
@@ -156,6 +178,9 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
 
     /**
      * Returns true if {@code tutorials} contains only unique tutorials.
+     *
+     * @param tutorials the tutorials to be checked for uniqueness.
+     * @return          the boolean status if any one of the tutorials are not unique.
      */
     private boolean tutorialsAreUnique(List<Tutorial> tutorials) {
         for (int i = 0; i < tutorials.size() - 1; i++) {
