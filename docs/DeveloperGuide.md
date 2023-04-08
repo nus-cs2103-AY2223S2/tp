@@ -349,8 +349,6 @@ Step 2. The user creates a student using the Add command. The `Attendance` of `S
 [//]: # (![Student Add Command]&#40;images/StudentAddCommand.png&#41;)
 Step 3. The user wants to mark a particular student as present. The user executes the `Attendance` command with the index of the student and att/T. The `Attendance` of the student will be updated to the current date.
 
-![Attendance Command](images/MarkAttendance.jpg)
-
 Step 4. The attendance is saved to the storage file automatically after each command. Attendance is saved as the string representation of LocalDate in JsonAdaptedAttendance.
 
 
@@ -358,7 +356,7 @@ Step 4. The attendance is saved to the storage file automatically after each com
 ![Activity Diagram](images/AttendanceActivityDiagram.png)
 
 **Full implementation sequence diagram**
-![Sequence Diagram](images/AttendanceSequenceDiagram.jpg)
+![Sequence Diagram](images/AttendanceSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
