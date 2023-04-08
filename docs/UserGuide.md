@@ -503,7 +503,12 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 Examples:
 
 * `list` followed by `addscore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a
-  value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.
+  value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.<br>
+  The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+  * Current display for score tab is using score list.
+    ![Add a score Score List](images/Add%20a%20score%20Score%20List.png)
+  * Current display for score tab is using score chart.
+    ![Add a score Score Chart](images/Add%20a%20score%20Score%20Chart.png)
 * `check 5` followed by `addscore 1 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
   value of `50` and dated `2021-09-09` to the student being checked.
 
@@ -523,6 +528,17 @@ Format: `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE `
 Examples:
 
 * `list` followed by `deletescore 2 1` deletes first score of the 2nd student in the student list.
+  The following results assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+  * Current display for score tab is using score list.<br>
+    Before command execution:
+    ![Delete a score Score List (before)](images/Delete%20a%20score%20Score%20List%20(before).png)
+    After command execution:
+    ![Delete a score Score List (after)](images/Delete%20a%20score%20Score%20List%20(after).png)
+  * Current display for score tab is using score chart.<br>
+    Before command execution:
+    ![Delete a score Score Chart (before)](images/Delete%20a%20score%20Score%20Chart%20(before).png)
+    After command execution:
+    ![Delete a score Score Chart (after)](images/Delete%20a%20score%20Score%20Chart%20(after).png)
 * `find Betsy` followed by `deletescore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
 [Back to top](#table-of-contents)
