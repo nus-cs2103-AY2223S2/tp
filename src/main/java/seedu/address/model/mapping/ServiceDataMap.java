@@ -9,7 +9,6 @@ import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.person.UniqueTechnicianList;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
-import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Represents a mapping between services and their associated technicians

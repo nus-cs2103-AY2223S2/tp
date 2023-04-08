@@ -8,8 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.person.UniqueTechnicianList;
-import seedu.address.model.service.Service;
-import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
@@ -29,7 +27,8 @@ public class AppointmentDataMap {
      * @param technicians The list of technicians.
      * @param customers The list of customers.
      */
-    public void initialiseIdMappings(List<Appointment> appointments, List<Technician> technicians, List<Customer> customers) {
+    public void initialiseIdMappings(List<Appointment> appointments, List<Technician> technicians,
+                                     List<Customer> customers) {
         for (Appointment appointment : appointments) {
             idToAppointmentMap.put(appointment.getId(), appointment);
         }

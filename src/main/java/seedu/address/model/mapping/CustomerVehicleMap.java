@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.person.Customer;
-import seedu.address.model.entity.person.Technician;
-import seedu.address.model.service.Service;
 import seedu.address.model.service.UniqueVehicleList;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;

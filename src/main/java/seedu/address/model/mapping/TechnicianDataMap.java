@@ -28,7 +28,8 @@ public class TechnicianDataMap {
      * @param services The list of services.
      * @param appointments The list of appointments.
      */
-    public void initialiseIdMappings(List<Technician> technicians, List<Service> services, List<Appointment> appointments) {
+    public void initialiseIdMappings(List<Technician> technicians, List<Service> services,
+                                     List<Appointment> appointments) {
         for (Technician technician : technicians) {
             idToTechnicianMap.put(technician.getId(), technician);
         }

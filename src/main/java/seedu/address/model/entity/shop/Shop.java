@@ -42,7 +42,11 @@ import seedu.address.model.entity.shop.exception.PartNotFoundException;
 import seedu.address.model.entity.shop.exception.ServiceNotFoundException;
 import seedu.address.model.entity.shop.exception.TechnicianNotFoundException;
 import seedu.address.model.entity.shop.exception.VehicleNotFoundException;
-import seedu.address.model.mapping.*;
+import seedu.address.model.mapping.AppointmentDataMap;
+import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.ServiceDataMap;
+import seedu.address.model.mapping.TechnicianDataMap;
+import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
@@ -725,7 +729,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
             customer.removeAppointment(toRemove);
             updateCustomerMappings(customer, false);
             for (int i : toRemove.getStaffIds()) {
-                Technician technician =  this.getTechnician(i);
+                Technician technician = this.getTechnician(i);
                 technician.removeAppointmentIds(x -> x == i);
                 updateTechnicianMappings(technician, false);
             }
