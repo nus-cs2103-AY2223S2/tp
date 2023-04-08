@@ -36,8 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final Text MAIN_TITLE = new Text("Main");
     private static final Text REVIEW_TITLE = new Text("Review");
     private static final ObservableList<String> EMPTY_TITLE = FXCollections.observableArrayList("");
-    private static final String FILTER_DECK_PREFIX = "Finding Decks with keyword: ";
-    private static final String FILTER_CARD_PREFIX = "Finding Cards with keyword: ";
+    private static final String FILTER_DECK_PREFIX = "Finding Decks with keyword(s): ";
+    private static final String FILTER_CARD_PREFIX = "Finding Cards with keyword(s): ";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 

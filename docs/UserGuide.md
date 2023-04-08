@@ -17,10 +17,10 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## 1.1. How to use the User Guide
 
-* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#quick-start) section.
-* To **understand the terms** we use in PowerCards, you can visit the [Key Terms](#key-terms) section.
-* To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#features) section.
-* Having **issues**? Check out the [FAQ](#faq) section and see if you can find your solutions there!
+* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#2-quick-start) section.
+* To **understand the terms** we use in PowerCards, you can visit the [Key Terms](#12-key-terms) section.
+* To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#3-features) section.
+* Having **issues**? Check out the [FAQ](#4-faq) section and see if you can find your solutions there!
 
 **:bulb: Tip:**<br>
 * There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
@@ -73,7 +73,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 
 5. Type any command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -87,9 +87,9 @@ This section explains some common components you may find in a command.
 |---------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Parameter**             | `QUESTION`, `ANSWER` | Parameters are placeholders where you have to insert your input.<br/> <br/>Suppose `add q\QUESTION a\ANSWER` is a valid command to add a card. You can simply replace `QUESTION` and `ANSWER` with the question and answer of your choice.                                                                               |  
 | **Prefix**                | `q\ `, `a\ `, `t\ `  | Prefixes are used to identify the parameters of a command. <br><br> For example, prefix `q\ ` identifies the parameter `QUESTION` in the command `add q\QUESTION`.                                                                                                                                                       |
-| **Optional Component**    | `[t\TAG]`            | Optional components can be **omitted** in certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory.<br>The last component `t\TAG` is optional.                                             |
+| **Optional Component**    | `[t\TAG]`            | Optional components can be **omitted** in certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory. The last component `t\TAG` is optional.                                                |
 | **Multi-value Parameter** | `KEYWORDS...`        | These are parameters that can appear **multiple times**. <br><br> For example, the command `findCards KEYWORD...` filters all the cards based on the keywords specified.<br><br>This means that the parameter `KEYWORD` can:<br>- Appear one time: `findCards cell`<br>- Appear multiple times: `findCards cell biology` | 
-| **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be positive integer (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                            |
+| **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be a positive integer (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                          |
 | **Flag**                  | `-e`, `-m`, `-h`     | Flags are used to toggle a particular setting or behavior.<br/><br/> For example, `review 1 -e` lets you review questions in the first deck that are tagged as **easy** only.                                                                                                                                            |
 
 <div markdown="block" class="alert alert-info">
@@ -142,10 +142,10 @@ Editing a deck name will not affect the cards stored inside it.
 Format: `editDeck INDEX DECK_NAME`
 - `INDEX` is the index of the deck you want to edit.
 - `DECK_NAME` is the new name you want to assign to the specified deck.
-  - The new deck name cannot be the name of an existing deck.
+  - The new deck name must not match any existing deck names (Deck names are case-sensitive).
 
 Example: 
-- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to Chemistry.
+- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to "Chemistry".
 
 ### 3.3.3. Deleting a Deck : `deleteDeck`
 
@@ -156,7 +156,7 @@ Be careful, a deck once deleted cannot be retrieved!
 Format: `deleteDeck INDEX`
 - `INDEX` is the index of the deck in the deck list.
 
-Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
+Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in that deck. 
 
 ### 3.3.4. Finding Decks by Keywords: `findDecks`
 
@@ -166,17 +166,18 @@ Format: `findDecks KEYWORD...`
 - You can include multiple KEYWORDS - as long as a deck's name contains at least one keyword, the deck will be found.
 - At least one KEYWORD must be given.
 - This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite `program` being a partial word of `programming`.
-- Keywords are case-insensitive. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
+- Keywords are **case-insensitive**. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
 - Deck names matching at least one keyword will be returned (i.e. `OR` search).
 
 Example:
-- `findDecks science programming` filters decks whose names match keywords `science` **or** `programming`.
-  ![FindCardsCommandDisplay](images/FindDecksCommandDisplay.png)
+- `findDecks science programming` filters decks whose names match keywords `science` **or** `programming`. Below is the application display right after this command is executed.
+
+![FindCardsCommandDisplay](images/FindDecksCommandDisplay.png)
 
 <div markdown="block" class="alert alert-info">
 
 💡 **Tip:** 
-- Notice how there is a small text box `Finding Decks with keyword: science programming` below the filtered list of questions. This text box is to help you remember what you have previously searched for!
+- Notice there is a small text box `Finding Decks with keyword(s): science programming` below the filtered list of decks. This text box is displayed as long as the decks are filtered. It is to help you remember what you have previously searched for!
 - Notice that the result display will show how many decks have been listed.
 
 </div>
@@ -190,7 +191,7 @@ Format: `showDecks`
 ### 3.3.6. Selecting a Deck : `selectDeck`
 
 Once a deck has been created, you can access the list of cards inside it with this command. 
-Refer to the [Main Mode - After Selecting a Deck](#Main-Mode---After-Selecting-a-Deck) section to find out what commands you can run with a deck selected!
+Refer to the [Main Mode - After Selecting a Deck](#34-main-mode---after-selecting-a-deck) section to find out what commands you can run with a deck selected!
 
 <div markdown="block" class="alert alert-info">
 
@@ -237,18 +238,22 @@ Note that you will not be able to make any deck-related changes (e.g. `addDeck`,
 
 This commands allow you to add a card to the **selected** deck. 
 
-A card must contain a question, an answer, and an optional difficulty tag. 
+A card must contain a question and an answer. It may contain at most **one** difficulty tag. 
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
--   `QUESTION` field of Card is case-sensitive and Cards with the same `QUESTION` cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`. However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
+- `QUESTION` field of card is **case-sensitive** and cannot be duplicated in the same deck.
+  - For example, if you already have a card with question `What is a loop` in the deck, you cannot create another card in the same deck with question `What is a loop`. 
+  - However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
+- The same `QUESTION` may exist in multiple decks, i.e., a card can belong to multiple decks.  
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-💡 **Tip:**
-- A tag can only be of value Easy, Medium, or Hard (**case-insensitive**).   
-- Each card can have at most one tag.
+💡 **Tip:** <br>
 
-</div> 
+- A tag can only be of value Easy, Medium, or Hard.
+- Tags are **case-insensitive** (`easy` and `EASY` are treated the same).
+
+</div>
 
 Examples:
 * `addCard q\What is chemical symbol for Oxygen? a\O` adds an untagged card with the given question and answer to the deck.
@@ -277,9 +282,9 @@ Worry not, as you can easily edit any existing card with this command!
 Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
 * Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
-* At least **one** of the optional fields must be provided.
+* At least **one** of the optional components must be provided.
 * Existing values of the card will be replaced by the input values.
-* If the same prefix appears multiple times, only the last occurrence of the prefix will be considered. 
+* If the same prefix appears multiple times, only the **last** occurrence of the prefix will be considered. 
 
 Examples:
 * `editCard 1 q\What is chemical symbol for Carbon? a\C` edits the question and answer of the 1st card to be `What is chemical symbol for Carbon?` and `C` respectively.
@@ -297,23 +302,24 @@ You can interact with the filtered cards using their new indices, through comman
 Format: `findCards KEYWORD...`
 - You can include multiple KEYWORDS - as long as a card's question contains at least one keyword, the card will be found.
 - At least one KEYWORD must be given.
-- This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial". 
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
 - Question field of cards matching at least one keyword will be returned (i.e. `OR` search).
+- This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial".
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Since the command does not support partial words, take extra caution when searching for words ending with punctuation! For example `findCards loop` will **not** return a Card with question `What is a loop?`. For this example, you should search `findCards loop?` instead.  
 </div>
 
 Example:
-- `findCards when how` shows all the cards whose questions match the keywords `when` **or** `how`.
-  ![FindCardsCommandDisplay](images/FindCardsCommandDisplay.png)
+- `findCards recursion loop` shows all the cards whose questions match the keywords `recursion` **or** `loop`.
+
+![FindCardsCommandDisplay](images/FindCardsCommandDisplay.png)
 
 <div markdown="block" class="alert alert-info">
 
 💡 **Tip:** 
-- Notice how there is a small text box `Finding Cards with keyword: when how` below the filtered list of questions. This text box is to help you remember what you have previously searched for!  
-- Notice that the result display will show how many cards have been listed.
+- There is a small text box `Finding Cards with keyword(s): recusion loop` below the filtered list of cards. It remains on display as long as the cards are filtered. This is to help you remember what keywords you are searching for!  
+- The result display will show how many cards matching the keywords have been found.
 </div>
 
 ### 3.4.5. Showing all Cards : `showCards`
@@ -325,7 +331,7 @@ Format: `showCards`
 ### 3.4.6. Unselecting a Deck : `unselectDeck`
 
 If you want to make deck-related changes, you must first unselect the current deck you are in.
-Refer to the [Main Mode - Before Selecting a Deck](#Main-Mode---Before-Selecting-a-Deck) section to find out what commands you can run without a deck selected!
+Refer to the [Main Mode - Before Selecting a Deck](#33-main-mode---before-selecting-a-deck) section to find out what commands you can run without a deck selected!
 
 This command allows you to unselect the currently selected deck.
 
@@ -403,7 +409,7 @@ Notice that the keys are all close to the enter key so that you can breeze throu
 Flips the card to reveal the answer. 
 
 Format: `p`
-- `p` is case-insensitive (`P` is also excepted).
+- `p` is case-insensitive (`P` is also a valid command).
   ![FlipCardCommandDisplay](images/FlipCardCommandDisplay.png)
 
 ### 3.6.5. Next Card: `]`
@@ -423,7 +429,7 @@ Format: `[`
 Tags the current card as easy. This replaces any previous tags.
 
 Format: `l`
-- `l` is case-insensitive (`L` is also accepted).
+- `l` is case-insensitive (`L` is also a valid command).
 
 ### 3.6.8. Tagging the Card as Medium: `;`
 
@@ -464,21 +470,19 @@ PCs data are saved in the hard disk automatically after any command that changes
 
 PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PowerCards will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+
+- If your changes to the data file make its format invalid, PowerCards will start with an empty data file at the next run. 
+- Do **not** type in any command as this will overwrite and discard your previous data! Simply close the application manually and edit the data file again until it is in valid format. 
+
 </div>
-
-### 3.7.5. Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 
 --------------------------------------------------------------------------------------------------------------------
 
 # 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PCs home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data in your previous PC's home folder.
 
 **Q**: Will my data be automatically saved?<br>
 **A**: **Yes**, PowerCards automatically saves your data after every command entered.
@@ -493,12 +497,12 @@ _Details coming soon ..._
 **A**: PowerCards operates on a self-testing basis. You can check your answer by writing it down before flipping the card to verify if you got it right or wrong.
 
 **Q**: Can I have two cards with the same question?<br>
-**A**: **No**. `QUESTION` field of Card is case-sensitive and Cards with the same `QUESTION` cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`. However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
+**A**: **No**, if the two cards are in the same deck. `QUESTION` field of Card is case-sensitive and cannot be duplicated within the same deck. **However**, two cards with the same question can exist **if they belong to different decks**.
 
 **Q**: Can I have two decks with the same name? <br>
 **A**: **No**. The name of the deck is case-sensitive and cannot be duplicated, e.g., if you already have a deck named `Science`, you cannot create another deck named `Science`. However, you can create a deck named `SCIENCE` since `SCIENCE` may be an acronym.
 
-**Q**: What if I like to include the prefix within my card (question or answer) or deck name? (For example `addCard q\What is q\a a\It means q slash a` should add a card with question `What is q\a` instead of `a`)<br>
+**Q**: What if I would like to include the prefix within my card (question or answer) or deck name? (For example `addCard q\What is q\a a\It means q slash a` should add a card with question `What is q\a` instead of `a`)<br>
 **A**: At the moment we do not support that. However, we plan to support this feature in the next iteration. We also like to point out that this is the reason why we used backslash `&#92;` rather than forward slash `/` for this current iteration as backslash is less commonly use than forward slash.  
 --------------------------------------------------------------------------------------------------------------------
 
