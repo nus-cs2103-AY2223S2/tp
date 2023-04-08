@@ -17,7 +17,7 @@ public class ListRegionCommandParserTest {
 
     @Test
     public void parse_emptyString_throwsParseException() {
-        assertParseFailure(parser, "", Region.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "", "Missing arguments! \n" + ListRegionCommand.MESSAGE_USAGE);
         assertParseFailure(parser, "                                 ", Region.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, " ", Region.MESSAGE_CONSTRAINTS);
     }

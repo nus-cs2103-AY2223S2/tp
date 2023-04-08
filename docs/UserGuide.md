@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: User Guide
 ---
 
@@ -90,6 +90,10 @@ forgetting about a client!
 
 * Index must be a positive number
 
+* Meetings displayed when app is opened initially are those meetings for the current day, and user input of 'listMeeting' is required to list all meetings stored in FAid
+
+* `ARG1|ARG2` in format means only one ARG1 or ARG2 must be a part of the user input but not both
+
 </div>
 
 ### Viewing help : `help`
@@ -112,8 +116,11 @@ A client can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/Bishan, block 123, #01-01`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Ang Mo Kio p/99999999 t/Insurance`
+
+Note:
+* The tag used to add a person into the contact list will be used in the findPolicy method, e.g. using the above example, doing a findPolicy Insurance will show Betsy Crowe
 
 ### Listing all clients : `listPerson`
 
@@ -142,7 +149,7 @@ Examples:
 
 ### Locating clients by name: `find`
 
-Finds clients whose names contain any of the given keywords.
+Finds clients whose names is any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -169,14 +176,14 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `listPerson` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Add meeting : `meetingAdd`
 
 Adds a meeting to the address book.
 
-Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
+Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME [TAGS]`
 
 Required Information:
 
@@ -189,6 +196,9 @@ Example:
 
 * `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020
   from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3), with the description "Meeting with Charlotte".
+
+Notes:
+* Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
 
 ![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
 
@@ -204,60 +214,65 @@ Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 
 Required Information:
 
-* `client_INDEX`: Index of a client already in address book
-* `MEETING_INDEX`: Index of meeting in a client
+* `CLIENT_INDEX`: Index of a client already in address book
+* `MEETING_INDEX`: Meeting index after searching for meetings for a specific client by doing a meetingFind CLIENT_INDEX to get the required meeting index
 
 Examples:
 
-* `meetingRemove 20 6` Deletes the 6th meeting added from the client with index 20.
-* `meetingRemove 3 1` Deletes the 1st meeting added from the client with index 3.
+* `meetingRemove 20 6` Deletes the 6th meeting with the client of index 20.
+* `meetingRemove 3 1` Deletes the 1st meeting with the client of index 3.
+
+Note:
+* Doing a meetingFind `CLIENT_INDEX` is necessary to get the meeting index required. Using the meeting index in the initially displayed page or the page after listMeeting may result in an incorrect meeting update.
+
 
 ![result for meetingRemove 3 1](images/meetingRemove31.PNG)
 
 ### Updating a meeting : `meetingUpdate`
 
-Updates an existing meeting belonging to a client in the address book.
+Updates an existing meeting belonging to a client in the address book
 
 Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
 
 Required Information:
 
-* Index of a client already in address book
-* Meeting ID
+* `CLIENT_INDEX`:Index of a client already in address book
+* `MEETING_INDEX`: Meeting index after searching for meetings for a specific client by doing a meetingFind CLIENT_INDEX to get the required meeting index
 
 Examples:
 
 * `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st client
-  to `Policy discussion`
+  to `Policy discussion` 
 * `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end
   of the 3rd meeting belonging to the 2nd client to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10`
   respectively
 
 Notes:
 
-* Edits the meetings of client at the specified `client_INDEX`.
+* Edits the meetings of client at the specified `CLIENT_INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Doing a meetingFind `CLIENT_INDEX` is necessary to get the meeting index required. Using the meeting index in the initially displayed page or the page after listMeeting may result in an incorrect meeting update.
 
 ### Find meeting : `meetingFind`
 
-Gets meetings from the address book
+Finds meetings from the address book based on the date of meeting or person index but not both
 
-Format: `meetingFind DATE `
+Format: `meetingFind DATE|CLIENT_INDEX `
 
 Required Information:
 
 * Date (dd/mm/yyyy)
+* Index of a client already in address book
 
 Examples:
-* `meetingFind 11/03/2023` Lists out all meetings that start on 9th November 2022 at 11.30
+* `meetingFind 11/05/2023` Lists out all meetings that start on 11th May 2023
+* `meetingFind 5` Lists out all meetings with client of index 5 in the address book
 
 
-* `meetingFind 09-11-2022 11:30` Lists out all meetings that start on 9th November 2022 at 11.30
+### List meeting : `listMeeting`
 
-### List meeting : `meetingList`
-
-Lists all meetings scheduled for the day from address book
+Lists all meetings scheduled in FAid
 
 ### List by region : `listRegion`
 
@@ -280,7 +295,7 @@ Format: `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
 
 Required information:
 
-* Name of policy to search for
+* Name of policy to search for, which is in the client's tags 
 
 Examples:
 
@@ -330,17 +345,17 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
-| Action                 | Format, Examples                                                                                                                                                    |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br>e.g, `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
-| **Clear**              | `clear`                                                                                                                                                             |
-| **Delete**             | `delete INDEX` e.g., `delete 3`                                                                                                                                     |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                         |
-| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                          |
-| **List**               | `list`                                                                                                                                                              |
-| **Help**               | `help`                                                                                                                                                              |
-| **Add Meeting**        | `meetingAdd CLIENT_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                            |
-| **Remove Meeting**     | `meetingRemove CLIENT_INDEX MEETING_INDEX`                                                                                                                          |
-| **Find Meeting**       | ` meetingFind DATE[CLIENT_INDEX]`                                                                                                                                   |
-| **List all meetings**  | `meetingList`                                                                                                                                                       |
-| **List all in Region** | `listRegion REGION`                                                                                                                                                 |
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g, `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear** | `clear`
+**Delete** | `delete INDEX` e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
+**List** | `list`
+**Help** | `help`
+**Add Meeting** | `meetingAdd CLIENT_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`
+**Remove Meeting** | `meetingRemove CLIENT_INDEX MEETING_INDEX`
+**Find Meeting** | `meetingFind DATE[CLIENT_INDEX]`
+**List all meetings** | `meetingList`
+**List all in Region** | `listRegion REGION`

@@ -4,10 +4,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Represents the specified policy name to be used to check against
- * {@code Person} list of {@code Meetings} for matching {@code PolicyTag} names
+ * Tests that a {@code MeetingWithPerson} is a meeting with a given person
  */
+
 public class PolicyExistInPersonPredicate implements Predicate<Person> {
+    /**
+     * Represents the specified policy name to be used to check against
+     * {@code Person} list of {@code Meetings} for matching {@code PolicyTag} names
+     */
     private final List<String> keywords;
 
     public PolicyExistInPersonPredicate(List<String> keywords) {

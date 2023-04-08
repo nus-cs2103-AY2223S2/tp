@@ -39,8 +39,8 @@ public class AddMeetingCommandTest {
     @Test
     public void addMeetingSuccessTest() throws Exception {
         final Meeting meeting = new Meeting("Successo?",
-            LocalDateTime.of(2023, 03, 14, 15, 30),
-            LocalDateTime.of(2023, 03, 14, 16, 30)
+            LocalDateTime.of(2025, 03, 14, 15, 30),
+            LocalDateTime.of(2025, 03, 14, 16, 30)
         );
 
         Person samplePerson = model.getFilteredPersonList().get(0);

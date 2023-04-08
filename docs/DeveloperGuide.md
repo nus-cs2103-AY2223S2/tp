@@ -233,7 +233,7 @@ The update meeting feature is handled by the following classes:
     * Thereafter, `UpdateMeetingCommandParser#parse()` is called and returns an
       `UpdateMeetingCommand` object with the extracted PersonID, MeetingID and `editMeetingDescriptor`
 * `UpdateMeetingCommand` - The update Meeting command that will be executed by FAid
-    * The `UpdateMeetingCommand` extends the `Command` interface and implements the `Command#execute()`  
+    * The `UpdateMeetingCommand` extends the `Command` interface and implements the `Command#execute()`
       method.
 
 Just like other commands, the `Command#execute()` method of `UpdateMeetingCommand` is handled by
