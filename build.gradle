@@ -30,7 +30,8 @@ test {
             'prism.text': 't2k',
     ]
     jvmArgs = [
-            '--add-exports', 'java.base/sun.misc=ALL-UNNAMED'
+            '--add-opens', 'javafx.graphics/javafx.scene=ALL-UNNAMED',
+            '--add-opens', 'javafx.controls/javafx.scene.control=ALL-UNNAMED'
     ]
 }
 
