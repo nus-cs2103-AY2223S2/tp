@@ -7,7 +7,7 @@ skinparam classBackgroundColor LOGIC_COLOR
 package Logic {
 
 Class FitBookParser
-Class EditRoutineCommand
+Class AddCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 
@@ -28,13 +28,13 @@ HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
 LogicManager -right->"1" FitBookParser
-FitBookParser ..> EditRoutineCommand : creates >
+FitBookParser ..> AddCommand : creates >
 
-EditRoutineCommand -up-|> Command
+AddCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> FitBookModel : edits the target routine >
-LogicManager --> Storage : stores the updated target routine >
+LogicManager --> FitBookModel : adds the new client >
+LogicManager --> Storage : stores the new client >
 Storage --[hidden] FitBookModel
 Command .[hidden]up.> Storage
 Command .right.> FitBookModel
