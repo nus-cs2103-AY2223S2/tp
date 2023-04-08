@@ -41,7 +41,7 @@ Below are my contributions to the project:
   * **Contributions to DG**: 
     I am responsible for writing up the following sections of the Developer Guide
 
-    * [Hotkey with UiEvents](https://ay2223s2-cs2103t-w14-1.github.io/tp/DeveloperGuide.html#hotkey-with-uievents)
+    * [Hotkeys with UiEvents](https://ay2223s2-cs2103t-w14-1.github.io/tp/DeveloperGuide.html#hotkeys-with-uievents)
     * [Command Box](https://ay2223s2-cs2103t-w14-1.github.io/tp/DeveloperGuide.html#command-box)
     * [Command Handling](https://ay2223s2-cs2103t-w14-1.github.io/tp/DeveloperGuide.html#command-handling)
 
