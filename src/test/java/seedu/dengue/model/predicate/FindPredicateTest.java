@@ -36,6 +36,7 @@ public class FindPredicateTest {
     private final Range<Age> emptyAgeRange = ContinuousData.generateRange(
             new StartAge(Optional.empty()), new EndAge(Optional.empty()));
     private Optional<Name> testName;
+    private Optional<Date> testDate;
 
     public FindPredicateTest() throws ParseException {
     }
@@ -43,6 +44,33 @@ public class FindPredicateTest {
     @BeforeEach
     public void setUp() {
         this.testName = Optional.of(new Name("ALICE"));
+        this.testDate = Optional.of(new Date("2000-11-11"));
+    }
+
+    @Test
+    public void equals() {
+
+        FindPredicate firstPredicate = new FindPredicate(
+                testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, emptyDateRange, emptyAgeRange);
+        FindPredicate secondPredicate = new FindPredicate(
+                testName, emptySubPostal, emptyAge, testDate, emptyVariants, emptyDateRange, emptyAgeRange);
+
+        // same object -> returns true
+        assertTrue(firstPredicate.equals(firstPredicate));
+
+        // same values -> returns true
+        FindPredicate firstPredicateCopy = new FindPredicate(
+                testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, emptyDateRange, emptyAgeRange);
+        assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        // different types -> returns false
+        assertFalse(firstPredicate.equals(1));
+
+        // null -> returns false
+        assertFalse(firstPredicate.equals(null));
+
+        // different person -> returns false
+        assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     //test null
