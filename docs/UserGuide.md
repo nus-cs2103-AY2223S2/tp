@@ -194,33 +194,67 @@ you can use the `view-exams` command to view the list of exams.
 
 ### Profile Commands
 
-#### Create a new student profile
+#### Create a new Student Profile
 
-Creates a new profile for a student given the student’s name.
+Creates a new profile for a student, given the student’s name.
 
 Format: `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE] [email/EMAIL] [school/SCHOOL] [level/GRADE_LEVEL]`
-
-Example:
-`new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8`
 
 * SCHOOL and GRADE_LEVEL are optional.
 * SCHOOL and GRADE_LEVEL consist of numbers and letters only (no symbols or spaces).
 
+Example:
+* `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8`
+
+![new-student.png](images/new-student.png)
+
+#### View a Student Profile
+
+Displays one or many students' profiles, given parameters.
+
+Format `view-profile [name/STUDENTS_NAME]`
+* Shows a list of students that match the given `STUDENT_NAME`
+* If no `STUDENT_NAME` is given, then shows all students.
+
+Example:
+* `view-profile` Displays all students in the command line.
+* `view-profile name/John` Displays all students that match the name `John`.
+
+![view-profile.png](images/view-profile.png)
 
 #### Update Student Information
 
-Updates the student's information given the student's label, field to change, and updated field value 
+Updates the student's information, given the student's label, field to change, and updated field value 
 
-Format: `update-info [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`
+Format: `update-info [index/INDEX] [field/NEW_INFO] ...`
 
-* if any parameters are missing in order, the command will display potential parameter options.
-* The available field parameters are “Address”, “School”, and “Level”.
+* `field/NEW_INFO` is to be replaced by one of
+  * `name/`
+  * `phone/` 
+  * `address/`
+  * `school/` 
+  * `level/`<br>
+  And their respective new values.
+* At least one updated parameter has to be present.<br>
+
+![Update Info](images/update-info.png)
+
+  :bulb: **Tip:** You can edit multiple fields in a student's profile at once by using several of the above prefixes.
 
 Examples:
-* `update-info` Displays a list of all available student profiles
-* `update-info name/John` Displays all students with the name “John” and prompts the user for clarification
-* `update-info name/John f/address` Displays the value stored in the Address Field and prompts the user for a new Address.
-* `update-info name/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
+* `update-info index/1 name/John` Changes the name of the student at index 1 to `John`.
+* `update-info index/2 name/John address/Block 414` Changes the name and address of student at index 2 to `John` and `Block 414` respectively.
+
+#### Delete a Student Profile
+
+Deletes the student's profile, given the index of the student.
+
+Format: `delete [index/INDEX]`
+
+Examples:
+* `delete index/1` Deletes the first profile in the student list.
+
+![Delete Student](images/delete.png)
 
 ### Homework Commands
 #### Assign Homework to a Student
@@ -499,7 +533,7 @@ For example, `john` will match `John Doe` and `john doe`. You can refer to the [
 
 :exclamation: **Caution:** LESSON_TITLE, START_TIME, and END_TIME should appear at most once and should not be empty.
 
-### Exams Commands
+### Exam Commands
 
 #### Add an Exam to be tracked
 
@@ -576,7 +610,7 @@ Examples:
 | Action                       | Command Format                                                                                                                                                       | Example                                                                                                                |
 |:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | Create new student profile   | `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE] [email/EMAIL] [school/SCHOOL] [level/GRADE_LEVEL]`                                          | `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8` |
-| Update student information   | `update-info [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`                                                                                                                | `update-info name/John f/address v/Block 123 #12-34`                                                                   |
+| Update student information   | `update-info [index/INDEX] [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`                                                                                                  | `update-info index/1 name/John f/address v/Block 123 #12-34`                                                           |
 | Assign homework to a student | `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`                                                                                      | `assign-homework name/John homework/listening comprehension ex1 deadline/02-12-2023-2359`                              |
 | View student's homework      | `view-homework [name/STUDENT_NAME] [status/STATUS]`                                                                                                                  | `view-homework name/John status/pending`                                                                               |
 | Delete student's homework    | `delete-homework [name/STUDENT_NAME] [index/HOMEWORK_INDEX]`                                                                                                         | `delete-homework name/John index/1`                                                                                    |
