@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showOpeningAtIndex;
-import static seedu.address.testutil.TypicalIndexesNew.INDEX_FIRST_OPENING;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_OPENING;
 import static seedu.address.testutil.TypicalOpenings.getTypicalUltron;
 
 import org.junit.jupiter.api.BeforeEach;

@@ -57,8 +57,7 @@ public class Opening {
     public Remark getRemark() {
         if (remark == null) {
             return new Remark("");
-        }
-        else {
+        } else {
             return remark;
         }
     }

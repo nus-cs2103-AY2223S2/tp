@@ -50,13 +50,13 @@ public class Keydate implements Comparable<Keydate> {
         if (test[0].strip().isEmpty() || !test[0].matches(VALIDATION_REGEX_KEY)) {
             return false;
         }
-        String check_date = test[1].strip();
-        if (check_date.length() != 10 || check_date.charAt(4) != '-' || check_date.charAt(7) != '-') {
+        String date = test[1].strip();
+        if (date.length() != 10 || date.charAt(4) != '-' || date.charAt(7) != '-') {
             return false;
         }
         try {
             df.setLenient(false);
-            Date d = df.parse(check_date);
+            df.parse(date);
             return true;
         } catch (ParseException e) {
             return false;
@@ -71,8 +71,8 @@ public class Keydate implements Comparable<Keydate> {
             df.setLenient(false);
             Date date = df.parse(fullDate);
             Calendar calendar = Calendar.getInstance();
-            Date current_date = df.parse(df.format(calendar.getTime()));
-            if (date.before(current_date)) {
+            Date currentDate = df.parse(df.format(calendar.getTime()));
+            if (date.before(currentDate)) {
                 return true;
             }
             return false;
@@ -88,12 +88,12 @@ public class Keydate implements Comparable<Keydate> {
     public boolean isWithinDays(int days) {
         try {
             Calendar calendar = Calendar.getInstance();
-            Date current_date = df.parse(df.format(calendar.getTime()));
+            Date currentDate = df.parse(df.format(calendar.getTime()));
             calendar.add(Calendar.DATE, days);
-            Date range_end_date = df.parse(df.format(calendar.getTime()));
+            Date endDate = df.parse(df.format(calendar.getTime()));
             df.setLenient(false);
             Date date = df.parse(fullDate);
-            return !date.before(current_date) && !date.after(range_end_date);
+            return !date.before(currentDate) && !date.after(endDate);
         } catch (ParseException e) {
             // Should not happen
             throw new AssertionError(DATE_ERROR);

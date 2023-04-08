@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalOpenings.AMAZON;
 import static seedu.address.testutil.TypicalOpenings.GRAB;
 import static seedu.address.testutil.TypicalOpenings.META;
-import static seedu.address.testutil.TypicalOpenings.AMAZON;
 import static seedu.address.testutil.TypicalOpenings.getTypicalUltron;
 import static seedu.ultron.commons.core.Messages.MESSAGE_OPENING_LISTED_OVERVIEW;
 

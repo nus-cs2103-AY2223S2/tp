@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.ultron.logic.commands.AddCommand;
 import seedu.ultron.logic.commands.Command;
 import seedu.ultron.logic.parser.Parser;
 import seedu.ultron.logic.parser.exceptions.ParseException;

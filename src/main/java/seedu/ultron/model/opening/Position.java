@@ -48,8 +48,8 @@ public class Position {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
-                && fullPosition.replaceAll(" ", "").equalsIgnoreCase(
-                        ((Position) other).fullPosition.replaceAll(" ", ""))); // state check
+                && fullPosition.replaceAll(" ", "").equalsIgnoreCase((
+                        (Position) other).fullPosition.replaceAll(" ", ""))); // state check
     }
 
     @Override

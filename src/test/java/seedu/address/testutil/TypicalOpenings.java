@@ -1,17 +1,17 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_SHOPEE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_SHOPEE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_SHOPEE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_SHOPEE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_SHOPEE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_KEYDATE_FEB_OA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_KEYDATE_MARCH_INTERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_SHOPEE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +38,8 @@ public class TypicalOpenings {
     public static final Opening GRAB = new OpeningBuilder().withPosition("Backend Engineer").withCompany("Grab")
             .withEmail("grab@grab.com").withStatus("REJECTED")
             .withRemark("I didn't like Grab anyways").build();
-    public static final Opening BYTEDANCE = new OpeningBuilder().withPosition("Fullstack engineer").withCompany("Bytedance")
+    public static final Opening BYTEDANCE = new OpeningBuilder()
+            .withPosition("Fullstack engineer").withCompany("Bytedance")
             .withEmail("bytedance@bytedance.com").withStatus("INTERVIEWING")
             .withRemark("I want to meet tiktok influencers")
             .withKeydates(new ArrayList<String>(Arrays.asList("Interview", "2022-03-05"))).build();
@@ -52,17 +53,13 @@ public class TypicalOpenings {
             .withEmail("netflix@netflix.com").withStatus("ACCEPTED")
             .withRemark("Bing chilling").build();
 
-    // Manually added
-    public static final Opening Blizzard = new OpeningBuilder().withPosition("Game developer").withCompany("Blizzard")
-            .withEmail("blizzard@blizzard.com").withStatus("FOUND").build();
-    public static final Opening Riot = new OpeningBuilder().withPosition("Game developer").withCompany("Riot games")
-            .withEmail("riot@riot.com").withStatus("FOUND").build();
-
     // Manually added - Opening's details found in {@code CommandTestUtil}
-    public static final Opening GOOGLE = new OpeningBuilder().withPosition(VALID_POSITION_GOOGLE).withCompany(VALID_COMPANY_GOOGLE)
+    public static final Opening GOOGLE = new OpeningBuilder().withPosition(VALID_POSITION_GOOGLE)
+            .withCompany(VALID_COMPANY_GOOGLE)
             .withEmail(VALID_EMAIL_GOOGLE).withStatus(VALID_STATUS_GOOGLE)
             .withRemark(VALID_REMARK_GOOGLE).withKeydates(VALID_KEYDATE_FEB_OA).build();
-    public static final Opening SHOPEE = new OpeningBuilder().withPosition(VALID_POSITION_SHOPEE).withCompany(VALID_COMPANY_SHOPEE)
+    public static final Opening SHOPEE = new OpeningBuilder().withPosition(VALID_POSITION_SHOPEE)
+            .withCompany(VALID_COMPANY_SHOPEE)
             .withEmail(VALID_EMAIL_SHOPEE).withStatus(VALID_STATUS_SHOPEE)
             .withRemark(VALID_REMARK_SHOPEE).withKeydates(VALID_KEYDATE_MARCH_INTERVIEW, VALID_KEYDATE_FEB_OA)
             .build();
