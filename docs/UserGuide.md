@@ -312,7 +312,7 @@ Examples:
 * `export 1` exports the contact details of the first person in the list
 * `export 1 4` exports the contact details of the first and fourth person in the list
 
-Exported contacts will be stored inside a text file under the `exports` folder found in the `tp` directory
+Exported contacts will be stored inside a Json file under the `exports` folder found in the same directory as ModCheck
 
 ![viewContactDetails](images/export/exportContacts.png)
 

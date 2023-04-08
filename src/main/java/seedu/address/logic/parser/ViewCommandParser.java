@@ -6,9 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -20,7 +22,7 @@ public class ViewCommandParser {
      * and returns a {@code RemarkCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ViewCommand parse(String args) throws ParseException {
+    public ViewCommand parse(String args) throws ParseException, CommandException {
         requireNonNull(args);
         List<Index> indexList = new ArrayList<>();
 
@@ -30,8 +32,12 @@ public class ViewCommandParser {
             try {
                 indexList.add(ParserUtil.parseIndex(i));
             } catch (IllegalValueException ive) {
-                throw new ParseException(String.format(
-                        MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_ARGUMENTS), ive);
+                if (Integer.valueOf(i) <= 0) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
+                } else {
+                    throw new ParseException(String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_ARGUMENTS), ive);
+                }
             }
         }
 

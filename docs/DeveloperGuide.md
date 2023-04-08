@@ -256,16 +256,41 @@ Formats:
 
 #### Implementation
 
-The implementation of this feature is requires 'FilterCommand' and 'FilterCommandParser'.                                                                                      
+The implementation of this feature requires 'FilterCommand' and 'FilterCommandParser'.                                                                                      
 
 Below is an activity diagram that shows what happens when a user executes the `filter` command
 
 ![FilterActivityDiagram](images/filter/filterActivityDiagram.png)
 
+### Viewing contacts
+**Purpose:** Allow user to view contacts that are hidden by default based on index given
 
-### \[Proposed\] Data archiving
+Formats:
+1. `view <index>`
+2. `view <index> <index> ...`
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation
+
+The implementation of this feature requires `ViewCommand`, `ViewCommandParser` and `MatchNamePredicate`.
+
+Below is an activity diagram that shows what happens when a user executes the `view` command.
+
+![ViewActivityDiagram](images/view/viewActivityDiagram.png)
+
+### Export contacts
+**Purpose:** Allow user to export contacts that are hidden by default based on index given
+
+Formats:
+1. `export <index>`
+2. `export <index> <index> ...`
+
+#### Implementation
+
+The implementation of this feature requires `ExportCommand` and `ExportCommandParser`.
+
+Below is an activity diagram that shows what happens when a user executes the `export` command.
+
+![ExportActivityDiagram](images/export/exportActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -317,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Student                    | delete all contacts                                 | remove all contacts for a fresh start                                  |
 | `*`      | Student with many contacts | sort contacts by name                               | locate a contact easily                                                |
 | `*`      | Student                    | use the arrow keys to re-enter my previous commands | enter recently used commands much faster                               |
-
+| `*`      | Student                    | export selected contacts                            | transfer those contacts easily                                         |
 *{More to be added}*
 
 ### Use cases
@@ -441,6 +466,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
 
 
+#### Use case: Export contacts
+
+**MSS**
+
+1. Student requests to export selected contact
+2. ModCheck shows a list of persons selected
+3. ModChecks exports selected contacts
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Student requests to export multiple contacts 
+  * Use case resumes at step 2.
+  
+* 1b. Student provide invalid request to export contacts
+  * 1b1. ModCheck shows an error message.
+  * Use case ends.
+
+
 
 #### Use case: View a person's contact details
 
@@ -463,7 +508,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. ModCheck shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
   
 * 3b.  User requests to view multiple people in the list.
 
@@ -473,7 +518,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
   
       * 3b1a. ModCheck validates indexes given is incorrect.
-      * 3b1b. ModChecks shows an error message.
+      * 3b1b. ModChecks shows an error message. 
+  
+        Use case ends.
 
 
 #### Use case: Edit a contact by INDEX
