@@ -70,7 +70,7 @@ public class MainApp extends Application {
 
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s role book and {@code userPrefs}. <br>
-     * The data from the sample role book will be used instead if {@code storage}'s address book is not found,
+     * The data from the sample role book will be used instead if {@code storage}'s role book is not found,
      * or an empty role book will be used instead if errors occur when reading {@code storage}'s role book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
@@ -81,7 +81,7 @@ public class MainApp extends Application {
             if (!roleBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample RoleBook");
             }
-            initialData = roleBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = roleBookOptional.orElseGet(SampleDataUtil::getSampleRoleBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty RoleBook"
                     + " (storage model)");

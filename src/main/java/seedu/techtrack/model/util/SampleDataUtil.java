@@ -20,7 +20,7 @@ import seedu.techtrack.model.role.Website;
 import seedu.techtrack.model.util.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code RoleBook} with sample data.
  */
 public class SampleDataUtil {
 
@@ -45,7 +45,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyRoleBook getSampleAddressBook() {
+    public static ReadOnlyRoleBook getSampleRoleBook() {
         RoleBook sampleAb = new RoleBook();
         for (Role sampleRole : getSampleRoles()) {
             sampleAb.addRole(sampleRole);
