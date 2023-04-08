@@ -289,7 +289,7 @@ Below is an example usage.
 
  2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an `Event` to the selected `Internship`.
 
-    2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
+    * User executes ` event add na/<event name> en/<event end datetime> de/<event description>` instead if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
 
 The *Activity Diagram* for the above logic flow is below: 
 
