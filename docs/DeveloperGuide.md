@@ -21,7 +21,7 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
    5. [Storage Component](#storage-component)
    6. [Common Classes](#common-classes)
 4. [Implementation](#implementation)
-   1. [Student/Parent Delete Feature](#delete-student/parent-feature)
+   1. [Student/Parent Delete Feature](#delete-studentparent-feature)
    2. [Attendance Feature](#attendance-feature)
    3. [Grade Feature](#grade-feature)
    4. [Parent/NOK Add Feature](#parentnok-add-feature)
@@ -78,6 +78,7 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
 ## **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project also took inspiration from [TeaPet](https://github.com/AY1920S2-CS2103T-W12-2/main) during the implementation of PowerConnect's Storage.
 
 --------------------------------------------------------------------------------------------------------------------
 <a name = "setting-up-getting-started"/>
@@ -152,13 +153,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -188,12 +189,15 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `student delete command` & `parent/NOK delete command`.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+**Sequence Diagram for Student Delete Command**
+![Interactions inside the Logic Component for the `Student Delete` Command](images/StudentDeleteSequentialDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+**Sequence Diagram for Parent/NOK Delete Command**
+![Interactions inside the Logic Component for the `Parent/NOK Delete` Command](images/ParentDeleteSequentialDiagram.png)
+
+
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -245,7 +249,7 @@ The `Model` component,
 The `Storage` component,
 * can save both PowerConnect data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `PowerConnectStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -294,12 +298,10 @@ However, a parent can only be deleted if no student is attached to that parent.
 11. After step 7, it will check that `Bob` has no students attached before deleting him and showing the success message.
 
 
-Sequence diagram for parent delete
-
+**Sequence diagram for Parent Delete**
 ![Sequence Diagram](images/ParentDeleteSequentialDiagram.png)
 
-Sequence diagram for student delete
-
+**Sequence diagram for Student Delete**
 ![Sequence Diagram](images/StudentDeleteSequentialDiagram.png)
 
 <div style="page-break-after: always;"></div>
@@ -308,23 +310,23 @@ Sequence diagram for student delete
 
 #### Aspect 1: How to delete students
 
-* **Alternative 1 (current choice):** Delete student from their class's student list
-    * pros: Provides flexibility in adding new features. e.g. deleting all students in a class 
+* **Alternative 1 (current choice):** Delete student from their class's student list.
+    * Pros: Provides flexibility in adding new features. e.g. deleting all students in a class 
     * Cons: Harder to implement
 
-* **Alternative 2:** Delete student from a student list containing all students
+* **Alternative 2:** Delete student from a student list containing all students.
     * Pros: Uses less memory
     * Cons: Time performance will be worse when there are a lot of students
 
 #### Aspect 2: Whether parent can be deleted if there is a student attached
 
-Current implementation allows a parent can have any number of students attached
+Current implementation allows a parent can have any number of students attached.
 
-* **Alternative 1 (current choice):** Parent cannot be deleted if there is a student attached to ensure that every student always have one parent
+* **Alternative 1 (current choice):** Parent cannot be deleted if there is a student attached to ensure that every student always have one parent.
     * Pros: Easier to implement, since we do not have to update multiple students when a parent is deleted
-    * Pros: Easier to add features that involve both a student and a parent 
+    * Pros: Easier to add features that involve both a student and a parent
 
-* **Alternative 2:** Parent can be deleted if there is a student attached
+* **Alternative 2:** Parent can be deleted if there is a student attached.
     * Pros: Deletion of parent will be more flexible
     * Cons: Can be time-consuming to update if there are a lot of students attached to one parent
 
@@ -341,9 +343,9 @@ Current implementation allows a parent can have any number of students attached
 
 The attendance feature is facilitated by `Attendance`. It is composed by a `Person` with an `Attendance` object.
 
-Given below is an example usage scenario and how the attendance mechanism behaves at each step
+Given below is an example usage scenario and how the attendance mechanism behaves at each step:
 
-Step 1. The user launches the application for the first time
+Step 1. The user launches the application for the first time. <br><br>
 Step 2. The user creates a student using the Add command. The `Attendance` of `Students` will be initialized with the initial attendance state (F) indicating that the student is absent.
 
 [//]: # (![Student Add Command]&#40;images/StudentAddCommand.png&#41;)
@@ -363,17 +365,17 @@ Step 4. The attendance is saved to the storage file automatically after each com
 <div style="page-break-after: always;"></div>
 
 ### Design considerations
-We want to make it easy for the user to set current date as present. Thus, we allowed the user to set attendance as T which will automatically register as present today
+We want to make it easy for the user to set current date as present. Thus, we allowed the user to set attendance as T which will automatically register as present today.
 
 #### Aspect: How to store attendance
 
-* **Alternative 1 (current choice):** Store attendance as a JsonAdaptedAttendance object that records the string representation of LocalDate
+* **Alternative 1 (current choice):** Store attendance as a JsonAdaptedAttendance object that records the string representation of LocalDate.
     * Pros: Easy to access and manipulate attendance data
     * Pros: Easy to read and write to storage
     * Pros: Flexible to add more features if more features are added e.g. mark as MC, Late..
     * Cons: Hard to implement
 
-* **Alternative 2:** Store attendance as a string representation of LocalDate
+* **Alternative 2:** Store attendance as a string representation of LocalDate.
     * Pros: Easy to implement
     * Pros: Use less memory
     * Cons: Hard to access and manipulate attendance data
@@ -394,9 +396,9 @@ We want to make it easy for the user to set current date as present. Thus, we al
 
 The grade feature is facilitated by `grade`. It is composed by a `Student` with an `Assignment` object.
 
-Given below is an example usage scenario and how the attendance mechanism behaves at each step
+Given below is an example usage scenario and how the attendance mechanism behaves at each step:
 
-Step 1. The user launches the application for the first time
+Step 1. The user launches the application for the first time. <br><br>
 Step 2. The user creates a student using the Add command. The `Test` and `Homework` which extends `Assignment` of `Students` will be initialized with the initial name: Insert student test/homework here!, Score: -100, Weightage: -100, Deadline: No Deadline and Is Done(Homework): false.
 
 [//]: # (![Student Add Command]&#40;images/StudentAddCommand.png&#41;)
@@ -418,13 +420,13 @@ We want to make it easy for the user to set tests without inputting all the deta
 
 #### Aspect: How to store test
 
-* **Alternative 1 (current choice):** Store test as a JsonAdaptedTest object
+* **Alternative 1 (current choice):** Store test as a JsonAdaptedTest object.
     * Pros: Easy to access and manipulate attendance data
     * Pros: Easy to read and write to storage
     * Pros: Flexible to add more features if more features are added
     * Cons: Hard to implement
 
-* **Alternative 2:** Store attendance as a string representation of Test details
+* **Alternative 2:** Store attendance as a string representation of Test details.
     * Pros: Easy to implement
     * Pros: Use less memory
     * Cons: Hard to access and manipulate attendance data
@@ -476,15 +478,15 @@ Furthermore, we do not want to trouble users by forcing them to have **ALL** par
 2. Parent's / NOK's `Phone number` <br><br>
 
 #### Aspect: How Parent Add executes
-* **Alternative 1 (current choice):** Users provide **COMPULSORY** details about the parent / NOK only + binding of student and parent / NOK is done at `Student` side **ONLY**
+* **Alternative 1 (current choice):** Users provide **COMPULSORY** details about the parent / NOK only + binding of student and parent / NOK is done at `Student` side **ONLY**.
     * Pro: Defensive coding is applied, reducing chances of bugs
     * Pro: Users are **NOT FORCED** to come up with arbitrary values to fill up **OPTIONAL** details for the parent / NOK to create a new `Parent / NOK`.
     * Con: Hard to implement
-* **Alternative 2:** Users provide **ALL** particulars of the `Parent / NOK` + binding of student and parent / NOK is done at `Student` side **ONLY**
+* **Alternative 2:** Users provide **ALL** particulars of the `Parent / NOK` + binding of student and parent / NOK is done at `Student` side **ONLY**.
     * Pro: Slightly easier to implement as compared to Alternative 1
     * Pro: Defensive coding is applied, reducing chances of bugs
     * Con: Users are **FORCED** to come up with arbitrary values to fill up any missing values for **OPTIONAL** section.
-* **Alternative 3:** Users provide **ALL** particulars of the `Parent / NOK` + binding of student and parent / NOK are done at **BOTH** `Student` and `Parent / NOK`
+* **Alternative 3:** Users provide **ALL** particulars of the `Parent / NOK` + binding of student and parent / NOK are done at **BOTH** `Student` and `Parent / NOK`.
     * Pro: Slightly easier to implement as compared to Alternative 2
     * Con: Defensive coding is **NOT** applied, increasing chances of bugs
     * Con: Users are **FORCED** to come up with arbitrary values to fill up any missing values for **OPTIONAL** section.
@@ -533,7 +535,7 @@ We also do not want to trouble user with inputting multiple **PREFIXES** to edit
 3. Particulars that are being amended<br><br>
 
 #### Aspect: How Parent Edit executes
-* **Alternative 1 (current choice):** Run the command with `parent edit n/<NAME> pnP/<PARENT_PHONE_NUMBER>` + PREFIXES and details of information that are being changed
+* **Alternative 1 (current choice):** Run the command with `parent edit n/<NAME> pnP/<PARENT_PHONE_NUMBER>` + PREFIXES and details of information that are being changed.
     * Pro: Easy to use
     * Pro: Minimal input by user to edit `Parent / NOK` particulars
     * Con: Slightly harder than Alternative 2 to implement
@@ -596,9 +598,9 @@ We wanted to adopt defensive coding for this feature to reduce any unwanted bugs
 <a name = "enhancement-1-name-fix"/>
 
 #### Enhancement 1: Name Fix
-Bug Report: [PE-D][Tester B] Edit Student: name can be numbers, Issue #179
+Bug Report: [PE-D][Tester B] Edit Student: name can be numbers, Issue #179.
 
-Feature Flaw: User is able to input numbers into `Student`'s `Name` and `Parent/NOK`'s `Name`
+Feature Flaw: User is able to input numbers into `Student`'s `Name` and `Parent/NOK`'s `Name`.
 
 Fix: Update `Name.java` file's line 19 code such that it will **ONLY** accept alphabets and spacing.
 ```
@@ -608,6 +610,7 @@ public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 To:
 public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
 ```
+Note: It is perhaps possible for a person to have a name with numbers or symbols in the future. This can be seen in the case where Elon Musk tried naming his child to be [X Æ A-12](https://pagesix.com/article/elon-musk-children/).
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -617,7 +620,7 @@ public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
 <a name = "enhancement-2-age-fix"/>
 
 #### Enhancement 2: Age Fix
-Bug Report: [PE-D][Tester B] Edit student: age can be 0 or any extreme value, Issue #178
+Bug Report: [PE-D][Tester B] Edit student: age can be 0 or any extreme value, Issue #178.
 
 Feature Flaw: User is able to input `Age` values like `0` or `999` when logically speaking, there wouldn't be anyone with those `Age` values. Current implementation is self-reliant on users to provide **APPROPRIATE** values.
 
@@ -631,7 +634,7 @@ Fix: Update `Age.java` file such that it **DOES NOT** allow values like `0` and 
 <a name = "enhancement-3-attendance-fix"/>
 
 #### Enhancement 3: Attendance Fix
-Bug Report: [PE-D][Tester C] Unclear options for marking students as absent, Issues #174, #166, #162
+Bug Report: [PE-D][Tester C] Unclear options for marking students as absent, Issues #174, #166, #162.
 
 Feature Flaw: User is unable to set `Attendance` of a `Student` to be `Absent` once he/she is marked as `Present.
 
@@ -671,12 +674,12 @@ Fix: Update `Attendance` feature such that it allows users to set it to `Absent`
 
 **Value proposition**: <br>
 Provides teachers with the ability to manage students administration and academics efficiently by operating on CLI, to complement existing LMS.
-* Our product uses CLI instead of GUI
-* Simple application for teachers to keep track of many students in different classes / co-curricular activities (CCAs) that have different phone numbers
-* Our application can be used individually without internet connection (currently supports single user usage ONLY)
-* Helps to keep track of students’ parents / next-of-kins’ contact information for emergency purposes
-* Teachers may not be able to match students names and faces well and so this app serves as an easy way to identify students (since there are too many students)
-* Streamline administration processes because there’s plenty of students’ information to keep track of (e.g. attendance, assignments, grades, contact details)
+* Our product uses CLI instead of GUI.
+* Simple application for teachers to keep track of many students in different classes / co-curricular activities (CCAs) that have different phone numbers.
+* Our application can be used individually without internet connection (currently supports single user usage ONLY).
+* Helps to keep track of students’ parents / next-of-kins’ contact information for emergency purposes.
+* Teachers may not be able to match students names and faces well and so this app serves as an easy way to identify students (since there are too many students).
+* Streamline administration processes because there’s plenty of students’ information to keep track of (e.g. attendance, assignments, grades, contact details).
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -690,39 +693,39 @@ Provides teachers with the ability to manage students administration and academi
 | No  | As a...                     | I can...                                                                    | So that...                                                                                                                                 | Notes                                                                                                                                     | Priority |
 |-----|-----------------------------|-----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | 1   | Teacher                     | Record student’s attendance                                                 | I know that my student is present in class (in school).                                                                                    |                                                                                                                                           | High     |
-| 2   | Teacher                     | Record students’ assessment and test grades.                                | I am able to manage my students’ performance                                                                                               |                                                                                                                                           | High     |
-| 3   | Teacher                     | Have an efficient way to view and track my students’ attendance.            | I will have an easier time managing my students’ attendance over the year                                                                  |                                                                                                                                           | High     |
-| 4   | Teacher                     | Have the option to leave some details empty                                 | I am able to key in my students’ information when there’s missing information                                                              |                                                                                                                                           | High     |
-| 5   | Teacher                     | Document students’ progress                                                 | I am able to record easily the students’ performance                                                                                       |                                                                                                                                           | High     |
-| 6   | Teacher                     | Organise my students by class                                               | I am able to identify which class they belong to                                                                                           | Determine whether to create separate classes: “class” class and “student” class or merge                                                  | High     |
+| 2   | Teacher                     | Record students’ assessment and test grades.                                | I am able to manage my students’ performance.                                                                                              |                                                                                                                                           | High     |
+| 3   | Teacher                     | Have an efficient way to view and track my students’ attendance.            | I will have an easier time managing my students’ attendance over the year.                                                                 |                                                                                                                                           | High     |
+| 4   | Teacher                     | Have the option to leave some details empty                                 | I am able to key in my students’ information when there’s missing information.                                                             |                                                                                                                                           | High     |
+| 5   | Teacher                     | Document students’ progress                                                 | I am able to record easily the students’ performance.                                                                                      |                                                                                                                                           | High     |
+| 6   | Teacher                     | Organise my students by class                                               | I am able to identify which class they belong to.                                                                                          | Determine whether to create separate classes: “class” class and “student” class or merge                                                  | High     |
 | 7   | Non tech-savvy teacher      | Learn about new commands                                                    | I am able to use the application effectively and save unnecessary time and effort in recording students’ particulars and searching for it. | Provide User Guide that is easy to understand                                                                                             | High     |
-| 8   | Teacher                     | Recognise my students from different classes through their photos           | I am able to recognise my students' looks                                                                                                  | Long setup process for user as they need to manually input images for individual student<p></p> Keeping separate file / folder for images | Medium   |
+| 8   | Teacher                     | Recognise my students from different classes through their photos           | I am able to recognise my students' looks.                                                                                                 | Long setup process for user as they need to manually input images for individual student<p></p> Keeping separate file / folder for images | Medium   |
 | 9   | Caring Teacher              | Provide comments for each student                                           | I am able to keep track of students who need meaningful feedback and support.                                                              | (comments section on each student)                                                                                                        | Medium   |
-| 10  | Teacher / teacher assistant | Have an efficient way to retrieve my students’ contact details.             | I am able to contact them easily                                                                                                           | Assumption: student details are known to teachers / TAs                                                                                   | Medium   |
-| 11  | Teacher                     | Keep track of students who have submitted assignment                        | I am aware of which student missed the deadline for their work                                                                             |                                                                                                                                           | Medium   |
-| 12  | Motivational teacher        | Sort my students by overall grades                                          | I am able to foster a positive and supportive learning environment                                                                         |                                                                                                                                           | Medium   |
+| 10  | Teacher / teacher assistant | Have an efficient way to retrieve my students’ contact details.             | I am able to contact them easily.                                                                                                          | Assumption: student details are known to teachers / TAs                                                                                   | Medium   |
+| 11  | Teacher                     | Keep track of students who have submitted assignment                        | I am aware of which student missed the deadline for their work.                                                                            |                                                                                                                                           | Medium   |
+| 12  | Motivational teacher        | Sort my students by overall grades                                          | I am able to foster a positive and supportive learning environment.                                                                        |                                                                                                                                           | Medium   |
 | 13  | Teacher                     | Use an application that is easy to navigate about and has a nice interface. | I am able to save unnecessary time and effort in recording students’ particulars and searching for it.                                     | Issue under designs                                                                                                                       | Low      |
-| 14  | Responsible Teacher         | Access student records, such as grades and attendance                       | I will be able to make informed decisions about student progress                                                                           | Summary of all students grades for a particular test / class                                                                              | Low      |
-| 15  | Busy teacher                | Have a todo list                                                            | I am able to keep track of what to do                                                                                                      |                                                                                                                                           | Low / NA |
-| 16  | Teacher                     | Use an application with a reminder system                                   | I am able to track the things that needs to be done                                                                                        |                                                                                                                                           | NA       |
-| 17  | Teacher                     | Efficiently and effectively assign assessments and assignments              | I am able to better assess my students’ learning and progress                                                                              |                                                                                                                                           | NA       |
-| 18  | Teacher                     | Managing students’ behaviours and actions                                   | I am able to promote a safe and productive learning space for all                                                                          |                                                                                                                                           | NA       |
-| 19  | Teacher                     | Add individual feedback to students                                         | I am able to provide feedback to parents/guardians effectively                                                                             | Duplicate point to Point 7                                                                                                                | NA       |
-| 20  | Teacher                     | Access my students contacts conveniently                                    | I am able to build a closer relationship with my students and their next of kin                                                            | Too vague                                                                                                                                 | NA       |
-| 21  | Busy Teacher                | Keep track of my teaching feedback                                          | I can keep improving my teaching practices                                                                                                 | Hard to get school admin team on board                                                                                                    | NA       |
-| 22  | Efficient Teacher           | Integrate technology into my teaching                                       | I am able to enrich my student learning                                                                                                    | Vague                                                                                                                                     | NA       |
-| 23  | Teacher assistant           | Retrieve my students contact                                                | I am able to look them up easily                                                                                                           | Duplicate Point to Point 10                                                                                                               | NA       |
-| 24  | Teacher                     | Track the date and time of my classes                                       | I will be able to reach my classes on time                                                                                                 |                                                                                                                                           | NA       |
-| 25  | Forgetful teacher           | Record attendance                                                           | I am able to keep track of my students                                                                                                     | Duplicate to Point 5                                                                                                                      | NA       |
-| 26  | Teacher                     | Identify weaker students                                                    | I can give them more attention in class                                                                                                    | Duplicate to Point 20                                                                                                                     | NA       |
-| 27  | Teacher                     | Manage my consultation timings                                              | I am able to organise my schedule                                                                                                          |                                                                                                                                           | NA       |
-| 28  | Teacher                     | Set reminders for my consultation timings                                   | I am able to ensure I am not late for consultations                                                                                        |                                                                                                                                           | NA       |
-| 29  | Teacher                     | Marks my students’ assignments automatically                                | I am able to use time and effort spent on it on other use, such as thinking of ways to improve my students’ learning                       | Difficult to implement autograder                                                                                                         | NA       |
-| 30  | Teacher                     | Have an application that is used as CLI instead of GUI                      | I am able to make use of my fast typing speed to sort out all the administrative work                                                      | Too Vague                                                                                                                                 | NA       |
-| 31  | Busy Teacher                | Easily manage my schedule                                                   | I am able to spend more time on other things                                                                                               | Out of scope                                                                                                                              | NA       |
+| 14  | Responsible Teacher         | Access student records, such as grades and attendance                       | I will be able to make informed decisions about student progress.                                                                          | Summary of all students grades for a particular test / class                                                                              | Low      |
+| 15  | Busy teacher                | Have a todo list                                                            | I am able to keep track of what to do.                                                                                                     |                                                                                                                                           | Low / NA |
+| 16  | Teacher                     | Use an application with a reminder system                                   | I am able to track the things that needs to be done.                                                                                       |                                                                                                                                           | NA       |
+| 17  | Teacher                     | Efficiently and effectively assign assessments and assignments              | I am able to better assess my students’ learning and progress.                                                                             |                                                                                                                                           | NA       |
+| 18  | Teacher                     | Managing students’ behaviours and actions                                   | I am able to promote a safe and productive learning space for all.                                                                         |                                                                                                                                           | NA       |
+| 19  | Teacher                     | Add individual feedback to students                                         | I am able to provide feedback to parents/guardians effectively.                                                                            | Duplicate point to Point 7                                                                                                                | NA       |
+| 20  | Teacher                     | Access my students contacts conveniently                                    | I am able to build a closer relationship with my students and their next of kin.                                                           | Too vague                                                                                                                                 | NA       |
+| 21  | Busy Teacher                | Keep track of my teaching feedback                                          | I can keep improving my teaching practices.                                                                                                | Hard to get school admin team on board                                                                                                    | NA       |
+| 22  | Efficient Teacher           | Integrate technology into my teaching                                       | I am able to enrich my student learning.                                                                                                   | Vague                                                                                                                                     | NA       |
+| 23  | Teacher assistant           | Retrieve my students contact                                                | I am able to look them up easily.                                                                                                          | Duplicate Point to Point 10                                                                                                               | NA       |
+| 24  | Teacher                     | Track the date and time of my classes                                       | I will be able to reach my classes on time.                                                                                                |                                                                                                                                           | NA       |
+| 25  | Forgetful teacher           | Record attendance                                                           | I am able to keep track of my students.                                                                                                    | Duplicate to Point 5                                                                                                                      | NA       |
+| 26  | Teacher                     | Identify weaker students                                                    | I can give them more attention in class.                                                                                                   | Duplicate to Point 20                                                                                                                     | NA       |
+| 27  | Teacher                     | Manage my consultation timings                                              | I am able to organise my schedule.                                                                                                         |                                                                                                                                           | NA       |
+| 28  | Teacher                     | Set reminders for my consultation timings                                   | I am able to ensure I am not late for consultations.                                                                                       |                                                                                                                                           | NA       |
+| 29  | Teacher                     | Marks my students’ assignments automatically                                | I am able to use time and effort spent on it on other use, such as thinking of ways to improve my students’ learning.                      | Difficult to implement autograder                                                                                                         | NA       |
+| 30  | Teacher                     | Have an application that is used as CLI instead of GUI                      | I am able to make use of my fast typing speed to sort out all the administrative work.                                                     | Too Vague                                                                                                                                 | NA       |
+| 31  | Busy Teacher                | Easily manage my schedule                                                   | I am able to spend more time on other things.                                                                                              | Out of scope                                                                                                                              | NA       |
 | 32  | Busy Teacher                | Know which tasks to prioritise                                              | I am able to ensure all of my responsibilities are taken care of in a timely and efficient manner.                                         |                                                                                                                                           | NA       |
 | 33  | Teacher                     | Track the date and time of the classes that I have                          | I am able to reach on time and teach the correct module for the particular lesson slot.                                                    | Out of scope                                                                                                                              | NA       |
-| 34  | Teacher                     | Amend date and time of certain lesson timings                               | I am able to change lesson dates and timings easily when lessons shift                                                                     |                                                                                                                                           | NA       |
+| 34  | Teacher                     | Amend date and time of certain lesson timings                               | I am able to change lesson dates and timings easily when lessons shift.                                                                    |                                                                                                                                           | NA       |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -900,7 +903,7 @@ Provides teachers with the ability to manage students administration and academi
 #### Use Case: UC07 - Adding a new `parent/NOK` to the system.
 
 **MSS:** Similar to UC01
-1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details for parent’s / NOK's particulars
+1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details for parent’s / NOK's particulars.
 2. System creates parent/NOK and adds its data into system's storage and indicates success to user. <br>
    Use case ends.
 
@@ -989,8 +992,8 @@ Provides teachers with the ability to manage students administration and academi
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to handle up to 400 students without a noticeable sluggishness in performance for typical usage.
-3. Should package it as a JAR file that is smaller than 50mb
-4. Should store data in a txt/csv file
+3. Should package it as a JAR file that is smaller than 50MB.
+4. Should store data in a txt/csv file.
 5. PowerConnect should be able to work without any internet access.
 6. PowerConnect should only be used by a single user per installation and not by multiple users.
 7. Users with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
@@ -1013,16 +1016,16 @@ Provides teachers with the ability to manage students administration and academi
 
 **Attributes**: Information of a student / parent. <br>
 For example, name, phone number, email address etc <br><br>
-**CCA**: Co-curricular activities <br><br>
-**CLI**: Command Line Interface <br><br>
-**Hard disk**: Non-volatile data storage device, your OS's storage in short <br><br>
+**CCA**: Co-curricular activities. <br><br>
+**CLI**: Command Line Interface. <br><br>
+**Hard disk**: Non-volatile data storage device, your OS's storage in short. <br><br>
 **LMS**: Learning Management System, application used by schools to provide students a platform to access their lessons materials online. <br>
 Examples of LMS: Canvas, LumiNUS, Blackboard, Google Classroom, Quizlet <br><br>
-**NOK**: Refers to Next-of-Kin, could be either blood related or a guardian <br><br>
-**OS**: Operating Systems <br>
-Examples of OS: Windows, Linux, Unix, OS-X <br><br>
-**Parameters**: The actual information of a student/parent
-For example, Tan Ah Kow, 91234567 etc.
+**NOK**: Refers to Next-of-Kin, could be either blood related or a guardian. <br><br>
+**OS**: Operating Systems. <br>
+Examples of OS: Windows, Linux, Unix, OS-X etc <br><br>
+**Parameters**: The actual information of a student/parent. <br>
+For example, Tan Ah Kow, 91234567 etc. <br><br>
 
 *{More to be added}*
 
@@ -1062,104 +1065,104 @@ testers are expected to do more *exploratory* testing.
 
 2. Adding a student
    1. Prerequisites: There should be no student with the same class and index number as the student you are adding. Same name is allowed. List all the students with `list student` command.
-   2. Test case 1: `student 1A add n/TanAhCow in/03 pn/TanAhNiu pnP/91234567 rls/Father` <br>
-      Expected: A student is added and displayed in the student list and a parent is added to the Parents/Next Of Kins(NOK) list
-   3. Test case 2: `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T` <br>
-      Expected: A student with more optional details is added and displayed in the student list and a parent is added to the Parents/Next Of Kins(NOK) list
+   2. Test case 1: `student 1A add n/TanAhCow in/03 pn/TanAhNiu pnP/91234567 rls/Father`. <br>
+      Expected: A student is added and displayed in the student list and a parent is added to the Parents/Next Of Kins(NOK) list.
+   3. Test case 2: `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T`. <br>
+      Expected: A student with more optional details is added and displayed in the student list and a parent is added to the Parents/Next Of Kins(NOK) list.
    <br><br>
 <a name = "markingattendance"/>
 
 3. Marking attendance
    1. Prerequisites: The date of attendance should be known, or you can mark it as T/F (True/False) for today's date. List all the students with `list student` command.
-   2. Test case 1: `student 3A attendance in/25 att/T`
+   2. Test case 1: `student 3A attendance in/25 att/T`. <br>
       Expected: The attendance of the student is marked as T (present) for today's date.
-   3. Test case 2: `student 3A attendance in/25 att/25/02/2023`
+   3. Test case 2: `student 3A attendance in/25 att/25/02/2023`. <br>
       Expected: The attendance of the student is marked as F if today's date is not 25/02/2023. PowerConnect V1.4 only supports display of today's date for attendance. 
    <br><br>
 <a name = "addinggrade"/>
 
 4. Adding grade (homework/test) for student
    1. Prerequisites: The test should not have duplicate names and must be known. List all the students with `list student` command.
-   2. Test case 1: `student 1A grade in/13 test/CA1 score/75 weightage/10`
+   2. Test case 1: `student 1A grade in/13 test/CA1 score/75 weightage/10`. <br>
       Expected: A test named CA1, 75 score and 10 weightage is added to the student with index number 13.
-   3. student 1A grade in/13 hw/Chapter 1 score/75 deadline/25/04/2023 weightage/10 hwdone/true
+   3. Test case 2: `student 1A grade in/13 hw/Chapter 1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`. <br>
       Expected: A homework named Chapter 1, 75 score, 10 weightage and deadline of 25/04/2023 is added to the student with index number 13.
    <br><br>
 <a name = "deletinggrade"/>
 
 5. Deleting a grade (homework/test) for student
    1. Prerequisites: You know the deleted grade name and the student index number.
-   2. Test case 1: `student 1A gradedelete in/13 hw/Chapter 1`
+   2. Test case 1: `student 1A gradedelete in/13 hw/Chapter 1`. <br>
       Expected: The homework named Chapter 1 is deleted from the student with index number 13.
    <br><br>
 <a name = "addingcomment"/>
 
 6. Adding comments for a student
    1. Prerequisites: You know the student index number. List all the students with `list student` command.
-   2. Test case 1: `student 1A comment in/25 com/Quiet person, needs to interact more with classmates`
+   2. Test case 1: `student 1A comment in/25 com/Quiet person, needs to interact more with classmates`. <br>
       Expected: The comment is added to the student with index number 25.
    <br><br>
 <a name = "editingstudent"/>
 
 7. Edit a student
    1. Prerequisites: List all the students with `list student` command.
-   2. Test case 1: `student 1A edit in/3 cca/basketball`
+   2. Test case 1: `student 1A edit in/3 cca/basketball`. <br>
       Expected: The student with index number 3 will have the cca changed to basketball.
    <br><br>
 <a name = "listingstudent"/>
 
 8. Listing all students in a specified class
    1. Prerequisites: List all the students with `list student` command.
-   2. Test case 1: `student 1A list`
+   2. Test case 1: `student 1A list`. <br>
       Expected: All students in class 1A will be listed.
    <br><br>
 <a name = 'findingstudent'/>
 
 9. Finding a student
    1. Prerequisites: List all the students with `list student` command.
-   2. Test case 1: `student 1A find n/TanAhCow`
+   2. Test case 1: `student 1A find n/TanAhCow`. <br>
       Expected: All students with name TanAhCow in class 1A will be listed.
    <br><br>
 <a name = "deletingstudent"/>
 
 10. Deleting a student 
     1. Prerequisites: List all the students with `list student` command.
-    2. Test case 1: `student 1A delete in/3`
+    2. Test case 1: `student 1A delete in/3`. <br>
        Expected: The student with index number 3 will be deleted.
     <br><br>
 <a name = "addingparent"/>
 
 11. Adding a parent
     1. Prerequisites: List all the parents with `list parent` command. Parents can have the same name but phone numbers must be unique!
-    2. Test case 1: `parent add n/TanAhNiu pnP/91234567`
+    2. Test case 1: `parent add n/TanAhNiu pnP/91234567`. <br>
        Expected: A parent is added and displayed in the parent list.
     <br><br>
 <a name = "listingparent"/>
 
 12. Listing all parents
     1. Prerequisites: List all the parents with `list parent` command.
-    2. Test case 1: `parent list`
+    2. Test case 1: `parent list`. <br>
        Expected: All parents will be listed.
     <br><br>
 <a name = "editingparent"/>
 
 13. Editing a parent
     1. Prerequisites: List all the parents with `list parent` command.
-    2. Test case 1: `parent edit n/TanAhNiu pnP/91234567 npnP/65656565`
+    2. Test case 1: `parent edit n/TanAhNiu pnP/91234567 npnP/65656565`. <br>
        Expected: The parent with name TanAhNiu will have the phone number changed to 65656565.
     <br><br>
 <a name = "findingparent"/>
 
 14. Finding a parent
     1. Prerequisites: List all the parents with `list parent` command.
-    2. Test case 1: `parent find TanAhNiu`
+    2. Test case 1: `parent find TanAhNiu`. <br>
        Expected: All parents with name TanAhNiu will be listed.
     <br><br>
 <a name = "deletingparent"/>
 
 15. Deleting a parent
     1. Prerequisites: List all the parents with `list parent` command.
-    2. Test case 1: `parent delete n/TanAhCow pnP/91234566`
+    2. Test case 1: `parent delete n/TanAhCow pnP/91234566`. <br>
        Expected: The parent with name TanAhNiu and phone number 9123456 will be deleted.
     3. Note: You CANNOT delete the parent/NOK if the parent/NOK has students BOUND to him/her. System will display an error message for this. Delete the student using student delete command first.
     <br><br>
@@ -1218,7 +1221,8 @@ Testers should **AVOID** manually amending the storage files **UNLESS** there is
 
 **2. Dealing with missing files** <br><br>
 Testers usually get missing files when they perform one of the **FOLLOWING** scenarios:
-1. Changing the file / folder names (eg changing `parents.json`, `pcclass.json`, `/images/`, images names)
+1. Changing the files / folders names (eg changing `parents.json`, `pcclass.json`, `/images/`, images names)
+2. Changing the files / folders location
 
 **Possible Fix:** <br>
 Testers can attempt to manually locate the files and folders and ensure they are named correctly as per PowerConnect's requirements.
@@ -1254,7 +1258,7 @@ We also made linkages between parents and students to better model the relations
 quite time-consuming as we had to make sure each command we implemented adjusted this relationship accordingly. 
 
 The UI package also took us quite a while as we were not really familiar with JavaFX, and we had to make sure the information 
-displays correctly especially with expanding number of information (tests/homework)
+displays correctly especially with expanding number of information (tests/homework).
 
 The novelty of giving users both the option to specify an image path or use the images folder method to store images for students
 or parents also took us some time as we were unsure to hard code the location or not. 
