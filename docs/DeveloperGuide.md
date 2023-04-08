@@ -206,15 +206,35 @@ The find appointment command utilises a `Predicate<Appointment>` in order to fil
 
 We chose to use a single command instead of two different commands like `find` and `find_details` since the functionality of the two types of appointment finding commands is very similar, and unlikely to change in the future.
 
+### Delete patient (`delete_patient`) command
+
+**Implementation**
+
+The delete patient command allows the user to delete an existing patient from MediMeet. This is executed by filtering `model` list via `Model#getPatientList()` and obtaining a `lastShownList` list. The patient to be removed is identified by the index according to the filtered list. All appointments related to the patient will also be deleted. This is executed in the `ModelManager` by using a for loop to remove appointments with the target patient name.
+
+
 ### Delete appointment (`delete_appt`) command
 
 **Implementation**
 
-The delete appointment command allows the user to delete an existing appointment from MediMeet. This is executed by identifying the chosen appointment by its AppointmentId, filtering `model` appointment list via `Model#getFilteredAppointmentList()` and obtaining a `matchingAppointments` list and finally removing the first `Appointment` on the list.
+The delete appointment command allows the user to delete an existing appointment from MediMeet. This is executed by filtering `model` list via `Model#getAppointmentList()` and obtaining a `lastShownList` list. The appointment to be removed is identified by the index according to the filtered list.
 
 **Design considerations**
 
 We originally wanted to identify Appointments by their `AppointmentId` instead of their index as we expect to identify each appointment by their own unique IDs. However, we chose to use indexes in a similar fashion to patients so that users would not need to confuse themselves with two different types of commands.
+
+### Help (`help`) command
+
+**Implementation**
+
+The help command creates a pop up window message redirecting the user to the user guide. This is executed by passing a boolean `showHelp = true` into `CommandResult`. In `MainWindow`, the boolean `CommandResult.isShowHelp()` is set to true and will execute the `handleHelp()` method. This method will check if the help window is already showing. If it is not, it will open the window for the user.
+
+### View patient card (`view`) command
+
+**Implementation**
+
+The view command creates a pop up window message displaying the patient card to the user. This is executed by passing a boolean `showHelp = true` as well as the `index` of the desired patient into `CommandResult`. In `MainWindow`, the boolean `CommandResult.isView()` is set to true and will execute the `handleView()` method. This method will check if the view window is already showing. If it is not, it will open the window for the user.
+
 
 ### \[Proposed\] Undo/redo feature
 
