@@ -271,8 +271,8 @@ The following can be performed at **any** [current working context](#current-wor
 
 To make it easier to specify that share the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
 
-- e.g. List videos of lecture Week 5 of module CS2040S
-- <img src="images/LectureContext.png" height="20" /> `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
+- e.g. <img src="images/LectureContext.png" height="20" /> List videos of lecture Week 5 of module CS2040S
+> `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
 - Note that the lecture week is different from the current working context and that only the `/mod` prefix has been injected into the command input.
 
 ---
