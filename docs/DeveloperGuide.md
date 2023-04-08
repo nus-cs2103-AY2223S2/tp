@@ -293,6 +293,21 @@ Users have the ability to list all their projects. A summary of how many OVERDUE
 
 #### Implementation
 
+### Clearing clients
+
+Users have the ability to clear all their clients.
+
+#### Implementation
+
+<img src="images/ClearClientSequenceDiagram.png" width="600" />
+
+### Clearing projects
+
+Users have the ability to clear all their projects.
+
+#### Implementation
+
+<img src="images/ClearProjectSequenceDiagram.png" width="600" />
 
 --------------------------------------------------------------------------------------------------------------------
 
