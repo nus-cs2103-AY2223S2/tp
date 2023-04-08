@@ -285,7 +285,7 @@ Users have the ability to list all their clients.
 
 ### Listing Projects
 
-Users have the ability to list all their projects. A summary of how many overdue, done, and not done projects is also displayed.
+Users have the ability to list all their projects. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed.
 
 #### Implementation
 
@@ -369,14 +369,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ArB` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list clients
+2.  ArB shows a list of clients
+3.  User requests to delete a specific client in the list
+4.  ArB deletes the client
 
     Use case ends.
 
@@ -388,11 +388,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ArB shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Delete Project**
+**Use case: Delete a project**
 
 **MSS**:
 1. User enters command for deleting project of certain client.
@@ -401,12 +401,121 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extension**:
-1a. User wants to remove a project of a client that is not found in the list.
+* 1a. User wants to remove a project of a client that is not found in the list.
 
-2a1. ARB tells user that the project of the client does not exist.
+* 2a1. ARB tells user that the project of the client does not exist.
 
 Use case ends.
 
+**Use case: Mark a project**
+
+**MSS**
+
+1.  User requests to list projects
+2.  ArB shows a list of projects
+3.  User requests to mark a specific project in the list
+4.  ArB marks the project
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+   * 3a1. ArB shows an error message.
+
+     Use case resumes at step 2.
+
+**Use case: Unmark a project**
+
+**MSS**
+
+1.  User requests to list projects
+2.  ArB shows a list of projects
+3.  User requests to unmark a specific project in the list
+4.  ArB unmarks the project
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+   * 3a1. ArB shows an error message.
+
+     Use case resumes at step 2.
+
+**Use case: List all projects**
+
+**MSS**
+
+1.  User requests to list projects
+2.  ArB shows a list of projects
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Clear all projects**
+
+**MSS**
+
+1. User requests to list projects
+2. ArB shows a list of projects
+3. User requests to clear all projects in the list
+4. ArB clears all projects in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: List all clients**
+
+**MSS**
+
+1.  User requests to list clients
+2.  ArB shows a list of clients
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Clear all clients**
+
+**MSS**
+
+1. User requests to list clients
+2. ArB shows a list of clients
+3. User requests to clear all clients in the list
+4. ArB clears all clients in the list
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 **Use case: Edit Project**
 
