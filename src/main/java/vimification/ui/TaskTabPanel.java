@@ -40,13 +40,9 @@ public class TaskTabPanel extends UiPart<VBox> {
 
         uiTaskList.setPredicate(task -> task.hasStatus(Status.NOT_DONE));
 
-        ongoingTaskListPanel = new TaskListPanel(uiTaskList);
-        completedTaskListPanel = new TaskListPanel(uiTaskList);
-        overdueTaskListPanel = new TaskListPanel(uiTaskList);
-
-        ongoingTaskListPanel.setMainScreen(mainScreen);
-        completedTaskListPanel.setMainScreen(mainScreen);
-        overdueTaskListPanel.setMainScreen(mainScreen);
+        ongoingTaskListPanel = new TaskListPanel(uiTaskList, mainScreen);
+        completedTaskListPanel = new TaskListPanel(uiTaskList, mainScreen);
+        overdueTaskListPanel = new TaskListPanel(uiTaskList, mainScreen);
 
         ongoingTaskListPanel.getRoot().prefHeightProperty()
                 .bind(this.getRoot().prefHeightProperty());

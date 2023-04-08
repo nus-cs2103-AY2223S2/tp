@@ -24,7 +24,6 @@ public class MainScreen extends UiPart<VBox> {
     private static ReadOnlyDoubleProperty WINDOW_HEIGHT;
     private static ReadOnlyDoubleProperty WINDOW_WIDTH;
 
-
     private static final double TOP_COMPONENT_HEIGHT_PROPORTION = 0.9;
     private static final double BOTTOM_COMPONENT_HEIGHT_PROPORTION =
             1 - TOP_COMPONENT_HEIGHT_PROPORTION;
@@ -42,8 +41,7 @@ public class MainScreen extends UiPart<VBox> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TaskTabPanel taskTabPanel;
-    // private TaskCreationPanel taskCreationPanel;
+    private TaskListPanel taskListPanel;
     private CommandInput commandInput;
 
     @FXML
@@ -68,13 +66,9 @@ public class MainScreen extends UiPart<VBox> {
         setupComponents();
     }
 
-    /**
-     * Returns the {@code TaskTabPanel} component
-     *
-     * @return
-     */
-    public TaskTabPanel getTaskTabPanel() {
-        return taskTabPanel;
+
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
     }
 
     @FXML
@@ -85,7 +79,7 @@ public class MainScreen extends UiPart<VBox> {
     private void setupComponents() {
         loadRightComponent(new WelcomePanel());
         intializeCommandInput();
-        initializeTaskTabPanel();
+        initializeTaskListPanel();
     }
 
     private void bindHeightAndWidth() {
@@ -100,10 +94,10 @@ public class MainScreen extends UiPart<VBox> {
         bottomComponent.prefHeightProperty().bind(BOTTOM_COMPONENT_HEIGHT);
     }
 
-    public void initializeTaskTabPanel() {
-        taskTabPanel = new TaskTabPanel(this, logic);
-        loadLeftComponent(taskTabPanel);
-        taskTabPanel.requestFocus();
+    public void initializeTaskListPanel() {
+        taskListPanel = new TaskListPanel(logic.getUiTaskList(), this);
+        loadLeftComponent(taskListPanel);
+        taskListPanel.requestFocus();
     }
 
     private void intializeCommandInput() {
@@ -120,29 +114,17 @@ public class MainScreen extends UiPart<VBox> {
         KeyCodeCombination colonKey =
                 new KeyCodeCombination(KeyCode.SEMICOLON, KeyCombination.SHIFT_DOWN);
 
-        KeyCodeCombination macControlTab =
-                new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.CONTROL_DOWN);
-
-        KeyCodeCombination windowsControlTab =
-                new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.ALT_DOWN);
-
-
         boolean isKeyPressedColon = colonKey.match(event);
-        boolean isContorlTab = macControlTab.match(event) || windowsControlTab.match(event);
 
         if (isKeyPressedColon) {
             loadCommandInputComponent();
-            return;
-        }
-        if (isContorlTab) {
-            taskTabPanel.requestTabFocus();
             return;
         }
 
         switch (event.getText()) {
         case "j":
         case "k":
-            taskTabPanel.requestFocus();
+            taskListPanel.requestFocus();
             break;
         }
     }
@@ -171,12 +153,11 @@ public class MainScreen extends UiPart<VBox> {
         bottomComponent.getChildren().clear();
     }
 
-    public <T extends Pane> void loadLeftComponent(UiPart<T> component) {
+    private <T extends Pane> void loadLeftComponent(UiPart<T> component) {
         leftComponent.getChildren().clear();
         leftComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(TOP_COMPONENT_HEIGHT);
         component.getRoot().prefWidthProperty().bind(LEFT_COMPONENT_WIDTH);
-
     }
 
     public <T extends Pane> void loadRightComponent(UiPart<T> component) {

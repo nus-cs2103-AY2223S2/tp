@@ -10,9 +10,7 @@ import javafx.scene.layout.HBox;
 import vimification.internal.Logic;
 import vimification.internal.command.CommandResult;
 
-/**
- *
- */
+
 public class CommandInput extends UiPart<HBox> {
 
     private static final String FXML = "CommandInput.fxml";
@@ -43,7 +41,7 @@ public class CommandInput extends UiPart<HBox> {
 
         if (isEscEvent || isTextFieldEmpty()) {
             mainScreen.clearBottomComponent();
-            returnFocusToTaskTabPanel();
+            returnFocusToTaskListPanel();
         }
 
         if (isEnterEvent) {
@@ -70,7 +68,7 @@ public class CommandInput extends UiPart<HBox> {
 
         CommandResult result = logic.execute(commandString);
         mainScreen.loadCommandResultComponent(result);
-        returnFocusToTaskTabPanel();
+        returnFocusToTaskListPanel();
     }
 
 
@@ -82,8 +80,8 @@ public class CommandInput extends UiPart<HBox> {
         inputField.requestFocus();
     }
 
-    private void returnFocusToTaskTabPanel() {
-        mainScreen.getTaskTabPanel().requestFocus();
+    private void returnFocusToTaskListPanel() {
+        mainScreen.getTaskListPanel().requestFocus();
     }
 
     @FXML
