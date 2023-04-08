@@ -10,6 +10,7 @@ public class Note {
     public static final int MAX_LENGTH = 45;
 
     public final String noteName;
+    public static final String MESSAGE_LENGTH_CONSTRAINTS = "Length of skills cannot be more than 45 characters long!";
 
     /**
      * Constructs a {@code Note}.
