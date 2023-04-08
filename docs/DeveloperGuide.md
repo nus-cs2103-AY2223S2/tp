@@ -1126,8 +1126,8 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 9. Should work without requiring an installer.
 10. Should not depend on a remote server.
 11. Should not cause any resolution related inconveniences to the user for:
-    1.  Screen resolutions 1920x1080 and higher.
-    2.  Screen scales 100% and 125%.
+    1. Screen resolutions 1920x1080 and higher.
+    2. Screen scales 100% and 125%.
 12. Application executable JAR file should be less than 100MB.
 
 ### Glossary
@@ -1230,25 +1230,25 @@ Before every test case, ensure that the there are no patients and vaccinations.
 
 1. Add vaccination "TAKING" which will be the vaccination to be taken with `ALL` type history requirement.<br>
   `vaccination add TAKING --h ALL::G1, G2, G3`
-2. Add vaccination "LACKING" that will lack a required group.<br>
+1. Add vaccination "LACKING" that will lack a required group.<br>
   `vaccination add LACKING --g G1, G2`
-3. Add vaccination "ALL" that will have all required groups.<br>
+1. Add vaccination "ALL" that will have all required groups.<br>
   `vaccination add ALL --g G1, G2, G3`
-4. Add vaccination "EXTRA" that will have all required groups and extra.<br>
+1. Add vaccination "EXTRA" that will have all required groups and extra.<br>
   `vaccination add EXTRA --g G1, G2, G3, G4`
-5. Add patient "LACKING" who has taken a vaccination with lacking required groups.<br>
+1. Add patient "LACKING" who has taken a vaccination with lacking required groups.<br>
   `patient add --n LACKING --p 445 --d 0001-1-1 --b A+ --v LACKING`
-6. Add patient "ALL" who has taken a vaccination with all required groups.<br>
+1. Add patient "ALL" who has taken a vaccination with all required groups.<br>
   `patient add --n ALL --p 445 --d 0001-1-1 --b A+ --v ALL`
-7. Add patient "EXTRA" who has taken a vaccination with all required groups and extra.<br>
+1. Add patient "EXTRA" who has taken a vaccination with all required groups and extra.<br>
   `patient add --n EXTRA --p 445 --d 0001-1-1 --b A+ --v EXTRA`
-8. Schedule an appointment for patient "LACKING"<br>
+1. Schedule an appointment for patient "LACKING"<br>
   `appointment add --p 1 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Patient cannot take the vaccination
-9. Schedule an appointment for patient "ALL"<br>
+1. Schedule an appointment for patient "ALL"<br>
   `appointment add --p 2 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
-10. Schedule an appointment for patient "EXTRA"<br>
+1. Schedule an appointment for patient "EXTRA"<br>
   `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
 
@@ -1310,3 +1310,7 @@ Before every test case, ensure that the there are no patients and vaccinations.
 1. Schedule an appointment for patient "NONE"<br>
   `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
+
+## Appendix: Planned enhancements
+
+stuff...
