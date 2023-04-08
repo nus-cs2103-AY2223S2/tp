@@ -30,6 +30,9 @@ public class Tag {
 
     /**
      * Returns true if a given tag length is not exceed 20 letters long.
+     *
+     * @param test Tag that user want to add in.
+     * @return Boolean value if a given tag length is greater than 20 letters.
      */
     public static boolean isMoreThanMaxLetters(String test) {
         if (test.length() > 20) {

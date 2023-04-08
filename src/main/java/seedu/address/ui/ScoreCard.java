@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.score.Score;
 
 /**
- * An UI component that displays information of a {@code Score}.
+ * A UI component that displays information of a {@code Score}.
  */
 public class ScoreCard extends UiPart<Region> {
     private static final String FXML = "ScoreListCard.fxml";

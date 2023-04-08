@@ -17,7 +17,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Score list tab is switched. */
+    /** Score list tab should switch. */
     private final boolean tabSwitch;
 
     /**
@@ -32,6 +32,9 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with switch field.
+     *
+     * @param feedbackToUser The feedback to user.
+     * @param tabSwitch If the tab should be switched.
      */
     public CommandResult(String feedbackToUser, boolean tabSwitch) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
@@ -60,6 +63,11 @@ public class CommandResult {
         return exit;
     }
 
+    /**
+     * Returns tab should be switched.
+     *
+     * @return Boolean value to indicate the tab should be switched.
+     */
     public boolean isTabSwitch() {
         return tabSwitch;
     }
