@@ -12,7 +12,7 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.appointment.Appointment;
 
-class JsonAdaptedAppointmentTest {;
+class JsonAdaptedAppointmentTest {
 
     private final Index patientId = Index.fromOneBased(1);
     private final LocalDateTime startTime = LocalDateTime.now();
