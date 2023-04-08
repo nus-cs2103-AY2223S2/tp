@@ -33,16 +33,16 @@ public class HelpLabCommand extends HelpCommand {
             + "deleteStudent STUDENT_INDEX_IN_LIST Lab/LAB_INDEX_IN_LAB_LIST";
 
     public static final String ADD_NOTE = "Add Note:         "
-            + "addNote -content [NOTE] -type Lab -name [LAB_NAME]";
+            + "addNote note content/NOTE type/Lab name/LAB_NAME";
 
     public static final String EDIT_NOTE = "Edit Note:          "
-            + "editNote -content [NEW_NOTE] -type Lab -name [LAB_NAME] -index [NOTE_INDEX]";
+            + "editNote content/NEW_NOTE type/Lab name/LAB_NAME index/NOTE_INDEX";
 
     public static final String DELETE_NOTE = "Delete Note:      "
-            + "deleteNote -type Lab -name [LAB_NAME_OR_INDEX] -index [NOTE_INDEX]";
+            + "deleteNote type/Lab name/LAB_NAME index/NOTE_INDEX";
 
     public static final String OPEN_FILE = "Open File:      "
-            + "openFile Lab/[LAB_INDEX]";
+            + "openFile Lab/LAB_INDEX";
 
     @Override
     public CommandResult execute(Model model) {
