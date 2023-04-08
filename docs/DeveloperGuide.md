@@ -15,7 +15,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started._](https://ay2223s2-cs2103t-f12-1.github.io/tp/SettingUp)
+Refer to the guide [_Setting up and getting started._](./SettingUp.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -131,7 +131,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
