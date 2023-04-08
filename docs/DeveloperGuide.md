@@ -597,35 +597,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <img src="images/appointment/FindAppointmentSequenceDiagram.png" width="550" />
 -->
 
-### Vaccination
-
-#### Adding a VaxType
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/vaccination/AddVaxTypeActivityDiagram.png" width="550" />
-<img src="images/vaccination/AddVaxTypeSequenceDiagram.png" width="550" />
--->
-
-#### Listing a VaxType
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/vaccination/ListVaxTypeActivityDiagram.png" width="550" />
-<img src="images/vaccination/ListVaxTypeSequenceDiagram.png" width="550" />
--->
-
-#### Finding a VaxType
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/vaccination/FindVaxTypeActivityDiagram.png" width="550" />
-<img src="images/vaccination/FindVaxTypeSequenceDiagram.png" width="550" />
--->
-
 ### Keyword
 
 #### Adding a Keyword
