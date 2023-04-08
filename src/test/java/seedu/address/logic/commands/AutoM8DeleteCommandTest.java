@@ -222,6 +222,9 @@ public class AutoM8DeleteCommandTest {
         }
     }
 
+    /**
+     * Delete existing Vehicle and check cascade
+     */
     @Test
     public void deleteVehicle_success() throws CommandException {
         Model model = new TypicalShop().getTypicalModel();
@@ -273,6 +276,9 @@ public class AutoM8DeleteCommandTest {
         }
     }
 
+    /**
+     * Delete existing Service and check cascade
+     */
     @Test
     public void deleteService_success() throws CommandException {
         Model model = new TypicalShop().getTypicalModel();
@@ -324,6 +330,9 @@ public class AutoM8DeleteCommandTest {
         }
     }
 
+    /**
+     * Delete existing Part.
+     */
     @Test
     public void deletePart_success() throws CommandException{
         Model model = new TypicalShop().getTypicalModel();
@@ -345,7 +354,7 @@ public class AutoM8DeleteCommandTest {
             } catch (PartNotFoundException e) {
                 assertEquals(e.getMessage(), new PartNotFoundException(partName).getMessage());
             } catch (EmptyInputException e) {
-                throw new CommandException("JUnitTest: deletePart_success - Failed. Message: " + e.getMessage());
+                throw e;
             }
 
         } catch (PartNotFoundException | EmptyInputException | CommandException e) {
