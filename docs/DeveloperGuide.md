@@ -636,31 +636,101 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
+### Adding  a person
+
+1. Adding a person with their relevant information
+
+    1. Test case: `add n/John Doe     p/98765432    e/johnd@example.com a/John street, block 123, #01-01 s/100 
+   c/SoftwareEngineeringIsNotCS pr/HIGH tr/0`<br>
+   Expected: Person named 'John Doe' with the relevant information is added to the list and displayed.
+   
+    2. Test case: `add n/John Doe p/9 e/johnd@example.com a/John street, block 123, #01-01 s/100
+       c/SoftwareEngineeringIsNotCS pr/HIGH tr/0` <br>
+       Expected: No person is added. An error message is thrown as the phone number filled in must bae a minimum of 3 digits.
+    3. Test case: `add n/John Poe     p/98765432    e/johnd@example.com a/John street, block 123, #01-01 s/100
+       c/SoftwareEngineeringIsNotCS pr/HIGH tr/0`<br>
+       Expected: Person named 'John Poe' with the relevant information is added to the list and displayed. Whitespace is trimmed and persons information is intact.
+    4. Other incorrect add commands to try: `add n/.. tr/-1` (Negative Transaction Count), `add n/... c/ ...` (Company name left blank)<br>
+       Expected: Error messages corresponding to the error described is shown and person is not added. User is prompted to key in command correctly. 
+
+### Editing a person
+
+2. Editing a person's contact information.
+
+    1. Test case: `edit 1 n/pohn joe`<br>
+       Expected: Person at the first index of the current display's name is changed to 'pohn joe', the change is reflected in the display immediately.
+    2. Test case: `edit 1 p/9` <br>
+       Expected: Person at the first index's data remains the same. Error message is thrown prompting user to edit the phone number to a valid phone number of at least 3 digits. 
+    3. Test case: `edit 1 p/HIGH`<br>
+       Expected: Priority of the person at the first index is changed to 'HIGH', if it was not already at HIGH.
+    4. Other incorrect edit commands to try: `edit 1 tr/-1` (Negative Transaction Count), `edit 1 c/`(Company name left blank), `edit x tr/1` (where x is larger than list size) <br>
+       Expected: Error messages corresponding to the error described is shown and person is not edited. User is prompted to key in command correctly.
+
+### Incrementing and decrementing a person's transaction count
+
+3. Incrementing a person's transaction count without needing to do manual calculation. 
+
+    1. Test case: `incr 1 tr/1`<br>
+       Expected: Person at the first index of the current display's transaction count is incremented by 1. (If value was at x previously, then it is now at x+1)
+    2. Test case: `decr 1 tr/1` <br>
+       Expected: Person at the first index of the current display's transaction count is decremented by 1. (If value was at x previously, then it is now at x-1)
+    3. Test case: `incr 1 tr/a`<br>
+       Expected: Error message is thrown prompting the user to enter a positive integer as the transaction count to be incremented by. 
+    4. Other incorrect increment/decrement commands to try: `incr 1 tr/-1` (Negative Transaction Count), `decr 1 tr/1`(When current transaction count is zero), `incr x tr/1` (where x is larger than list size) <br>
+       Expected: Error messages corresponding to the error described is shown and person's transaction count is not incremented. User is prompted to key in command correctly.
+
+### Sorting the list by various fields 
+
+4. Sorts the contact list according to some specified field and in ascending or descending order.
+
+    1. Test case: `sort trans asc`<br>
+       Expected: List of contacts will be sorted and displayed by their transaction count in ascending order (lower transaction counts displayed higher on the list).
+    2. Test case: `sort trans        desc` <br>
+       Expected: List of contacts will be sorted and displayed by their transaction count in descending order (lower transaction counts displayed lower on the list). Whitespace is ignored.
+    3. Test case: `sort desc`<br>
+       Expected: Error message is shown prompting the user to specify the field that they like the contacts to be sorted by. 
+    4. Other incorrect delete commands to try: `sort` (No specified field or ordering ), `sort company asc` (invalid field ) <br> 
+       Expected: Error messages corresponding to the error described is shown and list is not sorted. User is prompted to key in command correctly.
+
+### Marking a contact as requiring follow-up
+
+5. Marks a contact as requiring follow-up action. 
+
+    1. Test case: `mark 1 m/yes`<br>
+       Expected: Person at index 1 will be displayed as requiring follow-up action. 
+    2. Test case: `makr 1 m/no` <br>
+       Expected: Person at index 1 will be displayed as not requiring follow-up action. 
+    3. Test case: `mark `<br>
+       Expected: Error message is shown prompting the user to specify the index of the individual that they would like to mark. 
+    4. Other incorrect delete commands to try: `mark x m/yes` (where x is longer than the current contact list length). 
+       Expected: Error messages corresponding to the error described is shown and list is not updated. User is prompted to key in command correctly.
+
+ 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+6. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+   5. _{ more test cases …​ }_
 
 ### Saving data
 

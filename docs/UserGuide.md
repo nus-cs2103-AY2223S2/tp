@@ -274,11 +274,14 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter TAG [MORE_TAGS]`<br> e.g., `filter friends clients insurance`
 **Sort** | `sort FIELD DIRECTION` <br> e.g, `sort trans desc` FIELDS: `[trans, size, name, priority]` DIRECTION: `[asc, desc]`
+**Increment** | `incr INDEX tr/TRANSACTION_COUNT_INCREMENT_AMOUNT` <br> e.g, `incr 1 tr/13`
+**Decrement** | `decr INDEX tr/TRANSACTION_COUNT_DECREMENT_AMOUNT` <br> e.g, `decr 1 tr/13`
+**Mark** | `mark INDEX m/NEED FOLLOWUP:yes/no` <br> e.g, `mark 1 m/yes`
 **List** | `list`
 **Help** | `help`
 **Summary** | `summary`
 **Exit** | `exit`
-**Increment** | `incr INDEX tr/TRANSACTION_COUNT_INCREMENT_AMOUNT` <br> e.g, `incr 1 tr/13`
-**Decrement** | `decr INDEX tr/TRANSACTION_COUNT_DECREMENT_AMOUNT` <br> e.g, `decr 1 tr/13`
-**Mark** | `mark INDEX m/NEED FOLLOWUP:yes/no` <br> e.g, `mark 1 m/yes`
+
+
+
 
