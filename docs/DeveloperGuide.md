@@ -534,9 +534,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. [Download the jar file](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases) and copy into an empty folder
+   1. [Download the jar file](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases) and copy into an empty folder.
 
-   1. Double-click the jar file<br>
+   1. Double-click the jar file.<br>
       Expected: Shows the GUI with a set of sample clients and projects. The window size may not be optimum.
 
 1. Saving window preferences
@@ -553,6 +553,189 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The client should remain deleted. 
 
+### Listing all clients
+
+1. Listing all clients while some clients are hidden
+
+   1. Filter the client list using the `find-client` command such that only some clients are visible.
+
+   1. Enter the command: `list-client`<br>
+      Expected: All clients shown. Success message shown.
+
+1. Listing all clients while viewing another list
+
+   1. Show a list other than the client list using either the `list-project` or `list-tag` commands.
+
+   1. Enter the command: `list-client`<br>
+      Expected: All clients shown. Success message shown.
+
+### Listing all projects
+
+1. Listing all projects while some projects are hidden
+
+   1. Filter the project list using the `find-project` command such that only some projects are visible.
+
+   1. Enter the command: `list-project`<br>
+      Expected: All projects shown. Success message shown.
+
+1. Listing all projects while viewing another list
+
+   1. Show a list other than the project list using either the `list-client` or `list-tag` commands.
+
+   1. Enter the command: `list-project`<br>
+      Expected: All projects shown. Success message shown.
+
+### Listing all tags
+
+1. Listing all tags while viewing another list
+
+   1. Show a list other than the tag list using either the `list-client` or `list-project` commands.
+
+   1. Enter the command: `list-tag`<br>
+      Expected: All tags shown. Success message shown.
+
+### Adding a client
+
+1. Specifying all details
+
+   1. Enter the command: `add-client name/John Doe phone/12345678 email/john@example.com tag/friends`<br>
+      Expected: A client with the specified details added. Details of added client shown in status message.
+
+1. Specifying only compulsory details
+
+   1. Enter the command: `add-client name/David Leong`<br>
+      Expected: Same as previous.
+
+1. Adding a duplicate client
+
+   1. Add a client by the name `John Doe` to the client list.
+
+   1. Enter the command: `add-client name/John Doe`<br>
+      Expected: Client is not added. Error message shown.
+
+### Adding a project
+
+1. Specifying all details
+
+   1. Enter the command: `add-project name/Oil Painting deadline/tomorrow price/500 tag/friends`<br>
+      Expected: A project with the specified details added. Details of added project shown in status message.
+
+1. Specifying only compulsory details
+
+   1. Enter the command: `add-project name/Sky Painting`<br>
+      Expected: Same as previous.
+
+1. Adding a duplicate project
+
+   1. Add a project by the name `Oil Painting` to the project list.
+
+   1. Enter the command: `add-project name/Oil Painting`<br>
+      Expected: Project is not added. Error message shown.
+
+1. Linking added project to client
+
+   1. Prerequisites: Add a client by the name `Alice Leong` to the client list. Enter the command: `add-project name/Self Portrait client/alice`<br>
+      Expected: Details of added project shown in status message. Filtered client list shown.
+
+   1. Test case: `1`<br>
+      Expected: Success message shown. Added project linked to first client in filtered client list.
+
+   1. Test case: `0`<br>
+      Expected: Cancel message shown. Added project not linked to any client.
+
+   1. Test case: `x` where x is larger than the length of the filtered client list<br>
+      Expected: Error message shown.
+
+### Editing a client
+
+1. Editing a client while all clients are being shown
+
+   1. Prerequisites: List all clients using the `list-client` command. There should be multiple clients in the list.
+
+   1. Test case: `edit-client 1 name/John Doe phone/12345678 email/john@example.com tag/friends`<br>
+      Expected: First client's details are edited. Details of edited client shown in status message.
+
+   1. Test case: `edit-client 0 name/John Doe`<br>
+      Expected: No client is edited. Error details shown in the status message. 
+
+   1. Other incorrect edit commands to try: `edit-client`, `edit-client x name/John`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Editing a client while only some clients are shown
+
+   1. Prerequisites: Filter the client list using the `find-client` command such that only some clients are visible.
+
+   1. Test case: `edit-client 1 name/John Doe phone/12345678 email/john@example.com tag/friends`<br>
+      Expected: First client's details are edited. Details of edited client shown in status message.
+
+   1. Test case: `edit-client 0 name/John Doe`<br>
+      Expected: No client is edited. Error details shown in the status message.
+
+   1. Test case: `edit-client x name/John` where x is smaller than the entire client list size but is larger than the visible list size<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect edit commands to try: `edit-client`<br>
+      Expected: Similar to previous.
+
+1. Editing a client while the client list is not being shown
+
+   1. Prerequisites: Show a list other than the client list using either the `list-project` or `list-tag` commands. There should be multiple clients in the client list.
+
+   1. Test case: `edit-client 1 name/John`<br>
+      Expected: No client is edited. Error details shown in the status message.
+
+### Editing a project
+
+1. Editing a project while all projects are being shown
+
+   1. Prerequisites: List all projects using the `list-project` command. There should be multiple projects in the list.
+
+   1. Test case: `edit-project 1 name/Sky Painting deadline/next week price/50 tag/friends`<br>
+      Expected: First project's details are edited. Details of edited project shown in status message.
+
+   1. Test case: `edit-project 0 name/Sky Painting`<br>
+      Expected: No project is edited. Error details shown in the status message. 
+
+   1. Other incorrect edit commands to try: `edit-project`, `edit-project x name/Sky Painting`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Editing a project while only some projects are shown
+
+   1. Prerequisites: Filter the project list using the `find-project` command such that only some projects are visible.
+
+   1. Test case: `edit-project 1 name/Sky Painting deadline/next week price/50 tag/friends`<br>
+      Expected: First project's details are edited. Details of edited project shown in status message.
+
+   1. Test case: `edit-project 0 name/Sky Painting`<br>
+      Expected: No project is edited. Error details shown in the status message.
+
+   1. Test case: `edit-project x name/Sky Painting` where x is smaller than the entire project list size but is larger than the visible list size<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect edit commands to try: `edit-project`<br>
+      Expected: Similar to previous.
+
+1. Editing a project while the project list is not being shown
+
+   1. Prerequisites: Show a list other than the project list using either the `list-client` or `list-tag` commands. There should be multiple projects in the project list.
+
+   1. Test case: `edit-project 1 name/Sky Painting`<br>
+      Expected: No project is edited. Error details shown in the status message.
+
+1. Linking edited project to client
+
+   1. Prerequisites: Add a client by the name `Alice Leong` to the client list. Display the project list with `list-project`. Enter the command: `edit-project 1 client/alice`<br>
+      Expected: Details of edited project shown in status message. Filtered client list shown.
+
+   1. Test case: `1`<br>
+      Expected: Success message shown. Edited project linked to first client in filtered client list.
+
+   1. Test case: `0`<br>
+      Expected: Cancel message shown. Edited project not linked to any client.
+
+   1. Test case: `x` where x is larger than the length of the filtered client list<br>
+      Expected: Error message shown.
+
 ### Deleting a client
 
 1. Deleting a client while all clients are being shown
@@ -560,10 +743,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all clients using the `list-client` command. There should be multiple clients in the list.
 
    1. Test case: `delete-client 1`<br>
-      Expected: First client is deleted from the client list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
+      Expected: First client is deleted from the client list. Details of the deleted client shown in the status message.
 
    1. Test case: `delete-client 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No client is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete-client`, `delete-client x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -573,15 +756,15 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Filter the client list using the `find-client` command such that only some clients are visible.
 
    1. Test case: `delete-client 1`<br>
-      Expected: First client is deleted from the client list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
+      Expected: First client is deleted from the client list. Details of the deleted client shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete-client 0`<br>
+      Expected: No client is deleted. Error details shown in the status message.
 
-   1. Test case: `delete x` where x is smaller than the entire client list size but is larger than the visible list size
-      Expected: Similar to previous
+   1. Test case: `delete-client x` where x is smaller than the entire client list size but is larger than the visible list size<br>
+      Expected: Similar to previous.
 
-   1. Other incorrect delete commands to try: `delete`<br>
+   1. Other incorrect delete commands to try: `delete-client`<br>
       Expected: Similar to previous.
 
 1. Deleting a client while the client list is not being shown
@@ -591,7 +774,101 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete-client 1`<br>
       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
-### Saving data
+### Deleting a project
+
+1. Deleting a project while all projects are being shown
+
+   1. Prerequisites: List all projects using the `list-project` command. There should be multiple projects in the list.
+
+   1. Test case: `delete-project 1`<br>
+      Expected: First project is deleted from the project list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete-project 0`<br>
+      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `delete-project`, `delete-project x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Deleting a project while only some projects are shown
+
+   1. Prerequisites: Filter the project list using the `find-project` command such that only some projects are visible.
+
+   1. Test case: `delete-project 1`<br>
+      Expected: First project is deleted from the project list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete-project 0`<br>
+      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `delete-project x` where x is smaller than the entire project list size but is larger than the visible list size<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect delete commands to try: `delete-project`<br>
+      Expected: Similar to previous.
+
+1. Deleting a project while the project list is not being shown
+
+   1. Prerequisites: Show a list other than the project list using either the `list-client` or `list-tag` commands. There should be multiple projects in the project list.
+
+   1. Test case: `delete-project 1`<br>
+      Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+
+### Finding clients
+
+1. Finding clients
+
+   1. Prerequisites: Add a client by the name of `Alice Lim` to the client list.
+
+   1. Test case: `find-client name/Alice`<br>
+      Expected: Client list with one client is shown. Status message states that one client was found.
+   
+   1. Test case: `find-client`<br>
+      Expected: Error message is shown.
+
+### Finding projects
+
+1. Finding projects
+
+   1. Prerequisites: Add a project by the name of `Self Portrait` to the project list.
+
+   1. Test case: `find-project name/self`<br>
+      Expected: Project list with one project is shown. Status message states that one project was found.
+   
+   1. Test case: `find-project`<br>
+      Expected: Error message is shown.
+
+### Sorting clients
+
+1. Sorting clients when entire client list is shown
+
+   1. Prerequisites: Client list should have multiple clients.
+
+   1. Test case: `sort-client`<br>
+      Expected: Client list is sorted by name. Status message states that client list was sorted.
+
+1. Sorting clients when some clients are hidden
+
+   1. Prerequisites: Filter the client list with the `find-client` command. Client list should have multiple clients.
+
+   1. Test case: `sort-client`<br>
+      Expected: Visible clients are sorted by name. Status message states that client list was sorted.
+
+### Sorting projects
+
+1. Sorting projects when entire project list is shown
+
+   1. Prerequisites: Project list should have multiple projects.
+
+   1. Test case: `sort-project option/name`<br>
+      Expected: Project list is sorted by name. Status message states that project list was sorted.
+
+1. Sorting projects when some projects are hidden
+
+   1. Prerequisites: Filter the project list with the `find-project` command. Project list should have multiple projects.
+
+   1. Test case: `sort-project option/name`<br>
+      Expected: Visible projects are sorted by name. Status message states that project list was sorted.
+
+### Editing the data file
 
 1. Dealing with missing/corrupted data files
 
@@ -603,6 +880,14 @@ testers are expected to do more *exploratory* testing.
       Open the JSON file and delete the `name` attribute of a client before launching the app.<br>
       Expected: Status message should state that the data file was not in the correct format. The app should start with no data.
 
+1. Correctly editing the data file
+
+   1. Test case: Change the name attribute of a client to another valid value such as `David` before launching the app<br>
+      Expected: Status message should state that the data file was found, and the app should reflect the edited data.
+
+   1. Other edits to try: Editing other attributes such as phone number<br>
+      Expected: Similar to previous.
+      
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
