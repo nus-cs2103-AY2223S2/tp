@@ -291,13 +291,13 @@ Below is an example usage.
 
     * User executes ` event add na/<event name> en/<event end datetime> de/<event description>` instead if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
 
-The *Activity Diagram* for the above logic flow is below: 
+  The *Activity Diagram* for the above logic flow is below: 
 
-<p align="center">
+  <p align="center">
 
-<img src="images/EventAddActivityDiagram.png" width="550" />
+  <img src="images/EventAddActivityDiagram.png" width="550" />
 
-</p>
+  </p>
 
 3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
 4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
@@ -310,7 +310,7 @@ The *Sequence Diagram* for the adding the `Event` is below:
 
 <p align="center">
  
-<img src="images/EventAddSequenceDiagram.png" width="550" />
+<img src="images/EventAddSequenceDiagram.png" width="300" />
 
 </p>
 
