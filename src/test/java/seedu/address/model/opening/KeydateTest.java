@@ -20,45 +20,57 @@ public class KeydateTest {
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         String invalidKey = "";
         String invalidDate = "";
-//        assertThrows(IllegalArgumentException.class, () -> new Keydate("OA", invalidDate));
-//        assertThrows(IllegalArgumentException.class, () -> new Keydate(invalidKey, "2023-01-01"));
+        assertThrows(IllegalArgumentException.class, () -> new Keydate("OA", invalidDate));
+        assertThrows(IllegalArgumentException.class, () -> new Keydate(invalidKey, "2023-01-01"));
     }
 
     @Test
     public void isValidDate() {
-        // null keydate
+        // null Keydate
         assertThrows(NullPointerException.class, () -> Keydate.isValidKeydate(null));
 
-//        // invalid keydate
-//        assertFalse(Keydate.isValidKeydate("")); // empty string
-//        assertFalse(Keydate.isValidKeydate(" ")); // spaces only
-//        assertFalse(Keydate.isValidKeydate("@2023-01-01")); // missing key
-//        assertFalse(Keydate.isValidKeydate(" @2023-01-01")); // missing key
-//
-//        assertFalse(Keydate.isValidKeydate("OA@")); // missing date
-//        assertFalse(Keydate.isValidKeydate("OA@ ")); // missing date
-//        assertFalse(Keydate.isValidKeydate("OA2023-01-01")); // missing @
-//        assertFalse(Keydate.isValidKeydate("OA 2023-01-01")); // @ replaced by whitespace
-//
-//        // invalid key
-//        assertFalse(Keydate.isValidKeydate("")); //
-//        assertFalse(Keydate.isValidKeydate(" ")); //
-//        assertFalse(Keydate.isValidKeydate(" ")); //
-//        assertFalse(Keydate.isValidKeydate(" ")); //
-//        assertFalse(Keydate.isValidKeydate(" ")); //
-//
-//        // invalid date
-//
-//        assertFalse(Keydate.isValidKeydate("&")); // only non-alphanumeric characters
-//        assertFalse(Keydate.isValidKeydate("123")); // numbers only
-//        assertFalse(Keydate.isValidKeydate("Engineer 10")); // with numbers
-//        assertFalse(Keydate.isValidKeydate("Data-analyst 10")); // with non-alphanumeric characters and numbers
-//
-//        // valid keydate
-//        assertTrue(Keydate.isValidKeydate("analyst")); // alphabets only
-//        assertTrue(Keydate.isValidKeydate("Intern")); // with capital letters
-//        assertTrue(Keydate.isValidKeydate("data-analyst")); // with non-alphanumeric characters, but no numbers
-//        assertTrue(Keydate.isValidKeydate("analyst & engineer")); // non-alphanumeric characters, no numbers
-//        assertTrue(Keydate.isValidKeydate("software engineer for integrated processing")); // long keydates
+        // blank Keydate
+        assertFalse(Keydate.isValidKeydate("".split("@"))); // empty string
+        assertFalse(Keydate.isValidKeydate(" ".split("@"))); // spaces only
+
+        // missing parts
+        assertFalse(Keydate.isValidKeydate("@2023-12-12".split("@"))); // missing key part
+        assertFalse(Keydate.isValidKeydate("OA2023-12-12".split("@"))); // missing '@' symbol
+        assertFalse(Keydate.isValidKeydate("OA@".split("@"))); // missing date part
+
+        // invalid key
+        assertFalse(Keydate.isValidKeydate(" @2023-12-12".split("@"))); // whitespace key
+        assertFalse(Keydate.isValidKeydate("123@2023-12-12".split("@"))); // number key
+        assertFalse(Keydate.isValidKeydate("!*#@2023-12-12".split("@"))); // special key
+        assertFalse(Keydate.isValidKeydate("@@@2023-12-12".split("@"))); // special @ key
+        assertFalse(Keydate.isValidKeydate("peter@jack@2023-12-12".split("@"))); // '@' symbol in key part
+        assertFalse(Keydate.isValidKeydate("peter--jack@2023-12-12".split("@"))); // key part has two hyphens
+
+        // invalid date
+        assertFalse(Keydate.isValidKeydate("OA@2023/12/12".split("@"))); // invalid date
+        assertFalse(Keydate.isValidKeydate("OA@2023".split("@"))); // invalid date
+        assertFalse(Keydate.isValidKeydate("OA@20231212".split("@"))); // invalid date
+        assertFalse(Keydate.isValidKeydate("OA@2023 -12-12".split("@"))); // spaces in date
+        assertFalse(Keydate.isValidKeydate("OA@2023-12-12-12".split("@"))); // too long date
+        assertFalse(Keydate.isValidKeydate("OA@@2023-12-12".split("@"))); // double '@' symbol
+        assertFalse(Keydate.isValidKeydate("OA@-2023-12-12".split("@"))); // date starts with a hyphen
+        assertFalse(Keydate.isValidKeydate("OA@2023-12-12-".split("@"))); // date ends with a hyphen
+        assertFalse(Keydate.isValidKeydate("OA@-2023-12-12".split("@"))); // date starts with a hyphen
+        assertFalse(Keydate.isValidKeydate("OA@2023-02-29".split("@"))); // 29 feb, non-leap
+        assertFalse(Keydate.isValidKeydate("OA@2023-02-30".split("@"))); // 30 feb, non-leap
+        assertFalse(Keydate.isValidKeydate("OA@2020-02-30".split("@"))); // 30 feb, leap
+        assertFalse(Keydate.isValidKeydate("OA@2020-11-31".split("@"))); // 31 nov, leap
+
+        // valid Keydate
+        assertTrue(Keydate.isValidKeydate("test@2023-12-12".split("@"))); // alphabets only
+        assertTrue(Keydate.isValidKeydate("test@2020-02-29".split("@"))); // 29 fec, leap
+        assertTrue(Keydate.isValidKeydate("test@2023-12-31".split("@"))); // 31 dec
+        assertTrue(Keydate.isValidKeydate("test@2023-11-30".split("@"))); // 30 nov
+        assertTrue(Keydate.isValidKeydate("test test@2023-12-12".split("@"))); // spcae in key
+        assertTrue(Keydate.isValidKeydate("  test  @  2023-12-12   ".split("@"))); // space around key and date
+        assertTrue(Keydate.isValidKeydate("very very very long key part@2023-12-12".split("@"))); // long key
+
+
+
     }
 }

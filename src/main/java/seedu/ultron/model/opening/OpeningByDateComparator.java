@@ -2,6 +2,9 @@ package seedu.ultron.model.opening;
 
 import java.util.Comparator;
 
+/**
+ * Represents a {@code Comparator} to compare dates of 2 {@code Openings}.
+ */
 public class OpeningByDateComparator implements Comparator<Opening> {
 
     @Override

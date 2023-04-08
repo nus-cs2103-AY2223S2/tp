@@ -2,23 +2,27 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexesNew.INDEX_FIRST_OPENING;
-import static seedu.address.testutil.TypicalIndexesNew.INDEX_SECOND_OPENING;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showOpeningAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_OPENING;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_OPENING;
 import static seedu.address.testutil.TypicalOpenings.getTypicalUltron;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.EditOpeningDescriptorBuilder;
-import seedu.address.testutil.OpeningBuilder;
 import seedu.ultron.commons.core.Messages;
 import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.ClearCommand;
 import seedu.ultron.logic.commands.EditCommand;
 import seedu.ultron.logic.commands.EditCommand.EditOpeningDescriptor;
-import seedu.ultron.model.Ultron;
 import seedu.ultron.model.Model;
 import seedu.ultron.model.ModelManager;
+import seedu.ultron.model.Ultron;
 import seedu.ultron.model.UserPrefs;
 import seedu.ultron.model.opening.Opening;
 
@@ -28,41 +32,6 @@ import seedu.ultron.model.opening.Opening;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalUltron(), new UserPrefs());
-
-//    @Test
-//    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-//        Opening editedOpening = new OpeningBuilder().build();
-//        EditOpeningDescriptor descriptor = new EditOpeningDescriptorBuilder(editedOpening).build();
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_OPENING, descriptor);
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_OPENING_SUCCESS, editedOpening);
-//
-//        Model expectedModel = new ModelManager(new Ultron(model.getUltron()), new UserPrefs());
-//        expectedModel.setOpening(model.getFilteredOpeningList().get(0), editedOpening);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
-
-//    @Test
-//    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-//        Index indexLastOpening = Index.fromOneBased(model.getFilteredOpeningList().size());
-//        Opening lastOpening = model.getFilteredOpeningList().get(indexLastOpening.getZeroBased());
-//
-//        OpeningBuilder openingInList = new OpeningBuilder(lastOpening);
-//        Opening editedOpening = openingInList.withPosition(VALID_POSITION_SHOPEE).withCompany(VALID_COMPANY_SHOPEE)
-//                .withDates(VALID_KEYDATE_MARCH_INTERVIEW).build();
-//
-//        EditOpeningDescriptor descriptor = new EditOpeningDescriptorBuilder().withPosition(VALID_POSITION_SHOPEE)
-//                .withCompany(VALID_COMPANY_SHOPEE).withDates(VALID_KEYDATE_MARCH_INTERVIEW).build();
-//        EditCommand editCommand = new EditCommand(indexLastOpening, descriptor);
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_OPENING_SUCCESS, editedOpening);
-//
-//        Model expectedModel = new ModelManager(new Ultron(model.getUltron()), new UserPrefs());
-//        expectedModel.setOpening(lastOpening, editedOpening);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
@@ -75,23 +44,6 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-
-//    @Test
-//    public void execute_filteredList_success() {
-//        showOpeningAtIndex(model, INDEX_FIRST_OPENING);
-//
-//        Opening openingInFilteredList = model.getFilteredOpeningList().get(INDEX_FIRST_OPENING.getZeroBased());
-//        Opening editedOpening = new OpeningBuilder(openingInFilteredList).withPosition(VALID_POSITION_SHOPEE).build();
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_OPENING,
-//                new EditOpeningDescriptorBuilder().withPosition(VALID_POSITION_SHOPEE).build());
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_OPENING_SUCCESS, editedOpening);
-//
-//        Model expectedModel = new ModelManager(new Ultron(model.getUltron()), new UserPrefs());
-//        expectedModel.setOpening(model.getFilteredOpeningList().get(0), editedOpening);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
 
     @Test
     public void execute_duplicateOpeningUnfilteredList_failure() {
@@ -117,7 +69,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidOpeningIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOpeningList().size() + 1);
-        EditOpeningDescriptor descriptor = new EditOpeningDescriptorBuilder().withPosition(VALID_POSITION_SHOPEE).build();
+        EditOpeningDescriptor descriptor = new EditOpeningDescriptorBuilder()
+                .withPosition(VALID_POSITION_SHOPEE).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_OPENING_DISPLAYED_INDEX);

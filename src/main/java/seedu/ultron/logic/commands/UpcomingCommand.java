@@ -1,17 +1,19 @@
 package seedu.ultron.logic.commands;
 
-import seedu.ultron.commons.core.Messages;
+import static java.util.Objects.requireNonNull;
+
 import seedu.ultron.model.Model;
 import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.OpeningsBeforeDaysPredicate;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Finds and sorts upcoming openings, based on having keydates within the time range of input days given.
+ */
 public class UpcomingCommand extends Command {
     public static final String COMMAND_WORD = "upcoming";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Opens a window which displays upcoming events for the next DAYS days\n"
+            + ": Opens a window which displays upcoming events for the next DAYS days.\n"
             + "Parameters: DAYS (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

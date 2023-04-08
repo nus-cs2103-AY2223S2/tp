@@ -20,10 +20,10 @@ import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.AddCommand;
 import seedu.ultron.logic.commands.CommandResult;
 import seedu.ultron.logic.commands.exceptions.CommandException;
-import seedu.ultron.model.Ultron;
 import seedu.ultron.model.Model;
 import seedu.ultron.model.ReadOnlyUltron;
 import seedu.ultron.model.ReadOnlyUserPrefs;
+import seedu.ultron.model.Ultron;
 import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.Opening;
 
@@ -173,7 +173,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasSelectedIndex()  {
+        public boolean hasSelectedIndex() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -48,8 +48,8 @@ public class Company {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Company // instanceof handles nulls
-                && fullCompany.replaceAll(" ", "").equalsIgnoreCase(
-                ((Company) other).fullCompany.replaceAll(" ", ""))); // state check
+                && fullCompany.replaceAll(" ", "").equalsIgnoreCase((
+                (Company) other).fullCompany.replaceAll(" ", ""))); // state check
     }
 
     @Override

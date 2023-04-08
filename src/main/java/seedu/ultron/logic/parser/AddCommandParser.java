@@ -8,8 +8,8 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.ultron.logic.commands.AddCommand;

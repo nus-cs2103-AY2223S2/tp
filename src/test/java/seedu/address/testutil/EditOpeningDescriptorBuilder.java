@@ -77,7 +77,8 @@ public class EditOpeningDescriptorBuilder {
      * that we are building.
      */
     public EditOpeningDescriptorBuilder withDates(ArrayList<String>... dates) {
-        List<Keydate> dateSet = Stream.of(dates).map(date -> new Keydate(date.get(0), date.get(1))).collect(Collectors.toList());
+        List<Keydate> dateSet = Stream.of(dates).map(date -> new Keydate(date.get(0), date.get(1)))
+                .collect(Collectors.toList());
         descriptor.setKeydates(dateSet);
         return this;
     }

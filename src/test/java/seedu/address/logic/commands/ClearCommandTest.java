@@ -7,11 +7,10 @@ import static seedu.ultron.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
 import org.junit.jupiter.api.Test;
 
 import seedu.ultron.logic.commands.ClearCommand;
-import seedu.ultron.model.Ultron;
 import seedu.ultron.model.Model;
 import seedu.ultron.model.ModelManager;
+import seedu.ultron.model.Ultron;
 import seedu.ultron.model.UserPrefs;
-import seedu.ultron.model.opening.Opening;
 
 public class ClearCommandTest {
 

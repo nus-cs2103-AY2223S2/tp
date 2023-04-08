@@ -11,11 +11,11 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.ultron.commons.core.GuiSettings;
-import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.commons.core.LogsCenter;
-import seedu.ultron.model.opening.OpeningByDateComparator;
+import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.Opening;
+import seedu.ultron.model.opening.OpeningByDateComparator;
 
 /**
  * Represents the in-memory model of the address book data.

@@ -4,8 +4,8 @@ import static seedu.ultron.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.ultron.logic.commands.StatusCommand;
 import seedu.ultron.logic.parser.exceptions.ParseException;
-import seedu.ultron.model.opening.Status;
 import seedu.ultron.model.opening.ContainsStatusPredicate;
+import seedu.ultron.model.opening.Status;
 
 /**
  * Parses input arguments and creates a new StatusCommand object

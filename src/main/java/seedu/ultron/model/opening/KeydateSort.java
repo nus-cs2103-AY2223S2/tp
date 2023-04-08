@@ -14,6 +14,11 @@ public class KeydateSort implements Predicate<Opening> {
 
     private final String direction;
 
+    /**
+     * Constructs a {@code KeydateSort}.
+     *
+     * @param direction Direction of sorting.
+     */
     public KeydateSort(String direction) {
         requireNonNull(direction);
         checkArgument(isValidOrder(direction), MESSAGE_CONSTRAINTS);

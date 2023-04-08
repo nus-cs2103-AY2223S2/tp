@@ -2,7 +2,6 @@ package seedu.ultron.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.ultron.commons.core.Messages;
 import seedu.ultron.model.Model;
 import seedu.ultron.model.opening.ContainsStatusPredicate;
 

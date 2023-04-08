@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.ultron.commons.core.GuiSettings;
-import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.commons.core.LogsCenter;
+import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.Command;
 import seedu.ultron.logic.commands.CommandResult;
 import seedu.ultron.logic.commands.exceptions.CommandException;

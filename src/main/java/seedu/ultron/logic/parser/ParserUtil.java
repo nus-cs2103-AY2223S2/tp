@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -138,6 +137,9 @@ public class ParserUtil {
         return keydateSet;
     }
 
+    /**
+     * Parses {@code String days} into an {@code int}.
+     */
     public static int parseDays(String days) throws ParseException {
         requireNonNull(days);
         String trimmedDays = days.trim();

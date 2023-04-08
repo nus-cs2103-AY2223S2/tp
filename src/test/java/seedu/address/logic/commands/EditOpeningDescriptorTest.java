@@ -2,13 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_SHOPEE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_SHOPEE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_SHOPEE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_SHOPEE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_KEYDATE_MARCH_INTERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_SHOPEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_SHOPEE;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,8 @@ public class EditOpeningDescriptorTest {
         assertFalse(DESC_GOOGLE.equals(DESC_SHOPEE));
 
         // different position -> returns false
-        EditOpeningDescriptor editedGoogle = new EditOpeningDescriptorBuilder(DESC_GOOGLE).withPosition(VALID_POSITION_SHOPEE).build();
+        EditOpeningDescriptor editedGoogle = new EditOpeningDescriptorBuilder(DESC_GOOGLE)
+                .withPosition(VALID_POSITION_SHOPEE).build();
         assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different company -> returns false
@@ -50,9 +50,5 @@ public class EditOpeningDescriptorTest {
         // different status -> returns false
         editedGoogle = new EditOpeningDescriptorBuilder(DESC_GOOGLE).withStatus(VALID_STATUS_SHOPEE).build();
         assertFalse(DESC_GOOGLE.equals(editedGoogle));
-
-        // different dates -> returns false
-//        editedGoogle = new EditOpeningDescriptorBuilder(DESC_GOOGLE).withDates(VALID_KEYDATE_MARCH_INTERVIEW).build();
-//        assertFalse(DESC_GOOGLE.equals(editedGoogle));
     }
 }

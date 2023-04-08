@@ -3,11 +3,8 @@ package seedu.ultron.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import seedu.ultron.commons.core.LogsCenter;
 import seedu.ultron.model.opening.Opening;
@@ -17,22 +14,22 @@ import seedu.ultron.model.opening.Opening;
  */
 public class OpeningDetailsPanel extends UiPart<Region> {
     private static final String FXML = "OpeningDetailsPanel.fxml";
+    public final Opening opening;
+
+    @FXML
+    private Label company;
+    @FXML
+    private Label position;
+    @FXML
+    private Label status;
+    @FXML
+    private Label email;
+    @FXML
+    private Label remark;
+    @FXML
+    private FlowPane dates;
+
     private final Logger logger = LogsCenter.getLogger(OpeningDetailsPanel.class);
-
-    public Opening opening;
-
-    @FXML
-    Label company;
-    @FXML
-    Label position;
-    @FXML
-    Label status;
-    @FXML
-    Label email;
-    @FXML
-    Label remark;
-    @FXML
-    FlowPane dates;
 
     /**
      * Creates a {@code OpeningDetailsPanel} with the given {@code ObservableList}.
