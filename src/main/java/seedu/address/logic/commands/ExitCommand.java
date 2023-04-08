@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
     //CHECKSTYLE.OFF: VisibilityModifier
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("exit", "ex"));
     //CHECKSTYLE.ON: VisibilityModifier
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting E-Lister as requested ...";
 
     @Override
     public CommandResult execute(Model model) {

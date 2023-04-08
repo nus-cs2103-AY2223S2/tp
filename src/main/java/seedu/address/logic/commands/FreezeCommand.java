@@ -11,14 +11,14 @@ import seedu.address.model.Model;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
 
 /**
- * Freezes the address book.
+ * Freezes the E-Lister.
  */
 public class FreezeCommand extends Command {
     //CHECKSTYLE.OFF: VisibilityModifier
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("freeze", "fr"));
     //CHECKSTYLE.ON: VisibilityModifier
-    public static final String MESSAGE_SUCCESS = "Address book has been frozen!";
-    public static final String MESSAGE_FAILURE = "Address book is already frozen!";
+    public static final String MESSAGE_SUCCESS = "E-Lister has been frozen!";
+    public static final String MESSAGE_FAILURE = "E-Lister is already frozen!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

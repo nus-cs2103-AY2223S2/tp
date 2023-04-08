@@ -26,12 +26,12 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the E-Lister data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Elister elister;
     private final UserPrefs userPrefs;
     private final InputHistory inputHistory;
     private final FilteredList<Person> filteredPersons;
@@ -44,28 +44,28 @@ public class ModelManager implements Model {
     private Stage primaryStage;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given elister and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, InputHistory inputHistory) {
-        requireAllNonNull(addressBook, userPrefs, inputHistory);
+    public ModelManager(ReadOnlyElister elister, ReadOnlyUserPrefs userPrefs, InputHistory inputHistory) {
+        requireAllNonNull(elister, userPrefs, inputHistory);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with E-Lister: " + elister + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.elister = new Elister(elister);
         this.userPrefs = new UserPrefs(userPrefs);
         this.inputHistory = new InputHistory(inputHistory);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.elister.getPersonList());
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
         applyingFilters = new ArrayList<>();
         frozenPersons = new ArrayList<>();
     }
 
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, userPrefs, new InputHistory());
+    public ModelManager(ReadOnlyElister elister, ReadOnlyUserPrefs userPrefs) {
+        this(elister, userPrefs, new InputHistory());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new InputHistory());
+        this(new Elister(), new UserPrefs(), new InputHistory());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -93,19 +93,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getElisterFilePath() {
+        return userPrefs.getElisterFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setElisterFilePath(Path elisterFilePath) {
+        requireNonNull(elisterFilePath);
+        userPrefs.setElisterFilePath(elisterFilePath);
     }
 
     @Override
     public ModelManager stateDetachedCopy() {
-        ModelManager copy = new ModelManager(addressBook.deepCopy(), userPrefs);
+        ModelManager copy = new ModelManager(elister.deepCopy(), userPrefs);
         copy.updateFilteredPersonList(getPredicate());
         if (isFrozen) {
             copy.freezeWith(filteredPersons);
@@ -113,42 +113,42 @@ public class ModelManager implements Model {
         return copy;
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Elister ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setElister(ReadOnlyElister elister) {
+        this.elister.resetData(elister);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyElister getElister() {
+        return elister;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return elister.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        elister.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        elister.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public String addPersonsFromAddressBook(ReadOnlyAddressBook newAddressBook) {
+    public String addPersonsFromElister(ReadOnlyElister newElister) {
         String feedback = "Success!";
 
-        for (Person person: newAddressBook.getPersonList()) {
+        for (Person person: newElister.getPersonList()) {
             try {
-                addressBook.addPerson(person);
+                elister.addPerson(person);
             } catch (DuplicatePersonException e) {
                 feedback = "Warning: Some contacts already exist! Those contacts will be ignored.";
             }
@@ -162,17 +162,17 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        elister.setPerson(target, editedPerson);
     }
 
     @Override
     public void addTag(Person person, Tag tag) {
-        addressBook.addTag(person, tag);
+        elister.addTag(person, tag);
     }
 
     @Override
     public void deleteTag(Person person, Tag tag) {
-        addressBook.deleteTag(person, tag);
+        elister.deleteTag(person, tag);
     }
 
     //=========== History ================================================================================
@@ -201,7 +201,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedElister}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -271,7 +271,7 @@ public class ModelManager implements Model {
             // do nothing
         }
         this.frozenPersons.clear();
-        for (Person p: addressBook.getPersonList()) {
+        for (Person p: elister.getPersonList()) {
             if (frozenPersons.contains(p)) {
                 this.frozenPersons.add(p);
             }
@@ -288,7 +288,7 @@ public class ModelManager implements Model {
 
     @Override
     public void replicateStateOf(Model other) {
-        setAddressBook(other.getAddressBook());
+        setElister(other.getElister());
         updateFilteredPersonList(other.getPredicate());
         if (other.isFrozen()) {
             freezeWith(other.getFilteredPersonList());
@@ -328,7 +328,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return elister.equals(other.elister)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && isFrozen == other.isFrozen

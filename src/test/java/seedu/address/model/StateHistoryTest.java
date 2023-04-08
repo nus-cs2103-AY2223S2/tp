@@ -37,10 +37,10 @@ public class StateHistoryTest {
             CommandResult result = addCommand.execute(model);
             stateHistory.offerCommand(addCommand, model, result);
         }
-        assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), 5);
+        assertEquals(stateHistory.presentModel().getElister().getPersonList().size(), 5);
         for (int i = 0; i < 5; ++i) {
             assertEquals(stateHistory.undo(1), 1);
-            assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), 5 - i - 1);
+            assertEquals(stateHistory.presentModel().getElister().getPersonList().size(), 5 - i - 1);
         }
     }
 
@@ -54,10 +54,10 @@ public class StateHistoryTest {
             CommandResult result = addCommand.execute(model);
             stateHistory.offerCommand(addCommand, model, result);
         }
-        assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), n);
+        assertEquals(stateHistory.presentModel().getElister().getPersonList().size(), n);
         for (int i = 0; i < n; ++i) {
             assertEquals(stateHistory.undo(1), 1);
-            assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), n - i - 1);
+            assertEquals(stateHistory.presentModel().getElister().getPersonList().size(), n - i - 1);
         }
     }
 
@@ -77,11 +77,11 @@ public class StateHistoryTest {
             CommandResult result = addCommand.execute(model);
             stateHistory.offerCommand(addCommand, model, result);
         }
-        assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), 10);
+        assertEquals(stateHistory.presentModel().getElister().getPersonList().size(), 10);
         assertEquals(stateHistory.redo(1), 0);
         assertEquals(stateHistory.undo(20), 10);
         assertEquals(stateHistory.redo(20), 10);
-        assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), 10);
+        assertEquals(stateHistory.presentModel().getElister().getPersonList().size(), 10);
     }
 
 }

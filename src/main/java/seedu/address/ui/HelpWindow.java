@@ -21,7 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Text to be displayed when the user gets help.
      */
-    public static final String AB3_NAME = "AddressBook v1.3 2023\n\n";
+    public static final String ELISTER_NAME = "E-Lister v1.3 2023\n\n";
     public static final String OPTIONS = "Usage: \n"
             + "  add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]             add a new contact\n"
             + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]     edit details of an existing contact\n"
@@ -37,7 +37,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "  redo                                                            redo undone operation\n"
             + "  mass tag NEW_TAG [t/EXISTING_TAG]                               add tag to users with existing tag\n"
             + "  shortcut COMMAND ABBREVIATION                                   add shortcut for command\n"
-            + "  clear                                                           clear address book\n"
+            + "  clear                                                           clear E-Lister\n"
             + "  exit                                                            exit the program\n"
             + "  freeze                                                          freezes E-Lister\n"
             + "  unfreeze                                                        unfreezes E-Lister\n"
@@ -46,8 +46,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String EXAMPLE = "Example:   "
             + "add n/John Doe p/98765432 e/johnd@example.com i/4000 a/John street, block 123, #01-01\n\n";
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = AB3_NAME + OPTIONS + EXAMPLE
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t17-3.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = ELISTER_NAME + OPTIONS + EXAMPLE
         + "For more information, get more help from the online user guide.";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

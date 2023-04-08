@@ -10,7 +10,7 @@ import java.util.List;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the E-Lister to the user.
  */
 public class ListCommand extends Command {
     //CHECKSTYLE.OFF: VisibilityModifier

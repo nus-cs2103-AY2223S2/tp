@@ -3,7 +3,7 @@
 !include style.puml
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ElisterParser" as ElisterParser LOGIC_COLOR
 participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
 participant "command:TagCommand" as TagCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("tag 1 gay")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("tag 1 gay")
-activate AddressBookParser
+LogicManager -> ElisterParser : parseCommand("tag 1 gay")
+activate ElisterParser
 
 create TagCommandParser
-AddressBookParser -> TagCommandParser
+ElisterParser -> TagCommandParser
 activate TagCommandParser
 
-TagCommandParser --> AddressBookParser
+TagCommandParser --> ElisterParser
 deactivate TagCommandParser
 
-AddressBookParser -> TagCommandParser : parse("1 gay")
+ElisterParser -> TagCommandParser : parse("1 gay")
 activate TagCommandParser
 
 create TagCommand
@@ -37,14 +37,14 @@ activate TagCommand
 TagCommand --> TagCommandParser : command
 deactivate TagCommand
 
-TagCommandParser --> AddressBookParser : command
+TagCommandParser --> ElisterParser : command
 deactivate TagCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-TagCommandParser -[hidden]-> AddressBookParser
+TagCommandParser -[hidden]-> ElisterParser
 destroy TagCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+ElisterParser --> LogicManager : command
+deactivate ElisterParser
 
 LogicManager -> TagCommand : execute()
 activate TagCommand

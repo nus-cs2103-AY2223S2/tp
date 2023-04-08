@@ -14,46 +14,46 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CsvUtil;
 import seedu.address.commons.util.FileUtil;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyElister;
 import seedu.address.model.person.Person;
 
 /**
- * A class to access or store AddressBook data stored as a csv file on the hard disk.
+ * A class to access or store E-lister data stored as a csv file on the hard disk.
  */
-public class CsvAddressBookStorage implements AddressBookStorage {
+public class CsvElisterStorage implements ElisterStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(CsvAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(CsvElisterStorage.class);
 
     private Path filePath;
 
-    public CsvAddressBookStorage(Path filePath) {
+    public CsvElisterStorage(Path filePath) {
         this.filePath = filePath;
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getElisterFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyElister> readElister() throws DataConversionException, IOException {
+        return readElister(filePath);
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyElister> readElister(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
         Optional<List<List<String>>> csvData = CsvUtil.readCsvFile(
-                filePath, CsvSerializableAddressBook.CSV_HEADERS);
+                filePath, CsvSerializableElister.CSV_HEADERS);
         if (!csvData.isPresent()) {
             return Optional.empty();
         }
 
         try {
             List<List<String>> data = csvData.get();
-            CsvSerializableAddressBook csvAddressBook = new CsvSerializableAddressBook(data);
-            return Optional.of(csvAddressBook.toModelType());
+            CsvSerializableElister csvElister = new CsvSerializableElister(data);
+            return Optional.of(csvElister.toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -61,21 +61,21 @@ public class CsvAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveElister(ReadOnlyElister elister) throws IOException {
+        saveElister(elister, filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveElister(ReadOnlyElister elister, Path filePath) throws IOException {
+        requireNonNull(elister);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        CsvUtil.saveCsvFile(filePath, new CsvSerializableAddressBook(addressBook).toString());
+        CsvUtil.saveCsvFile(filePath, new CsvSerializableElister(elister).toString());
     }
 
-    public void saveAddressBook(ObservableList<Person> filteredList) throws IOException {
-        saveAddressBook(filteredList, filePath);
+    public void saveElister(ObservableList<Person> filteredList) throws IOException {
+        saveElister(filteredList, filePath);
     }
 
     /**
@@ -85,11 +85,11 @@ public class CsvAddressBookStorage implements AddressBookStorage {
      * @param filePath File path selected by user to save at.
      * @throws IOException
      */
-    public void saveAddressBook(ObservableList<Person> filteredList, Path filePath) throws IOException {
+    public void saveElister(ObservableList<Person> filteredList, Path filePath) throws IOException {
         requireNonNull(filteredList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        CsvUtil.saveCsvFile(filePath, new CsvSerializableAddressBook(filteredList).toString());
+        CsvUtil.saveCsvFile(filePath, new CsvSerializableElister(filteredList).toString());
     }
 }

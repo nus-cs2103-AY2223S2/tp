@@ -40,7 +40,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/elister-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -246,7 +246,7 @@ The feature implementation involves in almost all high-level components which ar
 * `TxtHistoryStorage` and `HistoryStorage` from the `Storage` represents the `.txt` file and the action of reading/writing from/to that file.
 
 1. Initially, when E-Lister is run, a new `TxtHistoryStorage` will be initialized along with other parts of high-level components.
-2. Then, the history will be read from the file after the `AddressBook` is read.
+2. Then, the history will be read from the file after the `Elister` is read.
 3. It will then be passed to `Logic` where the users' command in `String` type is going to be execute and write the commands into the file if the commands are succesfully executed.
 4. After the execution, the new `String` from `.txt` file will be read and display the updated history list to the users.
 
@@ -358,7 +358,7 @@ _{more aspects and alternatives to be added}_
 
 `shortcut` can be used to create user-defined shortcuts in order to input commands more quickly. This section will describe the implementation of this command, if the user enters `shortcut edit e` as an example.
 
-Step 1. The user enters the command `shortcut edit e` and presses the Enter key. `AddressBookParser` parses the user's command and returns a `ShortcutCommandParser`.
+Step 1. The user enters the command `shortcut edit e` and presses the Enter key. `ElisterParser` parses the user's command and returns a `ShortcutCommandParser`.
 
 Step 2. `ShortcutCommandParser` parses the user's command, picking out the command that is to be shortened, and the shortcut to be added. A `ShortcutCommand` object is then added.
 
@@ -377,7 +377,7 @@ The implementation for `import` and `export` are found in `ImportCommand` and `E
 
 Only for the `import` command, the system checks that the selected file is a valid CSV file. If it is invalid, a prompt is displayed to inform the user and the `JFileChooser` reappears to allow the user to select a new file. This check is not required for the `export` command since users are allowed to write to a new file that does not yet exist.
 
-Beyond the UI level, the commands operate using the `CsvAddressBookStorage` class. This class interacts between the `CsvUtil` and `CsvSerializableAddressBook` classes in order to convert between E-Lister data and CSV-friendly format. This interaction is illustrated in the following sequence diagrams.
+Beyond the UI level, the commands operate using the `CsvElisterStorage` class. This class interacts between the `CsvUtil` and `CsvSerializableElister` classes in order to convert between E-Lister data and CSV-friendly format. This interaction is illustrated in the following sequence diagrams.
 
 ##### Import
 
