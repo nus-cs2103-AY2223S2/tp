@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,8 +23,6 @@ public class PrescribeCommand extends Command {
 
     public static final String COMMAND_WORD = "prescribe";
 
-    //@@author Jeffry Lum-reused
-    //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Attaches a medication (and its cost) to a person identified by their NRIC. If the medication is "
             + "already attached, this edits the cost instead.\n"
@@ -37,9 +34,10 @@ public class PrescribeCommand extends Command {
             + PREFIX_MEDICATION + "paracetamol "
             + PREFIX_COST + "3.5";
 
-    public static final String MESSAGE_ADD_SUCCESS = "Prescription of patient added!: %1$s";
-    public static final String MESSAGE_EDIT_SUCCESS = "Cost of prescription changed!: %1$s";
+    public static final String MESSAGE_ADD_SUCCESS = "Prescription of patient added: %1$s";
+    public static final String MESSAGE_EDIT_SUCCESS = "Cost of prescription changed: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist.";
+    public static final String MESSAGE_IDENTICAL_PRESCRIPTION = "This prescription already exists.";
 
     public final Nric nric;
     private final Prescription prescription;
@@ -55,58 +53,66 @@ public class PrescribeCommand extends Command {
         this.prescription = prescription;
     }
 
-    //@@author Jeffry Lum-reused
-    //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
-    // with minor modifications
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (!model.hasPatientByNric(nric)) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
+        Patient patientToEdit = getPatientFromModel(model);
+        boolean isNewPrescription = !hasOldPrescription(patientToEdit);
 
-        Patient patientToEdit = null;
-        for (Person person : lastShownList) {
-            if (person.isDoctor()) {
-                continue;
-            }
-            if (person.getNric().equals(nric)) {
-                patientToEdit = (Patient) person;
-            }
-        }
-
-        if (patientToEdit == null) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
-
-        boolean isNewPrescription = true;
         Set<Prescription> patientPrescriptions = patientToEdit.getPrescriptions();
-
-        // todo use streams
-        for (Prescription p : patientPrescriptions) {
-            if (p.getMedication().equals(prescription.getMedication())) {
-                isNewPrescription = false;
-                patientPrescriptions.remove(p);
-                break;
-            }
+        if (!isNewPrescription) {
+            removeOldPrescription(patientPrescriptions);
         }
-
         patientPrescriptions.add(prescription);
 
         Patient editedPerson = new Patient(
                 patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getNric(),
-                patientToEdit.getAddress(), patientPrescriptions,
-                patientToEdit.getTags(),
-                patientToEdit.getPatientAppointments(),
-                patientToEdit.getRole());
+                patientToEdit.getAddress(), patientPrescriptions, patientToEdit.getTags(),
+                patientToEdit.getPatientAppointments(), patientToEdit.getRole());
 
         model.setPerson(patientToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(generateSuccessMessage(editedPerson, isNewPrescription));
     }
 
+
+    private Patient getPatientFromModel(Model model) throws CommandException {
+        if (!model.hasPatientByNric(nric)) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+        Person personToEdit = model.getPersonByNric(nric);
+        if (!personToEdit.isPatient()) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+        return (Patient) personToEdit;
+    }
+
+    private boolean hasOldPrescription(Patient patient) {
+        long matches = patient.getPrescriptions()
+                .stream()
+                .filter(p -> p.getMedication().equals(prescription.getMedication()))
+                .count();
+        assert matches < 2 : "For each person, there should not be multiple prescriptions with"
+                + "the same medication!";
+        return matches == 1;
+    }
+
+    private void removeOldPrescription(Set<Prescription> prescriptions) throws CommandException {
+        Prescription oldPrescription = prescriptions
+                .stream()
+                .filter(p -> p.getMedication().equals(prescription.getMedication()))
+                .findFirst()
+                .get();
+        if (oldPrescription.equals(prescription)) {
+            throw new CommandException(MESSAGE_IDENTICAL_PRESCRIPTION);
+        }
+        prescriptions.remove(oldPrescription);
+    }
+
+    //@@author Jeffry Lum-reused
+    //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
+    // with minor modifications
     /**
      * Generates a command execution success message when prescription is changed
      * {@code personToEdit}.
@@ -135,5 +141,6 @@ public class PrescribeCommand extends Command {
         return nric.equals(e.nric)
                 && prescription.equals(e.prescription);
     }
+
 
 }

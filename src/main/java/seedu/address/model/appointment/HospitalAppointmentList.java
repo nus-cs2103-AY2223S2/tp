@@ -34,7 +34,8 @@ public class HospitalAppointmentList implements Iterable<Appointment> {
     public boolean isADuplicateAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return internalList.stream().anyMatch(patientAppointment ->
-                patientAppointment.isSameAppointment(appointment));
+                patientAppointment.isSamePatientAppointmentTime(appointment)
+                || patientAppointment.isSameDrAppointmentTime(appointment));
     }
 
     /**

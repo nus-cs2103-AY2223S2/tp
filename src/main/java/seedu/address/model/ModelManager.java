@@ -26,6 +26,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
+    private final FilteredList<Appointment> filteredAppointments;
     private Person displayedPerson;
 
     /**
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
 
         displayedPerson = filteredPersons.size() > 0
                 ? filteredPersons.get(0)
@@ -105,7 +108,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPatientByNric(Nric nric) {
         requireNonNull(nric);
-        return addressBook.hasPersonByNric(nric);
+        return addressBook.hasPatientByNric(nric);
     }
 
     @Override
@@ -203,8 +206,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
+    @Override
     public void updatePersonView(Person updatedPerson) {
-        requireNonNull(updatedPerson);
         displayedPerson = updatedPerson;
     }
 
@@ -253,6 +261,22 @@ public class ModelManager implements Model {
     @Override
     public void deleteAppointment(Appointment appointment) {
         addressBook.deleteAppointment(appointment);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public Person retrievePersonByNric(Nric nric) {
+        return addressBook.retrievePersonByNric(nric);
+    }
+    // todo remove retrievePersonByNric (duplicate)
+
+    /**
+     * Returns the person with the given {@code nric}, returns it. This person must exist.
+     * @param nric of the person
+     * @return Person with a given Nric
+     */
+    @Override
+    public Person getPersonByNric(Nric nric) {
+        return addressBook.getPersonByNric(nric);
     }
 }

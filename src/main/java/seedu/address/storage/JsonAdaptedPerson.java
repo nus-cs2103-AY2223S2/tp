@@ -92,6 +92,14 @@ class JsonAdaptedPerson {
                     .map(JsonAdaptedAppointment::new)
                     .collect(Collectors.toList()));
         }
+
+        if (source.isDoctor()) {
+            Doctor sourceDoctor = (Doctor) source;
+
+            patientAppointments.addAll(sourceDoctor.getPatientAppointments().stream()
+                    .map(JsonAdaptedAppointment::new)
+                    .collect(Collectors.toList()));
+        }
         role = source.getRole().role;
 
     }
@@ -152,7 +160,7 @@ class JsonAdaptedPerson {
         final Role modelRole = new Role(role);
 
         // Return a new Patient object if Role field is "Patient". Otherwise, return new Doctor object.
-        if (role.toString().equals("Patient")) {
+        if (role.equals("Patient")) {
 
             final List<Prescription> personPrescriptions = new ArrayList<>();
             for (JsonAdaptedPrescription prescription : prescriptions) {

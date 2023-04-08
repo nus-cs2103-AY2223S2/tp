@@ -9,11 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Cost {
 
-    public static final String MESSAGE_CONSTRAINTS = "Cost should either be a positive number or 0. "
+    public static final String MESSAGE_CONSTRAINTS = "COST should either be a positive number or 0. "
             + "It can also have up to 2 decimal places";
     public static final String VALIDATION_REGEX = "^\\d+(\\.\\d{1,2})?$";
 
-    private Float value;
+    private final Float value;
 
     /**
      * Constructs a {@code Cost}.
@@ -31,13 +31,6 @@ public class Cost {
      */
     public static boolean isValidCost(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * @return true if it costs 0
-     */
-    public boolean isEmpty() {
-        return value == 0;
     }
 
     public float getValue() {
