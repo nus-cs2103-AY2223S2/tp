@@ -217,6 +217,10 @@ The following values (case sensitive) are not allowed:
 A non-blank character sequence consisting of only alphanumeric character and all brackets excluding triangle brackets
 (`<` and `>`). The character limit is **30** characters.
 
+#### `<name>`
+
+A non-blank character sequence consisting of only alphanumeric character. There is no character limit and does not limit the amount of spaces between the words.
+
 #### `<blood-type>`
 
 The list of blood types are:
@@ -519,6 +523,10 @@ patient find {<var>PATIENT_NAME</var> | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_A
 </pre>
 
 * <code><var>PATIENT_NAME</var></code> : `<string>`
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **WARNING**: If both <code><var>PATIENT_NAME</var></code> and <code><var>ATTRIBUTE_FLAG</var></code> are used in the same command, it will ignore <code><var>PATIENT_NAME</var></code> and warn the user that <code><var>PATIENT_NAME</var></code> is not being used.
+</div>
 
 ##### Find by flag
 
