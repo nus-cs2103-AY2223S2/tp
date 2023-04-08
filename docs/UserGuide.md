@@ -538,7 +538,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 Deletes the specified module(s) and all its embodied content from the application
 - <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>: The codes of the modules
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Modules in Le Tracker
+  - Must belong to an existing module in Le Tracker
   - Must not contain duplicates
 
 Examples:
@@ -546,8 +546,8 @@ Examples:
 - `delete CS2040`
 - `delete CS2040, ST2334`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will automatically inject the `/mod` and/or `/lec` arguments, transforming the user's command into the command specified in [Delete Lecture](#delete-lecture) or [Delete Video](#delete-video) (refer to [Navigation Injection](#navigation-injection) for more information)
 
 
