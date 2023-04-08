@@ -356,6 +356,8 @@ Each addition increases note index by one.
 
 Adding a note content with just whitespaces will add "This note is empty" note.
 
+Maximum of 200 characters.
+
 :information_source: <b> You need to double-click the event to expand and view notes! </b>
 
 Format: `addNote content/CONTENT type/EVENT_TYPE name/EVENT_NAME`
