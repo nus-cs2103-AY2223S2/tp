@@ -242,6 +242,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
+    ![Add a student](images/Add%20a%20student.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation:
 Caution:<br>
