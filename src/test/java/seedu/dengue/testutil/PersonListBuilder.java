@@ -9,28 +9,12 @@ import seedu.dengue.model.person.Person;
  * A utility class to help with building Lists of Person objects.
  */
 public class PersonListBuilder {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    private static final List<Person> EMPTY_PERSON_LIST = new ArrayList<>();
-
->>>>>>> 2e2e44b3 (Abstract out Person list construction to a new testutil class.)
-=======
->>>>>>> 4882a88e (Remove unnecessary abstraction of EMPTY_PERSON_LIST)
     private final PersonBuilder personBuilder;
     private final List<Person> personList;
 
     private PersonListBuilder(Person defaultPerson) {
         this.personBuilder = new PersonBuilder(defaultPerson);
-<<<<<<< HEAD
-<<<<<<< HEAD
         this.personList = new ArrayList<>();
-=======
-        this.personList = new ArrayList<>(EMPTY_PERSON_LIST);
->>>>>>> 2e2e44b3 (Abstract out Person list construction to a new testutil class.)
-=======
-        this.personList = new ArrayList<>();
->>>>>>> 4882a88e (Remove unnecessary abstraction of EMPTY_PERSON_LIST)
     }
 
     private PersonListBuilder(Person defaultPerson, List<Person> personList) {
@@ -161,6 +145,6 @@ public class PersonListBuilder {
      * @return An empty list.
      */
     public List<Person> buildEmpty() {
-        return new ArrayList<>();:
+        return new ArrayList<>();
     }
 }
