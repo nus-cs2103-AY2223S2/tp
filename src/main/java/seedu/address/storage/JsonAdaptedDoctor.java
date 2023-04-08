@@ -49,8 +49,8 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
      */
     public JsonAdaptedDoctor(Doctor source) {
         super(source);
-        yearsOfExperience = source.getYoe().value;
-        specialty = source.getSpecialty().specialty;
+        yearsOfExperience = source.getYoe().getValue();
+        specialty = source.getSpecialty().getValue();
         patients.addAll(source.getPatients().stream()
                 .map(JsonAdaptedPatient::new)
                 .collect(Collectors.toList()));

@@ -4,6 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DIAGNOSIS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -35,7 +44,7 @@ public class AddPatientCommandTest {
 
         CommandResult commandResult = new AddPatientCommand(validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient),
+        assertEquals(String.format(AddPatientCommand.getMessageSuccess(), validPatient),
                 commandResult.getCliFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
@@ -46,8 +55,51 @@ public class AddPatientCommandTest {
         AddPatientCommand addPatientCommand = new AddPatientCommand(validPatient);
         ModelStub modelStub = new AddPatientCommandTest.ModelStubWithPatient(validPatient);
 
-        assertThrows(CommandException.class, AddPatientCommand.MESSAGE_DUPLICATE_PATIENT, () ->
+        assertThrows(CommandException.class, AddPatientCommand.getMessageDuplicatePatient(), () ->
                 addPatientCommand.execute(modelStub));
+    }
+
+
+    @Test
+    public void execute_getCommandUsage_success() {
+        String messageUsage = AddPatientCommand.COMMAND_WORD + " (short form: "
+                + AddPatientCommand.SHORTHAND_COMMAND_WORD + ")"
+                + ": Adds a patient to the address book.\n"
+                + "Parameters: "
+                + PREFIX_NAME + "NAME "
+                + PREFIX_PHONE + "PHONE "
+                + PREFIX_EMAIL + "EMAIL "
+                + PREFIX_HEIGHT + "HEIGHT "
+                + PREFIX_WEIGHT + "WEIGHT "
+                + PREFIX_DIAGNOSIS + "DIAGNOSIS "
+                + PREFIX_STATUS + "STATUS "
+                + "[" + PREFIX_REMARK + "REMARK] "
+                + "[" + PREFIX_TAG + "TAG]...\n"
+                + "Example: " + AddPatientCommand.COMMAND_WORD + " "
+                + PREFIX_NAME + "John Doe "
+                + PREFIX_PHONE + "98765432 "
+                + PREFIX_EMAIL + "jdoe@gmail.com "
+                + PREFIX_HEIGHT + "1.85 "
+                + PREFIX_WEIGHT + "70.5 "
+                + PREFIX_DIAGNOSIS + "Fever "
+                + PREFIX_STATUS + "Outpatient "
+                + PREFIX_REMARK + "No known allergies "
+                + PREFIX_TAG + "pendingReview";
+        assertEquals(AddPatientCommand.getCommandUsage(), messageUsage);
+    }
+
+    @Test
+    public void execute_addPatient_getMessageSuccessSuccessful() {
+        Patient validPatient = new PatientBuilder().build();
+        String messageSuccess = "New patient added: %1$s";
+        assertEquals(String.format(AddPatientCommand.getMessageSuccess(), validPatient), String.format(messageSuccess,
+                validPatient));
+    }
+
+    @Test
+    public void execute_addPatient_getMessageDuplicatePatientSuccessful() {
+        String messageDuplicatePatient = "This patient already exists in the address book";
+        assertEquals(AddPatientCommand.getMessageDuplicatePatient(), messageDuplicatePatient);
     }
 
     @Test

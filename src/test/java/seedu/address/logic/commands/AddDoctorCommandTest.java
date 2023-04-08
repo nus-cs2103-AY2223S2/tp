@@ -4,6 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YOE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -22,6 +28,7 @@ import seedu.address.testutil.DoctorBuilder;
 
 public class AddDoctorCommandTest {
 
+
     @Test
     public void constructor_nullDoctor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddDoctorCommand(null));
@@ -35,7 +42,7 @@ public class AddDoctorCommandTest {
 
         CommandResult commandResult = new AddDoctorCommand(validDoctor).execute(modelStub);
 
-        assertEquals(String.format(AddDoctorCommand.MESSAGE_SUCCESS, validDoctor),
+        assertEquals(String.format(AddDoctorCommand.getMessageSuccess(), validDoctor),
                 commandResult.getCliFeedbackToUser());
         assertEquals(Arrays.asList(validDoctor), modelStub.doctorsAdded);
     }
@@ -46,9 +53,46 @@ public class AddDoctorCommandTest {
         AddDoctorCommand addDoctorCommand = new AddDoctorCommand(validDoctor);
         ModelStub modelStub = new AddDoctorCommandTest.ModelStubWithDoctor(validDoctor);
 
-        assertThrows(CommandException.class, AddDoctorCommand.MESSAGE_DUPLICATE_DOCTOR, () ->
+        assertThrows(CommandException.class, AddDoctorCommand.getMessageDuplicateDoctor(), () ->
                 addDoctorCommand.execute(modelStub));
     }
+
+    @Test
+    public void execute_getCommandUsage_success() {
+        String messageUsage = AddDoctorCommand.COMMAND_WORD + " (short form: "
+                + AddDoctorCommand.SHORTHAND_COMMAND_WORD + ")"
+                + ": Adds a doctor to the address book. "
+                + "Parameters: "
+                + PREFIX_NAME + "NAME "
+                + PREFIX_PHONE + "PHONE "
+                + PREFIX_EMAIL + "EMAIL "
+                + PREFIX_SPECIALTY + "SPECIALTY "
+                + PREFIX_YOE + "YEARS OF EXPERIENCE "
+                + "[" + PREFIX_TAG + "TAG]...\n"
+                + "Example: " + AddDoctorCommand.COMMAND_WORD + " "
+                + PREFIX_NAME + "John Doe "
+                + PREFIX_PHONE + "98765432 "
+                + PREFIX_EMAIL + "johnd@example.com "
+                + PREFIX_SPECIALTY + "Cardiology "
+                + PREFIX_YOE + "5 "
+                + PREFIX_TAG + "surgeon";
+        assertEquals(AddDoctorCommand.getCommandUsage(), messageUsage);
+    }
+
+    @Test
+    public void execute_addDoctor_getMessageSuccessSuccessful() {
+        Doctor validDoctor = new DoctorBuilder().build();
+        String messageSuccess = "New doctor added: %1$s";
+        assertEquals(String.format(AddDoctorCommand.getMessageSuccess(), validDoctor), String.format(messageSuccess,
+                validDoctor));
+    }
+
+    @Test
+    public void execute_addDoctor_getMessageDuplicateDoctorSuccessful() {
+        String messageDuplicateDoctor = "This doctor already exists in the address book";
+        assertEquals(AddDoctorCommand.getMessageDuplicateDoctor(), messageDuplicateDoctor);
+    }
+
 
     @Test
     public void equals() {

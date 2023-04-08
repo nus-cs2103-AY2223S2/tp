@@ -53,7 +53,7 @@ public class EditDoctorCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format("%s\n%s", ParserUtil.MESSAGE_INVALID_INDEX, EditDoctorCommand.MESSAGE_USAGE);
+            String.format("%s\n%s", ParserUtil.MESSAGE_INVALID_INDEX, EditDoctorCommand.getCommandUsage());
 
     private EditDoctorCommandParser parser = new EditDoctorCommandParser();
 
@@ -64,7 +64,7 @@ public class EditDoctorCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditDoctorCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditDoctorCommand.getMessageFailure());
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

@@ -5,6 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DOCTORS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YOE;
 import static seedu.address.testutil.TypicalDoctors.ALICE;
 import static seedu.address.testutil.TypicalDoctors.BENSON;
 import static seedu.address.testutil.TypicalDoctors.getTypicalAddressBook;
@@ -38,18 +44,18 @@ public class FindDoctorCommandTest {
         DoctorFilter emptyFilter = new DoctorFilter("", "",
                 "", "", "", new HashSet<>());
 
-        DoctorFilter aliceFilter = new DoctorFilter(ALICE.getName().fullName,
-                ALICE.getPhone().value,
-                ALICE.getEmail().value,
-                ALICE.getSpecialty().specialty,
-                ALICE.getYoe().value,
+        DoctorFilter aliceFilter = new DoctorFilter(ALICE.getName().getValue(),
+                ALICE.getPhone().getValue(),
+                ALICE.getEmail().getValue(),
+                ALICE.getSpecialty().getValue(),
+                ALICE.getYoe().getValue(),
                 new HashSet<>());
 
-        DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().fullName,
-                BENSON.getPhone().value,
-                BENSON.getEmail().value,
-                BENSON.getSpecialty().specialty,
-                BENSON.getYoe().value,
+        DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().getValue(),
+                BENSON.getPhone().getValue(),
+                BENSON.getEmail().getValue(),
+                BENSON.getSpecialty().getValue(),
+                BENSON.getYoe().getValue(),
                 bensonTags);
 
         DoctorContainsKeywordsPredicate firstPredicate =
@@ -87,11 +93,11 @@ public class FindDoctorCommandTest {
 
         Set<String> bensonTags = BENSON.getTags().stream()
                 .map(t -> t.getTagName()).collect(Collectors.toSet());
-        DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().fullName,
-                BENSON.getPhone().value,
-                BENSON.getEmail().value,
-                BENSON.getSpecialty().specialty,
-                BENSON.getYoe().value,
+        DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().getValue(),
+                BENSON.getPhone().getValue(),
+                BENSON.getEmail().getValue(),
+                BENSON.getSpecialty().getValue(),
+                BENSON.getYoe().getValue(),
                 bensonTags);
 
         String expectedMessage = String.format(MESSAGE_DOCTORS_LISTED_OVERVIEW, 1);
@@ -100,5 +106,31 @@ public class FindDoctorCommandTest {
         expectedModel.updateFilteredDoctorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(BENSON), model.getFilteredDoctorList());
+    }
+
+    @Test
+    public void execute_getCommandUsageSuccessful() {
+        String messageUsage = FindDoctorCommand.COMMAND_WORD + " (short form: "
+                + FindDoctorCommand.SHORTHAND_COMMAND_WORD + ")"
+                + ": Finds a doctor in the address book. "
+                + "Parameters: "
+                + "[" + PREFIX_NAME + "NAME] "
+                + "[" + PREFIX_PHONE + "PHONE] "
+                + "[" + PREFIX_EMAIL + "EMAIL] "
+                + "[" + PREFIX_SPECIALTY + "SPECIALITY] "
+                + "[" + PREFIX_YOE + "YEARS OF EXPERIENCE] "
+                + "[" + PREFIX_TAG + "TAG]...\n"
+                + "At least one of the parameters must be present. \n"
+                + "Only one of each parameter (excluding " + PREFIX_TAG + "TAG) may be present. \n"
+                + "Example: " + FindDoctorCommand.COMMAND_WORD + " "
+                + PREFIX_NAME + "John Doe";
+
+        assertEquals(messageUsage, FindDoctorCommand.getCommandUsage());
+    }
+
+    @Test
+    public void execute_getMessageSuccessSuccessful() {
+        String messageSuccess = "%1$d doctor(s) listed!";
+        assertEquals(messageSuccess, FindDoctorCommand.getMessageSuccess());
     }
 }

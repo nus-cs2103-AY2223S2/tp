@@ -13,20 +13,28 @@ import seedu.address.model.person.patient.Patient;
 /**
  * Deletes patient from the address book
  */
-public class DeletePatientCommand extends Command {
+public class DeletePatientCommand extends Command implements CommandInterface {
     public static final String COMMAND_WORD = "del-ptn";
     public static final String SHORTHAND_COMMAND_WORD = "dp";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    private static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
             + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
+    private static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
 
     private Index targetIndex;
 
     public DeletePatientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return MESSAGE_DELETE_PATIENT_SUCCESS;
     }
 
     @Override

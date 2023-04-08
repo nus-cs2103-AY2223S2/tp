@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -31,7 +32,7 @@ public class DeleteDoctorCommandTest {
         Doctor doctorToDelete = model.getFilteredDoctorList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteDoctorCommand.MESSAGE_DELETE_DOCTOR_SUCCESS, doctorToDelete);
+        String expectedMessage = String.format(DeleteDoctorCommand.getMessageSuccess(), doctorToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteDoctor(doctorToDelete);
@@ -54,7 +55,7 @@ public class DeleteDoctorCommandTest {
         Doctor doctorToDelete = model.getFilteredDoctorList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteDoctorCommand.MESSAGE_DELETE_DOCTOR_SUCCESS, doctorToDelete);
+        String expectedMessage = String.format(DeleteDoctorCommand.getMessageSuccess(), doctorToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteDoctor(doctorToDelete);
@@ -74,6 +75,26 @@ public class DeleteDoctorCommandTest {
         DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteDoctorCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_getCommandUsage_success() {
+        String messageUsage = DeleteDoctorCommand.COMMAND_WORD + " (short form: "
+                + DeleteDoctorCommand.SHORTHAND_COMMAND_WORD + ")"
+                + ": Deletes the doctor identified by the index number used in the displayed doctor list.\n"
+                + "Parameters: INDEX (must be a positive integer)\n"
+                + "Example: " + DeleteDoctorCommand.COMMAND_WORD + " 1";
+        assertEquals(DeleteDoctorCommand.getCommandUsage(), messageUsage);
+    }
+
+    @Test
+    public void execute_deleteDoctor_getMessageSuccessSuccessful() {
+        Doctor doctorToDelete = model.getFilteredDoctorList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        String messageSuccess = "Deleted Doctor: %1$s";
+        String expectedMessage = String.format(messageSuccess, doctorToDelete);
+
+        assertEquals(String.format(DeleteDoctorCommand.getMessageSuccess(), doctorToDelete), expectedMessage);
     }
 
     @Test
@@ -106,4 +127,5 @@ public class DeleteDoctorCommandTest {
 
         assertTrue(model.getFilteredDoctorList().isEmpty());
     }
+
 }
