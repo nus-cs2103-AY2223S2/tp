@@ -102,5 +102,10 @@ public interface Model {
      */
     void archivePet(Pet petToArchive);
 
+    /**
+     * Returns true if a pet with the same identity as {@code pet} exists in the pet archive list.
+     */
+    boolean hasArchivePet(Pet pet);
+
     ReadOnlyPetPal getPetPalArchive();
 }

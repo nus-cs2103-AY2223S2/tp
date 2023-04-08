@@ -53,12 +53,12 @@ The Design section makes use of various UML diagrams which were created using [P
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up**
+## **Setting up & Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-## **Getting started**
-After [setting up](#setting-up), double-click the jar file to launch PetPal.
+After setting up, double-click the jar file to launch PetPal.
+
 
 ### Getting Familiar With Your User Interface
 
@@ -288,7 +288,7 @@ The calculator feature is not an additional command, and does not have an activi
 #### Current Implementation
 The archive mechanism is facilitated by the `ArchiveCommand` class.
 The `ArchiveCommand#execute()` adds the provided `Pet` into an archive list and deletes the `Pet` from the pet list,
-the `Pet` must exist in the pet list.
+the `Pet` must exist in the pet list, and the index provided must be a valid index of a pet in the current viewable pet list
 
 ##### Given below is an example usage scenario and how the set file mechanism behaves at each step:
 ```text
@@ -352,13 +352,13 @@ The proposed importing function is an extension of the base `PetPal`, uses a `Cs
 to application readable json data.
 
 #### Design considerations:
-- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
+- **Alternative 1** : Write an external script that parses the csv data based on the column names
   into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
   for PetPal to be able to read and modify the imported data
     - Pros: Might be easier to implement
     - Cons: Might be confusing for users to use (running external script)
 
-- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
+- **Alternative 2 (Current Choice)** : Provide an interface for users to upload their csv data into PetPal and automatically parses
   the data into json format and refreshes the database.
     - Pros: Easier and more intuitive for users to use
     - Cons: Builds upon **Alternative 1**, requiring more work to implement
@@ -393,84 +393,6 @@ The following sequence diagram shows how the undo operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![UndoActivityDiagram](images/diagrams/UndoActivityDiagram.png)
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedPetPal`. It extends `PetPal` with an undo/redo history, stored internally as an `PetPalStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedPetPal#commit()`— Saves the current address book state in its history.
-* `VersionedPetPal#undo()`— Restores the previous address book state from its history.
-* `VersionedPetPal#redo()`— Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitPetPal()`, `Model#undoPetPal()` and `Model#redoPetPal()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedPetPal` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/diagrams/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th pet in the address book. The `delete` command calls `Model#commitPetPal()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `petPalStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/diagrams/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new pet. The `add` command also calls `Model#commitPetPal()`, causing another modified address book state to be saved into the `petPalStateList`.
-
-![UndoRedoState2](images/diagrams/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPetPal()`, so the address book state will not be saved into the `petPalStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the pet was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoPetPal()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/diagrams/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial PetPal state, then there are no previous PetPal states to restore. The `undo` command uses `Model#canUndoPetPal()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/diagrams/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite—it calls `Model#redoPetPal()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `petPalStateList.size() - 1`, pointing to the latest address book state, then there are no undone PetPal states to restore. The `redo` command uses `Model#canRedoPetPal()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitPetPal()`, `Model#undoPetPal()` or `Model#redoPetPal()`. Thus, the `petPalStateList` remains unchanged.
-
-![UndoRedoState4](images/diagrams/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitPetPal()`. Since the `currentStatePointer` is not pointing at the end of the `petPalStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/diagrams/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/diagrams/CommitActivityDiagram.png" width="375"  alt=""/>
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the pet being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
 
 
 [Return to Table of Contents](#table-of-contents)
@@ -549,7 +471,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: View help** 
 
-[//]: # TODO()
+1. Actor requests to view help
+2. System shows help message<br>
+   Use case ends.
 
 
 **Use case:List the list of pets**
@@ -613,7 +537,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty.<br>
   Use case ends.
 
@@ -624,12 +547,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Archive a pet**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to lists all pets
+2. System shows the list of all pets
+3. Actor requests to archive a specific pet in the list
+4. System archives the pet<br>
+   Use case ends.
 
+**Extensions**
+* 2a. The list is empty.<br>
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.<br>
+      Use case resumes at step 2.
+
+* 3b. The given pet exists in the archive
+    * 3b1. System shows an error message.<br>
+      Use case resumes at step 2  
 
 **Use case: Clear the pet list**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to lists all pets
+2. System shows the list of all pets
+3. Actor requests to clear the list
+4. System clears the list
 
 
 **Use case: Undo a command**

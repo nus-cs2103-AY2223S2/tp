@@ -378,13 +378,6 @@ Note that:
 * The index is based on the **currently displayed** PetPal list, which might change depending on prior commands used
   (e.g. `find`)
 
-<div markdown="block" class="alert alert-block alert-danger">
-
-* :heavy_exclamation_mark: **Caution:**
-The current iteration of PetPal **DOES NOT** support `undo` on the `archive` command, undoing an archive command currently
-will cause issues with re-archiving the same Pet
-</div>
-
 Format: `archive INDEX`
 
 ![archive](images/UG/archive.png)
@@ -492,14 +485,13 @@ If you wish to transfer only 1 of the files over, repeat the same steps, and rep
 
 **Q**: When I run the `archive` command, nothing happens
 
-**A**: If you have previously run `undo` on an `archive` command on that specific Pet, delete that pet entry from the PetPal.
-If you do not want the entry in the archive, you will need to manually delete the entry from `archive.json` and restart PetPal.
+**A**: This is most likely because the pet you are trying to archive already exists in `archive.json`, if that is the case, just delete that entry from your PetPal
 
 <br><br>
 
 **Q**: Why there are some pets highlighted even though the deadline is already passed?
 
-**A**: If you already done the task, run `mark` function to mark it as done and remove the highlight.
+**A**: If you have already done the task, run `mark` function to mark it as done and remove the highlight.
 
 <br><br>
 If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
