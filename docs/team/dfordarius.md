@@ -96,4 +96,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added use case for  `edit` feature. [\#79](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/79/files)
     * Added use case for `listRoutines`, `export`, `exportRoutines`,`clearRoutines`, `deleteRoutine`, `deleteExercise`,`findRoutine`. [\#115](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/115/files)
-
+    * Added manual testing for `delete`, `addRoutine`,`findRoutine`,`deleteExercise`,
+* **Community**:
+   * PRs reviewed: [\#102](), [\#134](), [\#136]()
+   * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/dfordarius/ped))

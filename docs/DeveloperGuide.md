@@ -370,7 +370,7 @@ The following sequence diagram shows how the deleteRoutine operation works:
     * Pros: Might be faster.
     * Cons: Will be risky as it does not maintain accuracy of data in the model.
 
-### Export client/routine list
+### Export client
 
 #### Implementation
 This feature allows the user to extract data efficiently from FitBook to be used for other purposes such as statistical analysis.
