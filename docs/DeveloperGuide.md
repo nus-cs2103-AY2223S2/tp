@@ -429,7 +429,7 @@ representing a doctor, though the ideas below can be extended to the user clicki
 Below, we see the sequence diagram of how a mouse click from the user on the `DoctorListViewCell`
 causes the display of information related to the doctor card through the `EnlargedDoctorInfoCard`.
 
-![](images/UserClickDoctorCardSequenceDiagram.png)
+<img src="images/UserClickDoctorCardSequenceDiagram.png" width="60%" height="60%">
 
 ##### More details on implementation
 {: .no_toc}
