@@ -15,12 +15,17 @@ import seedu.address.model.AddressBook;
 
 public class JsonSerializableAddressBookTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_DOCTORS_FILE = TEST_DATA_FOLDER.resolve("typicalDoctorsAddressBook.json");
-    private static final Path INVALID_DOCTOR_FILE = TEST_DATA_FOLDER.resolve("invalidDoctorAddressBook.json");
-    private static final Path DUPLICATE_DOCTOR_FILE = TEST_DATA_FOLDER.resolve("duplicateDoctorAddressBook.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src",
+            "test", "data", "JsonSerializableAddressBookTest");
+    private static final Path TYPICAL_DOCTORS_FILE =
+            TEST_DATA_FOLDER.resolve("typicalDoctorsAddressBook.json");
+    private static final Path INVALID_DOCTOR_FILE =
+            TEST_DATA_FOLDER.resolve("invalidDoctorAddressBook.json");
+    private static final Path DUPLICATE_DOCTOR_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateDoctorAddressBook.json");
 
-    private static final Path INVALID_PATIENT_FILE = TEST_DATA_FOLDER.resolve("invalidPatientAddressBook.json");
+    private static final Path INVALID_PATIENT_FILE =
+            TEST_DATA_FOLDER.resolve("invalidPatientAddressBook.json");
     private static final Path DUPLICATE_UNASSIGNED_PATIENT_FILE =
             TEST_DATA_FOLDER.resolve("duplicateUnassignedPatientAddressBook.json");
     private static final Path DUPLICATE_ASSIGNED_PATIENT_FILE =
@@ -61,7 +66,8 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_duplicateAssignedPatients_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ASSIGNED_PATIENT_FILE,
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(
+                DUPLICATE_ASSIGNED_PATIENT_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalDoctorsAddressBook = getTypicalAddressBook();
@@ -70,7 +76,8 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_duplicateUnassignedPatients_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_UNASSIGNED_PATIENT_FILE,
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(
+                DUPLICATE_UNASSIGNED_PATIENT_FILE,
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType,
                 JsonSerializableAddressBook.MESSAGE_DUPLICATE_PATIENT);
@@ -78,7 +85,8 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_patientAssignedAndUnassigned_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PATIENT_ASSIGNED_AND_UNASSIGNED_FILE,
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(
+                PATIENT_ASSIGNED_AND_UNASSIGNED_FILE,
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
