@@ -62,7 +62,7 @@ My code contributions can be found on
   * GUI testing improved code coverage for InternBuddy.
 
 ### Project Management
-- Set up milestones `v1.2`, `v1.2b`, `v1.3`, `v.13b` and `v1.4`.
+- Set up milestones `v1.2`, `v1.2b`, `v1.3`, `v1.3b` and `v1.4`.
 - Managed releases for `v1.3.1` and `v1.3.3`.
 
 <div style="page-break-after: always;"></div>
