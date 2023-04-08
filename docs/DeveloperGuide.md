@@ -190,10 +190,10 @@ The `Model` component,
 * For each entity :
   * `Model` stores the entity catalogue data i.e., all `entity` objects (which are contained in a `UniqueEntityList` object).
   * `Model` stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* model also stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* `Model` also stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 
 
-#### Relationship Between `Internship` and `Event` entities
+**Relationship Between `Internship` and `Event` entities**
 Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two.
 Also, to make insertions and deletions of events easier, each event instance stores the internship instance it is
 associated with. Due to this, extra precautions are taken during internship deletions, making sure the corresponding
@@ -205,6 +205,9 @@ events are deleted as well.
 
  </p>
  
+  
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -228,6 +231,8 @@ that belong to the `Model`)
 Classes used by multiple components are in the `seedu.internship.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+ 
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
