@@ -31,6 +31,7 @@ public class ListProjectCommand extends Command {
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         String formattedMessage = getMessageProjectsContent(model);
+
         return new CommandResult(MESSAGE_SUCCESS + "\n" + formattedMessage, ListType.PROJECT);
     }
 

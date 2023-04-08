@@ -282,6 +282,7 @@ Users have the ability to list all their clients.
 
 #### Implementation
 
+<img src="images/ListClientSequenceDiagram.png" width="600" />
 
 ### Listing Projects
 
@@ -308,7 +309,7 @@ Users have the ability to list all their projects. A summary of how many OVERDUE
 
 **Target user profile**:
 
-* has a need to manage a significant number of commision clients
+* has a need to manage a significant number of commission clients
 * has a need to manage a significant number of projects
 * prefer desktop apps over other types
 * can type fast
