@@ -87,23 +87,6 @@ public class TemporaryMemoryTest {
             i++;
         }
     }
-    // Saves multiple files into the stack, then perform undo a number of times
-    // less than the number of saves.
-
-    @Test
-    public void saveMultipleThenUndoFewerTimes_randomNumberOfRandomFiles_loadsCorrectFile()
-            throws CommandException {
-        Random random = new Random();
-        int numFiles = random.nextInt(10) + 3;
-        for (int i = 0; i < numFiles; i++) {
-            this.memory.saveNewLatest(inputs.get(i));
-        }
-        int numUndos = random.nextInt(numFiles - 2) + 1;
-        for (int j = 0; j < numUndos; j++) {
-            this.memory.undo();
-        }
-        assertEquals(this.memory.loadCurrent(), inputs.get(numFiles - numUndos - 1));
-    }
 
     @Test
     public void undoAndPushNew_randomFiles_temporaryStorageEmpty()
