@@ -5,7 +5,13 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-<!-- -------------------------------------------------------------------------------------------------------------- -->
+------------------------------------------------------------------------------------------------------------------------
+
+coNtactUS is a **university module tracker and timetable/deadline sorting application**, optimized for use via a
+**Command Line Interface (CLI)** while still having the _benefits_ of a **Graphical User Interface (GUI)**. This
+application uses the **AddressBook-Level3** project created by the [SE-EDU initiative](https://se-education.org/)
+as its framework.
+
 
 <!--## **Acknowledgements**
 
@@ -14,7 +20,7 @@ and third-party libraries -- include links tothe original source as well} -->
 
 <!-- -------------------------------------------------------------------------------------------------------------- -->
 
-## **Setting up, getting started**
+<!-- ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -29,6 +35,7 @@ the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/dia
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to
 learn how to create and edit diagrams.
 </div>
+-->
 
 ### Architecture
 
