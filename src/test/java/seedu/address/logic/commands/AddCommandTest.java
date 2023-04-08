@@ -20,6 +20,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.fish.FishAddCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -43,7 +44,7 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullFish_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null, Index.fromOneBased(1)));
+        assertThrows(NullPointerException.class, () -> new FishAddCommand(null, Index.fromOneBased(1)));
     }
 
     @Test
@@ -51,33 +52,34 @@ public class AddCommandTest {
         ModelStubAcceptingFishAdded modelStub = new ModelStubAcceptingFishAdded();
         Fish validFish = new FishBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validFish, Index.fromOneBased(1)).execute(modelStub);
+        CommandResult commandResult = new FishAddCommand(validFish, Index.fromOneBased(1)).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFish), commandResult.getFeedbackToUser());
+        assertEquals(String.format(FishAddCommand.MESSAGE_SUCCESS, validFish), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validFish), modelStub.fishesAdded);
     }
 
     @Test
     public void execute_duplicateFish_throwsCommandException() {
         Fish validFish = new FishBuilder().build();
-        AddCommand addCommand = new AddCommand(validFish, Index.fromOneBased(1));
+        FishAddCommand addCommand = new FishAddCommand(validFish, Index.fromOneBased(1));
         ModelStub modelStub = new ModelStubWithFish(validFish);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FISH, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                FishAddCommand.MESSAGE_DUPLICATE_FISH, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Fish alice = new FishBuilder().withName("Alice").build();
         Fish bob = new FishBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice, Index.fromOneBased(1));
-        AddCommand addBobCommand = new AddCommand(bob, Index.fromOneBased(1));
+        FishAddCommand addAliceCommand = new FishAddCommand(alice, Index.fromOneBased(1));
+        FishAddCommand addBobCommand = new FishAddCommand(bob, Index.fromOneBased(1));
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice, Index.fromOneBased(1));
+        FishAddCommand addAliceCommandCopy = new FishAddCommand(alice, Index.fromOneBased(1));
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -264,6 +266,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Tank getTankFromIndex(Index index) {
+            return null;
+        }
+
+        @Override
         public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
             //TODO tests
             return null;
@@ -318,6 +325,11 @@ public class AddCommandTest {
         @Override
         public void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate) {
 
+        }
+
+        @Override
+        public Index getTankIndex(Tank tank) {
+            return null;
         }
     }
 

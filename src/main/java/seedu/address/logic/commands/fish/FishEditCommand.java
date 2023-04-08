@@ -117,7 +117,7 @@ public class FishEditCommand extends FishCommand {
 
         try {
             updatedTank = editFishDescriptor.getTankIndex()
-                    .map(ind -> model.getFilteredTankList().get(ind.getZeroBased()))
+                    .map(ind -> model.getTankFromIndex(ind))
                     .orElse(fishToEdit.getTank());
             //            int ind = Integer.valueOf(editedFish.getTank().getTankName().fullTankName);
             //            Index tankIndex = Index.fromOneBased(ind);

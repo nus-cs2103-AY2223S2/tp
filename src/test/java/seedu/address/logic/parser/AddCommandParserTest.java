@@ -37,7 +37,8 @@ import static seedu.address.testutil.TypicalFishes.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.fish.FishAddCommand;
+import seedu.address.logic.parser.fish.FishAddCommandParser;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDateTime;
@@ -47,7 +48,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.FishBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private FishAddCommandParser parser = new FishAddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -56,32 +57,32 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB
                 + SPECIES_DESC_BOB + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedFish, Index.fromOneBased(1)));
+                new FishAddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB
                 + SPECIES_DESC_BOB + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedFish, Index.fromOneBased(1)));
+                new FishAddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple LastFedDates - last LastFedDate accepted
         assertParseSuccess(parser, NAME_DESC_BOB + LAST_FED_DATE_DESC_AMY + LAST_FED_DATE_DESC_BOB
                 + SPECIES_DESC_BOB + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedFish, Index.fromOneBased(1)));
+                new FishAddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple species - last species accepted
         assertParseSuccess(parser, TANK_DESC + NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + SPECIES_DESC_AMY
                 + SPECIES_DESC_BOB + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedFish, Index.fromOneBased(1)));
+                new FishAddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple feeding intervals - last feeding interval accepted
         assertParseSuccess(parser, NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + SPECIES_DESC_BOB
                 + FEEDING_INTERVAL_DESC_AMY + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedFish, Index.fromOneBased(1)));
+                new FishAddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple tanks - last tank accepted
         assertParseSuccess(parser, NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + SPECIES_DESC_BOB
                         + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_AMY + TANK_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedFish, Index.fromOneBased(1)));
+                new FishAddCommand(expectedFish, Index.fromOneBased(1)));
 
         // multiple tags - all accepted
         Fish expectedFishMultipleTags = new FishBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -89,7 +90,7 @@ public class AddCommandParserTest {
 
         assertParseSuccess(parser, NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + SPECIES_DESC_BOB
                 + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedFishMultipleTags, Index.fromOneBased(1)));
+                new FishAddCommand(expectedFishMultipleTags, Index.fromOneBased(1)));
     }
 
     @Test
@@ -98,12 +99,12 @@ public class AddCommandParserTest {
         Fish expectedFish = new FishBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + LAST_FED_DATE_DESC_AMY + SPECIES_DESC_AMY
                         + FEEDING_INTERVAL_DESC_AMY + TANK_DESC_AMY,
-                new AddCommand(expectedFish, Index.fromOneBased(1)));
+                new FishAddCommand(expectedFish, Index.fromOneBased(1)));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FishAddCommand.MESSAGE_USAGE);
 
         // missing tank prefix
         assertParseFailure(parser, NAME_DESC_BOB + LAST_FED_DATE_DESC_AMY + SPECIES_DESC_BOB
@@ -169,6 +170,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB
                 + SPECIES_DESC_BOB + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FishAddCommand.MESSAGE_USAGE));
     }
 }

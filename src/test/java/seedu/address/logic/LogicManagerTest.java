@@ -19,10 +19,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.fish.FishAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -70,7 +70,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "fish delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
     }
 
@@ -100,7 +100,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + LAST_FED_DATE_DESC_AMY
+        String addCommand = FishAddCommand.COMMAND_WORD + " " + FishAddCommand.FISH_COMMAND_WORD
+                + NAME_DESC_AMY + LAST_FED_DATE_DESC_AMY
                 + SPECIES_DESC_AMY + FEEDING_INTERVAL_DESC_AMY + TANK_DESC;
         Fish expectedFish = new FishBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
