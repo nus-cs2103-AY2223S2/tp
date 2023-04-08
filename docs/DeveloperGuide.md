@@ -739,6 +739,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+<div style="page-break-after: always"></div>
+
 **UC02: Delete a contact**
 
 **MSS**
@@ -788,6 +790,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case resumes at step 2.
 
+<div style="page-break-after: always"></div>
+
 **UC04: Add tags to a contact**
 
 **MSS**
@@ -803,7 +807,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * UC04's extensions are the same as UC03: Edit a contact.
 
-**UC06: Delete a tag from a contact**
+**UC05: Delete a tag from a contact**
 
 **MSS**
 
@@ -817,6 +821,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * UC05's extensions are the same as UC03: Edit a contact.
+
+<div style="page-break-after: always"></div>
 
 **UC06: Search for a contact**
 
@@ -864,6 +870,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   Use case ends
 
+<div style="page-break-after: always"></div>
+
 **UC08: Viewing help for a specific command**
 
 **MSS**
@@ -897,7 +905,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The person has no Instagram record.
   * 3a1. ConnectUS displays error message.
   Use case ends.
-  
+
+<div style="page-break-after: always"></div>
+
 **UC10: Open a contact's WhatsApp with prefilled message**
 
 **MSS**
@@ -933,8 +943,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. Should not cause have its <u>GUI</u> cause any resolution-related inconveniences to the user for standard screen resolutions (1920x1080 and higher), and resolutions of 1280x720 and higher.
 10. Should be packaged into a single JAR file not exceeding 100MB.
 11. Should not have any hard-to-test features or features that make it hard-to-test.
-
----
 
 <div style="page-break-after: always"></div>
 
