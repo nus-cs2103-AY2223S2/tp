@@ -276,11 +276,11 @@ The following activity diagram summarizes what happens when a Coach executes a n
 
 2. **Displayed messages cannot be seen entirely in the output box without scrolling.**<br>
    This is especially the case when the message is long (i.e. an error message).<br>
-   We plan on adjusting the app UI such that the features scale according to the size of the window, including the output box which will<br> display its entire contents without needing to scroll through it.
+   We plan on adjusting the app UI such that the features scale according to the size of the window, including the output box which will display its entire contents without needing to scroll through it.
 
 
 3. **The app cannot be navigated solely through keyboard input alone.**<br>
-   Mouse clicks are still required to select an athlete/session even after using keyboard shortcuts to switch tabs.<br>
+   Mouse clicks are still required to select an athlete/session even after using keyboard shortcuts to switch tabs.
    This may make it inconvenient for those who may prefer CLI apps.<br>
    We plan on making the app completely navigable through keyboard input while also allowing one to click parts of the GUI.
 
@@ -377,11 +377,11 @@ one tag is created and added to the contact list.
 **Extensions**
 
 * 1a. The given index is not a positive integer.
-    * 1a1. SportSync shows an error message with the correct command format.
+    * 1a1. SportSync shows an error message with the correct command format.<br>
       Use case resumes at step 1.
 
 * 2a. The index given is out of bounds with respect to the size of the contact list.
-    * 2a1. SportSync shows an error message stating the index is out of bounds.
+    * 2a1. SportSync shows an error message stating the index is out of bounds.<br>
       Use case resumes at step 1.
 
 
@@ -403,11 +403,11 @@ one tag is created and added to the contact list.
 **Extensions**
 
 * 1a. The given index is not a positive integer.
-    * 1a1. SportSync shows an error message with the correct command format.
+    * 1a1. SportSync shows an error message with the correct command format.<br>
       Use case resumes at step 1.
 
 * 1b. The index given is out of bounds with respect to the size of the contact list.
-    * 1b1. SportSync shows an error message stating the index is out of bounds.
+    * 1b1. SportSync shows an error message stating the index is out of bounds.<br>
       Use case resumes at step 1.
 
 * 2a. At least one of the edited fields is of invalid format.
@@ -427,7 +427,7 @@ one tag is created and added to the contact list.
 **Extensions**
 
 * 1a. The given keyword does not correspond to any athlete's name within the contact list.
-    * 1a1. SportSync shows no athletes listed in the results.
+    * 1a1. SportSync shows no athletes listed in the results.<br>
       Use case resumes at step 1.
 
 
@@ -467,7 +467,7 @@ one tag is created and added to the contact list.
 **Extensions**
 
 * 2a. The given integer is not 1 or 2.
-    * 2a1. SportSync does not sort the contact list.
+    * 2a1. SportSync does not sort the contact list.<br>
       Use case resumes at step 1.
 
 
@@ -484,11 +484,11 @@ one tag is created and added to the contact list.
 **Extensions**
 
 * 2a. No tags are given.
-    * 2a1. SportSync shows an error message with the correct command format.
+    * 2a1. SportSync shows an error message with the correct command format.<br>
       Use case resumes at step 1.
 
 * 2b. One of the tags given do not exist.
-    * 2b1. SportSync shows an error message stating that the tag does not exist.
+    * 2b1. SportSync shows an error message stating that the tag does not exist.<br>
       Use case resumes at step 1.
 
 
@@ -504,14 +504,162 @@ one tag is created and added to the contact list.
 **Extensions**
 
 * 1a. An undo operation is not possible as there is nothing left to undo.
-    * 1a1. SportSync shows an error message stating that there is nothing left to undo.
+    * 1a1. SportSync shows an error message stating that there is nothing left to undo.<br>
       Use case resumes at step 1.
 
 #### Use case UC11 - Redo a command
 
-* Similar to UC10.
+* Similar to UC10 but executes a redo operation instead.
 
-#### Use case UC12 - View calendar events
+
+#### Use case UC12 - Add tags to an athlete
+
+**MSS**
+
+1. Coach requests to add one or more tags to an athlete in the contact list by providing their index.
+2. Coach provides one or more tags to add to the specified athlete.
+3. SportSync adds the tag(s) to the athlete.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is not valid.
+    * 1a1. SportSync shows an error message with the correct command format.<br>
+      Use case resumes at step 1.
+
+* 2a. The athlete already has at least one of the specified tags.
+    * 2a1. SportSync shows an error message stating that the athlete already has one of the tags.<br>
+      Use case resumes at step 1.
+
+
+#### Use case UC13 - Remove tags from an athlete
+
+**MSS**
+
+1. Coach requests to remove one or more tags to an athlete in the contact list by providing their index.
+2. Coach provides one or more tags to remove from the specified athlete.
+3. SportSync removes the tag(s) from the athlete.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is not valid.
+    * 1a1. SportSync shows an error message with the correct command format.<br>
+      Use case resumes at step 1.
+
+* 2a. One or more of the specified tags do not already belong to the athlete.
+    * 2a1. SportSync shows an error message stating that the athlete does not have one of the tags.<br>
+      Use case resumes at step 1.
+
+
+#### Use case UC14 - Add a session to the session list
+
+* Similar to UC02, but the Coach enters the session name, datetime and location to create a session.
+
+
+#### Use case UC15 - Delete a session from the session list
+
+* Similar to UC03 but deletes a session from the session list instead.
+
+
+#### Use case UC16 - Edit a session's details
+
+* Similar to UC04 but edits the details of a session instead.
+
+
+#### Use case UC17 - Mark an athlete as present for a session
+
+**MSS**
+
+1. Coach requests to mark an athlete as present for a session specified by its index.
+2. Coach provides the athlete's name to mark as present.
+3. SportSync marks the athlete as present in the specified session.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is not a positive integer.
+    * 1a1. SportSync shows an error message with the correct command format.<br>
+      Use case resumes at step 1.
+
+* 1b. The index given is out of bounds with respect to the size of the session list.
+    * 1b1. SportSync shows an error message stating the index is invalid.<br>
+      Use case resumes at step 1.
+
+* 2a. The specified athlete does not belong to the session.
+    * 2a1. SportSync shows an error message stating that the athlete does not exist in the specified session.<br>
+      Use case resumes at step 1.
+
+
+#### Use case UC17 - Mark an athlete as absent for a session
+
+* Similar to UC16 but marks the athlete as absent instead.
+
+
+#### Use case UC18 - Add an athlete to a session
+
+**MSS**
+
+1. Coach requests to add an athlete to a session.
+2. Coach provides the athlete's index in the contact list.
+3. Coach provides the session's name in the session list.
+4. SportSync adds the specified athlete to the specified session.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is not a positive integer.
+    * 2a1. SportSync shows an error message with the correct command format.<br>
+      Use case resumes at step 1.
+
+* 2b. The index given is out of bounds with respect to the size of the contact list.
+    * 2b1. SportSync shows an error message stating the index is invalid.<br>
+      Use case resumes at step 1.
+
+* 3a. The session name given does not exist in the session list.
+    * 3a1. SportSync shows an error message stating the session does not exist, and shows a list of available sessions.<br>
+      Use case resumes at step 1.
+
+* 3b. The specified athlete already belongs to the specified session
+    * 3b1. SportSync shows an error message stating the specified athlete already belongs to the specified session.<br>
+      Use case resumes at step 1.
+
+
+#### Use case UC19 - Remove an athlete from a session
+
+**MSS**
+
+1. Coach requests to remove an athlete from a session.
+2. Coach provides the athlete's index in the contact list.
+3. Coach provides the session's name in the session list.
+4. SportSync removes the specified athlete from the specified session.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is not a positive integer.
+    * 2a1. SportSync shows an error message with the correct command format.<br>
+      Use case resumes at step 1.
+
+* 2b. The index given is out of bounds with respect to the size of the contact list.
+    * 2b1. SportSync shows an error message stating the index is invalid.<br>
+      Use case resumes at step 1.
+
+* 3a. The session name given does not exist in the session list.
+    * 3a1. SportSync shows an error message stating the session does not exist, and shows a list of available sessions.<br>
+      Use case resumes at step 1.
+
+* 3b. The specified athlete does not already belong to the specified session
+    * 3b1. SportSync shows an error message stating the specified athlete does not already belong to the specified session.<br>
+      Use case resumes at step 1.
+
+
+#### Use case UC20 - View calendar events
 
 **MSS**
 
@@ -532,12 +680,20 @@ one tag is created and added to the contact list.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Private contact detail**: A contact detail that is not meant to be shared with others.
+* **Pay rate**: The amount of fees paid by the athlete per session.
+* **Session**: A training period for athletes, conducted by a coach.
+* **Session List**: A list of training sessions.
+* **Athlete**: A person being trained by a coach.
+* **Contact List**: A list of athletes and their contact details.
+* **Coach**: A person who trains and directs athletes or a team.
+* **Tag**: A label attached to an athlete in SportSync, used to group them together for easier management.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are some instructions to test some parts of the app manually.<br>
+They do not represent the entirety of SportSync's available functionality, and testers are encouraged to come up with their own tests.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -546,24 +702,33 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. **Initial launch**
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file.<br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. **Saving window preferences**
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. **Saving contact and session lists**
+
+    1. Enter `add n/John Doe p/98765432 a/311, Clementi Ave 2, r/35 t/friends t/owesMoney` to add `John Doe` to your contact list.
+
+    2. Close the window, then re-launch the app by double-clicking the jar file.<br>
+        Expected: `John Doe` remains in the contact list, signifying a successful save.
+   
+    3. Repeat steps 1-2 with `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2` to add `Hall` to your session list.<br>
+       Expected: `Hall` remains in the session list, signifying a successful save.
 
 ### Deleting an athlete
 
-1. Deleting an athlete while all athletes are being shown
+1. **Deleting an athlete while all athletes are being shown**
 
    1. Prerequisites: List all athletes using the `list` command. Multiple athletes in the list.
 
@@ -575,15 +740,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
+   
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. **Dealing with missing/corrupted data files**
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Start up SportSync and perform a few commands to ensure `data` folder is present in the same directory as `sportsync.jar`
 
-1. _{ more test cases …​ }_
+   2. Open `data` folder. Then, open `sportsync.json` with any text editor.
 
+   3. Delete any row of the code so that the format is no longer consistent. Save the `sportsync.json` file.
+
+   4. Start up SportSync again.<br>
+       Expected: SportSync should have an empty session list and contact list.
+
+   5. Add new athletes/sessions and continue using SportSync as per normal.
+   
 
