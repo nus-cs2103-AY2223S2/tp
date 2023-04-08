@@ -798,6 +798,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Forgetful user | see the syntax of commands                               | know how to use the command                                            |
 | `* *`    | New user       | see the app populated with sample data                   | use it as a tutorial for how the app will work                         |
 | `* *`    | New User       | purge all the current data                               | get rid of sample data                                                 |
+| `* *`    | User           | generate patient numbers                                 | uniquely identify a patient by their patient number                    |
+| `* *`    | User           | generate appointment numbers                             | uniquely identify an appointment by its appointment number             |
 | `* *`    | User           | find patients                                            | view details about the patient I am looking for faster                 |
 | `* *`    | User           | list all patients                                        | clear my find filters for patients                                     |
 | `* *`    | User           | find vaccinations                                        | view details about the vaccination I am looking for faster             |
@@ -1119,7 +1121,14 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 4. On top of 2, should also be able to handle requirement set of sizes up to 30.
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 6. Should auto save to prevent data loss if application crashes.
-7. All functionalities should be accessible through CLI.
+7. Should save its data in a human readable file.
+8. All functional features should be accessible through CLI.
+9. Should work without requiring an installer.
+10. Should not depend on a remote server.
+11. Should not cause any resolution related inconveniences to the user for:
+    1.  Screen resolutions 1920x1080 and higher.
+    2.  Screen scales 100% and 125%.
+12. Application executable JAR file should be less than 100MB.
 
 ### Glossary
 
