@@ -56,7 +56,7 @@ command to run the application.<br>
 4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing 
+5. Type the command in the command input box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing 
 <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
@@ -231,6 +231,10 @@ Examples:
 
 ### Deleting a patient from the system: `delete`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once deleted, a patient cannot be recovered.
+</div>
+
 Deletes a patient by index.
 
 Format: `delete INDEX`
@@ -285,6 +289,10 @@ Examples:
 
 ### Deleting a ward from the system: `deleteward`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once deleted, a ward cannot be recovered.
+</div>
+
 Deletes a ward by index.
 
 Format: `deleteward INDEX`
@@ -298,12 +306,17 @@ Examples:
 [Back to Table of Contents](#table-of-contents)
 
 ## Utility Features
-### Exiting the program : `exit`
+### Clearing all data : `clear`
 
-Exits the program.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once cleared, MedInfo data cannot be recovered!
+</div>
 
-Format: `exit`
+Clears all data (patients and wards) stored in MedInfo.
 
+Format: `clear`
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Viewing help : `help`
 
@@ -314,6 +327,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+[Back to Table of Contents](#table-of-contents)
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -326,10 +346,11 @@ MedInfo data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-MedInfo data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update the data directly by editing that data file.
+MedInfo data are saved as a JSON file `[JAR file location]/data/medinfo.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, MedInfo will not be able to run.
+Edit the data file at your own risk! Any changes that make the data invalid will lead to MedInfo clearing 
+all data and starting anew.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
