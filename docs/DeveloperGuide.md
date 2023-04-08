@@ -290,33 +290,33 @@ Use case ends.
 
 **Extensions**
 
-- 1a. PlanEase detects the event description is missing.
+- 1a. PlanEase detects the event name is missing.
 
-  - 1a1. PlanEase prompts User of invalid inputs.
+  - 1a1. PlanEase shows an error message.
 
   Use case ends.
 
 - 1b. PlanEase detects that the datetime range or format is not valid.
 
-  - 1b1. PlanEase prompts User of invalid inputs.
+  - 1b1. PlanEase shows an error message.
 
   Use case ends.
 
 - 1c. PlanEase detects that the User of entered less than or more than 2 datetime inputs.
 
-  - 1c1. PlanEase prompts User of invalid number of datetime inputs.
+  - 1c1. PlanEase shows an error message.
 
   Use case ends.
 
 - 1d. PlanEase detects that the User has used invalid prefix(es).
 
-  - 1d1. PlanEase prompts User of invalid prefix(es) used.
+  - 1d1. PlanEase shows an error message.
 
   Use case ends.
 
 - 1e. PlanEase detects that event already exists.
 
-  - 1e1. PlanEase prompts User of duplicate event used.
+  - 1e1. PlanEase shows an error message.
 
   Use case ends.
 
@@ -353,6 +353,49 @@ Use case ends.
 - 1b. The current list of events displayed has less than 2 events.
 
     - 1b1. PlanEase shows an error message.
+
+  Use case ends.
+
+<br>
+
+**Use case: Edit an event**
+
+**MSS**
+
+1.  User requests to edit an event.
+2.  PlanEase shows a prompt to indicate that the event has been edited successfully.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. PlanEase detects that no fields are provided for the edit.
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1b. PlanEase detects the event name is empty or invalid.
+
+    - 1b1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1c. PlanEase detects that the datetime range or format is not valid.
+
+    - 1c1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1d. PlanEase detects that the User has used invalid prefix(es).
+
+    - 1d1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1e. PlanEase detects that event already exists.
+
+    - 1e1. PlanEase shows an error message.
 
   Use case ends.
 
@@ -478,7 +521,18 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+2. Deleting a person while persons with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
+
+    1. Prerequisites: List all persons using the `list` command, then find all persons with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple persons in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the displayed list. Details of the deleted contact shown in the status message.
+
+    3. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
+       Expected: Similar to previous.
 
 ### Sorting event list
 
