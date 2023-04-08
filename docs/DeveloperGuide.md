@@ -230,7 +230,7 @@ that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.internship.commons` package.
+Classes used by multiple components are in the [`seedu.internship.commons`](https://github.com/AY2223S2-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/internship/commons) package.
 
 --------------------------------------------------------------------------------------------------------------------
  
