@@ -25,6 +25,7 @@ Student *--> Name
 Student *--> Phone
 Student *--> Email
 Student *--> Address
+Student *--> Telegram
 Student *--> Education
 Student *--> Remark
 

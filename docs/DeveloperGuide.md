@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 ## **About TeachMeSenpai**
 
-TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a **Graphical User Interface (GUI)**.
+TeachMeSenpai **is a student managing application** specially customised for **teaching assistants (TA) in NUS** who have a lot of students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a **Graphical User Interface (GUI)**.
 
 This Developer Guide provides in-depth documentation on the design and implementation consideration behind TeachMeSenpai. This guide covers everything you need to know from the architecture down to the feature implementation details of TeachMeSenpai.
 
@@ -136,10 +136,11 @@ The `Model` component,
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores every modified version of the address book in `VersionedAddressBook`.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="block" class="alert alert-info">
-:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` and `Module` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, and one `Module` object per unique module instead of each `Person` needing their own `Tag` and `Module` objects.
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 </div>
@@ -183,7 +184,8 @@ The `Student` object is composed of attributes:
 * `Email`: The email address of the student.
 * `Address`: The address of the student.
 * `Education`: The education level of the student.
-* `Module`: The modules the tutor is teaching the student.
+* `Telegram`: The telegram handle of the student.
+* `Module`: The modules the TA is teaching the student.
 * `Remark`: Remarks/notes the tutor has about the student.
 * `Tags`: Qualities a student has.
 
@@ -199,11 +201,12 @@ The `add` command has the following fields:
 * Prefix `e/` followed by the student's email.
 * Prefix `a/` followed by the student's address.
 * Prefix `edu/` followed by the student's education level.
+* Prefix `tele/` followed by the student's telegram handle.
 * Prefix `m/` followed by the module name.
 * Prefix `r/` followed by the remarks/notes on the student.
 * Prefix `t/` followed by the tags a student has.
 
-Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Primary 6` is run.:
+Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Year 1` is run.:
 
 ![add_sequence](images/AddSequenceDiagram.png)
 
@@ -213,7 +216,7 @@ Here is a sequence diagram showing the interactions between components when `add
 #### Feature details
 1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
-3. If the input passes the validation check, a new `Student` entry is created and stored in the `AddressBook`.
+3. If the input passes the validation check, a new `Student` entry is created and stored in the `VersionedAddressBook`.
 
 #### General Design Considerations
 
@@ -221,9 +224,10 @@ The implementation of the attributes of a `Student` is very similar to that of a
 
 Some additions made were the `Education`, `Module` and `Remark` attributes. </br>
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
-2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accomodate module names that are more than one word long as in real life.
+2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accommodate module names that are more than one word long as in real life.
 3. Every attribute except`Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
     * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
+4. Every `add` will commit the previous version of the `VersionedAddressBook` to `versionStateHistory`.
 
 When adding a student entry, these were the alternatives considered.
 * **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Student` entry, making the other attributes optional.
