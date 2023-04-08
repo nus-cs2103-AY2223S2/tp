@@ -56,20 +56,19 @@ that you should pay attention to. </div>
 * [**How to use this User Guide**](#how-to-use-this-user-guide)
 * [**Getting started**](#getting-started)
 * [**Familiarising yourself with the user interface**](#familiarising-yourself-with-the-user-interface)
-* [**Features**](#features)
-  * [Modules](#modules)
-    * [Adding a module: `add`](#adding-a-module--add)
-    * [Editing a module: `edit`](#editing-a-module--edit)
+* [**Familiarising yourself with the commands**](#familiarising-yourself-with-the-commands)
+* [**Main Features**](#features)
     * [Listing all modules: `list`](#listing-all-modules--list)
-    * [Finding a module: `find`](#finding-a-module--find)
+    * [Adding a module: `add`](#adding-a-module--add)
     * [Deleting a module: `delete`](#deleting-a-module--delete)
-  * [Schedules](#schedules)
-    * [Reminder for modules](#reminder-for-items)
-    * [Sorting modules by time: `sort`](#sorting-the-modules--sort)
-  * [Miscellaneous](#miscellaneous)
+    * [Editing a module: `edit`](#editing-a-module--edit)
+    * [Finding a module: `find`](#finding-a-module--find)
+    * [Sorting a module: `sort`](#sorting-the-modules--sort)
+    * [Clearing all modules: `clear`](#clearing-all-modules--clear) 
     * [Viewing help: `help`](#viewing-help--help)
-    * [Clearing all modules: `clear`](#clearing-all-modules--clear)
     * [Exiting Contact nUS: `exit`](#exits-the-module-tracker--exit)
+* [**Additional Features**](#additional-features)
+  * [Reminder for modules](#reminder-for-items)
 * [**Valid and invalid data**](#valid-and-invalid-data)
 * [**Data storage**](#data-storage)
   * [**Saving the data**](#saving-the-data)
@@ -110,8 +109,8 @@ In case you are unsure of what you see in front of you now, we have come up with
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
 
 
-
 ![Ui](images/User_Interface.png)
+
 Figure 2: Annotations about the user interface
 
 --------------------------------------------------------------------------------------------------------------------
@@ -153,12 +152,19 @@ This section introduces you to detailed information about how to use each comman
 * [Delete a module](#deleting-a-module--delete)
 * [Edit a module](#editing-a-module--edit)
 * [Find a module](#finding-a-module--find)
-* [Sort modules]()
-* [Clear modules]()
-* [Help command]()
-* [Exit command]()
-  <br>
+* [Sort modules](#sorting-the-modules--sort)
+* [Clear modules](#clearing-all-modules--clear)
+* [Help command](#viewing-help--help)
+* [Exit command](#exiting-the-module-tracker--exit)
 
+--------------------------------------------------------------------------------------------------------------------
+### Listing all modules: `list`
+
+By using the `list` command, you can list all the modules that you have stored in the module tracker.
+
+This is a straightforward command. To use it, all you have to type is `list`
+
+--------------------------------------------------------------------------------------------------------------------
 ### Adding a module: `add`
 
 By using the `add` command, you can add a new module to the module tracker. 
@@ -181,6 +187,22 @@ Examples of invalid usages:
 Note that there are format restrictions for some fields like `e/TIMESLOT`, `d/DEADLINE`. Please refer to 
 [format restrictions]() to find out more.
 
+--------------------------------------------------------------------------------------------------------------------
+### Deleting a module: `delete`
+
+By using the `delete` command, you can delete a module from the module tracker.
+
+Format: `delete INDEX`
+
+* This command deletes the module at the specified index in the displayed module list.
+* For example, if you wanted to delete a module placed first in the
+  list, you would type  `delete 1`
+* The index provided by you must be a positive integer (eg. 1, 2, 3...)
+* There must be a module at the index you have provided.
+
+Examples:
+*  `delete 2` deletes the 2nd module in the module tracker.
+--------------------------------------------------------------------------------------------------------------------
 ### Editing a module: `edit`
 
 By using the `edit` command, you can edit the information for a module that is already listed in the 
@@ -208,106 +230,83 @@ Examples of valid usages:
 Examples of invalid usages:
 * `edit 0 n/CS2101 t/Tutorial` - The index must be a positive integer.
 
-
 * `edit 1` - There must be at least one field provided to edit.
 
-
-### Listing all modules: `list`
-
-Displays a list of all the modules you have added into the module tracker.
-
-Format: `list`
-
+Note that there are format restrictions for some fields like `e/TIMESLOT`, `d/DEADLINE`. Please refer to
+[format restrictions]() to find out more.
+--------------------------------------------------------------------------------------------------------------------
 ### Finding a module: `find`
 
-Finds module(s) from the existing modules you have added, whose names match any of the given keywords.
+By using the `find` command, you can find a module based on its name or description. 
 
 Format: `find KEYWORD`
 
-* The KEYWORD refers to the `MODULE_NAME` or `TAG` name such as CS2103T or tutorial.
-* The search is case-insensitive. e.g `CS` will match `cs`
-* Only the `MODULE_NAME` and `TAG` are searched.
-* Modules matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `CS2103T tutorial` will return the CS2103T module and tutorials in the module tracker
+* The KEYWORD refers to a search word provided by you. 
+* Only modules with names and/or description that are matching your keyword will be displayed.
+* You can include more than one keyword. Modules matching at least one keyword will be shown.
+* The search is case-insensitive. e.g `CS` will match `cs`.
 
 Examples:
-* `find CS2103T` finds all instances where there is a module named CS2103T in the list.
-* `find tutorial` finds all instances of tutorials in the list.
-* `find CS` finds all instances where there is a module name that contains CS in the list.
-* `find t` finds all instances where there is the letter t in the `MODULE_NAME` or `TAG`.
+* `find CS2103T` finds all modules with name and/or description including the word `CS2103T`. 
 
-### Deleting a module: `delete`
-
-Deletes the module you specified from the module tracker.
-
-Format: `delete INDEX`
-
-* Deletes the module at the specified `INDEX`.
-* The index refers to the index number shown in the displayed module list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-*  `delete 2` deletes the 2nd module in the module tracker.
-   <br>
-
-## Schedules
-The following features deal with the time slot and/or deadline of a module in the module tracker. You can use them to:
-* [View reminders for items you have today](#reminder-for-items)
-* [Sort the modules by time slot or deadline](#sorting-the-modules--sort)
-
-### Reminder for items
-
-Shows all the deadlines and timeslots you have today
-
-* You don't have to type anything, whenever the application launches it will tell you this information.
-* it will only look at time slots and deadlines.
-
-![image](https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png)
-
+--------------------------------------------------------------------------------------------------------------------
 ### Sorting the modules: `sort`
 
-Sorts the existing modules by either time slot or deadline.
+By using the `sort` command, you can display the modules in a sorted order by either their `timeslot` 
+or `deadline`.
 
 Format: `sort timeslot` or `sort deadline`
-<br>
 
-## Miscellaneous
+* The `sort timeslot` command will automatically take into consideration the current time of your computer, 
+and then sort the modules based on their timeslot. 
+* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be
+be shown before a module with timeslot `Wednesday 06:00 - 08:00`. 
 
-The following commands are additional quality-of-life features that you may be interested to use in `Contact nUS`.
-They are able to:
-* [View help on using the software](#viewing-help--help)
-* [Clear all existing modules from the software](#clearing-all-modules--clear)
-* [Exit the module tracker](#exits-the-module-tracker--exit)
 
+* The `sort deadline` command will sort the modules based on their deadline.
+* For example, a module with deadline `250623` will be
+  be shown before a module with deadline `260623`.
+
+  
+--------------------------------------------------------------------------------------------------------------------
+### Clearing all modules: `clear`
+
+By using the `clear` command, you can remove all the modules from the module tracker. 
+
+* This is a straight-forward command, and all you have to type is `clear`
+
+--------------------------------------------------------------------------------------------------------------------
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+By using the `help` command, you can open a help window showing additional information about how
+to use the commands. 
 
-Format: `help`
+* This is a straight-forward command, and all you have to type is `help`
 
 ![help message](images/helpMessage.png)
 
-### Clearing all modules: `clear`
+--------------------------------------------------------------------------------------------------------------------
+### Exiting the module tracker: `exit`
 
-Clears all existing modules from the software.
+By using the `exit` command, you can close and exit the application.
 
-Format: `clear`
-
-<!--Include warning-->
-
-### Exits the module tracker: `exit`
-
-Exits the software.
-
-Format: `exit`
-<br>
+* This is a straight-forward command, and all you have to type is `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Additional Features 
+
+### Reminder for items
+
+This feature automatically shows you all the modules that have a deadline due today or have a timeslot
+that is occurring today. 
+
+* For this feature, you don't have to type anything, whenever the application launches it will tell you this information.
+
+![image](https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png)
 
 
-
-
+--------------------------------------------------------------------------------------------------------------------
 
 ## Important notes 
 
