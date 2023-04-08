@@ -20,54 +20,80 @@ license, making it open source and available for anyone to use and modify.
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Acknowledgments](#acknowledgements)
-* [Setting up, getting started](#setting-up-getting-started)
-* [Design](#design)
-  * [Architecture](#architecture)
-  * [UI component](#ui-component)
-  * [Logic component](#logic-component)
-  * [Model component](#model-component)
-  * [Storage component](#storage-component)
-* [Implementation](#implementation) 
-  * [General implementation](#general-implementation-details)
-  * [General consideration design](#general-consideration-design)
-  * [Food-related features](#food-related-features)
-    * [Add a Food](#add-a-food)
-    * [Edit a Food](#edit-a-food)
-    * [Increase/Decrease quantity of a Food](#increasedecrease-quantity-of-a-food)
-    * [View details of a Food](#view-details-of-a-food-item)
-  * [Tag-related features](#tag-related-features)
-    * [Overview](#overview)
-    * [Design considerations](#design-considerations)
-    * [Create a new tag](#create-a-new-tag)
-    * [Tag a Food](#tag-a-food)
-    * [Untag a Food](#untag-a-food)
-    * [List Foods by tag(s)](#list-foods-by-tags)
-    * [Delete Foods by tag(s)](#delete-foods-by-tags)
-    * [Delete tag(s)](#delete-tags)
-  * [General features]
-    * [help](#dynamic-help)
-  * [Documentation and other guides](#documentation-logging-testing-configuration-dev-ops)
-  * [Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-      * [Use case UC01: Add a Food](#use-case-uc01-add-a-food)
-      * [Use case UC02: Lists all Foods](#use-case-uc02-lists-all-foods)
-      * [Use case UC03: Edit a Food](#use-case-uc03-edit-a-food)
-      * [Use case UC04: Increase the quantity of a Food](#use-case-uc04-increase-the-quantity-of-a-food)
-      * [Use case UC05: Decrease the quantity of a Food](#use-case-uc05-decrease-the-quantity-of-a-food)
-      * [Use case UC06: Delete a Food](#use-case-uc06-delete-a-food)
-      * [Use case UC07: Create a new tag](#use-case-uc07-create-a-new-tag)
-      * [Use case UC08: Tag a Food](#use-case-uc08-tag-a-food)
-      * [Use case UC09: List Foods by tags](#use-case-uc09-list-foods-by-tags)
-      * [Use case UC10: Delete Foods by tags](#use-case-uc10-delete-foods-by-tags)
-      * [Use case UC11: Delete tags](#use-case-uc11-delete-tags)
-      * [Use case UC12: View help](#use-case-uc12-view-help)
-    * [Non-functional requirements](#non-functional-requirements)
-    * [Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Glossary](#glossary)
+- [DEVELOPER GUIDE FOR WIFE](#developer-guide-for-wife)
+- [Introduction](#introduction)
+- [license, making it open source and available for anyone to use and modify.](#license-making-it-open-source-and-available-for-anyone-to-use-and-modify)
+- [Table of Contents](#table-of-contents)
+- [Acknowledgements](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+  - [Food-related Features](#food-related-features)
+    - [General Implementation Details](#general-implementation-details)
+    - [General Consideration Design](#general-consideration-design)
+    - [Add a Food](#add-a-food)
+    - [Edit a Food](#edit-a-food)
+    - [Increase/Decrease quantity of a Food.](#increasedecrease-quantity-of-a-food)
+    - [View details of a Food.](#view-details-of-a-food)
+  - [Tag-related Features](#tag-related-features)
+    - [Overview](#overview)
+    - [Design considerations:](#design-considerations)
+    - [Create a new tag](#create-a-new-tag)
+    - [Tag a Food](#tag-a-food)
+    - [Untag a Food](#untag-a-food)
+    - [List Foods by tag(s).](#list-foods-by-tags)
+    - [Delete Foods by tag(s).](#delete-foods-by-tags)
+    - [Delete tag(s)](#delete-tags)
+  - [Dynamic Help](#dynamic-help)
+    - [Feature Details:](#feature-details)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [**Use case UC01: Add a Food**](#use-case-uc01-add-a-food)
+  - [**Use case UC02: Lists all Foods**](#use-case-uc02-lists-all-foods)
+  - [**Use case UC03: Edit a Food**](#use-case-uc03-edit-a-food)
+  - [**Use case UC04: Increase the quantity of a Food**](#use-case-uc04-increase-the-quantity-of-a-food)
+  - [**Use case UC05: Decrease the quantity of a Food**](#use-case-uc05-decrease-the-quantity-of-a-food)
+  - [**Use case UC06: Delete a Food**](#use-case-uc06-delete-a-food)
+  - [**Use case UC07: Create a new tag**](#use-case-uc07-create-a-new-tag)
+  - [**Use case UC08: Tag a Food**](#use-case-uc08-tag-a-food)
+  - [**Use case UC09: List Foods by tags**](#use-case-uc09-list-foods-by-tags)
+  - [**Use case UC10: Delete Foods by tags**](#use-case-uc10-delete-foods-by-tags)
+  - [**Use case UC11: Delete tags**](#use-case-uc11-delete-tags)
+  - [**Use case UC12: View help**](#use-case-uc12-view-help)
+  - [Non-Functional Requirements](#non-functional-requirements)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+  - [Initial Launch](#initial-launch)
+  - [Tests for Food-related features](#tests-for-food-related-features)
+    - [Add a Food](#add-a-food-1)
+    - [List all Foods](#list-all-foods)
+    - [Edit a Food](#edit-a-food-1)
+    - [Find a Food](#find-a-food)
+    - [Increase quantity of a Food](#increase-quantity-of-a-food)
+    - [Decrease quantity of a Food](#decrease-quantity-of-a-food)
+    - [Delete a Food](#delete-a-food)
+  - [Sort Foods by expiry date](#sort-foods-by-expiry-date)
+  - [Tag-related features](#tag-related-features-1)
+    - [Create a new tag](#create-a-new-tag-1)
+    - [Tag a Food](#tag-a-food-1)
+    - [Untag a Food](#untag-a-food-1)
+    - [List all tags](#list-all-tags)
+    - [List Foods by tag(s)](#list-foods-by-tags-1)
+    - [Delete Foods by tag(s)](#delete-foods-by-tags-1)
+    - [Delete tag(s)](#delete-tags-1)
+  - [General Features](#general-features)
+    - [Help](#help)
+    - [Clear](#clear)
+    - [Exit](#exit)
+  - [Glossary](#glossary)
 
 ## Acknowledgements
 
@@ -286,7 +312,7 @@ The second stage requires AddCommand#execute() to be called.
 
 The following sequence diagram shows how the `add` command.
 
-_(Sequence diagram to be inserted)_
+![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
 #### Edit a Food
 
@@ -316,9 +342,9 @@ The second stage requires EditCommand#execute() to be called.
 7. Completion of step 6 without any exceptions will result in successful addition of a new `Food` in WIFE and stored in
    `UniqueFoodList`
 
-The following sequence diagram shows how the `add` command.
+The following sequence diagram shows how the `edit` command.
 
-_(Sequence diagram to be inserted)_
+![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
 #### Increase/Decrease quantity of a Food.
 
@@ -407,7 +433,7 @@ The user can now specify `view` to view more details of the indexed Food such as
 
 The following UML diagram shows `view` and its associated class.
 
-_(UML diagram to be inserted)_
+![ViewCommandSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
 **Implementation**
 The first stage of the implementation is checking that the command is `view` and that the index is valid. `ViewCommandParser` is used
