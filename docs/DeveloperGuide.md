@@ -230,8 +230,9 @@ Commands in the `MAIN_SELECTED_MODE` behave similarly as the example of `deleteC
 The primary distinction between the features found in MAIN_SELECTED_MODE and MAIN_UNSELECTED_MODE is that the former requires the selection of a deck.
 </div>
 
-#### `deleteCard` Feature
+#### deleteCard Feature
 
+The `deleteCard INDEX` feature allows users to delete specific card from their selected deck.
 Given below is an example usage scenario and how the `deleteCard()` mechanism behaves at each step.
 
 Step 1. The user has a **deck selected** and keys in `deleteCard INDEX` to delete card at the specified index. If the index is invalid, an error will be thrown.
@@ -240,7 +241,7 @@ Step 2. The card is now deleted from the deck.
 
 The following activity diagram summarizes the action taken when `deleteCard` is executed:
 
-
+![DeleteCardActivityDiagram](images/DeleteCardActivityDiagram.png)
 
 ### Implementation of Review Mode Features
 
