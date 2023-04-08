@@ -1,7 +1,7 @@
 {
   "roles": [ {
     "name": "Alice Pauline",
-    "phone": "94351253",
+    "contact": "94351253",
     "email": "alice@example.com",
     "company": "Facebook",
     "jobDescription": "Analyst @ CitiBank",
@@ -12,7 +12,7 @@
     "experience": "Javascript - 1 Year"
   }, {
     "name": "Alice Pauline",
-    "phone": "94351253",
+    "contact": "94351253",
     "email": "pauline@example.com",
     "company": "Facebook",
     "jobDescription": "Analyst @ CitiBank",
