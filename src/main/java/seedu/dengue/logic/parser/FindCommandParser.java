@@ -1,7 +1,6 @@
 package seedu.dengue.logic.parser;
 
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_RANGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDAGE;
@@ -19,16 +18,11 @@ import java.util.stream.Stream;
 import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.Age;
-import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.predicate.FindPredicate;
-import seedu.dengue.model.range.EndAge;
-import seedu.dengue.model.range.EndDate;
 import seedu.dengue.model.range.Range;
-import seedu.dengue.model.range.StartAge;
-import seedu.dengue.model.range.StartDate;
 import seedu.dengue.model.variant.Variant;
 
 /**
@@ -52,14 +46,18 @@ public class FindCommandParser implements Parser<FindCommand> {
                     FindCommand.MESSAGE_USAGE));
         }
 
+        assert isValidFormat(argMultimap);
+
         Optional<Name> name = ParserUtil.parseOptionalName(argMultimap.getValue(PREFIX_NAME));
         Optional<SubPostal> subPostal = ParserUtil.parseOptionalSubPostal(
                 argMultimap.getValue(PREFIX_POSTAL));
         Optional<Age> age = ParserUtil.parseOptionalAge(argMultimap.getValue(PREFIX_AGE));
         Optional<Date> date = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_DATE));
         Set<Variant> variantList = ParserUtil.parseVariants(argMultimap.getAllValues(PREFIX_VARIANT));
-        Range<Date> dateRange = getDateRange(argMultimap);
-        Range<Age> ageRange = getAgeRange(argMultimap);
+        Range<Date> dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_STARTDATE),
+                argMultimap.getValue(PREFIX_ENDDATE));
+        Range<Age> ageRange = ParserUtil.parseAgeRange(argMultimap.getValue(PREFIX_STARTAGE),
+                argMultimap.getValue(PREFIX_ENDAGE));
 
         FindPredicate canFilter = new FindPredicate(name, subPostal, age, date,
                 variantList, dateRange, ageRange);
@@ -67,27 +65,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(canFilter);
     }
 
-    private static Range<Date> getDateRange(ArgumentMultimap argumentMultimap) throws ParseException {
-        StartDate startDate = new StartDate(ParserUtil.parseOptionalDate(argumentMultimap
-                .getValue(PREFIX_STARTDATE)));
-        EndDate endDate = new EndDate(ParserUtil.parseOptionalDate(argumentMultimap
-                .getValue(PREFIX_ENDDATE)));
-        if (!(startDate.isValidStartDate(endDate) && endDate.isValidEndDate(startDate))) {
-            throw new ParseException(MESSAGE_INVALID_RANGE);
-        }
-        return ContinuousData.generateRange(startDate, endDate);
-    }
-
-    private static Range<Age> getAgeRange(ArgumentMultimap argumentMultimap) throws ParseException {
-        StartAge startAge = new StartAge(ParserUtil.parseOptionalAge(argumentMultimap
-                .getValue(PREFIX_STARTAGE)));
-        EndAge endAge = new EndAge(ParserUtil.parseOptionalAge(argumentMultimap
-                .getValue(PREFIX_ENDAGE)));
-        if (!(startAge.isValidStartAge(endAge) && endAge.isValidEndAge(startAge))) {
-            throw new ParseException(MESSAGE_INVALID_RANGE);
-        }
-        return ContinuousData.generateRange(startAge, endAge);
-    }
     /**
      * Returns true if at least one of the prefixes contains non-empty {@code Optional} value in the given
      * {@code ArgumentMultimap}.

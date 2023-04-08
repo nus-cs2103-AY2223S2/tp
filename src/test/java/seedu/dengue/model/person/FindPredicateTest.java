@@ -10,6 +10,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.predicate.FindPredicate;
 import seedu.dengue.model.range.EndAge;
 import seedu.dengue.model.range.EndDate;
@@ -30,6 +31,9 @@ public class FindPredicateTest {
     private final Range<Age> emptyAgeRange = ContinuousData.generateRange(
             new StartAge(Optional.empty()), new EndAge(Optional.empty()));
     private Optional<Name> testName;
+
+    public FindPredicateTest() throws ParseException {
+    }
 
 
     @BeforeEach
@@ -72,7 +76,7 @@ public class FindPredicateTest {
     }
 
     @Test
-    public void test_datesWithinRange_returnsTrue() {
+    public void test_datesWithinRange_returnsTrue() throws ParseException {
         // Date falls within range
         StartDate start = new StartDate(Optional.<Date>of(new Date("2000-01-01")));
         EndDate end = new EndDate(Optional.<Date>of(new Date("2009-01-01")));
@@ -93,7 +97,7 @@ public class FindPredicateTest {
     }
 
     @Test
-    public void test_datesOutsideRange_returnsFalse() {
+    public void test_datesOutsideRange_returnsFalse() throws ParseException {
         StartDate start = new StartDate(Optional.<Date>of(new Date("2000-01-01")));
         EndDate end = new EndDate(Optional.<Date>of(new Date("2009-01-01")));
         Range<Date> testRange = ContinuousData.generateRange(start, end);
@@ -109,7 +113,7 @@ public class FindPredicateTest {
     }
 
     @Test
-    public void test_agesWithinRange_returnsTrue() {
+    public void test_agesWithinRange_returnsTrue() throws ParseException {
         // ages fall within range
         StartAge start = new StartAge(Optional.<Age>of(new Age("2")));
         EndAge end = new EndAge(Optional.<Age>of(new Age("99")));
@@ -130,7 +134,7 @@ public class FindPredicateTest {
     }
 
     @Test
-    public void test_agesOutsideRange_returnsFalse() {
+    public void test_agesOutsideRange_returnsFalse() throws ParseException {
         StartAge start = new StartAge(Optional.<Age>of(new Age("2")));
         EndAge end = new EndAge(Optional.<Age>of(new Age("99")));
         Range<Age> testRange = ContinuousData.generateRange(start, end);
@@ -145,7 +149,7 @@ public class FindPredicateTest {
     }
 
     @Test
-    public void test_onesidedRangesForDateAndAge_returnsTrue() {
+    public void test_onesidedRangesForDateAndAge_returnsTrue() throws ParseException {
         StartAge startAge = new StartAge(Optional.<Age>of(new Age("50")));
         EndAge endAge = new EndAge(Optional.empty());
         StartDate startDate = new StartDate(Optional.empty());

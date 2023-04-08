@@ -17,6 +17,7 @@ import java.util.Set;
 
 import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.exceptions.CommandException;
+import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.person.Age;
@@ -168,7 +169,7 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s Dengue Hotspot Tracker.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showPersonAtIndex(Model model, Index targetIndex) throws ParseException {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
