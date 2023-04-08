@@ -43,12 +43,13 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called
-[`Main`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java)
-and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java).
+**`Main`** has two classes called [`Main`][MainClass] and [`MainApp`][MainAppClass].
 It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
+[MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -198,18 +199,25 @@ This section describes some noteworthy details on how certain features are imple
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-## **Appendix**
+
+## **Glossary**
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Event**: A task with a starting time and an ending time
+* **Ongoing Event**: An event that has started, but not ended
+* **Upcoming Event**: An event that has not started
+* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
+
+
+## **Appendices**
 
 --------------------------------------------------------------------------------------------------------------------
 
-### **Planned Enhancements**
-
-### **Project Requirements**
+### **Appendix A: Project Requirements**
 
 #### **Product Scope**
 
 **Target user profile**:
-
 * has a need to manage a significant number of events
 * prefer desktop apps over other types
 * prefers visual representation of output
@@ -218,127 +226,115 @@ This section describes some noteworthy details on how certain features are imple
 
 **Value proposition**: manage events at high-level, provides faster event analysis with graphical outputs.
 
+
 #### **User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​          | I want to …​                               | So that I can…​                                                         |
-|----------|------------------|--------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | new user         | see usage instructions                     | refer to instructions when I forget how to use the App                  |
-| `* * *`  | user             | easily save events after closing the app   | generate it again when I start the app                                  |
-| `* * *`  | user             | add a event's schedule into the app       | see their schedules                                                     |
-| `* * *`  | user             | delete an event from the app               | remove events that are no longer scheduled                              |
-| `* *`    | forgetful user   | find my next event                         | see the upcoming event without having to check every events myself      |
-| `* *`    | user             | undo accidental deletions                  | easily restore accidents in scheduling                                  |
-| `* *`    | teacher          | find a free timeslot in my schedule        | schedule a timeslot for student consultations                           |
-| `* *`    | user             | find an event by name                      | locate details of events without having to go through the entire list   |
-| `* *`    | user             | edit my schedule                           | make last minute changes to events                                      |
-| `* *`    | user             | be able to schedule many events            | schedule as many events as I want                                       |
-| `* *`    | user             | be able to have more than one scheduler    | generate different schedules for differnt events                        |
-| `*`      | unmotivated user | have motivational quotes                   | feel motivated in my day                                                |
+| Priority | As a …            | I want to …                               | So that I can…                                                        |
+|----------|-------------------|-------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user          | see usage instructions                    | refer to instructions when I forget how to use the App                |
+| `* * *`  | user              | easily save events after closing the app  | generate it again when I start the app                                |
+| `* * *`  | user              | add a event's schedule into the app       | see their schedules                                                   |
+| `* * *`  | user              | delete an event from the app              | remove events that are no longer scheduled                            |
+| `* *`    | forgetful user    | find my next event                        | see the upcoming event without having to check every events myself    |
+| `* *`    | user              | undo accidental deletions                 | easily restore accidents in scheduling                                |
+| `* *`    | teacher           | find a free timeslot in my schedule       | schedule a timeslot for student consultations                         |
+| `* *`    | user              | find an event by name                     | locate details of events without having to go through the entire list |
+| `* *`    | user              | edit my schedule                          | make last minute changes to events                                    |
+| `* *`    | user              | be able to schedule many events           | schedule as many events as I want                                     |
+| `* *`    | user              | be able to have more than one scheduler   | generate different schedules for differnt events                      |
+| `*`      | unmotivated user  | have motivational quotes                  | feel motivated in my day                                              |
 
 *{More to be added}*
+
 
 #### **Use Cases**
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add an event**
+<details open markdown="block">
+<summary markdown="span">**Use case: Add an event**</summary>
 
 **MSS**
-
 1. User requests to add an event
-2. System adds the event
-
+2. System adds the event  
     Use case ends.
 
 **Extensions**
-
 * 1a. The event already exist.
-
-    * 1a1. System shows an error message.
-
+    * 1a1. System shows an error message.  
       Use case ends.
-
 * 2a. The given event format invalid.
-
-    * 2a1. System shows an error message.
-
+    * 2a1. System shows an error message.  
       Use case ends.
 
-**Use case: Delete an event**
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Delete an event**</summary>
 
 **MSS**
-
 1.  User requests to list events
 2.  System shows a list of events
 3.  User requests to delete a specific event in the list
-4.  System deletes the event
-
+4.  System deletes the event  
     Use case ends.
 
 **Extensions**
-
 * 1a. The list is empty.
-
   Use case ends.
-
 * 2a. The given index is invalid.
-
-    * 2a1. System shows an error message.
-
+    * 2a1. System shows an error message.  
       Use case resumes at step 2.
 
-**Use case: Undo a delete**
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Undo a delete**</summary>
 
 **MSS**
-
 1. User requests to undo the recent delete
-2. System restores the most recent delete
-
+2. System restores the most recent delete  
     Use case ends.
 
 **Extensions**
-
 * 1a. New event added duplicate of recent deleted event.
-
-    * 1a1. System shows an error message.
-
+    * 1a1. System shows an error message.  
       Use case ends.
-
-* 2a. The list is empty.
-
+* 2a. The list is empty.  
   Use case ends.
 
-**Use case: Find event by name**
+</details>
+
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Find event by name**</summary>
 
 **MSS**
-
 1. User requests to find an event by name
-2. System shows a list of events matching the name
-
+2. System shows a list of events matching the name  
    Use case ends.
 
 **Extensions**
-
-* 1a. The list is empty.
-
+* 1a. The list is empty.  
   Use case ends.
 
-**Use case: Find next event**
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Find next event**</summary>
 
 **MSS**
-
 1. User requests for next upcoming event
-2. System shows the next upcoming event
-
+2. System shows the next upcoming event  
    Use case ends.
 
 **Extensions**
-
-* 1a. The list is empty.
-
+* 1a. The list is empty.  
   Use case ends.
+
+</details>
 
 *{More to be added}*
 
@@ -351,7 +347,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### **Instructions for Manual Testing**
+### **Appendix B: Planned Enhancements**
+
+* Verify data during loading from data file
+
+
+### **Appendix C: Instructions for Manual Testing**
 
 Presented below are a series of instructions, organized in **Context, Action, Result (CAR)** format, 
 that can be followed to perform manual testing of the application.
@@ -360,6 +361,7 @@ that can be followed to perform manual testing of the application.
 :information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 </div>
+
 
 #### **Launch and Shutdown**
 
@@ -392,6 +394,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:**  The existing data should remain unchanged
 
+
 #### **Adding an Event**
 
 #### Scenario 1
@@ -420,6 +423,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** The Response Box will display the message "Another event already exists at the chosen time"
 
+
 #### **Recurring an Event**
 
 #### Scenario 1
@@ -440,6 +444,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** The Response Box will display the message "Unable to recur. 10 May has a clashing event."
 
+
 #### **Editing an Event**
 
 #### Scenario 1
@@ -457,6 +462,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute `edit` command with arguments identical to another existing `Event`
 
 **Result:** The Response Box will display the message "This event already exists in the scheduler"
+
 
 #### **Deleting Events**
 
@@ -489,6 +495,7 @@ testers are expected to do more *exploratory* testing.
 **Result:** 
 * The Response Box will display the message "The event index 10 provided is invalid"
 * None of the `Event` with valid index will be removed from _Ez-Schedule_
+
 
 #### **Finding Events**
 
@@ -532,6 +539,7 @@ testers are expected to do more *exploratory* testing.
 * The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
+
 #### **Show Next Events**
 
 #### Scenario 1
@@ -553,6 +561,7 @@ testers are expected to do more *exploratory* testing.
 **Result:**
 * The Response Box will display the message "2 events listed!"
 * The Upcoming Events Panel will display the next 2 upcoming or ongoing event that you have
+
 
 #### **Undo a Command**
 
@@ -605,8 +614,6 @@ testers are expected to do more *exploratory* testing.
 * The `Event` with index 1 that was deleted is added back into _Ez-Schedule_
 
 
-### **Glossary**
+### **Appendix D: Effort**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Event**: A task with a starting time and an ending time
+
