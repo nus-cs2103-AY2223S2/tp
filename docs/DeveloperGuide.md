@@ -790,13 +790,15 @@ testers are expected to do more *exploratory* testing.
    
    Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
    
+1. Other incorrect delete commands to try: `add`, `add 1`, `...`<br>
+   Expected: Error details shown in the status message.
+   
 ### Editing a Role
 1. Editing a existing role.
 
 1. Prerequisities: `view 1` and index 1 of the list exists.
 
-1. Test case: `edit 1 n/Software Developer`
-   
+1. Test case: `edit 1 n/Software Developer`<br>
    Expected: Name appearing on the list changes to `Software Developer`, `view 1` shows name to be `Software Developer`.
    
 1. Test case: `edit 0`<br>
@@ -804,12 +806,15 @@ testers are expected to do more *exploratory* testing.
    
 1. Test case: `edit 1`<br>
    Expected: No role is edited. Error details shown in the status message, asking user to input at least one field. Status bar remains the same.
+   
+1. Other incorrect delete commands to try: `edit n/`, `edit -1`, `...`<br>
+   Expected: Similar to previous.
 
 ### Deleting a Role
 
 1. Deleting a role while all roles are being shown
 
-1. Prerequisites: List all roles using the `list` command. Multiple roles will be displayed in the list.
+1. Prerequisites: List all roles using the `list` command. Multiple roles should be displayed in the list.
 
 1. Test case: `delete 1`<br>
    Expected: First role is deleted from the list. Details of the deleted role shown in the status message.
@@ -822,6 +827,23 @@ testers are expected to do more *exploratory* testing.
    Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Finding by Company 
+1. Finding role by company name.
+
+1. Prerequisites: List all roles using the `list` command. Roles with role name `software engineer` and `data analyst` should exist.
+
+1. Test case: `name analyst software`<br>
+   Expected: Two roles are displayed.
+   
+1. Test case: `name software`<br>
+   Expected: One role is displayed.
+   
+1. Test case: `name`<br>
+   Expected: Error details shown in the status message. 
+   
+1. Other incorrect delete commands to try: `name /n`, `name x`, `...`<br>
+   Expected: Similar to previous.
 
 ### Saving data
 
