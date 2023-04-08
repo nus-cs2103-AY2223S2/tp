@@ -35,6 +35,11 @@
     "answer": "An earthquake is a sudden and rapid shaking of the earth caused by the shifting of tectonic plates",
     "tag" : "Untagged",
     "deck" : "Geography"
+  }, {
+    "question": "What is a fraction",
+    "answer": "A part of a whole expressed as a ratio of two numbers",
+    "tag" : "Untagged",
+    "deck" : "Math"
   } ],
   "decks" : [ {
     "deckName" : "Programming Concepts"
@@ -44,5 +49,7 @@
     "deckName" : "History"
   }, {
     "deckName" : "Geography"
+  }, {
+    "deckName" : "Math"
   } ]
 }

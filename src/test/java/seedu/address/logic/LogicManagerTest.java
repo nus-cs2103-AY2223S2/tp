@@ -10,12 +10,17 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.commandresult.CommandResult;
+import seedu.address.logic.commands.deckcommands.AddDeckCommand;
 import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -23,6 +28,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 import seedu.address.storage.JsonMasterDeckStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -40,7 +47,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonMasterDeckStorage masterDeckStorage =
-                new JsonMasterDeckStorage(temporaryFolder.resolve("masterDeck.json"));
+                new JsonMasterDeckStorage(temporaryFolder.resolve("masterdeck.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         storage = new StorageManager(masterDeckStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -64,13 +71,6 @@ public class LogicManagerTest {
         assertParseException(invalidCommandWhenDeckNotSelected,
                 String.format(MESSAGE_NO_DECK_SELECTED, UnselectDeckCommand.COMMAND_WORD));
     }
-    /*
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    }
-     */
 
     @Test
     public void execute_validCommandWhenDeckSelected_success() throws Exception { // select deck when deck selected
@@ -82,27 +82,56 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_storageThrowsIoException_throwsCommandException() { // deck needs to be selected
+    public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonMasterDeckIoExceptionThrowingStub
-        // JsonMasterDeckStorage addressBookStorage =
-        //         new JsonMasterDeckIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        // JsonUserPrefsStorage userPrefsStorage =
-        //        new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        // StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        // logic = new LogicManager(model, storage);
+        JsonMasterDeckStorage addressBookStorage =
+             new JsonMasterDeckIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMasterDeck.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+            new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
 
         // Execute add command
-        // String addCommand = AddCardCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
-        // Card expectedCard = new CardBuilder(AMY).withTag().build();
-        // ModelManager expectedModel = new ModelManager();
-        // expectedModel.addCard(expectedCard);
-        // String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        // assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        String addDeckCommand = AddDeckCommand.COMMAND_WORD + " " + "Science";
+        Deck expectedDeck = new Deck("Science");
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addDeck(expectedDeck);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addDeckCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
     public void getFilteredCardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCardList().remove(0));
+    }
+
+    @Test
+    public void getMasterDeck_returnsCorrectDeck() {
+        ReadOnlyMasterDeck readOnlyMasterDeck = logic.getMasterDeck();
+        assertEquals(model.getMasterDeck(), readOnlyMasterDeck);
+    }
+
+    @Test
+    public void getFilteredCardList_returnsCorrectList() {
+        List<Card> expectedList = new ArrayList<>();
+        assertEquals(expectedList, logic.getFilteredCardList());
+    }
+
+    @Test
+    public void getMasterDeckFilePath_returnsCorrectPath() {
+        Path expectedPath = Paths.get("data", "masterdeck.json");
+        assertEquals(expectedPath, logic.getMasterDeckFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_returnsCorrectGuiSettings() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+    @Test
+    public void setGuiSettings_setsCorrectGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(100, 200, 1, 2);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**
