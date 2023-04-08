@@ -71,9 +71,12 @@ public class AssignTaskCommand extends Command {
 
         Task taskToAssign = lastShownList.get(toAssignTask.getZeroBased());
         Person personToAssign = lastShownPersonList.get(toAssignMember.getZeroBased());
+        if (personToAssign.getRole() == null) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_ASSIGNED_ROLE);
+        }
+
         Task assignedTask = createAssignedTask(taskToAssign, toAssignMember, personToAssign);
 
-        //model.assignTask(toAssignTask, toAssignMember);
         taskBookModel.assignTask(taskToAssign, assignedTask, toAssignTask);
         taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         String taskString = taskToAssign.toString();
