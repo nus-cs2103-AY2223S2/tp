@@ -421,6 +421,20 @@ public class Student {
     }
 
     /**
+     * Returns true if the exam's time clashes with any lesson's time.
+     * @param exam Exam to be checked
+     * @return boolean
+     */
+    public boolean hasLessonAtSameTime(Exam exam) {
+        for (Lesson lesson : lessonsList) {
+            if (exam.getStartTime().isBefore(lesson.getEndTime()) && exam.getEndTime().isAfter(lesson.getStartTime())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns an exam from the exam list.
      *
      * @param index index of exam to be returned
