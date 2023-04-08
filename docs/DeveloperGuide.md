@@ -347,9 +347,6 @@ The `Keyword` component,
   * The custom' `<keyword>`
   * The main `<keyword>`:
     * `appointment` for `Appointment` class
-    * `basic`
-    * `exit`
-    * `help`
     * `patient` for `Patient` class
     * `vaccination` for `VaxType` class
 
