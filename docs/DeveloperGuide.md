@@ -761,8 +761,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. FL feedbacks that entered data is in a wrong format.
 
       Use case ends.
+      
 
-**Use case: UC10- Look up Help Page**
+**Use case: UC10- Listing persons**
+
+**MSS**
+
+1. User types `list` in the input text box.
+2. FL return all the current elderly, volunteers and pairs in the database.
+3. User see all the persons and pairs on the interface.
+
+   Use case ends.
+
+
+**Use case: UC11- View person statistics**
+
+**MSS**
+
+1. User types `stats` in the input text box.
+2. FL returns the number of elderly, volunteer, pairs and their pairing situations.
+3. User see the summary statistics in the feedback box.
+
+   Use case ends.
+
+
+**Use case: UC12- Look up Help Page**
 
 **MSS**
 
@@ -772,7 +795,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC11- Exit the app**
+**Use case: UC13- Exit the app**
 
 **MSS**
 
