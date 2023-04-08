@@ -100,7 +100,6 @@ public class TimeMask {
         int mask = startBits << startHourIndex;
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] | mask;
     }
-
     private void checkValidDayIndex(int dayIndex) {
         if (dayIndex < 0 || dayIndex > WINDOW_RANGE) {
             // TODO: refactor
