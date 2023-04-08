@@ -43,8 +43,7 @@ public class GroceriesCommand extends Command {
 
         for (Index idx : indices) {
             if (idx.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX + ": "
-                                           + idx.getOneBased());
+                throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
             }
 
             Recipe recipe = lastShownList.get(idx.getZeroBased());

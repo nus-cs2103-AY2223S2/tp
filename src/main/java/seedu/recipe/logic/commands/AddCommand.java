@@ -25,7 +25,8 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to your recipe book. "
-            + "\nFormat: " + PREFIX_TITLE + "TITLE " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_INGREDIENT
+            + "\nFormat: " + COMMAND_WORD + " " + PREFIX_TITLE + "TITLE " + PREFIX_DESCRIPTION
+            + "DESCRIPTION " + PREFIX_INGREDIENT
             + "INGREDIENT... " + PREFIX_STEP + "STEP... [" + PREFIX_TAG + "TAG]...\n"
             + "Example: add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange";
 

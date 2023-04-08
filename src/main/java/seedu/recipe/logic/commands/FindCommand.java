@@ -17,7 +17,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the recipes in your recipe according"
             + " to what you are looking for.\n"
-            + "Format: " + PREFIX_TITLE + "[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]\n"
+            + "Format: " + COMMAND_WORD + " [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]\n"
             + "Only one command flag can be present.\n"
             + "Example: find r/eggs";
 
