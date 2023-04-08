@@ -268,4 +268,15 @@ public class ModelManager implements Model {
     public Person retrievePersonByNric(Nric nric) {
         return addressBook.retrievePersonByNric(nric);
     }
+    // todo remove retrievePersonByNric (duplicate)
+
+    /**
+     * Returns the person with the given {@code nric}, returns it. This person must exist.
+     * @param nric of the person
+     * @return Person with a given Nric
+     */
+    @Override
+    public Person getPersonByNric(Nric nric) {
+        return addressBook.getPersonByNric(nric);
+    }
 }
