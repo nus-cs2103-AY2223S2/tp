@@ -1,6 +1,7 @@
 package seedu.internship.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -8,6 +9,7 @@ import java.util.function.Predicate;
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.CliSyntax;
+import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.Model;
 import seedu.internship.model.internship.*;
 import seedu.internship.model.tag.Tag;
@@ -46,7 +48,9 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Internship> lastShownList = model.getFilteredInternshipList();
+        if (!filterInternshipDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
         Predicate<Internship> filterPos = unused -> true;
         Predicate<Internship> filterCom = unused -> true;
         Predicate<Internship> filterStat = unused -> true;
@@ -72,7 +76,7 @@ public class FindCommand extends Command {
         if (filterInternshipDescriptor.getTags().isPresent()) {
             filterStat = x -> filterInternshipDescriptor.getTags().get().isEmpty()
                     ? x.getTags().isEmpty()
-                    :x.getTags().containsAll(filterInternshipDescriptor.getTags().get());
+                    : x.getTags().containsAll(filterInternshipDescriptor.getTags().get());
         }
         Predicate<Internship> finalFilterPos = filterPos;
         Predicate<Internship> finalFilterCom = filterCom;
