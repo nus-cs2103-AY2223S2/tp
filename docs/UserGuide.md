@@ -537,7 +537,6 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 Deletes the specified module(s) and all its embodied content from the application
 - <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>: The codes of the modules
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
   - Must belong to an existing module in Le Tracker
   - Must not contain duplicates
 
