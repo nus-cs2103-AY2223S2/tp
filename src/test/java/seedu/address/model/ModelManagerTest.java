@@ -8,15 +8,19 @@ import static seedu.address.model.Model.PREDICATE_SHOW_NO_CARDS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCards.LOOP;
 import static seedu.address.testutil.TypicalCards.VARIABLE;
+import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.card.QuestionContainsKeywordsPredicate;
+import seedu.address.model.deck.Deck;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.MasterDeckBuilder;
 
 public class ModelManagerTest {
@@ -92,6 +96,19 @@ public class ModelManagerTest {
     @Test
     public void getFilteredCardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCardList().remove(0));
+    }
+
+    @Test
+    public void getDeckSize_success() {
+        modelManager.addDeck(new Deck("Test"));
+        assertEquals(0, modelManager.getDeckSize(0));
+    }
+
+    @Test
+    public void getDeckSizeFilteredTag_success() {
+        ModelManager model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
+        assertEquals(1, model.getDeckSizeFilteredTag(1,
+                List.of(new Tag.TagName[]{Tag.TagName.UNTAGGED})));
     }
 
     @Test

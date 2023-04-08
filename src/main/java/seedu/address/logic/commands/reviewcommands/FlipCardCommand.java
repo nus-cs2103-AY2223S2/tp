@@ -25,4 +25,10 @@ public class FlipCardCommand extends Command {
                 ? new CommandResult(MESSAGE_FLIP_SUCCESS)
                 : new CommandResult(MESSAGE_UNFLIP_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FlipCardCommand); // instanceof handles nulls
+    }
 }

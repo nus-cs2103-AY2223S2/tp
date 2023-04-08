@@ -1,23 +1,42 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DECK_DESC_SCIENCE;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.deckcommands.EditDeckCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.deck.Deck;
 
 public class EditDeckCommandParserTest {
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDeckCommand.MESSAGE_USAGE);
-    private EditDeckCommandParser parser = new EditDeckCommandParser();
+
+    private final EditDeckCommandParser parser = new EditDeckCommandParser();
 
     @Test
-    public void parse_missingParts_failure() {
-        // no index specified
-        assertParseFailure(parser, DECK_DESC_SCIENCE, MESSAGE_INVALID_FORMAT);
+    public void parse_validArgs_returnsEditDeckCommand() throws ParseException {
+        Index index = Index.fromOneBased(1);
+        Deck deck = new Deck("new deck name");
+        EditDeckCommand expectedCommand = new EditDeckCommand(index, deck);
+        assertEquals(expectedCommand, parser.parse("1 new deck name"));
+    }
 
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        // empty arguments
+        assertThrows(ParseException.class, () -> parser.parse(""));
+
+        // missing index
+        assertThrows(ParseException.class, () -> parser.parse("new deck name"));
+
+        // invalid index
+        assertThrows(ParseException.class, () -> parser.parse("0 new deck name"));
+        assertThrows(ParseException.class, () -> parser.parse("-1 new deck name"));
+        assertThrows(ParseException.class, () -> parser.parse("not a number new deck name"));
+
+        // missing deck name
+        assertThrows(ParseException.class, () -> parser.parse("1"));
     }
 
 }

@@ -23,4 +23,10 @@ public class EndReviewCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS,
                 false, false, false, true, false, false, false, false, false, false);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EndReviewCommand); // instanceof handles nulls
+    }
 }

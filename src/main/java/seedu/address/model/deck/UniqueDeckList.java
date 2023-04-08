@@ -11,8 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.deck.exceptions.DeckNotFoundException;
 import seedu.address.model.deck.exceptions.DuplicateDeckException;
 
-//TODO Deck exceptions
-
 /**
  * A list of decks that enforces uniqueness between its elements and does not allow nulls.
  * A deck is considered unique by comparing using {@code Deck#isSameDeck(Deck)}. As such, adding and updating of

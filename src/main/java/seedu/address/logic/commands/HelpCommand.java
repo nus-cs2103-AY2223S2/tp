@@ -20,4 +20,10 @@ public class HelpCommand extends Command {
         return new CommandResult(SHOWING_HELP_MESSAGE,
                 true, false, false, false, false, false, false, false, false, false);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof HelpCommand); // instanceof handles nulls
+    }
 }

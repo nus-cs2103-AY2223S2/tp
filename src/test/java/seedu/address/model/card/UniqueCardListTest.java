@@ -20,7 +20,7 @@ import seedu.address.model.card.exceptions.CardNotFoundException;
 import seedu.address.model.card.exceptions.DuplicateCardException;
 import seedu.address.testutil.CardBuilder;
 
-public class UniqueDeckListTest {
+public class UniqueCardListTest {
 
     private final UniqueCardList uniqueCardList = new UniqueCardList();
 
