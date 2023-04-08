@@ -28,6 +28,9 @@ public class AttendanceCommand extends Command {
             + ": Views the overall attendance of current session or student.\n"
             + "Example: " + COMMAND_WORD;
 
+    public static final String MESSAGE_SUCCESS_SESSION = "Attendance for %s %s %s:\n %d / %d";
+    public static final String MESSAGE_SUCCESS_STUDENT = "Attendance for %s in %s %s:\n %d / %d";
+
     public AttendanceCommand() {
         super(true);
     }
@@ -68,7 +71,7 @@ public class AttendanceCommand extends Command {
             int numOfPresentStudents = (int) attendance.values().stream().filter(x -> x == 1).count();
 
             return new CommandResult(this, String.format(
-                    "Attendance for %s %s %s:\n %d / %d",
+                    MESSAGE_SUCCESS_SESSION,
                     course, group, session, numOfPresentStudents, numOfTotalStudents), willModifyState);
         } else if (currentSelection.getCurrentPage() == PageType.STUDENT_PAGE) {
             Student student = currentSelection.getSelectedStudent();
@@ -89,7 +92,7 @@ public class AttendanceCommand extends Command {
             student.setSessionAttendanceList(sessionsWithAttendance);
 
             return new CommandResult(this, String.format(
-                    "Attendance for %s in %s %s:\n %d / %d",
+                    MESSAGE_SUCCESS_STUDENT,
                     student.getName() , course, group, numOfAttendedSession, numOfTotalSession), willModifyState);
         } else {
             throw new CommandException("should not reach here!");
