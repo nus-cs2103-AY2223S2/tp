@@ -1,8 +1,5 @@
 package vimification.ui;
 
-import java.util.List;
-
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -11,9 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import vimification.internal.Logic;
-import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
-import vimification.internal.parser.ParserException;
 
 /**
  *
@@ -48,25 +43,14 @@ public class CommandInput extends UiPart<HBox> {
 
         if (isEscEvent || isTextFieldEmpty()) {
             mainScreen.clearBottomComponent();
-            returnFocusToParent();
+            returnFocusToTaskTabPanel();
         }
 
         if (isEnterEvent) {
             String commandString = inputField.getText();
             executeCommand(commandString);
-            returnFocusToParent();
         }
 
-    }
-
-    // TODO: REMOVE THIS AFTER TESTING
-    private static boolean isNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     private String cleanCommandString(String commandString) {
@@ -84,30 +68,11 @@ public class CommandInput extends UiPart<HBox> {
         String commandString = cleanCommandString(input);
         System.out.println("Your command is " + input);
 
-        boolean isUiCommand = processUiCommand(commandString);
-
-        if (isUiCommand) {
-            return;
-        }
-
         CommandResult result = logic.execute(commandString);
-        mainScreen.initializeTaskTabPanel();
         mainScreen.loadCommandResultComponent(result);
-
-        // TODO: Should only clear if the task has been deleted.
-        if (result.getFeedbackToUser().contains("Deleted Task:")) {
-            mainScreen.clearRightComponent();
-        }
+        returnFocusToTaskTabPanel();
     }
 
-    private boolean processUiCommand(String commandString) {
-        // TODO : TEMPORARY, REMOVE THIS IN THE FUTURE AFTER ABSTRACTING INTO GUI COMMANDS
-        if (isNumeric(commandString)) {
-            mainScreen.getTaskTabPanel().scrollToTaskIndex(Integer.parseInt(commandString));
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public void requestFocus() {
@@ -117,8 +82,8 @@ public class CommandInput extends UiPart<HBox> {
         inputField.requestFocus();
     }
 
-    private void returnFocusToParent() {
-        mainScreen.getRoot().requestFocus();
+    private void returnFocusToTaskTabPanel() {
+        mainScreen.getTaskTabPanel().requestFocus();
     }
 
     @FXML
