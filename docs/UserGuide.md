@@ -311,10 +311,6 @@ QuickContacts, you will **never** have to copy and paste commands ever again.
 All you have to do is to hit the `UP` and `DOWN` arrow keys on your keyboard to go to the previous and next command
 respectively. It is as simple as that!
 
-### Theme toggling
-
-Toggles the theme from dark to light or vice versa.
-
 ![toggle theme](images/toggleTheme.png)
 
 ## Person-Related Commands
@@ -649,8 +645,10 @@ Examples:
 ### Marking Meetings as done or undone : `mark` or `unmark`
 
 Marks the specified meetings as either done or undone.
+
 ![img.png](images/markasdone.png)
-Format: "mark m/INDEX [m/INDEXES]..." or "unmark m/INDEX [m/INDEXES]..."
+
+Format: `mark m/INDEX [m/INDEXES]...` or `unmark m/INDEX [m/INDEXES]...`
 
 * The index refers to the index number shown in the displayed meetings list.
 * The index **must be a positive integer**: 1, 2, 3...
