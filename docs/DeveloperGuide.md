@@ -11,7 +11,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Acknowledgements
+## **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
@@ -19,7 +19,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Setting up, getting started
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started._](./SettingUp.md)
 
@@ -27,7 +27,7 @@ Refer to the guide [_Setting up and getting started._](./SettingUp.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Design
+## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -296,7 +296,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
-## Implementation
+## **Implementation**
 
 ### Add Doctor Feature
 
@@ -574,7 +574,7 @@ current design was favoured.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Documentation, Logging, Testing, Configuration, Dev-Ops
+## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
 Here are some useful links on the following!
 
@@ -681,7 +681,7 @@ To be added
 [Scroll back to Table of Contents](#table-of-contents)
 
 
-### Appendix B: Product scope
+## **Appendix B: Product scope**
 
 **Target user profile**
 We hope to target admin staff within a clinic who have to settle triaging of patients.<br>
@@ -699,7 +699,7 @@ faster than a typical mouse/GUI driven app.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix C: User stories
+## **Appendix C: User stories**
 
 In the table below, **_user_** refers to the triage admin staff.
 
@@ -727,7 +727,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix D: Use cases
+## **Appendix D: Use cases**
 
 For all use cases below, we assume the following unless specified otherwise
 
@@ -893,7 +893,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix E: Non-Functional Requirements
+## **Appendix E: Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 doctor contacts and 1000 patient contacts without noticeable reduction in
@@ -908,7 +908,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix F: Glossary
+## **Appendix F: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **User**: Triage Admin Staff within the clinic.
@@ -916,13 +916,13 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix G: Effort
+## **Appendix G: Effort**
 
 This section is still being updated!
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix H: Instructions for manual testing
+## **Appendix H: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 

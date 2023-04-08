@@ -34,7 +34,7 @@ than current GUI apps in the industry.
 
 ---
 
-## Quick start
+## **Quick start**
 
 1. Make sure that you have **Java 11 or above** installed on your computer.
    - [How do I check my version of Java?](#checking-java-version)
@@ -71,7 +71,7 @@ than current GUI apps in the industry.
 
 ---
 
-## Glossary
+## **Glossary**
 
 Here are some descriptions of the words we use throughout the User Guide:
 - Parameter: Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.
@@ -109,7 +109,7 @@ The information below specifies parameter description, constraints and usage thr
 | st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
 
 
-## Navigating the Graphical User Interface (GUI)
+## **Navigating the Graphical User Interface (GUI)**
 
 Docedex comes with a GUI to allow for a nice visual feedback for our users. Here
 is a quick runthrough of the different sections of our GUI, as well as some notes
@@ -166,7 +166,7 @@ look through all the doctors and patients in Docedex, please use the
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## Notes about the command format
+## **Notes about the command format**
 
 | Notes                                                                                                        | Explanation                                                                  | Examples                                                                                          |
 |--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
@@ -179,7 +179,7 @@ look through all the doctors and patients in Docedex, please use the
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## Command Summary
+## **Command Summary**
 
 | Command               | Shorthand   | What it does                                                                              |
 |-----------------------|-------------|-------------------------------------------------------------------------------------------|
@@ -199,7 +199,7 @@ look through all the doctors and patients in Docedex, please use the
 
 ---
 
-## Docedex Tutorial (for new users)
+## **Docedex Tutorial (for new users)**
 
 This is a tutorial for **first-time** Docedex users.
 1. Launch Docedex. You may refer to the instructions [here](#quick-start)
@@ -236,8 +236,7 @@ This is a tutorial for **first-time** Docedex users.
 
 ---
 
-## Features
-
+## **Features**
 
 ### Doctor Commands
 #### Adding a doctor
@@ -540,7 +539,7 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 
 ---
 
-## FAQ
+## **FAQ**
 
 ### Launching Docedex
 **Q**: How can I launch docedex if the clicking on the JAR file does not work?<br>
