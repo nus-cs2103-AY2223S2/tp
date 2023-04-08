@@ -42,12 +42,8 @@ Now it's time to **CONQUER** the semester!
   - [Edit](#edit)
   - [Delete](#delete)
   - [Mark or Unmark Video](#mark-or-unmark-video)
-  - [Tag a module](#tag-a-module)
-  - [Tag a lecture](#tag-a-lecture)
-  - [Tag a video](#tag-a-video)
-  - [Untag a module](#untag-a-module)
-  - [Untag a lecture](#untag-a-lecture)
-  - [Untag a video](#untag-a-video)
+  - [Tag](#tag)
+  - [Untag](#untag)
   - [Find](#find)
   - [Clear all Modules](#clear-all-modules)
   - [Exit the App](#exit-the-app)
@@ -620,7 +616,9 @@ Examples:
 - `unmark Vid 2 /mod CS2040 /lec Week 1`
 - `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
 
-### Tag a module
+### Tag
+
+#### Tag a module
 
 > `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]`
 
@@ -641,7 +639,7 @@ Example:
 user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer
 to [Navigation](#navigation) for more information)
 
-### Tag a lecture
+#### Tag a lecture
 
 > `tag {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]`
 
@@ -665,7 +663,7 @@ Examples:
 user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer
 to [Navigation](#navigation) for more information)
 
-### Tag a video
+#### Tag a video
 
 > `tag {video_name} /lec {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]`
 
@@ -688,7 +686,9 @@ Examples:
 
 - `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
 
-### Untag a module
+### Untag
+
+#### Untag a module
 
 > `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]`
 
@@ -708,7 +708,7 @@ Example:
 user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video)
 (refer to [Navigation](#navigation) for more information)
 
-### Untag a lecture
+#### Untag a lecture
 
 > `untag {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]`
 
@@ -732,7 +732,7 @@ Examples:
 user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video)
 (refer to [Navigation](#navigation) for more information)
 
-### Untag a video
+#### Untag a video
 
 > `untag {video_name} /lec {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]`
 
