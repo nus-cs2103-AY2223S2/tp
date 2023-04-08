@@ -5,37 +5,48 @@ title: Tang Zong Hao's Project Portfolio Page
 
 ### Project: RIZZipe
 
-RIZZipe is a desktop recipe book application used for busy cooks who want to track their recipes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+RIZZipe is a desktop recipe book application used for busy cooks who want to track their recipes. The user interacts 
+with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **FeatureName**: Added the ability to ....
-    * What it does: allows the user to...
-    * Justification: This feature improves...
-    * Highlights: This enhancement affects...
-    * Credits: *{if any}*
-
-* **New Feature**: Added...
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zhtang29&breakdown=true)
 
+* **New Feature**: 
+* **Substitution** ([\#196]()) 
+  * What it does: Allows users to search for ingredient substitutions for any ingredient in their recipe
+  * Justification: Enables users to find replacements for missing ingredients that they may be lacking while cooking
+  * Highlights:
+    * Implemented a preloaded list of popular condiments with their common substitutes
+    * Substitution feature allows users to search up substitutions from those which they stored as well
+    
 * **Project management**:
+    * Managed documentation for release `v1.3` on GitHub
 
 * **Enhancements to existing features**:
-    * Updated... (Pull requests [\#](), [\#]())
-    * Wrote additional tests... (Pull requests [\#](), [\#]())
+    * Initial refactoring of `model` package ([\#65](), [\#77]())
+    * Wrote additional tests to ensure 100% coverage for `model` package ([\#260]())
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the feature `add` [\28](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/28)
+    * Added documentation for the features `add` [\28](), `edit` [\#179](), `addf` [\#179](), `find`[\#179]() and sub`[#201]()
+    * Consistently refine additional tips and comments for all features
+    * Add introduction and purpose of UG 
+    * Ensure outgoing tone is consistent throughout UG
+    * Added import/export instructions [\#179]()
+    * Formatted and updated User Guide to reflect Keyboard Shortcuts
+    * Added Keyboard Shortcuts summary table
+    * Added glossary of tech jargon terms
+    
   * Developer Guide:
     * Added user stories table
+    * Added UML for main architecture [\#109]()
+    * Merged and formatted changes for the Design section
+    * Improved and edited Use cases
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-    
+    * PRs reviewed (with non-trivial review comments): [\#114](), [\#146](), [\#194]()
+    * * Reported 10 bugs in the Practical Exam dry run: [Bug Report](https://github.com/ZHTang29/ped/issues)
 
-* _{you can add/remove categories in the list above}_
+    
+  

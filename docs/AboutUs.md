@@ -16,7 +16,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[github](https://github.com/alson001)]
 [[portfolio](team/alson001.md)]
 
-- Role: Project Advisor, Documentation Head
+- Role: Project Advisor
 - Responsibilities: ***TBC***
 
 ### Filbert Phang
@@ -56,5 +56,5 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[github](http://github.com/zhtang29)]
 [[portfolio](team/zhtang29.md)]
 
-- Role: Deliverables, Tracking and Deadlines Head
+- Role: Deliverables, Tracking and Deadlines Head, Documentation Head
 - Responsibilities: ***TBC***
