@@ -51,15 +51,24 @@ The purpose of this user guide document is to provide staff with a clear underst
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
+
 2. Download the latest `HospiSearch.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-4/tp/releases).
+
 
 3. Copy the file to the folder you want to use as the _home folder_ for your HospiSearch.
 
+
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar`command to run the application.<br>
+
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+
+
 5. Type in a command in the command box to execute it. Some commands to try:
     1. `help` opens up the help menu.
+
+
 6. Refer to the [Features](#features) below for details of each command.
 
 Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
@@ -97,13 +106,20 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 - Input words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+
 - Commands in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
 
 - Commands separated by `|` within `()` suggest that only one of the commands must be present to be valid.
 
+
 - Items with `…` after them can be used multiple times, including zero. e.g., [t/TAG] …​ can be used
   (i.e. 0 or more times), t/friend t/family etc.
+
+
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** All commands from this point onwards are to be
@@ -160,6 +176,7 @@ optional.
 </div>
 
 💡**Tip**:
+<br/>The drug allergies field is required however if the patient you are registering does not have any drug allergies, type in NKDA(No Known Drug Allergies)
 <br/>A patient can have any number of tags and medicine (including 0).
 <br/>A patient can leave out the email prefix should they not want to share it.
 
@@ -409,22 +426,22 @@ Above is the execution result of the input `dark`.
 ## Command summary
 
 | Action             | Format, Examples                                                                                                                                                                                                                |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**           | `help`                                                                                                                                                                                                                          |
-| **Undo**           | `undo`                                                                                                                                                                                                                          |
-| **Redo**           | `redo`                                                                                                                                                                                                                          |
-| **Add**            | `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR m/MEDICINE [e/EMAIL] [t/TAG]…​` <br/> e.g. add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male ad/Alex d/NKDA |
-| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                                |
-| **View**           | `view i/NRIC` <br/> e.g. view i/T0012345A                                                                                                                                                                                         |
-| **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                   |
-| **List**           | `list`                                                                                                                                                                                                                            |
-| **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                       |
-| **Backup**         | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                                             |
-| **Load**           | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                                                 |
-| **View backups**   | `viewbackups`                                                                                                                                                                                                                     |
-| **Delete backups** | `deletebackup INDEX_NO` <br/> e.g. deletebackup 3                                                                                                                                                                                 |
-| **Clear all**      | `clear`                                                                                                                                                                                                                           |
-| **Light**          | `light`                                                                                                                                                                                                                           |
-| **Dark**           | `dark`                                                                                                                                                                                                                            |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
+| **Help**           | `help`                                                                                                                                                                                                                          |  
+| **Undo**           | `undo`                                                                                                                                                                                                                          |  
+| **Redo**           | `redo`                                                                                                                                                                                                                          |  
+| **Add**            | `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus | 
+| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                         |  
+| **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                 |  
+| **List**           | `list`                                                                                                                                                                                                                          |  
+| **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                     |  
+| **Backup**         | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                                           |  
+| **Load**           | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                                               |  
+| **View backups**   | `viewbackups`                                                                                                                                                                                                                   |  
+| **Delete backups** | `deletebackup INDEX_NO` <br/> e.g. deletebackup 3                                                                                                                                                                               |  
+| **Clear all**      | `clear`                                                                                                                                                                                                                         |  
+| **Light**          | `light`                                                                                                                                                                                                                         |  
+| **Dark**           | `dark`                                                                                                                                                                                                                          |
+
 
 <sub>[return to table of contents](#table-of-contents)</sub>
