@@ -6,6 +6,7 @@ import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalEvents.EM11;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Name;

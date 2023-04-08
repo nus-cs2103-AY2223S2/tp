@@ -26,7 +26,7 @@ public class EventDeleteCommand extends EventCommand {
             + EventDeleteCommand.COMMAND_WORD + " "
             + "1";
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Event deleted: %1$s";
-    public static final String MESSAGE_NO_INTERNSHIP_SELECTED = "Select an internship before adding an event.";
+    public static final String MESSAGE_NO_INTERNSHIP_SELECTED = "Select an internship before deleting an event.";
 
     private final Index targetIndex;
 
