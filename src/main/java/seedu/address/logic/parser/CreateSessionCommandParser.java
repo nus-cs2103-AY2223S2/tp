@@ -40,9 +40,12 @@ public class CreateSessionCommandParser {
         String endDateTime = startEnd.get(1);
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
 
-        Session session = new Session(startDateTime, endDateTime, name, location);
-
-        return new CreateSessionCommand(session);
+        try {
+            Session session = new Session(startDateTime, endDateTime, name, location);
+            return new CreateSessionCommand(session);
+        } catch (IllegalArgumentException argE) {
+            throw new ParseException(argE.getMessage());
+        }
     }
 
     /**
