@@ -8,11 +8,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="650.0" minWidth="650.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="650.0" minWidth="975.0" onCloseRequest="#handleExit" title="SOCket" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -26,29 +27,54 @@
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <MenuItem fx:id="undoMenuItem" mnemonicParsing="false" onAction="#handleUndo" text="Undo" />
+            <MenuItem fx:id="redoMenuItem" mnemonicParsing="false" onAction="#handleRedo" text="Redo" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
-              <items>
-                    <VBox fx:id="personList" minWidth="250.0" prefWidth="250.0" styleClass="pane-with-border">
-                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-              </VBox>
-                  <StackPane fx:id="personDetailPanelPlaceholder" minWidth="200.0" prefWidth="200.0">
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
+                  <SplitPane dividerPositions="0.5" HBox.hgrow="ALWAYS">
+                    <items>
+                          <VBox fx:id="personList" minWidth="330.0" styleClass="pane-with-border">
+                      <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                      </padding>
+                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                        <StackPane fx:id="personDetailPanelPlaceholder" maxWidth="500.0" minWidth="300.0" prefWidth="300.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </StackPane>
+                    </items>
+                  </SplitPane>
+                  <VBox maxWidth="455.0" minWidth="300.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                     <children>
+                        <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                     </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
-                  </StackPane>
-              </items>
-            </SplitPane>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="-3.0" right="-3.0" />
+               </padding>
+            </HBox>
 
-              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                             <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>

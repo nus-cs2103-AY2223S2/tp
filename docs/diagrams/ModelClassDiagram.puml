@@ -5,46 +5,93 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlySocket" as ReadOnlySocket
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class "<<interface>>\nModel" as Interface_Model
+Class Socket
 Class ModelManager
 Class UserPrefs
+Class VersionedSocket
 
+Package Person as PersonPackage <<Rectangle>>{
 Class UniquePersonList
 Class Person
 Class Address
 Class Email
+Class GitHubProfile
 Class Name
 Class Phone
+}
+
+Package Tag as TagPackage <<Rectangle>>{
+Class Language
 Class Tag
+}
+
+Package Project as ProjectPackage <<Rectangle>>{
+Class UniqueProjectList
+Class Project
+Class ProjectDeadline
+Class ProjectMeeting
+Class ProjectName
+Class ProjectRepoHost
+Class ProjectRepoName
+}
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> Interface_Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Socket .up.|> ReadOnlySocket
+ModelManager .up.|> Interface_Model
+ModelManager -down-> "1" Socket
+ModelManager -left-> "1" VersionedSocket
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+ModelManager -[hidden]left-> VersionedSocket
+ReadOnlySocket -[hidden]right-> VersionedSocket
+VersionedSocket --> Socket
+'Spaces to avoid bullet point, position
+VersionedSocket --> " *   " ReadOnlySocket : \n \n \n stores >
+
+'Spaces, \n to position label better
+ModelManager --> " * filtered" Person
+ModelManager --> " * filtered \n \n \n" Project
+
+'Spaces to position multiplicity better
+Socket *--> "1  " UniquePersonList
+UniquePersonList --> " * " Person
 Person *--> Name
+Person *--> GitHubProfile
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> "*" Language
 Person *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+'positioning Person attributes
+Name -[hidden]right-> GitHubProfile
+GitHubProfile -[hidden]right-> Phone
+Phone -[hidden]right-> Email
+Tag -[hidden]left-> Language
 
-ModelManager -->"~* filtered" Person
+Socket *--> "1" UniqueProjectList
+'Spaces to position multiplicity better
+UniqueProjectList --> " * " Project
+Project *-left> ProjectName
+Project *-down-> ProjectRepoHost
+Project *---> ProjectRepoName
+Project *---> ProjectDeadline
+Project *---> ProjectMeeting
+Project --->"*" Person : has >
+
+'positioning Project attributes
+ProjectName -[hidden]down> ProjectRepoHost
+ProjectName -[hidden]down> ProjectRepoHost
+ProjectRepoHost -[hidden]down> ProjectRepoName
+ProjectRepoHost -[hidden]down> ProjectRepoName
+'For positioning
+ProjectRepoName -[hidden]right-> Name
 @enduml

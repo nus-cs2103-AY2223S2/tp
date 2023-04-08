@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/chia-yh.md)]
 
 * Role: Developer
-* Responsibilities: Development
+
 
 ### Dillon Goh
 
@@ -39,6 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Development
 
+
 ### Huang Hao
 
 <img src="images/huanghao1998.png" width="200px">
@@ -48,6 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
+
 
 ### Jeff Lee
 

@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":Socket" as Socket MODEL_COLOR
+participant "persons:UniquePersonList" as persons MODEL_COLOR
+participant "projects:UniqueProjectList" as projects MODEL_COLOR
+end box
+
+[-> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand-> ModelManager : deletePerson(p)
+activate ModelManager
+
+ModelManager -> Socket : removePerson(p)
+activate Socket
+
+Socket -> persons : remove(p)
+activate persons
+Socket <-- persons
+deactivate persons
+
+Socket -> projects : removeMemberInProjects(p)
+activate projects
+Socket <-- projects
+deactivate projects
+
+ModelManager <-- Socket
+deactivate Socket
+
+DeleteCommand <--ModelManager
+deactivate ModelManager
+
+[<-- DeleteCommand : result
+deactivate DeleteCommand
+@enduml
