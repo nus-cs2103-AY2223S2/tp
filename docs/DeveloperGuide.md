@@ -879,3 +879,33 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
    **Expected**: MyLib launches with the sample bookmark data shown in the List Panel. There
    is a total of 4 bookmark entries.
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix B: Planned Enhancements**
+Currently, there a few feature flaws with the application. These are some proposed fixes to address them and improve functionality for the user:
+
+* `edit 0` as show in Figure 1  and `edit` with any other postitive index in Figure 2 below have differing response/result in the result display box.<br>
+
+![edit-0](images/edit-0.png)
+<figcaption style="text-align:center"><em><strong>
+   Figure 1
+   </strong>
+   : After executing edit 0
+   </em></figcaption>
+
+![edit-8](images/edit-8.png)
+<figcaption style="text-align:center"><em><strong>
+   Figure 1
+   </strong>
+   : After executing edit 8
+   </em></figcaption>
+
+Currently there is a discrepancy where `edit 0` with missing prefix causes an error message of invalid command format 
+while `edit` with any positive index and missing prefix causes an error message of at least 1 field must be present.
+
+**Potential Enhancement and Suggested Implementation:**
+It would be great to streamline this error message by perhaps having a separate error message of "index cannot be <= 0"
+for index <=0 since the bookmarklist index starts from 1. And keep the current error message for indexes > 0
+
+In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be <= 0" when 
+ParseException is thrown.
