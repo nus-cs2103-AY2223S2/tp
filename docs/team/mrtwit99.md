@@ -34,8 +34,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=AY2223S2-CS2103T-T09-1&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=MrTwit99&zR=AY2223S2-CS2103T-T09-1%2Ftp%5Bmaster%5D&zACS=269.13953488372096&zS=2023-02-17&zFS=AY2223S2-CS2103T-T09-1&zU=2023-04-08&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false) <br><br>
 
 * **Project management**:
-  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub <br><br>
-  * Participated in the review of Bug Reports sent by testers in PE-D phase <br><br>
+  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub <br>
+  * Participated in the review of Bug Reports sent by testers in PE-D phase <br>
   * Helped in resolving some of the issues from Bug Reports <br><br>
 
 * **Enhancements to existing features**:
