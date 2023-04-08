@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 
 Added the ability to sort the contact list by a given attribute.
 
-* **What it does:** Calling sort with an integer attribute will arrange the list of contacts in the corresponding attribute. 
+* **What it does:** Calling sort with an integer attribute will arrange the list of contacts in the corresponding attribute.
 * **Justification:** This features builds upon the previous default sorting function to allow users to sort by their preferred attributes in order to better fit their purposes.
 * **Highlights:** Implementing this feature involved understanding the complex code flow and the relationship between many classes.
 
