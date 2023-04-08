@@ -254,7 +254,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
 <details open markdown="block">
-<summary>**Use case: Add an event**</summary>
+<summary markdown="span">**Use case: Add an event**</summary>
 
 **MSS**
 1. User requests to add an event
@@ -272,7 +272,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 <details open markdown="block">
-<summary>**Use case: Delete an event**</summary>
+<summary markdown="span">**Use case: Delete an event**</summary>
 
 **MSS**
 1.  User requests to list events
@@ -291,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 <details open markdown="block">
-<summary>**Use case: Undo a delete**</summary>
+<summary markdown="span">**Use case: Undo a delete**</summary>
 
 **MSS**
 1. User requests to undo the recent delete
