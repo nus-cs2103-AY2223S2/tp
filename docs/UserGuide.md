@@ -1,4 +1,4 @@
----
+git pull --all---
 layout: page
 title: FastTrack User Guide
 ---
