@@ -25,6 +25,7 @@ import trackr.model.ModelEnum;
 import trackr.model.SupplierList;
 import trackr.model.menu.ItemNameContainsKeywordsPredicate;
 import trackr.model.menu.MenuItem;
+import trackr.model.menu.MenuItemDescriptor;
 import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDescriptor;
@@ -34,6 +35,7 @@ import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
+import trackr.testutil.MenuItemDescriptorBuilder;
 import trackr.testutil.OrderDescriptorBuilder;
 import trackr.testutil.PersonDescriptorBuilder;
 import trackr.testutil.TaskDescriptorBuilder;
@@ -193,6 +195,8 @@ public class CommandTestUtil {
     public static final String INVALID_CUSTOMER_ADDRESS_DESC =
             " " + PREFIX_PHONE + INVALID_CUSTOMER_ADDRESS;
 
+
+
     public static final OrderDescriptor DESC_CHOCO_COOKIE;
     public static final OrderDescriptor DESC_CUPCAKE;
 
@@ -214,6 +218,32 @@ public class CommandTestUtil {
                 .withCustomerName(VALID_CUSTOMER_NAME)
                 .withCustomerPhone(VALID_CUSTOMER_PHONE)
                 .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
+    }
+
+    public static final String VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES = "Chocolate Cookies";
+    public static final String VALID_MENU_ITEM_NAME_CUPCAKES = "Cupcakes";
+    public static final String VALID_MENU_ITEM_PRICE = "10.00";
+    public static final String VALID_MENU_ITEM_COST = "2.00";
+
+    public static final String INVALID_MENU_ITEM_NAME = "! invalid !";
+    public static final String INVALID_MENU_ITEM_PRICE = "NaN";
+    public static final String INVALID_MENU_ITEM_COST = "NaN";
+
+    public static final MenuItemDescriptor DESC_CHOCOLATE_COOKIE_M;
+    public static final MenuItemDescriptor DESC_CUPCAKES_M;
+
+    static {
+        DESC_CHOCOLATE_COOKIE_M = new MenuItemDescriptorBuilder()
+            .withName(VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES)
+            .withPrice(VALID_MENU_ITEM_PRICE)
+            .withCost(VALID_MENU_ITEM_COST)
+            .build();
+
+        DESC_CUPCAKES_M = new MenuItemDescriptorBuilder()
+            .withName(VALID_MENU_ITEM_NAME_CUPCAKES)
+            .withPrice(VALID_MENU_ITEM_PRICE)
+            .withCost(VALID_MENU_ITEM_COST)
+            .build();
     }
 
     /**
