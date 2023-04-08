@@ -9,6 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Navigation;
+import seedu.address.model.NavigationStack;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.navigation.NavigationContext;
@@ -21,7 +22,7 @@ public class RelativeNavCommandTest {
 
     @Test
     void execute_fromRootToLec_success() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
 
         new RelativeNavCommand(mod.getCode().toString()).execute(model);
@@ -36,7 +37,7 @@ public class RelativeNavCommandTest {
 
     @Test
     void execute_invalidModule_throwsCommandException() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
 
         RelativeNavCommand cmd = new RelativeNavCommand("invalid");
@@ -45,7 +46,7 @@ public class RelativeNavCommandTest {
 
     @Test
     void execute_missingModule_throwsCommandException() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
 
         String missingMod = TypicalModules.getCs2107().getCode().toString();
@@ -56,7 +57,7 @@ public class RelativeNavCommandTest {
 
     @Test
     void execute_invalidLecture_throwsCommandException() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
         nav.navigateTo(mod.getCode());
 
@@ -67,7 +68,7 @@ public class RelativeNavCommandTest {
 
     @Test
     void execute_missingLecture_throwsCommandException() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
         nav.navigateTo(mod.getCode());
 
@@ -80,7 +81,7 @@ public class RelativeNavCommandTest {
 
     @Test
     void execute_atLecLayer_throwsCommandException() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
 
         nav.navigateTo(mod.getCode(), lec.getName());
