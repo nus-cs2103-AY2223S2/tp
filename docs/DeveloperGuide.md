@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2d. Input contains incorrect details
     * 2d1. ModCheck shows an error message.
 
-#### Use case: Delete a single person
+#### Use case: Delete a single person by Index
 
 **MSS**
 
@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-#### Use case: Delete multiple persons 
+#### Use case: Delete multiple persons by multiple Indexes
 
 **MSS**
 
