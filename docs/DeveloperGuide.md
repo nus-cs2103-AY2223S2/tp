@@ -1262,7 +1262,7 @@ Before every test case, ensure that the patient "John Doe" does not exist. This 
 
 ### Patient attribute validation
 
-Before every test case, ensure that the there are no patients.
+Before every test case, ensure that the there are no patients. This can be done by executing the following before every test case:
 
 `patient clear --force true`
 
@@ -1348,7 +1348,9 @@ Before every test case, ensure that the there are no patients.
 
 #### Prerequisites
 
-Before every test case, ensure that the patient "John Doe" does not exist. This can be done by executing the following before every test case:
+Before every test case, ensure that the there are no patients. This can be done by executing the following before every test case:
+
+`patient clear --force true`
 
 1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 1. `patient detail 1`
@@ -1359,7 +1361,48 @@ Before every test case, ensure that the patient "John Doe" does not exist. This 
 
 ### Listing all patients
 
+#### Prerequisites
+
+Before every test case, ensure that the there are no patients. This can be done by executing the following before every test case:
+
+`patient clear --force true`
+
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient list`
+
+#### Expected
+
+![Expected display](images/patient/dg/PatientList.png)
+
 ### Locating a patient
+
+#### Prerequisites
+
+Before every test case, ensure that the there are no patients. This can be done by executing the following before every test case:
+
+`patient clear --force true`
+
+1. Add patients with different Names, Blood Type
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A+ --a catfur --a pollen --v covax`
+1. `patient add --n John Does --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient add --n John Po --p 98765432 --d 2001-03-19 --b AB+ --a catfur --a pollen --v covax`
+1. Find patient with name "John Doe"
+  `patient find John Doe`
+  **Expected**: 2 patients listed! (John Doe, John Does)
+1. Find patient with name "John Does"
+  `patient find John Does`
+  **Expected**: 1 patients listed! (John Does)
+1. Find patient with name "John"
+  `patient find John`
+  **Expected**: 3 patients listed! (John Doe, John Does, John Po)
+1. Find patient with "A+" Blood Type
+  `patient find --b A+`
+  **Expected**: 1 patients listed! (John Doe)
+1. Find patient with "A+" Blood Type and named "John"
+  `patient find --b A+ --n John`
+  **Expected**: 1 patients listed! (John Doe)
 
 ### Editing a patient
 
