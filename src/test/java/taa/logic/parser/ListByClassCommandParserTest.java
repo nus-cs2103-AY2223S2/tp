@@ -3,6 +3,7 @@ package taa.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
 import taa.logic.commands.ListByClassCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.ClassIdMatchesPredicate;
