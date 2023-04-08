@@ -7,7 +7,7 @@ import seedu.address.model.Model;
  */
 public class HelpConsultationCommand extends HelpCommand {
 
-    public static final String COMMAND_WORD = "help consultation";
+    public static final String COMMAND_WORD = "consultation";
 
     public static final String HEADER_1 = "----- Consultation Basic Inputs -----\n";
 
