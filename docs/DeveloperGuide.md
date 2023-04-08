@@ -1238,6 +1238,29 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a patient
 
+#### Prerequisites
+
+Before every test case, ensure that the patient "John Doe" does not exist. This can be done by executing the following before every test case:
+
+* `patient clear --force true`
+* `patient list`
+
+#### Test: All optional parameters omitted
+
+`patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+
+##### Expected
+
+![Expected display](images/patient/dg/PatientAdd_Blank.png)
+
+#### Test: Optional parameters present
+
+`patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+
+##### Expected
+
+![Expected display](images/patient/dg/PatientAdd_NotBlank.png)
+
 ### Viewing details of a patient
 
 ### Listing all patients
