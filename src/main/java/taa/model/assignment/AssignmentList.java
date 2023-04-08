@@ -30,9 +30,6 @@ public class AssignmentList {
         assignmentMap.put(asgn.getName(), asgn);
     };
 
-    private AssignmentList() {
-    }
-
     /**
      * For all submission strings of one student, check whether they are length 5 and contains the correct input
      * format.

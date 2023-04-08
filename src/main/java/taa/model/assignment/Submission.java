@@ -129,5 +129,4 @@ public class Submission {
         final int late = isLateSubmission ? 1 : 0;
         return assignmentName + STR_SEP + graded + STR_SEP + late + STR_SEP + marks;
     }
-
 }
