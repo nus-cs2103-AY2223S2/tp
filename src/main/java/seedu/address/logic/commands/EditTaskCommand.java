@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.AddTaskCommand.MESSAGE_DUPLICATE_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_CREATEDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -37,13 +36,13 @@ public class EditTaskCommand extends Command {
         + "Parameters: "
         + PREFIX_TITLE + "TITLE "
         + PREFIX_CONTENT + "CONTENT "
-        + PREFIX_STATUS + "STATUS \n"
+        + PREFIX_STATUS + "STATUS "
+        + PREFIX_TASK_DEADLINE + "DEADLINE \n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_TITLE + "Complete Project X "
         + PREFIX_CONTENT + "Do the UML diagram "
         + PREFIX_STATUS + "false "
-        + PREFIX_TASK_CREATEDATE + "CREATEDATE "
-        + PREFIX_TASK_DEADLINE + "DEADLINE ";
+        + PREFIX_TASK_DEADLINE + "2030-12-25 ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Task edited: %1$s";
 
@@ -157,7 +156,7 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, content, status, deadline, createDate);
+            return CollectionUtil.isAnyNonNull(title, content, status, deadline);
         }
 
         public void setTitle(Title title) {

@@ -293,7 +293,7 @@ Examples:
 
 Edits the specified task from OfficeConnect.
 
-Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE] [cd/CREATEDATE]`
+Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE]`
 
 * Edits the task at the specified INDEX.
 * The INDEX refers to the INDEX shown in the displayed task list.
@@ -544,7 +544,7 @@ _Details coming soon ..._
 | [Delete Person](#322-deleting-a-person--deletep)                         | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
 | [Delete Task](#332-deleting-a-task--deletet)                             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
 | [Edit Person](#323-editing-a-person--editp)                              | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
-| [Edit Tasks](#333-editing-a-task--editt)                                 | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [cd/CREATEDATE]`<br> e.g.,`editt 2 t/Submit report st/true`                                                       |
+| [Edit Tasks](#333-editing-a-task--editt)                                 | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]`<br> e.g.,`editt 2 t/Submit report st/true`                                                                       |
 | [Exit](#371-exiting-the-program--exit)                                   | `exit`                                                                                                                                                                       |
 | [Filter Person](#368-filter-persons--filterp)                            | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
 | [Find Person](#325-locating-persons-by-name--findp)                      | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |

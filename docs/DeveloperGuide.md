@@ -35,7 +35,6 @@ by [se-education.org](https://se-education.org).
 * Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
 * [JUnit5](https://junit.org/junit5/)
 
---------------------------------------------------------------------------------------------------------------------
 
 ### 1.4 Setting up, getting started
 
@@ -65,7 +64,7 @@ Given below is a quick overview of main components and how they interact with ea
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
 It is responsible for, </br> At app launch: Initializes the components in the correct sequence, and connects them up with each other. </br> At shut down: Shuts down the components and invokes cleanup methods where necessary.
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#27-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
@@ -237,19 +236,19 @@ Below is a sequence diagram that illustrates how a user adds new tasks into Offi
 #### 3.1.2 Design Considerations
 **Aspect: Setting deadline as optional input**
 
-* **Alternative 1 (current choice):** Deadline is optional.
+* **Alternative 1 (current choice):** Deadline is optional
   * Pros: Increase convenience for users, as they will have to key in one less input. Not all tasks may have a set deadline.
-  * Cons: Users may be lazy to key in specific deadlines as it is optional
+  * Cons: Users may be lazy to key in specific deadlines as it is optional.
 
 * **Alternative 2:** Make deadline compulsory
   * Pros: Easier to implement
   * Cons: Inconveniences users, as they have to key in one more input to create a task, especially if there is no set deadline 
-  for the task and they have to create a dummy deadline just to create a task.
+  for the task. This would mean that they have to create a dummy deadline just to create a task.
 
 #### 3.1.3 Constraints:
 **Title must be unique:**  
 We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique
-titles, we encourage users to be specific in the title(purpose) of the task (e.g. they will set title as
+titles, we encourage users to be specific in the title (purpose) of the task (e.g. they will set title as
 "Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be
 able to clearly distinguish the purpose of each task just by looking at the title.  
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
@@ -440,6 +439,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 Below is a sequence diagram that illustrates how a user unassign a tasks from a person in the OfficeConnectModel. 
 
 ![AddTaskSequenceDiagram](images/UnassignSequenceDiagram.png)
+
 #### 3.8.1 Implementation
 
 The implementation of this feature is supported by `UnassignTaskCommand` and `UnassignTaskCommandParser`.
@@ -468,7 +468,7 @@ Below is a sequence diagram that illustrates how a user can see all tasks stored
 
 ### 3.10 Filter persons according to tag
 Syntax: `filterp tag/TAG`  
-Purpose: Allows users to find all persons with the specified tag
+Purpose: Allows users to find all persons with the specified tag.
 
 #### 3.10.1 Implementation
 The implementation of this feature is supported by `FilterCommand` and `FilterCommandParser`.
@@ -502,7 +502,18 @@ similarly named `fxml` and `css` to display the relevant quickstart information.
 #### 4.1.1 Description
 As we slowly improve OfficeConnect to provide support for managers and companies outside of Singapore, we plan to include additional support to allow for usage of OfficeConnect in other countries. This includes support for phone numbers with area codes, dashes, and the + sign which indicates which country the number is from.
 
-### 4.2
+### 4.2 Shortened or customisable keywords that maps to the same command
+#### 4.2.1 Description
+The current chosen keywords can be considered lengthy or verbose for some users. While this does not pose any problems
+to our target users who are generally fast typists, we plan to include alternative shortened keywords or the ability to
+customise keywords to improve the user experience.
+
+#### 4.2.2 Consideration
+The initial commands were very short and consisted of abbreviations like "lu", "la", "ap", and "ap". However, these
+abbreviations can be confusing for new users as they do not provide any information about what the command does which 
+would result in a constant need to refer to the User Guide for assistance. Likewise, this requires the user to put 
+in extra effort to learn and memorize the commands.
+
 ### 4.3
 ### 4.4
 ### 4.5
@@ -780,25 +791,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. OfficeConnect shows an error message.
 
-      Use case ends.
+  Use case ends.
 
 ---
 #### 6.3.8 Use case 8: List all tasks
 
-**Main Success Scenario (MSS):**
+  **Main Success Scenario (MSS):**
 
 1. User requests for a list of all tasks.
 
 2. OfficeConnect displays all tasks stored.
 
-   Use case ends.
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 ---
 #### 6.3.9 Use case 9: Mark a task
 
-**Main Success Scenario (MSS):**
+  **Main Success Scenario (MSS):**
 
-1. User requests for a list of all tasks.
+1. User requests for a [list of all tasks](#638-use-case-8--list-all-tasks).
 
 2. OfficeConnect displays all tasks stored.
 
@@ -806,12 +823,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 4. OfficeConnect marks the task as completed.
 
-   Use case ends.
+  Use case ends.
 
 **Extensions**
 
 * 1a. User requests to find tasks according to their titles.
-  
+
   Use case resumes at step 2.
 
 * 2a. The list is empty.
@@ -822,20 +839,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. OfficeConnect shows an error message.
 
-      Use case resumes at step 2.
+  Use case resumes at step 2.
 
 * 3b. The task at the given index is already marked as completed.
 
     * 3b1. OfficeConnect shows an error message.
 
-      Use case ends.
+  Use case ends.
 
 ---
 #### 6.3.10 Use case 10: Unmark a task
 
-**Main Success Scenario (MSS):**
+  **Main Success Scenario (MSS):**
 
-1. User requests for a list of all tasks.
+1. User requests for a [list of all tasks](#638-use-case-8--list-all-tasks).
 
 2. OfficeConnect displays all tasks stored.
 
@@ -843,7 +860,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 4. OfficeConnect unmarks the task as uncompleted.
 
-   Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -996,6 +1013,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+---
+#### 6.3.22 Use case 22: Edit a task
+
+**Main Success Scenario (MSS):**
+
+1. User requests to [list all tasks](#638-use-case-8--list-all-tasks).
+
+2. OfficeConnect displays all tasks stored.
+
+3. User requests to edit a specific task.
+
+4. OfficeConnect edits the task and display editted task.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to find tasks according to their titles.
+
+  Use case resumes at step 2.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. OfficeConnect shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. The deadline provided is after the date created.
+
+  * 3b1. OfficeConnect shows an error message.
+
+    Use case ends.
 ---
 ### 6.4 Non-Functional Requirements
 
@@ -1194,14 +1247,13 @@ testers are expected to do more *exploratory* testing.
 ### 7.7 Deleting a task
 
 1. Deleting a task while all task are being shown
-
-  1. Prerequisites: List all persons using the `listt` command. Multiple persons in the list.
-  2. Test case: `deletet 1`<br>
-     Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
-  3. Test case: `deletet 0`<br>
-     Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
-  4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
+   1. Prerequisites: List all persons using the `listt` command. Multiple persons in the list.
+   2. Test case: `deletet 1`<br>
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
+   3. Test case: `deletet 0`<br>
+      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 ### 7.8 Listing all tasks 
 
@@ -1242,7 +1294,7 @@ testers are expected to do more *exploratory* testing.
         Expected: All assigned tasks are displayed. "Displayed all assigned tasks" shown in status message.
 
 
-  2. There are no assigned tasks and persons in OfficeConnect.
+  1. There are no assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons with assignments.
      2. Test case: `viewassignedall` <br>
         Expected: No tasks or persons are displayed. "There are no assigned tasks or persons" shown in status message.
@@ -1251,16 +1303,16 @@ testers are expected to do more *exploratory* testing.
      4. Test case: `viewassignedt` <br>
         Expected: No tasks are displayed. "There are no assigned tasks" shown in status message.
 
-     3. There are unassigned tasks and persons in OfficeConnect.
+     5. There are unassigned tasks and persons in OfficeConnect.
         1. Prerequisites: There are tasks and persons without assignments.
         2. Test case: `viewunassignedall` <br>
            Expected: All unassigned tasks and persons are displayed. "Displayed all unassigned tasks and persons" shown in status message.
-     3. Test case: `viewunassignedp` <br>
+     6. Test case: `viewunassignedp` <br>
         Expected: All unassigned persons are displayed. "Displayed all unassigned persons" shown in status message.
-     4. Test case: `viewunassignedt` <br>
+     7. Test case: `viewunassignedt` <br>
         Expected: All unassigned tasks are displayed. "Displayed all unassigned tasks" shown in status message.
 
-  4. There are no unassigned tasks and persons in OfficeConnect.
+  2. There are no unassigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons without assignments.
      2. Test case: `viewunassignedall` <br>
         Expected: No tasks or persons are displayed. "There are no unassigned tasks or persons" shown in status message.
@@ -1292,7 +1344,7 @@ Having written more than **12,000 of LOC cumulatively, coupled with appropriate,
 
 In this section, we will detail some of the hurdles that we faced through the iterations of our tP.
 ### 8.1 Design Challenges
-Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some of the big design changes were:
+Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some big design changes includes:
 * Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.
 * Modifications for the help guide. Instead of just a URL link to the online UserGuide, we felt there was a need for a more "immediate" and quick reference guide that should be available, especially in settings where internet connection may not be available (which is also one of our NFRs.) By including a more detailed but sufficiently concise guide, we aim to ease the user into OfficeConnect more smoothly.
 * next pt
