@@ -12,18 +12,7 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniqueClientList
-Class Client
-
-Class UniqueProjectList
-Class Project
-
-class UniqueTagMappingList
-class TagMapping
 }
-
-show attributes
-hide empty attributes
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -36,35 +25,7 @@ Model .left.> ReadOnlyAddressBook
 
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueClientList
-AddressBook *--> "1" UniqueProjectList
-AddressBook *--> "1" UniqueTagMappingList
-UniqueClientList --> "*" Client : all
-UniqueProjectList --> "*" Project : all
-UniqueTagMappingList --> "*" TagMapping : all
-
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
-
-ModelManager -->"*" Client : filtered
-ModelManager -->"*" Client : sorted
-ModelManager -->"*" Project : filtered
-ModelManager -->"*" Project : sorted
-ModelManager -->"*" TagMapping : all
-
-Client : Name name
-Client : Phone phone
-Client : Email email
-Client : UniqueProjectList projects
-Client : Set<Tag> tags
-
-TagMapping : Tag tag
-
-Project : Title title
-Project : Deadline deadline
-Project : Price price
-Project : Status status
-Project : Set<Tag> tags
-Project -->"0..1 linkedClient" Client
+ModelManager --> "1" AddressBook
+ModelManager --> "1" UserPrefs
 
 @enduml

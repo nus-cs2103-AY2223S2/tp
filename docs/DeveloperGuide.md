@@ -119,14 +119,9 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-The `Client` object stores a few pieces of data as separate objects, some of which are optional, as shown in the diagram below. (These details were omitted from the model class diagram.)
-<img src="images/ClientClassDiagram.png" width="450" />
+The above diagram shows a quick overview of the Model component, while the below diagram expands on the associations between the `ModelManager` and `AddressBook` classes.
 
-The `Project` object stores a few pieces of data as separate objects, some of which are optional, as shown in the diagram below. (These details were omitted from the model class diagram.)
-<img src="images/ProjectClassDiagram.png" width="450" />
-
-The `TagMapping` objects stores a `Tag` object and how many `Client` and `Project` objects it belongs to, as shown in the diagram below. (These details were omitted from the model class diagram.)<br>
-<img src="images/TagMappingClassDiagram.png" width="120" height="150" />
+<img src="images/ModelAndAddressBookClassDiagram.png" width="700" />
 
 The `Model` component,
 
@@ -225,11 +220,11 @@ When parsing find commands, the parser parses each possible parameter one-by-one
 
 The `CombinedPredicate` object `c` is then used to update the filtered client list, as shown in the sequence diagram below.
 
-<img src="images/FindUpdateFilteredClientListSequenceDiagram.png" width="600" />
+<img src="images/FindUpdateFilteredClientListSequenceDiagram.png" width="800" />
 
 `CombinedPredicate` inherits from the generic class `Predicate<T>` and tests all predicates that were passed to it when it was initialised. This makes use of the `Command` design pattern, as the `FindClientCommand` and `FindProjectCommand` do not need to know which predicates specifically are involved., and only need to test the `CombinedPredicate`. This is shown by the class diagram below, where a `FindClientCommand` and `FindProjectCommand` stores a `CombinedPredicate` which can have any number of `Predicate`s.
 
-<img src="images/CombinedPredicateClassDiagram.png" width="400" />
+<img src="images/CombinedPredicateClassDiagram.png" width="500" />
 
 ### Done Status
 
