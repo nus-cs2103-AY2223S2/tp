@@ -256,6 +256,7 @@ Step 3. The user moves on to the next card by executing `]` in the command line 
 
 The following activity diagram summarizes what happens when a user executes `NextCard` command:
 
+![NextCardActivityDiagram](images/NextCardReviewActivityDiagram.png)
 
 
 ### Implementation of MasterDeck

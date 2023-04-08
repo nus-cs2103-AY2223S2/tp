@@ -1,0 +1,18 @@
+@startuml
+
+start
+:User inputs 'review DECK_INDEX' to enter review mode;
+:User completes review of the first card;
+:User inputs ']' command to move on to next card;
+
+if () then ([Current card is last card])
+    :PowerCard informs user
+    that this was the last card;
+else ([Next card exists])
+    :PowerCard displays next flashcard;
+
+
+endif
+
+stop
+@enduml
