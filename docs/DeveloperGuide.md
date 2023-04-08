@@ -1977,3 +1977,75 @@ TODO: to be removed
 | 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find math /byTag`    | Same as previous                            |
 | `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
 | 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |
+
+### Tag a Module
+
+| Test Case                       |                   Expected Result                    |
+|:--------------------------------|:----------------------------------------------------:|
+| `tag CS2040S /tags fun, cool`   |    CS2040S should be tagged with [`fun`, `cool`]     |
+| `tag CS2040S /tags Heavy`       | There should be no change no current tags of CS2040S |
+| `tag CS2040S /tags cool, cool`  |   CS2040S should only be tagged with [`cool`] once   |
+| `tag CS2040S /tags @@`          |          `Tag(s) @@ should be alphanumeric`          |
+| `tag CS2040S`                   |                   Invalid command                    |
+
+### Tag a Lecture
+
+| Test Case                                                                           |               Expected Result                |
+|:------------------------------------------------------------------------------------|:--------------------------------------------:|
+| 1. `tag Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav CS2040S`                 | Week 1 should be tagged with [`fun`, `cool`] |
+| 1. `nav CS2040S` <br/> 2. `tag Week 1 /tags fun, cool`                              |               Same as previous               |
+| 1. `nav ST2334` <br/> 2. `tag CS2040S /tags fun, cool` <br/> 3. `nav /mod CS2040S`  |               Same as previous               |
+
+### Tag a Video
+
+| Test Case                                                                                                                               |               Expected Result               |
+|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------:|
+| 1. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should be tagged with [`fun`, `cool`] |
+| 1. `nav CS2040S` <br/> 2. `tag Vid 3 /lec Week 1 /tags fun, cool` <br/> 3. `nav Week 1`                                                 |              Same as previous               |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `tag Vid 3 /tags fun, cool`                                                                  |              Same as previous               |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 3. `nav /lec Week 1 /mod CS2040S` |              Same as previous               |
+
+### Untag a Module
+
+| Test Case                          |                      Expected Result                      |
+|:-----------------------------------|:---------------------------------------------------------:|
+| `untag CS2040S /tags Heavy, Math`  | CS2040S should no longer be tagged with [`Heavy`, `Math`] |
+| `untag CS2040S /tags Heavy, Hehe`  |        `Tag Hehe of Module CS2040S does not exist`        |
+| `untag CS2040S /tags Heavy, Heavy` |     CS2040S should no longer be tagged with [`Heavy`]     |
+| `untag CS2040S`                    |                      Invalid Command                      |
+
+### Untag a Lecture
+
+| Test Case                                                                                    |                Expected Result                 |
+|:---------------------------------------------------------------------------------------------|:----------------------------------------------:|
+| 1. `untag Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav CS2040S`                            | Week 1 should no long be tagged with [`Intro`] |
+| 1. `nav CS2040S` <br/> 2. `untag Week 1 /tags Intro`                                         |                Same as previous                |
+| 1. `nav ST2334` <br/> 2. `untag Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /mod CS2040S` |                Same as previous                |
+
+### Untag a Video
+
+| Test Case                                                                                                                             |                 Expected Result                 |
+|:--------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------:|
+| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should no longer be tagged with [`Intro`] | 
+| 1. `nav CS2040S` <br/> 2. `untag Vid 3 /lec Week 1 /tags Intro` <br/> 3. `nav Week 1`                                                 |                Same as previous                 |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `untag Vid 3 /tags Intro`                                                                  |                Same as previous                 |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /lec Week 1 /mod CS2040S` |                Same as previous                 |
+
+### Export All Modules to a File
+
+| Test Case                                                |                                      Expected Result                                       |
+|:---------------------------------------------------------|:------------------------------------------------------------------------------------------:|
+| `export hello.json`                                      |                A hello.json file should appear in {JAR_file_location}/data                 |
+| 1. `export hi.json` <br/> 2. `export hi.json`            | `File already exist. If you want to overwrite this file, insert /overwrite in the command` |
+| 1. `export ha.json` <br/> 2. `export ha.json /overwrite` |                             `All modules archived to ha.json`                              |
+| `export letracker.json /overwrite`                       |               `Cannot export to the current working directory of Le Tracker`               |
+
+### Import Modules from a File
+
+| Test Case                                                                             |                                                  Expected Result                                                  |
+|:--------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------:|
+| 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` |                    `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker                     |
+| 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | `ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` |
+| 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  |                           `CS2040S` should be deleted and imported back into Le Tracker                           |
+
+
