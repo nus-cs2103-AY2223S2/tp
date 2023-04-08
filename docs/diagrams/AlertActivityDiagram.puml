@@ -4,7 +4,7 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if (input)  then ([input is empty])
+if ()  then ([input is empty])
      :Uses default 24hr alert window;
 else([input includes timeframe])
     :Uses input timeframe as alert window;
