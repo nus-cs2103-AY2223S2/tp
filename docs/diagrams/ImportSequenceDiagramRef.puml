@@ -42,7 +42,4 @@ activate Model
 Model --> Archive
 deactivate Model
 
-
-
-
 @enduml
