@@ -98,6 +98,10 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.sort();
     }
 
+    /**
+     * Generates a plan from this {@code TaskBook}.
+     * {@code Planner} must exist in the task book.
+     */
     public void plan(long workload, Planner plans) {
         tasks.plan(workload, plans);
     }

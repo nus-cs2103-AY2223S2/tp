@@ -23,7 +23,7 @@ public class StorageManager implements Storage {
     private PlannerStorage plannerStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code TaskBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TaskBookStorage}, {@code PlannerStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(TaskBookStorage taskBookStorage, UserPrefsStorage userPrefsStorage,
                           PlannerStorage plannerStorage) {

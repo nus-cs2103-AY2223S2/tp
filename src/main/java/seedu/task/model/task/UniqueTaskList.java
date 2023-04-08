@@ -126,9 +126,7 @@ public class UniqueTaskList implements Iterable<Task> {
         DeadlineList deadlines = filterDeadlines(currentDate);
 
         MonthlyPlan plan = new MonthlyPlan(workload, currentDate);
-        plan.allocateEvents(events);
-        plan.allocateDeadlines(deadlines);
-        plan.allocateSimpleTasks(simpleTasks);
+        allocate(plan, events, deadlines, simpleTasks);
 
         planner.setDailyPlans(plan.getDailyPlans());
     }
@@ -154,8 +152,9 @@ public class UniqueTaskList implements Iterable<Task> {
      * Returns true if {@code tasks} contains only unique tasks.
      */
     private boolean tasksAreUnique(List<Task> tasks) {
-        for (int i = 0; i < tasks.size() - 1; i++) {
-            for (int j = i + 1; j < tasks.size(); j++) {
+        int size = tasks.size();
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = i + 1; j <size; j++) {
                 if (tasks.get(i).isSameTask(tasks.get(j))) {
                     return false;
                 }
@@ -164,15 +163,21 @@ public class UniqueTaskList implements Iterable<Task> {
         return true;
     }
 
-    public SimpleTaskList filterSimpleTasks(LocalDate d) {
+    private SimpleTaskList filterSimpleTasks(LocalDate d) {
         return new SimpleTaskList(this.internalList, d);
     }
 
-    public DeadlineList filterDeadlines(LocalDate d) {
+    private DeadlineList filterDeadlines(LocalDate d) {
         return new DeadlineList(this.internalList, d);
     }
 
-    public EventList filterEvents(LocalDate d) {
+    private EventList filterEvents(LocalDate d) {
         return new EventList(this.internalList, d);
+    }
+
+    private void allocate(MonthlyPlan plan, EventList events, DeadlineList deadlines, SimpleTaskList simpleTasks) {
+        plan.allocateEvents(events);
+        plan.allocateDeadlines(deadlines);
+        plan.allocateSimpleTasks(simpleTasks);
     }
 }

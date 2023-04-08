@@ -8,6 +8,11 @@ import java.util.function.Predicate;
 public class SameEffortPredicate implements Predicate<Task> {
 
     private Effort effort;
+
+    /**
+     * Creates a {@code SameEffortPredicate} with an effort to be matched with.
+     * @param effort match tasks that has this effort
+     */
     public SameEffortPredicate(Effort effort) {
         this.effort = effort;
     }

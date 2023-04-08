@@ -30,11 +30,19 @@ public class DeadlineList extends CategoricalTaskList {
      */
     public DeadlineList() {}
 
+    /**
+     * Returns the number of tasks to be allocated in the planning algorithm.
+     */
     public int size() {
         return this.taskList.size();
     }
 
-    public Deadline get(int index) {
+    /**
+     * Retrieves a Deadline stored at indicated index.
+     * @param index location to retrieve from
+     * @return Deadline stored at location
+     */
+    public Deadline getDeadlineFromIndex(int index) {
         return taskList.get(index);
     }
 

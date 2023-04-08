@@ -4,7 +4,7 @@ import seedu.task.model.Model;
 import seedu.task.model.tracker.TaskByTagTracker;
 
 /**
- * Prints out statistics
+ * Generates statistics based on tags.
  */
 public class StatsCommand extends Command {
 

@@ -11,14 +11,23 @@ import seedu.task.logic.commands.exceptions.CommandException;
 public class IndexList {
     private ArrayList<Index> indexList;
 
+    /**
+     * Constructs an empty {@code IndexList} to process multiple indices entered.
+     */
     public IndexList() {
         this.indexList = new ArrayList<Index>();
     }
 
+    /**
+     * Adds an index into this list.
+     */
     public void add(Index parseIndex) {
         indexList.add(parseIndex);
     }
 
+    /**
+     * Returns the number of indices stored in this list.
+     */
     public int size() {
         return indexList.size();
     }

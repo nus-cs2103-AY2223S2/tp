@@ -16,7 +16,8 @@ import seedu.task.model.task.SimpleTaskList;
  * A 30-day overview of the work left to be done.
  */
 public class MonthlyPlan {
-    private static LocalDate today;
+    private static LocalDate dateGenerated;
+    private static int DATE_NOT_FOUND = -1;
     private DailyPlan[] dailyPlans = new DailyPlan[30];
 
     /**
@@ -25,7 +26,7 @@ public class MonthlyPlan {
      * @param currentDate date command is ran
      */
     public MonthlyPlan(long workload, LocalDate currentDate) {
-        today = currentDate;
+        dateGenerated = currentDate;
         for (int i = 0; i < 30; i++) {
             dailyPlans[i] = new DailyPlan(workload, currentDate.plusDays(i));
         }
@@ -39,7 +40,7 @@ public class MonthlyPlan {
      */
     public MonthlyPlan(DailyPlan[] dp, LocalDate today) {
         this.dailyPlans = dp;
-        this.today = today;
+        this.dateGenerated = today;
     }
 
     /**
@@ -61,9 +62,9 @@ public class MonthlyPlan {
      */
     public void allocateDeadlines(DeadlineList list) {
         for (int i = 0; i < list.size(); i++) {
-            Deadline d = list.get(i);
-            long daysDueIn = DAYS.between(d.getDeadline().getDate(), today);
-            int daysFromToday = findFirstFreeDate(d.getEffort().getEffort(), daysDueIn);
+            Deadline d = list.getDeadlineFromIndex(i);
+            long daysDueIn = d.getDaysBetween(dateGenerated);
+            int daysFromToday = findFirstFreeDate(d.getEffortValue(), daysDueIn);
             if (hasTime(daysFromToday)) {
                 dailyPlans[daysFromToday].addTask(d);
             } else {
@@ -82,8 +83,8 @@ public class MonthlyPlan {
      */
     public void allocateSimpleTasks(SimpleTaskList list) {
         for (int i = 0; i < list.size(); i++) {
-            SimpleTask s = list.get(i);
-            int daysFromToday = findMostBusyFreeDate(s.getEffort().getEffort());
+            SimpleTask s = list.getSimpleTaskFromIndex(i);
+            int daysFromToday = findMostBusyFreeDate(s.getEffortValue());
             if (hasTime(daysFromToday)) {
                 dailyPlans[daysFromToday].addTask(s);
             } else {
@@ -126,7 +127,7 @@ public class MonthlyPlan {
                 return i;
             }
         }
-        return -1;
+        return DATE_NOT_FOUND;
     }
 
     /**
@@ -158,6 +159,10 @@ public class MonthlyPlan {
         return false;
     }
 
+    public List<DailyPlan> getDailyPlans() {
+        return Arrays.asList(this.dailyPlans);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -171,11 +176,7 @@ public class MonthlyPlan {
                     return false;
                 }
             }
-            return today.equals(mp.today);
+            return dateGenerated.equals(mp.dateGenerated);
         }
-    }
-
-    public List<DailyPlan> getDailyPlans() {
-        return Arrays.asList(this.dailyPlans);
     }
 }
