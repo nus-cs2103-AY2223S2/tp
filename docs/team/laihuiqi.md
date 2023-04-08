@@ -7,6 +7,7 @@ title: Lai Hui Qi's Project Portfolio Page
 
 InternEase is a **powerful and innovative desktop app designed to streamline the internship application process** for **Computer Science undergraduates**. It offers optimized **combination of a Command Line Interface (CLI) and Graphical User Interface (GUI)**. InternEase is a good choice for you who wants to concentrate on your internship preparation by helping to manage your internship applications' data.
 
+* **Summary of Contributions**:
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=laihuiqi&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
@@ -36,23 +37,24 @@ Given below are my contributions to the project.
 * What it does:
   * Allow user to restore the most recent internship application from the CacheList.
 * Justification: This feature improves the product significantly by resolving the situation when the user accidentally deletes an internship application with many important particulars.
-* Highlights: A CacheList is implemented to be the data structure to hold the deleted or cleared internship applications temporarily for the current session.
+* Highlights: A new CacheList is implemented to be the data structure to hold the deleted or cleared internship applications temporarily for the current session.
 
 **New Feature**: Revert all deleted or cleared internship applications 
 * What it does:
   * Allow user to restore all deleted or cleared internship applications from the CacheList.
 * Justification: This feature enhances the revert feature of the product by resolving the situation when the user accidentally clears the entire internship application list. It increases the efficiency by providing an alternative to user rather than restoring the application entries one-by-one.
-* Highlights: A CacheList is implemented to be the data structure to hold the deleted or cleared internship applications temporarily for the current session.
+* Highlights: A new CacheList is implemented to be the data structure to hold the deleted or cleared internship applications temporarily for the current session.
 
 
-* **Project management**:
+* **Project management (Team-based tasks)**:
   * Added labels and modified label descriptions for issues.
+  * Added product icon.
   * Update `Ui.png` according to the latest GUI image of InternEase [\#223](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/223).
 
-* **Enhancements to existing features and codes**:
+* **Enhancements implemented**:
   * Enhanced `clear`, `delete` and `exit` features according to the InternEase model, added `CacheList` method to `clear` and `delete`.
-  * Enhanced GUI interface for `MainWindow`, `QuickAccessToolbar`, `Result Dialog` and `task package` related GUI parts [\#128](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/128), [\#162](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/162).
-  * Implemented or enhance test cases for `Command class` and `Parser class` related to all assigned features stated above, `ui` related class and add `testutil` for `task package`[\#272](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/272).
+  * Enhanced GUI interface for `MainWindow`, `QuickAccessToolbar`, `Result Dialog` and `task package` related GUI parts, many new components are added and the corresponding alignment settings are very challenging. [\#128](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/128), [\#162](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/162).
+  * Implemented or enhance test cases for `Command class` and `Parser class` related to all assigned features stated above, `ui` related class and add `testutil` for `task package`, increased test coverage of all mentioned classes to at least 80%.[\#272](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/272).
   * Credits: Some code reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
 
 

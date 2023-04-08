@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "{abstract}\nUiPart" as UiPart
+Class ControlBox
+Class Popup
+Class ApplicationListPanel #CF2765
+Class ApplicationCard
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+ApplicationListPanel --|> UiPart
+ControlBox --|> UiPart
+Popup --|> UiPart
+ApplicationCard --|> UiPart
+
+ApplicationListPanel -down-> ControlBox
+ApplicationListPanel -down-> ApplicationCard
+ControlBox -down-> Popup
+
+ApplicationCard .right.> Model
+Popup .right.> Model
+
+ApplicationCard -[hidden]right- ControlBox
+
+@enduml
