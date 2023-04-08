@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.COST_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEDICATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MEDICATION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COST_AMY;
@@ -36,6 +37,7 @@ class PrescribeCommandParserTest {
         assertParseFailure(parser, MEDICATION_DESC_AMY + COST_DESC_AMY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrescribeCommand.MESSAGE_USAGE));
         // Incorrect format for Medication
-        assertParseFailure(parser, NRIC_DESC_AMY + " m/a" + COST_DESC_AMY, Medication.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NRIC_DESC_AMY + INVALID_MEDICATION_DESC + COST_DESC_AMY,
+                Medication.MESSAGE_CONSTRAINTS);
     }
 }

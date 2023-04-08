@@ -56,13 +56,9 @@ public class Appointment {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("NRIC: ")
-                .append(getPatientNric())
-                .append("; Appointment: ")
-                .append(getBooking())
-                .append("; Doctor: ")
-                .append(getDrNric());
-        return builder.toString();
+        String builder = "NRIC: " + getPatientNric()
+                + "; Appointment: " + getBooking()
+                + "; Doctor: " + getDrNric();
+        return builder;
     }
 }
