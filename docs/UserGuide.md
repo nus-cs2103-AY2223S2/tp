@@ -10,8 +10,7 @@ title: User Guide
 Docedex is a **desktop application** built for **medical administrative assistants**
 to manage doctors and patients within clinics.
 
-Here's a **quick snapshot** of how Docedex can help you
-streamline your hospital management processes.
+Here's an **overview** of how Docedex can help you streamline your hospital management processes.
 - Store and edit information about your patients and doctors
 - Track the status of your patients and doctors
 - Assign patients to doctors upon triaging
@@ -23,8 +22,6 @@ If you type fast, Docedex can get your hospital management tasks done faster
 than current GUI apps in the industry.
 
 **If you are new here**, visit our [quick start](#quick-start) guide to onboard onto Docedex smoothly!
-
-![NewUi](images/NewUi.png)
 
 ## Table of Contents
 {: .no_toc}
@@ -38,35 +35,27 @@ than current GUI apps in the industry.
 
 1. Make sure that you have **Java 11 or above** installed on your computer.
    - [How do I check my version of Java?](#checking-java-version)
-   <br><br><br>
 2. Download the latest jar file (`docedex.jar`) from our [Github Releases](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/).
    ![DownloadDocedex](images/DownloadDocedex.png)
-   <br><br><br>
 3. Move the jar file to a folder where you want to store the data of the doctors and patients.
 - Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.).
 - Move the downloaded jar file to this folder as shown below.
-  - For Mac Users:<br>
-  <img src="images/DownloadDocedexMac.png" alt="DownloadDocedexMac" width="70%" height="70%">
-  - For Windows Users:<br>
-  <img src="images/DocedexInFileWin.png" alt="DocedexInFileWin" width="70%" height="70%">
-  <br><br><br>
+  - For Mac Users:
+    ![DownloadDocedexMac](images/DownloadDocedexMac.png)
+  - For Windows Users:
+  ![DownloadDocedexWindows](images/DocedexInFileWin.png)
 4. Launch Docedex
 - For Mac Users:
   - Right-click `docedex.jar` > Open With > JavaLauncher.app
-  <img src="images/LaunchDocedexMac.png" alt="LaunchDocedexMac" width="70%" height="70%">
   - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
 - For Windows Users:
   - Double-click `docedex.jar` to launch the application.
 - If this still does not work follow the instructions listed [here.](#launching-docedex)
 - You should notice the GUI of the application pop up.
-  <img src="images/NewUi.png" alt="NewUi" width="70%" height="70%">
-  <br><br><br>
 5. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
-  <br><br><br>
 6. For **new users**, learn to use Docedex [here](#docedex-tutorial-for-new-users).
-  <br><br><br>
 7. For **advanced users**, view all feature details [here](#features).
-  <br><br><br>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ---
@@ -121,17 +110,17 @@ regarding the use of the GUI.
 
 Here is a quick summary of each GUI component within Docedex.
 
-| **Name of component** | **Description**                                                                                                                                                                                                                                                                 |
-|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                     |
-| **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                         |
-| **Result Display**    | Provides CLI-based feedback upon a user command.<br>Allows users to see if their command was successful or not.<br>Provides error messages to guide user on how to use Docedex commands.                                                                                      |
+| **Name of component** | **Description**                                                                                                                                                                                                                                                             |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                 |
+| **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                     |
+| **Result Display**    | Provides CLI-based feedback upon a user command.<br>Allows users to see if their command was successful or not.<br>Provides error messages to guide user on how to use Docedex commands.                                                                                    |
 | **Doctor List**       | Shows a list of **Doctor Cards**. This list can be manipulated through commands.<br><br>Upon starting the app, this list will reflect all doctors in Docedex.<br><br>Upon selection of a **Patient Card**, this list will filter to show doctors assigned to said patient.  |
-| **Doctor Card**       | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                            |
+| **Doctor Card**       | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                        |
 | **Patient List**      | Shows a list of **Patient Cards**. This list can be manipulated through commands.<br><br>Upon starting the app, this list will reflect all patients in Docedex.<br><br>Upon selection of a **Doctor Card**, this list will filter to show patients assigned to said doctor. |
-| **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                           |
-| **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                    |
-| **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                      |
+| **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                       |
+| **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                |
+| **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
 
 
 ### Notes about the GUI
@@ -204,7 +193,6 @@ look through all the doctors and patients in Docedex, please use the
 This is a tutorial for **first-time** Docedex users.
 1. Launch Docedex. You may refer to the instructions [here](#quick-start)
    - Note: On launch, Docedex will not contain any doctor or patient records.
-     ![LaunchUi](images/LaunchUi.png)
 2. Let us try **adding a doctor** to our Docedex. Enter the command `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` in the command box.
    - Note: On adding a new doctor, the patients' list is filtered to show only patients associated with the doctor. To view all patient records, simply type `list-ptn` in the command box.
      ![AddDoc](images/AddDoc.png)
@@ -503,7 +491,6 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Command format: `help`
 - What it does: Shows a message explaining how to access this help page.
 
-![help message](images/HelpWindow.png)
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Exiting the program
