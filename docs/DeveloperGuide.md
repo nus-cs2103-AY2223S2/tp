@@ -544,7 +544,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. SudoHR shows an error message.
 
-     Use case resumes at step 1.
+      Use case resumes at step 1.
 
 **Use case: UC2 - Delete a employee**
 
@@ -631,7 +631,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC5 - list all employees**
+**Use case: UC5 - find an employees with keyword in name**
+
+**MSS:**
+
+1. User requests SudoHR to show the list of employees with name containing specified keywords.
+2. SudoHR shows the list of all employees with name that contains any of the keyword.
+
+    Use case ends.
+
+* 1a. The given command has invalid inputs
+
+    * 1a1. SudoHR shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC6 - list all employees**
 
 **MSS:**
 
@@ -640,7 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC6 - Add employee's leave**
+**Use case: UC7 - Add employee's leave**
 **MSS:**
 1. User requests SudoHR to add leave for a employee with a specific eid on a specific day.
 2. SudoHR informs user that employee's leave has been successfully added.
@@ -665,7 +680,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC7 - Add employee's leave in range**
+**Use case: UC8 - Add employee's leave in range**
 
 **MSS:**
 
@@ -706,7 +721,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
     
 
-**Use case: UC8 - Delete employee's leave**
+**Use case: UC9 - Delete employee's leave**
 
 **MSS:**
 
@@ -734,7 +749,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1. 
 
 
-**Use case: UC9 - List leaves**
+**Use case: UC10 - List leaves**
 
 **MSS:**
 
@@ -744,7 +759,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use case: UC10 - List employees on leave on a specific day**
+**Use case: UC11 - List employees on leave on a specific day**
 
 **MSS:**
 
@@ -762,7 +777,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC11 - List leaves taken by an employee**
+**Use case: UC12 - List leaves taken by an employee**
 
 **MSS:**
 
