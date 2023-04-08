@@ -231,7 +231,34 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes how features are implemented in GoodMatch in general. Detailed examples will be provided as well as specific details for noteworthy features.
+
+### Overview
+
+The basic idea for what happens when a user types a command and presses enter:
+1. The CommandBox executes the command with `handleCommandEntered()` which does 2 things.
+   1. Use `LogicManager` to execute the command.
+      1. The `LogicManager` is in charge of parsing commands.
+         1. Preliminary parsing is done by `ListingBookParser` to determine the type of command.
+         2. Further parsing is done by `XYZCommandParser` if there are additional arguments to be parsed.
+      2. The parsed command then communicates with the `ModelManager` to execute.
+   2. Display the result from step 1.
+
+For more detailed explanations and diagrams (sequence, partial class, and architecture diagrams) please refer to the [Design](#design) section above.
+
+In GoodMatch, feature commands can be split into these categories:
+1. Feature commands that only require a preliminary parsing.
+   1. Commands like `help`, `exit`, `view`.
+2. Feature commands that require further parsing which can be further categorised.
+   1. Feature commands that modify ListingBook.
+      1. Commands like `add`, `add_app`, `add_plat`, `delete`, `del_app`, `del_plat`, `edit`, and `edit_app`.
+   2. Feature commands that do not modify ListingBook.
+      1. Commands like `find` and `sort`.
+3. Feature commands for special features.
+   1. `undo`
+   2. Autocomplete feature (no command)
+
+Examples for the implementation of each category will be provided below.
 
 ### Add feature
 
@@ -286,8 +313,6 @@ Please refer to the activity diagram below to see what happens when the user ent
 * However, one disadvantage for using this design choice is the file directory might be very difficult to understand for newcomers because function calls are very deeply nested.
 
 ### Undo feature
-
-#### Overview
 
 The undo mechanism utilises the `prevListingBookStates` field in `ModelManager`. Additionally, it implements the following operations:
 
