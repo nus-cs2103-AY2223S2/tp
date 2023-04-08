@@ -353,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### **Instructions for Manual Testing**
 
-Presented below are a series of instructions, organized in **Context, Prerequisites, Action, Result** format, 
+Presented below are a series of instructions, organized in **Context, Action, Result (CAR)** format, 
 that can be followed to perform manual testing of the application.
 
 <div markdown="span" class="alert alert-info">
@@ -365,18 +365,20 @@ testers are expected to do more *exploratory* testing.
 
 #### Scenario 1  
 {: .no_toc}  
-**Context:** Initial launch  
+**Context:** Initial launch
+
 **Action:**
 1. Download the jar file and copy into an empty folder
-2. Double-click the jar file  
+2. Double-click the jar file
 
 **Result:**  Displays the GUI with the window size set to full-screen
 
 #### Scenario 2 
 {: .no_toc}  
-**Context:**  Restarting the application  
+**Context:**  Restarting the application with existing data
+
 **Action:**
-1. Right-click on the X button located in the top-right corner of the screen
+1. Right-click on the 'X' button located in the top-right corner of the screen
 2. Double-click the jar file
 
 **Result:**  The existing data should remain unchanged
@@ -385,124 +387,160 @@ testers are expected to do more *exploratory* testing.
 
 #### Scenario 1
 {: .no_toc}  
-**Context:** The `Event` has not yet been added to _Ez-Schedule_  
-**Action:** Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`   
-**Result:** The new `Event` has been successfully added to _Ez-Schedule_
+**Context:** The `Event` has not yet been added to _Ez-Schedule_
+
+**Action:** Execute the command `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
+
+**Result:** 
+* The `Event` has been successfully added to _Ez-Schedule_
+* Details of the `Event` is also added to the Events List Panel and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
-**Context:** An identical `Event` to the one being added, already exists in _Ez-Schedule_  
-**Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`  
-**Result:** Response Box will display the message "This event already exists in the scheduler"
+**Context:** An identical `Event` to the one being added, already exists in _Ez-Schedule_
+
+**Action:**  Execute the command `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
+
+**Result:** The Response Box will display the message "This event already exists in the scheduler"
 
 #### Scenario 3
 {: .no_toc}  
-**Context:** The selected time slot is already occupied by another `Event` in _Ez-Schedule_  
-**Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`  
-**Result:** Response Box will display the message "Another event already exists at the chosen time"
+**Context:** The selected time slot is already occupied by another `Event` in _Ez-Schedule_
+
+**Action:**  Execute the command `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
+
+**Result:** The Response Box will display the message "Another event already exists at the chosen time"
 
 #### **Recurring an Event**
 
 #### Scenario 1
 {: .no_toc}  
-**Context:** No conflicting `Event` scheduled during the recurring time frame specified  
-**Action:** Execute the command: `recur 1 d/2023-05-10 every/day`  
-**Result:** The `Event` will be added to _Ez-Schedule_ repeatedly until the specified end date
+**Context:** No conflicting `Event` scheduled during the recurring time frame specified
+
+**Action:** Execute the command: `recur 1 d/2023-05-10 every/day`
+
+**Result:**
+* The `Event` will be added repeatedly until the specified end date
+* Details of all the `Event` is also added to the Events List Panel and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
-**Context:** Another `Event` already exist in the recurring time frame specified for the `Event` being added  
-**Action:** Execute the command: `recur 1 d/2023-05-10 every/day`  
-**Result:** Response Box will display the message "Unable to recur. 10 May has a clashing event."
+**Context:** Another `Event` already exist in the recurring time frame specified by the `Event` being added
+
+**Action:** Execute the command: `recur 1 d/2023-05-10 every/day`
+
+**Result:** The Response Box will display the message "Unable to recur. 10 May has a clashing event."
 
 #### **Editing an Event**
 
 #### Scenario 1
 {: .no_toc}  
-**Context:** There exists an `Event` with the index 1 in _Ez-Schedule_  
-**Action:** Execute the command: `edit 1 n/Basketball`  
-**Result:** The name of the `Event` has been updated to "Basketball"
+**Context:** There exists an `Event` with the index 1 in _Ez-Schedule_
+
+**Action:** Execute the command: `edit 1 n/Basketball`
+
+**Result:** The name of the `Event` has been updated to Basketball
 
 #### Scenario 2
 {: .no_toc}  
-**Context:** Modify an `Event` to make it identical to another `Event` already present in _Ez-Schedule_  
-**Action:** Execute `edit` command with the arguments identical to another existing event  
-**Result:** Response Box will display the message "This event already exists in the scheduler"
+**Context:** Modify an `Event` to make it identical to another `Event` already present in _Ez-Schedule_
+
+**Action:** Execute `edit` command with arguments identical to another existing `Event`
+
+**Result:** The Response Box will display the message "This event already exists in the scheduler"
 
 #### **Deleting Events**
 
 #### Scenario 1
 {: .no_toc}  
-**Context:** There exists an `Event` with the `index` 1 in _Ez-Schedule_  
-**Action:** Execute the command: `delete 1`  
+**Context:** There exists an `Event` with the index 1 in _Ez-Schedule_
+
+**Action:** Execute the command: `delete 1`
+
 **Result:** 
 * The `Event` is removed from _Ez-Schedule_
 * Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
-**Context:** There exists multiple `Event` with the indexes 1, 2 and 3 in _Ez-Schedule_  
-**Action:** Execute the command: `delete 1 2 3`  
+**Context:** There exists multiple `Event` with the indexes 1, 2 and 3 in _Ez-Schedule_
+
+**Action:** Execute the command: `delete 1 2 3`
+
 **Result:** 
 * All the `Event` is removed from _Ez-Schedule_
 * Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 3
 {: .no_toc}  
-**Context:** One of the specified indexes, `index` 10, does not exist in _Ez-Schedule_  
-**Action:** Execute the command: `delete 1 2 3 10`  
+**Context:** One of the specified indexes, index 10, does not exist in _Ez-Schedule_
+
+**Action:** Execute the command: `delete 1 2 3 10`
+
 **Result:** 
 * The Response Box will display the message "The event index 10 provided is invalid"
-* None of the `Event` with valid `index` will be deleted from _Ez-Schedule_
+* None of the `Event` with valid index will be removed from _Ez-Schedule_
 
 #### **Finding Events**
 
 #### Scenario 1
 {: .no_toc}  
-**Context:** There exists at least one `Event` whose `Name` includes the word 'Tennis'  
-**Action:** Execute the command: `find n/Tennis`  
+**Context:** There exists at least one `Event` whose `Name` includes the word Tennis
+
+**Action:** Execute the command: `find n/Tennis`
+
 **Result:** 
-* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word 'Tennis' 
+* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
 #### Scenario 2
 {: .no_toc}  
-**Context:** There exists at least one `Event` whose `Name` partially matches the word 'Ten'  
-**Action:** Execute the command: `find n/Ten`  
+**Context:** There exists at least one `Event` whose `Name` partially matches the word 'Ten'
+
+**Action:** Execute the command: `find n/Ten`
+
 **Result:**
-* The Events List Panel will be updated to display only `Event` whose `Name` includes 'Ten', which may include `Name` such as 'Tennis'
+* The Events List Panel will be updated to display only `Event` whose `Name` includes Ten, which may include `Name` such as Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
 #### Scenario 3
 {: .no_toc}  
-**Context:** There exists at least 1 `Event` whose `Date` correspond to May 1, 2023  
-**Action:** Execute the command: `find d/2023-05-01`  
+**Context:** There exists at least 1 `Event` whose `Date` correspond to May 1, 2023
+
+**Action:** Execute the command: `find d/2023-05-01`
+
 **Result:**
 * The Events List Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 #### Scenario 4
 {: .no_toc}  
-**Context:** There exists at least one `Event` whose `Name` includes the word 'Tennis' and `Date` corresponds to May 1, 2023  
-**Action:** Execute the command: `find n/Tennis d/2023-05-01`  
+**Context:** There exists at least one `Event` whose `Name` includes the word Tennis and `Date` corresponds to May 1, 2023
+
+**Action:** Execute the command: `find n/Tennis d/2023-05-01`
+
 **Result:**
-* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word 'Tennis' and `Date` are May 1, 2023
+* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 #### **Show Next Events**
 
 #### Scenario 1
 {: .no_toc}  
-**Context:** None needed  
-**Action:** Execute the command: `next`  
+**Context:** None needed
+
+**Action:** Execute the command: `next`
+
 **Result:**
 * The Response Box will display the message "1 events listed!"
 * The Upcoming Events Panel will display the next upcoming or ongoing event that you have
 
 #### Scenario 2
 {: .no_toc}  
-**Context:** There exists at least two upcoming or ongoing `Event`  
-**Action:** Execute the command: `next 2`  
+**Context:** There exists at least two upcoming or ongoing `Event`
+
+**Action:** Execute the command: `next 2`
+
 **Result:**
 * The Response Box will display the message "2 events listed!"
 * The Upcoming Events Panel will display the next 2 upcoming or ongoing event that you have
@@ -511,7 +549,8 @@ testers are expected to do more *exploratory* testing.
 
 #### Scenario 1
 {: .no_toc}  
-**Context:** None needed  
+**Context:** None needed
+
 **Action:**
 1. Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
 2. Execute the command: `undo`  
@@ -522,7 +561,8 @@ testers are expected to do more *exploratory* testing.
 
 #### Scenario 2
 {: .no_toc}  
-**Context:** No conflicting `Event` scheduled during the recurring time frame specified  
+**Context:** No conflicting `Event` scheduled during the recurring time frame specified
+
 **Action:**
 1. Execute the command: `recur 1 d/2023-05-10 every/recur`
 2. Execute the command: `undo`
@@ -533,9 +573,10 @@ testers are expected to do more *exploratory* testing.
 
 #### Scenario 3
 {: .no_toc}  
-**Context:** There exists an `Event` with an `index` 1 and a `Name` of Tennis in _Ez-Schedule_
+**Context:** There exists an `Event` with an index 1 and a `Name` of Tennis in _Ez-Schedule_
+
 **Action:**
-1. Execute the command: `edit n/Basketball`
+1. Execute the command: `edit 1 n/Basketball`
 2. Execute the command: `undo`
 
 **Result:**
@@ -544,14 +585,15 @@ testers are expected to do more *exploratory* testing.
 
 #### Scenario 4
 {: .no_toc}  
-**Context:** There exists an `Event` with an `index` 1 in _Ez-Schedule_
+**Context:** There exists an `Event` with an index 1 in _Ez-Schedule_
+
 **Action:**
 1. Execute the command: `delete 1`
 2. Execute the command: `undo`
 
 **Result:**
 * The Response Box will display the message "Action undone: delete"
-* The `Event` with an `index` 1 that was deleted is added back into _Ez-Schedule_
+* The `Event` with index 1 that was deleted is added back into _Ez-Schedule_
 
 
 ### **Glossary**
