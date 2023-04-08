@@ -7,7 +7,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Software OverView**
+## **Software Overview**
 
 * MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read. MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib’s features are meant to be accessed through typed commands rather than mouse clicks.
 
@@ -501,8 +501,6 @@ books in the `Library`.
 - Alternative 2(current choice): Representing it with 5 star icons in the BookmarkList Panel
   - Pros: User can view ratings of books without having to click on the Bookmark Card
   - Cons: Harder to implement in the UI
-
-### \[Proposed\] Data archiving
 
 --------------------------------------------------------------------------------------------------------------------
 
