@@ -2,64 +2,66 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+- Table of Contents
+  {:toc}
+
+---
 
 ## 1. **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## 2. **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## 3. **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressBook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### 3.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The * * *Architecture Diagram* * * given above explains the high-level design of the App.
+The \* \* _Architecture Diagram_ \* \* given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressBook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressBook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -79,10 +81,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Employee`, `Department` or `Leave` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Employee`, `Department` or `Leave` object residing in the `Model`.
 
 ### 3.3. Logic component
 
@@ -93,6 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `SudoHRParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an employee).
@@ -110,21 +113,22 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `SudoHRParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SudoHRParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `SudoHRParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SudoHRParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 3.4. Model component
+
 **API** : [`Model.java`](./images/ModelClassDiagram.png)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
-* stores the system data i.e., all `Employee`, `Department` and `Leave` objects (which are contained in `UniqueEmployeeList`, `UniqueDepartmentList` and `UniqueLeaveList` objects respectively).
-* stores the currently 'selected' `Employee`, `Department` and `Leave` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Employee>`, `ObservableList<Department>` or `ObservableList<Leave>`, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the system data i.e., all `Employee`, `Department` and `Leave` objects (which are contained in `UniqueEmployeeList`, `UniqueDepartmentList` and `UniqueLeaveList` objects respectively).
+- stores the currently 'selected' `Employee`, `Department` and `Leave` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Employee>`, `ObservableList<Department>` or `ObservableList<Leave>`, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 ### 3.5. Storage component
 
@@ -133,15 +137,16 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both SudoHR data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `SudoHRStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both SudoHR data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `SudoHRStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.SudoHR.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## 4. **Design & Implementation**
 This section describes some noteworthy details, alongside considerations and constraints, on how certain features or classes are implemented.
@@ -184,12 +189,12 @@ This consistency is crucial to avoid confusing the user, especially since severa
 The 'Employee' object represents an Employee in the company. They are all stored in a `UniqueEmployeeList`.
 
 The attributes of an Employee are:
-* `Id`: The employee id, which is their unique identifier in the company.
-* `Name`: The name of the employee.
-* `Email`: The email of the employee, which should be unique.
-* `Phone`: The phone of the employee, which should be unique.
-* `Address`: The address of the employee.
-* `Tags`: The tags assigned to the employee.
+- `Id`: The employee id, which is their unique identifier in the company.
+- `Name`: The name of the employee.
+- `Email`: The email of the employee, which should be unique.
+- `Phone`: The phone of the employee, which should be unique.
+- `Address`: The address of the employee.
+- `Tags`: The tags assigned to the employee.
 
 **Note**:
 1. For the commands in this section, the order in which the prefixes (if any) are placed does not matter.
@@ -197,6 +202,7 @@ The attributes of an Employee are:
 2. If duplicated prefixes are provided, only the argument associated with last instance of the same prefix will be processed by the parser.
 3. We make a distinction between the prefixes `id/` and `eid/`. 
 The former is used when initializing or editing an Id field whereas the latter is used to reference an employee that exists in SudoHR.
+
 
 
 #### 4.2.1 Adding an employee
@@ -321,8 +327,9 @@ Sequence Diagram:
 The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList` managed by SudoHR.
 
 The attributes of a department are:
-* `DepartmentName`: The name of the department, which is also the unique identifier for a department.
-* `UniqueEmployeeList`: The employees in a department, the list must not contain duplicate employees.
+
+- `DepartmentName`: The name of the department, which is also the unique identifier for a department.
+- `UniqueEmployeeList`: The employees in a department, the list must not contain duplicate employees.
 
 The uniqueness of each department in `UniqueDepartmentList` is enforced by checking against the `DepartmentName`. This will be explained in the _Adding a department_ section.
 
@@ -344,7 +351,7 @@ Sequence Diagram:
 2. The parser will instantiate a new `DepartmentName` object constructed from the input of the argument `/n` which represents the department name.
 3. A `Department` object is constructed from the `DepartmentName` and handed over to the `AddDepartmentCommand`.
 4. The command is executed. It first checks if the department contains the employee being added. This is done to prevent the addition of duplicate
-employees in the same department.
+   employees in the same department.
 5. If there is no duplicate, the model adds the department to SudoHR.
 
 After that, the command result is returned.
@@ -377,7 +384,7 @@ Sequence Diagram:
 3. A `EditDepartmentDescriptor` object is constructed from the `DepartmentName` and handed over to the `EditDepartmentCommand`.
 4. The command is executed. It first tries to find the department called Marketing.
 5. If the Marketing department exists, the command will then create the new department called Sales using the EditDepartmentDescriptor.
-The non-edited attributes from Marketing will be passed down to Sales.
+   The non-edited attributes from Marketing will be passed down to Sales.
 6. The command then checks if the edited department exists in SudoHR.
 7. If there is no duplicate, the model adds the department to SudoHR.
 
@@ -442,11 +449,11 @@ Sequence Diagram:
 ##### Flow
 
 1. The user enters the command, eg. `aetd eid/100 n/Software Engineering`. It represents that the employee with ID 100
-is supposed to be added to the Software Engineering department.
+   is supposed to be added to the Software Engineering department.
 2. The parser instantiates a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
 3. The command is executed. It first tries to find the employee with ID 100 and department called Software Engineering.
 4. If the employee and department exists, the command checks if the same employee exists in the department.
-6. If there is no duplicate employee in the department, the model adds the employee to the department.
+5. If there is no duplicate employee in the department, the model adds the employee to the department.
 
 After that, the command result is returned.
 
@@ -479,7 +486,7 @@ Sequence Diagram:
 2. The parser instantiates a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
 3. The command is executed. It first tries to find the employee with ID 100 and department called Software Engineering.
 4. If the employee and department exists, the command checks if the same employee exists in the department.
-6. If the employee exists in the department, the model removes the employee from the department.
+5. If the employee exists in the department, the model removes the employee from the department.
 
 After that, the command result is returned.
 
@@ -498,24 +505,25 @@ Sequence Diagram:
 ##### Flow
 
 1. The user enters the command, eg. `led eid/100`. It represents listing all departments that contain employee
-with ID 100.
+   with ID 100.
 2. The parser instantiates a new `Id` object constructed from the input of argument `eid/`.
 3. The `Id` object is used to instantiate the `DepartmentContainsEmployeePredicate`, which will be used to filter
-the `FilteredDepartmentList` later on.
+   the `FilteredDepartmentList` later on.
 4. The command is executed. It first tries to find the employee with ID 100.
 5. If the employee exists, the `FilteredDepartmentList` will be updated and SudoHR will display all the departments
-that employee with ID 100 is in.
+   that employee with ID 100 is in.
 
 After that, the command result is returned.
 
 
 ### 4.4. Leave-related features
-
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
 The attributes of a leave are:
-* `date`: The date of the leave, which is also the unique identifier for a leave
-* `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
+
+- `date`: The date of the leave, which is also the unique identifier for a leave
+- `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
+
 
 #### 4.4.1. Adding an employee's leave
 The `aetd` command adds an employee's leave on a specific day:
@@ -538,7 +546,9 @@ Sequence Diagram:
 7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
 
 ##### Feature considerations
+
 We decided to throw an exception when the employee has already taken leave on the same day as the input date, since the user may have accidently provided a wrong date and hence the exception would be more suitable as it would be more noticeable than the success message.
+
 
 #### 4.4.2. Deleting an employee's leave
 The `defl` command delete an employee's leave on a specific day:
@@ -559,6 +569,7 @@ Sequence Diagram:
 5. If the employee does not exists in `Leave` (The employee has yet take leave on the input date), an error will be thrown too.
 6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
 7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
+
 
 #### 4.4.3. Adding an employee's leave in a range
 The `aelr` command adds an employee's leave on all the days between the range of a start date to an end date inclusive.
@@ -582,7 +593,7 @@ Sequence Diagram:
 8. SudoHr will show all the days on which the employee has successfully taken leave.
 
 ##### Feature considerations
-We intentionally limited the range of days to be added to one week. This is to avoid excessively large ranges that are likely to be an error or typo rather than intended, such as taking leaves over multiple years. Hence, we decided that 1 week would be the most appropriate duration as it is the typical length of leave taken when people go on vacation.
+We intentionally limited the range of days to be added to 1 week. This is to avoid excessively large ranges that are likely to be an error or typo rather than intended, such as taking leaves over multiple years. Hence, we decided that 1 week would be the most appropriate duration as it is the typical length of leave taken when people go on vacation.
 
 Should an employee indeed have more than 1 week of leave applied, the leave will be registered as different commands.
 
@@ -598,6 +609,7 @@ The `leol` command lists employees taking leave on a specific date.
 3. The command is executed. It initializes a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
 4. The command uses the `LeaveContainsEmployeePredicate` to filter the employees and display the employees that have taken leave on the specified day.
 
+
 #### 4.4.5 Listing all leaves 
 The `llve` command lists all leaves taken by employees in SudoHR.
 
@@ -612,18 +624,17 @@ After that, the command result is returned.
 Only leaves that have at least 1 employee will be displayed.
 
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## 5. **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## 6. **Appendix: Requirements**
 
@@ -633,367 +644,234 @@ Only leaves that have at least 1 employee will be displayed.
 
 **Value proposition**: data management for employees faster than a typical mouse/GUI driven app
 
-
 ### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                                                   | So that I can…​                                                            |
-|----------|----------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | new user                               | see usage instructions                                         | refer to instructions when I forget how to use the App                     |
-| `* * *`  | HR personnel                           | add a new employee                                             | ensure consolidation of information when an employee is hired              |
-| `* * *`  | HR personnel                           | edit a new employee                                            | ensure consolidation of information when an employee has new details       |
-| `* * *`  | HR personnel                           | delete an employee                                             | ensure consolidation of information when an employee left the company      |
-| `* * *`  | HR personnel                           | find an employee by name                                       | locate details of employees without having to go through the entire list   |
-| `* *`    | HR personnel                           | hide private contact details                                   | minimize chance of someone else seeing them by accident                    |
-| `* * *`  | HR personnel                           | add an employee’s leave to SudoHR                              | ensure consolidation of information                                        |
-| `* * *`  | HR personnel                           | remove an employee’s leave for SudoHR                          | ensure consolidation of information                                        |
-| `* * *`  | HR personnel                           | view all leaves an employee has applied for                    | access an employee's availability easily                                   |
-| `* * *`  | HR personnel                           | view all employees on leave today                              | know today's headcount                                                     |
-| `* * *`  | HR personnel                           | view all leaves applied for a given day                        | better plan company events                                                 |
-| `* * *`  | HR personnel                           | view all leaves applied for a given day for a given department | better plan depeartment events                                             |
-| `* * *`  | HR personnel                           | add a department                                               | ensure consolidation of information when a new department is formed        |
-| `* * *`  | HR personnel                           | edit a department                                              | ensure consolidation of information when a department's detail is changed  |
-| `* * *`  | HR personnel                           | delete a department                                            | ensure consolidation of information when a department is disbanded         |
-| `* * *`  | HR personnel                           | find a department by name                                      | locate details of departments without having to go through the entire list |
-| `* * *`  | HR personnel                           | add an employee to a department                                | ensure consolidation of information when a department has a new employee   |
-| `* * *`  | HR personnel                           | remove an employee from a department                           | ensure consolidation of information when an employee leaves a department   |
-| `* * *`  | HR personnel                           | list all departments an employee is in                         |                                                                            |
-| `* * *`  | HR personnel                           | list all employees in a department                             | view manpower size of a department                                         |
+| Priority | As a …​      | I want to …​                                                   | So that I can…​                                                            |
+| -------- | ------------ | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `* * *`  | new user     | see usage instructions                                         | refer to instructions when I forget how to use the App                     |
+| `* * *`  | HR personnel | add a new employee                                             | ensure consolidation of information when an employee is hired              |
+| `* * *`  | HR personnel | edit a new employee                                            | ensure consolidation of information when an employee has new details       |
+| `* * *`  | HR personnel | delete an employee                                             | ensure consolidation of information when an employee left the company      |
+| `* * *`  | HR personnel | find an employee by name                                       | locate details of employees without having to go through the entire list   |
+| `* *`    | HR personnel | hide private contact details                                   | minimize chance of someone else seeing them by accident                    |
+| `* * *`  | HR personnel | add an employee’s leave to SudoHR                              | ensure consolidation of information                                        |
+| `* * *`  | HR personnel | remove an employee’s leave for SudoHR                          | ensure consolidation of information                                        |
+| `* * *`  | HR personnel | view all leaves an employee has applied for                    | access an employee's availability easily                                   |
+| `* * *`  | HR personnel | view all employees on leave today                              | know today's headcount                                                     |
+| `* * *`  | HR personnel | view all leaves applied for a given day                        | better plan company events                                                 |
+| `* * *`  | HR personnel | view all leaves applied for a given day for a given department | better plan depeartment events                                             |
+| `* * *`  | HR personnel | add a department                                               | ensure consolidation of information when a new department is formed        |
+| `* * *`  | HR personnel | edit a department                                              | ensure consolidation of information when a department's detail is changed  |
+| `* * *`  | HR personnel | delete a department                                            | ensure consolidation of information when a department is disbanded         |
+| `* * *`  | HR personnel | find a department by name                                      | locate details of departments without having to go through the entire list |
+| `* * *`  | HR personnel | add an employee to a department                                | ensure consolidation of information when a department has a new employee   |
+| `* * *`  | HR personnel | remove an employee from a department                           | ensure consolidation of information when an employee leaves a department   |
+| `* * *`  | HR personnel | list all departments an employee is in                         |                                                                            |
+| `* * *`  | HR personnel | list all employees in a department                             | view manpower size of a department                                         |
 
-
-*{More to be added}*
+_{More to be added}_
 
 ### 6.3. Use cases
 
-(For all use cases below, the **System** is  `SudoHR` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `SudoHR` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new employee**
+**Use case: Listing all departments**
 
 **MSS**
 
-1.  User requests to list employees
-2.  SudoHR shows a list of employees
-3.  User requests to delete a specific employee in the list
-4.  SudoHR deletes the employee
+1. User requests to list all departments
+2. SudoHr shows the list of all departments
+
+   Use case ends.
+
+**Use case: Finding a department using a keyword**
+
+1. User requests to show the list of departments containing specified keywords
+2. SudoHr shows the list of all departments with name that contains any of the keywords.
+
+   Use case ends.
+
+**Use case: Adding a department**
+
+**MSS**
+
+1. User requests to add a new department with a given name that is alphanumeric.
+2. SudoHr adds the department with the given name.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. User gives a name that is not alpha numeric
+
+  - 1a1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+- 1b. User gives a name that is already used.
+
+  - 1b1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Deleting a department**
+
+**MSS**
+
+1. User gives the name of the department to be deleted.
+2. SudoHr deletes the department with the given name.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The department with the given name does not exist.
+
+  - 1a1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Editing a department**
+
+**MSS**
+
+1. User requests to edit a department.
+2. SudoHr edits the department.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. User does not give any inputs.
+
+  - 1a1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+- 1b. User tries to edit a department that does not exist.
+
+  - 1b1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+- 1c. User tries to edit the department name into another name that is used by an existing department.
+
+  - 1c1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Adding an employee to department**
+
+**MSS**
+
+1. User requests to an an employee into a given department.
+2. SudoHr adds the employee to the given department.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The employee to be added does not exist.
+
+  - 1a1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+- 1b. The department for an employee to be added does not exist.
+
+  - 1b1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Removing an employee from a department**
+
+**MSS**
+
+1. User requests to remove an employee from a given department.
+2. SudoHr removes the employee from the given department.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. Given employee does not exist.
+
+  - 1a1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+- 1b. Given department does not exist.
+
+  - 1b1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+- 1c. The given employee does not belong to the given department.
+
+  - 1c1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Listing all employees in a given department**
+
+1. User requests to list all employees in a given department.
+2. SudoHr lists all the employees in the given department.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given department does not exist.
+
+  - 1a1. SudoHr shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Listing all departments that an employee is in**
+
+1. User requests to list all the departments that a given employee is in.
+2. SudoHr lists all the department that the given employee is in.
+
+**Extensions**
+
+- 1a. The given employee does not exist.
+  - 1a1. SudoHr shows an error message.
+- 1b. The employee is not in any department.
+
+  Use case ends.
+
+**Use case: list the department headcount**
+
+1. User requests to list all the employees present in a given department.
+2. SudoHr lists all the employees present in the given department for the current date.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. User requests to list employees present on a date that is before the current date.
+
+  - 1a1. SudoHr shows an error message.
+
+- 1b. User requests to list employees present on a date that is not within a year from the current date.
+
+  - 1b1. SudoHr shows an error message.
+
+- 1c. User requests to list employees present on a specified that is after the current date but within a year from the current date.
+
+  - 1c1. SudoHr lists all the employees in the given department on the specified date.
 
     Use case ends.
 
-**Extensions**
+- 1d. The department does not exist.
 
-* 2a. The list is empty.
+  - 1d1. SudoHr shows an error message.
 
-  Use case ends.
+    Use case resumes at step 1.
 
-* 3a. The given index is invalid.
-
-    * 3a1. SudoHR shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC1 - Create a department**
-
-**MSS:**
-1. User requests to create a department.
-2. SudoHR creates the department.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given argument is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: UC2 - Add employee to department**
-**MSS:**
-1. User lists department
-2. User requests to add employee to the department.
-3. SudoHR adds employee to the department.
-4. Use case ends.
-
-**Extensions**
-
-* 1a. The given argument is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC3 - List Employees in department**
-
-**MSS:**
-1. User requests to list the employees in a specified department.
-2. SudoHr lists all the employees in the department.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given department is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: UC4 - List Employees in a department present on a given day.**
-
-**MSS:**
-1. User requests to list all employees in a given department who are present.
-2. SudoHR lists the employees.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given department does not exist.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: UC5 - Delete a project**
-
-**MSS:**
-1. User lists all existing projects.
-2. User requests to delete a project.
-3. SudoHR deletes the project.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given argument is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC6 - List projects**
-
-**MSS:**
-1. User lists all existing projects.
-
-   Use case ends.
-
-**Use case: UC7 - Add employee to a project**
-
-**MSS:**
-1. User lists all existing projects.
-2. User lists all employees.
-3. User requests to add employee to a specific project.
-4. SudoHR adds employee to the project.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given argument(s) is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 3.
-
-**Use case: UC8 - Remove employee from a project**
-
-**MSS:**
-1. User lists all existing projects.
-2. User lists all employees.
-3. User requests to remove employee from a specific project.
-4. SudoHR removes employee from the project.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given argument(s) is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 3.
-
-**Use case: UC9 - List all employees doing a project**
-
-**MSS:**
-1. User lists all existing projects.
-2. User requests to list all employees doing a project.
-3. SudoHR lists all the employees doing a project
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given argument(s) is invalid.
-
-    * 1a1. SudoHR shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC10 - Add event**
-**MSS:**
-1. User request to add event with corresponding event title description and date
-2. SudoHR adds event.
-3. Use case ends.
-
-**Extensions**
-
-* 1a. The given argument has invalid fields.
-
-   * 1a1. SudoHR shows an error message.
-
-     Use case resumes at step 1.
-
-* 1b. The given argument has missing fields.
-
-    * 1b1. SudoHR shows an error message.
-
-      Use case resumes at step 1.
-
-
-
-
-**Use case: UC11 - Delete event**
-**MSS:**
-1. User request to __list events(UC6)__
-2. SudoHR shows all events
-3. User requests to delete event from SudoHR
-4. SudoHR deletes event.
-5. Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. SudoHR shows an error message.
-
-      Use case resumes at step 2.
-
-
-**Use case: UC12 - Update event**
-**MSS:**
-1. User requests to __list events(UC6)__
-2. SudoHR shows all events and their details
-3. User requests to update event details on SudoHR
-4. SudoHR update event.
-5. Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. SudoHR shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given argument is empty.
-
-    * 3b1. SudoHR shows an error message.
-
-      Use case resumes at step 2.
-
-
-**Use case: UC13 - List event**
-**MSS:**
-1. User requests SudoHR to list all events
-2. SudoHR shows all events and their details
-
-
-**Use case: UC14 - Add employee to event**
-**MSS:**
-1. User requests to __list events(UC6)__
-2. SudoHR shows all events and their details
-3. User requests to list employees
-4. SudoHR shows all employees and their details
-5. User requests to add employee to event on SudoHR
-6. SudoHR adds employee to event.
-7. Use case ends.
-
-**Extensions**
-
-* 2a. The event list is empty.
-
-  Use case ends.
-
-* 4a. The employee list is empty.
-
-  Use case ends.
-
-* 5a. The given Employeeindex is invalid.
-
-    * 5a1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
-* 5b. The given Eventindex is invalid.
-
-    * 5b1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
-**Use case: UC15 - List employees in an event**
-**MSS:**
-1. User requests to __list events(UC6)__
-2. SudoHR shows all events and their details
-3. User requests to __list employees in a event(UC8)__
-4. SudoHR shows all employees added to an event and their details
-5. Use case ends.
-
-**Extensions**
-
-* 2a. The event list is empty.
-
-  Use case ends.
-
-* 3a. The given Index is invalid.
-
-    * 3a1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
-**Use case: UC16 - Delete employee from event**
-**MSS:**
-1. User requests to __list events(UC6)__
-2. SudoHR shows all events and their details
-3. User requests to __list employees in a event(UC8)__
-4. SudoHR shows all employees added to an event and their details
-5. User requests to delete employee to event on SudoHR
-6. SudoHR delete employee from event.
-7. Use case ends.
-
-**Extensions**
-
-* 2a. The event list is empty.
-
-  Use case ends.
-
-* 4a. The employee list is empty.
-
-  Use case ends.
-
-* 5a. The given Employeeindex is invalid.
-
-    * 5a1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
-* 5b. The given Eventindex is invalid.
-
-    * 5b1. SudoHR shows an error message.
-
-      Use case resumes at step 4.
-
-
-*{More to be added}*
+_{More to be added}_
 
 ### 6.4. Non-Functional Requirements
 
@@ -1002,14 +880,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Comfortable working with CLI.
 
-*{More to be added}*
+_{More to be added}_
 
 ### 6.5. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Private contact detail**: A contact detail that is not meant to be shared with others
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## 7. **Appendix: Instructions for manual testing**
 
@@ -1027,15 +905,15 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder
 
    2. Double-click the jar file Expected: Shows the GUI with a set of sample employees.
-   The window size may not be optimum.
+      The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-   
+      Expected: The most recent window size and location is retained.
+
 ### 7.2. Employee commands
 
 #### 7.2.1. Adding an employee
@@ -1189,8 +1067,8 @@ testers are expected to do more *exploratory* testing.
 #### 7.4.1. Adding a leave
 
 1. Test case: `aetl eid/1 d/2023-12-31` <br>
-   Expected: 
-   1. Lists all employees taking leave on that date in the employee window. 
+   Expected:
+   1. Lists all employees taking leave on that date in the employee window.
    2. Shows only the given leave date in the leave window.
 2. Test case: `aetl 1 d/2023-12-31` (incorrect command format) <br>
    Expected: No leave taken. Result display shows correct command format and command constraints.
@@ -1210,8 +1088,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `defl eid/1 d/2023-12-31` <br>
    Expected:
-    1. Lists all employees taking leave on that date in the employee window.
-    2. Shows only the given leave date in the leave window.
+   1. Lists all employees taking leave on that date in the employee window.
+   2. Shows only the given leave date in the leave window.
 2. Test case: `defl 1 d/2023-12-31` (incorrect command format) <br>
    Expected: No leave deleted. Result display shows correct command format and command constraints.
 3. Other incorrect `defl` commands to try: `defl`, `...` (non-existent employee, employee did not take leave on that date, etc) <br>

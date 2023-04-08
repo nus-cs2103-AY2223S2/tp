@@ -83,8 +83,7 @@ public class ListDepartmentHeadcountCommand extends Command {
         // show the relevant department
         model.updateFilteredDepartmentList(d -> d.equals(department));
 
-        // show the leaves on the date
-        model.updateFilteredLeaveList(l -> l.equals(leaveOnGivenDate));
+
 
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getFilteredEmployeeList().size(),
