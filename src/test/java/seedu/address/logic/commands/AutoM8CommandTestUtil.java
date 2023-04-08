@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.opentest4j.AssertionFailedError;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,8 +25,8 @@ import seedu.address.testutil.TypicalShop;
 public class AutoM8CommandTestUtil {
 
 
-    public static boolean assertFailure(Command command, Model model, Exception exception) {
-        return assertFailure(command, model, exception.getMessage());
+    public static void assertFailure(Command command, Model model, Exception exception) {
+        assertFailure(command, model, exception.getMessage());
     }
 
     /**
@@ -37,21 +39,22 @@ public class AutoM8CommandTestUtil {
      * @return Whether executed command returns command result's message.
      */
 
-    public static boolean assertFailure(Command command, Model model, String msg) {
+    public static void assertFailure(Command command, Model model, String msg) {
         CommandResult result = null;
         try {
             result = command.execute(model);
+            throw new AssertionFailedError("Assert Failure returns non-failure condition!");
         } catch (CommandException ce) {
             String errMsg = ce.getMessage();
-            return errMsg != null && msg != null
+
+            assertTrue(errMsg != null && msg != null
                     && errMsg.hashCode() == msg.hashCode()
-                    && errMsg.equals(msg);
+                    && errMsg.equals(msg));
         }
-        throw new AssertionFailedError("Assert Failure returns non-failure condition!");
     }
 
-    public static boolean assertSuccess(Command command, Model model, Exception exception) {
-        return assertSuccess(command, model, exception.getMessage());
+    public static void assertSuccess(Command command, Model model, Exception exception) {
+        assertSuccess(command, model, exception.getMessage());
     }
 
     /**
@@ -63,17 +66,18 @@ public class AutoM8CommandTestUtil {
      * @param msg Expected CommandResult
      * @return Whether executed command returns command result's message.
      */
-    public static boolean assertSuccess(Command command, Model model, String msg) {
+    public static void assertSuccess(Command command, Model model, String msg) {
         CommandResult result = null;
         try {
             result = command.execute(model);
+            String posMsg = result.getFeedbackToUser();
+            assertTrue (posMsg != null && msg != null
+                    && posMsg.hashCode() == msg.hashCode()
+                    && posMsg.equals(msg));
+
         } catch (CommandException ce) {
             throw new AssertionFailedError("Assert Success returns failure condition!");
         }
-        String posMsg = result.getFeedbackToUser();
-        return posMsg != null && msg != null
-                && posMsg.hashCode() == msg.hashCode()
-                && posMsg.equals(msg);
     }
 
     /**
