@@ -28,9 +28,7 @@ public class Tag {
     }
 
     /**
-     * Returns true if a given string is at most 100 characters long.
-     * @param test
-     * @return
+     * Returns true if a given string is at most 60 characters long.
      */
     public static boolean isValidTagLength(String test) {
         return test.length() <= 60;
