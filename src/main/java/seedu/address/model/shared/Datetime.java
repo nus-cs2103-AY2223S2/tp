@@ -101,6 +101,7 @@ public class Datetime {
         }
     }
 
+
     /**
      * Returns the stored timestamp as an Optional.
      *
@@ -109,6 +110,7 @@ public class Datetime {
     public Optional<Long> getTimestamp() {
         return Optional.ofNullable(timestamp);
     }
+
 
     /**
      * Checks if the given LocalDateTime object represents a past date and time.
@@ -129,7 +131,7 @@ public class Datetime {
      * @param deadline the Datetime object representing the deadline to be checked
      * @param now the Datetime object representing the current datetime
      * @return true if the deadline is in the past relative to the current datetime, false otherwise
-     * @throws DateTimeException if the timestamp of any of the Datetime objects is out of range of a
+     * @throws DateTimeException if the timestamp if any of the Datetime objects is out of range of a
      *      LocalDateTime or if the system default time zone is invalid
      */
     public static boolean isPastDateTime(Datetime deadline, Datetime now) {
@@ -154,6 +156,5 @@ public class Datetime {
             .map(ts -> LocalDateTime.ofInstant(Instant.ofEpochMilli(ts), ZoneId.systemDefault()))
             .orElse(null);
     }
-
 
 }
