@@ -18,9 +18,9 @@ Below are my contributions to the project:
 * **Enhancements implemented**: I added the `UiEventManager` class and its related classes to handle the keyboard events that occur in the UI, allowing the user to perform keyboard shortcuts such as:
 
   * navigate the UI with `Ctrl-J`, `Ctrl-K`, `Ctrl-L`, `Ctrl-S`
-  * toggling the command box between search mode and command mode to quickly find projects and clients.
+  * toggling the command box between search mode and command mode to quickly find projects and clients with `Ctrl-F`
   
-  I also added hooks to command responses through the `UiAction` interface. This enables commands to perform actions to the Ui such as automatically switching between the project tab and the client tab depending on which tab is relevant to the command executed.
+  I also added hooks to the command response through the `UiAction` interface. This enables commands to perform actions to the UI such as automatically switching between the project tab and the client tab depending on which tab is relevant to the command executed.
   
   I added the `Mode` class for the command box, enabling the command box to be stateful and change its behaviour depending on its `Mode`.
 
