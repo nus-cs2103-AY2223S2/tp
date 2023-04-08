@@ -2,7 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
-
+/**
+ * Predicate that tests if a meeting is scheduled with a specific person
+ */
 public class MeetingWithPersonPredicate implements Predicate<MeetingWithPerson> {
     /**
      * Tests that a {@code MeetingWithPerson} is a meeting with a given person
@@ -17,7 +19,7 @@ public class MeetingWithPersonPredicate implements Predicate<MeetingWithPerson> 
      * @param p target person that predicate will return {@code True} for
      */
     public MeetingWithPersonPredicate(Person p) {
-        this.p= p;
+        this.p = p;
     }
 
 

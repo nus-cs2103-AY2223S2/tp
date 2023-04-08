@@ -23,8 +23,7 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
             throw new ParseException(
                 String.format(MESSAGE_MISSING_ARGUMENTS, FindMeetingCommand.MESSAGE_USAGE)
             );
-        }
-        else if (userInput.contains("-")){
+        } else if (userInput.contains("-")) {
             LocalDate meetingStart = ParserUtil.parseDate(userInput);
             return new FindMeetingCommand(meetingStart);
         }
