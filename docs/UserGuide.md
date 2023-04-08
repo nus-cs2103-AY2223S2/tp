@@ -409,7 +409,7 @@ Add a module to Le Tracker.
 <ul>
     <li>
     <code>add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis</code><br/>
-    Add to Le Tracker, a module with code "CS2040S", name "Data Structures and Algorithms", and tags "Heavy", "Math", and "Analysis".
+    Add a module with code "CS2040S" to Le Tracker. The module is named "Data Structures and Algorithms" and has tags "Heavy", "Math", and "Analysis".
     </li>
 </ul>
 </details>
@@ -431,9 +431,15 @@ Add a lecture to a module.
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the lecture
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `add Week 1 /mod CS2040S /tags Intro, Important`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>add Week 1 /mod CS2040S /tags Intro, Important</code><br/>
+    Add a lecture named "Week 1" to the module with code "CS2040S". The lecture has tags "Intro" and "Important".
+    </li>
+</ul>
+</details>
 
 #### Add a Video
 
@@ -453,9 +459,15 @@ Add a video to a lecture.
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the video
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /tags Intro, Short /watch</code><br/>
+    Add a video named "Video 1" to the lecture named "Week 1" which belongs to the module with code "CS2040S". The video has timestamp "01:04:20" and has tags "Intro" and "Short". The video is also marked as watched.
+    </li>
+</ul>
+</details>
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
