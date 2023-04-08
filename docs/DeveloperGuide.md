@@ -837,7 +837,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 ##### MSS
 
 1. User requests to list patients.
-2. VMS shows a the list of patients with their corresponding IDs.
+2. VMS shows the list of patients with their corresponding IDs.
 
   Use case ends.
 
@@ -846,7 +846,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 ##### MSS
 
 1. User requests to list patients.
-2. VMS shows a the list of patients with their corresponding IDs.
+2. VMS shows the list of patients with their corresponding IDs.
 3. User requests to update a specific patient in the list with the args.
 4. VMS updates the patients
 
@@ -868,7 +868,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 ##### MSS
 
 1. User requests to list patients.
-2. VMS shows a the list of patients with their corresponding IDs.
+2. VMS shows the list of patients with their corresponding IDs.
 3. User requests to delete a specific patient in the list.
 4. VMS soft deletes the patient.
 
