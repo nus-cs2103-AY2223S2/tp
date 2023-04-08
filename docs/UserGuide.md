@@ -547,11 +547,12 @@ Examples:
 
 Switches between the score list and score chart tabs.
 
-Format: There we support using CLI or mouse.
+Format: There we support using CLI or GUI.
 
 **CLI**<br> `switch`
 
-**Mouse**<br> click the tab.
+**GUI**<br> Click the **Text** or **Chart** button to switch to score list and score chart tabs respectively.
+![Switch between Score Tabs](images/Switch%20between%20Score%20Tabs.png)
 
 [Back to top](#table-of-contents)
 
