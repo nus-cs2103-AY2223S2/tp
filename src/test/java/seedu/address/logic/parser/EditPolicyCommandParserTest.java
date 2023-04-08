@@ -1,21 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_FREQUENCY;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_PREMIUM;
-import static seedu.address.logic.commands.CommandTestUtil.POLICY_DATE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.POLICY_FREQUENCY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.POLICY_FREQUENCY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.POLICY_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.POLICY_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.POLICY_PREMIUM_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_DATE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_FREQUENCY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_FREQUENCY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_PREMIUM_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -26,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditPolicyCommand;
+import seedu.address.model.client.policy.CustomDate;
 import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.PolicyName;
 import seedu.address.model.client.policy.Premium;
@@ -61,6 +48,7 @@ class EditPolicyCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1 pi/1" + INVALID_POLICY_NAME, PolicyName.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1 pi/1 pn/Testing", PolicyName.MESSAGE_CONSTRAINTS_ENUM);
+        assertParseFailure(parser, "1 pi/1" + INVALID_POLICY_DATE, CustomDate.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1 pi/1" + INVALID_POLICY_FREQUENCY, Frequency.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1 pi/1" + INVALID_POLICY_PREMIUM, Premium.MESSAGE_CONSTRAINTS);
     }

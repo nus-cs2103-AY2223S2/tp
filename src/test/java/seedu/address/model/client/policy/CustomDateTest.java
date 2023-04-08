@@ -20,8 +20,15 @@ class CustomDateTest {
     }
 
     @Test
-    public void isValidDate_invalidDateFormat_throwsDateTimeParseException() {
+    public void isValidDate_invalidDateFormat_returnsFalse() {
         assertFalse(CustomDate.isValidDate("01/01/2022"));
+    }
+
+    @Test
+    public void isValidDate_notLeapYear_returnsFalse() {
+        assertFalse(CustomDate.isValidDate("29.02.2021"));
+        assertFalse(CustomDate.isValidDate("30.02.2021"));
+        assertFalse(CustomDate.isValidDate("31.02.2021"));
     }
 
     @Test

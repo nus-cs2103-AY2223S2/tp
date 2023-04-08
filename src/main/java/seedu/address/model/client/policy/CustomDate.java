@@ -41,34 +41,38 @@ public class CustomDate {
      * @return LocalDate object.
      */
     public static LocalDate stringToDate(String date) {
-        LocalDate localDate;
-        String[] dateParts = date.split("\\.");
-        int day = Integer.parseInt(dateParts[0]);
-        int month = Integer.parseInt(dateParts[1]);
-        int year = Integer.parseInt(dateParts[2]);
-        if (day == 29 && month == 2 && !Year.of(year).isLeap()) {
-            localDate = null;
-        } else {
-            DateTimeFormatter sf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            localDate = LocalDate.from(sf.parse(date));
-        }
-        return localDate;
+        DateTimeFormatter sf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return LocalDate.from(sf.parse(date));
     }
+
 
     /**
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String date) {
         boolean valid = true;
-        try {
-            LocalDate localDate = stringToDate(date);
-            if (localDate == null) {
+        if (!date.matches(VALIDATION_REGEX)) {
+            valid = false;
+        } else {
+            try {
+                // Checks for leap years
+                String[] dateParts = date.split("\\.");
+                int day = Integer.parseInt(dateParts[0]);
+                int month = Integer.parseInt(dateParts[1]);
+                int year = Integer.parseInt(dateParts[2]);
+                if ((day == 29 || day == 30 || day == 31) && month == 2 && !Year.of(year).isLeap()) {
+                    valid = false;
+                }
+
+                LocalDate localDate = stringToDate(date);
+                if (localDate == null) {
+                    valid = false;
+                }
+            } catch (DateTimeParseException | NumberFormatException e) {
                 valid = false;
             }
-        } catch (DateTimeParseException | NumberFormatException e) {
-            valid = false;
         }
-        return (date.matches(VALIDATION_REGEX) && valid);
+        return valid;
     }
 
     public String getDisplayString() {

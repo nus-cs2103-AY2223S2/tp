@@ -109,6 +109,8 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
+
+
     @Test
     public void execute_invalidClientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
