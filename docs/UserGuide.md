@@ -215,10 +215,10 @@ An order can be cancelled at any stage of the order. This can be performed with 
 ![result after cancelling order](images/cancelOrderResult.png)
 
 
-Looking at the order status, it is now reflected as 'Cancelled'.
+Looking at the order status, it is now reflected as 'Cancelled'. Once an order is cancelled, its status can no longer be advanced.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Once an order is cancelled, the action is irreversible, and the order can no longer revert nor advance! <br />
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you accidentally cancel an order, you can still revert its status!
 </div>
 
 ### Rewarding your customers
