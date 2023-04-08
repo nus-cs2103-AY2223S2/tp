@@ -3,12 +3,14 @@ package trackr.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static trackr.logic.parser.CliSyntax.PREFIX_COST;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static trackr.logic.parser.CliSyntax.PREFIX_PRICE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 import static trackr.testutil.Assert.assertThrows;
@@ -244,6 +246,54 @@ public class CommandTestUtil {
             .withPrice(VALID_MENU_ITEM_PRICE)
             .withCost(VALID_MENU_ITEM_COST)
             .build();
+    }
+
+    //menu item fields
+    public static final String VALID_ITEM_NAME_NIKECAP = "Nike Cap";
+    public static final String VALID_ITEM_NAME_CUPCAKE = "Cupcake";
+    public static final String VALID_SELLING_PRICE_SMALL = "45.00";
+    public static final String VALID_SELLING_PRICE_LARGE = "122.80";
+    public static final String VALID_COST_PRICE_SMALL = "9.00";
+    public static final String VALID_COST_PRICE_LARGE = "15.30";
+
+
+    public static final String ITEM_NAME_DESC_NIKECAP =
+            " " + PREFIX_NAME + VALID_ITEM_NAME_NIKECAP;
+    public static final String ITEM_NAME_DESC_CUPCAKE =
+            " " + PREFIX_NAME + VALID_ITEM_NAME_CUPCAKE;
+    public static final String SELLING_PRICE_DESC_SMALL =
+            " " + PREFIX_PRICE + VALID_SELLING_PRICE_SMALL;
+    public static final String SELLING_PRICE_DESC_LARGE =
+            " " + PREFIX_PRICE + VALID_SELLING_PRICE_LARGE;
+    public static final String COST_PRICE_DESC_SMALL =
+            " " + PREFIX_COST + VALID_COST_PRICE_SMALL;
+    public static final String COST_PRICE_DESC_LARGE =
+            " " + PREFIX_COST + VALID_COST_PRICE_LARGE;
+
+
+    public static final String INVALID_ITEM_NAME_DESC =
+            " " + PREFIX_NAME + "NIKE&CAP"; // '& not allowed in name
+    public static final String INVALID_SELLING_PRICE_DESC =
+            " " + PREFIX_PRICE + "-23.00"; // 'negative not allowed in price
+    public static final String INVALID_COST_PRICE_DESC =
+            " " + PREFIX_COST + "-0.20"; // 'negative not allowed in price
+
+    public static final MenuItemDescriptor DESC_NIKE_CAP;
+    public static final MenuItemDescriptor DESC_CUPCAKE_I;
+
+    static {
+        DESC_NIKE_CAP = new MenuItemDescriptorBuilder()
+                .withItemName(VALID_ITEM_NAME_NIKECAP)
+                .withItemSellingPrice(VALID_SELLING_PRICE_SMALL)
+                .withItemCostPrice(VALID_COST_PRICE_SMALL)
+                .build();
+
+        DESC_CUPCAKE_I = new MenuItemDescriptorBuilder()
+                .withItemName(VALID_ITEM_NAME_CUPCAKE)
+                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
+                .withItemCostPrice(VALID_COST_PRICE_LARGE)
+                .build();
+
     }
 
     /**

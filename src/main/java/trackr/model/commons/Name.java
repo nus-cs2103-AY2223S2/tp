@@ -50,7 +50,13 @@ public abstract class Name {
      *         0 if both names are lexicographically equal (ignoring case).
      */
     public int compare(Name other) {
-        return name.compareToIgnoreCase(other.name);
+        int compareVal = name.compareToIgnoreCase(other.name);
+
+        if (compareVal == 0) {
+            return 0;
+        } else {
+            return compareVal / Math.abs(compareVal);
+        }
     }
 
     @Override

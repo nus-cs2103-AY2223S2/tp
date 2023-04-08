@@ -7,7 +7,7 @@ This is a guide for developers looking to contribute to the codebase. There are 
 
 You can click on the respective links below to read up on the relevant sections.
 
-**Table of Contents**
+## **Table of Contents**
 
 <!-- TOC -->
   * [**Introduction**](#introduction)
@@ -22,9 +22,10 @@ You can click on the respective links below to read up on the relevant sections.
   * [**Implementation**](#implementation)
     * [AddXYZCommand](#addxyzcommand)
     * [DeleteXYZCommand](#deletexyzcommand)
-    * [Edit feature](#edit-feature)
+    * [EditXYZCommand](#edit-command)
     * [FindXYZCommand](#findxyzcommand)
     * [ListXYZCommand](#listxyzcommand)
+    * [SortXYZCommand](#sortxyzcommand)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
       * [Proposed Implementation](#proposed-implementation)
       * [Design considerations:](#design-considerations)
@@ -40,24 +41,26 @@ You can click on the respective links below to read up on the relevant sections.
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a person](#deleting-a-person)
     * [Saving data](#saving-data)
-<!-- TOC -->
+<!-- TOC --><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
 
-Trackr is a desktop application catered towards small businesses to trackr their suppliers, customers and orders. It is for users who are quick typers to accomplish their tasks through the Command Line Interface (CLI) while reaping the benefits of a Graphical User Interface (GUI).
+Trackr is a desktop application catered towards home businesses to track their _suppliers_, _customers_, _orders_, _menu items_ and _tasks_. It is designed for users who are quick typers to accomplish their tasks through the _Command Line Interface (CLI)_ while reaping the benefits of a _Graphical User Interface (GUI)_.
+
+:bulb: **Tip:** Texts that are in _italics_ are further explained in the [Glossary section](#glossary).
 
 **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [Setting up and getting started](SettingUp.md).<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -65,7 +68,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder. Refer to the [PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -73,18 +76,19 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <p align="center">
   <img src="images/ArchitectureDiagram.svg" width="280" />
+  <br>Figure 1: Architecture Class Diagram
 </p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+<br>**Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At app launch: Initializing the components in the correct sequence, and connecting them up with each other.
+* At shut down: Shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -95,9 +99,9 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-**How the architecture components interact with each other**
+<br>**How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
+The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
 <p align="center">
   <img src="images/ArchitectureSequenceDiagram.svg" width="650"/>
@@ -106,17 +110,17 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* defines its API in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (Reason: to prevent components outside from being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <p align="center">
   <img src="images/ComponentManagers.svg" width="300" />
   <br>Figure 3: Logic Class Diagram
 </p>
 
-The sections below give more details of each component.
+The sections below give more details of each component.<br><br>
 
 ### UI component
 
@@ -136,7 +140,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Order`, `Task` or `Menu` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Order`, `Task` or `Menu` object residing in the `Model`.<br><br>
 
 ### Logic component
 
@@ -151,13 +155,17 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TrackrParser` class to parse the user command.
-1. This results in a `Command` object, which is actually an object of one of its subclasses, for example `AddItemCommand`, which is actually also an object of one of its subclasses, for example `AddOrderCommand`. This specific command will then be executed by the `LogicManager`.
+1. This results in a `Command` object, which is actually an object of one of its subclasses' (e.g. `AddItemCommand`'s) subclasses (e.g. `AddOrderCommand`). This specific command will then be executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an order).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned by `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_order 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete_order 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center">
+  <img src="images/DeleteSequenceDiagram.svg" width="600"/>
+  <br>Figure 6: Delete Sequence Diagram (Deleting Order)
+</p>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOrderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -166,13 +174,13 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <p align="center">
   <img src="images/ParserClasses.svg" width="600"/>
-  <br>Figure 6: Sequence Diagram (Deleting Order)
+  <br>Figure 7: Parser Class Diagram
 </p>
 
 How the parsing works:
 
 * When called upon to parse a user command, the `TrackrParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackrParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.<br><br>
 
 ### Model component
 
@@ -180,58 +188,69 @@ How the parsing works:
 
 <p align="center">
   <img src="images/ModelClassDiagram.svg" width="450" />
-  <br>Figure 7: Model Class Diagram
+  <br>Figure 8: Model Class Diagram
 </p>
 
 The `Model` component,
 
 * `XYZ` is a placeholder for the specific object (e.g., `Supplier`, `Task`), which are all `Item` objects.
 * stores trackr data i.e., all `XYZ` objects (contained in respective `UniqueXYZList` object).
-* stores currently 'selected' `XYZ` objects (e.g., results of search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be viewed (e.g. UI bound to this list so that the UI automatically updates when the data in the list changes).
+* stores currently 'selected' `XYZ` objects (e.g., results of search query) as a **separate filtered list** which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be viewed (e.g. UI is bound to this list so that the UI automatically updates when the data in the list changes).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
+
+
+<br>**Item**
 
 Here is the `Item` class that is what all model objects depend on.
 
 <p align="center">
   <img src="images/ItemClassDiagram.svg" width="300" />
-  <br>Figure 8: Item Class Diagram
+  <br>Figure 9: Item Class Diagram
 </p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
 
 
+<br>**Supplier & Customer**
+
 This is the class representation for the `Supplier` and `Customer` class.
 
 <p align="center">
   <img src="images/PersonClassDiagram.svg" width="500" />
-  <br>Figure 9: Person Class Diagram
+  <br>Figure 10: Person Class Diagram
 </p>
 
 Here is how `Supplier` and `Customer` works:
 
 * `Supplier` and `Customer` inherit off `Person` class, which depends on the `Item` class.
-* Each `Person` contains their name, phone number, deadline, email and tags. (e.g., `PersonAddress` represents the address)
+* Each `Person` contains their name, phone number, deadline, email and _tags_. (e.g., `PersonAddress` represents the address)
 * The `Supplier` and `Customer` object have their corresponding `List` and `UniqueList` that stores their information.
+
+<br>**Task**
 
 This is the class representation for the `Task` class.
 
 <p align="center">
   <img src="images/TaskClassDiagram.svg" width="450" />
-  <br>Figure 10: Task Class Diagram
+  <br>Figure 11: Task Class Diagram
 </p>
 
 Here is how `Task` works:
 
-* Each `Task` contains their description, deadline and status (e.g., `TaskName` for task name).
+* Each `Task` contains their description, deadline, _status_ and time added (e.g., `TaskName` for task name).
 * Each of the attributes inherits off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
+* The LocalDateTime object represents the time the task was added to the list (which is used when sorting tasks).
+
+
+<br>**Menu**
 
 This is the class representation for the `Menu` class.
 
 <p align ="center">
   <img src="images/UpdatedMenuClassDiagram.svg" width="550" />
-  <br>Figure 11: Menu Class Diagram
+  <br>Figure 12: Menu Class Diagram
 </p>
 
 Here is how `Menu` works:
@@ -254,20 +273,23 @@ Here is how `Menu` works:
     * Advantage: Convenient to implement.
     * Disadvantage: Higher chance of conflicts with another developer working on `Order` class.
 
+<br>**Order**
+
 This is the class representation for the `Order` class.
 
 <p align ="center">
   <img src="images/OrderClassDiagram.svg" width="550" />
-  <br>Figure 12: Order Class Diagram
+  <br>Figure 13: Order Class Diagram
 </p>
 
 Here is how `Order` works:
 
 * Each `OrderList` contains non-negative and non-zero number of `Order`.
-* Each `Order` contains a menu item(from a locally stored menu), customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
+* Each `Order` contains a menu item(from a locally stored menu), customer, quantity, status, deadline and time added (e.g., `OrderStatus` for order's status).
 * The menu item and customer each contains attributes as mentioned in their respective section above on how `Menu` and `Customer` works.
 * The `Order`'s `OrderDeadline` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
 * The `Order` object have its `List` called `OrderList` and `UniqueList`.
+* The LocalDateTime object represents the time the order was added to the list (which is used when sorting orders).<br><br>
 
 ### Storage component
 
@@ -275,18 +297,18 @@ Here is how `Order` works:
 
 <p align="center">
   <img src="images/StorageClassDiagram.svg" width="750" />
-  <br>Figure 13: Storage Class Diagram
+  <br>Figure 14: Storage Class Diagram
 </p>
 
 The `Storage` component,
 
-* can save both trackr data and user preference data in json format, and read them back into corresponding objects.
+* can save both Trackr data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)<br><br>
 
 ### Common classes
 
-Classes used by multiple components are in the `trackr.commons` package.
+Classes used by multiple components are in the `trackr.commons` package.<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -294,14 +316,14 @@ Classes used by multiple components are in the `trackr.commons` package.
 
 This section describes the details on how the common commands are implemented.
 
-The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
+The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, orders, menu items and tasks while `action` represents the action of the command.<br><br>
 
 ### AddXYZCommand
 
-The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList`.It also saves into the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList`. It also saves into the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
 
 The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
-For example, `n/` would be followed by a task name for `AddTaskCommand` and order name for `AddSupplierCommand`.
+For example, `n/` would be followed by a task name for `AddTaskCommand` and supplier name for `AddSupplierCommand`.
 
 The parser for the `add` command would extract out the arguments corresponding to each particular field.
 
@@ -309,14 +331,14 @@ The following activity diagram summarizes what happens when the user executes th
 
 <p align="center">
   <img src="images/AddCommandActivityDiagram.svg">
-  <br>Figure 14: Add Command Activity Diagram
+  <br>Figure 15: Add Command Activity Diagram
 </p>
 
 #### Why is it implemented this way
 
-The `AddXYZCommand` is an improved version of the original AB3 `AddCommand` by implementing into a abstract class -`AddItemCommand`.
+The `AddXYZCommand` is an improved version of the original AB3 `AddCommand` by implementing into a abstract class - `AddItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require adding an item to a list.
-
+<br><br>
 ### DeleteXYZCommand
 
 The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
@@ -329,52 +351,47 @@ The following activity diagram summarizes what happens when the user executes th
 
 <p align="center">
   <img src="images/DeleteCommandActivityDiagram.svg">
-  <br>Figure 15: Delete Command Activity Diagram
+  <br>Figure 16: Delete Command Activity Diagram
 </p>
 
 #### Why is it implemented this way
 
-The `DeleteXYZCommand` is an improved version of the original AB3 `DeleteCommand` by implementing into a abstract class -`DeleteItemCommand`.
+The `DeleteXYZCommand` is an improved version of the original AB3 `DeleteCommand` by implementing into a abstract class - `DeleteItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require removing an item from a list.
-
-### Edit feature
+<br><br>
+### EditXYZCommand
 
 The `edit` command edits item `XYZ` from the internal `XYZList`.
 
-This command requires user to key in the index of the item they wish to edit.
+This command requires user to key in the index of XYZ in the FilteredXYZList that the user wishes to edit using a one-based index.
 
-Edit supplier, edit order and edit task features are implemented using the same edit mechanism as described in this section.
+The keywords that can be provided are the attributes as seen in the corresponding XYZ's class diagram. For example, n/ would be followed by a task name for AddTaskCommand and order name for AddSupplierCommand.
+The user is required to key in at least one keyword to be edited.
 
-The `EditXYZCommandParser#parse()` is used to parse the given command.
+The parser for `edit` command parses and extracts out the arguments corresponding to each particular field.
 
-If the given command is valid, an `EditXYZCommand` will be returned and `EditXYZCommand#execute()` will then be called.
-
-`EditXYZCommand#execute()` will first retrieve that latest filtered XYZ list from the model and check if the index given is valid.
-
-If the given index is valid, item at given index will be retrieved. A copy of the item retrieved will be made and edited accordingly.
-
-If changes to the original item is made and edited item is not the same as another existing item in the list,
-the edited item is saved to the filtered list and `EditXYZCommand#execute()` will return the `CommandResult`
-
-Lastly, Changes made are saved to local data and success message will be shown.
+The following activity diagram summarizes what happens when the user executes the `edit` command.
 
 <p align="center">
-  <img src="images/EditCommandActivityDiagram.svg" width="900" />
-  <br>Figure 16: Edit Command Activity Diagram
+  <img src="images/EditCommandActivityDiagram.svg" width="500" />
+  <br>Figure 17: Edit Command Activity Diagram
+</p><br>
+
+<p align="center">
+  <img src="images/EditItemXYZRakeActivityDiagram.svg" width="500" />
+  <br>Figure 18: Edit Item XYZ Activity Diagram
 </p>
 
 #### Why is it implemented this way
 
-The `EditXYZCommand` is an improved version of the original AB3 `EditCommand` by implementing into a abstract class -`EditItemCommand`.
+The `EditXYZCommand` is an improved version of the original AB3 `EditCommand` by implementing into a abstract class - `EditItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require editing an item in a list.
-
-
+<br><br>
 ### FindXYZCommand
 
 The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
 
-The keywords that can be provided are the same as those provided during the `add` and `edit` command.
-For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
+The keywords that can be provided varies for each command.
 
 The parser for the `find` command would extract out the arguments corresponding to each particular field.
 
@@ -384,31 +401,57 @@ The following activity diagram summarizes what happens when the user executes th
 
 <p align="center">
   <img src="images/FindCommandActivityDiagram.svg">
-  <br>Figure 17: Find Command Activity Diagram
+  <br>Figure 19: Find Command Activity Diagram
 </p>
 
 #### Why is it implemented this way
 
-The `FindXYZCommand` is an improved version of the original AB3 `FindCommand` by implementing into a abstract class -`FindItemCommand`.
+The `FindXYZCommand` is an improved version of the original AB3 `FindCommand` by implementing into a abstract class - `FindItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require finding an item in a list.
 The abstract class `ItemDescriptor` stores the details of an item. It provides easier implementation for `XYZContainsKeywordPredicate` classes.
-
+<br><br>
 ### ListXYZCommand
 
-The `list` command lists all the `XYZ` objects in the internal `FilteredXYZList`.
+The `list` command retrieves all the `XYZ` objects from the `XYZList` and lists them all in the internal `FilteredXYZList`.
 
-The command retrieves all the `XYZ` objects from the `XYZList` and places them in the `FilteredXYZList`.
-
-The `FilteredXYZList` is then updated to have all `XYZ` objects, it will then to shown to the user.
+The `FilteredXYZList` is then updated to have all `XYZ` objects, afterwhich it will then to shown to the user.
 
 The following activity diagram summarizes what happens when the user executes the `list` command.
 
 <p align="center">
   <img src="images/ListCommandActivityDiagram.svg">
-  <br>Figure 18: List Command Activity Diagram
+  <br>Figure 20: List Command Activity Diagram
+</p><br>
+
+### SortXYZCommand
+
+The `sort` command is only available for sorting of orders and tasks.
+
+The `sort` command sorts objects `XYZ` in the internal `FilteredXYZList` according to a selected criteria.
+
+The command only accepts 1 argument without the prefix `c/`. This argument is optional and it corresponds to the criteria the user wishes to sort the list by.
+
+The parser for the `sort` command would extract out the criteria. If no criteria is given, it will be default `Status and Deadline`.
+
+A `SortXYZComparator` is used to define how two `XYZ` objects should be compared and sorted.
+
+The following activity diagram summarizes what happens when the user executes the `sort` command.
+
+<p align="center">
+  <img src="images/SortCommandActivityDiagram.svg">
+  <br>Figure 21: Sort Command Activity Diagram
 </p>
 
---------------------------------------------------------------------------------------------------------------------
+#### Why is it implemented this way
+
+Unlike the other commands, the `SortXYZCommand` does not implement an abstract class like `SortItemCommand`.
+It simply extends Command as there are only two sort commands (one for orders and one for tasks).
+Although abstracting out an abstract class would ease implementation for future sort commands, it is currently makes implementation.
+Thus, it was implemented as mentioned.
+<br><br>
+
+
+-------------------------------------------------------------------------------------------------------------------- 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -417,7 +460,7 @@ The following activity diagram summarizes what happens when the user executes th
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
+<br><br>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
@@ -426,7 +469,7 @@ The following activity diagram summarizes what happens when the user executes th
 
 **Target user profile**:
 
-* Tech-savvy small businesses owners who:
+* Tech-savvy home businesses owners who:
     * lists their products online or on their own website
     * perform transactions manually without a Point-of-Sale (POS) system
     * Lack manpower/ time to track orders and contacts manually
@@ -434,35 +477,35 @@ The following activity diagram summarizes what happens when the user executes th
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
-* Is reasonably comfortable using _CLI_ apps
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
 Our application:
-* allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (no real-time automation)
-* serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
-* enables faster contact management compared to a typical mouse/_GUI_ driven app
+* allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (but no _real-time automation_)
+* serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (but no support for custom formatting of interface)
+* enables faster contact management compared to a typical mouse/GUI driven app<br><br>
 
 ### User stories
 
 **High Priority (Must Have)**
 
-| As a / an …​ | I want to …​                               | So that I can…​                                              |
-|--------------|--------------------------------------------|--------------------------------------------------------------|
-| user         | add new orders                             | have a consolidated place to keep track of my orders         |
-| user         | view all my orders                         | track my progress in deadling with the orders                |
-| user         | edit my orders                             | update my order status                                       |
-| user         | find my orders by keywords                 | get a specific order without manually searching for it       |
-| user         | delete my orders                           | remove unwanted old orders                                   |
-| user         | add new customers (suppliers or customers) | easily find them from a consolidated location                |
-| user         | find contacts by keywords                  | get the relevant contact information from a specific contact |
-| user         | edit my contacts                           | update past contacts with current information                |
-| user         | delete my contacts                         | remove contacts not used anymore                             |
-| user         | add new tasks                              | keep track of business tasks from the same application       |
-| user         | find tasks by keywords                     | get all relevant tasks that are related to plan my schedule  |
-| user         | edit my tasks                              | update my progress on the task                               |
-| user         | delete my tasks                            | remove old completed tasks                                   |
-| new user     | have an instruction guide                  | understand how to use the application                        |
+| As a / an …​ | I want to …​                | So that I can…​                                                        |
+|--------------|-----------------------------|------------------------------------------------------------------------|
+| new user     | have an instruction guide   | understand how to use the application                                  |
+| user         | add new orders              | have a consolidated place to keep track of my orders                   |
+| user         | view all my orders          | track my progress in dealing with the orders                           |
+| user         | edit my orders              | update my order status                                                 |
+| user         | find my orders by keywords  | get a specific order without manually searching for it                 |
+| user         | delete my orders            | remove unwanted old orders                                             |
+| user         | add new suppliers           | easily find them from a consolidated location                          |
+| user         | find suppliers by keywords  | get the relevant supplier information from a specific supplier contact |
+| user         | edit my supplier contacts   | update past supplier contacts with current information                 |
+| user         | delete my supplier contacts | remove supplier contacts not used anymore                              |
+| user         | add new tasks               | keep track of business tasks from the same application                 |
+| user         | find tasks by keywords      | get all relevant tasks that are related to plan my schedule            |
+| user         | edit my tasks               | update my progress on the task                                         |
+| user         | delete my tasks             | remove old completed tasks                                             |
 
 **Medium Priority (Nice to Have)**
 
@@ -473,23 +516,30 @@ Our application:
 | business owner | delete menu items           | remove unpopular items that are not sold anymore          |
 | user           | have my orders sorted       | view my upcoming orders that are not done yet             |
 | user           | have my tasks sorted        | view the most pressing tasks at first glance              |
-| new user       | be able to import past data | use the application easily when transferring data         |
-| user           | be able to export data      | keep track of past orders without lagging the application |
+| expert user    | be able to export data      | keep track of past orders without lagging the application |
+
+**Low Priority (Upcoming)**
+
+| As a / an …​    | I want to …​       | So that I can…​                                           |
+|-----------------|-----------------------------|-----------------------------------------------------------|
+| expert user     | be able to import past data | use the application easily when transferring data         |
+
+<br>
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Small Business Owner`)
+(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Home Business Owner`)
 
 **Use case: UC01 - Add a new supplier**
 
-MSS
+**MSS**
 
-1. Actor requests to add a new supplier.
-2. Actor enters a command to add a supplier with the required information.
-3. Trackr saves the new supplier to the system.
-4. Trackr shows the new supplier added to the list.
+ 1. Actor requests to add a new supplier.
+ 2. Actor enters a command to add a supplier with the required information.
+ 3. Trackr saves the new supplier to the system.
+ 4. Trackr shows the new supplier added to the list.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -558,7 +608,7 @@ MSS
 
 **Use case: UC03 - Edit a contact**
 
-MSS
+**MSS**
 
 1. Actor requests to list contacts.
 2. Trackr shows a list of contacts.
@@ -599,7 +649,7 @@ MSS
 
 **Use case: UC04 - Finding a supplier**
 
-MSS
+**MSS**
 
 1. Actor requests to find a supplier.
 2. Actor enters the command with the desired search criteria.
@@ -638,13 +688,13 @@ MSS
 
 **Use case: UC50 - Switch to another tab**
 
-MSS
+**MSS**
 
 1. Actor requests to switch to another tab.
 2. Actor interacts with the tab menu.
 3. Trackr switches to the target tab.
 
-   Use case ends.
+   Use case ends.<br><br>
 
 ### Non-Functional Requirements
 
@@ -655,20 +705,21 @@ MSS
 1. Should be able to hold up to 200 tasks without a noticeable sluggishness in performance for typical usage.
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
-1. Should store data locally only.
+1. Should store data locally only.<br><br> 
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command-Line Interface
 * **GUI**: Graphical User Interface
+* **Real-time automation**: Automatically update tasks or orders with deadlines that have passed as done or overdue.
 * **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
 * **Customer**: Customer refers to someone whom the user receives an order from
 * **Order**: Order refers to the customers' orders the user accepts
 * **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
-* **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers.
+* **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers
 * **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
-* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
+* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -696,7 +747,7 @@ testers are expected to do more *exploratory* testing.
   1. Re-launch the app by double-clicking the jar file.<br>
      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. { more test cases …​ }<br><br>
 
 ### Deleting a person
 
@@ -713,12 +764,12 @@ testers are expected to do more *exploratory* testing.
   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. { more test cases …​ }<br><br>
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+  1. {explain how to simulate a missing/corrupted file, and the expected behavior}
 
-1. _{ more test cases …​ }_
+1. { more test cases …​ }

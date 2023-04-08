@@ -1,12 +1,10 @@
-package trackr.model.tag;
+package trackr.model.commons;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import trackr.model.commons.Tag;
 
 public class TagTest {
 

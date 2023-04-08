@@ -1,5 +1,6 @@
-package trackr.model.supplier;
+package trackr.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -12,9 +13,13 @@ import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalSuppliers.ALICE;
 import static trackr.testutil.TypicalSuppliers.BOB;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
-import trackr.model.person.Supplier;
+import trackr.model.commons.Tag;
 import trackr.testutil.SupplierBuilder;
 
 public class SupplierTest {
@@ -79,5 +84,18 @@ public class SupplierTest {
         // different tags -> returns false
         editedAlice = new SupplierBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hashCode_success() {
+        PersonName personName = new PersonName("Test");
+        PersonPhone personPhone = new PersonPhone("123");
+        PersonEmail personEmail = new PersonEmail("test@test");
+        PersonAddress personAddress = new PersonAddress("Test Address");
+        Set<Tag> personTags = new HashSet<>();
+
+        int hashCode = Objects.hash(personName, personPhone, personEmail, personAddress, personTags);
+        assertEquals(hashCode,
+                new Supplier(personName, personPhone, personEmail, personAddress, personTags).hashCode());
     }
 }

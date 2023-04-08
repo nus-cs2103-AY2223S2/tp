@@ -1,5 +1,6 @@
 package trackr.model.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
@@ -43,6 +44,12 @@ public class OrderQuantityTest {
         assertTrue(OrderQuantity.isValidQuantity("1")); // 1 number
         assertTrue(OrderQuantity.isValidQuantity("12")); // 2 numbers
 
+    }
+
+    @Test
+    public void getOrderQuantityTest() {
+        OrderQuantity orderQuantity = new OrderQuantity("123");
+        assertEquals(123, orderQuantity.getOrderQuantity());
     }
 
 }

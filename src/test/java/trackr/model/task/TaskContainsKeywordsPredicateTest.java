@@ -81,6 +81,13 @@ public class TaskContainsKeywordsPredicateTest {
     }
 
     @Test
+    public void test_null_returnsFalse() {
+        TaskContainsKeywordsPredicate predicate =
+                new TaskPredicateBuilder().withTaskNameKeywords(Collections.singletonList("Buy")).build();
+        assertFalse(predicate.test(null));
+    }
+
+    @Test
     public void test_oneVariableMatch_returnsTrue() {
         TaskContainsKeywordsPredicate predicate;
 

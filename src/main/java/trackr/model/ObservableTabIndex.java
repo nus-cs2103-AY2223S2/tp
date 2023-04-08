@@ -16,8 +16,4 @@ public class ObservableTabIndex {
     public static final void updateToTab(int target) {
         targetTabIndex.set(target);
     }
-
-    public static final int getTargetTab() {
-        return targetTabIndex.getValue();
-    }
 }

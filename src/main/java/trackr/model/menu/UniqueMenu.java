@@ -1,5 +1,6 @@
 package trackr.model.menu;
 
+import trackr.model.ModelEnum;
 import trackr.model.item.Item;
 import trackr.model.item.UniqueItemList;
 
@@ -17,6 +18,6 @@ import trackr.model.item.UniqueItemList;
 public class UniqueMenu extends UniqueItemList<MenuItem> {
 
     public UniqueMenu() {
-        super("MenuItem");
+        super(ModelEnum.MENUITEM);
     }
 }

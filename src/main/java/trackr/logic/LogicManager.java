@@ -53,6 +53,7 @@ public class LogicManager implements Logic {
         Command command = trackrParser.parseCommand(commandText);
         commandResult = command.execute(model);
         try {
+            logger.info("Should not reach here");
             storage.saveTrackr(model.getSupplierList(), model.getTaskList(), model.getMenu(), model.getOrderList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

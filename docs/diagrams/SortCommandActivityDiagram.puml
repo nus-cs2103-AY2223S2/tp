@@ -1,0 +1,19 @@
+@startuml
+skinparam activityFontSize 18
+skinparam activityArrowFontSize 18
+
+start
+:User enters command to sort XYZ List;
+:SortXYZCommandParser
+   parses the user input;
+if () then ([Invalid command format])
+  :Display Invalid Command Format
+               error message;
+  stop
+else ([else])
+:Create SortXYZComparator;
+:Sort FilteredXYZList using SortXYZComparator;
+:Success message is returned;
+stop
+
+@enduml
