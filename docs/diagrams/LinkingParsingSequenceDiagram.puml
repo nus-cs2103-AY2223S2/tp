@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute(add/edit project command)
+activate logic LOGIC_COLOR
+
+alt client keywords present
+logic -[LOGIC_COLOR]> model : updateFilteredClientList(predicate)
+activate model MODEL_COLOR
+model--[MODEL_COLOR]> logic
+logic -[LOGIC_COLOR]> model : setProjectToLink(p)
+model--[MODEL_COLOR]> logic
+deactivate model
+end
+logic --[LOGIC_COLOR]> ui
+alt client keywords present
+ui-[UI_COLOR]> logic : setLinkMode(true)
+logic--[LOGIC_COLOR]> ui
+deactivate logic
+deactivate ui
+end
+
+@enduml

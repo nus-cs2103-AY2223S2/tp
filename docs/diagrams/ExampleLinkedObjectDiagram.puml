@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam objectBackgroundColor MODEL_COLOR
+
+hide members
+
+Object "<u>:Client" as client1
+
+Object "<u>:UniqueProjectList" as projectList
+
+Object "<u>p1:Project" as p1
+
+Object "<u>p2:Project" as p2
+
+client1 -right- projectList
+projectList --- p1
+projectList --- p2
+p1 --- client1
+p2 --- client1
+
+@enduml

@@ -175,7 +175,7 @@ This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/
 
 There are a set of Comparators defined inside the `ModelManager` class, that are supplied to the sorted list depending on how the user wants to sort clients or projects. Example Comparators include comparing names of `Client` objects.
 
-Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator`. The below diagram shows what occurs when a user executes a `sort-client` command.
+Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator`. The below diagram shows what occurs when a user executes a `sort-client` command, which sorts the client list by name.
 
 <img src="images/SortingSequenceDiagram.png" width="600" />
 
@@ -190,14 +190,28 @@ Users have the ability to link projects to clients.
 
 #### Implementation
 
-{_object diagram for an example of two linked clients/projects_}
+When parsing the command to add or edit a project, the parser checks for the existence of client name keywords in the command. If it does, then ArB displays a client list filtered with the provided client name keywords, sets the project to be linked and enters link mode, as shown in the sequence diagram below.
+
+<img src="images/LinkingParsingSequenceDiagram.png" width="400" />
+
+In link mode, the user can input an index to link the added/edited project to the specified client, as shown in the sequence diagram below. ArB will then exit link mode and return to normal operations.
+
+<img src="images/LinkingIndexParsingSequenceDiagram.png" width="400" />
+
+Internally, a project can be linked to one client while a client can have multiple linked projects. A client's linked projects are stored in a `UniqueProjectList` object that each `Client` object has. This implementation is shown in the class diagram below.
+
+<img src="images/LinkedClassDiagram.png" width="200" />
+
+For example, the below is an object diagram representing the situation where we have two projects `P1` and `P2` that are both linked to the same `Client` object.
+
+<img src="images/ExampleLinkedObjectDiagram.png" width="200" />
 
 #### Future improvements
 Currently, projects are only allowed to be linked to a single client. This was done to avoid introducing too much complexity such that it was feasible to complete this feature before the deadline.
 
 In future, projects could be linked to multiple clients. This could be implemented by storing a list of `Client` objects, perhaps using a `UniqueClientList`. The below class diagram showcases this  implementation.
 
-{_class diagram showing the new implementation_}
+<img src="images/LinkingAlternateClassDiagram.png" width="300" />
 
 ### Better filtering
 
@@ -322,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | artist who wants to know which of my ongoing projects are most lucrative | quickly sort my ongoing projects based on commission size | prioritize higher commissioned projects |
 | `* *` | artist | add to a project how much money it will make me | know the profit of my projects |
 | `* *` | artist | search for clients using keywords | find specific clients quickly |
-| `* *` | artist | ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
+| `* *` | artist ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
 | `*` | artist | quickly see how many times a specific client has commissioned me for a project before | know if clients are returning |
 | `* *` | artist | see how much profit a client has made me so far | know which client is making me the most profit |
 | `* *` | artist | sort clients by how much profit they have made me so far | know which clients are making me the most profit |
@@ -515,7 +529,7 @@ testers are expected to do more *exploratory* testing.
    1. Delete a client from the client list. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The client should remain deleted. 
+      Expected: The client should remain deleted.
 
 ### Listing all clients
 
@@ -620,7 +634,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First client's details are edited. Details of edited client shown in status message.
 
    1. Test case: `edit-client 0 name/John Doe`<br>
-      Expected: No client is edited. Error details shown in the status message. 
+      Expected: No client is edited. Error details shown in the status message.
 
    1. Other incorrect edit commands to try: `edit-client`, `edit-client x name/John`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -658,7 +672,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First project's details are edited. Details of edited project shown in status message.
 
    1. Test case: `edit-project 0 name/Sky Painting`<br>
-      Expected: No project is edited. Error details shown in the status message. 
+      Expected: No project is edited. Error details shown in the status message.
 
    1. Other incorrect edit commands to try: `edit-project`, `edit-project x name/Sky Painting`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -784,7 +798,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `find-client name/Alice`<br>
       Expected: Client list with one client is shown. Status message states that one client was found.
-   
+
    1. Test case: `find-client`<br>
       Expected: Error message is shown.
 
@@ -796,7 +810,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `find-project name/self`<br>
       Expected: Project list with one project is shown. Status message states that one project was found.
-   
+
    1. Test case: `find-project`<br>
       Expected: Error message is shown.
 
@@ -839,7 +853,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: delete the data file<br>
       Delete the JSON file in the `data` folder that is found in the same folder the jar file before launching the app.<br>
       Expected: Status message should state that a data file could not be found. The app should be filled with sample data.
-   
+
    1. Test case: corrupt the data file<br>
       Open the JSON file and delete the `name` attribute of a client before launching the app.<br>
       Expected: Status message should state that the data file was not in the correct format. The app should start with no data.
@@ -851,7 +865,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other edits to try: Editing other attributes such as phone number<br>
       Expected: Similar to previous.
-      
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
