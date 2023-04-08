@@ -60,7 +60,7 @@ If you would like to contact the development team, we can be contacted at our [A
 ### 1.1 **Acknowledgements**
 
 * This project is built from the AddressBook-Level3 project created by the SE-EDU initiative.
-* Tag's color code examples courtesy of https://sashamaps.net/docs/resources/20-colors/.
+* Tag's color code examples courtesy of [Sasha Trubetskoy](https://sashamaps.net/docs/resources/20-colors/).
 
 ### 1.2 **Setting up, getting started**
 
@@ -71,7 +71,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## 2. **Design**
 
 **This section provides an overview of the classes used within Clock-Work. The general interactions between components, and the internal structure of a component is explained here.
-A good understanding of the content in this section is useful in understanding how the individual features are implements in [section 3 - Implementation](#3-implementation)**
+A good understanding of the content in this section is useful in understanding how the individual features are implements in [3 - Implementation](#3-implementation)**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -127,7 +127,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -163,7 +163,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `TaskBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaskBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 2.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/model/Model.java)
@@ -193,7 +193,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both task book data, user preference data, and planner data in json format, and read them back into corresponding objects.
+* can save task book, user preference, and planner data in json format, and read them back into corresponding objects.
 * inherits from `TaskBookStorage`, `UserPrefStorage` and `PlannerStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -211,7 +211,7 @@ Classes used by multiple components are in the `seedu.task.commons` package.
 
 ### 3.1 Add Feature
 
-The add feature now supports three types of additions: simple tasks, events and deadlines. The `AddCommandParser` will handle the multiple prefixes in the input before the `AddCommand` adds a list of tasks into the taskbook.
+The add feature now supports three types of additions: simple tasks, events and deadlines. The `AddCommandParser` will handle the prefixes in the input before the `AddCommand` adds a list of tasks into the taskbook.
 Also, our feature allows the user to input multiple tasks with the same descriptions and tags but with different names. This makes it easier for user to add repetitive tasks with similar details.
 
 You can find the specific implementation in the `AddCommandParser` class and the `AddCommand` class
@@ -471,7 +471,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![StatsCommandActivityDiagram](images/StatsCommandActivityDiagram.png)
 
-#### 3.8.1 Design Considerations
+#### 3.8.1 Design Consideration
 
 What type of information should be displayed by `stats`
 
@@ -596,11 +596,11 @@ After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling 
 
 <img src="images/EventAllocation.png">
 
-**Some Rules**
+<b>Some Rules</b>
 * Events are allocated to the date they are scheduled to happen, regardless of time.
 * Effort for event is added every day the event is scheduled to happen
-
-**Allocation Example**
+<br>
+<b>Allocation Example</b>
 * Event A is allocated every day from 5 Mar 2023 to 2 June 2023, and its effort count of 10 is added to each of the 4 days.
 * Event B is allocated to 31 May 2023, and its effort count of 5 is added to the existing effort count of 10 (from event A).
 * Event C is allocated to 1 Jun 2023 and 2 Jun 2023 even though this means that the workload allocated to those days (28 units of effort) are greater than the workload user planned (20 units of effort).
@@ -617,13 +617,13 @@ After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduli
 
 <img src="images/DeadlineAllocation.png">
 
-**Some Rules**
+<b>Some Rules</b>
 * Overdue deadlines still in the TaskBook is not considered in the algorithm
 * Deadlines are allocated to one of the days before the deadline
 * If there are multiple free days, Deadline will be added to the earliest free day
 * If there are no free days before the deadline, Deadline will be added to the least busy day (in terms of effort)
 
-**Allocation Example**
+<b>Allocation Example</b>
 * Deadline D is due on 31 May 2023, so the only date it can be allocated to is 30 May 2023. Thus, it is allocated to 30 May 2023 even though this means that the workload for 30 May is greater than the desired workload.
 * Deadline E is allocated to 31 May 2023 because there are no free dates (30 May and 31 May) before 1 Jun 2023. Among the two possible dates, 31 May has a lower current workload. Thus, it is allocated to 31 May.
 * Deadline F is allocated to 30 May 2023 as adding task to any dates before the deadline will result in exceeding the desired workload, and it is the date with the lowest workload among all possible dates.
@@ -640,13 +640,13 @@ After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a sched
 
 <img src="images/SimpleTaskAllocation.png">
 
-**Some Rules**
+<b>Some Rules</b>
 * SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.
 * If there are no such days, assigned workload will be allowed to exceed intended workload. Algorithm allocates simple task to a day with the lowest current workload.
 * SimpleTasks are allocated in descending order of effort.
 * SimpleTasks are assumed to be non-time-sensitive
 
-**Allocation Example**
+<b>Allocation Example</b>
 * Task I is the first task to be allocated because it has the highest effort required. It will be allocated to 3 Jun 2023 because there are 2 free days (3 Jun and 4 Jun) with the same current workload, and 3 Jun is before 4 Jun.
 * Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.
 * Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.
@@ -680,6 +680,23 @@ Step 3. The sequence diagram below shows how the sort operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![ScheduleCommandActivityDiagram](images/ScheduleCommandActivityDiagram.png)
+
+#### 3.11.3 Design Consideration
+
+#### Option 1: Combine Schedule and Plan into a Single Command
+Allow users to generate a new plan by adding a parameter to the schedule command.
+
+Pros: Faster for users to create a plan and see generated plan.
+Cons: More features attached to a single command may confuse new users.
+
+#### Option 2: Separate Schedule and Plan
+Users will have to use a separate command to generate a plan, before using `schedule` to view daily schedule.
+
+Pros: Clearer separation of features may be easier for new users to understand.
+Cons: Slower in regular usage as two commands are needed for feature to work, instead of one.
+
+#### Eventual Decision
+In the long run, users should be familiar with the usage scenarios of the commands, so the efficiency benefits of a chained command outweighs the costs of command complexity.
 
 ### 3.12 Tag color codes
 
