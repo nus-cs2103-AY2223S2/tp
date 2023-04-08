@@ -350,9 +350,13 @@ Lists all lectures of a module.
   - Must belong to an existing module in Le Tracker
 
 <details>
-  <summary>Example</summary>
-  <code>list /mod CS2040S</code>
-  lists lectures belonging to CS2040S
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>list /mod CS2040S</code><br/>
+    lists lectures belonging to CS2040S
+    </li>
+</ul>
 </details>
 
 #### List Videos
@@ -367,9 +371,13 @@ Lists all videos of a lecture in a module.
   - Must belong to an existing lecture in the specified `module_code`
 
 <details>
-  <summary>Example</summary>
-  <code>list /mod CS2040 /lec Week 1</code>
-  lists videos in lecture Week 1 belonging to CS2040S
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>list /mod CS2040 /lec Week 1</code><br/>
+    lists videos in lecture Week 1 belonging to CS2040S
+    </li>
+</ul>
 </details>
 
 ### Add
@@ -777,17 +785,21 @@ E.g:
 
 Find all modules whose code starts with any of the keyword(s).
 
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for modules whose tag list contains any tag that starts with any of the keyword(s)
+
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures](#find-lectures) or [Find Videos](#find-videos) (refer to [Navigation](#navigation) for more information)
 
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for modules whose tag list contains any tag that starts with any of the keyword(s)
-
 <details>
-  <summary>Example</summary>
-  Assuming a Module <code>CS2040S</code> has tags <code>["heavy", "math"]</code>,
-  <code>find heav /byTag</code>
-  will list modules [CS2040S].
+<summary>Example</summary>
+<ul>
+    <li>
+    Assuming only a module <code>CS2040S</code> has tags <code>["heavy", "math"]</code>,<br/>
+    <code>find heav /byTag</code><br/>
+    will list modules [CS2040S].
+    </li>
+</ul>
 </details>
 
 #### Find Lectures
@@ -798,16 +810,20 @@ Find all lectures in a specified module whose name starts with any of the keywor
 
 - <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+  - Must belong to an existing module in Le Tracker
 
 <details>
-  <summary>Example</summary>
-  <code>find week 1, week 2 /mod CS2040S</code>
-  will list lectures [Week 1, Week 2] of module CS2040S.
-  <br/>
-  <code>find intro, array /mod CS2040S /byTag</code>
-  will list lectures with tags containing intro or array belonging to module CS2040S.
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>find week 1, week 2 /mod CS2040S</code><br/>
+    will list lectures ["Week 1", "Week 2"] of module "CS2040S".
+    </li>
+    <li>
+    <code>find intro, array /mod CS2040S /byTag</code><br/>
+    will list lectures belonging to module "CS2040S" with tags containing "intro" or "array".
+    </li>
+</ul>
 </details>
 
 #### Find Videos
@@ -818,20 +834,22 @@ Find all videos in a specified lecture in a specified module whose name starts w
 
 - <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+  - Must belong to an existing module in Le Tracker
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
-  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+  - Must belong to an existing lecture in the specified `module_code`
 
 <details>
-  <summary>Example</summary>
-  <code>find vid1, vid2 /mod CS2040S /lec Week 2</code>
-  will list videos [Vid1, Vid2] in lecture Week 2 of module CS2040S.
-  <br/>
-  <code>find content /mod CS2040S /lec Week 2 /byTag</code>
-  will list videos with tags containing content belonging to lecture Week 2 of module CS2040S.
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>find vid1, vid2 /mod CS2040S /lec Week 2</code><br/>
+    will list videos ["Vid1", "Vid2"] in lecture Week 2 of module "CS2040S".
+    </li>
+    <li>
+    <code>find content /mod CS2040S /lec Week 2 /byTag</code><br/>
+    will list videos belonging to lecture "Week 2" of module "CS2040S" with tags containing "content".
+    </li>
+</ul>
 </details>
 
 ### Clear all Modules
