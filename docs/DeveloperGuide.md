@@ -96,7 +96,6 @@ The `UI` component does the following
 * depends on some classes in the `Model` component, as it displays `Doctor` or `Patient` object residing in the `Model`.
 
 #### Main Window
-{: .no_toc}
 
 The `MainWindow` houses all the components that make up the visual display of Docedex. Its primary
 function is to listen to user input through the `CommandBox`, initiate the execution of the command,
@@ -306,9 +305,9 @@ The following sequence diagram illustrates how the add doctor operation works:
 ![](images/AddPatientSequenceDiagram.png)
 *args: Refers to a sequence of valid arguments provided by the user. Example: "n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends"
 
-#### Edit Doctor Feature
+### Edit Doctor Feature
 
-### What it does
+#### What it does
 {: .no_toc}
 
 Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be
@@ -317,7 +316,7 @@ the doctor's index.
 
 Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
 
-### Implementation
+#### Implementation
 {: .no_toc}
 
 Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
@@ -495,6 +494,7 @@ Here are some useful links on the following!
   patient or not. (Note: This problem exists if you select a doctor and then enter `list-ptn` too)
   - **Solution:** The commands that do not involve selection will clear any current selection of 
   patient or doctor cards upon execution
+  <br/>
   <br/>
 - **Core Issue**: The title of the patients list and doctors list does not describe the contents within
   the lists. Thus, there might be confusion if users do not know what the list is supposed to contain

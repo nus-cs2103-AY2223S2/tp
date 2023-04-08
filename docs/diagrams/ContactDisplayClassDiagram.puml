@@ -1,6 +1,6 @@
 @startuml
 !include style.puml
-top to bottom direction
+left to right direction
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
@@ -22,22 +22,22 @@ Class PatientListPanel
 Class "{abstract}\nContactCard" as ContactCard
 }
 
-ContactDisplay -> Logic
+ContactDisplay --> Logic
 ContactDisplay *-up-> DoctorListPanel
 ContactDisplay *-up-> PatientListPanel
 ContactDisplay *--> EnlargedDoctorInfoCard
-ContactDisplay *--> EnlargedPatientInfoCard
+ContactDisplay *-up-> EnlargedPatientInfoCard
 
 EnlargedDoctorInfoCard -right-|> EnlargedInfoCard
-EnlargedPatientInfoCard --|> EnlargedInfoCard
+EnlargedPatientInfoCard ---|> EnlargedInfoCard
 
 DoctorCard -up-|> ContactCard
 DoctorCard --> ContactDisplay
 PatientCard -up-|> ContactCard
 PatientCard --> ContactDisplay
 
-DoctorListPanel *-up- DoctorCard
-PatientListPanel *-up- PatientCard
+DoctorListPanel *-up DoctorCard
+PatientListPanel *-up PatientCard
 
 ContactCard ..> Model
 EnlargedInfoCard .up.> Model
