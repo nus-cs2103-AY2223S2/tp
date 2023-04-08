@@ -16,7 +16,7 @@ managers to efficiently delegate tasks in an organised manner.
 
 Given below are my contributions to the project.
 
-* **Enhancements to existing features**:
+* **Enhancements to existing features**: Light and Dark Theme
   ![Ui](../images/Ui.png)
   ![Ui](../images/UiDark.png)
   * What it does: This new feature provides users with the option to toggle between a light and dark theme in the app's user interface. Users can switch between the two themes using F2 and F3 keyboard shortcuts.
