@@ -380,24 +380,31 @@ Here are some useful links on the following!
 ### Appendix A: Planned Enhancements
 #### User Interface
 
-- **Problem:** Let's say that a user selected a patient, before using the
-[`list-doc` command](./UserGuide.md#listing-all-doctors). Note that the `list-doc` command does not involve
-selection of patient cards. In this case, the user interface does not clear the selection on the previously
-selected card. However, all the doctors are listed on the GUI, as requested by the user through `list-doc`.
-Therefore, there may be confusion as to whether the listed doctors are assigned to the previously selected
-patient or not. (Note: This problem exists if you select a doctor and then enter `list-ptn` too)
-  - **Solution:** The list commands will clear any selection of patient or doctor cards.
-<br/>
-- **Problem:** Let's say that a user adds a doctor using the
-[`add-doc` command](./UserGuide.md#adding-a-doctor). Docedex will automatically select the newly
-added doctor as detailed [here](./UserGuide.md#note-about-selecting-doctors-or-patients).
-In doing so, the patients list disappears, as the newly added doctor has no assigned patients.
-However, this may be confusing to some, as there is no visual feedback that the patients list
-is reflecting the newly added doctor's assigned patients. Therefore, some users have confused
-this behaviour with all patients being deleted. (Note: This problem exists if you add a patient instead too)
+- **Core Issue**: Current selection of patient or doctor cards is not cleared upon the execution of commands
+  that do not involve selection (ie. `list-doc`, `find-doc`, `del-doc`, `list-ptn`, `find-ptn`, `del-ptn`).
+  The confusion that this may lead to is described below.
+  - **Example Problematic Scenario:** Let's say that a user selected a patient, before using the
+  [`list-doc` command](./UserGuide.md#listing-all-doctors). Note that the `list-doc` command does not involve
+  selection of patient cards. In this case, the user interface does not clear the selection on the previously
+  selected card. However, all the doctors are listed on the GUI, as requested by the user through `list-doc`.
+  Therefore, there may be confusion as to whether the listed doctors are assigned to the previously selected
+  patient or not. (Note: This problem exists if you select a doctor and then enter `list-ptn` too)
+  - **Solution:** The commands that do not involve selection will clear any current selection of 
+  patient or doctor cards upon execution
+  <br/>
+- **Core Issue**: The title of the patients list and doctors list does not describe the contents within
+  the lists. Thus, there might be confusion if users do not know what the list is supposed to contain
+  at any point.
+  - **Example Problematic Scenario:** Let's say that a user adds a doctor using the
+  [`add-doc` command](./UserGuide.md#adding-a-doctor). Docedex will automatically select the newly
+  added doctor as detailed [here](./UserGuide.md#note-about-selecting-doctors-or-patients).
+  In doing so, the patients list disappears, as the newly added doctor has no assigned patients.
+  However, this may be confusing to some, as there is no visual feedback that the patients list
+  is reflecting the newly added doctor's assigned patients. Therefore, some users have confused
+  this behaviour with all patients being deleted. (Note: This problem exists if you add a patient instead too)
   - **Solution:** The title of the patients list will be updated to display "XXX's Patients", where XXX is the
-name of the newly added doctor. The same fix will be done for the title of the doctors list to support
-a similar behaviour when adding patients.
+  name of the newly added doctor. The same fix will be done for the title of the doctors list to support
+  a similar behaviour when adding patients.
 
 ### Appendix B: Product scope
 
