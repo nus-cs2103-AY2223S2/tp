@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 /**
- * Represents the result of a command execution.
+ * Represents the result of a {@code Command} execution.
  */
 public class CommandResult {
 

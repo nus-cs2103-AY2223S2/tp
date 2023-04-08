@@ -1,9 +1,11 @@
 package ezschedule.logic.parser;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ezschedule.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.commands.ClearCommand;
 import ezschedule.logic.commands.Command;
@@ -13,6 +15,9 @@ import ezschedule.logic.commands.ExitCommand;
 import ezschedule.logic.commands.FindCommand;
 import ezschedule.logic.commands.HelpCommand;
 import ezschedule.logic.commands.ListCommand;
+import ezschedule.logic.commands.RecurCommand;
+import ezschedule.logic.commands.ShowNextCommand;
+import ezschedule.logic.commands.UndoCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
 
 /**
@@ -35,7 +40,7 @@ public class SchedulerParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -51,23 +56,52 @@ public class SchedulerParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case RecurCommand.COMMAND_WORD:
+            return new RecurCommandParser().parse(arguments);
+
+        case ShowNextCommand.COMMAND_WORD:
+            return new ShowNextCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case UndoCommand.COMMAND_WORD:
+            if (!arguments.equals("")) {
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new UndoCommand();
+            }
+
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ListCommand();
+            }
+
+        case ClearCommand.COMMAND_WORD:
+            if (!arguments.equals("")) {
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ClearCommand();
+            }
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ExitCommand();
+            }
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new HelpCommand();
+            }
 
         default:
-            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }

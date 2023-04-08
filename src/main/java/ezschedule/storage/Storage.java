@@ -28,5 +28,4 @@ public interface Storage extends SchedulerStorage, UserPrefsStorage {
 
     @Override
     void saveScheduler(ReadOnlyScheduler scheduler) throws IOException;
-
 }

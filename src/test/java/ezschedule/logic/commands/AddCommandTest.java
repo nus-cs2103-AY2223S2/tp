@@ -51,6 +51,24 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_eventExistAtTime_throwsCommandException() {
+        Event validEvent = new EventBuilder().build();
+        Event validOverlapEvent = new EventBuilder().withStartTime("09:00").withEndTime("11:00").build();
+        AddCommand addCommand = new AddCommand(validEvent);
+        ModelStub modelStub = new ModelStubWithEvent(validOverlapEvent);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_EVENT_EXIST_AT_TIME, ()
+                -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void commandWord_returnSuccessful() {
+        Event validEvent = new EventBuilder().build();
+        AddCommand addCommand = new AddCommand(validEvent);
+        assertEquals(AddCommand.COMMAND_WORD, addCommand.commandWord());
+    }
+
+    @Test
     public void equals() {
         Event a = new EventBuilder().withName("Event A").build();
         Event b = new EventBuilder().withName("Event B").build();
@@ -75,9 +93,10 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
+
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
@@ -109,11 +128,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addEvent(Event event) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyScheduler getScheduler() {
             throw new AssertionError("This method should not be called.");
         }
@@ -129,6 +143,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasEventAtTime(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -139,12 +163,57 @@ public class AddCommandTest {
         }
 
         @Override
+        public ArrayList<Command> recentCommands() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<Event> recentEvent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRecentEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearRecent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public ObservableList<Event> getUpcomingEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFindEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateUpcomingEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFindEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -163,7 +232,13 @@ public class AddCommandTest {
         @Override
         public boolean hasEvent(Event event) {
             requireNonNull(event);
-            return this.event.isSameEvent(event);
+            return this.event.equals(event);
+        }
+
+        @Override
+        public boolean hasEventAtTime(Event event) {
+            requireNonNull(event);
+            return this.event.isEventOverlap(event);
         }
     }
 
@@ -172,17 +247,41 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingEventAdded extends ModelStub {
         final ArrayList<Event> eventsAdded = new ArrayList<>();
+        final ArrayList<Command> recentCommand = new ArrayList<>();
+        final ArrayList<Event> recentEvent = new ArrayList<>();
 
         @Override
         public boolean hasEvent(Event event) {
             requireNonNull(event);
-            return eventsAdded.stream().anyMatch(event::isSameEvent);
+            return eventsAdded.stream().anyMatch(event::equals);
+        }
+
+        @Override
+        public boolean hasEventAtTime(Event event) {
+            requireNonNull(event);
+            return eventsAdded.stream().anyMatch(event::isEventOverlap);
         }
 
         @Override
         public void addEvent(Event event) {
             requireNonNull(event);
             eventsAdded.add(event);
+        }
+
+        @Override
+        public ArrayList<Command> recentCommands() {
+            return recentCommand;
+        }
+
+        @Override
+        public ArrayList<Event> recentEvent() {
+            return recentEvent;
+        }
+
+        @Override
+        public void clearRecent() {
+            recentCommand.clear();
+            recentEvent.clear();
         }
 
         @Override

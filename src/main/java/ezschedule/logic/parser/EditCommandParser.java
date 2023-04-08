@@ -1,8 +1,12 @@
 package ezschedule.logic.parser;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_END;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
 import static java.util.Objects.requireNonNull;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.EditCommand;
 import ezschedule.logic.commands.EditCommand.EditEventDescriptor;
@@ -22,8 +26,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DATE,
-                    CliSyntax.PREFIX_START, CliSyntax.PREFIX_END);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_START, PREFIX_END);
 
         Index index;
 
@@ -31,22 +34,21 @@ public class EditCommandParser implements Parser<EditCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
-                    pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditEventDescriptor editEventDescriptor = new EditEventDescriptor();
-        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            editEventDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editEventDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_DATE).isPresent()) {
-            editEventDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get()));
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            editEventDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_START).isPresent()) {
-            editEventDescriptor.setStartTime(ParserUtil.parseTime(argMultimap.getValue(CliSyntax.PREFIX_START).get()));
+        if (argMultimap.getValue(PREFIX_START).isPresent()) {
+            editEventDescriptor.setStartTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_START).get()));
         }
-        if (argMultimap.getValue(CliSyntax.PREFIX_END).isPresent()) {
-            editEventDescriptor.setEndTime(ParserUtil.parseTime(argMultimap.getValue(CliSyntax.PREFIX_END).get()));
+        if (argMultimap.getValue(PREFIX_END).isPresent()) {
+            editEventDescriptor.setEndTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_END).get()));
         }
 
         if (!editEventDescriptor.isAnyFieldEdited()) {

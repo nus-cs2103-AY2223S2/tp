@@ -2,11 +2,15 @@ package ezschedule.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ezschedule.commons.core.index.Index;
 import ezschedule.commons.util.StringUtil;
 import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Name;
+import ezschedule.model.event.RecurFactor;
 import ezschedule.model.event.Time;
 
 /**
@@ -28,6 +32,25 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndexes} into an {@code List<Index>} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseMultipleIndex(String oneBasedIndexes) throws ParseException {
+        String trimmedIndexes = oneBasedIndexes.trim();
+        String[] indexes = trimmedIndexes.split(" ");
+        List<Index> indexList = new ArrayList<>();
+        for (String index : indexes) {
+            if (!StringUtil.isNonZeroUnsignedInteger(index)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            indexList.add(Index.fromOneBased(Integer.parseInt(index)));
+        }
+        return indexList;
     }
 
     /**
@@ -73,5 +96,20 @@ public class ParserUtil {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code recurFactor} is invalid.
+     */
+    public static RecurFactor parseRecurFactor(String recurFactor) throws ParseException {
+        requireNonNull(recurFactor);
+        String trimmedRecurFactor = recurFactor.trim();
+        if (!RecurFactor.isValidRecurFactor(trimmedRecurFactor)) {
+            throw new ParseException(RecurFactor.MESSAGE_CONSTRAINTS);
+        }
+        return new RecurFactor(trimmedRecurFactor);
     }
 }

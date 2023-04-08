@@ -8,6 +8,7 @@ import ezschedule.logic.Logic;
 import ezschedule.logic.commands.CommandResult;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.logic.parser.exceptions.ParseException;
+import ezschedule.model.event.exceptions.InvalidDateException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -18,7 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * The Main Window. Provides the basic application layout containing
+ * The {@code MainWindow}. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
@@ -27,28 +28,29 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
+    private final HelpWindow helpWindow;
 
     // Independent Ui parts residing in this Ui container
     private EventListPanel eventListPanel;
+    private ShowNextPanel showNextPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
     private StackPane eventListPanelPlaceholder;
-
     @FXML
     private StackPane resultDisplayPlaceholder;
-
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane showNextPlaceholder;
+    @FXML
+    private StackPane calendarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -77,7 +79,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets the accelerator of a MenuItem.
+     * Sets the accelerator of a {@code MenuItem}.
      *
      * @param keyCombination the KeyCombination value of the accelerator
      */
@@ -122,10 +124,17 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        showNextPanel = new ShowNextPanel(logic.getUpcomingEventList());
+        showNextPlaceholder.getChildren().add(showNextPanel.getRoot());
+
+        Calendar calendar = new Calendar(logic.getEventList(),
+                logic.getFindEventList(), logic::updateFilteredEventList);
+        calendarPlaceholder.getChildren().add(calendar.getRoot());
     }
 
     /**
-     * Sets the default size based on {@code guiSettings}.
+     * Sets the default size based on {@code GuiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
@@ -137,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens the {@code HelpWindow} or focuses on it if it's already opened.
      */
     @FXML
     public void handleHelp() {
@@ -158,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-            (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -168,12 +177,17 @@ public class MainWindow extends UiPart<Stage> {
         return eventListPanel;
     }
 
+    public ShowNextPanel getShowPanel() {
+        return showNextPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException, InvalidDateException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -188,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | InvalidDateException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

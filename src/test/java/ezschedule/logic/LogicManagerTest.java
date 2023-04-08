@@ -1,15 +1,19 @@
 package ezschedule.logic;
 
+import static ezschedule.commons.core.Messages.MESSAGE_EVENTS_LISTED_OVERVIEW;
 import static ezschedule.logic.commands.CommandTestUtil.DATE_DESC_A;
 import static ezschedule.logic.commands.CommandTestUtil.END_TIME_DESC_A;
 import static ezschedule.logic.commands.CommandTestUtil.NAME_DESC_A;
 import static ezschedule.logic.commands.CommandTestUtil.START_TIME_DESC_A;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_A;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_A;
 import static ezschedule.testutil.Assert.assertThrows;
 import static ezschedule.testutil.TypicalEvents.EVENT_A;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +22,7 @@ import org.junit.jupiter.api.io.TempDir;
 import ezschedule.commons.core.Messages;
 import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.commands.CommandResult;
+import ezschedule.logic.commands.FindCommand;
 import ezschedule.logic.commands.ListCommand;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.logic.parser.exceptions.ParseException;
@@ -25,7 +30,11 @@ import ezschedule.model.Model;
 import ezschedule.model.ModelManager;
 import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.UserPrefs;
+import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
+import ezschedule.model.event.EventContainsKeywordsPredicate;
+import ezschedule.model.event.EventMatchesDatePredicate;
+import ezschedule.model.event.EventMatchesKeywordsAndDatePredicate;
 import ezschedule.storage.JsonSchedulerStorage;
 import ezschedule.storage.JsonUserPrefsStorage;
 import ezschedule.storage.StorageManager;
@@ -58,7 +67,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, 9));
     }
 
     @Test
@@ -87,8 +96,80 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getScheduler_success() {
+        assertEquals(model.getScheduler(), logic.getScheduler());
+    }
+
+    @Test
+    public void getEventList_success() {
+        assertEquals(model.getEventList(), logic.getEventList());
+    }
+
+    @Test
+    public void getFilteredEventList_success() {
+        assertEquals(model.getFilteredEventList(), logic.getFilteredEventList());
+    }
+
+    @Test
+    public void getUpcomingEventList_success() {
+        assertEquals(model.getUpcomingEventList(), logic.getUpcomingEventList());
+    }
+
+    @Test
+    public void getFindEventList_success() {
+        assertEquals(model.getFindEventList(), logic.getFindEventList());
+    }
+
+    @Test
+    public void getEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getEventList().remove(0));
+    }
+
+    @Test
     public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEventList().remove(0));
+    }
+
+    @Test
+    public void getUpcomingEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getUpcomingEventList().remove(0));
+    }
+
+    @Test
+    public void getFindEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFindEventList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredEventList_modifyList_success() throws CommandException, ParseException {
+        // EventContainsKeywordsPredicate - no such event found
+        EventContainsKeywordsPredicate namePredicate = new EventContainsKeywordsPredicate(Arrays.asList(VALID_NAME_A));
+        model.updateFilteredEventList(namePredicate);
+        String findCommand = FindCommand.COMMAND_WORD + NAME_DESC_A;
+        assertCommandSuccess(findCommand, String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0), model);
+
+        // EventMatchesDatePredicate - no such event found
+        EventMatchesDatePredicate datePredicate = new EventMatchesDatePredicate(new Date(VALID_DATE_A));
+        model.updateFilteredEventList(datePredicate);
+        findCommand = FindCommand.COMMAND_WORD + DATE_DESC_A;
+        assertCommandSuccess(findCommand, String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0), model);
+
+        // EventMatchesKeywordsAndDatePredicate - no such event found
+        EventMatchesKeywordsAndDatePredicate nameAndDatePredicate =
+                new EventMatchesKeywordsAndDatePredicate(Arrays.asList(VALID_NAME_A), new Date(VALID_DATE_A));
+        model.updateFilteredEventList(nameAndDatePredicate);
+        findCommand = FindCommand.COMMAND_WORD + NAME_DESC_A + DATE_DESC_A;
+        assertCommandSuccess(findCommand, String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0), model);
+    }
+
+    @Test
+    public void getSchedulerFilePath_equalsModelGetSchedulerFilePath() {
+        assertEquals(model.getSchedulerFilePath(), logic.getSchedulerFilePath());
+    }
+
+    @Test
+    public void getSchedulerFilePath_equalsModelGetGuiSettings() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
     }
 
     /**

@@ -40,10 +40,10 @@ public class UniqueEventListTest {
     }
 
     @Test
-    public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_eventWithSameNameDifferentFieldsInList_returnsFalse() {
         uniqueEventList.add(EVENT_A);
         Event editedA = new EventBuilder(EVENT_A).withDate(VALID_DATE_B).build();
-        assertTrue(uniqueEventList.contains(editedA));
+        assertFalse(uniqueEventList.contains(editedA));
     }
 
     @Test
@@ -164,5 +164,21 @@ public class UniqueEventListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueEventList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        // same object -> returns equal
+        assertTrue(uniqueEventList.equals(uniqueEventList));
+
+        // same values -> returns equal
+        UniqueEventList uniqueEventListCopy = new UniqueEventList();
+        assertTrue(uniqueEventList.equals(uniqueEventListCopy));
+
+        // null -> returns not equal
+        assertFalse(uniqueEventList.equals(null));
+
+        // different type -> returns not equal
+        assertFalse(uniqueEventList.equals(5));
     }
 }

@@ -11,7 +11,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 
 /**
- * Controller for a help page
+ * Controller for a help page.
  */
 public class HelpWindow extends UiPart<Stage> {
 
@@ -23,14 +23,13 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Button copyButton;
-
     @FXML
     private Label helpMessage;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new {@code HelpWindow}.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the {@code HelpWindow}.
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
@@ -38,7 +37,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new {@code HelpWindow}.
      */
     public HelpWindow() {
         this(new Stage());
@@ -76,14 +75,14 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Hides the help window.
+     * Hides the {@code HelpWindow}.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the {@code HelpWindow}.
      */
     public void focus() {
         getRoot().requestFocus();

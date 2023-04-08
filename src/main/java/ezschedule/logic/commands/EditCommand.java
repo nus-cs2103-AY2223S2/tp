@@ -1,15 +1,19 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.commons.core.Messages.MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME;
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_END;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.commons.util.CollectionUtil;
 import ezschedule.logic.commands.exceptions.CommandException;
-import ezschedule.logic.parser.CliSyntax;
 import ezschedule.model.Model;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
@@ -17,25 +21,25 @@ import ezschedule.model.event.Name;
 import ezschedule.model.event.Time;
 
 /**
- * Edits the details of an existing event in the scheduler.
+ * Edits the details of an existing {@code Event} in the {@code Scheduler}.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
-        + "by the index number used in the displayed event list. "
-        + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: INDEX (must be a positive integer) "
-        + CliSyntax.PREFIX_NAME + "NAME "
-        + CliSyntax.PREFIX_DATE + "DATE "
-        + CliSyntax.PREFIX_START + "START TIME "
-        + CliSyntax.PREFIX_END + "END TIME "
-        + "Example: " + COMMAND_WORD + " 1 "
-        + CliSyntax.PREFIX_NAME + "TENNIS "
-        + CliSyntax.PREFIX_DATE + "2023-20-12 "
-        + CliSyntax.PREFIX_START + "18:00 "
-        + CliSyntax.PREFIX_END + "20:00";
+            + "by the index number used in the displayed event list. "
+            + "\nExisting values will be overwritten by the input values."
+            + "\nParameters: INDEX (must be a positive integer) "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_DATE + "DATE "
+            + PREFIX_START + "START TIME "
+            + PREFIX_END + "END TIME "
+            + "\nExample: " + COMMAND_WORD + " 1 "
+            + PREFIX_NAME + "TENNIS "
+            + PREFIX_DATE + "2023-20-12 "
+            + PREFIX_START + "18:00 "
+            + PREFIX_END + "20:00";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -72,23 +76,34 @@ public class EditCommand extends Command {
     }
 
     @Override
+    public String commandWord() {
+        return COMMAND_WORD;
+    }
+
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+            throw new CommandException(String.format(
+                    MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, index.getZeroBased() + 1));
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
+        if (!eventToEdit.equals(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        } else if (editedEvent.getEndTime().isBefore(editedEvent.getStartTime())) {
+            throw new CommandException(MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME);
+        } else {
+            model.clearRecent();
+            model.recentCommands().add(this);
+            model.setEvent(eventToEdit, editedEvent);
+            model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
+            model.addRecentEvent(eventToEdit);
+            model.addRecentEvent(editedEvent);
         }
-
-        model.setEvent(eventToEdit, editedEvent);
-        model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
@@ -107,7 +122,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-            && editEventDescriptor.equals(e.editEventDescriptor);
+                && editEventDescriptor.equals(e.editEventDescriptor);
     }
 
     /**
@@ -121,8 +136,7 @@ public class EditCommand extends Command {
         private Time startTime;
         private Time endTime;
 
-        public EditEventDescriptor() {
-        }
+        public EditEventDescriptor() {}
 
         /**
          * Copy constructor.
@@ -189,9 +203,9 @@ public class EditCommand extends Command {
             EditEventDescriptor e = (EditEventDescriptor) other;
 
             return getName().equals(e.getName())
-                && getDate().equals(e.getDate())
-                && getStartTime().equals(e.getStartTime())
-                && getEndTime().equals(e.getEndTime());
+                    && getDate().equals(e.getDate())
+                    && getStartTime().equals(e.getStartTime())
+                    && getEndTime().equals(e.getEndTime());
         }
     }
 }

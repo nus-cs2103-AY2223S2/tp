@@ -2,38 +2,67 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-            <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
+
+<StackPane fx:id="cardPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <GridPane>
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+           </columnConstraints>
+           <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+               <padding>
+                   <Insets bottom="5" left="15" right="5" top="5" />
+               </padding>
+               <HBox alignment="CENTER_LEFT">
+                   <Label fx:id="id" minWidth="30.0" styleClass="cell_big_label" />
+                   <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
+               <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="date" styleClass="cell_big_label" text="\$date" />
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+               </HBox>
+            <HBox>
+               <children>
+                     <Label fx:id="startTime" styleClass="cell_big_label" text="\$startTime" />
+                  <Label styleClass="cell_big_label" text="to">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Label>
+                     <Label fx:id="endTime" styleClass="cell_big_label" text="\$endTime" />
+                  <Region HBox.hgrow="ALWAYS" />
+                     <Label fx:id="completed" styleClass="cell_big_label">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Label>
+                  <ImageView fx:id="checkMark" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="5.0" right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
             </HBox>
-            <Label fx:id="completed" styleClass="cell_small_label" text="\$completed" />
-            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-            <Label fx:id="startTime" styleClass="cell_small_label" text="\$startTime" />
-            <Label fx:id="endTime" styleClass="cell_small_label" text="\$endTime" />
-        </VBox>
-        <rowConstraints>
-            <RowConstraints />
-        </rowConstraints>
-    </GridPane>
-</HBox>
+           </VBox>
+           <rowConstraints>
+               <RowConstraints />
+           </rowConstraints>
+       </GridPane>
+   </children>
+</StackPane>

@@ -70,7 +70,13 @@ dependencies {
 }
 
 shadowJar {
+    dependsOn test
+    dependsOn checkstyleMain
+    dependsOn checkstyleTest
     archiveFileName = 'Ez-Schedule.jar'
+    doLast {
+        println "Generated *.jar can be found at /build/libs/"
+    }
 }
 
 defaultTasks 'clean', 'test'

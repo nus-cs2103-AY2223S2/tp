@@ -6,7 +6,7 @@ import ezschedule.model.Model;
 import ezschedule.model.Scheduler;
 
 /**
- * Clears the scheduler.
+ * Clears the {@code Scheduler}.
  */
 public class ClearCommand extends Command {
 
@@ -18,5 +18,9 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setScheduler(new Scheduler());
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+    @Override
+    public String commandWord() {
+        return COMMAND_WORD;
     }
 }

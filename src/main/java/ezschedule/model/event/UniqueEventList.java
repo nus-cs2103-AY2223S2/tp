@@ -9,6 +9,7 @@ import ezschedule.commons.util.CollectionUtil;
 import ezschedule.model.event.exceptions.DuplicateEventException;
 import ezschedule.model.event.exceptions.EventNotFoundException;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 /**
@@ -17,11 +18,8 @@ import javafx.collections.ObservableList;
  * events uses Event#isSameEvent(Event) for equality so as to ensure that the event being added or updated is
  * unique in terms of identity in the UniqueEventList. However, the removal of a event uses Event#equals(Object) so
  * as to ensure that the event with exactly the same fields will be removed.
- * as to ensure that the event with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
- *
- * @see Event#isSameEvent(Event)
  */
 public class UniqueEventList implements Iterable<Event> {
 
@@ -34,11 +32,35 @@ public class UniqueEventList implements Iterable<Event> {
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameEvent);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
-     * Adds a event to the list.
+     * Returns true if the list contains an event at the given date and time.
+     */
+    public boolean existsAtTime(Event toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isEventOverlap);
+    }
+
+    /**
+     * Attach {@code listener}, which is called whenever internalList is changed.
+     *
+     * @param listener A ListChangeListener to be called.
+     */
+    public void addListChangeListener(ListChangeListener<Event> listener) {
+        internalList.addListener(listener);
+    }
+
+    /**
+     * Sorts all events in chronological order.
+     */
+    public void sortByChronologicalOrder() {
+        FXCollections.sort(internalList);
+    }
+
+    /**
+     * Adds an event to the list.
      * The event must not already exist in the list.
      */
     public void add(Event toAdd) {
@@ -62,10 +84,9 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
+        if (!target.equals(editedEvent) && contains(editedEvent)) {
             throw new DuplicateEventException();
         }
-
         internalList.set(index, editedEvent);
     }
 
@@ -94,7 +115,6 @@ public class UniqueEventList implements Iterable<Event> {
         if (!eventsAreUnique(events)) {
             throw new DuplicateEventException();
         }
-
         internalList.setAll(events);
     }
 
@@ -128,7 +148,7 @@ public class UniqueEventList implements Iterable<Event> {
     private boolean eventsAreUnique(List<Event> events) {
         for (int i = 0; i < events.size() - 1; i++) {
             for (int j = i + 1; j < events.size(); j++) {
-                if (events.get(i).isSameEvent(events.get(j))) {
+                if (events.get(i).equals(events.get(j))) {
                     return false;
                 }
             }

@@ -2,9 +2,11 @@ package ezschedule.model.event;
 
 /**
  * Represents an Event in the scheduler.
+ * When comparing, earlier events come first, then later events (chronological order)
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event implements Comparable<Event> {
+
     private final Name name;
     private final Date date;
     private final Time startTime;
@@ -36,21 +38,31 @@ public class Event implements Comparable<Event> {
         return endTime;
     }
 
-    public String getCompletedStatus() {
-        return endTime.isPastTime() ? "Event completed" : "";
+    /**
+     * Returns true if the event has been completed/is over.
+     *
+     * @return true if event is completed.
+     */
+    public boolean isCompleted() {
+        if (date.isPastDate()) {
+            return true; // Event is before today
+        } else if (date.isFutureDate()) {
+            return false; // Event is after today
+        } else {
+            // Event is sometime today
+            // Is current time passed the event end time?
+            return endTime.isPastTime();
+        }
     }
 
     /**
-     * Returns true if both events have the same name.
-     * This defines a weaker notion of equality between two events.
+     * Returns true if otherEvent's date and time overlaps this event.
+     *
+     * @param otherEvent the other event to compare to.
+     * @return true if event is overlap; otherwise, false.
      */
-    public boolean isSameEvent(Event otherEvent) {
-        if (otherEvent == this) {
-            return true;
-        }
-
-        return otherEvent != null
-            && otherEvent.getName().equals(getName());
+    public boolean isEventOverlap(Event otherEvent) {
+        return isSameDate(otherEvent) && isTimeOverlap(otherEvent);
     }
 
     @Override
@@ -59,9 +71,9 @@ public class Event implements Comparable<Event> {
             return 0;
         }
 
-        int result = getDate().compareTo(otherEvent.getDate());
-        if (result != 0) {
-            return result;
+        int daysDelta = getDate().compareTo(otherEvent.getDate());
+        if (daysDelta != 0) {
+            return daysDelta;
         }
 
         return getStartTime().compareTo(otherEvent.getStartTime());
@@ -79,21 +91,55 @@ public class Event implements Comparable<Event> {
 
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
-            && otherEvent.getDate().equals(getDate())
-            && otherEvent.getStartTime().equals(getStartTime())
-            && otherEvent.getEndTime().equals(getEndTime());
+                && otherEvent.getDate().equals(getDate())
+                && otherEvent.getStartTime().equals(getStartTime())
+                && otherEvent.getEndTime().equals(getEndTime());
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(getName())
-            .append("\nDate: ")
-            .append(getDate())
-            .append("\nStart Time: ")
-            .append(getStartTime())
-            .append("\nEnd End: ")
-            .append(getEndTime());
+        sb.append("\nName: ")
+                .append(getName())
+                .append("\nDate: ")
+                .append(getDate())
+                .append("\nStart time: ")
+                .append(getStartTime())
+                .append("\nEnd time: ")
+                .append(getEndTime());
         return sb.toString();
+    }
+
+    private boolean isSameDate(Event otherEvent) {
+        return this.getDate().equals(otherEvent.getDate());
+    }
+
+    private boolean isTimeOverlap(Event otherEvent) {
+        return isTimeIsEqual(otherEvent)
+                || isTimeInBetween(otherEvent)
+                || isStartTimeOverlap(otherEvent)
+                || isEndTimeOverlap(otherEvent);
+    }
+
+    private boolean isTimeIsEqual(Event otherEvent) {
+        return otherEvent.getStartTime().equals(getStartTime())
+                && otherEvent.getEndTime().equals(getEndTime());
+    }
+
+    private boolean isTimeInBetween(Event otherEvent) {
+        return otherEvent.getStartTime().isAfter(getStartTime())
+                && otherEvent.getEndTime().isBefore(getEndTime());
+    }
+
+    private boolean isStartTimeOverlap(Event otherEvent) {
+        return (otherEvent.getStartTime().isBefore(getStartTime())
+                || otherEvent.getStartTime().equals(getStartTime()))
+                && otherEvent.getEndTime().isAfter(getStartTime());
+    }
+
+    private boolean isEndTimeOverlap(Event otherEvent) {
+        return otherEvent.getStartTime().isBefore(getEndTime())
+                && (otherEvent.getEndTime().isAfter(getEndTime())
+                || otherEvent.getEndTime().equals(getEndTime()));
     }
 }

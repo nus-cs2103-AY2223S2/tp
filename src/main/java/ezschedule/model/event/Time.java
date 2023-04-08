@@ -13,10 +13,10 @@ import ezschedule.commons.util.AppUtil;
  */
 public class Time implements Comparable<Time> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-        "Time should only contain numeric characters, follows the format HH:mm, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Time should only contain numeric characters, "
+            + "follows the format HH:mm (starting from 00:00 to 23:59), and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^\\d{2}:\\d{2}$";
+    public static final String VALIDATION_REGEX = "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$";
 
     public final LocalTime time;
 
@@ -46,21 +46,35 @@ public class Time implements Comparable<Time> {
         return time.isBefore(LocalTime.now());
     }
 
+    /**
+     * Returns true if time is before given time.
+     */
+    public boolean isBefore(Time other) {
+        return time.isBefore(other.time);
+    }
+
+    /**
+     * Returns true if time is after given time.
+     */
+    public boolean isAfter(Time other) {
+        return time.isAfter(other.time);
+    }
+
     @Override
     public int compareTo(Time otherTime) {
         return time.compareTo(otherTime.time);
     }
 
     @Override
-    public String toString() {
-        return time.toString();
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Time // instanceof handles nulls
+                && time.equals(((Time) other).time)); // state check
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof Time // instanceof handles nulls
-            && time.equals(((Time) other).time)); // state check
+    public String toString() {
+        return time.toString();
     }
 
     @Override

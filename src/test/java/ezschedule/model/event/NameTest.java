@@ -1,5 +1,7 @@
 package ezschedule.model.event;
 
+import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_A;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static ezschedule.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,5 +38,27 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void equals() {
+        Name nameA = new Name(VALID_NAME_A);
+        Name nameB = new Name(VALID_NAME_B);
+
+        // same object -> returns true
+        assertTrue(nameA.equals(nameA));
+
+        // same object -> returns true
+        Name nameCopy = new Name(VALID_NAME_A);
+        assertTrue(nameA.equals(nameCopy));
+
+        // null -> returns false
+        assertFalse(nameA.equals(null));
+
+        // different type -> returns false
+        assertFalse(nameA.equals(5));
+
+        // different name -> returns false
+        assertFalse(nameA.equals(nameB));
     }
 }
