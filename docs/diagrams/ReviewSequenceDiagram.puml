@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant "currReview:Review" as review REVIEW_COLOR
+
+
+user -[USER_COLOR]> ui : "review 1"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("review 1")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : reviewDeck(1, [])
+activate model MODEL_COLOR
+
+create review
+model -[MODEL_COLOR]-> review
+activate review REVIEW_COLOR
+review -[REVIEW_COLOR]-> model
+deactivate review
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
+logic -[LOGIC_COLOR]> ui
+deactivate logic
+
+
+ui -[UI_COLOR]> logic : getReviewStatsList()
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : getReviewStatsList()
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> review : getReviewStatsList()
+activate review REVIEW_COLOR
+review -[REVIEW_COLOR]-> model : review stats
+deactivate review
+
+model -[MODEL_COLOR]-> logic : review stats
+deactivate model
+
+logic --[LOGIC_COLOR]> ui : review stats
+deactivate logic
+
+
+
+ui -[UI_COLOR]> logic : getReviewCardList()
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : getReviewCardList()
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> review : getFilteredReviewCardList()
+activate review REVIEW_COLOR
+review -[REVIEW_COLOR]-> model : current card
+deactivate review
+
+model -[MODEL_COLOR]-> logic : current card
+deactivate model
+
+logic --[LOGIC_COLOR]> ui : current card
+deactivate logic
+
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml

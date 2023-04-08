@@ -252,23 +252,47 @@ The following activity diagram summarizes the action taken when `deleteCard` is 
 
 ![DeleteCardActivityDiagram](images/DeleteCardActivityDiagram.png)
 
-### Implementation of Review Mode Features
+### Implementation of `REVIEW_MODE` Features
+A user can enter into the `REVIEW_MODE` to test their knowledge on a deck of cards and optionally filter that deck by the tags of the cards.
+
+The following activity diagram is a summary of the typical review workflow a user might carry out:
+
+![TypicalReviewActivityDiagram](images/TypicalReviewActivityDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+A user does not need to follow these steps exactly (e.g. the user does not necessarily need to keep going forward to the next card, they can go back to the previous question.)
+</div>
+
+
+### `REVIEW_MODE` Implementation Details
+
 A `Review` object is stored within the `Model` and represents the current review. 
-- If the current review object is `null`, it indicates that there is currently no ongoing review, thus the application in the Main mode.
-- To construct a `Review` object, the `Model` will pass in a list of cards to be reviewed (as filtered by `CardInDeckPredicate` and `CardHasTagPredicate`), the `Deck` to be reviewed and an integer representing the review limit set by user if any. 
+- If the current review object is `null`, it indicates that there is currently no ongoing review, thus the application is in the `MAIN_MODE`.
+- To construct a `Review` object, the `Model` will pass in:
+  - a list of cards to be reviewed (as filtered by `CardInDeckPredicate` and `CardHasTagPredicate`), 
+  - the `Deck` to be reviewed and 
+  - an integer representing the review limit set by user (-1 if no limit set). 
 
 Within the `Review` object, the list of cards to be reviewed are stored in a `UniqueCardList`.
 - Note that this list of cards are not the same card objects as those in the `MasterDeck` and hence any changes to be made on a card during review will need to be made on the equivalent cards in both the `MasterDeck` and the current review's `UniqueCardList`. 
 - The `UniqueCardList` is used to construct the `ObservableList` and `FilteredList` of cards which is passed upwards to the UI to display the current card under review. 
 
 Each time a `Review` object is constructed, a list of integers representing a shuffled order of indices of the cards is created.
-- A pointer representing the current card index is used to iterate across this list of shuffled indices to get the current card under review from the `UniqueCardList`.
+- A pointer representing the current card index is used to iterate across this list of shuffled indices to get the current `Card` under review from the `UniqueCardList`.
 - The pointer is incremented when the user moves on to the next card and decremented when the user moves back to the previous card
 
 Within the `Review` object, there is an `ObservableList` of a `Pair` of strings representing the following statistics of the current review: deck name, current card number, current tag count for each difficulty and the navigation guide. 
 - The statistics are displayed on the left panel during the review mode.
 - In a `Pair` of strings, the first string represents the title of the statistic while the second contains information about that respective statistic. (e.g. String 1: "Deck Name", String 2: "Chemistry")
 - These statistics are constantly updated whenever a command executed (e.g. tag current card with new difficulty) changes any of the above statistics of the review.
+
+The following is a sequence diagram shows a review is started:
+
+![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
+
+Notice that the UI calls the methods `getReviewStatsList()` and `getReviewCardList()` in `Logic` to return an `ObservableList` of the review statistics and current card respectively. 
+Any changes made to these `ObservableLists` during the review will be listened to and updated visually on the UI.
 
 #### nextCard Feature
 `Review#goToNextCard()` is the operation that allows the user to move to the next card during a review.

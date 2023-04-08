@@ -1,9 +1,8 @@
 @startuml
 
 start
-:User inputs 'addDeck DECK_NAME' command
-while in Main_Unselected Mode;
-
+:User is in MAIN_UNSELECTED_MODE;
+:User inputs 'addDeck DECK_NAME';
 
 if () then ([Deck name already exists])
     :PowerCard throws
