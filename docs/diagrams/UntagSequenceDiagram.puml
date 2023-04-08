@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":UntagCommandParser" as UntagCommandParser LOGIC_COLOR
+participant "c:UntagCommand" as UntagCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"untag CS2040S /tags fun")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand(\n"untag CS2040S /tags fun")
+activate TrackerParser
+
+create UntagCommandParser
+TrackerParser -> UntagCommandParser
+activate UntagCommandParser
+
+UntagCommandParser --> TrackerParser
+deactivate UntagCommandParser
+
+TrackerParser -> UntagCommandParser : parse(\n"CS2040S /tags fun")
+activate UntagCommandParser
+
+UntagCommandParser -> UntagCommandParser : isUntaggingMod(tag prefix "/tags")
+activate UntagCommandParser
+
+UntagCommandParser --> UntagCommandParser : true
+deactivate UntagCommandParser
+
+create UntagCommand
+UntagCommandParser -> UntagCommand : tag, module code
+activate UntagCommand
+
+UntagCommand --> UntagCommandParser : c
+deactivate UntagCommand
+
+UntagCommandParser --> TrackerParser : c
+destroy UntagCommandParser
+
+TrackerParser --> LogicManager : c
+deactivate TrackerParser
+
+LogicManager -> UntagCommand : execute(model)
+activate UntagCommand
+
+UntagCommand -> Model : hasModule(module code)
+activate Model
+
+Model --> UntagCommand : true
+deactivate Model
+
+UntagCommand -> Model : getModule(module code)
+activate Model
+
+Model --> UntagCommand : original module
+deactivate Model
+
+UntagCommand -> Model : setModule(original module, untagged module)
+activate Model
+
+Model --> UntagCommand
+deactivate Model
+
+create CommandResult
+UntagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UntagCommand : r
+deactivate CommandResult
+
+UntagCommand --> LogicManager : r
+deactivate CommandResult
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

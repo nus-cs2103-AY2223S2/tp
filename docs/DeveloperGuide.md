@@ -715,7 +715,7 @@ The feature utilises the following classes:
 The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object 
 in a `Tracker` object.
 
-TODO: ADD GRAPH
+![TagSequenceDiagram](images/UntagSequenceDiagram.png)
 
 Below is an activity diagram that showcase the events that occurs when an `untag` command is executed.
 
