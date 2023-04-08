@@ -148,7 +148,7 @@ Format: `decr INDEX tr/TRANSACTION_COUNT_DECREMENT_AMOUNT`
 - Decrements the Transaction Count of the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - The decrement amount cannot be left empty.
 - The decrement amount must be an integer greater than zero.
-- The resultant transaction count will be the difference of the person's Transaction Count and the specified increment amount.
+- The resultant transaction count will be the difference of the person's Transaction Count and the specified decrement amount.
 
 Examples:
 
