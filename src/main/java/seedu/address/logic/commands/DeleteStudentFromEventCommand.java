@@ -16,16 +16,16 @@ import seedu.address.model.Model;
 public class DeleteStudentFromEventCommand extends Command {
     public static final String COMMAND_WORD = "deleteStudent";
     public static final String MESSAGE_SUCCESS = "Student at specified index deleted from event";
-    public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "Either you did not enter an"
-            + "event type or the event type that you have entered"
-            + " cannot be recognized!\n";
-    public static final String MESSAGE_STUDENT_INDEX_TOO_SMALL = "The student index you"
-            + " have entered cannot be 0 or less";
-    public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger"
-            + " than the size of the student list within the event";
-    public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be"
+    public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "Either you did not enter an "
+            + "event type or the event type that you have entered "
+            + "cannot be recognized!\n";
+    public static final String MESSAGE_STUDENT_INDEX_TOO_SMALL = "The student index you "
+            + "have entered cannot be 0 or less";
+    public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger "
+            + "than the size of the student list within the event";
+    public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be "
             + "0 or less";
-    public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be"
+    public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be "
             + "bigger than the size of the specified event list";
 
     public static final String MESSAGE_USAGE = "Delete Student from Event Syntax: "
@@ -33,7 +33,7 @@ public class DeleteStudentFromEventCommand extends Command {
             + "STUDENT_INDEX EVENT_TYPE/EVENT_INDEX\n"
             + "Parameters: STUDENT_INDEX (must be a valid positive integer), "
             + "EVENT_TYPE (Only Tutorial or Consultation or Lab case-sensitive is allowed)\n"
-            + " EVENT_INDEX (must be a valid positive integer)\n"
+            + "EVENT_INDEX (must be a valid positive integer)\n"
             + "Example: " + COMMAND_WORD + " deleteStudent 1 Tutorial/1";
 
     public static final String TUTORIAL_STRING = PREFIX_TUTORIAL.getPrefix();

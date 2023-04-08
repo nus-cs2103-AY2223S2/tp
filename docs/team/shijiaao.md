@@ -24,6 +24,7 @@ Given below are my contributions to the project.
 * **Project management**:
     * Managed releases `v1.3.trial` - `v1.3` (2 releases) on GitHub.
     * Fixed important bugs pertaining to the JAR file on release.
+    * Contributed code to all releases except `v1.1`.
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
