@@ -162,6 +162,10 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Edit patient (`edit`) command
 
+**Overview**
+
+Edits a patient in the patient list. Patient names cannot be modified.
+
 **Implementation**
 
 The edit command edits a patient in the patient list by first finding the patient, creating a new `EditPatientDescriptor` based on the original patient, modifying that object with the given parameters, then replacing the patient in the model's patient list with a new patient constructed using the given `EditPatientDescriptor`.
@@ -172,6 +176,10 @@ One way to reduce the amount of overhead in each edit command is to store only t
 
 ### Edit appointment (`edit_appt`) command
 
+**Overview**
+
+Edits an appointment in the appointment list.
+
 **Implementation**
 
 The edit appointment command edits an appointment in the appointment list by finding the appointment, creating a new `EditAppointmentDescriptor` based on the original appointment, modifying that object with the given parameters, then replacing the appointment in the model's appointment list with a new appointment constructed using the given `EditAppointmentDescriptor`.
@@ -181,6 +189,10 @@ The edit appointment command edits an appointment in the appointment list by fin
 Similar to `edit`, storing the relevant changes for each edit command instead of storing every field of the appointment would make the edit appointment command more efficient. However, making any model mutable is undesirable as immutability allows us to easily ensure certain properties about the internal list of patients and appointments.
 
 ### Find patient (`find`) and find patient by details (`find_details`) commands
+
+**Overview**
+
+Finds a patient from the patient list and updates the displayed patient list. `find` will only match keywords to patient names, while `find_details` will match keywords to all of a patient's fields, including address and tags.
 
 **Implementation**
 
@@ -196,6 +208,10 @@ We chose to use two different commands as we expect to expand upon the find comm
 
 ### Find appointment (`find_appt`) command
 
+**Overview**
+
+Finds an appointment from the appointment list given a time or timeslot and updates the displayed appointment list. If only one time is provided, appointments that occur during that time will be found. If two times are provided, all appointments that occur anytime during that time period will be found.
+
 **Implementation**
 
 The find appointment command utilises a `Predicate<Appointment>` in order to filter `model`'s appointment list via `Model#updateFilteredAppointmentList(Predicate<Appointment>)`. The type of `Predicate` is determined during parsing, where a single date time in the command will use a `TimeInTimeslotPredicate`, while two date times in the command will result in a `AppointmentDuringTimePredicate` being used instead.
@@ -208,10 +224,13 @@ We chose to use a single command instead of two different commands like `find` a
 
 ### Delete patient (`delete_patient`) command
 
+**Overview**
+
+Deletes a patient from the patient list. Also deletes any appointments for the patient from the appointment list.
+
 **Implementation**
 
 The delete patient command allows the user to delete an existing patient from MediMeet. This is executed by filtering `model` list via `Model#getPatientList()` and obtaining a `lastShownList` list. The patient to be removed is identified by the index according to the filtered list. All appointments related to the patient will also be deleted. This is executed in the `ModelManager` by using a for loop to remove appointments with the target patient name.
-
 
 ### Delete appointment (`delete_appt`) command
 
