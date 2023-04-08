@@ -354,7 +354,7 @@ with destroy markers (X) would have been destroyed at the markers.
 
 </div>
 
-[//]: # (@@author - eugenetangkj)
+[//]: # (@@author eugenetangkj)
 ### Add an Internship - `add`
 
 #### Implementation
@@ -438,7 +438,7 @@ The following gives a more detailed explanation of the `add` command.
 
 <div style="page-break-after: always;"></div>
 
-[//]: # (@@author - seadragon2000341)
+[//]: # (@@author seadragon2000341)
 ### Edit an Internship - `edit`
 
 #### Implementation
@@ -480,7 +480,7 @@ The following gives a more detailed explanation of the `edit` command.
 
 <div style="page-break-after: always;"></div>
 
-[//]: # (@@author - eugenetangkj)
+[//]: # (@@author eugenetangkj)
 ### View an Internship - `view`
 
 #### Implementation
@@ -621,7 +621,7 @@ The following gives a more detailed explanation of the `find` command.
 
 <div style="page-break-after: always;"></div>
 
-[//]: # (@@author - seadragon2000341)
+[//]: # (@@author seadragon2000341)
 ### Get Upcoming Events and Deadlines - `upcoming`
 
 #### Implementation
@@ -662,7 +662,7 @@ The following gives a more detailed explanation of the `upcoming` command.
 
 <div style="page-break-after: always;"></div>
 
-[//]: # (@@author - potty10)
+[//]: # (@@author potty10)
 ### Delete Internship Entries by Fields - `delete-field`
 #### Implementation
 Figure 18 shows how the `delete-field` command works.
