@@ -2,8 +2,8 @@ package wingman.model.crew;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static wingman.model.crew.CrewRank.CREW_MEMBER;
 import static wingman.model.crew.CrewRank.JUNIOR_CREW_MEMBER;
 
