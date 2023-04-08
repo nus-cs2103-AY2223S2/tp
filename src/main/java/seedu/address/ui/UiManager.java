@@ -41,6 +41,7 @@ public class UiManager implements Ui {
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        model.setPrimaryStage(primaryStage);
 
         try {
             mainWindow = new MainWindow(primaryStage, logic, model);

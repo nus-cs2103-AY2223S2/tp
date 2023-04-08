@@ -39,10 +39,12 @@ public class HelpWindow extends UiPart<Stage> {
             + "  shortcut COMMAND ABBREVIATION                                   add shortcut for command\n"
             + "  clear                                                           clear address book\n"
             + "  exit                                                            exit the program\n"
+            + "  freeze                                                          freezes E-Lister\n"
+            + "  unfreeze                                                        unfreezes E-Lister\n"
             + "\n";
 
     public static final String EXAMPLE = "Example:   "
-            + "add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01\n\n";
+            + "add n/John Doe p/98765432 e/johnd@example.com i/4000 a/John street, block 123, #01-01\n\n";
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     public static final String HELP_MESSAGE = AB3_NAME + OPTIONS + EXAMPLE

@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FreezeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -27,6 +28,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UnfreezeCommand;
 
 /**
  * Utility class providing helper functions to load and save the user's commands from files.
@@ -41,6 +43,7 @@ public class ShortcutCommandUtil {
     public static final Path EXPORT_PATH = Paths.get("data", "exportCommand.txt");
     public static final Path FILTER_PATH = Paths.get("data", "filterCommand.txt");
     public static final Path FIND_PATH = Paths.get("data", "findCommand.txt");
+    public static final Path FREEZE_PATH = Paths.get("data", "freezeCommand.txt");
     public static final Path HELP_PATH = Paths.get("data", "helpCommand.txt");
     public static final Path IMPORT_PATH = Paths.get("data", "importCommand.txt");
     public static final Path LIST_PATH = Paths.get("data", "listCommand.txt");
@@ -49,6 +52,7 @@ public class ShortcutCommandUtil {
     public static final Path SHORTCUT_PATH = Paths.get("data", "shortcutCommand.txt");
     public static final Path TAG_PATH = Paths.get("data", "tagCommand.txt");
     public static final Path UNDO_PATH = Paths.get("data", "undoCommand.txt");
+    public static final Path UNFREEZE_PATH = Paths.get("data", "unfreezeCommand.txt");
 
     /**
      * Loads user-defined shortcuts from files.
@@ -62,6 +66,7 @@ public class ShortcutCommandUtil {
         ExitCommand.commandWords = loadWords(EXIT_PATH, ExitCommand.commandWords);
         ExportCommand.commandWords = loadWords(EXPORT_PATH, ExportCommand.commandWords);
         FilterCommand.commandWords = loadWords(FILTER_PATH, FilterCommand.commandWords);
+        FreezeCommand.commandWords = loadWords(FREEZE_PATH, FreezeCommand.commandWords);
         FindCommand.commandWords = loadWords(FIND_PATH, FindCommand.commandWords);
         HelpCommand.commandWords = loadWords(HELP_PATH, HelpCommand.commandWords);
         ImportCommand.commandWords = loadWords(IMPORT_PATH, ImportCommand.commandWords);
@@ -71,6 +76,33 @@ public class ShortcutCommandUtil {
         ShortcutCommand.commandWords = loadWords(SHORTCUT_PATH, ShortcutCommand.commandWords);
         TagCommand.commandWords = loadWords(TAG_PATH, TagCommand.commandWords);
         UndoCommand.commandWords = loadWords(UNDO_PATH, UndoCommand.commandWords);
+        UnfreezeCommand.commandWords = loadWords(UNFREEZE_PATH, UnfreezeCommand.commandWords);
+    }
+
+    /**
+     * Check if a shortcut to be used already exists.
+     * @return whether the shortcut exists
+     */
+    public static boolean checkIfShortcutExists(String shortForm) {
+        return AddCommand.commandWords.contains(shortForm)
+                || ClearCommand.commandWords.contains(shortForm)
+                || DeleteCommand.commandWords.contains(shortForm)
+                || DeleteTagCommand.commandWords.contains(shortForm)
+                || EditCommand.commandWords.contains(shortForm)
+                || ExitCommand.commandWords.contains(shortForm)
+                || ExportCommand.commandWords.contains(shortForm)
+                || FilterCommand.commandWords.contains(shortForm)
+                || FreezeCommand.commandWords.contains(shortForm)
+                || FindCommand.commandWords.contains(shortForm)
+                || HelpCommand.commandWords.contains(shortForm)
+                || ImportCommand.commandWords.contains(shortForm)
+                || ListCommand.commandWords.contains(shortForm)
+                || MassOpCommand.commandWords.contains(shortForm)
+                || RedoCommand.commandWords.contains(shortForm)
+                || ShortcutCommand.commandWords.contains(shortForm)
+                || TagCommand.commandWords.contains(shortForm)
+                || UndoCommand.commandWords.contains(shortForm)
+                || UnfreezeCommand.commandWords.contains(shortForm);
     }
 
     /**

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
 import seedu.address.model.history.InputHistory;
@@ -193,4 +194,14 @@ public interface Model {
 
     /** Returns the {@code History}*/
     InputHistory getInputHistory();
+
+    /**
+     * Returns the primary Stage.
+     */
+    Stage getPrimaryStage();
+
+    /**
+     * Sets the primary Stage.
+     */
+    void setPrimaryStage(Stage primaryStage);
 }
