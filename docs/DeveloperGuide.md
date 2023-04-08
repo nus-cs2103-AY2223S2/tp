@@ -64,7 +64,7 @@ The ***Architecture Diagram*** given below explains the high-level design of the
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/MainApp.java). It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -103,7 +103,7 @@ The sections below give more details of each component.
 
 This component is responsible for displaying and interacting with users of FastTrack through the GUI.
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/ui/Ui.java)
 
 #replace
 
@@ -137,7 +137,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component, to help guide you along on how it works:
 
@@ -171,7 +171,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCategoryParser`, `DeleteCategoryParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/model/Model.java)
 
 #ReplaceUMLHere
 
@@ -199,7 +199,7 @@ The `Model` component,
 
 ### AnalyticModel component
 
-**API** : [`AnalyticModel.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/model/AnalyticModel.java)
+**API** : [`AnalyticModel.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/model/AnalyticModel.java)
 
 #ReplaceUMLHere
 #This requires brand-new UML diagram of how analyticmodel component works.
@@ -213,7 +213,7 @@ The `AnalyticModel` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/fasttrack/storage/Storage.java)
 
 #ReplaceUMLHere
 
