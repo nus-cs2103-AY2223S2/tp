@@ -50,7 +50,7 @@ The user guide will contain certain visuals to aid in conveying information more
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Getting Started
+## **Getting Started**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -91,7 +91,7 @@ The user guide will contain certain visuals to aid in conveying information more
 4. You will be able to find a detailed guide on the list of available commands in the [Features](#features) section.
 
 --------------------------------------------------------------------------------------------------------------------
-## Key Definitions
+## **Key Definitions**
 This section provides explanations of important terms that will be used in this User Guide.
 
 ### Content
