@@ -22,6 +22,7 @@ If you're eager to get started with TeachMeSenpai, head over to [Setting up, get
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/)
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* All icons used are taken from [flaticon](https://www.flaticon.com/)
 
 --------------------------------------------------------------------------------------------------------------------
 
