@@ -1,6 +1,6 @@
 @startuml
 !include style.puml
-skinparam dpi 200
+skinparam dpi 250
 
 Actor User as user USER_COLOR
 
