@@ -118,7 +118,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 | Parameter         | Meaning                                                                               | Notes                                                                                                                                                                                                                                |
 |-------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ADDRESS`         | Address of the student.                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                              |
-| `EDUCATION_LEVEL` | Education level of the student.                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
+| `EDUCATION` | Education level of the student.                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
 | `EMAIL`           | Email address of the student.                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
 | `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list). | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                           |
 | `KEYWORD`         | The word you would like to [`find`](#findfilter-students-findfilter) by.              | Can only contain letters and/or numbers                                                                                                                                                                                              |
@@ -233,7 +233,7 @@ Shows a list of all students. This is useful for displaying the full list after 
 
 Adds a student to the list, along with their education level and any student-specific notes.
 
-> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`
+> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`
 >
 > - STUDENT_NAME: [Alphanumeric](#glossary) word(s).
 > - ADDRESS: The student's address.
@@ -251,7 +251,7 @@ For more details and examples on the parameters, please refer to the [Parameter 
 <div markdown="block" class="alert alert-info">
 
 :bulb: **Note:**
-* `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
+* `EDUCATION`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
 * Only the name ie. `n/` is compulsory. You can add/edit details for other parameters using the [`edit`](#editing-a-student-edit) command.
 * The current version of TeachMeSenpai allows you to add students with the same name (case-insensitive), phone number, and/or telegram handle! However, we have planned
 a future enhancement that will only allow unique names (case-sensitive), phone numbers, and telegram handles.
@@ -325,7 +325,7 @@ Examples:
 
 Edits a student's information _(all information except remarks)_. To remove a student's parameter, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
 
-> Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
+> Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
 >
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
@@ -621,10 +621,10 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 | Action | Format, Examples                                                                                                                                                                                                                                                  |
 |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
+| Add    | `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
 | Clear  | `clear`                                                                                                                                                                                                                                                           |
 | Delete | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                                   |
-| Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
+| Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
 | Exit   | `exit`                                                                                                                                                                                                                                                            |
 | Find   | `find PREFIX/KEYWORD1 [PREFIX/KEYWORD2]` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                               |                                                                                                                                                                                           |
 | List   | `list`                                                                                                                                                                                                                                                            |
@@ -741,7 +741,7 @@ The parameters in the braces indicate which parameter in the [Parameter descript
 - `email`: Represents the student's email. If empty, input`""`. (EMAIL)
 - `address`: Represents the student's address. If empty, input`""`. (ADDRESS)
 - `remark`: Represents the remark or notes for a student and can contain the newline character `\n`. If empty, input`""`. (REMARK)
-- `education`: Represents the education level of a student. If empty, input`""`. (EDUCATION_LEVEL)
+- `education`: Represents the education level of a student. If empty, input`""`. (EDUCATION)
 - `telegram`: Represents the telegram handle of a student. If empty, input`""`. (TELEGRAM)
 - `modules`: Represents an array of modules the student takes. If empty, input`[ ]`. (MODULE)
 - `tagged`: Represents an array of tags the student is labelled with. If empty, input`[ ]`. (TAG)
