@@ -353,6 +353,48 @@ Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`,
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
+### View useful `Statistics`: `stats` command
+
+The `stats` command displays useful statistics based on `Internship` and `Event` data.
+
+**Implementation**
+
+The `stats` command is a standard command that extends `Comand` and returns a `CommandResult` in the `execute()` methods, which does the following:
+
+* Obtains a `ObservableList<Event>` and `ObservableList<Internship>` from `Model`, which are lists containing all `Events` and `Internships`.
+* Creates a `Statistics` object from those 2 lists.
+* Returns a `CommandResult` of `ResultType.STATS` containing the `Statistcs` object, to be passed to the UI for displaying.
+
+Given below is an example usage scenario and how the stats command behaves at each step.
+
+Step 1. The user enters the `stats` command into the CLI: `stats`.
+
+Step 2. `InternshipCatalogueParser` parses the input and extracts the command `select`, creating a `StatsCommand` and passes it to `LogicManager`
+
+Step 3. `LogicManager` calls the `execute()` method of the `StatSCommand` instance, which invokes `getFilteredInternshipList()` and `getFilteredEventList()` on `Model` to get a list of internships and events.
+
+Step 4. A `Statistics` object is created from the 2 lists. Which parses the list of `Internship` and `Event` to instantiate the appropriate `Datapoint` fields.
+
+Step 5. Finally, a `CommandResult` is created containing that `Statistics` instance, which is then returned to `LogicManager` for use in the UI.
+
+The following sequence diagram shows how the `stats` command works:
+
+![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How statistics are generated and used:**
+
+* **Alternative 1 (current choice):** Separate `Statistics` class. `Statistics` parses lists of `Internship` and `Event` to create specified `Datapoint` fields.
+  The `Statistics` is then passed into the `CommandResult`.
+    * Pros: Allows for easy expansion for more kinds of statistics to be shown by adding more `Datapoint` fields in `Statistics`.
+    * Cons: Difficult to implement.
+
+* **Alternative 2:** `StatsCommand` parses the lists of `Internship` and `Event` to create list of `Datapoint`.
+  The list of `Datapoint` is then passed into `CommandResult`.
+    * Pros: Easy to implement.
+    * Cons: Difficult to expand to add more kinds of statistics.
+
 
 ### View all clashing `Event`: `clash` command
 
