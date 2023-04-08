@@ -447,8 +447,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         updateVehicleMappings(toAdd, false);
         updateCustomerMappings(customer, false);
         this.vehicles.add(toAdd);
-        int index = this.customers.indexOf(customer);
-        this.customers.set(index, customer); //force update list ui
+        this.customers.set(this.customers.indexOf(customer), customer); //force update list ui
         logger.info(toAdd + " added");
         return toAdd.getId();
     }
@@ -489,8 +488,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         updateServiceMappings(toAdd, false);
         updateVehicleMappings(vehicle, false);
         this.services.add(toAdd);
-        int index = this.vehicles.indexOf(vehicle);
-        this.vehicles.set(index, vehicle); //force update list ui
+        this.vehicles.set(this.vehicles.indexOf(vehicle), vehicle); //force update list ui
         logger.info(toAdd + " added");
         return toAdd.getId();
     }
@@ -541,10 +539,12 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         Service service = this.getService(serviceId);
         this.undoStack.push(this.copy());
         this.redoStack.clear();
-        updateTechnicianMappings(technician, false);
-        updateServiceMappings(service, false);
         technician.addServiceId(serviceId);
         service.assignTechnician(techId);
+        updateTechnicianMappings(technician, false);
+        updateServiceMappings(service, false);
+        this.services.set(this.services.indexOf(service), service);
+        this.technicians.set(this.technicians.indexOf(technician), technician);
     }
 
     /**
@@ -561,10 +561,12 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         Appointment appointment = this.getAppointment(appointmentId);
         this.undoStack.push(this.copy());
         this.redoStack.clear();
-        updateTechnicianMappings(technician, false);
-        updateAppointmentMappings(appointment, false);
         technician.addAppointmentId(appointmentId);
         appointment.addTechnician(techId);
+        updateTechnicianMappings(technician, false);
+        updateAppointmentMappings(appointment, false);
+        this.appointments.set(this.appointments.indexOf(appointment), appointment);
+        this.technicians.set(this.technicians.indexOf(technician), technician);
     }
 
     /**
@@ -704,6 +706,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
             this.vehicles.removeIf(v -> v.getId() == vehicleId);
             updateCustomerMappings(customer, false);
             updateVehicleMappings(toRemove, true);
+            this.customers.set(this.customers.indexOf(customer), customer); //force update list ui
             logger.info(String.format("Vehicle %d removed", vehicleId));
             this.idGenerator.setVehicleIdUnused(vehicleId);
         } catch (ServiceNotFoundException | CustomerNotFoundException e) {
@@ -775,6 +778,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
             }
             this.services.removeIf(s -> s.getId() == serviceId);
             updateServiceMappings(toRemove, true);
+            this.vehicles.set(this.vehicles.indexOf(vehicle), vehicle); //force update list ui
             logger.info(String.format("Service %d removed", serviceId));
             this.idGenerator.setServiceIdUnused(serviceId);
         } catch (VehicleNotFoundException | TechnicianNotFoundException ex) {
