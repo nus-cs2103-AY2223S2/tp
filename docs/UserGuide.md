@@ -182,31 +182,35 @@ This section provides an in-depth explanation of MyLib's features. For a quick r
 <div style="page-break-after: always;"></div>
 
 
-### Adding a tag: `addtag`
+### Tags:
+Tags are custom labels that you can attach to a bookmark. Only tags that are in your tag list can be added to a bookmark.
+This section will cover the commands you can use to view your tag list, adding tags to it and deleting tags from it.
 
-Adds a tag to the list of tags.
+#### Viewing tags
+To view your list of tags, use the `tags` command.
 
-:bulb: **Tip:** You need to add a tag to the tag list first before using it. 
+The format for the command is simply: `tags`.
 
-Format: `addtag [t/TAG]…`
+Since MyLib comes with a default set of tags, you can expect a non-empty list of tags even as a new user.
+
+#### Adding tags
+To add new tags to your tag list, use the `addtag` command.
+
+The format for the `addtag` command is as follows:
+
+`addtag [t/TAG]…`
 
 Examples:
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
 
-### Deleting a tag: `dtag`
+#### Deleting a tag
+To delete a tag from your tag list, use the `dtag` command.
 
-Deletes a tag from the tag list.
-
-Format: `dtag TAGNAME`
+Format: `dtag TAG`
 
 Example:
 * `dtag MaleProtagonist`
-
-### Listing all tags: `tags`
-Lists all tags in the tag list.
-
-Format: `tags`
 
 ### Genres:
 A genre in a bookmark indicates the genre of the content the bookmark is tracking.
@@ -235,8 +239,8 @@ The `add` command accepts the following items as user input:
 
 | Prefix | Parameter | Description                                                                                                                                                                                                                                                                                                                                        |
 |:------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|  `n/`  |   TITLE   | This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is tracking. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                        |
-|  `a/`  |  AUTHOR   | This is the author of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                                                                                                                |
+|  `n/`  |   TITLE   | This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is tracking. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   ❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.                                                                                                                                                                        |
+|  `a/`  |  AUTHOR   | This is the author of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/> ❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.                                                                                                                                                                                                                                                                |
 |  `p/`  | PROGRESS  | This is used to remember your progress with the content being tracked by this bookmark. For example, if the bookmark is tracking a novel, the progress can be used to denote the latest read chapter.<br/><br/>**Restrictions:**<br/>PROGRESS should have the format: `VOLUME CHAPTER PAGE`. <br/><br/> `VOLUME`, `CHAPTER` and `PAGE` should either be a positive number (without +) or `~`.<br/><br/> `~` is used to denote an empty `VOLUME`, `CHAPTER` and `PAGE`. For example, if you only want to use `CHAPTER` to track your progress you would do: `~ CHAPTER ~`. At least one of `VOLUME`, `CHAPTER` and `PAGE` must not be `~`.|
 |  `g/`  |   GENRE   | The genre of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>MyLib provides a fixed list of genres.<br/> Only genres in that list can be used as the genre of a bookmark.<br/> To find out more about this list, go to the [Genres](#genres) section.                   |
 |  `u/`  |    URL    | This is the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
@@ -467,8 +471,8 @@ _Details coming soon ..._
 
 | Prefix | Parameter | Description                                                                                                                                                                                                                                                                                                                                        |
 |:------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|  `n/`  |   TITLE   | This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is tracking. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                        |
-|  `a/`  |  AUTHOR   | This is the author of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                                                                                                                |
+|  `n/`  |   TITLE   | This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is tracking. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   ❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.                                                                                                                                                                        |
+|  `a/`  |  AUTHOR   | This is the author of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/> ❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.                                                                                                                                                                                                                                                                |
 |  `p/`  | PROGRESS  | This is used to remember your progress with the content being tracked by this bookmark. For example, if the bookmark is tracking a novel, the progress can be used to denote the latest read chapter.<br/><br/>**Restrictions:**<br/>PROGRESS should have the format: `VOLUME CHAPTER PAGE`. <br/><br/> `VOLUME`, `CHAPTER` and `PAGE` should either be a positive number (without +) or `~`.<br/><br/> `~` is used to denote an empty `VOLUME`, `CHAPTER` and `PAGE`. For example, if you only want to use `CHAPTER` to track your progress you would do: `~ CHAPTER ~`. At least one of `VOLUME`, `CHAPTER` and `PAGE` must not be `~`.|
 |  `g/`  |   GENRE   | The genre of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>MyLib provides a fixed list of genres.<br/> Only genres in that list can be used as the genre of a bookmark.<br/> To find out more about this list, go to the [Genres](#genres) section.                   |
 |  `u/`  |    URL    | This is the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
