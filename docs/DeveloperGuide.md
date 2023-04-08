@@ -186,6 +186,18 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add remark feature
 <!-- Darren -->
+![UI Interaction for the `remark 1 r/2 OAs` Command](images/RemarkSequenceDiagram.png)
+
+The `RemarkCommandParser` class parses the user input and returns a `RemarkCommand` object. The `RemarkCommand` object then accesses the `Model` component to get its filteredOpenings.
+
+The `RemarkCommand` object accesses the filteredOpenings to get the opening at the specified index. It then uses the details of the retrieved opening along with a new remark to create a new opening.
+
+The `RemarkCommand` object then calls `setOpening()` on `Model`, passing in the openingToEdit and editedOpening. The `Model` will then set the opening at the index specified to be the editedOpening.
+
+Once the opening in the model has been changed, the result indicating the command's success will be returned to `LogicManager` and `MainWindow`
+
+
+
 ### Show opening details feature
 <!-- Yu Fei -->
 ![UI Interaction for the `show 1` Command](images/ShowSequenceDiagram.png)
