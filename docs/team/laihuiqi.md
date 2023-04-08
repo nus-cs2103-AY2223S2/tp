@@ -15,18 +15,17 @@ Given below are my contributions to the project.
 * `task` package : `find_task` and `list_task`. 
 * `todo` package : `add_todo`, `clear_todo`, `delete_todo`, `edit_deadline`, `edit_content` and `list_todo`.
 * `note` package : `add_note`, `clear_note`, `delete_note` and `list_note`.
-* Justification: Provides functional spaces that increase the efficiency of busy computer science students on planning their internships and preparing for their interviews.
+* Justification: Provides functional spaces for planning internships and preparing interviews.
 * Highlights: An independent structure of logic, model, storage and ui is implemented for this side features package to avoid ambiguity.
   
 **New Feature**: Clear the internship applications with specified attributes and keywords
 * Allow user to delete internship applications at once by `company name`, `job title` or `status` with keywords specified (`clear_by`).
-* Justification: This feature improves the product by enabling more efficient cleaned-up for unwanted internship applications. 
+* Justification: Enable more efficient cleaned-up for unwanted internship applications. 
 * Highlights: The implementation of different class constructors and their respective parse functions is slightly challenging.
 
 **New Feature**: Revert the recent deletion of internship application
 * Allow user to restore the most recent internship application from the CacheList.
-* Justification: This feature improves the product significantly by resolving the situation when the user accidentally deletes an internship application with many important particulars.
-* To increase the efficiency, an alternative `revert_all` is provided to user to restore all the deleted / cleared applications at once.
+* Justification: Resolves the situation when the user accidentally deletes an internship application with many important particulars.
 * Highlights: A new CacheList is implemented to be the data structure to hold the deleted or cleared internship applications temporarily for the current session. 
 
 **Project management (Team-based tasks)**:
