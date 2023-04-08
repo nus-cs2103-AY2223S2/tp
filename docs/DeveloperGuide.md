@@ -18,10 +18,55 @@ Whether you are an experienced developer looking to expand your skillset or a ne
 
 ---
 
-<!-- TODO: Add this after everything is finalised  -->
-
-- Table of Contents
-  {:toc}
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Implementation](#implementation)
+  - [Add module, lecture, and video feature](#add-module-lecture-and-video-feature)
+  - [Edit module, lecture, and video feature](#edit-module-lecture-and-video-feature)
+  - [Delete module, lecture, and video feature](#delete-module-lecture-and-video-feature)
+  - [Mark / UnMark video feature](#mark--unmark-video-feature)
+  - [List module, lecture and video feature](#list-module-lecture-and-video-feature)
+  - [Find module, lecture and video feature](#find-module-lecture-and-video-feature)
+  - [Navigation feature](#navigation-feature)
+  - [Tag module, lecture, and video feature](#tag-module-lecture-and-video-feature)
+  - [Untag module, lecture, and video feature](#untag-module-lecture-and-video-feature)
+  - [Import archived data feature](#import-archived-data-feature)
+  - [Exporting data feature](#exporting-data-feature)
+  - [Clear feature](#clear-feature)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [List Modules](#list-modules)
+  - [List Lectures of a Module](#list-lectures-of-a-module)
+  - [List Videos of a Lecture](#list-videos-of-a-lecture)
+  - [Find Modules](#find-modules)
+  - [Find Modules by Tag](#find-modules-by-tag)
+  - [Find Lectures of a Module](#find-lectures-of-a-module)
+  - [Find Lectures of a Module by Tag](#find-lectures-of-a-module-by-tag)
+  - [Find Videos of a Lecture](#find-videos-of-a-lecture)
+  - [Find Videos of a Lecture by Tag](#find-videos-of-a-lecture-by-tag)
+  - [Tag a Module](#tag-a-module)
+  - [Tag a Lecture](#tag-a-lecture)
+  - [Tag a Video](#tag-a-video)
+  - [Untag a Module](#untag-a-module)
+  - [Untag a Lecture](#untag-a-lecture)
+  - [Untag a Video](#untag-a-video)
+  - [Export All Modules to a File](#export-all-modules-to-a-file)
+  - [Import Modules from a File](#import-modules-from-a-file)
 
 ---
 
@@ -198,7 +243,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -2155,12 +2200,15 @@ Maintainability:
 
 - **Context**: A *module code* or *module code - lecture name* pair that represents a location in the module-lecture-video hierarchy
 - **Current Working Context**: A specified context that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command
+- **Lecture**: A lecture of a module
+- **Lecture Name**: A name given to a lecture by the user
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Module Code**: Unique code identifier for each module
+- **Module**: A module or course in NUS
+- **Module Code**: The unique official code assigned to a module by NUS (e.g. CS2103)
 - **Navigate**: To specify a current working context
-- **Lecture Name**: Unique name identifier for each lecture
-- **Video Name**: Unique name identifier for each video
-- **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
+- **Timestamp**: The timestamp of a video, representing a specific point in the video, specified in hours, minutes, and seconds
+- **Video**: A video recording of a lecture
+- **Video Name**: A name given to a video by the user
 
 ## Appendix: Instructions for manual testing
 
