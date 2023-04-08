@@ -35,6 +35,11 @@ title: Developer Guide
   * [6. Appendix: Instructions for manual testing](#6-appendix-instructions-for-manual-testing)
   * [7. Appendix: Planned Enhancements](#7-appendix-planned-enhancements)
     * [7.1 Accommodating long inputs](#71-accommodating-long-inputs)
+    * [7.2 Enabling find by subsection](#72-enabling-find-by-subsection)
+    * [7.3 Enabling edit by subsection](#73-enabling-edit-by-subsection)
+    * [7.4 Enabling schedule by subsection](#74-enabling-schedule-by-subsection)
+    * [7.5 Enabling sort by subsection](#75-enabling-sort-by-subsection)
+    * [7.6 Better error messages](#76-better-error-messages)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -928,7 +933,7 @@ long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` caus
 - Ideally, this wrap-text would be implemented on all text fields
 
 
-### 7.2 Enabling `find` by subsection
+### [7.2 Enabling `find` by subsection]()
 
 - As brought up by issue [#173](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/173), the application currently does not support finding
 a task by its subsection name or description.
@@ -936,23 +941,42 @@ a task by its subsection name or description.
 - One possible solution is to add a predicate in the `model.task` package that allows the list to be filtered based on whether the task has a certain subsection name/description.
 - The find command parser also needs to be modified to take in prefixes such as `sub-n/` and `sub-d/`.
 - Inside the predicates, we go through each task's subsections and see whether at least one subsection contains the user's input name or description. 
-- The new command will look something like `find sub-n/Name`, which finds a task by its subsection name. Find by subsection description command can look like 
-`find sub-d/Description`.
+- The new command will look something like `find sub-n/NAME`, which finds a task by its subsection name. Find by subsection description command can look like 
+`find sub-d/DESCRIPTION`.
+- An example call could be `find sub-n/homework` or `find sub-d/chapter 1`.
 - The result of the command will be a  displayed list of tasks found:
 ![text-wrap0](images/find-bysubsectionname.png)
 
+#### Pros
+- This gives the user more options for searching a task. 
+- User can find a task even if the user only remembers the subsection's name or description.
+
+#### Cons
+- The flaw of this approach is that user needs to specify whether he/she is searching for the task by its main name or subsection name. Sometimes the user might not remember exactly
+whether the name of the task he/she wants to find is in the parent task or subsection. 
+- The user also needs to remember that `sub-n` means subsection name and `sub-d` means subsection description.
 
 ### 7.3 Enabling `edit` by subsection
 
-- The application currently does not support editing a task's subsection names or descriptions.
+- The application currently does not support editing a task's subsection name, description and other future fields.
 #### Possible Solution
-- One possible solution is to modify the edit command and its parser so that the user can enter a new subsection name or description.
-- Inside the `execute` method of the `EditCommand`, we will create a new task with the subsection specified by the user changed to a new name/description.
-- The new command will look something like `edit INDEX I/Index sub-n/Name`, which edits a task's subsection name. Edit by subsection description command can look like
-  `edit INDEX I/Index sub-d/Description`. Here, the first index corresponds to the main task's index in the current task list displayed and the index after
-prefix `I/` corresponds to the index of the subsection in the parent task.
-- The result of the command will be a displayed list of tasks found:
-  ![text-wrap0](images/edit-subsection.png)
+- One possible solution is to modify the edit command and its parser so that the user can edit a subsection field.
+- Inside the `execute` method of the `EditCommand`, we will create a new task with the subsection specified by the user changed to a new name/description, or any other field in the subsection.
+- This is extendable to all fields in subsections, such as effort level, deadline, from date and to date.
+- The new command will look something like `edit INDEX I/INDEX sub-n/NAME`, which edits a task's subsection name. Edit by subsection description command can look like
+  `edit INDEX I/INDEX sub-d/DESCRIPTION`. Here, the first index corresponds to the main task's index in the current task list displayed and the index after
+prefix `I/` corresponds to the index of the subsection in the parent task. 
+- An example could be `edit 1 I/1 sub-n/lab` or `edit 1 I/1 sub-d/chapter 1`.
+- Other proposed command prefixes include `sub-e/`, `sub-D/`, `sub-F/`, and `sub-T/` for editing subsections' effort level, deadline, from dates and to dates respectively.
+- The result of the command will be the following text on success: `Edited Task: cs2103t tasks, edited subsection: name: milestone 1  description: build homepage`
+
+
+#### Pros
+- This is easy to implement, with the standard edit command already in place.
+
+#### Cons
+- Same as the above command, user needs to remember what does `sub-n` and `sub-d` refers to, as well as other prefixes' meaning.
+
 
 
 ### 7.4 Enabling `schedule` by subsection
@@ -960,34 +984,54 @@ prefix `I/` corresponds to the index of the subsection in the parent task.
 - The application currently does not support scheduling subsections so that they can be completed on different days.
 #### Possible Solution
 - One possible solution is to allocate the main task's effort level to the subsection and allow the subsection to be one of a simple task, deadline or event. The scheduling algorithm will allocate big tasks by putting them across different days with different subsections on each day.
-- The new `subsection` command will look something like `subsection n/homework d/cs2109s [E/20] [D/DEADLINE] [F/FROM DATE] [T/TO DATE]`. If the effort level is not specified, then the effort level of the main task will be evenly distributed among the subsections.
+- The new `subsection` command will look something like `subsection n/NAME [d/DESCRIPTION] [E/EFFORT LEVEL] [D/DEADLINE] [F/FROM DATE] [T/TO DATE]`. If the effort level is not specified, then the effort level of the main task will be evenly distributed among the subsections.
 - The `schedule` command will still look like `schedule E/EFFORT D/DATE` but the result will be the parent tasks along with only part of the subsections that is set to be completed on that day.
 - For example, if the task list only contains a parent task that has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/25 D/2023-05-04` and today is 2023-05-04, the displayed result 
 will only be the parent task and the subsection "homework A". If the user enters `schedule E/25 D/2023-05-05` then, the same parent task with subsection "homework B" will be displayed.
+- The effort level will be checked when user creates a subsection because user may enter an effort level that is higher than the main task's effort level. If the user specifies an effort level for a subsection, and the new total effort level of subsections is smaller than or equal 
+to the effort level of the main task, the remaining effort level of a main task will just belong to the main task and the main task will be scheduled again on some day without any subsection. The same checks will happen if the user edits the subsection's effort level, i.e. making sure
+that the total effort level is smaller than the main task's.
 - This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadline date, even if that may result in 
 the total effort on a certain date exceeding daily effort level. Also, the events' subsections should occur between the events' start and end time. 
 - Moreover, allowing parent tasks to have deadlines and events as subsections will allow deadlines to be broken down into multiple deadlines and events to contain multiple events. Those components will be scheduled individually and displayed along with the parent tasks. 
 This ensures that the user have more flexibility in handling subsections.
 
-  
-### 7.4 Enabling `sort` by subsection
+#### Pros
+- This gives user more flexibility in terms of managing subsections, as the subsections can now take the type of deadlines and events.
+- User can now determine subsections' effort levels so that they can break down complex tasks better.
 
-- The application currently does not support sorting subsections so that they can be completed on different days.
+#### Cons
+- This makes subsection unwieldy to add.
+- The user needs to calculate himself how he/she would like to arrange the effort levels. For example, if the current subsections' total effort level = main task's effort level, the user needs to plan well and reduce some subsections' effort level before increasing other subsections'.
+
+
+### 7.5 Enabling `sort` by subsection
+
+- The application currently does not support sorting subsections.
 #### Possible Solution
 - One possible solution is to implement a `compareTo` function in the `Subtask` class. This is so that we can call `list.sort()` for the list of subsections in a task with a custom `compareTo` method.
-- The command will now look like `sort-sub INDEX`, where the index is the index of the main task in the task list currently displayed to the user. The result of the command will be that all the subsections
-of the selected parent task will be sorted. The sorting will sort subsections in the order of simple task > deadlines > events, followed by the effort level of the subsections, breaking ties using the subsection names' alphabetical order. This order is similar to the main tasks' sorting method.
+- The command will now look like `sort-sub INDEX`, where the index is the index of the main task in the task list currently displayed to the user. The result of the command will be all the subsections
+of the selected parent task sorted. The sorting will sort subsections in the order of simple task > deadlines > events, followed by the effort level of the subsections, breaking ties using the subsection names' alphabetical order. This order is similar to the main tasks' sorting method.
 - The result of the sorted subtasks will be displayed with new indexes inside the parent task.
 - To sort all the tasks, use `sort-sub all/` and the command will call the sorting function on the subsection list of each of the main tasks displayed.
 
+#### Pros
+- With sorting enabled, user will be able to see `SimpleTask`, `Event` and `Deadlines` being grouped together with same type of tasks. This gives user a better overview of what subsections are there.
 
-### 7.5 Better error messages
+#### Cons
+- The sorting simply sorts the subsections according to their type and fields such as name and dates, it would not really benefit user in planning.  
+
+### 7.6 Better error messages
 
 - Currently, there are still some error messages that are not specific enough. For example, for the edit command, if the user enters an index that is out of bounds, i.e. the index is negative or the index is larger than the maximum index currently displayed in the list, the error message will be:
   ![text-wrap0](images/index-error.png)
 However, a more specific error would be `The index provided is invalid`. In the future, the error message will be changed to `The index provided is invalid` for index errors.
 - Moreover, there is another minor bug about index inputs when the user enters the index `0` in all sorts of commands, such as `delete`, `edit`, `subsection`, and `remove-subsection`. The error message will show each command's expected usage, such as the one shown in the example above. However, a more
 specific usage will still be `The index provided is invalid`, which will be the standard behaviour for index errors in the future.
+- Perhaps we can add an `IndexOutOfBoundsException` for all the above errors, such that when the catcher catches the exception, error message will always be `The index provided is invalid`.
+
+
+
 
 
 
