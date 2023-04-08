@@ -64,7 +64,7 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 Adds a person to the ExpressLibrary.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
+* Phone number must be 8 digits long and start with 6, 8 or 9
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
