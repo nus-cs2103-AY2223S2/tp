@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.HospitalAppointmentList;
 import seedu.address.model.person.Doctor;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
