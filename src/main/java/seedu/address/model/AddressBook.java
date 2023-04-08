@@ -193,6 +193,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        for (Session session: sessions) {
+            session.removePersonFromSession(key.getName().formattedName);
+        }
     }
 
     //// util methods
