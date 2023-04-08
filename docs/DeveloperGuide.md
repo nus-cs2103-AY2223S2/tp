@@ -166,15 +166,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Implementation of Commands based on Application's Mode
-The following activity diagram summarises how the application handles a new user command:
+### Command Validity Based on Application Mode
+The activity diagram below illustrates what happens when a user enters a command.
 
-![CommandActivityFlowDiagram](images/CommandActivityFlowDiagram.png)
-
-The rake symbol (in the Check validity of command action above) is used to show that the action is described in another subsidiary activity diagram elsewhere. That diagram is given below.
-
-#### Activity: Check validity of command 
 ![CommandValidityActivityDiagram](images/CommandValidityActivityDiagram.png)
+
+It's important to note that the validity of a user's command is not solely determined by the user's input, but also by the **current mode of the application**.
+<br>
+Our application has three modes: `MAIN_UNSELECTED_MODE`, `MAIN_SELECTED_MODE`, and `REVIEW_MODE`, each with its own set of exclusive commands. 
+To enforce this, the `LogicManager` class checks the current mode of the user and **enables/disables** certain commands as necessary.
+
+- #### When the user is in `MAIN_UNSELECTED_MODE`:
+    - This mode primarily handles **deck-related** commands, such as `AddDeckCommand` and `FindDecksCommand`.
+    - No deck is selected in this mode, so card-related and review-related commands are disabled.
+- #### When the user is in `MAIN_SELECTED_MODE`:
+    - This mode primarily handles **card-related** commands, such as `AddCardCommand` and `FindCardsCommand`.
+    - A deck is selected in this mode, so deck-related commands, such as `AddDeckCommand`, are disabled.
+    - Review-related commands are also disabled, as there is no ongoing review.
+- #### When the user is in `REVIEW_MODE`:
+    - This mode primarily handles **review-related** commands, such as `FlipCardCommand` and `NextCardCommand`.
+    - A review is ongoing in this mode, so deck-related and card-related commands are disabled.
 
 ### Implementation of Main Mode Features
 
