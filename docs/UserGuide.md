@@ -41,8 +41,8 @@ Let's get you _rizzed_ up in the fastest way possible!
 3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
 4. Open a [command terminal](#glossary), [`cd`](#glossary) into the folder you put the jar file in, and input the `java -jar
    rizzipe.jar` command to run the application.
-5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have crafted
-some sample recipes for you already.<br/><br/>
+5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have already crafted
+some sample recipes for you!<br/><br/>
 ![UI QuickStart](images/UiQuickStart.png)<br/><br/>
 6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using 
    the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd>  arrow keys!
@@ -61,7 +61,7 @@ Recipes are the building blocks of RIZZipe! Each recipe comprises multiple field
 | **Name**        | `n/`   | **`NAME`** <br> `NAME` can contain these characters: `A-Z a-z 0-9 - \ ' " and space`.                                                                       | Yes         | `Chicken Rice`, <br>`Broccoli Stir-Fry`                                                                                                 |
 | **Duration**    | `d/`   | **`DURATION UNIT`** <br> `DURATION` is a positive integer, decimal number, or fraction <br> `UNIT` can contain these characters: `A-Z a-z and space`        | No          | `3 hours`, <br>`30.5 minutes`, <br>`2/5 Time Intervals`                                                                                 |
 | **Portion**     | `p/`   | **`AMOUNT UNIT`** or **`AMOUNT "-" or "to" AMOUNT UNIT`** <br> `AMOUNT` is a positive integer <br> `UNIT` can contain these characters: `A-Z a-z and space` | No          | `1 person`, <br>`3-5 people`, <br>`4 to 6 hungry individuals`                                                                           |
-| **Ingredients** | `i/`   | `-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED_AMOUNT] [-cn COMMON_NAME] [-r REMARKS]...[-s SUBSTITUTION]...` <br>See "Ingredients" section below | No          |                                                                                                                                         |
+| **Ingredients** | `i/`   | `-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED_AMOUNT] [-cn COMMON_NAME] [-r REMARKS]...[-s SUBSTITUTION]...`                                     | No          | Refer to the "Ingredients" section below!                                                                                               |
 | **Steps**       | `s/`   | **`STEP`** <br> `STEP` consists of 2 or more space-separated words, and can contain these characters: `A-Z a-z 0-9 . , : ; ( ) - and space`                 | No          | `Serve well.`, <br>`Bring 3 quarts water to a boil in a 5-qt. pot.`, <br>`Season with salt; add pasta and cook, stirring occasionally.` |
 | **Tags**        | `t/`   | **`TAG`** <br>  `TAG` can contain these characters: `A-Z a-z 0-9 and space`                                                                                 | No          | `Italian`, <br>`Comfort Food`, <br>`Gluten Free`                                                                                        |
 
@@ -69,14 +69,14 @@ Recipes are the building blocks of RIZZipe! Each recipe comprises multiple field
 
 Ingredients are at the heart of recipes, and also comprise multiple fields. The specification for recipe ingredients are listed in the table below:
 
-| Field                | Prefix | Accepted Format                                                                                                                                              | Compulsory? | Example                                                                     |
-|----------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------|
-| **Name**             | `-n`   | **`INGREDIENT_NAME`** <br> `INGREDIENT_NAME` can contain these characters: `A-Z a-z - and space`                                                             | Yes         | `Salt` <br> `Soy Sauce` <br> `Barley-Wheat Bread`                           |
-| **Amount**           | `-a`   | **`AMOUNT UNIT`** <br> `AMOUNT` is a positive integer, decimal number, fraction, "a", or "one" <br> `UNIT` can contain these characters: `A-Z a-z and space` | No          | `a pinch of` <br> `one pint` <br> `3 fl oz` <br> `4.5 grams` <br> `2/3 cup` |
-| **Estimated Amount** | `-e`   | **`ESTIMATED_AMOUNT`** <br> No restrictions on `ESTIMATED_AMOUNT`                                                                                            | No          | `Around 3 tablespoons`                                                      |
-| **Common Name**      | `-cn`  | **`COMMON_NAME`** <br> `COMMON_NAME` can contain these characters: `A-Z a-z - and space`                                                                     | No          | `Eggplant` <br> `Saiyote`                                                   |
-| **Remarks**          | `-r`   | **`REMARK`** <br> `REMARK` can contain these characters: `A-Z a-z and space`                                                                                 | No          | `Optional` <br> `Diced` <br> `thinly sliced`                                |
-| **Substitutions**    | `-s`   | **`SUBSTITUTION`** <br> `SUBSTITUTION` can contain these characters: `A-Z a-z - and space`                                                                   | No          | `Seaweed Flakes` <br> `Capsicum`                                            |
+| Field                | Prefix | Accepted Format                                                                                                                                              | Compulsory? | Example                                                                         |
+|----------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|---------------------------------------------------------------------------------|
+| **Name**             | `-n`   | **`INGREDIENT_NAME`** <br> `INGREDIENT_NAME` can contain these characters: `A-Z a-z - and space`                                                             | Yes         | `Salt`, <br> `Soy Sauce`, <br> `Barley-Wheat Bread`                             |
+| **Amount**           | `-a`   | **`AMOUNT UNIT`** <br> `AMOUNT` is a positive integer, decimal number, fraction, "a", or "one" <br> `UNIT` can contain these characters: `A-Z a-z and space` | No          | `a pinch of`, <br> `one pint`, <br> `3 fl oz`, <br> `4.5 grams`, <br> `2/3 cup` |
+| **Estimated Amount** | `-e`   | **`ESTIMATED_AMOUNT`** <br> No restrictions on `ESTIMATED_AMOUNT`                                                                                            | No          | `Around 3 tablespoons`                                                          |
+| **Common Name**      | `-cn`  | **`COMMON_NAME`** <br> `COMMON_NAME` can contain these characters: `A-Z a-z - and space`                                                                     | No          | `Eggplant`, <br> `Saiyote`                                                      |
+| **Remarks**          | `-r`   | **`REMARK`** <br> `REMARK` can contain these characters: `A-Z a-z and space`                                                                                 | No          | `Optional`, <br> `Diced`, <br> `thinly sliced`                                  |
+| **Substitutions**    | `-s`   | **`SUBSTITUTION`** <br> `SUBSTITUTION` can contain these characters: `A-Z a-z - and space`                                                                   | No          | `Seaweed Flakes`, <br> `Capsicum`                                               |
 
 
 <div style="page-break-after: always;"></div>
@@ -128,6 +128,8 @@ Example(s) of usage:
 butter s/Serve and enjoy.`
 
 <div markdown="block" class="add-info">
+
+**:information_source: Notes about the add command:**<br>
 
 * :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
 
