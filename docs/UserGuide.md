@@ -190,14 +190,19 @@ Example:
 
 Updates the student's information, given the student's label, field to change, and updated field value 
 
-Format: `update-info [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`
+Format: `update-info [index/INDEX] [field/NEW_INFO] ...`
 
-* if any parameters are missing in order, the command will display potential parameter options.
-* The available field parameters are “Address”, “School”, and “Level”.
+* `field/NEW_INFO` is to be replaced by one of
+  * `name/`
+  * `phone/` 
+  * `address/`
+  * `school/` 
+  * `level/`<br>
+  And their respective new values.
+* At least one updated parameter has to be present.
 
 Examples:
-* `update-info` Displays a list of all available student profiles
-* `update-info name/John` Displays all students with the name “John” and prompts the user for clarification
+* `update-info index/1 name/John` Displays all students with the name “John” and prompts the user for clarification
 * `update-info name/John f/address` Displays the value stored in the Address Field and prompts the user for a new Address.
 * `update-info name/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
 
