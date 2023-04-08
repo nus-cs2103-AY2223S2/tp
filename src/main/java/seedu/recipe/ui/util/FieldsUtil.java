@@ -14,6 +14,10 @@ import javafx.scene.layout.VBox;
  * A utility class containing methods for working with TextArea components.
  */
 public class FieldsUtil {
+    private static final String INGREDIENT_PROMPT =
+    "Add an ingredient (i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`)";
+    private static final String STEP_PROMPT = "Add a step";
+
     /**
      * Creates a dynamic TextArea with the specified initial text.
      * The TextArea will support UP, DOWN, and TAB navigation.
@@ -23,9 +27,6 @@ public class FieldsUtil {
      * @param text The initial text for the TextArea.
      * @return The created dynamic TextArea.
      */
-    private static final String INGREDIENT_PROMPT = "Add an ingredient (i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`)";
-    private static final String STEP_PROMPT = "Add a step";
-
     public static TextArea createDynamicTextArea(String text) {
         //Styling
         TextArea textArea = new TextArea(text);
