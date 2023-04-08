@@ -1,12 +1,13 @@
 package taa.model.student;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-import taa.model.ClassList;
-
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import taa.model.ClassList;
 
 class SameStudentPredicateTest {
 

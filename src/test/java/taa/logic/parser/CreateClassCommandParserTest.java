@@ -1,7 +1,7 @@
 package taa.logic.parser;
 
-import taa.logic.commands.CreateClassCommand;
 import org.junit.jupiter.api.Test;
+import taa.logic.commands.CreateClassCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.ClassList;
 
