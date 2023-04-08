@@ -36,7 +36,7 @@ public class TaskListPanel extends UiPart<VBox> {
     public TaskListPanel(UiTaskList taskList) {
         super(FXML);
         this.taskList = taskList;
-        taskListView.setItems(taskList.getInternalList());
+        taskListView.setItems(taskList.getUiSource());
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
@@ -46,6 +46,10 @@ public class TaskListPanel extends UiPart<VBox> {
 
     public void requestFocus() {
         taskListView.requestFocus();
+        System.out.println(taskListView.getSelectionModel().getSelectedItem());
+        if (taskListView.getSelectionModel().getSelectedItem() == null) {
+            scrollToTaskIndex(1);
+        }
     }
 
     /**

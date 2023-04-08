@@ -1,6 +1,6 @@
 package vimification.internal.command.logic;
 
-import static java.util.Objects.requireNonNull;
+import java.util.Objects;
 
 import vimification.internal.command.CommandResult;
 import vimification.model.CommandStack;
@@ -8,16 +8,11 @@ import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
 /**
- * Creates a new task and adds it to the task planner.
+ * Creates a new task and adds it to the list.
  */
 public class AddCommand extends UndoableLogicCommand {
-    public static final String COMMAND_WORD = "a";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": adds a task to the displayed task list.\n"
-            + "Parameters: DESCRIPTION (description of the task to be added)\n"
-            + "Conditions: Description cannot be empty.\n"
-            + "Example: " + COMMAND_WORD + " quiz";
 
+    public static final String COMMAND_WORD = "a";
     public static final String SUCCESS_MESSAGE = "A new task has been created.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. The new task has been deleted.";
@@ -25,16 +20,16 @@ public class AddCommand extends UndoableLogicCommand {
     private final Task addedTask;
 
     /**
-     * Creates an AddCommand to add the specified {@code Task}
+     * Creates an {@code AddCommand} to add the specified {@code Task}.
+     *
+     * @param addedTask the task to be added
      */
     public AddCommand(Task addedTask) {
-        requireNonNull(addedTask);
         this.addedTask = addedTask;
     }
 
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
-        requireNonNull(taskList);
         taskList.add(addedTask);
         commandStack.push(this);
         return new CommandResult(SUCCESS_MESSAGE);
@@ -42,15 +37,19 @@ public class AddCommand extends UndoableLogicCommand {
 
     @Override
     public CommandResult undo(LogicTaskList taskList) {
-        requireNonNull(taskList);
-        taskList.pop();
+        taskList.removeLast();
         return new CommandResult(UNDO_MESSAGE);
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                        && addedTask.equals(((AddCommand) other).addedTask));
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof AddCommand)) {
+            return false;
+        }
+        AddCommand otherCommand = (AddCommand) other;
+        return Objects.equals(addedTask, otherCommand.addedTask);
     }
 }

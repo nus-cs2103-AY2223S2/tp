@@ -4,64 +4,45 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import vimification.model.task.Task;
 
-public class UiTaskList {
+/**
+ * Instances of this interface are responsible for controlling the displayed list.
+ */
+public interface UiTaskList {
 
-    private final ObservableList<Task> allTasks;
-    private final FilteredList<Task> filteredTasks;
-    private final SortedList<Task> sortedTasks;
-    private final TaskListRef ref;
+    /**
+     * Gets an unmodifiable view of the displayed list.
+     *
+     * @return an unmodifiable view of the displayed list
+     */
+    public ObservableList<Task> getUiSource();
 
-    public UiTaskList(
-            ObservableList<Task> allTasks,
-            FilteredList<Task> filterTasks,
-            SortedList<Task> sortedTasks,
-            TaskListRef ref) {
-        if (filterTasks.isInTransformationChain(sortedTasks)) {
-            throw new IllegalArgumentException("Lists should be in the same chain");
-        }
-        this.allTasks = allTasks;
-        this.filteredTasks = filterTasks;
-        this.sortedTasks = sortedTasks;
-        this.ref = ref;
-    }
+    /**
+     * Gets the predicate used to select tasks to display.
+     *
+     * @return the predicate used to select tasks to display
+     */
+    public Predicate<? super Task> getPredicate();
 
-    public ObservableList<Task> getInternalList() {
-        return sortedTasks;
-    }
+    /**
+     * Sets the predicate used to select tasks to display.
+     *
+     * @param predicate the predicate used to select tasks to display
+     */
+    public void setPredicate(Predicate<? super Task> predicate);
 
-    public Predicate<? super Task> getPredicate() {
-        return filteredTasks.getPredicate();
-    }
+    /**
+     * Gets the comparator used to order the displayed tasks.
+     *
+     * @return the comparator used to order the displayed tasks
+     */
+    public Comparator<? super Task> getComparator();
 
-    public void setPredicate(Predicate<? super Task> predicate) {
-        filteredTasks.setPredicate(predicate);
-        changeToViewOnly();
-    }
-
-    public Comparator<? super Task> getComparator() {
-        return sortedTasks.getComparator();
-    }
-
-    public void setComparator(Comparator<? super Task> comparator) {
-        sortedTasks.setComparator(comparator);
-        changeToViewOnly();
-    }
-
-    public void refresh() {
-        setComparator(null);
-        setPredicate(null);
-        changeToWritable();
-    }
-
-    private void changeToViewOnly() {
-        ref.setTaskList(sortedTasks);
-    }
-
-    private void changeToWritable() {
-        ref.setTaskList(allTasks);
-    }
+    /**
+     * Sets the comparator used to order the displayed tasks.
+     *
+     * @param comparator the comparator used to order the displayed tasks
+     */
+    public void setComparator(Comparator<? super Task> comparator);
 }

@@ -747,10 +747,34 @@
 </ul>
 
 <h3><span style="color:#3498db"><strong><span style="font-size:14px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
+	>General information on MACRO commands</span></span></strong></span></h3>
+
+<p><span style="font-size:11px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
+	>Sometimes we might be adding the exact same task every week, say <code>:a "Do CS2103 weekly quiz"</code>.
+	Typing repeated and identical command could be time consuming and Vimification is aware of it.
+	This is where MACRO command comes in.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
+	>MACRO is like a customisable template like command, to streamline the process of running repeated commands.
+	For example, to save <code>:a "Do CS2103 weekly quiz" -d Friday 14:00</code> as a MACRO, user can simply input
+	the command, <code>:macro -a CS2103WeeklyQuiz ":a 'Do CS2103 weekly quiz' -d Friday 14:00"</code>.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
+	>The same method works for deletion of tasks & listing of tasks, which is respectively represented by the
+	command headings, <code>:macro -d` and `:macro -l</code> respectively. You can also use more verbose flags like <code>--add</code>,
+	<code>--delete</code> and <code>--list</code> instead of <code>-a</code>, <code>-d</code> and <code>-l</code> while typing MACRO commands.</span></span></p>
+
+<h3><span style="color:#3498db"><strong><span style="font-size:14px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
+	>Undoing the previous command</span></span></strong></span></h3>
+
+<p><span style="font-size:11px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
+	>You can undo the previous command by simply keying in <code>:undo</code>.</span></span></p>
+
+<h3><span style="color:#3498db"><strong><span style="font-size:14px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
 >Exiting the application</span></span></strong></span></h3>
 
 <p><span style="font-size:11px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
->Similar to Vim, we can use the&nbsp;:wq!,&nbsp;:q!,,:wq,:q&nbsp;commands to exit the application.</span></span></p>
+	>Similar to Vim, we can use the&nbsp;:wq!,&nbsp;:q!,,:wq,:q&nbsp;commands to exit the application.</span></span></p>
 
 <p><span style="font-size:11px"><span style="font-family:"Segoe UI, Tahoma, Genev, Verdana, sans-serif"
 >Format:&nbsp;:wq!,&nbsp;:q!,,:wq,:q</span></span></p>

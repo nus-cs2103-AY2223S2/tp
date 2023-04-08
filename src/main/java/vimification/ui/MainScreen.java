@@ -103,6 +103,7 @@ public class MainScreen extends UiPart<VBox> {
     public void initializeTaskTabPanel() {
         taskTabPanel = new TaskTabPanel(this, logic);
         loadLeftComponent(taskTabPanel);
+        taskTabPanel.requestFocus();
     }
 
     private void intializeCommandInput() {
@@ -118,29 +119,33 @@ public class MainScreen extends UiPart<VBox> {
     private void handleKeyPressed(KeyEvent event) {
         KeyCodeCombination colonKey =
                 new KeyCodeCombination(KeyCode.SEMICOLON, KeyCombination.SHIFT_DOWN);
+
+        KeyCodeCombination macControlTab =
+                new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.CONTROL_DOWN);
+
+        KeyCodeCombination windowsControlTab =
+                new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.ALT_DOWN);
+
+
         boolean isKeyPressedColon = colonKey.match(event);
+        boolean isContorlTab = macControlTab.match(event) || windowsControlTab.match(event);
 
         if (isKeyPressedColon) {
             loadCommandInputComponent();
             return;
         }
+        if (isContorlTab) {
+            taskTabPanel.requestTabFocus();
+            return;
+        }
 
         switch (event.getText()) {
-        case "i":
-            // loadTaskCreationPanelComponent();
-            break;
         case "j":
         case "k":
             taskTabPanel.requestFocus();
             break;
         }
     }
-
-    // private void loadTaskCreationPanelComponent() {
-    // taskCreationPanel = new TaskCreationPanel(this.getRoot());
-    // loadRightComponent(taskCreationPanel);
-    // taskCreationPanel.requestFocus();
-    // }
 
     private void loadCommandInputComponent() {
         loadBottomComponent(commandInput);

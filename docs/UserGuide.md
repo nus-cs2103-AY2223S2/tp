@@ -3,31 +3,36 @@ layout: page
 title: User Guide
 ---
 
-
-
 ## **Table of Contents**
+- [**Table of Contents**](#table-of-contents)
 - [Introduction](#introduction)
 - [Purpose of this User Guide](#purpose-of-this-user-guide)
 - [Quick Start](#quick-start)
-    - [Installation](#installation)
-    - [For Windows](#for-windows)
-    - [For Mac](#for-mac)
-    - [Trying out the commands](#trying-out-the-commands)
+  - [Installation](#installation)
+  - [For Windows](#for-windows)
+  - [For Mac](#for-mac)
+  - [Trying out the commands](#trying-out-the-commands)
 - [Navigating Vimification](#navigating-vimification)
 - [Using the commands](#using-the-commands)
 - [Information on commands' parameters](#information-on-commands-parameters)
 - [Features and commands](#features-and-commands)
-    - [Viewing help](#viewing-help)
-    - [Adding task](#adding-task)
-    - [Inserting parameters to a task](#inserting-parameters-to-a-task)
-    - [Deleting task](#deleting-task)
-    - [Deleting parameters of a task](#deleting-parameters-of-a-task)
-    - [Editing task](#editing-task)
-    - [Filtering task](#filtering-task)
-    - [Sorting task](#sorting-task)
-    - [Exiting the application](#exiting-the-application)
-    - [Saving the task list data](#saving-the-task-list-data)
-    - [Editing existing task list data](#editing-existing-task-list-data)
+  - [Viewing help](#viewing-help)
+  - [Adding task](#adding-task)
+  - [Inserting parameters to a task](#inserting-parameters-to-a-task)
+  - [Deleting task](#deleting-task)
+  - [Deleting parameters of a task](#deleting-parameters-of-a-task)
+  - [Editing task](#editing-task)
+  - [Filtering task](#filtering-task)
+  - [Sorting task](#sorting-task)
+  - [Undo the previous command](#undo-the-previous-command)
+  - [General information on MACRO commands](#general-information-on-macro-commands)
+  - [Exiting the application](#exiting-the-application)
+  - [Saving the task list data](#saving-the-task-list-data)
+  - [Editing existing task list data](#editing-existing-task-list-data)
+  - [Archiving data files (future feature)](#archiving-data-files-future-feature)
+- [FAQ](#faq)
+- [Flag summary](#flag-summary)
+- [Command summary](#command-summary)
 
 
 ## Introduction
@@ -152,9 +157,9 @@ Parameters identified by flags can be in any order.
 
 - e.g. `:a "Do OP2 slides" -l cs2101 -p high`, `:a "Do OP2 slides" -p high -l cs2101` are both acceptable.
 
-For commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`), any parameter provided will be ignored.
+Redundant parameter(s) at the end will raise an error, and the command will not be executed.
 
-- e.g. if the user inputs `:help 123`, it will be interpreted as `help`.
+- e.g. if the user inputs `:help 123`, the command `help` will not be executed, and they will receive an error message.
 
 </div>
 
@@ -323,6 +328,18 @@ Example of command
 Condition
 - Only one flag should be present.
 
+### General information on MACRO commands
+
+Sometimes we might be adding the exact same task every week, say `:a "Do CS2103 weekly quiz"`. Typing repeated and identical command could be time consuming and Vimification is aware of it. This is where MACRO command comes in.
+
+MACRO is like a customisable template like command, to streamline the process of running repeated commands. For example, to save `:a "Do CS2103 weekly quiz" -d Friday 14:00` as a MACRO, user can simply input the command, `:macro -a CS2103WeeklyQuiz ":a 'Do CS2103 weekly quiz' -d Friday 14:00"`.
+
+The same method works for deletion of tasks & listing of tasks, which is respectively represented by the command headings, `:macro -d` and `:macro -l` respectively. You can also use more verbose flags like `--add`, `--delete` and `--list` instead of `-a`, `-d` and `-l` while typing MACRO commands.
+
+### Undoing the previous command
+
+You can undo the previous command by simply keying in `:undo`.
+
 ### Exiting the application
 
 Similar to Vim, we can use the `:wq!`, `:q!`,,`:wq`,`:q` commands to exit the application.
@@ -380,7 +397,7 @@ _Details coming soon in v2.0 ..._
 | Delete task            | `:d [index]`                                                                                                      |
 | Delete parameter       | `:d <task_index> [-d] [-l <label_name>]`                                                                          |
 | Edit parameter         | `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] ` |
-| Filter                 | `:f [-w "<keyword>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`                        |
+| Filter                 | `:f [-w "<keyword>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`                       |
 | Sort                   | `:s [-t] [-d] [-p] `                                                                                              |
 | Exit the application   | `:wq!`, `:q!`, `:wq`, `:q`                                                                                        |
 

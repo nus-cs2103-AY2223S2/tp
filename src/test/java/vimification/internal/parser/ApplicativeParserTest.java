@@ -1,6 +1,7 @@
 package vimification.internal.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
@@ -109,5 +110,26 @@ public class ApplicativeParserTest {
         Pair<String, List<String>> result = parser.parsePartOf(input);
         assertEquals("Bullet", result.getFirst());
         assertEquals(List.of("Shoot", "the"), result.getSecond());
+    }
+
+    @Test
+    public void munch1_invalidInput_shouldFail() {
+        String input = "Night Falls ~ Evening Star";
+        ApplicativeParser<String> parser = ApplicativeParser.munch1(c -> c == 'n');
+        assertThrows(EXPECTED_EXCEPTION_CLASS, () -> parser.parse(input));
+    }
+
+    @Test
+    public void constMapLazyVer_invalidInput_shouldNotEvaluateOnFail() {
+        String input = "bad apple";
+        boolean[] wasExecuted = {false};
+        ApplicativeParser<String> parser = ApplicativeParser
+                .string("Bad Apple")
+                .constMap(() -> {
+                    wasExecuted[0] = true;
+                    return "bad apple";
+                });
+        assertThrows(EXPECTED_EXCEPTION_CLASS, () -> parser.parse(input));
+        assertFalse(wasExecuted[0]);
     }
 }

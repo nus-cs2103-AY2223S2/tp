@@ -2,15 +2,17 @@ package vimification.model;
 
 import java.nio.file.Path;
 
-import vimification.commons.core.GuiSettings;
+import vimification.common.core.GuiSettings;
 
 /**
- * Unmodifiable view of user prefs.
+ * Unmodifiable view of the user prefs.
  */
 public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
-    Path getLogicTaskListFilePath();
+    Path getTaskListFilePath();
+
+    Path getMacroMapFilePath();
 
 }

@@ -25,3 +25,6 @@ config.json
 
 # Java class file
 *.class
+
+/preferences.json
+/data/tasklist.json

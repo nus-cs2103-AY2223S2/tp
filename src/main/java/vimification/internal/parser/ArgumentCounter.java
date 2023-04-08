@@ -6,18 +6,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Stores mapping of flags to their respective arguments. Each flag may be associated with multiple
- * argument values. Values for a given flag are stored in a set, and the insertion ordering may be
- * maintained.
+ * Stores the maximum counts and the current counts of different flags when parsing a command.
  */
 public class ArgumentCounter {
 
-    /**
-     * Flags mapped to their respective arguments.
-     **/
     private final Map<ArgumentFlag, Integer> maximumCounts;
     private final Map<ArgumentFlag, Integer> currentCounts;
 
+    /**
+     * Constructs a new {@code ArgumentCounter} instance with the maximum counts for different
+     * flags.
+     *
+     * @param allowedFlags the allowed flags. An exception will be thrown if methods of this
+     *        instance is called with flags that are not allowed
+     */
     @SafeVarargs
     public ArgumentCounter(Pair<ArgumentFlag, Integer>... allowedFlags) {
         this.maximumCounts = Arrays
@@ -33,14 +35,11 @@ public class ArgumentCounter {
         }
     }
 
-
     /**
-     * Associates the specified argument value with {@code prefix} key in this map. If the map
-     * previously contained a mapping for the key, the new value is appended to the list of existing
-     * values.
+     * Increases the count of the given flag by 1.
      *
-     * @param prefix Prefix key with which the specified argument value is to be associated
-     * @param argValue Argument value to be associated with the specified prefix key
+     * @param flag the given flag
+     * @throws ParserException if the given flag is not allowed, or if the count exceeds the limit
      */
     public void add(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
@@ -54,12 +53,29 @@ public class ArgumentCounter {
         }
     }
 
+    /**
+     * Gets the current count of the given flag.
+     *
+     * @param flag the given flag
+     * @return the count of the given flag
+     */
     public int get(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
         return currentCounts.get(flag);
     }
 
+    /**
+     * Returns the total count of all flags.
+     *
+     * @return the total count of all flags
+     */
     public int totalCount() {
         return currentCounts.values().stream().mapToInt(Integer::valueOf).sum();
+    }
+
+    @Override
+    public String toString() {
+        return "ArgumentCounter [maximumCounts=" + maximumCounts + ", currentCounts="
+                + currentCounts + "]";
     }
 }

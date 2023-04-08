@@ -1,33 +1,35 @@
 package vimification.internal.command.logic;
 
-import vimification.commons.core.Index;
+import java.util.Objects;
+
+import vimification.common.core.Index;
 import vimification.internal.command.CommandResult;
 import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Edits a task identified using its display index.
+ */
 public class EditCommand extends UndoableLogicCommand {
 
-    public static final String COMMAND_WORD = "e -d";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edit the deadline of a task.\n"
-            + "Parameters: INDEX (index number of the target task in the displayed task list)\n"
-            + "          : DEADLINE\n"
-            + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
-            + "          : Date time must be valid in the format of YYYY-MM-DD.\n"
-            + "Example: " + COMMAND_WORD + " 1" + " 2023-01-01";
-
-    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %1$s are updated.";
+    public static final String COMMAND_WORD = "e";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %d have been updated.";
     public static final String UNDO_MESSAGE =
-            "The command has been undone. Field(s) of the updated task has been restored.";
+            "The command has been undone. Edited field(s) have been restored.";
 
     private final Index targetIndex;
     private final EditRequest request;
-    private Task oldTask = null;
 
+    private Task oldTask = null;
+    private int actualIndex = 0;
+
+    /**
+     * Create a new {@code EditCommand} instance.
+     *
+     * @param targetIndex index of the task to be modified
+     * @param request a structure that contains the relevant information for this command
+     */
     public EditCommand(Index targetIndex, EditRequest request) {
         this.targetIndex = targetIndex;
         this.request = request;
@@ -35,9 +37,8 @@ public class EditCommand extends UndoableLogicCommand {
 
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
-        requireNonNull(taskList);
-        int index = targetIndex.getZeroBased();
-        Task oldTask = taskList.get(index);
+        actualIndex = taskList.getLogicSourceIndex(targetIndex.getZeroBased());
+        Task oldTask = taskList.get(actualIndex);
         Task newTask = oldTask.clone();
         this.oldTask = oldTask;
         if (request.getEditedTitle() != null) {
@@ -56,14 +57,29 @@ public class EditCommand extends UndoableLogicCommand {
             newTask.removeLabel(pair.getFirst());
             newTask.addLabel(pair.getSecond());
         });
-        taskList.set(index, newTask);
+        taskList.set(actualIndex, newTask);
         commandStack.push(this);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override
     public CommandResult undo(LogicTaskList taskList) {
-        taskList.set(targetIndex.getZeroBased(), oldTask);
-        return null;
+        taskList.set(actualIndex, oldTask);
+        return new CommandResult(UNDO_MESSAGE);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EditCommand)) {
+            return false;
+        }
+        EditCommand otherCommand = (EditCommand) other;
+        return actualIndex == otherCommand.actualIndex
+                && Objects.equals(targetIndex, otherCommand.targetIndex)
+                && Objects.equals(request, otherCommand.request)
+                && Objects.equals(oldTask, otherCommand.oldTask);
     }
 }

@@ -19,7 +19,7 @@
             <children>
                 <HBox>
                     <children>
-                        <Label text="Deadline : " styleClass="descriptionStyle" wrapText="true"/>
+                        <Label text="Deadline : " styleClass="descriptionStyle"/>
                         <Label fx:id="deadline" prefHeight="17.0" styleClass="cell_small_label"
                                wrapText="true"/>
                     </children>
@@ -27,9 +27,9 @@
                 <HBox>
                     <children>
                         <HBox spacing="5">
-                            <Label text="Status : " styleClass="descriptionStyle" wrapText="true"/>
+                            <Label text="Status : " styleClass="descriptionStyle"/>
                             <ProgressBar fx:id="status" styleClass="progress_bar_status" progress="0.0"/>
-                            <Label fx:id="statusMessage" styleClass="cell_small_label" wrapText="true">
+                            <Label fx:id="statusMessage" styleClass="cell_small_label">
                             </Label>
                         </HBox>
                     </children>
@@ -37,15 +37,14 @@
                 <HBox>
                     <children>
                         <FlowPane fx:id="priority">
-                            <Label text="PriorityMessage : " styleClass="descriptionStyle" wrapText="true"/>
-                            <Label fx:id="priorityMessage" styleClass="priorityMessage"
-                                   wrapText="true">
+                            <Label text="Priority : " styleClass="descriptionStyle"/>
+                            <Label fx:id="priorityMessage" styleClass="priorityMessage">
                             </Label>
                         </FlowPane>
                     </children>
                 </HBox>
                 <HBox>
-                    <Label text="Labels : " styleClass="descriptionStyle" wrapText="true"/>
+                    <Label text="Labels : " styleClass="descriptionStyle"/>
                     <FlowPane fx:id="labels"/>
                 </HBox>
             </children>

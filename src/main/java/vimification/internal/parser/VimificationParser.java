@@ -2,13 +2,28 @@ package vimification.internal.parser;
 
 import java.util.logging.Logger;
 
-import vimification.commons.core.LogsCenter;
+import vimification.common.core.LogsCenter;
 import vimification.internal.command.Command;
 import vimification.internal.command.logic.LogicCommand;
 import vimification.internal.command.macro.MacroCommand;
 import vimification.internal.command.ui.UiCommand;
+import vimification.internal.parser.logic.AddCommandParser;
+import vimification.internal.parser.logic.DeleteCommandParser;
+import vimification.internal.parser.logic.EditCommandParser;
+import vimification.internal.parser.logic.InsertCommandParser;
+import vimification.internal.parser.logic.UndoCommandParser;
+import vimification.internal.parser.macro.MacroCommandParser;
+import vimification.internal.parser.ui.FilterCommandParser;
+import vimification.internal.parser.ui.HelpCommandParser;
+import vimification.internal.parser.ui.JumpCommandParser;
+import vimification.internal.parser.ui.QuitCommandParser;
+import vimification.internal.parser.ui.RefreshCommandParser;
+import vimification.internal.parser.ui.SortCommandParser;
 import vimification.model.MacroMap;
 
+/**
+ * The application's parser, used to parses user input and creates different commands.
+ */
 public class VimificationParser {
 
     private static final Logger LOGGER = LogsCenter.getLogger(VimificationParser.class);
@@ -49,10 +64,7 @@ public class VimificationParser {
     private final ApplicativeParser<String> macroPreprocessor =
             PREPROCESSOR
                     .takeNext(CommandParserUtil.STRING_PARSER)
-                    .map(input -> {
-                        String result = macroMap.get(input).orElse(input);
-                        return result;
-                    })
+                    .map(input -> macroMap.get(input).orElse(input))
                     .combine(ApplicativeParser.untilEof(), String::concat);
 
     private VimificationParser(MacroMap macroMap) {
@@ -69,13 +81,13 @@ public class VimificationParser {
     /**
      * Parses the user input and return its corresponding command.
      *
-     * @param userInput
-     * @return
+     * @param input the user input
+     * @return the command represented by the user input
      */
     public Command parse(String input) {
-        LOGGER.info(input);
+        LOGGER.info("Original input: " + input);
         String preprocessedInput = macroPreprocessor.parse(input);
-        System.out.println("Input expanded to: " + preprocessedInput);
+        LOGGER.info("Input expanded to: " + preprocessedInput);
         return COMMAND_PARSER.parse(preprocessedInput);
     }
 }

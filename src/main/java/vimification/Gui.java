@@ -2,32 +2,27 @@ package vimification;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import vimification.commons.core.Config;
-import vimification.commons.core.LogsCenter;
-import vimification.commons.exceptions.DataConversionException;
-import vimification.commons.util.JsonUtil;
-import vimification.commons.util.StringUtil;
+import vimification.common.core.Config;
+import vimification.common.core.LogsCenter;
+import vimification.common.exceptions.DataConversionException;
+import vimification.common.util.JsonUtil;
+import vimification.common.util.StringUtil;
 import vimification.internal.Logic;
 import vimification.internal.LogicManager;
 import vimification.model.CommandStack;
-import vimification.model.LogicTaskList;
 import vimification.model.MacroMap;
-import vimification.model.TaskListRef;
+import vimification.model.TaskList;
 import vimification.model.UserPrefs;
-import vimification.model.util.SampleDataUtil;
-import vimification.storage.JsonTaskListRefStorage;
 import vimification.storage.JsonMacroMapStorage;
+import vimification.storage.JsonTaskListStorage;
 import vimification.storage.JsonUserPrefsStorage;
-import vimification.storage.TaskListRefStorage;
 import vimification.storage.Storage;
 import vimification.storage.StorageManager;
 import vimification.storage.UserPrefsStorage;
-import vimification.ui.MainScreen;
 import vimification.ui.Ui;
 import vimification.ui.UiManager;
 
@@ -38,10 +33,7 @@ public class Gui extends Application {
 
     private static final Logger LOGGER = LogsCenter.getLogger(Gui.class);
 
-    protected Ui ui;
-    protected Logic logic;
-    protected Storage storage;
-    protected Config config;
+    private Ui ui;
 
     @Override
     public void init() throws Exception {
@@ -49,24 +41,22 @@ public class Gui extends Application {
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
-        config = initConfig(appParameters.getConfigPath());
+        Config config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initUserPrefs(userPrefsStorage);
+        Storage storage = new StorageManager(
+                new JsonTaskListStorage(userPrefs.getTaskListFilePath()),
+                new JsonMacroMapStorage(userPrefs.getMacroMapFilePath()),
+                userPrefsStorage);
 
-        TaskListRefStorage logicTaskListStorage =
-                new JsonTaskListRefStorage(userPrefs.getLogicTaskListFilePath());
-        JsonMacroMapStorage macroMapStorage =
-                new JsonMacroMapStorage(userPrefs.getMacroMapFilePath());
-
-        storage = new StorageManager(logicTaskListStorage, macroMapStorage, userPrefsStorage);
-        initLogging(config);
-        logic = new LogicManager(
-                initTaskListRef(storage),
+        Logic logic = new LogicManager(
+                initTaskList(storage),
                 initMacroMap(storage),
                 initCommandStack(),
                 storage);
         ui = new UiManager(logic);
+        initLogging(config);
     }
 
     @Override
@@ -74,32 +64,7 @@ public class Gui extends Application {
         ui.start(primaryStage);
     }
 
-    /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and
-     * {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book
-     * is not found, or an empty address book will be used instead if errors occur when reading
-     * {@code storage}'s address book.
-     */
-    private TaskListRef initTaskListRef(Storage storage) {
-        TaskListRef initialData;
-        try {
-            initialData = storage.readTaskListRef();
-        } catch (DataConversionException e) {
-            LOGGER.warning("Data file not in the correct format.");
-            initialData = new TaskListRef(new ArrayList<>());
-        } catch (IOException e) {
-            LOGGER.warning("Problem while reading from the file.");
-            initialData = new TaskListRef(new ArrayList<>());
-        }
-        return initialData;
-    }
-
-    private void initLogging(Config config) {
-        LogsCenter.init(config);
-    }
-
-    protected Config initConfig(Path configFilePath) {
+    private Config initConfig(Path configFilePath) {
         Path configFilePathUsed;
         if (configFilePath != null) {
             LOGGER.info("Custom config file specified: " + configFilePath);
@@ -107,65 +72,82 @@ public class Gui extends Application {
         } else {
             configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
         }
-
         LOGGER.info("Using config file: " + configFilePathUsed);
-        Config initializedConfig;
+        Config config;
         try {
-            initializedConfig = JsonUtil.readJsonFile(configFilePathUsed, Config.class);
+            config = JsonUtil.readJsonFile(configFilePathUsed, Config.class);
         } catch (IOException e) {
-            LOGGER.warning("Config file at " + configFilePathUsed
-                    + " is not in the correct format."
-                    + " Using default config.");
-            initializedConfig = new Config();
+            LOGGER.warning("Problem while reading config from file...");
+            config = new Config();
         }
-
         try {
-            JsonUtil.saveJsonFile(initializedConfig, configFilePathUsed);
-        } catch (IOException e) {
-            LOGGER.warning("Failed to save file: " + StringUtil.getDetails(e));
+            JsonUtil.saveJsonFile(config, configFilePathUsed);
+        } catch (IOException ex) {
+            LOGGER.warning("Failed to save config: " + StringUtil.getDetails(ex));
         }
-        return initializedConfig;
+        return config;
     }
-
 
     /**
      * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path, or a
      * new {@code UserPrefs} with default configuration if errors occur when reading from the file.
      */
-    protected UserPrefs initUserPrefs(UserPrefsStorage storage) {
-        Path prefsFilePath = storage.getUserPrefsFilePath();
-        LOGGER.info("Using pref file: " + prefsFilePath);
-        UserPrefs initializedPrefs;
+    private UserPrefs initUserPrefs(UserPrefsStorage storage) {
+        UserPrefs userPrefs;
         try {
-            initializedPrefs = storage.readUserPrefs();
-        } catch (IOException e) {
-            LOGGER.warning("UserPrefs file at " + prefsFilePath
-                    + " is not in the correct format."
-                    + " Using default user prefs");
-            initializedPrefs = new UserPrefs();
+            userPrefs = storage.readUserPrefs();
+        } catch (IOException ex) {
+            LOGGER.warning("Problem while reading user prefs from file...");
+            userPrefs = new UserPrefs();
         }
+        try {
+            storage.saveUserPrefs(userPrefs);
+        } catch (IOException ex) {
+            LOGGER.warning("Failed to save user prefs: " + StringUtil.getDetails(ex));
+        }
+        return userPrefs;
+    }
 
-        // Update prefs file in case it was missing to begin with or there are new/unused fields
+    private TaskList initTaskList(Storage storage) {
+        TaskList taskList;
         try {
-            storage.saveUserPrefs(initializedPrefs);
-        } catch (IOException e) {
-            LOGGER.warning("Failed to save file: " + StringUtil.getDetails(e));
+            taskList = storage.readTaskList();
+        } catch (DataConversionException ex) {
+            LOGGER.warning("Task list is in invalid format: " + StringUtil.getDetails(ex));
+            taskList = new TaskList();
+        } catch (IOException ex) {
+            LOGGER.warning("Problem while reading task list from the file...");
+            taskList = new TaskList();
         }
-        return initializedPrefs;
+        try {
+            storage.saveTaskList(taskList);
+        } catch (IOException ex) {
+            LOGGER.warning("Failed to save task list: " + StringUtil.getDetails(ex));
+        }
+        return taskList;
     }
 
     private MacroMap initMacroMap(Storage storage) {
-        MacroMap initialData;
+        MacroMap macroMap;
         try {
-            initialData = storage.readMacroMap();
-        } catch (IOException e) {
-            LOGGER.warning("Problem while reading from the file.");
-            initialData = new MacroMap();
+            macroMap = storage.readMacroMap();
+        } catch (IOException ex) {
+            LOGGER.warning("Problem while reading macro map from file...");
+            macroMap = new MacroMap();
         }
-        return initialData;
+        try {
+            storage.saveMacroMap(macroMap);
+        } catch (IOException ex) {
+            LOGGER.warning("Failed to save macro map: " + StringUtil.getDetails(ex));
+        }
+        return macroMap;
     }
 
     private CommandStack initCommandStack() {
         return new CommandStack();
+    }
+
+    private void initLogging(Config config) {
+        LogsCenter.init(config);
     }
 }

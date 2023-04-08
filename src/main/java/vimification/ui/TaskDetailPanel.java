@@ -57,7 +57,7 @@ public class TaskDetailPanel extends UiPart<VBox> {
         title.setText(task.getTitle());
 
         if (task.getDeadline() != null) {
-            deadline.setText(task.getDeadlineToString());
+            deadline.setText(task.getDeadlineAsString());
         } else {
             deadline.setText("-");
         }
@@ -67,7 +67,7 @@ public class TaskDetailPanel extends UiPart<VBox> {
             priorityMessage.setStyle("-fx-background-color: #3e7b91");
         } else if (p.equals(Priority.NOT_URGENT)) {
             priorityMessage.setStyle("-fx-background-color: #8abc79");
-        } else if  (p.equals(Priority.URGENT)) {
+        } else if (p.equals(Priority.URGENT)) {
             priorityMessage.setStyle("-fx-background-color: #d3bc75");
         } else {
             priorityMessage.setStyle("-fx-background-color: #d46b70");
@@ -88,16 +88,6 @@ public class TaskDetailPanel extends UiPart<VBox> {
             status.setStyle("-fx-accent:#d46b70");
         }
         statusMessage.setText(message);
-    }
-
-    /**
-     * Get the String of the Task instance.
-     *
-     * @param task
-     * @return {@code Deadline} or {@code Todo}
-     */
-    private String getTaskType(Task task) {
-        return task.getClass().getSimpleName();
     }
 
 }

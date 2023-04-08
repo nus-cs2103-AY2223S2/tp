@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import vimification.Gui;
-import vimification.commons.core.LogsCenter;
-import vimification.commons.util.StringUtil;
+import vimification.common.core.LogsCenter;
+import vimification.common.util.StringUtil;
 import vimification.internal.Logic;
 
 /**

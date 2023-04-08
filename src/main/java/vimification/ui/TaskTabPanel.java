@@ -2,10 +2,12 @@ package vimification.ui;
 
 import java.util.function.Predicate;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import vimification.internal.Logic;
+import vimification.model.UiTaskList;
 import vimification.model.task.Status;
 import vimification.model.task.Task;
 
@@ -14,108 +16,147 @@ public class TaskTabPanel extends UiPart<VBox> {
 
     @FXML
     private TabPane taskTabPane;
+
     @FXML
-    private VBox allTaskListComponent;
+    private VBox ongoingTaskListComponent;
     @FXML
     private VBox completedTaskListComponent;
+    @FXML
+    private VBox overdueTaskListComponent;
+
+    private MainScreen mainScreen;
+    private UiTaskList uiTaskList;
 
     private TaskListPanel ongoingTaskListPanel;
     private TaskListPanel completedTaskListPanel;
+    private TaskListPanel overdueTaskListPanel;
 
-    MainScreen mainScreen;
-    Logic logic;
+    int taskTabIndex = 0;
 
     public TaskTabPanel(MainScreen mainScreen, Logic logic) {
         super(FXML);
         this.mainScreen = mainScreen;
-        this.logic = logic;
-        loadTaskListPanel();
-    }
+        this.uiTaskList = logic.getUiTaskList();
 
-    // TODO: Refactor this.
-    protected void loadTaskListPanel() {
-        ongoingTaskListPanel = new TaskListPanel(logic.getUiTaskList());
+        uiTaskList.setPredicate(task -> task.hasStatus(Status.NOT_DONE));
+
+        ongoingTaskListPanel = new TaskListPanel(uiTaskList);
+        completedTaskListPanel = new TaskListPanel(uiTaskList);
+        overdueTaskListPanel = new TaskListPanel(uiTaskList);
+
         ongoingTaskListPanel.setMainScreen(mainScreen);
-
-        completedTaskListPanel = new TaskListPanel(logic.getUiTaskList());
         completedTaskListPanel.setMainScreen(mainScreen);
+        overdueTaskListPanel.setMainScreen(mainScreen);
 
-        allTaskListComponent.getChildren().clear();
-        allTaskListComponent.getChildren().add(ongoingTaskListPanel.getRoot());
-
-        taskTabPane.prefHeightProperty().bind(this.getRoot().prefHeightProperty());
         ongoingTaskListPanel.getRoot().prefHeightProperty()
                 .bind(this.getRoot().prefHeightProperty());
         completedTaskListPanel.getRoot().prefHeightProperty()
                 .bind(this.getRoot().prefHeightProperty());
+        overdueTaskListPanel.getRoot().prefHeightProperty()
+                .bind(this.getRoot().prefHeightProperty());
 
-        completedTaskListComponent.getChildren().clear();
+        ongoingTaskListComponent.getChildren().add(ongoingTaskListPanel.getRoot());
         completedTaskListComponent.getChildren().add(completedTaskListPanel.getRoot());
-
+        overdueTaskListComponent.getChildren().add(overdueTaskListPanel.getRoot());
     }
+
 
     @Override
     public void requestFocus() {
-        if (checkIsOngoingTabSelected()) {
+        int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
+        switch (selectedTabIndex) {
+        case 0:
             ongoingTaskListPanel.requestFocus();
-        } else {
+            break;
+        case 1:
             completedTaskListPanel.requestFocus();
+            break;
+        case 2:
+            overdueTaskListPanel.requestFocus();
+            break;
         }
     }
 
     public void scrollToTaskIndex(int displayIndex) {
-        if (checkIsOngoingTabSelected()) {
+        int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
+
+        switch (selectedTabIndex) {
+        case 0:
             ongoingTaskListPanel.scrollToTaskIndex(displayIndex);
-        } else {
+            break;
+        case 1:
             completedTaskListPanel.scrollToTaskIndex(displayIndex);
+            break;
+        case 2:
+            overdueTaskListPanel.scrollToTaskIndex(displayIndex);
+            break;
         }
     }
 
-    private boolean checkIsOngoingTabSelected() {
+    public void searchForTask(Predicate<? super Task> predicate, Status status) {
         int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
-        boolean isOngoingTabSelected = selectedTabIndex == 0;
-        return isOngoingTabSelected;
+
+        switch (selectedTabIndex) {
+        case 0:
+            ongoingTaskListPanel.searchForTask(predicate);
+            break;
+        case 1:
+            completedTaskListPanel.searchForTask(predicate);
+            break;
+        case 2:
+            overdueTaskListPanel.searchForTask(predicate);
+            break;
+        }
     }
 
-    public void searchForTask(Predicate<? super Task> predicate, Status status) {
-        ongoingTaskListPanel.searchForTask(predicate);
-        completedTaskListPanel.searchForTask(predicate);
-        int index = status == Status.COMPLETED ? 1 : 0;
-        taskTabPane.getSelectionModel().select(index);
+    public UiTaskList getUiTaskList() {
+        return uiTaskList;
     }
 
     public TabPane getTaskTabPane() {
         return taskTabPane;
     }
 
-    public VBox getAllTaskListComponent() {
-        return allTaskListComponent;
-    }
-
-    public VBox getCompletedTaskListComponent() {
-        return completedTaskListComponent;
-    }
-
-    public TaskListPanel getOngoingTaskListPanel() {
-        return ongoingTaskListPanel;
-    }
-
-    public TaskListPanel getCompletedTaskListPanel() {
-        return completedTaskListPanel;
-    }
-
     public MainScreen getMainScreen() {
         return mainScreen;
     }
 
-    public Logic getLogic() {
-        return logic;
-    }
-
     @FXML
-    private void intialize() {
-        // taskTabPane.getTabs().addListener(null);
+    private void initialize() {
+        // this.getRoot().setFocusTraversable(true);
+        // ongoingTaskListComponent.setFocusTraversable(true);
+        // completedTaskListComponent.setFocusTraversable(true);
+        // overdueTaskListComponent.setFocusTraversable(true);
+
+        Platform.runLater(() -> {
+            taskTabPane.requestFocus(); // Hackish way of requesting focus after everything has been
+            // loaded.
+        });
+        initializeHandleTabChange();
     }
 
 
+    private void initializeHandleTabChange() {
+        taskTabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+            int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
+            switch (selectedTabIndex) {
+            case 0: {
+                uiTaskList.setPredicate(task -> task.hasStatus(Status.NOT_DONE));
+                break;
+            }
+            case 1: {
+                uiTaskList.setPredicate(task -> task.hasStatus(Status.COMPLETED));
+                break;
+            }
+            case 2: {
+                uiTaskList.setPredicate(task -> task.hasStatus(Status.OVERDUE));
+                break;
+            }
+            }
+        });
+    }
+
+    public void requestTabFocus() {
+        taskTabPane.requestFocus();
+    }
 }

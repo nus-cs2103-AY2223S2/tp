@@ -9,6 +9,11 @@ import vimification.ui.MainScreen;
  */
 public abstract class UiCommand implements Command {
 
-    public abstract CommandResult execute(MainScreen mainSreen);
-
+    /**
+     * Executes this command.
+     *
+     * @param mainScreen the main screen that is shown to the user
+     * @return a structure that contains relevant information about the execution of this command
+     */
+    public abstract CommandResult execute(MainScreen mainScreen);
 }

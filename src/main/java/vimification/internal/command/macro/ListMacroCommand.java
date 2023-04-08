@@ -1,18 +1,25 @@
 package vimification.internal.command.macro;
 
-import java.util.stream.Collectors;
-
 import vimification.internal.command.CommandResult;
 import vimification.model.MacroMap;
 
+/**
+ * Shows all macros that is currently registered in the application.
+ */
 public class ListMacroCommand extends MacroCommand {
+
+    /**
+     * Creates a new {@code ListMacroCommand} instance.
+     */
+    public ListMacroCommand() {}
 
     @Override
     public CommandResult execute(MacroMap macroMap) {
-        return new CommandResult(
-                macroMap.entrySet().stream().collect(Collectors.toSet()).toString());
+        return new CommandResult(macroMap.getMapping().toString());
     }
 
-
-
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ListMacroCommand;
+    }
 }
