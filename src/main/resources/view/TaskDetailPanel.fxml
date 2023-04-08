@@ -12,7 +12,7 @@
     <children>
         <VBox>
             <children>
-                <Label fx:id="title" styleClass="cell_big_label"/>
+                <Label fx:id="title" styleClass="cell_big_label" wrapText="true"/>
             </children>
         </VBox>
         <VBox spacing="10">
@@ -37,9 +37,8 @@
                 <HBox>
                     <children>
                         <FlowPane fx:id="priority">
-                            <Label text="PriorityMessage : " styleClass="descriptionStyle"/>
-                            <Label fx:id="priorityMessage" styleClass="priorityMessage"
-                                   wrapText="true">
+                            <Label text="Priority : " styleClass="descriptionStyle"/>
+                            <Label fx:id="priorityMessage" styleClass="priorityMessage">
                             </Label>
                         </FlowPane>
                     </children>
