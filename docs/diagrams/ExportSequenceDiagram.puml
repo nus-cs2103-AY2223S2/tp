@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "e:ExportCommand" as ExportCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":ExportManager" as ExportManager STORAGE_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(exportCommand)
+activate LogicManager
+create ExportCommand
+LogicManager -> ExportCommand
+
+activate ExportCommand
+ExportCommand --> LogicManager : e
+
+
+LogicManager -> ExportCommand : execute()
+create ExportManager
+ExportCommand -> ExportManager : execute()
+
+activate ExportManager
+ExportManager -> Model
+
+activate Model
+Model --> ExportManager
+deactivate Model
+
+ExportManager --> ExportCommand
+deactivate ExportManager
+
+create CommandResult
+ExportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExportCommand
+deactivate CommandResult
+
+ExportCommand --> LogicManager : result
+deactivate ExportCommand
+
+
+
+
+
+@enduml
