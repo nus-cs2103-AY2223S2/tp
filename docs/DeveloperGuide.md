@@ -13,38 +13,38 @@ This application is currently geared towards NUS Computer Science Students of th
 
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up)
-3. [Design](#design)
-   3.1. [Architecture](#architecture)
-   3.2. [UI component](#ui-component)
-   3.3. [Logic component](#logic-component)
-   3.4. [Model component](#model-component)
-   3.5. [Storage component](#storage-component)
-   3.6. [Common classes](#common-classes)
-4. [Implementation](#implementation)
-   4.1. [Add module feature](#add-module-feature)
-   4.2. [Find module feature](#find-module-feature)
-   4.3. [Delete module feature](#delete-module-feature)
-   4.4. [Sort modules feature](#sort-modules-feature)
-   4.5. [View progress/modules feature](#view-feature)
+3. [Design](#design)<br>
+   3.1. [Architecture](#architecture)<br>
+   3.2. [UI component](#ui-component)<br>
+   3.3. [Logic component](#logic-component)<br>
+   3.4. [Model component](#model-component)<br>
+   3.5. [Storage component](#storage-component)<br>
+   3.6. [Common classes](#common-classes)<br>
+4. [Implementation](#implementation)<br>
+   4.1. [Add module feature](#add-module-feature)<br>
+   4.2. [Find module feature](#find-module-feature)<br>
+   4.3. [Delete module feature](#delete-module-feature)<br>
+   4.4. [Sort modules feature](#sort-modules-feature)<br>
+   4.5. [View progress/modules feature](#view-feature)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#miscellaneous)
-6. [Appendix: Requirements](#appendix)
-   6.1. [Product Scope](#product-scope)
-   6.2. [User Stories](#user-stories)
-   6.3. [Use Cases](#use-cases)
-   6.4. [Non-Functional Requirements](#non-functional-requirements)
-   6.5. [Glossary](#glossary)
-7. [Appendix: Instructions for manual testing](#manual-testing)
-   7.1. [Launch and shutdown](#launch-and-shutdown)
-   7.2. [Adding a module](#adding-a-module)
-   7.3. [Deleting a module](#deleting-module)
-   7.4. [Editing a module](#editing-a-module)
-   7.5. [Adding/removing tag(s) to a module](#tagging-a-module)
-   7.6. [Finding module(s)](#finding-module)
-   7.7. [Sorting modules](#sorting-modules)
-   7.8. [Toggling between Degree Progress and Module List screens](#toggling-screens)
-   7.9. [Requesting for help](#requesting-for-help)
-   7.10. [Exiting the program](#exiting-program)
-   7.11. [Saving data](#saving-data)
+6. [Appendix: Requirements](#appendix)<br>
+   6.1. [Product Scope](#product-scope)<br>
+   6.2. [User Stories](#user-stories)<br>
+   6.3. [Use Cases](#use-cases)<br>
+   6.4. [Non-Functional Requirements](#non-functional-requirements)<br>
+   6.5. [Glossary](#glossary)<br>
+7. [Appendix: Instructions for manual testing](#manual-testing)<br>
+   7.1. [Launch and shutdown](#launch-and-shutdown)<br>
+   7.2. [Adding a module](#adding-a-module)<br>
+   7.3. [Deleting a module](#deleting-module)<br>
+   7.4. [Editing a module](#editing-a-module)<br>
+   7.5. [Adding/removing tag(s) to a module](#tagging-a-module)<br>
+   7.6. [Finding module(s)](#finding-module)<br>
+   7.7. [Sorting modules](#sorting-modules)<br>
+   7.8. [Toggling between Degree Progress and Module List screens](#toggling-screens)<br>
+   7.9. [Requesting for help](#requesting-for-help)<br>
+   7.10. [Exiting the program](#exiting-program)<br>
+   7.11. [Saving data](#saving-data)<br>
    
 --------------------------------------------------------------------------------------------------------------------
 
