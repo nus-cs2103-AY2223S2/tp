@@ -1,12 +1,12 @@
 package expresslibrary.logic.parser;
 
-import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import expresslibrary.commons.core.Messages;
 import expresslibrary.logic.commands.DeletePersonCommand;
 
 /**
@@ -27,7 +27,6 @@ public class DeletePersonCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeletePersonCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 }
