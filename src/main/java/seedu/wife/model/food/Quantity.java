@@ -23,7 +23,7 @@ public class Quantity {
      */
     public Quantity(String quantity) {
         requireNonNull(quantity);
-        checkArgument(isValid(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         this.quantity = Integer.parseInt(quantity);
     }
 
@@ -42,7 +42,7 @@ public class Quantity {
      * @param quantity Number of item user wish to add into the fridge.
      * @return True if quantity is a valid quantity, else False.
      */
-    public static boolean isValid(String quantity) {
+    public static boolean isValidQuantity(String quantity) {
         return quantity.matches(VALIDATION_REGEX) && Integer.parseInt(quantity) > 0;
     }
 
@@ -51,7 +51,7 @@ public class Quantity {
      * @param newQuantity Value of new quantity.
      */
     public void updateQuantity(String newQuantity) {
-        checkArgument(isValid(newQuantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidQuantity(newQuantity), MESSAGE_CONSTRAINTS);
         this.quantity = Integer.parseInt(newQuantity);
     }
 
