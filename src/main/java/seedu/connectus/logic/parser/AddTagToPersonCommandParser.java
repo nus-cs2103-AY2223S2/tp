@@ -7,6 +7,8 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 
+import java.util.HashSet;
+
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
@@ -30,11 +32,11 @@ public class AddTagToPersonCommandParser implements Parser<AddTagToPersonCommand
         }
 
         var addTagDescriptor = new AddTagDescriptor(
-            ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK)),
-            ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE)),
-            ParserUtil.parseCcas(argMultimap.getAllValues(PREFIX_CCA)),
-            ParserUtil.parseMajors(argMultimap.getAllValues(PREFIX_MAJOR))
-        );
+                ParserUtil.parseRemarksOptional(argMultimap.getAllValues(PREFIX_REMARK)).orElseGet(HashSet::new),
+                ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE)).orElseGet(HashSet::new),
+                ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA)).orElseGet(HashSet::new),
+                ParserUtil.parseMajorsOptional(argMultimap.getAllValues(PREFIX_MAJOR)).orElseGet(HashSet::new)
+            );
 
         if (addTagDescriptor.isEmpty()) {
             throw new ParseException(
