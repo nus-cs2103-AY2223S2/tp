@@ -140,7 +140,8 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 ## Command Syntax
 
-**:information_source: The following are rules applicable to all commands:**
+:information_source: Named arguments are arguments which have a prefix while unnamed arguments are arguments without a prefix.\
+e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unnamed argument and "DSAG" is the value of the named argument `/name`.
 
 1. Items in curly braces (i.e. `{}`) are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.
    <details>
@@ -157,7 +158,7 @@ Feel free to play around with the sample data to familiarise yourself with the c
 3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).
    <details>
    <summary>Example</summary>
-   For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, <code>{module_code}</code> is an unnamed argument, while <code>/code</code> and <code>/name</code> are named arguments. The command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
+   For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, the command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
    </details>
 
 4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.
