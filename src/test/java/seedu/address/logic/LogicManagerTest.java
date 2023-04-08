@@ -80,7 +80,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Client expectedClient = new ClientBuilder(AMY).withTags().build();
+        Client expectedClient = new ClientBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addClient(expectedClient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

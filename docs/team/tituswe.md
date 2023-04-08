@@ -3,44 +3,46 @@ layout: page
 title: Titus Lowe's Project Portfolio Page
 ---
 
-### Project: Adviso.io (to be added)
+### Project: Adviso.io
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
+available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having a
+Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to select client
+    * What it does: allows the user to select a client and display his or her information with their relevant policies
+      on the UI panel.
+    * Justification: It is neater to be able to view the specific client information that you are interested in only.
+    * This enhancement affects all other commands and is the core mechanism for navigating around Advis.io.
+* **New Feature**: Policy List Panel on GUI
+    * What it does: Allows the user to view the policies subscribed to by a client.
+    * Justification: This feature enables the visualization and organization of policies in Advis.io.
+* **Code contributed
+  **: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tituswe&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Enhanced GUI layout and color scheme (Pull request [\#83](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/83))
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `select` [\#96](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/96)
+        * Reformatted UG and added UG links to table of
+          contents [\#113](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/113)
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `select`
+          feature [\#90](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/90).
+        * Added control flow and detailed documentation of the 'UI' component.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * PRs reviewed (with non-trivial review
+      comments): [\#60](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/60), [\70](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/70), [\#79](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/79)
+    * Contributed to forum discussions (
+      examples: [\#7](https://github.com/nus-cs2103-AY2223S2/forum/issues/7), [\#142](https://github.com/nus-cs2103-AY2223S2/forum/issues/142), [\#164](https://github.com/nus-cs2103-AY2223S2/forum/issues/164), [\#194](https://github.com/nus-cs2103-AY2223S2/forum/issues/194), [\#198](https://github.com/nus-cs2103-AY2223S2/forum/issues/198), [\#227](https://github.com/nus-cs2103-AY2223S2/forum/issues/227), [\#249](https://github.com/nus-cs2103-AY2223S2/forum/issues/249), [\#251](https://github.com/nus-cs2103-AY2223S2/forum/issues/251), [\#252](https://github.com/nus-cs2103-AY2223S2/forum/issues/252))
+    * Reported bugs and suggestions for other teams (
+      examples: [\#177](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/177), [\#179](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/179), [\#182](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/182), [\#189](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/189), [\#192](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/192), [\#195](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/195)

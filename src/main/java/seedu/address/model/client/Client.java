@@ -2,17 +2,13 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Client in the address book.
@@ -27,7 +23,6 @@ public class Client implements Comparable<Client> {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
     private final UniquePolicyList policyList;
     private final FilteredList<Policy> filteredPolicies;
 
@@ -36,15 +31,14 @@ public class Client implements Comparable<Client> {
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniquePolicyList policyList,
+    public Client(Name name, Phone phone, Email email, Address address, UniquePolicyList policyList,
                   Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
-        this.policyList = policyList; // TODO: @pangrwa Need to read from Storage
+        this.policyList = policyList;
         this.appointment = appointment;
         filteredPolicies = new FilteredList<>(this.policyList.asUnmodifiableObservableList());
     }
@@ -75,14 +69,6 @@ public class Client implements Comparable<Client> {
 
     public Appointment getAppointment() {
         return appointment;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -123,7 +109,6 @@ public class Client implements Comparable<Client> {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags())
                 && otherClient.getPolicyList().equals(getPolicyList())
                 && otherClient.getAppointment().equals(getAppointment());
     }
@@ -131,7 +116,7 @@ public class Client implements Comparable<Client> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, policyList);
+        return Objects.hash(name, phone, email, address, policyList);
     }
 
     @Override
@@ -142,6 +127,7 @@ public class Client implements Comparable<Client> {
     /**
      * Clone a {@code Client} with the details of {@code clientToEdit}
      * Make sure it is pass by value not by reference
+     *
      * @return
      */
     public Client cloneClient() {
@@ -152,11 +138,10 @@ public class Client implements Comparable<Client> {
         Email updatedEmail = this.getEmail();
         Address updatedAddress = this.getAddress();
         //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
-        Set<Tag> updatedTags = this.getTags();
 
         UniquePolicyList policyList = this.getPolicyList().clone(); // To change policyList you must use EditPolicy
         Appointment appointment = this.getAppointment();
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList,
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, policyList,
                 appointment);
     }
 
@@ -166,7 +151,7 @@ public class Client implements Comparable<Client> {
     }
 
     public String getPhoneNumber() {
-        return this.getPhoneNumber().toString();
+        return this.getPhoneNumber();
     }
 
 }

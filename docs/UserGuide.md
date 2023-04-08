@@ -5,10 +5,18 @@ title: User Guide
 
 ## What is Advis.io?
 
-Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
+Advis.io (AIO) is a all-in-one solution for financial advisors to better **manage their clientele** and their clients **respective policies**. AIO is currently
 available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having
 a Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll
 see in your career.
+
+With AIO, financial advisors of all expertise are able to keep track their ever-growing clientele and always be prepared for the needs of their clients. AIO makes it easier for you to keep track of your clients' policies and appointment dates, providing them more time for you to focus on expanding your network and providing the best service for your beloved clients.
+
+Are you excited to get the largest client base among your peers? Presenting to you...
+
+---
+<img src="images/advisio.png" width="15px">**Advis.io**<br>
+By students, for advisors
 
 ---
 
@@ -45,22 +53,26 @@ see in your career.
 * #### [Command Summary](#command-summary)
 
 ---
-
 ## How to Get Started
 
 #### 1. Ensure you have Java `11` or above installed in your Computer.
+* To check if you have Java `11` installed, follow these steps
+* `java -version` <br> 
+* You should have the following output:
+![Java-version](images/java-version.png)
 
-#### 2. Download the latest `advisio.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+#### 2. Download the latest `advisio.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-4/tp/releases).
 
-#### 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+#### 3. Copy the file to the folder you want to use as the _home folder_ for Advisio.
 
-#### 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the
+#### 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the command to run the application. <br>
+* To open up the command terminal, follow these steps
+* **Mac**: `Cmd + space` to open up spotlight, now search terminal and press `Enter`.
+* **Windows**: `Windows + R` top open 'Run' box. Type `cmd` and then click 'ok'.
 
 ```
 java -jar advisio.jar
 ```
-
-#### command to run the application.<br>
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
@@ -72,16 +84,16 @@ Some example commands you can try:
 
 * `list` : Lists all contacts.
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
-  to the Address Book.
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe`
+  to Advisio clientele.
 
 * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-* `undo` : Undo the previous command `delete 3`. Thus original 3rd contact shown in list will come back
+* `undo` : Undo the previous command `delete 3`. Thus original 3rd client shown in list will come back
 
-* `redo` : Redo the previous command `delete 3`. Thus 3rd contact will be deleted again from list
+* `redo` : Redo the previous command `delete 3`. Thus 3rd client will be deleted again from list
 
-* `clear` : Deletes all contacts.
+* `clear` : Deletes all clients.
 
 * `exit` : Exits the app.
 * `select 1` : Selects the client indexed as `#0001`.
@@ -98,6 +110,8 @@ Some example commands you can try:
 <div markdown="block" class="alert alert-info">
 
 **Some notes about the command format**<br>
+
+* Words in the grey box are commands or parameters that the user are able to type into the application.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -121,7 +135,13 @@ Some example commands you can try:
 
 </div>
 
+<br>
+<br>
+<br>
+<br>
+
 ---
+
 
 ## General Management
 
@@ -135,13 +155,13 @@ Format: `help`
 
 ### Undo previous command : `undo`
 
-Undo one previous command and restore that version of address book
+Undo one previous command and restore that version of clientele
 
 Format: `undo`
 
-* Restore the specific address book before the command took place
+* Restore the specific clientele before the command took place
 * `Undo Success` will be shown in the display
-* If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to
+* If current clientele is **already the newest**, `There is no more operations to undo!` will be shown in display to
   remind of undo failure
 
 #### **Special Note for undo and redo**
@@ -157,18 +177,18 @@ Thus following commands can't be called to Undo/Redo
 
 ### Redo previous command : `redo`
 
-Redo one previous command and restore that version of address book
+Redo one previous command and restore that version of clientele. 
 
 Format: `redo`
 
-* Restore the specific address book before the undo command took place
+* Restore the specific clientele before the undo command took place
 * `Redo Success` will be shown in the display
-* If current address book is **already the latest**, `There is no more operations to redo!` will be shown in display to
+* If current clientele is **already the latest**, `There is no more operations to redo!` will be shown in display to
   remind of redo failure
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the clientele.
 
 Format: `clear`
 
@@ -180,15 +200,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
+clientele data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
+clientele data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -196,13 +216,18 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+<br>
+<br>
+<br>
+<br>
+
 ---
 
 ## Client Management
 
 ### Adding a client: `add`
 
-Adds a client to the list of client profiles.
+To add a client to your list of client profiles.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
@@ -211,9 +236,14 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+<div markdown="span" class="alert alert-warning">:book:
+<b>Note:</b>
+To add a policy to the client, please refer to <a href="#policy-management">Policy Management</a>
+</div>
+
 ### Selecting a client: `select`
 
-Selects a client to display on the client dashboard, as well as their corresponding policies on the policy dashboard.
+To select a particular client from your clientele to display on your client dashboard, as well as their corresponding policies on your policy dashboard.
 
 Format: `select INDEX`
 
@@ -225,13 +255,13 @@ Examples:
 
 ### Listing all clients: `list`
 
-Shows a list of all client profiles.
+To show a list of your client profiles.
 
 Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in the list of client profiles.
+To edit an existing client from your list of client profiles.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
@@ -248,10 +278,20 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567
   and johndoe@example.com respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be Betsy Crower and clears all existing tags.
+ 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
+If you accidentally edited a client's information, you can use the <code>undo</code>  command to retrieve the previous information.
+</div>
+
+<div markdown="span" class="alert alert-warning">:book:
+<b>Note:</b>
+To edit a policy, please refer to <a href="#policy-management">Policy Management</a>
+</div>
+
 
 ### Filtering clients by name: `find`
 
-Finds clients whose names contain any of the given keywords.
+To find one of your client whose name contains any of the given keywords.
 
 Format: `find KEYWORD \[MORE_KEYWORDS\]`
 
@@ -272,7 +312,7 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the list of client profiles.
+To delete one of your specified client from your clientele.
 
 Format: `delete INDEX`
 
@@ -285,11 +325,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the list of clients list.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
+If you accidentally delete a client, you can use the <code>undo</code>  command to retrieve the deleted client.
+</div>
+<div markdown="span" class="alert alert-warning">:book:
+<b>Note:</b>
+To delete a policy, please refer to <a href="#policy-management">Policy Management</a>
+</div>
+
 ### Sorting clients by their email : `sortClientEmail`
 
 Format: `sortClientEmail INDEX`
 
-* Sort list of clients based on their email
+* Sorts your list of clients based on their email
 * The index refers to whether sorting will be done in ascending order or descending order
 * The index can be any number
 
@@ -302,7 +350,7 @@ Examples:
 
 Format: `sortClientName INDEX`
 
-* Sort list of clients based on their name
+* Sorts your list of clients based on their name
 * The index refers to whether sorting will be done in ascending order or descending order
 * The index can be any number
 
@@ -315,7 +363,7 @@ Examples:
 
 Format: `sortClientPhone INDEX`
 
-* Sort list of clients based on their phone number
+* Sorts your list of clients based on their phone number
 * The index refers to whether sorting will be done in ascending order or descending order
 * The index can be any number
 
@@ -323,6 +371,11 @@ Examples:
 
 * `sortClientPhone 1` sorts the client list based on client's phone number in **ascending** order
 * `sortClientPhone 0` sorts the client list based on client's phone number in **descending** order
+
+<br>
+<br>
+<br>
+<br>
 
 ---
 
@@ -343,7 +396,7 @@ Using Advis.io, you can add, edit, delete, and view the policies for your client
 
 ### Adding a policy : `addPolicy`
 
-Adds a policy to a specific client
+To add a policy to one of your specified client.
 
 Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
 
@@ -369,6 +422,8 @@ You will then be able to view the policies on the right side under 'Policies'
 
 ### Editing a policy : `editPolicy`
 
+To edit one of your specified policy from one of your client in your clientale. 
+
 Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/PREMIUM] [pf/FREQUENCY`]
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client
@@ -384,16 +439,30 @@ Examples:
 - `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd
   policy information`
 
-* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `list` followed by `delete 2` deletes the 2nd client in the clientele.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
+If you accidentally edit a policy, you can use the <code>undo</code>  command to retrieve the previous policy's information.
+</div>
 
 ### Deleting a policy `deletePolicy`
 
-Deletes the indexed policy from a specific client
+To delete one of your specified policy from one of your clientale. 
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
 Examples: `deletePolicy 1 pi/2` deletes the 1st client's 2nd policy in the list
+
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
+If you accidentally delete a policy, you can use the <code>undo</code>  command to retrieve the deleted policy.
+</div>
+
+<br>
+<br>
+<br>
+<br>
 
 ---
 
@@ -413,7 +482,7 @@ Using Advis.io, you can add, delete and view the appointments for your clients v
 
 ### Adding an appointment: `addApt`
 
-Adds an appointment to a specific client
+To add an appointment to one your specified client.
 
 Format: `addApt INDEX an/APPOINTMENT_NAME ad/MEETUP_DATE`
 
@@ -426,7 +495,7 @@ You will then be able to view the appointments under
 
 ### Deleting an appointment: `deleteApt`
 
-Deletes an appointment from a specific client
+To delete one of the appointment from a specific client.
 
 Format: `deleteApt INDEX`
 
@@ -437,6 +506,11 @@ Format: `deleteApt INDEX`
 Examples: `deleteApt 1`
 
 * `list` followed by `deleteApt 1` deletes the appointment from the 1st client in the list of clients list.
+
+<br>
+<br>
+<br>
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -450,14 +524,14 @@ from [OpenJDK](https://openjdk.org).
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous clientele home folder.
 
-**Q**: Do I need an internet connection use Advis.io?<br>
-**A**: Advis.io is a local application that does not require an internet connection! Feel free to use our application
+**Q**: Do I need an internet connection use Advisio?<br>
+**A**: Advisio is a local application that does not require an internet connection! Feel free to use our application
 anywhere and anytime as you see fit!
 
 **Q**: Is my data stored on the cloud? How can I ensure that I do not lose such critical information?<br>
-**A**:Unfortunately, Advis.io does not support cloud support. However, you can follow these steps to store your data
+**A**:Unfortunately, Advisio does not support cloud support. However, you can follow these steps to store your data
 safely in existing cloud services such as Icloud or Google Drive. Firstly, locate the data
 file `<JAR file location>/data/clientbook.json`. Secondly, copy the file into your preferred cloud service.
 

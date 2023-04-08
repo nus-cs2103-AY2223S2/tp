@@ -5,14 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -26,7 +22,6 @@ import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.UniquePolicyList;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing client in the address book.
@@ -42,8 +37,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ADDRESS + "ADDRESS] " + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -56,7 +50,7 @@ public class EditCommand extends Command {
     private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index of the client in the filtered client list to edit
+     * @param index                of the client in the filtered client list to edit
      * @param editClientDescriptor details to edit the client with
      */
     public EditCommand(Index index, EditClientDescriptor editClientDescriptor) {
@@ -79,11 +73,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
-        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
         UniquePolicyList policyList = clientToEdit.getPolicyList(); // To change policyList you must use EditPolicy
         Appointment appointment = clientToEdit.getAppointment();
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList,
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, policyList,
                 appointment);
     }
 
@@ -135,7 +128,6 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
 
         public EditClientDescriptor() {
         }
@@ -149,63 +141,45 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
-        }
-
-        public void setName(Name name) {
-            this.name = name;
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
         }
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public void setAddress(Address address) {
+            this.address = address;
         }
 
         @Override
@@ -226,8 +200,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getAddress().equals(e.getAddress());
         }
     }
 }

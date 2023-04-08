@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
@@ -58,14 +57,13 @@ public class EditCommandTest {
         Client lastClient = model.getFilteredClientList().get(indexLastClient.getZeroBased());
 
         ClientBuilder clientInList = new ClientBuilder(lastClient);
-        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
         CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedClient));
 
         EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+            .withPhone(VALID_PHONE_BOB).build();
         EditCommand editCommand = new EditCommand(indexLastClient, descriptor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -97,7 +95,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
-                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedClient));
 
@@ -108,7 +106,6 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
-
 
 
     @Test
@@ -132,7 +129,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getClientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }

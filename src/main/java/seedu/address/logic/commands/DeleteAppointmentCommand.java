@@ -31,6 +31,7 @@ public class DeleteAppointmentCommand extends Command {
 
     /**
      * Creates a DeleteAppointmentCommand to delete the specified {@code Appointment}.
+     *
      * @param index The index of the person to add the appointment to.
      */
     public DeleteAppointmentCommand(Index index) {
@@ -49,7 +50,7 @@ public class DeleteAppointmentCommand extends Command {
         Client clientToDeleteAppointment = lastShownList.get(index.getZeroBased());
         Client editedClient = new Client(clientToDeleteAppointment.getName(), clientToDeleteAppointment.getPhone(),
                 clientToDeleteAppointment.getEmail(), clientToDeleteAppointment.getAddress(),
-                clientToDeleteAppointment.getTags(), clientToDeleteAppointment.getPolicyList(),
+                clientToDeleteAppointment.getPolicyList(),
                 new Appointment(new AppointmentName(), new MeetupDate()));
         Client deleteAppointmentClient = editedClient.cloneClient();
         model.setClient(clientToDeleteAppointment, editedClient);

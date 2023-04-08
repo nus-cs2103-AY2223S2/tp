@@ -12,74 +12,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600.0" minWidth="580.0" title="Advis.io" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600.0" minWidth="510.0" title="Advis.io" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene stylesheets="@Styles.css">
             <VBox>
                 <children>
                <HBox VBox.vgrow="ALWAYS">
                   <children>
-                     <VBox fx:id="sidebar" alignment="TOP_CENTER" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" styleClass="sidebar" HBox.hgrow="NEVER">
-                        <children>
-                           <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../images/logo-no-background.png" />
-                              </image>
-                              <VBox.margin>
-                                 <Insets bottom="32.0" top="34.0" />
-                              </VBox.margin>
-                           </ImageView>
-                           <StackPane maxHeight="1.0" minHeight="1.0" prefHeight="1.0" styleClass="divider">
-                              <VBox.margin>
-                                 <Insets left="16.0" right="16.0" />
-                              </VBox.margin>
-                           </StackPane>
-                           <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                              <VBox.margin>
-                                 <Insets bottom="16.0" top="32.0" />
-                              </VBox.margin>
-                              <image>
-                                 <Image url="@../images/icons8-notification-100.png" />
-                              </image>
-                           </ImageView>
-                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                              <VBox.margin>
-                                 <Insets bottom="16.0" top="16.0" />
-                              </VBox.margin>
-                              <image>
-                                 <Image url="@../images/icons8-person-90.png" />
-                              </image>
-                           </ImageView>
-                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../images/icons8-gear-90.png" />
-                              </image>
-                              <VBox.margin>
-                                 <Insets bottom="16.0" top="16.0" />
-                              </VBox.margin>
-                           </ImageView>
-                           <StackPane VBox.vgrow="ALWAYS" />
-                           <StackPane maxHeight="1.0" minHeight="1.0" prefHeight="1.0" styleClass="divider">
-                              <VBox.margin>
-                                 <Insets left="16.0" right="16.0" />
-                              </VBox.margin>
-                           </StackPane>
-                           <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../images/icons8-log-out-96.png" />
-                              </image>
-                              <VBox.margin>
-                                 <Insets bottom="32.0" top="32.0" />
-                              </VBox.margin>
-                           </ImageView>
-                        </children></VBox>
                      <VBox fx:id="dashboard" styleClass="dark-gradient-color" HBox.hgrow="ALWAYS">
                         <children>
                            <HBox fx:id="header">
                               <children>
+                                 <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../images/logo-no-background.png" />
+                                    </image>
+                                    <HBox.margin>
+                                       <Insets right="8.0" top="12.0" />
+                                    </HBox.margin>
+                                 </ImageView>
                                  <VBox>
                                     <children>
-                                       <Label text="Good Afternoon, Rui Wei!" textFill="#fafafacb">
+                                       <Label text="Hello There!" textFill="#fafafacb">
                                           <padding>
                                              <Insets bottom="4.0" left="8.0" right="8.0" top="8.0" />
                                           </padding>
@@ -127,7 +81,7 @@
                                           <VBox.margin>
                                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                                           </VBox.margin></StackPane>
-                                       <StackPane fx:id="appointmentLabel">
+                                       <StackPane fx:id="appointmentLabel" minHeight="54.0">
                                           <styleClass>
                                              <String fx:value="light-color" />
                                              <String fx:value="rounded" />
@@ -165,7 +119,6 @@
                      </VBox>
                   </children>
                </HBox>
-                      <StackPane fx:id="statusbarPlaceholder" />
                 </children>
             </VBox>
         </Scene>

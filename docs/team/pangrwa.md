@@ -1,25 +1,32 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Rui Wei's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
-(To be added soon)
+### Project: Advis.io
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Advis.io (AIO) is a desktop app for managing clients information, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).C.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+* **New Feature**: Added the ability to edit policies to a client.
+  * What it does: Given the updated policy information, the user can edit a policy to the client selected.
+  * Justification: This feature improves the product significantly because a user can now edit policies to a client to meet the needs of the client demands. Given that there are different financial cycles, it's always good to remain relevant by updating policies to the best policies available in the market.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an
+    in-depth analysis of adding a different type of list to the client class.
+* **New Feature**: Added the ability to delete policies to a client.
+  * What it does: Given the chosen policy, the user can now delete the policy attached the client selected.
+  * Justification: This feature improves the product significantly because a user can now delete policies that are not relevant to the client anymore, so that entire tracking process is neater.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to add appointment to a client.
+  * What it does: Given the chosen appointment, the user can now add the necessary appointment details with his or her client.
+  * Justification: This features improves the product significantly because a user can now add appointments to meet his or her clients.
+* **New Feature**: Added the ability to remove an appointment to a client.
+  * What it does: Once the user meets up with the client, he or she can remove the appointment that was set for.
+  * Justification: Appointments that are settled for should be removed from the application to make it neater.
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=pangrwa&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
-
+<!--
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
@@ -45,3 +52,4 @@ Given below are my contributions to the project.
   * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
+-->
