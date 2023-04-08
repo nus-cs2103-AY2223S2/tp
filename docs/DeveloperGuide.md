@@ -349,7 +349,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### **Appendix B: Planned Enhancements**
 
-* Verify data during loading from data file
+To resolve certain known feature flaws, we have planned to add some enhancements in the near future:
+
+**Data Verification when loading save files**
+
+Currently, the program reads and loads the data from the save files directly.
+As long as the data is in the correct format, the data can be loaded successfully.
+We plan to enhance this by verifying the validity of the data, 
+that is making sure the saved events does not violate constraints such as overlapping time.
+
+This will help to prevent errors made by advanced user who decided to modify the save files directly.
+While the advanced user may be aware of the structure of the file,
+knowing if the event added has conflict with any existing events can be hard,
+especially if there are many existing events.
 
 
 ### **Appendix C: Instructions for Manual Testing**
