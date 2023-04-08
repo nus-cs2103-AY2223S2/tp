@@ -7,6 +7,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CookHubParser" as CookHubParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":ContainsKeywordsPredicate" as ContainsKeywordsPredicate LOGIC_COLOR
 participant ":FindCommand" as FindCommand LOGIC_COLOR
 participant ":ContainsKeywordsPredicate" as ContainsKeywordsPredicate LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -33,19 +35,23 @@ deactivate FindCommandParser
 CookHubParser -> FindCommandParser : parse("t/Corndogs")
 activate FindCommandParser
 
-create FindCommand
-FindCommandParser -> FindCommand
-
-activate FindCommand
+FindCommandParser -> ParserUtil : parseTitlePredicate(["Corndogs"], argMultimap)
+activate ParserUtil
 
 create ContainsKeywordsPredicate
-FindCommand -> ContainsKeywordsPredicate
-
+ParserUtil -> ContainsKeywordsPredicate : new ContainsKeywordsPredicate()
 activate ContainsKeywordsPredicate
 
-ContainsKeywordsPredicate --> FindCommand : predicate
-
+ContainsKeywordsPredicate --> ParserUtil : predicate
 deactivate ContainsKeywordsPredicate
+
+ParserUtil --> FindCommandParser :predicate
+deactivate ParserUtil
+
+create FindCommand
+FindCommandParser -> FindCommand : new FindCommand(predicate)
+activate FindCommand
+
 
 FindCommand --> FindCommandParser : findCommand
 
@@ -62,17 +68,12 @@ deactivate CookHubParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : updateFilteredTaskList(predicate)
+FindCommand -> Model : updateFilteredRecipeList(predicate)
 activate Model
 
 Model --> FindCommand
 deactivate Model
 
-FindCommand -> Model : setCurrentPredicate(predicate)
-activate Model
-
-Model --> FindCommand
-deactivate Model
 
 create CommandResult
 FindCommand -> CommandResult
