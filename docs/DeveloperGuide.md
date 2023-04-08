@@ -50,7 +50,24 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
       5. [Glossary](#glossary)
    2. [Appendix-Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
       1. [Launch and Shutdown](#launch-and-shutdown)
-      2. [Saving data](#saving-data)
+      2. [Adding a student](#addingstudent)
+      3. [Marking attendance](#markingattendance)
+      4. [Adding a grade](#addinggrade)
+      5. [Deleting a grade](#deletinggrade)
+      6. [Adding a comment](#addingcomment)
+      7. [Editing student](#editingstudent)
+      8. [Listing student](#listingstudent)
+      9. [Finding student](#findingstudent)
+      10. [Deleting student](#deletingstudent)
+      11. [Adding a parent](#addingparent)
+      12. [Listing all parents](#listingparent)
+      13. [Editing a parent](#editingparent)
+      14. [Finding a parent](#findingparent)
+      15. [Deleting a parent](#deletingparent)
+      16. [Saving preferences](#savingwindow)
+      17. [Shutdown of application](#shutdown)
+      18. [Saving data](#saving-data)
+      
    3. [Appendix-Effort](#effort)
 
 <div style="page-break-after: always;"></div>
@@ -1040,6 +1057,9 @@ testers are expected to do more *exploratory* testing.
    6. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. The window size may not be optimum.<br>
       ![Ui](images/Ui.png)
    <br><br>
+
+<a name = "addingstudent"/>
+
 2. Adding a student
    1. Prerequisites: There should be no student with the same class and index number as the student you are adding. Same name is allowed. List all the students with `list student` command.
    2. Test case 1: `student 1A add n/TanAhCow in/03 pn/TanAhNiu pnP/91234567 rls/Father` <br>
@@ -1047,6 +1067,8 @@ testers are expected to do more *exploratory* testing.
    3. Test case 2: `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T` <br>
       Expected: A student with more optional details is added and displayed in the student list and a parent is added to the Parents/Next Of Kins(NOK) list
    <br><br>
+<a name = "markingattendance"/>
+
 3. Marking attendance
    1. Prerequisites: The date of attendance should be known or you can mark it as T/F (True/False) for today's date. List all the students with `list student` command.
    2. Test case 1: `student 3A attendance in/25 att/T`
@@ -1054,6 +1076,8 @@ testers are expected to do more *exploratory* testing.
    3. Test case 2: `student 3A attendance in/25 att/25/02/2023`
       Expected: The attendance of the student is marked as F if today's date is not 25/02/2023. PowerConnect V1.4 only supports display of today's date for attendance. 
    <br><br>
+<a name = "addinggrade"/>
+
 4. Adding grade (homework/test) for student
    1. Prerequisites: The test should not have duplicate names and must be known. List all the students with `list student` command.
    2. Test case 1: `student 1A grade in/13 test/CA1 score/75 weightage/10`
@@ -1061,67 +1085,93 @@ testers are expected to do more *exploratory* testing.
    3. student 1A grade in/13 hw/Chapter 1 score/75 deadline/25/04/2023 weightage/10 hwdone/true
       Expected: A homework named Chapter 1, 75 score, 10 weightage and deadline of 25/04/2023 is added to the student with index number 13.
    <br><br>
+<a name = "deletinggrade"/>
+
 5. Deleting a grade (homework/test) for student
    1. Prerequisites: You know the deleted grade name and the student index number.
    2. Test case 1: `student 1A gradedelete in/13 hw/Chapter 1`
       Expected: The homework named Chapter 1 is deleted from the student with index number 13.
    <br><br>
+<a name = "addingcomment"/>
+
 6. Adding comments for a student
    1. Prerequisites: You know the student index number. List all the students with `list student` command.
    2. Test case 1: `student 1A comment in/25 com/Quiet person, needs to interact more with classmates`
       Expected: The comment is added to the student with index number 25.
    <br><br>
+<a name = "editingstudent"/>
+
 7. Edit a student
    1. Prerequisites: List all the students with `list student` command.
    2. Test case 1: `student 1A edit in/3 cca/basketball`
       Expected: The student with index number 3 will have the cca changed to basketball.
    <br><br>
+<a name = "listingstudent"/>
+
 8. Listing all students in a specified class
    1. Prerequisites: List all the students with `list student` command.
    2. Test case 1: `student 1A list`
       Expected: All students in class 1A will be listed.
    <br><br>
+<a name = 'findingstudent'/>
+
 9. Finding a student
    1. Prerequisites: List all the students with `list student` command.
    2. Test case 1: `student 1A find n/TanAhCow`
       Expected: All students with name TanAhCow in class 1A will be listed.
    <br><br>
+<a name = "deletingstudent"/>
+
 10. Deleting a student 
     1. Prerequisites: List all the students with `list student` command.
     2. Test case 1: `student 1A delete in/3`
        Expected: The student with index number 3 will be deleted.
     <br><br>
+<a name = "addingparent"/>
+
 11. Adding a parent
     1. Prerequisites: List all the parents with `list parent` command. Parents can have the same name but phone numbers must be unique!
     2. Test case 1: `parent add n/TanAhNiu pnP/91234567`
        Expected: A parent is added and displayed in the parent list.
     <br><br>
+<a name = "listingparent"/>
+
 12. Listing all parents
     1. Prerequisites: List all the parents with `list parent` command.
     2. Test case 1: `parent list`
        Expected: All parents will be listed.
     <br><br>
+<a name = "editingparent"/>
+
 13. Editing a parent
     1. Prerequisites: List all the parents with `list parent` command.
     2. Test case 1: `parent edit n/TanAhNiu pnP/91234567 npnP/65656565`
        Expected: The parent with name TanAhNiu will have the phone number changed to 65656565.
     <br><br>
+<a name = "findingparent"/>
+
 14. Finding a parent
     1. Prerequisites: List all the parents with `list parent` command.
     2. Test case 1: `parent find TanAhNiu`
        Expected: All parents with name TanAhNiu will be listed.
     <br><br>
+<a name = "deletingparent"/>
+
 15. Deleting a parent
     1. Prerequisites: List all the parents with `list parent` command.
     2. Test case 1: `parent delete n/TanAhCow pnP/91234566`
        Expected: The parent with name TanAhNiu and phone number 9123456 will be deleted.
     3. Note: You CANNOT delete the parent/NOK if the parent/NOK has students BINDED to him/her. System will display an error message for this. Delete the student using student delete command first.
     <br><br>
+<a name = "savingwindow"/>
+
 16. Saving window preferences
      1. Resize the window to an optimum size. Move the window to a different location. Close the window.
      2. Re-launch the app by double-clicking the jar file.<br>
         Expected: The most recent window size and location is retained. 
      <br><br> 
+<a name = "shutdown"/>
+
 17. Shutdown of Application
      1. Run the `exit` command: `exit` or press the `X` button located at the top right corner of the application.
      2. The application should close within 3 seconds.
