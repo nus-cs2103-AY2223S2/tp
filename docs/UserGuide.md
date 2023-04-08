@@ -24,8 +24,8 @@ title: User Guide
   - [Editing task](#editing-task)
   - [Filtering task](#filtering-task)
   - [Sorting task](#sorting-task)
-  - [Undo the previous command](#undo-the-previous-command)
   - [General information on MACRO commands](#general-information-on-macro-commands)
+  - [Undoing the previous command](#undoing-the-previous-command)
   - [Exiting the application](#exiting-the-application)
   - [Saving the task list data](#saving-the-task-list-data)
   - [Editing existing task list data](#editing-existing-task-list-data)
@@ -39,15 +39,13 @@ title: User Guide
 
 <!-- Might want to make this introduction more concise -->
 
-Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With VimPlanner, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
+Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With Vimification, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
 
-Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
+Vimification is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can track your to-dos faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, fret not as we also provide a Graphical User interface (GUI) to assist you.
 
-Vimification is designed to help you stay organized and productive by providing a simple and intuitive interface that allows you to keep track of all your tasks and deadlines in one place. Whether you are a seasoned Vim user or just starting out, you will find Vimification to be an easy and efficient way to manage your daily tasks.
+You can quickly create new tasks, set due dates, prioritize your work, and track your progress, all within Vimification. Whether you are working on a group project, studying for an exam, or just trying to stay on top of your assignments, Vimification has everything you need to stay organized and focused.
 
-With Vimification, you can quickly and easily create new tasks, set due dates, prioritize your work, and track your progress. Whether you are working on a group project, studying for an exam, or just trying to stay on top of your assignments, VimPlanner has everything you need to stay organized and focused.
-
-So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience the power of Vim-like productivity for yourself!
+So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience its power for yourself!
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
