@@ -1177,12 +1177,12 @@ Testers can attempt to manually locate the files and folders and ensure they are
 
 :bulb: **Tip:** <br>
 Follow PowerConnect Requirements:
-1. Images should be stored as `.png` format and inside `/data/images/`.
+1. Images should be stored as `.png` format and inside `images/student` for students or `images/parent` for parents.
 2. Storages files should be named as `parents.json` & `pcclass.json`.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **CAUTION:** <br>
-Testers **SHOULD NOT** change directory name for `/data/images/`, **ANY CHANGE** to image renaming should also be updated via the `edit` commands and storage files (`parents.json & `pcclass.json`) **SHOULD NOT** be renamed.
+Testers **SHOULD NOT** change directory name for `images/`, **ANY CHANGE** to image renaming should also be updated via the `edit` commands and storage files (`parents.json & `pcclass.json`) **SHOULD NOT** be renamed.
 
 </div>
 
