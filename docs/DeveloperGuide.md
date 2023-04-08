@@ -185,12 +185,18 @@ AutoM8 consists of 6 entities: `Customer`, `Appointment`, `Service`, `Vehicle`, 
 
 ![Entity Relationship](images/EntityRelationshipClassDiagram.png)
 
-All the entity data is stored in the `Shop` class which consists of the following:
+All the entity data is stored in the `Shop` class which consists of the following (X is a placeholder for the entity name e.g. `Customer`):
 
 ![Shop Class Diagram](images/ShopClassDiagram.png)
 
 The shop class simulates a relational database by automating all the cascading deletes and updates between entities.
 The only way to modify the data is via the exposed `Shop` API calls (and other methods necessary for loading data from file).
+
+#### Internal Logic
+
+Shown below are the activity diagrams of adding a `Vehicle` and removing a `Customer` from the `Shop`.
+
+![Add Vehicle Activity Diagram](images/AddVehicleInternalActivityDiag.png)
 
 ### Add Feature
 

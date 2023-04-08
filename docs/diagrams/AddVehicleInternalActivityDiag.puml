@@ -1,0 +1,20 @@
+@startuml
+title Add Vehicle API
+start
+:addVehicle(ownerId, plateNumber, color, brand, type);
+if (invalidInput(plateNumber, color, brand)) then (invalid)
+   :throw EmptyInputException;
+   stop
+else (valid)
+if (Unused plate number?) then (no)
+    :throw DuplicatePlateNumberException;
+    stop
+else (yes)
+    :undoStack.push(this.copy());
+    :redoStack.clear();
+    :add vehicle;
+    :add vehicle ID to owner;
+    :updateVehicleMappings;
+    :updateCustomerMappings;
+stop
+@enduml
