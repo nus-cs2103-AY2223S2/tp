@@ -1,0 +1,43 @@
+package guitests.guihandles;
+
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import seedu.address.model.person.Person;
+
+
+/**
+ * Provides a handle to a person card in the person list panel.
+ */
+public class MeetCardHandle extends NodeHandle<Node> {
+    private static final String ID_FIELD_ID = "#id";
+    private static final String PLACE_FIELD_ID = "#place";
+    private final Label idLabel;
+    private final Label placeLabel;
+
+    /**
+     * Public constructor for MeetCardHandle
+     * @param cardNode
+     */
+    public MeetCardHandle(Node cardNode) {
+        super(cardNode);
+
+        idLabel = getChildNode(ID_FIELD_ID);
+        placeLabel = getChildNode(PLACE_FIELD_ID);
+    }
+
+    public String getId() {
+        return idLabel.getText();
+    }
+
+    public String getPlace() {
+        return placeLabel.getText();
+    }
+
+
+    /**
+     * Returns true if this handle contains {@code person}.
+     */
+    public boolean equals(Person person) {
+        return getPlace().equals(person.getName().getValue());
+    }
+}

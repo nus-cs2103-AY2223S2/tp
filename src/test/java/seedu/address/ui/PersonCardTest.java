@@ -37,7 +37,7 @@ public class PersonCardTest extends GuiUnitTest {
         Person person = new PersonBuilder().build();
         PersonCard personCard = new PersonCard(person);
 
-        // same person, same index -> returns true
+        // same person-> returns true
         PersonCard copy = new PersonCard(person);
         assertTrue(personCard.equals(copy));
 

@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import guitests.guihandles.MeetCardHandle;
 import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.person.Person;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * A set of assertion methods useful for writing GUI tests.
@@ -34,6 +36,16 @@ public class GuiTestAssert {
                 .map(moduleTag -> moduleTag.tagName).sorted().collect(Collectors.toList()));
 
         assertEquals(expectedTags, actualCard.getTags());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedRecommendation}
+     */
+    public static void assertCardDisplaysRecommendation(Recommendation expectedRecommendation,
+                                                        MeetCardHandle actualCard) {
+        assertEquals(expectedRecommendation.getLocation().getName()
+                + " : " + expectedRecommendation.getTimePeriod().getUiDisplay(), actualCard.getPlace());
+
     }
 
     /**
