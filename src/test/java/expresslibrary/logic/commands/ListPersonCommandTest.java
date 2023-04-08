@@ -3,7 +3,7 @@ package expresslibrary.logic.commands;
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static expresslibrary.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ public class ListPersonCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
         assertCommandSuccess(new ListPersonCommand(), model, ListPersonCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

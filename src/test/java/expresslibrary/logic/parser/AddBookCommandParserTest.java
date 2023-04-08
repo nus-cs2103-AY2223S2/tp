@@ -4,8 +4,6 @@ import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static expresslibrary.logic.commands.CommandTestUtil.*;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static expresslibrary.testutil.TypicalPersons.AMY;
-import static expresslibrary.testutil.TypicalPersons.BOB;
 import static expresslibrary.testutil.TypicalBooks.BELOVED;
 
 import org.junit.jupiter.api.Test;
@@ -15,12 +13,6 @@ import expresslibrary.model.book.Author;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.book.Isbn;
 import expresslibrary.model.book.Title;
-import expresslibrary.model.person.Address;
-import expresslibrary.model.person.Email;
-import expresslibrary.model.person.Name;
-import expresslibrary.model.person.Person;
-import expresslibrary.model.person.Phone;
-import expresslibrary.model.tag.Tag;
 import expresslibrary.testutil.BookBuilder;
 
 public class AddBookCommandParserTest {

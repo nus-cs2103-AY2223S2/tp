@@ -9,8 +9,8 @@ import static expresslibrary.logic.commands.CommandTestUtil.assertCommandFailure
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static expresslibrary.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -39,7 +39,7 @@ public class EditPersonCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
     //        Person editedPerson = new PersonBuilder().build();
     //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+    //        EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
     //
     //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
     //
@@ -72,8 +72,8 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST, new EditPersonDescriptor());
+        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditPersonCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
@@ -84,11 +84,11 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-    //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    //        showPersonAtIndex(model, INDEX_FIRST);
     //
-    //        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+    //        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
     //        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+    //        EditCommand editCommand = new EditCommand(INDEX_FIRST,
     //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
     //
     //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -101,20 +101,20 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_SECOND_PERSON, descriptor);
+        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(editPersonCommand, model, EditPersonCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
 
         // edit person in filtered list into a duplicate in express library
-        Person personInList = model.getExpressLibrary().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST_PERSON,
+        Person personInList = model.getExpressLibrary().getPersonList().get(INDEX_SECOND.getZeroBased());
+        EditPersonCommand editPersonCommand = new EditPersonCommand(INDEX_FIRST,
                 new EditPersonDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editPersonCommand, model, EditPersonCommand.MESSAGE_DUPLICATE_PERSON);
@@ -135,8 +135,8 @@ public class EditPersonCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        showPersonAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of express library list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getExpressLibrary().getPersonList().size());
 
@@ -148,11 +148,11 @@ public class EditPersonCommandTest {
 
     @Test
     public void equals() {
-        final EditPersonCommand standardCommand = new EditPersonCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditPersonCommand standardCommand = new EditPersonCommand(INDEX_FIRST, DESC_AMY);
 
         // same values -> returns true
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
-        EditPersonCommand commandWithSameValues = new EditPersonCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditPersonCommand commandWithSameValues = new EditPersonCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -165,10 +165,10 @@ public class EditPersonCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditPersonCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditPersonCommand(INDEX_SECOND, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditPersonCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditPersonCommand(INDEX_FIRST, DESC_BOB)));
     }
 
 }
