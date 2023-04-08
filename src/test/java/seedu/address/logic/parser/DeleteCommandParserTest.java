@@ -12,8 +12,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteByNameCommand;
-import seedu.address.logic.commands.DeleteMultipleIndexCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMultipleIndexCommand;
 import seedu.address.logic.commands.DeleteSingleIndexCommand;
 import seedu.address.model.person.NameContainsAllKeywordsPredicate;
 
