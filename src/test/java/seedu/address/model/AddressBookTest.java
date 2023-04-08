@@ -59,7 +59,7 @@ public class AddressBookTest {
     public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addClient(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(addressBook.hasClient(editedAlice));
+        assertTrue(addressBook.hasClient(editedAlice));
     }
 
     @Test

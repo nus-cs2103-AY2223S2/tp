@@ -40,10 +40,10 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void contains_clientWithDifferentIdentityFieldsInList_returnsFalse() {
+    public void contains_clientWithSameIdentityFieldsInList_returnsTrue() {
         uniqueClientList.add(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(uniqueClientList.contains(editedAlice));
+        assertTrue(uniqueClientList.contains(editedAlice));
     }
 
     @Test

@@ -82,11 +82,8 @@ public class Client implements Comparable<Client> {
 
         return otherClient != null
                 && otherClient.getName().equals(getName())
-                && otherClient.getPhone().equals(getPhone())
-                && otherClient.getEmail().equals(getEmail())
-                && otherClient.getAddress().equals(getAddress())
-                && otherClient.getPolicyList().equals(getPolicyList())
-                && otherClient.getAppointment().equals(getAppointment());
+                && (otherClient.getPhone().equals(getPhone())
+                || otherClient.getEmail().equals(getEmail()));
     }
 
     /**
