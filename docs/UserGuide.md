@@ -3,8 +3,7 @@ layout: page
 title: HMHero User Guide
 ---
 
-## Table of Contents
-
+* Table of Contents
 {:toc}
 
 ---
