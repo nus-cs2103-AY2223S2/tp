@@ -325,8 +325,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             initSelected();
 
-            // TODO: Hack to display updated parts on ui, need to convert ui to use ListView for observables
-            if (commandResult.getType() == Tab.PARTS) {
+            if (commandResult.getType() == Tab.PARTS || commandResult.getType() == Tab.ALL) {
                 initPartListPanel();
             }
 
