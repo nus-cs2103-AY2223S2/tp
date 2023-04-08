@@ -832,7 +832,16 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
   Use case ends.
 
-#### UC-PAT-002 - List patients
+#### UC-PAT-002 - Detail patient
+
+##### MSS
+
+1. User requests to view details of a patient.
+2. VMS shows the details of the patient requested.
+
+  Use case ends.
+
+#### UC-PAT-003 - List patients
 
 ##### MSS
 
@@ -841,14 +850,23 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
   Use case ends.
 
-#### UC-PAT-003 - Update patient
+#### UC-PAT-004 - Find patients
 
 ##### MSS
 
 1. User requests to list patients.
 2. VMS shows the list of patients with their corresponding IDs.
-3. User requests to update a specific patient in the list with the args.
-4. VMS updates the patients
+
+  Use case ends.
+
+#### UC-PAT-005 - Edit patient
+
+##### MSS
+
+1. User requests to list patients.
+2. VMS shows the list of patients with their corresponding IDs.
+3. User requests to edit a specific patient in the list with the args.
+4. VMS edits the patients
 
     Use case ends.
 
@@ -863,7 +881,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
       Use case resumes at step 1.
 
-#### UC-PAT-004 - Delete patient
+#### UC-PAT-006 - Delete patient
 
 ##### MSS
 
@@ -884,6 +902,16 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
   * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
+
+#### UC-PAT-007 - Clear patients
+
+##### MSS
+
+1. User requests to list patients.
+2. VMS shows the list of patients with their corresponding IDs.
+
+  Use case ends.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
