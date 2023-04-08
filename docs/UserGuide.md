@@ -185,15 +185,14 @@ E.g. If the command specifies `exit 123`, it will be interpreted as `exit.`
 
 #### 5.1 Add a module : `add` <a name="add-module"></a>
 
-Like all students, you would have taken or are currently taking some classes (hopefully) that you would like to add to your tracker. To add a module to the module list in **MODTrek**. This will kickstart your **MODTrek** journey.
-
+Like all students, you would have taken or are currently taking some classes (hopefully) that you would like to add to your tracker. Add a module to the module list in **MODTrek** with this command. This will kickstart your **MODTrek** journey.
 
 **Syntax:** `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
 
 Additional details:
 * `<code>` refers to the module code. Format of module code should be <2-4 alphabets><4 numbers>(<1 alphabet>). Refer to [NUSMODS](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) for a list of valid module codes.
 * `<credits>` refers to the module's credits (usually this in an integer from 1 to 12). We only support positive integers.
-* `<year-semester>` refers to the year and semester the module is taken. We only support years from 0 to 5 and semesters s1, s2, st1 and st2.
+* `<year-semester>` refers to the year and semester the module is taken. We only support years from 0 to 5 and semesters `s1`(Semester 1), `s2`(Semester 2), `st1`(Special Semester 1) and `st2`(Special Semester 2).
 * `<grade>` refers to the grade obtained for the module. Ranges from A+ to U, excluding the W, CS, CU grade.
 * `<tag>` refers to the requirement that the module fulfils. This includes:
    * `ULR` University Level Requirements
@@ -227,7 +226,7 @@ If there are reasons you need to add a module with the same module code (e.g. re
 
 #### 5.2 Delete module(s) : `delete` <a name="delete-module"></a>
 
-As students, it is ok to make mistakes, even when tracking your modules! You can delete specific module(s) from the module list. You may also choose to delete all the modules from the module list.
+As students, it is ok to make mistakes, even when tracking your modules! Delete specific module(s) from the module list with this command. You may also choose to delete all the modules from the module list.
 For example, you may want to delete a planned module which you have decided not to take.
 
 **Syntax:**
@@ -275,7 +274,7 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 
 How does **MODTrek** track which requirements I have fulfilled? Here at **MODTrek**, we know that requirements that modules fall under can change from time to time so we give you a flexible way to track this with tags! 
 
-Tag a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module may or may not fulfil.
+Tag a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module may or may not fulfil with this command.
 For example, after completing a planned module, you may want to include a tag for the module with up-to-date tags of degree requirements it fulfills. <br>
 Refer to [Add a module](#add-module) for the tags that you can use.
 
@@ -483,7 +482,7 @@ Hence, you may record "CS" and "CU" grades as "S" and "U" respectively.
 
 :information_source: **Note:** Parameters encapsulated in between brackets `()` are optional.
 
-For `edit`, at least one optional parameter has to be specified. For `find`, if not finding a single module, at least one optional parameter has to be specified.
+For `edit`, at least one optional parameter has to be specified for it to work! For `find`, if not finding a single module, at least one optional parameter has to be specified.
 </div>
 
 [Back to Table of Contents](#toc)
