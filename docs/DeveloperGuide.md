@@ -353,7 +353,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### **Instructions for Manual Testing**
 
-Given below are instructions to test the app manually.
+Presented below are a series of instructions, organized in Context-Action-Result (CAR) format, 
+that can be followed to perform manual testing of the application.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** These instructions only provide a starting point for testers to work on;
@@ -362,24 +363,25 @@ testers are expected to do more *exploratory* testing.
 
 #### **Launch and Shutdown**
 
-1. Initial launch
+#### Scenario: Initial launch
 
-   1. Download the jar file and copy into an empty folder
+Context: Initial launch
 
-   1. Double-click the jar file Expected: Shows the GUI with 3 components (The window size may not be
-      optimum):
-      1. A calendar of the month of present time 
-      2. An input bar for user commands
-      3. A container showing the next upcoming event.
+Action:
+1. Download the jar file and copy into an empty folder.
+2. Double-click the jar file.
 
-2. Saving window preferences
+Result: Displays the GUI with the window size set to full-screen.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+#### Scenario: Shutdown and Restart
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+Context: This is the first time you are attempting to shut down the application.
 
-1. _{ more test cases …​ }_
+Action:
+1. Right-click on the X button located in the top-right corner of the screen.
+2. Double-click the jar file.
+
+Result: The existing data should remain unchanged.
 
 #### **Adding an Event**
 
