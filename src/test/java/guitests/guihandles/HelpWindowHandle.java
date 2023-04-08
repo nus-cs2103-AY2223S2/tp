@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 
 /**
- * A handle to the {@code HelpWindow} of the application.
+ * A handle to the {@code HelpWindow} of the application. Referenced from AB4.
  */
 public class HelpWindowHandle extends StageHandle {
 

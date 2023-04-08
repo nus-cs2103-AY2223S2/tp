@@ -5,7 +5,7 @@ import java.util.Arrays;
 import javafx.scene.Node;
 
 /**
- * Provides a handle to the main menu of the app.
+ * Provides a handle to the main menu of the app. Referenced from AB4.
  */
 public class MainMenuHandle extends NodeHandle<Node> {
     public static final String MENU_BAR_ID = "#menuBar";

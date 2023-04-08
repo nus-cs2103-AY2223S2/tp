@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import guitests.guihandles.ResultDisplayHandle;
 
+/**
+ * GUI test for result display. Referenced from AB4.
+ */
 public class ResultDisplayTest extends GuiUnitTest {
 
     private ResultDisplay resultDisplay;

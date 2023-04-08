@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
 /**
- * A handle to the {@code CommandBox} in the GUI.
+ * A handle to the {@code CommandBox} in the GUI. Referenced from AB4.
  */
 public class CommandBoxHandle extends NodeHandle<TextField> {
 

@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 
 
 /**
- * Provides access to a stage in a JavaFx application for GUI testing purposes.
+ * Provides access to a stage in a JavaFx application for GUI testing purposes. Referenced from AB4.
  */
 public abstract class StageHandle {
     protected final GuiRobot guiRobot = new GuiRobot();

@@ -21,6 +21,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 
+/**
+ * GUI test for PersonListPanel. Referenced from AB4.
+ */
 public class PersonListPanelTest extends GuiUnitTest {
     private static final ObservableList<Person> TYPICAL_PERSONS =
             FXCollections.observableList(getTypicalPersons());

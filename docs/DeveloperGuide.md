@@ -176,6 +176,7 @@ A member of our core team will attend to you as soon as possible.
 
 ## **Acknowledgements**
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+* This project utilised GUI tests from the [AddressBook Level 4 (AB4)](https://github.com/se-edu/addressbook-level4) project created by the [SE-EDU initiative](https://se-education.org) as well.
 * Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html)
 
 ---

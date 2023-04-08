@@ -3,7 +3,7 @@ package guitests.guihandles;
 import javafx.scene.control.TextArea;
 
 /**
- * A handler for the {@code ResultDisplay} of the UI
+ * A handler for the {@code ResultDisplay} of the UI. Referenced from AB4.
  */
 public class ResultDisplayHandle extends NodeHandle<TextArea> {
 

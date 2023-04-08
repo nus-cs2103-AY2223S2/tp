@@ -10,7 +10,7 @@ import javafx.scene.layout.FlowPane;
 import seedu.address.model.person.Person;
 
 /**
- * Provides a handle to a person card in the person list panel.
+ * Provides a handle to a person card in the person list panel. Referenced from AB4.
  */
 public class PersonCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";

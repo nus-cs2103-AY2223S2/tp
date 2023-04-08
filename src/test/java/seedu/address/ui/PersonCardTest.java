@@ -10,6 +10,9 @@ import guitests.guihandles.PersonCardHandle;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * GUI test for PersonCard. Referenced from AB4.
+ */
 public class PersonCardTest extends GuiUnitTest {
 
     @Test

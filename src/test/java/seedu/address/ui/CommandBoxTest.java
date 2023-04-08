@@ -22,6 +22,9 @@ import seedu.address.storage.EduMateStorageManager;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 
+/**
+ * GUI test for CommandBox. Referenced from AB4.
+ */
 public class CommandBoxTest extends GuiUnitTest {
 
     private static final String COMMAND_THAT_SUCCEEDS = ListCommand.COMMAND_WORD;
