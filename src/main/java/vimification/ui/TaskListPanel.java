@@ -159,6 +159,18 @@ public class TaskListPanel extends UiPart<VBox> {
         mainScreen.loadRightComponent(taskDetailPanel);
     }
 
+    public void loadTaskDetailPanel() {
+        Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
+
+        if (selectedTask == null) {
+            mainScreen.clearRightComponent();
+            return;
+        }
+        TaskDetailPanel taskDetailPanel = new TaskDetailPanel(selectedTask);
+        mainScreen.loadRightComponent(taskDetailPanel);
+
+    }
+
 
     public UiTaskList getUiTaskList() {
         return taskList;

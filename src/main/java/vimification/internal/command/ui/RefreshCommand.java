@@ -22,6 +22,7 @@ public class RefreshCommand extends UiCommand {
                 .getUiTaskList();
         taskList.setPredicate(null);
         taskList.setComparator(null);
+        mainScreen.getTaskListPanel().refreshTaskDetailPanel();
         return new CommandResult(SUCCESS_MESSAGE);
     }
 
