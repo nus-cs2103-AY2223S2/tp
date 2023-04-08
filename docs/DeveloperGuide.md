@@ -742,9 +742,11 @@ Use case ends.
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. The CLI should be easy to use, with intuitive commands and clear error messages.
 5. The CLI should be reliable and stable, with no crashes or data corruption unless a user corrupts the data file.
-6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
-7. The CLI should be accessible to users with different abilities and needs, including support for assistive
-   technologies and localization.
+6. The Program and Data stored should be functional to users with other OSes and versions of the application.
+7. The application should load up within 3-5 seconds.
+8. Users must be able to access the application without an internet connection.
+9. A user should be able to use the app after reading the help instructions.
+10. A user must be able to view at least 3 roles with minimal scrolling.
 
 --------------------------------------------------------------------------------------------------------------------
 
