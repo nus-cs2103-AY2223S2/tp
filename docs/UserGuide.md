@@ -303,6 +303,7 @@ Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 * For <span style="color:#FBBC05">Event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
     * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
     * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
+* :warning: Our application currently does not support find by subsections' names or descriptions, the functionality will be implemented in future versions.
 
 Examples:
 * `find n/book` finds **Tasks** with name `read book` and `return books`
@@ -658,9 +659,8 @@ _Details coming soon ..._
     </tbody>
 </table>
 
---------------------------------------------------------------------------------------------------------------------
 ## 7. Glossary
-2. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
-3. Long date: Date in the format YYYY-MM-DD HHMM
-4. Short date: Date in the format YYYY-MM-DD
-3. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.
+1. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
+2. Long date: Date in the format YYYY-MM-DD HHMM
+3. Short date: Date in the format YYYY-MM-DD
+4. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.
