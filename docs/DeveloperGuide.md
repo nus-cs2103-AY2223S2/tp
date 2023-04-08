@@ -1148,15 +1148,34 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `exit x` (where x is any string) <br>
    Expected: Should exit SudoHR.
 
-### Saving data
+#### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   
+   
+1. _{ more test cases …​ }_
 
-2. _{ more test cases …​ }_
+### Planned Enhancements
 
-### Enhancements
-1. Currently, SudoHR treats email addresses as case-sensitive which we acknowledge shouldn't be as it fails to reflect real world behavior as well. We plan to ensure email addresses are case-insensitive in subsequent iterations.
-2. Currently, SudoHR only accepts 8-digit phone numbers for an employee's phone field. While registered local numbers will not face any issues, registered numbers outside of Singapore likely will if they do not adhere to 8-digits. We understand this is far from ideal, since it is perfectly reasonable for businesses to hire foreign talents who may not have a locally registered number. Hence, subsequent iterations will improve the parsing of phone fields to account for foreign phone numbers that are not necessarily 8 digits.
-3. Currently, SudoHR only accepts alphanumeric characters for its name field. We intend to extend the valid characters to commonly used special characters such as '/', which are often used as an abbreviation in 's/o', in subsequent iterations.
+Here are a list of fixes we plan to add in the near future to counter known feature flaws.
+
+#### 1. Department name constraints
+
+* Department name will be case insensitive as case sensitivity does not create ambiguity between department names.
+For example, 'Marketing' and 'marketing' are clearly the same department.
+
+* Department names will also allow special characters such as '(', ')' and ',' to account for department names with
+labels. For example, 'Sales, Singapore' can be a valid department name.
+
+#### 2. Employee name field constraints
+* `Employee` name field will also allow special characters such as '/', which are often used as an abbreviation in 's/o', in subsequent iterations.
+
+#### 3. Employee phone field constraints
+* Currently, the phone field is restrictive in that it only accepts 8-digit phone numbers for an employee's phone field. While registered local numbers will not face any issues, registered numbers outside of Singapore likely will if they do not adhere to 8-digits. 
+We understand this is far from ideal, since it is perfectly reasonable for businesses to hire foreign talents who may not have a locally registered number. Hence, subsequent iterations will improve the parsing of phone fields to account for foreign phone numbers that are not necessarily 8 digits.
+
+#### 4. Employee email field constraints
+* Currently, SudoHR treats email addresses as case-sensitive which we acknowledge shouldn't be as it fails to reflect real world behavior as well. We plan to ensure email addresses are case-insensitive in subsequent iterations.
+Under which, `JOHN@NUS.COM` and `john@nus.com` will be treated as one and the same.

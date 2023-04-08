@@ -2,17 +2,14 @@
 layout: page
 title: User Guide
 ---
-# 1. Table of contents:
 
-{:toc}
-1. [Introduction](#introduction)
-    1. [What is SudoHR?](#11-what-is-sudohr)
-    2. [Features](#13-features)
-2. [Quick start](#2-quick-start)
+- Table of Contents
+  {:toc}
+
 ---
 
 
-# Introduction
+# 1. Introduction
 
 ## 1.1 What is SudoHR?
 
@@ -226,7 +223,7 @@ List placeholders in the command
 
 Commands are what you will work with in SudoHR, let's learn what a command is made of:
 
-![CommandFormat](images/commandFormat.png)
+![CommandFormat](images/CommandFormat.png)
 
 It consists of:
 1. Command - Decides what your command will do and the arguments that it will accept.
