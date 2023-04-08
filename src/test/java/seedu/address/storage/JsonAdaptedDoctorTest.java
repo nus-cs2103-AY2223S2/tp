@@ -22,9 +22,9 @@ public class JsonAdaptedDoctorTest {
     private static final String INVALID_YOE_DECIMAL = "2.5";
     private static final String INVALID_YOE_TOO_HIGH = "100";
 
-    private static final String VALID_NAME = ALICE.getName().toString();
-    private static final String VALID_PHONE = ALICE.getPhone().toString();
-    private static final String VALID_EMAIL = ALICE.getEmail().toString();
+    private static final String VALID_NAME = ALICE.getName().getValue();
+    private static final String VALID_PHONE = ALICE.getPhone().getValue();
+    private static final String VALID_EMAIL = ALICE.getEmail().getValue();
     private static final List<JsonAdaptedTag> VALID_TAGS = ALICE.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
