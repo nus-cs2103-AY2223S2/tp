@@ -9,8 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* [CS2103/T instructors](https://nus-cs2103-ay2223s2.github.io/website/admin/instructors.html) for helping us answer our queries.
+* [AB3](https://github.com/se-edu/addressbook-level3) for providing us with a brownfield project to work on.
+* [JavaFX](https://openjfx.io/) which the project is based on.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -116,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="650" />
 
 
 The `Model` component,
@@ -130,10 +131,6 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 * It might seem strange at first as to why can Tutorial, Lab and Consultation exist without students. How can a Tutorial or Lab or Consultation be conducted without students in the first place? That is because the purpose of our application is to remind TAs that they are supposed to attend an event. During the event itself, the TA will add students to the event for attendance taking.
 * Thereafter, the TA will be able to edit the performance (score) of the student for the event related task.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-<img src="images/BetterModelClassDiagram.png" width="450" />
-</div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Event` abstract class in the `AddressBook`, which `Tutorial` inherits from.<br>
 <img src="images/BetterTutorialClassDiagram.png" width="450" />
@@ -151,7 +148,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" height="350"/>
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -168,103 +165,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Event feature
 
-#### Proposed Implementation
+#### Event feature Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The CRUD (Create, Read, Update and Delete) mechanism for events is facilitated by `Event`, `Tutorial`, `Lab`, `Consultation`. The Teaching Assistant (TA) using the application will be able to:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Event feature
-
-#### Proposed Implementation
-
-The proposed CRUD (Create, Read, Update and Delete) mechanism for events is facilitated by `Event`, `Tutorial`, `Lab`, `Consultation`. The Teaching Assistant (TA) using the application will be able to:
-
-* Add a tutorial which will be saved in the current address book state in its history.
-* Delete a tutorial which will be saved in the current address book state in its history.
-* Edit a tutorial which will be saved in the current address book state in its history.
-
-* Add a lab which will be saved in the current address book state in its history.
-* Delete a lab which will be saved in the current address book state in its history.
-* Edit a lab which will be saved in the current address book state in its history.
-
-* Add a consultation which will be saved in the current address book state in its history.
-* Delete a consultation which will be saved in the current address book state in its history.
-* Edit a consultation which will be saved in the current address book state in its history.
+* Add an event (tutorial, lab, consultation) which will be saved in the current address book state in its history.
+* Delete an event (tutorial, lab, consultation) which will be saved in the current address book state in its history.
+* Edit an event (tutorial, lab, consultation) which will be saved in the current address book state in its history.
 
 The following activity diagram summarizes what happens when a TA executes an add event.
 Do take note that whether the event is recurring or not is included as well:
@@ -527,70 +436,63 @@ is created, empty note list will be created and up to 20 notes can be added to a
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-1. Epic: As a CS2040 TA, I can monitor my schedule through the number of events (consultations / labs / tutorials) I have
+1. Epic: As a CS2040 TA, I can monitor my schedule through the number of events (consultations / labs / tutorials) I have.
 
-| Priority    | As a CS2040 …​  | I want to …​                    | So that I …​                                                   |
-|-------------|--------------------|------------------------------------|-------------------------------------------------------------------|
-| `* * *`     | Lab TA             | create lab events                  | can track details related to the lab                              |
-| `* * *`     | TA                 | create consultation events         | can track details related to the consultation                     |
-| `* * *`     | Lab TA             | edit a lab event                   | will be reminded of the correct lab schedule                      |
-| `* * *`     | Tutorial TA        | edit a tutorial event              | will be reminded of the correct tutorial schedule                 |
-| `* * *`     | TA                 | edit a consultation event          | will be reminded of the correct consultation schedule             |
-| `* * *`     | Tutorial TA        | delete a tutorial event            | can remove completed/cancelled tutorials                          |
-| `* * *`     | Lab TA             | delete a lab event                 | can remove completed/cancelled labs                               |
-| `* * *`     | TA                 | delete a consultation event        | can remove completed/cancelled consultations                      |
-| `* * *`     | New TA             | list all upcoming the 2040 events  | can effectively pre-plan the schedule for the rest of my modules  |
-
-
-2. Epic: As a CS2040 TA, I can effectively manage and keep track of all my students
-
-| Priority | As a CS2040 …​| I want to …​                                            | So that I …​                                                                                      |
-|----------|------------------|------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| `* * *`  | TA               | edit 2040 student's information                            | can fix erroneously added students                                                                   |
-| `* * *`  | TA               | delete students from a 2040 event                          | can remove students who are no longer in the module                                                  |
-| `* * *`  | TA               | have a search function to search for the desired student   | do not have to scroll through the namelist when marking attendance/giving class participation marks  |
-| `* * *`  | New TA           | list all my students of 2040                               | can view all my students at a glance                                                                 |
-
-3. Epic: As a CS2040 TA, I can track students progress and information
-
-| Priority | As a CS2040 …​| I want to …​                                                                                                              | So that I …​                                                                                                       |
-|----------|------------------|---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | TA               | view a list of low-performing students at a glance based on grades                                                              | can immediately tell who is falling behind and personally offer them help                                                   |
-| `* *`    | Tutorial TA      | see the attendance of students during a particular class in a calendar                                                          | can manage any admin matters efficiently and correctly, or flag out any low outliers                                        |
-| `* *`    | Concerned TA     | find out which students are suddenly performing poorly/experienced sudden drop in performance                                   | know which students to check in on                                                                                          |
-| `* *`    | TA               | be able to see how my students are doing in their examinations                                                                  | have data on their individual performance, which allows me to flag out low performers and help them out                     |
-| `* *`    | TA               | have an an overview of students' progress in tutorials and labs submissions, especially where progress seemed slow or difficult | can identify trends in learning difficulties, ie which specific topics/concepts students seem to generally struggle with    |
-| `* *`    | Lab TA           | track my students' progress on weekly lab assignments                                                                           | can make sure everyone submits their assignments on time and offer guidance if they need it                                 |
-| `*`      | Concerned Lab TA | view the number of late lab submission per student                                                                              | can immediately tell who is falling behind and personally offer them help                                                   |
-| `*`      | TA               | remind students via email if a 2040 event is rescheduled                                                                        | will not wast student's time                                                                                                |
-| `*`      | Busy TA          | automatically send out reminders to students about upcoming deadlines                                                           | can spend less time on these administrative matters                                                                         |
-| `*`      | Busy TA          | receive reminders on students who have yet to submit their work nearing the deadline                                            | can check up on them individually if needed                                                                                 |
-| `*`      | Tutorial TA      | know my students' progress on their tutorial questions every week (ie. how many questions they are unsure of)                   | can decide how to pace my tutorial                                                                                          |
-| `*`      | Lab TA           | see how my students are progressing on weekly topics on Visualgo                                                                | can send out reminders if I believe they have missed out on any weekly topics or offer help if they appear to be struggling |
-| `*`      | Motivational TA  | find out who are the most consistent students                                                                                   | can recommend them for future TA positions                                                                                  |
+| Priority    | As a CS2040 …​ | I want to …​                     | So that I …​                                                      |
+|-------------|----------------|----------------------------------|-------------------------------------------------------------------|
+| `* * *`     | Lab TA         | create lab events                | can add student's attendance to the lab event.                    |
+| `* * *`     | TA             | create consultation events       | can add student's attendance to the consultation event.           |
+| `* * *`     | Tutorial TA    | create tutorial events           | can add student's attendance to the tutorial event.               |
+ | `* * *`     | Lab TA         | edit a lab event                 | will be reminded of the correct lab schedule.                     |
+ | `* * *`     | Tutorial TA    | edit a tutorial event            | will be reminded of the correct tutorial schedule.                |
+ | `* * *`     | TA             | edit a consultation event        | will be reminded of the correct consultation schedule.            |
+ | `* * *`     | Tutorial TA    | delete a tutorial event          | can remove completed or cancelled tutorials.                      |
+ | `* * *`     | Lab TA         | delete a lab event               | can remove completed or cancelled labs.                           |
+ | `* * *`     | TA             | delete a consultation event      | can remove completed or cancelled consultations.                  |
+ | `* * *`     | New TA         | see all upcoming the 2040 events | can effectively pre-plan the schedule for the rest of my modules. |
 
 
-4. Epic: As a CS2040 TA, I want to note down important information during an event
+2. Epic: As a CS2040 TA, I can effectively manage and keep track of all my students.
 
-| Priority | As a CS2040 …​   | I want to …​                                           | So that I …​                                           |
-|----------|---------------------|-----------------------------------------------------------|-----------------------------------------------------------|
-| `* *`    | TA                  | add notes to events (such as tutorials)                   | won’t lose track of past events information               |
-| `* *`    | TA                  | edit event notes                                          | will convenient update them when I have to                |
-| `* *`    | TA                  | delete notes from an event                                | will not have cluttered notes                             |
-| `*`      | Tutorial TA         | take down the queries of student                          | can seek to reply them later                              |
-| `*`      | TA                  | summarise my performances at the end of this semester     | may reflect upon them                                     |
-| `*`      | Lab TA              | note down some common vim commands as a cheatsheet        | can better navigate to inspect student codes via terminal |
+| Priority | As a CS2040 …​| I want to …​                                             | So that I …​                                                                                            |
+|----------|------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| `* * *`  | TA               | add students to events                                   | can track students attendance for an event.                                                             |
+| `* * *`  | TA               | edit CS2040 student's information                        | can fix erroneously added student information.                                                          |
+| `* * *`  | TA               | delete students from a 2040 event                        | can remove students who are no longer in the module.                                                    |
+| `* * *`  | TA               | have a filter function to filter for the desired student | do not have to scroll through the namelist when marking attendance or giving class participation marks. |
+| `* * *`  | New TA           | see all my students of CS2040                            | can view all my students at a glance.                                                                   |
 
-5. Epic: As a CS2040 TA, I want to see a help guide
+3. Epic: As a CS2040 TA, I can track students progress.
 
-| Priority | As a CS2040 …​  | I want to …​                                          | So that I …​                                                |
-|----------|--------------------|----------------------------------------------------------|----------------------------------------------------------------|
-| `* *`    | New TA             | have an instruction to tell me what input format to use  | do not have to trial-and-error to figure out the right format  |
-| `* *`    | New TA             | have the help page functions to be clear and unambiguous | will not be confused and input wrong commands                  |
-| `*`      | New TA             | have an interactive help guide                           | do not have to manually read the help manual                   |
+| Priority | As a CS2040 …​   | I want to …​                                                                                                                    | So that I …​                                                                                                              |
+|----------|------------------|---------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | concerned TA     | view a filtered list of low-performing students at a glance based on score                                                      | can immediately tell who is falling behind and personally offer them help.                                                |
+| `* *`    | TA               | be able to see how my students are doing in their examinations                                                                  | have data on their individual performance, which allows me to flag out low performers and help them out.                  |
+| `* *`    | TA               | have an an overview of students' progress in tutorials and labs submissions, especially where progress seemed slow or difficult | can identify trends in learning difficulties, ie which specific topics/concepts students seem to generally struggle with. |
+| `* *`    | Lab TA           | track my students' progress on weekly lab assignments                                                                           | can make sure everyone submits their assignments on time and offer guidance if they need it.                              |
+| `*`      | Tutorial TA      | know my students' progress on their tutorial questions every week (ie. note how many questions they are unsure of)              | can decide how to pace my tutorial.                                                                                       |
+| `*`      | Motivational TA  | find out who are the most consistent students                                                                                   | can recommend them for future TA positions.                                                                               |
 
 
-*{More to be added}*
+4. Epic: As a CS2040 TA, I want to note down important information during an event.
+
+| Priority | As a CS2040 …​ | I want to …​                                                        | So that I …​                                               |
+|----------|----------------|---------------------------------------------------------------------|------------------------------------------------------------|
+| `* *`    | hardworking TA | add notes to events (such as tutorials)                             | won’t lose track of past events information.               |
+| `* *`    | TA             | edit event notes                                                    | can convenient update them when I have to.                 |
+| `* *`    | TA             | delete notes from an event                                          | will not have cluttered notes.                             |
+| `*`      | concerned TA   | take down the queries of student                                    | can seek to reply them later.                              |
+| `*`      | TA             | note my performances at the end of this semester for the last event | may reflect upon them.                                     |
+| `*`      | Lab TA         | note down some common vim commands as a cheatsheet                  | can better navigate to inspect student codes via terminal. |
+
+5. Epic: As a CS2040 TA, I want to see a help guide.
+
+| Priority | As a CS2040 …​ | I want to …​                                          | So that I …​                                                               |
+|----------|----------------|----------------------------------------------------------|----------------------------------------------------------------------------|
+| `* *`    | New TA         | have an instruction to tell me what input format to use  | do not have to trial-and-error to figure out the right format.             |
+| `* *`    | New TA         | have the help page functions to be clear and unambiguous | will not be confused and input wrong commands.                             |
+| `*`      | New TA         | have an interactive help guide                           | do not have to manually read the user guide and developer guide everytime. |
+
 
 ### Use cases
 
@@ -601,20 +503,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 System: Software System (TrAcker)
 <br>
-Use case: UC01 - Add Tutorial lessons
+Use case: UC01 - Add tutorial lessons
 <br>
 Person: An undergraduate student in NUS enrolled in CS2040 as a student
 <br>
-Actor: CS2040 Tutorial Teaching Assistant (TA)
+Actor: CS2040 tutorial Teaching Assistant (TA)
 <br>
 Precondition: TA has access to the TrAcker application
 
 **MSS**
 
-1.  TA starts TrAcker desktop application.
-2.  TA enters command to create new tutorial.
-3.  TA confirms creation of tutorial.
-4.  TrAcker displays the new tutorial event.
+1. TA starts TrAcker desktop application.
+2. TA enters command to create new tutorial.
+3. TA confirms creation of a new tutorial.
+4. TrAcker displays the new tutorial event.
 
 Use case ends.
 
@@ -628,82 +530,16 @@ Use case ends.
   <br>
   Use case resumes from Step 4.
 
-* a. At any time, TA decides not to create a new tutorial.
-  * a1. TA removes input from TrAcker.
-
-Use case ends
-
----
-System: Software System (TrAcker)
-<br>
-Use case: UC02 - Add Lab lessons
-<br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
-<br>
-Actor: CS2040 Lab Teaching Assistant (TA)
-<br>
-Precondition: TA has access to the TrAcker application
-
-**MSS**
-
-1.  TA starts TrAcker desktop application.
-2.  TA enters command to create new lab.
-3.  TA confirms creation of lab.
-4.  TrAcker displays the new lab event.
-
-Use case ends.
-
-**Extensions**
-
-* 3a. TrAcker detects an error in the entered lab data.
-    * 3a1. TrAcker requests for the correct lab data where there was an error.
-    * 3a2. TA enters new lab data.
-      
-  Steps 3a1 - 3a2 are repeated until the data entered to create a new lab are correct.
-      <br>
-      Use case resumes from Step 4.
-
-* a. At any time, TA decides not to create a new lab.
-    * a1. TA removes input from TrAcker.
-
-Use case ends
+* 2a. TA decides not to create a new tutorial.
+  * 2a1. TA removes input from TrAcker.
+  
+  Use case ends
 
 ---
-System: Software System (TrAcker)
-<br>
-Use case: UC03 - Add Consultation lessons
-<br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
-<br>
-Actor: CS2040 Teaching Assistant (TA)
-<br>
-Precondition: TA has access to the TrAcker application
 
-**MSS**
-
-1.  TA starts TrAcker desktop application.
-2.  TA enters command to create new consultation.
-3.  TA confirms creation of consultation.
-4.  TrAcker displays the new consultation event.
-
-Use case ends.
-
-**Extensions**
-
-* 3a. TrAcker detects an error in the entered consultation data.
-    * 3a1. TrAcker requests for the correct consultation data where there was an error.
-    * 3a2. TA enters new consultation data.
-      
-  Steps 3a1 - 3a2 are repeated until the data entered to create a new consultation are correct.
-      <br>
-      Use case resumes from Step 4.
-
-* a. At any time, TA decides not to create a new consultation.
-    * a1. TA removes input from TrAcker.
-
-Use case ends.
-
-![TutorialUseCaseDiagram](images/TutorialUseCaseDiagram.png)
+- UC02 - Add lab lessons is the same as UC01 - Add tutorial lessons with minor differences.
+- UC03 - Add consutation lessons is the same as UC01 - Add tutorial lessons with minor differences.
+- The only different is that the event types are replaced accordingly. i.e. replace tutorial with lab for UC02 and replace tutorial with consultation for UC03.
 
 ---
 System: Software System (TrAcker)
@@ -753,10 +589,10 @@ Use case ends.
       <br>
       Use case resumes from Step 4.
 
-* a. At any time, TA decides not to add a student to the event.
-    * a1. TA removes input from TrAcker.
+* 2a. TA decides not to add a student to the event.
+    * 2a1. TA removes input from TrAcker.
 
-Use case ends
+    Use case ends
 
 ---
 
@@ -805,10 +641,10 @@ Use case ends.
       <br>
       Use case resumes from Step 4.
 
-* a. At any time, TA decides not to delete the event.
-    * a1. TA removes input from TrAcker.
+* 2a. TA decides not to delete the event.
+    * 2a1. TA removes input from TrAcker.
 
-Use case ends
+  Use case ends
 
 ---
 
@@ -856,8 +692,6 @@ Use case ends.
 
 Use case ends
 
-![StudentUseCaseDiagram](images/StudentUseCaseDiagram.png)
-
 ---
 
 #### Help Functionality Use Cases
@@ -879,7 +713,6 @@ Preconditions:
 2. TA enters help command.
 3. TA confirms the help command.
 4. Help categories displayed.
-5. Instructions and syntaxes for all valid TrAcker commands are displayed.
 
 Use case ends.
 
@@ -888,30 +721,22 @@ Use case ends.
 * 3a. TA enters help tutorial command
     * 3a1. TrAcker displays instructions and syntaxes for all valid tutorial related commands.
     
-Use case ends.
+    Use case ends.
 
 * 3b. TA enters help lab command.
     * 3b1. TrAcker displays instructions and syntaxes for all valid lab related commands.
 
-Use case ends.
+    Use case ends.
 
 * 3c. TA enters help consultation command.
     * 3c1. TrAcker displays instructions and syntaxes for all valid consultation related commands.
 
-Use case ends.
+    Use case ends.
 
-* 3d. TA enters view externally command.
-    * 3d1. TrAcker displays instructions and syntaxes for all commands in an external online UserGuide.
-    * 3d2. TA navigates back to TrAcker application.
+* 2a. TA decides not to have help from TrAcker.
+    * 2a1. TA removes input from TrAcker.
 
-Use case ends.
-
-* a. At any time, TA decides not to have help from TrAcker.
-    * a1. TA removes input from TrAcker.
-
-Use case ends
-
-![HelpUseCaseDiagram](images/HelpUseCaseDiagram.png)
+    Use case ends
 
 ---
 
@@ -958,10 +783,10 @@ Use case ends.
       <br>
       Use case resumes from Step 7.
 
-* a. At any time, TA decides not to sort students.
-    * a1. TA removes input from TrAcker.
+* 2a. TA decides not to sort students.
+    * 2a1. TA removes input from TrAcker.
 
-Use case ends
+    Use case ends
 
 ---
 
@@ -1006,141 +831,14 @@ Use case ends.
       <br>
       Use case resumes from Step 7.
 
-* a. At any time, TA decides not to filter students.
-    * a1. TA removes input from TrAcker.
+* 2a. At any time, TA decides not to filter students.
+    * 2a1. TA removes input from TrAcker.
 
-Use case ends
+    Use case ends
 
 ---
-
-System: Software System (TrAcker)
-<br>
-Use case: UC10 - Show High Urgency Students
-<br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
-<br>
-Actor: CS2040 Teaching Assistant (TA)
-<br>
-Preconditions:
-- TA has access to the TrAcker application
-
-**MSS**
-
-1. TA starts TrAcker desktop application.
-2. TA enters command to show students with high urgency.
-3. TrAcker requests which group of students the TA wants to show high urgency for.
-4. TA enters requested details.
-5. TrAcker calculates and shows a list of students who 
-fall within this category (performing well at the start but with a sudden drop in cosistency and standards.)
-
-Use case ends.
-
-**Extensions**
-
-* 4a. TrAcker detects error in entered data
-    * 4a1. TrAcker requests for the correct details.
-    * 4a2. TA enters new details.
-      
-  Steps 4a1 - 4a2 are repreated until the data entered is correct.
-      <br>
-      Use case resumes from Step 5.
-
-* a. At any time, TA decides not to show high urgency students.
-    * a1. TA removes input from TrAcker.
-
-Use case ends
-
 
 ![SortUseCaseDiagram](images/SortUseCaseDiagram.png)
-
----
-
-#### Student Progress Use Cases
-
-System: Software System (TrAcker)
-<br>
-Use case: UC11 - View Attendance
-<br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
-<br>
-Actor: CS2040 Teaching Assistant (TA)
-<br>
-Preconditions:
-- TA has access to the TrAcker application
-
-**MSS**
-
-1. TA starts TrAcker desktop application.
-2. TA enters command to view attendance.
-3. TrAcker requests for event that TA wants to view attendance for.
-4. TA enters the event details.
-5. TrAcker displays corresponding student list with their attendance markings.
-
-Use case ends.
-
-**Extensions**
-
-* 4a. TrAcker detects error in entered data
-    * 4a1. TrAcker requests for the correct details.
-    * 4a2. TA enters new details.
-      
-  Steps 4a1 - 4a2 are repreated until the data entered is correct.
-      <br>
-      Use case resumes from Step 5.
-
-* a. At any time, TA decides not to view attendance.
-    * a1. TA removes input from TrAcker.
-
-Use case ends
-
----
-
-System: Software System (TrAcker)
-<br>
-Use case: UC11 - View Low Performing Students
-<br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
-<br>
-Actor: CS2040 Teaching Assistant (TA)
-<br>
-Preconditions:
-- TA has access to the TrAcker application
-
-**MSS**
-
-1. TA starts TrAcker desktop application.
-2. TA enters command to view low performing students.
-3. TrAcker requests for event that TA wants to view low performing students for.
-4. TA enters requested details.
-5. TrAcker requests for the number of students that the TA wants to view.
-6. TA enters an Integer n.
-7. TrAcker invokes <ins> "Filter Students" (UC09) </ins>
-8. TrAcker invokes <ins> "Sort Students" (UC08)</ins> and displays the n lowest performance according to performance
-in the corresponding class.
-
-Use case ends.
-
-**Extensions**
-
-* 4a. TrAcker detects error in entered data
-    * 4a1. TrAcker requests for the correct details.
-    * 4a2. TA enters new details.
-      Steps 4a1 - 4a2 are repreated until the data entered is correct.
-      <br>
-      Use case resumes from Step 5.
-  
-* 6a. TrAcker detects invalid input
-    * 6a1. TrAcker requests for the valid input.
-    * 6a2. TA enters new input.
-  
-      Steps 6a1 - 6a2 are repreated until the input entered is valid.
-      <br>
-      Use case resumes from Step 7.
-
-* a. At any time, TA decides not to view low performing students.
-    * a1. TA removes input from TrAcker.
-
-Use case ends
 
 ---
 
@@ -1148,7 +846,7 @@ Use case ends
 
 System: Software System (TrAcker)
 <br>
-Use case: UC12 - List all event notes (up to future one-week worth of events)
+Use case: UC10 - Show event notes
 <br>
 Person: An undergraduate student in NUS enrolled in CS2040 as a student
 <br>
@@ -1161,27 +859,22 @@ Preconditions:
 
 1. TA starts TrAcker desktop application.
 2. TA enters command to list notes.
-3. TrAcker displays notes listed for future one-week events
+3. TrAcker displays notes listed for that event.
 
 Use case ends.
 
 **Extensions**
 
-* 3a. No notes found for future one-week events
-    * 3a1. TrAcker displays an empty card.
+* 2a. No notes found for events.
+    * 2a1. TrAcker displays an empty card.
 
-Use case ends.
-
-* a. At any time, TA decides not to list notes.
-    * a1. TA removes input from TrAcker.
-
-Use case ends
+    Use case ends.
 
 --- 
 
 System: Software System (TrAcker)
 <br>
-Use case: UC13 - Add notes to an event
+Use case: UC11 - Add notes to an event
 <br>
 Person: An undergraduate student in NUS enrolled in CS2040 as a student
 <br>
@@ -1221,16 +914,15 @@ Use case ends.
   Use case resumes from step 7.
 
 * a. At any time, TA decides to cancel note adding.
-    * a1. TrAcker requests to confirm the cancellation.
-    * a2. TA confirms the cancellation.
+    * a1. TrAcker cancels addition of note.
 
-Use case ends
+    Use case ends
 
 ---
 
 System: Software System (TrAcker)
 <br>
-Use case: UC14 - Edit notes in an event
+Use case: UC12 - Edit notes in an event
 <br>
 Person: An undergraduate student in NUS enrolled in CS2040 as a student
 <br>
@@ -1253,16 +945,15 @@ Use case ends.
 **Extensions**
 
 * a. At any time, TA decides to cancel note-editing.
-    * a1. TrAcker requests to confirm the cancellation.
-    * a2. TA confirms the cancellation.
+    * a1. TrAcker cancels note editing.
 
-Use case ends
+    Use case ends
 
 ---
 
 System: Software System (TrAcker)
 <br>
-Use case: UC14 - Delete notes from an event
+Use case: UC13 - Delete notes from an event
 <br>
 Person: An undergraduate student in NUS enrolled in CS2040 as a student
 <br>
@@ -1284,47 +975,36 @@ Use case ends.
 **Extensions**
 
 * a. At any time, TA decides to cancel note-deletion.
-    * a1. TrAcker requests to confirm the cancellation.
-    * a2. TA confirms the cancellation.
+    * a1. TrAcker cancels note deletion.
 
-Use case ends
+    Use case ends
 
 ![NoteUseCaseDiagram](images/NoteUseCaseDiagram.png)
-
-
----
-
-*{More to be added}*
 
 ---
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 200 students without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 20 students without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The Help syntax should be easily rendered.
 5. Help displayed should be segmented properly.
 6. Help displayed should be easy to follow.
 7. Syntax help provided should be unambiguous.
-8. Each page should load within 2 seconds.
+8. Each page should load within 5 seconds.
 9. The application should run on any operating system.
 10. Any sorting should run in a maximum time of O(nlogn).
-11. Events should be added in 1 second.
-12. Events should be delete in 1 second.
-13. There should be no keyboard input lag at any time.
-14. Uploading attachments should take at most 10 seconds.
-15. Deleting attachments should take at most 10 seconds.
-16. Displaying a student profile picture should take at most 5 seconds.
-17. Data should be saved to local storage after any data change has been made within the application.
-18. Event notes should be pure texts (no images or videos).
-
-*{More to be added}*
+11. Events should be added in 5 second.
+12. Events should be delete in 5 second.
+13. There should be maximum 2 seconds keyboard input lag at any time.
+14. Displaying a student profile picture should take at most 5 seconds.
+15. Data should be saved to local storage after any data change has been made within the application.
+16. Event notes should be pure texts (no images or videos).
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
