@@ -85,13 +85,4 @@ public class SetPictureCommandTest {
         assertFalse(setPictureFirstCommand.equals(setPictureSecondCommand));
         assertFalse(setPictureThirdCommand.equals(setPictureSecondCommand));
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoEmployee(Model model) {
-        model.updateFilteredEmployeeList(p -> false);
-
-        assertTrue(model.getFilteredEmployeeList().isEmpty());
-    }
 }

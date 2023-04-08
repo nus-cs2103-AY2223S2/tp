@@ -28,6 +28,12 @@ public class JsonUserPrefsStorageTest {
         assertThrows(NullPointerException.class, () -> readUserPrefs(null));
     }
 
+    @Test
+    public void getFilePath_nullFilePath_throwsNullPointerException() {
+        JsonUserPrefsStorage nullPath = new JsonUserPrefsStorage(null);
+        assert(new JsonUserPrefsStorage(null).getUserPrefsFilePath() == null);
+    }
+
     private Optional<UserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder) throws DataConversionException {
         Path prefsFilePath = addToTestDataPathIfNotNull(userPrefsFileInTestDataFolder);
         return new JsonUserPrefsStorage(prefsFilePath).readUserPrefs(prefsFilePath);
