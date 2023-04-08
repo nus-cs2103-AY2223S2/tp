@@ -518,6 +518,48 @@ SEQ#7
   * Pros: Future developments which rely on the `ObservableList<RecurringExpenseManager` will be able to be smoothly implemented, as there are list operations being carried out by replacing objects.
   * Cons: Extra layers of code required to instantiate a new `RecurringExpenseManager` object to replace the original.
 
+### \[Implemented\] List RecurringExpenseManager feature
+
+#### **Command Format**
+
+`lrec`.
+
+#### **What is this feature for?**
+
+The `lrec` command enables users to view all `RecurringExpenseManager` objects within the expense tracker.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `lrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `lrec` as an example.
+1. The user inputs `lrec` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `ListRecurringExpensesCommand` object is created using the given fields.
+
+
+3. The `LogicManager#execute()` function causes `ListRecurringExpensesCommand#execute()` to be called, which takes in the currently-running instance of `Model`, and calls `Model#updateFilteredExpenseList()` with `PREDICATE_SHOW_ALL_EXPENSES`.
+
+
+4. A `CommandResult` instance is then returned, with feedback of how many `RecurringExpenseManager` objects are present in the expense tracker, as well as switching to a screen of the list of `RecurringExpenseManager` objects.
+
+
+As the flow of events are almost identical to that of the [`list` command](#implemented-list-feature) with the sole difference being the different method names and the lack of filters, there are no sequence diagrams provided for this feature.
+
+SEQ#4
+
+### **Design Considerations**
+**Aspect: Whether to make `ListExpensesCommand` have multiple constructors or to make it take in `ExpenseInCategoryPredicate` and `ExpenseInTimespanPredicate` as `Optional` objects.**
+
+* **Alternative 1 (Current choice):** `ListExpensesCommand` takes in `Optional<ExpenseInCategoryPredicate>` and `Optional<ExpenseInTimespanPredicate`
+  * Pros: Makes for cleaner code, and allows for less clutter in terms of using multiple constructors.
+  * Cons: Usage of multiple constructors could have been easier to understand in terms of what the idea is.
+
+* **Alternative 2:** `ListExpensesCommand` has multiple constructors to differentiate the different possible cases of user input for filters.
+  * Pros: Easier to understand, and all differentiation is done at the parsing stage.
+  * Cons: Much more cluttered and code will not be as clean.
+
 
 ### \[Implemented\] Delete Category feature
 
@@ -595,39 +637,36 @@ that uses the same name and summary before replacing the required name or summar
   * Pros: Enforces immutability by replacing the previous `Category` object.
   * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
 
-### \[Implemented\] List feature
-The list feature is implemented similarly to all the other commands. It has two optional fields for the category and timespan. The method of handling the user input falls into the following:
 
-1. The user wishes to list all expenses.
-2. The user wishes to only list expenses in a category.
-3. The user wishes to only list expenses in the past week/month/year.
-4. The user wishes to list expenses in a category from the past week/month/year.
+### \[Implemented\] List Category feature
 
-In order to deal with the multiple scenarios, `ListCommand` constructor uses `Optional<Predicate>` parameters in the case that the user did not specify a certain filter. `ListCommandParser#parse()` allows for optional tags of category and timespan, passing in `Optional<Predicate>` objects into the `ListCommand` constructor, and returning a `ListCommand` object with the required predicates.
+#### **Command Format**
 
-To list expenses, we pass in the predicates (if given) into the model, with `Model#updateFilteredExpensesList()`, updating the `ObservableList` in the model.
+`lcat`.
 
-Given below is an example usage scenario of how the List Command behaves:
+#### **What is this feature for?**
 
-Step 1. The user launches the application with prior data.
+The `lcat` command enables users to view all `Category` objects within the expense tracker.
 
-//Insert pictures of launched app.
+### **Sequence of action**
 
-Step 2. The user uses the `list` command to list out all expenses.
+To aid you in understanding how exactly the `lcat` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
 
-// Insert pictures of results of `list`
+We will be using the user input `lcat` as an example.
+1. The user inputs `lcat` in the command box.
 
-Step 2a. The user uses the `list c/category` command.
 
-// Insert pictures of command
+2. The input is then [parsed](#logic-component) and a `ListCategoryCommand` object is created using the given fields.
 
-Step 2b. The user uses the `list t/(week/month/year)` command.
 
-//Insert pictures of command
+3. The `LogicManager#execute()` function causes `ListCategoryCommand#execute()` to be called, which takes in the currently-running instance of `Model`, and calls `Model#updateFilteredExpenseList()` with `PREDICATE_SHOW_ALL_EXPENSES`.
 
-The following sequence diagram shows the order of operations of the ListCommand command:
 
-// Insert sequence diagram of how listcommand works.
+4. A `CommandResult` instance is then returned, with feedback of how many `Category` objects are present in the expense tracker, as well as switching the screen to that of a list of the `Category` objects.
+
+
+As the flow of events are almost identical to that of the [`list` command](#implemented-list-feature) with the sole difference being the different method names and the lack of filters, there are no sequence diagrams provided for this feature.
+
 
 ### \[Implemented\] Expense Statistics Feature
 FastTrack allows the user to view a summary of their expense statistics for both the current week and month.
