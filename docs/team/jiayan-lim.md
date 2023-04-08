@@ -24,16 +24,20 @@ Careflow can get your patient and drugs management tasks done faster than tradit
       * What it does: This feature allows the app to check for patients with duplicate NRIC or FIN numbers to avoid duplication of patient.
       * Highlights: The addition of a feature that checks for duplicate NRIC or FIN numbers is crucial to the accuracy and integrity of the patient database. Without this feature, it is possible for duplicate patient records to be created, which can lead to confusion, errors in treatment.
 
+
 * **Minor enhancement**:
     * make emergency contact and drug allergy be optional for add patient command(Pull request [\#174](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/174))
     * fix error message displayed to the user (Pull request [\#223](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/223), [\#224](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/224))
 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jiayan-lim&breakdown=true)
+
 
 * **Enhancements to existing features**:
     * Wrote additional tests for drug commands to increase coverage from 47.19% to 62.01% (Pull request [\#138](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/138))
     * Wrote additional tests for model component(Patient and Drug) to increase coverage from 47.19% to 62.01% (Pull request [\#138](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/138), [\#49](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/49))
     * Bug fixing received from PE-D (Pull requests [\#271](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/271), [\#272](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/272), [\#282](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/282))
+
 
 * **Documentation**:
     * User Guide:
@@ -51,6 +55,7 @@ Careflow can get your patient and drugs management tasks done faster than tradit
         * Update DG with target user profile and value proposition. (Pull request [\#77](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/77))
         * Update DG with Enhancement in Appendix (Pull request [\#279](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/279), [\#288](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/288))
         * Fix broken URL link (Pull request [\#184](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/184))
+
 
 * **Community**:
     * PRs reviewed for teammate (with non-trivial review comments): [\#190](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/190#discussion_r1148819990), [\#183](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/183#discussion_r1149770358)
