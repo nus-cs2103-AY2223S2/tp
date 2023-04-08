@@ -84,7 +84,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/Potential Earning c/COMPA
 - Email `e/`: The email of the specified person. (Must be a valid email with a domain)
 - Address `a/`: The full address of the specified person.
 - Potential Sale Value `s/`: The expected value of revenue to be brought in by the client.
-- Company Name `c/`: Name of the specified person's company. (Put 'NIL' if not applicable)
+- Company Name `c/`: Name of the specified person's company. For convenience, users are recommended to use a short form with only alphanumeric characters. (Put 'NIL' if not applicable)
 - Priority `pr/`: How much this client should be prioritized. (Must be one of [`HIGH`, `MEDIUM`, `LOW`])
 - Transaction Count `tr/`: The number of previous transaction between the user and this client.
 - Tags `t/TAG [t/TAG]...` : The tags associated with the client. Tags are optional and multiple tags can be specified - for every tag, use`t/` as a prefix.
@@ -148,7 +148,7 @@ Format: `decr INDEX tr/TRANSACTION_COUNT_DECREMENT_AMOUNT`
 - Decrements the Transaction Count of the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - The decrement amount cannot be left empty.
 - The decrement amount must be an integer greater than zero.
-- The resultant transaction count will be the difference of the person's Transaction Count and the specified increment amount.
+- The resultant transaction count will be the difference of the person's Transaction Count and the specified decrement amount.
 
 Examples:
 
