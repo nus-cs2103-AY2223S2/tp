@@ -42,7 +42,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private CustomerListPanel customerListPanel;
     private VehicleListPanel vehicleListPanel;
     private ServiceListPanel serviceListPanel;
@@ -271,10 +270,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     private void updateSelectedTab(CommandResult commandResult) {

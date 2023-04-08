@@ -56,12 +56,6 @@ import seedu.address.model.tag.Tag;
 public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
     public static final String MSG_RUNTIME_ERROR =
             "Relationships in shop broken, bug in one of the modification methods";
-    // TODO : Add regex for String inputs
-    //    private static final String PART_NAME_REGEX = "[a-zA-Z0-9 _]+";
-    //    private static final String VEHICLE_BRAND_REGEX = "[a-zA-Z]+";
-    //    private static final String VEHICLE_MODEL_REGEX = "[a-zA-Z0-9 _]+";
-    //    private static final String VEHICLE_PLATE_NUMBER_REGEX = "[a-zA-Z0-9]+";
-    //    private static final String
     private final IdGenerator idGenerator = new IdGenerator();
     private final Stack<Shop> undoStack = new Stack<>();
     private final Stack<Shop> redoStack = new Stack<>();
