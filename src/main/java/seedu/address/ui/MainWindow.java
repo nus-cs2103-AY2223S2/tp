@@ -171,7 +171,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         TaskListPanel taskListPanel = new TaskListPanel(logic.getOfficeConnectModel()
-            .getTaskModelManager().getFilteredItemList());
+            .getTaskModelManagerFilteredItemList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
