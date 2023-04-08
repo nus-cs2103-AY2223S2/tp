@@ -107,6 +107,8 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* :warning: Unrecognised fields such as `b/` or `c/` will not be picked up as fields, and will be treated as input.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -169,7 +171,7 @@ Additional Fields:
 * `e/` : email
 * `p/` : phone number
 * `t/` : tags
-* `m/` : module codes
+* `m/` : module tags
 
 > :bulb:  **Tip:** A person can have any number of tags or modules (including 0). The order of the fields is not important.
 
@@ -358,7 +360,6 @@ Format: `clear`
 
 Examples:
 * `list` followed by `clear` deletes all the contacts in the list.
-  ![viewContactDetails](images/clear/clearAllContacts.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -397,7 +398,7 @@ Format: `exit`
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                 |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]…​ [m/MODULE_TAG]…​ ` <br> e.g., `add n/Benedict Tan d/Great Friend e/BenedictTan@gmail.com p/98070707 t/Friend m/CS2103 m/CS3230 `                                                                                           |
 | **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
 | **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                         |
