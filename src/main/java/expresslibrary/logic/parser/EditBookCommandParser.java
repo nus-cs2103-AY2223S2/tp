@@ -40,7 +40,7 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX, pe);
         }
 
         EditBookDescriptor editBookDescriptor = new EditBookDescriptor();
