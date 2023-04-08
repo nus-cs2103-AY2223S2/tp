@@ -161,10 +161,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has `Language` and `Tag` lists in `Socket`, which `Person` references. This allows `Socket` to only require one `Language`/`Tag` object per unique language/tag, instead of each `Person` needing their own `Language`/`Tag` objects.<br>
-
-<p align="center"><img src="images/BetterModelClassDiagram.png" width="450" /></p>
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has `Language` and `Tag` lists in `Socket`, which `Person` references. This allows `Socket` to only require one `Language`/`Tag` object per unique language/tag, instead of each `Person` needing their own `Language`/`Tag` objects.
+    <img src="images/BetterModelClassDiagram.png"/>
+    <br>
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -1065,7 +1064,19 @@ Similar to **UC03 Delete a contact**, except,
       1. `(01234) 012345` 
 
    We plan to update the `VALIDATION_REGEX` to allow other possible phone numbers including, but not limited to, those under "Invalid `Phone` fields" above, as well as limiting the length of a valid `Phone` field to follow the longest conventionally accepted phone number.
-1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline` field, without any indication that the deadline has passed. As users may want to keep the details of finished projects for posterity, we plan on continuing to allow the `ProjectDeadline` field to be set to an overdue deadline, however, further checks will be added when setting the `ProjectDeadline` field to notify users when setting an overdue deadline, showing an additional message: `The project deadline has already passed.` 
+1. The current `VALIDATION_REGEX` for validating `Language` fields is flawed, and does not consider languages with `.` or ` ` valid.
+   1. Valid `Language` fields:
+      1. `Java`
+      1. `C++`
+      1. `C#`
+      1. `C--`
+   1. Invalid `Language` fields:
+      1. `NET.Data`
+      1. `Text Executive Programming Language`
+   
+   We plan to update the `VALIDATION_REGEX` to allow other possible languages including, but not limited to, those under "Invalid `Language` fields" above. This entails enhancements such as allowing a `Language` field to consist of multiple words in the case that users choose to store the full name of a language instead of its acronym, or names of languages with multiple words without a conventionally accepted acronym, as well as allowing `.` in the `Language` field.
+1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline` and/or `ProjectMeeting` field, without any indication that the deadline or meeting has passed. As users may want to keep the details of finished projects or meetings for posterity, we plan on continuing to allow the `ProjectDeadline` and `ProjectMeeting` fields to be set to past date and time, however, further checks will be added when setting the `ProjectDeadline` or `ProjectMeeting` fields to notify users when setting a date and time that has already passed, showing an additional message: `The project deadline has already passed.` or `The project meeting has already passed.` 
+1. The current `Project` only allows users to set a single `ProjectMeeting`, which could be problematic in the case that users would like to store the details of several meetings in advance, as opposed to just the upcoming meeting. We plan to enhance this feature to allow users to set several `ProjectMeeting` fields for a `Project`, to enable users to manage more meetings for a `Project`, such as future meetings past the upcoming meeting, as well as keep a record of previous meetings if such a need arises.
 1. The current UI makes use of a horizontal scroll bar to handle the interaction of overflowing text with tags in the contact panel. To enhance the user experience, we plan to only display the tag count initially. If the user chooses to view a specific contact, the contact card will then expand to show the full list of tags associated with that contact.
 
 --------------------------------------------------------------------------------------------------------------------

@@ -114,7 +114,7 @@ A contact can have any number of languages/tags (including 0).
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`
 <br/><br/>
-  <img src="images/addJohnDoeResult.png" width="600"/>
+  <p align="center"><img src="images/addJohnDoeResult.png" width="450"/>
   <p align="center">
   <i>Result of the <code>add n/John Doe ...</code> command</i>
   <br>
@@ -147,7 +147,7 @@ You can remove all the tags of a contact by typing `t/` without specifying any k
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
    <br/><br/>
-   <img src="images/edit1Result.png" width="600"/>
+   <p align="center"><img src="images/edit1Result.png" width="450"/>
    <p align="center">
    <i>Result of the <code>edit 1 ...</code> command</i>
    <br>
@@ -184,7 +184,7 @@ If no keyword is provided, `remove` will still **execute successfully** on an em
 Examples:
 * `remove 1 p/ l/Java` Removes the phone number and `Java` from the languages from the first contact in the list.
   <br/><br/>
-  <p align="center"><img src="images/remove.png" width="600"/></p>
+  <p align="center"><img src="images/remove.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>remove 1 p/ l/Java</code> command</i>
   <br>
@@ -243,7 +243,7 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANG
 Example:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`.
 <br/><br/>
-  <p align="center"><img src="images/findAlexDavidResult.png" width="600"/></p>
+  <p align="center"><img src="images/findAlexDavidResult.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>find n/alex david</code> command</i>
   <br>
@@ -316,7 +316,7 @@ This command will sort the and display the full contact list.
 Examples:
 * `sort` Sort contacts by **Name**.
 <br/><br/>
-  <p align="center"><img src="images/SortByName.png" width="600"/></p>
+  <p align="center"><img src="images/SortByName.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>sort</code> command</i>
   <br>
@@ -327,7 +327,7 @@ Examples:
 
 * `sort address` Sort the contacts by **Address**.
 <br/><br/>
-  <p align="center"><img src="images/SortByAddress.png" width="600"/></p>
+  <p align="center"><img src="images/SortByAddress.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>sort address</code> command</i>
   <br>
@@ -371,15 +371,15 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
     * not exceed 100 characters.
     * e.g `r/project_1`.
 * Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
-    * e.g `d/ 30/03/22-2045` would be *30th March 2022, 8:45 p.m.
-* A project is considered to be the same if it has the same project name (case-insensitive).
+    * e.g `d/ 30/03/22-2045` would be **30th March 2022, 8:45 p.m.**
+* A project is considered to be the same if it has the same project name **(case-insensitive)**.
 
 <div style="page-break-after: always;"></div>
 
 Examples:
 * `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`
 <br/><br/>
-  <p align="center"><img src="images/addpjResult.png" width="600"/></p>
+  <p align="center"><img src="images/addpjResult.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>addpj n/test ...</code> command</i>
   <br>
@@ -402,9 +402,9 @@ Format: `editpj INDEX [n/PROJECT_NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] 
 * Existing values will be updated to the input values.
 
 Examples:
-* `editpj 1 n/Project Alpha d/02/01/23-2359`Edits the project name and deadline of the first project to be `Project Alpha` and `02/01/2023-2359` respectively.
+* `editpj 1 n/Project Alpha d/02/01/23-2359` Edits the project name and deadline of the first project to be `Project Alpha` and `02/01/2023-2359` respectively.
 <br/><br/>
-  <p align="center"><img src="images/editpj.png" width="600"/></p>
+  <p align="center"><img src="images/editpj.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>editpj 1 ...</code> command</i>
   <br>
@@ -431,7 +431,7 @@ Format: `removepj INDEX [h/[REPO_HOST]] [r/[REPO_NAME]] [d/[DEADLINE]] [m/[MEETI
 Examples:
 * `removepj 1 r/` Removes repository name from first project in the project list.
   <br/><br/>
-  <p align="center"><img src="images/removepj.png" width="600"/></p>
+  <p align="center"><img src="images/removepj.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>removepj 1 r/</code> command</i>
   <br>
@@ -442,9 +442,9 @@ Examples:
 
 * `removepj 1 d/01/01/23-2359 m/` Removes deadline `01/01/23-2359` and meeting from first project in the project list.
   <br/><br/>
-  <p align="center"><img src="images/removepj2.png" width="600"/></p>
+  <p align="center"><img src="images/removepj2.png" width="450"/></p>
   <p align="center">
-  <i>Result of the <code>removpj 1 d/01/01/23-2359 m/</code> command</i>
+  <i>Result of the <code>removepj 1 d/01/01/23-2359 m/</code> command</i>
   <br>
   </p>
 
@@ -494,7 +494,7 @@ Use the deadline category to sort your projects based on the nearest due dates!
 Examples:
 * `sortpj deadline` Sort the project list by **Deadline**.
 <br/><br/>
-  <p align="center"><img src="images/SortpjByDeadline.png" width="600"/></p>
+  <p align="center"><img src="images/SortpjByDeadline.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>sortpj deadline</code> command</i>
   <br>
@@ -505,7 +505,7 @@ Examples:
 
 * `sortpj name` Sort the project list by **Project Name**.
 <br/><br/>
-  <p align="center"><img src="images/SortpjByName.png" width="600"/></p>
+  <p align="center"><img src="images/SortpjByName.png" width="450"/></p>
   <p align="center">
   <i>Result of the <code>sortpj name</code> command</i>
   <br>
@@ -523,7 +523,7 @@ Format: `assign CONTACT_INDEX PROJECT_INDEX`
 
 Examples:
 * Before Assigning:<br/><br/>
-  <p align="center"><img src="images/AssignBefore.png" width="600"/></p>
+  <p align="center"><img src="images/AssignBefore.png" width="450"/></p>
   <p align="center">
   <i>Before the <code>assign 1 1</code> command</i>
   <br>
@@ -533,7 +533,7 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 * After Assigning:<br/><br/>
-  <p align="center"><img src="images/AssignAfter.png" width="600"/></p>
+  <p align="center"><img src="images/AssignAfter.png" width="450"/></p>
   <p align="center">
   <i>After the <code>assign 1 1</code> command</i>
   <br>
@@ -555,7 +555,7 @@ Format: `unassign INDEX n/NAME`
 
 Examples:
 * Before Unassigning:<br/><br/>
-  <p align="center"><img src="images/UnassignBefore.png" width="600"/></p>
+  <p align="center"><img src="images/UnassignBefore.png" width="450"/></p>
   <p align="center">
   <i>Before the <code>unassign 1 n/Alex Yeoh</code> command</i>
   <br>
@@ -565,7 +565,7 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 * After Unassigning:<br/><br/>
-  <p align="center"><img src="images/UnassignAfter.png" width="600"/></p>
+  <p align="center"><img src="images/UnassignAfter.png" width="450"/></p>
   <p align="center">
   <i>After the <code>unassign 1 n/Alex Yeoh</code> command</i>
   <br>

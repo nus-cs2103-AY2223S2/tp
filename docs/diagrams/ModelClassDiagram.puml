@@ -56,9 +56,9 @@ VersionedSocket --> Socket
 'Spaces to avoid bullet point, position
 VersionedSocket --> " *   " ReadOnlySocket : \n \n \n stores >
 
-'Spaces to position label better
+'Spaces, \n to position label better
 ModelManager --> " * filtered" Person
-ModelManager --> " * filtered" Project
+ModelManager --> " * filtered \n \n \n" Project
 
 'Spaces to position multiplicity better
 Socket *--> "1  " UniquePersonList
@@ -75,24 +75,23 @@ Person *--> "*" Tag
 Name -[hidden]right-> GitHubProfile
 GitHubProfile -[hidden]right-> Phone
 Phone -[hidden]right-> Email
-Address -[hidden]right-> Language
 Tag -[hidden]left-> Language
 
 Socket *--> "1" UniqueProjectList
 'Spaces to position multiplicity better
 UniqueProjectList --> " * " Project
-Project *--> ProjectName
-Project *--> ProjectRepoHost
-Project *--> ProjectRepoName
-Project *--> ProjectDeadline
-Project *--> ProjectMeeting
-Project -->"*" Person : has >
+Project *-left> ProjectName
+Project *-down-> ProjectRepoHost
+Project *---> ProjectRepoName
+Project *---> ProjectDeadline
+Project *---> ProjectMeeting
+Project --->"*" Person : has >
 
 'positioning Project attributes
-ProjectRepoHost -[hidden]right-> ProjectRepoName
-ProjectRepoName -[hidden]right-> ProjectDeadline
-ProjectMeeting -[hidden]left-> ProjectMeeting
-
+ProjectName -[hidden]down> ProjectRepoHost
+ProjectName -[hidden]down> ProjectRepoHost
+ProjectRepoHost -[hidden]down> ProjectRepoName
+ProjectRepoHost -[hidden]down> ProjectRepoName
 'For positioning
 ProjectRepoName -[hidden]right-> Name
 @enduml
