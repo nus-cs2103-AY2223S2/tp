@@ -4,6 +4,7 @@ left to right direction
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
+skinparam dpi 600
 
 package ContactDisplay <<Rectangle>> {
 Class ContactDisplay
