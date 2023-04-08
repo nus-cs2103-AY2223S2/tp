@@ -1,6 +1,5 @@
 package trackr.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TestUtil.ModelStub;
