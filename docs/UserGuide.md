@@ -183,7 +183,7 @@ Examples:
 
 Adds a meeting to the address book.
 
-Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME [TAGS]`
+Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
 
 Required Information:
 
@@ -354,8 +354,9 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Add Meeting** | `meetingAdd CLIENT_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`
+**Add Meeting** | `meetingAdd CLIENT_INDEX md/ DESC ms/ START DATE&TIME me/ END DATE&TIME`
 **Remove Meeting** | `meetingRemove CLIENT_INDEX MEETING_INDEX`
 **Find Meeting** | `meetingFind DATE[CLIENT_INDEX]`
 **List all meetings** | `meetingList`
 **List all in Region** | `listRegion REGION`
+**Find Policy** | `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
