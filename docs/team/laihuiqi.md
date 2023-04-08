@@ -11,15 +11,15 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=laihuiqi&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 * Credits: Some code reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
 
-* **New Feature**: Add the ability to plan an internship application by introducing a `task package` with subpackage `todo` and `note`.
-  * What it does: 
-    * Allows user to plan future internship applications and record long-lasting reminders to enhance future internship applications and interviews.
-    * General features in `task` package : `find_task` and `list_task`. 
-    * `todo` package : `add_todo`, `clear_todo`, `delete_todo`, `edit_deadline`, `edit_content` and `list_todo`.
-    * `note` package : `add_note`, `clear_note`, `delete_note` and `list_note`.
-  * Justification: This feature enhances the product significantly as it provides functional spaces that increase the efficiency of busy computer science students on planning their internships and preparing for their interviews.
-  * Highlights: 
-    * An independent structure of logic, model, storage and ui is used to implement this side features package to avoid ambiguity. This substructure integrates with the main structure of InternEase. 
+**New Feature**: Add the ability to plan an internship application by introducing a `task package` with subpackage `todo` and `note`.
+* What it does: 
+  * Allows user to plan future internship applications and record long-lasting reminders to enhance future internship applications and interviews.
+  * General features in `task` package : `find_task` and `list_task`. 
+  * `todo` package : `add_todo`, `clear_todo`, `delete_todo`, `edit_deadline`, `edit_content` and `list_todo`.
+  * `note` package : `add_note`, `clear_note`, `delete_note` and `list_note`.
+* Justification: This feature enhances the product significantly as it provides functional spaces that increase the efficiency of busy computer science students on planning their internships and preparing for their interviews.
+* Highlights: 
+  * An independent structure of logic, model, storage and ui is used to implement this side features package to avoid ambiguity. This substructure integrates with the main structure of InternEase. 
 
 **New Feature**: Clear the internship applications with specified attributes and keywords
 * What it does:
