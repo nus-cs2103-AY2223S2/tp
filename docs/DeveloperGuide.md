@@ -94,10 +94,11 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a  command, it uses the `MasterDeckParser` class (more precisely, a method within `MasterDeckParser` which depends on the current mode of the application) to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCardCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a card).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. When `Logic` is called upon to execute a  command, it checks the current mode of the application (`MAIN_UNSELECTED`, `MAIN_SELECTED`, `REVIEW`) to determine which method within `MasterDeckParser` to call next.   
+2. It then calls the appropriate parsing method within the `MasterDeckParser` class to parse the user command.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCardCommand`) which is executed by the `LogicManager`.
+4. The command can communicate with the `Model` when it is executed (e.g. to add a card).
+5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteCard 1")` API call.
 
@@ -191,7 +192,7 @@ To enforce this, the `LogicManager` class checks the current mode of the user an
 
 List of decks and list of cards are stored separately in `UniqueDeckList` and `UniqueCardList`. Although a card belongs to a deck, it is not stored within a deck. Each card indicates a deck that it belongs to itself.
 
-Commands in the Main Mode that are implemented for when a deck is not selected behave similarly as the example below: 
+Commands in the Main Mode that are implemented for **when a deck is not selected** behave similarly as the example below: 
 
 #### addDeck Feature
 
@@ -223,6 +224,8 @@ The following sequence diagram shows how the addDeck operation works:
 ### Implementation of Card Mode Features
 
 ### Implementation of Review Mode Features
+The 
+
 
 ### Implementation of MasterDeck
 
