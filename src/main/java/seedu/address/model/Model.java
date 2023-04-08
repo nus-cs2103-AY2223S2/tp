@@ -13,11 +13,6 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
-import seedu.address.model.mapping.AppointmentDataMap;
-import seedu.address.model.mapping.CustomerVehicleMap;
-import seedu.address.model.mapping.ServiceDataMap;
-import seedu.address.model.mapping.TechnicianDataMap;
-import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -164,16 +159,6 @@ public interface Model {
 
     void updateFilteredServiceList(Predicate<? super Service> predicate);
 
-    CustomerVehicleMap getCustomerVehicleMap();
-
-    VehicleDataMap getVehicleDataMap();
-
-    ServiceDataMap getServiceDataMap();
-
-    AppointmentDataMap getAppointmentDataMap();
-
-    TechnicianDataMap getTechnicianDataMap();
-
     ObservableList<Map.Entry<String, Integer>> getFilteredPartMap();
 
     /**
@@ -265,9 +250,4 @@ public interface Model {
      * @param cmp Technician comparator
      */
     void updateTechnicianComparator(Comparator<? super Technician> cmp);
-
-    /**
-     * Update mappings
-     */
-    void resetMaps();
 }

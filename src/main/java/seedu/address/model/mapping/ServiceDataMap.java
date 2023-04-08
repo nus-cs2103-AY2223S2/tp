@@ -14,42 +14,51 @@ import seedu.address.model.service.Vehicle;
  * Represents a mapping between services and their associated technicians
  */
 public class ServiceDataMap {
+    private final Map<Integer, Service> idToServiceMap = new HashMap<>();
+    private final Map<Integer, Technician> idToTechnicianMap = new HashMap<>();
+    private final Map<Integer, Vehicle> idToVehicleMap = new HashMap<>();
     private final Map<Service, UniqueTechnicianList> serviceToTechniciansMap = new HashMap<>();
     private final Map<Service, Vehicle> serviceToVehicleMap = new HashMap<>();
 
-    /**
-     * Constructs a ServiceDataMap object.
-     *
-     * @param services  The list of services.
-     * @param technicians  The list of technicians.
-     * @param vehicles  The list of vehicles.
-     */
-    public ServiceDataMap(List<Service> services, List<Technician> technicians, List<Vehicle> vehicles) {
-        reset(services, technicians, vehicles);
-    }
 
     /**
-     * Resets the mapping of services to their associated technicians and vehicle
+     * Initialises the id mappings based on the provided lists.
      *
-     * @param services  The list of services.
-     * @param technicians  The list of technicians.
-     * @param vehicles  The list of vehicles.
+     * @param services The list of services.
+     * @param technicians The list of technicians.
+     * @param vehicles The list of appointments.
      */
-    public void reset(List<Service> services, List<Technician> technicians, List<Vehicle> vehicles) {
-        this.serviceToVehicleMap.clear();
-        this.serviceToTechniciansMap.clear();
-
-        Map<Integer, Technician> idToStaffMap = new HashMap<>();
-        for (Technician technician : technicians) {
-            idToStaffMap.put(technician.getId(), technician);
+    public void initialiseIdMappings(List<Service> services, List<Technician> technicians, List<Vehicle> vehicles) {
+        for (Service service : services) {
+            idToServiceMap.put(service.getId(), service);
         }
-
-        Map<Integer, Vehicle> idToVehicleMap = new HashMap<>();
+        for (Technician technician : technicians) {
+            idToTechnicianMap.put(technician.getId(), technician);
+        }
         for (Vehicle vehicle : vehicles) {
             idToVehicleMap.put(vehicle.getId(), vehicle);
         }
+    }
 
-        for (Service service : services) {
+    /**
+     * Clears all mappings.
+     */
+    public void clearAll() {
+        idToServiceMap.clear();
+        idToTechnicianMap.clear();
+        idToVehicleMap.clear();
+        serviceToTechniciansMap.clear();
+        serviceToVehicleMap.clear();
+    }
+
+    /**
+     * Process the mappings of services to their associated technicians and vehicle
+     * based on current id maps
+     *
+     */
+    public void processMappings() {
+        for (int key : idToServiceMap.keySet()) {
+            Service service = idToServiceMap.get(key);
             UniqueTechnicianList serviceTechnicianList = new UniqueTechnicianList();
             Vehicle serviceVehicle = idToVehicleMap.get(service.getVehicleId());
 
@@ -58,13 +67,72 @@ public class ServiceDataMap {
             }
 
             for (int technicianId : service.getAssignedToIds()) {
-                Technician technician = idToStaffMap.get(technicianId);
+                Technician technician = idToTechnicianMap.get(technicianId);
                 if (technician != null) {
                     serviceTechnicianList.add(technician);
                 }
             }
             this.serviceToTechniciansMap.put(service, serviceTechnicianList);
         }
+    }
+
+    /**
+     * Modifies the provided service and updates the mappings.
+     *
+     * @param service The service to add or update.
+     * @param isRemove A flag to indicate whether to remove given service.
+     */
+    public void modifyService(Service service, boolean isRemove) {
+        if (isRemove) {
+            idToServiceMap.remove(service.getId());
+        } else {
+            idToServiceMap.put(service.getId(), service);
+        }
+        processMappings();
+    }
+
+    /**
+     * Modifies the provided technician and updates the mappings.
+     *
+     * @param technician The technician to add or update.
+     * @param isRemove A flag to indicate whether to remove given technician.
+     */
+    public void modifyTechnician(Technician technician, boolean isRemove) {
+        if (isRemove) {
+            idToTechnicianMap.remove(technician.getId());
+        } else {
+            idToTechnicianMap.put(technician.getId(), technician);
+        }
+        processMappings();
+    }
+
+    /**
+     * Modifies the provided vehicle and updates the mappings.
+     *
+     * @param vehicle The vehicle to add or update.
+     * @param isRemove A flag to indicate whether to remove given vehicle.
+     */
+    public void modifyVehicle(Vehicle vehicle, boolean isRemove) {
+        if (isRemove) {
+            idToVehicleMap.remove(vehicle.getId());
+        } else {
+            idToVehicleMap.put(vehicle.getId(), vehicle);
+        }
+        processMappings();
+    }
+
+    /**
+     * Resets the mappings based on the lists provided and process the service
+     * associated mappings again
+     *
+     * @param services The list of services.
+     * @param technicians The list of technicians.
+     * @param vehicles The list of vehicles.
+     */
+    public void reset(List<Service> services, List<Technician> technicians, List<Vehicle> vehicles) {
+        clearAll();
+        initialiseIdMappings(services, technicians, vehicles);
+        processMappings();
     }
 
     /**

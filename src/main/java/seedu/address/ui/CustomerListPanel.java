@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.person.Customer;
-import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.CustomerDataMap;
 
 /**
  * Panel containing the list of customers.
@@ -20,12 +20,12 @@ public class CustomerListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Customer> customerListView;
-    private CustomerVehicleMap vehicleLookup;
+    private CustomerDataMap vehicleLookup;
 
     /**
      * Creates a {@code CustomerListPanel} with the given {@code ObservableList}.
      */
-    public CustomerListPanel(ObservableList<Customer> customerList, CustomerVehicleMap vehicleLookup) {
+    public CustomerListPanel(ObservableList<Customer> customerList, CustomerDataMap vehicleLookup) {
         super(FXML);
         customerListView.setItems(customerList);
         customerListView.setCellFactory(listView -> new CustomerListViewCell());
