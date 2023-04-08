@@ -3,10 +3,10 @@ package seedu.techtrack.model.role;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EXPERIENCE_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.techtrack.testutil.Assert.assertThrows;
 import static seedu.techtrack.testutil.TypicalRoles.ALICE;
@@ -33,7 +33,7 @@ public class RoleTest {
         assertFalse(ALICE.isSameRole(null));
 
         // same name and company, all other attributes different -> returns true
-        Role editedAlice = new RoleBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Role editedAlice = new RoleBuilder(ALICE).withPhone(VALID_CONTACT_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameRole(editedAlice));
 
@@ -74,7 +74,7 @@ public class RoleTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new RoleBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        editedAlice = new RoleBuilder(ALICE).withPhone(VALID_CONTACT_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false

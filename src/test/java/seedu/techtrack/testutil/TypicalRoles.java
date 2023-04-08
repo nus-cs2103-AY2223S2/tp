@@ -2,6 +2,8 @@ package seedu.techtrack.testutil;
 
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_AMY;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EXPERIENCE_AMY;
@@ -10,8 +12,6 @@ import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_JOBDESCRIPTIO
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_JOBDESCRIPTION_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -77,11 +77,11 @@ public class TypicalRoles {
             .withDeadline("2023-10-20").withExperience("C - 5 Years").build();
 
     // Manually added - Role's details found in {@code CommandTestUtil}
-    public static final Role AMY = new RoleBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    public static final Role AMY = new RoleBuilder().withName(VALID_NAME_AMY).withPhone(VALID_CONTACT_AMY)
             .withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY).withJobDescription(VALID_JOBDESCRIPTION_AMY)
             .withTags(VALID_TAG_FRIEND).withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience(VALID_EXPERIENCE_AMY).build();
-    public static final Role BOB = new RoleBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Role BOB = new RoleBuilder().withName(VALID_NAME_BOB).withPhone(VALID_CONTACT_BOB)
             .withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB).withJobDescription(VALID_JOBDESCRIPTION_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience(VALID_EXPERIENCE_BOB).build();

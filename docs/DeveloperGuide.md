@@ -449,11 +449,10 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how NameCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book. <img src="images/startUp.png" width="800" />
+   current role book.
 
 2. The user can choose to use the `Name Command` to filter names.
     - The user executes `name <keyword>` command to filter roles by their name.
-      <img src="images/UICommandImages/NameCommand.png" width="800" />
 
 The following sequence diagram shows how the `name` command works:
 
@@ -580,11 +579,9 @@ illustrates how the `MainWindow.java` file determines the type of display render
 
 **Target user profile**:
 
-* Students studying computing-related courses looking for internships
-* Reasonably comfortable using CLI apps
-* Has a need to manage a significant number of internship positions
+* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search for their job efficiently.
 
-**Value Proposition**: manage jobs faster than a typical mouse/GUI driven app
+**Value Proposition**: Manage jobs faster than a typical mouse/GUI driven app
 
 ### User stories
 
@@ -766,9 +763,11 @@ Use case ends.
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. The CLI should be easy to use, with intuitive commands and clear error messages.
 5. The CLI should be reliable and stable, with no crashes or data corruption unless a user corrupts the data file.
-6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
-7. The CLI should be accessible to users with different abilities and needs, including support for assistive
-   technologies and localization.
+6. The Program and Data stored should be functional to users with other OSes and versions of the application.
+7. The application should load up within 3-5 seconds.
+8. Users must be able to access the application without an internet connection.
+9. A user should be able to use the app after reading the help instructions.
+10. A user must be able to view at least 3 roles with minimal scrolling.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -819,7 +818,36 @@ testers are expected to do more *exploratory* testing. </div>
 1. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Adding a Role
+1. Adding a Role to role book.
+
+1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+   
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, tags, salary, deadline, experience required are shown. The rest of roles in the list remains.
+   
+1. Test case: `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+   
+   Expected: Role is not added, Error details shown in the status message. Missing compulsory field.
+   
+1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+   
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
+   
+### Editing a Role
+1. Editing a existing role.
+
+1. Prerequisities: `view 1` and index 1 of the list exists.
+
+1. Test case: `edit 1 n/Software Developer`
+   
+   Expected: Name appearing on the list changes to `Software Developer`, `view 1` shows name to be `Software Developer`.
+   
+1. Test case: `edit 0`<br>
+   Expected: No role is edited. Error details shown in the status message. Status bar remains the same.
+   
+1. Test case: `edit 1`<br>
+   Expected: No role is edited. Error details shown in the status message, asking user to input at least one field. Status bar remains the same.
 
 ### Deleting a Role
 
