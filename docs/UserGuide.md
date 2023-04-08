@@ -6,6 +6,9 @@ title: FastTrack User Guide
 FastTrack is an easy-to-use **financial management desktop application** designed for NUS SoC undergraduate students who are living on a tight budget.
 With a combination of a Command Line Interface (CLI) and Graphical User Interface (GUI), our app provides a user-friendly and efficient way to track your expenses and manage your finances.
 
+<div id="top">
+</div>
+
 * Table of Contents
   {:toc}
 1. [Quick Start](#quick-start)
@@ -123,82 +126,74 @@ The following diagrams highlight the different sections of the _Graphical User I
 | Toolbar                   | Contains buttons which allow the user to access the user guide and exit from the application.                                                                                                                                       |
 
 
+## Understanding Categories, Expenses, and Recurring Expenses in FastTrack
 
-## What are categories, expenses and recurring expenses?
-The following section contains detailed explanations of common terms used in FastTrack, namely **Category**, **Expense**, and a **Recurring Expense** and how they work in detail. It is important to familiarise yourself with these behaviors, so you can use FastTrack to its fullest potential.
+FastTrack makes it easy for you to keep track of your spending by organizing expenses into categories. 
+A category is like a folder that holds all your expenses that fall under a specific theme. For example, you might have a category called `Groceries` where you record all purchases from Fairprice or NTUC.
 
-### Category
-A category is represented with a _name_ such as `Groceries` or `Entertainment` and is used to classify an expense. A category can have **multiple expenses** under it. This is extremely useful when you want to find out what expenses fall under a specific category.
-In FastTrack, you can also set an optional _summary_, which is a brief text description containing more information about the category.
+To create a category in FastTrack, simply give it a name, such as `Entertainment` or `Transportation`. You can also add a short text summary to give yourself more context about the category. 
 
-Note that a default miscellaneous category with the name `Misc` exists within FastTrack, but is not modifiable or accessible to the user. Unclassified expenses fall under this default `Misc` category.
+FastTrack even has a default `Misc` category for any expenses that you haven't categorized yet, however, this category is not modifiable or accessible. 
 
 See more detailed instructions in [Category Commands](#Category Features).
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Info**<br>
-Note that category names in FastTrack are case-insensitive. For example, a category named "Groceries" will be treated as the exact same category as "groceries".
+Note that category names in FastTrack are case-insensitive. For example, a category named `Groceries` will be treated as the exact same category as `groceries`.
 </div>
 
-### Expense
-Represents a single expense entry which comprises the _name_ of the expense, it's _price_, the _category_ it falls under and _date_ of expense. In FastTrack, an expense must have **one category** associated with it.
+An expense is a single purchase that you want to track. Each expense has a name, price, category, and date. With FastTrack, you can easily duplicate an expense if you happen to make the same purchase multiple times, such as buying a coffee from CoolSpot every morning on your way to NUS.
 
-FastTrack allows for expenses containing the exact same details to be duplicated, giving you the freedom to record down multiple repeated expenses within the same day. For example, if you bought 3 coffees at the exact same price of `$3.40` on `11/2/2023` and name the expense `Coffee` under the category `Food`, FastTrack allows you to log all 3 repeated expenses without issues - how convenient!
-
-
-### Recurring Expense
-Do you have a recurring cloud-based service subscription? How about a Netflix subscription? These expenses would fall under the **Recurring Expense** section of FastTrack.
-
-A recurring expense is able to generate expenses automatically at specified intervals, such as daily, weekly, monthly, or yearly.
-
-Recurring expenses are very similar to a typical expense, except that they require additional details such as a _start date_ and _interval_, with an optional _end date_ (if you would like to terminate the recurring expense).
-
+Finally, there are recurring expenses. These are expenses that are charged on a regular basis, such as a monthly subscription to Netflix or an annual Heroku subscription. Instead of manually creating an expense every time the payment is due, you can set up a recurring expense in FastTrack. 
+Simply specify the start date, interval (daily, weekly, monthly, yearly), and end date (if applicable), and FastTrack will automatically generate the expenses for you.
 
 See more detailed instructions in [Expense Commands](#Expense Features).
+
+To sum up, FastTrack's categories, expenses, and recurring expenses help you stay organized and on top of your spending. Keep reading to find out more about how to use these features in more detail!
+
 
 ## Features
 
 The features of FastTrack can be divided into 4 groups, **Category Features**, **Expense Features**, **General Features** and **Expense Statistics Feature**. With these 4 groups in mind, remembering the different commands becomes extremely convenient, as each group contains mainly 4 types of operations - add, delete, edit and list!
-1. [**Expense features**](#expense-features)
-    * Add an expense
-    * Edit an expense
-    * Delete an expense
-    * Find an expense by keyword
-    * List expenses
-        * Filter by category
-        * Filter by time-span
-    * Add a recurring expense
-    * Edit a recurring expense
-    * Delete a recurring expense
-    * List recurring expenses
-2. [**Category features**](#category-features)
-    * Add a category
-    * Edit a category
-    * Delete a category
-    * List categories
-   
+1. [**Category features**](#category-features)
+    * [Add a category](#adding-a-category-addcat)
+    * [Edit a category](#editing-a-category-edcat)
+    * [Delete a category](#deleting-a-category-delcat)
+    * [List categories](#listing-categories-lcat)
+2. [**Expense features**](#expense-features)
+    * [Add an expense](#adding-an-expense-add)
+    * [Edit an expense](#editing-an-expense-edexp)
+    * [Delete an expense](#deleting-an-expense-delete)
+    * [Find an expense by keyword](#search-for-an-expense-by-keyword-find)
+    * [List expenses](#listing-expenses-list)
+        * [By category](#list-expenses-by-category)
+        * [By timeframe](#list-expenses-by-timeframe)
+    * [Add a recurring expense](#adding-a-recurring-expense-addrec)
+    * [Edit a recurring expense](#editing-a-recurring-expense-edrec)
+    * [Delete a recurring expense](#deleting-a-recurring-expense-delrec)
+    * [List recurring expenses](#listing-recurring-expenses-lrec)
 3. [**General features**](#general-features)
-    * Set a budget
-    * Category autocompletion
-    * Clear all entries
-    * Exit FastTrack
-    * View help
-    * Saving the data
-    * Editing the data file
+    * [Set a budget](#setting-a-budget-set)
+    * [Category autocompletion](#category-autocompletion)
+    * [Clear all entries](#clearing-all-entries-clear)
+    * [Exit FastTrack](#exiting-fasttrack-exit)
+    * [View help](#viewing-help-help)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
    
 4. [**Expense Statistics Feature**](#expense-statistics-feature)
-   * Monthly spending statistic
-   * Monthly remaining statistic
-   * Monthly percentage change statistic
-   * Weekly spending statistic
-   * Weekly remaining statistic
-   * Weekly percentage change statistic
-   * Total spent statistic
-   * Budget utilisation percentage statistic
+   * [Monthly spending statistic](#monthly-spending-statistic)
+   * [Monthly remaining statistic](#monthly-remaining-statistic)
+   * [Monthly percentage change statistic](#monthly-percentage-change-statistic)
+   * [Weekly spending statistic](#weekly-spending-statistic)
+   * [Weekly remaining statistic](#weekly-remaining-statistic)
+   * [Weekly percentage change statistic](#weekly-percentage-change-statistic)
+   * [Total spent statistic](#total-spent-statistic)
+   * [Budget utilisation percentage statistic](#budget-utilisation-percentage-statistic)
 
-   
-You can make use of these features by typing in commands to FastTrack. The following are some handy tables which show summarise all available commands in FastTrack. The tables also come with examples on how to use these commands.
+
+FastTrack offers a variety of commands that you can use to take advantage of its many features. The following tables provide a summary of all the available commands in FastTrack, along with examples on how to use them effectively.
 
 ### Category Features Command Summary
 
@@ -208,6 +203,7 @@ You can make use of these features by typing in commands to FastTrack. The follo
 | [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
 | [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                              | `delcat 1`                         |
 | [**Edit Category**](#editing-a-category-edcat)     | `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `edcat 1 c/New Name s/New Summary` |
+
 
 ### Expense Features Command Summary
 
@@ -223,6 +219,7 @@ You can make use of these features by typing in commands to FastTrack. The follo
 | [**Delete Recurring Expense**](#deleting-a-recurring-expense-delrec) | `delrec INDEX`                                                                        | `delrec 1`                                                     |
 | [**Edit Recurring Expense**](#editing-a-recurring-expense-edrec)     | `edrec INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [t/INTERVAL] [ed/END_DATE]` | `edrec 1 c/Show n/Disney Plus p/2 t/week ed/10/5/24`           |
 
+
 ### General Features Command Summary
 
 | Feature                                       | Command Format | Examples     |
@@ -231,6 +228,7 @@ You can make use of these features by typing in commands to FastTrack. The follo
 | [**Help**](#viewing-help-help)                | `help`         | `help`       |
 | [**Exit program**](#exiting-fasttrack-exit)   | `exit`         | `exit`       |
 | [**Clear data**](#clearing-all-entries-clear) | `CLEAR`        | `CLEAR`      |
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -252,6 +250,10 @@ Before diving further into the guide, here are some things to take note about th
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 # Category Features
 
@@ -300,6 +302,14 @@ Format: `delcat INDEX`
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `INDEX`   | The index number shown in the displayed category list.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ...<br/><br/>Expenses previously categorised under the specified category will be automatically re-categorized under the `Misc` category.<br/> |
 
+<div>
+**:information_source: Info**<br>
+
+If you delete a category that has existing expenses associated with it, those expenses will be automatically reassigned to the default internal `Misc` category. But don't worry! You can still re-assign them later with the [edit expense command](#editing-an-expense-edexp). To avoid losing track of expenses, we recommend that you review and update your categories periodically, rather than deleting them altogether.
+
+</div>
+
+
 
 ### Examples
 * `lcat` followed by `delcat 2` deletes the second category in the category list
@@ -339,16 +349,21 @@ to `INDEX`, otherwise the command will not be executed.
 ![FastTrack edcat1](images/demo/category/edcat1.png)
 ![FastTrack edcat2](images/demo/category/edcat2.png)
 
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
 # Expense Features
 
 ## Listing expenses `list`
 
-Displays the list of expenses in FastTrack with the option of applying filters based on the specified `CATEGORY_NAME`, `TIMEFRAME`.
+The `list` feature in FastTrack allows you to view all your expenses. You can filter the list based on specific categories and timeframes to get a more customized view of your spending.
 
-If `CATEGORY_NAME` filter is specified, only the expenses categorized under that specific category will be displayed.
-If `TIMEFRAME` filter is specified, only the expenses that fall within that timeframe are displayed.
+If you apply the `CATEGORY_NAME` filter, only expenses associated with that particular category will be displayed. For instance, if you filter by `groceries`, you'll only see the expenses you've categorized as `groceries`.
 
-If `CATEGORY_NAME` and `TIMEFRAME` are left unspecified, all expenses in the expense tracker will be listed by default.
+If you apply the `TIMEFRAME` filter, you can see expenses that fall within a particular time period. For example, you could filter by `month` to see only the expenses you incurred in the current month.
+
+If you don't specify any filters, the expense list will show all your expenses by default.
 
 Format: `list [c/CATEGORY_NAME] [t/TIMEFRAME] [r/RECUR_PERIOD]`
 
@@ -373,15 +388,20 @@ A `TIMEFRAME` allows you to set a specific interval to filter your expenses. `t/
 * `list c/Entertainment t/year`
 
 ### Demonstration
+
+### List Expenses by Category
 1. Enter the command `list c/drink` into the command box
 2. FastTrack displays the expenses under the category `Drink` with the confirmation message `2 expenses listed`. The number of expenses may differ for every user.
 
 ![FastTrack list1](images/demo/expense/list1.png)
 
+### List All Expenses
 1. Enter the command `list` into the command box
 2. FastTrack displays all expenses with the confirmation message `5 expenses listed`. The number of expenses may differ for every user.
 
 ![FastTrack list2](images/demo/expense/list2.png)
+
+### List Expenses by Timeframe
 
 1. Enter the command `list t/w` into the command box
 2. FastTrack displays all expenses within the current week with the confirmation message `2 expenses listed`. The number of expenses may differ for every user.
@@ -389,6 +409,7 @@ A `TIMEFRAME` allows you to set a specific interval to filter your expenses. `t/
 ![FastTrack list3](images/demo/expense/list3.png)
 
 <div markdown="block" class="alert alert-info">
+
 **:information_source: Using both `CATEGORY_NAME` and `TIMEFRAME` filters:**<br>
 * Using both the category and timeframe filters will only display expenses that satisfy both the filter conditions.<br>
   e.g. in `list c/food t/week`, only expenses with both the category name "Food" and date falling within the current week will be displayed.
@@ -401,12 +422,12 @@ Adds a new one-time expense to FastTrack.
 
 Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`
 
-| Parameter       | Description                                                                                                                                                                                                          |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `CATEGORY_NAME` | The category which the expense should be classified under.<br/><br/>If there is no such category in FastTrack, a new category will be created with the specified category name.                                      |
-| `ITEM_NAME`     | Name of the expense being added.                                                                                                                                                                                     |
-| `PRICE`         | The price of the expense being added.<br/><br/>The specified price should be a number, e.g. 4, 4.50.                                                                                                                 |
-| `DATE`          | The date of the expense being added.<br/><br/> The date format should be d/m/yyyy.<br/><br/> This is an optional input, and if left unspecified, the date of the expense will be set to the current date by default. |
+| Parameter       | Description                                                                                                                                                                                                              |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CATEGORY_NAME` | The category which the expense should be classified under.<br/><br/>If there is no such category in FastTrack, a new category will be created with the specified category name.                                          |
+| `ITEM_NAME`     | Name of the expense being added.                                                                                                                                                                                         |
+| `PRICE`         | The price of the expense being added.<br/><br/>The specified price should be a number, e.g. 4, 4.50.                                                                                                                     |
+| `DATE`          | The date of the expense being added.<br/><br/> The date format should be d/m/yyyy.<br/><br/> This is an optional input, and if left unspecified, the date of the expense will be set to the **current date** by default. |
 
 
 ### Examples
@@ -436,7 +457,7 @@ Format: `delete INDEX`
 | `INDEX`   | The index number shown in the displayed categories list.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ... |
 
 ### Examples
-* `list` followed by `delete 2` deletes the second expense in the log
+* `list` followed by `delete 2` deletes the second expense in the expense list
 * `find movie` followed by `delete 1` deletes the first expense in the results of the `find` command
 
 ### Demonstration
@@ -505,6 +526,10 @@ Date: 2023-03-03, Category: Groceries, Name: Milk, Price: $4.00
 
 ![FastTrack find](images/demo/expense/find.png)
 
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
 
 ## Listing Recurring Expenses `lrec`
 
@@ -544,8 +569,9 @@ Note that once a recurring expense is added, it automatically adds a series of e
 <div markdown="block" class="alert alert-warning">
 
 **:exclamation: Caution**<br>
-If possible, avoid using an `END_DATE` which is too far in the future, or a `START_DATE` which is too far in the past. 
-For example, if the current date is `3/2/2023` and the `START_DATE` is set to `3/2/2000` (23 years ago) with an `INTERVAL` of `day` -  this will lead to a huge number of (more than 8000) expenses being automatically generated and this may cause FastTrack to become temporarily unresponsive.
+
+Avoid setting an `END_DATE` that is too far in the future or a `START_DATE` that is too far in the past. Setting a date range that spans a large number of years or generates a large number of expenses may cause FastTrack to become temporarily unresponsive. 
+For example, if the current date is `3/2/2023` and the `START_DATE` is set to `3/2/2000` with an `INTERVAL` of `day`, this will generate over 8,000 expenses and may cause performance issues.
 </div>
 
 
@@ -575,8 +601,8 @@ Format: `delrec INDEX`
 | `INDEX`   | The index number shown in the displayed recurring expense list.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ... |
 
 ### Examples
-* `lrec` followed by `delrec 2` deletes the second recurring expense in the log
-* `lrec` followed by `delrec 1` deletes the first recurring expense in the log
+* `lrec` followed by `delrec 2` deletes the second recurring expense in the recurring expense list
+* `lrec` followed by `delrec 1` deletes the first recurring expense in the recurring expense list
 
 
 ### Demonstration
@@ -592,8 +618,8 @@ Edits the expense at the specified `INDEX`
 
 Format: `edrec INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [t/INTERVAL] [ed/END_DATE]`
 
-Every parameter except for `INDEX` is optional by themselves, but at least one of other parameters MUST be
-specified, otherwise the command will not go through.
+Every parameter except for `INDEX` is optional by themselves, but **at least** one of them must be specified in addition
+to `INDEX`, otherwise the command will not go through.
 
 | Parameter       | Description                                                                                                                                                                                |
 |-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -608,9 +634,8 @@ specified, otherwise the command will not go through.
 <div markdown="block" class="alert alert-warning">
 
 **:exclamation: Caution**<br>
-If you **edit** a recurring expense to terminate it, with the `END_DATE` before the current date, this does not remove the expenses that were generated when the recurring expense was first added. This is because FastTrack always charges a recurring expense up to the current date.
-If you plan on terminating a recurring expense, do so before the intended `END_DATE` so that FastTrack knows when to stop adding expenses.
-
+If you want to stop a recurring expense before its intended `END_DATE`, make sure to terminate it before the current date. 
+If you edit the recurring expense to end before the current date, this only prevents new expenses from being added, but expenses that were previously generated will still exist in FastTrack.
 </div>
 
 ### Examples
@@ -625,9 +650,11 @@ If you plan on terminating a recurring expense, do so before the intended `END_D
 ![FastTrack edrec1](images/demo/recurring_expense/edrec1.png)
 ![FastTrack edrec2](images/demo/recurring_expense/edrec2.png)
 
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 # General Features
-
 
 ## Setting A Budget `set`
 
@@ -662,20 +689,24 @@ FastTrack does not allow setting a budget of $0
 
 ## Category Autocompletion
 
-FastTrack will provide a list of suggested category names, displayed as a popup above the command box when `c/` is entered.
+FastTrack offers a powerful and time-saving feature that autocompletes your category names for you! When you start typing `c/`, FastTrack provides a list of suggested category names as a popup above the command box.
+Give it a try and see how much time you can save with this feature!
 
-### Select a Suggested Category in List
-- Press the `UP` arrow key on your keyboard to navigate into the suggestions list. 
-- Choose a suggested category name using both the `UP` and `DOWN` arrow keys. 
-- To select the highlighted category, press the `ENTER` key on the keyboard. The command box will autocomplete the selected category name suggestion.
-- To navigate out of the suggestions list, press the `DOWN` arrow key until reaching the bottom of the suggestions list, then press the `DOWN` arrow key once again to return to the command box.
+### How to Use Category Autocompletion?
 
-### Select the first Suggested Category
-To select the first (bottom-most) suggested category option without having to navigate into the suggestions list, press the `TAB` key on your keyboard to trigger the autocompletion.
+- Type `c/` in the command box to trigger the autocompletion feature.
+- FastTrack will display a list of suggested category names above the command box.
+- To select a category name from the list, use the `UP` and `DOWN` arrow keys to navigate through the suggestions list.
+- Press `ENTER` to autocomplete the selected category name.
+- If the category you're looking for is conveniently at the bottom of the list, simply press `TAB` to autocomplete the first suggested category without having to navigate through the list manually!
+- If you decide not to use any of the suggested categories, just continue typing your own category name as per normal.
+
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution**<br>
-For category autocompletion to work, there should not be any text in front of `c/` in the command box. i.e. `c/` must be the last 2 characters the user has keyed in.
+
+To use category autocompletion, make sure that `c/` is the last text you've entered into the command box. 
+If there's any other text in front of `c/`, the autocompletion feature will be disabled. 
 </div>
 
 
@@ -697,10 +728,6 @@ For category autocompletion to work, there should not be any text in front of `c
 ![FastTrack autocomplete_b1](images/demo/general/autocomplete_b1.png)
 ![FastTrack autocomplete_b2](images/demo/general/autocomplete_b2.png)
 
-# Expense Statistics Feature
-
-
-![FastTrack expense_statistic](images/demo/general/summary.png)
 
 ## Clearing all entries `CLEAR`
 
@@ -751,12 +778,106 @@ FastTrack's data are saved as a JSON file `[JAR file location]/data/fastTrack.js
 If your changes to the data file makes its format invalid, FastTrack will discard all data and start with an empty data file at the next run.
 </div>
 
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
+# Expense Statistics Feature
+
+FastTrack provides you with real-time statistics on your spending to help you keep track of your monthly budget. 
+Here are the types of statistics displayed and what they mean.
+
+![FastTrack expense_statistic](images/demo/general/summary.png)
+
+
+## Monthly spending statistic
+This statistic represents the total amount of money you have spent in the current month. 
+It includes all expenses recorded in the current month. 
+
+For example, if the current month is March, this statistic shows the total amount of money spent in March.
+
+## Monthly remaining statistic
+
+This statistic represents the amount of money you have left from your monthly budget.
+It gives you an idea of how much money you have left to spend for the rest of the month.
+
+## Monthly percentage change statistic
+
+This statistic represents the percentage increase or decrease in your monthly spending relative to the previous month. 
+The indicator colour is red if it is a percentage increase and green if it is a percentage decrease.
+
+For example, if you spent $500 last month and $750 this month, the monthly percentage change indicator would be `+50.00%` and be displayed in a red colour. 
+If you spent $750 last month and $500 this month, the monthly percentage change would be `-33.30%` and be displayed in a green color.
+
+## Weekly spending statistic
+
+This statistic represents the total amount of money you have spent in the current week, starting from Monday to Sunday. 
+This gives you an idea of how much money you are spending on a weekly basis.
+
+## Weekly remaining statistic
+
+This statistic represents the amount of money you have left from your weekly budget. 
+Your weekly budget is the value of your monthly budget divided by four. This gives you an idea of how much money you have left to spend for the rest of the week.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+Please take note that this value should be treated as a rough guide. 
+Even if you have exceeded your previous week's budget, this statistic will show that you have more remaining, as the weekly budget is fixed based on the monthly budget. 
+Therefore, it is important to use this value as an estimate and not solely rely on it for your spending decisions!
+
+</div>
+
+
+## Weekly percentage change statistic
+
+This statistic represents the percentage increase or decrease in your weekly spending relative to the previous week.
+The indicator colour is red if it is a percentage increase and green if it is a percentage decrease.
+
+For example, if you spent $500 last week and $750 this week, the weekly percentage change indicator would be `+50.00%` and be displayed in a red colour. 
+If you spent $750 last week and $500 this week, the weekly percentage change would be `-33.30%`.
+
+## Total spent statistic
+
+This statistic represents the total amount of money you have spent to date, starting from the first expense you recorded in FastTrack. 
+This gives you an idea of how much money you have spent over the period of time from when you started tracking your expenses.
+
+
+## Budget utilisation percentage statistic
+
+This statistic represents the percentage of your monthly budget that you have already utilised in the current month. 
+
+For example, if your monthly budget is $1000, and you have already spent $500, your budget utilised percentage would be `50%`. 
+This gives you an idea of how much of your monthly budget you have used up.
+
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# Frequently Asked Questions
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FastTrack home folder.
 
---------------------------------------------------------------------------------------------------------------------
+**Q**: Does FastTrack require a Wi-Fi network?<br>
+**A**: No, FastTrack does not need any sort of internet connection to run! You can be rest assured that your data is kept safe locally on your computer. However, accessing the user guide and developer guide which are hosted online will require an internet connection.
+
+**Q**: Why are some of my expenses being categorised as `Misc`?<br>
+**A**: `Misc` is an internal default category in FastTrack that represents an unclassified expense. If you see an expense with the `Misc` category, chances are, the category it was previously associated with was deleted.
+
+**Q**: My expense name gets cut off with trailing ellipses `...`, how do I fix this?<br>
+**A**: Try resizing the FastTrack window size by increasing its width until the full expense names are within view.
+
+**Q**: Can I set reminders for recurring expenses in FastTrack?<br>
+**A**: No, FastTrack does not currently have a built-in feature for setting reminders for recurring expenses. 
+However, you can use an external calendar or reminder app to keep track of recurring expenses.
+
+**Q**: Does FastTrack integrate with payment systems like credit cards or PayPal?<br>
+**A**: Currently, FastTrack does not support integration with external payment systems. However, we are constantly improving and expanding our features, and we plan to explore integrating with popular payment systems in the future. Stay tuned for more updates!
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
