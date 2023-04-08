@@ -237,8 +237,41 @@ Classes used by multiple components are in the `seedu.internship.commons` packag
 <div style="page-break-after: always;"></div>
 
 ## **Implementation**
-
+ 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Event feature
+The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship.
+
+#### Implementation
+ 1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`.
+
+ 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an Event to their selected internship.
+
+    2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship.
+
+The Activity Diagram for Add event is
+
+<p align="center">
+
+<img src="images/EventAddActivityDiagram.png" width="550" />
+
+</p>
+
+3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
+4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
+5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
+6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
+7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
+8. `Event` object is then added to the `UniqueEventsList` using the `addEvent` method of `model`.
+
+The Sequence Diagram for the adding the event is
+
+<p align="center">
+ 
+<img src="images/EventAddSequenceDiagram.png" width="550" />
+
+</p>
 
 ### View Calendar feature
 The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
@@ -274,38 +307,6 @@ Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`,
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
-### Add Event feature
-The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship.
-
-#### Implementation
- 1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`.
-
- 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an Event to their selected internship.
-
-    2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship.
-
-The Activity Diagram for Add event is
-
-<p align="center">
-
-![EventAddActivityDiagram](images/EventAddActivityDiagram.png)
-
-</p>
-
-3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
-4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
-5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
-6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
-7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
-8. `Event` object is then added to the `UniqueEventsList` using the `addEvent` method of `model`.
-
-The Sequence Diagram for the adding the event is
-
-<p align="center">
-
-![EventAddSequenceDiagram](images/EventAddSequenceDiagram.png)
-
- </p>
  
 ### Select command feature
 
