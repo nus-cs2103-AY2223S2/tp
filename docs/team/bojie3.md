@@ -40,6 +40,9 @@ Given below are my contributions to the project.
       - `insertPP`
       - `listPP`
   - **Developer Guide**
-    - Added MSS for the following commands
+    - Added MSS and puml diagrams for the following commands
       - `markAtd/unmarkAtd` ([PR #117](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/117))
       - `insertPP`
+
+- **Team-based Tasks**
+  - Helped with discussions on project ideas and core features 
