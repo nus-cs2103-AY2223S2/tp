@@ -18,6 +18,8 @@ Added the ability to sort the contact list.
   * **Justification:** This feature gives convenience to the user by letting them know where a specific contact can be found in relation to others.
   * **Highlights:** Implementing this feature involved understanding the complex code flow and the relationship between many classes.
 
+<div style="page-break-after: always;"></div>
+
 ### Undo/Redo function [\#50](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/50)
 
 Added the ability to undo and redo previously entered commands.
@@ -26,8 +28,6 @@ Added the ability to undo and redo previously entered commands.
   * **Justification:** This feature saves the user's time when they accidentally make mistakes while typing.
   * **Highlights:** Implementing this feature involved rigorous understanding of class instances and the pass-by-reference concept.
   * **Credits:** The previous team that worked on AddressBook 3, as I used their proposed implementation for this.
-
-<div style="page-break-after: always;"></div>
 
 ## **Code contributed**
 [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=temp&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=Tempura-Person&tabRepo=AY2223S2-CS2103T-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
@@ -38,6 +38,7 @@ Added the ability to undo and redo previously entered commands.
 * Delegated tasks amongst team members and reminded them of upcoming deliverables.
 * Regularly reviewed team pull requests and merged them once done.
 
+<div style="page-break-after: always;"></div>
 
 ## **Enhancements to existing features**
 ### New GUI Colour Scheme [\#47](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/47)

@@ -159,7 +159,7 @@ public class ParserUtil {
         String trimmedSession = session.trim();
         String[] dateTime = trimmedSession.split(" to ");
         if (dateTime.length != 2) {
-            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Session.MESSAGE_INVALID_DATES);
         }
         String[] startDateAndTime = dateTime[0].split(" ");
         String[] endDateAndTime = dateTime[1].split(" ");
@@ -168,7 +168,7 @@ public class ParserUtil {
                 || !Session.isValidDateFormat(endDateAndTime[0].trim())
                 || !Session.isValidTimeFormat(startDateAndTime[1].trim())
                 || !Session.isValidTimeFormat(endDateAndTime[1].trim())) {
-            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Session.MESSAGE_INVALID_DATES);
         }
 
         String startTime = startDateAndTime[0].trim() + " " + startDateAndTime[1].trim();

@@ -17,8 +17,33 @@ Given below are my contributions to the project.
     * Credits: Oliver Loo
 
 * **New Feature**:
+* ### Session function [\#29](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/76)
 
-* **Code contributed**: [RepoSense link]()
+Added the ability to sort the contact list.
+
+* **What it does:** Allows the creation and deletion of session object and enable scheduling of session with athletes.
+* **Justification:** This feature provides scheduling, a primary function of SportsSync for coaches to arrange session with their athletes.
+* **Highlights:** Implementing this feature involved understanding general architecture and relationship between all classes.
+
+### Mark/Unmark function [\#50](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/50)
+
+Added the ability to undo and redo previously entered commands.
+
+* **What it does:** Allows each student in the addressbook to be mark and unmarked.
+* **Justification:** This feature enables users to calculate their earnings more accurately since athletes only pay for training if they attend.
+* **Highlights:** Implementing this feature required understanding the right data structures to use, e.g. a HashMap to store the attendance field.
+
+
+### Add tag/Remove tag function [\#50](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/87)
+
+Added the ability to undo and redo previously entered commands.
+
+* **What it does:** Allows users to add and remove tags, creating a grouping functionality in a sense.
+* **Justification:** This feature provides greater convenience to users who would simply like to add and remove a single tag. 
+* **Highlights:** Implementing this feature involved a good understanding of the already implemented edit-command.
+
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=Olive&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=Oliverloo0909&tabRepo=AY2223S2-CS2103T-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
 

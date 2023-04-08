@@ -3,21 +3,26 @@ layout: page
 title: User Guide
 ---
 SportSync is a **desktop app for managing training sessions and athletes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SportSync can get your training management tasks done faster than traditional GUI apps.
-* Table of Contents
+
+<div style="page-break-after: always;"></div>
+
+* Table of Contents 
 {:toc}
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Quick start**
-
 ### Prerequisites
 Ensure that you have Java 11 or above installed on your computer. If you don't have Java installed, you can download it from the official Java website [here](https://www.oracle.com/java/technologies/downloads/).
 
 1. Download the latest `sportsync.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-2/tp/releases).
 
 2. Copy the file to the folder you want to use as the _home folder_ for your SportSync.
+<div style="page-break-after: always;"></div>
 
-3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sportsync.jar` command to run the application.<br>
+3.Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sportsync.jar` command to run the application.<br>
    e.g. `cd Desktop\New_Folder` and then `java -jar sportsync.jar`<br>
 
 
@@ -28,12 +33,13 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
    Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)
 
-4. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
+4.Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all athletes.
 
-    * `add n/John Doe p/98765432 a/311, Clementi Ave 2, r/35 t/friends t/owesMoney` :<br> Adds athlete `John Doe` to SportSync.
+    * `add n/John Doe p/98765432 a/311, Clementi Ave 2, r/35 t/friends t/owesMoney`
+        : Adds athlete `John Doe` to SportSync.
 
     * `delete 3` : Deletes the 3rd athlete shown in the current list.
 
@@ -42,8 +48,8 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
     * `exit` : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
-
-5. Click the `Calendar` tab, or press the shortcut `CTRL + 3`. You have just navigated to the **calendar**, which is currently empty.<br>
+<div style="page-break-after: always;"></div>
+5.Click the `Calendar` tab, or press the shortcut `CTRL + 3`. You have just navigated to the **calendar**, which is currently empty.<br>
    All future scheduled sessions will automatically show up on the calendar.<br><br>
    ![Ui](images/EmptyCalendarUi.png)<br>
 
@@ -57,6 +63,7 @@ Here are some useful shortcuts that can help you save time:<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Features**
 
 <div markdown="block" class="alert alert-info">
@@ -84,6 +91,8 @@ Here are some useful shortcuts that can help you save time:<br>
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## **General**
 
 ### Viewing help : `help`
@@ -109,6 +118,7 @@ Format: `undo`
 * Functions similarly to the undo function in other apps.
 * Cannot be used if no commands have been entered yet.
 
+<div style="page-break-after: always;"></div>
 
 ### Redoing a previous command : `redo`
 
@@ -130,6 +140,7 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 
 ## **Athlete Management**
 
@@ -151,6 +162,7 @@ Adds an athlete with name `"John Doe"`, phone number `"98765432"`, pay rate `"44
 * `add n/Betsy Crowe t/friend a/Sheares Hall p/1234567 t/basketball r/5`<br>
 Adds an athlete with name `"Betsy Crowe"`, phone number `"1234567"`, pay rate `"5"` address `"Sheares Hall"`, and tags `"friend"`, `"basketball"`.
 
+<div style="page-break-after: always;"></div>
 
 ### Listing all athletes : `list`
 
@@ -179,6 +191,7 @@ Edits the phone number of the first athlete in the contact list to be `91234567`
 * `edit 2 n/Betsy Crower t/`<br>
 Edits the name of the 2nd athlete in the contact list to be `Betsy Crower` and removes all their existing tags.
 
+<div style="page-break-after: always;"></div>
 
 ### Finding athletes by name: `find`
 
@@ -200,6 +213,7 @@ Returns `john` and `John Doe`<br>
 Returns `Alice Pauline`, `Carl Kurz`<br><br>
 ![result for 'find alex david'](images/findCarlAliceResult.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Deleting an athlete : `delete`
 
@@ -223,6 +237,7 @@ Clears all athletes from the contact list and sessions from the session list.
 
 Format: `clear`
 
+<div style="page-break-after: always;"></div>
 
 ### Sorting the contact list : `sort`
 
@@ -242,6 +257,7 @@ Sorts the contact list by name in alphabetical order.<br>
 * `sort 2`<br>
 Sorts the contact list by pay rate, from lowest to highest.
 
+<div style="page-break-after: always;"></div>
 
 ## **Tag Management**
 
@@ -263,6 +279,7 @@ Adds a tag `Hall` to the athlete at index 1.
 * `add-tag 4 t/Basketball t/Varsity`<br>
 Adds tags `Basketball` and `Varsity` to the athlete at index 4.
 
+<div style="page-break-after: always;"></div>
 
 ### Removing tags from an athlete: `remove-tag`
 
@@ -298,6 +315,7 @@ Shows all athletes who have the tag `Varsity`.<br>
 * `show Hockey Tennis`<br>
 Shows all athletes who have the tag `Hockey`, the tag `Tennis`, or both.
 
+<div style="page-break-after: always;"></div>
 
 ## **Session Management**
 
@@ -329,6 +347,7 @@ Examples:<br>
 * `delete-session 3`<br>
 Deletes the 3rd session in the session list.
 
+<div style="page-break-after: always;"></div>
 
 ### Editing the details of an existing session : `session-edit`
 
@@ -360,6 +379,7 @@ Examples:<br>
 * `mark 1 n/John Doe`<br>
 Marks John Doe as present in the 1st session in the session list.
 
+<div style="page-break-after: always;"></div>
 
 ### Marking an athlete as absent : `unmark`
 
@@ -390,6 +410,7 @@ Examples:<br>
 * `student-add 1 n/hall`<br>
 Adds the athlete at index 1 of the contact list to the session `Hall`.
 
+<div style="page-break-after: always;"></div>
 
 ### Removing an athlete from a session: `student-remove`
 
@@ -405,6 +426,7 @@ Examples:<br>
 * `student-remove 1 n/hall`<br>
 Removes the athlete at index 1 of the contact list from the session `Hall`.
 
+<div style="page-break-after: always;"></div>
 
 ## **Income Analytics**
 
@@ -419,6 +441,8 @@ The displayed income is based on the athlete's pay rate per hour and the duratio
 An athlete only contributes to your income if they are marked as present.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **FAQ**
 
@@ -448,6 +472,8 @@ If your changes to the data file makes its format invalid, SportSync will discar
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Command summary**
 
