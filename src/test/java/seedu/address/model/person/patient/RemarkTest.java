@@ -46,4 +46,11 @@ public class RemarkTest {
         Remark validRemark = new Remark(remark);
         assertEquals(validRemark.getValue(), remark);
     }
+
+    @Test
+    public void toString_validRemark_returnsRemark() {
+        String remark = "Asthma";
+        Remark validRemark = new Remark(remark);
+        assertEquals(validRemark.toString(), remark);
+    }
 }
