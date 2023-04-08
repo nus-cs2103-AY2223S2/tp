@@ -330,7 +330,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             initSelected();
 
-            // TODO: Hack to display updated parts on ui, need to make parts into observable map/list
+            // TODO: Hack to display updated parts on ui, need to convert ui to use ListView for observables
             if (commandResult.getType() == Tab.PARTS) {
                 initPartListPanel();
             }

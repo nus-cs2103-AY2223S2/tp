@@ -201,32 +201,6 @@ public class AddCommandTest {
         public void updateFilteredServiceList(Predicate<? super Service> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public CustomerVehicleMap getCustomerVehicleMap() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public VehicleDataMap getVehicleDataMap() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ServiceDataMap getServiceDataMap() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public AppointmentDataMap getAppointmentDataMap() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public TechnicianDataMap getTechnicianDataMap() {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override
         public ObservableList<Map.Entry<String, Integer>> getFilteredPartMap() {
             throw new AssertionError("This method should not be called.");
@@ -309,11 +283,6 @@ public class AddCommandTest {
 
         @Override
         public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void resetMaps() {
             throw new AssertionError("This method should not be called.");
         }
     }

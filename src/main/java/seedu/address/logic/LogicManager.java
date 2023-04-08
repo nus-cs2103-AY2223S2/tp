@@ -55,8 +55,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        model.resetMaps();
-        logger.info("Maps reset");
 
         try {
             storage.saveShop(model.getShop());
@@ -130,27 +128,27 @@ public class LogicManager implements Logic {
 
     @Override
     public CustomerVehicleMap getCustomerVehicleMap() {
-        return model.getCustomerVehicleMap();
+        return model.getShop().getCustomerDataMap();
     }
 
     @Override
     public VehicleDataMap getVehicleDataMap() {
-        return model.getVehicleDataMap();
+        return model.getShop().getVehicleDataMap();
     }
 
     @Override
     public ServiceDataMap getServiceDataMap() {
-        return model.getServiceDataMap();
+        return model.getShop().getServiceDataMap();
     }
 
     @Override
     public AppointmentDataMap getAppointmentDataMap() {
-        return model.getAppointmentDataMap();
+        return model.getShop().getAppointmentDataMap();
     }
 
     @Override
     public TechnicianDataMap getTechnicianDataMap() {
-        return model.getTechnicianDataMap();
+        return model.getShop().getTechnicianDataMap();
     }
 
     @Override
