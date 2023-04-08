@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.cardcommands.ShowCardsCommand;
 import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.model.Model;
 

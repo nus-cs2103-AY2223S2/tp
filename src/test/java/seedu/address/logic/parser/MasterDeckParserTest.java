@@ -9,10 +9,15 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.cardcommands.ShowCardsCommand;
-import seedu.address.logic.commands.deckcommands.SelectDeckCommand;
 import seedu.address.logic.commands.deckcommands.ShowDecksCommand;
 import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
-import seedu.address.logic.commands.reviewcommands.*;
+import seedu.address.logic.commands.reviewcommands.EndReviewCommand;
+import seedu.address.logic.commands.reviewcommands.FlipCardCommand;
+import seedu.address.logic.commands.reviewcommands.NextCardCommand;
+import seedu.address.logic.commands.reviewcommands.PreviousCardCommand;
+import seedu.address.logic.commands.reviewcommands.TagEasyCommand;
+import seedu.address.logic.commands.reviewcommands.TagHardCommand;
+import seedu.address.logic.commands.reviewcommands.TagMediumCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class MasterDeckParserTest {
@@ -38,14 +43,19 @@ public class MasterDeckParserTest {
         assertEquals(new FindDecksCommandParser().parse("science"),
                 parser.parseCommandInMainUnselectedMode("findDecks science"));
 
-        assertThrows(ParseException.class, () -> parser.parseCommandInMainUnselectedMode("addCard q\\Question q\\Answer"));
-        assertThrows(ParseException.class, () -> parser.parseCommandInMainUnselectedMode("editCard 1 q\\NewQuestion"));
+        assertThrows(ParseException.class, ()
+                -> parser.parseCommandInMainUnselectedMode("addCard q\\Question q\\Answer"));
+        assertThrows(ParseException.class, ()
+                -> parser.parseCommandInMainUnselectedMode("editCard 1 q\\NewQuestion"));
         assertThrows(ParseException.class, () -> parser.parseCommandInMainUnselectedMode("deleteCard 1"));
         assertThrows(ParseException.class, () -> parser.parseCommandInMainUnselectedMode("showCards"));
-        assertThrows(ParseException.class, () -> parser.parseCommandInMainUnselectedMode("findCards Question"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommandInMainUnselectedMode("findCards Question"));
 
-        assertEquals(new ReviewCommandParser().parse("1"), parser.parseCommandInMainUnselectedMode("review 1"));
-        assertEquals(new SetReviewLimitCommandParser().parse("5"), parser.parseCommandInMainUnselectedMode("setLimit 5"));
+        assertEquals(new ReviewCommandParser().parse("1"),
+                parser.parseCommandInMainUnselectedMode("review 1"));
+        assertEquals(new SetReviewLimitCommandParser().parse("5"),
+                parser.parseCommandInMainUnselectedMode("setLimit 5"));
 
         assertThrows(ParseException.class, () -> parser.parseCommandInMainUnselectedMode("p"));
         assertThrows(ParseException.class, () -> parser.parseCommandInMainUnselectedMode("l"));
@@ -79,13 +89,16 @@ public class MasterDeckParserTest {
         assertThrows(ParseException.class, () -> parser.parseCommandInMainSelectedMode("addDeck Science"));
         assertThrows(ParseException.class, () -> parser.parseCommandInMainSelectedMode("deleteDeck 1"));
         assertThrows(ParseException.class, () -> parser.parseCommandInMainSelectedMode("editDeck 1 NewDeckName"));
-        assertEquals(new SelectDeckCommandParser().parse("1"), parser.parseCommandInMainSelectedMode("selectDeck 1"));
+        assertEquals(new SelectDeckCommandParser().parse("1"),
+                parser.parseCommandInMainSelectedMode("selectDeck 1"));
         assertEquals(new UnselectDeckCommand(), parser.parseCommandInMainSelectedMode("unselectDeck"));
         assertThrows(ParseException.class, () -> parser.parseCommandInMainSelectedMode("showDecks"));
-        assertThrows(ParseException.class,
-                () -> parser.parseCommandInMainSelectedMode("findDecks science"));
-        assertEquals(new ReviewCommandParser().parse("1"), parser.parseCommandInMainSelectedMode("review 1"));
-        assertEquals(new SetReviewLimitCommandParser().parse("5"), parser.parseCommandInMainSelectedMode("setLimit 5"));
+        assertThrows(ParseException.class, ()
+                -> parser.parseCommandInMainSelectedMode("findDecks science"));
+        assertEquals(new ReviewCommandParser().parse("1"),
+                parser.parseCommandInMainSelectedMode("review 1"));
+        assertEquals(new SetReviewLimitCommandParser().parse("5"),
+                parser.parseCommandInMainSelectedMode("setLimit 5"));
 
         assertThrows(ParseException.class, () -> parser.parseCommandInMainSelectedMode("p"));
         assertThrows(ParseException.class, () -> parser.parseCommandInMainSelectedMode("l"));
@@ -103,14 +116,17 @@ public class MasterDeckParserTest {
     public void parseCommandInReviewMode_validInput_returnsCommand() throws Exception {
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("addDeck Science"));
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("deleteDeck 1"));
-        assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("editDeck 1 NewDeckName"));
+        assertThrows(ParseException.class, ()
+                -> parser.parseCommandInReviewMode("editDeck 1 NewDeckName"));
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("selectDeck 1"));
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("unselectDeck"));
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("showDecks"));
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("findDecks science"));
 
-        assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("addCard q\\Question a\\Answer"));
-        assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("editCard 1 q\\NewQuestion"));
+        assertThrows(ParseException.class, ()
+                -> parser.parseCommandInReviewMode("addCard q\\Question a\\Answer"));
+        assertThrows(ParseException.class, ()
+                -> parser.parseCommandInReviewMode("editCard 1 q\\NewQuestion"));
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("deleteCard 1"));
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("showCards"));
         assertThrows(ParseException.class, () -> parser.parseCommandInReviewMode("findCards Question"));

@@ -5,5 +5,7 @@ package seedu.address.model.deck.exceptions;
  * name).
  */
 public class DuplicateDeckException extends RuntimeException {
-    public DuplicateDeckException() { super("Operation would result in duplicate cards"); }
+    public DuplicateDeckException() {
+        super("Operation would result in duplicate cards");
+    }
 }
