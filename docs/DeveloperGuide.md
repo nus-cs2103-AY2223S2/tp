@@ -314,9 +314,10 @@ Purpose: Allow users to search and review the group of individuals assigned to t
 #### 3.4.1 Implementation
 The implementation of this feature is supported by `FindTaskCommand` and `FindTaskCommandParser`.
 
-Below is an activity diagram that illustrates how a user finds who are assigned to a task. </br>
+Below is an activity diagram that illustrates how a user finds who are assigned to a task. 
+</br>
 
-![FindTaskSequenceDiagram.png](images/FindTaskSequenceDiagram.png)
+<img src="images/FindTaskSequenceDiagram.png" alt="Find Task Sequence Diagram" width="800">
 
 #### 3.4.2 Design Considerations
 
