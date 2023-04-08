@@ -177,6 +177,7 @@ public class CommandBoxTest extends GuiUnitTest {
      */
     private void assertInputHistory(KeyCode keycode, String expectedCommand) {
         guiRobot.push(keycode);
+        guiRobot.pauseForHuman();
         assertEquals(expectedCommand, commandBoxHandle.getInput());
     }
 }
