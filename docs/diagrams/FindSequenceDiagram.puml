@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindClientCommandParser" as FindClientCommandParser LOGIC_COLOR
+participant "f:FindClientCommand" as FindClientCommand LOGIC_COLOR
+participant "n:NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate COMMON_COLOR
+participant "t:ClientContainsTagsPredicate" as ClientContainsTagsPredicate COMMON_COLOR
+participant "c:CombinedPredicate" as CombinedPredicate COMMON_COLOR
+
+[-> AddressBookParser
+activate AddressBookParser
+AddressBookParser -> FindClientCommandParser : parse("name/Alice tag/friends")
+activate FindClientCommandParser
+
+create NameContainsKeywordsPredicate
+FindClientCommandParser -> NameContainsKeywordsPredicate : "Alice"
+activate NameContainsKeywordsPredicate
+
+NameContainsKeywordsPredicate --> FindClientCommandParser : n
+deactivate NameContainsKeywordsPredicate
+
+create ClientContainsTagsPredicate
+FindClientCommandParser -> ClientContainsTagsPredicate : "friends"
+activate ClientContainsTagsPredicate
+
+ClientContainsTagsPredicate --> FindClientCommandParser : t
+deactivate ClientContainsTagsPredicate
+
+create CombinedPredicate
+FindClientCommandParser -> CombinedPredicate : n, t
+activate CombinedPredicate
+
+CombinedPredicate --> FindClientCommandParser : c
+deactivate CombinedPredicate
+
+create FindClientCommand
+FindClientCommandParser -> FindClientCommand : c
+activate FindClientCommand
+
+FindClientCommand --> FindClientCommandParser : f
+deactivate FindClientCommand
+
+FindClientCommandParser --> AddressBookParser : f
+deactivate FindClientCommandParser
+[<-- AddressBookParser
+deactivate AddressBookParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindClientCommandParser -[hidden]-> AddressBookParser
+destroy FindClientCommandParser
+
+@enduml

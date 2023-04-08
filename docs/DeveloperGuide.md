@@ -192,32 +192,44 @@ Users have the ability to link projects to clients.
 
 When parsing the command to add or edit a project, the parser checks for the existence of client name keywords in the command. If it does, then ArB displays a client list filtered with the provided client name keywords, sets the project to be linked and enters link mode, as shown in the sequence diagram below.
 
-<img src="images/LinkingParsingSequenceDiagram.png" width="400" />
+<img src="images/LinkingParsingSequenceDiagram.png" width="600" />
 
 In link mode, the user can input an index to link the added/edited project to the specified client, as shown in the sequence diagram below. ArB will then exit link mode and return to normal operations.
 
-<img src="images/LinkingIndexParsingSequenceDiagram.png" width="400" />
+<img src="images/LinkingIndexParsingSequenceDiagram.png" width="600" />
 
 Internally, a project can be linked to one client while a client can have multiple linked projects. A client's linked projects are stored in a `UniqueProjectList` object that each `Client` object has. This implementation is shown in the class diagram below.
 
-<img src="images/LinkedClassDiagram.png" width="200" />
+<img src="images/LinkedClassDiagram.png" width="400" />
 
 For example, the below is an object diagram representing the situation where we have two projects `P1` and `P2` that are both linked to the same `Client` object.
 
-<img src="images/ExampleLinkedObjectDiagram.png" width="200" />
+<img src="images/ExampleLinkedObjectDiagram.png" width="400" />
 
 #### Future improvements
 Currently, projects are only allowed to be linked to a single client. This was done to avoid introducing too much complexity such that it was feasible to complete this feature before the deadline.
 
 In future, projects could be linked to multiple clients. This could be implemented by storing a list of `Client` objects, perhaps using a `UniqueClientList`. The below class diagram showcases this  implementation.
 
-<img src="images/LinkingAlternateClassDiagram.png" width="300" />
+<img src="images/LinkingAlternateClassDiagram.png" width="400" />
 
 ### Better filtering
 
 Users now have the ability to find clients and projects using a greater number of parameters, such as tags and deadlines.
 
 #### Implementation
+
+When parsing find commands, the parser parses each possible parameter one-by-one. For example, users can find clients by name or by tags, so the `FindClientCommandParser` parses provided names and tags individually into a `NameContainsKeywordsPredicate` and `ClientContainsTagsPredicate` that are then combined into a `CombinedPredicate` object, as shown in the sequence diagram below where the arguments `name/Alice tag/friends` is parsed.
+
+<img src="images/FindSequenceDiagram.png" width="600" />
+
+The `CombinedPredicate` object `c` is then used to update the filtered client list, as shown in the sequence diagram below.
+
+<img src="images/FindUpdateFilteredClientListSequenceDiagram.png" width="600" />
+
+`CombinedPredicate` inherits from the generic class `Predicate<T>` and tests all predicates that were passed to it when it was initialised. This makes use of the `Command` design pattern, as the `FindClientCommand` and `FindProjectCommand` do not need to know which predicates specifically are involved., and only need to test the `CombinedPredicate`. This is shown by the class diagram below, where a `FindClientCommand` and `FindProjectCommand` stores a `CombinedPredicate` which can have any number of `Predicate`s.
+
+<img src="images/CombinedPredicateClassDiagram.png" width="400" />
 
 ### Done Status
 
