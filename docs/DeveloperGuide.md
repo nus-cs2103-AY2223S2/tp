@@ -350,6 +350,8 @@ The following sequence diagram shows how `add` works:
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
+<div style="page-break-after: always"></div>
+
 The following sequence diagram provides details on how the `informationFields` are being parsed:
 
 ![AddCommandParseInformationFieldsDiagram](images/AddCommandParseInformationFieldsDiagram.png)
@@ -394,6 +396,8 @@ The sequence of the `edit` command is as follows:
 The following sequence diagram shows how `edit` works:
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The following sequence diagram provides details on how the `informationFields` are being parsed:
 
