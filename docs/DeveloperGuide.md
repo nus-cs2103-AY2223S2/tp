@@ -230,6 +230,41 @@ Classes used by multiple components are in the `seedu.recipe.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Feature: "Add" Form UI
+
+#### Implementation
+
+The `AddRecipeForm` class extends `RecipeForm` class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details and `Buttons` for saving and closing the form.  
+
+The class has a constructor that takes a null `Recipe` object, a `StringBuilder` object to be returned to the caller in `AddFormCommand`, and the `title` of the form.
+The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
+<img class="diagram" src="images/AddFormSequenceDiagram.png" width="1128"/>
+
+In addition, it implements the following operations:
+* `RecipeForm#display` —  Displays the form with corresponding UI components such as `Save Changes` button and `TextField` and `TextArea` rows.
+* `RecipeForm#getFormData` —  Stores all the changed values in the form fields into a HashMap.
+* `RecipeForm#collectFields` —  Stores changed recipe fields in the HashMap into the data StringBuilder.
+* `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by passing the `StringBuilder` instance containing the command string back to `AddFormCommand` to be executed.
+* `RecipeForm#closeForm()` —  Closes the form without saving any changes.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+#### Example Usage Scenario
+
+Step 1. The user types 'addf' in the command box and presses 'ENTER', triggering the `AddRecipeForm` to appear with empty form fields.
+
+Step 2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
+
+Step 3. The user clicks on the "Save" button, causing the `RecipeForm#saveRecipe()` method to be called. Changed values are stored in a new `changedValues` HashMap.
+
+Step 4. The `changedValues` HashMap is passed to `AddRecipeForm#handle`, which calls `RecipeForm#collectFields` to update the StringBuilder instance value. 
+
+Step 5. The form is closed and the updated StringBuilder instance containing the command string is passed back to `AddFormCommand`.
+
+Step 6. If the StringBuilder instance is empty, then a `CommandException()` is thrown to indicate that the form was empty. Otherwise, `AddFormCommand` calls `AddCommandParser#parseToRecipeDescriptor(commandString)` to convert the commandString into a `RecipeDescriptor` instance. 
+
+Step 7. The `RecipeDesriptor` instance is converted to a new `Recipe` instance through `RecipeDesriptor#toRecipe()`  and is added to the model through `Model#addRecipe(recipeToAdd)`. 
+
 ### Feature: "Edit" Form UI
 
 #### Implementation
