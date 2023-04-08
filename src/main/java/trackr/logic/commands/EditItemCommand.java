@@ -56,18 +56,20 @@ public abstract class EditItemCommand<T extends Item> extends Command {
 
         if (editItemDescriptor instanceof OrderDescriptor) {
             OrderDescriptor editOrderDescriptor = (OrderDescriptor) editItemDescriptor;
-            List<MenuItem> currentMenuItems = model.getFilteredMenu();
-            Optional<MenuItem> existingMenuItem =
-                    currentMenuItems.stream()
-                    .filter(menuItem -> menuItem.getItemName().getName()
-                            .equals(editOrderDescriptor.getOrderName().get().getName()))
-                    .findAny();
+            if (editOrderDescriptor.getOrderName().isPresent()) {
+                List<MenuItem> currentMenuItems = model.getFilteredMenu();
+                Optional<MenuItem> existingMenuItem =
+                        currentMenuItems.stream()
+                                .filter(menuItem -> menuItem.getItemName().getName()
+                                        .equals(editOrderDescriptor.getOrderName().get().getName()))
+                                .findAny();
 
-            if (existingMenuItem.isEmpty()) {
-                throw new CommandException(MESSAGE_NO_MENU_ITEM);
+                if (existingMenuItem.isEmpty()) {
+                    throw new CommandException(MESSAGE_NO_MENU_ITEM);
+                }
+                //there should only be one menu item that matches if there is any
+                editOrderDescriptor.setOrderItem(existingMenuItem.get());
             }
-            //there should only be one menu item that matches if there is any
-            editOrderDescriptor.setOrderItem(existingMenuItem.get());
             editedItem = createEditedItem((T) itemToEdit, (ItemDescriptor) editOrderDescriptor);
         } else {
             editedItem = createEditedItem((T) itemToEdit, editItemDescriptor);
