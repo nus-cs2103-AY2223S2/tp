@@ -312,6 +312,21 @@ Please refer to the activity diagram below to see what happens when the user ent
   * Return the command result from the `XYZCommand` mentioned in the step above.
 * However, one disadvantage for using this design choice is the file directory might be very difficult to understand for newcomers because function calls are very deeply nested.
 
+### Sort feature
+
+The `sort` feature works by taking in a field that the user wants to sort the ListingBook by, and then sorts according to that.
+GoodMatch currently supports sorting by JobTitle, JobDescription, and Number of Applicants.
+When sorting `String` like JobTitle and JobDescription, Listings in the ListingBook is sorted by lexicographical order, whereas for numerical values like number of applicants, Listings are sorted by the numerical value.
+Sorting is all done in ascending order.
+
+Refer to the activity diagram below for what happens when a user runs a sort command.
+
+> insert activity diagram here
+
+#### Feature details
+
+#### Design considerations
+
 ### Undo feature
 
 The undo mechanism utilises the `prevListingBookStates` field in `ModelManager`. Additionally, it implements the following operations:
