@@ -210,12 +210,11 @@ This is a tutorial for **first-time** Docedex users.
      ![AddDoc](images/AddDoc.png)
 3. Let us try **adding a patient** to our Docedex. Enter the command `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/pendingReview` in the command box.
    - Note: On adding a new patient, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
-     ![AddPtnBef](images/AddPtn.png)
+     ![AddPtn](images/AddPtn.png)
 4. Add a few more doctors and patients to Docedex!
 5. Let us try **assigning the patient to the doctor**. Enter the command `assign-ptn ptn/1 doc/1` in the command box.
    - Note: On assigning a patient to a doctor, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
-     ![AssignPtnBef](images/AssignPtnBef.png)
-     ![AssignPtnAft](images/AssignPtnAft.png)
+     ![AssignPtn](images/AssignPtnAft.png)
 6. Let us try **selecting the doctor**. Enter the command `sd 1` in the command box.
    - Note: On selecting the doctor, the patients' list is filtered to display only patients associated with the doctor. To view all patients use `list-ptn`.
      ![SelectDoctor](images/SelectDoctor.png)
