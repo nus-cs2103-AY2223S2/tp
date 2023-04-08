@@ -40,4 +40,13 @@ public class DeleteAlarmCommand extends Command {
         model.deleteAlarm(this.targetIndex);
         return new CommandResult(MESSAGE_DELETE_ALARM_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof DeleteAlarmCommand) {
+            return ((DeleteAlarmCommand) o).targetIndex == this.targetIndex;
+        } else {
+            return false;
+        }
+    }
 }

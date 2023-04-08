@@ -29,3 +29,4 @@ public class DeleteStudentCommandParserTest {
                 "a", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
     }
 }
+

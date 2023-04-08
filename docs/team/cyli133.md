@@ -49,14 +49,17 @@ your teaching assistant tasks done faster than traditional GUI apps.
           - `add_alarm`
           - `delete_alarm`
           - `list_alarms`
-  - **Developer Guide**
-      - Added MSS for the following commands
-        ([PR #118](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/118)):
-          - `list`
-          - `find`
-          - `create_class`
-      - Added sequence diagrams and MSS for the following commands:
-        ([PR #218](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/218)):
-          - `add_alarm`
-          - `delete_alarm`
-          - `list_alarms`
+    - **Developer Guide**
+        - Added MSS for the following commands
+          ([PR #118](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/118)):
+            - `list`
+            - `find`
+            - `create_class`
+        - Added sequence diagrams and MSS for the following commands:
+          ([PR #218](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/218)):
+            - `add_alarm`
+            - `delete_alarm`
+            - `list_alarms`
+- **Team-based Tasks**
+  - Suggested the idea of Teaching Assistant Assistant
+  - Suggested the features of csv import and alarms, apart from the other main features.

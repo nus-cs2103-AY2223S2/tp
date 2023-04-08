@@ -25,10 +25,11 @@ public class AddAlarmCommandParser {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(string, PREFIX_TIME, PREFIX_COMMENT);
         if (!arePrefixesPresent(argMultimap, PREFIX_TIME)
+                || !arePrefixesPresent(argMultimap, PREFIX_COMMENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    ""));
+                    AddAlarmCommand.MESSAGE_USAGE));
         }
         int minutes;
         Object obj = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
@@ -37,7 +38,7 @@ public class AddAlarmCommandParser {
         } else {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    ""));
+                    AddAlarmCommand.MESSAGE_USAGE));
         }
         String comment = argMultimap.getValue(PREFIX_COMMENT).get();
 
