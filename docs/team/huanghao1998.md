@@ -11,18 +11,18 @@ Given below are my contributions to the project.
 
 * **New Feature**: `remove` command
     * What it does: Allows users to remove specific field value based on the input command.
-    * Justification: `to be added soon`
+    * Justification: Users are able to remove any field value of the contact information.
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*
 
 * **New Feature**: `view` command
   * What it does: Allows users to view a specific contact detail.
-  * Justification: `to be added soon`
+  * Justification: Users are able to view detailed information of a contact by `view` command or click on the contact card.
   * Highlights: `to be added soon`
   * Credits: *{`to be added soon`}*
 
 * **New Feature**: `clearpj` command
-    * What it does: Allows users to view a specific contact detail.
+    * What it does: Allows users to clear off all the project in the project list
     * Justification: `to be added soon`
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*
@@ -55,8 +55,8 @@ Given below are my contributions to the project.
         * Added documentation for the feature `remove`, `clear`, `clearpj`, `view`
         * Added screenshot to `add`, `edit`, `remove`, `find`, `sort`, `addpj`, `editpj`, `removepj`, `sortpj`, `assign`, `unassign` and `help` command
     * Developer Guide:
-        * Added use cases `UC06`, `UC13`, `UC15`
-        * Update UI class diagram
+        * Added use cases `UC06`, `UC13`, `UC17`
+        * Updated existing UI class diagram with `ProjectListPanel`, `ProjectCard`, `PersonDetailPanel` and `PersonDetailCard`
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): ().
