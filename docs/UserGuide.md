@@ -663,11 +663,20 @@ addo CINDEX n/NAME [q/QUANTITY] [a/ADDRESS]
 
 * Adds an order for the customer at the specified `CINDEX`.
 
+
+* Adds an order, tagged to INDEX.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* ADDRESS is optional and will be set to the customer's address by default
+* QUANTITY is optional and will be set to 1 by default. 
+* QUANTITY must be a positive integer (e.g. 1, 2, 3...999) and be less than or equal to 1 million (1000000)
+
 | Prefix  | Parameter    | Optional | Description                                     |
 |---------|--------------|:--------:|-------------------------------------------------|
 | `n/`    | Product Name |          | Alphanumeric characters and spaces              |
 | `q/`    | Quantity     | ✅       | A positive integer up to 999<br>Defaults to 1   |
 | `a/`    | Address      | ✅       | Any value<br>Defaults to the customer's address |
+
 
 <div markdown="block" class="alert alert-secondary">
 
