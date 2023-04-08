@@ -286,7 +286,7 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
-The activity diagram is as such:
+Here is the activity diagram showing the process of the `add` command:
 
 ![AddCommand activity diagram](images/AddApplicantActivityDiagram.png)
 
@@ -452,8 +452,8 @@ Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
 Here is the activity diagram showing the process of the `edit` command:
-![EditApplicantActivityDiagram]()
 
+![EditApplicantActivityDiagram](images/EditApplicantActivityDiagram.png)
 
 ##### Feature Details
 
