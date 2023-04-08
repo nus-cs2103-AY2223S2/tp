@@ -53,7 +53,7 @@ public class Note {
         // utf-8 check left to ui input handler
         if (note.isEmpty()) {
             note = EMPTY_CONTENT;
-        } else if (note.length() >= LENGTH_LIMIT) {
+        } else if (note.length() > LENGTH_LIMIT) {
             throw new NoteLengthException(LENGTH_LIMIT, note.length());
         }
         return note;
