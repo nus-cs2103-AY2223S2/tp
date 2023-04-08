@@ -341,7 +341,7 @@ _Details coming soon ..._
 | **GUI**           | Graphical User Interface. MediMeet has a GUI created with JavaFX.                                                                                                                        |
 | **JAR**           | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
 | **JSON**          | JavaScript Object Notation (JSON) is a lightweight data-interchange format.                                                                                                              |
-| **Mainstream OS** | Mainstream OS are the operating systems that are supported by MediMeet.                                                                                                                  |
+| **Mainstream OS** | Mainstream OSes include Windows and MacOS. They are the operating systems that are supported by MediMeet.                                                                                |
 | **Java**          | Java is a popular programming language that MediMeet is written in.                                                                                                                      |
 | **Gradle**        | Gradle is a build tool that MediMeet uses.                                                                                                                                               |
 | **IntelliJ**      | IntelliJ is an Integrated Development Environment (IDE) that MediMeet uses.                                                                                                              |
