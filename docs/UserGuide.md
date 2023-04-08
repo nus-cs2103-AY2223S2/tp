@@ -59,7 +59,7 @@ Now it's time to **CONQUER** the semester!
 
 ### Prerequisite
 
-Make sure you have Java `11` installed on your computer by typing `java --version` from your terminal. Output should be something similar to below's.
+Make sure you have Java `11` installed on your computer by typing `java --version` from your terminal. The output should be something similar to:
 
 ![Java 11](images/java-11.png)
 
@@ -102,38 +102,42 @@ For more information on **navigation**, please view the [navigation section](#na
 
 ### Tutorials and Examples
 
-Scenario 1 - Tracking a new module CS2103:
+:information_source: Both scenarios achieve the same results, the difference lies in the context system used. You may try on either one of the scenario. If you are familiar with [navigation](#navigation), try out `Scenario 2` to be more comfortable with the syntax. If not, try out `Scenario 1` to gain a better understanding of how [navigation](#navigation) works.
 
-1. To add a module, run `add CS2103 /name Software Engineering`.
-1. To give it a tag of `BestModule`, run `tag CS2103 /tags BestModule`.
-1. To add a lecture, run `add Week 1 /mod CS2103`.
-1. To add a video, run `add Vid 1 /mod CS2103 /lec Week 1`.
-1. To add a timestamp, run `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 10:20:15`.
-1. To view the list with this video, run `list /mod CS2103 /lec Week 1`.
-1. To delete the module, run `delete CS2103`.
+Scenario 1 - Using [Navigation](#navigation)
 
-Scenario 2 - Navigating, finding & archiving data:
+1. To add a module, execute `add CS2103 /name Software Engineering`.
+1. To add a tag of `BestModule`, execute `tag CS2103 /tags BestModule`.
+1. To navigate into module `CS2103`, execute `nav CS2103`.
+1. To add a lecture, execute `add Week 1`.
+1. To navigate into lecture `Week 1`, execute `nav Week 1`.
+1. To add a video, execute `add Vid 1`.
+1. To add a timestamp, execute `edit Vid 1 /timestamp 10:20:15`.
+1. To mark video as watched, execute `mark Vid 1`.
+1. To change video name to `video 1`, execute `edit Vid 1 /name video 1`.
+1. To delete a video, execute `delete video 1`.
+1. To navigate back into module `CS2103` and list it's lectures, execute `navb`.
+1. To add a tag of `Intro`, execute `edit Week 1 /tags Intro`.
+1. To remove a tag of `Intro`, execute `untag Week 1 /tags Intro`
+1. To navigate back to root context and list all modules, execute `nav` or `navb`.
 
-1. To navigate into module `CS2040S`, run `nav CS2040S`.
-1. To find a lecture named `Week 1`, run `find Week 1`.
-1. To find a video named `Vid 1` in `Week 1` lecture, run `find Vid 1 /lec Week 1`.
-1. To navigate back to root context, run `nav` or `navb`.
-1. To export all data, run `export data.json`.
-1. To clear all data, run `clear`.
-1. To import data, run `import data.json`.
+Scenario 2 - Not using [Navigation](#navigation)
 
-Scenario 3 - Tracking videos:
+1. To add a module, execute `add CS2103 /name Software Engineering`.
+1. To add a tag of `BestModule`, execute `tag CS2103 /tags BestModule`.
+1. To add a lecture, execute `add Week 1 /mod CS2103`.
+1. To add a video, execute `add Vid 1 /mod CS2103 /lec Week 1`.
+1. To add a timestamp, execute `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 10:20:15`.
+1. To list videos, execute `list /mod CS2103 /lec Week 1`.
+1. To mark video as watched, execute `mark Vid 1 /mod CS2103 /lec Week 1`.
+1. To change video name to `video 1`, execute `edit Vid 1 /mod CS2103 /lec Week 1 /name video 1`.
+1. To delete a video, execute `delete video 1 /mod CS2103 /lec Week 1`.
+1. To list lectures, execute `list /mod CS2103`.
+1. To add a tag of `Intro`, execute `edit Week 1 /mod CS2103 /tags Intro`.
+1. To remove a tag of `Intro`, execute `untag Week 1 /mod CS2103 /tags Intro`
+1. To list all modules, execute `list`.
 
-1. To view lectures in module `ST2334`, run `list /mod ST2334`.
-1. To delete a video `Vid 3` in lecture `Topic 1` in module `ST2334`, run `delete Vid 3 /mod ST2334 /lec Topic 1`
-1. To navigate into lecture `Topic 2` in module `ST2334`, run `nav /mod ST2334 /lec Topic 2`.
-1. To unmark a video `Vid 1` in lecture `Topic 2` in module `ST2334` as unwatched, run `unmark Vid 1`
-1. To change the video name to `video 1`, run `edit Vid 1 /name video 1`
-1. To delete this lecture, run `delete Topic 2 /mod ST2334`
-1. To exit the app, run `exit`.
-
-:clap: That covers all the main commands. Refer to the [Command Manual](#command-manual) section for details of each command.\
-Feel free to play around with the sample data to familiarise yourself with the commands. Once you are comfortable, execute `clear` to delete all data and start from scratch, challenge yourself without using the `import` command :wink:
+:clap: That covers all the main commands. Refer to the [Command Manual](#command-manual) section for details of each command. Feel free to play around with the sample data to familiarise yourself with the commands. Once you are comfortable, execute `clear` to delete all data and start from scratch.
 
 ---
 
