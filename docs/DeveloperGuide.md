@@ -29,7 +29,6 @@ title: Developer Guide
   - [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
     - [Proposed Implementation](#proposed-implementation)
     - [Design considerations:](#design-considerations)
-  - [\[Proposed\] Data archiving](#proposed-data-archiving)
   - [Add transaction feature](#add-transaction-feature)
     - [Proposed Implementation](#proposed-implementation-1)
     - [Design considerations:](#design-considerations-1)
@@ -394,10 +393,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Add transaction feature
 
