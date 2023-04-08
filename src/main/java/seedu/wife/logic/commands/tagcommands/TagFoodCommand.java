@@ -1,10 +1,9 @@
 package seedu.wife.logic.commands.tagcommands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.wife.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.wife.commons.core.Messages.MESSAGE_DOUBLE_TAG;
 import static seedu.wife.commons.core.Messages.MESSAGE_MAXIMUM_TAG_FOOD;
 import static seedu.wife.commons.core.Messages.MESSAGE_SUCCESSFUL_FOOD_TAG;
+import static seedu.wife.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Set;
@@ -40,8 +39,9 @@ public class TagFoodCommand extends Command {
     }
 
     //@@author jnjy-reused
-    //Reused from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu/foodrem/logic/commands/tagcommands/TagCommandUtil.java
-    //with minor modifications
+    //Reused from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu
+    // /foodrem/logic/commands/tagcommands/TagCommandUtil.java
+    // with minor modifications
     /**
      * Validates the tag and index before returning the food to be tagged.
      *

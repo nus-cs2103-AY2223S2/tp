@@ -25,9 +25,9 @@ public class Name {
     }
 
     /**
-     *
-     * @param foodName
-     * @return
+     * Returns true if food name is an alphanumeric character.
+     * @param foodName Name of the food given by user.
+     * @return True if food name is valid, else false.
      */
     public static boolean isValidFoodName(String foodName) {
         return foodName.matches(VALIDATION_REGEX);

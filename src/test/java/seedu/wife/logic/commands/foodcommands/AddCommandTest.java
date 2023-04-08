@@ -221,8 +221,9 @@ public class AddCommandTest {
     }
 
     //author jnjy-reused
-    //Reused from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/test/java/seedu/foodrem/logic/commands/itemcommands/NewCommandTest.java
-    //with minor modifications.
+    //Reused from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/test/java/seedu/foodrem
+    // /logic/commands/itemcommands/NewCommandTest.java
+    // with minor modifications.
     /**
      * A Model stub that always accept the Food being added.
      */
