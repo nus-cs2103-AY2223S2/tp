@@ -199,13 +199,13 @@ This section describes some noteworthy details on how certain features are imple
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-## **Appendix**
+## **Appendices**
 
 --------------------------------------------------------------------------------------------------------------------
 
-### **Planned Enhancements**
+### Appendix A:**Planned Enhancements**
 
-### **Project Requirements**
+### Appendix B:**Project Requirements**
 
 #### **Product Scope**
 
@@ -352,7 +352,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### **Instructions for Manual Testing**
+<div style="page-break-after: always;"></div>
+
+### Appendix C:**Instructions for Manual Testing**
 
 Presented below are a series of instructions, organized in **Context, Action, Result (CAR)** format, 
 that can be followed to perform manual testing of the application.
