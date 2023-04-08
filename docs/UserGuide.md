@@ -217,6 +217,7 @@ Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* `DEADLINE`, `FROMDATE`, `TODATE` can also be altered if and only if the original tasks has these fields. (You are unable to assign a `deadline` to a `SimpleTask`).
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
