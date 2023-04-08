@@ -235,12 +235,12 @@ Note that you will not be able to make any deck-related changes (e.g. `addDeck`,
 
 ### 3.4.1. Adding a Card: `addCard`
 
-This commands allow you to add a card to the **selected** deck. 
+This command allows you to add a card to the **selected** deck. 
 
 A card must contain a question and an answer. It may contain at most **one** difficulty tag. 
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
-- `QUESTION` field of card is **case-sensitive** and cannot be duplicated in the same deck.
+- `QUESTION` field of the card is **case-sensitive** and cannot be duplicated in the same deck.
   - For example, if you already have a card with question `What is a loop` in the deck, you cannot create another card in the same deck with question `What is a loop`. 
   - However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
 - The same `QUESTION` may exist in multiple decks, i.e., a card can belong to multiple decks.  
