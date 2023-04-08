@@ -117,8 +117,6 @@ Different types of information are rendered by different components, each of whi
 <img src="images/PageClasses.png" width="400" />
 
  </p>
- 
-<div style="page-break-after: always;"></div>
 
 **How is a `Page` generated** 
 
@@ -137,7 +135,7 @@ When the user executes a command, `Page` factory method `of` will be called and 
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Here's a (partial) *Class Diagram* of the `Logic` component:
 
 <p align="center">
 
@@ -153,7 +151,11 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center">
+
+<img src="images/DeleteSequenceDiagram.png" width="550"/>
+
+ </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
