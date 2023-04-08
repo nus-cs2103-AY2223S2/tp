@@ -20,7 +20,7 @@ create CopyCommand
 AddressBookParser -> CopyCommand
 activate CopyCommand
 
-CopyCommand --> AddressBookParser
+CopyCommand --> AddressBookParser : c
 deactivate CopyCommand
 
 AddressBookParser --> LogicManager : c
@@ -39,7 +39,7 @@ CopyCommand --> CopyCommand :getInformation(Person)
 
 CopyCommand --> CopyCommand :copyToClipboard()
 
-CopyCommand --> LogicManager
+CopyCommand --> LogicManager : result
 deactivate CopyCommand
 CopyCommand -[hidden]-> LogicManager
 destroy CopyCommand
