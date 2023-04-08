@@ -13,7 +13,6 @@ import static seedu.dengue.testutil.TypicalPersons.FIONA;
 import static seedu.dengue.testutil.TypicalPersons.HOON;
 import static seedu.dengue.testutil.TypicalPersons.getTypicalDengueHotspotTracker;
 
-//import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
