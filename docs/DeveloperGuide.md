@@ -14,37 +14,37 @@ This application is currently geared towards NUS Computer Science Students of th
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up)
 3. [Design](#design)
-   1. [Architecture](#architecture)
-   2. [UI component](#ui-component)
-   3. [Logic component](#logic-component)
-   4. [Model component](#model-component)
-   5. [Storage component](#storage-component)
-   6. [Common classes](#common-classes)
+   3.1. [Architecture](#architecture)
+   3.2. [UI component](#ui-component)
+   3.3. [Logic component](#logic-component)
+   3.4. [Model component](#model-component)
+   3.5. [Storage component](#storage-component)
+   3.6. [Common classes](#common-classes)
 4. [Implementation](#implementation)
-   1. [Add module feature](#add-module-feature)
-   2. [Find module feature](#find-module-feature)
-   3. [Delete module feature](#delete-module-feature)
-   4. [Sort modules feature](#sort-modules-feature)
-   5. [View progress/modules feature](#view-feature)
+   4.1. [Add module feature](#add-module-feature)
+   4.2. [Find module feature](#find-module-feature)
+   4.3. [Delete module feature](#delete-module-feature)
+   4.4. [Sort modules feature](#sort-modules-feature)
+   4.5. [View progress/modules feature](#view-feature)
 5. [Documentation, logging, testing, configuration, dev-ops](#miscellaneous)
 6. [Appendix: Requirements](#appendix)
-   1. [Product Scope](#product-scope)
-   2. [User Stories](#user-stories)
-   3. [Use Cases](#use-cases)
-   4. [Non-Functional Requirements](#non-functional-requirements)
-   5. [Glossary](#glossary)
+   6.1. [Product Scope](#product-scope)
+   6.2. [User Stories](#user-stories)
+   6.3. [Use Cases](#use-cases)
+   6.4. [Non-Functional Requirements](#non-functional-requirements)
+   6.5. [Glossary](#glossary)
 7. [Appendix: Instructions for manual testing](#manual-testing)
-   1. [Launch and shutdown](#launch-and-shutdown)
-   2. [Adding a module](#adding-a-module)
-   3. [Deleting a module](#deleting-module)
-   4. [Editing a module](#editing-a-module)
-   5. [Adding/removing tag(s) to a module](#tagging-a-module)
-   6. [Finding module(s)](#finding-module)
-   7. [Sorting modules](#sorting-modules)
-   8. [Toggling between Degree Progress and Module List screens](#toggling-screens)
-   9. [Requesting for help](#requesting-for-help)
-   10. [Exiting the program](#exiting-program)
-   11. [Saving data](#saving-data)
+   7.1. [Launch and shutdown](#launch-and-shutdown)
+   7.2. [Adding a module](#adding-a-module)
+   7.3. [Deleting a module](#deleting-module)
+   7.4. [Editing a module](#editing-a-module)
+   7.5. [Adding/removing tag(s) to a module](#tagging-a-module)
+   7.6. [Finding module(s)](#finding-module)
+   7.7. [Sorting modules](#sorting-modules)
+   7.8. [Toggling between Degree Progress and Module List screens](#toggling-screens)
+   7.9. [Requesting for help](#requesting-for-help)
+   7.10. [Exiting the program](#exiting-program)
+   7.11. [Saving data](#saving-data)
    
 --------------------------------------------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The .puml files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T13-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 [Back to Table of Contents](#toc)
@@ -384,7 +384,7 @@ The following activity diagram shows what happens when a user executes a `delete
 ### **Sort modules feature** <a name="sort-modules-feature"></a>
 
 #### About this feature
-The sort feature allows users to categorise their modules in ModTrek via the command `sort <flag>`.
+The sort feature allows users to categorise their modules in MODTrek via the command `sort <flag>`.
 The flag parameter indicates which category to sort by.
 
 The available categories are:
@@ -425,7 +425,7 @@ The following activity diagram shows the logic flow as the user inputs the `sort
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
 #### Design considerations
-*Aspect: Command to sort the modules*
+**Aspect: Command to sort the modules**
 
 As the user adds more modules, he/she might find it more useful to look at the list of modules in different categories. However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
 
@@ -995,15 +995,12 @@ For more details regarding the usage, refer to [Exit MODTrek](UserGuide.md#exit-
 1. Dealing with corrupted data files
 
    1. Open `modtrek.jar` through the `java -jar modtrek.jar` command. Using commands supported on MODTrek, make changes to the module list, leaving at least one module in list.
-
    2. Close `modtrek.jar` and edit the `data/degreeprogression.json` file by making any one of the following dummy changes that causes the file to be corrupted, i.e. of an invalid format:
       * Change the "grade" attribute of one of the modules to "Z".
       * For one of the modules, add an extra attribute "Professor" with the value "James Tan" assigned to it.
       * Make any other illogical or nonsensical change to the file.
-
    3. Re-open `modtrek.jar` again. Expected: MODTrek will start with a clean slate, with an empty module list. 
    
-<br>
 
 2. Dealing with missing data files
    1. Test case: Delete the `data/degreeprogression.json` file.<br>
