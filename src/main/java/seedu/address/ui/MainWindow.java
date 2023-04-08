@@ -78,27 +78,28 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // Populate client list
-        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
-        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+        if (!logic.getFilteredClientList().isEmpty()) {
+            // Populate client list
+            clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+            clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        // Populate client label with first client in client list
-        Client selectedClient = logic.getSelectedClient();
-        int selectedClientIndex = logic.getSelectedClientIndex();
-        ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
-        AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
+            // Populate client label with first client in client list
+            Client selectedClient = logic.getSelectedClient();
+            int selectedClientIndex = logic.getSelectedClientIndex();
+            ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+            AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
 
-        if (clientLabel.getChildren().size() > 0) {
-            clientLabel.getChildren().remove(0);
-            appointmentLabel.getChildren().remove(0);
+            if (clientLabel.getChildren().size() > 0) {
+                clientLabel.getChildren().remove(0);
+                appointmentLabel.getChildren().remove(0);
+            }
+            clientLabel.getChildren().add(selectedClientCard.getRoot());
+            appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
+
+            // Populate policy list of selected client
+            policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
+            policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
         }
-        clientLabel.getChildren().add(selectedClientCard.getRoot());
-        appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
-
-        // Populate policy list of selected client
-        policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
-        policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -122,19 +123,28 @@ public class MainWindow extends UiPart<Stage> {
      * Selects a client based on user input.
      */
     public void handleSelect() {
-        Client selectedClient = logic.getSelectedClient();
-        int selectedClientIndex = logic.getSelectedClientIndex();
-        ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
-        AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
+        if (!logic.getFilteredClientList().isEmpty()) {
+            // Populate client list
+            clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+            clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        if (clientLabel.getChildren().size() > 0) {
-            clientLabel.getChildren().remove(0);
-            appointmentLabel.getChildren().remove(0);
+            // Populate client label with first client in client list
+            Client selectedClient = logic.getSelectedClient();
+            int selectedClientIndex = logic.getSelectedClientIndex();
+            ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+            AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
+
+            if (clientLabel.getChildren().size() > 0) {
+                clientLabel.getChildren().remove(0);
+                appointmentLabel.getChildren().remove(0);
+            }
+            clientLabel.getChildren().add(selectedClientCard.getRoot());
+            appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
+
+            // Populate policy list of selected client
+            policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
+            policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
         }
-        clientLabel.getChildren().add(selectedClientCard.getRoot());
-        appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
-
-        policyListPanel.updatePolicyList(logic.getFilteredPolicyList());
     }
 
     /**

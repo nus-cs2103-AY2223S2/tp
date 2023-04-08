@@ -1,7 +1,6 @@
 package seedu.address.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,7 +26,6 @@ class SampleDataUtilTest {
             assertNotNull(client.getPhone());
             assertNotNull(client.getEmail());
             assertNotNull(client.getAddress());
-            assertFalse(client.getTags().isEmpty());
         }
     }
 

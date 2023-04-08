@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -19,7 +17,6 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Client}.
@@ -32,7 +29,6 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
     private final JsonAdaptedAppointment appointment;
@@ -43,16 +39,12 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("policies") List<JsonAdaptedPolicy> policies,
                              @JsonProperty("appointment") JsonAdaptedAppointment appointment) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
         if (policies != null) {
             this.policies.addAll(policies);
         }
@@ -67,9 +59,6 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         policies.addAll(StreamSupport.stream(source.getPolicyList().spliterator(), false)
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList())); // is it considered breaking Law of Demeter?
@@ -83,11 +72,6 @@ class JsonAdaptedClient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> clientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            clientTags.add(tag.toModelType());
-        }
-
         final ArrayList<Policy> personPolicies = new ArrayList<>();
         for (JsonAdaptedPolicy policy : policies) {
             personPolicies.add(policy.toModelType());
@@ -126,8 +110,6 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(clientTags);
-
 
         final UniquePolicyList modelPolicies = new UniquePolicyList();
         for (Policy policy : personPolicies) {
@@ -136,7 +118,7 @@ class JsonAdaptedClient {
 
         Appointment modelAppointment = appointment.toModelType();
 
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelAppointment);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelPolicies, modelAppointment);
     }
 
 }

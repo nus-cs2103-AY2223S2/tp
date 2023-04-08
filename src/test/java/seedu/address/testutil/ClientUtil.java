@@ -4,14 +4,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.client.Client;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Person.
@@ -29,15 +25,12 @@ public class ClientUtil {
      * Returns the part of command string for the given {@code client}'s details.
      */
     public static String getClientDetails(Client client) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + client.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + client.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
-        client.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
-        return sb.toString();
+        String sb = PREFIX_NAME + client.getName().fullName + " "
+            + PREFIX_PHONE + client.getPhone().value + " "
+            + PREFIX_EMAIL + client.getEmail().value + " "
+            + PREFIX_ADDRESS + client.getAddress().value + " ";
+
+        return sb;
     }
 
     /**
@@ -49,14 +42,7 @@ public class ClientUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
+
         return sb.toString();
     }
 }

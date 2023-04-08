@@ -1,15 +1,9 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +16,6 @@ import seedu.address.model.client.policy.CustomDate;
 import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.PolicyName;
 import seedu.address.model.client.policy.Premium;
-import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -72,7 +65,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -95,7 +88,7 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
     }
 
     @Test
@@ -118,7 +111,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
     @Test
@@ -141,7 +134,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
     @Test
@@ -163,52 +156,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-    }
-
-    @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-    }
-
-    @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
-    }
-
-    @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
-    }
-
-    @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-    }
-
-    @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    }
-
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
-    }
-
-    @Test
     void parsePolicyName_validValueWithoutWhitespace_returnsPolicyName() throws Exception {
         PolicyName expectedPolicyName = new PolicyName(VALID_POLICY_NAME);
         assertEquals(expectedPolicyName, ParserUtil.parsePolicyName(VALID_POLICY_NAME));
@@ -219,10 +166,12 @@ public class ParserUtilTest {
         PolicyName expectedPolicyName = new PolicyName(VALID_POLICY_NAME);
         assertEquals(expectedPolicyName, ParserUtil.parsePolicyName(WHITESPACE + VALID_POLICY_NAME + WHITESPACE));
     }
+
     @Test
     void parsePolicyName_invalidValueWithoutWhitespace_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePolicyName(INVALID_POLICY_NAME));
     }
+
     @Test
     void parsePolicyName_invalidEnum_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePolicyName(INVALID_POLICY_NAME_ENUM));
@@ -233,24 +182,29 @@ public class ParserUtilTest {
         CustomDate expectedCustomDate = new CustomDate(VALID_POLICY_DATE);
         assertEquals(expectedCustomDate, ParserUtil.parseCustomDate(VALID_POLICY_DATE));
     }
+
     @Test
     void parseCustomDate_validValueWithWhitespace_returnsTrimmedCustomDate() throws Exception {
         CustomDate expectedCustomDate = new CustomDate(VALID_POLICY_DATE);
         assertEquals(expectedCustomDate, ParserUtil.parseCustomDate(WHITESPACE + VALID_POLICY_DATE + WHITESPACE));
     }
+
     @Test
     void parseCustomDate_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseCustomDate(INVALID_POLICY_DATE));
     }
+
     @Test
     void parsePremium_validValueWithoutWhitespace_returnsPremium() throws Exception {
         Premium expectedPremium = new Premium(VALID_POLICY_PREMIUM);
         assertEquals(expectedPremium, ParserUtil.parsePremium(VALID_POLICY_PREMIUM));
     }
+
     @Test
     void parsePremium_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePremium(INVALID_POLICY_PREMIUM));
     }
+
     @Test
     void parsePremium_validValueWithWhitespace_returnsTrimmedPremium() throws Exception {
         Premium expectedPremium = new Premium(VALID_POLICY_PREMIUM);
@@ -262,11 +216,13 @@ public class ParserUtilTest {
         Frequency expectedFrequency = new Frequency(VALID_POLICY_FREQUENCY);
         assertEquals(expectedFrequency, ParserUtil.parseFrequency(VALID_POLICY_FREQUENCY));
     }
+
     @Test
     void parseFrequency_validValueWithWhitespace_returnsTrimmedFrequency() throws Exception {
         Frequency expectedFrequency = new Frequency(VALID_POLICY_FREQUENCY);
         assertEquals(expectedFrequency, ParserUtil.parseFrequency(WHITESPACE + VALID_POLICY_FREQUENCY + WHITESPACE));
     }
+
     @Test
     void parseFrequency_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseFrequency(INVALID_POLICY_FREQUENCY));

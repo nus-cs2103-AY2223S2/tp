@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
@@ -11,8 +8,6 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Client objects.
@@ -33,7 +28,6 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
 
     private UniquePolicyList policyList;
     private Appointment appointment;
@@ -46,7 +40,6 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
         policyList = new UniquePolicyList();
         appointment = DEFAULT_EMPTY_APPOINTMENT;
     }
@@ -59,7 +52,6 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
-        tags = new HashSet<>(clientToCopy.getTags());
         policyList = clientToCopy.getPolicyList();
         appointment = clientToCopy.getAppointment();
     }
@@ -69,14 +61,6 @@ public class ClientBuilder {
      */
     public ClientBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Client} that we are building.
-     */
-    public ClientBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -106,6 +90,7 @@ public class ClientBuilder {
 
     /**
      * Sets the {@code UniquePolicyList} of the {@code Client} that we are building.
+     *
      * @param policies the policies that belong to the client.
      * @return A ClientBuilder that builds into {@code Client} when called.
      */
@@ -119,6 +104,7 @@ public class ClientBuilder {
 
     /**
      * Sets the {@code UniquePolicyList} of the {@code Client} that we are building.
+     *
      * @param policyList the policies that belong to the client.
      * @return A ClientBuilder that builds into {@code Client} when called.
      */
@@ -129,6 +115,7 @@ public class ClientBuilder {
 
     /**
      * Sets the {@code Appointment} of the {@code Client} that we are building.
+     *
      * @param appointment the appointment that belongs to the client.
      * @return A ClientBuilder that builds into {@code Client} when called.
      */
@@ -136,9 +123,10 @@ public class ClientBuilder {
         this.appointment = appointment;
         return this;
     }
+
     // Don't need withPolicyList() because by default it should always be empty
     public Client build() {
-        return new Client(name, phone, email, address, tags, policyList, appointment);
+        return new Client(name, phone, email, address, policyList, appointment);
     }
 
 }

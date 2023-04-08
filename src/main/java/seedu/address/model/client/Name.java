@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank, "
+        "Names should only contain alphanumeric characters and spaces, and it should not be blank, "
             + "with maximum length of 50 characters";
 
     /*
@@ -36,7 +36,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() < 50;
     }
 
 
@@ -48,8 +48,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+            || (other instanceof Name // instanceof handles nulls
+            && fullName.equals(((Name) other).fullName)); // state check
     }
 
     @Override
