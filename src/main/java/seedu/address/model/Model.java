@@ -97,6 +97,7 @@ public interface Model {
     void setAppointmentList(ReadOnlyAppointmentList appointmentList);
     ReadOnlyAppointmentList getAppointmentList();
     boolean hasAppointment(Appointment appointment);
+    boolean hasOverlap(Appointment appointment);
 
     /**
      * Deletes the given appointment.
