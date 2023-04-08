@@ -348,7 +348,7 @@ Lists all lectures of a module.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to list the lectures from.
   - Must belong to an existing module in Le Tracker
 
-<details>
+<details open>
 <summary>Example</summary>
 <ul>
     <li>
@@ -369,7 +369,7 @@ Lists all videos of a lecture in a module.
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
   - Must belong to an existing lecture in the specified `module_code`
 
-<details>
+<details open>
 <summary>Example</summary>
 <ul>
     <li>
@@ -790,7 +790,7 @@ Find all modules whose code starts with any of the keyword(s).
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures](#find-lectures) or [Find Videos](#find-videos) (refer to [Navigation Injection](#navigation-injection) for more information).
 
-<details>
+<details open>
 <summary>Example</summary>
 <ul>
     <li>
@@ -811,7 +811,7 @@ Find all lectures in a specified module whose name starts with any of the keywor
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
 
-<details>
+<details open>
 <summary>Example</summary>
 <ul>
     <li>
@@ -837,7 +837,7 @@ Find all videos in a specified lecture in a specified module whose name starts w
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
   - Must belong to an existing lecture in the specified `module_code`
 
-<details>
+<details open>
 <summary>Example</summary>
 <ul>
     <li>
