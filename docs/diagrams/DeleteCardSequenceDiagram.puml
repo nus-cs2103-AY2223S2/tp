@@ -16,54 +16,63 @@ end box
 [-> LogicManager : execute("deleteCard 1")
 activate LogicManager
 
-LogicManager -> MasterDeckParser : parseCommand("deleteCard 1")
-activate MasterDeckParser
-
-create DeleteCardCommandParser
-MasterDeckParser -> DeleteCardCommandParser
-activate DeleteCardCommandParser
-
-DeleteCardCommandParser --> MasterDeckParser
-deactivate DeleteCardCommandParser
-
-MasterDeckParser -> DeleteCardCommandParser : parse("1")
-activate DeleteCardCommandParser
-
-create DeleteCardCommand
-DeleteCardCommandParser -> DeleteCardCommand
-activate DeleteCardCommand
-
-DeleteCardCommand --> DeleteCardCommandParser : d
-deactivate DeleteCardCommand
-
-DeleteCardCommandParser --> MasterDeckParser : d
-deactivate DeleteCardCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCardCommandParser -[hidden]-> MasterDeckParser
-destroy DeleteCardCommandParser
-
-MasterDeckParser --> LogicManager : d
-deactivate MasterDeckParser
-
-LogicManager -> DeleteCardCommand : execute()
-activate DeleteCardCommand
-
-DeleteCardCommand -> Model : deleteCard(c)
+LogicManager -> Model : getState()
 activate Model
-
-Model --> DeleteCardCommand
+Model --> LogicManager : state
 deactivate Model
+alt Main_Selected_Mode
+    LogicManager -> MasterDeckParser : parseCommand("deleteCard 1")
+    activate MasterDeckParser
+    create DeleteCardCommandParser
+    MasterDeckParser -> DeleteCardCommandParser
+    activate DeleteCardCommandParser
 
-create CommandResult
-DeleteCardCommand -> CommandResult
-activate CommandResult
+    DeleteCardCommandParser --> MasterDeckParser
+    deactivate DeleteCardCommandParser
 
-CommandResult --> DeleteCardCommand
-deactivate CommandResult
+    MasterDeckParser -> DeleteCardCommandParser : parse("1")
+    activate DeleteCardCommandParser
 
-DeleteCardCommand --> LogicManager : result
-deactivate DeleteCardCommand
+    create DeleteCardCommand
+    DeleteCardCommandParser -> DeleteCardCommand
+    activate DeleteCardCommand
 
+    DeleteCardCommand --> DeleteCardCommandParser : d
+    deactivate DeleteCardCommand
+
+    DeleteCardCommandParser --> MasterDeckParser : d
+    deactivate DeleteCardCommandParser
+    'Hidden arrow to position the destroy marker below the end of the activation bar.
+    DeleteCardCommandParser -[hidden]-> MasterDeckParser
+    destroy DeleteCardCommandParser
+    MasterDeckParser --> LogicManager : d
+    deactivate MasterDeckParser
+
+    LogicManager -> DeleteCardCommand : execute()
+    activate DeleteCardCommand
+
+    DeleteCardCommand -> Model : deleteCard(c)
+    activate Model
+    Model --> DeleteCardCommand
+    deactivate Model
+
+    create CommandResult
+    DeleteCardCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> DeleteCardCommand
+    deactivate CommandResult
+
+    DeleteCardCommand --> LogicManager : result
+    deactivate DeleteCardCommand
+
+else else
+    LogicManager -> MasterDeckParser : parseCommand("deleteCard 1")
+    activate MasterDeckParser
+    MasterDeckParser --> LogicManager : ParseException
+    deactivate MasterDeckParser
+
+end
 [<--LogicManager
 deactivate LogicManager
 @enduml
