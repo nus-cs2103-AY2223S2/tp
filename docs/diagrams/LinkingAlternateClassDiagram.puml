@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+skinparam classBackgroundColor MODEL_COLOR
+
+Class Client 
+
+Class Project 
+
+Class UniqueClientList
+
+Class UniqueProjectList
+
+Client *--> "linked projects" UniqueProjectList
+Project *--> "\nlinked clients" UniqueClientList
+UniqueProjectList -->"*" Project
+UniqueClientList -right->"*" Client
+@enduml

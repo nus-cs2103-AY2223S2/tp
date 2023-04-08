@@ -175,7 +175,7 @@ This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/
 
 There are a set of Comparators defined inside the `ModelManager` class, that are supplied to the sorted list depending on how the user wants to sort clients or projects. Example Comparators include comparing names of `Client` objects.
 
-Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator`. The below diagram shows what occurs when a user executes a `sort-client` command.
+Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator`. The below diagram shows what occurs when a user executes a `sort-client` command, which sorts the client list by name.
 
 <img src="images/SortingSequenceDiagram.png" width="600" />
 
@@ -190,14 +190,28 @@ Users have the ability to link projects to clients.
 
 #### Implementation
 
-{_object diagram for an example of two linked clients/projects_}
+When parsing the command to add or edit a project, the parser checks for the existence of client name keywords in the command. If it does, then ArB displays a client list filtered with the provided client name keywords, sets the project to be linked and enters link mode, as shown in the sequence diagram below.
+
+<img src="images/LinkingParsingSequenceDiagram.png" width="400" />
+
+In link mode, the user can input an index to link the added/edited project to the specified client, as shown in the sequence diagram below. ArB will then exit link mode and return to normal operations.
+
+<img src="images/LinkingIndexParsingSequenceDiagram.png" width="400" />
+
+Internally, a project can be linked to one client while a client can have multiple linked projects. A client's linked projects are stored in a `UniqueProjectList` object that each `Client` object has. This implementation is shown in the class diagram below.
+
+<img src="images/LinkedClassDiagram.png" width="200" />
+
+For example, the below is an object diagram representing the situation where we have two projects `P1` and `P2` that are both linked to the same `Client` object.
+
+<img src="images/ExampleLinkedObjectDiagram.png" width="200" />
 
 #### Future improvements
 Currently, projects are only allowed to be linked to a single client. This was done to avoid introducing too much complexity such that it was feasible to complete this feature before the deadline.
 
 In future, projects could be linked to multiple clients. This could be implemented by storing a list of `Client` objects, perhaps using a `UniqueClientList`. The below class diagram showcases this  implementation.
 
-{_class diagram showing the new implementation_}
+<img src="images/LinkingAlternateClassDiagram.png" width="300" />
 
 ### Better filtering
 
@@ -241,6 +255,7 @@ The ProjectCard class has been updated to run the aforementioned isOverdue
 method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
 The OVERDUE status is shown for existing projects in the list that are overdue, and
 if a user adds a project with a deadline with a data that has already past.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -294,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | artist who wants to know which of my ongoing projects are most lucrative | quickly sort my ongoing projects based on commission size | prioritize higher commissioned projects |
 | `* *` | artist | add to a project how much money it will make me | know the profit of my projects |
 | `* *` | artist | search for clients using keywords | find specific clients quickly |
-| `* *` | artist | ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
+| `* *` | artist ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
 | `*` | artist | quickly see how many times a specific client has commissioned me for a project before | know if clients are returning |
 | `* *` | artist | see how much profit a client has made me so far | know which client is making me the most profit |
 | `* *` | artist | sort clients by how much profit they have made me so far | know which clients are making me the most profit |
