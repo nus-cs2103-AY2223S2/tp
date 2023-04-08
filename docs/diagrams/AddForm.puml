@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RecipeBookParser" as RecipeBookParser LOGIC_COLOR
+participant "a:AddFormCommand" as AddFormCommand LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant "form:AddRecipeForm" as AddRecipeForm UI_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addf")
+activate LogicManager
+
+LogicManager -> RecipeBookParser : parseCommand("addf")
+activate RecipeBookParser
+
+create AddFormCommand
+RecipeBookParser -> AddFormCommand : new AddFormCommand()
+activate AddFormCommand
+
+AddFormCommand --> RecipeBookParser : a
+deactivate AddFormCommand
+
+RecipeBookParser -> AddFormCommand : execute()
+activate AddFormCommand
+
+create AddRecipeForm
+AddFormCommand -> AddRecipeForm : new AddRecipeForm(data)
+activate AddRecipeForm
+
+AddRecipeForm --> AddFormCommand : form
+deactivate AddRecipeForm
+
+AddFormCommand --> AddRecipeForm : display()
+activate AddRecipeForm
+
+AddRecipeForm --> AddFormCommand : data
+deactivate AddRecipeForm
+destroy AddRecipeForm
+
+AddFormCommand --> AddCommandParser : parseToRecipeDescriptor(commandString)
+activate AddCommandParser
+
+AddCommandParser -> AddFormCommand : recipeToAdd
+deactivate AddCommandParser
+
+AddFormCommand -> Model : addRecipe(recipeToAdd)
+activate Model
+
+Model -> AddFormCommand : result
+deactivate Model
+
+AddFormCommand --> RecipeBookParser : a
+deactivate AddFormCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddFormCommand -[hidden]-> RecipeBookParser
+
+RecipeBookParser --> LogicManager : a
+deactivate RecipeBookParser
+
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
