@@ -901,6 +901,22 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Set an alert window
+
+1. Add a task that starts or ends within 24 hours
+   1. Prerequisites: It is the first start-up of Clock-Work with no changes `alert` command calls. OR <br>
+    User has already called `alert 24`.
+   1. Test case: `add n/Test D/2023-04-08 0900` assuming that is it currently `2023-04-07 1000` <br>
+    Expected: Task added to the task list. Details of added task shown in status message. <br>
+    If it is first time start up of Clock-Work or alert window already set to 24, the task should already appear in the alert window.
+2. Add a task that starts or ends within 48 hours
+   1. Prerequisites: It is the first start-up of Clock-Work with no changes `alert` command calls. OR <br>
+      User has already called `alert` with an alert window less than 48 hours.
+   1. Set up: `add n/Test D/2023-04-09 0900` assuming that is it currently `2023-04-07 1000` <br>
+      Expected: Task added to the task list. Details of added task shown in status message. <br>
+   1. Test case: `alert 48`. <br>
+   Expected: The task should already appear in the alert window.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
