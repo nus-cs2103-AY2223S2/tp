@@ -34,26 +34,20 @@ license, making it open source and available for anyone to use and modify.
   * [General consideration design](#general-consideration-design)
   * [Food-related features](#food-related-features)
     * [Add a Food](#add-a-food)
-    * [List all Foods]
     * [Edit a Food](#edit-a-food)
-    * [Find a Food]
     * [Increase/Decrease quantity of a Food](#increasedecrease-quantity-of-a-food)
-    * [Delete a Food]
-    * [Sort Foods by expiry date]
+    * [View details of a Food](#view-details-of-a-food-item)
   * [Tag-related features](#tag-related-features)
     * [Overview](#overview)
     * [Design considerations](#design-considerations)
     * [Create a new tag](#create-a-new-tag)
     * [Tag a Food](#tag-a-food)
     * [Untag a Food](#untag-a-food)
-    * [List all tags]
     * [List Foods by tag(s)](#list-foods-by-tags)
     * [Delete Foods by tag(s)](#delete-foods-by-tags)
     * [Delete tag(s)](#delete-tags)
   * [General features]
     * [help](#dynamic-help)
-    * [clear]
-    * [exit]
   * [Documentation and other guides](#documentation-logging-testing-configuration-dev-ops)
   * [Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -88,6 +82,9 @@ Java dependencies:
 -   [JUnit 5](https://github.com/junit-team/junit5) for testing
 
 Documentation dependencies:
+
+-   [Jekyll](https://jekyllrb.com/) for conversion of .md files to .html files for rendering of website
+-   [PlantUML](https://plantuml.com/) for UML diagrams
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -382,17 +379,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![IncreaseQuantityActivityDiagram](images/IncreaseQuantityActivityDiagram.png)
 
-#### \[Implementing\] View details of a food item.
-
-**Overview**
-The view feature is meant to be a shorthand for users to view the details of a particular food item.
-Traditionally, to view the details of an item, the user would use the list command to view the details of a food item.
-The user can now specify `view` to view more details of the indexed food item.
-
-The following UML diagram shows `view` and its associated class.
-
-_(UML diagram to be inserted)_
-
 **Design considerations**
 
 -   **Alternative 1 (Current implementation):** The command view with the index of the food item to view the details of.
@@ -410,6 +396,18 @@ _(UML diagram to be inserted)_
     -   Cons:
         -   Difficulty in implementing the switcher.
         -   Difficulty in implementing the different views.
+
+
+#### View details of a Food.
+
+**Overview**
+The view feature is meant to be a shorthand for users to view the details of a particular Food.
+Traditionally, to view the details of a FOod, the user would use the list command to view its details.
+The user can now specify `view` to view more details of the indexed Food such as its full name.
+
+The following UML diagram shows `view` and its associated class.
+
+_(UML diagram to be inserted)_
 
 **Implementation**
 The first stage of the implementation is checking that the command is `view` and that the index is valid. `ViewCommandParser` is used
@@ -708,7 +706,7 @@ Here are links to other documentation that you might find useful when developing
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                            | I want to …​                                          | So that I can…​                             |
-| -------- | ---------------------------------- | ----------------------------------------------------- | ------------------------------------------- |
+|----------|------------------------------------|-------------------------------------------------------|---------------------------------------------|
 | `* * *`  | Organised user                     | add food items to my list                             | track what is in my fridge                  |
 | `* * *`  | Meal planner                       | set expiration dates for items in my fridge           | plan meals around items that are expiring   |
 | `* * *`  | Organised user                     | set item categories for fridge items                  | easily find what I need when cooking.       |
@@ -978,62 +976,161 @@ testers are expected to do more *exploratory* testing.
    * Expected: Shows the GUI with a set of sample data.
 
 ### Tests for Food-related features
+
 #### Add a Food
-`add n/Potato qty/2 u/kg bgt/10-10-2022`
+`add n/Broccoli u/STALK q/2 e/03-03-2033`
 
-Expected Output in the Item List Box: New Food added into the list.
+Expected Output in Food List: New Food "Broccoli" added into the list.
 
-Expected Output in the Command Output Box: New item added message is displayed with the item details.
+Expected Output in Result Display: New food added: Broccoli (expires on: 03-03-2033)
 
 #### List all Foods
-
-Prerequisite: There is at least 1 Food stored in WIFE.
 
 `list`
 
 Expected Output in Food List: All Foods stored in WIFE are shown.
 
 Expected Output in Result Display: Listed all food items!
+
 #### Edit a Food 
+
+`edit 2 q/10`
+
+Expected Output in Food List: "Broccoli" Food has new `Quantity` of 10.
+
+Expected Output in Result Display: Edited food item: Broccoli (expires on: 03-03-2033)
+
+<div markdown="block" class="alert alert-info">
+This command is editing the "Broccoli" Food that was added when testing the `add` command.
+</div>
 
 #### Find a Food
 
+`find broc meij`
+
+Expected Output in Food List: "Meiji Milk" and "Broccoli" appear in the Food List.
+
+Expected Output in Result Display: 2 food item(s) found!
+
+
 #### Increase quantity of a Food
+
+`inc 1 q/100`
+
+Expected Output in Food List: "Meiji Milk" Food's `Quantity` increased by 100
+
+Expected Output in Result Display: Increased Food: Meiji Milk (expires on: 13-11-2024) by 100
+
+`inc 1`
+
+Expected Output in Food List: "Meiji Milk" Food's `Quantity` increased by 1
+
+Expected Output in Result Display: Increased Food: Meiji Milk (expires on: 13-11-2024) by 1
 
 #### Decrease quantity of a Food
 
+`dec 1 q/100`
+
+Expected Output in Food List: "Meiji Milk" Food's `Quantity` decreased by 100
+
+Expected Output in Result Display: Decreased Food: Meiji Milk (expires on: 13-11-2024) by 100
+
+`dec 1`
+
+Expected Output in Food List: "Meiji Milk" Food's `Quantity` decreased by 1
+
+Expected Output in Result Display: Decreased Food: Meiji Milk (expires on: 13-11-2024) by 1
+
 #### Delete a Food
 
+`delete 2`
+
+Expected Output in Food List: "Broccoli" Food has been removed from the Food List
+
+Expected Output in Result Display: Deleted Food: Broccoli (expires on: 03-03-2033)
+
 ### Sort Foods by expiry date
+
+`expiry`
+
+Expected Output in Food List: All Food items are sorted in ascending order (Foods with a closer expiry date appear at
+the top)
+
+Expected Output in Result Display: Food items are being sorted by their expiry dates.
+
 
 ### Tag-related features
 
 #### Create a new tag
 
-`createtag n/Vegetables`
+`createtag n/milky`
 
-Expected output in Food List: No change observed.
-
-Expected output in Result Display: Tag(s) successfully created: Vegetables
+Expected output in Result Display: Tag(s) successfully created: Milky
 
 #### Tag a Food
 
+`tag 1 n/milky`
+
+Expected Output in Food List: "Meiji Milk" Food has been tagged with the tag "Milky"
+
+Expected Output in Result Display: Meiji Milk successfully tagged with Milky
+
 #### Untag a Food
+
+`untag 1 n/milky`
+
+Expected Output in Food List: "Meiji Milk" Food has been untagged with the tag "Milky"
+
+Expected Output in Result Display: Meiji Milk successfully untagged with Milky
+
 
 #### List all tags
 
+`listtag`
+
+Expected output in Result Display: Here are your existing tags: New Used Dairy Milky
+
 #### List Foods by tag(s)
+
+<div markdown="block" class="alert alert-info">
+Prerequisite: Before testing this feature and the "Delete Foods by tag(s)" feature, please key in the following commands
+sequentially.
+
+`add n/Broccoli u/STALK q/2 e/03-03-2033`
+`createtag n/vegetables`
+`tag 1 n/milky`
+`tag 2 n/vegetables`
+</div>
+
+`listbytags n/vegetables`
+
+Expected Output in Food List: "Broccoli" Food appears in the Food List
+
+Expected Output in Result Display: Listed all food with the following tags:
+[Vegetables]
 
 #### Delete Foods by tag(s)
 
+<div markdown="block" class="alert alert-info">
+Prerequisite: Ensure you have entered the prerequisite commands mentioned in "List Foods by tag(s).
+THen, enter the `list` command to show all Food items first.
+</div>
+
+`delbytag n/vegetables`
+
+Expected Output in Food List: "Broccoli" Food is removed from the Food List.
+
+Expected Output in Result Display: Deleted Food:
+Broccoli (expires on: 03-03-2033)
+
 #### Delete tag(s)
 
-`deltag n/Vegetables`
+`deltag n/milky`
 
-Expected Output in Food List: All occurrences of the `Vegetables` tag that are tagged to food items in the food the list
-will be deleted. 
+Expected Output in Food List: All occurrences of the `Milky` tag that are tagged to food items in the food the list
+will be deleted. ("Meiji Milk" Food will not be deleted!)
 
-Expected Output in Result Display: Tag successfully deleted: [Vegetables]
+Expected Output in Result Display: Tag successfully deleted: [Milky]
 
 ### General Features
 
