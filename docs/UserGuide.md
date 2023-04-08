@@ -284,7 +284,7 @@ Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 * Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
 * At least **one** of the optional components must be provided.
 * Existing values of the card will be replaced by the input values.
-* If the same prefix appears multiple times, only the last occurrence of the prefix will be considered. 
+* If the same prefix appears multiple times, only the **last** occurrence of the prefix will be considered. 
 
 Examples:
 * `editCard 1 q\What is chemical symbol for Carbon? a\C` edits the question and answer of the 1st card to be `What is chemical symbol for Carbon?` and `C` respectively.
@@ -302,23 +302,24 @@ You can interact with the filtered cards using their new indices, through comman
 Format: `findCards KEYWORD...`
 - You can include multiple KEYWORDS - as long as a card's question contains at least one keyword, the card will be found.
 - At least one KEYWORD must be given.
-- This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial". 
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
 - Question field of cards matching at least one keyword will be returned (i.e. `OR` search).
+- This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial".
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Since the command does not support partial words, take extra caution when searching for words ending with punctuation! For example `findCards loop` will **not** return a Card with question `What is a loop?`. For this example, you should search `findCards loop?` instead.  
 </div>
 
 Example:
-- `findCards when how` shows all the cards whose questions match the keywords `when` **or** `how`.
-  ![FindCardsCommandDisplay](images/FindCardsCommandDisplay.png)
+- `findCards recursion loop` shows all the cards whose questions match the keywords `recursion` **or** `loop`.
+
+![FindCardsCommandDisplay](images/FindCardsCommandDisplay.png)
 
 <div markdown="block" class="alert alert-info">
 
 💡 **Tip:** 
-- Notice how there is a small text box `Finding Cards with keyword: when how` below the filtered list of questions. This text box is to help you remember what you have previously searched for!  
-- Notice that the result display will show how many cards have been listed.
+- There is a small text box `Finding Cards with keyword(s): recusion loop` below the filtered list of cards. It remains on display as long as the cards are filtered. This is to help you remember what keywords you are searching for!  
+- The result display will show how many cards matching the keywords have been found.
 </div>
 
 ### 3.4.5. Showing all Cards : `showCards`
