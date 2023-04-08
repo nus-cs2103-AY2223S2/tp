@@ -128,7 +128,7 @@ You may also click the quick access buttons one each student card to see how the
 Upon launching the application or executing a command, a welcome page will be displayed in the Detailed Information Section. 
 Each Student card has four buttons, which are profile, homework, lessons, and exams. When a user clicks on any of the buttons, the corresponding information will be presented in the Detailed Information Section.
 
-:information source: **Why is the date and time displayed in two different formats?**
+:information_source: **Why is the date and time displayed in two different formats?**
 The date and time format in the Detailed Information Section is different from the one used in the `view` commands.
 This is purposely done to make the information more distinct and make sure you never get confused.
 
