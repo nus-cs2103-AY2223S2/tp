@@ -128,7 +128,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
 3. executed by the `LogicManager`.
-4. The command can communicate with the `Model` or `OfficeConnectModel` when it is executed (e.g. to add a person or
+4. The command can communicate with `OfficeConnectModel` when it is executed (e.g. to add a person or
 5. add a task or add an assignment).
 6. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
@@ -153,13 +153,28 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 `AddressBookParser` returns back as a `Command` object. All `XYZCommandParser` classes (e.g., `AddCommandParser`, 
 `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### 2.4 Model component
+
+### 2.4 OfficeConnectModel component
+
+**API** : [`OfficeConnectModel.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
+
+<img src="images/OfficeConnectModelClassDiagram.png" width="650" />
+
+* Stores the task list data and task assignment data i.e., all `task` and `assignTask` objects (which are contained in a `UniqueItemList` object).
+* Stores the currently 'selected' `Task` and `AssignTask` objects (e.g., results of a search query) as a separate _filtered_ list
+  which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and `ObservableList<AssignTask>` that can be
+  'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain, they should make sense on their own without depending on other components)
+* Stores data of all persons in OfficeConnect using a concrete implementation of the Model interface. Greater elaboration of the Model component is provided below.
+
+### 2.4.1 Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="550" />
 
 The `Model` component 
+* Is implemented by a person model manager in OfficeConnectModel.
 * Stores the address book data for persons i.e., all `Person` objects (which are contained in a `UniquePersonList` object). 
 * Stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list,
 which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. 
@@ -176,19 +191,8 @@ to only require one `Tag` object per unique tag, instead of each `Person` needin
 
 </div>
 
-### 2.5 OfficeConnectModel component
 
-**API** : [`OfficeConnectModel.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/model/OfficeConnectModel.java)
-
-<img src="images/OfficeConnectModelClassDiagram.png" width="650" />
-
-* Stores the task list data and taskAssignment data i.e., all `task` and `assignTask` objects (which are contained in a `UniqueItemList` object). 
-* Stores the currently 'selected' `Task` and `AssignTask` objects (e.g., results of a search query) as a separate _filtered_ list 
-which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and `ObservableList<AssignTask>` that can be 
-'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change. 
-* Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-### 2.6 Storage component
+### 2.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -214,7 +218,7 @@ and reads them back into corresponding objects. It inherits from both `AddressBo
 means it can be treated as either (if the functionality of only one is needed). It depends on some classes in the `Model`
 and `OfficeConnectModel` component (because the `Storage` component's job is to save/retrieve objects that belong to `Model` and `OfficeConnectModel`)
 
-### 2.7 Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
@@ -456,7 +460,7 @@ The implementation of this feature is supported by `UnassignTaskCommand` and `Un
     - Pros: No need to obtain the index of the task and person, which could reduce the steps required for the user.
     - Cons: Task titles and person names might be long, making it more difficult for users to input the command. There could also be issues with names that are not unique.
 
-### 3.9 List all tasks
+### 3.9 List all Tasks
 Syntax: `listt`  
 Purpose: Displays all tasks stored in OfficeConnect.
 
@@ -466,7 +470,7 @@ Below is a sequence diagram that illustrates how a user can see all tasks stored
 
 ![ListTaskSequenceDiagram](images/ListTaskSequenceDiagram.png)
 
-### 3.10 Filter persons according to tag
+### 3.10 Filter Persons according to tag
 Syntax: `filterp tag/TAG`  
 Purpose: Allows users to find all persons with the specified tag
 
@@ -999,14 +1003,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 ### 6.4 Non-Functional Requirements
 
-1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
-2. Maintainability: The system shall be designed to allow for easy maintenance and updates, with clear documentation
-   and modular architecture.
+1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions. 
+2. Performance: The system should be able to hold up to 1000 users without a noticeable sluggishness in performance.
 3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux). For MacOS users specifically, **OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)** is required.
-4. Interoperability: The system shall be able to exchange data with other systems using standard formats and protocols.
-5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
+4. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
    than 2 hours for a new user.
-6. Accessibility: The system shall be operable even without an internet connection
+5. Accessibility: The system shall be operable even without an internet connection.
 
 ### 6.5 Glossary
 
@@ -1295,10 +1297,8 @@ In this section, we will detail some of the hurdles that we faced through the it
 Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some of the big design changes were:
 * Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.
 * Modifications for the help guide. Instead of just a URL link to the online UserGuide, we felt there was a need for a more "immediate" and quick reference guide that should be available, especially in settings where internet connection may not be available (which is also one of our NFRs.) By including a more detailed but sufficiently concise guide, we aim to ease the user into OfficeConnect more smoothly.
-* next pt
-* next pt
+* Integrating OfficeConnectModel with Model. We wanted to change AB3 to include tasks, but we did not want to modify the old Model component as it was specialised for persons. Hence, we decided to create a new OfficeConnectModel that helps us store tasks. Initially, they existed as two separate entities, which was easier to implement, but was of considerably poorer design as we realised that Model could be contained in OfficeConnectModel. Hence, we decided to include Model into OfficeConenctModel. However, this required changing a lot of test cases, which was very tedious and time consuming.
+* (Can talk more about UI for this point)
 ### 8.2 Technical Challenges
-* First pt
-   - sub point
-   - sub point
+* As AB3 is quite a big project, it was quite difficult for us to understand the structure and details behind the code initially. To overcome this, we decided to start project meetings on our project early to allow us more time to understand AB3's implementation, and also help each other clarify our doubts regarding AB3. This understanding helped reduce the learning curve when trying to implement OfficeConnect's new features, as some of the features had a similar concept and understanding how it was implemented in AB3 significantly lowered the difficulty level when implementing those methods.
 * Next pt

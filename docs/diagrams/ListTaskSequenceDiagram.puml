@@ -5,7 +5,6 @@ Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
 Participant ":OfficeConnectModel" as model MODEL_COLOR
-Participant ":RepositoryModelManager" as repo REPO_COLOR
 
 user -[USER_COLOR]> ui : "listt"
 activate ui UI_COLOR
@@ -16,19 +15,23 @@ activate logic LOGIC_COLOR
 logic -[LOGIC_COLOR]> model : updateTaskModelManagerFilteredItemList(PREDICATE_SHOW_ALL)
 activate model MODEL_COLOR
 
-model [MODEL_COLOR]-> repo: updatedFilteredItemList((PREDICATE_SHOW_ALL)
-
 model -[MODEL_COLOR]-> logic
 deactivate model
 
 logic --[LOGIC_COLOR]> ui
 deactivate logic
 
-ui-[UI_COLOR]> repo : getFilteredItemList()
-activate repo REPO_COLOR
+ui-[UI_COLOR]> logic : getOfficeConnectModel()
+activate logic LOGIC_COLOR
 
-repo--[#purple]> ui
-deactivate repo REPO_COLOR
+logic-[LOGIC_COLOR]> model : getTaskModelManagerFilteredItemList()
+activate model MODEL_COLOR
+
+model--[MODEL_COLOR]> logic:
+deactivate model
+
+logic--[LOGIC_COLOR]> ui:
+deactivate logic
 
 ui--[UI_COLOR]> user : display tasks to users
 deactivate ui
