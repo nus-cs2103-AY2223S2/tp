@@ -1675,7 +1675,7 @@ focusing our efforts on refactoring and enhancing existing features to suit our 
 to create a functional product at the end of our sprints, with a lower likelihood of encountering bugs.
 
 ### Challenges
-There are several main challenges that we faced during the development phase.
+There are several challenges that we faced during the development phase.
 1. **Understanding and Refactoring the Code Base**
 
    * [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) is a project with around 6k lines of
