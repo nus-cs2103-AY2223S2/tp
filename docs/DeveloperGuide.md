@@ -24,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W16-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -71,13 +71,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The user interface (UI) of the system is composed of a `MainWindow` that is made up of various parts such as `CommandBox`, `ResultDisplay`, `PersonListPanel`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities among classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -88,7 +88,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -119,22 +119,22 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` (which are contained in a `UniquePersonList` object) and `Event` (which are contained in a `UniqueEventList` object) objects .
+- stores the address book data i.e., all `Person` (which are contained in a `UniquePersonList` object) and `Event` (which are contained in a `UniqueEventList` object) objects.
 - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores the currently 'selected' `Event` objects, similar to how the currently 'selected' `Person` objects are stored and updated. It is stored as an unmodifiable `ObservableList<Event>`.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -142,7 +142,7 @@ The `Storage` component,
 
 - can save both address book data and user preference data in json format, and read them back into corresponding objects.
 - inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -208,7 +208,7 @@ The following sequence diagram shows how the sort events operation works.
 
 ![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
 
-Sorting a list of events involves calling `Model#sortEventList(SortEventType)`, which will sort the event list based on the `SortEventType` object passed into the method.
+Sorting a list of events involves calling `Model#sortEventList(SortEventKey)`, which will sort the event list based on the `SortEventKey` object passed into the method.
 
 This sorting feature can only be executed when there are more than 1 event listed on the UI.
 It will only sort the event list based on the last String entered in the user input.
@@ -333,6 +333,31 @@ Use case ends.
 
 <br>
 
+**Use case: Sorts current list of events**
+
+**MSS**
+
+1.  User requests to sort all events that are currently displayed based on a given sorting key.
+2.  PlanEase shows the list of sorted events based on the user's choice of sorting key.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The given character to represent the sorting key is invalid (i.e. not a, b, c, or d).
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1b. The current list of events displayed has less than 2 events.
+
+    - 1b1. PlanEase shows an error message.
+
+  Use case ends.
+
+<br>
+
 **Use case: Delete an event**
 
 **MSS**
@@ -396,9 +421,9 @@ Use case ends.
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Gregorian Calendar**: Solar calendar with 12 months of 28-31 days each, used in most parts of the world
-- **ASCII Characters**: A 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters
+- **Mainstream OS**: Windows, Linux, Unix, macOS.
+- **Gregorian Calendar**: Solar calendar with 12 months of 28-31 days each, used in most parts of the world.
+- **ASCII Characters**: A 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters.
 
 ---
 
@@ -415,35 +440,83 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file.
+   
+      1. Expected: Shows the GUI with a set of sample contacts and events. The window size may not be optimum.
 
 2. Shutting down
 
    1. Enter `exit` in the app's input box or click on the cancel button on the top right of the app.
+
+### Adding an event
+
+1. No prerequisite.
+
+2. Test case: `addevent ev/CEO's 50th Birthday Carnival from/17-07-2023 12:00 to/23-07-2023 22:00`<br>
+   Expected: 1 event with the name `CEO's 50th Birthday Carnival` is added. Details of the added event shown in the status message.
+
+3. Test case: `addevent ev/Wedding Dinner from/17-07-2023 12:00 to/13-07-2023 22:00`<br>
+   Expected: No event is added. Error details shown in the status message.
+
+4. Other incorrect addevent commands to try: `addevent`, `...`<br>
+   Expected: Similar to previous.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   
+   2. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Sorting event list
+
+1. Prerequisite: Current list of events has at least 2 events.
+
+2. Test case: `sortevent a`<br>
+   Expected: Current list of events is sorted according to their names in ascending order. Sorting details is shown in the status message.
+
+3. Test case: `sortevent`<br>
+   Expected: Event list is not sorted. Error details shown in the status message.
+
+4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
+   Expected: Similar to previous.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Missing `/data/addressbook.json` file before running the app
+   
+      1. Expected: App will create this file after the user enters a valid input.
 
-1. _{ more test cases …​ }_
+2. Dealing with corrupted data files
+
+   1. Corrupted `/data/addressbook.json` file (file is not in valid json format) before running the app
+   
+      1. Expected: App will not list any contacts and events.
+         It will clear all the contacts and events in the `/data/addressbook.json` file when a valid input is entered by the user.
+         Format of `/data/addressbook.json` file becomes valid.
+
+## **Appendix:** Planned Enhancements
+
+### Person name will not be case-sensitive
+
+Currently, the name of a Person is not case-sensitive.
+Anyone with the same name but in different casing are considered different Persons.
+For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of Contacts:
+* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
+* `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
+
+For future enhancement, Person names with the same sequence of characters but different casing will be considered the same Person.

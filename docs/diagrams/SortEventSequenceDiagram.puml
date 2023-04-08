@@ -31,7 +31,7 @@ SortEventCommandParser -> SortEventCommandParser : getSortType(["c"])
 create SortEventCommand
 SortEventCommandParser -> SortEventCommand
 activate SortEventCommand
-SortEventCommand --> SortEventCommandParser
+SortEventCommand --> SortEventCommandParser : s
 deactivate SortEventCommand
 
 SortEventCommandParser --> AddressBookParser : s
@@ -44,12 +44,7 @@ deactivate AddressBookParser
 LogicManager -> SortEventCommand : execute(model)
 activate SortEventCommand
 
-SortEventCommand -> Model : getFilteredEventList()
-activate Model
-Model --> SortEventCommand : sortedEvents
-deactivate Model
-
-SortEventCommand -> Model : sortEventList(SortEventType.SORT_BY_START_TIME)
+SortEventCommand -> Model : sortEventList(SortEventKey.SORT_BY_START_TIME)
 activate Model
 Model --> SortEventCommand
 deactivate Model
