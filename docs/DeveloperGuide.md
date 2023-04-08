@@ -540,12 +540,6 @@ _{More to be added}_
 
    Use case ends.
 
-**Extensions**
-
-- 1a. The list of departments is empty.
-
-  use case ends
-
 **Use case: Finding a department using a keyword**
 
 1. User requests to show the list of departments containing specified keywords
