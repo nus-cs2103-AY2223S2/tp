@@ -71,19 +71,28 @@ Example
 2. Wrote test cases for  `DeleteCommand` and `DeleteCommandParser`
 - Rewrote test cases to test the new format for a  `DeleteCommand`
 - Checked positive cases where both name and phone number was provided
-- Checked negative cases where either the name or phone fields were missing
+- Checked negative cases where either the name or phone fields were missing and whether the applicant is tracked in HMHero.
 
-3. Wrote test case for `AddCommand`
+3. Edit test cases for `AddCommand`
 - Rewrote test cases to check if the model rejects a duplicate Applicant.
 - Make adjustments to test cases to support the updating of the model to the orignal list after
 each `AddCommand`.
+
+4. Wrote test cases for `InterviewCommand`
+- Check if the output of the command tallies with the expected behaviour.
+
+5. Wrote test cases for `SummaryCommand`
+- Check if summary statistics are calculated correctly
+- Checked if the correct statistics are output to the user when the ApplicantList is both filled and empty.
+
 
 - **Documentation**:
 
   - User Guide
     - Added documentation for the feature `add`.
     - Added documentation on the Quick Start section.
-    - 
+    - Added restrictions to the Placeholders for Commands.
+
   - Developer Guide
     - Added non-functional requirements for the project.
     - Added documentation for the design concept for HMHero.

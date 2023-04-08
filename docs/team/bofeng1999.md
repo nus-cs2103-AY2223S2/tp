@@ -115,18 +115,25 @@ Here are the list of all applicants:
 
 - Enhanced the `EditCommand` and `AdvanceCommand` to check that `applicateDateTime` <= `interviewDateTime`.
 
+- Implemented `NoteContainsKeywordsPredicateTest` and `PhoneContainsKeywordsPredicateTest`.
+
 - **Documentation**:
 
-  - Wrote the Commands Section for UserGuide.
+  - Wrote the whole Commands Section for UserGuide.
   
-  - Wrote the Feature Implementation Section for Developer Guide
+  - Wrote the Trying your first command section for UserGuide
+
+  - Wrote the Commands Summary Table for UserGuide
+  
+  - Wrote the Feature Implementation Section for Developer Guide.
 
 - **Community**:
 
-  - to be added soon
+  - Reviewed most PRs and give effective comments.
+  
+  - Helped Dun Liang in debugging NullPointerException.
 
 - **Tools**:
 
   - to be added soon
 
-- _{you can add/remove categories in the list above}_
