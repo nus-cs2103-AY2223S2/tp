@@ -57,14 +57,17 @@ public class TemporaryMemoryTest {
         DengueHotspotTracker fifth = fourth.generateDeepCopy();
         fifth.setPerson(TypicalPersons.CARL, TypicalPersons.FIONA);
 
+        DengueHotspotTracker sixth = fifth.generateDeepCopy();
+        sixth.removePerson(TypicalPersons.BOB);
+
         for (DengueHotspotTracker file
-                : new DengueHotspotTracker[] {first, second, third, fourth, fifth}) {
+                : new DengueHotspotTracker[] {first, second, third, fourth, fifth, sixth}) {
             this.memory.saveNewLatest(file);
         }
         this.memory.undo();
         this.memory.undo();
         this.memory.undo();
-        assertEquals(this.memory.loadCurrent(), second);
+        assertEquals(this.memory.loadCurrent(), third);
     }
 
     // Random test cases

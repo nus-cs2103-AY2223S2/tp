@@ -111,9 +111,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `DengueHotspotTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `DengueHotspotTrackerParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `DengueHotspotTrackerParser` class will do one of the following:
+  * create an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) that the `DengueHotspotTrackerParser` returns back as a `Command` object.
+  * create an `XYZCommand`.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
+* Similarly, all `XYZCommand` classes inherit from the `Command` abstract class and are executable.
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/model/Model.java)
 
@@ -147,7 +149,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.dengue.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,7 +157,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
 #### Implementation
 
@@ -216,7 +218,7 @@ The following sequence diagram shows how the undo operation works:
 The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
 
 
-Step 7. The user then decides to execute the command `list`. Commands that do not modify the Dengue Hotspot Tracker, such as `list`, will usually not call `Model#saveChanges()`, `Model#undo()` or `Model#redo()`. Thus, the `TemporaryMemory` remains unchanged.
+Step 7. The user then decides to execute the command `list`. Commands that do not modify the Dengue Hotspot Tracker, such as `list`, will usually not call `Model#saveChanges()`. Thus `Model#undo()` or `Model#redo()` will ignore this command. Thus, the `TemporaryMemory` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -238,13 +240,13 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Can be very messy to implement.
 
 
-### \[Proposed\] Data archiving
+### Data import and export
 
-_{Explain here how the data archiving feature will be implemented}_
+DengueHotspotTracker data is stored in a csv file format.
 
-### \[Proposed\] Prefix find Feature
+### Prefix find Feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed Prefix find feature mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
 `FindCommandParser#parse()`, `ArgumentTokenizer#Tokenize()`, `ArgumentMultimap#getValue()`, and `FindCommand#execute()`

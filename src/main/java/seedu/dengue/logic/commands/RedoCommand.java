@@ -26,6 +26,9 @@ public class RedoCommand extends UndoRedoCommand {
     public RedoCommand(int numberOfRedos) {
         this.numberOfRedos = numberOfRedos;
     }
+    public RedoCommand() {
+        this(1);
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -35,6 +38,23 @@ public class RedoCommand extends UndoRedoCommand {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, counts));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof RedoCommand)) {
+            return false;
+        }
+
+        // state check
+        RedoCommand redo = (RedoCommand) other;
+        return this.numberOfRedos == redo.numberOfRedos;
     }
 
 }
