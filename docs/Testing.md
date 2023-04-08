@@ -19,7 +19,18 @@ There are two ways to run tests.
 * **Method 2: Using Gradle**
   * Open a console and run the command `gradlew clean test` (Mac/Linux: `./gradlew clean test`)
 
-<div markdown="span" class="alert alert-secondary">:link: **Link**: Read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
+<div markdown="span" class="alert alert-secondary">
+
+While there are libraries such as **[TestFX](http://testfx.github.io/TestFX/)** that can be used to run end-to-end tests for JavaFX GUIs and mitigate the need for User Acceptance
+Testing (UAT), as of now it has poor support for Ubuntu and thus cannot run in a Continuous Integration (CI) environment. We aim to add these tests in
+the future to automate UAT.
+
+</div>
+
+<div markdown="span" class="alert alert-secondary">
+
+:link: **Link**: Read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
