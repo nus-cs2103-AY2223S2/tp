@@ -281,6 +281,15 @@ Taking into consideration the fact that users may make a typo, the time cost of 
     * Harder to implement as we have to keep track of the valid indexes.
     * If command unintentionally deletes wrong user, it'll costs the user more time to correct the mistake + retype their correct delete command.
 
+**Aspect: Handling duplicate indexes in delete _(`delete 1 1`)_**
+
+* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're duplicate indexes.
+  * Pros/Cons:
+    * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 1**
+* **Alternative 2:** Delete all unique `Student` entries out of the given indexes.
+  * Pros/Cons:
+    * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 2**
+
 [↑ Back to top](#table-of-contents)
 
 ### Edit Feature
