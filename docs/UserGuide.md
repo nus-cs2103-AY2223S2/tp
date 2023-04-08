@@ -17,10 +17,10 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## 1.1. How to use the User Guide
 
-* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#quick-start) section.
-* To **understand the terms** we use in PowerCards, you can visit the [Key Terms](#key-terms) section.
-* To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#features) section.
-* Having **issues**? Check out the [FAQ](#faq) section and see if you can find your solutions there!
+* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#2-quick-start) section.
+* To **understand the terms** we use in PowerCards, you can visit the [Key Terms](#12-key-terms) section.
+* To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#3-features) section.
+* Having **issues**? Check out the [FAQ](#4-faq) section and see if you can find your solutions there!
 
 **:bulb: Tip:**<br>
 * There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
@@ -73,7 +73,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 
 5. Type any command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -191,7 +191,7 @@ Format: `showDecks`
 ### 3.3.6. Selecting a Deck : `selectDeck`
 
 Once a deck has been created, you can access the list of cards inside it with this command. 
-Refer to the [Main Mode - After Selecting a Deck](#main-mode-after-selecting-a-deck) section to find out what commands you can run with a deck selected!
+Refer to the [Main Mode - After Selecting a Deck](#34-main-mode---after-selecting-a-deck) section to find out what commands you can run with a deck selected!
 
 <div markdown="block" class="alert alert-info">
 
@@ -331,7 +331,7 @@ Format: `showCards`
 ### 3.4.6. Unselecting a Deck : `unselectDeck`
 
 If you want to make deck-related changes, you must first unselect the current deck you are in.
-Refer to the [Main Mode - Before Selecting a Deck](#Main-Mode---Before-Selecting-a-Deck) section to find out what commands you can run without a deck selected!
+Refer to the [Main Mode - Before Selecting a Deck](#33-main-mode---before-selecting-a-deck) section to find out what commands you can run without a deck selected!
 
 This command allows you to unselect the currently selected deck.
 
