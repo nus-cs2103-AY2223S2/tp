@@ -33,12 +33,12 @@ public class EditPolicyCommand extends Command {
     public static final String COMMAND_WORD = "editPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the policy from the client identified by the index number used in the display list and"
-            + " the policy identified by the index number used in the displayed policy list associated to the client.\n"
+            + ": Edits the policy identified by the index number used in the displayed policy list "
+            + "from the client identified by the index number used in the display client list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_POLICY_INDEX + "POLICY INDEX "
-            + "[" + PREFIX_POLICY_NAME + "POLICY NAME] "
-            + "[" + PREFIX_POLICY_START_DATE + "START DATE] "
+            + PREFIX_POLICY_INDEX + "POLICY_INDEX "
+            + "[" + PREFIX_POLICY_NAME + "POLICY_NAME] "
+            + "[" + PREFIX_POLICY_START_DATE + "START_DATE] "
             + "[" + PREFIX_POLICY_PREMIUM + "PREMIUM] "
             + "[" + PREFIX_POLICY_FREQUENCY + "FREQUENCY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -113,8 +113,8 @@ public class EditPolicyCommand extends Command {
 
     private String generateSuccessMessage(Client client, Policy policy) {
         return String.format(
-                MESSAGE_EDIT_POLICY_SUCCESS, policy.toString()) + " from: "
-                + client.getName().toString();
+                MESSAGE_EDIT_POLICY_SUCCESS, policy) + " from Client: "
+                + client.getName();
     }
 
     @Override

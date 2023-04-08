@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.List;
@@ -19,12 +20,13 @@ import seedu.address.model.client.policy.Policy;
  */
 public class DeletePolicyCommand extends Command {
     public static final String COMMAND_WORD = "deletePolicy";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the policy from the client identified by the index number used in the displayed list and"
-            + " the policy identified by the index number used in the displayed policy list"
-            + " associated to the client.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1" + " pi/1";
+            + ": Deletes the policy identified by the index number used in the displayed policy list "
+            + "from the client identified by the index number used in the displayed client list.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_POLICY_INDEX + "INDEX " + "\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_POLICY_INDEX + "1 ";
     public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Deleted Policy: %1$s";
 
     public final Index clientIndex;
@@ -72,8 +74,8 @@ public class DeletePolicyCommand extends Command {
 
     private String generateSuccessMessage(Client client, Policy policy) {
         return String.format(
-                MESSAGE_DELETE_POLICY_SUCCESS, policy.toString()) + " from: "
-                + client.getName().toString();
+                MESSAGE_DELETE_POLICY_SUCCESS, policy.getPolicyName() + " from Client: "
+                + client.getName());
     }
 
     @Override
