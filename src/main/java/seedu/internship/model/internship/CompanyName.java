@@ -13,7 +13,7 @@ public class CompanyName {
             "Company names should not be blank, and should be at most 50 characters";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the company name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^.{1,50}$";

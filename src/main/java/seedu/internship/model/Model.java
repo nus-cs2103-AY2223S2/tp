@@ -52,17 +52,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' InternBuddy file path.
      */
     Path getInternBuddyFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' InternBuddy book file path.
      */
     void setInternBuddyFilePath(Path InternBuddyFilePath);
 
     /**
-     * Replaces address book data with the data in {@code internbuddy}.
+     * Replaces InternBuddy data with the data in {@code internbuddy}.
      */
     void setInternBuddy(ReadOnlyInternBuddy internBuddy);
 
@@ -96,7 +96,7 @@ public interface Model {
      * Replaces the given internship {@code target} with {@code editedInternship}.
      * {@code target} must exist in InternBuddy.
      * The internship identity of {@code editedInternship} must not be the same as another existing internship in
-     * the address book.
+     * InternBuddy.
      *
      * @param target The given internship to be replaced.
      * @param editedInternship The internship to replace the original one.

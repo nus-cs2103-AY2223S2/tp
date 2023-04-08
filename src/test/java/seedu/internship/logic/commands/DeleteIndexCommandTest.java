@@ -74,7 +74,7 @@ public class DeleteIndexCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         Index outOfBoundIndex = INDEX_SECOND_INTERNSHIP;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of InternBuddy list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getInternBuddy().getInternshipList().size());
 
         List<Index> indexList = new ArrayList<>(Arrays.asList(outOfBoundIndex));
