@@ -733,6 +733,10 @@ The following is a description of the code execution flow:
 
 - This implementation allows for adherence to basic Object Oriented Programming principles
 
+**Possible further implementation**
+
+- add a prompt to check with user whether they really want to clear everything since the command is irreversible
+
 ## Documentation, logging, testing, configuration, dev-ops
 
 - [Documentation guide](Documentation.md)
@@ -1209,152 +1213,365 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Mark/Unmark a video**
 
-**Preconditions**: User has added a module and a lecture and a video
+**Preconditions**: User has added a module, a lecture and a video
 
 **MSS**
 
-1. User requests to mark/unmark a video as watched.
-2. User specifies the module code, lecture index number and video index number to mark/unmark.
-3. Video shows a marked/unmarked indicator.
+1. User wants to mark/unmark a video
+2. User specifies the module code, lecture name and video name to mark/unmark the video as watched/unwatched.
+3. LeTracker marks/unmarks the video as watched/unwatched
 
    Use case ends.
 
 **Extensions**
 
-- 2a. Module code does not exist.
+- 2a. Invalid module code that does not follow module code format is supplied.
 
   - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. Lecture index does not exist.
+- 2b. Invalid lecture name that does not follow lecture name format is supplied.
 
   - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. Video index does not exist.
+- 2c. Invalid video name that does not follow video name format is supplied.
 
-  - 2b1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Lecture of lecture name that is supposed to contain the video of video name does not exist in module of module code.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. Video name does not exist in lecture of lecture name in module of module code.
+
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 3a. Video to mark is already marked as watched.
 
-  3a1. LeTracker shows an error message.
+  - 3a1. LeTracker shows an error message.
 
-  Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 3b. Video to unmark is already unmarked.
 
-  3b1. LeTracker shows an error message.
+  - 3b1. LeTracker shows an error message.
 
-  Use case resumes at step 1.
+    Use case resumes at step 1.
+
+**Use case: Mark/Unmark multiple videos**
+
+**Preconditions**: User has added a module, a lecture and a few videos
+
+**MSS**
+
+1. User wants to mark/unmark a few videos under the same module lecture as watched/unwatched.
+2. User specifies the module code, lecture name and multiple video names to mark/unmark as watched/unwatched.
+3. LeTracker marks/unmarks the videos as watched/unwatched.
+
+  Use case ends
+
+**Extensions**
+
+- 2a. Invalid module code that does not follow module code format is supplied.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Invalid lecture name that does not follow lecture name format is supplied.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one of video names supplied does not follow video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The video names contain duplicates.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. Lecture of lecture name that is supposed to contain the videos of the multiple video name does not exist in module of module code.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2g. At least one of the videos of video names do not exist in lecture of lecture name in module of module code.
+
+  - 2g1. LeTracker shows an error message.
+
+- 3a. At least one of the videos to mark is already marked as watched.
+
+  - 3a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Delete a Module**
 
+**Preconditions**: User has added a module
+
 **MSS**
 
-1. User requests to list modules
-2. Le Tracker shows a list of modules
-3. User requests to delete a specific module in the list
-4. Le Tracker deletes the module
+1. User wants to delete a module
+2. User requests to delete the specific module by specifying the module code
+3. LeTracker deletes the module
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There are no modules.
+- 2a. The given module code does not follow the module code format.
 
-  Use case ends.
+  - 2a1. LeTracker shows an error message.
 
-- 4a. The given module code is invalid. (does not exist or does not follow the module code format)
+    Use case resumes at step 1.
 
-  4a1. Le Tracker shows an error message.
+  2b. Module of module code does not exist in LeTracker.
 
-  Use case resumes at step 1.
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Modules**
+
+**Preconditions**: User has added a few modules
+
+**MSS**
+
+1. User wants to delete multiple modules
+2. User requests to delete specific modules by specifying their respective module codes
+3. LeTracker deletes the specified modules
+
+**Extensions**
+
+- 2a. At least one of module codes supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Module codes supplied contains duplicates.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one Module of module codes do not exist in LeTracker.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Delete a Lecture**
 
+**Preconditions**: User has added a module and a lecture
+
 **MSS**
 
-1. User requests to list lectures of a specific module
-2. Le Tracker shows a list of lectures of the specified module
-3. User requests to delete a specific lecture in the list, while citing the correct *module code*
-4. Le Tracker deletes the lecture
+1. User wants to delete a lecture
+2. User requests to delete a specific lecture by specifying a module code and lecture name
+3. LeTracker deletes the lecture
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There is no lecture in the specified module.
+- 2a. The supplied module code does not follow the module code format.
 
-  Use case ends.
-
-- 2b. There is no such module.
-
-  - 2b1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 3a. The given index is invalid.
+- 2b. The supplied lecture name does not follow the lecture name format.
 
-  - 3a1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3b. The given module code is invalid.
+- 2c. The Module of module code that is supposed to contain the lecture of lecture name does not exist.
 
-  - 3b1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-**Use case: Delete a Lecture Video**
+- 2d. The lecture of lecture name does not exist in module of module code.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Lectures**
+
+**Preconditions**: User has added a module and a few lectures
 
 **MSS**
 
-1. User requests to list lecture videos of a specific lecture of a specific module
-2. Le Tracker shows a list of lecture videos of such specifications
-3. User requests to delete a specific video in the list, while citing the correct *module code* and \_lecture id
-4. Le Tracker deletes the lecture video
+1. User wants to delete multiple lectures under the same module
+2. User specifies multiple lecture names to be deleted and a module code
+3. LeTracker deletes the specified lectures of lecture names from the specified module of module code.
+
+**Extensions**
+
+- 2a. The module code specified does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. At least one of the lecture names supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. Lecture names supplied contains duplicates.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case ends.
+
+- 2d. The Module of module code does not exist in LeTracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. At least one Lecture of the supplied lecture names does not exist in the Module of module code.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete a Video**
+
+**Preconditions**: User has added a module, a lecture and a video
+
+**MSS**
+
+1. User wants to delete a specific video in a lecture of a module
+2. User requests to delete a specific video by citing its video name, lecture name of the lecture that contains it, and the module code of the module that contains the lecture.
+3. Le Tracker deletes the video from the lecture of the module
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There is no video in the specified module lecture.
+- 2a. Module code supplied does not follow the module code format.
 
-  Use case ends.
-
-- 2b. There is no such lecture in the module.
-
-  - 2b1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. There is no such module.
+- 2b. Lecture name supplied does not follow the lecture name format.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 3a. The given index of the video is invalid.
+- 2c. Video name supplied does not follow the video name format.
 
-  - 3a1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3b. The given index of the lecture is invalid.
+- 2d. There is no such module of module code in LeTracker.
 
-  - 3b1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3c. The given index of the module is invalid.
+- 2e. There is no such lecture in the module.
 
-  - 3c1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
+
+- 2f. There is no such video in the lecture.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Videos**
+
+**Precondition**: User has added a module, a lecture and a few videos
+
+**MSS**
+
+1. User wants to delete multiple videos under the same lecture of the same module
+2. User requests to delte the specific videos by supplying their video names, the lecture name of the lecture containing them and the module code of the module containing the lecture.
+3. LeTracker deletes the specified videos from the lecture of the module.
+
+**Extensions**
+
+- 2a. Module code supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Lecture name supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one of the video names supplied does not follow the video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The video names supplied contains duplicates.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. There is no such module of module code in LeTracker.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. There is no such lecture in the module.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2g. At least one of the videos do not exist in the lecture.
+
+  - 2g1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Tag a module**
 
@@ -1805,6 +2022,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
+
+**Use Case: Clear all Modules**
+**MSS**
+1. User requests to clear all modules
+2. Le Tracker clears all modules
 
 ### Non-Functional Requirements
 
