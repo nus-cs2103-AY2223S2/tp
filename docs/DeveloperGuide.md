@@ -611,7 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-**Use case: UC4 - find an employee with eid**
+**Use case: UC4 - Find an employee with eid**
 
 **MSS:**
 
@@ -646,7 +646,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC6 - list all employees**
+**Use case: UC6 - List all employees**
 
 **MSS:**
 
