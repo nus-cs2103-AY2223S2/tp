@@ -129,11 +129,11 @@ butter s/Serve and enjoy.`
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
+* :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
 
-:bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
+* :bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
 
-:bulb: Tip: When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
+* :bulb: Tip: When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
 
 * Although optional, we do however suggest adding in the other fields if possible for your own future reference.
 
@@ -182,7 +182,7 @@ Format:
 
 * Depending on the size of the window, the user may add multiple columns to display more recipes.
 
-:bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
+* :bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 
 * In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe.
 
@@ -214,7 +214,7 @@ Format:
  
 * You can remove the optional fields (all fields except for name) by simply typing the prefix without specifying any details after it (i.e. typing `i/` removes all ingredients)
  
-:bulb: Important tip: Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
+* :bulb: Important tip: Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
  
 * Note that the tags specified in the fields above still apply for ingredients, like `-n`.
  
@@ -304,8 +304,7 @@ Example(s) of usage:
 
 * `sub` searches across your stored recipes and within a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
 
-
-  :bulb: Tip: Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
+* :bulb: Tip: Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
 
 * The search is case-insensitive, i.e. `sub salt` will return all stored substitutions for `Salt` and `salt` across recipes.
 
