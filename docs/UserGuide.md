@@ -53,6 +53,8 @@ You can check what version of Java you have, from [here](https://www.java.com/en
 
 1. Refer to the [Features](#features) below for details of each command.
 
+[🠕 Back To Top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting to know LoyaltyLift
@@ -100,6 +102,10 @@ The feedback will assist you in correcting the command as much as possible.
 
 
 Now that you are familiar with the layout of LoyaltyLift, you are ready to jump right into using the application! 
+
+[🠕 Back To Top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Add your first customer and order
 
@@ -160,6 +166,10 @@ Hence, you will notice that the order list is now empty, and our application is 
     listo
 
 ![result after deleting lyndon edwards](images/addingFirstCustomerOrderClearResult.png)
+
+[🠕 Back To Top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Following your order to completion
 
@@ -295,6 +305,10 @@ if you wish to keep the current cumulative points, use the `addpoints` command i
 
 You should now be able to reward any of your customers with our point system!
 
+[🠕 Back To Top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Extra remarks
 
 While these tutorials covers a simplified situation of adding a customer and order,
@@ -306,6 +320,7 @@ Here are some recommended features to explore after this tutorial.
 * Assigning a customer as an individual or enterprise with [`addc`](#adding-a-customer--addc) or [`editc`](#editing-a-customer--editc)
 * Set or adding rewards points for the customer with [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or [`addpoints`](#adding-points-for-a-customer--removing-points-from-a-customer--addpoints)
 
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -654,6 +669,10 @@ appendnotec CINDEX nt/NOTE
 
 </div>
 
+[🠕 Back To Top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 [//]: # (@@author Dawson)
 
 ### Rewards
@@ -723,9 +742,13 @@ Addition will also result in an addition of cumulative points, while subtraction
   Adds 100 reward points to the 2nd customer.
 
 * `findc Betsy` followed by `addpoints 1 pt/-300`<br>
-  Seducts 300 reward points from the 1st customer in the results of the `findc` command.
+  Deducts 300 reward points from the 1st customer in the results of the `findc` command.
 
 </div>
+
+[🠕 Back To Top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 [//]: # (@@author jednghk)
 
@@ -1061,6 +1084,10 @@ appendnoteo OINDEX nt/NOTE
 
 </div>
 
+[🠕 Back To Top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 [//]: # (@@author)
 
 ### Miscellaneous
@@ -1109,19 +1136,31 @@ All data are saved as a JSON file `[JAR file location]/data/loyaltylift.json`. A
 If your changes to the data file makes its format invalid, LoyaltyLift will discard all data and start with an empty data file at the next run.
 </div>
 
+[🠕 Back To Top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LoyaltyLift home folder.
+**Q**: My customer's name includes special characters such as 'Jôse'; how can I add this customer into LoyaltyLift? <br />
+**A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name such as `senotec 1 nt/Jôse`.
 
-**Q**: Why are orders deleted or missing after deleting a customer with `deletec`? <br>
-**A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all of his/her orders needs to be cleared. 
-If this is not ideal, we recommend to avoid deleting any customers.
+**Q**: Why are orders deleted or missing after deleting a customer with `deletec`? <br />
+**A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all of his/her orders needs to be cleared. If this is not ideal, we recommend to avoid deleting any customers.
 
-**Q**: Can my orders have a different address than the customer's address? <br>
+**Q**: Can my orders have a different address than the customer's address? <br />
 **A**: Yes! When you create an order using `addo`, you can specify the new address with the parameter `a/`. If this is not specified, the customer's address is used instead for your convenience.
+
+**Q**: How can I store specific requests from my customer's for an order? <br />
+**A**: Using the `setnoteo` command, you can add information such as special customer requests for that particular order! Here is an example  when your customer requests for lesser sugar: `setnoteo 1 nt/less sugar`.
+
+**Q**: Are the reward tiers of my customers based on the cumulated points or the current points they have? <br />
+**A**: Currently, LoyaltyLift determines the tiers of your customers by the **cumulated points**. However, if you feel that a customer no longer deserves the tier, you can use `setpoints` to replace both his current and cumulated points so that it would be below the threshold of the tier!
+
+**Q**: How do I view a customer's order history in LoyaltyLift? <br />
+**A**: The order history of a customer is available when you view the customer's information in the information panel. To do so, you can first use `findc` command to locate the customer, then `viewc` command to display the customer in the information panel. The order history is found under the **History** section.
+
+[🠕 Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1173,3 +1212,5 @@ If this is not ideal, we recommend to avoid deleting any customers.
 | **Clear** | `clear`          |
 |  **Exit** | `exit`           |
 |  **Help** | `help`           |
+
+[🠕 Back To Top](#table-of-contents)
