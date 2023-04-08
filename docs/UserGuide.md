@@ -238,18 +238,22 @@ Note that you will not be able to make any deck-related changes (e.g. `addDeck`,
 
 This commands allow you to add a card to the **selected** deck. 
 
-A card must contain a question, an answer, and an optional difficulty tag. 
+A card must contain a question and an answer. It may contain at most **one** difficulty tag. 
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
--   `QUESTION` field of Card is case-sensitive and Cards with the same `QUESTION` cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`. However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
+- `QUESTION` field of card is **case-sensitive** and cannot be duplicated in the same deck.
+  - For example, if you already have a card with question `What is a loop` in the deck, you cannot create another card in the same deck with question `What is a loop`. 
+  - However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
+- The same `QUESTION` may exist in multiple decks, i.e., a card can belong to multiple decks.  
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-💡 **Tip:**
-- A tag can only be of value Easy, Medium, or Hard (**case-insensitive**).   
-- Each card can have at most one tag.
+💡 **Tip:** <br>
 
-</div> 
+- A tag can only be of value Easy, Medium, or Hard.
+- Tags are **case-insensitive** (`easy` and `EASY` are treated the same).
+
+</div>
 
 Examples:
 * `addCard q\What is chemical symbol for Oxygen? a\O` adds an untagged card with the given question and answer to the deck.
@@ -278,7 +282,7 @@ Worry not, as you can easily edit any existing card with this command!
 Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
 * Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
-* At least **one** of the optional fields must be provided.
+* At least **one** of the optional components must be provided.
 * Existing values of the card will be replaced by the input values.
 * If the same prefix appears multiple times, only the last occurrence of the prefix will be considered. 
 
