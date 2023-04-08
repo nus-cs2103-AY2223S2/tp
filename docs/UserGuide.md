@@ -1,20 +1,18 @@
 ---
 layout: page
-title: HMHero User Guide
+title: User Guide
 ---
-
 ## Table of Contents
 
-
-1. [About HMHero](#1-about-hmhero)
-2. [Features](#2-features)
+* [About HMHero](#1-about-hmhero)
+* [Features](#2-features)
    * [Applicant Management System](#21-applicant-management-system)
    * [Hiring Process Analytics](#22-hiring-process-analytics)
-3. [How to use this User Guide](#3-how-to-use-this-user-guide)
+* [How to use this User Guide](#3-how-to-use-this-user-guide)
    * [Icons and Hyperlinks](#31-icons-and-hyperlinks)
    * [Purpose of User Guide](#32-purpose-of-user-guide)
-4. [Installation](#4-installation)
-5. [Quick Start](#5-quick-start)
+* [Installation](#4-installation)
+* [Quick Start](#5-quick-start)
    * [User Interface](#51-user-interface)
    * [Key Definitions](#52-key-definitions)
      * [Applicant](#521-applicant)
@@ -23,7 +21,7 @@ title: HMHero User Guide
      * [Placeholders](#524-placeholders)
    * [Command Format](#53-command-format)
    * [Trying your First Command](#54-trying-your-first-command)
-6. [Commands](#6-commands)
+* [Commands](#6-commands)
    * [Applicant Commands](#61-applicant-commands)
      * [Create a new applicant `add`](#611-create-a-new-applicant-add)
      * [Search for an applicant `find`](#612-search-for-an-applicant-find)
@@ -38,14 +36,14 @@ title: HMHero User Guide
    * [General Commands](#63-general-commands)
      * [Receive help during usage `help`](#631-receive-help-during-usage-help)
      * [Exit HMHero `exit`](#632-exit-hmhero-exit)
-7. [Command summary](#7-command-summary)
+* [Command summary](#7-command-summary)
    * [Applicant Commands](#71-applicant-commands)
    * [Statistics Commands](#72-statistics-commands)
    * [General Commands](#73-general-commands)
-8. [Troubleshooting](#8-troubleshooting)
-9. [FAQ](#9-faq)
-10. [Acknowledgements](#10-acknowledgements)
-11. [Glossary](#11-glossary)
+* [Troubleshooting](#8-troubleshooting)
+* [FAQ](#9-faq)
+* [Acknowledgements](#10-acknowledgements)
+* [Glossary](#11-glossary)
 
 ---
 
@@ -286,14 +284,14 @@ These placeholders follow immediately after a [Flag](#523-flags).
 Please refer to the subsequent [Command Format](#53-command-format) 
 section to see how Flags and Placeholders are used together.
 
-| Placeholder  | Corresponding Flag | Description                                                                                  |
-|--------------|--------------------|----------------------------------------------------------------------------------------------|
-| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box. |
-| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                        |
-| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                 |
-| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                        |
-| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
-| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
+| Placeholder  | Corresponding Flag | Description                                                                                                      |
+|--------------|--------------------|------------------------------------------------------------------------------------------------------------------|
+| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                     |
+| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                                            |
+| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                     |
+| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                            |
+| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant. Notes cannot be longer than 45 characters long. |
+| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.                                 |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -335,14 +333,14 @@ parameters supplied by you without ambiguity
 * [Placeholders](#524-placeholders) such as `NAME` and `PHONE` shows you what you should place in each portion of the 
 command
 
-Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE`
+Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE` and `applied/APPLICATION DATE TIME`
 in the format. This indicates that the parameter is **optional**. Each of these placeholders in the parameters 
 have a default value based on the commands. These are documented in the [Commands](#6-commands) section for each command.
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 The <a href="#524-placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
-the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
+the format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
 
 **Let's try an example!**
@@ -463,22 +461,25 @@ What you should expect to find:
 
 #### 6.1.1 Create a new applicant `add`
 
-**Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
+**Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIED DATE TIME] [note/NOTE]`
 
 > Creates a new applicant with the provided information
 
 **Info**
-* All fields apart from `NOTE` are compulsory.
+* All fields apart from `APPLIED DATE TIME` and `NOTE` are compulsory.
 * All `NAME` and `PHONE` must be unique.
 * `NAME` is case-sensitive. (e.g. "Thomas" is different from "thomas").
 * `PHONE` does not require you to include the country code. Only include the numbers.
+* The value of `APPLIED DATE TIME` will be the time you add a new applicant if it is not provided.
 * The value of `NOTE` will be `-` if it is not provided.
 
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
     <li> If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-</li> 
+</li>
+    <li> However, if two or more `NOTE` are added, all the notes will be added to the applicant.
+</li>
 </ul> </div>
 
 
@@ -498,16 +499,15 @@ HMHero does not already contain an applicant with the name "Adam" and phone numb
 
 #### 6.1.2 Search for an applicant `find`
 
-**Format**: `find n/[KEY] p/[KEY] note/[KEY]`
+**Format**: `find n/[NAME] p/[PHONE]`
 
-> Finds all applicants in HMHero using name, phone, note or all
+> Finds all applicants in HMHero using name, phone or both
 
 **Info**
-* The notation `[KEY]...` means that we take in name or phone or note or all.
-  In this case, at least one `KEY` is required.
-* The `n/[KEY]` and `note/[KEY]` are case-insensitive. (e.g. "apples" will match "Apples").
-* The result will be applicants where each of the `KEY` are present in the `NAME` or `PHONE` or `NOTE`.
-  (e.g. "Thomas" will only match "Thomas", "91918153" will only match "91918153", "java" will only match "java")
+* We take in name, phone or both.
+  In this case, at least `NAME` or `PHONE` is required.
+* The `n/[NAME]` is case-insensitive. (e.g. "thomas" will match "Thomas").
+* This means that providing both `NAME` and `PHONE` narrows down the scope.
 
 
 <div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
@@ -524,8 +524,9 @@ executing <code>Thomas Lee</code> will only find <code>Thomas Lee</code>. </li>
     <li> This also means that if the <code>PHONE</code> <code>91918153</code> and <code>9191</code> is in HMHero, 
 executing <code>91918153</code> will only find <code>PHONE</code> <code>91918153</code>. </li>
     <li> If you try to find applicants using both <code>NAME</code> and <code>PHONE</code>,
-it will work the same as finding individually! 
-</li>
+it will work the same as finding individually! </li>
+    <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+    </li>
 </ul> </div>
 
 **Example:**
@@ -602,7 +603,7 @@ After:
     <li>The <code>advance</code> command only advances <code>Applicant</code> which has a name and phone that
 fully matches the specified search.</li> 
     <li> The <code>INTERVIEW DATETIME</code> is required to advance <code>Applicant</code> from <code>status</code>
-<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>.
+<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>. 
 </li> 
     <li> However, <code>INTERVIEW DATETIME</code> is not required to advance <code>Applicant</code> from <code>status
 </code> <code>SHORTLISTED</code> to <code>status</code> <code>ACCEPTED</code>. </li>
@@ -620,6 +621,10 @@ hour.</li>
     </li> 
 </ul> </div>
 
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
+<code>INTERVIEW DATETIME</code> cannot be earlier than current time when you advance an applicant! </div>
+
+
 
 **Example:**
 
@@ -628,7 +633,7 @@ Advancing an applicant with the status `APPLIED` requires an interview date and 
 ![advance_command_applied.png](images%2Fadvance_command_applied.png)
 
 
-Advancing an applicant with the status `SHORLISTED` does not require an interview date and time.
+Advancing an applicant with the status `SHORTLISTED` does not require an interview date and time.
 
 ![advance_command_shortlisted.png](images%2Fadvance_command_shortlisted.png)
 
@@ -698,7 +703,13 @@ Applicants with the status <code>REJECTED</code> cannot be rejected!
 
 **Info**
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
+<div markdown="span" class="alert alert-info" role="alert">:information_source:<strong>Info:</strong>
+<br>
+<ul> However for `NOTE`: </ul>
+    <li>If two or more values for `NOTE` are provided, both parameters will be taken in.</li>
+    <li>If an empty `NOTE` is provided, all notes will be removed.</li>
+</div>
+
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
@@ -715,7 +726,9 @@ For example, "15" would represent 15th hour of the day. </li>
             <li> "MM": Minute of the day, ranging from 0-59. For example, 
 "50" would represent the 50th minute of the hour. </li> 
         </ul>
-    </li> 
+    </li>
+    <li> You are allow to change <code>INTERVIEW DATETIME</code> to a time before the current time using edit command. 
+</li>
 </ul> </div>
 
 
@@ -733,7 +746,7 @@ After editing Bernice Yu's phone and notes:
 ---
 
 
-#### 6.1.9. Remind upcoming interviews `remind`
+#### 6.1.9. Get reminders for upcoming interviews `remind`
 
 **Format:** `remind`
 
@@ -823,15 +836,14 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 | Action                                 | Format                                                                                                                                                               | Example                                                                     |
 |----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                   | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
-| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Thomas p/98764321`                                                  |
+| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Tom p/98763213`                                                     |
 | List all applicants                    | `list`                                                                                                                                                               | `list`                                                                      |
-| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Thomas p/98765432`                                                |
-| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED` | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
-| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Thomas p/98765432`                                                |
+| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Tom p/98763213`                                                   |
+| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide an `INTERVIEW DATETIME` to advance an applicant's status from `APPLIED` to `ACCEPTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
+| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Tom p/98763213`                                                   |
 | View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
-| View summary statistics                | `summary`                                                                                                                                                            | `remind`                                                                    |
 
 [Back to Table of Contents](#table-of-contents)
 
