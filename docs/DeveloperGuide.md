@@ -298,15 +298,24 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 Step 1. The user launches the application for the first time. The `prevListingBookStates` will be initialized with an empty `ArrayList`.
 
-![UndoRedoState0](images/UndoState0.png)
+<p>
+  <img src="images/UndoState0.png" />
+  <em>Initial state of the application.</em>
+</p>
 
 Step 2. The user executes `delete 5` command to delete the 5th listing in the listing book. The `delete` command calls `Model#commitListingBook()`, causing the modified state of the listing book after the `delete 5` command executes to be saved in the `prevListingBookStates`.
 
-![UndoRedoState1](images/UndoState1.png)
+<p>
+  <img src="images/UndoState1.png" />
+  <em>Saving `delete` modified listing book state.</em>
+</p>
 
 Step 3. The user executes `add t/Coder d/code​` to add a new listing. The `add` command also calls `Model#commitListingBook()`, causing another modified listing book state to be saved into the `prevListingBookStates`.
 
-![UndoRedoState2](images/UndoState2.png)
+<p>
+  <img src="images/UndoState2.png" />
+  <em>Saving `add` modified listing book state.</em>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitListingBook()`, so the listing book state will not be saved into the `prevListingBookStates`.
 
@@ -314,7 +323,10 @@ Step 3. The user executes `add t/Coder d/code​` to add a new listing. The `add
 
 Step 4. The user now decides that adding the listing was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which restores the previous listing book state by setting as the `listingBook` and deleting it from `prevListingBookStates`.
 
-![UndoRedoState3](images/UndoState3.png)
+<p>
+  <img src="images/UndoState3.png" />
+  <em>Restoring the previous listing book state.</em>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `prevListingBookStates` is empty, then there are no previous ListingBook states to restore. The `undo` command uses `Model#hasPreviousState()` to check if undo is possible. If not, it will return an error to the user rather
 than attempting to perform the undo.
@@ -323,7 +335,10 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p>
+  <img src="images/UndoSequenceDiagram.png" />
+  <em>Sequence Diagram for the undo command.</em>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -331,11 +346,17 @@ The following sequence diagram shows how the undo operation works:
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the listing book, such as `list`, will usually not call `Model#commitListingBook()` or `Model#undo()`. Thus, the `prevListingBookStates` remains unchanged.
 
-![UndoRedoState4](images/UndoState4.png)
+<p>
+  <img src="images/UndoState4.png" />
+  <em>Commands that do not modify the listing book.</em>
+</p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<p>
+  <img src="images/CommitActivityDiagram.png" />
+  <em>Activity Diagram for the undo command.</em>
+</p>
 
 ### Autocomplete feature
 
