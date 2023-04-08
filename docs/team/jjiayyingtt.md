@@ -15,7 +15,7 @@ Given below are my contributions to the project.
     * Highlights: For future development, can consider adding more information that are relevant to the window.
     * Credits: *The existing help window was used as a reference when implementing this feature.*
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jjiayyingtt&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other]()
 
 * **Project management**:
     * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
