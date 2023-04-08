@@ -960,6 +960,7 @@ Clears all data from Le Tracker.
 > `exit`
 
 Exit the application.
+
 ---
 
 ## Note
