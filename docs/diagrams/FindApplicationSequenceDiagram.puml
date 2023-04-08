@@ -1,83 +1,83 @@
 @startuml
 !include style.puml
 
-box ApplicationLogic LOGIC_COLOR_T1
-participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
-participant ":FindApplicationCommandParser" as FindApplicationCommandParser LOGIC_COLOR
-participant ":FindApplicationCommand" as FindApplicationCommand LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 
 end box
 
-box ApplicationModel MODEL_COLOR_T1
-participant ":ApplicationModel" as ApplicationModel MODEL_COLOR
-participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate MODEL_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ApplicationContainsKeywordsPredicate" as ApplicationContainsKeywordsPredicate MODEL_COLOR
 end box
 
-note left of ApplicationLogicManager #aqua
+note left of LogicManager #aqua
 Let user input be: find <str>
-str = "r/SWE c/Google s/applied"
+str = "r/SWE c/Google s/Applied"
 end note
 
-[-> ApplicationLogicManager : execute("find {str}")
-activate ApplicationLogicManager
+[-> LogicManager : execute("find {str}")
+activate LogicManager
 
-ApplicationLogicManager -> InternshipBookParser : parseCommand("find {str}")
+LogicManager -> InternshipBookParser : parseCommand("find {str}")
 activate InternshipBookParser
 
-create FindApplicationCommandParser
-InternshipBookParser -> FindApplicationCommandParser
-activate FindApplicationCommandParser
+create FindCommandParser
+InternshipBookParser -> FindCommandParser
+activate FindCommandParser
 
-FindApplicationCommandParser --> InternshipBookParser
-deactivate FindApplicationCommandParser
+FindCommandParser --> InternshipBookParser
+deactivate FindCommandParser
 
-InternshipBookParser -> FindApplicationCommandParser : parse("{str}")
-activate FindApplicationCommandParser
+InternshipBookParser -> FindCommandParser : parse("{str}")
+activate FindCommandParser
 
-create FindApplicationCommand
-FindApplicationCommandParser -> FindApplicationCommand : new FindApplicationCommand(app)
-activate FindApplicationCommand
+create FindCommand
+FindCommandParser -> FindCommand : new FindCommand(app)
+activate FindCommand
 
-create NameContainsKeywordsPredicate
-FindApplicationCommand -> NameContainsKeywordsPredicate: new NameContainsKeywordsPredicate(keywords)
-activate NameContainsKeywordsPredicate
+create ApplicationContainsKeywordsPredicate
+FindCommand -> ApplicationContainsKeywordsPredicate: new ApplicationContainsKeywordsPredicate(keywords)
+activate ApplicationContainsKeywordsPredicate
 
-NameContainsKeywordsPredicate --> FindApplicationCommand : predicate
-deactivate NameContainsKeywordsPredicate
+ApplicationContainsKeywordsPredicate --> FindCommand : predicate
+deactivate ApplicationContainsKeywordsPredicate
 
-FindApplicationCommand --> FindApplicationCommandParser : FindCommand
-deactivate FindApplicationCommand
+FindCommand --> FindCommandParser : FindCommand
+deactivate FindCommand
 
-FindApplicationCommandParser --> InternshipBookParser : FindCommand
-deactivate FindApplicationCommandParser
+FindCommandParser --> InternshipBookParser : FindCommand
+deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindApplicationCommandParser -[hidden]-> InternshipBookParser
-destroy FindApplicationCommandParser
+FindCommandParser -[hidden]-> InternshipBookParser
+destroy FindCommandParser
 
-InternshipBookParser --> ApplicationLogicManager : FindCommand
+InternshipBookParser --> LogicManager : FindCommand
 deactivate InternshipBookParser
 
-ApplicationLogicManager -> FindApplicationCommand : execute()
-activate FindApplicationCommand
+LogicManager -> FindCommand : execute()
+activate FindCommand
 
-FindApplicationCommand -> ApplicationModel : FindApplication(app)
-activate ApplicationModel
+FindCommand -> Model : FindApplication(app)
+activate Model
 
-ApplicationModel --> FindApplicationCommand
-deactivate ApplicationModel
+Model --> FindCommand
+deactivate Model
 
 create CommandResult
-FindApplicationCommand -> CommandResult
+FindCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> FindApplicationCommand
+CommandResult --> FindCommand
 deactivate CommandResult
 
-FindApplicationCommand --> ApplicationLogicManager : result
-deactivate FindApplicationCommand
+FindCommand --> LogicManager : result
+deactivate FindCommand
 
-[<--ApplicationLogicManager
-deactivate ApplicationLogicManager
+[<--LogicManager
+deactivate LogicManager
 @enduml

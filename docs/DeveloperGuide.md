@@ -292,13 +292,15 @@ keyword in all fields of the applications.
 #### Usage
 To find an application in sprINT, issue the command in the following format:
 
-`find [r/role] [c/companyName] [s/status]`
+`find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` or `find keyword(s)`
 
 Here's a breakdown of what each prefix means:
 
-- `r/` - finds the role or position of the application.
+- `r/` - finds the role of the application.
 - `c/` - finds the company name of the application.
 - `s/` - finds the status of the application. The only valid values are "interested", "applied", "rejected" and "offered".
+
+When no prefix is specified, the keywords are searched in the role, company name and status fields of applications.
 
 #### Implementation
 The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
@@ -307,15 +309,15 @@ Given below are the steps that illustrate the interaction between the components
 command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
-3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
-4. The `InternshipBookParser` in turn creates an `FindApplicationCommandParser` that is responsible for the specific purpose of
+2. The command is processed as a value of type `String`, and is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `FindCommandParser` that is responsible for the specific purpose of
    parsing user commands for finding applications.
-5. The `InternshipBookParser` then passes the string input to the `FindApplicationCommandParser` via the `parse()` method.
-6. The `FindApplicationCommandParser` then identifies the different prefixes (if any) in the string and creates a list of keywords.
-7. The `parse()` method will return a `FindApplicationCommand(new NameContainsKeywordsPredicate(keywords))`.
-8. This `FindApplicationCommand` is returned back to `ApplicationLogicManager`.
-9. The `ApplicationLogicManager` then calls the `execute()` method of the `FindApplicationCommand`. This initializes the execution
+5. The `InternshipBookParser` then passes the string input to the `FindCommandParser` via the `parse()` method.
+6. The `FindCommandParser` then identifies the different prefixes (if any) in the string and creates a list of keywords.
+7. The `parse()` method will return a `FindCommand(new NameContainsKeywordsPredicate(keywords))`.
+8. This `FindCommand` is returned back to `LogicManager`.
+9. The `LogicManager` then calls the `execute()` method of the `FindCommand`. This initializes the execution
    logic behind finding the associated application instance in the existing `InternshipBook`.
 10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
     the execution of the command.
