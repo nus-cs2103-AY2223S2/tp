@@ -97,13 +97,13 @@ Example:    ![DeleteClientIndex](images/DeleteClientIndex.png)
     * Extraneous details for commands that do not take in any (such as help, list-client, list-project, list-tag, exit, clear-client, clear-project and sort-client) will be ignored.
 
       Example: If the command specifies `help 123`, it will be interpreted as `help`.
-
-    * Extraneous details for commands that take in only one (such as delete-client) will be ignored.
-
+  
+    * Extraneous details for commands that take in only one (such as `delete-client`) will be ignored.
+    
       Example: If the command specifies `delete-client 1 abc` it will be interpreted as `delete-client 1`.
-
-    * Most command words and prefixes have shorter short forms that can be used the same way, so that you can complete the same tasks faster once you’re used to the app. For example, list-project has the short form lp and name/ has the short form n/.
-
+  
+    * Most command words and prefixes have shorter short forms that can be used the same way, so that you can complete the same tasks faster once you’re used to the app. For example, `list-project` has the short form `lp` and `name/` has the short form `n/`.
+    
       Example: Specifying `list-project` is the same as specifying `lp` and specifying `add-project name/John Doe` is the same as specifying `add-project n/John Doe`.
 
 ### **Prefixes**
