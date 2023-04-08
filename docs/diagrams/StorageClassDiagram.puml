@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+top to bottom direction
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
@@ -19,6 +20,8 @@ Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
 Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
+Class JsonAdaptedDoctor
+Class JsonAdaptedPatient
 Class JsonAdaptedTag
 }
 
@@ -37,7 +40,17 @@ Storage -right-|> AddressBookStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonSerializableAddressBook --> "*" JsonAdaptedDoctor
+JsonSerializableAddressBook --> "*" JsonAdaptedPatient
+JsonAdaptedDoctor ..|> JsonAdaptedPerson
+JsonAdaptedDoctor .right.> JsonAdaptedPatient
+JsonAdaptedPatient ..|> JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 
+
+Model <.. JsonSerializableAddressBook
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
 @enduml

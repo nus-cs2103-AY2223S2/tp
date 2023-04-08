@@ -75,7 +75,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -208,17 +208,41 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![Structure of the Storage](images/StorageClassDiagram.png)
 
-The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The `Storage` component does the following:
+* Saves both address book and user preference data in JSON format after every command
+* Read saved data and create the corresponding objects when starting up Docedex.
+
+Notes about the `Storage` component
+* Inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as
+either one (if only the functionality of only one is needed).
+* Depends on some classes in the `Model` component (because the `Storage` component's
+job is to save/load objects that belong to the `Model`)
+
+#### Notes about storing assignments between doctors and patients
+{: .no_toc}
+
+In our `Model`, the `Doctor` contains a list of `Patient` that they are assigned to,
+and the `Patient` contains a list of `Doctor` that they are assigned to.
+
+However, this causes issues when we try to store these objects as is, since the bidirectional
+navigability will result in an endless loop if we try to convert these objects into their JSON
+format. While the creation of an association class to store information about assignment is ideal,
+this will be implemented in the future due to time constraints.
+
+Therefore, as of v1.4, `Storage` only stores the information of assignment within the `JsonAdaptedDoctor`.
+In essence, it stores the doctors together with their assigned patients. So each doctor will have a JSON key
+named `patients` that stores a dictionary of `JsonAdaptedPatient` that represent each assigned patient.
+
+That leaves us with the unassigned patients within the `Model`. These patients are stored separately
+under another JSON key named `unassignedPatients`.
+
+`JsonAdaptedPatient` does not store any information about the doctors that were assigned to each patient.
 
 ### Common classes
 
