@@ -1236,6 +1236,20 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a patient
+
+### Viewing details of a patient
+
+### Listing all patients
+
+### Locating a patient
+
+### Editing a patient
+
+### Deleting a patient
+
+### Clearing all patient data
+
 ### Adding a vaccination
 
 In all cases, vaccination "a" will be added but its state is determined through the display.
