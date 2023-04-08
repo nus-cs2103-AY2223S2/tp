@@ -292,7 +292,73 @@ The `only` command format is as shown below:
 The sequence diagram for the `only` command is as shown below:
 ![OnlyCommandSequenceDiagram](images/OnlyCommandSequenceDiagram.png)
 
+### Sort feature
 
+#### What is it?
+The `sort` command helps users sort recipes in ascending or descending order of price.
+
+
+#### Usage
+The `sort` command format is as shown below:
+
+`find ORDER`
+
+- *ORDER* can only be `asc` or `desc`.
+- `asc` is used for ascending order, and `desc` is used for descending order
+- The price of a recipe is determined by cost of all ingredients required.
+
+#### Implementation
+
+The following activity diagram for the `sort` command shows a high-level logic of how the logic of the sort command 
+is implemented. 
+
+The explanation for the diagram in text form is as follows:
+
+If the order is asc, the recipe is sorted in ascending order of price and the sorted list is displayed 
+by the UI. If the order is desc, the recipe is sorted in descending order of price and the sorted list is displayed
+by the UI. Otherwise, a ParseException containing a message informing users that the sort order can only be `asc` or `desc`
+will be displayed by the UI.
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+### Filter by price feature
+
+#### What is it?
+The `fp` command helps users filter out all recipes that satisfies a certain price condition
+
+#### Usage
+The `fp` command format is as shown below:
+
+`fp COMPARATOR PRICE`
+
+- *COMPARATOR* can only be `<` or `>`.
+- `<` is used to represent "less than"
+- `>` is used to represent "more than"
+- *PRICE* can take on any positive real number
+- The price of a recipe is determined by cost of all ingredients required.
+- 
+#### Implementation
+
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `FindCommandParser`.
+5. The `CookHubParser` then passes the string input to the `FilterPriceCommandParser` via the `parse()` method.
+6. The `FilterPriceCommandParser` then passes the string input to the `FilterPriceCommandParser`
+via the`parseFilterPrice()` method.
+7. The `ParserUtil` then parses out the *COMPARATOR* and *PRICE* and creates a new
+`SatisfyPriceConditionPredicate` by passing the two arguments into its constructor.
+8. The `SatisfyPriceConditionPredicate` is returned to `FilterPriceCommandParser` which creates a new `FilterPriceCommand`
+by passing the predicate into its constructor.
+9. This `FilterPriceCommand` is then returned to `LogicManager`.
+10. The `LogicManager` then calls the `execute()` method of the `FilterPriceCommand`.
+11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
+12. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+13. Finally, the Ui component displays the contents of the `CommandResult` to the User.
+
+The sequence diagram for the `find` command is as shown below:
+![FilterPriceCommandSequenceDiagram](images/FilterPriceCommandSequenceDiagram.png)
 
 
 ### \[Proposed\] Data archiving

@@ -1,0 +1,84 @@
+
+@startuml
+!include style.puml
+'https://plantuml.com/sequence-diagram
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CookHubParser" as CookHubParser LOGIC_COLOR
+participant ":FilterPriceCommandParser" as FilterPriceCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":SatisfyPriceConditionPredicate" as SatisfyPriceConditionPredicate LOGIC_COLOR
+participant ":FilterPriceCommand" as FilterPriceCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("fp < 4.5")
+activate LogicManager
+
+
+LogicManager -> CookHubParser : parseCommand("fp < 4.5")
+activate CookHubParser
+
+
+CookHubParser -> FilterPriceCommandParser : parse("< 4.5")
+activate FilterPriceCommandParser
+
+FilterPriceCommandParser -> ParserUtil : parseFilterPrice("< 4.5")
+activate ParserUtil
+
+create SatisfyPriceConditionPredicate
+ParserUtil -> SatisfyPriceConditionPredicate : new SatisfyPriceConditionPredicate("<", 4.5)
+activate SatisfyPriceConditionPredicate
+
+SatisfyPriceConditionPredicate --> ParserUtil : predicate
+deactivate SatisfyPriceConditionPredicate
+
+ParserUtil --> FilterPriceCommandParser :predicate
+deactivate ParserUtil
+
+create FilterPriceCommand
+FilterPriceCommandParser -> FilterPriceCommand : new FilterPriceCommand(predicate)
+activate FilterPriceCommand
+
+FilterPriceCommand --> FilterPriceCommandParser : filterPriceCommand
+deactivate FilterPriceCommand
+
+
+FilterPriceCommandParser --> CookHubParser : filterPriceCommand
+
+deactivate FilterPriceCommandParser
+
+CookHubParser --> LogicManager : filterPriceCommand
+
+deactivate CookHubParser
+
+LogicManager -> FilterPriceCommand : execute()
+activate FilterPriceCommand
+
+FilterPriceCommand -> Model : updateFilteredRecipeList(predicate)
+activate Model
+
+Model --> FilterPriceCommand
+deactivate Model
+
+create CommandResult
+FilterPriceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterPriceCommand : result
+deactivate CommandResult
+
+FilterPriceCommand --> LogicManager : result
+deactivate FilterPriceCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+
+@enduml
+
