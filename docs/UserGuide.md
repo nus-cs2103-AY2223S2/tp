@@ -408,7 +408,9 @@ Format: `addtask INDEX t/TASK_TITLE`
 Examples:
 
 * `list` followed by `addtask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
-  student list.
+  student list.<br>
+    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    ![Add a task](images/Add%20a%20task.png)
 * `check 2` followed by `addtask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
   being checked.
 
@@ -427,8 +429,13 @@ Format: `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`
 
 Examples:
 
-* `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
-* `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the `find` command.
+* `list` followed by `deletetask 2 3` deletes the third task of the 2nd student in the student list.<br>
+    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    Before command execution:
+    ![Delete a task (before)](images/Delete%20a%20task%20(before).png)
+    After command execution:
+    ![Delete a task (after)](images/Delete%20a%20task%20(after).png)
+* `find Betsy` followed by `deletetask 1 6` deletes the sixth task of the 1st student in the results of the `find` command.
 
 [Back to top](#table-of-contents)
 
@@ -449,7 +456,18 @@ Format:
 
 Examples:
 
-* `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.
+* `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.<br>
+    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    Before command execution:
+    ![Mark a task (before)](images/Mark%20a%20task%20(before).png)
+    After command execution:
+    ![Mark a task complete (after)](images/Mark%20a%20task%20complete%20(after)png)
+* `list` followed by `marklate 2 3` marks the third task of the 2nd student in the student list as late.<br>
+    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    Before command execution:
+    ![Mark a task (before)](images/Mark%20a%20task%20(before).png)
+    After command execution:
+    ![Mark a task late (after)](images/Mark%20a%20task%20late%20(after).png)
 * `find Betsy` followed by `marklate 1 6` marks the sixth task of the 1st student in the results of the
   `find` command as late.
 
