@@ -24,14 +24,6 @@ Class DeliveryJobListPanel
 Class AddressBookDialog
 Class StatusBarFooter
 Class CommandBox
-
-Class ReminderListWindow
-Class TimeTableWindow
-Class StatisticsWindow
-Class UnscheduleWindow
-Class CompleteWindow
-Class AddressBookWindow
-Class AddDeliveryJobWindow
 }
 
 package Model <<Rectangle>> {
