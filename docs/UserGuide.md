@@ -78,7 +78,7 @@ Now it's time to **CONQUER** the semester!
 
 ### User Interface and Getting Started
 
-![GettingAround](images/GettingAround.png)
+<img src="images/GettingAround.png" width="1024" />
 
 1. Type anything in the command box, using the :arrow_up: and :arrow_down: arrows to toggle through the texts you have typed.
 
@@ -97,7 +97,7 @@ Current Working Context Indicator
 
 - Here are some ways you can **navigate** between different contexts.
 
-![NavDiagram](images/NavDiagram.png)
+<img src="images/NavDiagram.png" width="763" />
 
 For more information on **navigation**, please view the [navigation section](#navigation).
 
@@ -215,9 +215,9 @@ To avoid the need to constantly specify the module and lecture parameters for su
 
 Type of contexts
 
-- ![RootContext](images/RootContext.png) **Root context**: The default and top-most context.
-- ![ModContext](images/ModContext.png) **Module context**: Represents a specified module.
-- ![LectureContext](images/LectureContext.png) **Lecture context**: Represents a specified lecture that belongs to a specified module.
+- <img src="images/RootContext.png" height="20" /> **Root context**: The default and top-most context.
+- <img src="images/ModContext.png" height="20" /> **Module context**: Represents a specified module.
+- <img src="images/LectureContext.png" height="20" /> **Lecture context**: Represents a specified lecture that belongs to a specified module.
 
 ### Two Ways of Navigating
 
@@ -228,17 +228,17 @@ You can specify a current working context by **navigating**.
 For example, you can navigate to the **lecture context** - lecture Week 1 of the module CS2040S by
 
 - Navigating **relatively** from the **root context**
-  ![RootContext](images/RootContext.png)
+  <img src="images/RootContext.png" height="20" />
 
   1. Navigate to the module context from the root context.
-  - `nav CS2040S`
+  > `nav CS2040S`
   2. Navigate to the lecture context from the module context.
-  - `nav Week 1`
+  > `nav Week 1`
 
 - Navigating **directly** from any **context**
-  ![RootContext](images/RootContext.png)![ModContext](images/ModContext.png)![LectureContext](images/LectureContext.png)
+  <img src="images/RootContext.png" height="20" /> <img src="images/ModContext.png" height="20" /> <img src="images/LectureContext.png" height="20" />
   1. Navigate directly to the lecture Week 1 of the module CS2040S.
-  - `nav /mod CS2040S /lec Week 1`
+  > `nav /mod CS2040S /lec Week 1`
 
 ### Navigation Injection
 
@@ -246,15 +246,12 @@ After navigating to a lecture or module context, the navigation system will **in
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-  1. ![LectureContext](images/LectureContext.png)
-    Add "Video 2" to the lecture Week 1 of module CS2040S.
-    - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-  2. ![LectureContext](images/LectureContext.png)
-    List the videos of lecture Week 1 of module CS2040S.
-    - `list` -> `list /mod CS2040S /lec Week 1`
-  3. ![LectureContext](images/LectureContext.png)
-    Add "Video 1" to lecture Week 1 of module CS2040S.
-    - `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
+  1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture Week 1 of module CS2040S.
+  > `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+  2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture Week 1 of module CS2040S.
+  > `list` -> `list /mod CS2040S /lec Week 1`
+  3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture Week 1 of module CS2040S.
+  > `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ### Specifying Your Own Context In Commands
 
@@ -264,18 +261,18 @@ The following can be performed at **any** [current working context](#current-wor
 
 - Including the `/r` prefix will perform a command from the **root context**.
   - e.g. List all modules at the root context.
-  - `list /r` -> `list`
+  > `list /r` -> `list`
 - Including the `/mod` prefix will perform a command from the **module context**.
   - e.g. Add lecture "Week 10" for module CS2040S.
-  - `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
+  > `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
 - Including the `/mod` and `/lec` prefixes will perform a command from the **lecture context**.
   - e.g. Add video "BST Challenge" for lecture Week 5 of module CS2040S.
-  - `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
+  > `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
 
 To make it easier to specify that share the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
 
-- e.g. List videos of lecture Week 5 of module CS2040S
-- ![LectureContext](images/LectureContext.png) `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
+- e.g. <img src="images/LectureContext.png" height="20" /> List videos of lecture Week 5 of module CS2040S
+> `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
 - Note that the lecture week is different from the current working context and that only the `/mod` prefix has been injected into the command input.
 
 ---
@@ -333,11 +330,11 @@ Navigates backwards to the a parent context unless already at root context
 
 > `list`
 
-![RootContext](images/RootContext.png)
+<img src="images/RootContext.png" height="20" />
 has to be appended at the end of the command if you are not in the root context.
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures](#list-lectures) or [List Videos](#list-videos)
 
 (refer to [Navigation](#navigation) for more information)
@@ -395,8 +392,8 @@ Examples:
 
 - `add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Add a Lecture
@@ -446,8 +443,8 @@ Examples:
 
 - `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Edit
@@ -473,8 +470,8 @@ Examples:
 
 - `edit CS2040S /code CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Edit a Lecture
@@ -530,8 +527,8 @@ Examples:
 
 - `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Delete Module
@@ -626,8 +623,8 @@ Example:
 
 - `tag EG2310 /tags fun, hard`
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the 
-user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer 
+:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the
+user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer
 to [Navigation](#navigation) for more information)
 
 ### Tag a lecture
@@ -639,7 +636,7 @@ Tag a specified lecture.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be tagged
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is 
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is
     case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the lecture
   - Refer to [Argument Formats](#argument-formats) for the "Tag" format
@@ -648,7 +645,7 @@ Tag a specified lecture.
 
 Examples:
 
-- `tag Lecture_1 /mod CS2040 /tags Yay` 
+- `tag Lecture_1 /mod CS2040 /tags Yay`
 
 :information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the
 user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer
@@ -663,10 +660,10 @@ Tag a specified video.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is 
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is
     case sensitive)
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video to be tagged
-  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is 
+  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is
     case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the video
   - Refer to [Argument Formats](#argument-formats) for the "Tag" format
@@ -694,7 +691,7 @@ Example:
 - `untag EG2310 /tags fun, hard`
 
 :information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the
-user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video) 
+user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video)
 (refer to [Navigation](#navigation) for more information)
 
 ### Untag a lecture
@@ -706,10 +703,10 @@ Remove specified tags from a lecture.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be untagged
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is 
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is
   case sensitive
   - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the lecture
-  - Must belong to existing tags in the lecture specified in `lecture_name` (:exclamation:Tag matching is case 
+  - Must belong to existing tags in the lecture specified in `lecture_name` (:exclamation:Tag matching is case
     sensitive)
   - Repeated tags (if any) will be ignored
 
@@ -730,10 +727,10 @@ Remove specified tags from a video.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching 
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching
     is case sensitive)
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video to be untagged
-  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is 
+  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is
     case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the video
   - Must belong to existing tags in the video specified in `video_name` (:exclamation:Tag matching is case sensitive)
@@ -759,11 +756,11 @@ E.g:
 
 Find all modules whose code starts with any of the keyword(s).
 
-![RootContext](images/RootContext.png)
+images/RootContext.png)
 has to be appended at the end of the command if you are not in the root context.
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
 
 (refer to [Navigation](#navigation) for more information)
@@ -835,20 +832,20 @@ Exit the application.
 
 > `export {file_path} [/overwrite]`
 
-Export all modules progress to a JSON-format file. 
+Export all modules progress to a JSON-format file.
 
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file to export the modules progress to
   - User must have writing permission to `file_path`
   - If `/overwrite` is not specified, the file specified in `file_path` must not exist
-  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR 
+  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR
     file location}/data`)
   - Must not coincide with Le Tracker's current tracker file path. (:exclamation:The default tracker file path is `
     {JAR file location}/data/letracker.json`)
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path` 
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path`
   if it exists
   - If the file specified in `file_path` exists, the flag `/overwrite` will be ignored
 
-Examples: 
+Examples:
 
 - `export hello.json`
 - `export /../../haha.json /overwrite`
@@ -864,16 +861,16 @@ Import modules progress from a JSON-format file to the current tracker.
   - Must be a valid Le Tracker data file
   - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR
     file location}/data`)
-  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must 
+  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must
     exist in the default saving directory at `{JAR file location}/data`)
-- <span style="color:#e46c0a">`/mod {module_1}[, {module_2}[, {module_3}, ...]] `</span> : If specified, Le Tracker will only import progress 
+- <span style="color:#e46c0a">`/mod {module_1}[, {module_2}[, {module_3}, ...]] `</span> : If specified, Le Tracker will only import progress
   of these modules from the file specified in `file_path`
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-  - If `/overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker 
-  - Must belong to existing modules in the file specified in `file_path` (:exclamation:Module matching is case 
+  - If `/overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker
+  - Must belong to existing modules in the file specified in `file_path` (:exclamation:Module matching is case
     sensitive)
   - Repeated modules (if any) will be ignored
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules 
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules
   progress with the progress of the imported modules, provided they have the same code (:exclamation:Module matching is case sensitive)
   - If the imported modules do not exist in the current tracker, the flag `/overwrite` will be ignored
 
@@ -893,7 +890,7 @@ Examples:
   Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 - Editing the data file\
-  Le Tracker data are saved as a JSON file `{JAR file location}/data/letracker.json`. Advanced users are welcome to 
+  Le Tracker data are saved as a JSON file `{JAR file location}/data/letracker.json`. Advanced users are welcome to
   update data directly by editing that data file.
 
 ---

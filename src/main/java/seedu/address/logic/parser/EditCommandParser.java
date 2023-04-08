@@ -47,11 +47,11 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE,
                         PREFIX_TAG, PREFIX_UNWATCH, PREFIX_WATCH, PREFIX_TIMESTAMP);
 
-        if (EditModuleCommandParserUtil.hasAllArguments(argMultimap)) {
+        if (EditModuleCommandParserUtil.isArgumentsForEditingModule(argMultimap)) {
             return EditModuleCommandParserUtil.parse(argMultimap);
-        } else if (EditLectureCommandParserUtil.hasAllArguments(argMultimap)) {
+        } else if (EditLectureCommandParserUtil.isArgumentsForEditingLecture(argMultimap)) {
             return EditLectureCommandParserUtil.parse(argMultimap);
-        } else if (EditVideoCommandParserUtil.hasAllArguments(argMultimap)) {
+        } else if (EditVideoCommandParserUtil.isArgumentsForEditingVideo(argMultimap)) {
             return EditVideoCommandParserUtil.parse(argMultimap);
         } else {
             throw createInvalidCommandFormatException();
@@ -63,19 +63,38 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
+     * Contains utility methods utilised by {@code EditModuleCommandParserUtil}, {@code EditLectureCommandParserUtil},
+     * and {@code EditVideoCommandParserUtil}
+     */
+    private static class EditCommandParserUtil {
+        /**
+         * Extracts a set of updated tags from {@code argMultimap}.
+         *
+         * @param argMultimap A map of the arguments and their values
+         * @return A set of updated tags extracted from {@code argMultimap}.
+         * @throws ParseException Indicates that a tag did not conform to the expected format.
+         */
+        public static Set<Tag> extractUpdatedTags(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
+            return updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
+        }
+    }
+
+    /**
      * Contains utility methods for parsing input arguments and creating a new {@code EditModuleCommand}
      * object from it.
      */
     private static class EditModuleCommandParserUtil {
         /**
-         * Returns true if {@code argMultimap} contains all the arguments needed for creating an
-         * {@code EditModuleCommand} object.
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to edit a module.
          *
          * @param argMultimap A map of the arguments and their values.
-         * @return True if {@code argMultimap} contains all the arguments needed for creating an
-         *         {@code EditModuleCommand} object. Otherwise, false.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to edit a
+         *         module. Otherwise, false.
          */
-        public static boolean hasAllArguments(ArgumentMultimap argMultimap) {
+        public static boolean isArgumentsForEditingModule(ArgumentMultimap argMultimap) {
             requireNonNull(argMultimap);
 
             return !argMultimap.getPreamble().isEmpty()
@@ -113,7 +132,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
             ModuleCode updatedCode = extractUpdatedCode(argMultimap);
             ModuleName updatedName = extractUpdatedName(argMultimap);
-            Set<Tag> updatedTags = extractUpdatedTags(argMultimap);
+            Set<Tag> updatedTags = EditCommandParserUtil.extractUpdatedTags(argMultimap);
 
             EditModuleDescriptor descriptor = new EditModuleDescriptor();
             descriptor.setCode(updatedCode);
@@ -137,13 +156,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             return updatedNameStr == null ? null : ParserUtil.parseModuleName(updatedNameStr);
         }
 
-        private static Set<Tag> extractUpdatedTags(ArgumentMultimap argMultimap) throws ParseException {
-            requireNonNull(argMultimap);
-
-            String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
-            return updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
-        }
-
         private static void validateDescriptorHasEditedField(EditModuleDescriptor descriptor) throws ParseException {
             requireNonNull(descriptor);
 
@@ -159,14 +171,13 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     private static class EditLectureCommandParserUtil {
         /**
-         * Returns true if {@code argMultimap} contains all the arguments needed for creating an
-         * {@code EditLectureCommand} object.
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to edit a lecture.
          *
          * @param argMultimap A map of the arguments and their values.
-         * @return True if {@code argMultimap} contains all the arguments needed for creating an
-         *         {@code EditLectureCommand} object. Otherwise, false.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to edit a
+         *         lecture. Otherwise, false.
          */
-        public static boolean hasAllArguments(ArgumentMultimap argMultimap) {
+        public static boolean isArgumentsForEditingLecture(ArgumentMultimap argMultimap) {
             requireNonNull(argMultimap);
 
             return !argMultimap.getPreamble().isEmpty()
@@ -212,7 +223,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             requireNonNull(argMultimap);
 
             LectureName updatedName = extractUpdatedName(argMultimap);
-            Set<Tag> updatedTags = extractUpdatedTags(argMultimap);
+            Set<Tag> updatedTags = EditCommandParserUtil.extractUpdatedTags(argMultimap);
 
             EditLectureDescriptor descriptor = new EditLectureDescriptor();
             descriptor.setName(updatedName);
@@ -226,13 +237,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
             String updatedNameStr = argMultimap.getValue(PREFIX_NAME).orElse(null);
             return updatedNameStr == null ? null : ParserUtil.parseLectureName(updatedNameStr);
-        }
-
-        private static Set<Tag> extractUpdatedTags(ArgumentMultimap argMultimap) throws ParseException {
-            requireNonNull(argMultimap);
-
-            String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
-            return updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
         }
 
         private static void validateDescriptorHasEditedField(EditLectureDescriptor descriptor) throws ParseException {
@@ -250,14 +254,13 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     private static class EditVideoCommandParserUtil {
         /**
-         * Returns true if {@code argMultimap} contains all the arguments needed for creating an
-         * {@code EditVideoCommand} object.
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to edit a video.
          *
          * @param argMultimap A map of the arguments and their values.
-         * @return True if {@code argMultimap} contains all the arguments needed for creating an
-         *         {@code EditVideoCommand} object. Otherwise, false.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to edit a
+         *         video. Otherwise, false.
          */
-        public static boolean hasAllArguments(ArgumentMultimap argMultimap) {
+        public static boolean isArgumentsForEditingVideo(ArgumentMultimap argMultimap) {
             requireNonNull(argMultimap);
 
             return !argMultimap.getPreamble().isEmpty()
@@ -312,7 +315,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
             VideoName updatedName = extractUpdatedName(argMultimap);
             VideoTimestamp updatedTimestamp = extractUpdatedTimestamp(argMultimap);
-            Set<Tag> updatedTags = extractUpdatedTags(argMultimap);
+            Set<Tag> updatedTags = EditCommandParserUtil.extractUpdatedTags(argMultimap);
             Boolean hasWatchedUpdated = hasWatchUpdated(argMultimap);
 
             EditVideoDescriptor descriptor = new EditVideoDescriptor();
@@ -336,13 +339,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
             String updatedTimestampStr = argMultimap.getValue(PREFIX_TIMESTAMP).orElse(null);
             return updatedTimestampStr == null ? null : ParserUtil.parseVideoTimestamp(updatedTimestampStr);
-        }
-
-        private static Set<Tag> extractUpdatedTags(ArgumentMultimap argMultimap) throws ParseException {
-            requireNonNull(argMultimap);
-
-            String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
-            return updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
         }
 
         // Would ideally be named "extractUpdatedWatchStatus" but that would violate the boolean naming convention
