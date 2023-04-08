@@ -199,19 +199,7 @@ Examples:
 
 ![viewContactDetails](images/view/viewContactDetails.png)
 
-### Exporting selected person's contact details : `export`
-
-Export a person's contact details.
-
-Format: `export <index>`
-
-Examples:
-* `export 1` exports the contact details of the first person in the list
-* `export 1 4` exports the contact details of the first and fourth person in the list
-
-Exported contacts will be stored inside a Json file under the `exports` folder found in the same directory as ModCheck
-
-![viewContactDetails](images/export/exportContacts.png)
+--------------------------------------------------------------------------------------------------------------------
 
 ### 3.4.3 Editing a person : `edit`
 
@@ -324,7 +312,7 @@ Examples:
 * `export 1` exports the contact details of the first person in the list
 * `export 1 4` exports the contact details of the first and fourth person in the list
 
-Exported contacts will be stored inside a text file under the `exports` folder found in the `tp` directory
+Exported contacts will be stored inside a Json file under the `exports` folder found in the same directory as ModCheck
 
 ![viewContactDetails](images/export/exportContacts.png)
 
