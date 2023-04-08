@@ -603,3 +603,9 @@ A large part of the project was spent on refactoring the codebase and ensuring p
 1. The current email field for each opening is not optional. This is not ideal as some openings do not require an email address and users may find it inconvenient to have to enter a dummy email address. An email address might also not be the most appropriate contact information for some openings.
 
 2. We propose to replace the email field with an optional contact field. This field can be used to store any contact information, e.g. phone number, email address, LinkedIn profile link, career portal link. This will allow users to store any contact information they wish to have for each opening.
+
+### **Enhancement 2: Keydates should accept time**
+
+1. The current keydate field that can be added to openings only accept dates in the format of YYYY-MM-DD. This means that users cannot add the time of deadlines to keydates. For example, a user might want to include the time of his interview in the keydate.
+
+2. We propose to include the option for keydates to include a time. The format for a keydate, which used to be "Event@YYYY-MM-DD", will now become "Event@YYYY-MM-DD[hh:mm]" Adding a time to a keydate will not be compulsory, meaning that users can continue to add keydates without a timing.
