@@ -102,6 +102,10 @@ public class Grade implements Comparable<Grade> {
         return value.equals("S");
     }
 
+    public boolean isPass() {
+        return !value.equals("F") || isGradeable();
+    }
+
     @Override
     public String toString() {
         return value;

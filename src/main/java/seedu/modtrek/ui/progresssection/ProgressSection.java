@@ -3,7 +3,7 @@ package seedu.modtrek.ui.progresssection;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.modtrek.model.DegreeProgressionData;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.ui.UiPart;
 
 /**
