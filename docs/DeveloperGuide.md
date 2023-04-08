@@ -683,10 +683,6 @@ _{More to be added}_
 
     Use case resumes at step 1.
 
-- 1b. There are no employees in the given department.
-
-  Use case ends.
-
 **Use case: Listing all departments that an employee is in**
 
 1. User requests to list all the departments that a given employee is in.
