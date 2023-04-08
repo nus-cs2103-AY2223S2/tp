@@ -1,6 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_ORDERS_ONLY;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_FILTER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_SORT;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
@@ -51,7 +52,7 @@ public class ListOrderCommand extends Command {
         model.sortFilteredOrderList(comparator);
         model.updateFilteredOrderList(predicate);
         return new CommandResult(MESSAGE_SUCCESS, false, false,
-                false, true);
+                LIST_ORDERS_ONLY);
     }
 
     @Override
