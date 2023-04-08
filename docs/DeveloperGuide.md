@@ -653,6 +653,7 @@ The following sequence diagram depicts a `tag` command execution for adding a `T
 `Tracker` object.
 
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
+
 ![TagSequenceDiagram](images/TagSequenceDiagramRefParsing.png)
 
 
