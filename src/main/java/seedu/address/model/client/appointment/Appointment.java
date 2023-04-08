@@ -27,19 +27,6 @@ public class Appointment {
         return meetupDate;
     }
 
-    /**
-     * Returns true if both appointment have the same appointment name.
-     * This defines a weaker notion of equality between two appointments.
-     */
-    public boolean isSameAppointment(Appointment otherAppointment) {
-        if (otherAppointment == this) {
-            return true;
-        }
-
-        return otherAppointment != null
-                && otherAppointment.getAppointmentName().equals(getAppointmentName());
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
