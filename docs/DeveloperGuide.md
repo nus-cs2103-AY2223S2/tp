@@ -4,9 +4,10 @@ title: Developer Guide
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Introduction**
 
 {{ site.data.techtrack.about.summary }}
@@ -34,6 +35,11 @@ Third-party software used in this project:
 * [Codecov](https://codecov.io/)
 * [JavaFx](https://openjfx.io/)
 * [JUnit](https://junit.org/)
+
+Documentation referred from:
+
+* https://github.com/kxrt/tp/blob/master/docs/DeveloperGuide.md
+* https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -128,7 +134,8 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -165,7 +172,8 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
+**
+API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -191,7 +199,8 @@ is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -275,7 +284,8 @@ The following sequence diagram shows how the argument parsing for the `edit` com
 
 The `delete` command is used to delete the information of an existing role in TechTrack. The command takes in
 an `INDEX` as argument, which corresponds to the role to be deleted. Note that `delete` command uses the
-`FilteredRoleList` for deletion, we can therefore delete roles by their index after invoking other commands such as sorting and filtering.
+`FilteredRoleList` for deletion, we can therefore delete roles by their index after invoking other commands such as
+sorting and filtering.
 
 The format for the `delete` command can be
 seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#deleting-a-role-edit).
@@ -285,8 +295,10 @@ the `RoleBookParser` to parse the
 input. An instance of the `DeleteCommandParser` to parse the `INDEX` is created through the `parseIndex` static
 method in `ParserUtil`.
 
-The `RoleBookParser` will instantiate the `DeleteCommandParser` object and call the parse method with `INDEX` as arguments.
-The parse method will create and return a new `DeleteCommand`. The `LogicManager` then executes the `DeleteCommand`, which deletes and updates 
+The `RoleBookParser` will instantiate the `DeleteCommandParser` object and call the parse method with `INDEX` as
+arguments.
+The parse method will create and return a new `DeleteCommand`. The `LogicManager` then executes the `DeleteCommand`,
+which deletes and updates
 the `Role` from the `Model` based on the `INDEX`.
 
 The following sequence diagram shows how the `delete` command works:
@@ -355,21 +367,26 @@ Given below is an example usage of how CompanyCommand and its dependencies is be
 1. The user launches TechTrack, and initializes its role book from preexisting data files.
 
 2. The user can choose to use the `Company Command` to filter companies.
-    - The user executes `company {keyword}` command to filter roles with the given company name in the form of `keyword`.
+    - The user executes `company {keyword}` command to filter roles with the given company name in the form of `keyword`
+      .
 
-3. When `company {keyword}` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
-input. This then creates an instance of the `CompanyCommandParser` to parse the keyword. 
+3. When `company {keyword}` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse
+   the
+   input. This then creates an instance of the `CompanyCommandParser` to parse the keyword.
 
-4. Invoking the parse method 
-of `CompanyCommandParser` creates a `CompanyContainsKeywordsPredicate` object that implements the `predicate<Role>` interface.
-`CompanyContainsKeywordsPredicate` is used to check if any of the company field of the rolelist contains the keyword.
-If any of the inputs formats are invalid, a `ParseException` will be thrown.
+4. Invoking the parse method
+   of `CompanyCommandParser` creates a `CompanyContainsKeywordsPredicate` object that implements the `predicate<Role>`
+   interface.
+   `CompanyContainsKeywordsPredicate` is used to check if any of the company field of the rolelist contains the keyword.
+   If any of the inputs formats are invalid, a `ParseException` will be thrown.
 
-4. The `CompanyCommandParser` then creates a `CompanyCommand` which uses `Model` interface's `Model#updateFilteredRoleList()` 
-to filter the roles based on the `predicate`, which in this case is the keyword.
+4. The `CompanyCommandParser` then creates a `CompanyCommand` which uses `Model`
+   interface's `Model#updateFilteredRoleList()`
+   to filter the roles based on the `predicate`, which in this case is the keyword.
 
-5. `LogicManager` executes the returned `CompanyCommand` and updates the filtered role list in `Model`. Subsequently, the `CommandResult` 
-is returned.
+5. `LogicManager` executes the returned `CompanyCommand` and updates the filtered role list in `Model`. Subsequently,
+   the `CommandResult`
+   is returned.
 
 The following sequence diagram shows how the `company` command works:
 
@@ -389,7 +406,8 @@ The following sequence diagram shows how the `company` command works:
 
 #### Limitations:
 
-The `keyword` used to filter the roles in the Company Command must contain at least one non-space character and filtering
+The `keyword` used to filter the roles in the Company Command must contain at least one non-space character and
+filtering
 is not case-sensitive.
 
 E.g.: `company Google` is equivalent to `company google`
@@ -496,10 +514,11 @@ TechTrack's UI components are highlighted below:
 
 ![UI Overlay](images/UICommandImages/UiEnhancement0.png)
 
-The main window comprises three key components: namely the Command Input Box located at the bottom half, 
-the Role List Box on the left half, and the Result Display Box on the right half. The Command Input Box provides users 
-with a text field to input their commands, and it remains unchanged every time it is rendered. The Role List Box displays 
-a list of roles, which may differ in number, but it is rendered using JavaFX's `ListView` component. Thus, executing a 
+The main window comprises three key components: namely the Command Input Box located at the bottom half,
+the Role List Box on the left half, and the Result Display Box on the right half. The Command Input Box provides users
+with a text field to input their commands, and it remains unchanged every time it is rendered. The Role List Box
+displays
+a list of roles, which may differ in number, but it is rendered using JavaFX's `ListView` component. Thus, executing a
 command allows for straightforward updates to these two components.
 
 This is not the case for Result Display Box, as we might potentially need to render different types of displays
@@ -508,13 +527,14 @@ was refactored to support custom displays.
 
 #### What was refactored
 
-The [`ResultDisplay`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/ResultDisplay.java) 
-component was changed from a `TextArea` object to a `VBox` object. Both of these are JavaFX `Node` objects. A method 
-named `place` was created, which takes in a JavaFX `node` object, clears all children nodes in the `ResultDisplay` and 
-places the new `node` in the `VBox`. This allows us to update the `ResultDisplay` to support custom displays based on 
+The [`ResultDisplay`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/ResultDisplay.java)
+component was changed from a `TextArea` object to a `VBox` object. Both of these are JavaFX `Node` objects. A method
+named `place` was created, which takes in a JavaFX `node` object, clears all children nodes in the `ResultDisplay` and
+places the new `node` in the `VBox`. This allows us to update the `ResultDisplay` to support custom displays based on
 the command provided.
 
-As mentioned above in the [View Command Section](#view-command-feature), the `CommandResult` class was also updated to be generic.
+As mentioned above in the [View Command Section](#view-command-feature), the `CommandResult` class was also updated to
+be generic.
 This allows `MainWindow.java` to get different types of output based on the object `T` of `CommandResult`. This diagram
 illustrates how the `MainWindow.java` file determines the type of display rendered:
 
@@ -527,16 +547,17 @@ illustrates how the `MainWindow.java` file determines the type of display render
 | [`StringDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/StringDisplay.java) | Renders a String | All commands except `view` |
 | [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)     | Renders a Role   | Only the `view` command    |
 
-
 #### Possible Future Enhancements
 
-1. The render logic to determine which display to render is written in the `execute` method of `MainWindow.java`. 
-It could be abstracted out to a new class, named `DisplayManager` for instance, which handles which display to place
-under `ResultDisplay`.
-2. The current way of determining which display to render is not very extendible, since we're using the type `T` from `CommandResult`
-to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point 1), 
-using a common interface to implement the required operations through dynamic binding. One possible way to do 
-this is shown below in the form of a class diagram:
+1. The render logic to determine which display to render is written in the `execute` method of `MainWindow.java`.
+   It could be abstracted out to a new class, named `DisplayManager` for instance, which handles which display to place
+   under `ResultDisplay`.
+2. The current way of determining which display to render is not very extendible, since we're using the type `T`
+   from `CommandResult`
+   to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point
+   1),
+   using a common interface to implement the required operations through dynamic binding. One possible way to do
+   this is shown below in the form of a class diagram:
 
 ![Enhanced UI Class Diagram](images/EnhancedUIClassDiagram.png)
 
@@ -755,10 +776,33 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+### Sort all roles by salary
 
-</div>
+Prerequisite: There are roles stored in RoleBook with different salaries.
+
+Format: `salary asc`
+
+Expected Output in the Role List Box : Roles are sorted in ascending order starting from the highest salary.
+
+Expected Output Command Output Box : Salaries sorted in asc.
+
+### Sort all roles by deadline
+
+Similar to the manual testing of [sort all roles by salary section](#Sort all roles by salary).
+
+### View the information of a Role
+
+Prerequisite: There is at least 1 role shown in the Role List Box
+
+`view 1`
+
+Expected Output in the Role List Box : Still showing the same list as before.
+
+Expected Output Command Output Box : Details of first role in Role List Box shown. Displayed information includes the
+name, company, salary, deadline, experience, job description, email, contact and website of the role.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing. </div>
 
 ### Launch and shutdown
 
@@ -891,3 +935,4 @@ Ideas:
 * **Role**: Refers to internships or full-time jobs
 * **Attribute**: Refers to the parameters a role can have
 
+ 
