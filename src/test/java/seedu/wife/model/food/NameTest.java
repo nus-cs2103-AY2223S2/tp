@@ -22,19 +22,19 @@ public class NameTest {
     @Test
     public void isValid() {
         // null name
-        assertThrows(NullPointerException.class, () -> Name.isValid(null));
+        assertThrows(NullPointerException.class, () -> Name.isValidFoodName(null));
 
         // invalid name
-        assertFalse(Name.isValid("")); // empty string
-        assertFalse(Name.isValid(" ")); // spaces only
-        assertFalse(Name.isValid("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValid("Meiji*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidFoodName("")); // empty string
+        assertFalse(Name.isValidFoodName(" ")); // spaces only
+        assertFalse(Name.isValidFoodName("^")); // only non-alphanumeric characters
+        assertFalse(Name.isValidFoodName("Meiji*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(Name.isValid("chocolate milk")); // alphabets only
-        assertTrue(Name.isValid("12345")); // numbers only
-        assertTrue(Name.isValid("m3iji")); // alphanumeric characters
-        assertTrue(Name.isValid("Chocolate Milk")); // with capital letters
-        assertTrue(Name.isValid("There is no restriction on length of food name")); // long names
+        assertTrue(Name.isValidFoodName("chocolate milk")); // alphabets only
+        assertTrue(Name.isValidFoodName("12345")); // numbers only
+        assertTrue(Name.isValidFoodName("m3iji")); // alphanumeric characters
+        assertTrue(Name.isValidFoodName("Chocolate Milk")); // with capital letters
+        assertTrue(Name.isValidFoodName("There is no restriction on length of food name")); // long names
     }
 }

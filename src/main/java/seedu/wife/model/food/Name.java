@@ -20,11 +20,16 @@ public class Name {
      */
     public Name(String foodName) {
         requireNonNull(foodName);
-        checkArgument(isValid(foodName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidFoodName(foodName), MESSAGE_CONSTRAINTS);
         this.foodName = capitalizeString(foodName.toLowerCase());
     }
 
-    public static boolean isValid(String foodName) {
+    /**
+     *
+     * @param foodName
+     * @return
+     */
+    public static boolean isValidFoodName(String foodName) {
         return foodName.matches(VALIDATION_REGEX);
     }
 
