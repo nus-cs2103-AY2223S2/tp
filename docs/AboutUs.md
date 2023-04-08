@@ -43,11 +43,11 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Data Management/Storage
 
-### Pei Wen Qi
+### Pei Wenqi
 
 <img src="images/cedricpei.png" width="200px">
 
 [[github](http://github.com/cedricpei)]
 
 * Role: Developer
-* Responsibilities: GUI + Data Querying
+* Responsibilities: GUI + Undo/redo + View

@@ -29,6 +29,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+
     public FindCommand parse(String args) throws ParseException {
         String[] nrics;
         String[] names;
@@ -42,7 +43,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (moreThanOnePrefixPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_MEDICINE,
                 PREFIX_DOCTOR, PREFIX_TAG)) {
             throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_PREFIX_MESSAGE));
         }
 
         if (isPrefixesPresent(argMultimap, PREFIX_NRIC)

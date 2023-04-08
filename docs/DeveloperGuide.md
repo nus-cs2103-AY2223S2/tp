@@ -21,7 +21,7 @@ title: Developer Guide
     - [Edit patient feature](#edit-patient-feature)
     - [Delete patient feature](#delete-patient-record-by-nric-feature)
     - [Find patients feature](#filter-patient-record-by-attribute)
-    - [Light/Dark theme](#light--dark-theme)
+    - [Light/dark theme](#light--dark-theme)
     - [Adding NRIC as unique identifier](#adding-nric-as-identifier)
     - [Adding health conditions](#adding-health-conditions)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -41,6 +41,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Adapted from [AB3](https://github.com/se-edu/addressbook-level3)
+* Adapted `Theme` from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java)
 
 --------------------------------------------------------------------------------------------------------------------
 

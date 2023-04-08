@@ -26,10 +26,11 @@ The purpose of this user guide document is to provide staff with a clear underst
 - [GUI Information](#gui-information)
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
-  - [Help](#viewing-help--help) `help`
-  - [Undo](#undoing-previous-command-undo) `undo`
-  - [Redo](#redoing-previous-undo-redo) `redo`
+  - [Help](#viewing-help--help): `help`
+  - [Undo](#undoing-previous-command-undo): `undo`
+  - [Redo](#redoing-previous-undo-redo): `redo`
   - [Add patient](#adding-a-patient-record-add): `add`
+  - [View patient particulars](#viewing-a-patient-detailed-particulars-view): `view`
   - [Edit patient](#editing-a-patient-record-edit): `edit`
   - [Delete patient](#deleting-a-patient-record-delete): `delete`
   - [List all patients](#listing-all-patients-list): `list`
@@ -37,12 +38,12 @@ The purpose of this user guide document is to provide staff with a clear underst
   - [Backup patient records](#backing-up-patient-records-backup): `backup`
   - [Load backups](#loading-data-load): `load`
   - [View backups](#viewing-backup-data-viewbackups): `viewbackups`
-  - [Delete backups](#deleting-backup-data-deletebackup): `deletebackup` 
+  - [Delete backups](#deleting-backup-data-deletebackup): `deletebackup`
   - [Clear all data](#clearing-all-data-clear): `clear`
-  - [Light mode](#switching-to-light-mode-light): `light` 
+  - [Light mode](#switching-to-light-mode-light): `light`
   - [Dark mode](#switching-to-dark-mode-dark): `dark`
 - [FAQ](#faq)
-- [Command Summary](#command-summary) 
+- [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -85,6 +86,7 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 | Patient Record Field | Prefix |
 |----------------------|--------|
 | NRIC                 | i/     |
+| Date Of Birth        | dob/   | 
 | Name                 | n/     |  
 | Phone                | p/     |  
 | Gender               | g/     |  
@@ -120,6 +122,11 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** All commands from this point onwards are to be
+executed in lower case. E.g., `find` is valid, but `FIND` or `FinD` is considered as invalid. Keywords following commands do
+not need to be in lower case.
+</div>
+
 ### Viewing help : `help`
 
 Lists out all the commands available, along with a brief description.
@@ -139,8 +146,6 @@ Format: `undo`
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 </div>
-
-Format: `undo`
 
 ![Undo](images/command_result/Undo.png)
 
@@ -182,7 +187,7 @@ Examples:
 
 ![Add](images/command_result/Add.png)
 
-Above is the execution result of the input `add i/S1234567H n/Cedric Pei p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
+Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/04/2002 p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
 
 ### Editing a patient record: `edit`
 
@@ -426,7 +431,7 @@ Above is the execution result of the input `dark`.
 | **Undo**           | `undo`                                                                                                                                                                                                                          |  
 | **Redo**           | `redo`                                                                                                                                                                                                                          |  
 | **Add**            | `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus | 
-| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                              |  
+| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                         |  
 | **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                 |  
 | **List**           | `list`                                                                                                                                                                                                                          |  
 | **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                     |  
@@ -437,5 +442,6 @@ Above is the execution result of the input `dark`.
 | **Clear all**      | `clear`                                                                                                                                                                                                                         |  
 | **Light**          | `light`                                                                                                                                                                                                                         |  
 | **Dark**           | `dark`                                                                                                                                                                                                                          |
+
 
 <sub>[return to table of contents](#table-of-contents)</sub>
