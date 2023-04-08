@@ -363,44 +363,55 @@ testers are expected to do more *exploratory* testing.
 
 #### **Launch and Shutdown**
 
-#### Scenario 1 {: .no_toc}
-
-Context: Initial launch
-
-Action:
-1. Download the jar file and copy into an empty folder.
-2. Double-click the jar file.
-
-Result: Displays the GUI with the window size set to full-screen.
-
-#### Scenario 2 {: .no_toc}
-
-**Context:**  This is the first time you are attempting to shut down the application.  
+#### Scenario 1
+{: .no_toc}
+**Context:** Initial launch
 **Action:**
-1. Right-click on the X button located in the top-right corner of the screen.
-2. Double-click the jar file.  
-**Result:**  The existing data should remain unchanged.
+1. Download the jar file and copy into an empty folder
+2. Double-click the jar file
+**Result:**  Displays the GUI with the window size set to full-screen
+
+#### Scenario 2 
+{: .no_toc}
+**Context:**  This is the first time you are attempting to shut down the application  
+**Action:**
+1. Right-click on the X button located in the top-right corner of the screen
+2. Double-click the jar file  
+**Result:**  The existing data should remain unchanged
 
 #### **Adding an Event**
 
-#### Scenario 1 {: .no_toc}
-**Context:** The event has not yet been added to _Ez-Schedule_.  
-**Action:** Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`.  
-**Result:** The new event has been successfully added to Ez-Schedule.
+#### Scenario 1
+{: .no_toc}
+**Context:** The `Event` has not yet been added to _Ez-Schedule_  
+**Action:** Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`   
+**Result:** The new `Event` has been successfully added to Ez-Schedule
 
-#### Scenario 2 {: .no_toc}
+#### Scenario 2
+{: .no_toc}
+**Context:** An identical `Event` to the one being added, already exists in _Ez-Schedule_  
+**Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`  
+**Result:** Response Box will display the message "This event already exists in the scheduler"
 
-**Context:** An identical event to the one being added, already exists in _Ez-Schedule_.  
-**Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`.  
-**Result:** Response Box will display the message "This event already exists in the scheduler".
-
-#### Scenario 3 {: .no_toc}
-
-**Context:** The selected time slot for the event is already occupied by another event in _Ez-Schedule_.  
-**Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`.  
-**Result:** Response Box will display the message "Another event already exists at the chosen time".
+#### Scenario 3
+{: .no_toc}
+**Context:** The selected time slot for the `Event` is already occupied by another `Event` in _Ez-Schedule_  
+**Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`  
+**Result:** Response Box will display the message "Another event already exists at the chosen time"
 
 #### **Recurring an Event**
+
+#### Scenario 1
+{: .no_toc}
+**Context:** There are no conflicting `Event` scheduled during the recurring time frame specified for the `Event` being added.
+**Action:** Execute the command: `recur 1 d/2023-05-10 every/day`  
+**Result:** The `Event` will be added to _Ez-Schedule_ repeatedly until the specified end date
+
+#### Scenario 2
+{: .no_toc}
+**Context:** Another `Event` already exist during the recurring time frame specified for the `Event` being added  
+**Action:** Execute the command: `recur 1 d/2023-05-10 every/day`  
+**Result:** Response Box will display the message "Unable to recur. 10 May has a clashing event."
 
 #### **Editing an Event**
 
