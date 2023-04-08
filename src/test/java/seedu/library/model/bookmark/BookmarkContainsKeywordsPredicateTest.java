@@ -141,6 +141,14 @@ public class BookmarkContainsKeywordsPredicateTest {
     }
 
     @Test
+    public void test_bookmarkHasNoAuthor_returnsFalse() {
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, null, null, Collections.singletonList("Carol")
+        );
+        assertFalse(predicate.test(new BookmarkBuilder().build()));
+    }
+
+    @Test
     public void test_multipleFieldsContainKeywords_returnsTrue() {
         // Non-matching keyword
         BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
