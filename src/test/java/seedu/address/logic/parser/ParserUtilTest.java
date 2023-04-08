@@ -244,6 +244,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void isLeapYear() throws ParseException {
+        assertEquals(true, ParserUtil.isLeapYear(2000));
+    }
+
+    @Test
     public void parseDate_invalidDay_throwError() {
         assertThrows(ParseException.class, () -> parseDayOfWeek("INVALID"));
     }
