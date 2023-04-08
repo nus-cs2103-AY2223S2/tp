@@ -36,7 +36,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <p align="center">
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png" width="200" />
 
  </p> 
  
@@ -66,7 +66,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <p align="center">
 
-<img src="images/ArchitectureSequenceDiagram-0.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram-0.png" width="400" />
 
  </p> 
  
@@ -93,7 +93,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <p align="center">
 
-<img src="images/UiClassDiagram.png" width="500" />
+<img src="images/UiClassDiagram.png" width="400" />
 
  </p>
  
@@ -114,7 +114,7 @@ Different types of information are rendered by different components, each of whi
 
 <p align="center">
 
-<img src="images/PageClasses.png" width="400" />
+<img src="images/PageClasses.png" width="350" />
 
  </p>
 
@@ -124,7 +124,7 @@ When the user executes a command, `Page` factory method `of` will be called and 
 
 <p align="center">
 
- <img src="images/PageSequenceDiagram.png" width="600" />
+ <img src="images/PageSequenceDiagram.png" width="400" />
 
  </p>
  
