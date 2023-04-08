@@ -1,14 +1,16 @@
 @startuml
 
 start
-:User inputs 'addDeck DECK_NAME' command;
+:User inputs 'addDeck DECK_NAME' command
+while in Main_Unselected Mode;
 
 
 if () then ([Deck name already exists])
     :PowerCard throws
     DuplicateDeckException;
 else ([else])
-    :PowerCard creates new deck;
+    :PowerCard creates and
+    displays new deck;
 
 endif
 
