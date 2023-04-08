@@ -796,6 +796,7 @@ testers are expected to do more *exploratory* testing.
 1. Prerequisities: `view 1` and index 1 of the list exists.
 
 1. Test case: `edit 1 n/Software Developer`
+   
    Expected: Name appearing on the list changes to `Software Developer`, `view 1` shows name to be `Software Developer`.
    
 1. Test case: `edit 0`<br>
