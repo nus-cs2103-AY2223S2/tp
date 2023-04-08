@@ -236,8 +236,6 @@ e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 :man_technologist: **Congratulations! You have completed a task. Now, you can remove it by using this command.**
 
-:man_technologist: **Think twice before using this. This action is not reversible.**
-
 Deletes the specified task from the task  book.
 
 Format: `delete INDEX [INDEX]…​`
@@ -424,8 +422,6 @@ Format: `help`
 
 
 ### 3.12 Clearing all entries : `clear`
-
-:man_technologist: **Think twice before using this. This action is not reversible.**
 
 Clears all entries from the task book.
 
