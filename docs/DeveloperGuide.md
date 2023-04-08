@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [Star icon](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/images/star.png) created by [Pixel perfect - Flaticon](https://www.flaticon.com/free-icons/star).
 
 --------------------------------------------------------------------------------------------------------------------
 ## **NeoBook**
@@ -572,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
