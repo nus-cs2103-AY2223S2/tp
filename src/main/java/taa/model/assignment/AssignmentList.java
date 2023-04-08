@@ -34,36 +34,46 @@ public class AssignmentList {
     }
 
     /**
-     * For all submission strings, check whether they are length 5 and contains the correct input format.
+     * For all submission strings of one student, check whether they are length 5 and contains the correct input
+     * format.
      *
      * @param moreAsngNameTests Function that returns error msg if err occurs or null if no error
      */
-    private static void testStuSubmitStorageStrs(
+    private void testStuSubmitStorageStrs(
             ArrayList<String> subStorageStrs, ParseException.Consumer<String> moreAsngNameTests) throws ParseException {
         final HashSet<String> studentAssignment = new HashSet<>(); // checks if a student has the same assignment.
         for (String sub : subStorageStrs) {
             final String[] words = sub.split(",");
-            if (words.length != 5) {
-                throw new ParseException("Submission storage string does not have 4 commas");
+            if (words.length != 4) {
+                throw new ParseException("Submission storage string \"" + sub + "\" must have 4 fields in order: assign"
+                        + "ment name, is graded, is late, and marks.");
             }
             // Try to parse the input to make sure they are valid.
             final String assignmentName = ParserUtil.parseName(words[0]).toString();
+            final Assignment assignment = assignmentMap.get(assignmentName);
+            if (assignment == null) {
+                throw new ParseException("Unknown assignment \"" + assignmentName + "\" in storage string");
+            }
+
             moreAsngNameTests.accept(assignmentName);
-            if (!ParserUtil.IS_BIN_INT.test(words[1].trim())) {
-                throw new ParseException("Invalid value for isGraded in storage string");
+
+            final String isGradedStr = words[1].trim();
+            if (!ParserUtil.IS_BIN_INT.test(isGradedStr)) {
+                throw new ParseException("Invalid isGraded value \"" + isGradedStr + "\" in storage string");
             }
-            if (!ParserUtil.IS_BIN_INT.test(words[2].trim())) {
-                throw new ParseException("Invalid value for isLate in storage string");
+
+            final String isLateStr = words[2].trim();
+            if (!ParserUtil.IS_BIN_INT.test(isLateStr)) {
+                throw new ParseException("Invalid isLate value \"" + isLateStr + "\" in storage string");
             }
-            final int totalMarks = ParserUtil.parseInt(words[4].trim());
-            if (totalMarks < 0) {
-                throw new ParseException("Invalid value for totalMarks in storage string");
+
+            final String marksStr = words[3].trim();
+            final int marks = ParserUtil.parseInt(marksStr);
+            if (marks < 0 || marks > assignment.getTotalMarks()) {
+                throw new ParseException("Invalid value \"" + marksStr + "\" for marks in storage string");
             }
-            final int marks = ParserUtil.parseInt(words[3].trim());
-            if (marks < 0 || marks > totalMarks) {
-                throw new ParseException("Invalid value for marks in storage string");
-            }
-            // Checks for duplicate assignment for a single student.
+
+            // Checks for duplicate assignment for the student.
             if (!studentAssignment.add(assignmentName)) {
                 throw new ParseException("Duplicate assignment for a student found");
             }
@@ -76,7 +86,7 @@ public class AssignmentList {
      * @param sl
      * @throws ParseException
      */
-    public static void checkValidStorage(Collection<Student> sl) throws ParseException {
+    public void checkValidStorage(Collection<Student> sl) throws ParseException {
         final HashMap<String, Integer> assignmentCount = new HashMap<>();
         final ParseException.Consumer<String> incAsgnCnt = assignmentName ->
                 assignmentCount.put(assignmentName, assignmentCount.getOrDefault(assignmentName, 0) + 1);
@@ -228,6 +238,13 @@ public class AssignmentList {
      * @param sl the student list
      */
     public void initFromStorage(FilteredList<Student> sl, Assignment[] asgnArr) {
+        assignments.clear();
+        assignmentMap.clear();
+
+        // Step 0: populate the assignment list and hashmap from data.
+        Arrays.stream(asgnArr).forEach(addAsgnToRecords);
+
+        // Step 1: check validity of student data
         try {
             checkValidStorage(sl);
         } catch (ParseException e) {
@@ -241,17 +258,10 @@ public class AssignmentList {
             return;
         }
 
-        // Step 0: Make sure everything empty.
-        assignments.clear();
-        assignmentMap.clear();
-
-        // Step 1: populate the assignment list and hashmap with empty assignments.
-        Arrays.stream(asgnArr).forEach(addAsgnToRecords);
-
         // Step 2: populate each assignment with each student submission.
         for (Student stu : sl) {
             for (String submissionString : stu.getSubmissionStorageStrings()) {
-                String assignmentName = submissionString.split(",")[0];
+                String assignmentName = submissionString.split(Submission.STR_SEP)[0];
                 Assignment toAdd = assignmentMap.get(assignmentName);
                 toAdd.addStudentSubmission(stu, submissionString);
             }

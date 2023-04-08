@@ -65,10 +65,6 @@ public class ImportCommand extends CsvCommand {
         throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + Arrays.toString(record.values()) + "\". " + errMsg);
     }
 
-    private static void testValidSubmissions() {
-
-    }
-
     static Student parseFromCsvRec(CSVRecord record) throws CommandException {
         if (!record.isConsistent()) {
             throwEntryFormatError(record, MSG_INCONSISTENT_ENTRY);
