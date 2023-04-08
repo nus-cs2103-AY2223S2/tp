@@ -44,7 +44,7 @@ public class ArchiveCommand extends Command {
 
         Pet petToArchive = lastShownList.get(targetIndex.getZeroBased());
 
-        if(model.hasArchivePet(petToArchive)) {
+        if (model.hasArchivePet(petToArchive)) {
             throw new CommandException(MESSAGE_DUPLICATE_PET);
         }
 

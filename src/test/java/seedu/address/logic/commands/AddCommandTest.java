@@ -154,6 +154,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasArchivePet(Pet p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Pet> getFilteredPetList() {
             throw new AssertionError("This method should not be called.");
         }
