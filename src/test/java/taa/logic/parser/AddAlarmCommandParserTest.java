@@ -1,11 +1,11 @@
 package taa.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import taa.logic.commands.AddAlarmCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.alarm.Alarm;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AddAlarmCommandParserTest {
     private final AddAlarmCommandParser parser = new AddAlarmCommandParser();
