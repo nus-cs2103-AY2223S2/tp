@@ -112,9 +112,6 @@ A bookmark may contain:
 
 For a bookmark in MyLib, everything except for title and genre is optional.
 
-### Parameters
-Parameters refer to the upper-cased words used to represent required user inputs into the commands.
-
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
