@@ -30,8 +30,6 @@ import seedu.address.model.person.student.Test;
 public class StudentGradeCommand extends StudentCommand {
     public static final String COMMAND_WORD = "grade";
 
-    public static final String COMMAND_FORMAT = "student <CLASS_NAME> grade <INDEX> <GRADE>";
-
     public static final String MESSAGE_USAGE = "student CLASS_NAME " + COMMAND_WORD
             + ": Adds a grade to a student in the address book. \n"
             + "Parameters: "

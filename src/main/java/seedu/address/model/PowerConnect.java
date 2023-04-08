@@ -5,9 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.UniqueParentList;
@@ -18,7 +16,7 @@ import seedu.address.model.person.student.UniqueStudentList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class PowerConnect implements ReadOnlyPowerConnect {
 
     private final UniquePersonList persons;
 
@@ -40,12 +38,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         parents = new UniqueParentList();
     }
 
-    public AddressBook() {}
+    public PowerConnect() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a PowerConnect using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public PowerConnect(ReadOnlyPowerConnect toBeCopied) {
         this();
         resetParentData(toBeCopied);
     }
@@ -69,22 +67,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code PowerConnect} with {@code newData}.
      */
-    public void resetParentData(ReadOnlyAddressBook newData) {
+    public void resetParentData(ReadOnlyPowerConnect newData) {
         requireNonNull(newData);
         setParents(newData.getParentList());
     }
 
     //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
 
     /**
      * Returns boolean value true if a student with the same identity as {@code student} exists in PowerConnect.
@@ -98,45 +88,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns boolean value true if a parent with the same identity as {@code parent} exists in PowerConnect.
-     *
-     * @param parent Parent object that needs to be checked for duplication.
-     * @return Boolean value indicating whether the parent already exists in PowerConnect.
-     */
-    public boolean hasParent(Parent parent) {
-        requireNonNull(parent);
-        return parents.contains(parent);
-    }
-
-    /**
-     * Returns boolean value true if Phone is currently not attached to any Parent or if Phone and Name matches an
-     * existing Parent.
-     *
-     * @param phone Phone object to be checked with.
-     * @param parentName Name object to be checked with.
-     * @return Boolean value result from the checks.
-     */
-    public boolean canInitialize(Phone phone, Name parentName) {
-        requireNonNull(phone);
-        requireNonNull(parentName);
-        for (Parent p : parents) {
-            if (phone.equals(p.getPhone())) {
-                return p.getName().equals(parentName);
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to PowerConnect.
+     * The person must not already exist in PowerConnect.
      */
     public void addPerson(Person p) {
         persons.add(p);
     }
 
     /**
-     * Adds a student to addressBook/PowerConnect
+     * Adds a student to PowerConnect
      * @param s of student
      */
     public void addStudent(Student s) {
@@ -145,16 +105,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void addParent(Parent p) {
         parents.add(p);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-        persons.setPerson(target, editedPerson);
     }
 
     public void setStudent(Student target, Student editedStudent) {
@@ -166,38 +116,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedParent);
         parents.setParent(target, editedParent);
     }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
-    }
-
-    /**
-     * Removes a student
-     * @param key
-     */
-    public void removeStudent(Student key) {
-        students.remove(key);
-    }
-
-    public void removeParent(Parent key) {
-        parents.remove(key);
-    }
     //// util methods
 
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-
-        return persons.asUnmodifiableObservableList();
     }
 
     @Override
@@ -212,8 +136,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof PowerConnect // instanceof handles nulls
+                && persons.equals(((PowerConnect) other).persons));
     }
 
     @Override

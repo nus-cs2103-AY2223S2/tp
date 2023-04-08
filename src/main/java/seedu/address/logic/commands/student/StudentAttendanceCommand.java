@@ -25,9 +25,6 @@ import seedu.address.model.person.student.Student;
  */
 public class StudentAttendanceCommand extends StudentCommand {
     public static final String COMMAND_WORD = "attendance";
-
-    public static final String COMMAND_FORMAT = "student <CLASS_NAME> attendance <INDEX> <DATE>";
-
     public static final String MESSAGE_SUCCESS = "Attendance marked for student";
 
     public static final String MESSAGE_USAGE = "student CLASS_NAME " + COMMAND_WORD

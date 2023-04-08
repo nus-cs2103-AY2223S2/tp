@@ -33,7 +33,7 @@ public class Student extends Person {
     private final Image image;
     private final Cca cca;
     private final Class sc;
-    private Set<Attendance> attendanceDates = new HashSet<>();
+    private Set<Attendance> attendanceDates;
     private Set<Homework> homework = new HashSet<>();
     private Set<Test> test = new HashSet<>();
     private Set<Tag> tags;

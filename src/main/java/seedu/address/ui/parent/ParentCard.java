@@ -102,12 +102,6 @@ public class ParentCard extends UiPart<Region> {
         if (other == this) {
             return true;
         }
-
-        // instanceof handles nulls
-        if (!(other instanceof ParentCard)) {
-            return false;
-        }
-
         return false;
     }
 }
