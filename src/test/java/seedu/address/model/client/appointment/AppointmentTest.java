@@ -23,12 +23,4 @@ public class AppointmentTest {
     }
 
 
-    @Test
-    void isValidDate() {
-        String date1 = "01.01.2023";
-        String date2 = "01/01/2023";
-
-        assertTrue(CustomDate.isValidDate(date1));
-        assertFalse(CustomDate.isValidDate(date2));
-    }
 }

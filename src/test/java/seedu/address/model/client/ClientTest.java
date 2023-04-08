@@ -65,6 +65,9 @@ public class ClientTest {
         // null -> returns false
         assertNotEquals(null, ALICE);
 
+        //  different object -> returns false
+        assertNotEquals(new Float(4), ALICE);
+
         // different type -> returns false
         assertNotEquals(5, ALICE);
 
@@ -87,6 +90,7 @@ public class ClientTest {
         editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertNotEquals(ALICE, editedAlice);
 
+        // different appointment -> returns false
     }
 
     @Test

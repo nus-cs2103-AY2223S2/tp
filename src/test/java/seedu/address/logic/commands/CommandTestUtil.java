@@ -41,6 +41,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_APPOINTMENT_NAME = "Discussion";
+    public static final String VALID_APPOINTMENT_DATE = "05.05.2040";
     public static final String VALID_POLICY_NAME_AMY = "Life Insurance";
     public static final String VALID_POLICY_NAME_BOB = "Health Insurance";
     public static final String VALID_POLICY_DATE_AMY = "01.01.2020";
