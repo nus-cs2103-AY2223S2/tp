@@ -9,8 +9,7 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
  */
 public class Title {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "A title must be a word or sentence.";
 
     /*
      * The first character of the address must not be a whitespace,

@@ -21,8 +21,12 @@ public class GroceriesCommand extends Command {
 
     public static final String COMMAND_WORD = "groceries";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Given several recipe indices,"
-            + " displays all the ingredients used within these recipes";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Displays the groceries you need to cook the recipes at the specified recipe number.\n"
+            + "Format: " + COMMAND_WORD + " RECIPE_NUMBER, ...\n"
+            + "RECIPE_NUMBER must be a positive integer starting from 1 and must exist in the recipe book.\n"
+            + "Two or more RECIPE_NUMBER can be provided, but must be separated by a comma `,`.\n"
+            + "Example: " + COMMAND_WORD + " 1, 2";
 
     private final List<Index> indices;
 

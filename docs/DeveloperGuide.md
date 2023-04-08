@@ -2,14 +2,32 @@
 layout: page
 title: Developer Guide
 ---
+<p align="center" width="100%">
+    <img src="images/Logo.svg" width="100%">
+</p>
+CookHub is a desktop application for student chefs who have limited time and resources on their hands, 
+optimized for use via the Command Line Interface (CLI) while still having the benefits of a Graphical User 
+Interface (GUI).
+
+CookHub is a powerful, but lightweight application that allows you to manage your recipes efficiently and 
+effectively. 
+
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+## **Purpose** ##
+This Developer Guide for CookHub v1.4 serves to describe and illustrate the architecture systems used to 
+design and implement the application. It contains an overall view of the system hierarchy, 
+logical views of the system components, a process view of the system’s communication and reasons for 
+specific design implementations. This guide is primarily intended for application developers.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+CookHub is adapted from the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project 
+created by the [SE-EDU initative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -123,8 +141,11 @@ How the parsing works:
 
 The `Model` component,
 
-* Stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* Stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Stores the address book data i.e., all `Recipe` objects (which are contained in a `UniqueRecipeList` 
+  object).
+* Stores the currently 'selected' `Recipe` objects (e.g., results of a search query) as a separate _filtered_ 
+  list which is exposed to outsiders as an unmodifiable `ObservableList<Recipe>` that can be 'observed' e.g. 
+  the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -150,86 +171,129 @@ Classes used by multiple components are in the `seedu.recipebook.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add feature
 
-#### Proposed Implementation
+#### What is it?
+The `add` command is a fundamental feature of CookHub and it allows users to easily manage add recipes to their recipe book.
+By typing this command with the correct command flags, users can add their own recipes, which contain the title, description, steps, ingredients, and tags.
 
-* Currently, we are not doing undo/redo mechanism
-The proposed undo/redo mechanism is facilitated by `VersionedCookHub`. It extends `CookHub` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Usage
+The `add` command format is as shown below:
 
-* `VersionedCookHub#commit()` — Saves the current address book state in its history.
-* `VersionedCookHub#undo()` — Restores the previous address book state from its history.
-* `VersionedCookHub#redo()` — Restores a previously undone address book state from its history.
+`add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
-These operations are exposed in the `Model` interface as `Model#commitCookHub()`, `Model#undoCookHub()` and `Model#redoCookHub()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The meanings of each prefix is as shown below:
+- `t/` signifies the title of the recipe
+- `d/` signifies the description of the recipe
+- `i/` signifies the ingredient of the recipe
+- `s/` signifies the step of the recipe
+- `tag/` signifies the tag of the recipe
 
-Step 1. The user launches the application for the first time. The `VersionedCookHub` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Implementation 
+The add application mechanism is facilitated by the Ui, Logic and Model components of CookHub.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Given below are the steps that illustrate the interaction between the components when it receives a valid add
+application command from the user.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitCookHub()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `AddCommandParser` that is responsible for the specific purpose of
+   parsing user commands for adding applications.
+5. The `CookHubParser` then passes the string input to the `AddCommandParser` via the `parse()` method.
+6. The `AddCommandParser` then identifies the different prefixes in the string and creates respective recipe components.
+7. The recipe components in turn make up a `Recipe` instance.
+8. The newly created `Recipe` instance will then be used to create an `AddCommand`. This command instances
+   is returned back to `LogicManager`.
+9. The `LogicManager` then calls the `execute()` method of the `AddCommand`. 
+10. An instance of `CommandResult` is returned, signifying a successful command execution.
+11. The Ui component displays the contents of the `CommandResult` to the User.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The sequence diagram for the `add` command is as shown below:
+![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCookHub()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCookHub()`, so the address book state will not be saved into the `addressBookStateList`.
+### Find feature
 
-</div>
+#### What is it? 
+The `find` command helps users search recipes according to which component of the recipe they are looking for.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCookHub()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Users can find the application by using the command flags. The command flags specifies signifies which component
+of a recipe you are searching through.
 
-![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CookHub state, then there are no previous CookHub states to restore. The `undo` command uses `Model#canUndoCookHub()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+#### Usage 
+The `find` command format is as shown below:
 
-</div>
+`find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 
-The following sequence diagram shows how the undo operation works:
+The meaning of each prefix is as shown below:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+- the flag `r/` searches through the entire recipe and its components
+- the flag `t/` searches only through the recipe's title
+- the flag `s/` searches only through the recipe's steps
+- the flag `i/` seaches only through the recipe's ingredient names
+- the flag `tag/` searches only through the recipe's tags
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+#### Implementation
 
-</div>
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `FindCommandParser`.
+5. The `CookHubParser` then passes the string input to the `FindCommandParser` via the `parse()` method.
+6. The `FindCommandParser` then identifies the different prefixes in the string and creates a list of keywords.
+7. A subtype of `ContainsKeywordsPredicate` is created depending on the different prefixes.
+8. The `parse()` method will return a `FindCommand()` with the subtype of `ContainsKeywordsPredicate` as the parameter
+9. This `FindCommand` is returned back to `LogicManager`.
+10. The `LogicManager` then calls the `execute()` method of the `FindCommand`.
+11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
+12. `setCurrentPredicate(predicate)` called on `Model`. It updates the predicate that filters through the recipe list.
+13. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+14. The Ui component displays the contents of the `CommandResult` to the User.
 
-The `redo` command does the opposite — it calls `Model#redoCookHub()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The sequence diagram for the `find` command is as shown below:
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone CookHub states to restore. The `redo` command uses `Model#canRedoCookHub()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-</div>
+### Only feature
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitCookHub()`, `Model#undoCookHub()` or `Model#redoCookHub()`. Thus, the `addressBookStateList` remains unchanged.
+#### What is it?
+The `only` feature helps users gather a list of recipes that can be made with only a limited set of ingredients.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Users can type in a list of ingredients. A list of recipes that can be made with those ingredients, or less will be displayed.
 
-Step 6. The user executes `clear`, which calls `Model#commitCookHub()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+#### Usage 
+The `only` command format is as shown below:
 
-![UndoRedoState5](images/UndoRedoState5.png)
+`only INGREDIENT...`
 
-The following activity diagram summarizes what happens when a user executes a new command:
+#### Implementation 
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `OnlyCommandParser` that is responsible for the specific purpose of
+   parsing user commands for finding applications.
+5. The `CookHubParser` then passes the string input to the `OnlyCommandParser` via the `parse()` method.
+6. The `OnlyCommandParser` then identifies the different prefixes in the string and creates a list of keywords.
+7. A subtype of `RecipeIngredientsSubsetPredicate` is created depending on the different prefixes.
+8. The `parse()` method will return a `OnlyCommand()` with `RecipeIngredientsSubsetPredicate` as the parameter
+9. This `OnlyCommand` is returned back to `LogicManager`.
+10. The `LogicManager` then calls the `execute()` method of the `OnlyCommand`. 
+11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
+12. `setCurrentPredicate(predicate)` called on `Model`. It updates the predicate that filters through the recipe list.
+12. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+13. The Ui component displays the contents of the `CommandResult` to the User.
+    
+The sequence diagram for the `only` command is as shown below:
+![OnlyCommandSequenceDiagram](images/OnlyCommandSequenceDiagram.png)
 
-<img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
 
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -259,7 +323,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Student chefs who favour their own collection of personal recipes rather than online recipes
 * Student chefs on a tight budget and schedule
 * Student chefs who have limited ingredients
-* Student chefs who are capable in typing fast
+* Student chefs who are capable of typing fast
 * Prefers typing to mouse interaction
 * Is reasonably comfortable using CLI applications
 
@@ -280,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                               | I want to …​                                                                                           | So that I can…​                                                                                                                                           |
 |----------|---------------------------------------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `* `     | cook                                  | easily view the recipes that I viewed recently                                                         | have easy access to my favourite recipes                                                                                                                  |
-| `* * `   | cook                                  | assign diffulty tags                                                                                   | easily search up easy recipes when I am busy                                                                                                              |
+| `* * `   | cook                                  | assign difficulty tags                                                                                 | easily search up easy recipes when I am busy                                                                                                              |
 | `* `     | cook on a limited budget              | filter recipes by cost                                                                                 | so I can use recipes that costs less                                                                                                                      |
 | `* * `   | student who wants to stay fit         | assign healthy tags                                                                                    | make meals that are healthy                                                                                                                               |
 | `* `     | cook                                  | add designs to my recipe                                                                               | to beautify it                                                                                                                                            |
@@ -295,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | cook                                  | duplicate recipes                                                                                      | easily add variations                                                                                                                                     |
 | `* * `   | consumer of food                      | rate the recipes                                                                                       | know which ones are worth cooking again                                                                                                                   |
 | `* * * ` | cook                                  | edit all parts of the recipe                                                                           | update and improve on the recipe after trying it out                                                                                                      |
-| `* * `   | cook                                  | save my favourtie recipes                                                                              | easily find them again                                                                                                                                    |
+| `* * `   | cook                                  | save my favourite recipes                                                                              | easily find them again                                                                                                                                    |
 | `* * `   | cook                                  | categorize my recipes with labels                                                                      | easily sort and filter them                                                                                                                               |
 | `* * * ` | cook                                  | delete recipes                                                                                         ||
 | `* * `   | cook with limited ingredients         | search up on recipes that contain only the ingredients I have in my fridge                             |                                                                                                                                                           |
@@ -319,59 +383,242 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `CookHub` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a recipe**
+**Use case: UC01 - Add a recipe**
 
 **MSS**
 
-1. User requests to add in a recipe
-2. CookHub continually prompts the user for each recipe instruction
-3. User tells CookHub that he/she has finished typing in all the recipe instructions
-4. CookHub stores the recipe, and shows a success message
-
-   Use case ends.
-
-
-**Use case: Delete a recipe**
-
-**MSS**
-
-1. User requests to list the recipe names
-2. CookHub shows a list of recipe names
-3. User requests to delete a recipe from the list using its index
-4. CookHub deletes the recipe at the specified index
-5. CookHub shows a success message
+1. User requests to add a recipe.
+2. CookHub creates the recipe and displays the updated recipe list.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User did not provide details for mandatory fields (title, description, ingredients, steps).
+  * 1a1. CookHub displays an error message that specifies the fields that are missing.
+    
+    Use case ends.
+
+
+* 1b. Error occurred when parsing arguments for certain fields.
+  * 1b1. CookHub displays an error message that specifies the incorrect input field value entered.
+
+    Use case ends.
+
+
+* 1c. Recipe already exists in CookHub.
+  * 1c1. CookHub displays an error message that informs user of the duplicate recipe.
+
+    Use case ends.
+
+    
+**Use case: UC02 - Delete a recipe**
+
+**MSS**
+
+1. User requests to delete a specific recipe.
+2. CookHub deletes the recipe and displays the updated recipe list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a.  The specified index is invalid
-   *  3a1. CookHub shows an error message
+* 1a.  The specified index is invalid.
+   *  1a1. CookHub shows an error message.
 
-      Use case resumes at step 2
+      Use case ends.
+
+* 1b. User did not provide any index.
+  * 1b1. CookHub shows an error message.
+
+    Use case ends.
+  
+
+**Use case: UC03 - Edit a recipe**
+
+**MSS**
+1. User requests to edit a specific recipe.
+2. CookHub edits the recipe and displays the updated recipe list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 1a.  The specified index is invalid.
+    *  1a1. CookHub shows an error message.
+
+       Use case ends.
+
+* 1b. User did not provide any index.
+    * 1b1. CookHub shows an error message.
+
+      Use case ends.
 
 
-*{More to be added}*
+* 1c. Error occurred when parsing arguments for specified fields to edit.
+    * 1c1. CookHub displays an error message that specifies the incorrect input field value entered.
+
+      Use case ends.
+
+
+
+**Use case: UC04 - Clear recipe list**
+
+**MSS**
+1. User requests to clear all recipes in the recipe book.
+2. CookHub displays a new empty recipe book.
+
+   Use case ends.
+
+
+**Use case: UC05 - Exit CookHub**
+
+**MSS**
+1. User requests to exit the program.
+2. CookHub closes the program window.
+
+    Use case ends.
+
+
+
+**Use case: UC06 - Find recipes by keywords**
+
+**MSS**
+1. User requests to find recipes using the title, description, ingredient, step or tag as the keyword.
+2. CookHub displays the filtered list of recipes.
+
+   Use case ends.
+
+
+**Extensions**
+
+* 1a. User did not provide any keyword.
+    * 1a1. CookHub displays an error message.
+
+      Use case ends.
+
+* 1b. No matching recipes are found and the filtered list is empty.
+    
+    Use case resumes at step 2.
+
+
+**Use case: UC07 - Sort recipes by specified order**
+
+**MSS**
+1. User requests to sort recipe book by ascending or descending order of price.
+2. CookHub displays the sorted list of recipes.
+
+   Use case ends.
+
+
+**Extensions**
+
+* 1a. User did not provide any order.
+    * 1a1. CookHub displays an error message.
+
+      Use case ends.
+
+* 1b. User provided an order that is not recognized by CookHub (not ascending nor descending).
+    * 1b1. CookHub displays an error message.
+
+      Use case ends.
+    
+
+**Use case: UC08 - Filter recipes by price**
+
+**MSS**
+1. User requests to filter recipes that are lower than or higher than specified value.
+2. CookHub displays the filtered list of recipes.
+
+   Use case ends.
+
+
+**Extensions**
+
+* 1a. User did not provide the right command format.
+    * 1a1. CookHub displays an error message.
+
+      Use case ends.
+
+* 1b. No recipes fall in the range of price and the filtered list is empty.
+
+  Use case resumes at step 2.
+
+
+**Use case: UC09 - Favourite a recipe**
+
+**MSS**
+
+1. User requests to add a specific recipe to favourites.
+2. CookHub adds the recipe to favourites and displays the updated recipe list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a.  The specified index is invalid.
+    *  1a1. CookHub shows an error message.
+
+       Use case ends.
+
+* 1b. User did not provide any index.
+    * 1b1. CookHub shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC10 - Get groceries for recipes**
+
+**MSS**
+
+1. User requests to get a list of groceries for the specified recipes.
+2. CookHub displays the ingredients required for the specified recipes.
+
+   Use case ends.
+
+**Extensions**
+
+
+* 1a.  The specified indices are invalid.
+    *  1a1. CookHub shows an error message.
+
+       Use case ends.
+
+* 1b. User did not provide any index.
+    * 1b1. CookHub shows an error message.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
-1. Should work on any mainstream OS as long as there is Java 11 installed
-2. Should be able to support almost 500 to 1000 recipes without noticeable sluggishness in performance for typical usage, depending on the size of each recipe
-3. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse
-4. Should be able to be scalable to store more aspects of a recipe, or more functionalities, such as tagging, sorting, etc
-5. Should not be required to handle pictures of recipes or ingredients
-6. Should be usable to someone who is not familiar with command line interface
+1. Should work on any mainstream OS as long as there is Java 11 installed.
+2. Should be able to support almost 500 to 1000 recipes without noticeable sluggishness in performance for 
+   typical usage, depending on the size of each recipe.
+3. A user with above average typing speed for regular English text should be able to accomplish most of 
+   the tasks faster using commands than using the mouse.
+4. Should be able to be scalable to store more aspects of a recipe, or more functionalities, such as 
+   tagging, sorting, etc.
+5. Should not be required to handle pictures of recipes or ingredients.
+6. Should have a response time of 5 seconds or less.
+7. Should support the use of UK and US English language.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-
+* **GUI**: Graphical User Interface, a visual display that allows interaction with users
+* **API**: Application Programming Interface, a set of functions that allow created applications to access 
+  the features of an operating system, application or other service
+* **Recipe book**: A book of instructions explaining how to prepare various kinds of dishes  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -390,38 +637,142 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with an empty list. The window size may not be 
+      optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+   
+### Adding a recipe
 
-1. _{ more test cases …​ }_
+1. Adding a recipe while all recipes are being shown
+    1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list.
 
-### Deleting a person
+    2. Test case: `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange`<br>
+        Expected: `Orange juice` is added into the list. Success message shown in the result display.
 
-1. Deleting a person while all persons are being shown
+    3. Test case: `add t/Corndogs`<br>
+        Expected: No recipe is added. Error message shown in the result display.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Editing a recipe
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Editing a recipe while all recipes are being shown
+    1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    2. Test case: `edit 1 d/Refreshing`
+        Expected: The description of the first recipe is changed to `Refreshing`. Success message shown in 
+       the result display.
+    
+    3. Test case: `edit 1`
+        Expected: The first recipe remains the same. Error message shown in the result display.
+
+    4. Test case: `edit 0 t/Pizza`
+        Expected: No recipe is edited. Error message shown in the result display.
+
+
+### Deleting a recipe
+
+1. Deleting a recipe while all recipes are being shown
+
+   1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list.
+
+   2. Test case: `delete 1`<br>
+      Expected: First recipe is deleted from the list. Success message is shown in the result display.
+
+   3. Test case: `delete 0`<br>
+      Expected: No recipe is deleted. Error message shown in result display.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+   
 
-1. _{ more test cases …​ }_
+### Clearing all data
+
+1. Prerequisites: List all recipes using the `list` command. Multiple recipes in the list.
+
+2. Test case: `clear`<br>
+    Expected: All data are deleted from CookHub.
+
+3. Incorrect command to try: `clear.`
+   Expected: No data deleted. Error message shown in result display.
+
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Open `data/recipebook.json` in the directory where CookHub is located at.
+   2. On line 2, edit the word `recipes` to `recipe`.
+   3. Relaunch `cookhub.jar`.
+   4. Expected: Data is corrupted and the system will recognise the mismatch. CookHub starts with an empty 
+      data file.
 
-1. _{ more test cases …​ }_
+2. Dealing with missing data files
+
+    1. Delete the file `recipebook.json` in the `data` directory where CookHub is located at.
+    2. Relaunch `cookhub.jar`.
+    3. Expected: Data file is missing. CookHub starts with an empty data file.
+
+
+    
+
+### Appendix: Planned Enhancements
+
+1. Filter by price after find function will only apply the filter on the subset of recipes that have been generated by the "find" function
+
+2. After sorting recipes by price, calling the list function will reset the list to its original order
+
+3. The find command when used on two separate ingredients (eg. egg and tomatoes) will find all the recipes that use either eggs or tomatoes and not recipes that include both egg and tomatoes.
+
+4. Modify edit function such that user cannot change a recipe title to one that already exists in the RecipeBook regardless of casing in the letters of the title.
+
+5. Restrict ingredient name and unit of measurement to only valid inputs and not random string input or numerical input
+
+6. All the command words, flags and arguments such as (sort asc or desc) should be case insensitive.
+
+7. We want to upgrade the find command such that it can also find by substrings and not just by the words. e.g. `find t/egg` should be able to find a recipe with the title 'eggs'
+
+8. Allow ingredients prices to be more general, for example, olive oil that is bought by the bottle. Currently in CookHub, we only allow to the users to input the price by tablespoon, which is hard to calculate.
+
+9. Allow find to work with multiple flags
+
+10. Duplicate ingredients should not be allowed
+
+
+### Appendix: Effort
+Our team has put in substantial effort into developing this application. Knowing who our product is 
+targeted towards and determining how our product will meet their needs and solve their challenges are of 
+utmost importance to us. As such, we have developed an extensive list of 31 [user stories](#user-stories) to 
+generate the features we want to include in our application.
+
+From then on, we had to prepare the codebase. An initial challenge we faced was understanding and refactoring the codebase which was complex and 
+overwhelming. Morphing the model from `Person` to `Recipe` meant that we had to modify 
+various classes and fields (e.g. changing the `email` field of the `Person` object to a `description` field 
+for the `Recipe` object), and as a result, many test cases broke. However, we understood that this was part of the experience of understanding 
+the codebase of AB3. As such, we devoted a significant amount of time fixing the test cases and morphing the code to follow our application's agenda.
+
+We wanted to offer flexibility for users yet maintain a sense of structure and consistency with our 
+application. Thus, a challenge was deciding on the right balance between how rigid we wanted to model the 
+various fields of the `Recipe` object and how flexible user inputs can be. For instance, for the 
+`Ingredient` class, we initially implemented it to simply take in an entire `String` with no check constraints. However, after 
+careful deliberation and reflection on the issues that this imposed (e.g. the issue that users can input 
+whatever they want into this field), we decided to structure the 
+`Ingredient` field to take in a `String` that follows the format: `INGREDIENT_NAME, 
+QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT`. This allowed us 
+to ensure structure in our codebase by doing a check on the various subfields of the `Ingredient` field 
+(e.g. `QUANTITY` must be numeric while `INGREDIENT_NAME` must be a word or sentence).
+
+Wanting to model a `Recipe` object in our application meant that we had to implement an extra panel to
+allow users to view the details of the recipe (i.e `RecipeDetailsPanel`). With little experience in JavaFX,
+this meant that we had to take the time to learn and familiarise ourselves with the library and the various
+tools it offers. We also made extra effort to ensure that the UI was responsive, user-friendly and intuitive.
+
+Overall, despite the limited time frame we had to work with to develop our product, we were able to 
+prioritize the most essential features and functionalities, which allowed us to deliver a quality product. 
+Not only that, we also developed a deeper understanding of the various software engineering methods, as 
+well as honing our skills in areas such as brainstorming, testing and debugging. 

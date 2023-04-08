@@ -9,8 +9,11 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
 public class Ingredient {
     public static final String INGREDIENT_WRONG_ARGUMENTS_MESSAGE_CONSTRAINTS =
             "The wrong arguments have been passed into ingredients!\n"
-                    + "Usage: i/{ingredientName}, {quantity}, {unit_of_measurement}, {price_per_unit}\n"
-                    + "Example: i/sugar, 2.5, tablespoon, 0.010;\n";
+                    + "Format: i/INGREDIENT_NAME, QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT\n"
+                    + "INGREDIENT_NAME and UNIT_OF_MEASUREMENT must be a word or sentence.\n"
+                    + "QUANTITY and PRICE_PER_UNIT must be numeric.\n"
+                    + "Example: i/White wine vinegar, 2, tbsp, 0.10\n";
+
     public static final String INGREDIENT_NAME_MESSAGE_CONSTRAINTS =
             "An ingredient should only contain alphanumeric characters and spaces, and it should not be blank.";
 
@@ -23,6 +26,9 @@ public class Ingredient {
 
     public static final String INGREDIENT_PPU_MESSAGE_CONSTRAINTS =
             "The price per unit of an ingredient should be more than OR equals to 0.";
+
+    public static final String INGREDIENT_FORMAT = "Format: i/INGREDIENT_NAME, QUANTITY, "
+            + "UNIT_OF_MEASUREMENT, PRICE_PER_UNIT";
 
 
 
@@ -105,11 +111,9 @@ public class Ingredient {
      * Returns the ingredient string to be displayed by the UI.
      */
     public String toDisplayString() {
-
         return this.name + " | " + this.quantity + " " + this.unitOfMeasurement
-                + " | " + "$" + this.pricePerUnit + "/" + this.unitOfMeasurement;
+                + " | " + "$" + String.format("%.2f", this.pricePerUnit) + "/" + this.unitOfMeasurement;
     }
-
     @Override
     public String toString() {
         return this.name + "," + this.quantity

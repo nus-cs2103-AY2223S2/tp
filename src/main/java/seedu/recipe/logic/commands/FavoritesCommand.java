@@ -13,8 +13,8 @@ public class FavoritesCommand extends Command {
 
     public static final String COMMAND_WORD = "favorites";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all starred recipes.\n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists out all starred recipes.\n"
+            + "Format: " + COMMAND_WORD;
 
     private final IsStarredPredicate predicate = new IsStarredPredicate();
 

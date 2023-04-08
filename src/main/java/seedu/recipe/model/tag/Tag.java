@@ -9,7 +9,7 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag names should not be empty";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should not be empty.";
 
     public final String tagName;
 

@@ -33,14 +33,15 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the recipe identified "
-            + "by the index number used in the displayed recipe list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the recipe number used in the displayed recipe list.\n"
+            + "Format: " + COMMAND_WORD + " RECIPE_NUMBER "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_INGREDIENT + "INGREDIENT] "
             + "[" + PREFIX_STEP + "STEP] "
-            + "[" + PREFIX_TAG + "TAG]...";
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "RECIPE_NUMBER must be a positive integer starting from 1 and must exist in the recipe book.\n"
+            + "Example: " + COMMAND_WORD + " 1 t/Corndog";
 
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";

@@ -25,8 +25,9 @@ public class StarCommand extends Command {
     public static final String COMMAND_WORD = "star";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the recipe as in favorites identified by the index number used in the displayed recipe list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Adds the recipe at the specified recipe number into your favourites.\n"
+            + "Format: star RECIPE_NUMBER\n"
+            + "RECIPE_NUMBER must be a positive integer starting from 1 and must exist in the recipe book.\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_STAR_RECIPE_SUCCESS = "Starred Recipe: %1$s";

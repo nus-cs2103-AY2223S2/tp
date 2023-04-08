@@ -44,30 +44,30 @@ public class EditCommandParser implements Parser<EditCommand> {
                     EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditRecipeDescriptor editPersonDescriptor = new EditRecipeDescriptor();
+        EditRecipeDescriptor editRecipeDescriptor = new EditRecipeDescriptor();
         if (argMultimap.getValue(PREFIX_STEP).isPresent()) {
-            editPersonDescriptor.setSteps(ParserUtil
+            editRecipeDescriptor.setSteps(ParserUtil
                     .parseSteps(argMultimap.getAllValues(PREFIX_STEP)));
         }
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            editPersonDescriptor.setTitle(ParserUtil
+            editRecipeDescriptor.setTitle(ParserUtil
                     .parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_INGREDIENT).isPresent()) {
-            editPersonDescriptor
+            editRecipeDescriptor
                     .setIngredients(ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT)));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editPersonDescriptor.setDesc(ParserUtil
+            editRecipeDescriptor.setDesc(ParserUtil
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editRecipeDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editRecipeDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editRecipeDescriptor);
     }
 
     /**

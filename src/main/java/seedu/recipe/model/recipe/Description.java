@@ -10,8 +10,7 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "A description should only contain alphanumeric characters, "
-                    + "spaces, and these punctuation marks `,.!?`, and it should not be blank";
+            "A description must be a word or sentence.";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum},.!?][\\p{Alnum} ,.!?]*";
 

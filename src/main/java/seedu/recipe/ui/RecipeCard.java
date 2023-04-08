@@ -45,15 +45,22 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         if (recipe.isStarred()) {
-            title.setText(recipe.getTitle().title + " ★" + " [Price: $" + recipe.getCost() + "]");
+            title.setText(recipe.getTitle().title + " ★ " + System.lineSeparator()
+                    + "[Price: $" + String.format("%.2f", recipe.getCost()) + "]");
         } else {
-            title.setText(recipe.getTitle().title + " [Price: $" + recipe.getCost() + "]");
+            title.setText(recipe.getTitle().title + System.lineSeparator()
+                          + "[Price: $" + String.format("%.2f", recipe.getCost()) + "]");
         }
         desc.setText(recipe.getDesc().description);
 
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tmp = new Label(tag.tagName);
+                    tmp.setWrapText(true);
+                    tmp.setMaxWidth(230);
+                    tags.getChildren().add(tmp);
+                });
 
     }
 

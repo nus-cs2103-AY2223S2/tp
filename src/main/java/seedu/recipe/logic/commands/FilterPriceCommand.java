@@ -15,7 +15,9 @@ public class FilterPriceCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Returns a filtered list of recipes based on price condition set.\n"
-            + "Parameters: {< or >} {real positive number}\n"
+            + "Format: fp COMPARATOR PRICE\n"
+            + "COMPARATOR can only be `<` or `>`.\n"
+            + "PRICE can take on any positive real number.\n"
             + "Example: " + COMMAND_WORD + " < 2.5";
 
     public static final String MESSAGE_STAR_RECIPE_SUCCESS = "Starred Recipe: %1$s";

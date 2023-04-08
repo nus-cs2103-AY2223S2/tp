@@ -1,0 +1,93 @@
+
+@startuml
+!include style.puml
+'https://plantuml.com/sequence-diagram
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CookHubParser" as CookHubParser LOGIC_COLOR
+participant ":OnlyCommandParser" as OnlyCommandParser LOGIC_COLOR
+participant ":OnlyCommand" as OnlyCommand LOGIC_COLOR
+participant ":RecipeIngredientsSubsetPredicate" as RecipeIngredientsSubsetPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("only \neggs onion")
+activate LogicManager
+
+
+LogicManager -> CookHubParser : parseCommand("\nonly eggs onion")
+activate CookHubParser
+
+create OnlyCommandParser
+CookHubParser -> OnlyCommandParser
+activate OnlyCommandParser
+
+OnlyCommandParser -> CookHubParser
+deactivate OnlyCommandParser
+
+CookHubParser -> OnlyCommandParser : parse("eggs onion")
+activate OnlyCommandParser
+
+create OnlyCommand
+OnlyCommandParser -> OnlyCommand
+
+activate OnlyCommand
+
+create RecipeIngredientsSubsetPredicate
+OnlyCommand -> RecipeIngredientsSubsetPredicate
+
+activate RecipeIngredientsSubsetPredicate
+
+RecipeIngredientsSubsetPredicate --> OnlyCommand : predicate
+
+deactivate RecipeIngredientsSubsetPredicate
+
+OnlyCommand --> OnlyCommandParser : onlyCommand
+
+deactivate OnlyCommand
+
+OnlyCommandParser --> CookHubParser : onlyCommand
+
+deactivate OnlyCommandParser
+
+CookHubParser --> LogicManager : onlyCommand
+
+deactivate CookHubParser
+
+LogicManager -> OnlyCommand : execute()
+activate OnlyCommand
+
+OnlyCommand -> Model : updateFilteredRecipeList(predicate)
+activate Model
+
+Model --> OnlyCommand
+deactivate Model
+
+OnlyCommand -> Model : setCurrentPredicate(predicate)
+activate Model
+
+Model --> OnlyCommand
+deactivate Model
+
+create CommandResult
+OnlyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> OnlyCommand : result
+deactivate CommandResult
+
+OnlyCommand --> LogicManager : result
+deactivate OnlyCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+
+
+@enduml
+

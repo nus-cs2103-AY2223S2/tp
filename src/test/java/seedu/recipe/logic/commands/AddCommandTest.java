@@ -176,7 +176,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the recipe being added.
      */
     private class ModelStubAcceptingRecipeAdded extends ModelStub {
         final ArrayList<Recipe> recipesAdded = new ArrayList<>();
