@@ -520,6 +520,10 @@ patient find {<var>PATIENT_NAME</var> | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_A
 
 * <code><var>PATIENT_NAME</var></code> : `<string>`
 
+<div markdown="span" class="alert alert-warning">
+:exclamation: **WARNING**: If both <code><var>PATIENT_NAME</var></code> and <code><var>ATTRIBUTE_FLAG</var></code> are used in the same command, it will ignore <code><var>PATIENT_NAME</var></code> and warn the user that <code><var>PATIENT_NAME</var></code> is not being used.
+</div>
+
 ##### Find by flag
 
 <code><var>ATTRIBUTE_FLAG</var></code> and their corresponding <code><var>FLAG_ARGUMENT</var></code> have similar mappings and requirements to to patient's [`add`](#add---add-a-patient). That is,
