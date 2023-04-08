@@ -7,8 +7,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
 participant ":DeadlineCommandParser" as DeadlineCommandParser LOGIC_COLOR
+participant "o:OrderParser" as OrderParser LOGIC_COLOR
 participant "d:DeadlineCommand" as DeadlineCommand LOGIC_COLOR
-participant "o:Order" as Order LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,12 +33,12 @@ deactivate DeadlineCommandParser
 RoleBookParser -> DeadlineCommandParser : parse("asc")
 activate DeadlineCommandParser
 
-create Order
-DeadlineCommandParser -> Order
-activate Order
+create OrderParser
+DeadlineCommandParser -> OrderParser
+activate OrderParser
 
-Order --> DeadlineCommandParser : o
-deactivate Order
+OrderParser --> DeadlineCommandParser : o
+deactivate OrderParser
 
 create DeadlineCommand
 DeadlineCommandParser -> DeadlineCommand
@@ -46,9 +46,6 @@ activate DeadlineCommand
 
 DeadlineCommand --> DeadlineCommandParser : d
 deactivate DeadlineCommand
-
-Order --> DeadlineCommand : o
-deactivate Order
 
 DeadlineCommandParser --> RoleBookParser : d
 deactivate DeadlineCommandParser
