@@ -248,9 +248,9 @@ When adding a student entry, these were the alternatives considered.
 
 #### Implementation Details
 
-The `delete` implementation is identical to the implementation in AB3's codebase.
+The `delete` implementation is similar to the implementation in AB3's codebase. However, we've made some additions to support deletion of multiple (unique) indexes.
 
-Here is a sequence diagram showing the interactions between components when `delete 1` is run.:
+Here is a sequence diagram showing the interactions between components when `delete 1 2` is run.:
 
 ![delete_sequence](images/DeleteSequenceDiagram2.png)
 
@@ -268,12 +268,12 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 
 **Aspect: Handling invalid indexes in delete**
 
-* **Alternative 1: (Current choice)** Delete none of the given `Student` entries, even if they are valid.
+* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that (some) indexes are invalid.
   * Pros:
     * Potentially save the user time they may have had to spend re-adding their `Student` entries
     * Allows user the opportunity to edit the command input without having to re-type the entire command again
   * Cons:
-    * May be cumbersome for users to find the invalid index and correc it.
+    * May be cumbersome for users to find the invalid index and correct it.
 * **Alternative 2:** Delete all valid `Student` entries out of the given indexes.
   * Pros:
     * Potentially save the user time editing their command if there was only a minor typo.
@@ -303,7 +303,7 @@ This is done with the help of the `EditPersonDescriptor` class, which helps crea
 * Prefix `t/` followed by the tag name.
 * Prefix `r/` followed by the remarks/notes on the student.
 
-Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.:
+Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Year 2` is run.:
 
 ![edit_sequence](images/EditSequenceDiagram.png)
 
@@ -313,7 +313,7 @@ Here is a sequence diagram showing the interactions between components when `edi
 #### Feature details
 1. Similar to `add`, the app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
-3. If the input passes the validation check, the corresponding `Student` is replaced by a new edited `Student` object and stored in the `AddressBook`.
+3. If the input passes the validation check, the corresponding `Student` is replaced by a new edited `Student` object and stored in the `VersionedAddressBook`.
 
 #### General Design Considerations
 Whether a new `Student` object should be created when editing a student entry.
@@ -341,7 +341,7 @@ Both of which implement the `Predicate<Person>` interface where the `test` metho
 The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
 
 
-Here is a sequence diagram showing the interactions between components when `find Alice` is run.:
+Here is a sequence diagram showing the interactions between components when `find n/Alice` is run.:
 
 ![find_sequence](images/FindSequenceDiagram.png)
 
@@ -445,7 +445,7 @@ Additionally, the command line only provides a restricted view and input option 
     * Provides users flexibility in the format of their remarks.
     * Remarks are not restricted to a single line or continuous paragraph.
   * Cons:
-    * More complicated to implement as the format of the remarks have to be saved and loaded into `AddressBook` without any formatting erros.
+    * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting erros.
 
 **Aspect: Remark display**
 * **Alternative 1: (Current choice)** Preview the first line of a student's remarks under all the other attributes
