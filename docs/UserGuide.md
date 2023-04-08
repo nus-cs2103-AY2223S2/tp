@@ -191,7 +191,7 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 - <div id="module-code-format"><strong>Module Code</strong></div>
 
-  Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally followed by more uppercase alphabet characters.\
+  Module codes should begin with uppercase alphabetcal characters (A-Z), followed by numeric characters, optionally followed by more uppercase alphabetical characters (A-Z).\
   e.g. CS2040S
 
 - <div id="module-name-format"><strong>Module Name</strong></div>
