@@ -148,6 +148,13 @@ public interface Model {
      */
     boolean hasDrByNric(Nric drNric);
 
+    /**
+     * Returns the person with the given {@code nric}, returns it. This person must exist.
+     * @param nric of the person
+     * @return Person with a given Nric
+     */
+    Person getPersonByNric(Nric nric);
+
     Person getPersonDisplay();
 
     void updatePersonView(Person updatedPerson);

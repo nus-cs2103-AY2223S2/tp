@@ -70,7 +70,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "Q1234567A"; // 'Q' not allowed in nric
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_MEDICATION_DESC = " " + PREFIX_MEDICATION + "Histamine"; // No qty
+    public static final String INVALID_MEDICATION_DESC = " " + PREFIX_MEDICATION + "-"; // Non-alphanumeric
     public static final String INVALID_COST_DESC = " " + PREFIX_MEDICATION + "-1"; // -ve
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
