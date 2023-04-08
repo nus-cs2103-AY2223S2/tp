@@ -34,7 +34,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/amoonguss1)]
 [[portfolio](team/amoonguss1.md)]
 
-* Role: Coding, UI
+* Role: Backend Developer
 * Responsibilities: Data
 
 ### Ryan Qiu
