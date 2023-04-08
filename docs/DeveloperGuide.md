@@ -63,7 +63,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
-It is responsible for, </br> At app launch: Initializes the components in the correct sequence, and connects them up with each other. </br> At shut down: Shuts down the components and invokes cleanup methods where necessary.
+It is responsible for
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
 [**`Commons`**](#27-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
@@ -76,11 +78,6 @@ The rest of the App consists of four components.
 #### 2.1.2 How the architecture components interact with each other
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `deletep 1` to delete the person at index 1.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `deletet 1` to delete the task at index 1.
 
 <img src="images/ArchitectureSequenceDiagramTwo.png" width="574" />
@@ -90,10 +87,12 @@ Of the two repository model managers, one is used to keep track of tasks (i.e. `
 to keep track of the assignment of tasks to persons (i.e `AssignTask` objects). Meanwhile, 
 the person model manager implements the Model interface and is used to keep track of persons stored in OfficeConnect.
 
-Each of the other three main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the same name as the Component. implements its functionality using a concrete `{Component Name}Manager` class.
+Each of the other three main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the 
+same name as the Component. The components implement their functionality using a concrete `{Component Name}Manager` class.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
-using the `LogicManager.java` class which follows the `Logic` interface. All 4 components work together as illustrated in the (partial) class diagram below.
+using the `LogicManager.java` class which follows the `Logic` interface. All 4 components work together as illustrated 
+in the (partial) class diagram below.
 
 <img src="images/OfficeComponentManagers.png" width="750" />
 
@@ -103,8 +102,10 @@ The **API** of this component is specified in
 [`Ui.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 ![Structure of the UI Component](images/UiClassDiagramNew.png)
 
-The UI consists of a `MainWindow` that is made up of Ui parts that will be encapsulated here as `UiComponents`. Examples of its members are visual elements that you will see on screen e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `HelpWindow`, `QuickstartWindow`
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+The UI consists of a `MainWindow` that is made up of Ui parts that will be encapsulated here as `UiComponents`. 
+Examples of its members are visual elements that you will see on screen such as `CommandBox`, `ResultDisplay`, `PersonListPanel`, 
+`HelpWindow`, `QuickstartWindow`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from 
+the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml`
@@ -112,7 +113,10 @@ files that are in the `src/main/resources/view` folder. For example, the layout 
 is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-executes user commands using the `Logic` component. listens for changes to `OfficeConnectModel` data so that the UI can be updated with the modified data. keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. depends on some classes in the `OfficeConnectModel` component, as it displays `Person` object residing in the `OfficeConnectModel`.
+* executes user commands using the `Logic` component.
+* listens for changes to `OfficeConnectModel` data so that the UI can be updated with the modified data. 
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. 
+* depends on some classes in the `OfficeConnectModel` component, as it displays `Person` object residing in the `OfficeConnectModel`.
 
 ### 2.3 Logic component
 
@@ -125,11 +129,11 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
-3. executed by the `LogicManager`.
-4. The command can communicate with `OfficeConnectModel` when it is executed (e.g. to add a person or
-5. add a task or add an assignment).
-6. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddTaskCommand`) 
+which is executed by the `LogicManager`.
+3. The command can communicate with `OfficeConnectModel` when it is executed (e.g. to add a person or
+a task). 
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")`
 API call, which deletes the person located at index one.
@@ -146,11 +150,12 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-When called upon to parse a user command, the `AddressBookParser` class creates an 
-`XYZCommandParser`(`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the 
-other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the 
-`AddressBookParser` returns back as a `Command` object. All `XYZCommandParser` classes (e.g., `AddCommandParser`, 
-`DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an 
+`XYZCommandParser`(`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the 
+other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddTaskCommand`) which the 
+`AddressBookParser` returns back as a `Command` object. 
+* All `XYZCommandParser` classes (e.g., `AddTaskCommandParser`, 
+`DeleteTaskCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 
 ### 2.4 OfficeConnectModel component
@@ -159,12 +164,13 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 
 <img src="images/OfficeConnectModelClassDiagram.png" width="650" />
 
-* Stores the task list data and task assignment data i.e., all `task` and `assignTask` objects (which are contained in a `UniqueItemList` object).
-* Stores the currently 'selected' `Task` and `AssignTask` objects (e.g., results of a search query) as a separate _filtered_ list
+* Stores the task list data and task assignment data i.e., all `Task` and `AssignTask` objects (which are contained in a `UniqueItemList` object).
+* Stores the currently 'selected' `Task` and `AssignTask` objects (e.g., results of a search query) as separate _filtered_ lists
   which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and `ObservableList<AssignTask>` that can be
   'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 * Stores data of all persons in OfficeConnect using a concrete implementation of the Model interface. Greater elaboration of the Model component is provided below.
+* Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain,
+they should make sense on their own without depending on other components)
 
 ### 2.4.1 Model component
 
@@ -179,16 +185,7 @@ The `Model` component
 which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. 
 the UI can be bound to this list so that the UI automatically updates when the data in the list changes. 
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a`ReadOnlyUserPref` 
-object. 
-* Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP)
-model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook`
-to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
+object.
 
 
 ### 2.5 Storage component
@@ -214,8 +211,8 @@ application in the future, if required.
 
 The `Storage` component saves address book data, task list data, task assignment data and user preference data in json format 
 and reads them back into corresponding objects. It inherits from both `AddressBookStorage` and `UserPrefStorage`, which 
-means it can be treated as either (if the functionality of only one is needed). It depends on some classes in the `Model`
-and `OfficeConnectModel` component (because the `Storage` component's job is to save/retrieve objects that belong to `Model` and `OfficeConnectModel`)
+means it can be treated as either (if the functionality of only one is needed). It depends on some classes in the 
+`OfficeConnectModel` component (because the `Storage` component's job is to save/retrieve objects that belong to `OfficeConnectModel`).
 
 ### 2.6 Common classes
 
@@ -225,6 +222,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## 3. Implementation
 This section describes some noteworthy details on how certain features are implemented.
+
 Notation: inputs placed in closed brackets [] are optional.
 
 ### 3.1 Adding a task
@@ -240,14 +238,14 @@ Below is a sequence diagram that illustrates how a user adds new tasks into Offi
 #### 3.1.2 Design Considerations
 **Aspect: Setting deadline as optional input**
 
-* **Alternative 1 (current choice):** Deadline is optional
+* **Alternative 1 (current choice):** Deadline is optional.
   * Pros: Increase convenience for users, as they will have to key in one less input. Not all tasks may have a set deadline.
   * Cons: Users may be lazy to key in specific deadlines as it is optional.
 
-* **Alternative 2:** Make deadline compulsory
-  * Pros: Easier to implement
+* **Alternative 2:** Make deadline compulsory.
+  * Pros: Easier to implement.
   * Cons: Inconveniences users, as they have to key in one more input to create a task, especially if there is no set deadline 
-  for the task. This would mean that they have to create a dummy deadline just to create a task.
+  for the task. They will have to create a dummy deadline just to create a task without a deadline.
 
 #### 3.1.3 Constraints:
 **Title must be unique:**  
@@ -255,6 +253,7 @@ We felt that the title should be unique as it improves organisation and visual c
 titles, we encourage users to be specific in the title (purpose) of the task (e.g. they will set title as
 "Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be
 able to clearly distinguish the purpose of each task just by looking at the title.  
+
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
 to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
 clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
@@ -300,7 +299,7 @@ Below is an activity diagram showcasing the 2 steps:
     would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e. first task
     has index 1, second task has index 2 etc.) and thus the invalid indexes can be easily obtained.
   
-### 3.3 Find a Person's Assigned Task
+### 3.3 Finding a Person's Assigned Tasks
 Syntax: `findp NAME`  
 Purpose: Allow users to search and review the list of tasks assigned to the specified person in OfficeConnect.
 
@@ -311,7 +310,7 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 
 ![FindTaskActivityDiagram](images/FindActivityDiagram.png)
 
-### 3.4 Find a Task's Assignees
+### 3.4 Finding a Task's Assignees
 Syntax: `findt TASKNAME` </br>
 Purpose: Allow users to search and review the group of individuals assigned to the specified task in OfficeConnect.
 
@@ -336,15 +335,16 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
     * Cons: Less intuitive and less user-friendly. Users would be forced to list all the tasks before being able
       to execute the findt command if the current display is empty.
 
-### 3.5 Edit a Task
+### 3.5 Editing a Task
 Syntax: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]` </br>
 Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 
 #### 3.5.1 Implementation
 The implementation of this feature is supported by `EditTaskCommand` and `EditTaskCommandParser`.
 
-### 3.6 Assign a Task
-Syntax: `assign pi/INDEX ti/INDEX` </br>
+### 3.6 Assigning a Task
+Syntax: `assign pi/INDEX ti/INDEX` 
+<br>
 Purpose: Allows users to assign a person to a task in OfficeConnect.
 
 #### 3.6.1 Implementation
@@ -370,6 +370,7 @@ Step 2: User executes `assign pi/1 ti/1` to assign the first task on the list of
 of tasks.
 
 The following activity diagram summarizes what happens when a user wants to execute an `assign` command:
+
 ![Assign Activity Diagram](images/AssignActivityDiagram.png)
 
 #### 3.6.2 Design Considerations
@@ -383,11 +384,19 @@ The following activity diagram summarizes what happens when a user wants to exec
     to search for a person, the user will then have to execute `listt` to access the full list of tasks in order to
     identify the task that the user wants to be assigned to that person.
 
-* **Alternative 2 (current choice 2):** Users can execute a command to display a list tasks that have not been
+* **Alternative 2 (current choice 2):** Users execute a command to display a list tasks that have not been
   assigned to any person or to display a people that have not been assigned to that task.
   * Pros: Users can easily view all the tasks that are currently unassigned at the same time, instead of having to execute
     `findt` to search for unassigned tasks one at a time.
   * Cons: None, because this is an additional feature proposed that will complement Alternative 1.
+
+* **Alternative 3:** Users execute a command to generate recommendations of persons or tasks to be assigned.
+  * Pros: Additional convenience for user, as the recommendations generated will consist of persons who have 
+  completed all their assigned tasks or have not yet been assigned any tasks. Similarly, when generating a list
+  of recommended tasks, we will display a list of tasks that have not yet been completed or assigned to anyone.
+  * Cons: From a manager's perspective, the generated recommendations for persons or tasks may not be suitable 
+  for the given task or person. Thus, it may be better to give users full control over what they choose to display
+  or search for before they choose to assign a task to a person.
 
 ### 3.7 Help Window
 
@@ -460,7 +469,7 @@ The implementation of this feature is supported by `UnassignTaskCommand` and `Un
     - Pros: No need to obtain the index of the task and person, which could reduce the steps required for the user.
     - Cons: Task titles and person names might be long, making it more difficult for users to input the command. There could also be issues with names that are not unique.
 
-### 3.9 List all Tasks
+### 3.9 Listing all Tasks
 Syntax: `listt`  
 Purpose: Displays all tasks stored in OfficeConnect.
 
@@ -470,7 +479,7 @@ Below is a sequence diagram that illustrates how a user can see all tasks stored
 
 ![ListTaskSequenceDiagram](images/ListTaskSequenceDiagram.png)
 
-### 3.10 Filter Persons according to tag
+### 3.10 Filtering Persons according to tag
 Syntax: `filterp tag/TAG`  
 Purpose: Allows users to find all persons with the specified tag.
 
@@ -560,23 +569,23 @@ in extra effort to learn and memorize the commands.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                       | So that I can…​                                                        |
-|----------|----------|----------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user | see usage instructions                             | refer to instructions when I forget how to use the App                 |
-| `* * *`  | manager  | add tasks                                          |                                                                        |
-| `* * *`  | manager  | edit tasks                                         | keep the task updated with the most updated information                |
-| `* * *`  | manager  | delete tasks                                       | remove tasks that I no longer need                                     |
-| `* * *`  | manager  | mark tasks as done and undone                      | keep track of tasks that are completed                                 |
-| `* * *`  | manager  | find tasks assigned to specific subordinate        | better manage my subordinates workload                                 |
-| `* * *`  | manager  | check all ongoing tasks available                  | better delegate my tasks                                               |
-| `* * *`  | manager  | assign tasks to a subordinate                      | keep track of which subordinate is in charge of which task             |
-| `* * *`  | manager  | unassign tasks from a subordinate                  | assign this task to other subordinate                                  |
-| `* * *`  | manager  | add a subordinate                                  |                                                                        |
-| `* * *`  | manager  | delete a subordinate                               | remove subordinates that I no longer need                              |
-| `* * *`  | manager  | find a subordinate by name                         | locate details of persons without having to go through the entire list |
-| `* * *`  | manager  | filter subordinates based on their department(tag) | locate subordinates based on their department(tag)                     |
-| `* * *`  | manager  | view assigned tasks and persons                    | have an overview of tasks and persons with assigned tasks              |
-| `* * *`  | manager  | view unassigned tasks and persons                  | have an overview of tasks and persons without assigned tasks           |
+| Priority | As a …​  | I want to …​                                        | So that I can…​                                                              |
+|----------|----------|-----------------------------------------------------|------------------------------------------------------------------------------|
+| `* * *`  | new user | see usage instructions                              | refer to instructions when I forget how to use the App                       |
+| `* * *`  | manager  | add tasks                                           |                                                                              |
+| `* * *`  | manager  | edit tasks                                          | keep the task updated with the most updated information                      |
+| `* * *`  | manager  | delete tasks                                        | remove tasks that I no longer need                                           |
+| `* * *`  | manager  | mark tasks as done and undone                       | keep track of tasks that are completed                                       |
+| `* * *`  | manager  | find tasks assigned to specific subordinate         | better manage my subordinates workload                                       |
+| `* * *`  | manager  | check all ongoing tasks available                   | better delegate my tasks                                                     |
+| `* * *`  | manager  | assign tasks to a subordinate                       | keep track of which subordinate is in charge of which task                   |
+| `* * *`  | manager  | unassign tasks from a subordinate                   | assign this task to other subordinates                                       |
+| `* * *`  | manager  | add a subordinate                                   |                                                                              |
+| `* * *`  | manager  | delete a subordinate                                | remove subordinates that I no longer need                                    |
+| `* * *`  | manager  | find a subordinate by name                          | locate details of a subordinate without having to go through the entire list |
+| `* * *`  | manager  | filter subordinates based on their department (tag) | locate subordinates based on their department (tag)                          |
+| `* * *`  | manager  | view assigned tasks and persons                     | have an overview of tasks and persons that are assigned                      |
+| `* * *`  | manager  | view unassigned tasks and persons                   | have an overview of tasks and persons that are not assigned                  |
 
 
 ### 6.3 Use cases
@@ -943,6 +952,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. User requests to view all assigned persons and tasks.
+
 2. System displays a list of all assigned persons and tasks.
 
    Use case ends.
@@ -953,6 +963,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. User requests to view assigned persons.
+
 2. System displays a list of assigned persons.
 
    Use case ends.
@@ -963,6 +974,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. User requests to view assigned tasks.
+
 2. System displays a list of assigned tasks.
 
    Use case ends.
@@ -973,6 +985,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. User requests to view a person's details by specifying their index.
+
 2. System displays the details of the specified person.
 
    Use case ends.
@@ -983,6 +996,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. User requests to view a task's details by specifying its index.
+
 2. System displays the details of the specified task.
 
    Use case ends.
@@ -993,6 +1007,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. User requests to view all unassigned persons and tasks.
+
 2. System displays a list of all unassigned persons and tasks.
 
    Use case ends.
@@ -1003,6 +1018,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. User requests to view unassigned persons.
+
 2. System displays a list of unassigned persons.
 
    Use case ends.
@@ -1013,6 +1029,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario (MSS):**
 
 1. User requests to view unassigned tasks.
+
 2. System displays a list of unassigned tasks.
 
    Use case ends.
@@ -1135,6 +1152,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and sample tasks. The window size may not be
       optimum.
+
 
 2. Saving window preferences
 

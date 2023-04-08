@@ -23,9 +23,11 @@ package OfficeConnectModel {
 Class "OfficeConnectModel" as om
 Class "RepositoryModelManager<Task>"  as repoTask
 Class "RepositoryModelManager<AssignTask>" as repoAssign
-om --> repoTask
-om --> repoAssign
-om --> ModelC
+Class "Model" as personModel
+OfficeConnectModel --> repoTask
+OfficeConnectModel --> repoAssign
+OfficeConnectModel --> personModel
+
 Class "RepositoryModelManager<T>" as repo
 repoTask ..up.|> "<<bind>>T::Task" repo
 repoAssign ..up.|> "<<bind>>T::AssignTask" repo
@@ -41,7 +43,7 @@ StorageManager .up.|> StorageC
 
 }
 
-rectangle HiddenOutside #FFFFFF
+class HiddenOutside #FFFFFF
 HiddenOutside ..> LogicC
 
 

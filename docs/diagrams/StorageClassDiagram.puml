@@ -36,12 +36,9 @@ package "Repository AssignTask Storage" #lightblue {
   class JsonSerializableAssignTasks #gray
   class JsonAdaptedAssignTask #gray
 }
-interface "RepositoryStorage<T>" as RepositoryStorage
 
-
-rectangle HiddenOutside
-
-HiddenOutside ..> Storage
+Class HiddenOutside #FFFFFF
+HiddenOutside .....> Storage
 
 StorageManager .up.|> Storage
 
@@ -68,7 +65,9 @@ JsonAssignTaskStorage .up.|> RepositoryStorageAssignTask
 JsonAssignTaskStorage ..> JsonSerializableAssignTasks
 JsonSerializableAssignTasks --> "*" JsonAdaptedAssignTask
 
-RepositoryStorageAssignTask .up.|> "<<bind>>T::AssignTask" RepositoryStorage
-RepositoryStorageTask ...up.|> "<<bind>>T::Task" RepositoryStorage
+interface "RepositoryStorage<T>" as RepositoryStorage
+
+RepositoryStorageAssignTask ..up.|> "<<bind>>T::AssignTask" RepositoryStorage
+RepositoryStorageTask ..up.|> "<<bind>>T::Task" RepositoryStorage
 
 @enduml
