@@ -513,7 +513,7 @@ Below is the main success scenarios of adding, deleting and listing alarms.
 
 Below is the sequence diagram for adding an alarm.
 
-<img src="images/AddAlarmSequeceDiagram.png" />
+<img src="images/AddAlarmSequeceDiagram.png" width="574" />
 
 **delete alarm**
 1.  User requests to delete a scheduled alarm with specified index.
