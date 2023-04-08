@@ -57,4 +57,16 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof ArgumentMultimap)) {
+            return false;
+        }
+        ArgumentMultimap otherArgMultiMap = (ArgumentMultimap) other;
+        return argMultimap.equals(otherArgMultiMap.argMultimap);
+    }
 }

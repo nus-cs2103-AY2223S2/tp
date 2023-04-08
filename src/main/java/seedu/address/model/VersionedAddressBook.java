@@ -6,7 +6,8 @@ import java.util.List;
 //@@author wendy0107-reused
 // Reused from https://github.com/AY2223S1-CS2103T-W17-4 and adapted from proposed implementation in AB3's Developer
 // Guide https://se-education.org/addressbook-level3/DeveloperGuide.html
-// with minor modifications such as renaming and some different implementation.
+// with minor modifications such as renaming, having some different implementation,
+// and the inclusion of a variable to track the undone/redone commands 'commandHistory'.
 
 /**
  * {@code AddressBook} that keeps track of its own version history.
@@ -16,6 +17,7 @@ public class VersionedAddressBook extends AddressBook {
     public static final String REDO_VERSION_FAILURE = "Dont have new version to restore";
 
     private final List<ReadOnlyAddressBook> versionStateHistory;
+    private final List<String> commandHistory;
     private int currentVersionPointer;
 
     /**
@@ -25,41 +27,60 @@ public class VersionedAddressBook extends AddressBook {
     public VersionedAddressBook(ReadOnlyAddressBook addressbook) {
         super(addressbook); // first version of versionaddressbook
         versionStateHistory = new ArrayList<>();
+        commandHistory = new ArrayList<>();
         versionStateHistory.add(new AddressBook(addressbook)); // add initial state
         currentVersionPointer = 0;
     }
 
     /**
-     * Saves a copy of the current {@code AddressBook} state to versionStateHistory and clears outdated undone versions.
+     * Saves a copy of the current {@code AddressBook} state and the last
+     * executed command, and clears any outdated undone versions.
+     *
+     * @param lastExecutedCommand The last executed command.
      */
-    public void commit() {
+    public void commit(String lastExecutedCommand) {
         for (int i = versionStateHistory.size() - 1; i > currentVersionPointer; i--) {
             versionStateHistory.remove(i);
         }
         versionStateHistory.add(new AddressBook(this));
+        commandHistory.subList(currentVersionPointer, commandHistory.size()).clear();
+        commandHistory.add(lastExecutedCommand);
+        assert commandHistory.size() == versionStateHistory.size() - 1;
         currentVersionPointer++;
     }
 
     /**
-     * Restores the previous state of AddressBook from versionStateHistory.
+     * Restores the previous state of AddressBook, and returns the name of the
+     * command that was undone.
+     *
+     * @return The name of the command that was undone.
      */
-    public void undo() {
+    public String undo() {
+        assert commandHistory.size() == versionStateHistory.size() - 1;
+
         if (checkUndoable()) {
             currentVersionPointer--;
             resetData(versionStateHistory.get(currentVersionPointer));
+            return commandHistory.get(currentVersionPointer);
         } else {
             throw new RuntimeException(UNDO_VERSION_FAILURE);
         }
     }
 
     /**
-     * Restores an undone AddressBook state from versionStateHistory.
+     * Restores an undone AddressBook state, and returns the name of the command
+     * that was redone.
+     *
+     * @return The name of the command that was redone.
      */
-    public void redo() {
+    public String redo() {
+        assert commandHistory.size() == versionStateHistory.size() - 1;
+
         // can only redo after an undo is done
         if (checkRedoable()) {
             currentVersionPointer++;
             resetData(versionStateHistory.get(currentVersionPointer));
+            return commandHistory.get(currentVersionPointer - 1);
         } else {
             throw new RuntimeException(REDO_VERSION_FAILURE);
         }

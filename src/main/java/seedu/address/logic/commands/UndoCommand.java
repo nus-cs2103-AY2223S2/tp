@@ -32,9 +32,8 @@ public class UndoCommand extends Command {
         if (!model.checkUndoable()) {
             throw new CommandException(MESSAGE_FAILURE);
         } else {
-            model.undoAddressBook();
+            commandToUndo = model.undoAddressBook();
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            commandToUndo = model.getLastExecutedCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToUndo);
             return new CommandResult(message);
         }

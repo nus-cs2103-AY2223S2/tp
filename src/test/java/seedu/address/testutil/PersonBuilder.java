@@ -135,8 +135,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Telegram} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTelegram(String s) {
-        this.telegram = telegram == null ? null : new Telegram(s);
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = telegram == null ? null : new Telegram(telegram);
         return this;
     }
 

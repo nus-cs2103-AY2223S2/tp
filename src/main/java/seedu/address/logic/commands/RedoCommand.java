@@ -31,9 +31,8 @@ public class RedoCommand extends Command {
         if (!model.checkRedoable()) {
             throw new CommandException(MESSAGE_FAILURE);
         } else {
-            model.redoAddressBook();
+            commandToRedo = model.redoAddressBook();
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            commandToRedo = model.getLatestModifyingCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToRedo);
             return new CommandResult(message);
         }

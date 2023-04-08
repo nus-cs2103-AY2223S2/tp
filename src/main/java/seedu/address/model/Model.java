@@ -125,14 +125,20 @@ public interface Model {
     boolean checkRedoable();
 
     /**
-     * Restores a previous version of AddressBook.
+     * Restores a previous version of AddressBook, and returns the name of the
+     * command that was undone.
+     *
+     * @return The name of the command that was undone.
      */
-    void undoAddressBook();
+    String undoAddressBook();
 
     /**
-     * Restores an undone version of AddressBook.
+     * Restores an undone version of AddressBook, and returns the name of the command
+     * that was redone.
+     *
+     * @return The name of the command that was redone.
      */
-    void redoAddressBook();
+    String redoAddressBook();
 
     /**
      * Saves the current version of AddressBook and the last executed command.
@@ -140,18 +146,6 @@ public interface Model {
      * @param lastExecutedCommand The name of the command to be updated to the command history.
      */
     void commitAddressBook(String lastExecutedCommand);
-
-    /**
-     * Returns the command name of the last executed command that modified AddressBook.
-     * @return Command name as a string.
-     */
-    String getLastExecutedCommand();
-
-    /**
-     * Returns the command name of the last command undone.
-     * @return Command name as a String.
-     */
-    String getLatestModifyingCommand();
 
     /**
      * Returns a list of all existing tag values (without duplicates) contained

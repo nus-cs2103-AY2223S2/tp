@@ -96,13 +96,4 @@ public class DeleteCommandTest {
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPerson(Model model) {
-//        model.updateFilteredPersonList(p -> false);
-        model.setDefaultShowPerson();
-        assertTrue(model.getFilteredPersonList().isEmpty());
-    }
 }

@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -30,35 +31,47 @@ import seedu.address.testutil.PersonBuilder;
 public class RemarkCommandTest {
 
     private static final String REMARK_STUB = "Some remark";
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-                editedPerson.getOptionalRemark().orElse(null));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, editedPerson.getOptionalRemark().get());
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getUserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.commitAddressBook(RemarkCommand.COMMAND_WORD);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Emulates deletion of remark from closing the remark window with no
+     * remarks entered, which works by running the {@code remark INDEX \0} command,
+     * where {@code INDEX} is the person index, and {@code \0} is a null character.
+     */
     @Test
-    public void execute_deleteRemarkUnfilteredList_success() {
+    public void execute_deleteUsingNullChar_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withRemark("").build();
+        Person editedPerson = new PersonBuilder(firstPerson).withRemark(null).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, editedPerson.getOptionalRemark().get());
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark("\0"));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.commitAddressBook(RemarkCommand.COMMAND_WORD);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
@@ -77,6 +90,7 @@ public class RemarkCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.commitAddressBook(RemarkCommand.COMMAND_WORD);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }

@@ -23,8 +23,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 
-//@@author EvitanRelta-reused
-// Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
+//Solution below adapted from https://github.com/AY2223S1-CS2103T-T12-2/tp
 // with almost complete overhauling, including refactoring, bug-fixing, adding
 // of asserts, and changing the behaviour of the feature to suit our needs.
 /**
@@ -163,9 +162,9 @@ public class AutocompleteEngine {
                 .filter(Matcher::find)
                 .map(Matcher::group)
                 .map(match -> match.replaceAll("[\\[\\]\\.]", "")) // Remove optional/repeating prefix artifacts.
-                .filter(match -> !match.trim().equals(INDEX_PLACEHOLDER.toString()))
-                .filter(match -> !match.trim().equals(KEYWORD_PLACEHOLDER.toString()))
-                .filter(match -> !match.trim().equals(REMARK_PLACEHOLDER.toString()))
+                .filter(match -> !match.trim().equals(INDEX_PLACEHOLDER.toPlaceholderString()))
+                .filter(match -> !match.trim().equals(KEYWORD_PLACEHOLDER.toPlaceholderString()))
+                .filter(match -> !match.trim().equals(REMARK_PLACEHOLDER.toPlaceholderString()))
                 .orElse("");
         return userInput + nextAutocomplete;
     }
@@ -195,7 +194,7 @@ public class AutocompleteEngine {
 
         if (commmandBody.isBlank()) {
             String allArgs = argPrefixes.stream()
-                    .map(Prefix::toString)
+                    .map(Prefix::toPlaceholderString)
                     .collect(Collectors.joining(" "));
             String leadingPadding = commmandBody.isEmpty() ? " " : "";
             return leadingPadding + allArgs;
@@ -256,7 +255,7 @@ public class AutocompleteEngine {
                     .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
                             || prefix.isRepeatable())
                     .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
-                    .map(Prefix::toString)
+                    .map(Prefix::toPlaceholderString)
                     .collect(Collectors.joining(" "));
 
             return matchingArgs.isEmpty()
@@ -276,9 +275,8 @@ public class AutocompleteEngine {
                 .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
                         || prefix.isPlaceholder()
                         || prefix.isRepeatable())
-                .map(Prefix::toString)
+                .map(Prefix::toPlaceholderString)
                 .collect(Collectors.joining(" "));
         return remainingArgs;
     }
 }
-//@@author
