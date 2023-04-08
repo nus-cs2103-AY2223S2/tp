@@ -36,7 +36,7 @@ public class LeaveCounter {
      */
     public static boolean isValidLeaveCount(String test) {
         if (test == null) {
-            return true;
+            return false;
         }
         try {
             long leaveCount = Long.parseLong(test.trim());
