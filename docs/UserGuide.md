@@ -38,41 +38,35 @@ than current GUI apps in the industry.
 
 1. Make sure that you have **Java 11 or above** installed on your computer.
    - [How do I check my version of Java?](#checking-java-version)
-  <br>
-
+  
 2. Download the latest jar file (`docedex.jar`) from our [Github Releases](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/).
    ![DownloadDocedex](images/DownloadDocedex.png)
-  <br>
-
+  
 3. Move the jar file to a folder where you want to store the data of the doctors and patients.
 - Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.).
 - Move the downloaded jar file to this folder as shown below.
   - For Mac Users:
   <img src="images/DownloadDocedexMac.png" alt="DownloadDocedexMac" width="70%" height="70%">
-  <br>
   - For Windows Users:
   <img src="images/DocedexInFileWin.png" alt="DocedexInFileWin" width="70%" height="70%">
-  <br>
-
+  
 4. Launch Docedex
 - For Mac Users:
   - Right-click `docedex.jar` > Open With > JavaLauncher.app
   <img src="images/LaunchDocedexMac.png" alt="LaunchDocedexMac" width="70%" height="70%">
-  <br>
   - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
 - For Windows Users:
   - Double-click `docedex.jar` to launch the application.
 - If this still does not work follow the instructions listed [here.](#launching-docedex)
-- You should notice the GUI of the application pop up.<br>
+- You should notice the GUI of the application pop up.
   <img src="images/NewUi.png" alt="NewUi" width="70%" height="70%">
-<br>
-
+  
 5. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
-<br>
+  
 6. For **new users**, learn to use Docedex [here](#docedex-tutorial-for-new-users).
-<br>
+  
 7. For **advanced users**, view all feature details [here](#features).
-<br>
+  
 [Scroll back to Table of Contents](#table-of-contents)
 
 ---
