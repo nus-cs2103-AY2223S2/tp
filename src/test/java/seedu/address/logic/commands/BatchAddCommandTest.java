@@ -35,28 +35,12 @@ class BatchAddCommandTest {
 
      @Test
      void execute_batchAddFileWithDuplicates_throwsCommandException() {
-         Path testData = Paths.get("src", "test", "data", "BatchAddTest", "duplicates.csv");
-         BatchAddCommand batchAddCommand = new BatchAddCommand("duplicates.csv");
-         batchAddCommand.setFilePath(testData);
-         assertCommandFailure(batchAddCommand, model, "One person in the list is found to be a duplicate. "
-                 + "Call aborted");
+        Path testData = Paths.get("src", "test", "data", "BatchAddTest", "duplicates.csv");
+        BatchAddCommand batchAddCommand = new BatchAddCommand("duplicates.csv");
+        batchAddCommand.setFilePath(testData);
+        assertCommandFailure(batchAddCommand, model, "One person in the list is found to be a duplicate. "
+                + "Call aborted");
      }
 
-
-    //    @Test
-    //    void execute_batchAdd_success() {
-    //        Model emptyDatabase = new ModelManager(new ExecutiveProDb(), new UserPrefs());
-    //        Path testData = Paths.get("src", "test", "data", "BatchAddTest", "BatchAddSuccess.csv");
-    //        BatchAddCommand batchAddCommand = new BatchAddCommand("BatchAddSuccess.csv");
-    //        batchAddCommand.setFilePath(testData);
-    //
-    //        String expectedMessage = String.format(BatchAddCommand.MESSAGE_WORKS, 2);
-    //        ModelManager expectedModel = new ModelManager(new ExecutiveProDb(), new UserPrefs());
-    //        EmployeeId.setCount(1);
-    //        expectedModel.addEmployee(AMY);
-    //        expectedModel.addEmployee(BOB);
-    //
-    //        assertCommandSuccess(batchAddCommand, emptyDatabase, expectedMessage, expectedModel);
-    //    }
 
 }
