@@ -1,8 +1,8 @@
 package seedu.techtrack.logic.parser;
 
 import static seedu.techtrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.techtrack.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
+import static seedu.techtrack.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -13,8 +13,8 @@ import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.techtrack.logic.commands.CommandTestUtil.JOBDESCRIPTION_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
+import static seedu.techtrack.logic.commands.CommandTestUtil.CONTACT_DESC_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
@@ -23,14 +23,14 @@ import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_JOBDESCRIPTION_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_AMY;
+import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_CONTACT_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_WEB_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_WEB_BOB;
 import static seedu.techtrack.logic.commands.CommandTestUtil.VALID_WEB_FRIEND;
-import static seedu.techtrack.logic.commands.CommandTestUtil.WEBSITE;
+import static seedu.techtrack.logic.commands.CommandTestUtil.WEBSITE_DESC_AMY;
 import static seedu.techtrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.techtrack.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.techtrack.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -102,7 +102,7 @@ public class EditCommandParserTest {
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Contact.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + CONTACT_DESC_BOB + INVALID_PHONE_DESC, Contact.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Role} being edited,
         // parsing it together with a valid tag results in error
@@ -112,18 +112,18 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
-                + VALID_COMPANY_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_COMPANY_AMY + VALID_CONTACT_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + WEBSITE + ADDRESS_DESC_AMY + JOBDESCRIPTION_DESC_BOB
+        String userInput = targetIndex.getOneBased() + CONTACT_DESC_BOB + TAG_DESC_HUSBAND
+                + EMAIL_DESC_AMY + WEBSITE_DESC_AMY + COMPANY_DESC_AMY + JOBDESCRIPTION_DESC_BOB
                 + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditRoleDescriptor descriptor = new EditRoleDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withWebsite(VALID_WEB_AMY)
+                .withPhone(VALID_CONTACT_BOB).withEmail(VALID_EMAIL_AMY).withWebsite(VALID_WEB_AMY)
                 .withCompany(VALID_COMPANY_AMY)
                 .withJobDescription(VALID_JOBDESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -134,9 +134,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + CONTACT_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditRoleDescriptor descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditRoleDescriptor descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_CONTACT_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -153,8 +153,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        userInput = targetIndex.getOneBased() + CONTACT_DESC_AMY;
+        descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_CONTACT_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -165,13 +165,13 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // website
-        userInput = targetIndex.getOneBased() + WEBSITE;
+        userInput = targetIndex.getOneBased() + WEBSITE_DESC_AMY;
         descriptor = new EditRoleDescriptorBuilder().withWebsite(VALID_WEB_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
+        userInput = targetIndex.getOneBased() + COMPANY_DESC_AMY;
         descriptor = new EditRoleDescriptorBuilder().withCompany(VALID_COMPANY_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -186,11 +186,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + WEBSITE
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + WEBSITE + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + CONTACT_DESC_AMY + COMPANY_DESC_AMY + EMAIL_DESC_AMY + WEBSITE_DESC_AMY
+                + TAG_DESC_FRIEND + CONTACT_DESC_AMY + COMPANY_DESC_AMY + EMAIL_DESC_AMY + WEBSITE_DESC_AMY + TAG_DESC_FRIEND
+                + CONTACT_DESC_BOB + COMPANY_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditRoleDescriptor descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditRoleDescriptor descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_CONTACT_BOB)
                 .withEmail(VALID_EMAIL_BOB).withWebsite(VALID_WEB_BOB).withCompany(VALID_COMPANY_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
@@ -203,15 +203,15 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditRoleDescriptor descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + CONTACT_DESC_BOB;
+        EditRoleDescriptor descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_CONTACT_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + WEBSITE + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-                + PHONE_DESC_BOB;
-        descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + WEBSITE_DESC_AMY + INVALID_PHONE_DESC + COMPANY_DESC_BOB
+                + CONTACT_DESC_BOB;
+        descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_CONTACT_BOB)
                 .withEmail(VALID_EMAIL_BOB).withWebsite(VALID_WEB_FRIEND)
                 .withCompany(VALID_COMPANY_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
