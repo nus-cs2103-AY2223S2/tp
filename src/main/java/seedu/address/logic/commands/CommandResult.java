@@ -173,6 +173,21 @@ public class CommandResult {
                 archivedPath, false, isImportingWholeArchive, isOverwriting, moduleCodesToImport);
     }
 
+    /**
+     * Constructs a {@code CommandResult} to alert TrackerEventSystem to update ObservableList
+     */
+    public CommandResult(String feedbackToUser, Path archivedPath, boolean isImportingWholeArchive,
+                         boolean isOverwriting,
+                         Set<ModuleCode> moduleCodesToImport, List<ModuleEditInfo> moduleEditInfoList) {
+        this(feedbackToUser, false, false, null, "",
+                moduleEditInfoList,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                archivedPath, false, isImportingWholeArchive, isOverwriting, moduleCodesToImport);
+    }
+
+
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
