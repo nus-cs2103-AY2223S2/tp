@@ -246,18 +246,18 @@ In addition, it implements the following operations:
 * `RecipeForm#saveInitialValues()` —  Stores the initial values of the form fields in a HashMap.
 * `RecipeForm#populateFields()` —  Prepopulates the form fields with values of current recipe.
 * `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by calling `EditRecipeEvent`.
-* `RecipeForm#display` —  Displays the prepopulated form with corresponding UI components such as `Save Changes` button and `TextField` rows.
+* `RecipeForm#display` —  Displays the pre-populated form with corresponding UI components such as the <kbd>Save</kbd> button and `TextField` rows.
 * `RecipeForm#closeForm()` —  Closes the form without saving any changes.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 #### Example Usage Scenario
 
-Step 1. The user selects a recipe and presses the F key on the keyboard, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
+Step 1. The user selects a recipe and presses the <kbd>F</kbd> key, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
 
 Step 2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
 
-Step 3. The user clicks on the "Save" button, causing the `RecipeForm#saveRecipe()` method to be called. This method checks which fields have been changed by comparing their current values with the initial values stored in the `initialValues` HashMap. Changed values are stored in a new `changedValues` HashMap.
+Step 3. The user clicks on the <kbd>Save</kbd> button, causing the `RecipeForm#saveRecipe()` method to be called. This method checks which fields have been changed by comparing their current values with the initial values stored in the `initialValues` HashMap. Changed values are stored in a new `changedValues` HashMap.
 
 Step 4. The `changedValues` HashMap, along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
 
@@ -272,10 +272,11 @@ The following activity diagram summarizes the process when a user edits a recipe
 _EditFormActivityDiagram
 
 Notes
-If the user clicks the "Cancel" button or presses the ESC key, the form will be closed without saving any changes.
+If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>ESC</kbd> key, the form will be closed without saving any changes.
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
 <div style="page-break-after: always;"></div>
+
 ### Feature: Find-by-property
 
 #### Overview
@@ -305,6 +306,31 @@ in a collection of property T matches any of the keywords.
 
 The use of generic types in the above predicates allows it to be implemented independent of the actual type
 of the property, as long as the relevant getters are supplied.
+
+
+### Feature: Ingredient Substitutions
+
+#### Overview
+The `sub` command allows the user to search for commonly used substitutions for ingredients.
+
+#### Implementation
+The sub command likewise goes through the standard command execution pipeline.
+
+In `SubCommandParser`, we determine whether the ingredient defined by the user to be searched up for substitutes 
+is valid using the regex for ingredient names that was previously defined.
+
+In the execution of the sub command, the (valid) ingredient is queried first in a preloaded list of substitutions. 
+This preloaded list is stored within SubstitutionsUtil and accessed through a getter from the recipe book.
+Subsequently, the same ingredient is then queried in every recipe within the recipe book. 
+
+Should the ingredient be found in the preloaded list, the corresponding substitutions will be added to the list of
+substitutes to be returned to user. Otherwise, should the ingredient be found in any recipe in the recipe book, should 
+any substitutes for that ingredient be stored, it will likewise be added to the list.
+
+This list is created in the form of a `HashSet` such that any duplicates will not be displayed more than once.
+
+The display of the results will be in the command result box which is different from the other commands, since the 
+results of the `sub` command return ingredients instead of recipes. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -340,8 +366,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | import my friends' recipes                                     | have more recipes to refer to in my own recipe book         |
 
 
-*{More to be added soon!}*
-
 <div style="page-break-after: always;"></div>
 
 ### **Use cases**
@@ -374,9 +398,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. The storage file is invalid.
 
-    * 2b1. Book shows an error message, with a button that displays "file fixed" to check again if the file is valid.
+    * 2b1. Book shows an error message, with a button that displays <kbd>File Fixed</kbd> to check again if the file is valid.
     * 2b2. Chef rectifies/fixes error with the file.
-    * 2b3. Chef clicks the "file fixed" button
+    * 2b3. Chef clicks the <kbd>File Fixed</kbd> button
 
       Use case resumes from step 2.
 
@@ -530,7 +554,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes from step 3.
 
-*{More to be added}*
 
 <div style="page-break-after: always;"></div>
 
@@ -548,8 +571,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. The app should be easily extensible to support new features and functionality.
 10. The documentation should be up-to-date and accurate.
 11. The documentation should be accessible to all users.
-
-*{More to be added}*
 
 <div style="page-break-after: always;"></div>
 
@@ -579,111 +600,94 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Test Case 1: Launch and shutdown
+### 1. Launch and shutdown
 
-Description: Verify that the app launches and closes properly, and saves the user's preferences.
-Preconditions: User has a computer environment that has Java 11 installed, and can run a Java JAR app from a Terminal. User should also have a display. Also, the User needs to be running Ubuntu, Windows or MacOS as their Operating System.
+**Description:** Verify that the app launches and closes properly, and saves the user's preferences.
 
-Test Steps:
+**Preconditions:**
+* User is running Ubuntu, Windows or Mac OS-X as their Operating System.
+* User has a computer environment that has Java 11 installed and can run a Java JAR app from a Terminal. 
+* User has a display. 
 
-1. Initial launch
-    1. Download the jar file and copy into an empty folder.
-    2. Double-click the jar file.<br/>
-    **Expected Result:** Shows the GUI with a set of sample recipes. The window size may not be optimum.<br/>
-    **Actual Result:** The GUI is indeed shown with a set of sample recipes
+#### Test case 1.1: Initial launch
+**Status**: Accepted _(All expected behaviour is displayed)_
+1. Download the jar file and copy into an empty folder.
+2. Double-click the jar file.
+   <br>**Expected:** Shows the GUI with a set of sample recipes. The window size may not be optimum.
 
-2. Saving window preferences
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-    2. Re-launch the app by double-clicking the jar file.<br>
-    **Expected Result:** The most recent window size and location is retained.<br/>
-    **Actual Result:** The window size is indeed retained.
+#### Test case 1.2: Saving window preferences
+**Status**: Accepted _(All expected behaviour is displayed)_
+1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+2. Re-launch the app by double-clicking the jar file.
+   <br>**Expected:** The most recent window size and location is retained.
+   
+#### Test case 1.3: Shutdown
+**Status**: Accepted _(All expected behaviour is displayed)_
+1. When the app is open, type `exit` into the command bar and press <kbd>Enter</kbd>.
+   <br>**Expected:** The app closes.
 
-3. Shutdown
-   1. When the app is open, type `exit` into the command bar and press "enter".<br>
-   **Expected Result:** The app closes<br/>
-   **Actual Result:** The app indeed closes
+### 2. Navigation
 
-**Status:** `Accepted`
+**Description:** Verify that basic navigation features of the app is working properly.
 
-<div style="page-break-after: always;"></div>
+**Preconditions:**
+* User is on the default MainWindow page.
 
-### Test Case 2: Recipe Card View Popup Opens
+#### Test case 2.1: Viewing recipes
+**Status**: Accepted _(All expected behaviour is displayed)_
+1. Click on a Recipe Card once.
+2. Press <kbd>P</kbd>.
+   <br>**Expected:** A modal opens, displaying the name, duration, portion, ingredients, steps, and tags of the given recipe.  
 
-Description: Verify recipe pop up card appears when prompted.  
-Preconditions: User is on the default MainWindow page.  
-Test Steps:
+#### Test case 2.2: Editing recipes via form
+**Status**: Accepted _(All expected behaviour is displayed)_
+1. Click on a recipe card to select it.
+2. Press <kbd>F</kbd>.
+   <br>**Expected:** A form appears, containing text input fields for name, duration, portion, ingredients, steps, 
+  and tags, as well as the <kbd>Cancel</kbd> and <kbd>Save</kbd> buttons on the bottom right.
+   <br>**Expected:** Form fields are pre-populated with the given recipe's data.
+3. Edit any of the fields in the form, using the format provided in the user guide as reference.
+4. Click the <kbd>Save</kbd> button at the bottom of the form to save and exit the form.
+5. Scroll to the bottom of the recipe list and click on the edited recipe.
+6. Press <kbd>P</kbd> to view its details.
+   <br>**Expected:** The recipe has been edited, with the new recipe details reflecting the edits made for each field.
 
-   1. Click on a Recipe Card once.
-   2. Press 'P' on the keyboard.  
+### 3. Commands
 
-**Expected Result:** A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.<br/>  
-**Actual Result:** A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.<br/>
-**Status:** `Accepted`
+**Description:** Verify that commands in the app are executed properly.
 
-### Test Case 3: Add Recipe Form Opens
+**Preconditions:**
+* User is on the default MainWindow page.
 
-Description: Verify add form opens properly when prompted.
-Preconditions: User is on the default Main Window page.  
-Test Steps:
+#### Test case 3.1: Adding recipes via form (`addf` command)
+**Status**: Accepted _(All expected behaviour is displayed)_
+1. Type `addf` in the command box and press <kbd>Enter</kbd>.
+   <br>**Expected:** A form appears, containing empty text input fields for name, duration, portion, ingredients, steps,
+   and tags, as well as the <kbd>Cancel</kbd> and <kbd>Save</kbd> buttons on the bottom right.
+2. Fill up the form with a sample recipe given in the user guide.
+3. Click the <kbd>Save</kbd> button at the bottom of the form to save and exit the form.
+4. Scroll to the bottom of the recipe list and click on the newly added recipe.
+5. Press <kbd>P</kbd> to view its details.
+ <br>**Expected:** The newly-added recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
 
-   1. Type `addf` in the command box and enter.
+### 4. Working with saved data
 
-**Expected Result:** A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.<br/>
-**Actual Result:** A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.<br/>
-**Status:** `Accepted`
+**Description:** Verify that saved app data can be correctly persisted between sessions.
 
-<div style="page-break-after: always;"></div>
+**Preconditions:**
+* User is on the default MainWindow page.
 
-### Test Case 4: Add Recipe Form Saves Recipe
+#### Test case 4.1: Importing data
+**Status**: Accepted _(All expected behaviour is displayed)_
+1. Press <kbd>F3</kbd>, or click <kbd>File</kbd> > <kbd>Import</kbd>.
+   <br>**Expected:** A file picker window appears, allowing the user to only select JSON files.
+2. Within the file picker window, navigate to a valid RIZZipe data file, select it, and click the <kbd>Open</kbd> button.
+   <br>**Expected:** The file picker window closes, and all the recipes in the data file have been added to the recipe list.
 
-Description: Verify add form saves the newly added recipe properly.  
-Preconditions: User is on the add recipe form.  
-Test Steps:
-
-   1. Fill up the form with a sample recipe given in the user guide.
-   2. Click 'Save' at the bottom of the form to save and exit the form.
-   3. Scroll to the bottom of the recipe list and click on the newly added recipe.
-   4. Press the 'P' key to view its details.
-
-**Expected Result:** The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.<br/>** 
-**Actual Result:** The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.<br/>** 
-**Status:** `Accepted`
-
-### Test Case 5: Edit Form Opens
-
-Description: Verify edit form displays correctly when prompted.
-Preconditions: User is on the default Main Window page.
-Test Steps:
-
-   1. Hover over or click a recipe card.
-   2. Press the 'F' key on the keyboard.
-
-**Expected Result:** A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.<br/>
-**Actual Result:** A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.<br/>
-**Status:** `Accepted`
-
-<div style="page-break-after: always;"></div>
-
-### Test Case 6: Edit Form Saves Recipe
-
-Description: Verify edit form saves the edited recipe properly.
-Preconditions: User is on edit recipe form.
-Test Steps:
-
-   1. Edit the any of the fields in the form, using the format provided in the user guide as reference.
-   2. Click the `Save` button at the bottom right of the form.
-   3. Scroll to the bottom of the recipe list and click on the edited recipe.
-   4. Press the 'P' key to view its details.
-
-**Expected Result:** The recipe has been edited, with the new recipe details in congruence with the edits made for each field.<br/>
-**Actual Result:** The recipe has been edited, with the new recipe details in congruence with the edits made for each field.<br/>  
-**Status:** `Accepted`
-
-### Test Case 7: Saving data
-
-#WIP
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }
+#### Test case 4.2: Exporting data
+**Status**: Accepted _(All expected behaviour is displayed)_
+1. Press <kbd>F4</kbd>, or click <kbd>File</kbd> > <kbd>Export</kbd>.
+   <br>**Expected:** A file picker window appears, allowing the user to only save as JSON files.
+2. Within the file picker window, navigate to a valid folder and enter a valid file name.
+3. Click the <kbd>Save</kbd> button.
+   <br>**Expected:** The file picker window closes, and a file with the given filename is created in the given folder.

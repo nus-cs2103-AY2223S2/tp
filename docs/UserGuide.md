@@ -3,9 +3,27 @@ layout: page
 title: User Guide
 toc: true
 ---
-***RIZZ***ipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching**
-features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your
-**culinary rizz**.
+Are you an _avid chef_ with too many delicious recipes to handle? Or ever just have
+the desire to **store**, **access** and **share** your recipes easily? 
+
+***RIZZ***ipe is a **command-based recipe database** that is designed just for chefs _LIKE YOU_ to manage recipes at the touch of a finger!
+
+RIZZipe stars 3 main features:
+1. Versatile **tagging** and powerful **searching** function
+2. Recipe **sharing**
+3. Search function for **ingredient substitutions**
+
+Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
+
+## Using this Guide
+* If you want to run RIZZipe for the first time, check out our handy [Quick Start guide](#Quick-Start).
+* If you want to learn how to use RIZZipe, refer to our [Features](#Features) section for a detailed guide on 
+* how to run each different command.
+* If you are an experienced developer and want to learn more about our design decisions, refer to our Developer Guide.
+
+For **experienced users**, you may refer to the [Command summary](#Command-summary) and [Keyboard Shortcuts](#Keyboard-Shortcuts-summary) 
+summary for a summarised table
+of all the commands and keyboard shortcuts available.
 
 * Table of Contents
 {:toc}
@@ -14,18 +32,20 @@ features in mind so you can always find the recipe you need! Make use of ***RIZZ
 <div style="page-break-after: always;"></div>
 
 ## Quick Start
+
 Let's get you _rizzed_ up in the fastest way possible!
 
-1. Ensure you have Java `11` or above installed in you computer.
+
+1. Ensure you have [Java](https://www.oracle.com/sg/java/technologies/downloads/) `11` or above installed in your computer.
 2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar
+4. Open a [command terminal](#Glossary), [`cd`](#Glossary) into the folder you put the jar file in, and input the `java -jar
    rizzipe.jar` command to run the application.
 5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have crafted
 some sample recipes for you already.<br/><br/>
 ![UI QuickStart](images/UiQuickStart.png)<br/><br/>
 6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using `up` and `down` arrow keys!
-7. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) Section.
+7. Type commands within the [command line interface (CLI)](#Glossary) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) Section.
 8. Some of the previously mentioned executable commands may have keyboard shortcuts to make your life easier! Refer to each command within
 the [Features](#features) Section, or take a look at the [Keyboard Shortcuts summary](#keyboard-shortcuts-summary) to learn more about how to use them!
 
@@ -35,27 +55,27 @@ the [Features](#features) Section, or take a look at the [Keyboard Shortcuts sum
 
 Recipes are the building blocks of RIZZipe! Each recipe comprises multiple fields, which are listed in the table below:
 
-| Field | Prefix | Accepted Format | Compulsory? | Example |
-|-------|-----|-|-|
-| **Name** | `n/` | **`NAME`** <br> `NAME` can contain these characters: `A-Z a-z 0-9 - \ ' " and space`. | Yes | `Chicken Rice`, <br>`Broccoli Stir-Fry` |
-| **Duration** | `d/` | **`DURATION UNIT`** <br> `DURATION` is a positive integer, decimal number, or fraction <br> `UNIT` can contain these characters: `A-Z a-z and space` | No | `3 hours`, <br>`30.5 minutes`, <br>`2/5 Time Intervals` | 
-| **Portion** | `p/` | **`AMOUNT UNIT`** or **`AMOUNT "-" or "to" AMOUNT UNIT`** <br> `AMOUNT` is a positive integer <br> `UNIT` can contain these characters: `A-Z a-z and space` | No | `1 person`, <br>`3-5 people`, <br>`4 to 6 hungry individuals` |
-| **Ingredients** | `i/` | `-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED_AMOUNT] [-cn COMMON_NAME] [-r REMARKS]...[-s SUBSTITUTION]...` <br>See "Ingredients" section below | No | |
-| **Steps** | `s/` | **`STEP`** <br> `STEP` consists of 2 or more space-separated words, and can contain these characters: `A-Z a-z 0-9 . , : ; ( ) - and space` | No | `Serve well.`, <br>`Bring 3 quarts water to a boil in a 5-qt. pot.`, <br>`Season with salt; add pasta and cook, stirring occasionally.` |
-| **Tags** | `t/` | **`TAG`** <br>  `TAG` can contain these characters: `A-Z a-z 0-9 and space` | No | `Italian`, <br>`Comfort Food`, <br>`Gluten Free` |
+| Field           | Prefix | Accepted Format                                                                                                                                             | Compulsory? | Example                                                                                                                                 |
+|-----------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**        | `n/`   | **`NAME`** <br> `NAME` can contain these characters: `A-Z a-z 0-9 - \ ' " and space`.                                                                       | Yes         | `Chicken Rice`, <br>`Broccoli Stir-Fry`                                                                                                 |
+| **Duration**    | `d/`   | **`DURATION UNIT`** <br> `DURATION` is a positive integer, decimal number, or fraction <br> `UNIT` can contain these characters: `A-Z a-z and space`        | No          | `3 hours`, <br>`30.5 minutes`, <br>`2/5 Time Intervals`                                                                                 |
+| **Portion**     | `p/`   | **`AMOUNT UNIT`** or **`AMOUNT "-" or "to" AMOUNT UNIT`** <br> `AMOUNT` is a positive integer <br> `UNIT` can contain these characters: `A-Z a-z and space` | No          | `1 person`, <br>`3-5 people`, <br>`4 to 6 hungry individuals`                                                                           |
+| **Ingredients** | `i/`   | `-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED_AMOUNT] [-cn COMMON_NAME] [-r REMARKS]...[-s SUBSTITUTION]...` <br>See "Ingredients" section below | No          |                                                                                                                                         |
+| **Steps**       | `s/`   | **`STEP`** <br> `STEP` consists of 2 or more space-separated words, and can contain these characters: `A-Z a-z 0-9 . , : ; ( ) - and space`                 | No          | `Serve well.`, <br>`Bring 3 quarts water to a boil in a 5-qt. pot.`, <br>`Season with salt; add pasta and cook, stirring occasionally.` |
+| **Tags**        | `t/`   | **`TAG`** <br>  `TAG` can contain these characters: `A-Z a-z 0-9 and space`                                                                                 | No          | `Italian`, <br>`Comfort Food`, <br>`Gluten Free`                                                                                        |
 
 ## Ingredient Format
 
 Ingredients are at the heart of recipes, and also comprise multiple fields. The specification for recipe ingredients are listed in the table below:
 
-| Field | Prefix | Accepted Format | Compulsory? | Example |
-|-------|-----|-|-|
-|**Name**|`-n`|**`INGREDIENT_NAME`** <br> `INGREDIENT_NAME` can contain these characters: `A-Z a-z - and space` | Yes | `Salt` <br> `Soy Sauce` <br> `Barley-Wheat Bread` |
-|**Amount**|`-a`|**`AMOUNT UNIT`** <br> `AMOUNT` is a positive integer, decimal number, fraction, "a", or "one" <br> `UNIT` can contain these characters: `A-Z a-z and space` | No | `a pinch of` <br> `one pint` <br> `3 fl oz` <br> `4.5 grams` <br> `2/3 cup` |
-|**Estimated Amount**|`-e`|**`ESTIMATED_AMOUNT`** <br> No restrictions on `ESTIMATED_AMOUNT`|No|`Around 3 tablespoons`|
-|**Common Name**|`-cn`|**`COMMON_NAME`** <br> `COMMON_NAME` can contain these characters: `A-Z a-z - and space` | No | `Eggplant` <br> `Saiyote` |
-|**Remarks**|`-r`|**`REMARK`** <br> `REMARK` can contain these characters: `A-Z a-z and space` | No | `Optional` <br> `Diced` <br> `thinly sliced`|
-|**Substitutions**|`-s`|**`SUBSTITUTION`** <br> `SUBSTITUTION` can contain these characters: `A-Z a-z - and space` | No | `Seaweed Flakes` <br> `Capsicum` |
+| Field                | Prefix | Accepted Format                                                                                                                                              | Compulsory? | Example                                                                     |
+|----------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------|
+| **Name**             | `-n`   | **`INGREDIENT_NAME`** <br> `INGREDIENT_NAME` can contain these characters: `A-Z a-z - and space`                                                             | Yes         | `Salt` <br> `Soy Sauce` <br> `Barley-Wheat Bread`                           |
+| **Amount**           | `-a`   | **`AMOUNT UNIT`** <br> `AMOUNT` is a positive integer, decimal number, fraction, "a", or "one" <br> `UNIT` can contain these characters: `A-Z a-z and space` | No          | `a pinch of` <br> `one pint` <br> `3 fl oz` <br> `4.5 grams` <br> `2/3 cup` |
+| **Estimated Amount** | `-e`   | **`ESTIMATED_AMOUNT`** <br> No restrictions on `ESTIMATED_AMOUNT`                                                                                            | No          | `Around 3 tablespoons`                                                      |
+| **Common Name**      | `-cn`  | **`COMMON_NAME`** <br> `COMMON_NAME` can contain these characters: `A-Z a-z - and space`                                                                     | No          | `Eggplant` <br> `Saiyote`                                                   |
+| **Remarks**          | `-r`   | **`REMARK`** <br> `REMARK` can contain these characters: `A-Z a-z and space`                                                                                 | No          | `Optional` <br> `Diced` <br> `thinly sliced`                                |
+| **Substitutions**    | `-s`   | **`SUBSTITUTION`** <br> `SUBSTITUTION` can contain these characters: `A-Z a-z - and space`                                                                   | No          | `Seaweed Flakes` <br> `Capsicum`                                            |
 
 
 <div style="page-break-after: always;"></div>
@@ -78,7 +98,7 @@ Ingredients are at the heart of recipes, and also comprise multiple fields. The 
 * Parameters can be in any order
   i.e. if a command specifies `n/RECIPE_NAME d/RECIPE_DURATION`, `d/RECIPE_DURATION n/RECIPE_NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Excess parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * :bulb: Important tip: For increased readability, we have included an optional multi-line command format for commands that may require multiple inputs (add, edit). After each input,
@@ -91,8 +111,9 @@ before continuing to type!
 
 ### Adding a recipe: `add`
 
-Come up with a new innovative recipe and want to store it for future reference,
-and want to classify it by ingredients? Simply run the `add` command, and follow the prompts!
+Come up with a new innovative recipe and afraid that you'll forget about it in the future,
+or just want to share it with your friends? Simply run the `add` command, and follow the prompts to save different
+information about your recipe such as ingredients and steps!
 
 Format: `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]... [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
 
@@ -140,7 +161,7 @@ Format:
 ### Listing all recipes: `list`
 
 Ever forget how many recipes you have in your storage? Want to view 'em all? Or
-simply want to pick a recipe at random? Just run the `list` command.
+simply want to pick a recipe at random? Just run the `list` command!
 
 Format:
 `list`
@@ -190,10 +211,10 @@ While the recipe to that you want to edit is being selected, simply type `f` to 
 ### Finding a recipe by name: `find`
 
 Have a certain recipe at the back of your mind that you want to refer to?
-Or want to look up all recipes associated with a specific tag or those containing a specific ingredient?
+Or want to look up all recipes associated with a specific tag or those containing a specific ingredient that you're desperate to clear but have no idea what to pair it with?
 
 `find` helps to save your time scrolling through your whole list of recipes by displaying
-only those that match any of your specified keywords straight away.
+only those that match any of your specified keywords straight away!
 
 Format:
 `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`
@@ -224,7 +245,7 @@ Example(s) of usage:
 
 ### Deleting a recipe: `delete`
 
-No longer like a certain recipe? Simply delete it from the database by its index!
+No longer like a certain recipe? Simply `delete` it from the database by its index!
 
 Format:
 `delete INDEX`
@@ -275,7 +296,7 @@ Format:
 ### Asking for assistance: `help`
 
 Unsure or unable to remember our list of commands and how to format your inputs? Fret not, as simply inputting
-`help` will save you from your woes.
+`help` will save you from your woes!
 
 Format:
 `help`
@@ -285,7 +306,8 @@ Format:
 
 ### Exiting the program: `exit`
 
-Exits the program and closes the window.
+Done with cooking for the day?
+Running `exit` exits the program and closes the window!
 
 Format:
 `exit`
@@ -300,7 +322,7 @@ Format:
 
 Recipe data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-Recipe data are saved as a JSON file `[JAR file location]/data/recipebook.json`
+Recipe data are saved as a [JSON file](#Glossary) `[JAR file location]/data/recipebook.json`
 
 For advanced users, you can change the default location which the recipebook data file is saved to. This can be done by creating a `preferences.json` file in the base directory where the app is stored, and specifying `userPrefsFilePath` in `preferences.json` with the desired file path.
 
@@ -336,6 +358,13 @@ JSON file to be exported and select the desired location for it to be saved!
 ![ExportDataWindow](images/ExportWindow.jpg)
 
 ---
+## Glossary 
+* Command terminal: A terminal is a text input and output environment. It is a program that acts as a wrapper and allows us to enter commands that the computer processes. Open your terminal by:
+  * Searching and opening `Command Prompt` on Windows
+  * Searching and opening `Terminal` on Mac
+* `cd`: Command to change directory
+* Command Line Interface (CLI): A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* JSON: JSON is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects
 
 ## FAQ
 
