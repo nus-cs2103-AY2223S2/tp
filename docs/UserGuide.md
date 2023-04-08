@@ -76,7 +76,7 @@ Here is a short overview of the features and capabilities of **CookHub**:
 In order to make the most out of your experience in CookHub, let us understand the application's GUI better.
 
 <p align="center" width="100%">
-    <img src="images/annotated/GUI.png" width="100%">
+    <img src="images/annotated/GUI.png" width="120%">
 </p>
 
 
@@ -531,12 +531,6 @@ Our initial recipe book:
 <img src="images/AddResult2.png" width=500 height=400>
 </p>
 
-- `star 1` will star the first recipe, as shown in the image below:
-
-<p align="center" width="100%">
-<img src="images/StarResult1.png" width=500 height=400>
-</p>
-
 - `star 2` will star the second recipe, as shown in the image below:
 
 <p align="center" width="100%">
@@ -569,12 +563,6 @@ Examples:
 Our initial recipe book:
 <p align="center" width="100%">
     <img src="images/AllRecipesStarred.png" width=500 height=400>
-</p>
-
-- `unstar 1` will remove the star of the first recipe, as shown in the image below:
-
-<p align="center" width="100%">
-    <img src="images/UnstarResult1.png" width=500 height=400>
 </p>
 
 - `unstar 2` will remove the star of the second recipe, as shown in the image below:
@@ -668,34 +656,44 @@ Format meanings:
 - Words in [Square brackets] are optional parameters (Note:ls can stack filters)
 - Words that are followed by * are parameters that can be used multiple times
 
-| Action                   | Format                  | Examples  |
-|--------------------------|-------------------------|-----------|
-| Add Recipe            | `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`    | `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange`  |
-| Edit Recipe            | `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`    | `edit 1 t/Corndog`  |
-| Delete Recipe            | `delete RECIPE_NUMBER`   | `delete 1`  |
-| List Recipe            | `list`   | `list`  |
-| Clear Recipe            | `clear`   | `clear`  |
-| Find Recipe            | `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`   | `find r/eggs`  |
-| Search Recipe with limited ingredients           | `only INGREDIENT...`   | `only eggs flour`  |
-| Sort Recipes by price    | `sort ORDER`             | `sort asc`  |
-| Get list of groceries | `groceries RECIPE_NUMBER, ...` | `groceries 1, 3, 4` |
-| Filter Recipes by price | `filter COMPARATOR PRICE` | `fp < 4.20` |
-| Add Recipe to favorites | `star RECIPE_NUMBER` | `star 1` |
-| Remove Recipe from favorites | `unstar RECIPE_NUMBER` | `unstar 1` |
-| List Recipes in favorites | `favorites` | `favorites` |
-| Provide link to User Guide | `help` | `help` |
+### Beginner Commands
+
+| Action                         | Format                  | Examples  |
+|--------------------------------|-------------------------|-----------|
+| Add Recipe                     | `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`    | `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange`  |
+| Edit Recipe                    | `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`    | `edit 1 t/Corndog`  |
+| Delete Recipe                  | `delete RECIPE_NUMBER`   | `delete 1`  |
+| List Recipe                    | `list`   | `list`  |
+| Clear Recipe                   | `clear`   | `clear`  |
+
+
+
+### Advanced Commands
+
+| Action                         | Format                  | Examples  |
+|--------------------------------|-------------------------|-----------|
+| Find Recipe                    | `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`   | `find r/eggs`  |
+| Search Recipe with limited ingredients | `only INGREDIENT...`   | `only eggs flour`  |
+| Sort Recipes by price          | `sort ORDER`             | `sort asc`  |
+| Get list of groceries          | `groceries RECIPE_NUMBER, ...` | `groceries 1, 3, 4` |
+| Filter Recipes by price        | `filter COMPARATOR PRICE` | `fp < 4.20` |
+| Add Recipe to favorites        | `star RECIPE_NUMBER` | `star 1` |
+| Remove Recipe from favorites   | `unstar RECIPE_NUMBER` | `unstar 1` |
+| List Recipes in favorites      | `favorites` | `favorites` |
+| Provide link to User Guide     | `help` | `help` |
+
 
 [Back to top](#top)
 
 <hr style="border:2px solid gray">
 
 ## Glossary
-| Word                               |    Definition                                                                |
-|------------------------------------|------------------------------------------------------------------------------|
-| **Command Line Interface (CLI)**   | 	A program that mainly uses typed commands to interact with the app. |
-| **Graphical User Interface (GUI)** | 	What the user sees when interacting with the app.           |                   
-| Alphanumeric                       | A combination of both letters and numbers without space. |
-| Terminal                           | A text-based interface for the computer. |                    
+| Word                               | Definition                                                            |
+|------------------------------------|-----------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | A program that mainly uses typed commands to interact with the app.   |
+| **Graphical User Interface (GUI)** | What the user sees when interacting with the app.                     |                   
+| Alphanumeric                       | A combination of both letters and numbers without space.              |
+| Terminal                           | A text-based interface for the computer.                              |                    
 
 
 [Back to top](#top)
