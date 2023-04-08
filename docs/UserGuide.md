@@ -85,17 +85,17 @@ Example:    ![DeleteClientIndex](images/DeleteClientIndex.png)
 
 * All command-words are case-insensitive.
 
-* Additional notes: 
+* Additional notes:
     * Additional details can be given in any order.
-  
+
       Example: If the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
-  
+
     * If some detail is expected only once in the command, however, it has been specified multiple times, only the last occurrence will be taken.
-    
+
       Example: If you specify `phone/12341234 phone/56785678`, only `phone/56785678` will be taken.
-  
+
     * Extraneous details for commands that do not take in any (such as help, list-client, list-project, list-tag, exit, clear-client, clear-project and sort-client) will be ignored.
-    
+
       Example: If the command specifies `help 123`, it will be interpreted as `help`.
   
     * Extraneous details for commands that take in only one (such as `delete-client`) will be ignored.
