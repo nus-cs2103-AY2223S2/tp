@@ -90,6 +90,23 @@ public class Person {
     }
 
     /**
+     * Returns the string representation of {@code Set<Note>} for the applicant.
+     * @return Note as string
+     */
+    public String getNotesString() {
+        StringBuilder sb = new StringBuilder();
+        String delimiter = " ";
+        for (Note note : notes) {
+            sb.append(note.getNoteName()).append(delimiter);
+        }
+
+        if (sb.length() > 0) {
+            sb.setLength(sb.length() - 1);
+        }
+        return sb.toString();
+    }
+
+    /**
      * Returns the {@code ApplicationDateTime} of the applicant.
      * @return Application date and time of the applicant.
      */
