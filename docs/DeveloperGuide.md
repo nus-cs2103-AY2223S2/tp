@@ -97,13 +97,13 @@ The `UiManager` is a controller class containing the `start` method which initia
 3. Populate the UI window using the the `fillInnerParts` method of `MainWindow`.
 
 The `MainWindow#fillInnerParts` method will populate the UI by:
-1. Populating the `courseListPanel` in the Left Pane.
+1. Populating the Left Pane with a `CourseListPanel`.
 2. Populating the `pageTab`
 3. Populating the `commandBox`
 4. Populating the `resultDisplay`
 5. Populating the `statusBarFooter`
 
-As shown in Figure 2, users will be shown the Course Page upon launching tha application. The GUI will then refresh accordingly as the user navigates through the different pages in the application.
+As shown in Figure 2, users will be shown the Course Page upon launching the application. The GUI will then refresh accordingly as the user navigates through the different pages in the application.
 
 #### Navigating through pages
 
@@ -120,18 +120,15 @@ When a command such as `select` is called, the left pane or the right pane, or b
 *Figure 4: Sequence Diagram for `select`*
 
 
-The Sequence Diagram in Figure 3 illustrates the interactions between the `UI` component, `Logic` component and `Model` component when `select 1` is called in the Course Page.
-The `UI` first interacts with the `Logic` component to retrieve the current selected `PageType`, which is the Group Page.
-The `UI` then self-invokes a `showGroupPane` method that creates a `GroupListPanel`.
-The `GroupListPanel` takes in an `ObservableList<Group>` obtained from the `getUnmodifiableFilteredGroupList()` method.
+Figure 4's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` components interact when `select 1` is called on the Course Page. The user's selection path (`Course` -> `Group` -> `Student`) is tracked by the `CurrentSelection` class as they navigate through the application.
 
+To display the Group Page after a user selects a `Course` from the Course Page, the `UI` first obtains the `PageType` to be displayed in the GUI from the `Logic` component. Then, the `UI` retrieves the selected `Course` from `CurrentSelection` and subsequently invokes the `showGroupPane` method based on the selected `Course`.
 
-In `GroupListPanel`, each `Group` in the `ObservableList<Group>` will be mapped into a `GroupListViewCell`. Any changes made to a `Group` (say, via an `edit group` command)
-will be immediately reflected in the GUI.
+Before creating the `GroupListPanel` to display the groups in the selected `Course`, the UI obtains an `ObservableList<Group>` from the selected `Course` in the `Model` component. 
+Each `Group` in the `ObservableList<Group>` is then mapped into a `GroupListViewCell` in `GroupListPanel`.
+At the end of the `showGroupPane` method call, the Left Pane, previously occupied by the `CourseListPanel`, will be refreshed to show the `GroupListPanel`
 
-As a result, the corresponding Group Page showing a list of groups in the selected course will be shown in the GUI.
-
-The above sequence is similar across each page navigation sequence.
+This sequence of interactions is similar across each page navigation.
 
 #### Design considerations
 

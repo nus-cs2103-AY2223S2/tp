@@ -11,35 +11,45 @@ participant ":CurrentSelection" as CurrentSelection LOGIC_COLOR
 end box
 
 box MODEL MODEL_COLOR_T1
-participant ":Group" as Group MODEL_COLOR
+participant ":Course" as Course MODEL_COLOR
 end box
 
-[-> MainWindow : execute("select 1")
+[-> MainWindow : executeCommand("select 1")
 activate MainWindow
 
+MainWindow -> MainWindow : handleSelectCommand()
+activate MainWindow
 MainWindow -> CurrentSelection : getCurrentPage()
 activate CurrentSelection
 
 CurrentSelection --> MainWindow : PageType.GROUP_PAGE
 deactivate CurrentSelection
 
+MainWindow -> CurrentSelection : getSelectedCourse()
+activate CurrentSelection
+CurrentSelection --> MainWindow : Course
+deactivate CurrentSelection
 
-MainWindow -> MainWindow : showGroupPane
+
+
+MainWindow -> MainWindow : showGroupPane(Course)
 activate MainWindow
 
+MainWindow -> Course : getUnmodifiableFilteredGroupList()
+activate Course
+Course --> MainWindow : ObservableList<Group>
+deactivate Course
+
+
 create GroupListPanel
-MainWindow -> GroupListPanel : new GroupListPanel();
+MainWindow -> GroupListPanel : new GroupListPanel(ObservableList<Group>)
+
 activate GroupListPanel
-
-GroupListPanel -> Group : getUnmodifiableFilteredGroupList()
-activate Group
-
-Group --> GroupListPanel : ObservableList<Group>
-deactivate Group
-
 GroupListPanel --> MainWindow
 deactivate GroupListPanel
 
+MainWindow --> MainWindow
+deactivate MainWindow
 MainWindow --> MainWindow
 deactivate MainWindow
 
