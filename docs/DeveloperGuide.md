@@ -11,7 +11,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
@@ -19,7 +19,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started._](./SettingUp.md)
 
@@ -27,7 +27,7 @@ Refer to the guide [_Setting up and getting started._](./SettingUp.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -574,7 +574,7 @@ current design was favoured.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, Logging, Testing, Configuration, Dev-Ops**
+## Documentation, Logging, Testing, Configuration, Dev-Ops
 
 Here are some useful links on the following!
 

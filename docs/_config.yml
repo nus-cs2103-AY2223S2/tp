@@ -11,5 +11,5 @@ markdown: kramdown
 repository: "AY2223S2-CS2103T-F12-1/tp"
 github_icon: "images/github-icon.png"
 
-plugins:
-  - jemoji
+#plugins:
+#  - jemoji
