@@ -11,4 +11,5 @@ FindClientCommand *-down->"1" CombinedPredicate
 FindProjectCommand -[hidden]right-> FindClientCommand
 CombinedPredicate *-down-> "*" Predicate
 Predicate <|.. CombinedPredicate
+note left of CombinedPredicate : Can contain\nNameContainsKeywordsPredicate,\nProjectContainsTagsPredicate etc
 @enduml
