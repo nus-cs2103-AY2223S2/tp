@@ -225,7 +225,7 @@ A volunteer can have any number of [tags](#tags), [medical qualifications](#medi
 
 Examples:
 
-* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/99887432 ic/S9054567D` adds a volunteer named `John Wick` with [NRIC](#nric)
+* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New york p/99887432 ic/S9054567D` adds a volunteer named `John Wick` with [NRIC](#nric)
   `S9054567D` to FriendlyLink, with [birth date](#birthdate) `1990-11-05`, [address](#address) `New york`, [email address](#email) `johnwick@example.com` and [phone number](#phone-number) `99887432`.
 * `add_volunteer n/Sally White bd/1989-03-11 ic/S8957677H` adds a volunteer named `Sally White` with [NRIC](#nric)
   `S8957677H` to FriendlyLink, with [birth date](#birthdate) `1989-03-11`.
