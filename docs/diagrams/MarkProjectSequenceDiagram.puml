@@ -7,22 +7,16 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "list-project"
+user -[USER_COLOR]> ui : "mark 1"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("list-project")
+ui -[UI_COLOR]> logic : execute("mark 1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : resetFilteredAndSortedProjectList()
+logic -[LOGIC_COLOR]> model : markProjectAsDone(projectToMark)
 activate model MODEL_COLOR
 
-logic -[LOGIC_COLOR]> model : noProjectSize()
-
-logic -[LOGIC_COLOR]> model : noOverdueProjects()
-
-logic -[LOGIC_COLOR]> model : noDoneProjects()
-
-logic -[LOGIC_COLOR]> model : noNotDoneProjects()
+logic -[LOGIC_COLOR]> model : resetFilteredAndSortedProjectList();
 
 model -[MODEL_COLOR]-> logic
 deactivate model
