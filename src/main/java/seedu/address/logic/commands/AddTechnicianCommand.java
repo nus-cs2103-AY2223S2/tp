@@ -36,7 +36,7 @@ public class AddTechnicianCommand extends AddStaffCommand {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "leader "
             + PREFIX_TAG + "leaving 2nd march";
-    public static final String MESSAGE_SUCCESS = "New technician added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New technician added";
 
     /**
      * Constructs command that adds technician to the model

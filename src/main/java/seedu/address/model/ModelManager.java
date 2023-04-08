@@ -21,11 +21,6 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
-import seedu.address.model.mapping.AppointmentDataMap;
-import seedu.address.model.mapping.CustomerVehicleMap;
-import seedu.address.model.mapping.ServiceDataMap;
-import seedu.address.model.mapping.TechnicianDataMap;
-import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -57,13 +52,6 @@ public class ModelManager implements Model {
     private Service selectedService;
     private Appointment selectedAppointment;
     private Technician selectedTechnician;
-
-    // Mapped
-    private final CustomerVehicleMap customerVehicleMap;
-    private final VehicleDataMap vehicleDataMap;
-    private final ServiceDataMap serviceDataMap;
-    private final AppointmentDataMap appointmentDataMap;
-    private final TechnicianDataMap technicianDataMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -99,17 +87,6 @@ public class ModelManager implements Model {
 
         this.filteredParts = new FilteredList<>(this.shop.getPartMap());
 
-        customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList(),
-            this.shop.getAppointmentList());
-        vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
-            this.shop.getServiceList());
-        serviceDataMap = new ServiceDataMap(this.shop.getServiceList(), this.shop.getTechnicianList(),
-            this.shop.getVehicleList());
-        appointmentDataMap = new AppointmentDataMap(this.shop.getAppointmentList(), this.shop.getTechnicianList(),
-            this.shop.getCustomerList());
-        technicianDataMap = new TechnicianDataMap(this.shop.getTechnicianList(), this.shop.getServiceList(),
-            this.shop.getAppointmentList());
-
         if (filteredCustomers.size() > 0) {
             selectedCustomer = filteredCustomers.get(0);
         }
@@ -129,20 +106,6 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new Shop());
-    }
-
-    @Override
-    public void resetMaps() {
-        this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList(),
-            this.shop.getAppointmentList());
-        this.vehicleDataMap.reset(this.shop.getVehicleList(), this.shop.getCustomerList(),
-            this.shop.getServiceList());
-        this.serviceDataMap.reset(this.shop.getServiceList(), this.shop.getTechnicianList(),
-            this.shop.getVehicleList());
-        this.appointmentDataMap.reset(this.shop.getAppointmentList(), this.shop.getTechnicianList(),
-            this.shop.getCustomerList());
-        this.technicianDataMap.reset(this.shop.getTechnicianList(), this.shop.getServiceList(),
-            this.shop.getAppointmentList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -402,33 +365,6 @@ public class ModelManager implements Model {
     public void updateTechnicianComparator(Comparator<? super Technician> comparator) {
         requireNonNull(comparator);
         sortedFilteredTechnicians.setComparator(comparator);
-    }
-
-    // Map getters ===========================================================================================
-
-    @Override
-    public CustomerVehicleMap getCustomerVehicleMap() {
-        return this.customerVehicleMap;
-    }
-
-    @Override
-    public VehicleDataMap getVehicleDataMap() {
-        return this.vehicleDataMap;
-    }
-
-    @Override
-    public ServiceDataMap getServiceDataMap() {
-        return this.serviceDataMap;
-    }
-
-    @Override
-    public AppointmentDataMap getAppointmentDataMap() {
-        return this.appointmentDataMap;
-    }
-
-    @Override
-    public TechnicianDataMap getTechnicianDataMap() {
-        return this.technicianDataMap;
     }
 }
 
