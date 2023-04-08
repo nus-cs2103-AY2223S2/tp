@@ -235,6 +235,8 @@ e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 :man_technologist: **Congratulations! You have completed a task. Now, you can remove it by using this command.**
 
+:man_technologist: **Think twice before using this. This action is not reversible.**
+
 Deletes the specified task from the task  book.
 
 Format: `delete INDEX [INDEX]…​`
@@ -314,8 +316,8 @@ Examples:
     * e.g. `find all/ n/try n/try n/lab` is interpreted as `find all/ n/try n/lab`
 * For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
   However, adding `all/` means that a task which contains all your tag inputs will be displayed.
-    * e.g. `find t/very urgent t/important` will match with tags `t/very very urgent t/math t/hard` since it has `very urgent`.
-    * e.g. `find all/ t/very urgent t/important` will match with tags `t/very urgent t/important` since it has both tags.
+    * e.g. `find t/veryUrgent t/important` will match with tags `t/veryVeryUrgent t/math t/hard` since it has `veryurgent`.
+    * e.g. `find all/ t/veryUrgent t/important` will match with tags `t/veryUrgent t/important` since it has both tags.
 
 :warning: When searching for a description `find d/DESCRIPTION`, Tasks without user's input description will not show up!
 
