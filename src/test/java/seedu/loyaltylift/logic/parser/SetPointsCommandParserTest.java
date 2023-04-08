@@ -36,11 +36,6 @@ public class SetPointsCommandParserTest {
         // no parameters
         assertParseFailure(parser, SetPointsCommand.COMMAND_WORD, expectedMessage);
 
-        // weird test failure, not sure what is going on, will fix in future
-        // no index
-        //assertParseFailure(parser, SetPointsCommand.COMMAND_WORD + " "
-        //        + PREFIX_POINTS + nonEmptyPoints, expectedMessage);
-
         // no points
         assertParseFailure(parser, SetPointsCommand.COMMAND_WORD + " 1", expectedMessage);
     }
