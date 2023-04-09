@@ -68,7 +68,7 @@ public class RemoveMeetingCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_REMOVE_SUCCESS, personToEdit);
+        return String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName());
     }
 
     @Override
