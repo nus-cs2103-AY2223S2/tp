@@ -258,10 +258,24 @@ Throughout this user guide, you may come across different formatting styles and 
    </details>
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `Enter` to run the application. An application similar to the one shown below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
-    <img src="images/UGscreenshots/careflow_home.png" style="zoom:100%">
+    <img src="images/UGscreenshots/ug_desc_diagram_001.png" style="zoom:100%">
   </p>
   <p align="center">
-    <i>Figure 12. Graphical User Interface (GUI) of CareFlow</i>
+    <i>Figure 12. Dark mode user interface with Patient tab opened. </i>
+    </p>
+
+<p align="center">
+    <img src="images/UGscreenshots/ug_desc_diagram_002.png" style="zoom:100%">
+  </p>
+  <p align="center">
+    <i>Figure 13. Dark mode user interface with Drug tab opened. </i>
+    </p>
+
+<p align="center">
+    <img src="images/UGscreenshots/ug_desc_diagram_003.png" style="zoom:100%">
+  </p>
+  <p align="center">
+    <i>Figure 14. Dark mode user interface with Hospital Hotlines tab opened. </i>
     </p>
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`g help`** and hit `Enter` will open the help window.<br/>
    <details>
@@ -335,7 +349,7 @@ drug of CareFlow.
     <img src="images/UIscreenshots/helpMessage.png" style="zoom:100%">
   </p>
   <p align="center">
-    <i>Figure 13. Popped up window after typing 'g help'.</i>
+    <i>Figure 15. Popped up window after typing 'g help'.</i>
   </p>
   <br/>
 * **Format:** `g help`
