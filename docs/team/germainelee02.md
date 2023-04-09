@@ -20,14 +20,14 @@ Given below are my contributions to the project.
   It uses the pre-existing utility functions in `ArgumentMultimap` and `ArgumentTokenizer`.
     It validates that only one command flag can be present and has a function
     to get the predicate of its respective command flag.
-  * Justification: The original`find` command only searches through the titles, missing out on other components.
+  * Justification: The original`find` command only searches through the titles.
   * Highlights: The challenge is in using the existing utility class `ArgumentMultimap` and `ArgumentTokenizer` when parsing the command flags. 
   I also created the respective classes to handle the predicates for each recipe component.
 
 * **Enhancements to existing features**: Modified the input rules for `Step` and `Description` [\#163](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/163)
-  * What it does: `Step` and `Description` can include punctuation marks, in addition to being alphanumeric or spaces.
+  * What it does: `Step` and `Description` can include punctuation marks, alphanumeric and spaces.
   * Justification: Punctuation marks occurs naturally in steps and descriptions.
-  * Highlights: This feature flaw was brought up 30 minutes before the feature freeze deadline, and I hurriedly fixed it.
+  * Highlights: This feature flaw was brought up 30 minutes before the feature freeze deadline. I hurriedly fixed it.
 
 * **New Feature**: Added the feature for a user to find all the ingredients that can be made with only a set of ingredients. [\#140](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/140)
   * What it does: The `only` feature takes in ingredients, then lists the recipes that contain a subset of those ingredients.
@@ -53,13 +53,14 @@ Given below are my contributions to the project.
   * Contributed to the user stories in the Developer Guide
   * Added the use cases in the Developer Guide
   * Added CLI tutorial to the User Guide [\#240](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/240)
-  * Fixed the grammar mistakes in the User Guide and changed the language in the User Guide to sound more welcoming [\#212](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/212)
+  * Fixed the grammar mistakes in the User Guide [\#212](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/212)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#94](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/94#discussion_r1131842351),
   [\#94](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/94#discussion_r1131842857),
   [\#213](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/213#discussion_r1155910263),
   [\#213](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/213#discussion_r1155911769)
+  * Found 16 bugs in [CS2103T-T11-4](https://github.com/AY2223S2-CS2103T-T11-4/tp/issues?q=is%3Aissue+B+)'s product during PE-D.
 
 * **Documentation**:
   * User Guide
