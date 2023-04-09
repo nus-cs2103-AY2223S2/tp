@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Invalid index: Make sure index is an integer of at least 1.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid input: The person index is invalid or empty.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
