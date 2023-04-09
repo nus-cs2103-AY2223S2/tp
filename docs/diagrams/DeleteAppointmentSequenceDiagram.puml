@@ -50,19 +50,19 @@ deactivate AddressBookParser
 LogicManager -> DeleteAppointmentCommand : execute()
 activate DeleteAppointmentCommand
 
-DeleteAppointmentCommand -> Model : deleteAppointment(d)
+DeleteAppointmentCommand -> Model : deleteAppointment(appmt)
 activate Model
 
 Model --> DeleteAppointmentCommand
 deactivate Model
 
-DeleteAppointmentCommand -> Patient : deletePatientAppointment(d)
+DeleteAppointmentCommand -> Patient : deletePatientAppointment(appmt)
 activate Patient
 
 Patient --> DeleteAppointmentCommand
 deactivate Patient
 
-DeleteAppointmentCommand -> Doctor : deletePatientAppointment(d)
+DeleteAppointmentCommand -> Doctor : deletePatientAppointment(appmt)
 activate Doctor
 
 Doctor --> DeleteAppointmentCommand
