@@ -44,7 +44,7 @@ Check out the code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp
 - **UG Argument Formats**
   - Create an "Argument Formats" section that documents the required format of each argument's values
 - **Standardise UG Format**
-  - Define the convention that all members are to follow for the "Command Manual" section of the UG
+  - Define the UG "Command Manual" section convention that all members are to follow
 
 #### Team-Based Tasks
 
