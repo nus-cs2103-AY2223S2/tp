@@ -1686,7 +1686,23 @@ appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 \
 
 #### Less strict patient name check
 
-We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
+We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names. We also plan to limit the name to prevent UI elements from being overflowed.
+
+The following is an example of the problem:
+
+![Patient Name too long](images/patient/dg/patient_name_long.png)
+
+A proposed solution is to update the validation regex to something like `public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}\\-.,/@ ]*";`
+
+#### Phone number limit
+
+We plan to cap the max length of the phone number type so that the UI elements does not get overflowed.
+
+The following is an example of the problem:
+
+![Phone Number too long](images/patient/dg/phone_number_long.png)
+
+A proposed solution would be to limit the phone number to 32 character long.
 
 #### Decrease the warning severity message of invalid appointment data file
 
