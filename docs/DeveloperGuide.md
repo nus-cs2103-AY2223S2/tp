@@ -271,6 +271,8 @@ Because we would like to limit the types of statuses a contact should have, for 
 type of lead status is represented by an enum in `LeadStatusName`. `LeadStatusName` also contains mappings for
 abbreviations of each status type.
 
+Lead status implementation in more detail:
+
 ![](images/LeadStatusDiagram.png)
 
 The default lead status of a new contact added is `UNCONTACTED`, and the timestamp is the time of adding the contact.
@@ -285,6 +287,9 @@ an error is thrown, the user is alerted. No creation of new LeadStatus will take
 
 If the lead status to change to is the same as the preexisting one, the command returns and does not alter the previous lead status nor its timestamp.
 This also means that a lead status should not be updated when any other attributes are updated (via `edit`).
+
+The following sequence diagram illustrates `execute()` function within the StatusCommand. Note that the function does 
+not create a new `Person` with a new `LeadStatus` if the name is the same as the current `Person`'s status.
 
 ![](images/StatusSequenceDiagram.png)
 
@@ -454,16 +459,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                   | I want to …​                                                                                   | So that I can…​                                                          |
 |----------|---------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
 | `* * *`  | new user                  | see usage instructions                                                                         | refer to instructions when I forget how to use the App                   |
-| `* * *` | salesperson               | add a new client                                            | keep track of all my clients                             |
-| `* * *` | salesperson               | view all my clients                                         | have access to each and every client                     |
+| `* * *`  | salesperson               | add a new client                                                                               | keep track of all my clients                                             |
+| `* * *`  | salesperson               | view all my clients                                                                            | have access to each and every client                                     |
 | `* * *`  | salesperson               | delete a client                                                                                | remove leads that have fallen cold, or are false entries                 |
 | `* * *`  | forgetful salesperson     | filter my contacts by lead status                                                              | prioritise what to follow up on                                          |
-| `* *`  | salesperson               | update client information                                   | keep my clients' informations up to date                 |
+| `* *`    | salesperson               | update client information                                                                      | keep my clients' informations up to date                                 |
 | `* *`    | forgetful salesperson     | see the timestamp of the contact's lead status                                                 | prioritise customers who I have not followed up with                     |
 | `* *`    | salesperson               | have a keyword search                                                                          | find lead based on a company or persons name                             |
 | `* *`    | forgetful salesperson     | associate my contacts with the day of first creation                                           | determine the next time I should contact them                            |
 | `* *`    | frantic salesperson       | be warned when I make certain actions in my application                                        | won’t jeopardise my work through carelessness                            |
-| `*`    | cross-product salesperson | sort persons by their attributes such as gender or industry | perform targeted sales strategy                          |
+| `*`      | cross-product salesperson | sort persons by their attributes such as gender or industry                                    | perform targeted sales strategy                                          |
 | `*`      | new user                  | import my current database                                                                     |                                                                          |
 | `*`      | salesperson               | record down all transactions with clients                                                      |                                                                          |
 | `*`      | salesperson               | search through transactions based on an existing contact's name, while also seeing the contact | conveniently refer to persons' and transactions' info on the same screen |

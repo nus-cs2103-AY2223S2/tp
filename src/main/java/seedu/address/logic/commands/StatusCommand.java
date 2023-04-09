@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS_ASSIGN;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.status.LeadStatusName.QUALIFIED;
 
 import java.util.List;
 import java.util.Set;
@@ -38,9 +39,9 @@ public class StatusCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Handles lead statuses, "
             + "allows for setting of statuses.\n"
             + "Parameters: \n"
-            + "[INDEX " + PREFIX_STATUS_ASSIGN + " STATUS_TYPE]\n"
+            + "INDEX " + PREFIX_STATUS_ASSIGN + "STATUS_TYPE\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_STATUS_ASSIGN + "qualified\n";
+            + PREFIX_STATUS_ASSIGN + QUALIFIED.getLabel();
 
     public static final String MESSAGE_STATUS_ASSIGN_PERSON_SUCCESS = "Assigned %1$s status of "
             + " %2$s";

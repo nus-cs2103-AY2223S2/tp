@@ -7,7 +7,7 @@ title: WesleyBLDC's Project Portfolio Page
 
 ### Overview
 
-SalesPUNCH is a lightweight alternative Customer Relationship Management (CRM)
+SalesPunch is a lightweight alternative Customer Relationship Management (CRM)
 software, inspired by the conventional CRM software, such as SalesForce, but uses
 a CLI-based user interface instead of a GUI, aimed towards enhancing efficiency
 for fast typists.
