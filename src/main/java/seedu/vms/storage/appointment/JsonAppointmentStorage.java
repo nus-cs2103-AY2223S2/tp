@@ -18,24 +18,33 @@ import seedu.vms.model.appointment.AppointmentManager;
 public class JsonAppointmentStorage implements AppointmentStorage {
     public static final Path USER_APPOINTMENT_PATH = Path.of("data", "appointment.json");
 
+    private final Path filePath;
+
+    public JsonAppointmentStorage() {
+        this(USER_APPOINTMENT_PATH);
+    }
+
+    public JsonAppointmentStorage(Path filePath) {
+        this.filePath = filePath;
+    }
 
     @Override
     public AppointmentManager loadAppointments() throws IOException {
         try {
             return JsonUtil
-                    .deserializeFromFile(USER_APPOINTMENT_PATH, JsonSerializableAppointmentManager.class)
+                    .deserializeFromFile(filePath, JsonSerializableAppointmentManager.class)
                     .toModelType();
         } catch (IllegalValueException illValEx) {
             throw new IOException(illValEx.getMessage());
         }
     }
 
-
     @Override
     public void saveAppointments(AppointmentManager manager) throws IOException {
         requireNonNull(manager);
 
-        FileUtil.createIfMissing(USER_APPOINTMENT_PATH);
-        JsonUtil.serializeToFile(USER_APPOINTMENT_PATH, new JsonSerializableAppointmentManager(manager));
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.serializeToFile(filePath, new JsonSerializableAppointmentManager(manager));
     }
 }
+
