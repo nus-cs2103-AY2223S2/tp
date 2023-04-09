@@ -59,7 +59,7 @@ CoDoc is a desktop contact management application. The user interacts with it us
   * Renamed packages to remove anything related to AB3. [#64](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/64)
 
 * **Community**:
-  * Reviewed and commented on teammates' PRs. [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Alinustws), [My comments on PRs](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/tp-comments.html#165-tan-inus-linustws-4-comments)
+  * Reviewed and commented on teammates' PRs. [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Alinustws), [My comments on PRs](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/tp-comments.html#162-tan-inus-linustws-5-comments)
   * Opened and assigned issues to teammates and me. [Issues opened by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Alinustws), [Issues assigned to me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Alinustws)
   * Merged teammates' PRs.
   * Reported bugs for other teams. [PE-D](https://github.com/linustws/ped/issues)
