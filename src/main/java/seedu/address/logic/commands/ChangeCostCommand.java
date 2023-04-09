@@ -42,6 +42,7 @@ public class ChangeCostCommand extends Command {
         this.rate = rate;
         this.flatCost = flatCost;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -55,5 +56,12 @@ public class ChangeCostCommand extends Command {
         petToChange.getCost().setRate(rate);
         petToChange.getCost().setFlatCost(flatCost);
         return new CommandResult(String.format(MESSAGE_SUCCESS, petToChange));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ChangeCostCommand // instanceof handles nulls
+                && targetIndex.equals(((ChangeCostCommand) other).targetIndex)); // state check
     }
 }

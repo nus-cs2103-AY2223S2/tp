@@ -47,7 +47,7 @@ public class MarkCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof MarkCommand // instanceof handles nulls
+                && targetIndex.equals(((MarkCommand) other).targetIndex)); // state check
     }
 }
