@@ -170,7 +170,7 @@ This operation is similar to that of adding a person. Adding an event involves c
 
 #### Current Implementation
 
-Finding an event is a feature that uses the command `findevent [EVENT_NAME]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
+Finding an event is a feature that uses the command `findevent KEYWORD [MORE_KEYWORDS]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
 Below is the sequence diagram detailing how the `findevent` operation works.
 
 ![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
@@ -178,6 +178,22 @@ Below is the sequence diagram detailing how the `findevent` operation works.
 Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
 This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
 The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
+
+### \[Implemented] Edit event feature
+
+#### Current Implementation
+
+Editing an event is a feature that uses the command `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`. The following activity diagram shows how the edit event operation works when given valid and invalid parameters.
+
+![EditEventActivityDiagram](images/EditEventActivityDiagram.png)
+
+The event at the displayed list's `EVENT_INDEX` is denoted as `eventToEdit`. The edited version is denoted as `editedEvent`. 
+
+Editing an event involves calling `Model#setEvent(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEvent(eventToEdit, editedEvent)` to edit the specified event, `eventToEdit`, in the `AddressBook`.
+
+Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and editing the specified event, `eventToEdit`. This is done by calling `Model#setEventFromPersonList(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEventFromPersonList(eventToEdit, editedEvent)`.
+
+The `setEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely edit the specified event in the `AddressBook`.
 
 ### \[Implemented] Delete event feature
 
