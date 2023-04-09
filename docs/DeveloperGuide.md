@@ -583,7 +583,7 @@ Please refer to the respective guides below for other information.
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-### 4.2 Product scope
+## 4.2 Product scope
 
 **Target user profile**:
 
@@ -604,7 +604,7 @@ Our application:
 * serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (but no support for custom formatting of interface)
 * enables faster contact management compared to a typical mouse/GUI driven app<br><br>
 
-### 4.3 User stories
+## 4.3 User stories
 
 **High Priority (Must Have)**
 
@@ -642,7 +642,7 @@ Our application:
 |-----------------|-----------------------------|-----------------------------------------------------------|
 | expert user     | be able to import past data | use the application easily when transferring data         |
 
-### 4.4 Use cases
+## 4.4 Use cases
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Home Business Owner`)
 
@@ -827,7 +827,7 @@ Our application:
 
    Use case ends.
 
-### 4.5 Non-Functional Requirements
+## 4.5 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 200 supplier and customer contacts without a noticeable sluggishness in performance for typical usage.
@@ -835,6 +835,8 @@ Our application:
 4. Should be able to hold up to 200 tasks without a noticeable sluggishness in performance for typical usage.
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 6. Should store data locally only.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 4.6 Glossary
 
@@ -853,12 +855,36 @@ Our application:
 
 --------------------------------------------------------------------------------------------------------------------
 
+## 4.7 Planned Enhancements
+
+1. Ensure all the commands follow the standard format so that it is easier for the user to remember.<br>
+  Currently, some commands do not follow this format, such as `find_supplier` where it is of the format `find_supplier NAME` instead of `find_supplier n/NAME`.<br>
+  The format is shown below.
+  <div style="background-color:silver; font-weight:bold">
+   <span style="color:darkblue">&lt;command&gt;</span>
+   <span> </span>
+   <span style="color:indigo">&lt;index&gt;</span>
+   <span> </span>
+   <span style="color:brown">&lt;prefix/paramater&gt; &lt;prefix/paramater&gt; ...</span>
+  </div>
+  <br>
+
+2. Provide better error messages for commands.<br>
+  Currently, some commands do not show a comprehensive error message to display what the user has done.<br>
+  For example some command return a success message of `Edited task: task`. We suggest a more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
+  Specifically, `Edited task: Buy eggs; Deadline:01 January 2023; Status: Not Done`.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 4.7 Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note**
+
+These instructions only provide a starting point for testers to work on and testers are expected to do more exploratory testing.
 
 </div>
 
@@ -882,22 +908,230 @@ testers are expected to do more *exploratory* testing.
    1. Execute the command `exit` or close the window using GUI by clicking the cross on the top-right hand corner.
       Expected: The window will close and all the data will be saved.<br><br>
 
-### Deleting a person
+### Adding a supplier
 
-1. Deleting a person while all persons are being shown
+**Test Case 1**
 
-  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Context: There is **no** contact with the phone number `11111111` in Trackr.
 
-  1. Test case: `delete 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+Action: Execute command `add_supplier n/Ben p/11111111 a/Ben Street e/ben@gmail.com`
 
-  1. Test case: `delete 0`<br>
-     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Expected Outcome:
+* New supplier `Ben` is added into the supplier list.
+* Success message shown in command result box.<br>
+  Specifically, `New Supplier added: Ben; Phone: 11111111; Email: ben@gmail.com; Address: Ben Street`
 
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
+**Test Case 2**
 
-1. { more test cases …​ }<br><br>
+Context: There **is** a contact with the phone number `11111111` in Trackr.
+
+Action: Execute command `add_supplier n/Ben p/11111111 a/Ben Street e/ben@gmail.com`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `This Supplier already exists in the Supplier list`
+
+### Adding a task
+
+**Test Case 1**
+
+Context: There is **no** task with the name `Buy yeast` and deadline `10/10/2023` in Trackr.
+
+Action: Execute command `add_task n/Buy yeast d/10/10/2023`
+
+Expected Outcome:
+* New task `Buy yeast` is added into the task list.
+* Success message shown in command result box.<br>
+  Specifically, `New Task added: Buy yeast; Deadline: 10 October 2023; Status: Not Done`
+
+**Test Case 2**
+
+Context: There **is** a task with the name `Buy yeast` and deadline `10/10/2023` in Trackr.
+
+Action: Execute command `add_task n/Buy yeast d/10/10/2023`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `This Task already exists in the Task list`
+
+### Adding an order
+
+**Test Case 1**
+
+Context: There is **no** order with the same customer, order item, deadline and quantity in Trackr.
+
+Action: Execute command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`
+
+Expected Outcome:
+* New order is added into the order list.
+* Success message shown in command result box.<br>
+  Specifically, `New Order added: Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street`
+
+**Test Case 2**
+
+Context: There **is** an order with the same customer, order item, deadline and quantity in Trackr.
+
+Action: Execute command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `This Order already exists in the Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street list`<br>
+  Note that there is an issue with the error message now and will be fixed in the future update.
+
+### Adding a menu item
+
+**Test Case 1**
+
+Context: There is **no** menu item with the name `Vanilla Cake` in Trackr.
+
+Action: Execute command `add_item n/Vanilla Cake pr/40 c/25`
+
+Expected Outcome:
+* New menu item `Vanilla Cake` is added into the menu.
+* Success message shown in command result box.<br>
+  Specifically, `New Menu Item added: Vanilla Cake; Selling Price: $40.00; Cost: $25.00; Profit: $15.00`
+
+**Test Case 2**
+
+Context: There **is** a menu item with the name `Vanilla Cake` in Trackr.
+
+Action: Execute command `add_item n/Vanilla Cake pr/40 c/25`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `This Menu Item already exists in the Menu Item list`
+
+### Editing supplier
+
+**Test Case 1**
+
+Context: There **is** a supplier at index `1` and **no** suppliers with the new phone number `11111111` in Trackr.
+
+Action: Execute command `edit_supplier 1 p/11111111`
+
+Expected Outcome:
+* Edited **first** supplier with phone number `11111111`.
+* Success message shown in command result box.<br>
+  Specifically, `Edited supplier: supplier`
+
+**Test Case 2**
+
+Context: There **is** a supplier at index `1` and **a** supplier with the new phone number `11111111` in Trackr.
+
+Action: Execute command `edit_supplier 1 p/11111111`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `This supplier already exists in the supplier list.`
+
+**Test Case 3**
+
+Context: There **is** a no supplier at index `5` in Trackr.
+
+Action: Execute command `edit_supplier 5 p/11111111`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `The supplier index provided is invalid`
+
+### Editing task
+
+**Test Case 1**
+
+Context: There **is** a task at index `1` and **no** supplier with the new name `Buy eggs` and deadline `10/10/2023` in Trackr.
+
+Action: Execute command `edit_task 1 n/Buy eggs d/10/10/2023`
+
+Expected Outcome:
+* Edited **first** task with name `Buy eggs` and deadline `10/10/2023`.
+* Success message shown in command result box.<br>
+  Specifically, `Edited task: task`
+
+**Test Case 2**
+
+Context: There **is** a task at index `1` and **a** supplier with the new name `Buy eggs` and deadline `10/10/2023` in Trackr.
+
+Action: Execute command `edit_task 1 n/Buy eggs d/10/10/2023`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `This task already exists in the task list.`
+
+**Test Case 3**
+
+Context: There **is** a no task at index `5` in Trackr.
+
+Action: Execute command `edit_task 5 n/Buy eggs d/10/10/2023`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `The task index provided is invalid`
+
+### Editing order
+
+**Test Case 1**
+
+Context: There **is** an order at index `1` and **no** same details as edited order in Trackr.
+
+Action: Execute command `edit_order 1 a/John Street`
+
+Expected Outcome:
+* Edited **first** order with customer address `John Street`.
+* Success message shown in command result box.<br>
+  Specifically, `Edited order: order`
+
+**Test Case 2**
+
+Context: There **is** an order at index `1` and **an** order with the same details as the edited order in Trackr.
+
+Action: Execute command `edit_order 1 a/John Street`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `This order already exists in the order list.`
+
+**Test Case 3**
+
+Context: There **is** a no order at index `5` in Trackr.
+
+Action: Execute command `edit_task 5 n/Buy eggs d/10/10/2023`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `The order index provided is invalid`
+
+### Editing menu item
+
+**Test Case 1**
+
+Context: There **is** a menu item at index `1` and **no** menu items with same name `Chocolate Cookies` in Trackr.
+
+Action: Execute command `edit_item 1 n/Chocolate Cookies`
+
+Expected Outcome:
+* Edited **first** menu item with name `Chocolate Cookies`.
+* Success message shown in command result box.<br>
+  Specifically, `Edited menu item: menu item`
+
+**Test Case 2**
+
+Context: There **is** a menu item at index `1` and **a** menu item with the same name `Chocolate Cookies` in Trackr.
+
+Action: Execute command `edit_item 1 n/Chocolate Cookies`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `This menu item already exists in the menu item list.`
+
+**Test Case 3**
+
+Context: There **is** a no menu item at index `5` in Trackr.
+
+Action: Execute command `edit_item 1 n/Chocolate Cookies`
+
+Expected Outcome:
+* Error message shown in command result box.<br>
+  Specifically, `The menu item index provided is invalid`
 
 ### Saving data
 
