@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.testutil.Assert.assertThrows;
-import static seedu.library.testutil.TypicalBookmarks.ALICE;
+import static seedu.library.testutil.TypicalBookmarks.AOT;
 import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class LibraryTest {
     @Test
     public void resetData_withDuplicateBookmarks_throwsDuplicateBookmarkException() {
         // Two Bookmarks with the same identity fields
-        Bookmark editedAlice = new BookmarkBuilder(ALICE).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
+        Bookmark editedAlice = new BookmarkBuilder(AOT).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Bookmark> newBookmarks = Arrays.asList(ALICE, editedAlice);
+        List<Bookmark> newBookmarks = Arrays.asList(AOT, editedAlice);
         LibraryStub newData = new LibraryStub(newBookmarks);
 
         assertThrows(DuplicateBookmarkException.class, () -> library.resetData(newData));
@@ -61,19 +61,19 @@ public class LibraryTest {
 
     @Test
     public void hasBookmark_bookmarkNotInLibrary_returnsFalse() {
-        assertFalse(library.hasBookmark(ALICE));
+        assertFalse(library.hasBookmark(AOT));
     }
 
     @Test
     public void hasBookmark_bookmarkInLibrary_returnsTrue() {
-        library.addBookmark(ALICE);
-        assertTrue(library.hasBookmark(ALICE));
+        library.addBookmark(AOT);
+        assertTrue(library.hasBookmark(AOT));
     }
 
     @Test
     public void hasBookmark_bookmarkWithSameIdentityFieldsInLibrary_returnsTrue() {
-        library.addBookmark(ALICE);
-        Bookmark editedAlice = new BookmarkBuilder(ALICE).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
+        library.addBookmark(AOT);
+        Bookmark editedAlice = new BookmarkBuilder(AOT).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(library.hasBookmark(editedAlice));
     }

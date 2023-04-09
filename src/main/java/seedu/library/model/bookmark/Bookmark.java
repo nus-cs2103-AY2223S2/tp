@@ -130,9 +130,9 @@ public class Bookmark implements Comparable<Bookmark> {
                 .append(getGenre())
                 .append("; Author: ")
                 .append(getAuthor())
-                .append(" Rating: ")
+                .append("; Rating: ")
                 .append(getRating())
-                .append(" Url: ")
+                .append("; Url: ")
                 .append(getUrl());
 
         Set<Tag> tags = getTags();

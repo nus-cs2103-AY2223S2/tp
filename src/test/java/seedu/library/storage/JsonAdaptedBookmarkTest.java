@@ -15,6 +15,7 @@ import seedu.library.commons.exceptions.IllegalValueException;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
 
 public class JsonAdaptedBookmarkTest {
@@ -23,7 +24,7 @@ public class JsonAdaptedBookmarkTest {
     private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_GENRE = " ";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_RATING = "0";
+    private static final String INVALID_RATING = "-1";
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
     private static final JsonAdaptedProgress VALID_PROGRESS = new JsonAdaptedProgress(BENSON.getProgress());
@@ -117,6 +118,15 @@ public class JsonAdaptedBookmarkTest {
                 new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS,
                         VALID_GENRE, VALID_AUTHOR, VALID_RATING, VALID_URL, invalidTags);
         assertThrows(IllegalValueException.class, bookmark::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidRating_throwsIllegalValueException() {
+        JsonAdaptedBookmark bookmark =
+                new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS,
+                        VALID_GENRE, VALID_AUTHOR, INVALID_RATING, VALID_URL, VALID_TAGS);
+        String expectedMessage = Rating.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, bookmark::toModelType);
     }
 
 }

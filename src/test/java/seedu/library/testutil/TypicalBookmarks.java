@@ -23,10 +23,18 @@ import seedu.library.model.bookmark.Bookmark;
  */
 public class TypicalBookmarks {
 
-    public static final Bookmark ALICE = new BookmarkBuilder().withTitle("Alice Pauline")
-            .withAuthor("123, Jurong West Ave 6, #08-111").withGenre("Action")
-            .withProgress("1 2 ~").withUrl("https://www.abc.com")
+    public static final Bookmark AOT = new BookmarkBuilder().withTitle("Attack on Titans")
+            .withAuthor("Hajime Isayama").withGenre("Action")
+            .withProgress("1 2 ~").withUrl("https://aotmanga.com/attack-on-titan/chapter-139/")
             .withTags("MaleProtagonist").build();
+
+    public static final String AOTString = "Attack on Titans"
+            + "; Progress: Vol. 1 Ch. 2"
+            + "; Genre: Action; Author: Hajime Isayama"
+            + "; Rating: 0"
+            + "; Url: https://aotmanga.com/attack-on-titan/chapter-139/"
+            + "; Tags: [MaleProtagonist]";
+
     public static final Bookmark BENSON = new BookmarkBuilder().withTitle("Benson Meier")
             .withAuthor("311, Clementi Ave 2, #02-25")
             .withGenre("Adventure").withProgress("1 2 ~").withUrl("https://www.def.com")
@@ -78,6 +86,6 @@ public class TypicalBookmarks {
     }
 
     public static List<Bookmark> getTypicalBookmarks() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(AOT, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

@@ -70,6 +70,8 @@ public class BookmarkContainsKeywordsPredicate implements Predicate<Bookmark> {
     private boolean testAuthor(Bookmark bookmark) {
         if (authorKeywords == null) {
             return true;
+        } else if (bookmark.getAuthor() == null) {
+            return false;
         } else {
             return authorKeywords.stream()
                     .allMatch(keyword -> StringUtil.containsWordIgnoreCase(bookmark.getAuthor().value, keyword));
