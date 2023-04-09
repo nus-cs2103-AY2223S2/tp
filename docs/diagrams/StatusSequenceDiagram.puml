@@ -8,7 +8,7 @@ end box
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":UltronParser" as UltronParser LOGIC_COLOR
-participant ":ContainsStatusPredicate" as ContainsStatusPredicate LOGIC_COLOR
+participant "containsApplied:ContainsStatusPredicate" as ContainsStatusPredicate LOGIC_COLOR
 participant ":StatusCommand" as StatusCommand LOGIC_COLOR
 end box
 
@@ -35,7 +35,7 @@ deactivate ContainsStatusPredicate
 
 create StatusCommand
 
-UltronParser -> StatusCommand : StatusCommand(ContainsStatusPredicate)
+UltronParser -> StatusCommand : StatusCommand(containsApplied)
 activate StatusCommand
 
 StatusCommand --> UltronParser
@@ -47,7 +47,7 @@ deactivate UltronParser
 LogicManager -> StatusCommand : execute()
 activate StatusCommand
 
-StatusCommand -> Model : updateFilteredOpeningList(ContainsStatusPredicate))
+StatusCommand -> Model : updateFilteredOpeningList(containsApplied)
 activate Model
 
 Model --> StatusCommand
