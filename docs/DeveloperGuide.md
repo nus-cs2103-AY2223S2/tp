@@ -321,7 +321,7 @@ Step 5. `LogicManager` then calls `execute` in `AddCommand`, which carries out t
 
 The following sequence diagram shows how the addition operation works:
 
-<img src="images/ToDoSequenceDiagramUML.png"/>
+<img src="images/AddPersonSequenceDiagram.png"/>
 
 [↑ Return to start of section](#4-implementation)
 
