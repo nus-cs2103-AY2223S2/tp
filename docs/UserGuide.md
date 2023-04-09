@@ -116,13 +116,13 @@ Let's get you _rizzed_ up in the fastest way possible!
 </div> 
 
 <div markdown="block" class="alert alert-success">
-:bulb: **Tip**:
+:bulb: **Tip**:<br>
 
-* For increased readability, we have included an optional multi-line command format for commands
-  that may require multiple inputs (add, edit). After each input,
-  you can include a line break just by simply entering a backslash <kbd>\</kbd> to move on to the next line to continue
-  writing the next part of your command input! Note that you will not have to delete the backslash that appears
-  before continuing to type!
+For increased readability, we have included an optional multi-line command format for commands
+that may require multiple inputs (add, edit). After each input,
+you can include a line break just by simply entering a backslash <kbd>\</kbd> to move on to the next line to continue
+writing the next part of your command input! Note that you will not have to delete the backslash that appears
+before continuing to type!
 
 </div>
 
@@ -194,9 +194,9 @@ butter s/Serve and enjoy.`
 </div>
 
 <div markdown="block" class="alert alert-success">
-:bulb: **Tip**:
+:bulb: **Tip**:<br>
 
-* When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
+When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
 
 </div>
 
@@ -245,9 +245,9 @@ Format:
 </div>
 
 <div markdown="block" class="alert alert-success">
-:bulb: **Tip**:
+:bulb: **Tip**:<br>
 
-* The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
+The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 
 </div>
 
@@ -400,9 +400,9 @@ Example(s) of usage:
 </div>
 
 <div markdown="block" class="alert alert-success">
-:bulb: **Tips**:
+:bulb: **Tip**:<br>
 
-* Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
+Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
 
 </div>
 
@@ -419,8 +419,9 @@ Running `clear` will clear your entire recipe book and there's no going back!
 </div>
 
 <div markdown="block" class="alert alert-success">
-:bulb: **Tip**:
-* If you wish to save your data elsewhere first and then start afresh, consider using the [Export](#export) feature first!
+:bulb: **Tip**:<br>
+
+If you wish to save your data elsewhere first and then start afresh, consider using the [Export](#export) feature first!
 </div>
 
 ### Asking for assistance: `help`
@@ -484,9 +485,9 @@ file to be imported using the selector.
 </div>
 
 <div markdown="block" class="alert alert-success">
-:bulb: **Tip**:
+:bulb: **Tip**:<br>
 
-* Alternatively, you can access the import function from the <kbd>File</kbd> tab in the top left corner of the main window.
+Alternatively, you can access the import function from the <kbd>File</kbd> tab in the top left corner of the main window.
 </div>
 
 ![ImportExportFromTopLeftOfWindow](images/ImportExportDisplay.jpg)
@@ -500,9 +501,9 @@ JSON file to be exported and select the desired location for it to be saved!
 ![ExportDataWindow](images/ExportWindow.jpg)
 
 <div markdown="block" class="alert alert-success">
-:bulb: **Tip**:
+:bulb: **Tip**:<br>
 
-* Alternatively, like the import function, you can access the export function via the <kbd>File</kbd> tab in the top left corner of the main window.
+Alternatively, like the import function, you can access the export function via the <kbd>File</kbd> tab in the top left corner of the main window.
 </div>
 
 ---
