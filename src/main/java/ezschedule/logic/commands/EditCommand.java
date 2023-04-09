@@ -44,6 +44,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the scheduler.";
+    public static final String MESSAGE_EVENT_EXIST_AT_TIME = "Another event already exists at the chosen time";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
@@ -92,10 +93,12 @@ public class EditCommand extends Command {
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (!eventToEdit.equals(editedEvent) && model.hasEvent(editedEvent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
-        } else if (editedEvent.getEndTime().isBefore(editedEvent.getStartTime())) {
+        if (editedEvent.getEndTime().isBefore(editedEvent.getStartTime())) {
             throw new CommandException(MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME);
+        } else if (!eventToEdit.equals(editedEvent) && model.hasEvent(editedEvent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        } else if (model.hasEventAtTime(eventToEdit, editedEvent)) {
+            throw new CommandException(MESSAGE_EVENT_EXIST_AT_TIME);
         } else {
             model.clearRecent();
             model.recentCommands().add(this);

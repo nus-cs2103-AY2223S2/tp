@@ -74,6 +74,13 @@ public interface Model {
      */
     boolean hasEventAtTime(Event event);
 
+
+    /**
+     * Returns true if another event exists (excluding {@code currentEvent})
+     * at the same time as {@code event} in the scheduler.
+     */
+    boolean hasEventAtTime(Event currentEvent, Event eventToCheck);
+
     /**
      * Adds the given event.
      * {@code event} must not already exist in the scheduler.
