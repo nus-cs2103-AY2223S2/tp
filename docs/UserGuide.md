@@ -307,7 +307,7 @@ For example, `NAME` in `n/NAME` can be replaced with `n/John`.
 [Back to Table of Contents](#table-of-contents)
 
 ---
-
+<div style="page-break-after: always;"></div>
 
 ### Trying your First Command
 
@@ -371,7 +371,7 @@ Here is a checklist you can use before running a command:
 [Back to Table of Contents](#table-of-contents)
 
 ---
-<div style="page-break-after: always;"></div>
+
 
 ## Commands
 
@@ -387,7 +387,7 @@ This section shares with you on how to use each command in detail.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
-
+<div style="page-break-after: always;"></div>
 
 ### Applicant Commands
 
