@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes command;
+
+:TAA creates Student;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Class List does\nnot exist])
+    :Create new Class List with
+    specified name;
+else ([else])
+endif
+
+:Insert Student into specified
+Class List;
+stop
+@enduml

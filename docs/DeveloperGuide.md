@@ -131,6 +131,11 @@ After reading this section, you should have a clearer understanding of the major
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
+<figcaption style="text-align:center"><em><strong>
+Figure 2
+</strong>:
+Architecture Diagram of TAA
+</em></figcaption>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -157,6 +162,11 @@ The rest of the App consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_student 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="654" />
+<figcaption style="text-align:center"><em><strong>
+Figure 3
+</strong>:
+Architecture Sequence Diagram of TAA
+</em></figcaption>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -166,6 +176,11 @@ Each of the four main components (also shown in the diagram above),
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
+<figcaption style="text-align:center"><em><strong>
+Figure 4
+</strong>:
+Sequence Diagram of the Component Managers in TAA
+</em></figcaption>
 
 The sections below give more details of each component.
 
@@ -174,6 +189,11 @@ The sections below give more details of each component.
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 5
+</strong>:
+Structure of the UI component
+</em></figcaption>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -193,6 +213,11 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+<figcaption style="text-align:center"><em><strong>
+Figure 6
+</strong>:
+Class Diagram of the Logic Component in TAA
+</em></figcaption>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TaaParser` class to parse the user command.
@@ -203,6 +228,11 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 7
+</strong>:
+Interactions Inside the Logic Component for the `delete 1` Command
+</em></figcaption>
 
 <div markdown="span" class="alert alert-warning">
 :page_with_curl: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -211,6 +241,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
+<figcaption style="text-align:center"><em><strong>
+Figure 8
+</strong>:
+Sequence Diagram of the Parser Classes in TAA
+</em></figcaption>
 
 How the parsing works:
 * When called upon to parse a user command, the `TaaParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStudentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddStudentCommand`) which the `TaaParser` returns back as a `Command` object.
@@ -218,8 +253,13 @@ How the parsing works:
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/model/Model.java)
-
 <img src="images/ModelClassDiagram.png" width="450" />
+<figcaption style="text-align:center"><em><strong>
+Figure 9
+</strong>:
+Class Diagram of the Model Component in TAA
+</em></figcaption>
+
 
 
 The `Model` component,
@@ -235,6 +275,11 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+<figcaption style="text-align:center"><em><strong>
+Figure 10
+</strong>:
+Class Diagram of the Storage Component in TAA
+</em></figcaption>
 
 The `Storage` component,
 * can save both student data and user preference data in json format, and read them back into corresponding objects.
@@ -264,89 +309,35 @@ Classes used by multiple components are in the `taa.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add Student Feature
+The ability to add students is one of the core features of the application. 
+This feature allows users to add students to their defined classes/class lists, which will be essential for other features to work in tandem.
 
-#### Proposed Implementation
+This feature is facilitated through the command `add_student`, with a mandatory `STUDENT_NAME` and one or more `CLASS_NAME`s.
+After the application creates a new Student object with the specified `STUDENT_NAME`, it will proceed to add this student under all the `CLASS_NAME`s provided.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** After creating the Student, if a class list with the specified `CLASS_NAME` does not exist, the new class list will be created along with the student.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+The sequence diagram shown in Figure 11 below gives an overview of the methods called during command execution.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![Add Student Sequence Diagram](images/AddStudentSequenceDiagram.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 11
+</strong>:
+Sequence Diagram for adding a Student
+</em></figcaption>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+Alternatively, you may wish to refer to the activity diagram in Figure 12 below which captures some subtleties regarding the note above which are missed by the sequence diagram above.
 
-</div>
 
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+<image style="display:flex; margin-left:auto; margin-right:auto" src="images/AddStudentActivityDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 12
+</strong>:
+Activity Diagram for adding a Student
+</em></figcaption>
 
 
 --------------------------------------------------------------------------------------------------------------------
