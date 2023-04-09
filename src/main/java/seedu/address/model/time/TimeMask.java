@@ -90,8 +90,11 @@ public class TimeMask {
                 long daysBetween = getDaysBetween(start, end, dateLimit, startDate);
                 // if end date after date limit, need to change end time of event
                 int modifiedEndTime = getUpdatedEndTime(endTime, isAfterDateLimit);
-                int modifiedStartIndex = start.isBefore(startDate) ? startDate.getDayOfWeek().getValue() - 1 : startIndex;
-                occupyMultipleDay(modifiedStartIndex, daysBetween, startTime, modifiedEndTime, startIndex == modifiedStartIndex);
+                // if user indicated a start date that is after the event start date, need to change the start index
+                int modifiedStartIndex = start.isBefore(startDate) ? startDate.getDayOfWeek().getValue() - 1
+                        : startIndex;
+                occupyMultipleDay(modifiedStartIndex, daysBetween, startTime, modifiedEndTime,
+                        startIndex == modifiedStartIndex);
             } else {
                 occupySlots(startIndex, startTime, endTime);
             }
@@ -150,6 +153,7 @@ public class TimeMask {
         int startBits;
         int mask;
 
+        // only do this if it is starDay = event start date
         if (isEqualStartIndex) {
             // find free time slots for the start date of the event
             startBits = Integer.parseInt("1".repeat(23 - startHour + 1), 2);
