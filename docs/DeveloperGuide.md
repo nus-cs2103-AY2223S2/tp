@@ -362,14 +362,14 @@ The `add` command is used to create a new `Person` in ConnectUS with information
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
 
-<div style="page-break-after: always"></div>
-
 **Feature Details:**
 
 1. The user specifies a name for the `Person` to be added. The user can optionally specify the `Phone`, `Email`, `Address`, `Birthday`, `Social Media`, and tags such as `Module`, `CCA`, `Major`, and `Remark` fields.
 2. If the person name is not provided, or if invalid command parameters are provided, the user will be prompted to re-enter the command correctly via an error message.
 3. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
 4. If step 3 completes without exceptions, the new `Person` will be successfully added and stored inside the contact list.
+
+<div style="page-break-after: always"></div>
 
 The following activity diagram shows the logic of adding a `Person` into the contact list.
 
@@ -407,8 +407,6 @@ The following sequence diagram shows how `add` works:
 The `edit` command is used to change the information of an existing `Person` in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and `Birthday` fields.
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#45-editing-a-contact-edit).
-
-<div style="page-break-after: always"></div>
 
 **Feature Details:**
 
@@ -484,8 +482,6 @@ The `add-t` command is used to add additional tags to an existing `Person` in Co
 
 The format for the `add-t` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#46-adding-additional-tags-to-a-contact-add-t).
 
-<div style="page-break-after: always"></div>
-
 **Feature Details:**
 
 1. The user specifies a person index that represents a `Person` to be edited, followed by the tag to be added.
@@ -493,9 +489,13 @@ The format for the `add-t` command can be found [here](https://ay2223s2-cs2103t-
 3. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
 4. If step 3 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
 
+<div style="page-break-after: always"></div>
+
 The following activity diagram shows the logic of the `add-t` command.
 
 ![AddTagToPersonCommandActivityDiagram](images/AddTagToPersonCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The sequence of the `add-t` command is as follows:
 
@@ -525,14 +525,14 @@ The `delete-t` command is used to delete individual tags from an existing `Perso
 
 The format for the `delete-t` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#47-deleting-tags-from-a-contact-delete-t).
 
-<div style="page-break-after: always"></div>
-
 **Feature Details:**
 
 1. The user specifies a person index that represents a `Person` to be edited, followed by the tag index to be deleted.
 2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
 3. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
 4. If step 3 completes without exceptions, the tag of `Person` will be successfully deleted and this change will be stored inside the contact list.
+
+<div style="page-break-after: always"></div>
 
 The following activity diagram shows the logic of the `delete-t` command.
 
@@ -573,9 +573,13 @@ The format for the `search` command can be found [here](https://ay2223s2-cs2103t
 3. All fields provided must have a keyword associated. If an empty field is provided, an error is thrown. The user is prompted to re-enter the command correctly.
 4. Every `Person` in the `Model` is tested against the specified keywords. If all the keywords with fields match the corresponding information fields, and the keywords without fields match at least one information field, the `Person` is displayed. If any of the keywords do not match, the `Person` is filtered out.
 
+<div style="page-break-after: always"></div>
+
 The following activity diagram shows the logic of searching for in the contact list.
 
 ![SearchCommandActivityDiagram](images/SearchCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The sequence of the `search` command is as follows:
 
