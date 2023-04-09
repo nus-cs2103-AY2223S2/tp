@@ -407,6 +407,25 @@ Use case ends.
 
 <br>
 
+**Use case: Find an event**
+
+**MSS**
+
+1.  User requests to find an event based on a given keyword.
+2.  PlanEase  shows the list of sorted events based on the user’s choice of keyword.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. PlanEase detects that no fields are provided for the keyword.
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+<br>
+
 **Use case: Delete an event**
 
 **MSS**
@@ -512,6 +531,19 @@ testers are expected to do more *exploratory* testing.
 4. Other incorrect addevent commands to try: `addevent`, `...`<br>
    Expected: Similar to previous.
 
+### Finding an event
+
+1. Prerequisite: Current list of events has only one event with the word `Carnival` and no event with the word `Magic`.
+
+2. Test case: `findevent Carnival`<br>
+   Expected: 1 event with the word `Carnival` is found.
+
+3. Test case: `findevent Magic`<br>
+   Expected: No matching event is found.
+
+4. Other incorrect findevent commands to try: `findevent`, `...`<br>
+   Expected: Error details shown in the status message.
+
 ### Deleting an event
 
 1. Deleting an event while all events are being shown
@@ -524,7 +556,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `delevent 0`<br>
       Expected: No event is deleted. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `delevent`, `delevent x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 2. Deleting an event while events with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
