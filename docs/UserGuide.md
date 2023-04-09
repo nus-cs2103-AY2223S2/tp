@@ -205,6 +205,7 @@ Adds a delivery job to the delivery job system.
 
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
+* `SENDER_ID` and `RECEIPIENT_ID` **is case sensitive**.
 * Delivery date and slot are optional, however, if specified, they need to be specified together for scheduling (i.e. users are not allowed to specify only delivery date and leave delivery slot empty - and vice versa).
 * Delivery date **must be in format YYYY-mm-DD** and **must be a valid date**.
 * Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5 (example: `slot/1`).

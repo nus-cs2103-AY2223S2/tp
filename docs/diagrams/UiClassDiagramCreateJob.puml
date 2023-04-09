@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+
+Class "Create Job Menu Button" as CreatJobButton
+
+package JobSystem <<Rectangle>>{
+
+Class "Add/EditDeliveryJobDialog" as AddDeliveryDialog
+Class AddressBookDialog
+
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+CreatJobButton ..> AddDeliveryDialog
+
+AddDeliveryDialog --> AddressBookDialog
+
+AddDeliveryDialog --> Logic
+
+@enduml
