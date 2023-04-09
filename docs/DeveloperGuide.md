@@ -186,6 +186,8 @@ This consistency is crucial to avoid confusing the user, especially since severa
 
 ### 4.2. Employee-related features
 
+![EmployeeModelClassDiagram](./images/commands/employee/EmployeeModelClassDiagram.png)
+
 The 'Employee' object represents an Employee in the company. They are all stored in a `UniqueEmployeeList`.
 
 The attributes of an Employee are:
@@ -210,8 +212,11 @@ The former is used when initializing or editing an Id field whereas the latter i
 The `add` command adds a new employee, with the specified fields, into SudoHR. Note that only the 'Tag' field is optional.
 
 Activity Diagram:
+![AddEmployeeCommand](./images/commands/employee/AddEmployeeActivityDiagram.png)
 
 Sequence Diagram:
+![AddEmployeeCommand](./images/commands/employee/AddEmployeeSequenceDiagram.png)
+
 
 #### Flow
 1. The user enters the command, eg. `add id/37 n/John p/9861 7251 e/John@nus.com a/nus t/Vegetarian`
@@ -234,8 +239,11 @@ The `edit` command edits the fields of an existing employee in SudoHR.
 Note that it is mandatory to specify the Id of the employee to be edited and at least one of the fields must be changed.
 
 Activity Diagram:
+![EditEmployeeCommand](./images/commands/employee/EditEmployeeActivityDiagram.png)
 
 Sequence Diagram:
+![EditEmployeeCommand](./images/commands/employee/EditEmployeeSequenceDiagram.png)
+
 
 #### Flow
 1. The user enters the command, eg. `edit eid/37 p/8461 4872 a/ntu`. The employee with Id 37 will be identified and will have its phone and address fields updated as specified, if it exists in SudoHR.
@@ -262,8 +270,11 @@ While Id is the unique identifier of an employee, there should also be the flexi
 The `del` command deletes an existing employee from SudoHR.
 
 Activity Diagram:
+![DeleteEmployeeCommand](./images/commands/employee/DeleteEmployeeActivityDiagram.png)
 
 Sequence Diagram:
+![DeleteEmployeeCommand](./images/commands/employee/DeleteEmployeeSequenceDiagram.png)
+
 
 #### Flow
 1. The user enters the command, eg. `del eid/37` where employee with Id 37 is to be removed from SudoHR.
@@ -280,10 +291,6 @@ We need to ensure that if an employee is deleted, it is also removed from being 
 #### 4.2.4 Listing all employees
 The `list` command lists all the employees in SudoHR.
 
-Activity Diagram:
-
-Sequence Diagram:
-
 The call stack is the same as a typical command except that it has no specified parser. 
 Instead, `SudoHrParser` directly returns the command containing the predicate `PREDICATE_SHOW_ALL_EMPLOYEES` specified in the `Model` class.
 
@@ -295,10 +302,6 @@ After that, the command result is returned.
 #### 4.2.5 Finding an employee by ID
 The `feid` command finds and displays an employee with the specified Id in SudoHR.
 
-Activity Diagram:
-
-Sequence Diagram:
-
 #### Flow
 1. The user enters the command, eg. `feid eid/37` where employee with Id 37 is to be found.
 2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
@@ -309,10 +312,6 @@ Sequence Diagram:
 
 #### 4.2.6 Finding an employee by keyword
 The `find` command finds and displays all employees in SudoHR with some part of their names matching the specified keyword.
-
-Activity Diagram:
-
-Sequence Diagram:
 
 #### Flow
 1. The user enters the command, eg. `find alex` to look for employees whose name contains 'alex'.

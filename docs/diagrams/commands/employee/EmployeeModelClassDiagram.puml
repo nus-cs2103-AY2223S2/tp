@@ -1,0 +1,28 @@
+@startuml
+!include ../../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class UniqueEmployeeList
+Class Id
+Class Employee
+Class Address
+Class Email
+Class Name
+Class Phone
+Class Tag
+
+UniqueEmployeeList --> "~* all" Employee
+Employee *--> "1" Id
+Employee *--> "1" Name
+Employee *--> "1" Phone
+Employee *--> "1" Email
+Employee *--> "1" Address
+Employee *--> "*" Tag
+
+
+Id -[hidden]-> Name
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Email
+@enduml
