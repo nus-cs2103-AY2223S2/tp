@@ -37,7 +37,7 @@ MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 MainWindow --> "1..2" XYZListPanel
 XYZListPanel --> "*" XYZListCard
-
+note right of XYZListPanel: XYZListPanel = CourseListPanel, \nSessionListPanel, etc
 
 
 MainWindow -left-|> UiPart
@@ -50,6 +50,8 @@ HelpWindow --|> UiPart
 
 XYZListCard --|> UiPart
 XYZListPanel ..> Model
+note bottom of XYZListCard: XYZListCard = CourseListCard, \nSelectedSessionCard, etc
+
 
 UiManager -right-> Logic
 MainWindow -left-> Logic
