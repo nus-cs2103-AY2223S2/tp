@@ -9,14 +9,19 @@ MATHUTORING is a desktop application used for private Math tuition teachers to m
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=gwynethguo&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=gwynethguo&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=gwynethguo&tabRepo=AY2223S2-CS2103-W17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Enhancements to existing features**:
-  * to be added soon.
+  * Add Task List and Score List panels (UI)
+  * Export student's progress
+    * CLI
+      * `exportp`
+    * GUI
 
 * **Documentation**:
   * User Guide:
-    * to be added soon.
+    * Add screenshots to User Guide
+    * Rearrange User Guide to ensure smooth user 
   * Developer Guide:
     * to be added soon.
 
@@ -34,8 +39,10 @@ Given below are my contributions to the project.
     * Changed project name, title, and badges.
     * Changed site header to ensure that the details are correct when converting the documentation to the `.pdf` format.
 
-* **Contributions beyond the project team**:
-  * to be added soon.
+* **Community**:
+  * Assist another group in Git Branching.
 
 * **Tools**:
-  * Integrated Code Coverage ([CodeCov](https://app.codecov.io/gh/AY2223S2-CS2103-W17-1/tp)) to the project
+  * Integrated Code Coverage ([CodeCov](https://app.codecov.io/gh/AY2223S2-CS2103-W17-1/tp)) to the project.
+  * Integrated a third party library (ApachePDFBox)
+  * Integrated a mocking framework (Mockito)
