@@ -375,7 +375,7 @@ or wrongly added.
     * Format notation: `delete all`
     * Reason for implementation: User may want to start adding modules freshly, in case they realise all or most of the modules they added are irrelevant to them.
 
-The following sequence diagram shows how the `delete`:
+The following sequence diagram shows how the `delete` command works:
 ![sequence diagram of delete command](images/DeleteSequenceDiagram.png)
 
 The following activity diagram shows what happens when a user executes a `delete` command:
