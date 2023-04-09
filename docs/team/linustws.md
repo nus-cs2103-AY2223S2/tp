@@ -21,6 +21,7 @@ CoDoc is a desktop contact management application. The user interacts with it us
   * What it does: Allows users to click on the PersonCard in the PersonListPanel to view the details on the right info panel and allows users to change tabs by clicking.
   * Justification: Adds convenience for users on top of the `view` command.
   * Highlights:
+    * Made it such that clicking updates `ResultDisplay` accordingly.
     * Had trouble implementing things like FireEvent/CatchEvent/EventDispatcherChain to handle events, but managed to work around it, though not the best solution.
     * Was later improved with [Harin](https://ay2223s2-cs2103t-f12-2.github.io/tp/team/harin0826.html)'s fix. [#129](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/129)
 * **New Feature**: Added default profile pictures. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
@@ -29,7 +30,7 @@ CoDoc is a desktop contact management application. The user interacts with it us
   * Highlights:
     * Profile picture path is saved as a person's attribute.
     * They are randomly picked from a pool of 50 pictures when the person is added.
-  * Credits: The pool of 50 pictures was sourced from here: https://www.flaticon.com/packs/animals-123
+  * Credits: The profile pictures were sourced from [here](https://www.flaticon.com/packs/animals-123).
   
 * **Enhancements to existing features**:
   * Modified `Tag` to `Skill` to fit CoDoc's value proposition better. [#46](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/46)
@@ -38,7 +39,7 @@ CoDoc is a desktop contact management application. The user interacts with it us
   * Modified `PersonListCard` and rearranged the details to improve user visibility. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
   * Added scroll to bottom when `Person`added so user can see its index for viewing. [#160](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/160)
   * Created a new set of sample data that are relevant and complete, i.e. persons with valid attributes and lists of realistic modules and skills, to make it for appealing for users. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
-  * Minor improvements and bug fixes: [#107](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/107), [#122](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/122), [#126](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/126), [#127](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/127), [#135](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/135), [#147](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/147), [#170](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/170)
+  * Other improvements and bug fixes: [#107](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/107), [#122](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/122), [#126](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/126), [#127](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/127), [#135](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/135), [#147](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/147), [#170](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/170)
 
 * **Documentation**:
   * User Guide:
@@ -59,7 +60,6 @@ CoDoc is a desktop contact management application. The user interacts with it us
   * Renamed packages to remove anything related to AB3. [#64](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/64)
 
 * **Community**:
-  * Reviewed and commented on teammates' PRs. [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Alinustws), [My comments on PRs](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/tp-comments.html#162-tan-inus-linustws-5-comments)
+  * Reviewed, merged and commented on teammates' PRs. [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Alinustws), [My comments on PRs](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/tp-comments.html#162-tan-inus-linustws-5-comments)
   * Opened and assigned issues to teammates and me. [Issues opened by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Alinustws), [Issues assigned to me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Alinustws)
-  * Merged teammates' PRs.
   * Reported bugs for other teams. [PE-D](https://github.com/linustws/ped/issues)
