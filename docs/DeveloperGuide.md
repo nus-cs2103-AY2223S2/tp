@@ -133,11 +133,20 @@ The `Model` component
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component
+
+The `Storage` component can be divided into two main components, one for `temporary` storage, and one for permanent storage of the file.
+The permanent storage component
 * can save both Dengue Hotspot Tracker data and user preference data in csv format, and read them back into corresponding objects.
 * inherits from both `DengueHotspotTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-* temporarily saves `DengueHotspotTracker` data while the app is running, for `undo` and `redo` commands.
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+
+The `temporary` component temporarily saves `DengueHotspotTracker` data while the app is running to support `undo` and `redo` commands. To prevent taking up too much memory,
+only up to 10 states of the `DengueHotspotTracker`. This component supports
+* undoing and redoing up to a maximum of 10 steps.
+* multiple undo and redo operations at once.
+
+Once a user makes a change to the state of the `DengueHotspotTracker` after an undo operation is called, redos will no longer be possible, and all other "future" states of the `DengueHotspotTracker`
+will be cleared.
 
 ### Common classes
 
@@ -149,23 +158,35 @@ Classes used by multiple components are in the `seedu.dengue.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add feature
+### Undo/Redo
 
 #### Implementation
 
-Step 1. placeholder
+Step 1. Find a suitable way to store data temporarily.
+
 
 #### Design considerations
 
-**Aspect: xxx**
 
-* **Alternative 1 (current choice):** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+**Aspect: Support switching of `DengueHotspotTracker` states in undo/redo**
 
-* **Alternative 2:** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+* **Alternative 1 (current choice):** Modified stack consisting of Deque and Stack.
+    * Pros: `Stack` and `ArrayDeque` are classes that are already implemented in Java. Easy to create.
+    * Cons: Not easy to come up with solution.
+
+* **Alternative 2:** List of `DengueHotspotTracker` states, with pointers to support switching of states.
+    * Pros: Very intuitive and easy to think of.
+    * Cons: Not easy to implement, and keeping tracker of list indices may cause bugs.
+
+**Aspect: Support deletion of old `DengueHotspotTracker` states in undo/redo**
+
+* **Alternative 1 (current choice):** Modified stack consisting of Deque and Stack.
+    * Pros: `Stack` and `ArrayDeque` can already be used.
+    * Cons: None
+
+* **Alternative 2:** List of DengueHotspotTracker states, with pointers to support switching of states.
+    * Pros: Solution is easy.
+    * Cons: Potentially buggy.
 
 ### Edit feature
 
@@ -226,6 +247,7 @@ The following activity diagram summarises what happens when a user executes a mu
 #### Implementation
 
 The delete-by-date mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `DeleteCommandParser#parse()`, and `DeleteCommand#execute()` methods.
+
 
 Given below is an example usage scenario and how the delete-by-date mechanism behaves at each step.
 
