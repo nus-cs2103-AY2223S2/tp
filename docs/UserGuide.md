@@ -626,6 +626,9 @@ Examples:
 - `sort name` will sort list of students alphabetically according to name.
 - `sort id` will sort list of students alphanumerically according to student ID.
 
+![image](./images/UiStudentSortName.png)
+![image](./images/UiStudentSortId.png)
+
 [Back to list of commands](#commands)
 
 
