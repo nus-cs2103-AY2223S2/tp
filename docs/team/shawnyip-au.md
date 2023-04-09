@@ -5,7 +5,7 @@ title: Yip-Au Hew Kit, Shawn's Project Portfolio Page
 
 ### Project: CoDoc
 
-CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about (To be added) kLoC.
+CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20.8k LoC.
 
 Given below are my contributions to the project.
 
@@ -56,3 +56,11 @@ Given below are my contributions to the project.
         * Created class diagram to reflect changes done for storage component
         * Update storage component text
         * Created sequence diagram for how data is stored and retrieved
+
+* **Tools**:
+    * Java
+    * JavaFX
+    * SceneBuilder
+    * Jackson
+    * Gradle
+    * Junit5
