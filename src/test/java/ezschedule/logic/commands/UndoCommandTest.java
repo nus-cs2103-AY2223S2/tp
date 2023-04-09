@@ -23,6 +23,10 @@ import ezschedule.model.event.RecurFactor;
 import ezschedule.testutil.EventBuilder;
 
 public class UndoCommandTest {
+    public static final String EDIT_EVENT_NAME = "Graduation";
+    public static final String EDIT_EVENT_DATE = "2023-10-10";
+    public static final String EDIT_EVENT_START_TIME = "10:00";
+    public static final String EDIT_EVENT_END_TIME = "22:00";
     private List<String> recurFactorList = new ArrayList<>(Arrays.asList("day", "week", "month"));
     private Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalScheduler(), new UserPrefs());
@@ -39,14 +43,14 @@ public class UndoCommandTest {
     @Test
     public void execute_undoEditCommand_success() {
         List<Event> lastShownList = model.getFilteredEventList();
-        Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
+        Index targetIndex = Index.fromZeroBased(new Random().nextInt(lastShownList.size()));
         Command editCommand = new EditCommand(targetIndex, new EditEventDescriptor());
         Event eventToEdit = lastShownList.get(targetIndex.getZeroBased());
         EventBuilder eventBuilder = new EventBuilder();
-        eventBuilder.withName(EventBuilder.EDIT_EVENT_NAME);
-        eventBuilder.withDate(EventBuilder.EDIT_EVENT_DATE);
-        eventBuilder.withStartTime(EventBuilder.EDIT_EVENT_START_TIME);
-        eventBuilder.withEndTime(EventBuilder.EDIT_EVENT_END_TIME);
+        eventBuilder.withName(EDIT_EVENT_NAME)
+                .withDate(EDIT_EVENT_DATE)
+                .withStartTime(EDIT_EVENT_START_TIME)
+                .withEndTime(EDIT_EVENT_END_TIME);
         Event editedEvent = eventBuilder.build();
         model.addRecentCommand(editCommand);
         model.addRecentEvent(eventToEdit);
@@ -58,7 +62,7 @@ public class UndoCommandTest {
     @Test
     public void execute_undoDeleteCommand_success() throws CommandException {
         List<Event> lastShownList = model.getFilteredEventList();
-        Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
+        Index targetIndex = Index.fromZeroBased(new Random().nextInt(lastShownList.size()));
         List<Index> targetIndexes = new ArrayList<>();
         targetIndexes.add(targetIndex);
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
@@ -67,13 +71,13 @@ public class UndoCommandTest {
         model.addRecentEvent(eventToDelete);
         model.addRecentCommand(deleteCommand);
         assertCommandSuccess(new UndoCommand(), model, String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS,
-                        deleteCommand.commandWord()),
+                deleteCommand.commandWord()),
                 expectedModel);
     }
     @Test
     public void execute_undoMultipleDeletedEvents_success() {
         List<Event> lastShownList = model.getFilteredEventList();
-        List<Index> targetIndexes = new ArrayList<>(Arrays.asList(Index.initIndex(0), Index.initIndex(1)));
+        List<Index> targetIndexes = new ArrayList<>(Arrays.asList(Index.fromZeroBased(0), Index.fromZeroBased(1)));
         for (Index index: targetIndexes) {
             Event eventToDelete = lastShownList.get(index.getZeroBased());
             model.addRecentEvent(eventToDelete);
@@ -88,7 +92,7 @@ public class UndoCommandTest {
     @Test
     public void execute_undoRecurCommand_success() throws CommandException {
         List<Event> lastShownList = model.getFilteredEventList();
-        Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
+        Index targetIndex = Index.fromZeroBased(new Random().nextInt(lastShownList.size()));
         Date endDate = new Date("2023-05-30");
         String stringRecurFactor = recurFactorList.get(new Random().nextInt(recurFactorList.size()));
         RecurFactor recurFactor = new RecurFactor(stringRecurFactor);
