@@ -1,0 +1,96 @@
+@startuml
+!include style.puml
+
+box User UI_COLOR_T1
+participant ":User" as User UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":Matcher" as Matcher LOGIC_COLOR
+participant ":AssignTaskCommandParser" as AssignTaskCommandParser LOGIC_COLOR
+participant ":AssignTaskCommand" as AssignTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "assignedTask:Task" as Task MODEL_COLOR
+participant ":TaskBookModel" as TaskBookModel MODEL_COLOR
+end box
+
+User -> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(commandText)
+activate AddressBookParser
+
+AddressBookParser -> Matcher : group("commandWord")
+activate Matcher
+Matcher --> AddressBookParser : commandWord
+deactivate Matcher
+
+AddressBookParser -> Matcher : group("arguments")
+activate Matcher
+Matcher --> AddressBookParser : arguments
+deactivate Matcher
+
+create AssignTaskCommandParser
+AddressBookParser -> AssignTaskCommandParser : AssignTaskCommandParser()
+activate AssignTaskCommandParser
+
+AssignTaskCommandParser --> AddressBookParser :
+deactivate AssignTaskCommandParser
+
+
+
+
+
+
+
+AddressBookParser -> AssignTaskCommandParser : parse(args)
+activate AssignTaskCommandParser
+
+
+
+create AssignTaskCommand
+
+AssignTaskCommandParser -> AssignTaskCommand : AssignTaskCommand()
+activate AssignTaskCommand
+AssignTaskCommand --> AssignTaskCommandParser
+deactivate AssignTaskCommand
+AssignTaskCommandParser --> AddressBookParser
+deactivate AssignTaskCommandParser
+
+
+
+
+
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+
+
+LogicManager -> AssignTaskCommand : execute(model,taskBookModel)
+activate AssignTaskCommand
+
+create Task
+
+AssignTaskCommand -> Task
+activate Task
+Task --> AssignTaskCommand
+deactivate Task
+
+AssignTaskCommand -> TaskBookModel : assignTask
+activate TaskBookModel
+
+TaskBookModel --> AssignTaskCommand
+deactivate TaskBookModel
+
+AssignTaskCommand --> LogicManager : CommandResult
+deactivate AssignTaskCommand
+
+LogicManager --> User : CommandResult
+deactivate LogicManager
+
+@enduml

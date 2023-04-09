@@ -393,7 +393,7 @@ The command can only work if the person to be assigned has been given a role.
 
 The following sequence diagram shows how the assignment operation works:
 
-<img src="images/DeleteCommandUML.png"/>
+<img src="images/AssignSequenceDiagram.png"/>
 
 [↑ Return to start of section](#4-implementation)
 
