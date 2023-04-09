@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
@@ -38,9 +39,21 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG);
 
         String preamble = argMultimap.getPreamble();
-        if (preamble.isEmpty()) {
+        if (preamble.isEmpty() || preamble.contains("/")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
+        Code code = ParserUtil.parseCode(preamble);
+
+        if (!isAnyPrefixPresent(argMultimap, PREFIX_CODE, PREFIX_CREDIT, PREFIX_SEMYEAR, PREFIX_GRADE, PREFIX_TAG)) {
+            throw new ParseException(String.format(EditCommand.MESSAGE_NOT_EDITED, EditCommand.MESSAGE_USAGE));
+        }
+
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CODE, EditCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CREDIT, EditCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_SEMYEAR, EditCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_GRADE, EditCommand.MESSAGE_USAGE);
+        ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_TAG, EditCommand.MESSAGE_USAGE);
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
 
@@ -81,9 +94,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-        Code code = ParserUtil.parseCode(preamble);
-
         return new EditCommand(code, editModuleDescriptor);
+    }
+
+    /**
+     * Returns true if any of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

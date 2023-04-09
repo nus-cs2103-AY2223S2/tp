@@ -21,11 +21,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.model.module.CodePrefix;
-import seedu.modtrek.model.module.Credit;
-import seedu.modtrek.model.module.Grade;
-import seedu.modtrek.model.module.ModuleCodePredicate;
-import seedu.modtrek.model.module.SemYear;
+import seedu.modtrek.model.module.*;
 import seedu.modtrek.model.tag.Tag;
 
 public class FindCommandParserTest {
@@ -87,8 +83,7 @@ public class FindCommandParserTest {
     @Test
     public void invalidFindByModuleCodeThrowsException() {
         String invalidFindCommandString = " CS";
-        assertParseFailure(parser, invalidFindCommandString, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, invalidFindCommandString, Code.MESSAGE_CONSTRAINTS);
     }
 
     @Test
