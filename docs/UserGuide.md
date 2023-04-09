@@ -187,6 +187,14 @@ Additionally, for the module, tag and education parameters, it will also suggest
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts. They're simply there to separate the different existing modules/education/tags you have in the current student list.
 </div>
 
+<br>
+
+The autocompletion feature also hints to you if you've entered an invalid command-word or an invalid index!
+
+![autocomplete invalids](images/user-guide/autocomplete_heuristics.jpg)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The above invalid-input hints does not check if the parameters you gave are actually valid. Just because the words aren't red, does not imply that your input will execute when you press enter!
+</div>
 
 ### Viewing help: `help`
 
