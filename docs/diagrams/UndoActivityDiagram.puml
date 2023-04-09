@@ -13,10 +13,11 @@ else ([else])
         :argument is 1;
     endif
     if () then ([can undo])
+        :undo once;
         if () then ([enough undos available])
         :undo argument number of times;
         else ([else])
-        :undo as many times possible;
+        :undo as many times possible (0 inclusive);
         endif
         stop
     else ([else])
