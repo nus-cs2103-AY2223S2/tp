@@ -42,9 +42,9 @@ title: Developer Guide
 9. [Acknowledgements](#10-acknowledgements)
 10. [Glossary](#11-glossary)
 
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## **About HMHero**
 
 HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers,
@@ -56,7 +56,10 @@ an outline of all parts of HMHero and how they work together, and specifications
 feature implementation and considerations.
 
 This guide is intended to assist developers in maintaining, upgrading or evolving HMHero.
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **How to use this Developer Guide**
 
 #### Person in place of Applicant
@@ -86,6 +89,8 @@ that will bring you to another part of this documentation that is relevant to th
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
