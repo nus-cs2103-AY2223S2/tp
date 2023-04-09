@@ -912,7 +912,7 @@ In the user stories, **user** refers to an NUS student unless specified otherwis
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                      | I want to …​                                                            | So that I can…​                                                                           |
-| -------- | -------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+|----------|----------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | `* * *`  | new user                                     | see usage instructions                                                  | refer to instructions when I forget how to use the App                                    |
 | `* * *`  | user                                         | add a new contact                                                       |                                                                                           |
 | `* * *`  | user                                         | delete a contact                                                        | remove entries that I no longer need                                                      |
@@ -942,6 +942,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                         | receive notifications when my friends change their telegram information | stay up to date with their latest details                                                 |
 | `* *`    | user                                         | search for my friends' telegram information within the app              | don't have to manually go through my contacts list every time I want to reach out to them |
 | `* *`    | user                                         | view a list of upcoming birthdays for my contacts                       | plan ahead for their birthday                                                             |
+| `* *`    | user with friends from different majors      | add major tags                                                          | remember which major they are in                                                          |
+| `* *`    | user with friends from different majors      | find other friends who are taking the same major as me                  | easily form groups with them prior to the start of the module                             |
 | `*`      | user with friends from different years       | add year tags to a contact                                              | remember which year they are in                                                           |
 | `*`      | user                                         | receive notifications for my friends' birthday                          | prepare for it and wish them                                                              |
 | `*`      | user with many contacts saved in the app     | search contacts by specific information fields                          | locate a contact easily                                                                   |
