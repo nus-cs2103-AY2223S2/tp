@@ -582,12 +582,12 @@ public class MainWindow extends UiPart<Stage> {
             showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
 
         } else if (prevCommand instanceof MarkPresentCommand
-                || prevCommand instanceof  MarkAbsentCommand) {
+                || prevCommand instanceof MarkAbsentCommand) {
             throw new CommandException("Use the mark or unmark command instead to undo previous action.");
 
-        } else if (prevCommand instanceof  AssignCommand) {
-            throw new CommandException("Use the assign command instead to assign a new grade to a student." +
-                    "\nTip: You can assign a grade of '0' to a student.");
+        } else if (prevCommand instanceof AssignCommand) {
+            throw new CommandException("Use the assign command instead to assign a new grade to a student."
+                    + "\nTip: You can assign a grade of '0' to a student.");
 
         } else if (prevCommand instanceof AttendanceCommand
                 && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.SESSION_STUDENT_PAGE)) {

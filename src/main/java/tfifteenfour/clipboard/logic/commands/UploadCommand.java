@@ -90,7 +90,7 @@ public class UploadCommand extends Command {
                 throw new CommandException("Please upload a PNG file.");
             }
 
-            if(!sourcePath.getFileName().toString().endsWith("png")) {
+            if (!sourcePath.getFileName().toString().endsWith("png")) {
                 throw new CommandException("Please Upload a PNG file.");
             }
 
