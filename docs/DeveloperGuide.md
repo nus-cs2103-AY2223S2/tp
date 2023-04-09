@@ -40,8 +40,9 @@ Any unfamiliar RIZZipe-specific terms can be found in the [glossary](#glossary) 
 <div style="page-break-after: always;"></div>
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. 
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -314,9 +315,10 @@ The following activity diagram summarizes the process when a user edits a recipe
 
 <img class="diagram" src="images/EditRecipeFormActivityDiagram.png" width="1128"/>  
 
-:information_source: Note:
-If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>ESC</kbd> key, the form will be closed without saving any changes.
-The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>Esc</kbd> key, 
+the form will be closed without saving any changes.
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -392,8 +394,10 @@ the `Storage` package which allows the user to select a JSON file that parses co
 is done by the parse methods in `JsonUtil` class.
 Afterwards, we will check with our own RecipeBook to filter out duplicates and add the remaining non-duplicate recipes.
 
-:information_source: Note: If the user clicks the "Cancel" button or closes the file explorer when selecting the JSON
-file, the RecipeBook will remain unchanged.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer without 
+selecting a JSON file, the recipe list will remain unchanged.
+</div>
 
 ### Feature: Export RecipeBook
 
@@ -413,8 +417,10 @@ The export is done by copying the current saved RecipeBook JSON file and exporti
 Json file is not found, parsing of the current recipes will be done and exported as a JSON file.
 The parsing is done by the parse methods in `JsonUtil` class.
 
-:information_source: Note: If the user clicks the "Cancel" button or closes the file explorer when selecting the file
-path, nothing will be exported.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer 
+without selecting a file path, nothing will be exported.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
