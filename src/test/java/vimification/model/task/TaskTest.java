@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class TaskTest {
 
     @Test
-    void testRobustConstructor() {
+    public void testRobustConstructor() {
         Task task = new Task("GEX Essay", null, Status.NOT_DONE, Priority.NOT_URGENT);
         assertEquals(task.getTitle(), "GEX Essay");
         assertNull(task.getDeadline());
@@ -22,7 +22,7 @@ public class TaskTest {
     }
 
     @Test
-    void testSimpleConstructor() {
+    public void testSimpleConstructor() {
         Task task = new Task("GEX Essay");
         assertEquals(task.getTitle(), "GEX Essay");
         assertNull(task.getDeadline());
@@ -32,7 +32,7 @@ public class TaskTest {
     }
 
     @Test
-    void testSetDeadline() {
+    public void testSetDeadline() {
         Task task = new Task("GEX Essay");
         LocalDateTime ldt = LocalDateTime.of(2023, 04, 11, 00, 00);
         task.setDeadline(ldt);
@@ -40,7 +40,7 @@ public class TaskTest {
     }
 
     @Test
-    void testDeleteDeadline() {
+    public void testDeleteDeadline() {
         Task task = new Task("Eat Vitamin C");
         task.setDeadline(LocalDateTime.of(2023, 04, 11, 00, 00));
         assertNotNull(task.getDeadline());
@@ -49,7 +49,7 @@ public class TaskTest {
     }
 
     @Test
-    void testGetDeadlineAsString() {
+    public void testGetDeadlineAsString() {
         Task task = new Task("GEX Essay");
         assertEquals(task.getDeadlineAsString(), "-");
         LocalDateTime ldt = LocalDateTime.of(2023, 04, 15, 12, 34);
@@ -58,7 +58,7 @@ public class TaskTest {
     }
 
     @Test
-    void testSetStatus() {
+    public void testSetStatus() {
         Task task = new Task("GEX Essay");
         assertEquals(task.getStatus(), Status.NOT_DONE);
         task.setStatus(Status.IN_PROGRESS);
@@ -66,7 +66,7 @@ public class TaskTest {
     }
 
     @Test
-    void testHasStatus() {
+    public void testHasStatus() {
         Task task = new Task("Buy milk");
         assertEquals(task.getStatus(), Status.NOT_DONE);
         assert task.hasStatus(Status.NOT_DONE);
@@ -76,7 +76,7 @@ public class TaskTest {
     }
 
     @Test
-    void testSetPriority() {
+    public void testSetPriority() {
         Task task = new Task("GEX Essay");
         assertEquals(task.getPriority(), Priority.UNKNOWN);
         task.setPriority(Priority.NOT_URGENT);
@@ -84,7 +84,7 @@ public class TaskTest {
     }
 
     @Test
-    void testHasPriority() {
+    public void testHasPriority() {
         Task task = new Task("Feed my cat");
         assertEquals(task.getPriority(), Priority.UNKNOWN);
         assert task.hasPriority(Priority.UNKNOWN);
@@ -94,7 +94,7 @@ public class TaskTest {
     }
 
     @Test
-    void testContainsLabel() {
+    public void testContainsLabel() {
         Task task = new Task("Buy detergent");
         assert !task.containsLabel("food");
         assert !task.containsLabel("errands");
@@ -107,7 +107,7 @@ public class TaskTest {
     }
 
     @Test
-    void testAddLabel() {
+    public void testAddLabel() {
         Task task = new Task("ES2660 Essay");
         task.addLabel("academic");
         task.addLabel("ES2660");
@@ -123,7 +123,7 @@ public class TaskTest {
     }
 
     @Test
-    void testRemoveLabel() {
+    public void testRemoveLabel() {
         Task task = new Task("GEX Essay");
         task.addLabel("academic");
         task.addLabel("GEX1001");
@@ -139,7 +139,7 @@ public class TaskTest {
     }
 
     @Test
-    void testDisplay() {
+    public void testDisplay() {
         Task task = new Task("GEX Essay");
         assertEquals(task.display(), "GEX Essay");
 
@@ -148,7 +148,7 @@ public class TaskTest {
     }
 
     @Test
-    void testClone() {
+    public void testClone() {
         LocalDateTime ldt = LocalDateTime.of(2023, 04, 11, 00, 00);
         Task task =
                 new Task("Do Pitch presentation slides", ldt, Status.IN_PROGRESS, Priority.URGENT);
@@ -176,7 +176,7 @@ public class TaskTest {
     }
 
     @Test
-    void testContainsKeyword() {
+    public void testContainsKeyword() {
         Task task = new Task("Buy chicken rice");
         assert task.containsKeyword("chicken");
         assert task.containsKeyword("Buy");
@@ -185,7 +185,7 @@ public class TaskTest {
     }
 
     @Test
-    void testIsDateAfter() {
+    public void testIsDateAfter() {
         Task task = new Task("Rehearse for concert");
         assertNull(task.getDeadline());
         assert !task.deadlineIsAfter(LocalDateTime.now());
@@ -196,7 +196,7 @@ public class TaskTest {
     }
 
     @Test
-    void testIsDateBefore() {
+    public void testIsDateBefore() {
         Task task = new Task("CS2102 project meeting");
         assertNull(task.getDeadline());
         assert !task.deadlineIsBefore(LocalDateTime.now());
