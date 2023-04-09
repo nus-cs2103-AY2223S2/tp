@@ -15,11 +15,17 @@ title: Developer Guide
 
 ---
 
+
+
+
 ## **Acknowledgements**
 
 <!-- - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well} -->
 
+<!-- Mentioned Jackson for serialization -->
+
 ---
+
 
 ## **Setting up, getting started**
 
@@ -31,11 +37,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T15-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
 ### Architecture
+
+<!-- change the architechture diagram a little bit -->
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -50,7 +58,7 @@ Given below is a quick overview of main components and how they interact with ea
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Common`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
@@ -104,7 +112,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `VimificationParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
+1. The command can communicate with multiple model objects (`TaskList`, `MacroMap`, etc.) when it is executed (e.g. to add a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 <!-- The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call. -->
@@ -127,9 +135,13 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+Compared to the original design of AB3, we decided to split the model components into multiple classes and interfaces with different purposes.
 
-<img src="images/ModelClassDiagram.png" width="450" />
+We argue that the original `Model` component from AB3 handles too many responsibilities - which result in high coupling and low cohesion. Therefore, we decided to split the `Model` components into different classes and interfaces, following the (interface segregation principle)[https://en.wikipedia.org/wiki/Interface_segregation_principle].
+
+<!-- **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java) -->
+
+<!-- <img src="images/ModelClassDiagram.png" width="450" /> -->
 
 The `Model` component,
 
@@ -138,11 +150,11 @@ The `Model` component,
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Vimification`, which `Person` references. This allows `Vimification` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<!-- <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Vimification`, which `Person` references. This allows `Vimification` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="450" /> -->
 
-</div>
+<!-- </div> -->
 
 ### Storage component
 
@@ -152,13 +164,13 @@ The `Model` component,
 
 The `Storage` component,
 
-- can save both task data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- can save both user preference data, task data and macro data in JSON format, and read them back into corresponding objects.
+- inherits from both `TaskListStorage`, `MacroMapStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
-Classes used by multiple components are in the `vimificationbook.commons` package.
+Classes used by multiple components are in the `vimificationbook.common` package.
 
 ---
 
@@ -166,139 +178,299 @@ Classes used by multiple components are in the `vimificationbook.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Parser
+<!-- ### Architechture modification to AB3
 
-#### ApplicativeParser
+Vimification uses the **Model–view–controller (MVC)** design pattern. One detail we observed is that the `Model` uses `ObservableList` to carry application data, however, we argued that this is not the optimal design, since `ObservableList` should be used for `view`. Vimification implementation makes the view and bussiness logic bundled together, hinder our development speed.
 
-The parser of Vimification is implemented with `ApplicativeParser` instead of `Regex`. `ApplicativeParser` is an idea from function programming language, where we have a set of **combinators**, and we can combine these combinators with the power of Applicative and/or Monad to form more powerful combinators.
+Therefore, we wish to improve the current design of the application. \<The design will be finalized soon\>. -->
 
-The main reason why we used `ApplicativeParser` is because it is easier to read and maintain.
 
-`ApplicativeParser` can be implemented as a wrapper around a function that accepts some input sequence, and returns an container that represents one of these possibilities:
+### ApplicativeParser\<T\>
 
-- The parser fails, and the container is empty.
-- The parser succeeds, and the container contains the remaining input sequence, togerther with the parsing result.
+`ApplicativeParser` is an idea from function programming language, where we have a set of **combinators**, and we can combine these combinators to form more powerful combinators.
 
-In the current implementation, the container used is `Optional` from the Java standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` may create unpredictable control flow, and must be used with care.
+#### Motivation
 
-When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller. This prevents the parser from trying a different alternative, and is undesirable for some combinators, such as `ApplicativeParser#or()`, `ApplicativeParser#many()` and `ApplicativeParser#many1()`.
+The parser of Vimification is implemented with `ApplicativeParser` instead of `Regex`. The main reason why we use `ApplicativeParser` becauses it allows a more declarative style to write the parser, which is (arguably) easier to read and maintain, compared to a long `Regex` expression.
 
-The input sequence used (internally) by `ApplicativeParser` is `StringView`, a thin wrapper class representing a slice on a `String`. This choice is purely for performance reason - consuming input with `StringView` is much faster as we only need to change the offsets stored in the `StringView`, instead of having to copy the entire substring into a new `String`.
+#### Implementation overview
 
-Some basic combinators of `ApplicativeParser` is provided using static factory methods.
+`ApplicativeParser` is implemented as a wrapper around a function that accepts some input sequence, and returns an container that:
 
-#### CommandParser
+- Is empty, if the parser fails.
+- Contains the remaining input sequence, together with the parsing result, if the parser succeeds.
+
+For example, consider a parser that tries to parse the string `"foo"`:
+
+- If the input sequence is `"bar"`, the parser will fail (no `"foo"` to parse). The returned container after running the parser will be empty.
+- If the input sequence is `"foo bar"`, the parser will succeed. The returned container after running the parser will contain the remaining input sequence `" bar"`, and the parsing result `"foo"`.
+
+The parsing result can be further transformed into objects of the desired type, using some methods such as `ApplicativeParser#map()` or `ApplicativeParser#flatMap()`.
+
+<!-- insert sequence diagram -->
+
+#### Concrete implementation
+
+The current signature of the wrapped function is:
+
+```java
+private Function<StringView, Optional<Pair<StringView, T>>> runner;
+```
+
+Where `T` is the type of the parsing result.
+
+For example, consider an `ApplicativeParser<Integer>` that tries to parse an integer - given the input sequence `"10"`, the returned container will contain the remaining sequence `""` and the parsing result `10`.
+
+The input sequence used (internally) by `ApplicativeParser` is `StringView`, a thin wrapper class representing a slice on a `String`:
+
+```java
+public class StringView {
+
+    private String value;
+    private int offset;
+
+    // constructors and methods
+}
+```
+
+This choice is purely for performance reason - consuming input with `StringView` is much faster as we only need to change the offset stored in the `StringView` in `O(1)`, instead of having to copy the entire substring into a new `String` in `O(n)`.
+
+In the current implementation, the container used is `Optional` from the Java standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` may create unpredictable control flow, and must be used with care. When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller.
+
+The only way to create new `ApplicativeParser` instances is to use static factory methods. This is to ensure that the implementation of `ApplicativeParser` is hidden, and allows us to change the internal implementation of the parser to a more suitable one (in the future, if necessary) without breaking the exposed **API**.
+
+
+
+### Command parser
+
+All command parsers implements a common interface:
+
+```java
+public interface CommandParser<T extends Command> { /* implementation details */ }
+```
+
+Where `T` is the type of the command returned by the parser.
+
+<!-- insert diagram here -->
+
+#### Implementation overview
 
 The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
 
-A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` combinator to be used inside `CommandParser#parse()`.
+A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` to be used by `CommandParser#parse()`.
 
-Notice the signature of `CommandParser#getInternalParser()`: this method returns an `ApplicativeParser<ApplicativeParser<LogicCommand>>`. The nested `ApplicativeParser` is necessary in this case - the first level will parse the command prefix, and returns a combinator dedicated to parse the particular command identified by the prefix. The remaining input is then piped to the second level (the combinator returned before) to construct the command.
 
-This implementation allows us to fail early and report errors if the prefix does not represent any command, or quickly parse the command without having to try multiple alternatives.
+
+
+### Command implementation
+
+All command classes in the application inherit from a common interface.
+
+```java
+public interface Command {}
+```
+
+#### Inheritance hierarchy
+
+Currently, there are 3 kinds of commands in the application:
+
+- `LogicCommand`: responsible for modifying the internal data.
+- `MacroCommand`: responsible for handing macro-related features.
+- `UiCommand`: responsible for chaging the GUI.
+
+<!-- insert diagram here -->
+
+Each kind has a single interface, with a single abtract method:
+
+```java
+public CommandResult execute(/* parameters */);
+```
+
+#### Motivation
+
+This desgin allows the parameters required by different kinds to be different. For example, the signature of `LogicCommand#execute()` is:
+
+```java
+public CommandResult execute(LogicTaskList taskList, CommandStack commandStack);
+```
+
+While the signature of `UiCommand#execute()` is:
+
+```java
+public CommandResult execute(MainScreen mainScreen);
+```
+
+This is a big modification compared to the original design in AB3. The reason behind this is because we want to reduce the coupling between different kinds of command - `LogicCommand` does not need to know about UI details to be executed.
+
+Concrete classes will implements the corresponding interfaces.
+
+#### Design consideration
+
+The current downside of this design is that, in order to execute a certain command, we need to check the runtime type (using `instanceof`) operator and cast the instance to the appropriate type before calling its `execute` method (by providing the correct arguments).
+
+This is very error prone, due to some reasons:
+
+- Mismatch between the type used with `instanceof` operator and the type used to cast instance:
+
+```java
+if (command instanceof LogicCommand) {
+    UiCommand castedCommand = (UiCommand) command; // ClassCastException
+}
+```
+
+- Missing a kind of commands:
+
+```java
+if (command instanceof LogicCommand) {
+    // statements
+} else if (command instanceof UiCommand) {
+    // statements
+} else {
+    // throw Exception
+}
+// missing MacroCommand, the compiler cannot catch this
+```
+
+Java 11 compiler cannot check for these problems, and we risk having serious bugs. However, we argue that the reduction of coupling is worth it, as it prevents other kind of bugs that are harder to catch (such as modification of logic in ui-related command).
+
+Future versions of Java contain features that can handle the problems mentioned above: sealed class and pattern matching. In the future, we may consider upgrading Java and refactor the current implementation with these new features to eliminates these problems.
+
+### Atomic data modification
+
+#### Motivation
+
+Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all of the changes completed so far must be discarded. This ensures that the system is always left in a consistent state.
+
+#### Implementation detail
+
+Currently, the only modification that can fail is modification to `Task`s.
+
+Whenever a task (in the task list) need to be modified, the following workflow will be applied:
+
+- Copy the task to be modified.
+- Sequentially applies different modifications on the new task.
+- If there is a failure, we discard the new task and return.
+- If there is no failure, we replace the old task with the new (modified) task.
+
+Refer to the diagram below for a visualization of this workflow:
+
+<!-- insert diagram here -->
+
+Apart from ensuring atomic data operation, this implementation greatly simpifies the implementation of the undo feature. Must be nice!
+
+### Undo feature
+
+The undo can undo the previous command (that modifies the internal data) by typing `"undo"` in the command box.
+
+#### Motivation
+
+Users may make mistakes in their command, and command can be destructive. For example, the user may accidentally issue a delete command and delete _all_ information about a task. This is annoying and sometimes is troublesome.
+
+Undo command is implemented to addresss this concern. Note that in our application, undo command only undoes modifications to the internal data.
+
+#### Current implementation
+
+The undo mechanism is facilitated by 2 classes: `CommandStack` and `UndoableLogicCommand`.
+
+```java
+public interface UndoableLogicCommand extends LogicCommand {
+
+    public CommandResult undo(LogicTaskList taskList);
+
+    // other methods, if any
+}
+```
+
+All command that modifies the internal data (`AddCommand`, `DeleteCommand`, etc.) must implement `UndoableLogicCommand` and provide an implementation for the `undo` method.
+
+Also, apart from modifying the data (atomically), `execute` method now:
+
+- Maintains relevant information (before modification) for the `undo` method.
+- Pushes the command (itself) into the stack of previous commands (if the command succeeds).
+
+To undo a command, the following steps are executed:
+
+- A `UndoCommand` instance is created after the user type `"undo"` into the command box.
+- The command pops the first command out of the stack.
+- The command then calls the `undo` method of the poped command.
+
+Refer to the diagram below for a visualization of this workflow:
+
+<!-- insert diagram here -->
+
+Recall that, we modify the data by copying the old task and replacing it with a modified version. We can store this old task before replacing it, and restore it back when we undo the command. Simple!
+
+#### Design consideration
+
+Currently, undo command does not support commands that modify the macros and GUI. We do not plan to implement a undo command that reverses changes to the GUI, it does not make sense (as the user can just refresh or retype the command to change the view again). However, undoing a command that modifies the macros may be beneficial. We can extend the behavior of undo command to support this behavior in future versions.
+
+### Macro feature
+
+Macro are just shortcuts for longer commands. This feature allows the user to define, delete and view macro(s) in the application.
+
+#### Motivation
+
+The motivation for this feature comes from **bash aliases**, where the user may define customized shortcut to invoke their command.
+
+#### Implementation detail
+
+The macro mechanism is facilitated by 3 classes: `MacroMap`, `MacroCommand` and `VimificationParser`.
+
+Macro is expanded using the following workflow:
+
+- The parser try to parse the first "word" in the user input.
+- If there is a macro that matches the word, the entire word will be expanded into a command string.Otherwise, the word is kept unchangd.
+- The remaining input will be concatenated with the processed word and feed into the command parser.
+
+Consider the following scenario: the user already defined a macro `"cs2103t"`, and associated this macro with the command `"a 'weekly quiz' -d Fri 14:00"`. Now, if the users type `"cs2103t -l cs2103t"`, the following transformation will happen:
+
+- The parser identifies the first word occured in the input: `"cs2103t"`.
+- There is a macro that matches the word, the word will be expanded into `"a 'weekly quiz' -d Fri 14:00"`.
+- The remaining input is concatenated with the expanded macro, forming the string `"a 'weekly quiz' -d Fri 14:00 -l cs2103t"`.
+- This preprocessed string will be feed into the command parser, and returns an `AddCommand` object.
+
+Refer to the diagram below for a visualization of this workflow:
+
+<!-- insert diagram here -->
+
+#### Design consideration
+
+The current version, while useful, is still fairly minimal - the main mechanism is just simple string substitution. The problem with this mechanism is that, the macro engine cannot reject invalid macro when it was registered, and this can confuse the user when their commands are expanded.
+
+Currently, there is no proposal to improve this behavior - any idea is appreciated.
 
 ### Storage
 
-#### Represent inheritance relationship
-
+<!--
 `Task` and its subclasses have can be converted from and to JSON format using `JsonAdoptedXYZ` (`XYZ` is a placeholder for the specific task name e.g., `Todo`).
 
 We need to translate the inheritance relationship between `Task` and its subclasses from and to JSON. The current implementation uses 2 annotations (from the Jackson library), `@JsonTypeInfo` and `@JsonSubTypes` to solve this.
 
-One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation.
+One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation. -->
 
-### \[Proposed\] Modification compared to Vimification
+### Syncing view with internal logic
 
-Vimification uses the **Model–view–controller (MVC)** design pattern. One detail we observed is that the `Model` uses `ObservableList` to carry application data, however, we argued that this is not the optimal design, since `ObservableList` should be used for `view`. Vimification implementation makes the view and bussiness logic bundled together, hinder our development speed.
+#### Reason
 
-Therefore, we wish to improve the current design of the application. \<The design will be finalized soon\>.
+After the user uses the `sort` or `filter` command, the displayed index may not reflect the actual index of the data in the internal list. Syncing the display index with internal logic is neccessary to ensure intuative and understandable behavior.
 
-### \[Proposed\] Undo/redo feature
+#### Problem
 
-#### Proposed Implementation
+We still want to separate the ui details from logic details, as we don't want to introduce high coupling into our system.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `Vimification` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Solution
 
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Two interfaces were created to handle this problem: `LogicTaskList` and `UiTaskList`. `LogicTaskList` declares methods that modifies the internal data, and a single method used to transform the display index into the actual index in the underlying data list, while `UiTaskList` declares methods that modifies the GUI by setting appropriate predicates and comparators to filter and/or sort tasks. `TaskList` (the main class that controls the data of the application) will implement both interfaces.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The `TaskList` contains:
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+- An `ObservableList` object that stores all tasks in the application.
+- A `FilteredList`, which stores the `ObservableList` as its source. We can set the predicate attached to this list to select the data to be displayed.
+- A `SortedList`, which stores the `FilteredList` as its source. We can set the comparator attached to this list to order the data to be displayed.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+<!-- insert diagram here -->
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th task in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new task. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Vimification state, then there are no previous Vimification states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone Vimification states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
----
+Note that, the command classes do not interact directly with `TaskList`, but with the interfaces `LogicTaskList` and `UiTaskList`. This prevents the commands from interacting with unrelated code, while still ensures that they will act on a single source of information - syncing the display index with the internal logic.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
