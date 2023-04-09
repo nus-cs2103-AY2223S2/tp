@@ -65,4 +65,5 @@ TankFeedCommand --> LogicManager : commandResult
 deactivate TankFeedCommand
 
 [<-- LogicManager : commandResult
+
 @enduml
