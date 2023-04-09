@@ -38,7 +38,7 @@ Are you excited yet? Let's get started!
    A GUI similar as seen below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box (which says 'Enter command here...') and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box (which says 'Enter command here...') and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `listc` : Lists all customers.
@@ -74,8 +74,8 @@ Before starting your journey with LoyaltyLift, let's take a quick look at the la
 
 ![Layout of LoyaltyLift](images/loyaltyLiftLayout.png)
 
-It comprises 3 panels, the _Information Panel_, _Command Panel_ and _List Panel_. 
-The _List Panel_ displays either **customers** or **orders**, which is controlled by _List Tabs_.
+It comprises 3 panels, the *Information Panel*, *Command Panel* and *List Panel*. 
+The *List Panel* displays either **customers** or **orders**, which is controlled by *List Tabs*.
   
 The components are summarised below.
 
@@ -84,12 +84,12 @@ The components are summarised below.
 |     Command Panel | Input area to submit your command to LoyaltyLift                   |
 | Information Panel | Displays details of a specific customer or order                   |
 |        List Panel | Displays list of customers or orders                               |
-|         List Tabs | Switch between displaying customers and orders in the _List Panel_ |
+|         List Tabs | Switch between displaying customers and orders in the *List Panel* |
 
 #### Using the CLI
 {: .no_toc}
 
-The _Command Panel_ is where you type your commands and submit them.
+The *Command Panel* is where you type your commands and submit them.
 LoyaltyLift then processes your request and performs them if it is successful.
 
 If LoyaltyLift understands your request, it will perform it and display feedback that it has succeeded, as seen below.
