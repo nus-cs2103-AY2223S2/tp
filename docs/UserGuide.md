@@ -381,6 +381,12 @@ Format: `addtask INDEX at/TASK_DESCRIPTION`
 - Adds a task to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - The task added to the person will have the description `TASK_DESCRIPTION`
 
+Examples:
+
+- `addtask 1 at/Meet up and finalise sale` Adds a task with description `Meet up and finalise sale` to the 1st person.
+- `addtask 2 at/Contact and arrange to build rapport` Adds a task with description `Contact and arrange to build 
+  rapport` to the 2nd person.
+
 ### Clearing all tasks: `cleartask`
 
 Clears all tasks of the specified person based on the INDEX in the contact list.
@@ -388,6 +394,10 @@ Clears all tasks of the specified person based on the INDEX in the contact list.
 Format: `cleartask INDEX`
 
 - Clears all tasks to the person at the specified `INDEX`. The index refers to the INDEX number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+- `cleartask 1` Clears all tasks from `TaskList` of the 1st person
 
 ### Clearing all entries : `clear`
 
@@ -437,7 +447,7 @@ If your changes to the data file makes its format invalid, SalesPunch will disca
 | **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3` |
 | **ListTxn** | `listtxn` |
 | **EditTxn** | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed` |
-| **AddTask** | `addtask INDEX at/TASK_DESCRIPTION` <br> e.g. `addtask 1 at/Arrange for sales pitch meeting` |
+| **AddTask** | `addtask INDEX at/TASK_DESCRIPTION` <br> e.g. `addtask 1 at/Meet up and finalise sale` |
 | **ClearTask** | `cleartask INDEX` <br> e.g., `cleartask 1` |
 | **Clear** | `clear` |
 | **Exit** | `exit` |
