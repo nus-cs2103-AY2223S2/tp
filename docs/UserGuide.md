@@ -107,6 +107,8 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* :warning: Unrecognised fields such as `b/` or `c/` will not be picked up as fields, and will be treated as input.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -169,7 +171,7 @@ Additional Fields:
 * `e/` : email
 * `p/` : phone number
 * `t/` : tags
-* `m/` : module codes
+* `m/` : module tags
 
 > :bulb:  **Tip:** A person can have any number of tags or modules (including 0). The order of the fields is not important.
 
@@ -205,19 +207,22 @@ Examples:
 
 Edits an existing person in ModCheck.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` or `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]… [m/MODULE_TAG]…​` or `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/DESCRIPTION] [t/TAG]… [m/MODULE_TAG]…​`
 
 * Edits the person at the specified `INDEX` or `NAME`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* `edit` followed by a positive integer will be interpreted as an index, and not a name.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
+* When editing by `NAME`, if there are multiple people with the same specified name, no edit will be done, and a list of people with those specified name will be returned. 
 
 Examples:
-*  `edit 1 p/91164512` Edits the phone number of the 1st person to be `91164512`.
+*  `edit Bernice p/91164512` Edits the phone number of the Bernice to be `91164512`.
 *  `edit 3 p/90011009 e/bernice512@example.com` Edits the phone number and email address of the 3rd person to be
    90011009 and bernice512@example.com respectively
+*  `edit 1 p/91164512` Edits the phone number of the 1st person to be `91164512`.
    ![editCommandExample](images/editCommandExample.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -230,18 +235,22 @@ Format: `delete INDEX` or `delete INDEXES` or `delete NAME`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index or indexes **must be a positive integer** …​
+* Any index **must be a positive integer** …​
+* When deleting multiple persons with indexes, each index must be separated by a comma, without any whitespace between any index.
+* `delete` followed by a positive integer will be interpreted as an index, and not a name.
+* When deleting by `NAME`, if there are multiple people with the same specified name, no deletion will be done, and a list of people with those specified name will be returned.
+
 
 Examples:
-* `list` followed by `delete 3` deletes the 3rd person in the list.
-* `list` followed by `delete 1,2,3` deletes the 1st, 2nd and 3rd person in the list.
 * `list` followed by `delete Betsy` deletes Betsy if there is only one Betsy in the list.
+* `list` followed by `delete 1,2,3` deletes the 1st, 2nd and 3rd person in the list. However, `list` followed by `delete 1,2, 3` is invalid due to the whitespace between index 2 and 3. 
+* `list` followed by `delete 3` deletes the 3rd person in the list.
 
 ![viewContactDetails](images/delete/deleteContact.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.4.5 Filtering contacts
+### 3.4.5 Filtering contacts : `filter`
 
 Filters the contacts based on the arguments provided.
 
@@ -284,21 +293,42 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.4.6 Undo past commands
-
+### 3.4.6 Undo past commands `undo`
+![img.png](images/UndoRedo/undoExample1.png)
+![img.png](images/UndoRedo/undoExample2.png)
 Undoes previous commands that modified ModCheck.
+
 Undo will only undo commands that have successfully modified the data in ModCheck. For example, a successful `add`,
 `edit`, or `delete` command can be undone by the undo command.
+
 Any commands that does not modify the data in ModCheck will NOT be undone. This includes `view`, `find`, and other
 similar commands. Any command that would have modified the data in ModCheck, but was unsuccessful in doing so (eg:
 `add` duplicate person), will NOT be undone.
 
 Chaining of a few undo commands is supported. Once the undo limit has been reached, the error message `No command to
-undo!` will be shown.
+undo!` will be shown. The undo limit is set to 4 by default.
 
 Format: `undo`
 
 Use `redo` to reapply the changes undone by undo.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.4.7 Redo previously undone commands `redo`
+![img.png](images/redoExample1.png)
+Redoes previously undone commands.
+
+Redo will reapply any changes previously undone by `undo`. The behaviour of `redo` when interacting with other 
+commands is as follows:
+- If no `undo` command was previously used, then `redo` will show an error message, and will not change the state of 
+  ModCheck.
+- If a command that changes the data of ModCheck is executed while ModCheck is in an undone state _(eg: `undo` -> 
+  `edit 1 t/`)_, the `redo` command will be reset. Using the `redo` command will <b>not</b> redo commands that was 
+  undone before the modification commands were made. This behaviour of `redo` is consistent with other `undo` and 
+  `redo` features found in most commercial software today.
+- Chaining of several `redo` commands, to redo chained `undo` commands, is supported.
+
+Format: `redo`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -318,15 +348,15 @@ Exported contacts will be stored inside a Json file under the `exports` folder f
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.5.1 Load another data file
+### 3.5.1 Load another data file `load`
 
 `Load` the contacts in another ModCheck data file into the user's ModCheck.
 `Load` will open up a file chooser window, where the user can select the desired json file to be loaded.
 Only json files that are generated by ModCheck can be successfully loaded. If a file that ModCheck is unable to read
 is loaded, an error will be shown.
 
-The user also has the option to directly specify the file path to be loaded in the text box. The use of the command
-in this way is not recommended.
+The user also has the option to directly specify the absolute file path to be loaded in the text box. The use of the 
+command in this way is not recommended.
 
 The data files that are ModCheck-readable can be obtained through:
 1. use of `export` command
@@ -336,11 +366,11 @@ Note: If there are duplicate persons (ie: persons with the same name but possibl
 data file to be loaded, the person will be <b>ignored</b> instead of <b>overwritten</b>.
 
 Format: `load` OR `load <path>`
-![img_1.png](images/loadCommandExample.png)
+![img_1.png](images/LoadCommand/loadCommandExample.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.6 Dark/Light Mode
+### 3.6 Dark/Light Mode `dark` / `light`
 
 Choose your favourite theme !
 
@@ -358,7 +388,6 @@ Format: `clear`
 
 Examples:
 * `list` followed by `clear` deletes all the contacts in the list.
-  ![viewContactDetails](images/clear/clearAllContacts.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -397,7 +426,7 @@ Format: `exit`
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                 |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]…​ [m/MODULE_TAG]…​ ` <br> e.g., `add n/Benedict Tan d/Great Friend e/BenedictTan@gmail.com p/98070707 t/Friend m/CS2103 m/CS3230 `                                                                                           |
 | **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
 | **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                         |

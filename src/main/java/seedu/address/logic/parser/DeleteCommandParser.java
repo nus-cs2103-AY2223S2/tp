@@ -33,7 +33,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             // Delete Single
             Index index = ParserUtil.parseIndex(args);
             return new DeleteSingleIndexCommand(index);
-        } else if (args.matches("^[0-9,]+$")) {
+        } else if (args.trim().matches("^[1-9][0-9]*(,[0-9]+)*$")) {
             // Delete Multiple
             List<Index> listOfIndexes = ParserUtil.parseIndexes(args);
             return new DeleteMultipleIndexCommand(listOfIndexes);
