@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -20,7 +21,11 @@ import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.NameContainsKeywordsPredicate;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -149,16 +154,82 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s shop.
      */
-    public static void showCustomerAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showCustomerAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasCustomer(targetId));
 
-        Customer customer = model.getFilteredCustomerList().get(targetIndex.getZeroBased());
+        model.updateFilteredCustomerList(c -> c.getId() == targetId);
+        Customer customer = model.getFilteredCustomerList().get(0);
+        assertNotNull(customer);
+
         final String[] splitName = customer.getName().fullName.split("\\s+");
         model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredCustomerList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the vehicle at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showVehicleAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasVehicle(targetId));
+
+        model.updateFilteredVehicleList(v -> v.getId() == targetId);
+        Vehicle vehicle = model.getFilteredVehicleList().get(0);
+        assertNotNull(vehicle);
+
+        model.updateFilteredVehicleList(v -> v.getPlateNumber() == vehicle.getPlateNumber());
+        assertEquals(1, model.getFilteredVehicleList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the service at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showServiceAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasService(targetId));
+
+        model.updateFilteredServiceList(s -> s.getId() == targetId);
+        Service service = model.getFilteredServiceList().get(0);
+        assertNotNull(service);
+
+        model.updateFilteredServiceList(s -> s.getId() == service.getId()
+                && s.getDescription().equalsIgnoreCase(service.getDescription()));
+        assertEquals(1, model.getFilteredServiceList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showAppointmentAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasAppointment(targetId));
+
+        model.updateFilteredAppointmentList(a -> a.getId() == targetId);
+        Appointment appointment = model.getFilteredAppointmentList().get(0);
+        assertNotNull(appointment);
+
+        model.updateFilteredAppointmentList(a -> a.getId() == appointment.getId()
+                && a.getCustomerId() == appointment.getCustomerId());
+        assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the technician at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showTechnicianAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasTechnician(targetId));
+
+        model.updateFilteredTechnicianList(t -> t.getId() == targetId);
+        Technician technician = model.getFilteredTechnicianList().get(0);
+        assertNotNull(technician);
+
+        final String[] splitName = technician.getName().fullName.split("\\s+");
+        model.updateFilteredTechnicianList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredTechnicianList().size());
     }
 
 }
