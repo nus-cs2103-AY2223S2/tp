@@ -26,6 +26,8 @@ bringing you one step closer to achieving your goals.
 So, what are you waiting for? Read on to find out more about how to use coNtactUs in this user guide! 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
+
 ## <a id="ug"></a>About this user guide
 
 If this is the first time you are using coNtactUS, this user guide provides an excellent starting point for you to
@@ -55,6 +57,8 @@ that you should pay attention to. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
+
 ## <a id="table"></a>Table of Contents
 
 * [**About coNtactUS**](#contactus)
@@ -92,6 +96,8 @@ that you should pay attention to. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="start"></a> Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer 
@@ -113,7 +119,7 @@ for your reference. </div>
 
 
 <p align="center">
-  <img src="images/Ui.png">
+  <img height="400" width="400" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
@@ -121,13 +127,15 @@ for your reference. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="ui"></a> Familiarising yourself with the user interface  
 
 In case you are unsure of what you see in front of you now, we have come up with annotations to
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
 
 <p align="center">
-  <img src="images/User_Interface.png">
+  <img height="300" width="600" src="images/User_Interface.png">
 </p>
 
 <div align="center">Figure 2: Annotations about the user interface</div>
@@ -135,6 +143,8 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="module"></a>Familiarising yourself with a module
 
 To start adding a module, we should first learn about what a module is. In coNtactUS, each module has 8 information 
@@ -150,8 +160,6 @@ fields.
 * RESOURCE: A link to a resource for the module, if any. 
 
 This is all you need to know for the time being. Now let's take a closer look at the commands.
-
-<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,9 +190,10 @@ command, refer to the next section.
 <div markdown="span" class="alert alert-primary"> :exclamation: The clear command removes all the modules in the 
 list. Only use it if you are sure! </div> 
 
-<br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="features"></a>Features  
 
 This section introduces you to detailed information about how to use each command.
@@ -211,6 +220,8 @@ This is a straightforward command. To use it, all you have to type is `list`
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="add"></a>Adding a module: `add`  
 
 By using the `add` command, you can add a new module to the module tracker. 
@@ -232,7 +243,7 @@ Examples of valid usages:
 * `add n/CS2030S t/Lab a/COM1-B112 d/040423 23:59 r/Attendance not compulsory :)`
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762259-5f9f5b2c-18d2-4e9b-9d27-6a07c99c6bcb.png">
+   <img height="400" width="300" src="images/add.png">
 </p>
 
 <div align="center">Figure 3 : Adding a new module into the tracker.</div>  
@@ -264,7 +275,7 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230761749-73b7be3f-117d-42f5-bcc2-a1bbbe63fe6b.png">
+   <img height="400" width="335" src="images/delete.png">
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>
@@ -296,7 +307,7 @@ Examples of valid usages:
   module to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762280-a40ed804-c8a7-40cd-87ac-a921654ec1bd.png">
+   <img height="400" width="300" src="images/edit.png">
 </p>
 
 <div align="center">Figure 5 : Editing a module in the tracker.</div>  
@@ -330,7 +341,7 @@ Examples:
 * `find CS2103T` finds all modules with name and/or description including the word `CS2103T`. 
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762292-af7a1943-277f-499e-835f-0f4fec87f16d.png">
+   <img height="350" width="250" src="images/find.png">
 </p>
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
@@ -356,10 +367,10 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 * For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762314-1a02a759-57a6-45e1-84cc-fad35ef77804.png">
+   <img height="350" width="250" src="images/sort.png">
 </p>
 
-<div align="center">Figure 7 : Sorting the modules in the tracker.</div>
+<div align="center">Figure 7 : Sorting the modules based on deadline.</div>
 
 <br>  
 
@@ -422,7 +433,7 @@ to display the pop-up window at any other point in time. However, this will be a
 features [coming soon](#coming-soon) if you are interested. 
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png">
+   <img height="150" width="250" src="images/reminder.png">
 </p>
 
 <div align="center">Figure 9 : Reminder window.</div>
