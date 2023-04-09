@@ -21,6 +21,8 @@ CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard ca
 - [Introduction](#introduction)
 - [Table of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
+- [Visual Guide](#visual-guide)
+- [Fields for Student Commands](#fields-for-student-commands)
 - [Navigation Guide](#navigation-guide)
 - [List of Commands](#commands)
     - [General Commands](#general-commands)
@@ -31,6 +33,7 @@ CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard ca
     - [Attendance Page Commands](#attendance-page-commands)
     - [Task Page Commands](#task-page-commands)
     - [Grades Page Commands](#grades-page-commands)
+- [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -79,6 +82,16 @@ product effectively.
 5. Log Box
    * Clipboard will give you feedback on whether or not your command was successful here.
    * Help messages on the valid arguments of the command you are typing will also appear here if your command has failed.
+
+--------------------------------------------------------------------------------------------------------------
+## Fields for Student Commands
+| **Prefix** | **Prefix meaning**          | **Character Restrictions**                                                                |
+|------------|-----------------------------|-------------------------------------------------------------------------------------------|
+| n/         | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank. |
+| p/         | Phone Number                |       Phone numbers should only contain numbers, and it should be at least 3 digits long. |
+| e/         | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| sid/       | Student Identification (ID) | Student IDs should be alphanumeric with no special characters |
+
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -989,7 +1002,17 @@ Examples:
 
 [Back to list of commands](#commands)
 
+
 ## Glossary
 
-
-
+| **Term**              | **Definition**                                                                                           | **Example(s)**                          |                                                             
+|-----------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------|
+| **Course**            | A module that provides a certain level of understanding in a subject area.                               | CS2103T, CS2105                         |
+| **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc. | T15, Team15                             |
+| **Session**           | A period of class for a Group which can be tutorial session, lab session etc.                            | Tutorial1, Lab3                         |
+| **Task**              | An assignment dedicated to a Group which can be presentation, reflection etc.                            | OP1, Critical Reflection 2              |
+| **Path**              | A string of characters used to uniquely identify a location in a directory structure.                    | C:/Users/AlexYeoh/Desktop/A0123456X.png |
+| **Absolute Path**     | A path that always contains the root element and the complete directory list required to locate the file | C:/Users/AlexYeoh/Desktop/A0123456X.png |
+| **Relative Path**     | A hierarchical path that locates a file or folder on a file system starting from the current directory   | ../A1234567X.png                        |
+| **Special Character** | A character that does not fall under the category of either alphabet or a number                         | -,+,*                                   |                   
+| **Student ID**        | A unique identification number given to a student.  | A1234567X |                              | 
