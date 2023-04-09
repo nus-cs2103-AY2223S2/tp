@@ -31,7 +31,7 @@ Given below are my contributions to the project.
     * What is does: supports showing image when starting CoDoc from a jar file.
     * Justification: the hierarchy is different from our development environment thereby causing the application to work abnormally when launched from a jar file.
     * Highlights: Was able to convert CoDoc to use relative file path in an existing code base that highly depends on absolute file path with minimal changes to the code base.
-=
+
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=shawnyip-au&breakdown=true)
 
 * **Project management**:
