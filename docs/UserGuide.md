@@ -79,7 +79,7 @@ Cautions are warnings for you to note when using QuickContacts.
 ## Installation
 
 1. Ensure you have [Java 11](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) or above
-installed in your computer
+   installed in your computer
 
 2. Download the latest version of `quickcontacts.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-2/tp/releases)
 
@@ -178,7 +178,7 @@ Command: `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTA
 **:information_source: Note**
 
 * `[]` means that the parameter is **optional**.
-* `...` means that the parameter can be **supplied multiple times** in the same command input. 
+* `...` means that the parameter can be **supplied multiple times** in the same command input.
 
 </div>
 
@@ -202,9 +202,9 @@ example above.
 **:information_source: Note:**
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
-the parameter will be taken.<br>e.g. if you specify `n/Noah n/Peter`, only `n/Peter` will be taken.
+  the parameter will be taken.<br>e.g. if you specify `n/Noah n/Peter`, only `n/Peter` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
-be ignored.<br>e.g. `help 123` will be interpreted as `help`.
+  be ignored.<br>e.g. `help 123` will be interpreted as `help`.
 
 </div>
 
@@ -265,7 +265,7 @@ in year 2023 is the same as `01012023`.
 
 * `HH` refers to the hour in 24-hour time format represented with 2 digits (e.g. `00` for 12 midnight instead of `1`)
 * `h` refers to the hour in 12-hour time format represented with 1 or 2 digits (e.g. `1` for 1 o'clock, `12` for 12
-o'clock)
+  o'clock)
 * `mm` refers to the minute represented with 2 digits (e.g. `01` for the first minute instead of `1`)
 * `a` represents `AM` or `PM` for 12-hour time format
 
@@ -286,25 +286,24 @@ Shows a message explaining how to access the help page.
 ## Person-Related Commands
 
 ### Adding a person: `add`
-<div markdown="block" class="alert alert-warning">
-
-**:warning: Caution**<br>
-Tags of more than 10 characters are unsupported! UI artifacts may occur.
-
-</div>
-### Adding a person : `add`
 
 Adds a person to the address book.
 
 - The name of a person is case-sensitive, thus `John Doe` and `john doe` are considered different persons.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
+<div markdown="block" class="alert alert-warning">
+**:warning: Caution**<br>
+Tags of more than 10 characters are unsupported! UI artifacts may occur.
+</div>
+
 Examples:
+
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
@@ -318,9 +317,10 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/CONTACT_NAME] [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
+  The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -328,8 +328,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
+  and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Finding persons by name : `find`
 
@@ -345,6 +347,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
+
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
@@ -357,24 +360,28 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer**: 1, 2, 3...
 
 Examples:
+
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Exporting of contact : `export`
+
 * Exports the persons at the specified `INDEX`es.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer**: 1, 2, 3...
 
-Format: `export [p/INDEX]...`
+Format: `export p/INDEX [p/MORE_INDEXES]...`
 
 ### Importing of contacts : `import`
+
 * Imports the persons in the provided JSON.
 * The JSON **must contain a valid array of persons**
 
 Example:
+
 ```json
 [
   {
@@ -398,6 +405,7 @@ Example:
   }
 ]
 ```
+
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip**<br>
@@ -421,13 +429,15 @@ Format: `import JSON [f/]`
 
 Adds a meeting to the address book.
 
-Format: `addm m/TITLE [p/PERSON]... [dt/DATE_TIME] [l/LOCATION] [des/DESCRIPTION]`
+Format: `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`
 
 Constraints:
-* `DATE_TIME` must be provided in the format as shown [here](#date-and-time-formats).
-* `Person` must be a valid person in the address book.
+
+* `MEETING_DATE_TIME` must be provided in the format as shown [here](#date-and-time-formats).
+* `MEETING_ATTENDEE` must be a valid contact in the address book.
 
 Examples:
+
 * `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/04-01-2023 10:00 l/COM1-B103 des/CS2103T Tutorial`
 * `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/04-01-2023 22:22 l/COM1-B103 des/CS2101 Tutorial`
 
@@ -435,15 +445,18 @@ Examples:
 
 Edits an existing meeting in the meeting book.
 
-Format: `editm INDEX [t/TITLE] [dt/DATE] [l/LOCATION] [des/DESCRIPTION]`
+Format: `editm INDEX [m/MEETING_TITLE] [p/MEETING_ATTENDEE]... [dt/MEETING_DATE_TIME] [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`
 
-* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list.
+  The index **must be a positive integer** 1, 2, 3,...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* `DATE_TIME` must be provided in the format as defined [here](#date-and-time-formats).
+* `MEETING_DATE_TIME` must be provided in the format as defined [here](#date-and-time-formats).
 
 Example:
-* `editm 1 t/Project Update dt/04-01-2023 10:00`  Edits the date/time first meeting to be on `04-01-2023 10:00`, and changes its title to `Project Update`.
+
+* `editm 1 m/Project Update dt/04-01-2023 10:00`  Edits the date/time first meeting to be on `04-01-2023 10:00`, and
+  changes its title to `Project Update`.
 
 ### Sorting Meetings : `sortm`
 
@@ -470,6 +483,7 @@ Format: `sortm ATTRIBUTE [r]`
 Find meetings whose names contain any of the given keywords.
 
 Format: `findm KEYWORD [MORE_KEYWORDS]`
+
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * Space is delimiter, so if you search `John Doe` it will list all people with either `John` or `Doe` in their name.
 * Only the name of attendees in meeting are searched
@@ -478,6 +492,7 @@ Format: `findm KEYWORD [MORE_KEYWORDS]`
   e.g. `John Doe` will return Meetings that contain either `John Doe`, or `Doe John`
 
 Examples:
+
 * `findm John` returns `Meeting` that contains `attendees` whose Name contains `John`
 * `findm John Mary` returns `Meeting` that contains `attendees` whose Name contains `John` or `Mary`
 
@@ -486,24 +501,33 @@ Examples:
 Shows a list of all meetings in the meeting book.
 
 Format: `findm`
+
 * No parameters are required.
 * If arguments are given, will instead behave like as stated [here](#finding-meetings-by-attendee-name--findm)
 
-
-
 ### Export Meetings : `exportm`
-* Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
+
+Exports the meetings at the specified `INDEX`es and between `start` and `end` dates.
+* If only START_DATE provided, meetings after START_DATE, inclusive, will be exported
+* If only END_DATE is provided, meetings after END_DATE, inclusive, will be exported
+* If both are provided, meetings between the two dates, inclusive, will be exported
+* Regardless of the above, meetings at provided INDEXes will be provided
+* At least one of the parameters must be provided
 * The indexes refer to the index numbers shown in the displayed meetings list.
 * The indexes **must be positive integers** 1, 2, 3
 * The start and end dates must be valid dates in the DD/MM/YY format
 
-Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
+Format: `exportm p/INDEX [p/MORE_INDEXES]... [start/MEETING_EXPORT_START_DATE] [end/MEETING_EXPORT_END_DATE]`
+
+Example: `exportm start/01/01/23 m/1` will export the first meeting and any meetings starting from 01/01/23
 
 ### Import Meetings : `importm`
+
 * Imports the meetings in the provided JSON.
 * The JSON **must contain a valid array of meetings**
 
 Example:
+
 ```json
 [
   {
@@ -570,9 +594,9 @@ Example:
 
 ```
 
-Optional Parameter `f/` that forces imports regardless of duplicate values.
+Optional Parameter `f/` that forces imports regardless of duplicate values. `f/` does not take any values.
 
-Format: `import JSON f/`
+Format: `importm JSON f/`
 
 ### Delete Meetings : `delm`
 
@@ -582,26 +606,41 @@ Format: `delm INDEX`
 
 * Deletes the meeting at the specified `INDEX`.
 * The index refers to the index number shown in the displayed meetings list.
-* The index must be a positive integer 1, 2, 3...
+* The index **must be a positive integer**: 1, 2, 3...
 
 Examples:
 
-* `listm` followed by `delm 2` deletes the 2nd meeting.
+* `findm` followed by `delm 2` deletes the 2nd meeting.
 
 ### Marking Meetings as done or undone : `mark` or `unmark`
 
-Marks the specified meeting as either done or undone.
-
-Format: "mark INDEX" or "unmark INDEX"
+Marks the specified meetings as either done or undone.
+![img.png](images/markasdone.png)
+Format: "mark m/INDEX [m/INDEXES]..." or "unmark m/INDEX [m/INDEXES]..."
 
 * The index refers to the index number shown in the displayed meetings list.
-* The index must be a positive integer 1, 2, 3...
+* The index **must be a positive integer**: 1, 2, 3...
 
-### Showing Meetings that are done or over : `pending`
+<div markdown="block" class="alert alert-info">
 
-Shows meetings that either have dates that are in the past or not marked as done.
+**:information_source: Note**<br>
+Meetings marked as done will have green colored titles.
+
+</div>
+
+### Showing pending meetings : `pending`
+
+<div markdown="block" class="alert alert-info">
+
+**:bulb: Tip**<br>
+To view all meetings, use `findm` with no parameters.
+
+</div>
+
+Shows meetings that are not marked as done and those that are in the future i.e not over yet.
 
 Format: `pending`
+
 ## General Features
 
 ### Theme toggling
@@ -626,11 +665,13 @@ Format: `clear`
 
 ### Saving the data
 
-QuickContacts data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+QuickContacts data are saved in the hard disk automatically after any command that changes the data. There is no need to
+save manually.
 
 ### Editing the data file
 
-QuickContacts data are saved as a JSON file `[JAR file location]/data/quickcontacts.json`. Advanced users are welcome to update data directly by editing that data file.
+QuickContacts data are saved as a JSON file `[JAR file location]/data/quickcontacts.json`. Advanced users are welcome to
+update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, QuickContacts will discard all data and start with an empty data file at the next run.
@@ -647,28 +688,32 @@ Format: `exit`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous QuickContacts home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous QuickContacts home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                      |
-|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Create a contact**  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Reset all data**    | `clear`                                                                                                                                                               |
-| **Delete a contact**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit a contact**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find a contact**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List all contacts** | `list`                                                                                                                                                                |
-| **Help**              | `help`                                                                                                                                                                |
-| **Create a meeting**  | `addm m/TITLE dt/DATE_TIME p/CONTACT_NAME... l/LOCATION des/DESCRIPTION`                                                                                              |
-| **Edit a meeting**    | `editm INDEX [m/TITLE] [dt/DATE_TIME] [p/CONTACT_NAME]... [l/LOCATION] [des/DESCRIPTION]`                                                                             |
-| **Find a meeting**    | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                          |
-| **List all meetings** | `findm`                                                                                                                                                               |
-| **Delete a meeting**  | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                      |
-| **Export a contact**  | `export p/INDEX...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                   |
-| **Export a meeting**  | `exportm m/INDEX...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                 |
-| **Import a contact**  | `import VALID_JSON`                                                                                                                                                   |
-| **Import a meeting**  | `importm VALID_JSON`                                                                                                                                                  |
-| **Sort meetings**     | `sortm SORT_FIELD` <br> e.g., `sortm dt/`                                                                                                                             |
+| Action                       | Format, Examples                                                                                                                                                                                                     |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Create a contact**         | `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Reset all data**           | `clear`                                                                                                                                                                                                              |
+| **Delete a contact**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                  |
+| **Edit a contact**           | `edit INDEX [n/CONTACT_NAME] [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
+| **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
+| **List all contacts**        | `list`                                                                                                                                                                                                               |
+| **Help**                     | `help`                                                                                                                                                                                                               |
+| **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
+| **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
+| **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
+| **List all meetings**        | `findm`                                                                                                                                                                                                              |
+| **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                          <br/>                        <br/>                                                                                       |
+| **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                        <br/>            <br/>                                                                                                   |
+| **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
+| **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
+| **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
+| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
+| **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
+| **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
+| **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |

@@ -3,6 +3,7 @@ package seedu.quickcontacts.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -138,6 +139,13 @@ public class QuickBook implements ReadOnlyQuickBook {
      */
     public void sortMeeting(Comparator comparator) {
         meetings.sort(comparator);
+    }
+
+    /**
+     * return hashmap of meeting that have person to edit (key) and string of current attendees edited person(value).
+     */
+    public HashMap<String, String> indexAttendees(Person personToEdit, Person target) {
+        return meetings.indexAttendees(personToEdit, target);
     }
 
     /**

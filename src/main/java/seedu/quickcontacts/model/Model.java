@@ -2,6 +2,7 @@ package seedu.quickcontacts.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -107,8 +108,15 @@ public interface Model {
      * {@code target} must exist in the quick book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the quick book.
      */
-
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the quick book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the quick book.
+     */
+    HashMap<String, String> indexAttendees(Person personToEdit, Person target);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the quick book.

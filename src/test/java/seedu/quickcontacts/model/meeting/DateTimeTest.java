@@ -64,6 +64,9 @@ public class DateTimeTest {
         assertFalse(DateTime.isValidDateTime("next thursday")); // NLP
         assertFalse(DateTime.isValidDateTime("this coming friday 2:30pm")); // NLP
         assertFalse(DateTime.isValidDateTime("22/05/2023 13:32PM"));
+        assertFalse(DateTime.isValidDateTime("29/02/2023")); // none leap year
+        assertFalse(DateTime.isValidDateTime("31/04/2023")); // April only has 30 days
+        assertFalse(DateTime.isValidDateTime("32/01/2023")); // Out of bounds date
 
         // valid dates/times
         assertTrue(DateTime.isValidDateTime("22052023 13:22"));
@@ -83,6 +86,10 @@ public class DateTimeTest {
         assertTrue(DateTime.isValidDateTime("22/05/2023 13:22"));
         assertTrue(DateTime.isValidDateTime("22/05/2023 1:32AM"));
         assertTrue(DateTime.isValidDateTime("22/05/2023 12:32PM"));
+        assertTrue(DateTime.isValidDateTime("28/02/2023")); // all februarys have 28 days
+        assertTrue(DateTime.isValidDateTime("01/01/2023")); // first day of a month
+        assertTrue(DateTime.isValidDateTime("31/01/2023")); // last day of a month
+        assertTrue(DateTime.isValidDateTime("29/02/2020")); // leap year extra day True
     }
 
     @Test
