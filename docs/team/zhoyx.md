@@ -36,7 +36,8 @@ Given below are my contributions to the project.
       * Updated plantUML diagrams to reflect new Fields and classes. [#140](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/140)
       * Added Implementation for Rating Field. [#167](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/167)
       * Added User Stories for Tag, Sort and Delete[#328](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/328)
-      * Added to Instructions for Manual testing for Tag related commands
+      * Added to Instructions for Manual testing for Tag related commands [#334](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/334)
+      * Added Implementation for Add Feature. [#335](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/335)
 * **Contributions to team-based tasks**
   * Created release for V1.3.1.trial
   * Maintain issue tracker for tasks
