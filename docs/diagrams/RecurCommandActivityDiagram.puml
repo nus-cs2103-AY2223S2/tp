@@ -1,5 +1,13 @@
 @startuml
 skinparam defaultTextAlignment center
+
+sprite $rake <svg width="16" height="16" viewBox="0 0 16 16">
+<path
+    style="fill:#000000"
+    d="M 7,1 H 9 V 7 H 15 V 15 H 13 V 9 H 9 V 15 H 7 V 9 H 3 V 15 H 1 V 7 H 7 Z"
+/>
+</svg>
+
 start
 :User executes recur command;
 
@@ -18,8 +26,8 @@ arguments])
     shows invalid
     arguments message;
 stop
-else if () then ([invalid
-index])
+else if () then ([index
+out of range])
     :Response Box
     shows invalid
     index message;
@@ -39,18 +47,8 @@ max allowable])
 stop
 else ([else])
 while () is ([end date has not reached])
-    if () then ([time slot is occupied
-    by another event])
-        :Response Box
-        shows event exists
-        at chosen time;
-    stop;
-    else ([else])
-    :Common modules and
-    index are computed;
-    :Computes the event
-    and store it in a list;
-    endif
+    : Check for time clash
+    on recurring dates <$rake>;
 endwhile ([else])
 :Add all recurring events from computed list to Ez-Schedule;
 stop

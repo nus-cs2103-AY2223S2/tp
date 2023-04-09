@@ -175,12 +175,14 @@ Classes used by multiple components are in the `ezschedule.commons` package.
 ## **Implementation**
 
 --------------------------------------------------------------------------------------------------------------------
+EZ-Schedule mainly follows the Command design pattern. Elaboration on how the application parses commands is given in the
+_Architecture_ section above.
+
 This section describes some noteworthy details on how certain features are implemented.
 
 ### **Add Command**
 
-EZ-Schedule mainly follows the Command design pattern. Elaboration on how the application parses commands is given in the 
-_Architecture_ section above. For _Add_ command, the noteworthy classes are:
+For _Add_ command, the noteworthy classes are:
 - `AddCommandParser.java` - For parsing the arguments to `AddCommand.java`.
 - `AddCommand.java` - For execution.
 
@@ -216,8 +218,42 @@ The execution can be seen in the activity diagram given below.
 
 ### **Recur Command**
 
+For _Recur_ command, the noteworthy classes are:
+- `RecurCommandParser.java` - For parsing the arguments to `RecurCommand.java`.
+- `RecurCommand.java` - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- ParseException for index out of range
+- CommandException for end dates in the past
+- CommandException for recur factor exceeding max allowable
+
+Given below is an example usage scenario of how the _Recur_ command executes.
+
+-- user input -- <br>
+Step 1. User executes Recur command with correct and valid arguments.<br>
+
+-- `SchedulerParser` -- <br>
+Step 2. Returns new `RecurCommandParser`.<br>
+
+-- `RecurCommandParser` -- <br>
+Step 3. Verify that all argument prefixes are present.<br>
+Step 4. Verify that all argument format is valid.<br>
+Step 5. Returns new `RecurCommand`.<br>
+
+-- `RecurCommand` -- <br>
+Step 6. Verify that the given index exist in Ez-Schedule.<br>
+Step 7. Verify that the given recurring end time is not in the past.<br>
+Step 8. For the given recur factor, verify that it is valid.<br>
+Step 9. Check all dates for event to be recurred on for any event clash.<br>
+Step 10. Add event into Ez-Schedule on all dates to be recurred.<br>
+
+The execution, with Step 9 in further detail, can be seen in the activity diagrams given below.
+
 ![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
-Activity Diagram for a typical `recur` command
+
+![RecurCommandRecurringAddActivityDiagram.png](images/RecurCommandRecurringAddActivityDiagram.png)
 
 ### **Edit Command**
 

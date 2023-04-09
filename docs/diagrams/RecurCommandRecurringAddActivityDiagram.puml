@@ -1,0 +1,19 @@
+@startuml
+skinparam defaultTextAlignment center
+
+start
+if () then ([time slot is occupied
+    by another event])
+        :Response Box
+        shows event exists
+        at chosen time;
+    stop;
+    else ([else])
+    :Common modules and
+    index are computed;
+    :Computes the event
+    and store it in a list;
+    endif
+stop
+
+@enduml
