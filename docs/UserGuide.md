@@ -525,7 +525,7 @@ coNtactUS, read on for the next section.
 * You can have multiple values for ```t/DESCRIPTION``` field, but other fields will
 only take a single value.  
 
-* When you edit, it removes the current values (i.e. the values do not stack)  
+* When you edit, it removes the current values (i.e. the values do not stack).  
 
 * You may supply more than one input value for the `t/DESCRIPTION` field, and both will be recorded. 
 An example would be : `edit 1 t/Difficult module t/Fun module`. The resulting module listing would have 2 
