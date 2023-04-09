@@ -28,6 +28,7 @@ You can click on the respective links below to read up on the relevant sections.
 # Table of Contents
 
 <!-- TOC -->
+
 * [1 Introduction](#1-introduction)
   * [1.1 Setting up, getting started](#11-setting-up-getting-started)
   * [1.2 About Us](#12-about-us)
@@ -68,6 +69,7 @@ You can click on the respective links below to read up on the relevant sections.
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a person](#deleting-a-person)
     * [Saving data](#saving-data)
+
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -185,6 +187,7 @@ Here's a (partial) class diagram of the `Logic` component:
 </p>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `TrackrParser` class to parse the user command.
 2. This results in a `Command` object, which is actually an object of one of its subclasses' (e.g. `AddItemCommand`'s) subclasses (e.g. `AddOrderCommand`). This specific command will then be executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add an order).
@@ -297,13 +300,13 @@ Here is how `Menu` works:
 **Aspect: Choice to provide a menu package:**
 
 * **Option 1 (our choice):** Separating it into a separate `menu` package.
-    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively when you add an order.
-    * Advantage 2: Less repeated code
-    * Disadvantage: More time required to implement.
+  * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively when you add an order.
+  * Advantage 2: Less repeated code
+  * Disadvantage: More time required to implement.
 
 * **Option 2:** Add item name as an attribute in the `Order` class.
-    * Advantage: Convenient to implement.
-    * Disadvantage: Higher chance of conflicts with another developer working on `Order` class.
+  * Advantage: Convenient to implement.
+  * Disadvantage: Higher chance of conflicts with another developer working on `Order` class.
 
 ### 2.4.5 Order
 
@@ -553,7 +556,7 @@ This reduces repeated lines of code and improves ease of implementation for futu
 
 ## 3.9 HelpCommand
 
-The `help` command brings up a [HelpWindow](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/HelpWindow.java), where there is a link to the User Guide of Trackr. The user can also press `F1` or click `Help` the menu bar to bring it up. 
+The `help` command brings up a [HelpWindow](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/HelpWindow.java), where there is a link to the User Guide of Trackr. The user can also press `F1` or click `Help` the menu bar to bring it up.
 
 This will allow the users to be able to have a reference to all the commands and explanation within a single webpage.
 
@@ -588,10 +591,10 @@ Please refer to the respective guides below for other information.
 **Target user profile**:
 
 * Tech-savvy home businesses owners who:
-    * lists their products online or on their own website
-    * perform transactions manually without a Point-of-Sale (POS) system
-    * Lack manpower/ time to track orders and contacts manually
-    * Has a need to manage a significant number of contacts
+  * lists their products online or on their own website
+  * perform transactions manually without a Point-of-Sale (POS) system
+  * Lack manpower/ time to track orders and contacts manually
+  * Has a need to manage a significant number of contacts
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
@@ -600,6 +603,7 @@ Please refer to the respective guides below for other information.
 **Value proposition**:
 
 Our application:
+
 * allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (but no _real-time automation_)
 * serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (but no support for custom formatting of interface)
 * enables faster contact management compared to a typical mouse/GUI driven app<br><br>
@@ -627,20 +631,20 @@ Our application:
 
 **Medium Priority (Nice to Have)**
 
-| As a / an …​   | I want to …​                | So that I can…​                                           |
-|----------------|-----------------------------|-----------------------------------------------------------|
-| business owner | add my menu items           | add orders based on my menu items                         |
-| business owner | edit my menu items          | update my price and cost based on current rates           |
-| business owner | delete menu items           | remove unpopular items that are not sold anymore          |
-| user           | have my orders sorted       | view my upcoming orders that are not done yet             |
-| user           | have my tasks sorted        | view the most pressing tasks at first glance              |
-| expert user    | be able to export data      | keep track of past orders without lagging the application |
+| As a / an …​   | I want to …​           | So that I can…​                                           |
+|----------------|------------------------|-----------------------------------------------------------|
+| business owner | add my menu items      | add orders based on my menu items                         |
+| business owner | edit my menu items     | update my price and cost based on current rates           |
+| business owner | delete menu items      | remove unpopular items that are not sold anymore          |
+| user           | have my orders sorted  | view my upcoming orders that are not done yet             |
+| user           | have my tasks sorted   | view the most pressing tasks at first glance              |
+| expert user    | be able to export data | keep track of past orders without lagging the application |
 
 **Low Priority (Upcoming)**
 
-| As a / an …​    | I want to …​       | So that I can…​                                           |
-|-----------------|-----------------------------|-----------------------------------------------------------|
-| expert user     | be able to import past data | use the application easily when transferring data         |
+| As a / an …​ | I want to …​                | So that I can…​                                   |
+|--------------|-----------------------------|---------------------------------------------------|
+| expert user  | be able to import past data | use the application easily when transferring data |
 
 ## 4.4 Use cases
 
@@ -650,26 +654,26 @@ Our application:
 
 **MSS**
 
- 1. Actor requests to add a new supplier.
- 2. Actor enters a command to add a supplier with the required information.
- 3. Trackr saves the new supplier to the system.
- 4. Trackr shows the new supplier added to the list.
+1. Actor requests to add a new supplier.
+2. Actor enters a command to add a supplier with the required information.
+3. Trackr saves the new supplier to the system.
+4. Trackr shows the new supplier added to the list.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The Actor does not enter all required information.
 
-    * 2a1. Trackr shows an error message.
+  * 2a1. Trackr shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 * 2b. The Actor adds a supplier that already exists in the list.
 
-    * 2b1. Trackr shows an error message.
+  * 2b1. Trackr shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: UC11 - Add a new task**
 
@@ -702,9 +706,9 @@ Our application:
 
 * 3a. The given index is invalid.
 
-    * 3a1. Trackr shows an error message.
+  * 3a1. Trackr shows an error message.
 
-      Use case resumes at step 3.
+    Use case resumes at step 3.
 
 **Use case: UC12 - Delete a task**
 
@@ -727,7 +731,7 @@ Our application:
 3. Actor enters an edit contact command for a specific contact and the updated information.
 4. Trackr updates the contact details with the new information.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -737,15 +741,15 @@ Our application:
 
 * 3a. The Actor enters an invalid index.
 
-    * 3a1. Trackr displays an error message.
+  * 3a1. Trackr displays an error message.
 
-      Use case resumes at step 3.
+    Use case resumes at step 3.
 
 * 3b. The Actor enters invalid information.
 
-    * 3b1. Trackr displays an error message.
+  * 3b1. Trackr displays an error message.
 
-      Use case resumes at step 3.
+    Use case resumes at step 3.
 
 **Use case: UC13 - Edit a task**
 
@@ -774,9 +778,9 @@ Our application:
 
 * 2a. The Actor does not enter any search criteria.
 
-    * 2a1. Trackr displays an error message.
+  * 2a1. Trackr displays an error message.
 
-    * Use case resumes at step 2.
+  * Use case resumes at step 2.
 
 * 4a. No supplier matches the given search criteria.
 
@@ -857,9 +861,9 @@ Our application:
 
 ## 4.7 Planned Enhancements
 
-1. Ensure all the commands follow the standard format so that it is easier for the user to remember.<br>
-  Currently, some commands do not follow this format, such as `find_supplier` where it is of the format `find_supplier NAME` instead of `find_supplier n/NAME`.<br>
-  The format is shown below.
+**1.** Ensure all the commands follow the standard format so that it is easier for the user to remember.<br>
+Currently, some commands do not follow this format, such as `find_supplier` where it is of the format `find_supplier NAME` instead of `find_supplier n/NAME`.<br>
+The format is shown below.
   <div style="background-color:silver; font-weight:bold">
    <span style="color:darkblue">&lt;command&gt;</span>
    <span> </span>
@@ -869,10 +873,10 @@ Our application:
   </div>
   <br>
 
-2. Provide better error messages for commands.<br>
-  Currently, some commands do not show a comprehensive error message to display what the user has done.<br>
-  For example some command return a success message of `Edited task: task`. We suggest a more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
-  Specifically, `Edited task: Buy eggs; Deadline:01 January 2023; Status: Not Done`.
+**2.** Provide better error messages for commands.<br>
+Currently, some commands do not show a comprehensive error message to display what the user has done.<br>
+For example some command return a success message of `Edited task: task`. We suggest a more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
+Specifically, `Edited task: Buy eggs; Deadline:01 January 2023; Status: Not Done`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -892,21 +896,21 @@ These instructions only provide a starting point for testers to work on and test
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-  1. Re-launch the app by double-clicking the jar file.<br>
-     Expected: The most recent window size and location is retained.
+1. Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
 
 1. Shutdown
 
-   1. Execute the command `exit` or close the window using GUI by clicking the cross on the top-right hand corner.
-      Expected: The window will close and all the data will be saved.<br><br>
+1. Execute the command `exit` or close the window using GUI by clicking the cross on the top-right hand corner.
+   Expected: The window will close and all the data will be saved.<br><br>
 
 ### Adding a supplier
 
@@ -917,6 +921,7 @@ Context: There is **no** contact with the phone number `11111111` in Trackr.
 Action: Execute command `add_supplier n/Ben p/11111111 a/Ben Street e/ben@gmail.com`
 
 Expected Outcome:
+
 * New supplier `Ben` is added into the supplier list.
 * Success message shown in command result box.<br>
   Specifically, `New Supplier added: Ben; Phone: 11111111; Email: ben@gmail.com; Address: Ben Street`
@@ -928,6 +933,7 @@ Context: There **is** a contact with the phone number `11111111` in Trackr.
 Action: Execute command `add_supplier n/Ben p/11111111 a/Ben Street e/ben@gmail.com`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `This Supplier already exists in the Supplier list`
 
@@ -940,6 +946,7 @@ Context: There is **no** task with the name `Buy yeast` and deadline `10/10/2023
 Action: Execute command `add_task n/Buy yeast d/10/10/2023`
 
 Expected Outcome:
+
 * New task `Buy yeast` is added into the task list.
 * Success message shown in command result box.<br>
   Specifically, `New Task added: Buy yeast; Deadline: 10 October 2023; Status: Not Done`
@@ -951,6 +958,7 @@ Context: There **is** a task with the name `Buy yeast` and deadline `10/10/2023`
 Action: Execute command `add_task n/Buy yeast d/10/10/2023`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `This Task already exists in the Task list`
 
@@ -963,6 +971,7 @@ Context: There is **no** order with the same customer, order item, deadline and 
 Action: Execute command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`
 
 Expected Outcome:
+
 * New order is added into the order list.
 * Success message shown in command result box.<br>
   Specifically, `New Order added: Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street`
@@ -974,6 +983,7 @@ Context: There **is** an order with the same customer, order item, deadline and 
 Action: Execute command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `This Order already exists in the Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street list`<br>
   Note that there is an issue with the error message now and will be fixed in the future update.
@@ -987,6 +997,7 @@ Context: There is **no** menu item with the name `Vanilla Cake` in Trackr.
 Action: Execute command `add_item n/Vanilla Cake pr/40 c/25`
 
 Expected Outcome:
+
 * New menu item `Vanilla Cake` is added into the menu.
 * Success message shown in command result box.<br>
   Specifically, `New Menu Item added: Vanilla Cake; Selling Price: $40.00; Cost: $25.00; Profit: $15.00`
@@ -998,6 +1009,7 @@ Context: There **is** a menu item with the name `Vanilla Cake` in Trackr.
 Action: Execute command `add_item n/Vanilla Cake pr/40 c/25`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `This Menu Item already exists in the Menu Item list`
 
@@ -1010,6 +1022,7 @@ Context: There **is** a supplier at index `1` and **no** suppliers with the new 
 Action: Execute command `edit_supplier 1 p/11111111`
 
 Expected Outcome:
+
 * Edited **first** supplier with phone number `11111111`.
 * Success message shown in command result box.<br>
   Specifically, `Edited supplier: supplier`
@@ -1021,6 +1034,7 @@ Context: There **is** a supplier at index `1` and **a** supplier with the new ph
 Action: Execute command `edit_supplier 1 p/11111111`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `This supplier already exists in the supplier list.`
 
@@ -1031,6 +1045,7 @@ Context: There **is** a no supplier at index `5` in Trackr.
 Action: Execute command `edit_supplier 5 p/11111111`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `The supplier index provided is invalid`
 
@@ -1043,6 +1058,7 @@ Context: There **is** a task at index `1` and **no** supplier with the new name 
 Action: Execute command `edit_task 1 n/Buy eggs d/10/10/2023`
 
 Expected Outcome:
+
 * Edited **first** task with name `Buy eggs` and deadline `10/10/2023`.
 * Success message shown in command result box.<br>
   Specifically, `Edited task: task`
@@ -1054,6 +1070,7 @@ Context: There **is** a task at index `1` and **a** supplier with the new name `
 Action: Execute command `edit_task 1 n/Buy eggs d/10/10/2023`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `This task already exists in the task list.`
 
@@ -1064,6 +1081,7 @@ Context: There **is** a no task at index `5` in Trackr.
 Action: Execute command `edit_task 5 n/Buy eggs d/10/10/2023`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `The task index provided is invalid`
 
@@ -1076,6 +1094,7 @@ Context: There **is** an order at index `1` and **no** same details as edited or
 Action: Execute command `edit_order 1 a/John Street`
 
 Expected Outcome:
+
 * Edited **first** order with customer address `John Street`.
 * Success message shown in command result box.<br>
   Specifically, `Edited order: order`
@@ -1087,6 +1106,7 @@ Context: There **is** an order at index `1` and **an** order with the same detai
 Action: Execute command `edit_order 1 a/John Street`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `This order already exists in the order list.`
 
@@ -1097,6 +1117,7 @@ Context: There **is** a no order at index `5` in Trackr.
 Action: Execute command `edit_task 5 n/Buy eggs d/10/10/2023`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `The order index provided is invalid`
 
@@ -1109,6 +1130,7 @@ Context: There **is** a menu item at index `1` and **no** menu items with same n
 Action: Execute command `edit_item 1 n/Chocolate Cookies`
 
 Expected Outcome:
+
 * Edited **first** menu item with name `Chocolate Cookies`.
 * Success message shown in command result box.<br>
   Specifically, `Edited menu item: menu item`
@@ -1120,6 +1142,7 @@ Context: There **is** a menu item at index `1` and **a** menu item with the same
 Action: Execute command `edit_item 1 n/Chocolate Cookies`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `This menu item already exists in the menu item list.`
 
@@ -1130,6 +1153,7 @@ Context: There **is** a no menu item at index `5` in Trackr.
 Action: Execute command `edit_item 1 n/Chocolate Cookies`
 
 Expected Outcome:
+
 * Error message shown in command result box.<br>
   Specifically, `The menu item index provided is invalid`
 
@@ -1137,27 +1161,27 @@ Expected Outcome:
 
 1. Dealing with missing/corrupted data files
 
-   1. (If this is your first time using the product) Run the application and close it so that the data file is generated with sample data.<br>
+1. (If this is your first time using the product) Run the application and close it so that the data file is generated with sample data.<br>
 
-   2. Navigate to `data/trackr.json` and remove a line of data / make one of the data invalid (check our [User Guide](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/docs/UserGuide.md) for how we check for valid inputs)
-       <br>Example: Change one of the orderDeadline to an invalid date like `00/13/2024`.
+2. Navigate to `data/trackr.json` and remove a line of data / make one of the data invalid (check our [User Guide](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/docs/UserGuide.md) for how we check for valid inputs)
+   <br>Example: Change one of the orderDeadline to an invalid date like `00/13/2024`.
 
-    <p align="center">
-      <img src="images/CorruptedData.png">
-      <br>Figure 21: Corrupted data file
-    </p><br>
+ <p align="center">
+   <img src="images/CorruptedData.png">
+   <br>Figure 21: Corrupted data file
+ </p><br>
 
-   3. Run Trackr.
-      <br>Expected: Blank `Order List` is displayed.
+3. Run Trackr.
+   <br>Expected: Blank `Order List` is displayed.
 
-    <p align="center">
-      <img src="images/CorruptedOrderList.png">
-      <br>Figure 22: Corrupted Order List
-    </p><br>
+ <p align="center">
+   <img src="images/CorruptedOrderList.png">
+   <br>Figure 22: Corrupted Order List
+ </p><br>
 
-   4. To resolve this issue, either
-   
-      1. Locate your corrupted `trackr.json`, delete this file and re-run Trackr. 
-      This will allow you to restart with a new data file filled with sample data.
+4. To resolve this issue, either
 
-      2. Navigate to your `trackr.json` file and find the missing/corrupted part of the data and change it accordingly.
+1. Locate your corrupted `trackr.json`, delete this file and re-run Trackr.
+   This will allow you to restart with a new data file filled with sample data.
+
+2. Navigate to your `trackr.json` file and find the missing/corrupted part of the data and change it accordingly.

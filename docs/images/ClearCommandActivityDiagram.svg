@@ -1,1 +1,45 @@
-<?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="349px" preserveAspectRatio="none" style="width:425px;height:349px;background:#FFFFFF;" version="1.1" viewBox="0 0 425 349" width="425px" zoomAndPan="magnify"><defs/><g><ellipse cx="212.5" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/><rect fill="#F1F1F1" height="46.6016" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="303" x="61" y="50"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="283" x="71" y="81.582">User enters ClearXYZCommand</text><rect fill="#F1F1F1" height="46.6016" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="403" x="11" y="116.6016"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="383" x="21" y="148.1836">Trackr removes all XYZ items from XYZList</text><rect fill="#F1F1F1" height="46.6016" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="222" x="101.5" y="183.2031"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="202" x="111.5" y="214.7852">Save data into data file</text><rect fill="#F1F1F1" height="46.6016" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="242" x="91.5" y="249.8047"/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="222" x="101.5" y="281.3867">Shows success message</text><ellipse cx="212.5" cy="327.4063" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/><ellipse cx="212.5" cy="327.4063" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="30" y2="50"/><polygon fill="#181818" points="208.5,40,212.5,50,216.5,40,212.5,44" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="96.6016" y2="116.6016"/><polygon fill="#181818" points="208.5,106.6016,212.5,116.6016,216.5,106.6016,212.5,110.6016" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="163.2031" y2="183.2031"/><polygon fill="#181818" points="208.5,173.2031,212.5,183.2031,216.5,173.2031,212.5,177.2031" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="229.8047" y2="249.8047"/><polygon fill="#181818" points="208.5,239.8047,212.5,249.8047,216.5,239.8047,212.5,243.8047" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="296.4063" y2="316.4063"/><polygon fill="#181818" points="208.5,306.4063,212.5,316.4063,216.5,306.4063,212.5,310.4063" style="stroke:#181818;stroke-width:1.0;"/><!--SRC=[POynJyD038Nt-nNUkY5WGcMgAZ6nfKZ0vjwvZTMS7TbEGldrN8F4mcBP_fwV_Fp2Cg9X1Sp1CyVrHIKw_YPul4_-Z-xCTFcJF3objEbOCa7q14SA1BzAu1SK9GVH09_6KIrW732pd5TXLYaSh08wXNDPpzEcCDP6OA5LJS01wEj5sDJy3INtmE91MEvIya2Bj7rpCY09CeVzG6Zl7vzxhHMbFAVjmJ1V38ogpkqd70Pel7bJTJYPrjluoXvDs-5CKB35O0dzxKuyq0trkdXBapEvGsq5pstleMFw0G00]--></g></svg>
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="349px" preserveAspectRatio="none"
+     style="width:425px;height:349px;background:#FFFFFF;" version="1.1" viewBox="0 0 425 349" width="425px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <ellipse cx="212.5" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="46.6016" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="303"
+              x="61" y="50"/>
+        <text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="283" x="71"
+              y="81.582">User enters ClearXYZCommand
+        </text>
+        <rect fill="#F1F1F1" height="46.6016" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="403"
+              x="11" y="116.6016"/>
+        <text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="383" x="21"
+              y="148.1836">Trackr removes all XYZ items from XYZList
+        </text>
+        <rect fill="#F1F1F1" height="46.6016" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="222"
+              x="101.5" y="183.2031"/>
+        <text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="202" x="111.5"
+              y="214.7852">Save data into data file
+        </text>
+        <rect fill="#F1F1F1" height="46.6016" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="242"
+              x="91.5" y="249.8047"/>
+        <text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacing" textLength="222" x="101.5"
+              y="281.3867">Shows success message
+        </text>
+        <ellipse cx="212.5" cy="327.4063" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="212.5" cy="327.4063" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="30" y2="50"/>
+        <polygon fill="#181818" points="208.5,40,212.5,50,216.5,40,212.5,44" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="96.6016" y2="116.6016"/>
+        <polygon fill="#181818" points="208.5,106.6016,212.5,116.6016,216.5,106.6016,212.5,110.6016"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="163.2031" y2="183.2031"/>
+        <polygon fill="#181818" points="208.5,173.2031,212.5,183.2031,216.5,173.2031,212.5,177.2031"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="229.8047" y2="249.8047"/>
+        <polygon fill="#181818" points="208.5,239.8047,212.5,249.8047,216.5,239.8047,212.5,243.8047"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="296.4063" y2="316.4063"/>
+        <polygon fill="#181818" points="208.5,306.4063,212.5,316.4063,216.5,306.4063,212.5,310.4063"
+                 style="stroke:#181818;stroke-width:1.0;"/><!--SRC=[POynJyD038Nt-nNUkY5WGcMgAZ6nfKZ0vjwvZTMS7TbEGldrN8F4mcBP_fwV_Fp2Cg9X1Sp1CyVrHIKw_YPul4_-Z-xCTFcJF3objEbOCa7q14SA1BzAu1SK9GVH09_6KIrW732pd5TXLYaSh08wXNDPpzEcCDP6OA5LJS01wEj5sDJy3INtmE91MEvIya2Bj7rpCY09CeVzG6Zl7vzxhHMbFAVjmJ1V38ogpkqd70Pel7bJTJYPrjluoXvDs-5CKB35O0dzxKuyq0trkdXBapEvGsq5pstleMFw0G00]-->
+    </g>
+</svg>
