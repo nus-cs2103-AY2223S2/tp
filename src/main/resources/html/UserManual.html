@@ -1,9 +1,6 @@
 <hr>
 <p>layout: page</p>
 <h2 id="title-user-guide">title: User Guide</h2>
-<p align="center">
-    <img src="images/logo_UG.png" width="300">
-</p>
 
 <hr>
 <h1 id="table-of-contents">Table of Contents</h1>
@@ -187,7 +184,6 @@
     <li>Double-click the file to open <em>Fish Ahoy!</em></li>
 </ol>
 <p>A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.</p>
-<p><img src="images/Ui.png" alt="Ui" width="500"></p>
 <blockquote>
     <p>:bulb: Tip: There is sample data present when you first open <em>Fish Ahoy!</em>. Use <code>edit</code> or <code>delete</code> commands to show your own tanks!</p>
 </blockquote>
@@ -208,7 +204,6 @@
 <h1 id="about-the-interface">About the Interface</h1>
 <p>The <em>Fish Ahoy!</em> interface consists of three main components, the <strong>Command Line</strong>, <strong>Alerts</strong>, and <strong>Panels</strong>,
     and two buttons, <strong>File</strong> and <strong>Help</strong>.</p>
-<p><img src="images/UiIntro.png" alt="Ui" width="500"></p>
 <p>The <strong>Command Line</strong> is where you can enter various commands to enter information into <em>Fish Ahoy!</em>.
     Refer to the <a href="#features">Features</a> below for details of each command!</p>
 <p>The <strong>Alerts</strong> will display the results of each command, and display additional help specific to the command.</p>
@@ -228,14 +223,12 @@
     The <strong>Number of fish</strong> will be automatically updated whenever you add/delete a fish from this tank in <em>Fish Ahoy!</em>
     The <a href="#tank-ammonia-level-reading-alammonia_level">Ammonia</a>, <a href="#tank-temperature-reading-tptemperature">Temperature</a>and
     <a href="#tank-ph-reading-phph">pH</a> are generated from <a href="#tank-readings">readings</a> that you add to <em>Fish Ahoy!</em></p>
-<p><img src="images/UiTank.png" alt="Ui" width="500"></p>
 <h2 id="fish-interface">Fish Interface</h2>
 <p>A sample Fish item is shown below. Each Fish you add in <em>Fish Ahoy!</em> has multiple <a href="#parameters-br">parameters</a>, such as
     <a href="#name-nname">Name</a>, <a href="#species-sspecies">Species</a>, <a href="#last-fed-date-lfdlast_fed_date">Last Fed Date</a>,
     <a href="#feeding-interval-fifeeding_interval">Feeding Interval</a>, which <a href="#tank-tktank_index">Tank</a> it is in and what
     <a href="#tags-tgtag">Tags</a> it has. There is also a <a href="#index-parameters">Fish Index</a> which is automatically assigned to the fish.
     The <strong>Fish Icon</strong> is matched to the <a href="#species-sspecies">Species</a> of the fish!</p>
-<p><img src="images/UiFish.png" alt="Ui" width="500"></p>
 <hr>
 <h1 id="-fish-ahoy-commands"><em>Fish Ahoy!</em> Commands</h1>
 <p>In general, the command format is as follows:<br>
@@ -273,7 +266,6 @@
     </blockquote>
     </li>
 </ul>
-<p><img src="images/UiIndex.png" alt="Ui" width="500"></p>
 <h3 id="prefix-parameters">Prefix parameters</h3>
 <ul>
     <li>Used as parameters for commands with <code>add</code>, <code>edit</code> and <code>addReadings</code> actions</li>
@@ -520,7 +512,6 @@
     </ul>
     </li>
 </ul>
-<p><img src="images/UiTankFeedDemo.png" alt="AddReadingDemo" width="500"></p>
 <h3 id="viewing-a-tank-tank-view-">Viewing a tank: <code>tank view</code></h3>
 <p>You can view the specific tasks and fishes belonging to the specified tank with the <code>tank view</code> command.</p>
 <p>Use this command when you want to inspect a particular tank, to check on its fishes and tasks!</p>
@@ -551,7 +542,6 @@
         </ul>
     </li>
 </ul>
-<p><img src="images/UiTankViewDemo.png" alt="AddReadingDemo" width="500"></p>
 <h3 id="adding-a-set-of-readings-tank-addreadings-">Adding a set of readings: <code>tank addReadings</code></h3>
 <p>You can add a set of ammonia level, pH and temperature readings to the specified tank with the <code>tank addReadings</code> command.</p>
 <p>Use this command if you have the relevant equipment, and you want to log down the current readings!</p>
@@ -603,7 +593,6 @@
     </ul>
     </li>
 </ul>
-<p><img src="images/UiAddReadingsDemo.png" alt="AddReadingDemo" width="500"></p>
 <h3 id="deleting-the-most-recent-set-of-readings-tank-dellastreadings-">Deleting the most recent set of readings: <code>tank delLastReadings</code></h3>
 <p>You can delete the most recent set of readings from the specified tank with the <code>tank delLastReadings</code> command.</p>
 <p>Use this command if you accidentally keyed in the wrong set of readings. You can then add a new set of readings to correct the mistake!</p>
@@ -628,7 +617,6 @@
     <li>Scenario 2 (Screenshot below) : You mistakenly add a set of readings to &#39;Freshwater tank&#39; of index 1.
         <code>tank delLastReadings 1</code> deletes the most recent set of readings.</li>
 </ul>
-<p><img src="images/UiDelLastReadingsDemo.png" alt="AddReadingDemo" width="500"></p>
 <h2 id="fishes">Fishes</h2>
 <p>Fishes are yet another core aspect of <em>Fish Ahoy!</em> This app is built around helping you keep these little guys healthy,
     so many important details such as species, last fed date, feeding intervals are being recorded. <em>Fish Ahoy!</em> features
@@ -830,7 +818,6 @@
         </ul>
     </li>
 </ul>
-<p><img src="images/UiSortNameDemo.png" alt="AddReadingDemo" width="500"></p>
 <h3 id="viewing-a-fish-fish-view-">Viewing a fish: <code>fish view</code></h3>
 <p>You can view a specific with in <em>Fish Ahoy!</em>, specified by the given fish index.</p>
 <p>Use this command to display a single fish, making it easier for you to see its information.</p>
@@ -1021,7 +1008,6 @@
     </ul>
     </li>
 </ul>
-<p><img src="images/UiTankFeed1.png" alt="UiFeedingReminder" width="500"></p>
 <h2 id="storage">Storage</h2>
 <h3 id="saving-the-data">Saving the data</h3>
 <p>App data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.</p>
@@ -1043,7 +1029,6 @@
 <blockquote>
     <p>:bulb: Tip: If you do not have internet connection, an offline version will still be loaded!</p>
 </blockquote>
-<p><img src="images/helpMessage.png" alt="help message" width="500"></p>
 <p>Format: <code>help</code></p>
 <hr>
 <h2 id="faq">FAQ</h2>
