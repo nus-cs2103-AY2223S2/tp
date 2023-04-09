@@ -15,8 +15,6 @@ public class HelpConsultationCommand extends HelpCommand {
 
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
 
-    public static final String HEADER_4 = "\n----- File Inputs -----\n";
-
     public static final String ADD_CONSULTATION = "Add:                         "
             + "mkdir Consultation/CONSULTATION_NAME";
 
@@ -24,7 +22,7 @@ public class HelpConsultationCommand extends HelpCommand {
             + "delete Consultation/INDEX";
 
     public static final String EDIT_CONSULTATION = "Edit:                         "
-            + "editEvent EVENT_INDEX Consultation/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
+            + "editEvent EVENT_INDEX Consultation/NEW_NAME -date NEW_DATE";
 
     public static final String ADD_STUDENT = "Add Student:            "
             + "addStudent STUDENT_INDEX_IN_LIST Consultation/CONSULTATION_INDEX_IN_CONSULTATION_LIST";
@@ -41,9 +39,6 @@ public class HelpConsultationCommand extends HelpCommand {
     public static final String DELETE_NOTE = "Delete Note:      "
             + "deleteNote type/Consultation name/CONSULTATION_NAME index/NOTE_INDEX";
 
-    public static final String OPEN_FILE = "Open File:      "
-            + "openFile Consultation/CONSULTATION_INDEX";
-
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(HEADER_1
@@ -56,8 +51,6 @@ public class HelpConsultationCommand extends HelpCommand {
                 + HEADER_3
                 + ADD_NOTE + "\n"
                 + DELETE_NOTE + "\n"
-                + EDIT_NOTE + "\n"
-                + HEADER_4
-                + OPEN_FILE);
+                + EDIT_NOTE);
     }
 }
