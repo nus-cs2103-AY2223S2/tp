@@ -1532,6 +1532,20 @@ Adds an appointment to the VMS.
 Before every test case, ensure that the list of appointments is empty,
 and the list of patients and vaccinations contains the patient and vaccine to be added.
 
+Clears the list of patients and vaccines
+```
+patient clear --force true
+vaccination clear --force true
+```
+
+Adds the necessary patient and vaccine
+```
+patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur \
+    --a pollen --v Moderna
+
+vaccination add Dose 1 (Moderna)
+```
+
 #### Adding a valid appointment
 
 ``` text
