@@ -79,7 +79,7 @@ public class TimeMask {
                 endTime = LAST_HOUR_INDEX;
             }
 
-            if (!start.isEqual(end)) {
+            if (!start.toLocalDate().isEqual(end.toLocalDate())) {
                 // check if end date after date limit
                 boolean isAfterDateLimit = isEndDateAfterDateLimit(end.toLocalDate(), dateLimit);
                 // get the days between the start and end/ start and date limit
