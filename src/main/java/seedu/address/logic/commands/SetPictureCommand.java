@@ -49,7 +49,7 @@ public class SetPictureCommand extends Command {
             if (employee.getEmployeeId().equals(employeeId)) {
                 employeeToSetPicture = employee;
                 Path sourcePath = chooseSourcePicture();
-                PicturePath destPicturePath = new PicturePath("data/employeepictures/"
+                PicturePath destPicturePath = new PicturePath(PicturePath.VALID_DIRECTORY
                         + employeeToSetPicture.getName().fullName + PicturePath.VALID_EXTENSION);
                 Path destPath = destPicturePath.toPath().toAbsolutePath();
                 try {
