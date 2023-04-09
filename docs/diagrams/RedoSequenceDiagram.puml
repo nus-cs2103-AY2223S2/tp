@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UndoManager" as UndoManager MODEL_COLOR
+participant "addressBookHistory:LinkedList" as History MODEL_COLOR
+end box
+
+AddCommand -> Model : addPerson()
+activate Model
+
+Model -> AddressBook : addPerson()
+activate AddressBook
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model -> UndoManager : addToHistory()
+activate UndoManager
+
+opt isInUndoneState
+UndoManager -> UndoManager : deleteUntrackedHead()
+end
+
+UndoManager --> History : offerFirst(AddressBook)
+activate History
+
+History --> UndoManager
+deactivate History
+
+UndoManager --> Model
+deactivate UndoManager
+
+Model --> AddCommand : result
+deactivate Model
+
+@enduml

@@ -120,7 +120,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="550" />
 
 
 The `Model` component,
@@ -129,6 +129,8 @@ The `Model` component,
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores a `UserData` object that represents the user's personal data. This is exposed to the outside as a `ReadOnlyUserData` objects.
+* stores a `UndoManager` object that contains previous states of ModCheck. This is exposed to the outside through a 
+  `Undoable` interface.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -188,20 +190,20 @@ Step 1. The user launches the application for the first time. The `UndoManager` 
 `addressBookHistory` containing only the current addressBook state. The `versionTracker` variable is initialized to 
 0, indicating 0 undos have been executed so far, and the version of ModCheck shown is the most recent version.
 
-![UndoRedoState0](images/UndoRedoState0new.png)
+<img src=images/UndoRedo/UndoRedoState0new.png width = 800 />
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the address book. 
 The `delete` command calls `UndoManager#addToHistory()`, causing the modified state of the address book after the 
 `delete 5` command executes to be saved in `addressBookHistory`. The `versionTracker` variable stays at 0 as the 
 addressBook state after deleting is still the most recent version.
 
-![UndoRedoState1](images/UndoRedoState1new.png)
+<img src=images/UndoRedo/UndoRedoState1new.png width = 800 />
 
 Step 3. The user executes `add n/David …​` to add a new person. 
 The `add` command also calls `UndoManager#addToHistory()`, causing another modified address book state to be saved into 
 the `addressBookHistory`. Similarly, `versionTracker` remains at 0.
 
-![UndoRedoState2](images/UndoRedoState2new.png)
+<img src=images/UndoRedo/UndoRedoState2new.png width = 800 />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it 
 will not call `UndoManager#addToHistory()`, so the address book state will not be saved into the `addressBookHistory`.
@@ -213,7 +215,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 `versionTracker` variable by 1. Internally, the UndoManager will find the first most recent saved history, and 
 returns a copy of the addressBook representing that. 
 
-![UndoRedoState3](images/UndoRedoState3new.png)
+<img src=images/UndoRedo/UndoRedoState3new.png width = 800 />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If `versionHistory` is equal to the 
 number of number of saved histories, there is no more saved history to undo. The `undo` command uses 
@@ -233,16 +235,26 @@ user rather than attempting to perform the redo.
 </div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as 
-`list`, will usually not call `UndoManager#addToHistory()`. Thus, the `addressBookHistory` remains unchanged.
+`list`, will not call `UndoManager#addToHistory()`. Thus, the `addressBookHistory` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4new.png) 
+<img src=images/UndoRedo/UndoRedoState4new.png width = 800 />
 
 Step 6. The user executes `clear`, which calls `UndoManager#addToHistory()`. Since the `versionTracker` is not 
 0, all address book states from index 0 to one before the current version will be purged, and the versionTracker 
 will be reset to 0. Reason: It no longer makes sense to redo the "untracked heads". This is the behavior that most 
 modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5new.png) 
+<img src=images/UndoRedo/UndoRedoState5new.png width = 800 />
+
+Below is the sequence diagram showing how a modification is added to the `undoManager`, using `AddCommand` as an 
+example.
+
+![AddToHistorySequenceDiagram.png](images/UndoRedo/AddToHistorySequenceDiagram.png)
+
+Below is the sequence diagram indicating what happens when the user executes `undo`.
+
+![RedoSequenceDiagram.png](images/UndoRedo/UndoSequenceDiagram.png)
+
 
 ### Filtering contacts
 **Purpose:** Allow users to filter contacts based on criteria given
@@ -291,6 +303,32 @@ The implementation of this feature requires `ExportCommand` and `ExportCommandPa
 Below is an activity diagram that shows what happens when a user executes the `export` command.
 
 ![ExportActivityDiagram](images/export/exportActivityDiagram.png)
+
+
+### Load contacts
+**Purpose**: Allows users to load data files generated by another ModCheck (either through `export` or copy-pasting 
+from _data/addressbook.json_).
+
+Formats: 
+1. `load`
+2. `load <path>`
+
+**Implementation**: The behaviour of the `load` command is to open a FileChooser window of the current OS. Only 
+json files are able to be selected by this FileChooser window. After the user selects a file, the absolute path of 
+the file will be returned by the FileChooser. This path is appended onto the `load` command, which is subsequently 
+parsed by the AddressBookParser.
+
+The parsed command will be executed by Logic. During execution, the LoadCommand object parses and reads the input 
+data file, and returns an AddressBook. This is then combined with the current working address book using the 
+`Model#combine` method. 
+
+This implementation requires cooperation between the Ui and Logic components of ModCheck, which is achieved using a
+UiInputRequiredException thrown by the parser. This exception is caught by Ui, which is then responsible for showing 
+the FileChooser window. This is done so the [architecture](#architecture) of ModCheck is not violated. 
+
+The possible paths of the `load` command is shown in the activity diagram below.
+
+![LoadCommandActivityDiagram.png](images/LoadCommand/LoadCommandActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
