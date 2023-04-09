@@ -898,33 +898,106 @@ testers are expected to do more *exploratory* testing.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
 
-### Deleting a person
+### Displaying a client's personal details
 
-1. Deleting a person while all persons are being shown
+1. View a particular client's personal details while all other clients are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+   2. Test case : `select 1`<br>
+      Expected: Personal details of the client at index 1 will be displayed at the right.
+   3. Test case : `select 0`<br>
+      Expected : Client list remains displayed. Error details shown in the status message.
+   4. Other incorrect select commands to try : `select`, `select x` (where x is larger than the list size).
+ 
+      Expected : Client list remains displayed. Error details shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+### Adding a client
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+1. Add a client to the client list
+   1. Prerequisites: List all clients is currently being displayed in the clients display box.
+   2. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 `    
+      Expected : Name of client added will be displayed in the status message. Client list will be updated to include the added client
+   3. Test case : `add`
 
-1. _{ more test cases …​ }_
+      Expected : No client is added. Error details shown in the status message. Client list remains the same.
+   4. Test case : `add n/John Doe p/98765432 e/x a/311, Clementi Ave 2, #02-25 `
+   
+      Expected : No client is added. Invalid email format will result in email error message to be displayed in the status message.
 
-### Saving data
+### Deleting a client
 
-1. Dealing with missing/corrupted data files
+1. Deleting a client from the client list.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: List all clients is currently being displayed in the clients display box. At least 1 client in the list.
+    2. Test case : `delete 1`
+    
+       Expected : Name of client being deleted will be displayed in the status message. Client list will be updated to exclude the deleted client.
+    3. Test case : `delete 0`
+   
+       Expected : No client is deleted. Error details shown in the status message. Client list remains the same.
+    4. Other incorrect delete commands to try : `delete x` (where x is larger than the list size)
+   
+       Expected : Similar to previous.
 
-1. _{ more test cases …​ }_
+### Editing a client                                                                                                                               
+                                                                                                                                                    
+1. Editing an existing client's personal particulars                                                                                                                               
+                                                                                                                                                    
+    1. Prerequisites: Client list is currently being displayed. At least 1 client in the list. Select the particular client with the command `select x`, where x is the index of the client to edit. The client's details will be displayed on the top right display box.
+    2. Test case : `edit 1 p/91234567 e/johndoe@example.com`
+
+       Expected : Name of client being edited will be displayed in the status message. The updated details of the client will be shown on the top right display box. 
+    3. Test case : `edit`
+   
+       Expected : No client is edited. Error details shown in the status message. Client list and their personal details remains the same.
+    4. Other incorrect edit commands to try : `edit 0`, `...`
+   
+       Expected : Similar to previous.
+
+### Adding a policy to a client                                                                                                                   
+                                                                                                                                      
+1. Add a policy to a specific client                                                                                                
+   1. Prerequisites: Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box.                                     
+   2. Test case : `addPolicy 1 pn/Fire Insurance pd/01.01.2021 pp/1000 pf/yearly `                                      
+      Expected : Name of client at index 1 and name of the policy added will be displayed in the status message. Client's policy list will be updated to include the added policy.
+   3. Test case : `addPolicy`                                                                                                               
+                                                                                                                                            
+      Expected : No policy is added. Error details shown in the status message. All client's policy list remains the same.                         
+   4. Other incorrect add policy commands to try : `addPolicy 0`, `addPolicy x` (where x is larger than the client list size)
+   
+      Expected : Similar to previous.
+
+### Deleting a policy from a client
+
+1. Delete a policy from a specific client
+   1. Prerequisites : Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box. Client should have at least 1 policy in the policy list.
+   2. Test case : `deletePolicy 1 pi/1`
+   
+      Expected : Name of the client at index 1, and name of the policy at index 1 will be displayed in the status message. Client's policy list will be updated to exclude the deleted policy.
+   3. Test case : `deletePolicy`
+   
+      Expected :  No policy is deleted. Error details shown in the status message. All clients and their personal details remains the same.
+   4. Other incorrect delete policy commands to try : `deletePolicy 0`, `...`
+   
+      Expected : Similar to previous.
+
+### Edit a policy from a client
+1. Edit a policy from a specific client
+   1. Prerequisites : Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box. Client should have at least 1 policy in the policy list.
+   2. Test case : `editPolicy 1 pi/1 pn/Travel Insurance pp/2000 `
+   
+      Expected : Name of the client at index 1, and name of the policy at index 1 will be displayed in the status message. Edited policy will be updated accordingly.
+   3. Test case : `editPolicy`
+   
+      Expected : No policy is edited. Error details shown in the status message. All clients and their personal details remains the same.
+   4. Other incorrect edit policy commands to try : `editPolicy 0`, `...`
+   
+      Expected : Similar to previous.
+
+
+
 
 ## **Appendix: Planned Enhancements**
 
