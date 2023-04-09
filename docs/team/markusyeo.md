@@ -27,7 +27,7 @@ Given below are my contributions to the project.
   This allowed us to have a nice scaleable overview tab.
 * **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=markusyeo)
 * **Project management:**
-  * Setup the team organization as well as repo.
+  * Set up the team organisation and repository.
   * Managed `v1.1`-`v1.2` issues.
   * Handled product releases for `v1.1`, `v1.2` and `v1.3` (including uploading and testing of JAR files).
   * Facilitated weekly meetings.
