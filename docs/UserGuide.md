@@ -39,7 +39,7 @@ Refer to the [Features](#features) below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-### If this is your first time using FAid, this is what the app provides you with and how to use it
+**If this is your first time using FAid, this is what the app provides you with and how to use it**
 
 <div markdown="block" class="alert alert-info">
 
@@ -67,7 +67,8 @@ Refer to the [Features](#features) below for details of each command.
 
 * `CLIENT_INDEX` refers to index number showed in displayed client list
 
-* `MEETING_INDEX` refers to index number showed in displayed meeting list
+* `MEETING_INDEX` refers to index number of meeting showed in displayed meeting list of specified client.<br>
+   e.g index of meetings found from list shown by `meetingFind` command
 
 * Index must be a positive number
 
@@ -122,8 +123,7 @@ Format: `listPerson`
 
 ### Editing a client : `edit`
 
-Edits an existing client in FAid.
-7
+Edits information of an existing client in FAid.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -142,7 +142,7 @@ Examples:
 
 ### Locating clients by name: `find`
 
-Finds clients whose names is any of the given keywords.
+Finds clients whose name is any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -176,15 +176,13 @@ Examples:
 
 Schedules a meeting with a client in FAid
 
-
-Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
+Format: `meetingAdd CLIENT_INDEX md/DESCRIPTION ms/START me/END`
 
 Required Information:
 * `CLIENT_INDEX`: Index of a client in FAid
-* `DESC`: Description of the meeting to add
-* `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
-* `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
-* `TAGS`: Optional labels to put for the meeting
+* `DESCRIPTION`: Description of the meeting to add
+* `START`: Start date and time (Format: dd-mm-yyyy HH:MM)
+* `END`: End date and time (Format: dd-mm-yyyy HH:MM)
 
 Example:
 
@@ -194,6 +192,7 @@ Example:
 Notes:
 * Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
 * Meeting must not conflict in timing with other meetings scheduled for the day.
+* Meetings starting before the current time cannot be added.
 
 * ![result for meetingAdd 3 md/Meeting with Fariq ms/10-06-2023 12:30 me/10-06-2023 13:30](images/meetingAdd.png)
 
@@ -203,13 +202,12 @@ Notes:
 
 Removes a specified meeting from FAid.
 
-
 Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 
 Required Information:
 
 * `CLIENT_INDEX`: Index of a client already in FAid
-* `MEETING_INDEX`: Meeting index after searching for meetings for a specific client by doing a meetingFind CLIENT_INDEX to get the required meeting index
+* `MEETING_INDEX`: Index of a meeting belonging to client at `CLIENT_INDEX`
 
 Examples:
 
@@ -217,37 +215,39 @@ Examples:
 * `meetingRemove 3 1` Deletes the 1st meeting with the client of index 3.
 
 Note:
-* Doing a meetingFind `CLIENT_INDEX` is necessary to get the meeting index required. Using the meeting index in the initially displayed page or the page after listMeeting may result in an incorrect meeting update.
+* Doing a `meetingFind CLIENT_INDEX` is necessary to get the `MEETING_INDEX` required. Refer to the meeting list shown
+  by `meetingFind` to get the `MEETING_INDEX`
 
 
 ![result for meetingRemove 3 1](images/RemoveMeeting.png)
 
 ### Updating a meeting : `meetingUpdate`
 
-Updates an existing meeting belonging to a client in FAid
+Updates an existing meeting belonging to a client in FAid, so that financial advisors can be flexible
+with their scheduling.
 
 
 Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
 
 Required Information:
-
 * `CLIENT_INDEX`:Index of a client already in FAid
-* `MEETING_INDEX`: Meeting index after searching for meetings for a specific client by doing a meetingFind CLIENT_INDEX to get the required meeting index
+* `MEETING_INDEX`: Index of a meeting belonging to client at `CLIENT_INDEX`
 
 Examples:
-
-* `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st client
-  to `Policy discussion` 
+* `meetingUpdate 1 2 md/ Policy signing` Edits the meeting description of the 1st meeting belonging to the 1st client
+  to `Policy signing` 
 * `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end
   of the 3rd meeting belonging to the 2nd client to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10`
   respectively
 
 Notes:
-
 * Edits the meetings of client at the specified `CLIENT_INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Doing a meetingFind `CLIENT_INDEX` is necessary to get the meeting index required. Using the meeting index in the initially displayed page or the page after listMeeting may result in an incorrect meeting update.
+* Doing a `meetingFind CLIENT_INDEX` is necessary to get the `MEETING_INDEX` required. Refer to the meeting list shown
+by `meetingFind` to get the `MEETING_INDEX` <br>
+
+![meetingUpdate example](images/meetingUpdate.png)
 
 ### Find meeting : `meetingFind`
 
