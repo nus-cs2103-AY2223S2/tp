@@ -5,7 +5,7 @@ title: An Cheng Yang's Project Portfolio Page
 
 ### Project: CoDoc
 
-CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about (To be added) kLoC.
+CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20.8k LoC.
 
 Given below are my contributions to the project.
 
@@ -33,28 +33,33 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=anchengyang&zR=AY2223S2-CS2103T-F12-2%2Ftp%5Bmaster%5D&zACS=247.67299412915852&zS=2023-02-17&zFS=&zU=2023-04-05&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
 * **Project management**:
-    * Opened PRs to allow teammates to review and provide feedback [PRs opened by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+author%3A%40me+is%3Aclosed) 
-    * Provided feedback on PRS and merged PRs by teammates [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
-    * Assigned issues to teammates and myself [Issues assigned to me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+assignee%3Aanchengyang)
-    * Reminded teammates about the deliverables every week
+    * Opened PRs to allow teammates to review and provide feedback: [PRs opened by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+author%3A%40me+is%3Aclosed) 
+    * Provided feedback on PRS and merged PRs by teammates: [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+    * Assigned issues to teammates and I: [Issues assigned to me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+assignee%3Aanchengyang)
+    * Reminded teammates about the deliverables every week through weekly meetings and group chat
 
 * **Enhancements to existing features**:
-    * Modified the CodocParser with every new iteration
+    * Modified the CodocParser with every new iteration to accommodate new changes to the commands
     * Created a singleton for a dummy person within the Person class to be displayed when the contact list was empty: [#125](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/125)
-    * Enhanced the help window: [#97](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/97)
+    * Enhanced the help window to improve user experience with the command summary and enabling the copying of each command: [#97](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/97)
     * Enhanced the add and edit command: [#67](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/67)
-    * Minor improvements and bug fixes: [#83](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/83), [#86](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/86), [#87](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/87)
+    * Provide bug fix support for new features whenever a bug is spotted: [#83](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/83), [#86](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/86), [#87](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/87)
+    * Add `scroll back to Table of Contents` feature to help readers quickly navigate back to content page
 
 * **Documentation**:
     * User Guide:
-        * Add new sections for the user guide, particularly the Glossary, Command Summary, Navigating the User Guide and Notes about the Command Format: [#149](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/149)
+        * Add new sections for the user guide, particularly the Glossary, Command Summary, Navigating the User Guide, and Notes about the Command Format: [#149](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/149)
         * Edited the user guide pertaining to the features that I implemented: [#151](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/151), [#203](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/203), [#208](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/208)
         * Edited the table of contents and navigation of the user guide with every new iteration
+        * Standardize formatting of each command section so there are no discrepancies between each section and there is a uniform look
+        * Improve readability by using different text formats such as code, bold and italics
+        * Include :information_source:, :bulb: and :exclamation: to allow readers to view important information that will be useful to note
     * Developer Guide:
         * Add new sections for the developer guide, particularly the Glossary, Target Audience and Navigating the Developer Guide: [#88](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/88)
         * Edited the non-functional requirements and use cases: [#29](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/29), [#134](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/134)
-        * Edited the developer guide pertaining to the features that I implemented with UML diagrams: [#88](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/88), [#90](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/90), [#134](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/134)
+        * Edited the developer guide pertaining to the features that I implemented with UML diagrams such as edit command, parser and person class as well as the UI and logic component: [#88](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/88), [#90](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/90), [#134](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/134)
         * Edited the table of contents and navigation of the developer guide with every new iteration
+        * Add `scroll back to top` feature to help readers quickly navigate back to content page
 
 * **Tools**:
     * Java
