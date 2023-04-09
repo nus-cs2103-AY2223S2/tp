@@ -38,7 +38,11 @@ public class ExportDataCommand extends Command {
      */
     public ExportDataCommand(String filePath) {
         requireNonNull(filePath);
-        this.filePath = Paths.get(filePath, "data.json");
+        if (filePath.isEmpty()) {
+            this.filePath = Paths.get("data\\data.json");
+        } else {
+            this.filePath = Paths.get(filePath, "data.json");
+        }
     }
 
     @Override
