@@ -174,7 +174,7 @@ interface ListCommand {}
 
 class ListCategoryCommand {}
 
-class ListExpenseCommand {
+class ListExpensesCommand {
     ' + ListCategoriesCommand(categoryPredicate: Optional<ExpenseInCategoryPredicate>, \
       timespanPredicate: Optional<ExpenseInTimespanPredicate>) '
     - categoryPredicate: Optional<ExpenseInCategoryPredicate>
