@@ -40,6 +40,10 @@ public class AddPolicyCommand extends Command {
         + PREFIX_POLICY_PREMIUM + "1000 "
         + PREFIX_POLICY_FREQUENCY + "yearly ";
 
+    public static final String MESSAGE_SUCCESS = "Added policy: %1$s to client: %2$s";
+
+    public static final String MESSAGE_DUPLICATE_POLICY = "This policy already exists in the client's policy list";
+
     public final Index index;
     public final Policy policy;
 
@@ -69,7 +73,7 @@ public class AddPolicyCommand extends Command {
 
         // handle duplicate policies
         if (clientToAddPolicy.getPolicyList().contains(policy)) {
-            throw new CommandException("This policy already exists in the client's policy list");
+            throw new CommandException(MESSAGE_DUPLICATE_POLICY);
         }
 
         addedPolicyClient.getPolicyList().add(policy);
@@ -86,7 +90,7 @@ public class AddPolicyCommand extends Command {
      * @return success message
      */
     private String generateSuccessMessage(Client client) {
-        return String.format("Added policy: %1$s to client: %2$s", policy, client);
+        return String.format(MESSAGE_SUCCESS, policy, client);
     }
 
     @Override

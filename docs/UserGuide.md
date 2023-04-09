@@ -3,6 +3,9 @@ layout: page
 title: User Guide
 ---
 
+<img src="images/advisio.png" width="150px">
+
+
 ## What is Advis.io?
 
 As a financial advisor, you know that managing your clients and their policies can be time-consuming and overwhelming.
@@ -18,7 +21,7 @@ productivity, and take your business to the next level. With an intuitive comman
 graphical interface, AIO is the perfect solution for anyone looking to streamline their workflow and build a larger,
 more satisfied client base.
 
-So why wait? Try AIO today and see how it can transform your business!
+So why wait? Try AIO today and see how it can transform your business! :credit_card:
 
 ---
 <img src="images/advisio.png" width="15px">**Advis.io**<br>
@@ -59,22 +62,19 @@ By students, for advisors
 * #### [Command Summary](#command-summary)
 
 ---
-
 ## How to Get Started
 
 #### 1. Ensure you have Java `11` or above installed in your Computer.
-
 * To check if you have Java `11` installed, follow these steps
-* `java -version` <br>
+* `java -version` <br> 
 * You should have the following output:
-  ![Java-version](images/java-version.png)
+![Java-version](images/java-version.png)
 
 #### 2. Download the latest `advisio.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-4/tp/releases).
 
 #### 3. Copy the file to the folder you want to use as the _home folder_ for Advisio.
 
 #### 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the command to run the application. <br>
-
 * To open up the command terminal, follow these steps
 * **Mac**: `Cmd + space` to open up spotlight, now search terminal and press `Enter`.
 * **Windows**: `Windows + R` top open 'Run' box. Type `cmd` and then click 'ok'.
@@ -151,6 +151,7 @@ Some example commands you can try:
 
 ---
 
+
 ## General Management
 
 ### Viewing help : `help`
@@ -185,7 +186,7 @@ Thus following commands can't be called to Undo/Redo
 
 ### Redo previous command : `redo`
 
-Redo one previous command and restore that version of clientele.
+Redo one previous command and restore that version of clientele. 
 
 Format: `redo`
 
@@ -251,8 +252,7 @@ To add a policy to the client, please refer to <a href="#policy-management">Poli
 
 ### Selecting a client: `select`
 
-To select a particular client from your clientele to display on your client dashboard, as well as their corresponding
-policies on your policy dashboard.
+To select a particular client from your clientele to display on your client dashboard, as well as their corresponding policies on your policy dashboard.
 
 Format: `select INDEX`
 
@@ -287,7 +287,7 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567
   and johndoe@example.com respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be Betsy Crower and clears all existing tags.
-
+ 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
 If you accidentally edited a client's information, you can use the <code>undo</code>  command to retrieve the previous information.
 </div>
@@ -296,6 +296,7 @@ If you accidentally edited a client's information, you can use the <code>undo</c
 <b>Note:</b>
 To edit a policy, please refer to <a href="#policy-management">Policy Management</a>
 </div>
+
 
 ### Filtering clients by name: `find`
 
@@ -422,7 +423,7 @@ Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
 
 * The Policy Frequency should be one of the following: `weekly`, `monthly`,`yearly`
 
-Examples: `addPolicy 2 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
+Examples: `addPolicy 1 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
 You will then be able to view the policies on the right side under 'Policies'
 
@@ -430,7 +431,7 @@ You will then be able to view the policies on the right side under 'Policies'
 
 ### Editing a policy : `editPolicy`
 
-To edit one of your specified policy from one of your client in your clientale.
+To edit one of your specified policy from one of your client in your clientale. 
 
 Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/PREMIUM] [pf/FREQUENCY`]
 
@@ -450,13 +451,14 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the clientele.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
 If you accidentally edit a policy, you can use the <code>undo</code>  command to retrieve the previous policy's information.
 </div>
 
 ### Deleting a policy `deletePolicy`
 
-To delete one of your specified policy from one of your clientale.
+To delete one of your specified policy from one of your clientale. 
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 

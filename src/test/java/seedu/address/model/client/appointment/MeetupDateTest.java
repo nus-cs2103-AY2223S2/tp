@@ -36,48 +36,34 @@ public class MeetupDateTest {
         assertThrows(IllegalArgumentException.class, () -> new MeetupDate(pastDate));
     }
 
-
-
     @Test
-    public void isValidDate_validDate_returnsTrue() {
-        String date1 = "01.01.2023";
-        String date2 = "01/01/2023";
+    public void isValidDate() {
+        // invalid date (wrong format) -> false
+        assertFalse(MeetupDate.isValidDate("01/01/2023"));
 
-        assertTrue(MeetupDate.isValidDate(date1));
-        assertFalse(MeetupDate.isValidDate(date2));
-    }
-
-    @Test
-    public void isValidDate_invalidDate_returnsFalse() {
+        // invalid date (impossible days and months) -> false
         assertFalse(MeetupDate.isValidDate("31.04.2023"));
         assertFalse(MeetupDate.isValidDate("31.06.2023"));
         assertFalse(MeetupDate.isValidDate("32.06.2023"));
         assertFalse(MeetupDate.isValidDate("01.13.2023"));
-    }
 
-    @Test
-    public void isValidDate_invalidDateWithLeapYear_returnsFalse() {
+        // invalid date with leap year -> false
         assertFalse(MeetupDate.isValidDate("29.02.2021"));
         assertFalse(MeetupDate.isValidDate("30.02.2021"));
         assertFalse(MeetupDate.isValidDate("31.02.2021"));
-    }
 
-    @Test
-    public void isValidDate_validDateWithLeapYear_returnsTrue() {
+        // valid date -> true
         assertTrue(MeetupDate.isValidDate("29.02.2024"));
         assertTrue(MeetupDate.isValidDate("29.02.2028"));
     }
 
     @Test
-    public void isFutureDate_returnsFalse() {
-        String date1 = "01.01.2024";
-        assertFalse(MeetupDate.isFutureDate(date1));
-    }
+    public void isFutureDate() {
+        // future date -> true
+        assertTrue(MeetupDate.isFutureDate("01.01.2024"));
 
-    @Test
-    public void isFutureDate_returnsTrue() {
-        String date1 = "01.01.2020";
-        assertTrue(MeetupDate.isFutureDate(date1));
+        // past date -> false;
+        assertFalse(MeetupDate.isFutureDate("01.01.2020"));
     }
 
     @Test

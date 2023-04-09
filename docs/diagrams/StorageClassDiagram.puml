@@ -19,7 +19,6 @@ Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
 Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedClient
-Class JsonAdaptedTag
 Class JsonAdaptedAppointment
 Class JsonAdaptedPolicy
 }
@@ -40,7 +39,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedClient
-JsonAdaptedClient --> "*" JsonAdaptedTag
 JsonAdaptedClient --> "*" JsonAdaptedPolicy
 JsonAdaptedClient --> "1" JsonAdaptedAppointment
 

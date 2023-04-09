@@ -3,6 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
+<img src="images/advisio.png" width="150px">
+
 ## Advisio
 
 Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
@@ -132,8 +134,7 @@ e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `PolicyListPanel` etc. All
 inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
 visible GUI.
 
-The `UI` component uses the JavaFXd UI framework. The layout of these UI parts are defined in matching `.fxml` files
-that
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
 the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
@@ -748,17 +749,17 @@ specified otherwise)
 1. User inputs the client’s personal information
 2. Advis.io confirms and creates the client profile
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 1a. The user inputs the wrong format for the client’s information.
-    * 1a1. Advis.io requests for the user to input the correct data format.
-    * 1a2. User inputs correct data
+  * 1a1. Advis.io requests for the user to input the correct data format.
+  * 1a2. User inputs correct data
 
-      Steps 1a1-1b are repeated until the data entered are correct.
-
-      Use case resumes from step 2.
+    Steps 1a1-1b are repeated until the data entered are correct.
+  
+    Use case resumes from step 2.
 
 **Use case: Manage client’s policy information**
 
@@ -767,17 +768,17 @@ specified otherwise)
 1. User inputs the client’s policy information
 2. Advis.io confirms and creates the policy under the client's profile
 
-   Use case ends.
+      Use case ends.
 
 **Extensions**
 
 * 1a. The user inputs the wrong format for the policy’s information.
-    * 1a1. Advis.io requests for the user to input the correct data format.
-    * 1a2. User inputs correct data
+  * 1a1. Advis.io requests for the user to input the correct data format.
+  * 1a2. User inputs correct data
 
-      Steps 1a1-1b are repeated until the data entered are correct.
+    Steps 1a1-1b are repeated until the data entered are correct.
 
-      Use case resumes from step 2.
+    Use case resumes from step 2.
 
 **Use case: Find Client**
 
@@ -789,23 +790,23 @@ specified otherwise)
 4. The user selects the desired client from the list.
 5. Advis.io displays the client's information and policy details.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. Advis.io does not find any clients matching the entered information.
-    * 2a1. Advis.io displays a message indicating that no clients were found.
+  * 2a1. Advis.io displays a message indicating that no clients were found.
 
-      Use case resumes from step 1.
+    Use case resumes from step 1.
 
 **Use case: Undo and redo actions**
 
 **MSS**
 
-1. The user performs an action within Advis.io.
-2. The user selects the "undo" command within Advis.io.
-3. Advis.io undoes the last action taken by the user.
-4. The user selects the "redo" command within Advis.io.
+1. The user performs an action within Advis.io. 
+2. The user selects the "undo" command within Advis.io. 
+3. Advis.io undoes the last action taken by the user. 
+4. The user selects the "redo" command within Advis.io. 
 5. Advis.io redoes the previously undone action.
 
    Use case ends.
@@ -813,14 +814,14 @@ specified otherwise)
 **Extensions**
 
 * 2a. The user has not performed any actions within Advis.io that can be undone.
-    * 2a1. Advis.io displays a message indicating that there is no action to be undone.
-
-      Use case ends
+  * 2a1. Advis.io displays a message indicating that there is no action to be undone.
+  
+    Use case ends
 
 * 4a. The user has not undone any actions within Advis.io that can be redone.
-    * 4a1. Advis.io displays a message indicating that there is no action to be redone.
-
-      Use case ends
+  * 4a1. Advis.io displays a message indicating that there is no action to be redone.
+    
+    Use case ends
 
 **Use case: Creating Appointment for Client**
 
@@ -834,19 +835,21 @@ specified otherwise)
 **Extensions**
 
 * 1a. The user does not enter an appointment name or date.
-    * 1a1. Advis.io displays a message indicating that the appointment name and date are required.
-    * 1a2. The user enters a new appointment name and date.
-
+  * 1a1. Advis.io displays a message indicating that the appointment name and date are required.
+  * 1a2. The user enters a new appointment name and date.
+    
   Use case ends
 
 
 * 1b. Advis.io adds an invalid appointment date.
-    * 1b1. Advis.io displays a message indicating that the appointment date is invalid.
-    * 1b2. The user inputs a new appointment date.
-
+  * 1b1. Advis.io displays a message indicating that the appointment date is invalid.
+  * 1b2. The user inputs a new appointment date.
+  
   Steps 1b1-1b2 are repeated until the date entered is valid.
-
+  
   Use case ends.
+
+
 
 ### Non-Functional Requirements
 
@@ -883,17 +886,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-   optimum.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+       optimum.
 
 2. Saving window preferences
 
-1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-2. Re-launch the app by double-clicking the jar file.<br>
-   Expected: The most recent window size and location is retained.
+    2. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
 
 3. _{ more test cases …​ }_
 
@@ -901,17 +904,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-1. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-   Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Timestamp in the status bar is updated.
 
-1. Test case: `delete 0`<br>
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -919,7 +922,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
 

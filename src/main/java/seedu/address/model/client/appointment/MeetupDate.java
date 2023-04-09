@@ -40,7 +40,7 @@ public class MeetupDate {
     public MeetupDate(String value) {
         requireNonNull(value);
         checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS);
-        checkArgument(!isFutureDate(value), MESSAGE_PAST_DATE);
+        checkArgument(isFutureDate(value), MESSAGE_PAST_DATE);
         this.value = stringToDate(value);
     }
 
@@ -66,7 +66,7 @@ public class MeetupDate {
     public static boolean isFutureDate(String date) {
         LocalDate localDate = stringToDate(date);
         LocalDate currentDate = LocalDate.now();
-        return currentDate.isAfter(localDate);
+        return localDate.isAfter(currentDate);
     }
 
     /**

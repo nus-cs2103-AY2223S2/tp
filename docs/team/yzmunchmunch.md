@@ -5,7 +5,7 @@ title: Ang Yuze's Project Portfolio Page
 
 ### Project: Adviso.io
 
-Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having a Graphical User Interface (GUI). 
+Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 

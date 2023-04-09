@@ -12,6 +12,8 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.appointment.AppointmentName;
+import seedu.address.model.client.appointment.MeetupDate;
 import seedu.address.model.client.policy.CustomDate;
 import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.PolicyName;
@@ -22,7 +24,10 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+
+    private static final String INVALID_APPOINTMENT_NAME = "T@est goals";
+    private static final String INVALID_APPOINTMENT_DATE = "01-01-2023";
+    private static final String INVALID_PAST_APPOINTMENT_DATE = "01.01.2021";
     private static final String INVALID_POLICY_NAME = " ";
     private static final String INVALID_POLICY_NAME_ENUM = "random insurance";
     private static final String INVALID_POLICY_DATE = "05-10-2023";
@@ -33,8 +38,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_APPOINTMENT_NAME = "Discussion";
+    private static final String VALID_APPOINTMENT_DATE = "01.01.2025";
     private static final String VALID_POLICY_NAME = "Life Insurance";
     private static final String VALID_POLICY_DATE = "05.10.2023";
     private static final String VALID_POLICY_PREMIUM = "1000.00";
@@ -153,6 +158,44 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseAppointmentName_validValueWithoutWhitespace_returnsAppointmentName() throws ParseException {
+        AppointmentName expectedApt = new AppointmentName(VALID_APPOINTMENT_NAME);
+        assertEquals(expectedApt, ParserUtil.parseAppointmentName(VALID_APPOINTMENT_NAME));
+    }
+
+    @Test
+    public void parseAppointmentName_validValueWithWhitespace_returnsAppointmentName() throws ParseException {
+        AppointmentName expectedApt = new AppointmentName(VALID_APPOINTMENT_NAME);
+        assertEquals(expectedApt, ParserUtil.parseAppointmentName(WHITESPACE + VALID_APPOINTMENT_NAME));
+    }
+
+    @Test
+    public void parseAppointmentName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAppointmentName(null));
+    }
+
+    @Test
+    public void parseAppointmentName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentName(INVALID_APPOINTMENT_NAME));
+    }
+
+    @Test
+    public void parseMeetupDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeetupDate(INVALID_APPOINTMENT_DATE));
+    }
+
+    @Test
+    public void parseMeetupDate_pastDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeetupDate(INVALID_PAST_APPOINTMENT_DATE));
+    }
+
+    @Test
+    public void parseMeetupDate_validValue_returnsMeetupDate() throws ParseException {
+        MeetupDate expectedMeetupDate = new MeetupDate(VALID_APPOINTMENT_DATE);
+        assertEquals(expectedMeetupDate, ParserUtil.parseMeetupDate(VALID_APPOINTMENT_DATE));
     }
 
     @Test

@@ -34,6 +34,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+        assert Integer.parseInt(trimmedIndex) > 0;
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
@@ -125,7 +126,7 @@ public class ParserUtil {
         if (!MeetupDate.isValidDate(trimmedMeetupDate)) {
             throw new ParseException(MeetupDate.MESSAGE_CONSTRAINTS);
         }
-        if (MeetupDate.isFutureDate(trimmedMeetupDate)) {
+        if (!MeetupDate.isFutureDate(trimmedMeetupDate)) {
             throw new ParseException(MeetupDate.MESSAGE_PAST_DATE);
         }
         return new MeetupDate(trimmedMeetupDate);
