@@ -171,13 +171,13 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation Details
 
-The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`.
+The implementation of the `add` command involves creating a new `Person` object and storing it in `AddressBook`.
 
-Given below is a class diagram on the `Student` class and the classes related to its attributes:
+Given below is a class diagram on the `Person` class and the classes related to its attributes:
 
 ![student_diagram](images/StudentClassDiagram.png)
 
-The `Student` object is composed of attributes:
+The `Person` object is composed of attributes:
 
 * `Name`: The name of the student.
 * `Phone`: The phone number of the student.
@@ -216,11 +216,11 @@ Here is a sequence diagram showing the interactions between components when `add
 #### Feature details
 1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
-3. If the input passes the validation check, a new `Student` entry is created and stored in the `VersionedAddressBook`.
+3. If the input passes the validation check, a new `Person` entry is created and stored in the `VersionedAddressBook`.
 
 #### General Design Considerations
 
-The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. Hence, resulting in a similar implementation of the `add` feature. </br>
+The implementation of the attributes of a `Person` is very similar to that of a `Person` in the original AB3 codebase. Hence, resulting in a similar implementation of the `add` feature. </br>
 
 Some additions made were the `Education`, `Module` and `Remark` attributes. </br>
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
@@ -230,9 +230,9 @@ Some additions made were the `Education`, `Module` and `Remark` attributes. </br
 4. Every `add` will commit the previous version of the `VersionedAddressBook` to `versionStateHistory`.
 
 When adding a student entry, these were the alternatives considered.
-* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Student` entry, making the other attributes optional.
+* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Person` entry, making the other attributes optional.
     * Pros:
-        * Improves user convenience by allowing them to add a `Student` entry even with limited knowledge about their details.
+        * Improves user convenience by allowing them to add a `Person` entry even with limited knowledge about their details.
     * Cons:
         * A lot of modification for empty/*null* inputs have to be accounted for when saving the data and testing.
 * **Alternative 2:** All parameters have to be filled in
@@ -259,12 +259,12 @@ Here is a sequence diagram showing the interactions between components when `del
 
 ### Proposed Implementation
 
-The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example, `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100`, none of the `Student` entries will be deleted.
+The proposed `delete` implementation supports deleting multiple `Person` entries at once. For example, `delete 1 3 5` will delete the `Person` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100`, none of the `Person` entries will be deleted.
 
 
 #### Design Considerations
 
-Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Student` entries, we believe that if a single invalid `INDEX` is given, the system should generate an error message.
+Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Person` entries, we believe that if a single invalid `INDEX` is given, the system should generate an error message.
 
 **Aspect: Handling invalid indexes in delete**
 
@@ -274,7 +274,7 @@ Taking into consideration the fact that users may make a typo, the time cost of 
     * Allows user to edit the erroneous command input _(as the command isn't cleared from the input box)_.
   * Cons:
     * Harder for users to find the invalid index and correct it.
-* **Alternative 2:** Delete all valid `Student` entries out of the given indexes.
+* **Alternative 2:** Delete all valid `Person` entries out of the given indexes.
   * Pros:
     * If command had only minor typos, it might saves the user time editing their command.
   * Cons:
@@ -286,7 +286,7 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 * **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're duplicate indexes.
   * Pros/Cons:
     * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 1**
-* **Alternative 2:** Delete all unique `Student` entries out of the given indexes.
+* **Alternative 2:** Delete all unique `Person` entries out of the given indexes.
   * Pros/Cons:
     * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 2**
 
@@ -296,8 +296,8 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 
 #### Implementation Details
 
-The implementation of `edit` involves creating a new `Student` object with updated details to replace the previous `Student` object.
-This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Student` object.
+The implementation of `edit` involves creating a new `Person` object with updated details to replace the previous `Person` object.
+This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Person` object.
 
 `edit` has similar fields to the [Add feature](#add-feature) and an additional `INDEX` parameter. </br>
 > NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
@@ -322,21 +322,21 @@ Here is a sequence diagram showing the interactions between components when `edi
 #### Feature details
 1. Similar to `add`, the app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
-3. If the input passes the validation check, the corresponding `Student` is replaced by a new edited `Student` object and stored in the `VersionedAddressBook`.
+3. If the input passes the validation check, the corresponding `Person` is replaced by a new edited `Person` object and stored in the `VersionedAddressBook`.
 
 #### General Design Considerations
-Whether a new `Student` object should be created when editing a student entry.
-* **Alternative 1 (Current choice):** `edit` will create a new `Student` object with the help of `EditPersonDescriptor`
+Whether a new `Person` object should be created when editing a student entry.
+* **Alternative 1 (Current choice):** `edit` will create a new `Person` object with the help of `EditPersonDescriptor`
     * Pros:
-        * Meets the expectations of the immutable `Student` class.
+        * Meets the expectations of the immutable `Person` class.
     * Cons:
-        * Inefficient as an entire `Student` object is created even if only one field is changed. </br>
+        * Inefficient as an entire `Person` object is created even if only one field is changed. </br>
 
-* **Alternative 2:** `edit` directly sets the updated values in the existing `Student` object.
+* **Alternative 2:** `edit` directly sets the updated values in the existing `Person` object.
     * Pros:
         * More timely option and space efficient.
     * Cons:
-        * In order to execute this, `Student` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
+        * In order to execute this, `Person` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
 
 [↑ Back to top](#table-of-contents)
 
@@ -346,7 +346,7 @@ Whether a new `Student` object should be created when editing a student entry.
 
 The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate`.
 
-Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Student` contains the specified keyword.
+Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
 The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
 
 
@@ -386,7 +386,7 @@ We felt that the default `find` feature was too restrictive.
 Our implementation has some additions such as:
 
 1. Allowing `PARTIAL_KEYWORD` finds so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
-2. `find PREFIX` across the various attributes of a `Student` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
+2. `find PREFIX` across the various attributes of a `Person` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
 
 **Aspect: Command format:**
 * **Alternative 1 (Current choice):** `find PREFIX KEYWORD/PARTIAL_KEYWORD`
@@ -451,7 +451,7 @@ a filtered list.
 
 #### Feature Implementation Details
 The current implementation provides users with two different methods of entering a remark for a student.
-1. `remark INDEX r/REMARK` where `INDEX` is the `Student` entry in the list, and `REMARK` is the remark to be added.
+1. `remark INDEX r/REMARK` where `INDEX` is the `Person` entry in the list, and `REMARK` is the remark to be added.
 2. Adding the remark through the [add feature](#Add-feature)
 
 #### Proposed Implementation
@@ -519,7 +519,7 @@ Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not 
     * Supports the `remark` feature as intended
   * Cons:
     * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
-    * Harder to implement as the size of the `PersonCard` for the `Student` has to be updated everytime `show` is executed.
+    * Harder to implement as the size of the `PersonCard` for the `Person` has to be updated everytime `show` is executed.
 
 * **Alternative 2: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
   * Pros:
