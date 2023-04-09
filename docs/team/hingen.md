@@ -31,14 +31,10 @@ Check out the code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp
 
 #### User and Developer Guide
 
-- **Add Command Documentation**
-  - Update the UG "Command Manual" section, "Add" subsection to describe how the `add` command is to be used
-  - Updated the DG "Implementation" section, "Add module, lecture, and video feature" subsection to describe the implementation details of the `add` command
-  - Update the DG user stories, use cases, and manual testing instructions for the `add` command
-- **Edit Command Documentation**
-  - Update the UG "Command Manual" section, "Edit" subsection to describe how the `edit` command is to be used
-  - Updated the DG "Implementation" section, "Edit module, lecture, and video feature" subsection to describe the implementation details of the `edit` command
-  - Update the DG user stories, use cases, and manual testing instructions for the `edit` command
+- **Add and Edit Command Documentation**
+  - Update the UG documentation for the `add` and `edit` commands
+  - Update the DG "Implementation" section for the `add` and `edit` commands
+  - Update the DG user stories, use cases, and manual testing instructions for the `add` and `edit` commands
 - **UG Design**
   - Update "Design" section, "Architecture" subsection class diagram and information
   - Update "Design" section, "Model" subsection class diagram
@@ -52,14 +48,10 @@ Check out the code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp
 
 #### Team-Based Tasks
 
-- Created GitHub Organisation
-- Created Team Repository
+- Created GitHub Organisation and Team Repository
 - Created v1.1 Milestone and Issues
 - Define Agendas before each weekly meeting
 - Bugs Reported: [link](https://github.com/AY2223S2-CS2103-F10-2/tp/issues?q=is%3Aissue+author%3Ahingen+label%3Atype.Bug+)
-
-#### Review/Mentoring
-
 - PRs reviewed: [#109](https://github.com/AY2223S2-CS2103-F10-2/tp/pull/109), [#370](https://github.com/AY2223S2-CS2103-F10-2/tp/pull/370)
 
 #### Misc
