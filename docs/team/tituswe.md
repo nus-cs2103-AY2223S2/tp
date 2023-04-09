@@ -3,7 +3,7 @@ layout: page
 title: Titus Lowe's Project Portfolio Page
 ---
 
-### Project: Adviso.io
+### Project: Advis.io
 
 Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
 available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having a
@@ -33,6 +33,7 @@ Given below are my contributions to the project.
     * Led weekly sprint meetings to update the team on the progress of the project and organize future work.
     * Managed the distribution of work throughout the project development.
     * Managed milestones `v1.1`, `v1.2`, `v1.3`, `v1.4` on GitHub.
+    * Managed the approval and merging of individual branches to the team master branch.
     * Issued tasks to individual members and monitored each member's work progress.
 
 * **Enhancements to existing features**:
@@ -51,6 +52,9 @@ Given below are my contributions to the project.
           feature [\#90](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/90).
         * Added sequence diagram for the `start` function when initializing the application.
         * Added control flow and detailed documentation of the 'UI' component.
+        * Added implementation details of `MainWindow`, `ClientLabel`, `ClientListPanel` and `PolicyListPanel`
+          controller classes.
+        * Added design considerations of the UI design, and alternatives considered.
 
 * **Community**:
     * PRs reviewed (with non-trivial review
