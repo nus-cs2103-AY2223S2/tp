@@ -143,39 +143,48 @@ Scenario 2 - Not using [Navigation](#navigation)
 
 ## Command Syntax
 
-**:information_source: The following are rules applicable to all commands:**
+:information_source: Named arguments are arguments which have a prefix while unnamed arguments are arguments without a prefix.\
+e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unnamed argument and "DSAG" is the value of the named argument `/name`.
 
-1. Items in curly braces (i.e. `{}`) are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.
+1. Items in curly braces (i.e. `{}`) are **placeholders** for some actual value. In a command format, they represent the **argument values** to be supplied by the user.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code}</code>, <code>{module_code}</code> is an argument value. The command can be used as <code>add CS2040</code>.
    </details>
+   <p></p>
 
-2. Items in square brackets (i.e. `[]`) are optional.
+2. Items in square brackets (i.e. `[]`) are **optional**.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} [/name {module_name}]</code>, the <code>/name</code> argument is optional. The command can be used as <code>add CS2040 /name Data Structures and Algorithms</code> or as <code>add CS2040</code>.
    </details>
+   <p></p>
 
-3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).
+3. Named arguments can be specified in **any order** as long as it is after all unnamed arguments (if any).
    <details>
    <summary>Example</summary>
-   For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, <code>{module_code}</code> is an unnamed argument, while <code>/code</code> and <code>/name</code> are named arguments. The command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
+   For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, the command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
    </details>
+   <p></p>
 
-4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.
+4. If a named argument is expected only once in the command but the user specified it multiple times, only the **last occurrence** of the argument will be taken.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} [/name {module_name}]</code>, if used as <code>add CS2040 /name Data Structures and Algorithms /name DSAG</code>, <code>DSAG</code> will be taken as the value of the <code>/name</code> argument.
    </details>
+   <p></p>
 
-5. Extraneous arguments will be ignored.
+5. Extraneous arguments will be **ignored**.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} /name {module_name}</code>, if used as <code>add CS2040 /name DSAG /foo bar</code>, the <code>/foo</code> argument is ignored.
    </details>
+   <p></p>
 
-6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace or it is the end of the command.
+6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a **named argument** if the following 2 conditions are met:
+   - There is a whitespace before `/{argument_name}`
+   - `/{argument_name}` is followed by a whitespace or it is the end of the command
+
    <details>
    <summary>Example</summary>
    For the command <code>find Intro /mod CS2040S /byTag</code>, <code>/mod</code> and <code>/byTag</code> are both recognised as named arguments.
@@ -187,23 +196,35 @@ Scenario 2 - Not using [Navigation](#navigation)
 
 ## Argument Formats
 
-- **Module Code**\
-  Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally followed by more uppercase alphabet characters.
+- <div id="lecture-name-format"><strong>Lecture Name</strong></div>
 
-- **Module Name**\
-  Module names should only contain alphanumeric characters and spaces, and it can be blank.
+  Lecture names should only contain alphanumeric characters and spaces, and it should not be blank.\
+  e.g. Week 1
 
-- **Lecture Name**\
-  Lecture names should only contain alphanumeric characters and spaces, and it should not be blank.
+- <div id="module-code-format"><strong>Module Code</strong></div>
 
-- **Video Name**\
-  Video names should only contain alphanumeric characters and spaces, and it should not be blank.
+  Module codes should begin with uppercase alphabetcal characters (A-Z), followed by numeric characters, optionally followed by more uppercase alphabetical characters (A-Z).\
+  e.g. CS2040S
 
-- **Tag**\
-  Tags should only contain alphanumeric characters, and it should not be blank.
+- <div id="module-name-format"><strong>Module Name</strong></div>
 
-- **Timestamp**\
-  Timestamp should be of the format `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being exactly 2 digits long.
+  Module names should only contain alphanumeric characters and spaces, and it can be blank.\
+  e.g. Data Structures and Algorithms
+
+- <div id="tag-format"><strong>Tag</strong></div>
+
+  Tags should only contain alphanumeric characters, and it should not be blank.\
+  e.g. 4MCs
+
+- <div id="timestamp-format"><strong>Timestamp</strong></div>
+
+  Timestamp should be of the format `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being exactly 2 digits long.\
+  e.g. 01:20:03
+
+- <div id="video-name-format"><strong>Video Name</strong></div>
+
+  Video names should only contain alphanumeric characters and spaces, and it should not be blank.\
+  e.g. Video 1
 
 ---
 
@@ -212,7 +233,7 @@ Scenario 2 - Not using [Navigation](#navigation)
 ### Current Working Context
 
 Le Tracker organises content using a **hierarchical structure** (Modules -> Lectures -> Videos).
-When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
+When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module "CS2040S" and lecture "Week 1".
 
 To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify a **current working context** instead.
 
@@ -226,9 +247,9 @@ Type of contexts
 
 You can specify a current working context by **navigating**.
 
-- There two ways of **navigating** - **relatively** or **directly**.
+- There are two ways of **navigating** - **relatively** or **directly**.
 
-For example, you can navigate to the **lecture context** - lecture Week 1 of the module CS2040S by
+For example, you can navigate to the **lecture context** - lecture "Week 1" of the module "CS2040S" by
 
 - Navigating **relatively** from the **root context**
   <img src="images/RootContext.png" height="20" />
@@ -240,41 +261,46 @@ For example, you can navigate to the **lecture context** - lecture Week 1 of the
 
 - Navigating **directly** from any **context**
   <img src="images/RootContext.png" height="20" /> <img src="images/ModContext.png" height="20" /> <img src="images/LectureContext.png" height="20" />
-  1. Navigate directly to the lecture Week 1 of the module CS2040S.
+  1. Navigate directly to the lecture "Week 1" of the module "CS2040S".
   > `nav /mod CS2040S /lec Week 1`
 
 ### Navigation Injection
 
-After navigating to a lecture or module context, the navigation system will **inject** the required module and lecture parameters (i.e. `/mod CS2040S`, `/lec Week`) into commands so you don't have to!
+After navigating to a lecture or module context, the navigation system will **inject** the required module and lecture parameters (i.e. `/mod CS2040S`, `/lec Week 1`) into commands so you don't have to!
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-  1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture Week 1 of module CS2040S.
+  1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture "Week 1" of module "CS2040S".
+
   > `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-  2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture Week 1 of module CS2040S.
+
+  2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture "Week 1" of module "CS2040S".
+
   > `list` -> `list /mod CS2040S /lec Week 1`
-  3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture Week 1 of module CS2040S.
+
+  3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture "Week 1" of module "CS2040S".
+
   > `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ### Specifying Your Own Context In Commands
 
-To specify your own context for a command without any [injection](#navigation-injection), you can use the `/r`, `/mod`, `lec` prefixes in your commands.
+To specify your own context for a command without any [injection](#navigation-injection), you can use the `/r`, `/mod`, `/lec` arguments in your commands.
 
 The following can be performed at **any** [current working context](#current-working-context)
 
-- Including the `/r` prefix will perform a command from the **root context**.
+- Including the `/r` argument will perform a command from the **root context**.
   - e.g. List all modules at the root context.
   > `list /r` -> `list`
-- Including the `/mod` prefix will perform a command from the **module context**.
-  - e.g. Add lecture "Week 10" for module CS2040S.
+- Including the `/mod` argument will perform a command from the **module context**.
+  - e.g. Add lecture "Week 10" for module "CS2040S".
   > `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
-- Including the `/mod` and `/lec` prefixes will perform a command from the **lecture context**.
-  - e.g. Add video "BST Challenge" for lecture Week 5 of module CS2040S.
+- Including the `/mod` and `/lec` arguments will perform a command from the **lecture context**.
+  - e.g. Add video "BST Challenge" for lecture "Week 5" of module "CS2040S".
   > `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
 
-To make it easier to specify that share the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
+To make it easier to specify a lecture context which shares the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
 
-- e.g. <img src="images/LectureContext.png" height="20" /> List videos of lecture Week 5 of module CS2040S
+- e.g. <img src="images/LectureContext.png" height="20" /> List videos of lecture "Week 5" of module "CS2040S".
 
 > `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
 
@@ -284,48 +310,51 @@ To make it easier to specify that share the same module code as your current wor
 
 ## Command Manual
 
+:information_source: The matching of values is case sensitive unless otherwise stated. For example, the lecture names "Week 1" and "week 1" are not the same.
+
+:information_source: If an argument value requires a specific format, click the argument value placeholder beside the argument description to go to the section containing the format.
+
 ### Nav
 
 #### Navigate to the Root Context
 
 > `nav`
-
 Navigate to the root context from any context.
 
-#### Navigate From Root Context to Module Context
+#### Navigate from Root Context to Module Context
 
 > `nav {module_code}`
 
 Navigates from the root context to a module context.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - Must belong to an existing module in Le Tracker
 
-#### Navigate From Module Context to Lecture Context
+#### Navigate from Module Context to Lecture Context
 
 > `nav {lecture_name}`
 
 Navigates from a module context to a lecture context.
 
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
-  - Must belong to an existing lecture in the module of the current working context (:exclamation:Lecture name matching is case sensitive)
+  - Must belong to an existing lecture in the module of the current working context
 
 #### Navigate Directly
 
-> `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
+> `nav /mod {module_code} [/lec {lecture_name}]`
 
-Navigates directly to the specified module or lecture context
+Navigates directly to the specified module or lecture context.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - Must belong to an existing module in Le Tracker
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
+  - Must belong to an existing lecture in the module specified in `module_code`
 
 #### Navigate Backwards
 
 > `navb`
 
-Navigates backwards to the a parent context unless already at root context
+Navigates backwards to a higher context unless already at root context.
 
 ### List
 
@@ -387,18 +416,21 @@ Lists all videos of a lecture in a module.
 
 Add a module to Le Tracker.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module
   - Must be unique among the module code of the modules in Le Tracker
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-- <span style="color:#e46c0a">`module_name`</span> : The name of the module
-  - Refer to [Argument Formats](#argument-formats) for the "Module Name" format
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the module
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- [<span style="color:#e46c0a">`module_name`</span>](#module-name-format) : The name of the module
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the module
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis</code><br/>
+    Add a module with code "CS2040S" to Le Tracker. The module is named "Data Structures and Algorithms" and has tags "Heavy", "Math", and "Analysis".
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -410,46 +442,50 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Add a lecture to a module.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
-  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to add the lecture to
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module to add the lecture to
+  - Must belong to an existing module in Le Tracker
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the lecture
   - Repeated tags (if any) will be ignored
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
-Examples:
-
-- `add Week 1 /mod CS2040S /tags Intro, Important`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>add Week 1 /mod CS2040S /tags Intro, Important</code><br/>
+    Add a lecture named "Week 1" to the module with code "CS2040S". The lecture has tags "Intro" and "Important".
+    </li>
+</ul>
+</details>
 
 #### Add a Video
 
-> `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/watch] [/tags {tag_1}[, {tag_2}[, ...]]]`
+> `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/tags {tag_1}[, {tag_2}[, ...]]] [/watch]`
 
 Add a video to a lecture.
 
-- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched", else, it will be marked as "not watched"
-- <span style="color:#e46c0a">`video_name`</span> : The name of the video
-  - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to add the video to
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`timestamp`</span> : The timestamp of the video where the user last stopped watching at
+- [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video
+  - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to add the video to
+  - Must belong to an existing lecture in the module specified in `module_code`
+- [<span style="color:#e46c0a">`timestamp`</span>](#timestamp-format) : The timestamp of the video where the user last stopped watching at
   - Defaults to `00:00:00` if the `/timestamp` argument is not specified
-  - Refer to [Argument Formats](#argument-formats) for the "Timestamp" format
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the video
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the video
   - Repeated tags (if any) will be ignored
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched", else, it will be marked as "not watched"
 
-Examples:
-
-- `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /tags Intro, Short /watch</code><br/>
+    Add a video named "Video 1" to the lecture named "Week 1" which belongs to the module with code "CS2040S". The video has timestamp "01:04:20" and has tags "Intro" and "Short". The video is also marked as watched.
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -463,20 +499,23 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 Edit the details of a module.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to be edited
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-- <span style="color:#e46c0a">`updated_code`</span> : The updated module code
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module to be edited
+  - Must belong to an existing module in Le Tracker
+- [<span style="color:#e46c0a">`updated_code`</span>](#module-code-format) : The updated module code
   - Must be unique among the module code of the modules in Le Tracker
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-- <span style="color:#e46c0a">`updated_name`</span> : The updated module name
-  - Must be a valid module name (refer to [Argument Formats](#argument-formats) for more information)
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the module
+- [<span style="color:#e46c0a">`updated_name`</span>](#module-name-format) : The updated module name
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags that will replace the current tags applied to the module
   - Repeated tags (if any) will be ignored
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
-Examples:
-
-- `edit CS2040S /code CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>edit CS2040S /code CS2040 /name DSAG /tags Heavy, Math, Analysis</code><br/>
+    Edit the module with code "CS2040S". The module's code is updated to "CS2040", it's name updated to "DSAG" and it's tags are updated to "Heavy", "Math" and "Analysis".
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -488,52 +527,56 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Edit the details of a lecture.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be edited
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`updated_name`</span> : The updated lecture name
-  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to be edited
+  - Must belong to an existing lecture in the module specified in `module_code`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker
+- [<span style="color:#e46c0a">`updated_name`</span>](#lecture-name-format) : The updated lecture name
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code`
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags that will replace the current tags applied to the lecture
   - Repeated tags (if any) will be ignored
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
-Examples:
-
-- `edit Week 1 /mod CS2040S /name Week 01 Introduction /tags Intro, Important`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>edit Week 1 /mod CS2040S /name Week 01 Introduction /tags Intro, Important</code><br/>
+    Edit the lecture named "Week 1" in the module with code "CS2040S". The lecture's name is updated to "Week 01 Introduction" and it's tags are updated to "Intro" and "Important".
+    </li>
+</ul>
+</details>
 
 #### Edit a Video
 
-> `edit {video_name} /mod {module_code} /lec {lecture_name} [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}[, {tag_2}[, ...]]]`
+> `edit {video_name} /mod {module_code} /lec {lecture_name} [/name {updated_name}] [/timestamp {updated_timestamp}] [/tags {tag_1}[, {tag_2}[, ...]]] [/watch] [/unwatch]`
 
 Edit the details of a video.
 
+- [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video to be edited
+  - Must belong to an existing video in the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture that contains the video specified in `video_name`
+  - Must belong to an existing lecture in the module specified in `module_code`
+- [<span style="color:#e46c0a">`updated_name`</span>](#video-name-format) : The updated video name
+  - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`updated_timestamp`</span>](#timestamp-format) : The updated timestamp of the video where the user last stopped watching at
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags that will replace the current tags applied to the lecture
+  - Repeated tags (if any) will be ignored
 - <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched"
   - If this argument is specified, then `/unwatch` should not be specified
 - <span style="color:#e46c0a">`/unwatch`</span> : If specified, the video will be marked as "not watched"
   - If this argument is specified, then `/watch` should not be specified
-- <span style="color:#e46c0a">`video_name`</span> : The name of the video to be edited
-  - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is case sensitive)
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`updated_name`</span> : The updated video name
-  - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-- <span style="color:#e46c0a">`updated_timestamp`</span> : The updated timestamp of the video where the user last stopped watching at
-  - Refer to [Argument Formats](#argument-formats) for the "Timestamp" format
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the lecture
-  - Repeated tags (if any) will be ignored
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
-Examples:
-
-- `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /tags Intro, Short /watch</code><br/>
+    Edit the video named "Video 1" in the lecture named "Week 1" which belongs to the module with code "CS2040S". The video's name is updated to "Video 01 Grade Breakdown", it's timestamp updated to "01:04:20" and it's tags are updated to "Intro" and "Short". The video is also marked as watched.
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -921,7 +964,7 @@ Examples:
 
 ---
 
-## Note
+## Notes
 
 - Saving the data\
   Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
