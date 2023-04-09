@@ -18,10 +18,6 @@ _Note that ExpressLibrary is only compatible with Linux, Windows and Mac OS._
 
 1. Download the latest `expresslibrary-{version_num}.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your ExpressLibrary.
-
-1. Open a command terminal, `cd` into the folder you put the .jar file in, and use the `java -jar expresslibrary-{version_num}.jar` command to run the application (note: double-clicking to open the jar file may lead to issues with saved data).<br>
-
 1. Create a new folder in a convenient location on your computer.
 
 1. Move the `.jar` file into the new folder.
@@ -30,16 +26,16 @@ _Note that ExpressLibrary is only compatible with Linux, Windows and Mac OS._
 
 1. Type `cd`, then type in the file path of the new folder you created in step 6 into the terminal window. Press enter. If you are not sure how to use the `cd` command, please refer to [https://www.javatpoint.com/linux-cd](https://www.javatpoint.com/linux-cd).
 
-1. In the terminal window, type "java -jar expresslibrary-{version_num}.jar" (without quotes) and press enter. This will start the application and you will be able to use it. Note that double-clicking on the jar file may cause issues with saved data, so it's important to run it using the command above.
+1. In the terminal window, type `java -jar expresslibrary-{version_num}.jar` and press enter. This will start the application and you will be able to use it. Note that double-clicking on the jar file may cause issues with saved data, so it's important to run it using the command above.
 
   <div style="page-break-after: always;"></div>
   
-<ol start="10" > <li> In a few seconds, a graphical user interface (GUI) similar to the one shown below should appear. Please note that ExpressLibrary initially includes sample data that demonstrates how it can be used in a corporate library.
+<ol start="8" > <li> In a few seconds, a graphical user interface (GUI) similar to the one shown below should appear. Please note that ExpressLibrary initially includes sample data that demonstrates how it can be used in a corporate library.
 </li> </ol>
 
    ![Ui](images/Ui.png)
 
-<ol start="11"> <li> <div markdown="block">
+<ol start="9"> <li> <div markdown="block">
 Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
 Some example commands you can try:
@@ -52,7 +48,7 @@ Some example commands you can try:
 
 </div> </li> </ol>
 
-<ol start="12">  <li> <div markdown="block">
+<ol start="10">  <li> <div markdown="block">
   Refer to the [Features](#features) below for details of each command.
 </div> </li> </ol>
 
