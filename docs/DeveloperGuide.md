@@ -629,20 +629,20 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-    1. Test case: `delete 1`<br>
+    2. Test case: `delete 1`<br>
     Expected: First student is deleted from the list. Details of the deleted student shown in the status message. If the deleted student was being checked
     using the `check` command, the task list and score list of the student will be cleared.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
     Expected: No student is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
     Expected: Similar to previous.
 
 1. Deleting a student being checked
-    2. Prerequisites: Check a student using `check` command.
+    1. Prerequisites: Check a student using `check` command.
 
-    3. Test case: `delete x` (where x is the index of the student being checked)<br>
+    2. Test case: `delete x` (where x is the index of the student being checked)<br>
     Expected: The student is deleted from the list. Details of the deleted student shown in the status message. The task list and score list shown
     will be cleared.
 
