@@ -100,21 +100,21 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
       <br>
       Example: Specifying `list-project` is the same as specifying `lp` and specifying `add-project name/John Doe` is the same as specifying `add-project n/John Doe`.
 
-### **Prefixes**
+## **Prefixes**
 
 | Prefix      | Short form | Description                                                                                  |
 |-------------|------------|----------------------------------------------------------------------------------------------|
-| `name/`     | `n/`       | Name of client/project                                                                       |
-| `email/`    | `e/`       | Email address                                                                                |
-| `phone/`    | `p/`       | Phone number                                                                                 |
-| `deadline/` | `d/`       | Deadline for project ('DD-MM-YY' or natural language such as 'tomorrow' and '3pm next week') |
-| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                                                           |
-| `tag/`      | `t/`       | Alphanumeric tag                                                                             |
-| `client/`   | `c/`       | Keywords to search for client to link to a project                                           |
-| `option/`   | `o/`       | Option to sort projects with                                                                 |
-| `start/`    | `s/`       | Start of timeframe for finding projects                                                      |
-| `end/`      | `e/`       | End of timeframe for finding projects                                                        |
-| `status/`   | `st/`      | Status for finding projects                                                                  |
+| `name/`     | `n/`       | Name of client/project |
+| `email/`    | `e/`       | Email address |
+| `phone/`    | `p/`       | Phone number |
+| `deadline/` | `d/`       | Deadline for project |
+| `price/`    | `pr/`      | Price of project |
+| `tag/`      | `t/`       | Tag |
+| `client/`   | `c/`       | Keywords to search for client to link to a project |
+| `option/`   | `o/`       | Option to sort projects with |
+| `start/`    | `s/`       | Start of timeframe for finding projects |
+| `end/`      | `e/`       | End of timeframe for finding projects |
+| `status/`   | `st/`      | Status for finding projects |
 
 <br>
 
@@ -175,12 +175,12 @@ Short form: `ac <n/NAME> [e/EMAIL] [p/PHONE] [t/TAG]*`
 
 Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client, along with any number of tags to be added.
 
-Only the name of the client is compulsory.
+Only the name of the client is compulsory. Client names are case-sensitive, so `alice` and `Alice` are recognised as different names.
 
 The email address and phone number must be in a valid format. E.g. `XXX@gmail.com` or ```XXX@yahoo.com``` for emails and `12345678` for phone numbers.
 
 Note:
-* each tag to be added needs a separate `tag/TAG` prefix.
+* Each tag to be added needs a separate `tag/TAG` prefix.
 * Empty prefixes for optional details will be ignored.
 
 Examples:
@@ -202,10 +202,11 @@ Details that can be changed:
 * Tags
 
 Note:
-* Provided details will overwrite existing ones entirely. E.g. `ec <index> tag/Friend` will change the client displayed at `<index>` to only have the tag `Friend`.
+* Provided details will overwrite existing ones entirely. E.g. `edit-client <index> tag/Friend` will change the client displayed at `<index>` to only have the tag `Friend`.
 * Using an empty `tag/` prefix removes all tags of the client. This cannot be used with any non-empty `tag/` prefixes e.g. `edit-client 1 tag/ tag/friend` is not valid.
 * At least one detail to edit must be provided.
 * If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only. 
+* A client list needs to be shown for this command to be executed successfully.
 
 Examples:
 *  `edit-client 1 email/new@email.com` Edits the email address of the 1st displayed client to be `new@email.com`.
@@ -220,6 +221,7 @@ Short form: `dc <index>`
 Deletes the client at the specified index of the **currently visible** client list.
 
 Note:
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only.
 * A client list needs to be shown for this command to be executed successfully.
@@ -253,7 +255,7 @@ Short form: `fc [n/NAME] [t/TAG]*`
 Finds a client based on the details provided. Details that can be supplied are the names and tags.
 
 Note:
-* The matching with supplied names and tags are case-insensitive.
+* The matching with supplied names and tags are case-insensitive. E.g. `name/alice` will find both `alice` and `Alice`
 * Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid names and tags will be ignored. E.g. `name/alice name/!!! name/` is treated the same as `name/alice`
 
@@ -317,11 +319,11 @@ Short form: `ap <n/NAME> [d/DEADLINE] [p/PRICE] [t/TAG]* [c/CLIENT]*`
 
 Adds a project to the application with the supplied details. The details that can be supplied are the name, deadline, price, tags and linked client of the project.
 
-Only the name of the project is compulsory.
+Only the name of the project is compulsory. Project names are case-sensitive, so `oil painting` and `Oil Painting` are recognised as different names.
 
-Deadline can either be in natural language, such as `tomorrow` or in recognisable formats like `3pm 2023-03-03`.
+Deadlines can be in natural language, such as `tomorrow` or `3pm next week`. Otherwise, it must be in a recognisable format `HH:MM DD-MM-YYYY` or `DD-MM-YYYY` e.g. `3pm 2023-03-03` or `2023-05-05`.
 
-Price must be a positive number given in 0 or 2 decimal places.
+Price must be a positive number given in 0 or 2 decimal places, e.g. `7` or `5.08`.
 
 Clients: Linking a project to a client means the project is for a certain client. You might do this if a specific client commissions a project. 
 The project can be linked to a client by specifying individual keywords that are part of the client's name in the command after the `client/` prefix. If any such details are mentioned, the app will enter link mode. Further steps can be found [here](#linking-a-project-to-a-client).
@@ -344,7 +346,7 @@ Short form: `ep <index> [n/NAME] [d/DEADLINE] [p/PRICE] [c/CLIENT]`
 
 Edits the project at the given index of the **currently visible** client list, changing only the given details. Any prefixes that are provided but left empty will delete the corresponding detail of the project (apart from the name).
 
-Fields that can be changed:
+Details that can be changed:
 * Name
 * Deadline
 * Price
@@ -352,10 +354,11 @@ Fields that can be changed:
 * Linked client
 
 Note:
+* Provided details will overwrite existing ones entirely. E.g. `edit-project <index> tag/Friend` will change the project displayed at `<index>` to only have the tag `Friend`.
 * Using an empty `tag/` prefix removes all tags of the project. This cannot be used with any non-empty `tag/` prefixes e.g. `edit-project 1 tag/ tag/painting` is not valid.
 * Using an empty `client/` prefix removes the linked client of the project. This cannot be used with any non-empty `client/` prefixes e.g. `edit-project 1 client/ client/alice` is not valid.
 * Client name keywords can be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
-* Invalid client name keywords will be ignored.
+* Invalid client name keywords will be ignored e.g. `name/!!! name/alice` is the same as `name/alice`
 * At least one detail to edit must be provided.
 * If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
 * A project list must be shown for this command to be executed successfully.
@@ -374,10 +377,11 @@ Short form: `dp <index>`
 
 Deletes the project at the specified index of the **currently visible** project list.
 
-Notes:
+Note:
 * The index refers to the index number shown in the displayed project list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
+* A project list needs to be shown for this command to be executed successfully.
 
 Example:
 *  `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
@@ -393,6 +397,7 @@ Notes:
 * The index refers to the index number shown in the displayed list of projects.
 * The index **must be a positive integer** 1, 2, 3, …​
 * If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
+* A project list needs to be shown for this command to be executed successfully.
 
 Examples:
 * `list-project` followed by `mark 2` marks the 2nd project in the list of projects as done.
@@ -408,6 +413,7 @@ Notes:
 * The index refers to the index number shown in the displayed list of projects.
 * The index **must be a positive integer** 1, 2, 3, …​
 * If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
+* A project list needs to be shown for this command to be executed successfully.
 
 Examples:
 * `list-project` followed by `unmark 2` indicates that the 2nd project in the list of projects is not done.
@@ -431,12 +437,12 @@ This command cannot be undone. All deleted projects cannot be restored.
 
 Short form: `fp [n/NAME]* [s/START] [e/END] [p/PRICE] [st/STATUS] [t/TAG]* [c/CLIENT]*`
 
-Finds a project based on details provided. Details that can be supplied are the name, the start and end of the timeframe the deadline of the project should fall into, price, tags, the client the project is linked to, and the status of the project.
+Finds a project based on details provided. Details that can be supplied are the name, the start and end of the timeframe the deadline of the project should fall into, tags, the client the project is linked to, and the status of the project.
 
 Note:
-* The matching with supplied names and tags are case-insensitive.
-* Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
-* Invalid project names, tags and linked client names will be ignored. E.g. `name/alice name/!!! name/` is treated the same as `name/alice`.
+* The matching with supplied names and tags are case-insensitive. E.g. `name/sky` will find both `sky` and `Sky`
+* Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/sky painting` is the same as `name/sky name/painting`
+* Invalid project names, tags and linked client names will be ignored. E.g. `name/sky name/!!! name/` is treated the same as `name/sky`.
 * Status must be specified as either `not done`/`nd` or `done`/`d`. Overdue projects are included in "not done".
 * At least one valid parameter must be provided.
 
@@ -448,7 +454,7 @@ Note:
 
 Examples:
 * `find-project name/sculpture client/alice` will find any project whose name contains `sculpture` and is linked to a client whose name contains `alice`.
-* `find-project tag/personal start/yesterday end/tomorrow` will find any project that is tagged `personal`, has a price of $500, and has a deadline that falls between yesterday and tomorrow.
+* `find-project tag/personal start/yesterday end/tomorrow` will find any project that is tagged `personal`, and has a deadline that falls between yesterday and tomorrow.
 * `find-project status/not done` will find any project that is not done, including overdue ones.
 
 ### Sorting all projects
@@ -543,7 +549,7 @@ If your changes to the data file makes its format invalid, ArB will discard all 
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: [Install](#quick-start) the app in the other computer and overwrite the empty JSON file it creates with the JSON file that contains your previous data.
