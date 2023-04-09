@@ -75,7 +75,7 @@ Before reading, it is recommended that developers read the [User Guide](https://
     - [Tag a video](#tag-a-video)
     - [Untag a module](#untag-a-module)
     - [Untag a lecture](#untag-a-lecture)
-    - [Tag a video](#tag-a-video-1)
+    - [Untag a video](#untag-a-video)
     - [Export all modules to a new file](#export-all-modules-to-a-new-file)
     - [Export all modules to an existing file](#export-all-modules-to-an-existing-file)
     - [Import all modules from a file](#import-all-modules-from-a-file)
@@ -102,10 +102,10 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Delete Video(s)](#delete-videos)
   - [Tag a Module](#tag-a-module-1)
   - [Tag a Lecture](#tag-a-lecture-1)
-  - [Tag a Video](#tag-a-video-2)
+  - [Tag a Video](#tag-a-video-1)
   - [Untag a Module](#untag-a-module-1)
   - [Untag a Lecture](#untag-a-lecture-1)
-  - [Untag a Video](#untag-a-video)
+  - [Untag a Video](#untag-a-video-1)
   - [Export All Modules to a File](#export-all-modules-to-a-file)
   - [Import Modules from a File](#import-modules-from-a-file)
   - [Clear](#clear)
@@ -2109,7 +2109,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-#### Tag a video
+#### Untag a video
 
 **Precondition: User has added a module, a lecture, and a video, and has tagged the video**
 
