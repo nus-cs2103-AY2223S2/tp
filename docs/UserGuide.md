@@ -91,8 +91,8 @@ Let's get you _rizzed_ up in the fastest way possible!
 ### How to interpret the command format
 
 <div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
+
 * The first word is the type of command you are running.<br>
   i.e. for the input `delete 5`, we are running the `delete` command.
 
@@ -116,6 +116,7 @@ Let's get you _rizzed_ up in the fastest way possible!
 </div> 
 
 <div markdown="block" class="alert alert-success">
+:bulb: Tip:
 
 * For increased readability, we have included an optional multi-line command format for commands
   that may require multiple inputs (add, edit). After each input,
@@ -176,6 +177,7 @@ Example(s) of usage:
 butter s/Serve and enjoy.`
 
 <div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
 
 * A recipe can have any number of steps, tags and ingredients (including 0)!
 
@@ -192,6 +194,7 @@ butter s/Serve and enjoy.`
 </div>
 
 <div markdown="block" class="alert alert-success">
+:bulb: **Tip**:
 
 * When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
 
@@ -206,6 +209,7 @@ Format:
 `addf`
 
 <div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
 
 * An empty pop-up form as shown in the image below will appear!
 
@@ -241,7 +245,7 @@ Format:
 </div>
 
 <div markdown="block" class="alert alert-success">
-:bulb: **Tips**:
+:bulb: **Tip**:
 
 * The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 
@@ -266,6 +270,7 @@ Format:
 `edit INDEX [n/RECIPE_NAME] [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`  
 
 <div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
 
 * Edits the recipe at the specified index. The index refers to the index number shown in the displayed recipe list. 
  
@@ -280,6 +285,8 @@ Format:
 </div>
 
 <div markdown="block" class="alert alert-success">
+:bulb: **Tips**:
+
 * Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
  
 * Note that the tags specified in the fields above still apply for ingredients, like `-n`.
@@ -290,7 +297,7 @@ Format:
 
 <div markdown="span" class="alert alert-warning">
 
-**Keyboard shortcut**:
+:computer: **Keyboard shortcut**:
 As an alternate means to typing the full command, we provide a popup form to edit a recipe!
 While the recipe to that you want to edit is being selected, simply type <kbd>f</kbd> to display the popup form for that particular recipe!
 
@@ -320,6 +327,7 @@ Example(s) of usage:
 * `find ingredient tofu` returns all recipes with the ingredient `tofu`
 
 <div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
 
 * Adding a property behind `find` is optional, and if no property is specified, `find` defaults to filtering by `name`.
 
@@ -347,6 +355,7 @@ Example(s) of usage:
 *  `find chicken` followed by `delete 1` will delete the 1st recipe in the displayed results of the find command.
 
 <div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
 
 * Deletes the dish at the specified `INDEX` of the current list that is displayed.
 
@@ -356,7 +365,7 @@ Example(s) of usage:
 
 <div markdown="span" class="alert alert-warning">
 
-**Keyboard shortcut**:
+:computer: **Keyboard shortcut**:
 While the recipe you want to delete is being selected, simply hit the <kbd>Delete</kbd> or 
 <kbd>Backspace</kbd> key and click on confirm to delete that particular recipe!
 
@@ -375,6 +384,7 @@ Example(s) of usage:
 * `sub chicken` returns a list of suggested substitutions for the ingredient `chicken`
 
 <div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
 
 * `sub` searches across your stored recipes and a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
 
@@ -389,6 +399,7 @@ Example(s) of usage:
 </div>
 
 <div markdown="block" class="alert alert-success">
+:bulb: **Tips**:
 
 * Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
 
@@ -407,6 +418,7 @@ Running `clear` will clear your entire recipe book and there's no going back!
 </div>
 
 <div markdown="block" class="alert alert-success">
+:bulb: **Tip**:
 * If you wish to save your data elsewhere first and then start afresh, consider using the [Export](#export) feature first!
 </div>
 
@@ -419,6 +431,7 @@ Format:
 `help`
 
 <div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
 
 *  `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!<br/><br/>
 ![HelpCommandUI](images/HelpCommandUI.png)
@@ -463,11 +476,15 @@ file to be imported using the selector.
 ![ImportDataWindow](images/ImportWindow.jpg)
 
 <div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
+
 * Only files with recipes that pass our formatting checks, and files with no duplicate recipes will be imported
 * Any imported recipes will be added to your current recipe book!
 </div>
 
 <div markdown="block" class="alert alert-success">
+:bulb: **Tip**:
+
 * Alternatively, you can access the import function from the <kbd>File</kbd> tab in the top left corner of the main window.
 </div>
 
@@ -482,6 +499,8 @@ JSON file to be exported and select the desired location for it to be saved!
 ![ExportDataWindow](images/ExportWindow.jpg)
 
 <div markdown="block" class="alert alert-success">
+:bulb: **Tip**:
+
 * Alternatively, like the import function, you can access the export function via the <kbd>File</kbd> tab in the top left corner of the main window.
 </div>
 
