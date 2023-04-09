@@ -257,7 +257,7 @@ Finds a client based on the details provided. Details that can be supplied are t
 Note:
 * The matching with supplied names and tags are case-insensitive.
 * Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
-* Invalid names and tags will be ignored. E.g. `name/alice name/!!! Name/` is treated the same as `name/Alice`
+* Invalid names and tags will be ignored. E.g. `name/alice name/!!! name/` is treated the same as `name/Alice`
 
 <div markdown="block" class="alert alert-info">
 
@@ -309,6 +309,8 @@ The available project-related commands are:
 Short form: `lp`
 
 Lists out all projects and shows the project list.
+
+![ListProjectExample](images/ListProjectExample.png)
 
 ### Adding a project
 #### Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
@@ -436,7 +438,7 @@ Finds a project based on details provided. Details that can be supplied are the 
 Note:
 * The matching with supplied names and tags are case-insensitive.
 * Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
-* Invalid project names, tags and linked client names will be ignored. E.g. `name/alice name/!!! Name/` is treated the same as `name/Alice`.
+* Invalid project names, tags and linked client names will be ignored. E.g. `name/alice name/!!! name/` is treated the same as `name/Alice`.
 * Status must be specified as either `not done`/`nd` or `done`/`d`. Overdue projects are included in "not done".
 * At least one valid parameter must be provided.
 
@@ -506,7 +508,9 @@ Examples:
 
 Short form: `lt`
 
-Lists all tags that exist in the ArB. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
+Lists all tags that exist in the ArB and shows the tag list. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
+
+![ListTagExample](images/ListTagExample.png)
 
 ## General commands
 
