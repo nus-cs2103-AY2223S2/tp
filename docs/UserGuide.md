@@ -266,8 +266,6 @@ This will ensure a smooth import process, and all employee information,
 including dates, will be properly stored in the database.
 --------------------------------------------------------------------------------------------------------------------
 
-
-
 ### Exporting database into CSV file: `batchexport`
 
 ExecutivePro allows you to export the employees' data into a `.csv` file.
