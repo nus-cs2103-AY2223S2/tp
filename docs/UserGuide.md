@@ -220,7 +220,9 @@ The following values and characters (case sensitive) are not allowed:
 
 The following characters (non-exhaustive) are allowed:
 * `~`
-* `` ` ``
+* ```
+  ` 
+  ```
 * `!`
 * `#`
 * `$`
@@ -229,7 +231,9 @@ The following characters (non-exhaustive) are allowed:
 * `&`
 * `_`
 * `=`
-* `\`
+* ```
+  \
+  ```
 * `|`
 * `;`
 * `:`
