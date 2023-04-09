@@ -4,7 +4,7 @@
 start
 :User executes undo n;
 if () then ([n is not an integer])
-    :throw ParseException;
+    :display an invalid message;
     stop
 else ([else])
     if () then ([n is not an empty string or whitespace])
@@ -21,7 +21,7 @@ else ([else])
         endif
         stop
     else ([else])
-        :throw CommandException;
+        :display an invalid message;
         stop
 
 
