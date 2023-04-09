@@ -19,8 +19,7 @@ import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveDate;
 
 /**
- * Adds a employee using it's displayed index to a specific leave using it's
- * displayed index in SudoHR.
+ * Adds a employee to leaves on a range of dates in SudoHR.
  */
 public class AddEmployeeToLeaveFromToCommand extends Command {
     public static final String COMMAND_WORD = "aelr";
@@ -48,9 +47,8 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
     private final Id employeeId;
 
     /**
-     * Creates an AddEmployeeToLeaveFromToCommand to add the leave for an employee at a
-     * specified
-     * {@code employeeIndex} on the specified {@code date}
+     * Creates an AddEmployeeToLeaveFromToCommand to add the leave for an employee with
+     * {@code employeeId} on the specified {@code leaveDates}
      */
     public AddEmployeeToLeaveFromToCommand(Id employeeId, List<LeaveDate> leaveDates) {
         requireNonNull(employeeId);

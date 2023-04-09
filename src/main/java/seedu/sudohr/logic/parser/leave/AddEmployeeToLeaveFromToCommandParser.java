@@ -24,7 +24,7 @@ public class AddEmployeeToLeaveFromToCommandParser implements Parser<AddEmployee
     /**
      * Parses the given {@code String} of arguments in the context of the
      * AddEmployeeToLeaveFromToCommandParser
-     * and returns an AddEmployeeToLeaveCommandFrom object for execution.
+     * and returns an AddEmployeeToLeaveCommandFromTo object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
