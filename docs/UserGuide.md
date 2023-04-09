@@ -517,7 +517,7 @@ that fully matches the specified search.</li>
 <br>
 * You want to delete an applicant who exist in HMHero.
 
-Command Input Box: `delete n/Bernice Yu p/99272758`
+Command Input Box: `delete n/Bernice Yu p/91234567`
 
 What you should see:
 1. Bernice Yu is deleted from the Applicant list.
