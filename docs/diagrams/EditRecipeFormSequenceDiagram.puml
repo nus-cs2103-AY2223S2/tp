@@ -19,7 +19,7 @@ user -> cardPane : "F" key
 activate cardPane
 
 create EditRecipeForm
-cardPane -> EditRecipeForm : new EditRecipeForm(\nrecipe, displayedIndex, data)
+cardPane -> EditRecipeForm : new EditRecipeForm(recipe, displayedIndex, data)
 activate EditRecipeForm
 
 EditRecipeForm --> cardPane : form
@@ -89,8 +89,7 @@ deactivate EditRecipeForm
 
 opt data is not empty
   create editEvent
-  cardPane -> editEvent : new EditRecipeEvent(\ncommandText)
-
+  cardPane -> editEvent : new EditRecipeEvent(commandText)
   activate editEvent
 
   editEvent --> cardPane : editEvent
