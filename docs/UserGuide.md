@@ -100,12 +100,13 @@ should be able to see the list being updated as such:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You may notice that there are progress bars of different 
-   <span style="color:red">**c**</span><span style="color:orange">**o**</span><span style="color:yellow">**l**</span><span style="color:green">**o**</span><span style="color:blue">**r**</span><span style="color:violet">**s**</span> within each task. Let's look at what each color means! Let's see an example with all the different types of progress bars below. <br>
+   <span style="color:red">**c**</span><span style="color:orange">**o**</span><span style="color:yellow">**l**</span><span style="color:green">**o**</span><span style="color:blue">**r**</span><span style="color:violet">**s**</span> within each task, as well as circles besides each person with a percentage(%) written below it. Let's look at what these colors and circle mean! Let's see an example with all the different types of progress bars below. <br>
    ![image](https://user-images.githubusercontent.com/99934242/230615373-609f3ec9-fca3-48e9-bbb2-ce1c8d7b048f.png)
 <br>
 <br>The <span style="color:green">**green**</span> colored progress bar indicates that the task is done, and before the deadline.
 <br>The <span style="color:red">**red**</span> colored progress bar indicates that the task is not done, and that the deadline has passed.
 <br>The <span style="color:blue">**blue**</span> colored progress bar indicates that the task is not done, but the deadline has not passed.
+<br> The circles indicate the percentage of assigned tasks a person has completed. In the example above, Alice Pauline has completed 50% of the tasks assigned to her! Meanwhile, those who either have no tasks assigned or have completed all tasks assigned will have a green circle with the word "done" below!
 </div>
 
 If you find yourself forgetting some commands over time, there's no need to worry. Memory leak happens to the best of 

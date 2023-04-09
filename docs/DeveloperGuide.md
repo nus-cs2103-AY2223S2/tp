@@ -1260,7 +1260,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a task with no deadline
    1. Prerequisites: There are no tasks with the same title present. 
    2. Test case: `addt t/Project X c/Complete slides for Mr X st/false`<br>
-      Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
+      Expected: Details of the task that is added is shown in the status message. A new task will appear in the displayed task list.
    3. Test case: `addt t/Project X c/Complete slides for Mr X st/hello`<br>
       Expected: No tasks are added. Error details shown in status message.
    4. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/INPUT`, where INPUT is anything that is not true/false.
@@ -1268,24 +1268,24 @@ testers are expected to do more *exploratory* testing.
 
 2. Adding a task with deadline
    1. Prerequisites: There are no tasks with the same title present.
-   2. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01`<br>
+   2. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2024-01-01`<br>
       Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
-   3. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 02:05:00`<br>
+   3. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2024-01-01 02:05:00`<br>
       Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
-   4. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 02:05:0`<br>
+   4. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2024-01-01 02:05:0`<br>
       Expected: No tasks are added. Error details shown in status message.
-   5. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 005:0`<br>, or any input with incorrect datetime format (datetime format should be YYYY-MM-DD HH-MM-SS, where HH-MM-SS is optional).
+   5. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 005:0`, or any input with incorrect datetime format (datetime format should be YYYY-MM-DD HH-MM-SS, where HH-MM-SS is optional). Deadlines that are set in the past (before the current date and time) will also throw an error. <br>
       Expected: Similar to previous
 
 ### 7.8 Deleting a Task
 
 1. Deleting a task while all task are being shown
-   1. Prerequisites: List all persons using the `listt` command. Multiple persons in the list.
+   1. Prerequisites: List all tasks using the `listt` command. At least 1 task in the list.
    2. Test case: `deletet 1`<br>
       Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
    3. Test case: `deletet 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
-   4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the list size)<br>
+      Expected: No task is deleted. Error details shown in the status message.
+   4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the largest index in displayed task list). <br>
       Expected: Similar to previous.
 
 
@@ -1304,8 +1304,8 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `filterp tag/Logistics` <br>
       Expected: All persons with the tag are displayed. "Filtered all persons with the tag: [tag]" shown in status message.
    3. Test case: `filterp ` <br>
-      Expected: No changes in GUI. Error details shown in status message.
-   4. Other incorrect filter persons commands to try: `filterp tag/`)<br>
+      Expected: No changes in displayed person list. Error details shown in status message.
+   4. Other incorrect filter persons commands to try: `filterp tag/`). <br>
       Expected: Similar to previous.
 
 2. There are no persons in OfficeConnect with the specified tag.
@@ -1313,8 +1313,8 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `filterp tag/Logistics` <br>
       Expected: No persons are displayed. "There are no persons with the tag: [tag]" shown in status message.
    3. Test case: `filterp ` <br>
-      Expected: No changes in GUI. Error details shown in status message.
-   4. Other incorrect filter persons commands to try: `filterp tag/`)<br>
+      Expected: No changes in displayed person list. Error details shown in status message.
+   4. Other incorrect filter persons commands to try: `filterp tag/`). <br>
       Expected: Similar to previous.
 
 
