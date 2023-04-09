@@ -9,6 +9,7 @@ toc: true
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
+
 ## **Introduction**
 
 ### Purpose
@@ -19,6 +20,18 @@ you can always find the recipe you need! Make use of RIZZipe’s many features t
 This developer guide aims to detail the architecture and software design decisions behind RIZZipe, and is intended for
 developers, designers, and software testers of RIZZipe. As RIZZipe is built on Java 8 and JavaFX 11, some 
 technical knowledge of Java and JavaFX is recommended when reading this developer guide. 
+
+### Who this is for
+
+This guide is intended for software developers who wish to work on ***RIZZ***ipe, be it to add new features or to patch
+existing bugs. The source code may be found **[here](https://github.com/AY2223S2-CS2103T-T13-2/tp)**.
+
+<div markdown="block" class="alert alert-success">
+
+📝: To get started, you may **[fork](https://github.com/AY2223S2-CS2103T-T13-2/tp/fork)** this repository and create
+a feature [branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) within your fork. After which, submit a [pull request](https://github.com/AY2223S2-CS2103T-T13-2/tp/compare) to us!
+
+</div>
 
 ### How to Use
 This developer guide is broken down into 4 main sections:
