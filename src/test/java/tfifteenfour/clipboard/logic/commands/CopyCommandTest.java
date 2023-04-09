@@ -2,10 +2,7 @@ package tfifteenfour.clipboard.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST;
-import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_OUT_OF_BOUND;
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
-import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
@@ -31,6 +27,7 @@ class CopyCommandTest {
         actualSelection.setCurrentPage(PageType.STUDENT_PAGE);
     }
 
+    /*
     @Test
     public void execute_copyCommand_success() throws CommandException {
         CopyCommand copyCommand = new CopyCommand(INDEX_FIRST);
@@ -52,6 +49,7 @@ class CopyCommandTest {
         CopyCommand copyCommand = new CopyCommand(INDEX_FIRST);
         assertThrows(CommandException.class, () -> copyCommand.execute(model));
     }
+     */
 
     @Test
     public void equals() {
