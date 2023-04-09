@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ title: Developer Guide
 
 * [CS2103/T instructors](https://nus-cs2103-ay2223s2.github.io/website/admin/instructors.html) for helping us answer our queries.
 * [AB3](https://github.com/se-edu/addressbook-level3) for providing us with a brownfield project to work on.
-* JavaFX, because this project is based on it.
+* [JavaFX](https://openjfx.io/) because this project is based on it.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -137,7 +137,6 @@ The `Model` component,
 </div>
 The model for lab and consultation is the same as well, except that Tutorial is replaced with Lab and Consultation respectively.
 
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -231,7 +230,7 @@ Step 2. The user executes `add n/James Ho telegram/22224444 e/jamesho@example.co
 
 Step 3. The user executes `touch Tutorial/tut` to add an Event.
 
-Step 4. The user executes `addStudent 1 Tutorial/1` to add the first student in the Person list into the tutorial at first index of the tutorial list. 
+Step 4. The user executes `addStudent 1 Tutorial/1` to add the first student in the Person list into the tutorial at first index of the tutorial list.
 
 The following activity diagram summarizes what happens from Step 4 when a TA executes an add student to event, assuming that the student has not yet been added to the event. Assume valid command format as well.
 
@@ -253,14 +252,14 @@ The following activity diagram summarizes what happens from Step 4 when a TA exe
 
 #### Current Implementation
 
-The proposed mechanism is facilitated by the `Event` subclasses as well as the `ModelManager` and `AddressBook` classes.
+The mechanism is facilitated by the `Event` subclasses as well as the `ModelManager` and `AddressBook` classes.
 
 The deleteStudent feature makes use of the existing operation:
 * `Event#removeIndexStudent(int Index)` Deletes the student at `index` of the caller event's student list.
 
 The deleteStudent feature implements/ the following operations:
 * `AddressBook#deleteStudentFromEvent(Index toDel, Index eventIndex, String type)` Deletes student at index `toDel` from the student list of the event at index `eventIndex` of the event list with type `type`.
-* `Model#deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType)` Calls `AddressBook#deleteStudentFromEvent(Index toDel, Index eventIndex, String type)`. 
+* `Model#deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType)` Calls `AddressBook#deleteStudentFromEvent(Index toDel, Index eventIndex, String type)`.
 
 These operations are exposed in the `Model` interface and `AddressBook` class.
 
@@ -289,7 +288,7 @@ The following activity diagram summarizes what happens when a TA executes delete
 
 ### Help feature
 
-#### Proposed Implementation
+#### Implementation
 
 The Help feature expands on the default Help feature available in AB3. Instead of displaying the UserGuide URL
 and asking the user to visit the webpage to view the commands only, this new Help feature will display the commands in the
@@ -316,32 +315,28 @@ To choose the desired category, user will have to chain down the command by ente
 
 * **Alternative 1 (current choice):** Use command chaining.
     * Pros
-      * Seasoned users will be able to pinpoint the help they require in the future in 1 command.
-      * Specific syntax will be displayed instead of displaying everything and letting the user find themselves.
-      * Helps fresh users by "starting simple" by requiring just single 'help' and allows them to dive deeper if they so desire.
+        * Seasoned users will be able to pinpoint the help they require in the future in 1 command.
+        * Specific syntax will be displayed instead of displaying everything and letting the user find themselves.
+        * Helps fresh users by "starting simple" by requiring just single 'help' and allows them to dive deeper if they so desire.
     * Cons: User will have to type quite a bit.
 
 
 #### Possible Updates
 
-Commands may be abstracted deeper if the displayed syntaxes were deemed too overwhelming. This will definitely require 
+Commands may be abstracted deeper if the displayed syntaxes were deemed too overwhelming. This will definitely require
 more typing from the user and deeper abstraction will be carefully considered to see if it is really necessary.
 
 ### Filter feature
 
-#### Proposed Implementation
+#### Implementation
 
-After the user types "/filter [group] [criteria] [threshold]" and clicks "enter", our system will parse the input given
+After the user types "filter [criteria] [threshold]" (for example, filter performance 40) and clicks "enter", our system will parse the input given
 and detect that it is a "filter" command that is being called.
 
-1. Depending on the "[group]" typed by the user, our system goes to the AddressBook in storage and
-   accesses the relevant Unique[group]List. For example, if the desired group is the "tutorial" group,
-   then "UniqueTutorialList" will be accessed to iterate through the people in that group.
-
-2. Our system iterates through each Person object in the list and creates a new list that only stores
+1. Our system iterates through each Person object in the list and creates a new list that only stores
    People objects whose criteria value is below the given threshold.
 
-3. Our system finally displays all the Person objects in the form of a table to the user.
+2. Our system finally displays all the Person objects in the form of a table to the user.
 
 The following activity diagram summarizes what happens when a user executes a new command, assuming valid command format.
 
@@ -361,11 +356,37 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less space and uses previously implemented code for abstraction.
     * Cons: May mutate the list unncessarily or introduce bugs if visibility for hidden rows is not reset to 100%.
 
+### Sort feature
+
+#### Implementation
+
+The sort commands works similar to the filter command, except that the user will be able to specify a group. When the user types "sort-student [group] [metric] [sorting-order]" (for example sort-student all performance reverse) and clicks "enter", our system will parse the input given
+and detect that it is a "sort-student" command that is being called.
+
+The sort command involves comparators, and the diagram is given below.
+
+<img src="images/SortCommandClassDiagram.png" width="450" />
+
+So, the SortCommand creates a copy of the FilterList and sorts the respective list depending on the group specified, based on the metric provided. Depending on the metric, it calls the respective Comparator and sorts the entries in the list in the desired order.
+
+#### Design considerations:
+
+**Aspect: How filter executes:**
+
+* **Alternative 1 (current choice):** Abstract out comparators required based on the metric provided, as explained above and as seen the the diagram above.
+    * Pros: Better abstraction and adhere to software engineering principles.
+    * Cons: Difficult to code and ensure the sort works smoothly without bugs since more abstraction was required.
+
+* **Alternative 2:** Manually search what the sort command is and sort the student list without any comparators.
+  itself.
+    * Pros: Easier to implement as lesser abstraction.
+    * Cons: Does not abide by software engineering principles.
+
 ### Note feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed CRUD (Create, Read, Update and Delete) mechanism for notes is facilitated by `addNote`, `deleteNote`, and `editNote`. The Teaching Assistant (TA) using the application will be able to:
+The CRUD (Create, Read, Update and Delete) mechanism for notes is facilitated by `addNote`, `deleteNote`, and `editNote`. The Teaching Assistant (TA) using the application will be able to:
 
 * Add a new note to an event which will be saved in the corresponding event's current address book state in its history.
 * Delete a note for an event which is saved in the corresponding event's current address book state in its history.
@@ -378,7 +399,7 @@ The following activity diagram summarizes what happens when a TA executes a note
 #### Usage Example
 
 Notes can be added, edited, or deleted from events through `add-note`, `edit-note`, and `rm-note` commands.
-Notes are only associated with events. Whenever an event is deleted, its linked notes are erased as well. And when a new event 
+Notes are only associated with events. Whenever an event is deleted, its linked notes are erased as well. And when a new event
 is created, empty note list will be created and up to 20 notes can be added to a single event (not counting deleted ones).
 
 #### Design considerations:
@@ -426,22 +447,23 @@ is created, empty note list will be created and up to 20 notes can be added to a
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-Epic: As a CS2040 TA, I can monitor my schedule through the number of events (consultations / labs / tutorials) I have.
+- Epic: As a CS2040 TA, I can monitor my schedule through the number of events (consultations / labs / tutorials) I have.
 
 | Priority    | As a CS2040 …​ | I want to …​                     | so that I …​                                                      |
 |-------------|----------------|----------------------------------|-------------------------------------------------------------------|
 | `* * *`     | Lab TA         | create lab events                | can add student's attendance to the lab event.                    |
 | `* * *`     | TA             | create consultation events       | can add student's attendance to the consultation event.           |
 | `* * *`     | Tutorial TA    | create tutorial events           | can add student's attendance to the tutorial event.               |
- | `* * *`     | Lab TA         | edit a lab event                 | will be reminded of the correct lab schedule.                     |
- | `* * *`     | Tutorial TA    | edit a tutorial event            | will be reminded of the correct tutorial schedule.                |
- | `* * *`     | TA             | edit a consultation event        | will be reminded of the correct consultation schedule.            |
- | `* * *`     | Tutorial TA    | delete a tutorial event          | can remove completed or cancelled tutorials.                      |
- | `* * *`     | Lab TA         | delete a lab event               | can remove completed or cancelled labs.                           |
- | `* * *`     | TA             | delete a consultation event      | can remove completed or cancelled consultations.                  |
- | `* * *`     | New TA         | see all upcoming the 2040 events | can effectively pre-plan the schedule for the rest of my modules. |
+| `* * *`     | Lab TA         | edit a lab event                 | will be reminded of the correct lab schedule.                     |
+| `* * *`     | Tutorial TA    | edit a tutorial event            | will be reminded of the correct tutorial schedule.                |
+| `* * *`     | TA             | edit a consultation event        | will be reminded of the correct consultation schedule.            |
+| `* * *`     | Tutorial TA    | delete a tutorial event          | can remove completed or cancelled tutorials.                      |
+| `* * *`     | Lab TA         | delete a lab event               | can remove completed or cancelled labs.                           |
+| `* * *`     | TA             | delete a consultation event      | can remove completed or cancelled consultations.                  |
+| `* * *`     | New TA         | see all upcoming the 2040 events | can effectively pre-plan the schedule for the rest of my modules. |
 
-Epic: As a CS2040 TA, I can effectively manage and keep track of all my students.
+
+2. Epic: As a CS2040 TA, I can effectively manage and keep track of all my students.
 
 | Priority | As a CS2040 …​| I want to …​                                             | so that I …​                                                                                            |
 |----------|------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
@@ -451,7 +473,7 @@ Epic: As a CS2040 TA, I can effectively manage and keep track of all my students
 | `* * *`  | TA               | have a filter function to filter for the desired student | do not have to scroll through the namelist when marking attendance or giving class participation marks. |
 | `* * *`  | New TA           | see all my students of CS2040                            | can view all my students at a glance.                                                                   |
 
-Epic: As a CS2040 TA, I can track students progress.
+3. Epic: As a CS2040 TA, I can track students progress.
 
 | Priority | As a CS2040 …​   | I want to …​                                                                                                                    | So that I …​                                                                                                              |
 |----------|------------------|---------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -463,7 +485,7 @@ Epic: As a CS2040 TA, I can track students progress.
 | `*`      | Motivational TA  | find out who are the most consistent students                                                                                   | can recommend them for future TA positions.                                                                               |
 
 
-Epic: As a CS2040 TA, I want to note down important information during an event.
+4. Epic: As a CS2040 TA, I want to note down important information during an event.
 
 | Priority | As a CS2040 …​ | I want to …​                                                        | so that I …​                                               |
 |----------|----------------|---------------------------------------------------------------------|------------------------------------------------------------|
@@ -474,7 +496,7 @@ Epic: As a CS2040 TA, I want to note down important information during an event.
 | `*`      | TA             | note my performances at the end of this semester for the last event | may reflect upon them.                                     |
 | `*`      | Lab TA         | note down some common vim commands as a cheatsheet                  | can better navigate to inspect student codes via terminal. |
 
-Epic: As a CS2040 TA, I want to see a help guide.
+5. Epic: As a CS2040 TA, I want to see a help guide.
 
 | Priority | As a CS2040 …​ | I want to …​                                          | so that I …​                                                               |
 |----------|----------------|----------------------------------------------------------|----------------------------------------------------------------------------|
@@ -513,16 +535,16 @@ Use case ends.
 **Extensions**
 
 * 3a. TrAcker detects an error in the entered tutorial data.
-  * 3a1. TrAcker requests for the correct tutorial data where there was an error.
-  * 3a2. TA enters new tutorial data.
-  
+    * 3a1. TrAcker requests for the correct tutorial data where there was an error.
+    * 3a2. TA enters new tutorial data.
+
   Steps 3a1 - 3a2 are repeated until the data entered to create a new tutorial are correct.
   <br>
   Use case resumes from Step 4.
 
 * 2a. TA decides not to create a new tutorial.
-  * 2a1. TA removes input from TrAcker.
-  
+    * 2a1. TA removes input from TrAcker.
+
   Use case ends
 
 - UC02 - Add lab lessons is the same as UC01 - Add tutorial lessons with minor differences.
@@ -537,14 +559,14 @@ Person: An undergraduate student in NUS enrolled in CS2040 as a student
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
-Preconditions: 
+Preconditions:
 - TA has access to the TrAcker application
 
 **MSS**
 
 1.  TA starts TrAcker desktop application.
 2.  TA enters command to add student to an event.
-3.  TA confirms addition of student to an event. 
+3.  TA confirms addition of student to an event.
 4.  TrAcker marks the student's attendance as present.
 5.  TrAcker displays the new student in the event.
 
@@ -555,31 +577,31 @@ Use case ends.
 * 3a. TrAcker detects that the event does not exist.
     * 3a1. TrAcker requests for the correct event data.
     * 3a2. TA enters new event data that the student should be added to.
-      
+
   Steps 3a1 - 3a2 are repeated until the event data entered is correct and exists.
-      <br>
-      Use case resumes from Step 4.
+  <br>
+  Use case resumes from Step 4.
 
 * 3b. TrAcker detects that the student does not exist.
     * 3b1. TrAcker requests for the correct student data.
     * 3b2. TA enters new student data.
-      
+
   Steps 3b1 - 3b2 are repeated until the student data entered is correct and exists.
-      <br>
-      Use case resumes from Step 4.
+  <br>
+  Use case resumes from Step 4.
 
 * 3c. TrAcker detects that the data entered is in a wrong format.
     * 3c1. TrAcker requests for the correct data format.
     * 3c2. TA enters new data format.
-      
+
   Steps 3c1 - 3c2 are repeated until the data format is correct.
-      <br>
-      Use case resumes from Step 4.
+  <br>
+  Use case resumes from Step 4.
 
 * 2a. TA decides not to add a student to the event.
     * 2a1. TA removes input from TrAcker.
 
-    Use case ends
+  Use case ends
 
 System: Software System (TrAcker)
 <br>
@@ -608,10 +630,10 @@ Use case ends.
 * 3a. TrAcker detects that the event does not exist.
     * 3a1. TrAcker requests for the correct event data.
     * 3a2. TA enters new event data that needs to be deleted.
-      
+
   Steps 3a1 - 3a2 are repeated until the event data entered exists.
-      <br>
-      Use case resumes from Step 4.
+  <br>
+  Use case resumes from Step 4.
 
 * 3b. TrAcker detects that there is no events at all.
     * 3b1. TrAcker informs the TA that delete event cannot be invoked since no events exist.
@@ -621,10 +643,10 @@ Use case ends.
 * 3c. TrAcker detects that the event data to be deleted is entered is in a wrong format.
     * 3c1. TrAcker requests for the correct data format.
     * 3c2. TA enters new data format.
-      
+
   Steps 3c1 - 3c2 are repeated until the data format is correct.
-      <br>
-      Use case resumes from Step 4.
+  <br>
+  Use case resumes from Step 4.
 
 * 2a. TA decides not to delete the event.
     * 2a1. TA removes input from TrAcker.
@@ -657,18 +679,18 @@ Use case ends.
 * 3a. TrAcker detects that the event does not exist.
     * 3a1. TrAcker requests for the correct event data.
     * 3a2. TA enters new event data that needs to be deleted.
-      
+
   Steps 3a1 - 3a2 are repeated until the event data entered exists.
-      <br>
-      Use case resumes from Step 4.
+  <br>
+  Use case resumes from Step 4.
 
 * 3b. TrAcker detects that the student does not exist.
     * 3b1. TrAcker requests for the correct student data.
     * 3b2. TA enters new student data.
-    
+
   Steps 3b1 - 3b2 are repeated until the student data entered matches to an existing student.
-      <br>
-      Use case resumes from Step 4.
+  <br>
+  Use case resumes from Step 4.
 
 * a. At any time, TA decides not to remove student from the event.
     * a1. TA removes input from TrAcker.
@@ -702,29 +724,29 @@ Use case ends.
 
 * 2a. TA decides receive help from TrAcker's UserGuide and selects UserGuide.
     * 2a1. TrAcker displays URL to UserGuide.
-  
-    User case ends
+
+  User case ends
 
 * 3a. TA enters 'help student' command
     * 3a1. TrAcker displays instructions and syntaxes for all valid student related commands.
-    
-    Use case ends.
+
+  Use case ends.
 
 * 3b. TA enters 'help event' command.
     * 3b1. TrAcker displays event help categories (Tutorial, Lab and Consultation.
-      * 3b1-1. TA enters 'help event tutorial'
-        * 3b1-1a. TrAcker displays instructions and syntaxes for all valid tutorial related commands.
-      * 3b1-2. TA enters 'help event lab'
-        * 3b1-2a. TrAcker displays instructions and syntaxes for all valid lab related commands.
-      * 3b1-3. TA enters 'help event consultation'
-        * 3b1-3a. TrAcker displays instructions and syntaxes for all valid consultation related commands.
+        * 3b1-1. TA enters 'help event tutorial'
+            * 3b1-1a. TrAcker displays instructions and syntaxes for all valid tutorial related commands.
+        * 3b1-2. TA enters 'help event lab'
+            * 3b1-2a. TrAcker displays instructions and syntaxes for all valid lab related commands.
+        * 3b1-3. TA enters 'help event consultation'
+            * 3b1-3a. TrAcker displays instructions and syntaxes for all valid consultation related commands.
 
-    Use case ends.
+  Use case ends.
 
 * 3c. TA enters 'help organisation' command.
     * 3c1. TrAcker displays instructions and syntaxes for all valid organisational related commands.
 
-    Use case ends.
+  Use case ends.
 
 ---
 
@@ -758,23 +780,23 @@ Use case ends.
 * 4a. TrAcker detects error in entered data
     * 4a1. TrAcker requests for the correct details.
     * 4a2. TA enters new details.
-    
+
   Steps 4a1 - 4a2 are repreated until the data entered is correct.
-      <br>
-      Use case resumes from Step 5.
+  <br>
+  Use case resumes from Step 5.
 
 * 6a. TrAcker detects error in entered data
     * 6a1. TrAcker requests for the correct details.
     * 6a2. TA enters new details.
-     
+
   Steps 6a1 - 6a2 are repreated until the data entered is correct.
-      <br>
-      Use case resumes from Step 7.
+  <br>
+  Use case resumes from Step 7.
 
 * 2a. TA decides not to sort students.
     * 2a1. TA removes input from TrAcker.
 
-    Use case ends
+  Use case ends
 
 System: Software System (TrAcker)
 <br>
@@ -804,23 +826,23 @@ Use case ends.
 * 4a. TrAcker detects error in entered data
     * 4a1. TrAcker requests for the correct details.
     * 4a2. TA enters new details.
-      
+
   Steps 4a1 - 4a2 are repreated until the data entered is correct.
-      <br>
-      Use case resumes from Step 5.
+  <br>
+  Use case resumes from Step 5.
 
 * 6a. TrAcker detects error in entered data
     * 6a1. TrAcker requests for the correct details.
     * 6a2. TA enters new details.
-      
-    Steps 6a1 - 6a2 are repreated until the data entered is correct.
-      <br>
-      Use case resumes from Step 7.
+
+  Steps 6a1 - 6a2 are repreated until the data entered is correct.
+  <br>
+  Use case resumes from Step 7.
 
 * 2a. At any time, TA decides not to filter students.
     * 2a1. TA removes input from TrAcker.
 
-    Use case ends
+  Use case ends
 
 ---
 
@@ -849,7 +871,7 @@ Use case ends.
 
 * 2a. No notes found for events.
     * 2a1. TrAcker displays a sign for empty note history.
-    Use case ends.
+      Use case ends.
 
 System: Software System (TrAcker)
 <br>
@@ -875,7 +897,7 @@ Use case ends.
 
 * 4a. TA enters nothing or a stream of empty spaces
     * 4a1. TrAcker flags it as an empty note and makes the flag as note contents.
-    
+
   Use case resumes from step 5.
 
 * 6a. TA enters invalid target event
@@ -889,7 +911,7 @@ Use case ends.
 * a. At any time, TA decides to stop note adding by entering an invalid command.
     * a1. TrAcker stops addition of note.
 
-    Use case ends
+  Use case ends
 
 System: Software System (TrAcker)
 <br>
@@ -916,7 +938,7 @@ Use case ends.
 * a. At any time, TA decides to stop note adding by entering an invalid command.
     * a1. TrAcker stops addition of note.
 
-    Use case ends
+  Use case ends
 
 System: Software System (TrAcker)
 <br>
@@ -943,7 +965,7 @@ Use case ends.
 * a. At any time, TA decides to stop note adding by entering an invalid command.
     * a1. TrAcker stops addition of note.
 
-    Use case ends
+  Use case ends
 
 ---
 
@@ -996,7 +1018,7 @@ testers are expected to do more *exploratory* testing.
    i. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    ii. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   Expected: The most recent window size and location is retained.
 
 ### Deleting a student
 
@@ -1005,13 +1027,13 @@ testers are expected to do more *exploratory* testing.
    i. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    ii. Test case: `rm 1`<br>
-      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
+   Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
 
    iii. Test case: `rm 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    iv. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   Expected: Similar to previous.
 
 ### Adding a student
 
@@ -1020,55 +1042,55 @@ testers are expected to do more *exploratory* testing.
    i. Prerequisites: Student details to be added does not have the same nus email and telegram handle as anyone in the student list.
 
    ii. Test case: `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`<br>
-       Expected: Student is added to the list and list gets updated with the new student details.
+   Expected: Student is added to the list and list gets updated with the new student details.
 
    iii. Test case (Repeat the same command as ii): `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`<br>
-       Expected: No student is added since student details (particularly nus email and telegram handle) already exists. Error details shown in the status message. Status bar remains the same.
+   Expected: No student is added since student details (particularly nus email and telegram handle) already exists. Error details shown in the status message. Status bar remains the same.
 
 ### Saving data
 
 1. Dealing with missing data files
 
-   i. Pre-requisite: TrAcker.jar file is launched. 
-    
+   i. Pre-requisite: TrAcker.jar file is launched.
+
    ii. To simulate a missing data file: Close TrAcker, delete addressbook.json, and relaunch TrAcker.
-   
+
    iii. Expected behaviour: The original json data will be re-generated.
 
 2. Dealing with corrupted data files
-   
+
    i. Pre-requisite: TrAcker.jar file is launched.
-   
+
    ii. To simulate a corrupted data file: Close TrAkcer, type random characters in addressbook.json that makes the json file invalid. Relaunch TrAcker.
-   
+
    iii. Expected behaviour: Empty student list in student tab and empty events in event tab. TrAcker only expects valid json file and data, and is not responsible for json file manipulations that render the json file data invalid.
 
 Given below are our planned enhancements.
 
 ### Planned Enhancements
 
-- The current mapping of students to student photo is mapped randomly to any 23 icons. This means that two or more students could
-be mapped to the same photo, which undermines the uniqueness of the photo. Since the photo is suppose to simulate the student's profile, it
-is considered a feature flaw that two or more students have the same face, as seen for student index 5 and index 8 below.
+1. The current mapping of students to student photo is mapped randomly to any 23 icons. This means that two or more students could
+   be mapped to the same photo, which undermines the uniqueness of the photo. Since the photo is suppose to simulate the student's profile, it
+   is considered a feature flaw that two or more students have the same face, as seen for student index 5 and index 8 below.
+
+<img src="images/SameProfile.png" width="550" /> 
+
 We plan to remedy it by restricting the number of students a TA can take. For example, in a usual class size, there can be a maximum of about 20 students to a TA
 for CS2040 events. Therefore, by restricting the class size, we can ensure no two students in the current list have the same profile photo since there are a total of 23 icons.
 However, this does not fully solve an issue, because deleting a student and adding a new student might result in the same profile photo. Hence, we plan to further enhance this by
 changing from icons to fetching from a simulated database that ensures a unique photo is always fetched for a new unique student, which slightly pivots to more backend heavy tasks.
 
-<img src="images/SameProfile.png" width="550" /> 
+2. The current TrAcker displays empty students and empty events if the json data is garbled. This results in the user being unsure if what he / she has to do.
+   We plan to implement a warning window to warn the user that the data is corrupted / garbled and they will have to close the application. Once the application
+   is closed, TrAcker will refresh the garbled data with a new original data. Then when the user starts TrAcker again, TrAcker will inform the user that due to a corrupted
+   data, the data has been reset to the original one. This way, the user will not have to manually reset and delete the data file without knowing the cause.
 
+3. The current noting-take function does not support editing notes directly on old notes. For example, user can click
+   on an old note and edit its content to update the notes. This would be especially useful for super long notes.
 
-- The current TrAcker displays empty students and empty events if the json data is garbled. This results in the user being unsure if what he / she has to do.
-    We plan to implement a warning window to warn the user that the data is corrupted / garbled and they will have to close the application. Once the application
-    is closed, TrAcker will refresh the garbled data with a new original data. Then when the user starts TrAcker again, TrAcker will inform the user that due to a corrupted
-    data, the data has been reset to the original one. This way, the user will not have to manually reset and delete the data file without knowing the cause.
+4. As of now, the help messages are displayed in the result box and the result box may be too small to view large chunks of help messages.
 
-- The current noting-take function does not support editing notes directly on old notes. For example, user can click
-on an old note and edit its content to update the notes. This would be especially useful for super long notes.
 We plan to update the GUI to include an expandable panel that holds the existing note once clicked, and users may edit
-the texts as they like. After finishing editing, there is a yes button to click and exit. 
-
-- The current events card does not have an end date and end time feature. It only displays the start date. By displaying the end date and time,
-it will be easier for a TA to manually check if he is actually busy and when will be busy until, rather than having to calculate the
-end time. This feature can be implemented by adding 1 hour to the start time for tutorial, 2 hour to the start time for lab, and 1 hour to the start 
-time for consultations.
+the texts as they like. After finishing editing, there is a yes button to click and exit. Display box will also be slightly enlarged to
+allow users to view the help messages more comfortably. An external help display window may be a feasible feature as well if enlarging the main window
+is deemed undesirable.
