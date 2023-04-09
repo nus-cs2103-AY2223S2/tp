@@ -12,14 +12,17 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.ui.MainWindow;
 
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private int index;
     private final AddressBook addressBook;
+    private MainWindow mainWindow;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.index = 0;
     }
 
     public ModelManager() {
@@ -96,19 +100,45 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        changeMainWindowPane(target, "clear");
+    }
+
+    @Override
+    public void deleteImage(Person target) {
+        addressBook.removeImage(target);
+        changeMainWindowPane(target, "clear");
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        changeMainWindowPane(person, "add");
+
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+        changeMainWindowPane(editedPerson, "edit");
+    }
+
+    @Override
+    public void findOrListContents(Predicate<Person> predicate, String command) {
+        requireNonNull(predicate);
+        updateFilteredPersonList(predicate);
+        changeMainWindowPane(null, command);
+    }
+
+    private void changeMainWindowPane(Person person, String command) {
+        if (mainWindow != null) {
+            if (filteredPersons != null) {
+                mainWindow.changeIndividualPane(person, command);
+            } else {
+                mainWindow.changeIndividualPane(null, command);
+            }
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -129,6 +159,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setPersonId(int index) {
+        this.index = index;
+    }
+
+    @Override
+    public int getPersonId() {
+        return this.index - 1;
+    }
+
+    @Override
+    public void setMainWindow(MainWindow updateWindow) {
+        mainWindow = updateWindow;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -143,8 +188,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
 }

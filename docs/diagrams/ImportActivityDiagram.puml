@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes import command;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([faculty is valid])
+    :Faculty contacts are retrieved;
+    :Non-duplicate contacts are added;
+    : Display success message;
+else ([else])
+    : Display error message;
+endif
+stop
+@enduml

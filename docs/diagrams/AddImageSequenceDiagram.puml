@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddImageCommandParser" as AddImageCommandParser LOGIC_COLOR
+participant "command:AddImageCommand" as AddImageCommand LOGIC_COLOR
+participant "ImageUtil" as ImageUtil <<class>> LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(add-image)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(add-image)
+activate AddressBookParser
+
+create AddImageCommandParser
+AddressBookParser -> AddImageCommandParser
+activate AddImageCommandParser
+
+AddImageCommandParser --> AddressBookParser
+deactivate AddImageCommandParser
+
+AddressBookParser -> AddImageCommandParser : parse(args)
+activate AddImageCommandParser
+
+create AddImageCommand
+AddImageCommandParser -> AddImageCommand
+activate AddImageCommand
+
+AddImageCommand --> AddImageCommandParser
+deactivate AddImageCommand
+
+AddImageCommandParser --> AddressBookParser : command
+deactivate AddImageCommandParser
+
+AddressBookParser -[hidden]-> AddressBookParser : command
+destroy AddImageCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> AddImageCommand : execute(model)
+activate AddImageCommand
+
+AddImageCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> AddImageCommand : lastShownList
+deactivate Model
+
+AddImageCommand -> ImageUtil : importImage(stringPath)
+activate ImageUtil
+
+ImageUtil --> AddImageCommand : newFileName
+deactivate ImageUtil
+
+AddImageCommand -> ImageUtil : deleteImage(imageName)
+activate ImageUtil
+
+ImageUtil --> AddImageCommand
+deactivate ImageUtil
+
+AddImageCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> AddImageCommand
+deactivate Model
+
+AddImageCommand --> LogicManager :commandResult
+deactivate AddImageCommand
+
+AddImageCommand -[hidden]-> LogicManager : result
+destroy AddImageCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+
+@enduml

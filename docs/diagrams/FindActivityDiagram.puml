@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes find command;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([arguments provided are valid])
+    :Predicate is instantiated for each prefix/keyword pair;
+    :Predicates are merged with "and" operator;
+    :Filtered list based on combined predicate is shown to user;
+else ([else])
+    : Display error message;
+endif
+stop
+@enduml

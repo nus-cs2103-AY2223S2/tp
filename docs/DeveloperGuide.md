@@ -2,29 +2,39 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+* [Acknowledgements](#acknowledgements)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+* [Implementation](#implementation)
+    * [Add Feature](#add-feature)
+    * [Delete Feature](#delete-feature)
+    * [Add Image Feature](#add-image-feature)
+    * [Delete Image Feature](#delete-image-feature)
+    * [Import Contacts Feature](#import-contacts-feature)
+    * [Find Feature](#find-feature)
+    * [Edit Feature](#edit-feature)
 
-## **Acknowledgements**
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product Scope](#product-scope)
+    * [User Stories](#user-stories)
+    * [Use Cases](#use-cases)
+    * [Glossary](#glossary)
+    * [Planned Enhancement](#planned-enhancement)
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+## Acknowledgements
 
---------------------------------------------------------------------------------------------------------------------
+* This project was based on the AddressBook3 application which can be found
+  [here](https://github.com/nus-cs2103-AY2223S2/tp)
 
-## **Setting up, getting started**
+---
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+## Design
 
 ### Architecture
 
@@ -36,7 +46,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-F11-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-F11-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -48,7 +58,6 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
 
 **How the architecture components interact with each other**
 
@@ -69,13 +78,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-F11-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `HelpWindow`, `PersonalPane`, `PersonCard`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +95,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-F11-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,9 +103,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -114,7 +123,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -126,16 +135,15 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
 <img src="images/BetterModelClassDiagram.png" width="450" />
-
 </div>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -148,230 +156,597 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+[Back to top](#top)
 
-## **Implementation**
+---
 
-This section describes some noteworthy details on how certain features are implemented.
+## Implementation
 
-### \[Proposed\] Undo/redo feature
+This section will focus on the implementation of the various features that BookFace
+provides. UML diagrams will be included to facilitate the explanation for the
+implementations.
 
-#### Proposed Implementation
+> **Note**: When viewing the sequence diagrams provided, it can be seen that the
+> lifeline of several classes extend beyond its destroy marker (X). A proper sequence
+> diagram will have the lifeline terminated at that point. However, due to the
+> limitations of PlantUML (the software used to generate the UML diagrams), the
+> lifeline extends beyond the destroy marker until the end of the diagram.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### Add Feature
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+#### Add Implementation
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The Add feature is facilitated by the classes `AddCommand`,
+`AddCommandParser` and `ParserUtil`.
+The `AddCommandParser` first parses through the user command to obtain
+the necessary inputs through using `ParserUtil#parseIndex`. Following which an
+instance of a `AddCommand` containing the details encapsulated in Person class is returned.
+`AddCommand#execute` is then called, which sets the image of the contact
+at the desired index to a default image, and deletes the existing person through
+`DeleteCommand`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario for how the `add` mechanism behaves.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1: User starts up the application and sees their list of contacts. User must then enter
+name, status, phone, email, address as they are required by the system if not it will cause
+an invalid exception.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 2: The user can add optional fields, that is the tags. Each of the tags is colour-coded based on its type.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+> **Note**: If the user inputs a contact that exists in the contact list, or if the user misses out a compulsory
+> input, an error will be thrown.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Step 3: If the instruction was valid, `AddCommand#execute` is called to wrap the details into person and set the
+person to the next available index.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 4: User can use edit index to select the chosen person card and `EditCommand#execute` is then called to
+change the contents inside and update the program directory.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The following sequence diagram shows how the `add` operation works.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-</div>
+The following activity diagram summarizes what happens when a user executes a
+`add` command:
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+![AddActivityDiagram](images/AddActivityDiagram.png)
 
-![UndoRedoState3](images/UndoRedoState3.png)
+#### Design Considerations:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+- **Alternative 1 (current choice):** Improve on tags by adding more colours to the
+  program directory.
+    - Pros:
+        - Ensures the labels are organised neatly in different colour
+    - Cons:
+        - Extra complexity in requiring to map the additional tag operations
 
-</div>
+- **Alternative 2:** Make status field compulsory from program directory.
+    - Pros:
+        - Easier to implement and user can search based on year and course
+    - Cons:
+        - Application will not detect the input content from the users which could contain
+          non-related strings.
 
-The following sequence diagram shows how the undo operation works:
+[Back to top](#top)
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+### Delete Feature
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+#### Delete Implementation
 
-</div>
+The `delete` command allows users to delete a contact based on the provided index.
+This feature is facilitated by the `ParserUtil`, `DeleteCommandParser`, and
+`DeleteCommand` classes. The user input is first passed to an instance of `DeleteCommandParser`,
+which calls on `ParserUtil#parseIndex` in `DeleteCommandParser#parse` to obtain the
+index in the user input. If the index provided is invalid, an error would be thrown.
+If the provided index was valid, an instance of `DeleteCommand` with the provided
+index is created. Finally, `DeleteCommand#execute` is called to delete the specified
+contact from the list of contacts.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+An example is provided below to better illustrate the `delete` behaviour.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Step 1: User starts up the application and sees their list of contacts.
 
-</div>
+Step 2: User decides that they no longer want the contact in position 1 to be on their
+list anymore, and hence enters `delete 1` into the user input.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 3: `DeleteCommandParser#parse` is called, which calls `ParserUtil#parseIndex` to
+obtain the index from the user input.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Step 4: An instance of `DeleteCommand` is created with the provided Index, and `DeleteCommand#execute`
+is called to delete the contact from the list.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+The sequence diagram below illustrates how the `delete` mechanism works:
 
-![UndoRedoState5](images/UndoRedoState5.png)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+[Back to top](#top)
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+### Add Image Feature
+
+#### Add Image Implementation
+
+The add-image mechanism is facilitated by `AddImageCommand`, `AddImageCommandParser` and `ImageUtil` class.
+
+- `AddImageCommand` extends `Command`
+- `AddImageCommandParser` extends `Parser`
+
+The `AddImageCommandParser` parses the user input into index of contact and path to an image.
+It returns a `AddImageCommand` with the 2 information retrieved.
+`AddImageCommand#execute` copies the image provided by the user via a path and replaces the current image with the new
+one.
+It also saves the file name of the new image to the `model`.
+
+Given below is an example usage scenario and how the `add-image` mechanism behaves at each step.
+
+Step 1. When user wants to add an image to a contact, they use the `add-image` command.
+
+Step 2. The `LogicManager` receives the command text from the user input and gives it to `AddressBookParser`
+. `AddressBookParser` calls `AddImageCommandParser` to parse the user input.
+
+Step 3. The `AddImageCommandParser` retrieves the contact index as well as the image path and creates
+a `AddImageCommand`
+
+Step 4. `AddImageCommand#execute` is called. The method calls `ImageUtil#importImage` to copy the image into the 
+`profile_pictures/` directory.
+Once that is successful, `AddImageCommand#execute` proceeds to call `ImageUtil#deleteImage` to remove the current image.
+Finally `AddImageCommand#execute` updates the model provided in the arguments.
+
+> **Note**: If the path given is invalid or if the file at the given path is not a png/jpeg image, the command will not
+> be completed.
+
+The following sequence diagram shows how the `add-image` operation works:<br>
+![AddImageSequenceDiagram](images/AddImageSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `add-image` command: <br>
+![AddImageActivityDiagram](images/AddImageActivityDiagram.png)
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+- Alternative 1 (current choice): Copy the image into application-created directory
+    - Pros:
+        - A single location to store/check for images
+        - Naming scheme determined by application
+    - Cons:
+        - Copying is a file I/O which have many caveats
+- Alternative 2: Save the path provided by User
+    - Pros:
+        - Does not require any file I/O
+        - Easy to save as only the Path as a string
+    - Cons:
+        - Path is easily invalidated (e.g. user moves/deletes/renames the image)
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+[Back to top](#top)
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+### Delete Image Feature
 
-_{more aspects and alternatives to be added}_
+#### Delete Image Implementation
 
-### \[Proposed\] Data archiving
+The delete-image feature is facilitated by the classes `DeleteImageCommand`,
+`DeleteImageCommandParser`, `ImageUtil`, and `ParserUtil`.
+The `DeleteImageCommandParser` first parses through the user command to obtain
+the desired index through using `ParserUtil#parseIndex`. Following which an
+instance of a `DeleteImageCommand` containing the desired index is returned.
+`DeleteImageCommand#execute` is then called, which sets the image of the contact
+at the desired index to a default image, and deletes the existing image through
+`ImageUtil#deleteImage`.
 
-_{Explain here how the data archiving feature will be implemented}_
+Given below is an example usage scenario for how the `delete-image` mechanism behaves.
+
+Step 1: User starts up the application and sees their list of contacts. Some of
+which have already had an image added.
+
+Step 2: The user decides that the image given to the contact at index 4 is not
+suitable, and wants to delete it. The user inputs `delete-image 4`.
+`DeleteImageCommandParser#parse` is then called to parse this input for the
+desired index.
+
+> **Note**: If the user inputs an index of a contact which currently does not have
+> an image, or if the user inputs an invalid index, an error will be returned to
+> the user
+
+Step 3: If the instruction was valid, `Model#deleteImage` is called to set the
+image of the contact to the default image.
+
+Step 4: `ImageUtil#deleteImage` is then called to delete the existing image
+from the program directory.
+
+The following sequence diagram shows how the delete-image operation works.
+
+![DeleteImageSequenceDiagram](images/DeleteImageSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a
+`delete-image` command:
+
+![DeleteImageActivityDiagram](images/DeleteImageActivityDiagram.png)
+
+#### Design Considerations:
+
+- **Alternative 1 (current choice):** Delete the existing image file from program
+  directory.
+    - Pros:
+        - Ensures application does not consume excess storage
+    - Cons:
+        - Extra complexity in requiring file i/o operations
+
+- **Alternative 2:** Disregard deleting the image file from program directory.
+    - Pros:
+        - Easier to implement
+    - Cons:
+        - Application will take up increasingly more unnecessary storage during
+          its lifetime of usage
+
+[Back to top](#top)
+
+### Import Contacts Feature
+
+#### Import Contacts Implementation
+
+The import feature is facilitated by the classes `ImportCommand`, `ImportCommandParser`,
+`SocContacts` and `ChsContacts`. The `ImportCommandParser` first parses through the user
+command to obtain the desired faculty to be imported. An instance of
+a `ImportCommand` containing the desired faculty from either `SocContacts` or
+`ChsContacts` is then returned. `ImportCommand#execute` is then called,
+which calls `Model#addPerson` to add the unique contacts into BookFace.
+
+Given below is an example usage scenario for how the `import` mechanism behaves.
+
+Step 1: User starts up the application and sees their list of contacts.
+
+Step 2: User decides to import contacts from faculty SOC and input
+`import soc`. `ImportCommandParser#parse` is then called to parse
+this input for the desired faculty.
+
+> **Note**: If the user inputs a faculty that does not exist,
+> an error will be returned to the user
+
+Step 3: If the faculty was valid, `ImportCommand#execute` is called
+with the valid faculty that was parsed
+
+Step 4: `Model#addPerson` is called for however
+many non-duplicate contacts are to be added.
+
+The following sequence diagram shows how the import command works.
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an
+`import` command:
+
+![ImportActivityDiagram](images/ImportActivityDiagram.png)
+
+#### Design Considerations:
+
+- **Alternative 1 (current choice):** ImportCommand#execute takes in a string to
+  determine which faculty of in-built contacts to import
+    - Pros:
+        - User input is easily parsed (as it is just a string), faster to read and
+          execute the command
+    - Cons:
+        - Possibly bad OOP design, ImportCommand#execute should take in a Faculty object
+
+- **Alternative 2:** ImportCommand#execute takes in a Faculty object instead of a string
+  to determine which faculty of in-built contacts to import
+    - Pros:
+        - Better OOP design then simply taking in a string
+    - Cons:
+        - Input will take longer to parse as the string input has to be parsed into
+          a faculty object to be used as input to ImportCommand#execute
+
+[Back to top](#top)
+        
+### Find Feature
+
+#### Find Implementation
+
+The Find feature allows users to filter out relevant contacts from their contact list.
+This feature is facilitated by the `FindCommand` class and the `FindCommandParser` class,
+as well as the various predicate classes listed below.
+
+* `AddressContainsKeywordPredicate`
+* `EmailContainsKeywordPredicate`
+* `NameContainsKeywordPredicate`
+* `PhoneContainsKeywordPredicate`
+* `StatusContainsKeywordPrediate`
+* `TagContainsKeywordPredicate`
+
+When the user inputs a `find` command, the `FindCommandParser` parses through the
+input to obtain the prefixes and keywords that the user has entered. For each
+prefix-keyword pair, an instance of its associated predicate class is created
+and all the instances are combined with `Predicate#and`. This final predicate
+object is then passed to `Model#findOrListContents` to display the filted list to
+the user.
+
+An example usage scenario is provided below to illustrate the mechanism of the
+`find` command.
+
+Step 1: User starts up the application and sees a list of all their contacts.
+
+Step 2: User inputs `find t/cs2103` to find the list of his contacts that takes
+CS2103.
+
+Step 3: `FindCommandParser` parses through the user input and creates an instance
+of `TagContainsKeywordPredicate` containing the keyword "cs2103". An instance of
+`FindCommand` with this predicate is then created and returned.
+
+Step 4: `FindCommand#execute` is called, which calls `Model#findOrListContents`
+to display the final filtered list to the user.
+
+The sequence diagram below illustrates this process.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes
+the `find` command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: Combining the predicates from multiple prefixes**
+
+- **Alternative 1 (current choice):** Using `Predicate#and`
+- **Alternative 2:** Using `Predicate#or`
+
+**Rationale:** Decision was made to use a logical `AND` instead of `OR` when
+combining multiple predicates as we believe this was the more intuitive approach.
+When a user is looking for a specific group of people on his contacts, they would
+expect the application to return a list of contacts that matches **all** of his
+given input requirements, instead of a list of contacts that contains one or more
+of the keywords that was entered. Hence, the logical `AND` was decided to be more
+appropriate, and `Predicate#and` was used.
+
+[Back to top](#top)
+
+### Edit Feature
+
+#### Edit Implementation
+
+The Edit feature is facilitated by the classes `EditCommand`,
+`EditCommandParser` and `ParserUtil`.
+The `EditCommandParser` first parses through the user command to obtain
+the necessary inputs through using `ParserUtil#parseIndex`. Following which an
+instance of a `EditCommand` containing the details encapsulated in Person class is returned.
+`EditCommand#execute` is then called, which sets the image of the contact
+at the desired index to a default image.
+
+Given below is an example usage scenario for how the `edit` mechanism behaves.
+
+Step 1: User wants to edit a specific person in the contact list. He first enters the edit command, index, follow by the
+prefix and input value he wants. Note that index that is equals or less than zero will result in an exception thrown.
+
+> **Note**: If the user wants to edit a contact that does not exist in the contact list, an error will be thrown.
+
+Step 2: If the instruction was valid, `EditCommand#execute` is called to update the details into an existing person.
+
+The following sequence diagram shows how the `edit` operation works.
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a
+`edit` command:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design Considerations:
+
+- **Implemented:** Edit tags based on the tag type instead of replacing all
+    - Pros:
+        - Edit a tag will not replace all the tags of other tags
+    - Cons:
+        - Extra complexity in requiring to map the additional tag operations
 
 
---------------------------------------------------------------------------------------------------------------------
+- **Implemented:** Tag name is able to fix in the GUI frame and should not overflow
+    - Pros:
+        - To reduce chances of missing or hidden texts
 
-## **Documentation, logging, testing, configuration, dev-ops**
+[Back to top](#top)
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+---
 
---------------------------------------------------------------------------------------------------------------------
+## Appendix: Requirements
 
-## **Appendix: Requirements**
-
-### Product scope
+### Product Scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Students from the National University of Singapore (NUS) who need to keep track of their contacts from different
+classes/ccas/clubs etc.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+NUS Students often take many classes and meet different people. This application helps them to organise their
+contacts list for an easier way to set up proper communication channels. This makes it easier for students to form
+connections with their peers during their time in University.
+
+[Back to top](#top)
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+1. As a student, I can find all relevant university contacts/POCs for various purposes
+2. As a student, I can delete the image for a person on my contact list
+3. As a forgetful student, I can see who a person on my contact list looks like
+4. As a user, I can add a contact so that I can keep track of my contacts.
+5. As a user, I can view all contacts so that I can have an accessible list of contacts.
+6. As a user, I can delete a contact so that I can remove unneeded and/or incorrect contacts.
+7. As a student, I can to find other students in my classes that have been added as a contact so that I can ask them for
+   help
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+[Back to top](#top)
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+System: BookFace
 
-**Use case: Delete a person**
+```
+Use case: UC1 - Add Contact
 
-**MSS**
+Actor: User
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+MSS:
+1. User chooses to add a contact.
+2. User enters contact's details.
+3. New user's contact's details are added to BookFace.
+Use case ends.
 
-    Use case ends.
+Extensions:
 
-**Extensions**
+2a. BookFace detects incomplete/invalid details entered.
+BookFace displays an example of valid details.
+System repeats Step 1-2 until valid details are entered.
+```
 
-* 2a. The list is empty.
+```
+Use case: UC2 - Delete Contact
 
-  Use case ends.
+Actor: User
 
-* 3a. The given index is invalid.
+MSS:
+1. User chooses to delete a contact.
+2. User enters contact's index.
+3. Contact is deleted from BookFace.
+Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+Extensions:
 
-      Use case resumes at step 2.
+2a. BookFace detects incomplete/invalid index entered.
+BookFace displays an example of a valid index.
+System repeats Step 1-2 until valid information is entered.
+```
 
-*{More to be added}*
+```
+Use case: UC3 - Edit Contact
 
-### Non-Functional Requirements
+Actor: User
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+MSS:
+1. User chooses to edit a contact.
+2. User enters contact's new details.
+3. Contact is edited in BookFace.
+Use case ends.
 
-*{More to be added}*
+Extensions:
+
+2a. BookFace detects incomplete/invalid details entered.
+BookFace displays an example of valid details.
+System repeats Step 1-2 until valid details are entered.
+```
+
+```
+Use case: UC4 - Find Contact
+
+Actor: User
+
+MSS:
+1. User chooses to find a contact.
+2. User enters contact's name.
+3. BookFace displays the matching contacts.
+   Use case ends.
+
+Extensions:
+
+2a. BookFace detects no name entered.
+BookFace displays an example of a valid name.
+System repeats Step 1-2 until a name is entered.
+```
+
+```
+Use case: UC5 - List Contacts
+
+Actor: User
+
+MSS:
+1. User chooses to view all contacts.
+2. BookFace displays all the user's contacts.
+   Use case ends.
+```
+
+```
+Use case: UC6 - Get Help on Commands
+
+Actor: User
+
+MSS:
+1. User chooses to view instructions on how to use BookFace.
+2. BookFace displays a url to its User Guide.
+   Use case ends.
+```
+
+```
+Use case: UC7 - Add Image for a Contact
+Actor: User
+MSS:
+1. User chooses to add an image for a contact.
+2. User enters contact index and image file path.
+3. Image is added for contact.
+   Use case ends.
+
+Extensions:
+
+2a. BookFace detects invalid/incomplete filepath or index.
+BookFace displays an example of a valid filepath and index.
+System repeats Step 1-2 until valid information is entered.
+```
+
+```
+Use case: UC8 - Delete Image for a Contact
+
+Actor: User
+
+MSS:
+1. User chooses to delete an image for a contact.
+2. User enters contact index.
+3. Image is deleted for contact.
+   Use case ends.
+
+Extensions:
+
+2a. BookFace detects incomplete/invalid index entered.
+BookFace displays an example of a valid index.
+System repeats Step 1-2 until valid information is entered.
+
+2b. BookFace detects that the contact does not have an image added.
+Use case ends.
+```
+
+```
+Use case: UC9 - Import Contacts from a Faculty
+
+Actor: User
+
+MSS:
+1. User chooses to import contacts for a faculty.
+2. User enters faculty name.
+3. New contacts' details are added to BookFace.
+   Use case ends.
+
+Extensions:
+
+2a. BookFace detects incomplete/invalid details entered.
+BookFace displays an example of valid details.
+System repeats Step 1-2 until valid details are entered.
+```
+
+[Back to top](#top)
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* NUS: The National University of Singapore
+* Student: A user who belongs to a faculty in NUS and attends one or more classes with other students
+* Tutor: A user who tutors students in one or more classes
+* Faculty: A group of university departments concerned with a major division of knowledge
+* Contact: A person of interest whose details have been recorded by the user
 
---------------------------------------------------------------------------------------------------------------------
+[Back to top](#top)
 
-## **Appendix: Instructions for manual testing**
+### Planned Enhancement
 
-Given below are instructions to test the app manually.
+1. Currently, when attempting to retrieve image and is unsuccessful, the default image is displayed. We plan to include and display an “error image” instead of default image to better express to user that the retrieval was unsuccessful. With this error image, the `delete-image` command on this contact will change it to default image. Currently, it only shows a success message as the image is already the default image.<br>Ways that retrieval can be unsuccessful:
+    * Erroneous editing of Image field in `addressbook.json`
+    * Removing/changing images saved in `/profile_pictures` to invalid images or to a non-matching file name
+2. Currently, there are no restrictions regarding image size for the `add-image` command. We plan to impose a minimum image size restriction to prevent images that are too small. 
+3. Currently, imported contacts from the `import` command are not filled up with real data. We plan to use external resources to find these data to fill up the imported contacts with. We also plan to include even more relevant contacts, as only 2 contacts are imported for each faculty as of now. 
+4. Currently, the `import` command only allows importing contacts from 2 faculties. Again, we plan to include more faculties in the list of faculties available for import by using external resources to retrieve more data about contacts from different faculties.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+[Back to top](#top)
 
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_

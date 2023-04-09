@@ -18,6 +18,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.CommitmentTag;
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -27,14 +29,52 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
+    private static final String INVALID_LONG_TAG = "friendisverynicehetreatmeicecream";
+
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "1234567";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
+    private static final String VALID_TAG_3 = "CS2030s";
+
+    private static final String VALID_TAG_4 = "soccer";
+
+    private static final String VALID_TAG_5 = "MODULEXXXXXCS2040s";
+
+    private static final String INVALID_TAG_6 = "COMMITMENTXXXXXbasketballnsoccernvolleyball";
+
     private static final String WHITESPACE = " \t\r\n";
+
+    @Test
+    public void parseTag_commitment_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG_6));
+    }
+
+    @Test
+    public void parseTag_module_success() throws Exception {
+        ModuleTag expectedTag = new ModuleTag(VALID_TAG_5);
+        assertEquals(expectedTag, ParserUtil.parseTag("MODULEXXXXXCS2040s"));
+    }
+
+    @Test
+    public void parseTag_moduleTag_success() throws Exception {
+        ModuleTag expectedTag = new ModuleTag(VALID_TAG_3);
+        assertEquals(expectedTag, ParserUtil.parseTag("CS2030s"));
+    }
+
+    @Test
+    public void parseTag_commitmentTag_success() throws Exception {
+        CommitmentTag expectedTag = new CommitmentTag(VALID_TAG_4);
+        assertEquals(expectedTag, ParserUtil.parseTag("soccer"));
+    }
+
+    @Test
+    public void parseTags_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex(INVALID_LONG_TAG));
+    }
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {

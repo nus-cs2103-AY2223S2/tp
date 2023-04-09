@@ -22,6 +22,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.MainWindow;
 
 public class AddCommandTest {
 
@@ -134,6 +135,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteImage(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -147,6 +153,26 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getPersonId() {
+            return 0;
+        }
+
+        @Override
+        public void setPersonId(int index) {
+            System.out.println("still working");
+        }
+
+        @Override
+        public void findOrListContents(Predicate<Person> predicate, String command) {
+            System.out.println("still working");
+        };
+
+        @Override
+        public void setMainWindow(MainWindow mainWindow) {
+            System.out.println("still working");
+        };
     }
 
     /**

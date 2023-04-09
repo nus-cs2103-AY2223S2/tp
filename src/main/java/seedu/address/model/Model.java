@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.ui.MainWindow;
 
 /**
  * The API of the Model component.
@@ -64,10 +65,22 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the image for the given person.
+     * The person must exist in the address book.
+     */
+    void deleteImage(Person target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Finds or lists the given contents.
+     * {@code predicate} must already exist in the address book.
+     */
+    void findOrListContents(Predicate<Person> predicate, String command);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -84,4 +97,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void setPersonId(int index);
+
+    int getPersonId();
+
+    void setMainWindow(MainWindow mainWindow);
 }
+

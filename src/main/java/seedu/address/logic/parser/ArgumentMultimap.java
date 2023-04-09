@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
+
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
@@ -15,7 +18,9 @@ import java.util.Optional;
  */
 public class ArgumentMultimap {
 
-    /** Prefixes mapped to their respective arguments**/
+    /**
+     * Prefixes mapped to their respective arguments
+     **/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     /**
@@ -25,9 +30,19 @@ public class ArgumentMultimap {
      * @param prefix   Prefix key with which the specified argument value is to be associated
      * @param argValue Argument value to be associated with the specified prefix key
      */
-    public void put(Prefix prefix, String argValue) {
+    public void put(Prefix prefix, String argValue) throws ParseException {
         List<String> argValues = getAllValues(prefix);
-        argValues.add(argValue);
+        if (argValue.contains("XXXXX")) {
+            throw new ParseException(Tag.MESSAGE_TAG_CONTENT_ERROR);
+        }
+
+        if (prefix.toString().equals("mt/")) {
+            argValues.add("ModuleXXXXX" + argValue);
+        } else if (prefix.toString().equals("ct/")) {
+            argValues.add("CommitmentXXXXX" + argValue);
+        } else {
+            argValues.add(argValue);
+        }
         argMultimap.put(prefix, argValues);
     }
 

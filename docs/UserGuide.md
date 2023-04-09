@@ -3,191 +3,287 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+BookFace is a desktop GUI application for the students in the National University of Singapore (NUS) to manage the
+contact information of the people they meet in the various lessons or clubs that they participate in. Since NUS Students
+often take many classes and meet different people. This application helps them to organise their contacts list for an
+easier way to set up proper communication channels.
 
-* Table of Contents
-{:toc}
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Add user contacts](#add-user-contacts-add)
+    * [Delete user contacts](#delete-user-contacts-delete)
+    * [Edit user contacts](#edit-user-contacts-edit)
+    * [Locating persons by keywords](#locating-persons-by-keywords-find)
+    * [Listing all contacts](#listing-all-contacts-list)
+    * [Help command](#help-command-help)
+    * [Add an image for contacts](#add-an-image-for-contacts-add-image)
+    * [Delete an image for contacts](#delete-an-image-for-contacts-delete-image)
+    * [Quick import admin contacts](#quick-import-for-faculty-contacts-import)
+    * [Exit the program](#exit-the-program-exit)
+    * [Editing the data file](#editing-the-data-file)
+* [Command summary](#command-summary)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
+2. Download the latest `bookface.jar` from [here](https://github.com/AY2223S2-CS2103-F11-4/tp/releases).
+3. Place `bookface.jar` file in the folder you would like to use as the *home directory*.
+4. Ensure that the *home directory* is empty and does not contain folder such as 'data'.
+5. Run the application. This can be done by either executing the `jar` file, or opening a command terminal, `cd` into the *home directory*, and running the `java -jar bookface.jar` command. The following GUI will appear upon first use of the application.
+   ![GUI upon first use](images/Ui.png)
+6. The application is initially loaded with sample data for new users to try out the [features](#features) listed below. Experienced users can delete the sample data and proceed with regular usage.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+[Back to top](#top)
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+This section highlights the core features that this application provides, as
+well as the necessary guidelines to follow when using the features. The features
+generally follow commands of the form `COMMAND_WORD ARGUMENTs`, with each
+feature having its own specific `COMMAND_WORD` and set of `ARGUMENTS`.
 
-**:information_source: Notes about the command format:**<br>
+> **Note:** Unless otherwise stated in the guidelines for the specific
+> feature, arguments placed within brackets ("[" and "]") denotes that the
+> argument is optional, and not required for the command to run properly.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+### Add user contacts: `add`
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Format: `add n/NAME s/STATUS p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]` Optional to
+add: `t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG`
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* User is *required* to enter **name, status, phone number, email, address**
+* The status field can be alphanumeric and can be used to display a contact's year and course of study
+* Note that when entering course under "status", course can be more than one word
+* Tags can be optional
+* If the account exists, user can add in related field of interests to share with others
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Example:
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* `add n/Shenghan s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348` will displays the
+  necessary basic information that are the user's name, year/course, phone number, email, address. Optional fields are
+  tags,
+  for which there are commitment/cca tags, module tags and lastly the general tags for users to enter non-specific typed
+  tags.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+#### Function for each tag:
 
-</div>
+`Tag`: This tag can be anything in general, such as relationship or staying on campus.
 
-### Viewing help : `help`
+`Commitment tag`: This tag contains all the NUS CCAs that a person has joined.
 
-Shows a message explaning how to access the help page.
+`Module tag`: This tag contains all modules that a person is taking in this semester.
 
-![help message](images/helpMessage.png)
+Example (with the addition of tags):
 
-Format: `help`
+* `add n/Shenghan s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
+  mt/cs2103`
+* Note that the tags can be placed in any part of the command, and it will not break!
 
+Tags are categorised according to tag colors:
 
-### Adding a person: `add`
+* Commitment tags: `coral pink`
+* Module tags: `dark green`
+* General tags: `default blue`
 
-Adds a person to the address book.
+[Back to top](#top)
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+### Delete user contacts: `delete`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Delete a contact.
+Format: `delete INDEX`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* Show contact details specified by `INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index *must* be a positive integer 1, 2, 3, …
 
-### Listing all persons : `list`
+Example:
 
-Shows a list of all persons in the address book.
+* `delete 2` deletes the second person in the list of contacts.
+
+[Back to top](#top)
+
+### Edit user contacts: `edit`
+
+Edit a contact.
+Format: `edit INDEX [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]`
+
+* At least one of the optional arguments must be specified.
+* Show contact details specified by `INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index *must* be a positive integer 1, 2, 3, …
+
+Example:
+
+* `edit 2 n/James Lee e/jameslee@example.com s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
+  mt/cs2103` Edits the specified information for the second person in the contact list.
+
+[Back to top](#top)
+
+### Locating persons by keywords: `find`
+
+Finds persons whose contact details contain any of the given keywords based on the
+prefix specified.
+
+Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]`
+
+* The search is case-insensitive e.g. `hans` will match `Hans`
+* The search will filter by the `PREFIX` provided, e.g. `n/` searches through the
+  names of the contacts, `p/` searches through the phone number of the contacts, `t/`
+  searches through the tags of the contact, etc...
+* Each prefix must be followed by one and only one keyword. See below for example usage.
+* Only the contacts that fulfill **all** the requirements in the given
+  arguments will be displayed, i.e., `find n/john t/cs` will return
+  the list of contacts where his name is `john` **and** has a tag that contains `cs`.
+* The following shows a list of allowed prefixes:
+    1. `n/` which represents the name
+    2. `s/` which represents the status
+    3. `p/` which represents the phone number
+    4. `e/` which represents the email
+    5. `a/` which represents the address
+    6. `t/` which represents the tags
+
+Example:
+
+* `find n/amy t/cs2103 e/gmail` will return the list of contacts whose names are `amy`,
+  has a tag labeled `cs2103`, and whose emails contain `gmail`.
+
+[Back to top](#top)
+
+### Listing all contacts: `list`
+
+List all contacts in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+[Back to top](#top)
 
-Edits an existing person in the address book.
+### Help command: `help`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Shows a link to the user guide to help new users get familiar with the commands for the application.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `help`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+[Back to top](#top)
 
-### Locating persons by name: `find`
+### Add an image for contacts: `add-image`
 
-Finds persons whose names contain any of the given keywords.
+Add a contact image for each contact.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `add-image INDEX ai/PATH-TO-IMAGE`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
+* Adds an image to the contact at the specified `INDEX`
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3,...
+* Ensure that `ai/` prefix is used before the image path (note that `ai/` is not part of your path)
+* Initially, a default image is used for a contact
+* After an image is added, if the application is unable to retrieve the image (e.g. erroneous manual edit of
+  addressbook.json or the saved images) then it will revert to the default image
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+* Windows: `list` followed by `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the
+  2nd person in the address book
+* MacOS: `list` followed by `add-image 2 ai//Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd
+  person in the address book
 
-Clears all entries from the address book.
+#### Some FAQ Regarding Add Image
 
-Format: `clear`
+How to get Image Path?
 
-### Exiting the program : `exit`
+> **Note**: Steps to get path may differ depending on your operating system and its version
 
-Exits the program.
+* MacOS:
+1. Right-click on the image file
+2. Once the menu appear, hold the OPTION key (⌥) <br> The "copy" option should become "copy [file_name] as Pathname"
+3. The path should be copied once you select the option
+
+* Windows:
+1. Right-click on the image file
+2. Select "copy as path" option
+3. The path should be copied once you select the option
+> **Note:** That for Windows copied path may have quotation marks, please remove them before using in BookFace.<br>
+> For instance: `add-image 2 ai/"C:/Users/user/Downloads/weekiat.png"` will be invalid, whereas
+> `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` will be valid.
+
+Common User Errors
+
+* `Referenced file does not exist` even though the image is there
+    * The path used may be incorrect due to differences in Absolute and Relative path<br>
+    * The 2 types of file paths are different in that:
+        * Absolute path is a complete path from root to the file itself (Windows usually starts with `C:` and Linux/Mac
+          with `/`)
+        * Relative path starts from the [*home directory*](#quick-start)
+        * Here is an external link to [learn more](https://www.computerhope.com/issues/ch001708.htm)
+
+[Back to top](#top)
+
+### Delete an Image for contacts: `delete-image`
+
+Delete the image of a contact.
+
+Format: `delete-image INDEX`
+
+* Deletes the image of contact specified by `INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index *must* be a positive integer 1, 2, 3, …
+* A default image will be used after it is deleted
+
+Example:
+
+* `delete-image 2` deletes the image of the 2nd person in the address book.
+
+[Back to top](#top)
+
+### Quick Import for faculty contacts: `import`
+
+Import staff contacts for relevant faculties.
+> **Note**: 'staff' can refer to any person in the teaching, administrative or management teams in the faculty
+
+Format: `import FACULTY`
+
+* Faculty acronyms (e.g. soc)
+* Only selected faculties (soc and chs) are available
+
+Example:
+
+* `import soc` adds all important contacts of staff for School of Computing
+* `import chs` adds all important contacts of staff for College of Humanities and Sciences
+
+[Back to top](#top)
+
+### Exit the program: `exit`
+
+Closes the window and exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+[Back to top](#top)
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+It is *possible* but **not recommended** for users to manually edit any of the JSON files created by BookFace, as there is a large chance that the changes render the format of the JSON files invalid, and the application to stop working as intended. In situations where an edit to the JSON file causes the application to stop working, the user should either undo any of the changes made, or delete the JSON file entirely which will prompt BookFace to create a fresh copy. Note that the latter will erase any data that the user previously had. The developers of BookFace will not be liable for any significant loss of data as a result of tampering with the JSON files.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+[Back to top](#top)
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action           | Format, Examples                                                                                                                                                                                                              |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME s/STATUS p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]…​` <br> e.g., `add n/James Ho s/Y2 Science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ct/soccer mt/cs1010s` |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                           |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
+| **Find**         | `find PREFIX/Keyword [MORE PREFIX/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                        |
+| **List**         | `list`                                                                                                                                                                                                                        |
+| **Help**         | `help`                                                                                                                                                                                                                        |
+| **Add-Image**    | `add-image INDEX ai/PATH-TO-IMAGE` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                            |
+| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                             |
+| **Import**       | `import FACULTY` <br> e.g.,  `import soc, import chs`                                                                                                                                                                         |
+| **Exit**         | `exit`                                                                                                                                                                                                                        |
+
+[Back to top](#top)

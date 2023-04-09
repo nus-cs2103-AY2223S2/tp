@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Lee Hong Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hongshenggg.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/hongshenggg)]
+[[portfolio](team/hongshenggg.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Functions
 
-### Jane Doe
+### Ian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/castryl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/castryl)]
+[[portfolio](team/castryl.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Everything
 
-### Johnny Doe
+### Lum Wee Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/weekiat-douze.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/weekiat-douze)] [[portfolio](team/weekiat-douze.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ni Shenghan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shni99.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/shni99)]
+[[portfolio](team/shni99.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Phone Khant Paing
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pkpaing.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/pkpaing)]
+[[portfolio](team/pkpaing.md)]
 
 * Role: Developer
 * Responsibilities: UI
+

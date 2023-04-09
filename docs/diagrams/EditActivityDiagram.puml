@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes edit command;
+
+if () then ([prefix is valid])
+    if () then ([necessary inputs are filled])
+        if () then ([index is valid])
+            if () then ([has person and is same person])
+                : Update existing person;
+                : Display success message;
+            else ([else])
+            : Display error message;
+            endif
+        else ([else])
+        : Display error message;
+        endif
+    else ([else])
+    : Nothing is changed;
+    endif
+else ([else])
+    : Display error message;
+endif
+stop
+@enduml
