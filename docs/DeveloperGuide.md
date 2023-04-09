@@ -32,6 +32,9 @@ Third-party software used in this project:
 * [JUnit](https://junit.org/)
 * [PlantUML](https://plantuml.com/)
 
+Formatting of Developer Guide is adapted from:
+* [AY22/23S1 CS2103T Team W16-2](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)
+* [AY22/23S1 CS2103T Team W16-3](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
