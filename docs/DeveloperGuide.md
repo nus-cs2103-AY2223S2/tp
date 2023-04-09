@@ -470,8 +470,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user with colour blindness may require a high-contrast setting for graphical outputs.
 
-*{More to be added}*
-
 ### **Appendix B: Planned Enhancements**
 
 To resolve certain known feature flaws, we have planned to add some enhancements in the near future:
