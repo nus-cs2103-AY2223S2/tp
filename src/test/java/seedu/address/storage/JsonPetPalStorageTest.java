@@ -116,4 +116,6 @@ public class JsonPetPalStorageTest {
     public void savePetPal_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> savePetPal(new PetPal(), null));
     }
+
 }
+
