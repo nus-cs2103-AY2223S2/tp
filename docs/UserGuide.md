@@ -5,14 +5,13 @@ title: User Guide
 
 ## What is Advis.io?
 
-Advis.io (AIO) is a all-in-one solution for financial advisors to better **manage their clientele** and their clients **respective policies**. AIO is currently
-available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having
-a Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll
-see in your career.
+As a financial advisor, you know that managing your clients and their policies can be time-consuming and overwhelming. But what if there was a solution that made it easier for you to keep track of your clients' needs and provide the best possible service?
 
-With AIO, financial advisors of all expertise are able to keep track their ever-growing clientele and always be prepared for the needs of their clients. AIO makes it easier for you to keep track of your clients' policies and appointment dates, providing them more time for you to focus on expanding your network and providing the best service for your beloved clients.
+That's where Advis.io (AIO) comes in. AIO is an all-in-one solution designed to help you manage your clients more efficiently and effectively than ever before. With AIO, you'll be able to keep track of your clients' policies and appointment dates, giving you more time to focus on what you do best - providing expert financial advice.
 
-Are you excited to get the largest client base among your peers? Presenting to you...
+Whether you're a seasoned financial advisor or just starting out, AIO is the tool you need to stay organized, increase productivity, and take your business to the next level. With an intuitive command line interface and a user-friendly graphical interface, AIO is the perfect solution for anyone looking to streamline their workflow and build a larger, more satisfied client base.
+
+So why wait? Try AIO today and see how it can transform your business!
 
 ---
 <img src="images/advisio.png" width="15px">**Advis.io**<br>
