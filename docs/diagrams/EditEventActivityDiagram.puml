@@ -11,12 +11,12 @@ if () then ([parameters are valid])
     parameters given;
     :Check through list of
     ALL persons to edit the
-    specified event accordingly;
-    :EditEvent Command has been
-    successfully executed;
+    event tag of the specified
+    event accordingly;
+    :EditEvent Command has
+    been successfully executed;
 else ([else])
     :An error message is shown;
-    :No changes have been made;
 endif
 stop
 @enduml
