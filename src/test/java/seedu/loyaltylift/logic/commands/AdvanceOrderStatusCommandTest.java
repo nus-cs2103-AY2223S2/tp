@@ -44,7 +44,7 @@ public class AdvanceOrderStatusCommandTest {
 
         Order advancedOrder = new OrderBuilder(orderToAdvance).withNextStatus(formattedDate).build();
         String expectedMessage = String.format(advanceOrderStatusCommand.MESSAGE_ADVANCE_STATUS_SUCCESS,
-                orderToAdvance, orderToAdvance.getStatus().getLatestStatus());
+                advancedOrder, advancedOrder.getStatus().getLatestStatus());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 

@@ -97,6 +97,13 @@ public class SampleDataUtil {
     }
 
     /**
+     * Returns a new Status without the latest StatusUpdate.
+     */
+    public static Status getPrevStatus(Status status) {
+        return status.newStatusWithRemoveLatest();
+    }
+
+    /**
      * Returns a CreatedDate from a given string.
      */
     public static CreatedDate getCreatedDate(String createdDate) {

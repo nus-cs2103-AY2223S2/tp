@@ -135,7 +135,7 @@ public class EditOrderCommandTest {
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex,
                 new EditOrderDescriptorBuilder().withName(VALID_NAME_B).build());
 
-        assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test

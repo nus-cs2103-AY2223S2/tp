@@ -9,6 +9,7 @@ import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_THIRD;
 
 import java.time.LocalDate;
 
@@ -36,15 +37,11 @@ public class RevertOrderStatusCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        LocalDate dateToday = LocalDate.now();
-        String formattedDate = dateToday.format(DATE_FORMATTER);
-        Order orderToRevert = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        RevertOrderStatusCommand revertOrderStatusCommand = new RevertOrderStatusCommand(INDEX_FIRST);
-
-        Order revertedOrder = new OrderBuilder(orderToRevert).withInitialStatus(formattedDate).build();
+        Order orderToRevert = model.getFilteredOrderList().get(INDEX_THIRD.getZeroBased());
+        RevertOrderStatusCommand revertOrderStatusCommand = new RevertOrderStatusCommand(INDEX_THIRD);
+        Order revertedOrder = new OrderBuilder(orderToRevert).withPrevStatus().build();
         String expectedMessage = String.format(revertOrderStatusCommand.MESSAGE_REVERT_STATUS_SUCCESS,
-                orderToRevert, orderToRevert.getStatus().getLatestStatus());
-
+                revertedOrder, revertedOrder.getStatus());
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setOrder(orderToRevert, revertedOrder);

@@ -106,6 +106,15 @@ public class OrderBuilder {
     }
 
     /**
+     * Sets the {@code Status} of the {@code Order} that we are building.
+     * Status will
+     */
+    public OrderBuilder withPrevStatus() {
+        this.status = SampleDataUtil.getPrevStatus(status);
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Order} that we are building.
      */
     public OrderBuilder withAddress(String address) {

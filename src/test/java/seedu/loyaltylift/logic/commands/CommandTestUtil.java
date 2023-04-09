@@ -118,7 +118,7 @@ public class CommandTestUtil {
                 .withQuantity(VALID_QUANTITY_A).build();
         DESC_ORDER_B = new EditOrderDescriptorBuilder().withName(VALID_NAME_B).withAddress(VALID_ADDRESS_B)
                 .withQuantity(VALID_QUANTITY_B).build();
-        DESC_ADD_ORDER_A = new AddOrderDescriptorBuilder().withName(VALID_NAME_A)
+        DESC_ADD_ORDER_A = new AddOrderDescriptorBuilder().withName(VALID_NAME_A).withQuantity(VALID_QUANTITY_A)
                 .withAddress(VALID_ADDRESS_A).build();
         DESC_ADD_ORDER_B = new AddOrderDescriptorBuilder().withName(VALID_NAME_B)
                 .withQuantity(VALID_QUANTITY_B).build();
