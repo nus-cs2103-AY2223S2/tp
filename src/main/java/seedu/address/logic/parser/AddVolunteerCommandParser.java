@@ -69,10 +69,10 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(FIELD_NOT_SPECIFIED));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(FIELD_NOT_SPECIFIED));
         Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).orElse(FIELD_NOT_SPECIFIED));
-        Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllValues(PREFIX_AVAILABILITY));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllEntries(PREFIX_AVAILABILITY));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllEntries(PREFIX_TAG));
         Set<MedicalQualificationTag> medicalTagList = ParserUtil
-                .parseMedicalTags(argMultimap.getAllValues(PREFIX_MEDICAL_TAG));
+                .parseMedicalTags(argMultimap.getAllEntries(PREFIX_MEDICAL_TAG));
 
         Volunteer volunteer = new Volunteer(name, phone, email, address, nric,
                 birthDate, region, tagList, medicalTagList, availableDates);

@@ -79,12 +79,12 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
             editDescriptor.setRegion(
                     ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get()));
         }
-        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_TAG), ParserUtil::parseTags)
+        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllEntries(PREFIX_TAG), ParserUtil::parseTags)
                 .ifPresent(editDescriptor::setTags);
-        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_AVAILABILITY),
+        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllEntries(PREFIX_AVAILABILITY),
                         ParserUtil::parseDateRanges)
                 .ifPresent(editDescriptor::setAvailableDates);
-        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_MEDICAL_TAG),
+        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllEntries(PREFIX_MEDICAL_TAG),
                         ParserUtil::parseMedicalTags)
                 .ifPresent(editDescriptor::setMedicalTags);
 

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 
 /**
@@ -29,7 +30,13 @@ public class PrefixUtil {
      * @return true if any of the values in the ArgumentMultimap contain an invalid prefix, false otherwise
      */
     public static boolean checkIfContainsInvalidPrefixes(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getAllValues().stream().parallel().anyMatch(arr -> arr.get(0).contains("/"));
+        return argumentMultimap.getAllEntries().stream().parallel().anyMatch(entry -> {
+            Prefix prefix = entry.getKey();
+            if (prefix == CliSyntax.PREFIX_ADDRESS) {
+                return false;
+            }
+            return entry.getValue().get(0).contains("/");
+        });
     }
 
     /**

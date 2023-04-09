@@ -237,13 +237,9 @@ public class CommandRecommendationEngine {
         String[] userInputArray = userArgs.split(" ");
         String currPrefixString = userInputArray[userInputArray.length - 1];
         boolean isCompletePrefix = isCommandPrefixComplete(userInputArray[userInputArray.length - 1], "/");
-        Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, isCompletePrefix
+        Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, isCompletePrefix && currPrefixString.length() > 1
                 ? currPrefixString.split("/")[0]
                 : currPrefixString);
-
-        if (isCompletePrefix && matchingPrefix == null) {
-            throw new RecommendationException("Invalid prefix.");
-        }
 
         if (!isCompletePrefix && matchingPrefix != null && userArgs.stripTrailing().length() == userArgs.length()) {
             argumentRecommendation.append(matchingPrefix.getPrefix().substring(currPrefixString.length()));
