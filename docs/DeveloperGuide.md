@@ -4,17 +4,18 @@ title: Developer Guide
 ---
 ## DEVELOPER GUIDE FOR WIFE
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
 
 WIFE is a food inventory management system that aims to aid busy users in managing food items in their fridge. With its
 inventory management system, users can easily edit their fridge's inventory and view it in a sleek and easy-to-read
-list. Users can also tag their food items according to their preferences. </br>
+list. Users can also tag their food items according to their preferences.
 
 This developer guide aims to provide detailed documentation for WIFE's design and implementation. This includes its
 architecture, design choices as well outlines for all features of the software. This project is released under the MIT
 license, making it open source and available for anyone to use and modify.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
@@ -456,7 +457,7 @@ The following UML diagram shows `Tag` and its associated class.
 
 #### Design considerations:
 
-**Aspect: How to store the tags for WIFE and each food item. **
+**Aspect: How to store the tags for WIFE and each `Food`.**
 
 * **Alternative 1 (current choice):** Store `Tag` in `UniqueTagList` and each `Food` stores its own set of associated
   `Tag` objects.
@@ -1102,7 +1103,7 @@ Expected Output in Food List: "Broccoli" Food has been removed from the Food Lis
 
 Expected Output in Result Display: Deleted Food: Broccoli (expires on: 03-03-2033)
 
-### Test to sort `Food` by expiry date
+#### Test to sort `Food` by expiry date
 
 `expiry`
 
@@ -1149,10 +1150,10 @@ Expected output in Result Display: Here are your existing tags: New Used Dairy M
 Prerequisite: Before testing this feature and the "Delete Foods by tag(s)" feature, please key in the following commands
 sequentially.
 
-`add n/Broccoli u/STALK q/2 e/03-03-2033`
-`createtag n/vegetables`
-`tag 1 n/milky`
-`tag 2 n/vegetables`
+`add n/Broccoli u/STALK q/2 e/03-03-2033` </br>
+`createtag n/vegetables` </br>
+`tag 1 n/milky` </br>
+`tag 2 n/vegetables` </br>
 </div>
 
 `listbytags n/vegetables`
@@ -1166,7 +1167,7 @@ Expected Output in Result Display: Listed all food with the following tags:
 
 <div markdown="block" class="alert alert-info">
 Prerequisite: Ensure you have entered the prerequisite commands mentioned in "List Foods by tag(s).
-THen, enter the `list` command to show all Food items first.
+Then, enter the `list` command to show all Food items first.
 </div>
 
 `delbytag n/vegetables`
