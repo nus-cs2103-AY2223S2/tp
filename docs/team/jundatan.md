@@ -56,15 +56,21 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `add` [\#62](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/62)
     * Added documentation for the features `addRoutine` and `editRoutine` [\#148](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/148)
-    * Fix and update visuals for UG
+    * Fix and update visuals for UG [\#193](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/193)
+    * Rearranging of commands for UG [\#193](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/193)
+    * Adding table for prefixes for `Features` [\#193](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/193)
+    * Add `Menu Items` subsection [\#193](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/193)
+    * Fix documentation bugs [\#193](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/193)
   * Developer Guide:
     * Added Use case for `add` [\#67](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/67)
     * Added Use case for `addRoutine` and `editRoutine` [\#117](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/117)
     * Added Implementation for `addRoutine` and `editRoutine` [\#134](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/134)
     * Update UML diagrams and descriptions for Storage and Model part of FitBook [\#145](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/145)
+    * Added Implementation for `add` and `edit` clients [\#206](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/206)
+    * Added Appendix for Challenges and future enhancements [\#206](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/206)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments):
+  * PRs reviewed (Not all are added:
   [\#165](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/165),
   [\#158](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/158),
   [\#156](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/156),
