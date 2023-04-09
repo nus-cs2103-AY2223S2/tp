@@ -371,9 +371,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User request to find a patient using her/his details.
-2. Medimate ask for the type of details.
-3. User chose the type of details.
+1. User request to find a patient using her/his name.
+2. Medimate search the patient.
 4. Medimate display the patient.
    
    Use case ends.
@@ -384,19 +383,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Medimate give correct format and ask user to input again.
     * 1a2. User enters the input with correct format.
       
-      Use Case ends.
+      Use Case resumes at stage 2.
 
 
-* 1b. Patient does not exist.
-    * 1b1. Medimate reminds user to check for patient name.
-    * 1b2. User enter the input with correct format. 
-   
-      Use Case ends.
+* 2a. Patient does not exist.
+    * 2a1. Medimate reminds user to check for patient name.
+    * 2a2. User enter the input with existing patient name in correct format. 
 
-
-*  3a. User chose Invalid type
-   * 3a1. Medimate give the available types and ask user to input again
-     Use Case ends.
+      Use Case resumes at stage 2.
 
 
 **Use case:  Add a patient**
@@ -509,10 +503,16 @@ Use case ends.
   Use case ends.
 
 * 1b. User enters the wrong input format (eg: doctor name/medical condition exceeds length, invalid duration...)
-    * 1a1. Medimate informs the user the use of incorrect format.
-    * 1a2. user inputs valid format.
+    * 1b1. Medimate informs the user the use of incorrect format.
+    * 1b2. user inputs valid format.
     
     Use case resumes at stage 2.
+
+* 1c. User request to generate a new MC without finishing previous MC generation.
+    * 1c1. Medimate informs the user can not do multiple MC generation at the same time.
+    * 1c2. user finishes previous MC generation with correct format successfully.
+
+    Use case ends.
 
 **Use case:  Display the detailed information of the patient**
 
