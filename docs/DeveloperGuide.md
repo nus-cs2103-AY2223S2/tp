@@ -32,9 +32,15 @@ Third-party software used in this project:
 * [JUnit](https://junit.org/)
 * [PlantUML](https://plantuml.com/)
 
+Images used:
+* Application icon from [PNGEgg](https://www.pngegg.com/en/png-ewtjs)
+* Contact icon for `view` command from [icons8](https://icons8.com/icon/104074/contact-us)
+* Details icon for `view` command from [icons8](https://icons8.com/icon/set/details/color)
+
 Formatting of Developer Guide is adapted from:
 * [AY22/23S1 CS2103T Team W16-2](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)
 * [AY22/23S1 CS2103T Team W16-3](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -479,6 +485,9 @@ output as per normal. However, if the object `T` is a `Role`, we can render a cu
 * Pros: Provides an easy and extendable way to create custom views
 * Cons: Need to refactor some UI code and `CommandResult.java` class
 
+(This idea was inspired from [FoodRem](https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu/foodrem/views/UiView.java)
+but the implementation is done by ourselves).
+
 ### UI Enhancement
 
 TechTrack's UI components are highlighted below:
@@ -529,6 +538,8 @@ this is shown below in the form of a class diagram:
 
 ![Enhanced UI Class Diagram](images/EnhancedUIClassDiagram.png)
 
+(This idea was inspired from [FoodRem](https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu/foodrem/views/UiView.java)
+but the implementation is done by ourselves).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -833,7 +844,7 @@ Expected Output in the Role List Box: First role is deleted from the list.
 
 2. Test case: `delete 0`<br>
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `edit` command is included.
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `delete` command is included.
 
 Expected Output in the Role List Box: No changes.
 
@@ -990,7 +1001,7 @@ Expected Output: TechTrack closes.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Planned enhancements for Feature Flaws**
+## **Appendix: Planned enhancements**
 
 The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as
 feature flaws, therefore the team will not be addressing these flaws for now.
@@ -1037,7 +1048,7 @@ class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Won't Fix / Out of Scope**
+## **Appendix: Won't Fix / Out of Scope**
 
 ### Issue #205 Sort Command not recognised
 
@@ -1049,25 +1060,43 @@ class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Effort**
+## **Appendix: Effort**
 
-### Morphing of AB3 to TechTrack
+### Refactoring
 
-Ideas:
+* Having to understand the large codebase of AB3.
 
-1. what attributes we added, why we need them
-2. what new functions we added
-3. refactoring we did
+* Revamping the `Person` model into the `Role` model to better suit the business logic of TechTrack, 
+while adding various fields like:
+  * `company` (refactored from `address`)
+  * `contact` (refactored from `phone`)
+  * `website`
+  * `deadline`
+  * `job description`
+  * `salary`
+  * `experience`
+
+### Implementation
+We added various new commands like:
+* Sorting:
+  * `salary`
+  * `deadline`
+* Filtering/finding/searching:
+  * `name` (refactored from `find`)
+  * `company`
+  * `tag`
 
 ### Revamping of UI
 
-1. aesthetic and arrangement of UI
-2. New UI functionalities
-3. Help window
+| Old UI                                                                       | New UI                                                          |  
+|------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| <img src="https://nus-cs2103-ay2223s2.github.io/tp/images/Ui.png" width=800> | <img src="./images/UICommandImages/ViewCommand0.png" width=800> |
+
+* Edited `HelpWindow` to include a list of all commands, and updated links to point to this user guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Glossary**
+## Appendix: **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Role**: Refers to internships or full-time jobs
