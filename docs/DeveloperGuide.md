@@ -42,6 +42,8 @@ title: Developer Guide
 9. [Acknowledgements](#10-acknowledgements)
 10. [Glossary](#11-glossary)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **About HMHero**
