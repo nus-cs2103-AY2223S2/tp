@@ -212,6 +212,12 @@ We chose to use two different commands as we expect to expand upon the find comm
 
 Finds an appointment from the appointment list given a time or timeslot and updates the displayed appointment list. If only one time is provided, appointments that occur during that time will be found. If two times are provided, all appointments that occur anytime during that time period will be found.
 
+![Interactions Inside the Logic Component for the `find_appt 19032023 08:30` Command](images/FindAppointmentSequenceDiagram.png)
+
+A more detailed view of the way the predicate is created is shown below.
+
+![Predicate creation for the `find_appt 19032023 08:30` Command](images/FindAppointmentPredicateSequenceDiagram.png)
+
 **Implementation**
 
 The find appointment command utilises a `Predicate<Appointment>` in order to filter `model`'s appointment list via `Model#updateFilteredAppointmentList(Predicate<Appointment>)`. The type of `Predicate` is determined during parsing, where a single date time in the command will use a `TimeInTimeslotPredicate`, while two date times in the command will result in a `AppointmentDuringTimePredicate` being used instead.

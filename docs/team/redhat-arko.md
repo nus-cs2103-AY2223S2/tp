@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=redHat-arko&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Enhancements implemented**: 
+* **Enhancements implemented**:
   * Add and edit patients
 
 * **Documentation**:
@@ -31,7 +31,7 @@ Given below are my contributions to the project.
       * Edit appointment (`edit_appt`)
       * Find appointment (`find_appt`)
       * Delete appointment (`delete_appt`)
-      
+
     * Developer Guide: Added documentation for the following commands:
       * Add notes to a patient (`remark_patient`)
 
