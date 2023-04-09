@@ -48,6 +48,8 @@ Given below are my contributions to the project.
 
 * **Project Management:**
   * Managed pull request reviews for `v1.3` - `v1.4` (2 milestones) on GitHub.
+  * Handled bug/smoke testing for `v1.3` - `v1.4`.
+  * Facilitated task assignment to be completed before milestone deadlines.
 
 * **Enhancements implemented:**
     * Added lower case allowance for `variant` names in `edit`, `add` and `find`.
@@ -86,9 +88,13 @@ Given below are my contributions to the project.
 
 * **Community:**
   * PRs reviewed (with non-trivial review comments):
-    * [#96](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/96)
-    * [#126](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/126)
-    * [#148](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/148)
-    * [#164](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/164)
-    * [#250](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/250)
-    * [#251](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/251)
+    * [#96](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/96),
+    [#126](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/126),
+    [#126](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/126),
+    [#148](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/148),
+    [#164](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/164),
+    [#250](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/250),
+    [#251](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/251),
+    [#258](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/258),
+    [#266](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/266),
+    [#272](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/272)
