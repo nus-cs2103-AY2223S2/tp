@@ -1,0 +1,15 @@
+@startuml AddKeywordActivityDiagram
+start
+if() then ([valid input])
+    :Create new keyword;
+    if() then ([existing keyword exists])
+        :Throw CommandExeception;
+    else ([else])
+        :Store keyword into KeywordManager;
+    endif;
+else ([else])
+    :Throw ParseException;
+endif;
+:Display message to user;
+stop
+@enduml

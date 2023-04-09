@@ -349,9 +349,6 @@ The `Keyword` component,
   * The custom' `<keyword>`
   * The main `<keyword>`:
     * `appointment` for `Appointment` class
-    * `basic`
-    * `exit`
-    * `help`
     * `patient` for `Patient` class
     * `vaccination` for `VaxType` class
 
@@ -365,7 +362,7 @@ The `KeywordManager` main responsibility is the storing of `Keyword` objects.
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="1100" />
 
 The `Storage` component is responsible for the reading and writing of the states of the different managers in `Model` to and from the hard disk. As shown in the diagram above, it inherits from `PatientManagerStorage`, `UserPrefsStorage`, `VaxTypeStorage`, `AppointmentStorage` and `KeywordStorage`. As such, it can be treated as either one (if only the functionality of only one is needed).
 
@@ -639,30 +636,59 @@ The activity diagram below summarises the action when the patient `ClearCommand`
 
 #### Adding a Keyword
 
+The **Keyword Adding** mechanism is facilitated by `VMS`. The Keyword created is stored inside `KeywordManager` object.
+
 ##### Execution Sequence
 
-<!-- TODO
+Given below is an example usage scenario when a user enters `keyword add --k patient --n p` as a command.
+
+1. The user enters the command in the `UI Component`.
+2. It will be passed to the `Logic component`.
+3. When `AddCommandParser` receives the information from `KeywordParser`, it will invoke the following methods for parsing.
+   1. `ParserUtil#parseMainKeyword` will be called to create a String object using `patient`.
+   2. `ParserUtil#parseKeyword` will be called to create a String object using `p`.
+4. After successfully parsing the args, `AddCommandParser` will create a Keyword using the new `patient` and `p`
+strings created.
+5. When `AddCommand#execute` is called, `model#addKeyword` will be called to add the new Keyword into the model.
+`AddCommand` will then return `CommandMessage` to indicate it's success.
+
+Note that `MainKeyword` and `Keyword` are required args, hence the user must include `--k` and `--n` in the command.
+
+The activity diagram below summarises the action when the keyword `AddCommand` is executed.
+
 <img src="images/keyword/AddKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/AddKeywordSequenceDiagram.png" width="550" />
--->
 
-#### Listing a Keyword
+Given below is a sequence diagram that illustrates the **Keyword Adding** parsing mechanism at every step.
+
+<img src="images/keyword/AddKeywordSequenceDiagram.png" />
+
+*Keyword parsing detail here:*
+
+<img src="images/keyword/AddKeywordParseActivityDiagram.png" />
+
+#### Deleting a Keyword
+
+The **Keyword Delete** mechanism is facilitated by `VMS`. It will delete specific Keyword objects from `KeywordManager`
+inside `VMS` object using the string provided.
+
 
 ##### Execution Sequence
 
-<!-- TODO
-<img src="images/keyword/ListKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/ListKeywordSequenceDiagram.png" width="550" />
--->
+Given below is an example usage scenario when a user enters `keyword delete p` as a command.
 
-#### Finding a Keyword
+1. The user enters the command in the `UI Component`.
+2. It will be passed to the `Logic component`.
+3. When `DeleteCommandParser` receives the information from `KeywordParser`, it will invoke the 
+`ParserUtil#parseDeleteKeyword` to parse the string `p` provided. It will throw a `ParseException` if there are no
+args present.
+4. After successfully parsing the arg, `DeleteCommandParser` will create a `DeleteCommand` with the parsed `p` string.
+5. When `DeleteCommand#execute` is called, `model#deleteKeyword` will be called to delete the specified Keyword from
+the model. `DeleteCommand` will then return `CommandMessage` to indicate it's success.
 
-##### Execution Sequence
+The activity diagram below summarises the action when the keyword `DeleteCommand` is executed.
 
-<!-- TODO
-<img src="images/keyword/FindKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/FindKeywordSequenceDiagram.png" width="550" />
--->
+<img src="images/keyword/DeleteKeywordActivityDiagram.png" width="550" />
+
 
 <!-- Below is given from AB3, commented out for ur own ref, our product does not have these features. -->
 <!-- ### \[Proposed\] Undo/redo feature
@@ -1249,6 +1275,57 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
+
+#### UC-KEY-001 - Add keyword
+
+##### MSS
+
+1. User enters command to add a keyword.
+2. VMS adds the keyword.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to add a keyword that overrides a main component keyword.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+* 1c. User requested to add a keyword with a main keyword that is not `patient`, 
+`appointment` or `vaccination`.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+#### UC-KEY-002 - Delete keyword
+
+##### MSS
+
+1. User requests to delete a specific keyword in the list.
+2. VMS deletes the keyword.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to delete a keyword that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1672,11 +1749,82 @@ appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 --v Dose 1 (Modern
 
 ![Invalid Add Appointment Existing](images%2Fappointment%2Fdg%2FAddAppointmentInvalidExisting.PNG)
 
+### Adding a keyword
+
+#### Prerequisites
+
+Before every test case, ensure that the keyword mapping of main keyword "patient" and keyword "pa" does not exist. This
+can be done by executing the following before every test case:
+
+`keyword delete pa`
+
+#### Test:
+
+`keyword add --k patient --n pa`
+
+##### Expected
+
+![Expected display](images/keyword/Keyword_Add.png)
+
+### Keyword attribute validation
+
+Before every test case, ensure that keyword mapping of main keyword "patient" and keyword "pa", main keyword 
+"appointment" and keyword "appo", and main keyword "vaccination" and keyword "vacci" does not exist. 
+This can be done by executing all of the following commands before every test case:
+
+`keyword delete pa`
+`keyword delete appo`
+`keyword delete vacci`
+
+#### Test: Keyword validation
+
+##### Valid Keyword
+
+* `keyword add --k patient --n pa`
+* `keyword add --k appointment --n appo`
+* `keyword add --k vaccination --n vacci`
+
+##### Invalid Keyword {#invalid-keyword-name}
+
+* `keyword add --k patient --n patient`
+* `keyword add --k vaccination --n appointment`
+* `keyword add --k appointment --n ap pt`
+
+#### Test: Main Keyword validation
+
+##### Valid Main Keyword
+
+* `keyword add --k patient --n pa`
+* `keyword add --k appointment --n appo`
+* `keyword add --k vaccination --n vacci`
+
+##### Invalid Main Keyword
+
+* `keyword add --k patientt --n pa`
+* `keyword add --k help --n appo`
+* `keyword add --k blank --n vacci`
+
 ## Appendix: Planned enhancements
 
 #### Less strict patient name check
 
-We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
+We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names. We also plan to limit the name to prevent UI elements from being overflowed.
+
+The following is an example of the problem:
+
+![Patient Name too long](images/patient/dg/patient_name_long.png)
+
+A proposed solution is to update the validation regex to something like `public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}\\-.,/@ ]*";`
+
+#### Phone number limit
+
+We plan to cap the max length of the phone number type so that the UI elements does not get overflowed.
+
+The following is an example of the problem:
+
+![Phone Number too long](images/patient/dg/phone_number_long.png)
+
+A proposed solution would be to limit the phone number to 32 character long.
 
 #### Decrease the warning severity message of invalid appointment data file
 
