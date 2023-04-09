@@ -8,7 +8,7 @@ skinparam groupInheritance 2
 Package TaskBookModel <<Rectangle>>{
 Class "<<interface>>\nReadOnlyTaskBook" as ReadOnlyTaskBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nTaskBookModel" as TaskBookModel
+Class "<<interface>>\nTaskBookModel" as taskBookModel
 Class TaskBook
 Class TaskBookModelManager
 Class UserPrefs
@@ -26,13 +26,13 @@ Class EventTask extends Task
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> TaskBookModel
+HiddenOutside ..> taskBookModel
 
 TaskBook .up.|> ReadOnlyTaskBook
 
-TaskBookModelManager .up.|> TaskBookModel
-TaskBookModel .right.> ReadOnlyUserPrefs
-TaskBookModel .left.> ReadOnlyTaskBook
+TaskBookModelManager .up.|> taskBookModel
+taskBookModel .right.> ReadOnlyUserPrefs
+taskBookModel .left.> ReadOnlyTaskBook
 TaskBookModelManager -left-> "1" TaskBook
 TaskBookModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
