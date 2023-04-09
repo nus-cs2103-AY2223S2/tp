@@ -3,20 +3,35 @@ layout: page
 title: Developer Guide
 ---
 
+# Overview
+
+Trackr is a desktop application catered towards home businesses to track their _suppliers_, _customers_, _orders_, _menu items_ and _tasks_. It is designed for users who are quick typers to accomplish their tasks through the _Command Line Interface (CLI)_ while reaping the benefits of a _Graphical User Interface (GUI)_.
+
+<div markdown="block" class="alert alert-tip">
+
+:bulb: **Tip**
+
+Texts that are in _italics_ are further explained in the [Glossary section](#glossary).
+
+</div>
+
+# About This Guide
+
+This guide is intended for developers who want to work on **Trackr** project, where the code base is available [here](https://github.com/AY2223S2-CS2103T-W15-2/tp).
+
+It explains the different components within the project and how they interact with each other.
+
 This is a guide for developers looking to contribute to the codebase. There are explanations as to how the project is setup and how each command works.
 
 You can click on the respective links below to read up on the relevant sections.
 
-## **Table of Contents**
+# Table of Contents
 
 <!-- TOC -->
-  * [**Table of Contents**](#table-of-contents)
 * [1 Introduction](#1-introduction)
-  * [1.1 Project Overview](#11-project-overview)
-  * [1.2 Intended Audience](#12-intended-audience)
-  * [1.3 Setting up, getting started](#13-setting-up-getting-started)
-  * [1.3 About Us](#13-about-us)
-  * [1.4 Acknowledgements](#14-acknowledgements)
+  * [1.1 Setting up, getting started](#11-setting-up-getting-started)
+  * [1.2 About Us](#12-about-us)
+  * [1.3 Acknowledgements](#13-acknowledgements)
 * [2 Design](#2-design)
   * [2.1 Architecture](#21-architecture)
     * [2.1.1 Main components of the architecture](#211-main-components-of-the-architecture)
@@ -60,33 +75,15 @@ You can click on the respective links below to read up on the relevant sections.
 
 # 1 Introduction
 
-## 1.1 Project Overview
-
-Trackr is a desktop application catered towards home businesses to track their _suppliers_, _customers_, _orders_, _menu items_ and _tasks_. It is designed for users who are quick typers to accomplish their tasks through the _Command Line Interface (CLI)_ while reaping the benefits of a _Graphical User Interface (GUI)_.
-
-<div markdown="block" class="alert alert-tip">
-
-:bulb: **Tip:**
-
-Texts that are in _italics_ are further explained in the [Glossary section](#glossary).
-
-</div>
-
-## 1.2 Intended Audience
-
-This guide is intended for developers who want to work on **Trackr** project, where the code base is available [here](https://github.com/AY2223S2-CS2103T-W15-2/tp).
-
-It explains the different components within the project and how they interact with each other.
-
-## 1.3 Setting up, getting started
+## 1.1 Setting up, getting started
 
 Refer to the guide [here](SettingUp.md) on how to set up your own version of our project.
 
-## 1.3 About Us
+## 1.2 About Us
 
 For more information about our team, you can refer to this webpage [here](AboutUs.md).
 
-## 1.4 Acknowledgements
+## 1.3 Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.<br><br>
@@ -99,7 +96,7 @@ This section will show our design methodology on the different components and ho
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip**
 
 The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder.
 
@@ -255,7 +252,7 @@ Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`
 This is the class representation for the `Supplier` and `Customer` class.
 
 <p align="center">
-  <img src="images/PersonClassDiagram.svg" width="500" />
+  <img src="images/PersonClassDiagram.svg" width="520" />
   <br>Figure 10: Person Class Diagram
 </p>
 
@@ -270,7 +267,7 @@ Here is how `Supplier` and `Customer` works:
 This is the class representation for the `Task` class.
 
 <p align="center">
-  <img src="images/TaskClassDiagram.svg" width="450" />
+  <img src="images/TaskClassDiagram.svg" width="500" />
   <br>Figure 11: Task Class Diagram
 </p>
 
@@ -314,7 +311,7 @@ Here is how `Menu` works:
 This is the class representation for the `Order` class.
 
 <p align ="center">
-  <img src="images/OrderClassDiagram.svg" width="550" />
+  <img src="images/OrderClassDiagram.svg" width="570" />
   <br>Figure 13: Order Class Diagram
 </p>
 
