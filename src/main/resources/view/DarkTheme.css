@@ -132,6 +132,12 @@
     -fx-text-fill: #010504;
 }
 
+.view_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 23px;
+    -fx-text-fill: #ffffff;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
@@ -140,6 +146,12 @@
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
+}
+
+.scroll-pane {
+    -fx-background: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
 }
 
 .status-bar {
@@ -337,16 +349,161 @@
     -fx-background-radius: 0;
 }
 
-#tags {
+#parcels {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#tags .label {
+#parcels .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#parcels .label.isFragileAndBulky {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to right, red 50%, darkblue 50%);
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#parcels .label.isFragile {
+    -fx-text-fill: white;
+    -fx-background-color: red;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#parcels .label.isBulky {
+    -fx-text-fill: white;
+    -fx-background-color: darkblue;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#parcelsToView {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#parcelsToView .label {
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 23;
+}
+
+#parcelsToView .label.isFragileAndBulky {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to right, red 50%, darkblue 50%);
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 23;
+}
+
+#parcelsToView .label.isFragile {
+    -fx-text-fill: white;
+    -fx-background-color: red;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 23;
+}
+
+#parcelsToView .label.isBulky {
+    -fx-text-fill: white;
+    -fx-background-color: darkblue;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 23;
+}
+
+#deliveryStatus {
+    -fx-text-fill: white;
+    -fx-padding: 6 4 8 4;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 12;
+    -fx-background-insets: 4 0 6 0;
+}
+
+#deliveryStatusToView {
+    -fx-text-fill: white;
+    -fx-padding: 6 4 8 4;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 23;
+    -fx-background-insets: 4 0 6 0;
+}
+
+#deliveryStatus.OTW {
+    -fx-background-color: orange;
+}
+
+#deliveryStatus.PENDING {
+    -fx-background-color: cornflowerblue;
+}
+
+#deliveryStatus.DONE {
+    -fx-background-color: green;
+}
+
+#deliveryStatus.FAILED {
+    -fx-background-color: darkred;
+}
+
+#deliveryStatus.RETURN {
+    -fx-background-color: purple;
+}
+
+#deliveryStatusToView.OTW {
+    -fx-background-color: orange;
+}
+
+#deliveryStatusToView.PENDING {
+    -fx-background-color: cornflowerblue;
+}
+
+#deliveryStatusToView.DONE {
+    -fx-background-color: green;
+}
+
+#deliveryStatusToView.FAILED {
+    -fx-background-color: darkred;
+}
+
+#deliveryStatusToView.RETURN {
+    -fx-background-color: purple;
+}
+
+#noOfDeliveryAttempts {
+    -fx-text-fill: white;
+    -fx-padding: 6 4 8 4;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 12;
+    -fx-background-insets: 4 0 6 0;
+    -fx-background-color: grey;
+}
+#noOfDeliveryAttemptsToView {
+    -fx-text-fill: white;
+    -fx-padding: 6 4 8 4;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 23;
+    -fx-background-insets: 4 0 6 0;
+    -fx-background-color: grey;
 }

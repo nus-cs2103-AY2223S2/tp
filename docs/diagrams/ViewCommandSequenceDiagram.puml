@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant ":ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as AddressBook MODEL_COLOR
+end box
+
+AddressBookParser -> ViewCommandParser : parseCommand("view 1")
+activate AddressBookParser
+activate ViewCommandParser
+create ViewCommand
+ViewCommandParser -> ViewCommand : ViewCommand(index)
+activate ViewCommand
+ViewCommand --> ViewCommandParser
+deactivate ViewCommand
+ViewCommandParser --> AddressBookParser
+deactivate ViewCommandParser
+
+AddressBookParser -> ViewCommand : execute()
+activate ViewCommand
+ViewCommand -> AddressBook : getFilteredPersonList()
+activate AddressBook
+AddressBook --> ViewCommand : lastShownList
+deactivate AddressBook
+
+create CommandResult
+ViewCommand -> CommandResult : CommandResult(MESSAGE_SUCCESS, true, deliveryToView, id)
+activate CommandResult
+CommandResult --> ViewCommand
+deactivate CommandResult
+ViewCommand --> AddressBookParser
+deactivate ViewCommand
+deactivate AddressBookParser
+@enduml

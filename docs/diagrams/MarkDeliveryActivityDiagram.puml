@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+:Check command syntax is valid;
+if () is (yes) then
+    :Get the address book list;
+    :Get the person at index;
+    :Create a copy of the person with the new delivery status;
+    :Replace the person at index with new copy;
+else (no)
+    :Show user the correct syntax;
+endif
+
+stop
+
+@enduml

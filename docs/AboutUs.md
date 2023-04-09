@@ -5,55 +5,44 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Melvin Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mehvin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/mehvin)]
+[[portfolio](team/mehvin.md)]
 
-* Role: Project Advisor
+* Role: Project Advisor & Developer
+* Responsibilities: Documentation + Code quality
 
-### Jane Doe
+### Muhammad Shazrin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shazxrin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/shazxrin)]
+[[portfolio](team/shazxrin.md)]
 
-* Role: Team Lead
+* Role: Developer
+* Responsibilities: Code quality + Testing
+
+### Oskar Lew
+
+<img src="images/skeltons.png" width="200px">
+
+[[github](http://github.com/skeltons)] 
+[[portfolio](team/skeltons.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Joshua Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joshua-tyh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/joshua-tyh)]
+[[portfolio](team/joshua-tyh.md)]
 
 * Role: Developer
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI

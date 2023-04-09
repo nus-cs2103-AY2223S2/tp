@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
+participant ":MarkCommand" as MarkCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as AddressBook MODEL_COLOR
+participant "updatedPersonToMark:Person" as Person MODEL_COLOR
+end box
+
+AddressBookParser -> MarkCommandParser : parseCommand("2 s/otw")
+activate AddressBookParser
+activate MarkCommandParser
+create MarkCommand
+MarkCommandParser -> MarkCommand : MarkCommand(targetIndex, newDeliveryStatus)
+activate MarkCommand
+MarkCommand --> MarkCommandParser
+deactivate MarkCommand
+AddressBookParser <-- MarkCommandParser
+deactivate MarkCommandParser
+
+AddressBookParser -> MarkCommand : execute()
+activate MarkCommand
+MarkCommand -> AddressBook : getFilteredPersonList()
+activate AddressBook
+AddressBook --> MarkCommand : lastShownList
+deactivate AddressBook
+create Person
+MarkCommand -> Person : Person.withDeliveryStatus(personToMark, newDeliveryStatus)
+activate Person
+Person --> MarkCommand
+deactivate Person
+MarkCommand -> AddressBook : setPerson(personToMark, updatedPersonToMark)
+activate AddressBook
+AddressBook --> MarkCommand
+deactivate AddressBook
+AddressBookParser<-- MarkCommand : commandResult
+deactivate MarkCommand
+deactivate AddressBookParser
+
+@enduml

@@ -9,6 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+* This project is based on the [AddressBook-Level3 project](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org/). 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W16-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +70,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +87,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +115,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +136,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -146,7 +147,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `bookopedia.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,90 +155,161 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Mark delivery feature
 
-#### Proposed Implementation
+#### Implementation details
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The mark delivery feature is supported by `DeliveryStatus` enumerable that represents the possible delivery statuses:
+- DONE (delivery that has been completed)
+- OTW (delivery that is in progress)
+- FAILED (delivery that failed to deliver)
+- PENDING (delivery that is still pending)
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+A new command argument prefix, `s/`, is assigned to capture delivery status argument. The argument has to be either lowercase or uppercase of the aforementioned statuses.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The `Person` class will have an attribute `deliveryStatus` of type `DeliveryStatus` to indicate the status of the delivery.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The `MarkCommand` will update the delivery status of the target `Person` with the aforementioned statuses. Before `MarkCommand` is created, `MarkCommandParser` checks if the command arguments are of the correct format. The command requires both the index and the status. `MarkCommand` will then be executed: it will first get the current address book list, get the target person at the index, create a copy of the person with the new status, and then replacing the target person with its new copy.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The following activity diagram summarizes what happens when a user executes the mark delivery command.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![Mark Delivery Activity Diagram](images/MarkDeliveryActivityDiagram.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The following sequence diagram shows the interaction between the objects when a user executes the mark delivery command.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![Mark Delivery Sequence Diagram](images/MarkDeliverySequenceDiagram.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+#### Design Considerations
 
-![UndoRedoState2](images/UndoRedoState2.png)
+- **Alternative 1**:
+  - Add `DeliveryStatus` as `Parcel`'s attribute
+    - May be too complicated for user's understanding, hence kept it simple 
+    - Delivery rider delivers all parcels at one go for a recipient
+- **Alternative 2** _(implemented)_:
+  - Add `DeliveryStatus` as `Person`'s attribute
+    - Mark all parcels under a person as delivered in one go
+    - Simple for the user to understand and easy to implement for the developer
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+### Add Parcel to Delivery feature
 
-</div>
+#### Implementation Details
+The adding of a parcel uses a new command argument prefix, `pc/`, to capture the parcel's name.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+The `AddParcelCommand` will add in a new `Parcel` to the target `Person` indicated by the given user index.
+Before `AddParcelCommand` is created, `AddParcelCommandParser` checks if the command arguments are of the correct format, `AddParcelCommand` requires the person index and the parcel.
+`AddParcelCommand` will then be executed: it will first retrieve the current address book list, get the target person at the given index, create a copy of the person with the newly added parcel, and then replacing the target person with its new copy.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The following activity diagram summarizes what happens when a user tries to add a parcel to an existing delivery.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<img src="images/AddParcelActivityDiagram.png"/>
 
-</div>
+The following sequence diagram shows the interaction between the objects when a user executes the add parcel command - `add_pc 1 pc/lazada`.
 
-The following sequence diagram shows how the undo operation works:
+<img src="images/AddParcelSequenceDiagram.png"/>
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+#### Design Considerations
+**Aspect: Number of parcel(s) to be added in each command**
+* **Alternative 1 (current choice):** 1 parcel at a time
+    * Pros: Easy to implement, less prone to errors
+    * Cons: A little more troublesome for users to repeatedly type `add_pc` each time
+* **Alternative 2:** Allowing multiple parcels to be added at a time
+    * Pros: Seems more convenient for user as command line `add_pc` will not need to be repeated
+    * Cons: More prone to user errors
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+### Mark Parcel feature
+#### Implementation Details
+The mark parcel feature is supported by `ParcelStatus` enumerable that represents the possible parcel statuses:
+- FRAGILE (parcel that needs to be handled with care)
+- BULKY (parcel that needs to be handled with extra assistance e.g. trolley)
+- _More types of statuses can be added in the future_
 
-</div>
+The command argument prefix, `pc/` is now used to capture the parcel's index of the target person.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Additionally, `s/`,  is used to capture the parcel status argument.
+The argument can either be lowercase or uppercase of the aforementioned statuses.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+The `Parcel` class will have variables `isFragile` and `isBulky`  to indicate the status of the parcel, as a parcel can take up any number of statuses (>= 0).
 
-</div>
+The `MarkParcelCommand` will update the statuses of the target `Parcel` of the target `Person` with the aforementioned statuses. 
+Before `MarkParcelCommand` is created, `MarkParcelCommandParser` checks if the command arguments are of the correct format, `MarkParcelCommand` requires the person index, parcel index and the status.
+`MarkParcelCommand` will then be executed: it will first retrieve the current address book list, get the target parcel of the target person, create a copy of the person with the new updated parcel, and then replacing the target person with its new copy.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+The following activity diagram summarizes what happens when a user tries to mark a parcel.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<img src="images/MarkParcelActivityDiagram.png"/>
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+The following sequence diagram shows the interaction between the objects when a user executes the mark parcel command - `mark_pc 1 pc/1 s/fragile`.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<img src="images/MarkParcelSequenceDiagram.png"/>
 
-The following activity diagram summarizes what happens when a user executes a new command:
+#### Design Considerations
+**Aspect: Method to choose which parcel to be marked**
+* **Alternative 1:** Name of parcel
+    * Pros: Easier to implement as parcel can be immediately found based off name
+    * Cons: More prone to user errors
+* **Alternative 2 (current choice):** Index of parcel
+    * Pros: Less prone to user errors, as the full name of parcel do not have to be typed out
+    * Cons: Harder to implement as will have to keep track of parcel list for each person
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+**Aspect: Number of statuses a parcel can have**
+* **Alternative 1: Each parcel only have one status** 
+    * Pros: Easier to implement with the use of `ParcelStatus` enumerable only
+    * Cons: In reality, a parcel can have more than one status (e.g. a parcel can be both bulky and fragile at the same time)
+* **Alternative 2 (current choice): Each parcel only have any number of statuses** 
+    * Pros: A parcel can now have more than one status
+    * Cons: Harder to implement as just using the `ParcelStatus` enumerable won't suffice
 
-#### Design considerations:
 
-**Aspect: How undo & redo executes:**
+### View Delivery feature
+#### Implementation Details
+The feature is implemented by making use of the `Index` class to select a recipient of choice from the list of person that is part of the `Model` component.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+The `ViewCommand` will display all the delivery details (i.e. parcels, address, contact information, etc.) of the selected recipient under the `CommandResult` class.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+The following partial sequence diagram will show how the view delivery feature is implemented
 
-_{more aspects and alternatives to be added}_
+<img src="images/ViewCommandSequenceDiagram.png">
 
-### \[Proposed\] Data archiving
+#### Design Considerations
+**Aspect: The method to select recipient**
+* **Alternative 1 (current choice):** Use the `Index` class to select recipient from the list
+    * Pros: Easy to implement, `Index` for each person is unique
+    * Cons: Have to execute `ListCommand` to obtain `Index` of recipient of interest
+* **Alternative 2:** Use the name of the recipient to select
+    * Pros: Physical parcels have the names of recipient on it, making it easy to locate the delivery details of said person
+    * Cons: Names may not be unique, it is possible to obtain the wrong delivery details
 
-_{Explain here how the data archiving feature will be implemented}_
+### Sort feature
+#### Implementation Details
+The sort feature has been implemented to enable users to organize and arrange the delivery list ordered by `Delivery Status`.
 
+The `SortCommand` invokes a sorting on the current list of deliveries and subsequently displays the newly sorted list. 
+
+The following partial sequence diagram will show how the view delivery feature is implemented
+
+<img src="images/SortCommandSequenceDiagram.png">
+
+The implementation of the sort feature involves the following steps:
+1. **Identify the data:**
+   * The data to be sorted is the list of persons that is part of the `Model` component.
+2. **Sorting criteria:**
+   * The list is sorted according to the Delivery Status of each entry in ascending order.
+   * Ordering: `PENDING` < `OTW` < `DONE` < `FAILED`
+   * Entries with the same Delivery Status are sorted in ascending alphabetical order of name.
+3. **Invoke sort:**
+   * The list being stored in the `Model` component is sorted and replaces the previous list.
+4. **Displaying the sorted data:**
+   * As the sort command automatically replaces the previous list with the newly sorted list,
+   the address book being shown to the User is always updated.
+
+#### Design Considerations
+**Aspect: How to specify sorting criteria**
+* **Alternative 1 (current choice):** Predefines the sorting criteria to Delivery Status
+    * Pros: Easy to implement, there is already a defined ordering for Delivery Status
+    * Cons: Limits functionality of the sort command
+* **Alternative 2:** User specifies sorting criteria when typing the command
+    * Pros: Gives the user higher functionality by allowing the user to sort the list of deliveries in various orderings.
+    * Cons: Parsing the user specified sorting criteria is difficult to implement and unnecessarily complicates the logic.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,71 +329,233 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* has a need to manage a significant number of deliveries 
+* requires the ability to track, monitor and update the status of deliveries
+* shows a preference for desktop applications
+* has proficient typing skills
+* prefers typing to mouse-based interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: optimize delivery management through an application that utilizes CLI commands,
+providing a more efficient alternative to conventional mouse-driven GUI applications.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                              | I want to …​                                                       | So that I can…​                                                                    |
+|----------|--------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| `* * *`  | parcel delivery rider (basic)        | view all my deliveries                                             | I can view my future deliveries as well                                            |
+| `* * *`  | parcel delivery rider (basic)        | view a specific delivery                                           | I can view the details of the delivery                                             |
+| `* * *`  | parcel delivery rider (basic)        | delete a delivery                                                  | I can delete the delivery if I input it wrongly                                    |
+| `* * *`  | parcel delivery rider (basic)        | add deliveries                                                     | I can add new delivery jobs                                                        |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery in progress                                        | I can keep track of which deliveries is in progress                                |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery as done                                            | I can keep track of which deliveries are done                                      |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery as failed                                          | I can keep track of which deliveries have failed to be delivered                   |
+| `* * *`  | parcel delivery rider (basic)        | check what specific parcel I need to deliver to a specific address | I will delivery the correct parcel to the correct customers                        |
+| `* * `   | parcel delivery rider (basic)        | add parcels to existing deliveries                                 | I do not have to recreate a delivery                                               |
+| `* * `   | parcel delivery rider (basic)        | see the phone number of the customer                               | I can contact the customer if there is no response at the address                  |
+| `* * `   | parcel delivery rider (basic)        | view the number of failed attempts                                 | I know which deliveries have multiple failed attempts                              |
+| `* * `   | parcel delivery rider (intermediate) | see the weight of the parcels                                      | I can carry the appropriate amount of parcels                                      |
+| `* * `   | parcel delivery rider (intermediate) | mark parcels as fragile                                            | I can be more careful for fragile parcels                                          |
+| `* * `   | parcel delivery rider (intermediate) | mark parcels as bulky                                              | I can prepare trolleys to move parcels                                             |
+| `* * `   | parcel delivery rider (expert)       | sort my deliveries by priority                                     | I know which deliveries I have to deliver first                                    |
+| `* * `   | parcel delivery rider (expert)       | get and store customer's signature                                 | I can assure that the delivery has been successfully received by intended customer |
+| `* * `   | parcel delivery rider (expert)       | take a picture and upload it to each delivery                      | I can verify that the delivery is completed                                        |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Bookopedia` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
 
-**MSS**
+**Use case: UC1 - Add Delivery**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Guarantees:** New delivery is added
+
+**MSS:**
+1. User requests to add delivery along with the relevant details of delivery name and address
+2. System adds the delivery
+
+    Use case ends
+
+**Extensions:**
+* 1a. User inputs invalid details/address.
+
+    * 1a1. System shows error message.
+
+        Use case resumes at step 1.
+
+**Use Case: UC2 - View Delivery**
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User picks one delivery to view its remaining details
+4. System shows the remaining details of the chosen delivery
+    
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
 
     Use case ends.
+* 3a. The chosen delivery is invalid.
 
-**Extensions**
+    * 3a1. System shows error message.
+    
+      Use case resumes at step 3.
 
-* 2a. The list is empty.
+**Use Case: UC3 - Mark Delivery**
+
+**Guarantees:** Delivery is marked with the user given status
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User request to mark a chosen delivery with the relevant status (i.e. In Progress, Done, Failed)
+4. System marks the delivery with user given status
+
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+    
+    Use case ends.
+* 3a. User inputs invalid delivery status.
+    * 3a1. System shows error message and list the valid statuses.
+        
+        Use case resumes at step 3.
+* 3b. User chose an invalid delivery.
+    * 3b1. System shows error message
+
+        Use case resumes at step 3.
+
+**Use Case: UC4 - Delete Delivery**
+
+**Preconditions:** At least one delivery is currently stored in Bookopedia
+
+**Guarantees:** Removal of a specified delivery
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User choose a delivery to delete
+4. System deletes chosen delivery
+
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
 
   Use case ends.
+* 3a. User chose an invalid delivery.
+    * 3a1. System shows error message
 
-* 3a. The given index is invalid.
+        Use case resumes at step 3.
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: UC5 - List All Deliveries**
 
-      Use case resumes at step 2.
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
 
-*{More to be added}*
+    Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+
+    Use case ends
+
+**Use Case: UC6 - Add Parcel to Delivery**
+
+**Preconditions:** At least one delivery is currently stored in Bookopedia
+
+**Guarantees:** New parcel will be added to existing delivery
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User choose a delivery to add parcel with parcel name
+4. System adds parcel to existing chosen delivery
+
+   Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+
+  Use case ends
+
+**Use Case: UC7 - Sort Deliveries**
+
+**Guarantees:** Delivery List will be sorted according to Delivery Status of each entry in ascending order.
+
+**MSS:**
+1. User request to sort list
+2. System sorts list
+3. System displays sorted list
+
+    Use Case ends
+
+**Use Case: UC8 - Mark Parcel**
+
+**Guarantees:** A parcel is marked with the user given status
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User request to mark a chosen parcel from an existing delivery with the relevant status (i.e. Fragile, Bulky)
+4. System marks the parcel with user given status
+
+   Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+
+  Use case ends.
+* 3a. User inputs invalid parcel status.
+    * 3a1. System shows error message and list the valid statuses.
+
+      Use case resumes at step 3.
+* 3b. User chose an invalid delivery.
+    * 3b1. System shows error message
+
+      Use case resumes at step 3.
+* 3c. User chose an invalid parcel.
+    * 3c1. System shows error message
+
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Bookopedia should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Bookopedia should be able to hold up to 50 deliveries without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Bookopedia should work without requiring an installer.
+5. Bookopedia should not depend on your own remote server.
+6. Bookopedia should be packaged into a single _JAR_ file
+7. The file size of the _JAR_ file should be reasonable and not exceed the limit of 100MB.
+8. The _GUI_ should work well and usable under HD screens (1920x1080) at 100% scale.
+9. A _DBMS_ should not be used to store data.
+10. The data should be stored locally and should be in a human editable text file.
+11. Bookopedia should be for a single user i.e. (not a multi-user product).
+12. Bookopedia should respond to commands within 5s.
 
-*{More to be added}*
+
+### Planned Enhancement
+1. Upgrade the View Display into a ScrollPane to accommodate more parcels being added.
+2. Wrapping the text in View Display to allow for more extreme inputs.
+3. Ability to remove individual parcel from a delivery.
+4. Ability to edit individual parcel from a delivery.
+5. Ability to unmark a parcel status.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MSS**: Main Success Scenario
+* **JAR**: Java ARchive
+* **GUI**: Graphical User Interface
+* **DBMS**: Database Management System
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,13 +568,15 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+Refer to the [user guide](https://ay2223s2-cs2103-w16-1.github.io/tp/UserGuide.html#features) for more features to test.
+
 ### Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample deliveries. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -349,29 +585,44 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutdown
+   1. Use the `exit` command to shutdown Bookopedia.
 
-### Deleting a person
+### Adding a delivery
+1. Adding a new delivery
 
-1. Deleting a person while all persons are being shown
+   Test case: `add n/tester a/address`<br>
+      Expected: Delivery is added to the list. Details of the newly added delivery shown in the status message.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+2. Adding an existing delivery (continuing from previous test case)
 
+   Test case: `add n/tester a/address`<br>
+      Expected: No delivery is added. Error details shown in the status message.
+
+3. Adding another new delivery (continuing from previous test cases)
+
+   Test case: `add n/tester a/newaddress`<br>
+      Expected: Delivery is added to the list. Details of the newly added delivery shown in the status message.
+
+### Deleting a delivery
+Deleting a delivery while all deliveries are being shown
+   1. Prerequisites: List all deliveries using the `list` command. At least one delivery in the list.
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
+      Expected: First delivery is deleted from the list. Details of the deleted delivery shown in the status message.
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
+      Expected: No delivery is deleted. Error details shown in the status message.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+      Expected: No delivery is deleted. Error details shown in the status message.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+Dealing with corrupted data file
+1. In the data folder, corrupt the data file `bookopedia.json` by either adding in some random text or removing a chunk of the file
+2. Launch Bookopedia as usual<br>
+   Expected: Bookopedia will still run normally but **without any data**
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+Dealing with missing data file
+1. Delete data file `bookopedia.json` found in the data folder
+2. Launch Bookopedia as usual<br>
+   Expected: Bookopedia will still run normally but with some **sample data**
+   
