@@ -27,7 +27,7 @@ public class UndoCommandTest {
     private Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalScheduler(), new UserPrefs());
     @Test
-    public void execute_undoAddCommand_successful() throws CommandException {
+    public void execute_undoAddCommand_success() throws CommandException {
         Event validEvent = new EventBuilder().build();
         Command prevCommand = new AddCommand(validEvent);
         model.addEvent(validEvent);
@@ -37,7 +37,7 @@ public class UndoCommandTest {
                 prevCommand.commandWord()), expectedModel);
     }
     @Test
-    public void execute_undoEditCommand_successful() {
+    public void execute_undoEditCommand_success() {
         List<Event> lastShownList = model.getFilteredEventList();
         Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
         Command editCommand = new EditCommand(targetIndex, new EditEventDescriptor());
@@ -56,7 +56,7 @@ public class UndoCommandTest {
                 editCommand.commandWord()), expectedModel);
     }
     @Test
-    public void execute_undoDeleteCommand_successful() throws CommandException {
+    public void execute_undoDeleteCommand_success() throws CommandException {
         List<Event> lastShownList = model.getFilteredEventList();
         Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
         List<Index> targetIndexes = new ArrayList<>();
@@ -71,7 +71,7 @@ public class UndoCommandTest {
                 expectedModel);
     }
     @Test
-    public void execute_undoMultipleDeletedEvents_successful() {
+    public void execute_undoMultipleDeletedEvents_success() {
         List<Event> lastShownList = model.getFilteredEventList();
         List<Index> targetIndexes = new ArrayList<>(Arrays.asList(Index.initIndex(0), Index.initIndex(1)));
         for (Index index: targetIndexes) {
@@ -86,7 +86,7 @@ public class UndoCommandTest {
                 expectedModel);
     }
     @Test
-    public void execute_undoRecurCommand_successful() throws CommandException {
+    public void execute_undoRecurCommand_success() throws CommandException {
         List<Event> lastShownList = model.getFilteredEventList();
         Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
         Date endDate = new Date("2023-05-30");
@@ -125,7 +125,7 @@ public class UndoCommandTest {
         assertThrows(CommandException.class, UndoCommand.MESSAGE_UNDO_ERROR, () -> new UndoCommand().execute(model));
     }
     @Test
-    public void execute_undoCommandAfterInvalidCommands_successful() {
+    public void execute_undoCommandAfterInvalidCommands_success() {
         Event validEvent = new EventBuilder().build();
         Command prevCommand = new AddCommand(validEvent);
         model.addEvent(validEvent);
