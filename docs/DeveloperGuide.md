@@ -534,7 +534,7 @@ This may cause inconvenience to users as we anticipate that event names may incl
 special characters such as brackets, colons, and dashes.
 
 We plan to increase the number of characters supported in event names. 
-However, certain characters such as '/' and '' will not be supported as they may potentially cause conflicts
+However, certain characters such as `/` and `\` will not be supported as they may potentially cause conflicts
 
 ### **Appendix C: Instructions for Manual Testing**
 
