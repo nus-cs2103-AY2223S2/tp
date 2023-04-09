@@ -1,7 +1,5 @@
 package arb.logic.commands.project;
 
-import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
-import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
@@ -30,7 +28,6 @@ public class ListProjectCommand extends Command {
         requireNonNull(model);
         model.resetFilteredAndSortedProjectList();
         String formattedMessage = getMessageProjectsContent(model);
-
         return new CommandResult(MESSAGE_SUCCESS + "\n" + formattedMessage, ListType.PROJECT);
     }
 
