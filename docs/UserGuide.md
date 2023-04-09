@@ -52,7 +52,7 @@ Here is a short overview of the features and capabilities of **CookHub**:
 
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <p align="center" width="100%">
-    <img src="images/UiInWindows.png" width="100%">
+    <img src="images/UiInWindows.png" width=500 height=400>
    </p>
 
     Learn more about CookHub's GUI [here](#understanding-the-graphical-user-interface-gui).
