@@ -60,5 +60,3 @@ destroy EditCommand
 <-- LogicManager
 deactivate LogicManager
 @enduml
-
-@enduml
