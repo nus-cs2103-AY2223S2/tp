@@ -392,23 +392,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Student requests to add person. 
-2. Student enter the required details and submits.
+2. Student enters the contact details and submits.
 3. ModCheck creates a new person.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Person already exists in ModCheck
+* 2a. Person already exists in ModCheck.
     * 2a1. ModCheck shows an error message.
-    Use case continues at step 2.
-* 2b. Input does not follow the required format
+        Use case continues at step 2.
+* 2b. Contact details is missing the field NAME.
     * 2b1. ModCheck shows an error message.
-    Use case continues at step 2.
-* 2c. Input consists of missing details
+        Use case continues at step 2.
+* 2c. Contact details given is incorrect
     * 2c1. ModCheck shows an error message.
-* 2d. Input contains incorrect details
-    * 2d1. ModCheck shows an error message.
+        Use case continues at step 2.
 
 #### Use case: Delete a single person by Index
 
@@ -630,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Student requests to change to light or dark mode based on their preferences
+1. Student requests to change to light or dark mode
 2. ModCheck displays the selected outcome
 
     Use case ends.
