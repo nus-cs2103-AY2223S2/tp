@@ -109,11 +109,13 @@ ________________________________________________________________________________
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter, which isn't a FieldGroup, is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `mt/CS1231S mt/CS2040S`, all will be taken unlike the previous example.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
 
 </div>
 
@@ -174,6 +176,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
 
+**To Note**
+
+* If said contact identifies himself as non-binary, you can save his `Gender` as `nonbinary`.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -248,6 +253,7 @@ _Here are some important requirements for you to take note:_
   * `INDEX` must be a **positive integer** (must be greater than 0).
 * All the fields are optional. However, at least one field must be provided.
 
+
 For the following fields, they are considered a `FieldGroup`.
 * Modules
 * Tags
@@ -283,6 +289,10 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+**To Note**
+
+* If said contact identifies himself as non-binary, you can save his `Gender` as `nonbinary`.
 
 [Back To Contents](#table-of-contents)
 
@@ -482,8 +492,10 @@ _Here are some important requirements for you to take note:_
     * `START DATE & START TIME` must be before `END DATE & END TIME`
     *  If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
     *  If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
+    *  `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
+        e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead.
 * `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
-    *  Event will be automatically added as a `One Time Event`. 
+    *  Event will be automatically added as a `One Time Event`.
 
 _Examples:_
 * `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` will add a Weekly Recurring Event of CS2103T Lecture that occurs from 1600 to 1800, starting on 2023-03-30.
@@ -537,7 +549,9 @@ _Here are some important requirements for you to take note:_
     * `INDEX` must be a **positive integer** (must be greater than 0).
 *  If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
 *  If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
-*  At least one field must be provided.
+*  `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
+    e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead. 
+* At least one field must be provided.
 
 | Prefix | Name of Field                 | Optional? |
 |--------|-------------------------------|-----------|
