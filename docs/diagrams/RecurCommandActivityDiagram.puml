@@ -1,0 +1,52 @@
+@startuml
+skinparam defaultTextAlignment center
+start
+:User executes recur command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([missing
+arguments])
+    :Error: Invalid
+    command format;
+stop
+else if () then ([invalid
+arguments])
+    :Error: Invalid
+    arguments;
+stop
+else if () then ([invalid
+index])
+    :Error: Invalid
+    event index;
+stop
+else if () then ([end date
+has past])
+    :Error: End date
+    is in the past;
+stop
+else if () then ([recur factor exceeds
+max allowable])
+    :Error: Recur factor
+    exceeds max allowable;
+stop
+else ([else])
+while () is ([end date has not reached])
+    if () then ([time slot is occupied
+    by another event])
+        :Error: Event exists
+        at chosen time;
+        :None of the recur
+        events are added;
+    stop;
+    else ([else])
+    :Common modules and
+    index are computed;
+    :Compute event
+    and store in list;
+    endif
+endwhile ([else])
+:Add all recur events from computed list;
+stop
+@enduml

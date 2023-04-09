@@ -1,4 +1,5 @@
 @startuml
+skinparam defaultTextAlignment center
 start
 :User executes edit command;
 

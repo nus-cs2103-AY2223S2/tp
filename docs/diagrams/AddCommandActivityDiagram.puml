@@ -1,4 +1,5 @@
 @startuml
+skinparam defaultTextAlignment center
 start
 :User executes add command;
 
@@ -25,7 +26,7 @@ than start time])
     than start time;
 stop
 else if () then (time slot is occupied
-by another Event])
+by another event])
     :Error: Event exists
     at chosen time;
 stop
