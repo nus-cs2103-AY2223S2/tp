@@ -709,6 +709,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case resumes at step 1.
 
+**Use case: Edit a project**
+
+**MSS**
+
+1. User enters command and submits name of project to edit and new details for the project.
+2. Mycelium edits the project
+3. User can view the edited project listed in panel
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Project with submitted name does not exist.
+   * 1a1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
+
+* 1b. Some project details are invalid.
+   * 1b1. Mycelium shows an error message.
+  
+    Use case resumes at step 1.
+  
+**Use case: Edit a client**
+
+**MSS**
+
+1. User enters command and submits email of client to edit and new details for the client.
+2. Mycelium edits the client
+3. User can view the edited client listed in panel
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Client with submitted email does not exist.
+   * 1a1. Mycelium shows an error message.
+
+   Use case resumes at step 1.
+
+* 1b. Some client details are invalid.
+   * 1b1. Mycelium shows an error message.
+  
+   Use case resumes at step 1.
+
+**Use case: Find a project**
+
+**MSS**
+
+1. User toggles into search mode
+2. Mycelium switches into search mode
+3. User navigates to the project display and enters search query
+4. Mycelium displays a list of projects ranked by closeness to the search query
+5. User can view the list of projects listed in panel.
+
+   Use case ends.
+
+**Extensions**
+
+* *a. At any time, User chooses to toggles out of search mode.
+   * *a1. Mycelium switches back to normal command mode.
+
+   Use case ends.
+
+**Use case: Find a client**
+
+**MSS**
+
+1. User toggles into search mode
+2. Mycelium switches into search mode
+3. User navigates to the client display and enters search query
+4. Mycelium displays a list of clients ranked by closeness to the search query
+5. User can view the list of clients listed in panel.
+
+   Use case ends.
+
+**Extensions**
+
+* *a. At any time, User chooses to toggles out of search mode.
+   * *a1. Mycelium switches back to normal command mode.
+
+   Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
