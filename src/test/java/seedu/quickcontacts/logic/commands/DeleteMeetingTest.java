@@ -6,7 +6,6 @@ import static seedu.quickcontacts.logic.commands.CommandTestUtil.assertCommandFa
 import static seedu.quickcontacts.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.quickcontacts.testutil.TypicalQuickBooks.getTypicalQuickBook;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.quickcontacts.commons.core.Messages;
@@ -22,10 +21,10 @@ import seedu.quickcontacts.model.meeting.Meeting;
  */
 public class DeleteMeetingTest {
 
-    private Model model = new ModelManager(getTypicalQuickBook(), new UserPrefs());
     public static final Index INDEX_FIRST_MEETING = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_MEETING = Index.fromOneBased(2);
-
+    private Model model = new ModelManager(getTypicalQuickBook(), new UserPrefs());
+    
     @Test
     public void execute_deleteMeeting_success() {
         Meeting meetingToDelete = model.getMeetingsList().get(INDEX_FIRST_MEETING.getZeroBased());
