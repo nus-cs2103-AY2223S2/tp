@@ -4,7 +4,7 @@ title: Developer Guide
 toc: true
 ---
 
-* TOC
+* Table of Contents
   {:toc}
 
 ---
