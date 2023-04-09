@@ -89,7 +89,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addAppointment() throws Exception {
-        AddAppointmentCommand command = (AddAppointmentCommand)  parser.parseCommand(
+        AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(
                 AddAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " "
                 + PREFIX_APPOINTMENT_NAME + "Coffee chat" + " " + PREFIX_APPOINTMENT_DATE + "01.01.2024");
         assertEquals(new AddAppointmentCommand(INDEX_FIRST_CLIENT, COFFEE), command);

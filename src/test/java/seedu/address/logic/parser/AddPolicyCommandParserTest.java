@@ -50,17 +50,14 @@ class AddPolicyCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse("1 pd/01.01.2023 pp/1000 pf/yearly"));
 
         // missing policy date
-        assertThrows(ParseException.class,
-                () -> parser.parse("1 pn/Health Insurance pp/1000 pf/yearly"));
+        assertThrows(ParseException.class, () -> parser.parse("1 pn/Health Insurance pp/1000 pf/yearly"));
 
         // missing policy premium
-        assertThrows(ParseException.class,
-                () -> parser.parse("1 pn/Health Insurance pd/01.01.2023 pf/yearly"));
+        assertThrows(ParseException.class, () -> parser.parse("1 pn/Health Insurance pd/01.01.2023 pf/yearly"));
 
 
         // missing policy frequency
-        assertThrows(ParseException.class,
-                () -> parser.parse("1 pn/Health Insurance pd/01.01.2023 pp/1000"));
+        assertThrows(ParseException.class, () -> parser.parse("1 pn/Health Insurance pd/01.01.2023 pp/1000"));
     }
     @Test
     public void parse_invalidValue_failure() {

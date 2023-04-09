@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -12,9 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.appointment.MeetupDate;
-import seedu.address.testutil.AppointmentBuilder;
 
 class AddAppointmentCommandParserTest {
 
@@ -53,8 +50,7 @@ class AddAppointmentCommandParserTest {
 
     @Test
     public void parse_invalidIndex_failure() {
-        assertThrows(ParseException.class,  () -> parser.parse("-1 an/Appointment ad/01.01.2024"));
+        assertThrows(ParseException.class, () -> parser.parse("-1 an/Appointment ad/01.01.2024"));
 
     }
-
 }
