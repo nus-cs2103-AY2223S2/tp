@@ -692,7 +692,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 > `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
-Deletes the specified module(s) and all its embodied content from the application
+Deletes the specified module(s) and all its embodied content from the application.
 
 - [<span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>](#module-code-format): The codes of the modules
   - Must belong to an existing module in Le Tracker
@@ -720,7 +720,7 @@ When in a module or lecture context, the navigation system will automatically in
 
 > `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] /mod {module_code}`
 
-Deletes the specified lecture(s) and all its embodied content from the same specified module
+Deletes the specified lecture(s) and all its embodied content from the same specified module.
 
 - [<span style="color:#e46c0a">`lecture_name_1, lecture_name_2, lecture_name_3, ...`</span>](#lecture-name-format): The names of lectures
   - Must belong to an existing lecture in the module specified in `module_code`
@@ -746,7 +746,7 @@ Deletes the specified lecture(s) and all its embodied content from the same spec
 
 > `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
+Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module.
 
 - [<span style="color:#e46c0a">`video_name_1, video_name_2, video_name_3, ...`</span>](#video-name-format): The names of videos
   - Must belong to existing videos in the lecture specified in `lecture_name`
@@ -780,7 +780,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 > `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Marks video(s) as **watched** in lecture of its specified module
+Marks video(s) as **watched** in lecture of its specified module.
 
 > `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
@@ -788,7 +788,9 @@ Marks video(s) as **unwatched** in a lecture of its specified module.
 
 - [<span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>](#video-name-format): The names of videos
   - Must belong to existing videos in the lecture specified in `lecture_name`
-  - For `mark`, must not contain duplicates
+  - Must not contain duplicates
+  - For `mark`, must not already be marked
+  - For `unmark` for 1 video, must not already be unmarked
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code): The code of the module
   - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name): The name of the lecture
