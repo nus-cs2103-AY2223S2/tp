@@ -295,9 +295,9 @@ Deletes the student(s) at the specified index(es) from the student list.
 - More than 1 `INDEX` can be specified, and all of them will be deleted.
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, ...
+- There **must not have any duplicate indexes**.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
-none of the students will be deleted.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** As a failsafe, if there're duplicates of the same `INDEX` or if one of the `INDEX` specified are invalid _(do not correspond to a student in the list)_, the command won't execute.
 </div>
 
 Examples:
