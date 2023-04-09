@@ -20,6 +20,8 @@ title: Developer Guide
     - [Filter: Current implementation](#filter-current-implementation)
   - [Copy feature](#copy-feature)
     - [Copy: Current implementation](#copy-current-implementation)
+  - [Favorite feature](#favorite-feature)
+    - [Favorite: Current implementation](#favorite-current-implementation)
   - [New army-specific fields](#new-army-specific-fields)
     - [New army fields: Current implementation](#new-army-fields-current-implementation)
   - [\[Proposed\] Data archiving](#proposed-data-archiving)
@@ -372,10 +374,10 @@ In the scenario where the user's system's clipboard is not accessible, the reque
 The favorite feature is implemented by adding a new field `isFavorite` to the `Person` class.
 The favorite mechanism is facilitated by `FavoriteCommand` which extends `Command`. When the user executes
 a `FavoriteCommand`, the `isFavorite` field of the specified `Person` will be set to `true`.
-The `FavoriteCommand` will then edit the specified `Person` so that the `isFavorite` field is set to `true` (if it
-is `false`) and `false` if it is `true`.
+The `FavoriteCommand` will then edit the specified `Person` so that the `isFavorite` field is toggled between `true` and `false`, i.e set to `true` if it
+is `false` and `false` if it is `true`.
 The `ModelManager` maintains a `favoritedPersons` list which contains all the `Person` objects that have been favorited.
-The `favoritedPersons` list can be kept up-to-date because it uses a predicate to filter out all the `Person` objects
+The `favoritedPersons` list can be kept up-to-date because it uses a predicate to select all the `Person` objects
 that have the `isFavorite` field set to `true`.
 
 The UI listens to changes to this `favoritedPersons` list and updates the UI accordingly.
