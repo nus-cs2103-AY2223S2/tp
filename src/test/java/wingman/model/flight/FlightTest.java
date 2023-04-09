@@ -1,7 +1,12 @@
 package wingman.model.flight;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -50,7 +55,7 @@ public class FlightTest {
     @Test
     public void testGetDisplayList() {
         List<String> result = flight1.getDisplayList();
-        assertEquals(5,result.size());
+        assertEquals(5, result.size());
         assertEquals(code1, result.get(0));
         assertEquals(
                 String.format("%s: %s\n", "Plane", flight1.getPlaneLink().toString()),

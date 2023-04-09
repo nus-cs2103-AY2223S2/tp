@@ -1,9 +1,7 @@
 package wingman.logic.flight.linklocation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,9 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import wingman.commons.fp.Lazy;
-import wingman.logic.core.CommandParam;
-import wingman.logic.core.exceptions.CommandException;
-import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 
 @ExtendWith(MockitoExtension.class)
