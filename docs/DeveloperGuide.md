@@ -119,9 +119,11 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-The above diagram shows a quick overview of the Model component, while the below diagram expands on the associations between the `ModelManager` and `AddressBook` classes.
+The above diagram shows a quick overview of the Model component, while the three diagrams below expand on the relationships between the `ModelManager`, `AddressBook` and the three entities it stores.
 
-<img src="images/ModelAndAddressBookClassDiagram.png" width="700" />
+<img src="images/AddressBookClientDiagram.png" width="700" />
+<img src="images/AddressBookProjectDiagram.png" width="700" />
+<img src="images/AddressBookTagMappingDiagram.png" width="700" />
 
 The `Model` component,
 
@@ -170,7 +172,7 @@ This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/
 
 There are a set of Comparators defined inside the `ModelManager` class, that are supplied to the sorted list depending on how the user wants to sort clients or projects. Example Comparators include comparing names of `Client` objects.
 
-Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator`. The below diagram shows what occurs when a user executes a `sort-client` command, which sorts the client list by name.
+Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator<T>`. The below diagram shows what occurs when a user executes a `sort-client` command, which sorts the client list by name.
 
 <img src="images/SortingSequenceDiagram.png" width="600" />
 
@@ -222,7 +224,7 @@ The `CombinedPredicate` object `c` is then used to update the filtered client li
 
 <img src="images/FindUpdateFilteredClientListSequenceDiagram.png" width="800" height="300" />
 
-`CombinedPredicate` inherits from the generic class `Predicate<T>` and tests all predicates that were passed to it when it was initialised. This makes use of the `Command` design pattern, as the `FindClientCommand` and `FindProjectCommand` do not need to know which predicates specifically are involved., and only need to test the `CombinedPredicate`. This is shown by the class diagram below, where a `FindClientCommand` and `FindProjectCommand` stores a `CombinedPredicate` which can have any number of `Predicate`s.
+`CombinedPredicate<T>` is a generic class that inherits from the generic class `Predicate<T>` and tests all predicates that were passed to it when it was initialised. The `FindClientCommand` and `FindProjectCommand` objects are unaware of what predicates it is specifically testing, since they only know that they are testing a `Predicate<T>` object, making use of the `Command` design pattern. This is shown by the class diagram below, where a `FindClientCommand` and `FindProjectCommand` stores a `Predicate<T>` object.
 
 <img src="images/CombinedPredicateClassDiagram.png" width="500" />
 

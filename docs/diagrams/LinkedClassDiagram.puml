@@ -9,7 +9,8 @@ Class UniqueProjectList
 Class Project
 
 Client *----> "1\n linked projects" UniqueProjectList
-UniqueProjectList -up->"\n*" Project
-Project -left->"0..1\n linked clients" Client
+Project -->"0..1\n linked clients" Client
+Client .up.> Project
+UniqueProjectList -up->"*" Project
 
 @enduml

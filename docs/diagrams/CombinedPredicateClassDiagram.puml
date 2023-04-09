@@ -1,15 +1,18 @@
 @startuml
 !include style.puml
+skinparam BackgroundColor #000000
+skinparam ArrowColor #FFFFFF
+skinParam DefaultFontColor #FFFFFF
 
-Class CombinedPredicate COMMON_COLOR
+Class "CombinedPredicate<T>" as CombinedPredicate COMMON_COLOR
 Class FindClientCommand LOGIC_COLOR
 Class FindProjectCommand LOGIC_COLOR
-Class "<<interface>>\nPredicate" as Predicate COMMON_COLOR
+Class "<<interface>>\nPredicate<T>" as Predicate COMMON_COLOR
 
-FindProjectCommand *-down->"1" CombinedPredicate
-FindClientCommand *-down->"1" CombinedPredicate
+FindProjectCommand *-down->"1" Predicate
+FindClientCommand *-down->"1" Predicate
 FindProjectCommand -[hidden]right-> FindClientCommand
-CombinedPredicate *-down-> "*" Predicate
+CombinedPredicate *-up-> "*" Predicate
 Predicate <|.. CombinedPredicate
-note left of CombinedPredicate : Can contain\nNameContainsKeywordsPredicate,\nProjectContainsTagsPredicate etc
+note right of CombinedPredicate : <color:black>Can contain\n<color:black>NameContainsKeywordsPredicate,\n<color:black>ProjectContainsTagsPredicate etc.
 @enduml
