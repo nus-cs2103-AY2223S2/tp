@@ -554,7 +554,7 @@ Examples:
 - `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
 ### Alarm
-![Alarm Window](images/alarm_warning.png)
+![Alarm Window](images/alarm_warning.PNG)
 For Alarm, you can call the following commands:
 - Schedule an alarm: `add_alarm`
 - Remove a scheduled alarm: `delete_alarm`
@@ -581,7 +581,7 @@ Examples:
 - delete_alarm 1
 
 #### List all scheduled alarms : `list_alarms`
-![Alarm List](images/list_alarms_screenshot.png)
+![Alarm List](images/list_alarms_screenshot.PNG)
 List all alarms scheduled, arranged in the order of creation, containing time left and comment of each alarm.
 
 Examples:
