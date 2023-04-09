@@ -131,7 +131,7 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Returns a sorted Map
+     * Returns a sorted TreeMap of module groups
      * @param sort
      * @return sorted Map
      */
@@ -174,28 +174,22 @@ public class UniqueModuleList implements Iterable<Module> {
         return result;
     }
 
+    /**
+     * Returns a sorted TreeMap of modules grouped by Tag
+     * @return sorted Map
+     */
     private TreeMap<Object, ObservableList<Module>> sortByTag() {
         TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
-        Set<Tag> OverallTags = new HashSet<>();
-        for (Module m : internalList) {
-            Set<Tag> tagSet = m.getTags();
-            OverallTags.addAll(tagSet);
-            String tags = parseTagsForSort(tagSet).toString();
-            if (tags.contains(",") || tagSet.isEmpty()) {
-                ObservableList<Module> existingList = result.get(tags);
-                if (existingList == null) {
-                    ObservableList<Module> newList = FXCollections.observableArrayList();
-                    newList.add(m);
-                    result.put(tags, newList);
-                } else {
-                    existingList.add(m);
-                }
-            }
-        }
-        for (Tag t : OverallTags) {
+        Comparator<Module> comparator = Comparator.comparing(Module::toString);
+        Set<Tags> OverallTags = Tags.getAllShortFormTags();
+
+        for (Tags t : OverallTags) {
             ObservableList<Module> newList = FXCollections.observableArrayList();
-            internalList.stream().filter(x -> x.getTags().contains(t)).forEach(y -> newList.add(y));
-            result.put(t.getShortForm(), newList);
+            internalList.stream().filter(x -> parseTagsForSort(x.getTags()).contains(t)).forEach(y -> newList.add(y));
+            if (!newList.isEmpty()) {
+                FXCollections.sort(newList, comparator);
+                result.put(t, newList);
+            }
         }
         moduleGroups = result;
         return result;
