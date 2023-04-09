@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.cardcommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -44,5 +46,13 @@ public class ShowCardsCommandTest {
                 ShowCardsCommand.MESSAGE_SUCCESS, false, false, false, false, false, false, false, false, true, false);
         model.selectDeck(INDEX_FIRST);
         assertCommandSuccess(new ShowCardsCommand(), model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    void equals() {
+        ShowCardsCommand command = new ShowCardsCommand();
+        assertEquals(command, command); // same instance -> returns true
+        assertEquals(command, new ShowCardsCommand()); // same class -> returns true
+        assertNotEquals(command, null); // null -> returns false
     }
 }
