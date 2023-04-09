@@ -8,9 +8,12 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidAuthor(String)}
  */
 public class Author {
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces,"
-            + " and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "^(?=.*[a-zA-Z0-9])[a-zA-Z0-9\\s-:;.!()_'`/?]+$";
+
+    public static final String MESSAGE_CONSTRAINTS = "Authors' names should only contain alphanumeric characters, "
+            + "spaces and certain special characters, and it should not be blank.";
+
     public final String name;
 
     /**
@@ -36,8 +39,8 @@ public class Author {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Isbn // instanceof handles nulls
-                        && name.equals(((Isbn) other).isbn)); // state check
+                || (other instanceof Author // instanceof handles nulls
+                        && name.equals(((Author) other).name)); // state check
     }
 
     @Override

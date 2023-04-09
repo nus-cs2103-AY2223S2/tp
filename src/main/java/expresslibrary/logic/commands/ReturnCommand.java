@@ -75,7 +75,7 @@ public class ReturnCommand extends Command {
         // Create the person copy
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getBooks(), personToEdit.getTags());
+                personToEdit.getBooks(), personToEdit.getTags());
 
         editedPerson.returnBook(bookToReturn);
         bookToReturn.returnBook();

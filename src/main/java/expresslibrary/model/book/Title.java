@@ -8,9 +8,9 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class Title {
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^(?=.*[a-zA-Z0-9])[a-zA-Z0-9\\s-:;.!()_'`/?]+$";
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Book names should only contain alphanumeric characters and spaces, and it should not be blank";
     public final String title;
 
     /**

@@ -1,0 +1,46 @@
+{
+  "_comment": "ExpressLibrary save file which contains the same Person and Book values as in TypicalExpressLibrary#getTypicalExpressLibrary()",
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "books": [{
+        "title": "A Game of Thrones",
+        "author": "George RR Martin",
+        "isbn": "9780553103540",
+        "borrowDate": "01/04/2023",
+        "dueDate": "15/04/2023",
+        "isBorrowed": true
+      },
+      {
+        "title": "Beloved",
+        "author": "Toni Morrison",
+        "isbn": "9781400033416",
+        "borrowDate": "01/04/2023",
+        "dueDate": "15/04/2023",
+        "isBorrowed": true
+      }],
+      "tagged": ["friends"]
+    }
+  ],
+  "books": [
+    {
+      "title": "A Game of Thrones",
+      "author": "George RR Martin",
+      "isbn": "9780553103540",
+      "borrowDate": "01/04/2023",
+      "dueDate": "15/04/2023",
+      "isBorrowed": true
+    },
+    {
+      "title": "Beloved",
+      "author": "Toni Morrison",
+      "isbn": "9781400033416",
+      "borrowDate": "01/04/2023",
+      "dueDate": "15/04/2023",
+      "isBorrowed": true
+    }
+  ]
+}

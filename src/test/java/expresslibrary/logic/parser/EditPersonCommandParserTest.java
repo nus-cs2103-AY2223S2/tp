@@ -1,11 +1,8 @@
 package expresslibrary.logic.parser;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static expresslibrary.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static expresslibrary.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static expresslibrary.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static expresslibrary.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static expresslibrary.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static expresslibrary.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static expresslibrary.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static expresslibrary.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -15,8 +12,6 @@ import static expresslibrary.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static expresslibrary.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static expresslibrary.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static expresslibrary.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static expresslibrary.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static expresslibrary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -27,16 +22,16 @@ import static expresslibrary.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_TAG;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
+import expresslibrary.commons.core.Messages;
 import expresslibrary.commons.core.index.Index;
 import expresslibrary.logic.commands.EditPersonCommand;
 import expresslibrary.logic.commands.EditPersonCommand.EditPersonDescriptor;
-import expresslibrary.model.person.Address;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Phone;
@@ -55,28 +50,28 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // no field specified
         assertParseFailure(parser, "1", EditPersonCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -84,7 +79,6 @@ public class EditPersonCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -103,18 +97,18 @@ public class EditPersonCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
 
@@ -123,7 +117,7 @@ public class EditPersonCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
@@ -136,7 +130,7 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
@@ -154,12 +148,6 @@ public class EditPersonCommandParserTest {
         expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new EditPersonCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
@@ -169,13 +157,13 @@ public class EditPersonCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        Index targetIndex = INDEX_FIRST;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + PHONE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
 
@@ -185,24 +173,24 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditPersonCommand expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC
                 + PHONE_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).build();
+                .build();
         expectedCommand = new EditPersonCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();

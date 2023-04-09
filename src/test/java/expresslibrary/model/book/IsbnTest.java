@@ -1,5 +1,6 @@
 package expresslibrary.model.book;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,5 +34,11 @@ public class IsbnTest {
         assertTrue(Isbn.isValidIsbn("1239123012301")); // 13 digits
         assertTrue(Isbn.isValidIsbn("0000000000"));
         assertTrue(Isbn.isValidIsbn("0000000000000"));
+    }
+
+    @Test
+    public void testToString() {
+        Isbn testIsbn = new Isbn("1234567890");
+        assertEquals(testIsbn.toString(), "1234567890");
     }
 }

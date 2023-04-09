@@ -7,10 +7,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.stream.Stream;
 
 import expresslibrary.commons.core.Messages;
 import expresslibrary.commons.core.index.Index;
-import expresslibrary.commons.exceptions.IllegalValueException;
 import expresslibrary.commons.util.DateUtil;
 import expresslibrary.logic.commands.BorrowCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
@@ -30,11 +30,23 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_DUEDATE);
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOOK, PREFIX_DUEDATE)
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE));
+        }
+
         Index personIndex;
         try {
             personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE), ive);
+        } catch (ParseException pe) {
+            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, pe);
+        }
+
+        Index bookIndex;
+        try {
+            bookIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_BOOK).orElse(""));
+        } catch (ParseException pe) {
+            throw new ParseException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX, pe);
         }
 
         // Check if there is a valid due date
@@ -44,26 +56,26 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
             try {
                 dueDate = DateUtil.parseDate(dateString);
             } catch (DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_INVALID_DATE));
+                throw new ParseException(Messages.MESSAGE_INVALID_DATE);
             }
             // Check if due date is after the current date
             if (!dueDate.isAfter(LocalDate.now())) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_EARLY_DATE));
+                throw new ParseException(Messages.MESSAGE_EARLY_DATE);
             }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE));
         }
 
-        Index bookIndex;
-        try {
-            bookIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_BOOK).orElse(""));
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE), ive);
-        }
-
         return new BorrowCommand(personIndex, bookIndex, dueDate);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
