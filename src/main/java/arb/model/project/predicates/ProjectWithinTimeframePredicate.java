@@ -15,7 +15,7 @@ public class ProjectWithinTimeframePredicate implements Predicate<Project> {
     private final Optional<Deadline> end;
 
     /**
-    * Builds a {@code ProjectWithinTimeframePredicate} tjat tests if a
+    * Builds a {@code ProjectWithinTimeframePredicate} that tests if a
     * {@code Project}'s deadline falls within the timeframe {@code start} to
     * {@code end}.
     */

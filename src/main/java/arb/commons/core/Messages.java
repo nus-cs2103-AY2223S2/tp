@@ -25,4 +25,6 @@ public class Messages {
 
     public static final String MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS =
             "Cannot find any client with given keywords: %1$s";
+
+    public static final String MESSAGE_NO_VALID_PARAMETERS = "At least one valid parameter must be provided";
 }

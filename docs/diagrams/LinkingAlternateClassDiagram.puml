@@ -10,8 +10,8 @@ Class UniqueClientList
 
 Class UniqueProjectList
 
-Client *--> "linked projects" UniqueProjectList
-Project *--> "\nlinked clients" UniqueClientList
+Client *--> "1\nlinked projects" UniqueProjectList
+Project *--> "1\nlinked clients" UniqueClientList
 UniqueProjectList -->"*" Project
 UniqueClientList -right->"*" Client
 @enduml
