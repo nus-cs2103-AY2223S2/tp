@@ -1151,6 +1151,7 @@ These instructions only provide a starting point for testers to work on; testers
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
 
 ### Adding an applicant
 <div style="page-break-after: always;"></div>
