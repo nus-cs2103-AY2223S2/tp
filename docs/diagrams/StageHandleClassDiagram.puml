@@ -9,8 +9,8 @@ package guihandles <<Rectangle>> UI_COLOR_BACKGROUND {
 Class "{abstract}\nStageHandle" as StageHandle
 Class HelpWindowHandle
 }
-HelpWindowHandle .|> StageHandle
-StageHandle -down->"1" GuiRobot
+HelpWindowHandle -|> StageHandle
+StageHandle -down->"1  " GuiRobot
 
 
 @enduml

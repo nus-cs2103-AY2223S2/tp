@@ -11,8 +11,8 @@ package guihandles <<Rectangle>> UI_COLOR_BACKGROUND {
 Class "{abstract}\nGuiUnitTest" as GuiUnitTest
 
 AllUiTests -left-> guihandles
-AllUiTests .|> GuiUnitTest
-GuiUnitTest -down->"1" GuiRobot
-GuiRobot .|> FxRobot
+AllUiTests -|> GuiUnitTest
+GuiUnitTest -down->"1  " GuiRobot
+GuiRobot -|> FxRobot
 
 @enduml
