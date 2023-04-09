@@ -106,9 +106,9 @@ Required Information:
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/Bishan, block 123, #01-01` adds a client named John Doe with 
-his phone number, email and address
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Ang Mo Kio p/99999999 t/Insurance` adds a client named 
+* `add n/Cindy Lim p/98765432 e/cindyl@gmail.com a/Bishan, block 24, #04-01` adds a client named Cindy Lim with 
+her phone number, email and address
+* `add n/Betsy Crowe e/betsycrowe@outlook.com a/Ang Mo Kio p/99766389 t/Insurance` adds a client named 
 Betsy Crowe with her phone number, email and address, as well as the financial policy she is under, Insurance. 
 
 Note:
@@ -118,8 +118,7 @@ Note:
 
 Shows a list of all clients in FAid.
 
-
-Format: `list`
+Format: `listPerson`
 
 ### Editing a client : `edit`
 
@@ -137,8 +136,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
-  and `johndoe@example.com` respectively.
+* `edit 1 p/91234567 e/johnd@gmail.com` Edits the phone number and email address of the 1st client to be `91234567`
+  and `johnd@gmail.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
 ### Locating clients by name: `find`
@@ -147,20 +146,18 @@ Finds clients whose names is any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `lim` will match `Lim`
+* The order of the keywords does not matter. e.g. `Jun Jie` will match `Jie Jun`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`
+* Only full words will be matched e.g. `Ro` will not match `Rohit`
+* clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Lim Qi` will return `Lim Jun Jie`
+  , `Tan Jia Qi`
 
 Examples:
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-
-
-  ![result for 'find alex david'](images/findFariqRohit.png)
+* `find lim jun jie ` returns `Lim Jun Jie`
+* `find Lim Qi` returns `Lim Jun Jie`, `Tan Jia Qi`<br>
+  ![result for 'find Lim Qi'](images/findPerson.png)
 
 ### Deleting a client : `delete`
 
@@ -173,7 +170,7 @@ Format: `delete INDEX`
 Examples:
 
 * `listPerson` followed by `delete 2` deletes the 2nd client in FAid.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `find Fariq` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Add meeting : `meetingAdd`
 
@@ -190,21 +187,21 @@ Required Information:
 
 Example:
 
-* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` sets up a meeting on 30th March 2020
-  from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3), with the description "Meeting with Charlotte".
+* `meetingAdd 3 md/Meeting with Fariq ms/10-06-2023 12:30 me/10-06-2023 13:30` sets up a meeting on 10th June 2023
+  from 12.30pm to 13.30pm, with Fariq Ahmad (index 3), with the description "Meeting with Fariq".
 
 Notes:
 * Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
 * Meeting must not conflict in timing with other meetings scheduled for the day.
 * Meetings must not be scheduled before the current date and time.
 
-![result for 'meetingAdd 3 md/ Meeting with Fariq ms/ 14-04-2023 12:30 me/14-04-2023 13:30`](images/meetingAddFariq.PNG)
+* ![result for meetingAdd 3 md/Meeting with Fariq ms/10-06-2023 12:30 me/10-06-2023 13:30](images/meetingAdd.png)
 
 
 
 ### Remove meeting : `meetingRemove`
 
-Removes meeting from FAid.
+Removes a specified meeting from FAid.
 
 
 Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
@@ -223,7 +220,7 @@ Note:
 * Doing a meetingFind `CLIENT_INDEX` is necessary to get the meeting index required. Using the meeting index in the initially displayed page or the page after listMeeting may result in an incorrect meeting update.
 
 
-![result for meetingRemove 3 1](images/meetingRemove31.PNG)
+![result for meetingRemove 3 1](images/Removemeeting.png)
 
 ### Updating a meeting : `meetingUpdate`
 
@@ -290,6 +287,7 @@ Examples:
 Lists all clients that are under a given policy
 
 Format: `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
+* The search is case-sensitive. e.g `insurance` will not match `Insurance`
 
 Required information:
 
@@ -297,9 +295,9 @@ Required information:
 
 Examples:
 
-* `findPolicy Insurance` Find clients with Insurance Policy as their tag
+* `findPolicy Insurance` Find clients with Insurance as their tag
 
-![result for findPolicy Insurance](images/findPolicyInsurance.PNG)
+![result for findPolicy Insurance](images/findPolicyInsurance.png)
 
 ### Clearing all entries : `clear`
 
