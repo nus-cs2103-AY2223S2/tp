@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 
 * Justification: This feature greatly improved the usability of the application by allowing coaches to easily track their training sessions and view their schedules at a glance. The popup window feature also made it easier to view the details of each session and provided coaches with a more interactive and user-friendly interface.
 
-  * Credits: adapted from http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html % wongyewjon 
+  * Credits: adapted from http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html & wongyewjon 
 
 
 
