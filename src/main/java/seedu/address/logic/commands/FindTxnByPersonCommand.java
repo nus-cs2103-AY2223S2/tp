@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.OnlyOnePersonPredicate;
 import seedu.address.model.person.TxnContainsPersonPredicate;
@@ -39,8 +40,8 @@ public class FindTxnByPersonCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(personPredicate);
         model.updateFilteredTransactionList(txnPredicate);
-
-        return new CommandResult("Find txn by person working");
+        return new CommandResult(
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override
