@@ -176,7 +176,7 @@ Examples:
 
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findFariqRohit.png)
 
 ### Deleting a client : `delete`
 
@@ -214,7 +214,7 @@ Notes:
 * Meeting must not conflict in timing with other meetings scheduled for the day.
 * Meetings must not be scheduled before the current date and time.
 
-![result for 'meetingAdd 3 md/ Meeting with Charlotte ms/ 14-04-2023 12:30 me/14-04-2023 13:30`](images/meetingAddCharlotte.PNG)
+![result for 'meetingAdd 3 md/ Meeting with Fariq ms/ 14-04-2023 12:30 me/14-04-2023 13:30`](images/meetingAddFariq.PNG)
 
 
 
