@@ -22,22 +22,22 @@ EditCommandParser->ParserUtil:parseName(name)
 activate ParserUtil
 return name
 end
-opt ifPhonePrefixPresent
+opt ifPrefixPhonePresent
     EditCommandParser->ParserUtil:parsePhone(phone)
     activate ParserUtil
     return phone
 end
-opt ifEmailPrefixPresent
+opt ifPrefixEmailPresent
     EditCommandParser->ParserUtil:parseEmail(email)
     activate ParserUtil
     return email
 end
-opt ifAddressPrefixPresent
+opt ifPrefixAddressPresent
     EditCommandParser->ParserUtil:parseAddress(address)
     activate ParserUtil
     return address
 end
-opt ifBirthdayPrefixPresent
+opt ifPrefixBirthdayPresent
     EditCommandParser->ParserUtil:parseBirthday(birthday)
     activate ParserUtil
     return birthday
