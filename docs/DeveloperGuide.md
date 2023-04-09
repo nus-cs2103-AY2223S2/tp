@@ -272,7 +272,6 @@ Users have the ability to mark a certain project as DONE.
 #### Implementation
 
 The sequence diagram shows how the various components interact with each other when `mark 1` is entered by the user.
-
 <br>
 <img src="images/MarkProjectSequenceDiagram.png" width="600" />
 
