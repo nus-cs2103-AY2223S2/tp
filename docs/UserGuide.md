@@ -242,6 +242,8 @@ Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 * Creates an event with the specified name `EVENT_NAME` using the flag `ie/` which stands for Isolated event
 * The flags `f/` represent the word __from__ and `t/` represents the word __to__
 * `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
+* If there are duplicate attributes (i.e. `event_create INDEX ie/test ie/test2 f/START_DATE t/END_DATE`), WGT will take the 
+info following the latest attribute (in the example case, WGT will take event name to be test 2). 
 
 * The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
 * `START_DATE` has to be before the `END_DATE`
