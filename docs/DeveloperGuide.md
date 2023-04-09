@@ -1378,6 +1378,29 @@ While such role names of such length are uncommon, it is not impossible.
 In the future, we plan to have the role name wrap around (i.e. continue on a second line) if it goes beyond a certain
 length to provide better readability. 
 
+#### 5. Applications tags gets truncated if tags are too long or too many tags are added
+
+When a user adds a large number of tags to a single application, or when each tag is excessively lengthy, the display
+of the tags is truncated at the edge of the `ApplicationCard`. This results in the User not being able to view all tags
+completely. Refer to the screenshot below for an illustration of said problem.
+
+![LongAndMultipleTags.png](images/LongAndMultipleTags.png)
+
+While such situations are uncommon, it is not impossible.
+
+**Potential Enhancement and Suggested Implementation:** <br>
+This issue is caused by the `Flowpane` GUI entity (used for encapsulating tags) sharing the same `VBox` as the
+`Label` GUI entity (used for encapsulating application Role). As seen from the previous point, the Role field suffers
+from a similar truncation issue. 
+
+To further illustrate this, refer to the screenshot below.
+![TagWrapAround.png](images/TagWrapAround.png)
+
+We observe that with a reasonable length for the application Role, the wrap around structure for the tags already exists, and kicks in automatically.
+Therefore, we could resolve this by specifying and refurnishing the boundaries for the shared `VBox`, such that it is not too dynamic and 
+dependent on the Role length.
+This enables the automatic wrap around to be applied to both the Tags and Role fields, preventing the truncation issue which
+would negatively affect user's readability.
 
 #### 6. Integer overflow, zero or negative index error message for commands that take in an index (edit-app, edit-task, delete-app, delete-task) not specific enough
 
