@@ -28,14 +28,20 @@ public class Tag {
     }
 
     /**
-     * Returns true if a given string is at most 60 characters long.
+     * Checks if a given tag is at most 60 characters long.
+     *
+     * @param test Tag to test.
+     * @return true if the tag is of a valid length, false otherwise.
      */
     public static boolean isValidTagLength(String test) {
         return test.length() <= 60;
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Checks if a given tag has a valid name.
+     *
+     * @param test Tag to test.
+     * @return true if the tag has a valid name, false otherwise.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
