@@ -818,7 +818,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   **Main Success Scenario (MSS):**
 
-1. User requests for a [list of all tasks](#638-use-case-8--list-all-tasks).
+1. User requests for a [list of all tasks](#638-use-case-8-list-all-tasks).
 
 2. OfficeConnect displays all tasks stored.
 
@@ -855,7 +855,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   **Main Success Scenario (MSS):**
 
-1. User requests for a [list of all tasks](#638-use-case-8--list-all-tasks).
+1. User requests for a [list of all tasks](#638-use-case-8-list-all-tasks).
 
 2. OfficeConnect displays all tasks stored.
 
@@ -1029,7 +1029,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Main Success Scenario (MSS):**
 
-1. User requests to [list all tasks](#638-use-case-8--list-all-tasks).
+1. User requests to [list all tasks](#638-use-case-8-list-all-tasks).
 
 2. OfficeConnect displays all tasks stored.
 
@@ -1173,8 +1173,23 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect assign commands to try: `assign`, `assign 1 1`, `assign pi/x ti/y` (where x or y is
       larger than the number of persons or tasks contained in the list displayed)<br>
       Expected: similar to previous.
+      
+### 7.4 Unassigning a Task from a Person
 
-### 7.4 Marking a Task as completed
+1. Unassigning a task from a person while all tasks and persons are being shown
+
+   1. Prerequisites: List all persons and tasks using the `listall` command. Multiple tasks and persons in the list.
+   2. Test case: `unassign pi/1 ti/1`<br>
+      Expected: Details of the unassigned person and task shown in the status message. The task should no longer be assigned when using the `findp NAME` command, where `NAME` is the full name of the first person in the list.
+      * Follow-up test case: `listall`, followed by `unassign pi/1 ti/1`<br>
+        Expected: Error details shown in status message indicating that the first person has not been assigned to the first task.
+   3. Test case: `unassign pi/1`<br>
+      Expected: No tasks or persons are unassigned. Error details shown in status message.
+   4. Other incorrect `unassign` commands to try: `unassign`, `unassign 1 1`, `unassign pi/x ti/y` (where `x` or `y` is larger than the number of persons or tasks contained in the list displayed).<br>
+      Expected: Similar to previous.
+
+     
+### 7.5 Marking a Task as completed
 
 1. Marking a task that has not been assigned to any persons as completed
 
@@ -1198,7 +1213,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the task that is marked shown in the status message. A green tick will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
-### 7.5 Unmarking a Task as not completed
+### 7.6 Unmarking a Task as not completed
 
 1. Unmarking a task that has not been assigned to any persons as not completed yet
 
@@ -1222,7 +1237,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the task that is unmarked shown in the status message. A red cross will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
-### 7.6 Adding a Task
+
+### 7.7 Adding a Task
 
 1. Adding a task with no deadline
    1. Prerequisites: There are no tasks with the same title present. 
@@ -1243,8 +1259,8 @@ testers are expected to do more *exploratory* testing.
       Expected: No tasks are added. Error details shown in status message.
    5. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 005:0`<br>, or any input with incorrect datetime format (datetime format should be YYYY-MM-DD HH-MM-SS, where HH-MM-SS is optional).
       Expected: Similar to previous
-    
-### 7.7 Deleting a Task
+
+### 7.8 Deleting a Task
 
 1. Deleting a task while all task are being shown
    1. Prerequisites: List all persons using the `listt` command. Multiple persons in the list.
@@ -1255,14 +1271,16 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 7.8 Listing all Tasks 
+
+### 7.9 Listing all Tasks
 
 1. Listing all tasks
    1. Prerequisites: None
    2. Test case: `listt`
       Expected: All tasks stored in OfficeConnect are listed. "Listed all task" shown in status message.
 
-### 7.9 Filtering Persons by tag
+
+### 7.10 Filtering Persons by tag
 
 1. There are persons in OfficeConnect with the specified tag.
    1. Prerequisites: Only one tag can be specified. 
@@ -1282,7 +1300,8 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect filter persons commands to try: `filterp tag/`)<br>
       Expected: Similar to previous.
 
-### 7.10 Viewing assigned and unassigned Tasks and Persons
+
+### 7.11 Viewing Assigned and Unassigned Tasks and Persons
 
   1. There are assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are tasks and persons with assignments.
@@ -1292,7 +1311,6 @@ testers are expected to do more *exploratory* testing.
         Expected: All assigned persons are displayed. "Displayed all assigned persons" shown in status message.
      4. Test case: `viewassignedt` <br>
         Expected: All assigned tasks are displayed. "Displayed all assigned tasks" shown in status message.
-
 
   2. There are no assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons with assignments.
@@ -1321,7 +1339,8 @@ testers are expected to do more *exploratory* testing.
      4. Test case: `viewunassignedt` <br>
         Expected: No tasks are displayed. "There are no unassigned tasks" shown in status message.
 
-### 7.11 Viewing Task and Person details
+
+### 7.12 Viewing Task and Person details
 
   1. Task and person details are available in OfficeConnect.
      1. Prerequisites: The specified task and person indices are valid.
