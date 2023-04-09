@@ -238,7 +238,7 @@ Adds a student to the list, along with their education level and any student-spe
 > - ADDRESS: The student's address.
 > - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
 > - EMAIL: A valid email follows the `local@domain` format.
-> - EDUCATION LEVEL: [Alphanumeric](#glossary) word(s)
+> - EDUCATION: [Alphanumeric](#glossary) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - REMARK: Can be sentences or even paragraphs.
 > - TAG: A detail about a student (limited to one word long).
@@ -332,7 +332,7 @@ Edits a student's information _(all information except remarks)_. To remove a st
 > - ADDRESS: The student's address.
 > - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
 > - EMAIL: A valid email follows the `local@domain` format.
-> - EDUCATION LEVEL: [Alphanumeric](#glossary) word(s)
+> - EDUCATION: [Alphanumeric](#glossary) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - TAG: A detail about a student (limited to one word long).
 > - MODULE: The module code the student is taking (can be multiple words).
