@@ -384,6 +384,5 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
                 f.run();
             }
         }
-    
     }
 }
