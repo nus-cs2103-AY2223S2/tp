@@ -30,7 +30,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // same values -> returns true
         NameContainsKeywordsPredicate firstPredicateCopy =
-        new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+                new NameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -47,7 +47,7 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate =
-        new NameContainsKeywordsPredicate(Collections.singletonList("JP"));
+                new NameContainsKeywordsPredicate(Collections.singletonList("JP"));
         assertTrue(predicate.test(new InternshipBuilder().withCompanyName("JP Morgan").build()));
 
         // Multiple keywords

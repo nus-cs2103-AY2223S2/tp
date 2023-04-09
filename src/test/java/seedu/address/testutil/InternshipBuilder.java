@@ -128,6 +128,9 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Returns the {@code InternshipApplication} with configured attributes.
+     */
     public InternshipApplication build() {
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
                 salary, notes, rating, reflections, contact, status, isArchived, interviewDate, documents);

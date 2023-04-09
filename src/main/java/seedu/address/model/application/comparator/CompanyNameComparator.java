@@ -2,7 +2,6 @@ package seedu.address.model.application.comparator;
 
 import java.util.Comparator;
 
-import seedu.address.model.application.BetweenDatePredicate;
 import seedu.address.model.application.InternshipApplication;
 
 /**

@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import static seedu.address.model.application.InternshipStatus.ACCEPTED;
 import static seedu.address.model.application.InternshipStatus.DECLINED;
 import static seedu.address.model.application.InternshipStatus.PENDING;
-import static seedu.address.model.application.InternshipStatus.RECEIVED;
 
 import java.util.ArrayList;
 import java.util.Arrays;
