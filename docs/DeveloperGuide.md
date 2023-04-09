@@ -1199,6 +1199,41 @@ which parses dates. In brief, the new overload will
    the argument's name is thrown
 1. This message is displayed to the user
 
+**10. Unable to unset an optional field**
+
+Assume the following scenario:
+
+1. We create a project with a deadline 14/03/2024
+1. Later, our client informs us that there is no deadline, and we can take as
+   long as we like
+1. We would like to remove the deadline from the project in Mycelium
+
+Currently, we would have two options.
+
+1. Delete the project, then create a new one with the same fields but without a
+   deadline
+1. Use 31/12/9999 to represent "no deadline"
+
+Neither of these solutions are ideal. Thus, we would like to propose an
+enhancement to the `uc` and `up` commands which allow us to unset optional
+attributes of clients and projects. The command below demonstrates how we can
+unset the deadline of project *foo*:
+
+```
+up -pn foo -dd
+```
+
+The `-dd` argument flag has no data following it, expressing the user's
+intention to unset the deadline field. This enhancment would not be difficult,
+as internally, these attributes are already typed as `Optional`s. At a high
+level, the new parser for the `uc` and `up` commands would work like this:
+
+1. Parse arguments as per usual
+1. For the arguments which received no data, check if they are indeed optional
+   fields
+1. If they are *not* optional, throw an error and inform the user
+1. Otherwise, proceed to set the fields to `Optional.empty()`
+
 ## Appendix: Effort
 
 AB3 was only able to support a single entity type, which was the `Person` class.
