@@ -8,6 +8,7 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;

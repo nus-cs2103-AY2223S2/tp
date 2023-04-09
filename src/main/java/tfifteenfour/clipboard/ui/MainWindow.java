@@ -28,6 +28,7 @@ import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
+import tfifteenfour.clipboard.logic.commands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
@@ -37,7 +38,6 @@ import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentComman
 import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.TaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
@@ -158,6 +158,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -328,7 +329,7 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Student> viewedStudent =
                 logic.getModel().getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
                         .filtered(student -> student.isSameStudent(logic.getModel()
-                        .getCurrentSelection().getSelectedStudent()));
+                                .getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
                 logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
         if (viewedStudent.size() != 0) {
@@ -358,6 +359,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Show group pane.
+     *
      * @param course that groups belong to.
      */
     private void showGroupPane(Course course) {
@@ -367,6 +369,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Show student pane.
+     *
      * @param group that students belong to.
      */
     private void showStudentPane(Group group) {
@@ -601,7 +604,7 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Student> viewedStudent =
                 logic.getModel().getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
                         .filtered(student ->
-                        student.isSameStudent(logic.getModel().getCurrentSelection().getSelectedStudent()));
+                                student.isSameStudent(logic.getModel().getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
                 logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
         rightPanelPlaceholder.getChildren()

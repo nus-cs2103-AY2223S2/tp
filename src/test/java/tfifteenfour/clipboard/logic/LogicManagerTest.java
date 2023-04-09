@@ -91,7 +91,8 @@
 
 //     @Test
 //     public void getUnmodifiableFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
-//         assertThrows(UnsupportedOperationException.class, () -> logic.getUnmodifiableFilteredStudentList().remove(0));
+//         assertThrows(UnsupportedOperationException.class, ()
+//         -> logic.getUnmodifiableFilteredStudentList().remove(0));
 //     }
 
 //     /**

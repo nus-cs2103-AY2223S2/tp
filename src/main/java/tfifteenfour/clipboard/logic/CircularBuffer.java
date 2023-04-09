@@ -16,8 +16,9 @@ public class CircularBuffer<T> {
     /**
      * Constructs a new circular buffer with the specified size.
      *
-     * @param size the size of the buffer
+     * @param maxSize the size of the buffer
      */
+    @SuppressWarnings("unchecked")
     public CircularBuffer(int maxSize) {
         this.buffer = (T[]) new Object[maxSize];
         this.maxSize = maxSize;
@@ -32,7 +33,7 @@ public class CircularBuffer<T> {
      * @param item the item to add
      */
     public void add(T item) {
-        if (buffer.length < maxSize) {
+        if (this.size < maxSize) {
             buffer[tail] = item;
             tail = (tail + 1) % maxSize;
         } else {

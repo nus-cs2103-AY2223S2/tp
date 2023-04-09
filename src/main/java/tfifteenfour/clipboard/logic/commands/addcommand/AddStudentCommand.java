@@ -34,6 +34,7 @@ public class AddStudentCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New student added in %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in this group";
+    public static final String MESSAGE_WRONG_PAGE = "Wrong page. Navigate to student page to add student";
 
     private final Student studentToAdd;
 
@@ -51,7 +52,7 @@ public class AddStudentCommand extends AddCommand {
         CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
-            throw new CommandException("Wrong page. Navigate to student page to add student");
+            throw new CommandException(AddStudentCommand.MESSAGE_WRONG_PAGE);
         }
 
         Group targetGroup = currentSelection.getSelectedGroup();
