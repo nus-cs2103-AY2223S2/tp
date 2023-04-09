@@ -46,7 +46,11 @@ Given below are my contributions to the project.
           * `archive`, `unarchive`, `list_archived`
           * `edit_status`
     * Developer Guide:
-        * Added use cases for `add_contact`, `edi_contact`, `delete_contact`, `add_docs`, `edit_docs`, `delete_docs`, `archive`, `unarchive`, `list_archived` and `edit_status` in [#61](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/61) and [#](). 
+        * Added use cases, implementation details and UML diagrams for the features below in [#61](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/61), [#287](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/287) and [#288](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/288).
+          * `add_contact`, `edit_contact`, `delete_contact`
+          * `add_docs`, `edit_docs`, `delete_docs`
+          * `archive`, `unarchive`, `list_archived`
+          * `edit_status`
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#141](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/141), [#160](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/160)
