@@ -45,7 +45,6 @@ title: Developer Guide
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **About HMHero**
 
 HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers,
@@ -57,7 +56,6 @@ an outline of all parts of HMHero and how they work together, and specifications
 feature implementation and considerations.
 
 This guide is intended to assist developers in maintaining, upgrading or evolving HMHero.
-
 --------------------------------------------------------------------------------------------------------------------
 ## **How to use this Developer Guide**
 
