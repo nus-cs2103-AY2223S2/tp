@@ -461,20 +461,20 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and Shutdown
 
-1. Initial launch
+1. Initial launch.
 
    1. Download the latest jar file from our [releases](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases) and copy into an empty folder.
 
    1. Open terminal/command prompt and `cd` to the empty folder. Run the application with `java -jar clipboard.jar`. The window size may not be optimum.
 
-1. Saving window preferences
+1. Saving window preferences.
 
    1. Resize the window to an optimum size. Move the window to a preferred location. Close the window by typing in `exit` in the command box.
 
    1. Re-launch the app by following step 1(ii).<br>
       Expected: The most recent window size and location is retained.
 
-1. Exit application
+1. Exit application.
 
     1. Type in `exit` on any page in CLIpboard.
 
@@ -485,23 +485,23 @@ testers are expected to do more *exploratory* testing.
 ### General Commands
 These commands can be tested on any page. Specific pages are given for this section as a starting point.
 
-1. Displaying the home page while on the Course Page
+1. Displaying the home page while on the Course Page.
 
     1. Test case: `home`<br>
        Expected: Course Page is displayed.
 
-1. Displaying the previous page while on the Group Page
+1. Displaying the previous page while on the Group Page.
 
     1. Test case: `back`<br>
        Expected: Course Page is displayed.
 
-1. Displaying the previous page while on the Course Page
+1. Displaying the previous page while on the Course Page.
 
     1. Test case: `back`<br>
        Expected: Error message shows up on the log box as the Course Page is the home page.<br>
        The application begins from the home page.
 
-1. Undoing a select command from the Course Page, indicating that the current page to run the test case is the Group Page.
+1. Undoing a select command from the Course Page (the current page to run the test case is the Group Page).
 
     1. Test case: `undo`<br>
        Expected: Course Page is displayed.
@@ -518,7 +518,7 @@ These commands should be tested on the Course Page.
 
 #### Adding a course
 
-1. Adding a course while the course list is empty, or the course does not exist in the course list.
+1. Adding a course while the course list is empty or the course does not exist in the course list.
 
     1. Test case: `add course CS3223`<br>
        Expected: New course is added into the list. Details of the added course shown in the log box.
