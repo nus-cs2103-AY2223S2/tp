@@ -7,6 +7,8 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.client.appointment.Appointment;
+import seedu.address.model.client.appointment.AppointmentName;
+import seedu.address.model.client.appointment.MeetupDate;
 import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
 
@@ -40,6 +42,19 @@ public class Client implements Comparable<Client> {
         this.address = address;
         this.policyList = policyList;
         this.appointment = appointment;
+        filteredPolicies = new FilteredList<>(this.policyList.asUnmodifiableObservableList());
+    }
+
+    /**
+     * Instantiates an empty Client
+     */
+    public Client() {
+        this.name = new Name("Select a Client");
+        this.phone = new Phone("98765432");
+        this.email = new Email("example@domain.com");
+        this.address = new Address("Client's Address");
+        this.policyList = new UniquePolicyList();
+        this.appointment = new Appointment(new AppointmentName("Client Appointment"), new MeetupDate("01.01.3000"));
         filteredPolicies = new FilteredList<>(this.policyList.asUnmodifiableObservableList());
     }
 
@@ -102,11 +117,11 @@ public class Client implements Comparable<Client> {
 
         Client otherClient = (Client) other;
         return otherClient.getName().equals(getName())
-                && otherClient.getPhone().equals(getPhone())
-                && otherClient.getEmail().equals(getEmail())
-                && otherClient.getAddress().equals(getAddress())
-                && otherClient.getPolicyList().equals(getPolicyList())
-                && otherClient.getAppointment().equals(getAppointment());
+            && otherClient.getPhone().equals(getPhone())
+            && otherClient.getEmail().equals(getEmail())
+            && otherClient.getAddress().equals(getAddress())
+            && otherClient.getPolicyList().equals(getPolicyList())
+            && otherClient.getAppointment().equals(getAppointment());
     }
 
     @Override
@@ -138,7 +153,7 @@ public class Client implements Comparable<Client> {
         UniquePolicyList policyList = this.getPolicyList().clone(); // To change policyList you must use EditPolicy
         Appointment appointment = this.getAppointment();
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, policyList,
-                appointment);
+            appointment);
     }
 
     @Override
