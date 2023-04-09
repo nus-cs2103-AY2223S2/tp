@@ -49,18 +49,12 @@ public class SetPictureCommand extends Command {
             if (employee.getEmployeeId().equals(employeeId)) {
                 employeeToSetPicture = employee;
                 Path sourcePath = chooseSourcePicture();
-                PicturePath destPicturePath = new PicturePath(PicturePath.VALID_DIRECTORY
-                        + employeeToSetPicture.getName().fullName + PicturePath.VALID_EXTENSION);
-                Path destPath = destPicturePath.toPath().toAbsolutePath();
-                try {
-                    if (!destPath.toFile().exists()) {
-                        Files.createDirectories(destPath);
-                    }
-                    Files.copy(sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException e) {
-                    throw new CommandException(MESSAGE_IO_ERROR);
-                }
-                employeeToSetPicture.setPicturePath(destPicturePath);
+                PicturePath destPicturePath = savePicture(employeeToSetPicture, sourcePath);
+
+                EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
+                editEmployeeDescriptor.setPicturePath(destPicturePath);
+                EditCommand editCommand = new EditCommand(employeeId, editEmployeeDescriptor);
+                editCommand.execute(model);
                 return new CommandResult(String.format(MESSAGE_SET_PICTURE_SUCCESS, employeeToSetPicture));
             }
         }
@@ -77,6 +71,21 @@ public class SetPictureCommand extends Command {
             throw new CommandException(MESSAGE_SET_PICTURE_FAILURE);
         }
         return selectedFile.toPath();
+    }
+
+    private PicturePath savePicture(Employee employeeToSetPicture, Path sourcePath) throws CommandException {
+        PicturePath destPicturePath = new PicturePath(PicturePath.VALID_DIRECTORY
+                + employeeToSetPicture.getName().fullName + PicturePath.VALID_EXTENSION);
+        Path destPath = destPicturePath.toPath().toAbsolutePath();
+        try {
+            if (!destPath.toFile().exists()) {
+                Files.createDirectories(destPath);
+            }
+            Files.copy(sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new CommandException(MESSAGE_IO_ERROR);
+        }
+        return destPicturePath;
     }
 
     @Override

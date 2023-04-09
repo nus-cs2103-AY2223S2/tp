@@ -66,8 +66,8 @@ public class LeaveCommand extends Command {
         EditCommand editCommand = new EditCommand(employeeId, editEmployeeDescriptor);
         editCommand.execute(model);
 
-        return new CommandResult(String.format(String.format(MESSAGE_LEAVE_SUCCESS, employeeToTakeLeave.getName(),
-                numberOfDaysLeave)));
+        return new CommandResult(String.format(MESSAGE_LEAVE_SUCCESS, employeeToTakeLeave.getName(),
+                numberOfDaysLeave));
     }
 
     @Override

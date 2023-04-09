@@ -19,6 +19,8 @@ public class PicturePath {
     public static final String VALID_DIRECTORY = "data/employeepictures/";
     public static final String VALID_EXTENSION = ".png";
 
+    private static final PicturePath NULL = new PicturePath();
+
     public final String value;
 
     /**
@@ -30,6 +32,17 @@ public class PicturePath {
         requireNonNull(picturePath);
         checkArgument(isValidPicturePath(picturePath), MESSAGE_CONSTRAINTS);
         this.value = picturePath;
+    }
+
+    /**
+     * Bypass input validation, allows actual null values.
+     */
+    public PicturePath() {
+        this.value = "";
+    }
+
+    public static PicturePath getNullPicturePath() {
+        return PicturePath.NULL;
     }
 
     /**
