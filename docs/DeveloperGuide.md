@@ -572,6 +572,16 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delevent`, `delevent x`, `...` (where x is larger than the displayed list size)<br>
        Expected: Similar to previous.
 
+### Listing all contacts from an event
+
+1. No prerequisite.
+
+2. Test case: `listevcontact 1`<br>
+   Expected: App will display the list of all contacts from first event if any. 
+
+3. Other incorrect listevcontact commands to try: `listevcontact x`, `...` (where x is not a valid event index).<br>
+   Expected: Error details shown in the status message.
+
 ### Sorting event list
 
 1. Prerequisite: Current list of events has at least 2 events.
@@ -584,6 +594,13 @@ testers are expected to do more *exploratory* testing.
 
 4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
    Expected: Similar to previous.
+
+### Listing all contacts and events
+
+1. No prerequisite.
+
+2. Test case: `listall`<br>
+   Expected: App will display the list of all contacts if any.
 
 ### Saving data
 
