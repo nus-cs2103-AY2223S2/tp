@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_DARK
+skinparam classBackgroundColor UI_COLOR
+
+package guihandles <<Rectangle>> UI_COLOR_BACKGROUND {
+Class "{abstract}\nNodeHandle" as NodeHandle
+Class CommandBoxHandle
+Class MainMenuHandle
+Class MeetCardHandle
+Class MeetListPanelHandle
+Class PersonCardHandle
+Class PersonListPanelHandle
+Class ResultDisplayHandle
+}
+
+
+CommandBoxHandle -right-|> NodeHandle
+MainMenuHandle -left-|> NodeHandle
+MeetCardHandle -down-|> NodeHandle
+MeetListPanelHandle -up-|> NodeHandle
+PersonCardHandle -up-|> NodeHandle
+PersonListPanelHandle -up-|> NodeHandle
+ResultDisplayHandle -down-|> NodeHandle
+NodeHandle -up->"    1" GuiRobot
+
+@enduml

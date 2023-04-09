@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tan Kai Min, Russell's Project Portfolio Page
+title: Russell Tan's Project Portfolio Page
 ---
 
 ### Project: EduMate
@@ -31,14 +31,10 @@ Contacts can be queried by their `ContactIndex` instead of their index in `Obser
     * What it does: Represents periods of a time in a `Timetable`.
     * Justification: Abstracts out a period of time for the `TimingRecommender`.
     * Highlight: Built using [Joda-Time](https://www.joda.org/joda-time/index.html)
-  * **MathUtil** [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193)
-    * What it does: Uses mathematical tools which assists `TimingRecommender` to perform its functions.
-    * Justification: Can exploit mathematical properties and structure for cleaner implementation of code.
-    * Highlights: Cartesian Product, Indexing.
-  * **TimeUtil** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193) Testing: [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193)
-    * What it does: Utility functions which help time-based classes (`HourBlock`, `Timetable` etc) to perform its functionalities.
-    * Justification: These methods do not necessarily appear in some time-based classes due to OOP.
-    * Highlights: Clash Checks, consecutive `TimeBlock`/`HourBlock` checks, merging suitable `TimeBlocks` or `HourBlocks` to form a single `TimePeriods`.
+  * **MathUtil and TimeUtil** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193) Testing: [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193)
+    * What it does: Utility functions to aid `TimingRecommender` in its functions.
+    * Justification: Separate abstraction of methods which do not fit into any Time-based classes.
+    * Highlights: Cartesian Product, Indexing, Clash checks, Merge `TimePeriods`.
   * **`Timetable` Class** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193) Testing: [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144)
     * What it does: Represents a contact's or `User`'s timetable.
     * Justification: To display the schedule of the `Person` or `User`
@@ -46,7 +42,6 @@ Contacts can be queried by their `ContactIndex` instead of their index in `Obser
     * What it does: Looks through all participant's timetables and find time slots that every participant is free.
     * Justification: Using an automated tool to schedule meetups is more efficient compared to relying on NUS students to manually message each other to find a suitable meeting time.
   * **`meet` Command and `TimingRecommender` integration** [#204](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/204)
-    * Participated and assisted in the integration work.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=russelltankaimin&breakdown=true)
 * **Project management**:
   * Initiated use of GitHub Projects to manage progress.
@@ -58,7 +53,7 @@ Contacts can be queried by their `ContactIndex` instead of their index in `Obser
     * Used Figma to obtain desired diagrams used in the entire User Guide.
     * Fix grammatical errors and sentence structure in the entire User Guide.
   * Developer Guide [#166](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/166), [#177](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/177), [#199](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/199), [#218](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/218), [#225](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/225),
-    * Added UML diagrams and wrote content for View Command, View Command Parser, Recommender, Time-related modules.
+    * Added UML diagrams and content for View Command, View Command Parser, Recommender, Time-related classes.
     * Contributed to adding placeholders for new upcoming commands during V1.2 in preparation for V1.3.
 * **Reviewing/Mentoring contributions**:
     * [#9](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/9), [#33](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/33),
@@ -66,5 +61,5 @@ Contacts can be queried by their `ContactIndex` instead of their index in `Obser
 [#167](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/167), [#176](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/176),
 [#228](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/228)
 * **Tools**:
-  * Java 11, JavaFX, Joda-Time, JUnit, Gradle
+  * Java 11, JavaFX, Joda-Time, JUnit, Gradle, Figma
 

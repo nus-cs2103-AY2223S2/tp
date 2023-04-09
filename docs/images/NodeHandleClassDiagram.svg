@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="226px" preserveAspectRatio="none" style="width:580px;height:226px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 580 226" width="580px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster guihandles-->
+        <g id="cluster_guihandles">
+            <rect fill="#E6F5EC" height="216" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="492"
+                  x="82" y="4"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="76" x="290" y="20.9659">guihandles
+            </text>
+        </g><!--class GuiRobot-->
+        <g id="elem_GuiRobot">
+            <rect fill="#009645" height="29.0679" id="GuiRobot" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="68" x="6" y="34"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="9"
+                  y="53.9659">GuiRobot
+            </text>
+        </g><!--class NodeHandle-->
+        <g id="elem_NodeHandle">
+            <rect codeLine="8" fill="#009645" height="48.1358" id="NodeHandle" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="90" x="263" y="99"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="65" x="275.5"
+                  y="118.9659">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="84" x="266"
+                  y="138.0339">NodeHandle
+            </text>
+        </g><!--class CommandBoxHandle-->
+        <g id="elem_CommandBoxHandle">
+            <rect codeLine="9" fill="#009645" height="29.0679" id="CommandBoxHandle" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="147" x="97.5" y="108.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="141" x="100.5"
+                  y="128.4659">CommandBoxHandle
+            </text>
+        </g><!--class MainMenuHandle-->
+        <g id="elem_MainMenuHandle">
+            <rect codeLine="10" fill="#009645" height="29.0679" id="MainMenuHandle" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="127" x="371.5" y="108.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="121" x="374.5"
+                  y="128.4659">MainMenuHandle
+            </text>
+        </g><!--class MeetCardHandle-->
+        <g id="elem_MeetCardHandle">
+            <rect codeLine="11" fill="#009645" height="29.0679" id="MeetCardHandle" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="120" x="327" y="34"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="114" x="330"
+                  y="53.9659">MeetCardHandle
+            </text>
+        </g><!--class MeetListPanelHandle-->
+        <g id="elem_MeetListPanelHandle">
+            <rect codeLine="12" fill="#009645" height="29.0679" id="MeetListPanelHandle" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="148" x="90" y="183"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="142" x="93"
+                  y="202.9659">MeetListPanelHandle
+            </text>
+        </g><!--class PersonCardHandle-->
+        <g id="elem_PersonCardHandle">
+            <rect codeLine="13" fill="#009645" height="29.0679" id="PersonCardHandle" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="132" x="256" y="183"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="126" x="259"
+                  y="202.9659">PersonCardHandle
+            </text>
+        </g><!--class PersonListPanelHandle-->
+        <g id="elem_PersonListPanelHandle">
+            <rect codeLine="14" fill="#009645" height="29.0679" id="PersonListPanelHandle" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="160" x="406" y="183"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="154" x="409"
+                  y="202.9659">PersonListPanelHandle
+            </text>
+        </g><!--class ResultDisplayHandle-->
+        <g id="elem_ResultDisplayHandle">
+            <rect codeLine="15" fill="#009645" height="29.0679" id="ResultDisplayHandle" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="145" x="163.5" y="34"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="139" x="166.5"
+                  y="53.9659">ResultDisplayHandle
+            </text>
+        </g>
+        <path d="M244.584,123 C250.6944,123 256.8048,123 262.9152,123 " fill="none"
+              style="stroke:#006930;stroke-width:1.1;"/>
+        <polygon fill="#FFFFFF" points="262.9152,123,246.9152,117,246.9152,129,262.9152,123"
+                 style="stroke:#006930;stroke-width:1.0;"/>
+        <path d="M353.1445,123 C359.2197,123 365.295,123 371.3702,123 " fill="none"
+              style="stroke:#006930;stroke-width:1.1;"/>
+        <polygon fill="#FFFFFF" points="353.1445,123,369.1445,129,369.1445,117,353.1445,123"
+                 style="stroke:#006930;stroke-width:1.0;"/>
+        <path d="M372.1407,63.1367 C361.2349,73.1452 346.1565,86.9829 333.3595,98.7271 " fill="none"
+              style="stroke:#006930;stroke-width:1.1;"/>
+        <polygon fill="#FFFFFF" points="333.3595,98.7271,349.2046,92.3293,341.0909,83.4881,333.3595,98.7271"
+                 style="stroke:#006930;stroke-width:1.0;"/>
+        <path d="M262.8326,146.7405 C239.2429,158.6173 211.1689,172.7518 190.981,182.9158 " fill="none"
+              style="stroke:#006930;stroke-width:1.1;"/>
+        <polygon fill="#FFFFFF" points="262.8326,146.7405,245.8435,148.5765,251.2398,159.2947,262.8326,146.7405"
+                 style="stroke:#006930;stroke-width:1.0;"/>
+        <path d="M312.5068,147.3385 C314.7769,159.0946 317.4495,172.9347 319.3795,182.9298 " fill="none"
+              style="stroke:#006930;stroke-width:1.1;"/>
+        <polygon fill="#FFFFFF" points="312.5068,147.3385,309.6492,164.1859,321.4315,161.9107,312.5068,147.3385"
+                 style="stroke:#006930;stroke-width:1.0;"/>
+        <path d="M353.0025,142.8772 C356.3834,144.2776 359.7444,145.6643 363,147 C393.0271,159.3198 427.2907,173.0849 452.0151,182.9658 "
+              fill="none" style="stroke:#006930;stroke-width:1.1;"/>
+        <polygon fill="#FFFFFF" points="353.0025,142.8772,365.4884,154.5434,370.0806,143.4569,353.0025,142.8772"
+                 style="stroke:#006930;stroke-width:1.0;"/>
+        <path d="M249.5426,63.1367 C259.4821,73.1452 273.2244,86.9829 284.8876,98.7271 " fill="none"
+              style="stroke:#006930;stroke-width:1.1;"/>
+        <polygon fill="#FFFFFF" points="284.8876,98.7271,277.8704,83.1463,269.3558,91.6022,284.8876,98.7271"
+                 style="stroke:#006930;stroke-width:1.0;"/>
+        <path d="M74.3154,61.9309 C75.5551,62.3035 76.7862,62.6613 78,63 C154.4845,84.3424 177.128,75.573 253,99 C256.2634,100.0077 259.5995,101.1377 262.9351,102.3419 "
+              fill="none" style="stroke:#006930;stroke-width:1.1;"/>
+        <polygon fill="#006930" points="74.3154,61.9309,81.7834,68.3519,79.1038,63.3699,84.0858,60.6904,74.3154,61.9309"
+                 style="stroke:#006930;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="87.3154"
+              y="57.8279">1
+        </text><!--SRC=[XL5TQy9047o_Nx7cFOBl4Z0HRF4Z4kfRGTPa6mylT-7s3YlM_zxK2fgOqdkwdPaTPjX1RR6i41IUZ7V05JdKA0PIvyeN1EnEYeQrhvJWWzGrMgm0hJN7jxtC3vgOOJGSTSd4A6DXyxfDqaMQRQUJRFuWoHKonvWVIckyBjfY8Ug6mPAWz7AFkb34C1vdb3V9IaLHTFUD9ybybgMRrHJE8lbnXU2CEtOMStTvrojJqClL8W1ak8ytSMAggfbZyzc2boZrahHlWqGkGLiyWGl9ResQL8jPasMZdnP-uVwLZDWhDvLSDzUuCHSXH3SbX5QMUnT-HO-Dsg4XLFJn96bLWB0mHzqZwQI3qDSTLRVSdvB_hNfAzmQxVwycKG3D6mKmyp8pE-F4Dm00]-->
+    </g>
+</svg>
