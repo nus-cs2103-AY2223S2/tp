@@ -477,11 +477,11 @@ in the `Bookmark` class.
 
 `Rating` is an optional field to be added to a bookmark. It was represented as an integer as that allows it to be
 easily displayed as stars on the user interface and thus easy to understand for the user. When no `Rating` is provided,
-no star logos would be displayed.
+no star logos would be displayed. The sort command also sorts the bookmarks based on the rating provided.
 
 #### Design considerations:
 
-##### Aspect: How should `Rating` be stored?
+**Aspect: How should `Rating` be stored?**
 The `Rating` field is represented by integer values from 0 to 5. This allows for a simple and intuitive way to rate
 books in the `Library`.
 
@@ -492,7 +492,7 @@ books in the `Library`.
   - Pros: Higher level of granularity
   - Cons: Difficult to represent with visual symbols in the UI to accurately reflect difference in ratings.
 
-##### Aspect: How should `Rating` be displayed to users?
+**Aspect: How should `Rating` be displayed to users?**
 - Alternative 1: Represented as a number for example "Rating: 4".
   - Pros: Easy to implement in the UI
   - Cons: Lots of textual information already present in the UI, adding more text makes it less visually appealing
@@ -875,7 +875,7 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
     1. `find n/Solo n/Cheats`
     2. `view 2`
 
-   **Expected**: An error message is displayed in the Result Display. This is because in the filtered bookmark list, there is only 1 bookmark entry, implying that`2` is not a valid value for the `INDEX` field.
+   **Expected**: An error message is displayed in the Result Display. This is because in the filtered bookmark list, there is only 1 bookmark entry, implying that `2` is not a valid value for the `INDEX` field.
 
 4. `view -1`
 
@@ -891,7 +891,7 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
 2. `find n/Solo n/Defense`
 
-   **Expected**: The List Panel shows the bookmark entries whose Title  matches with `Defense` as find ignores first prefix if more than one of same prefix is given. A success message is displayed in the Result Display.
+   **Expected**: The List Panel shows the bookmark entries whose Title  matches with `Defense`. This is because if only one field is required, find ignores all fields of the same prefix except the last. A success message is displayed in the Result Display.
 
 3. `find`
 
@@ -963,6 +963,56 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
 <div style="page-break-after: always;"></div>
 
+### Listing valid genres
+1. `genre`
+
+   **Expected**: A list of valid genres are displayed in Result Display.
+
+### Listing valid tags
+1. `tags`
+
+   **Expected**: A list of valid tags are displayed in Result Display.
+
+
+2. `tags hello`
+
+**Expected**: A list of valid tags are displayed in Result Display.
+
+### Adding tags to the tag list
+Assumptions: The default tags provided by MyLib is used.
+1. `addtag t/Hero`
+
+   **Expected**: A new tag "Hero" is successfully added to the tag list. A success message is displayed in the Result Display.
+
+
+2. `addtag t/HighSchool t/Security`
+
+   **Expected**: Two new tags "HighSchool" and "Security" are successfully added to the tag list. A success message is displayed in the Result Display.
+
+
+3. `addtag t/Novel`
+
+    **Expected**: No new tag added to the tag list. An error message is displayed in the Result Display. This is because the tag "Novel" already exists in the tag list.
+
+### Deleting tags from the tag list
+Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries. The default tags provided by MyLib is used.
+
+1. `dtag Novel`
+
+    **Expected**: The tag "Novel" is successfully deleted from the tag list. A success message is displayed in the Result Display.
+
+
+
+2. `dtag Korean`
+
+   **Expected**: No tag is deleted from the tag list. An error message is displayed in the Result Display. This is because there is no "Korean" tag in the tag list.
+
+
+3. `dtag MaleProtagonist FemaleProtagonist`
+
+   **Expected**: No tag is deleted from the tag list. An error message is displayed in the Result Display. This is because tags can only be deleted one at a time and each tag can only be one word long with no spaces in between.
+
+
 ### Get Help
 
 1. `help`
@@ -1019,7 +1069,7 @@ Currently, there a few feature flaws with the application. These are some propos
    : After executing edit 8
    </em></figcaption>
 
-Currently there is a discrepancy where `edit 0` with missing prefix causes an error message of invalid command format 
+Currently, there is a discrepancy where `edit 0` with missing prefix causes an error message of invalid command format 
 while `edit` with any positive index and missing prefix causes an error message of at least 1 field must be present.
 
 **Potential Enhancement and Suggested Implementation:**
@@ -1028,3 +1078,5 @@ than 1 0" since the bookmarklist index starts from 1. And keep the current error
 
 In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be less than 1" when 
 ParseException is thrown.
+
+
