@@ -3,6 +3,12 @@ layout: page
 title: Developer Guide
 ---
 
+## **Overview**
+
+Vimification is a **desktop app for managing to-do and deadlines, optimized for use via a Command Line Interface** (CLI) **that uses vim-like command syntax** while still having the benefits of a Graphical User Interface (GUI).
+
+This Developer Guide will help you get familiar with the architecture of Vimification and understand the design choices and implementations of key features in Vimification, in case you are interested in contributing to this project. // TODO: Paraphrase
+
 ## **Table of Contents**
 
 - [Acknowledgements](#acknowledgements)
@@ -15,17 +21,13 @@ title: Developer Guide
 
 ---
 
-
-
-
 ## **Acknowledgements**
 
-<!-- - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well} -->
-
-<!-- Mentioned Jackson for serialization -->
+- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
+- Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
-
 
 ## **Setting up, getting started**
 
@@ -42,6 +44,21 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
+
+Vimification is built using the MVC (Model-View-Controller) pattern, which is **different** from the architecture of AB3.
+The following are the mapping of our components to their part in MVC.
+`UI` - View
+`Model` - Model
+`Logic` - Controller
+
+In particular, our `Model` is diffrent from the `Model` in AB3, as our `Model` does not bundle
+
+<!-- TODO: Need feedback/input  -->
+
+**Rationale for refacotring the AB3 codebase to use MVC**
+AB3 does not clearly separate the concern between `Model` and `Logic`. TODO: NEED FEEDBACK/INPUT
+
+By using this architecture, we ensure that `UI` only has to communicate with the backend using a **single API** from `Logic`.
 
 <!-- change the architechture diagram a little bit -->
 
@@ -69,9 +86,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `:d 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="574" /> // TODO: Change png
 
 Each of the four main components (also shown in the diagram above),
 
@@ -90,9 +107,26 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The `UI` consists of a `MainScreen` that is made up of parts e.g.`CommandInput`, `TaskDetailPanel`, `TaskListPanel`, `CommandInput` etc. All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+`UI` consists of a `MainScreen` that is made up of `TaskListPanel`,`TaskDetailPanel`,`CommandInput`,`CommandResultPanel`,`HelpManualPanel` and `WelcomePanel`.
 
-The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are first defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+
+`MainScreen` is the component that represents the `Window` and is divided into 3 main parts, as shown in the diagram below.
+
+1. `leftComponent`
+2. `rightComponent`
+3. `bottomComponent`
+
+`leftComponent` **always** and **only** loads the `TaskListPanel` upon initialization.
+
+`bottomComponent` loads the `CommandInput` when the user presses `:` key on their keyboard.
+After the user finishes typing their command in `CommandInput` and presses `Enter`, `bottomComponent` loads `CommandResultPanel` to show the command result at the bottom of the screen.
+
+`rightComponent` loads the `WelcomePanel` when Vimification first launches to show a breif guide to guide the user.
+`rightComponent` loads the `HelpManualPanel` when the user executes the `:help` command using `CommandInput`.
+`rightComponent` loads the `TaskDetailPanel` when the user presses `l` key on their keyboard when they hover over a `TaskCell`(a cell in `TaskListPanel` in `LeftComponent`).
+
+All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component,
 
@@ -184,7 +218,6 @@ Vimification uses the **Model–view–controller (MVC)** design pattern. One de
 
 Therefore, we wish to improve the current design of the application. \<The design will be finalized soon\>. -->
 
-
 ### ApplicativeParser\<T\>
 
 `ApplicativeParser` is an idea from function programming language, where we have a set of **combinators**, and we can combine these combinators to form more powerful combinators.
@@ -239,8 +272,6 @@ In the current implementation, the container used is `Optional` from the Java st
 
 The only way to create new `ApplicativeParser` instances is to use static factory methods. This is to ensure that the implementation of `ApplicativeParser` is hidden, and allows us to change the internal implementation of the parser to a more suitable one (in the future, if necessary) without breaking the exposed **API**.
 
-
-
 ### Command parser
 
 All command parsers implements a common interface:
@@ -258,9 +289,6 @@ Where `T` is the type of the command returned by the parser.
 The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
 
 A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` to be used by `CommandParser#parse()`.
-
-
-
 
 ### Command implementation
 
@@ -356,7 +384,7 @@ Refer to the diagram below for a visualization of this workflow:
 
 <!-- insert diagram here -->
 
-Apart from ensuring atomic data operation, this implementation greatly simpifies the implementation of the undo feature. Must be nice!
+Apart from ensuring atomic data operation, this implementation greatly simpifies the implementation of the undo feature.
 
 ### Undo feature
 
@@ -812,15 +840,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a task
 
-1. Deleting a task while all tasks are being shown
+1. Deleting a task while all of the tasks are being shown and there are multiple tasks.
 
    1. Test case: `:d 1`<br>
       Expected: First task is deleted from the list.
 
-   1. Test case: `delete -1`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `d -1`<br>
+      Expected: No task is deleted. Error details shown at the bottom of the screen.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `:delete`, `:delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
