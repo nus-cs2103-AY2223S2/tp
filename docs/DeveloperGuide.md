@@ -628,4 +628,23 @@ testers are expected to do more *exploratory* testing.
 
 ### **Appendix D: Effort**
 
+Difficulty Level: 
 
+Challenges Faced:
+* During the first milestone, we decided to "morph" by creating a parallel package and using AB3 as code reference.
+  We would copy over whichever code we deem relevant. Halfway through the milestone, one of us realised that doing this
+  possibly violated [`Constraint-Brownfield`][tp constraints brownfield]. After checking with our tutor/prof, we had to
+  restart again, effectively wasting our effort and restricting our duration for `milestone 1` by half.
+* During morphing, the refactor of `Person` to `Event`, as well as `AddressBook` to `Scheduler` was tedious and
+  required a lot of careful checking. Despite using IDE features like refactor and find-and-replace, there were
+  still variable name and comments which we had to change, and we had to painstakingly double-check everything.
+* Furthermore, the morphing process also invalidated many of the existing test cases (from AB3) resulting in the 
+  Java CI failing for a prolonged period. We spend a lot of time in `milestone 2` changing/fixing the broken test 
+  cases, which left us with not a lot of time to implement new features in `milestone 2` and `milestone 3`.
+
+Effort Required: High effort for the morphing process.
+
+Achievements of Project:
+
+
+[tp constraints brownfield]: https://nus-cs2103-ay2223s2.github.io/website/admin/tp-constraints.html#constraint-brownfield
