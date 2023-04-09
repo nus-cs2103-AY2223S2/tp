@@ -1034,7 +1034,7 @@ vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 
 ##### Example
 
-Examples follow after vaccination [`clear`](#clear---clear-all-vaccination-data) and then [`add`](#add---add-a-vaccination) command examples.
+Examples follow after vaccination [`clear`](#clear---clear-all-vaccination-data) and then [`add`](#add---add-a-vaccination) command examples and then [`list`](#list---list-all-vaccination). The are also independent of one another.
 
 ```text
 vaccination delete 1
