@@ -301,7 +301,7 @@ The `sort` command helps users sort recipes in ascending or descending order of 
 #### Usage
 The `sort` command format is as shown below:
 
-`find ORDER`
+`sort ORDER`
 
 - *ORDER* can only be `asc` or `desc`.
 - `asc` is used for ascending order, and `desc` is used for descending order
@@ -320,6 +320,38 @@ by the UI. Otherwise, a ParseException containing a message informing users that
 will be displayed by the UI.
 
 ![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+### Groceries feature
+
+#### What is it?
+The `groceries` command helps users get a list of groceries needed to cook one or more recipes.
+
+
+#### Usage
+The `groceries` command format is as shown below:
+
+`groceries RECIPE_NUMBER, ...`
+
+- *ORDER* can only be `asc` or `desc`.
+- If two or more recipes share ingredients, their quantities will be automatically added together.
+- The `indices` have to be separated by a comma (`,`).
+
+#### Implementation
+
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates a `GroceriesCommandParser`.
+5. The `CookHubParser` then passes the string input to the `GroceriesCommandParser` via the `parse()` method.
+6. The `GroceriesCommandParser` then parses out the *RECIPE_NUMBERS* with the help of `ParserUtil` and creates a new `GroceriesCommand` with the
+parameter of the recipe indices
+7. This `GroceriesCommand` is then returned to `LogicManager`.
+8. The `LogicManager` then calls the `execute()` method of the `GroceriesCommand`.
+9. An instance of `CommandResult` is created which contains the list of groceries that will be displayed back to the User after
+    the execution of the command.
+10. Finally, the Ui component displays the contents of the `CommandResult` to the User.
+
+![GroceriesSequenceDiagram](images/GroceriesSequenceDiagram.png)
 
 ### Filter by price feature
 
@@ -342,7 +374,7 @@ The `fp` command format is as shown below:
 1. The Ui component receives the user command from the `CommandBox` of the GUI.
 2. The command is passed to `LogicManager` via its `execute()` method.
 3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
-4. The `CookHubParser` in turn creates an `FindCommandParser`.
+4. The `CookHubParser` in turn creates an `FilterPriceCommandParser`.
 5. The `CookHubParser` then passes the string input to the `FilterPriceCommandParser` via the `parse()` method.
 6. The `FilterPriceCommandParser` then passes the string input to the `FilterPriceCommandParser`
 via the`parseFilterPrice()` method.
