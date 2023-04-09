@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -27,7 +26,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_TAG_LENGTH = RandomStringUtils.randomAlphanumeric(61);
+    private static final String INVALID_TAG_LENGTH = "thisIsAnInvalidTagBecauseItIsVeryLongWithALengthMoreThanSixty";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";

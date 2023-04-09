@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -22,7 +21,6 @@ import seedu.address.model.person.Platoon;
 import seedu.address.model.person.Rank;
 import seedu.address.model.person.Unit;
 
-
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
@@ -33,7 +31,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_COMPANY = "%!@#";
     private static final String INVALID_PLATOON = "%!@#";
     private static final String INVALID_TAG_NAME = "#friend";
-    private static final String INVALID_TAG_LENGTH = RandomStringUtils.randomAlphanumeric(61);
+    private static final String INVALID_TAG_LENGTH = "thisIsAnInvalidTagBecauseItIsVeryLongWithALengthMoreThanSixty";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
