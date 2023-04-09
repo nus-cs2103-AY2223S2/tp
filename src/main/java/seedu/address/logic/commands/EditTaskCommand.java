@@ -33,11 +33,11 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "editt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of a task by the index number."
-        + "Parameters: "
-        + PREFIX_TITLE + "TITLE "
-        + PREFIX_CONTENT + "CONTENT "
-        + PREFIX_STATUS + "STATUS "
-        + PREFIX_TASK_DEADLINE + "DEADLINE \n"
+        + "Parameters:"
+        + "[" + PREFIX_TITLE + "TITLE] "
+        + "[" + PREFIX_CONTENT + "CONTENT] "
+        + "[" + PREFIX_STATUS + "STATUS] "
+        + "[" + PREFIX_TASK_DEADLINE + "DEADLINE] \n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_TITLE + "Complete Project X "
         + PREFIX_CONTENT + "Do the UML diagram "

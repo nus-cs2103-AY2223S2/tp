@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+<a id="top"></a>
 
 * Table of Contents 
 {:toc}
@@ -307,15 +308,16 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 ![FindTaskActivityDiagram](images/FindActivityDiagram.png)
 
 ### 3.4 Finding a Task's Assignees
-Syntax: `findt TASKNAME` </br>
+Syntax: `findt TASKNAME` 
+
 Purpose: Allow users to search and review the group of individuals assigned to the specified task in OfficeConnect.
 
 #### 3.4.1 Implementation
 The implementation of this feature is supported by `FindTaskCommand` and `FindTaskCommandParser`.
 
-Below is an activity diagram that illustrates how a user finds who are assigned to a task. </br>
+Below is an activity diagram that illustrates how a user finds who are assigned to a task.
 
-![FindTaskSequenceDiagram.png](images/FindTaskSequenceDiagram.png)
+![FindTaskSequenceDiagram.png](images%2FFindTaskSequenceDiagram.png)
 
 #### 3.4.2 Design Considerations
 
@@ -332,7 +334,7 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
       to execute the findt command if the current display is empty.
 
 ### 3.5 Editing a Task
-Syntax: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]` </br>
+Syntax: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]`
 Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 
 #### 3.5.1 Implementation
@@ -346,7 +348,7 @@ Purpose: Allows users to assign a person to a task in OfficeConnect.
 #### 3.6.1 Implementation
 The implementation of this feature is supported by `AssignCommand`, `AssignCommandParser`, `ListCommand`,
 `ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`. Below are the steps required to assign a task
-to a person in OfficeConnect. </br>
+to a person in OfficeConnect.
 
 Step 1: User executes `listall` to list all the people and tasks in OfficeConnect.
 * Alternative steps to Step 1:
@@ -1350,3 +1352,5 @@ Although OfficeConnect is a brownfield project building on the AB3, it was neces
 * (Can talk more about UI for this point)
 ### 8.2 Technical Challenges
 * As AB3 is quite a big project, it was quite difficult for us to understand the structure and details behind the code initially. To overcome this, we decided to start project meetings on our project early to allow us more time to understand AB3's implementation, and also help each other clarify our doubts regarding AB3. This understanding helped reduce the learning curve when trying to implement OfficeConnect's new features, as some of the features had a similar concept and understanding how it was implemented in AB3 significantly lowered the difficulty level when implementing those methods.
+
+<a href="#top">Back to top</a>
