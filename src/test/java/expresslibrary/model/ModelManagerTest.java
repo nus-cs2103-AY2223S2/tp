@@ -15,6 +15,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import expresslibrary.commons.core.GuiSettings;
+import expresslibrary.model.book.Author;
+import expresslibrary.model.book.Book;
+import expresslibrary.model.book.Isbn;
+import expresslibrary.model.book.Title;
+import expresslibrary.model.book.exceptions.BookNotFoundException;
 import expresslibrary.model.person.NameContainsKeywordsPredicate;
 import expresslibrary.testutil.ExpressLibraryBuilder;
 
@@ -70,6 +75,30 @@ public class ModelManagerTest {
         Path path = Paths.get("expresslibrary/prefs/file/path");
         modelManager.setExpressLibraryFilePath(path);
         assertEquals(path, modelManager.getExpressLibraryFilePath());
+    }
+
+    @Test
+    public void hasBook_bookNotInExpressLibrary_returnsFalse() {
+        assertFalse(modelManager.hasBook(new Book(new Title("Harry Potter and the Cursed Child"),
+                new Author("J.K. Rowling"), new Isbn("1234567890"))));
+    }
+
+    @Test
+    public void setBook_bookNotFound_throwsException() {
+        Book book = new Book(new Title("Harry Potter and the Cursed Child"),
+                new Author("J.K. Rowling"), new Isbn("1234567890"));
+        Book editedBook = new Book(new Title("Harry Potter and the Goblet of Fire"),
+                new Author("J.K. Rowling"), new Isbn("1234567980"));
+
+        assertThrows(BookNotFoundException.class, () -> modelManager.setBook(book, editedBook));
+        assertThrows(NullPointerException.class, () -> modelManager.setBook(null, null));
+    }
+
+    @Test
+    public void getBook_bookIsNotInExpressLibrary_throwsBookNotFoundException() {
+        Book book = new Book(new Title("Harry Potter and the Cursed Child"),
+                new Author("J.K. Rowling"), new Isbn("1234567890"));
+        assertThrows(BookNotFoundException.class, () -> modelManager.getBook(book));
     }
 
     @Test
