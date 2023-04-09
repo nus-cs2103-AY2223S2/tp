@@ -106,6 +106,10 @@ public class SessionListPanel extends UiPart<Region> {
         getStatistics(sessionList);
         setClickEventListener();
         setUpdateEventListener(logic);
+
+        sessionList.addListener((ListChangeListener<Session>) change -> {
+            getStatistics(logic.getFilteredSessionList());
+        });
     }
 
     private void getStatistics(ObservableList<Session> sessionList) {
