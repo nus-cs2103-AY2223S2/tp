@@ -297,7 +297,7 @@ delete all cases from 23rd March 2023 to 25th March 2023 inclusively.
 
 #### Implementation
 
-The proposed find-by-feature feature mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
+The proposed find-by-prefix feature mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
 `FindCommandParser#parse()`, `FindPredicate#test()`, and `FindCommand#execute()`methods.
 
 Given below is an example usage scenario and how the find-by-prefix mechanism behaves at each step.
