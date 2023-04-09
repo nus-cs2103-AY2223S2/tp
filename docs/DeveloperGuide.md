@@ -1186,7 +1186,7 @@ To which Mycelium would respond with an invalid email error message.
 Consider the following command:
 
 ```
-p -pn foo -ad qwerty -dd 14/03/2023
+p -pn foo -e foobar@baz.com -ad qwerty -dd 14/03/2023
 ```
 
 The *accepted date* is invalid while the deadline is valid. Mycelium currently
