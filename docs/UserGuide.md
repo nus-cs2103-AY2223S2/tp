@@ -122,7 +122,7 @@ for your reference. </div>
 
 
 <p align="center">
-  <img height="450" width="450" src="images/Ui.png">
+  <img height="400" width="400" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
@@ -254,7 +254,10 @@ Examples of valid usages:
 <div align="center">Figure 3 : Adding a new module into the tracker.</div>  
 <br>  
 
-<div style="page-break-after: always;"></div>
+
+<div style="page-break-after: always;"></div>  
+<br>  
+
 
 Examples of invalid usages: 
 * `add n/CS2103T` - there is no description provided.
@@ -663,6 +666,7 @@ know what information are considered valid and what are not.<br>
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 
+<div style="page-break-after: always;"></div>  
 ## <a id="data"></a>Data Storage 
 
 If you are interested to read about how coNtactUS stores data on your computer, read this section to find out more.
@@ -740,8 +744,7 @@ Refers to the application used to track the entries of different modules input b
 
 #### Prefix  
 Refers to a character ending in a slash ("/") that precedes an attribute value. It indicates the type of
-information to follow. Example includes ```a/``` as prefix for ```VENUE``` attribute and ```s/```
-as prefix for ```TEACHER``` attribute.  
+information to follow. Example includes ```a/``` as prefix for the ```VENUE``` attribute.   
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
