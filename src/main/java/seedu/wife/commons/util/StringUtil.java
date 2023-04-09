@@ -2,6 +2,7 @@ package seedu.wife.commons.util;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.AppUtil.checkArgument;
+import static seedu.wife.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -132,12 +133,15 @@ public class StringUtil {
         return capitalizedString;
     }
 
+    //@@author jnjy-reused
+    //Reused from
+    //https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu/foodrem/commons/util/StringUtil.java
+    //with minor modification
     /**
      * Returns index obtained from command keyed in by users.
      */
     public static Index getIndexFromCommand(String args, String commandHelpMessage) throws ParseException {
-        requireNonNull(args);
-        requireNonNull(commandHelpMessage);
+        requireAllNonNull(args, commandHelpMessage);
 
         String trimmedArgs = args.trim();
 
@@ -161,6 +165,6 @@ public class StringUtil {
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, commandHelpMessage));
         }
-
     }
+    //@@author
 }

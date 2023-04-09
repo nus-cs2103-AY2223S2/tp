@@ -16,26 +16,25 @@ refrigerator!
 - [Trying out your first command!](#trying-out-your-first-command)
 - [Features](#features)
 - [Food-related Features](#food-related-features)
-  - [Add a food: `add`](#add-a-food-add)
-  - [List all food items: `list`](#list-all-food-items-list)
-  - [Edit a food: `edit`](#edit-a-food-edit)
-  - [Find a food: `find`](#find-a-food-find)
-  - [Increasing the quantity of a food: `inc`](#increasing-the-quantity-of-a-food-inc)
-  - [Decreasing the quantity of a food: `dec`](#decreasing-the-quantity-of-a-food-dec)
-  - [Delete a food: `delete`](#delete-a-food-delete)
+  - [Add a food item: `add`](#add-a-food-add)
+  - [List all food item: `list`](#list-all-food-items-list)
+  - [Edit a food item: `edit`](#edit-a-food-edit)
+  - [Find a food item: `find`](#find-a-food-find)
+  - [Increasing the quantity of a food item: `inc`](#increasing-the-quantity-of-a-food-inc)
+  - [Decreasing the quantity of a food item: `dec`](#decreasing-the-quantity-of-a-food-dec)
+  - [Delete a food item: `delete`](#delete-a-food-delete)
   - [Checking expiry of food items : `expiry`](#checking-expiry-of-food-items--expiry)
-  - [View full name of food item : `view`](#view-full-name-of-food-item--view)
+  - [View a food item : `view`](#view-full-name-of-food-item--view)
 - [Tag-related Features](#tag-related-features)
   - [Create a new tag: `createtag`](#create-a-new-tag-createtag)
-  - [Tag a food: `tag`](#tag-a-food-tag)
-  - [Untag a food: `untag`](#untag-a-food-untag)
+  - [Tag a food item: `tag`](#tag-a-food-tag)
+  - [Untag a food item: `untag`](#untag-a-food-untag)
   - [List all tags: `listtag`](#list-all-tags-listtag)
-  - [Listing all foods by their tag(s) : `listbytag`](#listing-all-foods-by-their-tags--listbytag)
-  - [Delete foods by their tag(s) : `delbytag`](#delete-foods-by-their-tags--delbytag)
+  - [Listing all food items by their tag(s) : `listbytag`](#listing-all-foods-by-their-tags--listbytag)
+  - [Delete food items by their tag(s) : `delbytag`](#delete-foods-by-their-tags--delbytag)
   - [Delete tag(s) : `deltag`](#delete-tags--deltag)
 - [General Features](#general-features)
   - [Getting help: `help`](#getting-help-help)
-      - [List of COMMAND\_NAME](#list-of-command_name)
   - [Clearing WIFE : `clear`](#clearing-wife--clear)
   - [Exit the program : `exit`](#exit-the-program--exit)
   - [Saving the data](#saving-the-data)
@@ -82,9 +81,9 @@ to execute it.
   
   `add n/Coca Cola u/Cans q/5 e/01-01-2099`
 
-You should see your food list be updated as such!
+You should see the Food List be updated as such!
 
-  ![Ui_updated](images/UG/Ui_updated.png)
+  ![Ui_updated](images/UG/AddFood.png)
 
 Congratulations, you just added your first item!
 
@@ -116,25 +115,24 @@ To see what the command format means, you can refer to the [Features](#features)
 
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
-
 </div>
 
 
 ## Food-related Features
 
-### Add a food: `add`
-Add a new food into WIFE. (This is the command when you tried out your first command!)
+### Add a food item: `add`
+Adds a new food item into WIFE. (This is the command when you tried out your first command!)
 
 Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`
 Note:
-* All parameters must be present in the command. Date must be in the format of DD-MM-YYYY.
-* `UNIT` of the food item must have at most 10 characters.
+* All parameters must be present in the command. Date must be in the format of DD-MM-YYYY
+* `UNIT` of the food item must have at most 10 characters
 * `QUANTITY` of the food item **must be a positive integer** 1, 2, 3, …​
 * `QUANTITY` of the food item should be less than `1,000,000`.
 * `EXPIRY DATE` of the food item should be in the format `DD-MM-YYYY`. Examples of valid date format:
   * 11-11-2025
   * 07-04-2024
-* `EXPIRY DATE` of the new food should not be before the date of insertion.
+* `EXPIRY DATE` of the food item should not be before the date of insertion
 
 Example:
 
@@ -147,7 +145,7 @@ New food added: Coca Cola (expires on: 01-01-2099)
 
 ### List all food items: `list`
 
-Shows a list of all food item in WIFE.
+Shows a list of all food items in WIFE.
 
 Format: `list`
 
@@ -161,19 +159,19 @@ Example:
 ![ListFoods](images/UG/ListFoods.png)
 
 
-### Edit a food: `edit`
+### Edit a food item: `edit`
 
-Edit food items in WIFE.
+Edits a food item in WIFE.
 
 Format: `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]`
 
 Note:
-* `INDEX` must be a valid integer that refers to an item currently in the fridge.
-* `QUANTITY` of the food item should be less than `1,000,000`.
-* `EXPIRY DATE` of the food item should be in the format `DD-MM-YYYY`. Examples of valid date format:
+* `INDEX` must be a valid integer that refers to an item currently in the fridge
+* `QUANTITY` of the edited food item should be less than `1,000,000`
+* `EXPIRY DATE` of the edited food item should be in the format `DD-MM-YYYY`. Examples of valid date format:
   * 11-11-2025
   * 07-04-2024
-* `EXPIRY DATE` of the edited food should not be before the date of insertion.
+* `EXPIRY DATE` of the edited food should not be before the date of insertion
 
 Example: <br/>
 `edit 1 n/Chocolate Milk q/20 e/06-06-2030` returns
@@ -183,7 +181,7 @@ Edited food item: Chocolate milk (expires on: 06-06-2030)
 
 ![EditFood](images/UG/EditFood.png)
 
-### Find a food: `find`
+### Find a food item: `find`
 
 Find food items in WIFE which names contain any of the specified keywords. Keywords are case-insensitive.
 
@@ -205,11 +203,13 @@ Format: `inc INDEX [q/QUANTITY]`
 
 Note:
 * Ensure you can see the whole list of food items (using `list`) before using this command!
-* Increases the quantity of the food item at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the Food List.
+* Increases the quantity of the food item at the specified `INDEX`
+* The `INDEX` refers to the index number shown in the Food List
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * If no `QUANTITY` is specified, the default `QUANTITY` to increase is 1.
 * If a `QUANTITY` is specified, it **must be a positive integer** 1, 2, 3, …​
+* The final `QUANTITY` of the edited food item should be less than `1,000,000`
+
 
 Examples:
 
@@ -231,7 +231,7 @@ Decreases the quantity of a food item in WIFE.
 
 Format: `dec INDEX [q/QUANTITY]`
 
-Usage is the same as `inc`, with the only difference is being to decrease the quantity of the Food item.
+Usage is the same as `inc`, with the only difference is being to decrease the quantity of the food item.
 
 Note:
 * The `QUANTITY` specified to decrease by **cannot be equal to or greater than** the current quantity of the food item.
@@ -312,11 +312,11 @@ Soup
 
 ![CreateTag](images/UG/CreateTag.png)
 
-### Tag a food: `tag`
+### Tag a food item: `tag`
 
-Tag the specified `Food` in your fridge with our pre-defined tags.
+Tag the specified food item in your fridge with an existing tag.
 
-Pre-Defined Tags:
+Pre-Defined Tags (These tags already exist when you start up the application):
 * `New`
 * `Used`
 * `Dairy`
@@ -342,7 +342,7 @@ Coca Cola successfully tagged with Fizzy
 
 ![TagFood](images/UG/TagFood.png)
 
-### Untag a food: `untag`
+### Untag a food item: `untag`
 
 Remove a tag from a specified food item in your fridge.
 
@@ -350,7 +350,7 @@ Format: `untag INDEX n/TAG NAME`
 * Remove `TAG NAME` from the food item with index `INDEX`.
 * `TAG NAME` must be an existing tag of the selected food item.
 * Only one tag can be removed from a food item per command.
-* `INDEX` refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+* `INDEX` refers to any number on the Food List and must be a positive number, i.e., 1, 2, 3, 4, …
 
 Example:
 `untag 1 n/new` returns
@@ -396,7 +396,7 @@ Listed all food with the following tags:
 
 ![ListByTag](images/UG/ListByTag.png)
 
-### Delete foods by their tag(s) : `delbytag`
+### Delete food items by their tag(s) : `delbytag`
 
 Delete food items from WIFE by their specified tag(s).
 
@@ -415,7 +415,7 @@ Coca Cola (expires on: 01-01-2099)
 ### Delete tag(s) : `deltag`
 
 Deletes specified tags from WIFE. This command will delete all occurrences of the specified tags that are
-tagged to food items in the food list, if any.
+tagged to food items in the Food List, if any.
 
 Format: `deltag n/TAG NAME [n/TAG NAME]...`
 * `TAG NAME` must match an existing tag in WIFE.
@@ -511,7 +511,7 @@ If your changes to the data file makes its format invalid, WIFE will discard all
 ## FAQ
 
 **Q**: Can I use this application with other people? <br/>
-**A**: As of now, WIFE does not support concurrent users. If you would like to share your WIFE food list with another
+**A**: As of now, WIFE does not support concurrent users. If you would like to share your WIFE Food List with another
 user, install WIFE on their computer and overwrite their data file with the data file created by WIFE in your computer.
 
 **Q**: Can I use WIFE on mobile devices? <br/>
