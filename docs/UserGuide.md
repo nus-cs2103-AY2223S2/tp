@@ -757,7 +757,7 @@ ________________________________________________________________________________
 
 The user features are reflected under the 'Me' tab (tab 3).
 
-Here, you can edit personal information about yourself, the user, which can be used in future features such streamlined contact exchanging.
+Here, you can edit personal information about yourself, the user, which can be used in future features to streamline contact exchanging.
 
 ____________________________________________________________________________________________________________________
 
