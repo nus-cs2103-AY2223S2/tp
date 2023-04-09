@@ -37,6 +37,7 @@ Added the ability to undo and redo previously entered commands.
 * Helped with debugging and testing the app to ensure correct functionality.
 * Delegated tasks amongst team members and reminded them of upcoming deliverables.
 * Regularly reviewed team pull requests and merged them once done.
+* Organised project meetings with the team to discuss future enhancements.
 
 <div style="page-break-after: always;"></div>
 
@@ -50,10 +51,12 @@ Added the ability to undo and redo previously entered commands.
 <div style="page-break-after: always;"></div>
 
 ## **Documentation**
-### User Guide & Developer Guide [\#5](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/5) [\#46](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/46) [\#68](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/68) [\#148](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/148)
+### User Guide & Developer Guide [\#5](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/5) [\#46](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/46) [\#68](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/68) [\#148](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/148) [\#156](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/156) [\#160](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/160)
 * Regularly updated User and Developer Guides to add/modify documentation of new functionality.
 * Improved consistency by removing erroneous or incorrect descriptions of functions.
 * Updated pictures within User Guide to reflect UI changes and ensure user understanding.
+* Standardised command error messages to prevent user confusion.
+* Added additional user test cases to Developer Guide for future project additions.
 
 
 ## **Community**
