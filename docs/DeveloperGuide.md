@@ -91,7 +91,7 @@ After [setting up](#setting-up), double-click the jar file to launch PetPal.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the
-[diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder.
+[diagrams](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/docs/diagrams) folder.
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
 to learn how to create and edit diagrams.
 </div>
@@ -146,7 +146,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `petListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -358,25 +358,6 @@ The following activity diagram summarizes what happens during the process:
 
 
 
-### \[Proposed\] Importing data from excel (csv)
-
-#### Proposed Implementation
-The proposed importing function is an extension of the base `PetPal`, uses a `CsvToJsonParser` to convert csv data
-to application readable json data.
-
-#### Design considerations:
-- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
-  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
-  for PetPal to be able to read and modify the imported data
-    - Pros: Might be easier to implement
-    - Cons: Might be confusing for users to use (running external script)
-
-- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
-  the data into json format and refreshes the database.
-    - Pros: Easier and more intuitive for users to use
-    - Cons: Builds upon **Alternative 1**, requiring more work to implement
-
-
 ### Undo Feature
 #### Current Implementation
 The undo mechanism is facilitated by the `ModelManager`, `UndoCommand`,  classes.
@@ -407,85 +388,30 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![UndoActivityDiagram](images/diagrams/UndoActivityDiagram.png)
 
-### \[Proposed\] Undo/redo feature
+#### Design considerations:
+- **Current implementation** : Before any command, a cache of previous state of archive and petpal is saved
+into a PetPal object. Undo returns the `Archive` and `Model` to this previous saved state.
+  - Pros: Easier to implement
+  - Cons: Might be memory inefficient
+
+### \[Proposed\] Importing data from excel (csv)
 
 #### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedPetPal`. It extends `PetPal` with an undo/redo history, stored internally as an `PetPalStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedPetPal#commit()` — Saves the current address book state in its history.
-* `VersionedPetPal#undo()` — Restores the previous address book state from its history.
-* `VersionedPetPal#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitPetPal()`, `Model#undoPetPal()` and `Model#redoPetPal()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedPetPal` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/diagrams/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th pet in the address book. The `delete` command calls `Model#commitPetPal()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `petPalStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/diagrams/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new pet. The `add` command also calls `Model#commitPetPal()`, causing another modified address book state to be saved into the `petPalStateList`.
-
-![UndoRedoState2](images/diagrams/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPetPal()`, so the address book state will not be saved into the `petPalStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the pet was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoPetPal()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/diagrams/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial PetPal state, then there are no previous PetPal states to restore. The `undo` command uses `Model#canUndoPetPal()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/diagrams/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite—it calls `Model#redoPetPal()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `petPalStateList.size() - 1`, pointing to the latest address book state, then there are no undone PetPal states to restore. The `redo` command uses `Model#canRedoPetPal()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitPetPal()`, `Model#undoPetPal()` or `Model#redoPetPal()`. Thus, the `petPalStateList` remains unchanged.
-
-![UndoRedoState4](images/diagrams/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitPetPal()`. Since the `currentStatePointer` is not pointing at the end of the `petPalStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/diagrams/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/diagrams/CommitActivityDiagram.png" width="375"  alt=""/>
+The proposed importing function is an extension of the base `PetPal`, uses a `CsvToJsonParser` to convert csv data
+to application readable json data.
 
 #### Design considerations:
+- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
+  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
+  for PetPal to be able to read and modify the imported data
+    - Pros: Might be easier to implement
+    - Cons: Might be confusing for users to use (running external script)
 
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the pet being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-
+- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
+  the data into json format and refreshes the database.
+    - Pros: Easier and more intuitive for users to use
+    - Cons: Builds upon **Alternative 1**, requiring more work to implement
+  
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
