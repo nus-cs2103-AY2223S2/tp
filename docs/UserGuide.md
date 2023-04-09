@@ -214,7 +214,7 @@ Format : `mark INDEX m/NEED FOLLOWUP:yes/no`
 - Marks a particular contact as requiring follow-up action
 - This action can be specified by a String of arbitrary length
 
-**Note :** Use `list` to reflect the marking.
+**Note :** Use `list` after marking to reflect the marking.
 
 Examples :
 
