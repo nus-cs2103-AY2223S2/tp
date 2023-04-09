@@ -22,6 +22,8 @@ public class StorageManager implements Storage {
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * @param HMHeroStorage the storage for the address book.
+     * @param userPrefsStorage the storage for the user preferences.
      */
     public StorageManager(HMHeroStorage HMHeroStorage, UserPrefsStorage userPrefsStorage) {
         this.HMHeroStorage = HMHeroStorage;

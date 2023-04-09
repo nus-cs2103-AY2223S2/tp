@@ -30,6 +30,14 @@ public class Person {
 
     /**
      * Every field must be present and not null.
+     * @param name Name of the person.
+     * @param phone Phone number of the person.
+     * @param email Email of the person.
+     * @param address Address of the person.
+     * @param status Status of the person.
+     * @param applicationDateTime Application date time of the person.
+     * @param interviewDateTime Interview date time of the person wrapped in an {@link Optional}.
+     * @param notes {@link Set} of notes of the person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Status status,
                   ApplicationDateTime applicationDateTime, Optional<InterviewDateTime> interviewDateTime,
@@ -46,7 +54,9 @@ public class Person {
     }
 
     /**
-     * Constructor for updating status of person
+     * Constructor for updating status of person.
+     * @param person Person that has his/her status updated.
+     * @param newStatus New status of the person.
      */
     public Person(Person person, Status newStatus) {
         this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
@@ -54,7 +64,10 @@ public class Person {
     }
 
     /**
-     * Constructor for updating status and interview date time of person
+     * Constructor for updating status and interview date time of person.
+     * @param person New {@link Person} with his/her status and interview date time updated.
+     * @param interviewDateTime New interview date time of the person wrapped in an {@link Optional}.
+     * @param newStatus New status of the person.
      */
     public Person(Person person, Status newStatus, Optional<InterviewDateTime> interviewDateTime) {
         this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
@@ -84,6 +97,7 @@ public class Person {
     /**
      * Returns an immutable note set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     * @return {@link Set} of {@link Note} the applicant.
      */
     public Set<Note> getNotes() {
         return Collections.unmodifiableSet(notes);
@@ -148,7 +162,9 @@ public class Person {
     }
 
     /**
-     * Advances status of applicants, according to application cycle
+     * Advances status of applicants, according to application cycle.
+     * @param interviewDateTime Interview date time of the applicant wrapped in an {@link Optional}.
+     * @return Person with updated status.
      */
     public Person advancePerson(Optional<InterviewDateTime> interviewDateTime) {
         switch (this.status) {
@@ -163,6 +179,7 @@ public class Person {
 
     /**
      * Changes the status of the applicant to Rejected
+     * @return Person with status rejected.
      */
     public Person rejectPerson() {
         return new Person(this, Status.REJECTED);
@@ -170,6 +187,8 @@ public class Person {
 
     /**
      * Returns true if both persons have the same name and phone number.
+     * @param otherPerson Person to be compared with.
+     * @return boolean value of whether the two persons are the same.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -185,6 +204,8 @@ public class Person {
      * Returns true if the other person has the same interview date.
      * This is needed as Optional's equals method fails when two different Optional objects
      * are created with same value.
+     * @param other Person to be compared with.
+     * @return boolean value of whether the two persons have the same interview date.
      */
     public boolean hasSameInterviewDate(Person other) {
         Optional<InterviewDateTime> idt1 = getInterviewDateTime();
@@ -201,6 +222,8 @@ public class Person {
     /**
      * Returns true if the other person has the same application date.
      * The application date is only precise until the nearest minute.
+     * @param other Person to be compared with.
+     * @return boolean value of whether the two persons have the same application date.
      */
     public boolean hasSameApplicationDate(Person other) {
         ApplicationDateTime app1 = getApplicationDateTime();

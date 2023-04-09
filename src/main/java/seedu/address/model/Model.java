@@ -17,36 +17,43 @@ public interface Model {
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
+     * @param userPrefs the user prefs to replace the current preference settings.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs.
+     * @return the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
 
     /**
      * Returns the user prefs' GUI settings.
+     * @return the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
 
     /**
      * Sets the user prefs' GUI settings.
+     * @param guiSettings Settings to change to.
      */
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
      * Returns the user prefs' address book file path.
+     * @return the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
 
     /**
      * Sets the user prefs' address book file path.
+     * @param addressBookFilePath the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
+     * @param addressBook the address book to replace the current address book.
      */
     void setAddressBook(ReadOnlyHMHero addressBook);
 

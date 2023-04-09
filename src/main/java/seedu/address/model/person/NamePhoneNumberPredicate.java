@@ -11,6 +11,8 @@ public class NamePhoneNumberPredicate implements Predicate<Person> {
 
     /**
      * Constructor for NamePhoneNumberPredicate.
+     * @param name Name of the person.
+     * @param phone Phone number of the person.
      */
     public NamePhoneNumberPredicate(Name name, Phone phone) {
         this.name = name;

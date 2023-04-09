@@ -34,7 +34,7 @@ public class DeleteCommand extends Command {
     public final NamePhoneNumberPredicate predicate;
 
     /**
-     * Creates an DeleteCommand to delete the specified {@Code Person}
+     * Creates an DeleteCommand to delete the specified Person
      * @param predicate Checks if the Person matches the name and phone number provided.
      */
     public DeleteCommand(NamePhoneNumberPredicate predicate) {

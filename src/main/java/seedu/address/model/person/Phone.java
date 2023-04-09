@@ -28,6 +28,8 @@ public class Phone {
 
     /**
      * Returns true if a given string is a valid phone number.
+     * @param test phone String to be tested.
+     * @return boolean value of whether the string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);

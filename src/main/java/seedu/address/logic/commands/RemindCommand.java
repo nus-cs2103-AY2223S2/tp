@@ -28,6 +28,8 @@ public class RemindCommand extends Command {
 
     /**
      * Return a filtered list of applicants that are going to have interview within three days.
+     * @param model Model to be updated.
+     * @return String success message of the RemindCommand.
      */
     public String getSuccessMessage(Model model) {
         model.updateFilteredPersonList(INTERVIEW_IN_THREE_DAYS_PREDICATE);
