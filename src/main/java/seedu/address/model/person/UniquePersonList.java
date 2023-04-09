@@ -162,7 +162,6 @@ public class UniquePersonList implements Iterable<Person> {
         ArrayList<MeetingWithPerson> meeting = internalList.stream()
                                            .flatMap(p -> p.getMeetings().stream().map(m -> new MeetingWithPerson(m, p)))
                                            .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-        Collections.sort(meeting);
         internalMeetingList.clear();
         internalMeetingList.addAll(meeting);
     }
