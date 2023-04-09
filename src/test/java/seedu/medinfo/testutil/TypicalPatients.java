@@ -91,7 +91,7 @@ public class TypicalPatients {
                 ab.addPatient(patient);
             }
         } catch (CommandException e) {
-
+            System.out.println("Caught CommandException error!!!");
         }
 
         return ab;

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.medinfo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;

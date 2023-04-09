@@ -4,8 +4,6 @@ import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.patient.Patient;
 
-import static seedu.medinfo.testutil.TypicalPatients.ALEX;
-
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
@@ -30,6 +28,7 @@ public class MedInfoBuilder {
         try {
             medInfo.addPatient(patient);
         } catch (CommandException e) {
+            System.out.println("Caught CommandException error!!!");
         }
         return this;
     }

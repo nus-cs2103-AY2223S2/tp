@@ -479,14 +479,14 @@ Use case resumes at step 2.
 - 2c. If the input field is invalid.
 
   - 2c1. the user is informed of this, and correct format for the command is displayed.
-  
+
   Use case resumes at step 2.
 
 
 - 2d. If the entered ward is not present in the system.
-    
+
   - 2d1. the user is informed that the ward does not exist in the system.
-  
+
   Use case resumes at step 2.
 
 
@@ -528,7 +528,7 @@ Use case resumes at step 2.
 
 1.  User requests to list filtered patients
 2.  MedInfo shows a list of filtered patients
-3.  User requests to edit a specific patient in the list by index number 
+3.  User requests to edit a specific patient in the list by index number
     1. The following can be edited:
        - Status
        - Ward
@@ -563,13 +563,13 @@ Use case resumes at step 2.
     - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
-  
+
 - 3b. The Ward entered is invalid.
 
     - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
-  
+
 - 3b. The Discharge Date entered is invalid.
 
     - 3b1. MedInfo shows an error message.
@@ -611,7 +611,7 @@ Use case resumes at step 2.
   - 1c1. MedInfo does not list any patients.
 
     Use case ends.
-  
+
 - 1d. The requested patient's Ward does not exist in the system.
 
 - 1d1. MedInfo does not list any patients.
@@ -721,12 +721,12 @@ Use case resumes at step 2.
     Use case ends.
 - 3a. The requested sorting order is invalid
   - 3a1. MedInfo shows an error message.
-  
+
     Use case resumes at step 2.
 
 - 3b. The requested sorting field is invalid
     - 3b1. MedInfo shows an error message.
-  
+
       Use case resumes at step 2.
 
 
