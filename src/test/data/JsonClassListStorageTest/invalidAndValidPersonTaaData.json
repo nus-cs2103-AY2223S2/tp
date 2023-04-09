@@ -1,6 +1,10 @@
 {
   "students": [ {
-    "name": "Valid Person"
+    "name": "Valid Person",
+    "attendance" : "1;1;1;0;0;1;1;0;0;1;0;0",
+    "pp" : "100;0;0;-1;-1;0;0;-1;-1;0;-1;-1",
+    "tagged" : [ "Tut_T01" ],
+    "submissionStrArr" : [ "Test 1,1,0,87,100", "Test 2,1,0,93,100" ]
   }, {
     "name": ""
   } ]

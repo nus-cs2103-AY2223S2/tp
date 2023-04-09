@@ -80,7 +80,7 @@ public class EditStudentCommandParserTest {
 
         EditStudentCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_AMY)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND, CommandTestUtil.VALID_TAG_FRIEND).build();
+                .withTags(CommandTestUtil.VALID_TAG_TUT_15, CommandTestUtil.VALID_TAG_LAB02).build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -98,7 +98,7 @@ public class EditStudentCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + CommandTestUtil.TAG_DESC_FRIEND;
-        descriptor = new EditPersonDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+        descriptor = new EditPersonDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_LAB02).build();
         expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -111,7 +111,7 @@ public class EditStudentCommandParserTest {
                 + CommandTestUtil.TAG_DESC_HUSBAND;
 
         EditStudentCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
+                .withTags(CommandTestUtil.VALID_TAG_LAB02, CommandTestUtil.VALID_TAG_TUT_15)
                 .build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 

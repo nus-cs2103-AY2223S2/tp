@@ -17,7 +17,7 @@ public class AddStudentCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Student expectedStudent = new PersonBuilder(TypicalPersons.BOB)
-                .withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+                .withTags(CommandTestUtil.VALID_TAG_LAB02).build();
 
         // whitespace only preamble
         CommandParserTestUtil.assertParseSuccess(parser,
@@ -31,7 +31,7 @@ public class AddStudentCommandParserTest {
 
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new PersonBuilder(TypicalPersons.BOB).withTags(
-                CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
+                CommandTestUtil.VALID_TAG_LAB02, CommandTestUtil.VALID_TAG_TUT_15)
                 .build();
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.TAG_DESC_HUSBAND
@@ -69,7 +69,7 @@ public class AddStudentCommandParserTest {
 
         // invalid tag
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
-                + CommandTestUtil.INVALID_TAG_DESC + CommandTestUtil.VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.INVALID_TAG_DESC + CommandTestUtil.VALID_TAG_LAB02, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC,
