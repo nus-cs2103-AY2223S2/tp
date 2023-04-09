@@ -827,20 +827,19 @@ Our application:
 
 **MSS**
 
-1. Actor requests to sort tasks.
-2. Actor enters the command with the desired sorting criteria.
-3. Trackr sorts tasks according to the criteria.
-4. Trackr displays a list of tasks that are sorted.
+1. Actor enters the command with the desired sorting criteria.
+2. Trackr sorts tasks according to the criteria.
+3. Trackr displays a list of tasks that are sorted.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The Actor does not enter any search criteria.
+* 1a. The Actor does not enter any search criteria.
 
-  * 2a1. Trackr uses the default sorting criteria based on status and deadline.
+  * 1a1. Trackr uses the default sorting criteria based on status and deadline.
 
-  * Use case resumes at step 3.
+  * Use case resumes at step 2.
 
 **Use case: UC25 - Sort orders**
 
