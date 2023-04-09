@@ -42,11 +42,11 @@ Now it's time to **CONQUER** the semester!
   - [Add](#add)
   - [Edit](#edit)
   - [Delete](#delete)
-  - [Mark or Unmark Video](#mark-or-unmark-video)
+  - [Mark or Unmark](#mark-or-unmark)
   - [Tag](#tag)
   - [Untag](#untag)
-  - [Export Data](#export-data)
-  - [Import Data](#import-data)
+  - [Export](#export)
+  - [Import](#import)
   - [Clear](#clear)
   - [Exit](#exit)
 - [Notes](#notes)
@@ -757,7 +757,7 @@ Deletes the specified video(s) and all its embodied content from the same specif
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
-### Mark or Unmark Video
+### Mark or Unmark
 
 > `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
@@ -795,7 +795,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 ### Tag
 
-#### Tag a module
+#### Tag a Module
 
 > `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`
 
@@ -816,7 +816,7 @@ Example:
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
-#### Tag a lecture
+#### Tag a Lecture
 
 > `tag {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`
 
@@ -835,7 +835,7 @@ Examples:
 
 - `tag Lecture_1 /mod CS2040 /tags Yay`
 
-#### Tag a video
+#### Tag a Video
 
 > `tag {video_name} /lec {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`
 
@@ -862,7 +862,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 ### Untag
 
-#### Untag a module
+#### Untag a Module
 
 > `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`
 
@@ -882,7 +882,7 @@ Example:
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
-#### Untag a lecture
+#### Untag a Lecture
 
 > `untag {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`
 
@@ -900,7 +900,7 @@ Examples:
 
 - `untag Lecture_1 /mod CS2040 /tags Yay`
 
-#### Untag a video
+#### Untag a Video
 
 > `untag {video_name} /lec {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`
 
@@ -925,7 +925,7 @@ Examples:
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
-### Export Data
+### Export
 
 > `export {file_path} [/overwrite]`
 
@@ -944,7 +944,7 @@ Examples:
 - `export hello.json`
 - `export /../../haha.json /overwrite`
 
-### Import Data
+### Import
 
 > `import {file_path} [/mod {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]] [/overwrite]`
 
