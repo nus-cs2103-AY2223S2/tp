@@ -289,6 +289,8 @@ the usage of WIFE.
 
 #### Add a Food
 
+**Overview**
+
 The `add` command adds a new `Food` in WIFE.
 
 **Implementation**
@@ -432,6 +434,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### View details of a Food.
 
 **Overview**
+
 The view feature is meant to be a shorthand for users to view the details of a particular Food.
 Traditionally, to view the details of a FOod, the user would use the list command to view its details.
 The user can now specify `view` to view more details of the indexed Food such as its full name.
@@ -542,6 +545,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Tag a Food
 
+**Overview**
+
 User may choose to tag a `Food` in `WIFE` with any of the pre-defined `Tag` created. This can simply
 be done using the command `tag`. This tagging function allows user to easily classify their `Food` in
 the fridge.
@@ -577,6 +582,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Untag a Food
 
+**Overview**
+
 The `untag` feature removes a specified tag from a food item.
 
 **Implementation**
@@ -600,6 +607,7 @@ The activity diagrams of the `untag` and `tag` commands are similar.
 #### List Foods by tag(s).
 
 **Overview**
+
 The List by tag feature is meant to be a list all the food by the specified tags.
 
 The following sequence diagram shows `listbytag`.
@@ -623,6 +631,7 @@ The following sequence diagram shows `listbytag`.
         -   Users will have to use separate commands by `n/` which maybe a hassle
 
 **Implementation**
+
 The first stage of the implementation is parsing the user input to `ListByTagCommand`. `ListByTagCommandParser` is used
 to parse and check whether the user input is valid. After which a `ListByTagCommand` object is created with the specified
 tag name.
@@ -644,6 +653,7 @@ The following activity diagram shows the usage of the `listbytag` command.
 #### Delete Foods by tag(s).
 
 **Overview**
+
 The Delete by tag feature is meant to be delete all the food by the specified tags.
 
 The following sequence diagram shows `delbytag`.
@@ -686,6 +696,8 @@ The following activity diagram shows the usage of the `delbytag` command.
 ![DeleteByTagActivityDiagram](images/DeleteByTagActivityDiagram.png)
 
 #### Delete tag(s)
+
+**Overview**
 
 The `deltag` command deletes existing tag(s) in WIFE. This means food that are initially tagged with the specified tag(s) will have that tag removed.
 

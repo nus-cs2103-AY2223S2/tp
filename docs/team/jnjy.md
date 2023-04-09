@@ -11,6 +11,15 @@ refrigerator!
 
 Given below are my contributions to the project.
 
+* **New Feature**: Added the ability to create new tag.
+  * What it does: Allow user to create their unique pre-defined tags.
+    * Justification: This feature improves the product significantly because a user can create a unique tag that the
+      user wish to use for classification of the food item that the user owns in the fridge.
+  * Highlights: This feature is useful when the user wish to tag food of a certain categories of tag the food to the
+    user's name.
+
+  <br/>
+  
 * **New Feature**: Added the ability to list all the created tags.
   * What it does: Displays to the user the list of tags that had been created in WIFE.
   * Justification: This feature improves the product significantly because a user can conveniently list
@@ -56,6 +65,7 @@ Given below are my contributions to the project.
     * Added documentation for `createtag` command (Pull Request [#172](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/172))
     
   * Developer Guide:
+    * Updated the UML diagram from AddressBook to Wife [#286](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/286)
     * Added implementation details for `createtag` feature (Pull Request [#125](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/125))
     * Added implementation details for `add`, `edit` and `tag` feature (Pull Request [#166](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/166))
 
@@ -103,7 +113,3 @@ Given below are my contributions to the project.
   
 * **Additional Contribution**:
   * Refactored `AddressBook` to `Wife` #74
-
-  <br/>
-  
-* _{you can add/remove categories in the list above}_
