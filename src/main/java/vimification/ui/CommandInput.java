@@ -108,17 +108,16 @@ public class CommandInput extends UiPart<HBox> {
 
         // When CommandInput loses focus, clear CommandInput from mainScreen.bottomComponent and
         // return the focus back to TaskListPanel
-        ChangeListener<Boolean> onLostFocusListener =
-                (arg0, wasFocused, isCommandInputFocused) -> {
-                    // bottomComponent may be displaying CommandResult, we do not want to clear
-                    // CommandResult messages.
-                    boolean isCommandInputLingering =
-                            mainScreen.getBottomComponent().getChildren().contains(this.getRoot());
-                    if (!isCommandInputFocused && isCommandInputLingering) {
-                        mainScreen.clearBottomComponent();
-                        returnFocusToTaskListPanel();
-                    }
-                };
+        ChangeListener<Boolean> onLostFocusListener = (arg0, wasFocused, isCommandInputFocused) -> {
+            // bottomComponent may be displaying CommandResult, we do not want to clear
+            // CommandResult messages.
+            boolean isCommandInputLingering =
+                    mainScreen.getBottomComponent().getChildren().contains(this.getRoot());
+            if (!isCommandInputFocused && isCommandInputLingering) {
+                mainScreen.clearBottomComponent();
+                returnFocusToTaskListPanel();
+            }
+        };
 
         inputField.focusedProperty().addListener(onLostFocusListener);
     }
