@@ -491,8 +491,7 @@ The format for the `add-t` command can be found [here](https://ay2223s2-cs2103t-
 1. The user specifies a person index that represents a `Person` to be edited, followed by the tag to be added.
 2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
 3. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
-4. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
-5. If step 4 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
+4. If step 3 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
 
 The following activity diagram shows the logic of the `add-t` command.
 
@@ -533,8 +532,7 @@ The format for the `delete-t` command can be found [here](https://ay2223s2-cs210
 1. The user specifies a person index that represents a `Person` to be edited, followed by the tag index to be deleted.
 2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
 3. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
-4. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
-5. If step 4 completes without exceptions, the tag of `Person` will be successfully deleted and this change will be stored inside the contact list.
+4. If step 3 completes without exceptions, the tag of `Person` will be successfully deleted and this change will be stored inside the contact list.
 
 The following activity diagram shows the logic of the `delete-t` command.
 
