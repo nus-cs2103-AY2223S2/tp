@@ -35,7 +35,7 @@ for fast typists.
   to link their sales with their customers.
 
 
-#### C contributed – [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ajjajjajjajj&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ajjajjajjajj&tabRepo=AY2223S2-CS2103-W16-4/tp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+#### Code contributed – [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ajjajjajjajj&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ajjajjajjajj&tabRepo=AY2223S2-CS2103-W16-4/tp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 #### Project management
   * Managed releases `v1.1` to `v1.4` on GitHub

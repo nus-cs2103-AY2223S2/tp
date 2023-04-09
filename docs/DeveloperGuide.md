@@ -16,14 +16,18 @@ title: Developer Guide
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
-  - [FindTag Feature](#findtag-feature)
+  - [Find by Tag Feature](#find-by-tag-feature)
     - [About](#about)
     - [Implementation](#implementation-1)
   - [Sort feature](#sort-feature)
     - [About](#about-1)
     - [Implementation](#implementation-2)
-  - [Status features](#status-features)
-  - [Tasks Feature](#tasks-feature)
+  - [Status Features](#status-features)
+    - [Status Feature: Abstract Class - `Status`](#status-feature-abstract-class---status)
+    - [Lead Status feature](#lead-status-feature)
+    - [The `status` Command](#the-status-command)
+    - [Transaction Statuses](#transaction-statuses)
+  - [TaskList Feature](#tasklist-feature)
     - [About](#about-2)
     - [Implementation](#implementation-3)
   - [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
@@ -43,8 +47,9 @@ title: Developer Guide
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a person](#deleting-a-person)
   - [Saving data](#saving-data)
-
-
+- [**Appendix: Effort**](#appendix-effort)
+  - [Challenges Faced](#challenges-faced)
+- [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
 
 ---
 
@@ -198,7 +203,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### FindTag Feature
+### Find by Tag Feature
 
 #### About
 
@@ -206,21 +211,23 @@ The `FindTag` feature allows the sales person to find contacts in the address bo
 
 #### Implementation
 
+In terms of implementation, this `findtag` feature is similarly implemented in other features related to querying for details in the contact/transaction list such as `find`, `findlead`, `findall` and `findlead`.
+
 The implementation for FindTag is similar to the other find functions implemented. The key difference between the other find functions differs in the implementation of the method to suit the manipulation of the argument and keywords in `StringUtil.java` to suit the use case.
 
-In `StringUtil.java`, created a new method - `containsTagsIgnoreCase` to compare the keyword to the `Set<Tag>` that are assigned to a Person.
+In `StringUtil.java`, created a new method - `containsTagsIgnoreCase` to compare the `KEYWORD` to the `Set<Tag>` that are assigned to a Person. In other extensions of the find-related features, they use other methods in the `StringUtil.java` to suit the different types of arguments and parameters depenedent on the feature.
 
-The find tag mechanism is facilitated by `FindTagCommandParser` where it parses the find tag command, triggering and associating the given arguments to a `FindTagCommand` class which extends `Command`. When `FindTagCommand` gets executed, it triggers the `model.updateFilteredPersonList()`  based on the predicate `TagContainsKeywordsPredicate` set in `StringUtil` to update the model view and the GUI to display the contact list that fulfills the predicate. Finally it returns a `CommandResult` for feedback to user on the amount of contacts that are returned.
+The find tag mechanism is facilitated by `FindTagCommandParser` where it parses the find tag command, triggering and associating the given arguments to a `FindTagCommand` class which extends `Command`. When `FindTagCommand` gets executed, it triggers the `model.updateFilteredPersonList()` based on the predicate `TagContainsKeywordsPredicate` set in `StringUtil` to update the model view and the GUI to display the contact list that fulfills the predicate. Finally it returns a `CommandResult` for feedback to user on the amount of contacts that are returned.
 
 Reminder to add diagram pictures
 
 The following sequence diagram shows how the find tag operation works:
 
-Insert Image
+![FindTagSequenceDiagram](images/FindTagSequenceDiagram.png)
 
 The following activity diagram shows what happens when a user executes a find tag command
 
-Insert Image
+![FindTagActivityDiagram](images/FindTagActivityDiagram.png)
 
 ### Sort feature
 
@@ -245,6 +252,7 @@ The following activity diagram summarizes what happens when a user executes a so
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
 ### Status Features
+
 #### Status Feature: Abstract Class - `Status`
 
 During the development of transactions and implementing `TxnStatus`, the realisation of it sharing similar characteristics
@@ -281,28 +289,27 @@ The user is able to change the lead status of a contact to any other lead status
 
 #### The `status` Command
 
-The updating of the status is similar to the implementation of edit. The main difference lies in StatusCommand having an 
+The updating of the status is similar to the implementation of edit. The main difference lies in StatusCommand having an
 additional check, to verify if the LeadStatusName of the new status would be the same as the previous. If it is the same,
 an error is thrown, the user is alerted. No creation of new LeadStatus will take place and the timestamp does not change.
 
 If the lead status to change to is the same as the preexisting one, the command returns and does not alter the previous lead status nor its timestamp.
 This also means that a lead status should not be updated when any other attributes are updated (via `edit`).
 
-The following sequence diagram illustrates `execute()` function within the StatusCommand. Note that the function does 
+The following sequence diagram illustrates `execute()` function within the StatusCommand. Note that the function does
 not create a new `Person` with a new `LeadStatus` if the name is the same as the current `Person`'s status.
 
 ![](images/StatusSequenceDiagram.png)
 
 #### Transaction Statuses
 
-Transactions have also been implemented with a `TxnStatus status`. Transaction statuses have a different set of 
+Transactions have also been implemented with a `TxnStatus status`. Transaction statuses have a different set of
 names, and also defined in a similar fashion as `LeadStatus`. Both types of statuses have similar characteristics,
 in terms of existing compulsorily in their container class `Transaction` and `Person`.
 
 The default status for a Transaction is `OPEN`. This represents an incomplete transaction process.
 
 ![](images/TxnStatusDiagram.png)
-
 
 ### TaskList Feature
 
@@ -316,12 +323,11 @@ Tasks are represented by a `Task` object that is stored as an attribute of `Pers
 the description of the task. In the future, it is possible to include various types of tasks such as events or
 deadlines.
 
-Under the `Model` for `Person`, created an attribute `TaskList` to store the various tasks of a person, where each 
-`Task` stores the description of each task. The adding of `Task` to `TaskList` is done by the `AddTaskCommand` and 
-clearing of all `Task` from the person is done by `ClearTaskCommand`. 
+Under the `Model` for `Person`, created an attribute `TaskList` to store the various tasks of a person, where each
+`Task` stores the description of each task. The adding of `Task` to `TaskList` is done by the `AddTaskCommand` and
+clearing of all `Task` from the person is done by `ClearTaskCommand`.
 
 ![](images/TaskListDiagram.png)
-
 
 ### \[Proposed\] Undo/redo feature
 
@@ -461,7 +467,7 @@ Step 2. The user excutes `addtxn td/1 Venti Cold Brew  …​` to add a new tran
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                   | I want to …​                                                                                   | So that I can…​                                                          |
-|----------|---------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| -------- | ------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | `* * *`  | new user                  | see usage instructions                                                                         | refer to instructions when I forget how to use the App                   |
 | `* * *`  | salesperson               | add a new client                                                                               | keep track of all my clients                                             |
 | `* * *`  | salesperson               | view all my clients                                                                            | have access to each and every client                                     |
@@ -546,10 +552,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. SalesPunch detects an error in the entered data.
 
-    - 1a1. SalesPunch requests for the correct data.
-    - 1a2. User enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered is correct.
-    - Use case resumes from step 2.
+  - 1a1. SalesPunch requests for the correct data.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+  - Use case resumes from step 2.
 
   Use case ends.
 
@@ -589,14 +595,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. SalesPunch creates a new lead status for the person and stores the timestamp
 6. SalesPunch displays the new lead status and time since the timestamp of the person
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
+
 - 2a. The list is empty.  
-    Use case ends.
+   Use case ends.
 - 3a. The given index is invalid.
-    - 3a1. SalesPunch shows an error message.
-      Use case resumes at step 2. 
+  - 3a1. SalesPunch shows an error message.
+    Use case resumes at step 2.
 - 4a. SalesPunch finds that the lead status to be updated is the same as the current one.
   - 4a1. SalesPunch alerts the user that the lead status is the same.  
     Use case resumes at step 2
@@ -612,12 +619,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 1a. User is able to add more types of tasks to a person. 
+- 1a. User is able to add more types of tasks to a person.
 
-    - 1a1. SalesPunch requests for the correct data.
-    - 1a2. User enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered is correct.
-    - Use case resumes from step 2.
+  - 1a1. SalesPunch requests for the correct data.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+  - Use case resumes from step 2.
 
   Use case ends.
 
@@ -636,10 +643,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. User is able to edit the specific task directly.
 
-    - 1a1. SalesPunch requests for the correct data.
-    - 1a2. User enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered is correct.
-    - Use case resumes from step 2.
+  - 1a1. SalesPunch requests for the correct data.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+  - Use case resumes from step 2.
 
   Use case ends.
 
@@ -657,14 +664,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Attribute**: A person's association. Examples include name, gender, phone number, email, company, location, occupation, job title, address, and status.
 - **Contact**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Contact is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc.
 - **Lead**: A potential person or entity with sales opportunities. Often used interchangeably with Client.
-- **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Contact. Lead Statuses are associated with a time they were last updated.  Refer to the Implementation > Lead Status for more information concerning Lead Statuses. 
+- **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Contact. Lead Statuses are associated with a time they were last updated. Refer to the Implementation > Lead Status for more information concerning Lead Statuses.
 
 **Definitions of types of lead statuses**
-- **Uncontacted**: Represents a possible lead status. The user has not gotten in touch with (contacted) the saved person. By default, newly added contacts have this status                                        |
-- **Working**: Represents a possible lead status. The person has been contacted. The user is currently nurturing a relationship with the contact with the hopes of making them a qualified lead.               |
-- **Qualified**: Represents a possible lead status. The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here.   |
-- **Unqualified**: Represents a possible lead status. This status should only be used when it is certain that the customer's intents are not a match for the user's sales, and have no prospects of buying at all.
 
+- **Uncontacted**: Represents a possible lead status. The user has not gotten in touch with (contacted) the saved person. By default, newly added contacts have this status |
+- **Working**: Represents a possible lead status. The person has been contacted. The user is currently nurturing a relationship with the contact with the hopes of making them a qualified lead. |
+- **Qualified**: Represents a possible lead status. The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here. |
+- **Unqualified**: Represents a possible lead status. This status should only be used when it is certain that the customer's intents are not a match for the user's sales, and have no prospects of buying at all.
 
 ## **Appendix: Instructions for manual testing**
 
@@ -716,3 +723,18 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+<!-- Explain the difficulty level, challenges faced, effort required, and achievements of the project. -->
+
+### Challenges Faced
+
+Find and Searching Features: There was a medium challenge faced when implementing the different searching features as there was several abstraction layers for the basic find feature already implemented.
+
+## **Appendix: Planned Enhancements**
+
+<!-- This section may contain up to team_size x 2 enhancements e.g., a 5-person team can have up to 10 enhancements. -->
+
+1. The user should be able to have autocomplete suggestions on the command line when they press tab so that the user can do faster data entry.
+2. The user should be able to have basic natural language processing and processing in the command line so that the commands are less restrictive, then the user would have a better experience and easier to use on a daily basis. For e.g. "create a new contact named Alex" may be a valid contact name insertion versus using the standard add n/Name command.
