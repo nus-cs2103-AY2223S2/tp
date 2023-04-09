@@ -1610,6 +1610,78 @@ Before every test case, ensure that the there are no patients and vaccinations.
   `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
 
+### Adding a appointment
+Adds an appointment to the VMS.
+
+#### Prerequisites
+
+Before every test case, ensure that the list of appointments is empty,
+and the list of patients and vaccinations contains the patient and vaccine to be added.
+
+Clears the list of patients and vaccines
+```
+patient clear --force true
+vaccination clear --force true
+```
+
+Adds the necessary patient and vaccine
+```
+patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur \
+    --a pollen --v Moderna
+
+vaccination add Dose 1 (Moderna)
+```
+
+#### Adding a valid appointment
+
+``` text
+appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 /
+    --v Dose 1 (Moderna)
+```
+
+#### Prerequisites
+
+* There must be a patient with an id of `<Index>` `#0001`.
+* There must be a vaccine `Dose 1 (Moderna)`.
+
+##### Expected
+
+![Expected display](images/appointment/dg/AddAppointmentValid.png)
+
+#### Adding an invalid appointment
+Invalid appointments include:
+* missing parameters
+* existing upcoming appointment
+
+#### Prerequisites
+
+* There must be a patient with an id of `<Index>` `#0001`.
+* There must be a vaccine `Dose 1 (Moderna)`.
+
+#### Adding a invalid appointment - Missing parameters
+
+``` text
+appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400
+```
+
+##### Expected
+
+![Expected display](images/appointment/dg/AddAppointmentInvalidMissing.png)
+
+#### Adding a invalid appointment - Existing upcoming appointment
+
+``` text
+appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 \
+    --v Dose 1 (Moderna)
+
+appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 \
+    --v Dose 1 (Moderna)
+```
+
+##### Expected
+
+![Expected display](images/appointment/dg/AddAppointmentInvalidExisting.png)
+
 ## Appendix: Planned enhancements
 
 #### Less strict patient name check

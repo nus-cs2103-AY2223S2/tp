@@ -1128,8 +1128,30 @@ appointment find --p 1
 ```
 
 ```text
+appointment find --v Dose 1
+```
+
+##### Find by keyword
+
+This feature searches for appointments where either
+the appointment's starting time or the type of vaccine used
+matches with the <var>`KEYWORDS`</var> provided.
+
+Priority: Appointment's starting time > Type of vaccine used
+
+##### Example
+
+Finds all appointments that uses "Dose 1" vaccines
+
+```text
 appointment find Dose 1
 ```
+
+##### Remarks
+
+This feature prioritises the provided flags over the keywords.
+If a flag is provided, then the returned list of appointments will use the provided flags
+and ignore the keyword even if it were provided.
 
 #### `edit` - Edit an appointment
 
