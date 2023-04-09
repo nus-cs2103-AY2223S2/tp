@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.format.DateTimeFormatter;
@@ -26,7 +27,8 @@ import seedu.address.model.service.appointment.Appointment;
  */
 public class AutoM8CommandTestUtil {
 
-    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+    private static final DateTimeFormatter dtfServices = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public static void assertFailure(Command command, Model model, Exception exception) {
         assertFailure(command, model, exception.getMessage());
@@ -73,6 +75,8 @@ public class AutoM8CommandTestUtil {
         try {
             result = command.execute(model);
             String posMsg = result.getFeedbackToUser();
+            System.out.println(posMsg);
+            System.out.println(msg);
             assertTrue(posMsg != null && msg != null
                     && posMsg.hashCode() == msg.hashCode()
                     && posMsg.equals(msg));
@@ -153,5 +157,9 @@ public class AutoM8CommandTestUtil {
 
     public static DateTimeFormatter getDtf() {
         return dtf;
+    }
+
+    public static DateTimeFormatter getDtfServices() {
+        return dtfServices;
     }
 }
