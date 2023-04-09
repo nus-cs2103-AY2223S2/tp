@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class Discharge {
 
-    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid future date-time" +
+    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid date-time" +
             " of the form dd/MM/yyyy HHmm";
     public static final String DEFAULT_DISCHARGE = "To Be Confirmed";
 

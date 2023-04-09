@@ -103,7 +103,8 @@ public class MedInfoTest {
         }
 
         @Override
-        public void sortPatients(Comparator<Patient> comparator) {}
+        public void sortPatients(Comparator<Patient> comparator) {
+        }
 
         @Override
         public ObservableList<Patient> getPatientList() {
@@ -120,5 +121,4 @@ public class MedInfoTest {
             return medInfo.getStatsInfo();
         }
     }
-
 }
