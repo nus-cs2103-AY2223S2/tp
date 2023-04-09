@@ -207,15 +207,15 @@ The `ListableItem` interface would require that its classes also support the han
 
 ### Serialized Objects for `Storage`
 Found in `src/main/storage/serializedclasses`, these classes are for serializing a `Roster` and its containing objects into `json` objects, or vice versa.
-This serves to store/load data to/from a data file.
+This serves to store/load data to/from a plaintext json file.
 
 #### During loading of data
-Loading in of data (if a data file exists) is done once during the initialization of the program. The sequence diagram below illustrates how `MainApp` creates a `Model` through interactions with `Storage`.
+Loading in of data (if a data file exists) is done once during the initialization of the program. The sequence diagram below illustrates how `MainApp` creates a `Model` containing the saved data, through interactions with `Storage`.
 ![LoadingStorageSequenceDiagram](images/LoadingStorageSequenceDiagram.png)
 
 #### During saving of data
-Saving of data is done every time a command is executed. The sequence diagram below illustrates \
-
+Saving of data is done every time a command is executed. The sequence diagram below illustrates how a `Roster` is saved into storage.
+![SavingStorageSequenceDiagram](images/SavingStorageSequenceDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -233,12 +233,12 @@ Saving of data is done every time a command is executed. The sequence diagram be
 ## Appendix: Effort
 
 ### Page Navigation
-As CLIpboard has multiple different pages to display different types of objects at a given time, a way of keeping track of the current page, as well as the possible pages to navigate to, was needed.
+As CLIpboard has multiple different pages to display different types of objects at a given time. As such, a way of keeping track of the current page, as well as the possible pages to navigate to, was needed.
 
 Additionally, navigating a page also meant traversing the object hierarchy.
-There had to be a way to store information about which object had been selected, in order to know which object a user command should affect. (e.g If the user is on the "Courses" page and selects a course, this selection needs to be saved. Then, further commands performed by the user will execute on the selected course)
+There had to be a way to store information about which object had been selected, in order to know which object a user command should manipulate. (e.g If the user is on the "Courses" page and selects a course, this selection needs to be saved. Then, further commands performed by the user will execute on the selected course)
 
-In short, page information as well as pointers to the objects selected by the user needs to be maintained. These were achieved through the `CurrentSelection` class, which is tied to a `ModelManager` instance as a field.
+In short, page information as well as pointers to the objects selected by the user needed to be maintained. These were achieved through the `CurrentSelection` class, which is tied to a `ModelManager` instance as a field.
 
 Adding page navigation added further challenges, as more factors had to now be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, as well as handling the loading of appropriate GUI elements respective to the page.
 
