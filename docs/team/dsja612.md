@@ -64,6 +64,7 @@ I worked on the entire stack, both frontend and backend. I was mainly in charge 
     * Updated manual tests for `tag`, `name`, `clear`, `help`, `list`, `exit` command.
     * Checked for bugs in UML diagrams.
     * Wrote the `Planned enhancements for Feature Flaws` section
+    * Wrote the `Effort` section
 
 ## **Contribution to team-based tasks**:
   * Sourcing of images
