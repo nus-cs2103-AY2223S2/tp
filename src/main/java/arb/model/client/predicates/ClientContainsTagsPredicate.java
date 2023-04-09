@@ -10,7 +10,7 @@ import arb.model.client.Client;
 import arb.model.tag.Tag;
 
 /**
- * Tests that a {@code Client}'s contains any of the tags given.
+ * Tests that a {@code Client} contains any of the tags given.
  */
 public class ClientContainsTagsPredicate implements Predicate<Client> {
     private final Set<Tag> tags;
