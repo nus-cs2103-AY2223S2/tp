@@ -547,15 +547,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 * 3a. The user does not provide a field to edit.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 * 3a. The proposed edit results in a duplicate case.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 #### Use case: Delete a single case by index
 
