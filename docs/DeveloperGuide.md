@@ -2406,24 +2406,6 @@ TODO: to be removed
 
 1. _{ more test cases …​ }_ -->
 
-### Current working context affected by deletion
-
-1. `nav CS2040S`
-1. `delete /r CS2040S`
-
-Expected:
-
-- Current working context should be "/r".
-
-### Current working context affected by edit
-
-1. `nav CS2040S`
-1. `edit CS2040S /r /code CS2040`
-
-Expected:
-
-- Current working context should be "/r/CS2040".
-
 ### List Modules
 
 | Test Case  | Expected Result                                          |
