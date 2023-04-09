@@ -159,35 +159,23 @@ Classes used by multiple components are in the `seedu.dengue.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo/Redo
+### Add feature
 
 #### Implementation
 
-Step 1. Find a suitable way to store data temporarily.
-
+Step 1. placeholder
 
 #### Design considerations
 
+**Aspect: xxx**
 
-**Aspect: Support switching of `DengueHotspotTracker` states in undo/redo**
+* **Alternative 1 (current choice):** placeholder
+    * Pros: placeholder
+    * Cons: placeholder
 
-* **Alternative 1 (current choice):** Modified stack consisting of Deque and Stack.
-    * Pros: `Stack` and `ArrayDeque` are classes that are already implemented in Java. Easy to create.
-    * Cons: Not easy to come up with solution.
-
-* **Alternative 2:** List of `DengueHotspotTracker` states, with pointers to support switching of states.
-    * Pros: Very intuitive and easy to think of.
-    * Cons: Not easy to implement, and keeping tracker of list indices may cause bugs.
-
-**Aspect: Support deletion of old `DengueHotspotTracker` states in undo/redo**
-
-* **Alternative 1 (current choice):** Modified stack consisting of Deque and Stack.
-    * Pros: `Stack` and `ArrayDeque` can already be used.
-    * Cons: None
-
-* **Alternative 2:** List of DengueHotspotTracker states, with pointers to support switching of states.
-    * Pros: Solution is easy.
-    * Cons: Potentially buggy.
+* **Alternative 2:** placeholder
+    * Pros: placeholder
+    * Cons: placeholder
 
 ### Edit feature
 
@@ -447,6 +435,26 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Saves 10 previous iterations of the entire dengue case list in a JSON file.
     * Pros: User can have direct access to older data.
     * Cons: Can be very messy to implement.
+
+**Aspect: Support switching of `DengueHotspotTracker` states in undo/redo**
+
+* **Alternative 1 (current choice):** Modified stack consisting of Deque and Stack.
+    * Pros: `Stack` and `ArrayDeque` are classes that are already implemented in Java. Easy to create.
+    * Cons: Not easy to come up with solution.
+
+* **Alternative 2:** List of `DengueHotspotTracker` states, with pointers to support switching of states.
+    * Pros: Very intuitive and easy to think of.
+    * Cons: Not easy to implement, and keeping tracker of list indices may cause bugs.
+
+**Aspect: Support deletion of old `DengueHotspotTracker` states in undo/redo**
+
+* **Alternative 1 (current choice):** Modified stack consisting of Deque and Stack.
+    * Pros: `Stack` and `ArrayDeque` can already be used.
+    * Cons: None
+
+* **Alternative 2:** List of DengueHotspotTracker states, with pointers to support switching of states.
+    * Pros: Solution is easy.
+    * Cons: Potentially buggy.
 
 ### Overview feature
 
