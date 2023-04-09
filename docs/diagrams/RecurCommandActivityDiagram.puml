@@ -1,0 +1,57 @@
+@startuml
+skinparam defaultTextAlignment center
+start
+:User executes recur command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([missing
+arguments])
+    :Response Box shows
+    invalid command
+    format message;
+stop
+else if () then ([invalid
+arguments])
+    :Response Box
+    shows invalid
+    arguments message;
+stop
+else if () then ([invalid
+index])
+    :Response Box
+    shows invalid
+    index message;
+stop
+else if () then ([end date
+has past])
+    :Response Box
+    shows end date
+    has past message;
+stop
+else if () then ([recur factor exceeds
+max allowable])
+    :Response Box
+    shows recur factor
+    exceeds max
+    allowable message;
+stop
+else ([else])
+while () is ([end date has not reached])
+    if () then ([time slot is occupied
+    by another event])
+        :Response Box
+        shows event exists
+        at chosen time;
+    stop;
+    else ([else])
+    :Common modules and
+    index are computed;
+    :Computes the event
+    and store it in a list;
+    endif
+endwhile ([else])
+:Add all recurring events from computed list to Ez-Schedule;
+stop
+@enduml

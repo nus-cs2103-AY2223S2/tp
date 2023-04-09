@@ -27,7 +27,7 @@ You can reach us over [here](https://github.com/AY2223S2-CS2103-W17-3/tp/discuss
 [[portfolio](team/jrmckh.md)]
 
 * Role: Team Assistant
-* Responsibilities: UI
+* Responsibilities: UI, Test Cases Pro
 
 ### Yu Quan
 

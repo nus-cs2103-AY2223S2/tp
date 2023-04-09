@@ -33,11 +33,20 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 to learn how to create and edit diagrams.
 </div>
 
+[MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
+[MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
+[UiClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java
+[MainWindowClass]:https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/MainWindow.java
+[MainWindowView]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/resources/view/MainWindow.fxml
+[LogicClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java
+[ModelClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/Model.java
+[StorageClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/storage/Storage.java
+
 ### **Architecture**
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -47,9 +56,6 @@ Given below is a quick overview of main components and how they interact with ea
 It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
-[MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -62,14 +68,14 @@ The rest of the App consists of four components.
 
 ### **How the Architecture Components Interact With Each**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues 
 the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its _API_ in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding 
   API `interface` mentioned in the previous point).
 
@@ -82,8 +88,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 ### **UI Component**
 
-The **API** of this component is specified in 
-[`Ui.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java)
+**API** : [`Ui.java`][UiClass]
 
 <img src="images/UiClassDiagram.png" width="1000"/>
 
@@ -93,8 +98,7 @@ the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. 
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
-For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/MainWindow.java) 
-is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+For example, the layout of the [`MainWindow`][MainWindowClass] is specified in [`MainWindow.fxml`][MainWindowView].
 
 The `UI` component,
 
@@ -105,7 +109,7 @@ The `UI` component,
 
 ### **Logic Component**
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java)
+**API** : [`Logic.java`][LogicClass]
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -121,7 +125,10 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -134,7 +141,7 @@ How the parsing works:
 
 ### **Model Component**
 
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`][ModelClass]
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -151,7 +158,7 @@ The `Model` component,
 
 ### **Storage Component**
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`][StorageClass]
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -172,23 +179,45 @@ This section describes some noteworthy details on how certain features are imple
 
 ### **Add Command**
 
+![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)  
+Activity Diagram for a typical `add` command
+
 ### **Recur Command**
+
+![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
+Activity Diagram for a typical `recur` command
 
 ### **Edit Command**
 
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)  
+Activity Diagram for a typical `edit` command
+
 ### **Delete Command**
+
+![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
+Activity Diagram for a typical `delete` command
 
 ### **Find Command**
 
+![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
+Activity Diagram for a typical `find` command
+
 ### **Next Command**
 
+![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
+Activity Diagram for a typical `next` command
+
 ### **Undo Command**
+
+![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
+Activity Diagram for a typical `undo` command
 
 ### **List Command**
 
 ### **Help Command**
 
 ### **Exit Command**
+
 
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
@@ -201,7 +230,7 @@ This section describes some noteworthy details on how certain features are imple
 
 
 ## **Glossary**
-
+--------------------------------------------------------------------------------------------------------------------
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A task with a starting time and an ending time
 * **Ongoing Event**: An event that has started, but not ended
@@ -441,12 +470,71 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user with colour blindness may require a high-contrast setting for graphical outputs.
 
-*{More to be added}*
-
 ### **Appendix B: Planned Enhancements**
 
-* Verify data during loading from data file
+To resolve certain known feature flaws, we have planned to add some enhancements in the near future:
 
+**Data Verification when loading save files**
+
+Currently, the program reads and loads the data from the save files directly.
+As long as the data is in the correct format, the data can be loaded successfully.
+We plan to enhance this by verifying the validity of the data, 
+that is making sure the saved events does not violate constraints such as overlapping time.
+
+This will help to prevent errors made by advanced user who decided to modify the save files directly.
+While the advanced user may be aware of the structure of the file,
+knowing if the event added has conflict with any existing events can be hard,
+especially if there are many existing events.
+
+**Increasing the minimum size of the windowed screen**
+
+Currently, if a user sets their windowed screen to the minimum size,
+it can potentially cut off access to the local storage path where all event data is stored.
+
+![windowedScreenCutOff.png](images/windowedScreenCutOff.png)
+
+We plan to increase the minimum size of the windowed screen to ensure that the path to the local storage is always visible.
+This will provide convenience to users who wish to modify the event data from the local storage
+
+**Reformatting the display in events panel and upcoming events panel**
+
+Currently, if the event names are too long, they may overflow onto the date portion,
+which can make it difficult to view both the full event name and date.
+
+![eventsPanelNotFullyDisplayingName.png](images/eventsPanelNotFullyDisplayingName.png)
+
+We plan to improve the display of event names by wrapping the text and continuing it on the next line.
+This will prevent the issue of long event names overflowing onto the date portion
+
+**Changing the display of events in calendar date boxes**
+
+Currently, if event names exceed 5 characters in length, 
+the characters beyond the fifth are replaced with "..." in the display.
+
+![calendarBoxesNotFullyDisplayingName.png](images/calendarBoxesNotFullyDisplayingName.png)
+
+The original purpose was to give users a quick overview and inform them of the presence of events on certain dates. 
+However, this truncated display does not provide much value to users as it fails to show the full event name.
+
+We plan to change the way calendar date boxes display events.
+Rather than showing event names, we will use dots to represent events. 
+Each dot will have a different color within the same day to represent different events. 
+This approach will allow users to quickly see an overview of the number of events on a given day.
+An example is given below.
+
+![calendarBoxesPlannedEnhancement.png](images/calendarBoxesPlannedEnhancement.png)
+
+If users are interested in knowing more about the events, 
+they can use the `find` command or click on the calendar date box to view the event details.
+
+**Increase flexibility in event names**
+
+Currently, event names only support alphanumeric characters and spaces. 
+This may cause inconvenience to users as we anticipate that event names may include 
+special characters such as brackets, colons, and dashes.
+
+We plan to increase the number of characters supported in event names. 
+However, certain characters such as `/` and `\` will not be supported as they may potentially cause conflicts
 
 ### **Appendix C: Instructions for Manual Testing**
 
@@ -501,7 +589,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * The `Event` has been successfully added to _Ez-Schedule_
-* Details of the `Event` is also added to the Events List Panel and the Calendar
+* Details of the `Event` is also added to the Events Panel and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -530,7 +618,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:**
 * The `Event` will be added repeatedly until the specified end date
-* Details of all the `Event` is also added to the Events List Panel and the Calendar
+* Details of all the `Event` is also added to the Events Panel and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -570,7 +658,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * The `Event` is removed from _Ez-Schedule_
-* Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
+* Details of the `Event` is also removed from the Events Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -580,7 +668,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * All the `Event` is removed from _Ez-Schedule_
-* Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
+* Details of the `Event` is also removed from the Events Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 3
 {: .no_toc}  
@@ -602,7 +690,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Tennis`
 
 **Result:** 
-* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
+* The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
 #### Scenario 2
@@ -612,7 +700,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Ten`
 
 **Result:**
-* The Events List Panel will be updated to display only `Event` whose `Name` includes Ten, which may include `Name` such as Tennis
+* The Events Panel will be updated to display only `Event` whose `Name` includes Ten, which may include `Name` such as Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
 #### Scenario 3
@@ -622,7 +710,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find d/2023-05-01`
 
 **Result:**
-* The Events List Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
+* The Events Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 #### Scenario 4
@@ -632,7 +720,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Tennis d/2023-05-01`
 
 **Result:**
-* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
+* The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 
@@ -712,4 +800,23 @@ testers are expected to do more *exploratory* testing.
 
 ### **Appendix D: Effort**
 
+**Difficulty Level:** 
 
+**Challenges Faced:**
+* During the first milestone, we decided to "morph" by creating a parallel package and using AB3 as code reference.
+  We would copy over whichever code we deem relevant. Halfway through the milestone, one of us realised that doing this
+  possibly violated [`Constraint-Brownfield`][tp constraints brownfield]. After checking with our tutor/prof, we had to
+  restart again, effectively wasting our effort and restricting our duration for `milestone 1` by half.
+* During morphing, the refactor of `Person` to `Event`, as well as `AddressBook` to `Scheduler` was tedious and
+  required a lot of careful checking. Despite using IDE features like refactor and find-and-replace, there were
+  still variable name and comments which we had to change, and we had to painstakingly double-check everything.
+* Furthermore, the morphing process also invalidated many of the existing test cases (from AB3) resulting in the 
+  Java CI failing for a prolonged period. We spend a lot of time in `milestone 2` changing/fixing the broken test 
+  cases, which left us with not a lot of time to implement new features in `milestone 2` and `milestone 3`.
+
+**Effort Required:** High effort for the morphing process.
+
+**Achievements of Project:**
+
+
+[tp constraints brownfield]: https://nus-cs2103-ay2223s2.github.io/website/admin/tp-constraints.html#constraint-brownfield

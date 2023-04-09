@@ -48,11 +48,27 @@ deactivate SchedulerParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteEvent(1)
+DeleteCommand -> Model : clearRecent()
 activate Model
 
 Model --> DeleteCommand
 deactivate Model
+
+loop until all given indexes are deleted
+
+DeleteCommand -> Model : deleteEvent(event)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : addRecentEvent(event)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+end
 
 create CommandResult
 DeleteCommand -> CommandResult

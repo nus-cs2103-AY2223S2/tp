@@ -1,0 +1,27 @@
+@startuml
+skinparam defaultTextAlignment center
+start
+:User executes next command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([invalid arguments])
+    :Response Box shows
+    invalid command
+    format message;
+stop
+else ([else])
+switch ()
+case ( [index given])
+    :Filter out the next X (where X = index)
+    upcoming or ongoing events;
+case ( [else])
+    :Filter out the next
+    upcoming or ongoing event;
+
+endswitch
+:Update events list panel to show the filtered event(s);
+:Success message is returned;
+stop
+@enduml

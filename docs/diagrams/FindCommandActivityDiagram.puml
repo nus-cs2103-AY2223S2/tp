@@ -1,0 +1,26 @@
+@startuml
+skinparam defaultTextAlignment center
+start
+:User executes find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([missing arguments])
+    :Response Box shows
+    invalid command
+    format message;
+stop
+else if () then ([invalid arguments])
+    :Response Box
+    shows invalid
+    index message;
+stop
+else ([else])
+endif
+:Filter the events based given argument(s);
+:Update events list panel to show the filtered event(s);
+:Highlight all the date boxes on  which the filtered event(s) are scheduled;
+:Success message is returned;
+stop
+@enduml
