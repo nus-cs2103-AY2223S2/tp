@@ -163,11 +163,8 @@ In TinS, an internship application is stored as an **Internship**. An Internship
 :information_source: **Info:** Each Internship is **uniquely identifiable** by a **combination** of its `POSITION` and
 `COMPANY`. `POSITION` and `COMPANY` fields are **case-insensitive**. <br>
 
-Example: The following internships will be identified as same internship in TinS.
-
-    * Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`
-    * Internship with `POSITION` as `Software ENGINEER` and `COMPANY` as `GRAB`
-
+Example: An Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab` will be identified to be the
+same internship as an Internship with `POSITION` as `Software ENGINEER` and `COMPANY` as `GRAB`.
 </div>
 
 * `STATUS` : The Status of your Application. This is an **Integer value** from **0 to 3**. Here are the statuses for the
@@ -277,7 +274,7 @@ their associated prefixes.
 <div markdown="span" class="alert alert-danger">
 
 :warning: **Warning:**  The sequence of a blackspace and a prefix should be reserved solely for indicating information
-pertaining to the associated field. <br>
+pertaining to the associated field. <br><br>
 
 Example: If you input a `DESCRIPTION` field as `d/This is a my description p/field`, TinS would recognise the 
 sequence <code> p/</code> as an indicator for the `POSITION` field. Hence, the above input would be recognised as an input with
@@ -316,7 +313,8 @@ two fields, a `DESCRIPTION` field - `d/This is a description` and a `POSITION` f
   <div markdown="span" class="alert alert-danger">
 
   :warning: **Warning:**  If an item without `...` after it is used more than once, TinS will identify the last
-  occurrence of that item as the input for that field. <br>
+  occurrence of that item as the input for that field. <br><br>
+
   Example: `add p/POSITION c/COMPANY s/STATUS [d/DESCRIPTION] [t/TAG]...` means that the item, `p/POSITION` should only
   be used once. Hence, if 
   `add p/Software Engineer c/Grab s/0 d/This is a description t/IMPORTANT p/Data Analyst p/Machine Learning` is
@@ -413,15 +411,10 @@ Format: `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS [d/DESCRIPTION] [t/T
     :information_source: **Info:** In TinS, each internship stored must be unique (no duplicates). Since an internships
     is uniquely identified by the combination of `POSITION` and `COMPANY` fields, you would not be able to `add` an
     internship application to TinS, if there is a pre-existing internship in TinS with the same `POSITION` and `COMPANY`
-    (comparison is case-insensitive). <br>
+    (comparison is case-insensitive). <br><br>
  
     Example: If TinS contains an Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`, the commands
-    below will not be allowed. 
-    
-    <ul>
-        <li><code>add p/Software Engineer c/Grab s/0/</code></li>
-        <li><code>add p/SOFTWARE engineer c/Grab s/3</code></li>
-    </ul>
+    `add p/Software Engineer c/Grab s/0` and `add p/SOFTWARE engineer c/Grab s/3` are not allowed.
 </div>
 
 <div markdown="span" class="alert alert-primary">
@@ -548,7 +541,8 @@ Adds an Event along with its details to the selected internship.
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Add event does not allow you to add duplicate events. Two events are considered
-duplicates if they have the same `EVENT_NAME`, `START_DATETIME` and `END_DATETIME`.
+duplicates if they have the same `EVENT_NAME`, `START_DATETIME` and `END_DATETIME`. `EVENT_NAME` is
+case-sensitive.
 </div>
 
 Format: `event add na/EVENT_NAME [st/START_DATETIME] en/END_DATETIME [de/EVENT_DESCRIPTION]`
