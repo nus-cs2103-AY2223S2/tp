@@ -479,8 +479,8 @@ What you should see:
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li>This command is useful to view all applicants again after using the 
-[Find Command](#search-for-an-applicant-find).</li>
+    <li>This command is useful to view all applicants again after using the <a href="#search-for-an-applicant-find">
+Find Command</a></li>
 </ul> </div>
 
 
@@ -627,8 +627,8 @@ Applicants with the status <code>REJECTED</code> cannot be rejected again!
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li>This command is useful to view all applicants again after using the [Advance Command]
-(#615-advance-an-applicant-advance).</li>
+    <li>This command is useful to view all applicants again after using the
+<a href="#advance-an-applicant-advance">Advance Command</a>.</li>
 </ul> </div>
 
 **Example:**
