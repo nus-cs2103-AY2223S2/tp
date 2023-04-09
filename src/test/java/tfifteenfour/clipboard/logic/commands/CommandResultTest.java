@@ -1,47 +1,102 @@
-// package tfifteenfour.clipboard.logic.commands;
+package tfifteenfour.clipboard.logic.commands;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertNotEquals;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-// public class CommandResultTest {
-//     @Test
-//     public void equals() {
-//         CommandResult commandResult = new CommandResult(null, "feedback", false);
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddStudentCommand;
+import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.testutil.TypicalModel;
 
-//         // same values -> returns true
-//         assertTrue(commandResult.equals(new CommandResult(null, "feedback", false)));
+public class CommandResultTest {
+    private Model model;
+    private Student selectedStudent;
+    private CurrentSelection actualSelection;
 
-//         // same object -> returns true
-//         assertTrue(commandResult.equals(commandResult));
+    @BeforeEach
+    public void setUp() {
+        this.model = new TypicalModel().getTypicalModel();
+        selectedStudent = model.getCurrentSelection().getSelectedStudent();
 
-//         // null -> returns false
-//         assertFalse(commandResult.equals(null));
+        actualSelection = this.model.getCurrentSelection();
+        actualSelection.setCurrentPage(PageType.STUDENT_PAGE);
+    }
 
-//         // different types -> returns false
-//         assertFalse(commandResult.equals(0.5f));
+    @Test
+    public void isStateModified_returnsTrue() {
+        CommandResult commandResult = new CommandResult(new AddStudentCommand(selectedStudent),
+                AddStudentCommand.MESSAGE_SUCCESS, true);
+        assertTrue(commandResult.isStateModified());
+    }
 
-//         // different feedbackToUser value -> returns false
-//         assertFalse(commandResult.equals(new CommandResult(null, "different", false)));
+    @Test
+    public void isStateModified_returnsFalse() {
+        CommandResult commandResult = new CommandResult(new AddStudentCommand(selectedStudent),
+                AddStudentCommand.MESSAGE_SUCCESS, false);
+        assertFalse(commandResult.isStateModified());
+    }
 
-//         // different hasChangedRosterState value -> returns false
-//         assertFalse(commandResult.equals(new CommandResult(null, "feedback", true)));
-//     }
+    @Test
+    public void getCommand_returnsCommand() {
+        Command mockCommand = new MockCommand(true);
+        String mockFeedback = "Mock command executed";
+        boolean mockStateModified = true;
+        CommandResult commandResult = new CommandResult(mockCommand, mockFeedback, mockStateModified);
+        assertEquals(mockCommand, commandResult.getCommand());
+    }
 
-//     @Test
-//     public void hashcode() {
-//         CommandResult commandResult = new CommandResult(null, "feedback", false);
+    @Test
+    public void equals() {
+        CommandResult commandResult = new CommandResult(null, "feedback", false);
 
-//         // same values -> returns same hashcode
-//         assertEquals(commandResult.hashCode(), new CommandResult(null, "feedback", false).hashCode());
+        // same values -> returns true
+        assertTrue(commandResult.equals(new CommandResult(null, "feedback", false)));
 
-//         // different feedbackToUser value -> returns different hashcode
-//         assertNotEquals(commandResult.hashCode(), new CommandResult(null, "different", false).hashCode());
+        // same object -> returns true
+        assertTrue(commandResult.equals(commandResult));
 
-//         // different hasChangedRosterState value -> returns different hashcode
-//         assertNotEquals(commandResult.hashCode(), new CommandResult(null, "feedback", true).hashCode());
-//     }
-// }
+        // null -> returns false
+        assertFalse(commandResult.equals(null));
+
+        // different types -> returns false
+        assertFalse(commandResult.equals(0.5f));
+
+        // different feedbackToUser value -> returns false
+        assertFalse(commandResult.equals(new CommandResult(null, "different", false)));
+
+        // different hasChangedRosterState value -> returns false
+        assertFalse(commandResult.equals(new CommandResult(null, "feedback", true)));
+    }
+
+    @Test
+    public void hashcode() {
+        CommandResult commandResult = new CommandResult(null, "feedback", false);
+
+        // same values -> returns same hashcode
+        assertEquals(commandResult.hashCode(), new CommandResult(null, "feedback", false).hashCode());
+
+        // different feedbackToUser value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult(null, "different", false).hashCode());
+
+        // different hasChangedRosterState value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult(null, "feedback", true).hashCode());
+    }
+
+    class MockCommand extends Command {
+        public MockCommand(boolean willModifyState) {
+            super(willModifyState);
+        }
+
+        @Override
+        public CommandResult execute(Model model) {
+            return new CommandResult(null, "Mock command executed", false);
+        }
+    }
+}
