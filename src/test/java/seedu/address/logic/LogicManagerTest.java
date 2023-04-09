@@ -46,7 +46,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonAddressBookStorage(temporaryFolder.resolve("wheregottime.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonExportStorage exportStorage = new JsonExportStorage(temporaryFolder.resolve("export.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, exportStorage);
