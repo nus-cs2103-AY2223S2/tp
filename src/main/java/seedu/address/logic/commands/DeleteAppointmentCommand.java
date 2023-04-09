@@ -47,6 +47,7 @@ public class DeleteAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
+        assert index.getOneBased() > 0;
         Client clientToDeleteAppointment = lastShownList.get(index.getZeroBased());
         Client editedClient = new Client(clientToDeleteAppointment.getName(), clientToDeleteAppointment.getPhone(),
                 clientToDeleteAppointment.getEmail(), clientToDeleteAppointment.getAddress(),

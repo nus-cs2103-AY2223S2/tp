@@ -18,7 +18,6 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
 Class Policy
 Class UniquePolicyList
 Class PolicyName
@@ -56,7 +55,6 @@ Client *--> Name
 Client *--> Phone
 Client *--> Email
 Client *--> Address
-Client *--> "*" Tag
 Client *--> UniquePolicyList
 UniquePolicyList --> "~* all" Policy
 Policy *--> PolicyName

@@ -55,6 +55,7 @@ public class DeletePolicyCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
+        assert clientIndex.getOneBased() > 0;
         Client clientToDeletePolicy = lastShownList.get(clientIndex.getZeroBased());
         Client deletedPolicyClient = clientToDeletePolicy.cloneClient();
 
