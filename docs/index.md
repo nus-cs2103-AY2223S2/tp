@@ -7,7 +7,7 @@ title: FriendlyLink
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W12-1/tp/branch/master/graph/badge.svg?token=RHIRHCXSMR)](https://codecov.io/gh/AY2223S2-CS2103T-W12-1/tp)
 
 
-![Ui](images/FloatingUi.png)
+![Ui](images/Ui.png)
 
 **FriendlyLink is a desktop application for managing your elderly and volunteer contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
