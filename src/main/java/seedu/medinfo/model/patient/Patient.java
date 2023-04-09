@@ -290,7 +290,7 @@ public class Patient {
             .append("; Status: ")
             .append(getStatus())
             .append("; Ward: ")
-            .append(getWard())
+            .append(getWardNameString())
             .append("; Discharge: ")
             .append(getDischarge());
 
