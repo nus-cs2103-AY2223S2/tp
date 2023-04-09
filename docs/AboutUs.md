@@ -15,7 +15,10 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/creationsv2.md)]
 
 * Role: Developer
-* Responsibilities: Data Querying
+* Responsibilities: 
+  * `add` command
+  * `nric`, `tag`, `doctor` fields
+  * User Guide
 
 ### Ong Wei Jie
 
@@ -25,7 +28,10 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/ongweijie7.md)]
 
 * Role: Developer
-* Responsibilities: Data Filtering
+* Responsibilities: 
+  * `filter` command
+  * `gender`, `dateofbirth` fields
+  * Developer Guide
 
 ### Sean Chin Jun Kai
 
@@ -35,7 +41,10 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/seanchinjunkai.md)]
 
 * Role: Developer
-* Responsibilities: Help function
+* Responsibilities: 
+  * `help` and `delete` commands
+  * `drugallergy` field
+  * User Guide
 
 ### Ma Yu Chen
 
@@ -44,7 +53,10 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/dawg420)]
 [[portfolio](team/dawg420.md)]
 * Role: Developer
-* Responsibilities: Data Management/Storage
+* Responsibilities:
+  * `backup`, `load`, `viewbackups` and `deletebackups` commands
+  * `medicine` field
+  * Developer Guide
 
 ### Pei Wenqi
 
@@ -54,4 +66,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/cedricpei.md)]
 
 * Role: Developer
-* Responsibilities: GUI + Undo/redo + View
+* Responsibilities:
+  * GUI
+  * `undo`, `redo`, `light`, `dark`, `view` commands
+  * User Guide
