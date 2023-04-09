@@ -126,6 +126,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
+<div style="page-break-after: always;"></div>
+
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
@@ -169,6 +171,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -195,6 +199,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -234,6 +240,8 @@ How the parsing works:
 * When called upon to parse a user command, the `HMHero` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HMHeroParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -258,6 +266,7 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -298,6 +307,8 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here is the activity diagram showing the process of the `add` command:
 
 ![AddCommand activity diagram](images/AddApplicantActivityDiagram.png)
@@ -325,6 +336,7 @@ When implementing this feature, we restricted users to only add applicants into 
 we wanted HMHero to adhere to the flow of the hiring process. Allowing users to add applicants into specific statuses
 could introduce confusion to how `add` command is used.
 
+<div style="page-break-after: always;"></div>
 
 #### Advancing an Applicant
 
@@ -362,6 +374,7 @@ When implementing this feature, we realised that we could model HMHero to track 
 more effectively by enforcing the rule that the user can only advance applicants one stage at a time. 
 We thus decided to provide a default behaviour when advancing an applicant's status.
 
+<div style="page-break-after: always;"></div>
 
 #### Rejecting an Applicant
 
@@ -399,6 +412,8 @@ Additionally, we realised that it is common for hiring managers to reject applic
 `reject` command does not perform the same functionality as the `delete` command.
 We also allowed the rejecting of applicants with the `ACCEPTED` status for the rare case where users might want to
 reject an accepted applicant due to an unforeseen circumstance.
+
+<div style="page-break-after: always;"></div>
 
 #### Finding an Applicant
 
@@ -449,6 +464,7 @@ the `FilteredList` sets its `Predicate` field to the created `Predicate`. The UI
 
 Applicant fields are required as an input as it is helpful to reduce user confusion and facilitate finding applicants based on multiple fields.
 
+<div style="page-break-after: always;"></div>
 
 #### Editing an Applicant
 
@@ -487,6 +503,7 @@ phone number `91823452`.
 When providing multiple arguments with the same delimiter,
 the last instance of the repeat delimiter is taken during the `parse` command.
 
+<div style="page-break-after: always;"></div>
 
 #### Displaying the list
 
