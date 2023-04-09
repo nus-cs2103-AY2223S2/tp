@@ -117,17 +117,20 @@ Adds a tutorial to the TA’s schedule.
 Format: `touch Tutorial/NAME [-date dd/MM/yyyy HH:mm]`
 
 {% include important.html content="
-
 TrAcker only accepts the following 24-hour date format.
 " %}
 
-:information_source: TrAcker only accepts the following 24-hour date format.
 ```
 date format: dd/MM/yyyy HH:mm
 ```
-:information_source: Maximum start year is 2099.
 
-:information_source: TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
+{% include note.html content="
+Maximum start year is 2099.
+" %}
+
+{% include important.html content="
+TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
+" %}
 
 
 Examples:
@@ -155,13 +158,21 @@ Adds a lab to the TA’s schedule.
 
 Format: `vim Lab/NAME [-date dd/MM/yyyy HH:mm]`
 
-:information_source: TrAcker only accepts the following 24-hour date format.
+{% include important.html content="
+TrAcker only accepts the following 24-hour date format.
+" %}
+
 ```
 date format: dd/MM/yyyy HH:mm
 ```
-:information_source: Maximum start year is 2099.
 
-:information_source: TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
+{% include note.html content="
+Maximum start year is 2099.
+" %}
+
+{% include important.html content="
+TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
+" %}
 
 Examples:
 
@@ -185,13 +196,21 @@ Adds a consultation to the TA’s schedule.
 
 Format: `mkdir Consultation/NAME [-date dd/MM/yyyy HH:mm]`
 
-:information_source: TrAcker only accepts the following date format
+{% include important.html content="
+TrAcker only accepts the following 24-hour date format.
+" %}
+
 ```
 date format: dd/MM/yyyy HH:mm
 ```
-:information_source: Maximum start year is 2099.
 
-:information_source: TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
+{% include note.html content="
+Maximum start year is 2099.
+" %}
+
+{% include important.html content="
+TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
+" %}
 
 Examples:
 
@@ -225,9 +244,10 @@ Examples:
 
 ### Delete event: `delete`
 
-:exclamation: You will not be able to undo the deletion
-
 Deletes valid indexed events from TA's schedule.
+
+{% include important.html content="
+You will not be able to undo the deletion." %}
 
 - The index input is 1-based.
 - Valid index must be provided.
@@ -269,9 +289,10 @@ Examples:
 
 ### Delete student: `rm`
 
-:exclamation: You will not be able to undo the deletion
-
 Removes a student from the student list.
+
+{% include important.html content="
+You will not be able to undo the deletion." %}
 
 - The index input is 1-based.
 - Valid index must be provided.
@@ -333,6 +354,9 @@ Examples:
 
 Deletes a student from an event.
 
+{% include important.html content="
+You will not be able to undo the deletion." %}
+
 - The STUDENT_INDEX input refers to the index of the student in the student list.
 - The EVENT_INDEX input refers to the index of the event within its own list (tutorial list/lab list/consultation list).
 - The index inputs are 1-based and it is the index of the student in the event card.
@@ -364,7 +388,8 @@ Adding a note content with just whitespaces will add "This note is empty" note.
 
 Maximum of 200 characters.
 
-:information_source: <b> You need to double-click the event to expand and view notes! </b>
+{% include note.html content="
+You need to double-click the event to expand and view notes!" %}
 
 Format: `addNote content/CONTENT type/EVENT_TYPE name/EVENT_NAME`
 
