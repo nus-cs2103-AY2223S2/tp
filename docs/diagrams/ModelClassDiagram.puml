@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as ModelInstance
 Class AddressBook
 Class ModelManager
 Class UserPrefs
@@ -23,13 +23,13 @@ Class Tag
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> ModelInstance
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+ModelManager .up.|> ModelInstance
+ModelInstance .right.> ReadOnlyUserPrefs
+ModelInstance .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
