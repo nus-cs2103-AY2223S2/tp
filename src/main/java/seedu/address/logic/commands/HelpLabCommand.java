@@ -15,8 +15,6 @@ public class HelpLabCommand extends HelpCommand {
 
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
 
-    public static final String HEADER_4 = "\n----- File Inputs -----\n";
-
     public static final String ADD_LAB = "Add:                         "
             + "vim Lab/LAB_NAME";
 
@@ -24,7 +22,7 @@ public class HelpLabCommand extends HelpCommand {
             + "delete Lab/INDEX";
 
     public static final String EDIT_LAB = "Edit:                         "
-            + "editEvent EVENT_INDEX Lab/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
+            + "editEvent EVENT_INDEX Lab/NEW_NAME -date NEW_DATE";
 
     public static final String ADD_STUDENT = "Add Student:            "
             + "addStudent STUDENT_INDEX_IN_LIST Lab/LAB_INDEX_IN_LAB_LIST";
@@ -41,9 +39,6 @@ public class HelpLabCommand extends HelpCommand {
     public static final String DELETE_NOTE = "Delete Note:      "
             + "deleteNote type/Lab name/LAB_NAME index/NOTE_INDEX";
 
-    public static final String OPEN_FILE = "Open File:      "
-            + "openFile Lab/LAB_INDEX";
-
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(HEADER_1
@@ -56,8 +51,6 @@ public class HelpLabCommand extends HelpCommand {
                 + HEADER_3
                 + ADD_NOTE + "\n"
                 + DELETE_NOTE + "\n"
-                + EDIT_NOTE + "\n"
-                + HEADER_4
-                + OPEN_FILE);
+                + EDIT_NOTE);
     }
 }
