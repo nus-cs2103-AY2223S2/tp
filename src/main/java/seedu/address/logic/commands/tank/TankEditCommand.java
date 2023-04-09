@@ -59,7 +59,7 @@ public class TankEditCommand extends TankCommand {
         List<Tank> lastShownList = model.getFilteredTankList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_TANK_INDEX_OUTOFBOUNDS);
         }
 
         Tank tankToEdit = lastShownList.get(index.getZeroBased());

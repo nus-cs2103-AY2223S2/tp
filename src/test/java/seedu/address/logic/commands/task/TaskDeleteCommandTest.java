@@ -29,7 +29,7 @@ class TaskDeleteCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         TaskDeleteCommand deleteCommand = new TaskDeleteCommand(outOfBoundIndex);
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_TASK_INDEX_OUTOFBOUNDS);
     }
 
     @Test

@@ -35,7 +35,7 @@ import seedu.address.testutil.EditFishDescriptorBuilder;
 import seedu.address.testutil.FishBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for FishEditCommand.
  */
 public class EditCommandTest {
 
@@ -126,7 +126,7 @@ public class EditCommandTest {
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withName(VALID_NAME_BOB).build();
         FishEditCommand editCommand = new FishEditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
     }
 
     /**
@@ -143,7 +143,7 @@ public class EditCommandTest {
         FishEditCommand editCommand = new FishEditCommand(outOfBoundIndex,
                 new EditFishDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
     }
 
     @Test

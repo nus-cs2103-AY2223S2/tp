@@ -49,7 +49,7 @@ public class TankDeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTankList().size() + 1);
         TankDeleteCommand deleteCommand = new TankDeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TANK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_TANK_INDEX_OUTOFBOUNDS);
     }
 
     /* Test needs to be redone after tank delete changes
@@ -81,7 +81,7 @@ public class TankDeleteCommandTest {
 
         TankDeleteCommand deleteCommand = new TankDeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TANK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_TANK_INDEX_OUTOFBOUNDS);
     }
 
     @Test

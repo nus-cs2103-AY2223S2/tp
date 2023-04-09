@@ -77,7 +77,7 @@ public class FishEditCommand extends FishCommand {
         List<Fish> lastShownList = model.getFilteredFishList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
         }
 
         Fish fishToEdit = lastShownList.get(index.getZeroBased());

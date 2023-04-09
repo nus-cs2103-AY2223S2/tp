@@ -46,7 +46,7 @@ public class TankDeleteCommand extends TankCommand {
         List<Tank> lastShownList = model.getFilteredTankList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TANK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_TANK_INDEX_OUTOFBOUNDS);
         }
 
         Tank tankToDelete = lastShownList.get(targetIndex.getZeroBased());

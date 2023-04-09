@@ -24,7 +24,7 @@ import seedu.address.model.fish.Fish;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code FishDeleteCommand}.
  */
 public class DeleteCommandTest {
 
@@ -50,7 +50,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFishList().size() + 1);
         FishDeleteCommand deleteCommand = new FishDeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class DeleteCommandTest {
 
         FishDeleteCommand deleteCommand = new FishDeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
     }
 
     @Test
