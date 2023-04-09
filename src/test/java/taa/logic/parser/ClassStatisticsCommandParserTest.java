@@ -44,4 +44,11 @@ public class ClassStatisticsCommandParserTest {
             CommandTestUtil.INVALID_CLASS_STAT_ASSIGNMENT,
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClassStatisticsCommand.MESSAGE_UNKNOWN_FIELD));
     }
+
+    @Test
+    public void parse_statTypeGrades_missingAssignmentName_fails() {
+        CommandParserTestUtil.assertParseFailure(commandParser,
+            CommandTestUtil.CLASS_STAT_DESC_GRADES,
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClassStatisticsCommand.MESSAGE_MISSING_ASSIGNMENT_NAME));
+    }
 }
