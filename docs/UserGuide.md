@@ -99,7 +99,7 @@ so feel free to adjust the app however you like!
   <img alt="Resizing guide" src="images/user-guide/resize-window.jpg" />
 </p>
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Hover your mouse over the red lines indicated by the image on your app under you see an arrow cursor, this will allow
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** Hover your mouse over the red lines indicated by the image on your app under you see an arrow cursor, this will allow
 you to adjust the size of the window
 </div>
 
@@ -130,7 +130,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** The description for a valid Telegram handle has been shortened for brevity and thus might not cover all cases.
+:information_source: **Note:** The description for a valid Telegram handle has been shortened for brevity and thus might not cover all cases.
 * For example, one might think that "@hello__world" is allowed but it isn't due to having consecutive underscores.
 * TeachMeSenpai does validate handles according to Telegram specifications, but do check on the Telegram application for whether a handle is valid!
 
@@ -174,7 +174,7 @@ included an autocompletion feature!
 Start typing the first letters of a command to get shadow-like autocomplete suggestions.
 The format of the suggested parameters are as described in the [**Guide on using Features**](#guide-on-using-features).
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** You can press the `TAB` to fill in the next suggested word!
 </div>
 
 ![help popup gui](images/user-guide/autocomplete.jpg)
@@ -187,7 +187,7 @@ For the `module`, `tag`, `education` parameters, it will also suggest all the ex
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts! They simply indicate the existing
+:information_source: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts! They simply indicate the existing
 modules/education/tags you have in the current student list.
 </div>
 
@@ -198,7 +198,7 @@ Shows a URL to the `User Guide` page.
 
 ![help popup gui](images/user-guide/help_popup.jpg)
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Click `F1` as a keyboard shortcut to view the help pop-up!.
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** Click `F1` as a keyboard shortcut to view the help pop-up!.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -211,7 +211,7 @@ Exits the program.
 
 > Format: `exit`
 
-<div markdown="span" class="alert alert-success">:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** This is the same as closing the app via the top-right `x` button.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -249,7 +249,7 @@ For more details and examples on the parameters, please refer to the [Parameter 
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:**
+:information_source: **Note:**
 * `EDUCATION`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
 * Only the name ie. `n/` is compulsory. You can add/edit details for other parameters using the [`edit`](#editing-a-student-edit) command.
 * The current version of TeachMeSenpai allows you to add students with the same name (case-insensitive), phone number, and/or telegram handle! However, we have planned
@@ -292,7 +292,7 @@ Deletes the student(s) at the specified index(es) from the student list.
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, ...
 
-<div markdown="span" class="alert alert-success">:bulb: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
 none of the students will be deleted.
 </div>
 
@@ -312,7 +312,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>delete</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
 <br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
 </div>
 
@@ -340,7 +340,7 @@ Edits a student's information _(all information except remarks)_. To remove a st
 For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
 <div markdown="block" class="alert alert-info">
-:bulb: **Note:**
+:information_source: **Note:**
 * `edit` command cannot edit the remark parameter of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 * `edit` command does not allow you to change the name of a student to an existing student's name in the student list!
 </div>
@@ -362,7 +362,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>edit</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-success"> :bulb: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
+<div markdown="block" class="alert alert-info">:information_source: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
 edited student's details.
 </div>
 
@@ -383,7 +383,7 @@ multiple sentences, paragraphs etc. When you are done, you can simply press `Ctr
 and your remarks will be saved once the text box closes.
 
 <div markdown="span" class="alert alert-info">
-:bulb: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
+:information_source: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
 The current version of TeachMeSenpai requires you to close the remark text box before you continue with other commands :)
 </div>
 
@@ -408,7 +408,7 @@ Examples:
 </p>
 
 <div markdown="span" class="alert alert-info">
-:bulb: **Note:** Notice that remarks in the [student list](#guide-to-teachmesenpais-gui) (right panel) are truncated to make your student list more succinct :)
+:information_source: **Note:** Notice that remarks in the [student list](#guide-to-teachmesenpais-gui) (right panel) are truncated to make your student list more succinct :)
 To view the remarks in detail, you may use the [`show`](#showing-a-students-remark-show) feature!
 </div>
 
@@ -438,7 +438,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>show</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Tip:** After typing a long remark with `remark`, use `show` to view the full remark in the [result box](#guide-to-teachmesenpais-gui)
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** After typing a long remark with `remark`, use `show` to view the full remark in the [result box](#guide-to-teachmesenpais-gui)
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -481,7 +481,7 @@ The `find` command allows you to zoom in on an entry that matches **all** your `
 
 For more details and examples on prefixes, please refer to the [Prefix Summary](#prefix-summary)!
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** 
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** 
 
 * Using `find` without any `PREFIX`s has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
 * Using `filter` without any `PREFIX`s will result in an empty list!
@@ -505,7 +505,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>find</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-success">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
+<div markdown="block" class="alert alert-info">:information_source: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
 </div>
 
 **Using the following input** `filter n/a m/CS2103T` :
@@ -519,11 +519,11 @@ Examples:
     <br><i><b>Above:</b> After entering <code>filter</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-success">:bulb: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
 are shown too.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Tip:** `find` followed by an `edit` will result in the full student list being shown! (similar to running a third command `list`)
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** `find` followed by an `edit` will result in the full student list being shown! (similar to running a third command `list`)
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -536,7 +536,7 @@ Did you make a mistake with a command? Don't worry, simply `undo` it!
 
 You can `undo` as many times as required, as long as any of your previous commmands were **undoable**. All **undoable** commands are given below!
 
-<div markdown="span" class="alert alert-success">:bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message
 </div>
 
 > Format: `undo`
@@ -554,7 +554,7 @@ Example: `delete 1 4` followed by `undo`.
 
 Did you `undo` a command on accident? Fret not, you may use `redo` to reverse the changes done by `undo`!
 
-<div markdown="span" class="alert alert-success">:bulb: **Note:** You can only redo an `undo` command. Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You can only redo an `undo` command. Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
 </div>
 
 >Format: `redo`
@@ -575,7 +575,7 @@ Need to clear all your entries? Simply use `clear` to help you delete all your e
 
 >Format: `clear`
 
-<div markdown="span" class="alert alert-success">:bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
 </div>
 
 ### Saving the data
@@ -589,7 +589,7 @@ The file containing your data can be found in the same folder `teachmesenpai.jar
 
 ### Editing the data file
 
-<div markdown="block" class="alert alert-danger"> **:exclamation: Warning:** Do not attempt to edit the data file unless you are an advanced user and understand some basic computing terminlogies.
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:** Do not attempt to edit the data file unless you are an advanced user and understand some basic computing terminlogies.
 If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file the next time you launch it.
 If you'd still like to edit the data file directly, please proceed to [Appendix: Editing the data file](#appendix-editing-the-data-file).
 </div>
@@ -729,7 +729,7 @@ The code below is a direct quote from the default data file.
 
 `persons` is an array containing every student entry as an element. Each element is enclosed in curly braces `{}`
 
-<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** The values you input should adhere to the parameter requirements.
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** The values you input should adhere to the parameter requirements.
 </div>
 
 The parameters in the braces indicate which parameter in the [Parameter descriptions](#parameter-descriptions) the input should adhere to.
