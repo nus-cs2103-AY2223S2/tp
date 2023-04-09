@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-//import java.util.Arrays;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
-//import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class AddAppointmentCommandTest {
 
@@ -35,18 +35,18 @@ public class AddAppointmentCommandTest {
         assertThrows(NullPointerException.class, () -> new AddAppointmentCommand(null));
     }
 
-    //    @Test
-    //    public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingAppointmentAdded modelStub = new ModelStubAcceptingAppointmentAdded();
-    //        Appointment validAppointment = new AppointmentBuilder().build();
-    //        modelStub.addPatient(new PatientBuilder().withName(validAppointment.getPatientName().toString()).build());
-    //
-    //        CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
-    //
-    //        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment),
-    //                commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validAppointment), modelStub.appointmentsAdded);
-    //    }
+    @Test
+    public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingAppointmentAdded modelStub = new ModelStubAcceptingAppointmentAdded();
+        Appointment validAppointment = new AppointmentBuilder().build();
+        modelStub.addPatient(new PatientBuilder().withName(validAppointment.getPatientName().toString()).build());
+
+        CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
+
+        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validAppointment), modelStub.appointmentsAdded);
+    }
 
     @Test
     public void execute_duplicateAppointment_throwsCommandException() {
