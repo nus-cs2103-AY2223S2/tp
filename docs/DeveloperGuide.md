@@ -1005,8 +1005,6 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ##### Extensions
 
-##### Extensions
-
 * 1a. VMS detects error in the command entered.
     * 1a1. VMS shows an error message.
 
@@ -1042,6 +1040,38 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
     * 1c1. VMS returns an empty list.
 
       Use case resumes at step 1.
+
+#### UC-APT-006 - Mark appointments
+
+##### MSS
+
+1. User requests to mark a specified appointment.
+2. VMS marks the appointment.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to mark an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+* 1b. User requested to mark an appointment that is already marked.
+    * 1a1. If assertion is enabled
+        * 1a11. VMS shows an error message.
+
+        Use case ends.
+
+    * 1b1. If assertion is disabled
+        * 1b11. VMS .
+
+        Use case resumes from step 1.
 
 --------------------------------------------------------------------------------------------------------------------
 
