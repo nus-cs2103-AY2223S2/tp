@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.format.DateTimeFormatter;
@@ -75,8 +74,7 @@ public class AutoM8CommandTestUtil {
         try {
             result = command.execute(model);
             String posMsg = result.getFeedbackToUser();
-            System.out.println(posMsg);
-            System.out.println(msg);
+
             assertTrue(posMsg != null && msg != null
                     && posMsg.hashCode() == msg.hashCode()
                     && posMsg.equals(msg));
@@ -162,4 +160,5 @@ public class AutoM8CommandTestUtil {
     public static DateTimeFormatter getDtfServices() {
         return dtfServices;
     }
+
 }

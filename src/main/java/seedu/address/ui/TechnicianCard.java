@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.entity.person.Technician;
 
 /**
- * A UI component that displays information of a {@code Customer}.
+ * A UI component that displays information of a {@code Technician}.
  */
 public class TechnicianCard extends UiPart<Region> {
 

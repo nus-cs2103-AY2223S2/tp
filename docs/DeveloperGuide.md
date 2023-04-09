@@ -165,6 +165,111 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### ID generation
+
+Each entity in AutoM8 has a unique ID (e.g. `Customer` has a unique `customerId`, `Appointment` has a unique `appointmentId`, etc.).
+This is to ensure that each entity can be uniquely identified and referenced without each object storing references to other objects and vice versa.
+Hence, it is important to ensure that each entity has a unique ID which is generated via an API call.
+
+This ID generation is facilitated by the `IdGenerator` class.
+The class consists of `SortedSets` and `PriorityQueues`, one for each entity.
+The `SortedSets` are used to keep track of all the IDs that are in use while the `PriorityQueues` are used to update the `IdGenerator` about all the IDs that are not in use. 
+When the `generateXId()` method is called, the `IdGenerator` will first check if the `PriorityQueue` containing unused IDs is empty.
+If it is empty, it will pop off the smallest ID from the `PriorityQueue` and return it. 
+If it is empty, the `IdGenerator` will check the largest ID in the `SortedSet` of used IDs, return a number one larger than that, and add it to the `SortedSet` of used IDs.
+The API call `setXIdUnused(int)` is used to update the `PriorityQueue` of unused IDs when an entity is deleted.
+
+### Entity Data
+
+AutoM8 consists of 6 entities: `Customer`, `Appointment`, `Service`, `Vehicle`, `Part`, and `Technician` which are related to each other in the following way:
+
+![Entity Relationship](images/EntityRelationshipClassDiagram.png)
+
+All the entity data is stored in the `Shop` class which consists of the following (X is a placeholder for the entity name e.g. `Customer`):
+
+![Shop Class Diagram](images/ShopClassDiagram.png)
+
+The shop class simulates a relational database by automating all the cascading deletes and updates between entities.
+The only way to modify the data is via the exposed `Shop` API calls (and other methods necessary for loading data from file).
+
+#### Internal Logic
+
+![Add Vehicle Activity Diagram](images/AddVehicleInternalActivityDiag.png)
+
+Above is the activity diagram for adding a vehicle to the `Shop`. Adding other entities follow a similar process.
+Related entities are updated automatically.
+
+<img src="images/RemoveCustomerInternalActivityDiag.png" height="800">
+<img src="images/RemoveVehicleInternalActivityDiag.png" height="700"> 
+<img src="images/RemoveAppointmentInternalActivityDiag.png" height="700">
+<img src="images/RemoveServiceInternalActivityDiag.png" height="1130">
+
+Above are the activity diagrams relevant to removing a customer. The cascading effects are automated by the `Shop` class and entity relations are preserved.
+
+**Undo/Redo**
+
+As shown in the class and activity diagrams above, the undo/redo functionality is implemented using 2 stacks: `undoStack` and `redoStack`.
+Whenever there is a modification on the data, a copy of the `Shop` before modification is pushed onto the `undoStack` and the `redoStack` is cleared to prevent conflicts.
+
+The undo and redo commands call the `revert()` and `redo()` API of the `Shop`. Activity diagrams for the respective API calls are shown below.
+
+![Undo Activity Diagram](images/UndoInternalActivityDiag.png)
+![Redo Activity Diagram](images/RedoInternalActivityDiag.png)
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+    * Pros: Implementation is easy.
+    * Cons: Memory usage may cause performance issues.
+
+* **Alternative 2:** Individual command has an 'inverse' command which will perform the opposite action.
+    * Pros: Will use less memory (e.g. No need to save entire shop every update).
+    * Cons: 
+        * Must ensure that the implementation of each command is correct. Adds a lot of complexity that may not seem justified as it is to only accommodate the undo/redo feature.
+        * Difficult to implement for commands that have cascading effects.
+
+**Aspect: Data structure to support the undo/redo commands:**
+
+* **Alternative 1 (current choice):** Use 2 stacks to store the history of the Models.
+    * Pros: Implementation is easier and the logic would be much more manageable to debug.
+    * Cons: Duplicated Logic.
+
+* **Alternative 2:** Use `HistoryManager` for undo/redo.
+    * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
+    * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application.
+
+**Aspect: How to structure and store Entity data**
+* **Current:** 
+  * Each entity has a unique ID and each entity stores the IDs of the entities that it is related to.
+  * The `Shop` class stores all the entities as various Observable Lists.
+  * `Shop` class manages all the data modification. It manages all the cascading effects and relationships between entities and ID generation as well as input validation on primitive data input.
+  * Pros: 
+    * Outer classes (e.g Commands) just have to call the relevant API of `Shop` to modify the data. They do not have to worry about relationships between entities.
+    * `Shop` class has full 'low level' control of the data. It can ensure that the data is consistent and relationships between entities are preserved. 
+    * Isolate all data manipulation bugs to the `Shop` class. This makes it easier to debug and test.
+  * Cons:
+    * Shop class has very high responsibility. Relatively long and complex methods. 
+    * Certain constraints of `Shop` have to be violated to support loading data from file. 
+        `Shop` requires other classes to call its API to modify the data.
+        However, when loading data from file, the `Storage` classes needs to modify the data directly. 
+      Some 'unsafe' methods of `Shop` are public to facilitate this. 
+      This could be avoided if `Shop` manages storing and loading data as well, but this would violate the Single Responsibility Principle and there was not enough time to implement this.
+* **Alternative:**
+  * Each entity stores references to the entities that it is related to.
+  * `Shop` class stores all the top level entities (e.g. `Customer` and `Technician`) as various Observable Lists.
+  * Commands and entities manage their own data and relationships.
+  * Pros:
+    * Commands and entities can freely manipulate the data and relationships. 
+    * `Shop` class has less responsibility. 
+    * `Shop` class does not need to violate personal constraints to facilitate loading data from file.
+  * Cons:
+      * Retrieving/modifying bottom level entities (e.g. `Service`) is very complex and hard to manage
+      * Commands and entities have to manage the data and relationships themselves. This could lead to bugs and inconsistencies.
+      * `Shop` class has no control over the data. It cannot ensure that the data is consistent and relationships between entities are preserved. 
+      * Bugs could be caused by any of the many commands and entities across different packages. This makes it extremely hard to debug and test. 
+       
 ### Add Feature
 
 ### Current Implementation
@@ -234,92 +339,11 @@ The Sequence Diagram that illustrates the interactions within the Logic componen
 
 #### Current Implementation
 
+The following sequence diagram shows how the `totalAppointmentCommand` operation works:
+
+![totalAppointmentSequenceDiagram](images/totalAppointmentSequenceDiagram.png)
+
 The `totalAppointmentCommand` feature mainly involves iterating through the appointment list and checking if the specified date falls on the same date as the appointment. The way that the validation check is done is by setting the previous day to be the start date and the next day to be the end date. Finally, we check if the current appointment is within the start and end date.
-
-
-
-### Undo/Redo Feature
-
-#### Current Implementation
-
-The undo/redo mechanism is facilitated by `StackUndoRedo`. The implemented undo/redo feature would be best described as two stacks of commands that the user has performed:
-
-- `undoStack` serves to store a "history" of the commands they have performed.
-- `redoStack` is a collection of their commands that lead up to initial state at which they started performing the undo.
-
-The central concept is to store a stack of commands that essentially functions as a history-list of the commands. Essentially, we leverage on the stack's data structure which is a linear data structure based on the principle of Last In First Out (LIFO). Based on the implementation described above, `undoStack` is populated by pushing a user's command in the application.
-
-Then, when the user performs an undo, the command is firstly popped from `undoStack` and used to restore previous state, and then we store that command onto `redoStack`.
-
-`StackUndoRedo` contains 2 stacks, `undoStack` and `redoStack`. The `undoStack` and `redoStack` contain commands that are of type `RedoableCommand`. `RedoableCommand` extends Command and has the following attributes and methods.
-
-![UndoRedo0](images/UndoRedo0.png)
-
-When a `RedoableCommand` is being executed, the methods `saveAddressBookSnapshot(Model model)` will be called. This ensures that the current states are stored within the command.
-
-After a command is executed, it will be added into the `StackUndoRedo`. The specific process is explained in the activity diagram below.
-
-![UndoRedo0](images/UndoRedo1.png)
-
-Next, when undo is being performed, `undoStack` will remove the first command in its stack and add it to `redoStack`. It will then call `RedoableCommand` `undo()` of the command that is removed. The `undo()` method will then set the model to the previous snapshot of `saveAddressBookSnapshot`.
-
-Likewise, when redo is being performed, `redoStack` will remove the first command in its stack and add it to `undoStack`. It will then call `RedoableCommand` `redo()` of the command that is removed. The `redo()` method will then execute the command again.
-
-Given below is an example of a usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application. The `StackUndoRedo` will be initialized.
-
-![UndoRedo0](images/UndoRedo2.png)
-
-Step 2. The user executes delete command. The delete command will be pushed into the `undoStack` of `StackUndoRedo`.
-
-![UndoRedo0](images/UndoRedo3.png)
-
-Step 3. The user executes add customer command to add a new customer. Similarly, the add command will be pushed into the `undoStack` of `StackUndoRedo`.
-
-![UndoRedo0](images/UndoRedo4.png)
-
-Step 4. The user now decides that adding of customer was a mistake, and decides to undo that action by executing the undo command.
-
-![UndoRedo0](images/UndoRedo5.png)
-
-
-> <b>Note:</b> undoCommand will check if there is any command that can be undone by calling `StackUndoRedo` canUndo() method.
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoRedo0](images/UndoRedo6.png)
-
-> <b>Note:</b> The redo command will call `popRedo()` method in `StackUndoRedo`and `redo()` method in `RedoableCommand` .
-
-Step 5. The user executes listcustomers. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack`
-to be cleared.  Commands that are not undoable are not added into the `undoStack`.
-
-![UndoRedo0](images/UndoRedo7.png)
-
-
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Implementation is easy.
-    * Cons: Memory usage may cause performance issues.
-
-* **Alternative 2:** Individual command has attached logic that allows it to undo/redo by itself.
-    * Pros: Will use less memory (e.g. just save what is being deleted).
-    * Cons: Must ensure that the implementation of each command is correct. Adds a lot of complexity that may not seem justified as it is to only accommodate the undo/redo feature.
-
-**Aspect: Data structure to support the undo/redo commands:**
-
-* **Alternative 1 (current choice):** Use 2 stacks to store the history of the Models.
-    * Pros: Implementation is easier and the logic would be much more manageable to debug.
-    * Cons: Duplicated Logic.
-
-* **Alternative 2:** Use `HistoryManager` for undo/redo.
-    * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
-    * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application.
 
 ### \[Proposed\] Data archiving
 

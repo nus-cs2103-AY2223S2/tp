@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Manages the adding of a technician to a specific service
+ * Adds an existing technician to a specific service
  */
 public class AddTechnicianToServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservicetech";
@@ -25,6 +25,9 @@ public class AddTechnicianToServiceCommand extends Command {
     private final int serviceId;
 
     /**
+     * Constructs command that adds an existing technician to
+     * specified service
+     *
      * @param techId    ID of technician
      * @param serviceId ID of service
      */

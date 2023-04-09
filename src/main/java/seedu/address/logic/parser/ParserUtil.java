@@ -26,6 +26,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String PART_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}-_ ]*";
+    public static final String PART_MESSAGE_CONSTRAINTS = "Parts should only contain alphanumeric characters, dashes,"
+            + "underscore and spaces, and it should not be blank";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -224,5 +227,16 @@ public class ParserUtil {
             throw new ParseException("Provided string is empty!");
         }
         return ret;
+    }
+
+
+    /**
+     * Returns true if a given string is a valid part name.
+     *
+     * @param test string to validate against
+     * @return boolean to indicate if string is valid part name
+     */
+    public static boolean isValidPartName(String test) {
+        return test.matches(PART_VALIDATION_REGEX);
     }
 }

@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.Service;
 
 /**
- * Finds and returns the service details of the provided id.
+ * Finds and selects a specified service identified by its id
  */
 public class ViewServiceCommand extends Command {
 

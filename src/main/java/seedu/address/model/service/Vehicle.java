@@ -11,8 +11,7 @@ import seedu.address.model.DeepCopy;
 import seedu.address.model.Findable;
 
 /**
- * The vehicle class is the superclass of all types of vehicle.
- * As a start, you may wish to consider VehicleType of creating other subclasses.
+ * The vehicle class represents a vehicle object in the repair shop.
  */
 public class Vehicle implements Findable, DeepCopy<Vehicle> {
     private int id;

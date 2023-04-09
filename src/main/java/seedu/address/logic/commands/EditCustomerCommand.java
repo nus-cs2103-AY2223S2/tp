@@ -20,7 +20,7 @@ import seedu.address.model.entity.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing customer in the address book.
+ * Edits the details of an existing customer in the shop.
  */
 public class EditCustomerCommand extends Command {
 

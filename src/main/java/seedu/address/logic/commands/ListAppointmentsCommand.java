@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all appointments in the AutoM8 system to the user.
+ * Lists all appointments in the shop to the user.
  */
 public class ListAppointmentsCommand extends Command {
 

@@ -66,6 +66,7 @@ public class AutoM8EditCommandTest {
     private static final Address customerAddressA = new Address("Blk 30 Geylang Street 29, #06-40");
     private static final Address technicianAddressA = new Address("Blk 586 Bedok Street 23, #08-46");
     private static final Address sampleAddress = new Address("1007 Mountain Drive");
+
     private static final Set<Tag> customerTagA = getTagSet("regular");
     private static final Set<Tag> technicianTagA = getTagSet("big boss");
     //    private static final Set<Integer> customerVehicleIdA = getIntegerSet(1, 2);
@@ -82,6 +83,7 @@ public class AutoM8EditCommandTest {
     private static final String sampleBrand = "Pegassi";
     private static final VehicleType vehicleTypeA = VehicleType.CAR;
     private static final VehicleType sampleVehicleType = VehicleType.MOTORBIKE;
+
     //    private static final Set<Integer> vehicleServiceIdsA = getIntegerSet(1, 5);
     private static final Set<Tag> noTag = new HashSet<>();
     private static final Set<Integer> noValueIntegerSet = new HashSet<>();
@@ -97,7 +99,8 @@ public class AutoM8EditCommandTest {
     private static final ServiceStatus serviceStatusA = ServiceStatus.COMPLETE;
     private static final ServiceStatus sampleStatus = ServiceStatus.ON_HOLD;
     private static final String serviceDescriptionA = "Engine oil leak";
-    private static final String sampleDescription = "This is your garage... your empty garage. Not much I can do for ya.";
+    private static final String sampleDescription = "This is your garage... your empty garage. "
+            + "Not much I can do for ya.";
     private static final int servicePartQuantity = 1;
     private static final int sampleJokePartQuantity = 500;
     private static final int samplePartQuantity = 50;
@@ -105,9 +108,10 @@ public class AutoM8EditCommandTest {
     private static final String sampleJokePartName = "500 sheets of wide-ruled notebook paper";
     private static final String partNameA = "Brake Pads";
 
-    public void AutoM8CommandTestUtil() {
+    public AutoM8EditCommandTest() {
         originalRequiredParts.put("Engine", 1);
     }
+
     /**
      * Attempt to edit based on non-existing values in a typical shop
      */
@@ -156,7 +160,6 @@ public class AutoM8EditCommandTest {
     }
 
     private void invalidAppointment(Model model) {
-
         // Fail condition is only id
         // Does not check if time < time
 
@@ -385,7 +388,7 @@ public class AutoM8EditCommandTest {
         assertTrue(service.getRequiredParts().get(partNameA) == reasonableQuantity);
 
         try {
-            assertTrue(model.getShop().getPartQty(partNameA) == (samplePartQuantity - reasonableQuantity ));
+            assertTrue(model.getShop().getPartQty(partNameA) == (samplePartQuantity - reasonableQuantity));
         } catch (EmptyInputException | PartNotFoundException e) {
             throw new AssertionError(e);
         }
@@ -397,12 +400,14 @@ public class AutoM8EditCommandTest {
     public void validAppointment_success() {
         Model model = new TypicalShop().getTypicalModel();
 
-//        assertSuccess(new EditVehicleCommand(vehicleIdA, Optional.of(2),
-//                Optional.of(samplePlate), Optional.of(sampleColor), Optional.of(sampleBrand),
-//                Optional.of(sampleVehicleType)), model, new CommandResult(String.format(MESSAGE_EDIT_VEHICLE_SUCCESS,
-//                vehicleIdA), Tab.VEHICLES).getFeedbackToUser());
+        //        assertSuccess(new EditVehicleCommand(vehicleIdA, Optional.of(2),
+        //                Optional.of(samplePlate), Optional.of(sampleColor), Optional.of(sampleBrand),
+        //                Optional.of(sampleVehicleType)), model, new CommandResult(String.format
+        //                (MESSAGE_EDIT_VEHICLE_SUCCESS,
+        //                vehicleIdA), Tab.VEHICLES).getFeedbackToUser());
 
     }
+
     /**
      * Returns a tag set containing the list of strings given.
      */

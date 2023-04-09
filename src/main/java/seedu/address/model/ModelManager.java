@@ -26,7 +26,7 @@ import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the AutoM8 data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -46,7 +46,6 @@ public class ModelManager implements Model {
     private final SortedList<Appointment> sortedFilteredAppointments;
     private final FilteredList<Map.Entry<String, Integer>> filteredParts;
     private final Shop shop;
-
     private Customer selectedCustomer;
     private Vehicle selectedVehicle;
     private Service selectedService;
@@ -365,6 +364,30 @@ public class ModelManager implements Model {
     public void updateTechnicianComparator(Comparator<? super Technician> comparator) {
         requireNonNull(comparator);
         sortedFilteredTechnicians.setComparator(comparator);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return shop.equals(other.shop)
+                && userPrefs.equals(other.userPrefs)
+                && filteredCustomers.equals(other.filteredCustomers)
+                && filteredVehicles.equals(other.filteredVehicles)
+                && filteredServices.equals(other.filteredServices)
+                && filteredAppointments.equals(other.filteredAppointments)
+                && filteredTechnicians.equals(other.filteredTechnicians)
+                && filteredParts.equals(other.filteredParts);
     }
 }
 

@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
- * Manages Sorting of appointments
+ * Sorts displayed list of appointments
  */
 public class SortAppointmentsCommand extends Command {
     public static final String COMMAND_WORD = "sortappointments";

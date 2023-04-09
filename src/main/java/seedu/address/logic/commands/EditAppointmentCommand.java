@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 
 
 /**
- * Edits the details of an existing appointment in autom8.
+ * Edits the details of an existing appointment in the shop.
  */
 public class EditAppointmentCommand extends Command {
 
