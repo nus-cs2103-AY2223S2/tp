@@ -10,7 +10,7 @@ participant ":PresentAttendanceListCard" as PresentListCard UI_COLOR
 end box
 
 create AttendanceListPanel
-Hidden -> AttendanceListPanel : new AttendanceListPanel(ObservableList(StudentWithAttendance))
+Hidden -> AttendanceListPanel : new AttendanceListPanel(ObservableList<StudentWithAttendance>)
 activate AttendanceListPanel
 
 create AttendanceListViewCell
