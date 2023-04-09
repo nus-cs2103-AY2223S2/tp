@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 <b style="font-size: 20px">_LoyaltyLift_</b> is a desktop application designed for small business owners to manage their customers and orders efficiently, allowing you to **improve customer relations** and **increase customer loyalty**.
-It is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+It is optimized for use via commands typed into a command panel and also has the advantages of a visual interface.
 
 With LoyaltyLift, you can easily keep track of your customers' preferences, purchase history, and contact information, enabling you to provide personalized service that will keep them coming back. 
 Our application makes it easy to manage orders and provide rewards, helping you grow your business while delivering an exceptional customer experience. 
@@ -26,14 +26,16 @@ Are you excited yet? Let's get started!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. 
+You can check what version of Java you have, from [here](https://www.java.com/en/download/help/version_manual.html).
 
 1. Download the latest `loyaltylift.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for LoyaltyLift.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar loyaltylift.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Open a command terminal by searching for terminal and launching it. Then, `cd` into the folder you put the jar file in, and use the `java -jar loyaltylift.jar` command to run the application.<br>
+   You can learn more about the `cd` command [here](https://www.ibm.com/docs/en/aix/7.1?topic=directories-changing-another-directory-cd-command). <br> 
+   An application similar to the one below should appear in a few seconds. Note how the app contains some sample data. You can click on one of the customers in the left hand panel to view more information about them. <br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -41,7 +43,7 @@ Are you excited yet? Let's get started!
 
    * `listc` : Lists all customers.
 
-   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to the Address Book.
+   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to LoyaltyLift.
 
    * `deletec 3` : Deletes the 3rd customer shown in the current list.
 
@@ -53,7 +55,7 @@ Are you excited yet? Let's get started!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Basics
+## Getting to know LoyaltyLift
 
 This section is designed to help new users get started with using LoyaltyLift.
 In this section, you will learn how to perform essential tasks such as adding customers, creating orders, and setting up rewards. 
@@ -117,15 +119,17 @@ Enter the following command to insert a new customer _Lyndon Edwards_ along with
     addc n/Lyndon Edwards p/93015612 e/lyndon@example.com a/Loyalty Street 103, block 122, #01-20
 
 The application should already have your customer displayed by this step.
-Nonetheless, you can always type the following commands to list all customers and view the first customer in our address book, which corresponds to _Lyndon Edwards_.
+Nonetheless, you can always type the following commands to list all customers and view the first customer in LoyaltyLift, which corresponds to _Lyndon Edwards_.
 
     listc
     viewc 1
 
+![result after adding customer](images/addingFirstCustomerResult.png)
+
 #### Your first order, 2 of Banana Cakes
 {: .no_toc}
 
-Now that _Lyndon Edwards_ is in our address book, we can add an order for him.
+Now that _Lyndon Edwards_ is in LoyaltyLift, we can add an order for him.
 This can be with the [`addo`](#adding-an-order--addo) command like the following.
 
     addo 1 n/Banana Cake q/2 
@@ -143,7 +147,7 @@ To do this manually, you can list all your orders and view the first order's inf
 
 Before ending this tutorial, let us clear our application data by removing both _Lyndon Edwards_ and his _Banana Cake_ order.
 
-While [`clear`](#clearing-all-entries--clear) command achieves this easily, we can also simply remove _Lyndon Edwards_ from our address book with the [`deletec`](#deleting-a-customer--deletec) command.
+While [`clear`](#clearing-all-entries--clear) command achieves this easily, we can also simply remove _Lyndon Edwards_ from LoyaltyLift with the [`deletec`](#deleting-a-customer--deletec) command.
 
     deletec 1
 
@@ -214,7 +218,6 @@ An order can be cancelled at any stage of the order. This can be performed with 
 
 ![result after cancelling order](images/cancelOrderResult.png)
 
-
 Looking at the order status, it is now reflected as 'Cancelled'. Once an order is cancelled, its status can no longer be advanced.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -225,7 +228,71 @@ If you accidentally cancel an order, you can still revert its status!
 
 This tutorial will teach you the rewards system in LoyaltyLift and how you can apply it to boost your business' customer loyalty.
 
-    SECTION TODO
+#### The Tier System
+{: .no_toc}
+
+In LoyaltyLift, there are three tiers with their associated point threshold.
+* Bronze - 1000 points
+* Silver - 5000 points
+* Gold - 10000 points
+
+<div markdown="block" class="alert alert-info">
+LoyaltyLift assumes that your tier system will follow a similar style of Bronze, Silver and Gold.
+
+The point threshold above means that if a customer has cumulative points equal to or greater than that threshold, he will be part of that tier.
+For instance, a customer with 5500 cumulative points will be in the Silver tier as he is above the Silver tier point threshold
+but below the Gold tier point threshold. 
+
+</div>
+
+Before we start, head over to [_Add your first customer and order_](#add-your-first-customer-and-order) to include _Lyndon Edwards_ and the _Banana Cake_ order.
+However, do not clear the application data as we will be using the customer for this tutorial.
+
+Rewarding your customers points is an effortless process on LoyaltyLift using 
+[`setpoints`](#setting-reward-points-for-a-customer--setpoints) or 
+[`addpoints`](#addingsubtracting-points-for-a-customer--addpoints).
+
+You would like to add points to _Lyndon Edwards_ for his _Banana Cake_ order.
+Here, we assume that _Lyndon Edwards_ is at your first index.
+
+Enter the following command to add points to _Lyndon Edwards_ to reward him with some points.
+
+    addpoints 1 pt/800
+
+![result after adding points](images/addingPointsResult.png)
+
+You should be able to see that _Lyndon Edwards_ has _800 points_.
+
+Now that _Lyndon Edwards_ has some points, you would like to claim a reward on his behalf for being a loyal customer.
+Perhaps, you would like to use _500 points_ from _Lyndon Edwards_ to reward him with a water bottle!
+You can then easily track his new points by again, 
+using the [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints) command!
+
+Enter the following command to subtract points from _Lyndon Edwards_ after claiming a reward for him.
+
+    addpoints 1 pt/-500
+
+![result after subtracting points](images/subtractingPointsResult.png)
+
+You should see that _Lyndon Edwards_ has _300 points_ remaining. However, do note that he still has 800 cumulative points,
+as cumulative points are not subtracted away while claiming rewards.
+
+Lastly, perhaps you feel that this was an error! _Lyndon Edwards_ should actually have _8000 points_ for being such a loyal customer.
+You can overwrite his previous points, as well as his cumulative points, using the [`setpoints`](#setting-reward-points-for-a-customer--setpoints) command!
+
+    setpoints 1 pt/8000
+
+![result after setting points](images/setPointsResult.png)
+
+You should see that _Lyndon Edwards_ now has _8000 points_ and _8000 cumulative points_.
+Also, you should see that he is now part of the Silver tier as he has above 5000 cumulative points!
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The difference between `setpoints` and `addpoints` is that setting points will also set cumulative points to the same amount, 
+if you wish to keep the current cumulative points, use the `addpoints` command instead.
+</div>
+
+You should now be able to reward any of your customers with our point system!
 
 ### Extra remarks
 
@@ -247,16 +314,16 @@ Here are some recommended features to explore after this tutorial.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. `addc n/NAME ...`, `NAME` is a parameter which can be used as `addc n/John Doe ...`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [p/PHONE_NUMBER]` can be used as `n/John Doe p/12341234` or as `n/John Doe`.
+  e.g. `...n/NAME [q/QUANTITY]` can be used as `...n/Cake q/2` or as `...n/Cake`.
 
 * Items in curly brackets are an indication to use one of the given options, separated by the character `|`.
   e.g. `ct/{ind|ent}` is a parameter that should be used as `ct/ind` or `ct/ent` exactly.
 
-* Parameters can be in any order.<br>
+* Parameters can be in any order by you.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is specified multiple times, only the last occurrence of the parameter will be taken.<br>
@@ -405,7 +472,7 @@ You can click on the customer in the table directly for the same effect!
 
 #### Editing a customer : `editc`
 
-Edits an existing customer in the address book.
+Edits an existing customer in LoyaltyLift.
 
 **Format**
 
@@ -454,7 +521,7 @@ deletec CINDEX
 **:keyboard: Examples:**<br>
 
 * `listc` followed by `deletec 2`<br>
-  Deletes the 2nd customer in the address book.
+  Deletes the 2nd customer in LoyaltyLift.
 
 * `findc Betsy` followed by `deletec 1`<br>
   Deletes the 1st customer in the results of the `findc` command.
@@ -466,6 +533,8 @@ deletec CINDEX
 #### Marking a customer : `markc`
 
 Bookmarks a customer from the list of customers.
+
+Do you have a customer you want to prioritise or stand out from other customers in the list? Use this command.
 
 **Format**
 
@@ -480,7 +549,8 @@ markc CINDEX
 **:keyboard: Examples:**<br>
 
 * `listc` followed by `markc 2`<br>
-  Bookmarks the 2nd customer in the address book.
+  Bookmarks the 2nd customer in LoyaltyLift.
+  ![result for 'markc 2'](images/markcResult.png)
 
 * `findc Betsy` followed by `markc 1`<br>
   Bookmarks the 1st customer in the results of the `findc` command.
@@ -490,6 +560,8 @@ markc CINDEX
 #### Unmarking a customer : `unmarkc`
 
 Un-bookmarks a customer from the list of customers.
+
+This command allows you to remove any bookmark.
 
 **Format**
 
@@ -504,7 +576,8 @@ unmarkc CINDEX
 **:keyboard: Examples:**<br>
 
 * `listc` followed by `unmarkc 2`<br>
-  Un-bookmarks the 2nd customer in the address book.
+  Un-bookmarks the 2nd customer in LoyaltyLift.
+  ![result for 'unmarkc 2'](images/unmarkcResult.png)
 
 * `findc Betsy` followed by `unmarkc 1`<br>
   Un-bookmarks the 1st customer in the results of the `findc` command.
@@ -516,6 +589,9 @@ unmarkc CINDEX
 #### Setting a customer's note : `setnotec`
 
 Sets a customer's note.
+
+Do you have additional information to remember about your customer? 
+This command helps you to remember anything you want about your customer.
 
 **Format**
 
@@ -531,6 +607,7 @@ setnotec CINDEX nt/NOTE
 | `nt/`   | Note          |          | Any value   |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This command overwrites existing notes.
 You can remove a customer's note by setting an empty note.
 </div>
 
@@ -608,6 +685,7 @@ Setting points will also set cumulative points to the same amount, if you wish t
 
 * `listc` followed by `setpoints 2 pt/100`<br>
   Sets the 2nd customer's points as 100.
+  ![result for 'setpoints 2'](images/setpointsExampleResult.png)
 
 * `findc Betsy` followed by `setpoints 1 pt/300`<br>
   Sets the 1st customer points as 300 in the results of the `findc` command.
@@ -626,6 +704,8 @@ addpoints CINDEX pt/POINTS
 
 * Adds or subtracts the points of the customer at the specified `CINDEX` by `POINTS`.
 * If the points subtracted is greater than what the user has, the command will not be executed.
+* If the points added will result in points or cumulative points being greater than 999999, 
+the command will not be executed.
 
 | Prefix  | Parameter     | Optional | Description                                                                   |
 |---------|---------------|:--------:|-------------------------------------------------------------------------------|
@@ -779,8 +859,9 @@ You can click on the order in the table directly for the same effect!
 
 **:keyboard: Examples:**<br>
 
-* `listc` and `viewo 2`<br>
+* `listo` and `viewo 2`<br>
   Displays the second order in the **Information Panel**
+  ![result for 'viewo 2'](images/viewoBananaCakeResult.png)
 
 </div>
 
@@ -901,7 +982,7 @@ cancelo OINDEX
 
 #### Deleting an order : `deleteo`
 
-Deletes the specified order from the address book.
+Deletes the specified order from LoyaltyLift.
 
 **Format**
 
@@ -995,7 +1076,7 @@ appendnoteo OINDEX nt/NOTE
 
 #### Clearing all entries : `clear`
 
-Clears all customers and orders from the address book.
+Clears all customers and orders from LoyaltyLift.
 
 **Format**
 
@@ -1015,7 +1096,7 @@ exit
 
 #### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 **Format**
 
@@ -1033,8 +1114,15 @@ Customer and order data are saved in the hard disk automatically after any comma
 
 All data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about file name:**<br>
+
+* If you are confused why the file name is addressbook.json, this is because LoyaltyLift was built on top of an existing application called addressbook.
+</div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, LoyaltyLift will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1042,7 +1130,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LoyaltyLift home folder.
 
 **Q**: Why are orders deleted or missing after deleting a customer with `deletec`? <br>
 **A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all of his/her orders needs to be cleared. 
@@ -1076,7 +1164,6 @@ If this is not ideal, we recommend to avoid deleting any customers.
 |--------------------:|----------------------------------------------------------------------------------------|
 |      **Set Points** | `setpoints CINDEX pt/POINTS` <br> e.g., `setpoints 2 pt/100`                            |
 |      **Add Points** | `addpoints CINDEX pt/[+/-]POINTS` <br> e.g., `addpoints 2 pt/100`, `addpoints 1 pt/-50` |
-| **Set Reward Tier** | `settier TIER_NUM POINT_THRESHOLD` <br> e.g., `settier 1 500`                          |
 
 
 ### Order
