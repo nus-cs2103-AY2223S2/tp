@@ -3,23 +3,30 @@ layout: page
 title: User Guide
 ---
 
-Ultron is a **desktop app for compiling job and internship openings, optimized for use via typing**. The application interface provides you both a summary list and a detailed display, with a text input box for commands. If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a quick and structured manner.
+Ultron is a **desktop app for compiling job and internship openings, optimized for use through keyboard typing and minimizing mouse clicking**.
+
+The application interface provides you with both a summary list and a detailed side panel display on the right, with a text input box at the top for user commands. 
+## might make more sense to shift down, currently dupe with quick start
+
+If you are familiar with the Ultron interface and can type fast, it can help you organise your internship openings in a much more efficient and structured manner compared to traditional methods such as using spreadsheets.
 
 ---
 
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Quick start](#quick-start)
+- [Navigation](#navigation)
+- [Quick Start](#quick-start)
+  - [Java Instructions](#java-instructions)
 - [Features](#features)
   - [Adding an opening : `add`](#adding-an-opening--add)
   - [Listing all openings : `list`](#listing-all-openings--list)
   - [Editing an opening : `edit`](#editing-an-opening--edit)
   - [Editing an opening's remarks : `remark`](#editing-an-openings-remarks--remark)
-  - [Showing full details of opening: `show`](#showing-full-details-of-opening-show)
+  - [Showing full details of opening: `show`](#showing-full-details-of-opening--show)
   - [Listing upcoming dates : `upcoming`](#listing-upcoming-dates--upcoming)
-  - [Filtering openings by company or position: `find`](#filtering-openings-by-company-or-position-find)
-  - [Filtering openings by status: `status`](#filtering-openings-by-status-status)
+  - [Filtering openings by company or position: `find`](#filtering-openings-by-company-or-position--find)
+  - [Filtering openings by status: `status`](#filtering-openings-by-status--status)
   - [Deleting an opening : `delete`](#deleting-an-opening--delete)
   - [Deleting all openings : `clear`](#deleting-all-openings--clear)
   - [Accessing help window : `help`](#accessing-help-window--help)
@@ -30,26 +37,67 @@ Ultron is a **desktop app for compiling job and internship openings, optimized f
 
 ---
 
-## Quick start
+## Navigation
 
-1. Ensure you have Java `11` or above installed in your Computer.
+All sections of the User Guide(UG) is organized neatly into the Table of Contents in a hierarchical structure. Clickable text, such as in the Table of Contents, can be used to easily navigate to relevant sections of the UG. Some are also links that will navigate you to relevant websites.
 
-1. Download the latest `ultron.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
+---
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Ultron.
+## Quick Start
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Ultron.jar` command to run the application.<br>
-   You should see something similar to the image below. Note how the app contains some sample data.<br>
+1. Ensure you have Java version `11` or above installed in your Computer. Instructions to check or download Java version `11` can be found [here](#java-instructions).
 
-   ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+2. Download the latest `ultron.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
+
+
+3. Copy the file to the folder you want to use as the _home folder_ for your Ultron.
+
+
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ultron.jar` command to run the application.<br>
+   You should see something similar to the image below in a few seconds. Note how the app contains some sample data.<br>
+
+ ![Ui](images/Ui.png)
+
+5. The app provides you with both a summary list of openings in the left panel and a more detailed information of an opening in the right panel, with a text input box at the top for user commands.
+
+
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - `list` : Lists all openings.
+   - `add c/Google p/Software Engineer e/google@gmail.com s/applied` : Adds an opening to Ultron, representing having applied at Google for a Software Engineer position.
    - `delete 3` : Deletes the 3rd opening shown in the current list.
+   - `show 1` : Displays on the right panel, more details of the 1st opening in the current list
+   - `clear` : Deletes all openings.
+   - `exit` : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
+
+### Java Instructions
+
+For Windows users:
+1. Open the **Windows Start Menu** and launch the **Command Prompt**.
+
+
+2. Type in the `java -version` command to confirm the status of your Java version.
+
+
+3. Example response : `java version "11.0.17"`
+   1. If the first number in the number list is `11`, it indicates that you are using Java version `11` and you are done!
+   2. If the number is not `11`, you can update Java by first uninstalling Java, following the instructions [here](https://explainjava.com/uninstall-java-windows/).
+   3. You can then download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://explainjava.com/install-java-windows/).
+   4. Finally, you can type `java -version` in your Command Prompt again to ensure you have Java version `11`.
+
+
+4. Example response : `java is not recognized...`.
+   1. This means Java is not downloaded, so you need to download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://explainjava.com/install-java-windows/).
+   4. Finally, you can type `java -version` in your Command Prompt again to ensure you have Java version `11`.
+
+For macOS users:
+1. To be added.
+
+After ensuring you have Java version `11`, you can return to [Quick Start](#quick-start).
 
 ---
 
