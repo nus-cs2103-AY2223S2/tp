@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.AddStudentToEventCommand.CONSULTATION
 import static seedu.address.logic.commands.AddStudentToEventCommand.LAB_STRING;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_USAGE;
 import static seedu.address.logic.commands.AddStudentToEventCommand.TUTORIAL_STRING;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccessDiffModel;
@@ -71,6 +72,6 @@ class AddStudentToEventCommandTest {
     @Test
     void execute_eventTypeNotRecognized_throwsCommandException() {
         assertCommandFailure(new AddStudentToEventCommand(first, first, WRONG_TYPE),
-                model, MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
+                model, MESSAGE_EVENT_TYPE_NOT_RECOGNIZED  + MESSAGE_USAGE);
     }
 }

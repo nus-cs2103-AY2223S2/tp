@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
 /**
- * Allows the TA to add student details to an event within one command instead of multiple commands
+ * Adds a student to an event.
  */
 public class AddStudentToEventCommand extends Command {
     public static final String COMMAND_WORD = "addStudent";
@@ -23,19 +23,23 @@ public class AddStudentToEventCommand extends Command {
             + "have entered cannot be 0 or less";
     public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger "
             + "than the size of the student list within the event";
+    public static final String MESSAGE_STUDENT_INDEX_INVALID = "The student index "
+            + "needs to be a non-zero integer!";
     public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be "
             + "0 or less";
     public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be "
             + "bigger than the size of the specified event list";
+    public static final String MESSAGE_EVENT_INDEX_INVALID = "The event index "
+            + "needs to be a non-zero integer!";
     public static final String MESSAGE_USAGE = "Add Student to Event Syntax: "
             + COMMAND_WORD + " " + "STUDENT_INDEX EVENT_TYPE/EVENT_INDEX\n"
             + "Parameters: STUDENT_INDEX within the student list (must be a valid positive integer), "
             + "EVENT_TYPE (Only Tutorial or Consultation or Lab case-sensitive is allowed)\n"
             + "EVENT_INDEX within the event list of the specified event (must be a valid positive integer)\n"
             + "Example: " + COMMAND_WORD + " addStudent 1 Tutorial/1";
-    public static final String TUTORIAL_STRING = PREFIX_TUTORIAL.getPrefix();
-    public static final String LAB_STRING = PREFIX_LAB.getPrefix();
-    public static final String CONSULTATION_STRING = PREFIX_CONSULTATION.getPrefix();
+    public static final String TUTORIAL_STRING = "Tutorial/";
+    public static final String LAB_STRING = "Lab/";
+    public static final String CONSULTATION_STRING = "Consultation/";
     private final Index studentIndex;
     private final Index eventIndex;
     private final String eventType;
@@ -67,26 +71,27 @@ public class AddStudentToEventCommand extends Command {
             throw new CommandException(MESSAGE_EVENT_INDEX_TOO_SMALL);
         }
         switch (eventType) {
-        case "Tutorial/":
+        case TUTORIAL_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredTutorialList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
             model.addStudentToTutorial(this.studentIndex, this.eventIndex);
             break;
-        case "Lab/":
+        case LAB_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredLabList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
             model.addStudentToLab(this.studentIndex, this.eventIndex);
             break;
-        case "Consultation/":
+        case CONSULTATION_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredConsultationList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
             model.addStudentToConsultation(this.studentIndex, this.eventIndex);
             break;
         default:
-            throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
+            throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED
+            + MESSAGE_USAGE);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS),

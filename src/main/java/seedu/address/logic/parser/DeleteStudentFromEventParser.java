@@ -26,8 +26,6 @@ public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEve
      * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteStudentFromEventCommand parse(String args) throws ParseException {
-        Index studentIndex;
-        Index eventIndex;
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
@@ -35,12 +33,20 @@ public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEve
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
 
+        Index studentIndex;
+        Index eventIndex;
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            // studentIndex is not a non-zero integer
+            throw new ParseException(DeleteStudentFromEventCommand.MESSAGE_STUDENT_INDEX_INVALID);
+        }
+        try {
             eventIndex = ParserUtil.parseIndex(
                     tutorialName.orElse(labName.orElse(consultationName.orElse(""))));
         } catch (ParseException pe) {
-            throw pe;
+            // eventIndex not a non-zero integer
+            throw new ParseException(DeleteStudentFromEventCommand.MESSAGE_EVENT_INDEX_INVALID);
         }
 
         if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {

@@ -26,8 +26,6 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
      * @throws ParseException if the user input does not conform the expected format.
      */
     public AddStudentToEventCommand parse(String args) throws ParseException {
-        Index studentIndex;
-        Index eventIndex;
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
@@ -41,20 +39,27 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
                     + AddStudentToEventCommand.MESSAGE_USAGE);
         }
 
+        Index studentIndex;
+        Index eventIndex;
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            // studentIndex is not a non-zero integer
+            throw new ParseException(AddStudentToEventCommand.MESSAGE_STUDENT_INDEX_INVALID);
+        }
+        try {
             eventIndex = ParserUtil.parseIndex(
                     tutorialName.orElse(labName.orElse(consultationName.orElse(""))));
         } catch (ParseException pe) {
-            // index not non-zero integer
-            throw pe;
+            // eventIndex not a non-zero integer
+            throw new ParseException(AddStudentToEventCommand.MESSAGE_EVENT_INDEX_INVALID);
         }
 
         String eventType = PREFIX_TUTORIAL.getPrefix();
-        if (!labName.isEmpty()) {
+        if (labName.isPresent()) {
             eventType = PREFIX_LAB.getPrefix();
         }
-        if (!consultationName.isEmpty()) {
+        if (consultationName.isPresent()) {
             eventType = PREFIX_CONSULTATION.getPrefix();
         }
 

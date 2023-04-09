@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
 /**
- * Allows the TA to add student details to an event within one command instead of multiple commands
+ * Deletes a student from an event.
  */
 public class DeleteStudentFromEventCommand extends Command {
     public static final String COMMAND_WORD = "deleteStudent";
@@ -23,10 +23,14 @@ public class DeleteStudentFromEventCommand extends Command {
             + "have entered cannot be 0 or less";
     public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger "
             + "than the size of the student list within the event";
+    public static final String MESSAGE_STUDENT_INDEX_INVALID = "The student index "
+            + "needs to be a non-zero integer";
     public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be "
             + "0 or less";
     public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be "
             + "bigger than the size of the specified event list";
+    public static final String MESSAGE_EVENT_INDEX_INVALID = "The event index "
+            + "needs to be a non-zero integer";
 
     public static final String MESSAGE_USAGE = "Delete Student from Event Syntax: "
             + COMMAND_WORD + " "
@@ -36,9 +40,9 @@ public class DeleteStudentFromEventCommand extends Command {
             + "EVENT_INDEX (must be a valid positive integer)\n"
             + "Example: " + COMMAND_WORD + " deleteStudent 1 Tutorial/1";
 
-    public static final String TUTORIAL_STRING = PREFIX_TUTORIAL.getPrefix();
-    public static final String LAB_STRING = PREFIX_LAB.getPrefix();
-    public static final String CONSULTATION_STRING = PREFIX_CONSULTATION.getPrefix();
+    public static final String TUTORIAL_STRING = "Tutorial/";
+    public static final String LAB_STRING = "Lab/";
+    public static final String CONSULTATION_STRING = "Consultation/";
     private final Index studentIndex;
     private final Index eventIndex;
     private final String eventType;
@@ -62,6 +66,7 @@ public class DeleteStudentFromEventCommand extends Command {
         assert(studentIndex != null);
         assert(eventIndex != null);
         assert(eventType != null);
+
         if (studentIndex.getZeroBased() < 0) {
             throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_SMALL);
         }
@@ -70,7 +75,7 @@ public class DeleteStudentFromEventCommand extends Command {
         }
 
         switch (eventType) {
-        case "Tutorial/":
+        case TUTORIAL_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredTutorialList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
@@ -79,7 +84,7 @@ public class DeleteStudentFromEventCommand extends Command {
                 throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_BIG);
             }
             break;
-        case "Lab/":
+        case LAB_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredLabList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
@@ -88,7 +93,7 @@ public class DeleteStudentFromEventCommand extends Command {
                 throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_BIG);
             }
             break;
-        case "Consultation/":
+        case CONSULTATION_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredConsultationList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
@@ -98,7 +103,8 @@ public class DeleteStudentFromEventCommand extends Command {
             }
             break;
         default:
-            throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
+            throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED
+            + MESSAGE_USAGE);
         }
 
         model.deleteStudentFromEvent(this.studentIndex, this.eventIndex, this.eventType);
