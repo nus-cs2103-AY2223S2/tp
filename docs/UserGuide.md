@@ -119,6 +119,7 @@ Deletes a person at the specified person list index.
 
 Format: `deletePerson PERSON_INDEX [-f]`
 
+* Must be preceded by `listBook` command if the person to be deleted has borrowed books not shown in the book list.
 * Deletes the person at the specified PERSON_INDEX.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -198,6 +199,7 @@ Delete a book given an book index in the book list.
 
 Format: `deleteBook BOOK_INDEX [-f]`
 
+* Must be preceded by `listPerson` command if the person who borrowed the book is not shown in the person list.
 * Deletes the book at the specified BOOK_INDEX.
 * The index refers to the index number shown in the displayed book list.
 * The index must be a positive integer 1, 2, 3, …
