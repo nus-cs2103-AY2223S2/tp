@@ -32,6 +32,8 @@ Given below are my contributions to the project.
 * **Contributions to the Developer Guide**
   * Added `findevent` documentation as well as sequence diagrams. ([#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63))
   * Updated storage diagrams as well as class diagrams. ([#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63))
+  * Added proposed enhancements. ([#135](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/135))
+  * Added additional manual testing and use cases for `findevent`. ([#135](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/135))
 
 * **Contributions to the User Guide**
   * Update documentation for `listevent`. ([#30](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/30))

@@ -612,7 +612,7 @@ For example, the user is allowed to enter these 2 commands and create 2 Persons 
 
 For future enhancements, Person names with the same sequence of characters but different casing will be considered the same Person.
 
-### Person name is not flexible
+### Person name can be more flexible
 
 The current version of this application is not able to accept names that contain non-alphanumeric characters. The non-alphanumeric characters found in most names are `/` and `'`.
 For example, the user is not allowed to enter these 2 commands and create the following Persons in the list of Contacts due to the current constraint:
@@ -621,10 +621,32 @@ For example, the user is not allowed to enter these 2 commands and create the fo
 
 For future enhancements, Person names should be more flexible in catering for names that may contain non-alphanumeric characters in the English language.
 
-### Events that have passed are not marked
+### Events that have ended can be displayed differently
 
 In this version of the application, the displayed events does not have any special indicator to show that it has "expired" or ended.
 For example, if today's date is 9th April 2023 and there are events that have end dates earlier than 9th April, they should be shown as greyed out events to indicate to the user that the event has ended.
 This Ui enhancement would help allow the users to focus on upcoming events.
 
 For future enhancements, the Ui should display past events with a special indicator or color to differentiate itself from future events.
+
+### Ability to archive events
+
+In line with previous enhancement above, as the user continues to use the application, events that have ended may accumulate if the user wishes to keep them.
+
+For future enhancements, the user should be able to archive events that have ended so that they are stashed away and only accessible upon using a command.
+At least two commands may be required to implement stashing and un-stashing of an event from the archive. A separate storage may also be needed store these archived events.
+
+### Ability to set reminders
+
+In this version of the application, users are not able to set reminders of upcoming events.
+
+For future enhancements, the user should be able to set a reminder for each event. This could be implemented by first modifying the existing `Event` class to also hold the date that the user wishes to be reminded on.
+Additional checks must also be put in place to ensure that the user does not add reminder dates that have already passed.
+Also, the Ui may require enhancements to display the reminders and additional considerations must be made when more than one reminder occurs at a time.
+
+### Ability to mark an overall-in-charge for an event
+
+In this version of the application, events are not assigned an overall-in-charge from the contact list.
+
+For future enhancements, the user should be able to set an overall-in-charge to the events. This is to identify specific individuals that are linked to a particular event and make them more prominent in the application.
+A possible way to design this implementation is to make the event keep track of the person who represents the overall-in-charge, that way we can safely restrict the number of overall-in-charge to just one contact or no contacts.
