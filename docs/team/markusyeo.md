@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   Additionally, allowing users to export files, edit them offline, then import them back into the `DengueHotspotTracker` is more convenient for sharing information with those without direct access to the app.
   * This feature also pairs with the `find` function, as users can use `find` to filter the data before exporting that specific set of data to share with others.
 * **New Feature**: Added the ability to checkout overview data as a csv file
-  * Justification: This feature allows users store the overviewed data outside of `DengueHotspotTracker` this will mean that they will be able to share a much smaller file as compared to having to send all the persons in the case list.
+  * Justification: This feature allows users to store the aggregated data in the overview outside of `DengueHotspotTracker`. This means that they will be able to export a much smaller file compared to exporting all the persons in the case list.
 * **New Feature:** Added the GUI for overview.
   * Justification: It looked unmatching initially and we wanted a neat way as well as one which blended with the rest of our GUI. I wrote the `BinCard` class which enabled us to have a unified UI as that of the personList it is displayed alongside.
   This allowed us to have a nice scaleable overview tab.
