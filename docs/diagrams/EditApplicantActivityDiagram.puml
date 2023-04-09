@@ -1,36 +1,23 @@
 @startuml
 !pragma useVerticalIf on
 start
-:User enters advance command;
+:User enters edit command;
 if () then ([else])
+  :Error: Invalid index provided;
+  stop
+([Positive integer provided]) elseif () then ([else])
   :Error: Invalid command format;
   stop
-([Name and phone provided]) elseif () then ([else])
-  :Error: Applicant cannot be found;
-  stop
-([Applicant exists]) elseif () then ([else])
-    :Error: Applicant cannot be advanced;
+([At least one field to be edited is provided]) elseif () then ([else])
+    :Error: Invalid index provided;
     stop
-else ( [APPLIED or SHORTLISTED applicant])
+([Applicant index is in valid range of Applicant list]) elseif () then ([else])
+    :Error: Applicant already exists;
+    stop
+else ([Edited Applicant does not share a name and phone
+with any other Applicant])
 endif
-if () then ([APPLIED])
-    if () then ([else])
-        :Error: Invalid argument;
-        stop
-    ([Interview date time given]) elseif () then ([else])
-        :Error: Duplicate interview date time;
-        stop
-    else ([Interview date time not duplicate])
-        :Advance command successfully executes;
-        stop
-endif
-else ([SHORTLISTED])
-if () then ([Interview date
-time given])
-    :Error: Interview date time not required;
-    stop
-else ([else])
-    :Advance command successfully executes;
-    stop
+:Edit Command successfully executes;
+stop
 @enduml
 

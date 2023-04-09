@@ -23,6 +23,17 @@ public class SkillCommandParserTest {
 
     private SkillCommandParser parser = new SkillCommandParser();
 
+
+    @Test
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "       ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SkillCommand.MESSAGE_USAGE));
+    }
+
+    @Test void parse_invalidArgNoteTooLong_throwsParseException() {
+        assertParseFailure(parser, "a".repeat(46), Note.MESSAGE_LENGTH_CONSTRAINTS);
+    }
+
     @Test
     public void parse_validArg_skillPredicateIsTheSame() {
         Person amy = new PersonBuilder()
@@ -41,16 +52,5 @@ public class SkillCommandParserTest {
 
         // Perform the test
         assertSame(expectedPredicate, predicate);
-    }
-
-    @Test void parse_invalidArgNoteTooLong_throwsParseException() {
-        assertParseFailure(parser, "a".repeat(46), Note.MESSAGE_LENGTH_CONSTRAINTS);
-    }
-
-
-    @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "       ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                SkillCommand.MESSAGE_USAGE));
     }
 }

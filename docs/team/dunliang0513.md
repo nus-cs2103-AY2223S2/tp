@@ -162,6 +162,9 @@ Example Output:
 1. Wrote test cases for RemindCommand
   - Test cases that cover possible paths taken by `execute(Model)` in `RemindCommand` class
 
+2. Wrote Test cases for SkillCommand
+   - Test cases that cover possible paths taken by `execute(Model)` in `SkillCommand` class 
+
 - **Documentation**:
 
   - User Guide
