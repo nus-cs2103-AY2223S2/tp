@@ -160,15 +160,26 @@ Examples:
 
 ### Book appointment : `appointment`
 
-Schedules an appointment with a specific doctor for the specified person.
-Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view when 'display' command is used.
+Schedules an appointment for a patient with a specific doctor.
 
 Format: `appointment ic/NRIC d/DATE dric/NRIC`
 
-* Schedules an appointment on the given `DATE` for the patient with `ic/NRIC` with the doctor with `dric/NRIC`
+* Schedules an appointment for the patient with `ic/NRIC` and the doctor with `dric/NRIC` on the specified `d/DATE`
+* Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view panel when `display` command is used.
+
+#### Restrictions:
+* `ic/NRIC`
+  * The patient specified by `ic/NRIC` should exist in MediConnect
+* `dric/NRIC`
+  * The doctor specified by `dric/NRIC` should exist in MediConnect
+* `d/DATE`
+  * Adheres to `DD-MM-YYYY HH:MM` format
+  * Date is valid to the calendar (eg. `30-13-2023 10:00` is not a valid `DATE`)
+  * Time is in 24-hour notation
+  * Accepts a past, current or future date
 
 Examples:
-* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z.
+* `appointment ic/S7654321X d/01-04-2023 10:00 dric/S7654321R` schedules an appointment for the patient with the NRIC number `S7654321X` and the doctor with the NRIC number `S7654321R` on `01-04-2023 10:00`.
 
 ![Appointment](images/Appointment.png)
 
