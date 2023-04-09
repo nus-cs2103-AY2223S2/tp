@@ -1,7 +1,10 @@
 package seedu.address.model.time;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import seedu.address.model.event.IsolatedEvent;
@@ -17,6 +20,8 @@ public class TimeMask {
     private static final int WINDOW_RANGE = 7;
     private static final int SLOTS_PER_DAY = 24;
     private static final int LAST_HOUR_INDEX = 23;
+    private static final int LAST_DAY_INDEX = 6;
+
     // 0's represent free slot
     private final int[] weeklyOccupancy;
 
@@ -62,8 +67,10 @@ public class TimeMask {
                 return;
             }
 
+            LocalDateTime start = event.getStartDate();
+            LocalDateTime end = event.getEndDate();
+
             int startIndex = getZeroBasedDayIndex(event.getStartDate().getDayOfWeek());
-            int endIndex = getZeroBasedDayIndex(event.getEndDate().getDayOfWeek());
             int startTime = event.getStartDate().getHour();
             // Shouldn't occupy the next slot
             int endTime = event.getEndDate().getHour() - 1;
@@ -72,13 +79,40 @@ public class TimeMask {
                 endTime = LAST_HOUR_INDEX;
             }
 
-            if (startIndex != endIndex) {
-                occupySlots(startIndex, startTime, endTime);
-                occupySlots(endIndex, 0, endTime);
+            if (!start.toLocalDate().isEqual(end.toLocalDate())) {
+                // check if end date after date limit
+                boolean isAfterDateLimit = isEndDateAfterDateLimit(end.toLocalDate(), dateLimit);
+                // get the days between the start and end/ start and date limit
+                long daysBetween = getDaysBetween(start.toLocalDate(), end.toLocalDate(), dateLimit);
+                // if end date after date limit, need to change end time of event
+                int modifiedEndTime = getUpdatedEndTime(endTime, isAfterDateLimit);
+                occupyMultipleDay(startIndex, daysBetween, startTime, modifiedEndTime);
             } else {
                 occupySlots(startIndex, startTime, endTime);
             }
         }
+    }
+
+    private int getUpdatedEndTime(int endTime, boolean isAfterDateLimit) {
+        if (isAfterDateLimit) {
+            return LAST_HOUR_INDEX;
+        } else {
+            return endTime;
+        }
+    }
+
+    private boolean isEndDateAfterDateLimit(LocalDate endDate, LocalDate dateLimit) {
+        return endDate.isAfter(dateLimit);
+    }
+
+    private long getDaysBetween(LocalDate start, LocalDate end, LocalDate dateLimit) {
+        long daysBetween;
+        if (end.isAfter(dateLimit)) {
+            daysBetween = DAYS.between(start, dateLimit);
+        } else {
+            daysBetween = DAYS.between(start, end);
+        }
+        return daysBetween;
     }
 
     private void freeSlots(int dayIndex, int startHourIndex, int endHourIndex) {
@@ -99,6 +133,29 @@ public class TimeMask {
         int startBits = Integer.parseInt("1".repeat(endHourIndex - startHourIndex + 1), 2);
         int mask = startBits << startHourIndex;
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] | mask;
+    }
+
+    private void occupyMultipleDay(int startDay, long diff, int startHour, int endHour) {
+        int curr = startDay;
+        int counter = 1;
+
+        // find free time slots for the start date of the event
+        int startBits = Integer.parseInt("1".repeat(23 - startHour + 1), 2);
+        int mask = startBits << startHour;
+        weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
+        curr = curr == LAST_DAY_INDEX ? 0 : curr + 1;
+
+        // filled the in between days as busy for every time slots
+        while (counter < diff) {
+            startBits = Integer.parseInt("1".repeat(24), 2);
+            weeklyOccupancy[curr] = weeklyOccupancy[curr] | startBits;
+            curr = curr == LAST_DAY_INDEX ? 0 : curr + 1;
+            counter = counter + 1;
+        }
+
+        // find free time slots for the end date of the event
+        startBits = Integer.parseInt("1".repeat(endHour + 1), 2);
+        weeklyOccupancy[curr] = weeklyOccupancy[curr] | startBits;
     }
 
     private void checkValidDayIndex(int dayIndex) {

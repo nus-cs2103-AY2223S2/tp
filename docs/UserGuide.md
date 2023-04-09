@@ -25,15 +25,15 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -64,11 +64,12 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-   
+
 * For commands that require index, the index is based on the current person/group list shown.
 
 </div>
 
+## General commands
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -77,7 +78,19 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Clearing all entries : `clear`
 
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+## Person-related commands
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -115,7 +128,7 @@ Format: `edit INDEX [m/] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GRO
 * When using prefix `m/`, groups/tags added cannot be empty.
 * Groups can only be added if it has been created.
 * You can remove all the person’s tags/groups by typing `t/` and `g/` respectively without
-    specifying any tags/groups after it.
+  specifying any tags/groups after it.
 * Adding duplicate groups/tags to a `Person` would not result in multiple groups/tags created.
 
 Examples:
@@ -156,6 +169,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+## Group-related commands
 ### Creating a group : `group_create`
 
 Create a group in the address book.
@@ -211,8 +225,12 @@ Examples:
 * `group_find CS2103` returns persons in the group `CS2103`
 * `group_find CS2103 CS2101` returns persons in the group `CS2103` and `CS2101`
 
+## Event-related commands
+
 ### Creating an event:
-Creates either an isolated or weekly recurring event.
+Create events and add it to a specific person in WGT. WGT supports two types of event:
+1. isolated event: one off event 
+2. recurring event: weekly events such as tutorials and lectures 
 
 Note that only **hourly** events can be created.
 For example, `17:00` is a valid timing and `17:30` is an invalid timing
@@ -220,11 +238,16 @@ For example, `17:00` is a valid timing and `17:30` is an invalid timing
 #### 1) Isolated event: `event_create`
 Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 
-* `INDEX` refers to the index of the person whose isolated event list will be added with the given isolated event
+* `INDEX` refers to the index of the person to add the given isolated event
 * Creates an event with the specified name `EVENT_NAME` using the flag `ie/` which stands for Isolated event
 * The flags `f/` represent the word __from__ and `t/` represents the word __to__
-* The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
 * `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
+* If there are duplicate attributes (i.e. `event_create INDEX ie/test ie/test2 f/START_DATE t/END_DATE`), WGT will take the 
+info following the latest attribute (in the example case, WGT will take event name to be test 2). 
+
+* The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
+* `START_DATE` has to be before the `END_DATE`
+* `START_DATE` and `END_DATE` has to be after the current date time
 
 Examples:
 * `event_create 1 ie/CS2101 Presentation f/02/02/2025 16:00 t/28/02/2025 18:00`
@@ -247,18 +270,23 @@ Examples:
 Delete either an isolated or a weekly recurring event
 #### 1) Delete an isolated event: `ie_delete`
 
-Deletes an existing isolated event from person's isolated event list in the address book.
+Deletes an existing isolated event from a person's isolated event list in WGT.
 
 Format: `ie_delete INDEX_OF_PERSON INDEX_OF_EVENT`
 
 * Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
-* Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing person and index
+* Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing and valid person and index i.e. if there is 
+only 3 persons stored in WGT, 4 is an invalid `INDEX_OF_PERSON`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Expired events (events' end date is before the current date time) will be automatically deleted
+</div>
 
 Examples:
 * `ie_delete 1 1`
 
 #### 2) Delete recurring event: `re_delete`
-Deletes a recurring event from a person's recurring event list in the address book.
+Deletes a recurring event from a person's recurring event list in WGT.
 
 Format: `re_delete INDEX_OF_PERSON INDEX_OF_EVENT`
 
@@ -272,19 +300,21 @@ Examples:
 Edit the attributes of either an isolated event or a weekly recurring event
 #### 1) Edit an isolated event: `ie_edit`
 
-Edit an existing isolated event from person's isolated event list in the address book.
+Edit an existing isolated event from person's isolated event list in WGT.
 
 Format: `ie_edit INDEX_OF_PERSON INDEX_OF_EVENT [ie/NAME] [f/START_DATE] [t/END_DATE]`
 
 * Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
-* At least one attribute from isolated event must be included. The attributes are `[ie/NAME]`, `[f/START_DATE]` and `[t/END_DATE]`
+* **At least one attribute** from isolated event must be included. The attributes are `[ie/NAME]`, `[f/START_DATE]` and `[t/END_DATE]`
 * Any attributes being edited on must be valid
 * `NAME` must only be in alphabetic or numeric terms
 * `START_DATE` and `END_DATE` must be in the format of `dd/MM/yyyy HH:mm`
+* `START_DATE` has to be before the `END_DATE`
+* `START_DATE` and `END_DATE` has to be after the current date time
 
 Examples:
 * `ie_edit 1 1 ie/Biking`
-* `ie_edit 1 1 f/09/03/2023 15:00`
+* `ie_edit 1 1 f/09/03/2024 15:00`
 
 #### 2) Edit a recurring event: `re_edit`
 Edit an existing recurring event from person's recurring event list in the address book.
@@ -303,25 +333,11 @@ Examples:
 * `re_edit 1 1 d/Tuesday`
 * `re_edit 1 1 t/14:00`
 
-### Export a person: `export`
-Export a person's details from the address book. 
-
-Format: `export [INDEX_OF_PERSON]`
-
-* Exports a person's details with the specified `INDEX_OF_PERSON`
-* All details *except groups and tags* are exported.
-* Export data is saved in the data/export.json
-* Exporting a person will overwrite any existing export.json file
-
-Examples:
-* `export 1`
-* `export 2`
-
 ### Find free time slots: `free`
 
 Displays the time slots in a week when all members of the specified group are free (no events).
 
-Format: `free GROUP_INDEX [START_DATE]`
+Format: `free GROUP_INDEX [f/START_DATE]`
 
 * Finds unoccupied time slots within members of the group at the specified `GROUP_INDEX`. The index refers to the index number
   shown in the displayed group list. The index *must be a positive* 1, 2, 3 ...
@@ -330,7 +346,7 @@ Format: `free GROUP_INDEX [START_DATE]`
 * `START_DATE` must be of the format: `dd/MM/yyyy`
 * Note that if there are any changes to a person's event(s), the time table will only be updated upon entering the `free` command.
 
-
+## Data-related commands
 ### Importing data : `import`
 Import one person into your address book to update their details and events.
 
@@ -339,13 +355,12 @@ Format: `import`
 * Stored data must be in a file called `export.json` and the file must be placed in the folder `data` which is in the same location as the JAR file.
 * Stored data can only contain 1 person.
 * The imported person will not have any tags or groups.
-   * This is because groups and tags are dependent on how the user wants to assign them. Therefore, merging or overwriting groups/tags when importing is not appropriate.
+    * This is because groups and tags are dependent on how the user wants to assign them. Therefore, merging or overwriting groups/tags when importing is not appropriate.
 * If the imported person is already an entry in your address book with the same name (case-sensitive), their phone number, address, email as well as their event lists will be updated to the imported data.
 * If the imported person is not yet an entry in your address book, a new entry will be created with the imported person's details (excluding tags and groups).
 
-
 ### Export a person: `export`
-Export a person's details from the address book. 
+Export a person's details from the address book.
 
 Format: `export [INDEX_OF_PERSON]`
 
@@ -357,18 +372,6 @@ Format: `export [INDEX_OF_PERSON]`
 Examples:
 * `export 1`
 * `export 2`
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ### Saving the data
 
@@ -413,4 +416,4 @@ If your changes to the data file makes its format invalid, the app will discard 
 | **Recurring Event delete** | `re_delete INDEX_OF_PERSON INDEX_OF_EVENT`                                                                                                                                  |
 | **Recurring Event update** | `re_edit INDEX_OF_PERSON INDEX_OF_EVENT [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`                                                                              |
 | **Export person**          | `export [INDEX_OF_PERSON]`                                                                                                                                                  |                                                                                                                                                     |
-| **Free**                   | `free GROUP_INDEX [START_DATE]`                                                                                                                                             |
+| **Free**                   | `free GROUP_INDEX [f/START_DATE]`                                                                                                                                           |

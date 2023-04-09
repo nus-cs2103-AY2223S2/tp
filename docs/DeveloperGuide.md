@@ -1043,7 +1043,14 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-### 1. Group case-sensitive
+### 1. Group name case-sensitive
 * Feature flaw: Users can add groups containing the same letters/numbers but different capitalisation. For example 'CS2103' and 'cs2103' are two different groups
 * Future plan: As we are planning to integrate with NUSMODS in the future. All groups would follow the same naming convention as NUS modules where they are capitalised. So we plan to make all group names capitalised in the future.
 
+### 2. Data file editable
+* Feature flaw: Users are able to edit the addressbook.json in the data folder. This can cause unwanted errors. We have handled json files with invalid parameters but it wipes out all existing content in the file if its invalid.
+* Future plan: We plan to encrypt the json file using methods such as XOR encryption which makes the json file non-human readable. This prevents users from intentionally editing certain parameters.
+
+### 3. Event names
+* Feature flaw: Exporting a person includes the exact names for all events. This is undesirable for users as they may only want to share which date and time they are unavaliable and not share what event they have.
+* Future plan: We plan to only export date and time of an event while the event name would be a fixed name. (e.g Events).

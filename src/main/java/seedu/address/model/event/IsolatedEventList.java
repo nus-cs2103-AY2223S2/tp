@@ -41,6 +41,7 @@ public class IsolatedEventList {
      * @param endDate of which event to be added ends at.
      * @throws EventConflictException when a conflicting event is found
      */
+
     public void checkClashingIsolatedEvent(LocalDateTime startDate, LocalDateTime endDate)
             throws EventConflictException {
         Iterator<IsolatedEvent> it = isolatedEvents.iterator();
@@ -145,5 +146,4 @@ public class IsolatedEventList {
         }
         return output.toString();
     }
-
 }
