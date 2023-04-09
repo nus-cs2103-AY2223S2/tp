@@ -17,7 +17,7 @@ import seedu.address.logic.CalendarLogic;
 import seedu.address.logic.Logic;
 import seedu.address.ui.UiPart;
 
-
+//@@author wongyewjon
 /**
  * A UI component that displays information of a Calendar.
  * Allows for toggling between months and displays a grid layout of the calendar.
@@ -42,13 +42,12 @@ public class CalendarDisplay extends UiPart<Region> {
     private PreviousButton prevButton;
     private NextButton nextButton;
 
-
+    //@@author wongyewjon
     /**
      * Creates a CalendarDisplay object with the given {@link Logic} object and {@link Stage} object.
      * @param logic the Logic object to be used.
      * @param primaryStage the Stage object to be used.
      */
-
     public CalendarDisplay(Logic logic, Stage primaryStage) {
         super(FXML);
         calendarDisplay.getChildren().setAll(topCalendar, calendarScrollPane);
@@ -62,31 +61,28 @@ public class CalendarDisplay extends UiPart<Region> {
         drawCalendar();
 
     }
-
+    //@@author wongyewjon
     /**
      * Draws the Ui for the Calendar.
      */
-
     public void drawCalendar() {
         drawHeader();
         calendarLogic.drawBody();
     }
 
-
+    //@@author wongyewjon
     /**
      * Resets the margin for the given node.
      * @param node the node to have its margin reset.
      */
-
     public void resetMargin(Node node) {
         topCalendar.setMargin(node, MARGIN);
     }
 
-
+    //@@author wongyewjon
     /**
      * Resets the calendarGrid.
      */
-
     public void resetGridPane() {
         topCalendar.getChildren().clear();
         Node node = calendarGrid.getChildren().get(0);
@@ -94,36 +90,34 @@ public class CalendarDisplay extends UiPart<Region> {
         calendarGrid.getChildren().add(0, node);
     }
 
-
+    //@@author wongyewjon
     /**
      * Resets the calendarGrid's body.
      */
-
     public void resetCalendarBody() {
         Node node = calendarGrid.getChildren().get(0);
         calendarGrid.getChildren().clear();
         calendarGrid.getChildren().add(0, node);
     }
 
-
+    //@@author wongyewjon
     private void drawHeader() {
         Text textHeader = calendarLogic.getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot());
         topCalendar.setMargin(textHeader, MARGIN);
     }
 
-
+    //@@author wongyewjon
     /**
      * Adds the node to be contained within the calendarGrid at the given column and row index.
      * @param node the node to be added.
      * @param columnIndex the column index for the node.
      * @param rowIndex the row index for the node.
      */
-
     public void addToCalendarGrid(Node node, int columnIndex, int rowIndex) {
         calendarGrid.add(node, columnIndex, rowIndex);
     }
-
+    //@@author wongyewjon
     public void setTopCalendarHeader(int index, Node node) {
         topCalendar.getChildren().set(index, node);
     }
