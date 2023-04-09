@@ -23,8 +23,8 @@ Salespeople managing client contacts who prefer a CLI
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person: `add`](#adding-a-person-add)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
-  - [Sorting all persons : `sort`](#sorting-all-persons--sort)
   - [Listing all persons : `list`](#listing-all-persons--list)
+  - [Sorting all persons : `sort`](#sorting-all-persons--sort)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Assigning lead status: `status`](#assigning-lead-status-status)
   - [Finding a contact name: `find`](#finding-a-contact-name-find)
@@ -434,11 +434,11 @@ If your changes to the data file makes its format invalid, SalesPunch will disca
 | **Sort**      | `sort ATTRIBUTE`, where `ATTRIBUTE` is one of: <br> `name, gender, phone number, email, company, location, occupation, job title, address, status`<br> e.g., `sort name`                                                                                              |
 | **Edit**      | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                          |
 | **Status**    | `status INDEX_NUMBER s/STATUS` <br> e.g., `status 1 s/Unqualified`                                                                                                                                                                                                    |
-| **Find**      | `find [n/NAME]`<br> e.g., `find Alex`                                                                                                                                                                                                                                 |
-| **FindTag**   | `findtag [t/TAG]`<br> e.g., `findtag [friends]`                                                                                                                                                                                                                       |
-| **FindLead**  | `findlead [s/STATUS]`<br> e.g., `findlead Qualified` , `findlead Q`                                                                                                                                                                                                   |
-| **FindAll**   | `findall [Anything except for [s/STATUS] & [t/TAG]]`<br> e.g., `findall Alex` , `findall 93282505` , `findall Dover Crescent Road`                                                                                                                                    |
-| **FindTxn**   | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                     |
+| **Find**      | `find NAME`<br> e.g., `find Alex`                                                                                                                                                                                                                                 |
+| **FindTag**   | `findtag TAG`<br> e.g., `findtag friends`                                                                                                                                                                                                                       |
+| **FindLead**  | `findlead STATUS`<br> e.g., `findlead Qualified` , `findlead Q`                                                                                                                                                                                                   |
+| **FindAll**   | `findall KEYWORD`<br> e.g., `findall Alex` , `findall 93282505` , `findall Dover Road`                                                                                                                                    |
+| **FindTxn**   | `findtxn NAME`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                     |
 | **AddTxn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                   |
 | **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                             |
 | **ListTxn**   | `listtxn`                                                                                                                                                                                                                                                             |
