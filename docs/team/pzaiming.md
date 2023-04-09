@@ -76,7 +76,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
                [3](https://github.com/AY2223S2-CS2103-W16-2/tp/issues/242) )
 
 
-* **Community Contributions**:
+* **Community**:
   * Reported bugs and suggestions for other team
     (examples: [1](https://github.com/AY2223S2-CS2103T-W14-4/tp/issues/135),
                [2](https://github.com/AY2223S2-CS2103T-W14-4/tp/issues/142), 
