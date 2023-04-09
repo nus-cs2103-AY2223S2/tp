@@ -221,6 +221,7 @@ If there are reasons you need to add a module with the same module code (e.g. re
 **Example:** 
 * `add /m CS2103T /c 4 /y y2s2 /g A /t CSF` (counted as a completed module)
 * `add /m GESS1025 /c 4 /y y1s2 /t ULR` (counted as a planned module)
+* `add /m CS3230 /c 4 /y y2s2 /g A- /t CSF /t CSBD` (counted as a completed module, with multiple tags)
 
 [Back to Table of Contents](#toc)
 
