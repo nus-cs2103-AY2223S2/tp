@@ -25,13 +25,9 @@ public class SortTasksCommand extends Command {
     private SortTasksComparator sortTasksComparator;
 
     /**
-<<<<<<< HEAD
      * Creates a SortTasksCommand to sort the task list.
      *
      * @param sortTasksComparator The comparator used to compare 2 tasks according to a given criteria.
-=======
-     * Creates a {@code SortTasksCommand} based on the given {@code sortTasksComparator}
->>>>>>> master
      */
     public SortTasksCommand(SortTasksComparator sortTasksComparator) {
         requireNonNull(sortTasksComparator);
