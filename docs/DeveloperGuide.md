@@ -688,12 +688,6 @@ The activity diagram below summarises the action when the keyword `DeleteCommand
 <img src="images/keyword/DeleteKeywordActivityDiagram.png" width="550" />
 
 
-Given below is a sequence diagram that illustrates the **Keyword Delete** parsing mechanism at every step.
-<!-- TODO
-<img src="images/keyword/DeleteKeywordSequenceDiagram.png" width="550" />
--->
-
-
 <!-- Below is given from AB3, commented out for ur own ref, our product does not have these features. -->
 <!-- ### \[Proposed\] Undo/redo feature
 

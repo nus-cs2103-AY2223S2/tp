@@ -203,7 +203,7 @@ Only these values (case sensitive) are allowed:
 
 A non-empty string that takes on any character sequence that do not contain spaces.
 
-The following values (case sensitive) are not allowed:
+The following values and characters (case sensitive) are not allowed:
 * `patient`
 * `vaccination`
 * `appointment`
@@ -211,6 +211,34 @@ The following values (case sensitive) are not allowed:
 * `basic`
 * `help`
 * `exit`
+* `*`
+* `(`
+* `)`
+* `-`
+* `+`
+* `,`
+
+The following characters (non-exhaustive) are allowed:
+* `~`
+* `` ` ``
+* `!`
+* `#`
+* `$`
+* `%`
+* `^`
+* `&`
+* `_`
+* `=`
+* `\`
+* `|`
+* `;`
+* `:`
+* `'`
+* `"`
+* `.`
+* `?`
+* `/`
+
 
 #### `<group-name>`
 
@@ -1283,6 +1311,13 @@ Keyword data are stored in `[JAR file location]/data/keyword.json`.
 
 * <code><var>KEYWORD</var></code> : `<keyword>`
 * <code><var>MAIN_KEYWORD</var></code> : `<main-keyword>`
+
+
+###### Restrictions
+
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the patient invalid. In all cases, VMS will ignore the entire patient data file if an invalid patient is present.
+* <code><var>keyword</var></code> must not contain any newline characters, e.g. `\n`.
+
 
 ### Patient data files
 
