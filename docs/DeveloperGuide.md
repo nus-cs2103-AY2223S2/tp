@@ -406,7 +406,7 @@ The following sequence diagram shows how `add` works:
 
 The `edit` command is used to change the information of an existing `Person` in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and `Birthday` fields.
 
-The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
+The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#45-editing-a-contact-edit).
 
 <div style="page-break-after: always"></div>
 
@@ -562,7 +562,36 @@ The following sequence diagram shows how `delete-t` works:
 
 **Overview:**
 
+The `search` command is used to search ConnectUS for all `Person`s for whom the specified keyword matches the specified field information in the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday` and `tag` (`Module`, `CCA`, `Major`, `Remarks`) fields. If no field is specified, the command searches ConnectUS for all `Person`s for whom the specified keyword matches any of the information fields.
+
+The format for the `search` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#49-searching-for-contact-information-search).
+
 **Feature Details:**
+
+1. The user specifies keywords to search ConnectUS with.
+2. At least one keyword must be provided. If no keyword is provided, an error is thrown. The user is prompted to re-enter the command correctly.
+3. All fields provided must have a keyword associated. If an empty field is provided, an error is thrown. The user is prompted to re-enter the command correctly.
+4. Every `Person` in the `Model` is tested against the specified keywords. If all the keywords with fields match the corresponding information fields, and the keywords without fields match at least one information field, the `Person` is displayed. If any of the keywords do not match, the `Person` is filtered out.
+
+The following activity diagram shows the logic of searching for in the contact list.
+
+![SearchCommandActivityDiagram](images/SearchCommandActivityDiagram.png)
+
+The sequence of the `search` command is as follows:
+
+1. The command `search INPUT` is entered by the user, where the `INPUT` is optional keywords without fields followed by keywords with fields (e.g. `search alex cca/chess`).
+2. `Logic Manager` calls the `ConnectUsParser#parseCommand` with the given `INPUT`
+3. `ConnectUsParser` parses the command word. creating an instance of `SearchCommandParser` to `parse` the `informationFields` via the respective `ParserUtil` functions.
+4. `SearchCommandParser` creates the corresponding `FieldsContainKeywordsPredicate` object. This `FieldsContainKeywordsPredicate` object is taken as the input of a new `SearchCommand` object created by `SearchCommandParser`.
+5. `Logic Manager` executes `SearchCommand#execute`, updating the filtered person list of the model using the `model#updateFilteredPersonList` with the `FieldsContainKeywordsPredicate` object used to create the `SearchCommand` as the argument. 
+6. The `FieldsContainKeywordsPredicate#test` matches each keyword with the information fields of the `Person` object being tested. If any keyword does not match, the `Person` object fails the test.
+7. A `Command Result` is returned with the result of the execution.
+
+The following sequence diagram shows how `search` works:
+![SearchCommandSequenceDiagram](images/SearchCommandSequenceDiagram.png)
+
+The following sequence diagram provides details on how the `informationFields` are being parsed by `ParserUtil`:
+![SearchCommandParseInformationFieldsSequenceDiagram](images/SearchCommandParseInformationFieldsDiagram.png)
 
 [↑ Back to top of section](#4-implementation)
 

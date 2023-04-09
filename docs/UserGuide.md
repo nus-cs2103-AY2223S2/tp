@@ -591,7 +591,7 @@ Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD
 
 > For keywords without a specified field, finds all contacts whose information from any field contains the given keywords.<br>For keywords in a specified field, finds all contacts whose field contains given keyword.
 
-There are 2 methods in which you can search for a contact.
+There are 2 methods which you can use concurrently to search for a contact.
 
 **Method 1:**
 
