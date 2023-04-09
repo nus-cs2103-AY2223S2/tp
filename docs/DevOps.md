@@ -3,12 +3,15 @@ layout: page
 title: DevOps guide
 ---
 
-* Table of Contents
-{:toc}
+#Table of Contents
+- [1. Build automation](#1-build-automation)
+- [2. Continuous integration CI](#2-continuous-integration-ci)
+  - [2.1 Code coverage](#21-code-coverage)
+  - [2.2 Repository wide checks](#22-repository-wide-checks)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Build automation
+# 1. Build automation
 
 This project uses Gradle for **build automation and dependency management**. **You are recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
 
@@ -34,11 +37,11 @@ Given below are how to use Gradle for some important project tasks.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Continuous integration (CI)
+# 2. Continuous integration (CI)
 
 This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files (in the `.github/workflows` folder). No further setting up required.
 
-### Code coverage
+## 2.1 Code coverage
 
 As part of CI, this project uses Codecov to generate coverage reports. When CI runs, it will generate code coverage data (based on the tests run by CI) and upload that data to the CodeCov website, which in turn can provide you more info about the coverage of your tests.
 
@@ -46,7 +49,7 @@ However, because Codecov is known to run into intermittent problems (e.g., repor
 
 To enable Codecov for forks of this project, follow the steps given in [this se-edu guide](https://se-education.org/guides/tutorials/codecov.html).
 
-### Repository-wide checks
+## 2.2 Repository-wide checks
 
 In addition to running Gradle checks, CI includes some repository-wide checks. Unlike the Gradle checks which only cover files used in the build process, these repository-wide checks cover all files in the repository. They check for repository rules which are hard to enforce on development machines such as line ending requirements.
 
@@ -69,7 +72,7 @@ Any warnings or errors will be printed out to the console.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Making a release
+# 3. Making a release
 
 Here are the steps to create a new release.
 
