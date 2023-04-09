@@ -29,7 +29,7 @@ public class FindCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_NAME + " NAME] "
             + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_MEDICINE + "ADDRESS] "
+            + "[" + PREFIX_MEDICINE + "MEDICINE] "
             + "[" + PREFIX_DOCTOR + "DOCTOR] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " n/" + "alice" + "\n"
