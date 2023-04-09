@@ -2527,9 +2527,9 @@ Some incorrect commands to try from root context:
 
 ### Edit a Lecture
 
-| Test Case                                                                                | Expected Result                                                                                                                                                                                                                                                                     |
-| ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`                                    | **Message:**<br/>`Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]`<br/>**List updates:** None                                                             |
+| Test Case                                                                                      | Expected Result                                                                                                                                                                                                                                                                     |
+| ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`                                          | **Message:**<br/>`Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]`<br/>**List updates:** None                                                             |
 | 1. `nav CS2040S`<br/>2. `edit Week 1 /name W1 /tags Intro, BigO`                               | **Message:**<br/>`Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]`<br/>**List updates:** Entry for "Week 1" updated to "W1", with tags "Intro" and "BigO" |
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO` | **Message:**<br/>`Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]`<br/>**List updates:** None                                                             |
 
@@ -2543,6 +2543,24 @@ Some incorrect commands to try from root context:
 - `edit Week 1 /mod CS2040S /tags T@g` (invalid tag)
 
 ### Edit a Video
+
+| Test Case                                                                                                            | Expected Result                                                                                                                                                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`                 | **Message:**<br/>`Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** None                                                                                                                             |
+| 1. `nav CS2040S`<br/>2. `edit Vid 1 /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`      | **Message:**<br/>`Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** None                                                                                                                             |
+| 1. `nav /mod CS2040S /lec Week 1`<br/>2. `edit Vid 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO` | **Message:**<br/>`Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** Entry for "Vid 1" updated to "Vid 01", with timestamp "01:04:20", tags "Analysis" and "BigO", and video marked as "not watched". |
+
+Some incorrect commands to try from root context:
+- `edit /mod CS2040S /lec Week 1` (incorrect format)
+- `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 2` (duplicate video)
+- `edit V!d 1 /mod CS2040S /lec Week 1` (invalid video name)
+- `edit Vid 1 /mod CS2040S /lec Week 1` (no updated fields)
+- `edit Vid 5 /mod CS2040S /lec Week 1 /name Vid 05` (non-existent video)
+- `edit Vid 1 /mod CS2040S /lec Week 1 /name V!d 1` (invalid video name)
+- `edit Vid 1 /mod CS2040S /lec Week 1 /timestamp 100:00:00` (invalid timestamp format)
+- `edit Vid 1 /mod CS2040S /lec Week 1 /timestamp 00:99:00` (invalid timestamp range)
+- `edit Vid 1 /mod CS2040S /lec Week 1 /tags T@g` (invalid tag)
+- `edit Vid 1 /mod CS2040S /lec Week 1 /watch /unwatch` (conflicting arguments)
 
 ### Delete Module(s)
 
