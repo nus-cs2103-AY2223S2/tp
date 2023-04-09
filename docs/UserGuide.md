@@ -373,7 +373,7 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
 * Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
     * e.g `d/30/03/22-2045` would be **30th March 2022, 8:45 p.m.**
 * A project is considered to be the same if it has the same project name **(case-insensitive)**.
-* It is possible to specify an empty string for meeting (i.e. `m/ `) but it will not result in a different behavior compared to not using the prefixes.
+* It is possible to specify an empty string for meeting (i.e. `m/`) but it will not result in a different behavior compared to not using the prefixes.
 
 
 <div style="page-break-after: always;"></div>
