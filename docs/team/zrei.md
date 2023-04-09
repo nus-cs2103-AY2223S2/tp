@@ -5,7 +5,7 @@ title: Lim Zhe Rui's Project Portfolio Page
 
 ### Project: Artistic AddressBook
 
-Artistic Addressbook (ArB) is a desktop app for artists, meant to help with efficiently managing clients and project information.
+Artistic AddressBook (ArB) is a desktop app for artists, meant to help with efficiently managing clients and project information.
 
 Given below are my contributions to the project.
 
@@ -42,5 +42,7 @@ Given below are my contributions to the project.
   * Contributions to [Developer Guide](https://ay2223s2-cs2103t-t14-1.github.io/tp/DeveloperGuide.html)
     * Updating the Design section and all UML diagrams in that section to match the design of our app
     * Describing the implementation of the sorting feature; adding UML diagrams to aid in understanding
+    * Describing the implementation for linking projects to clients; adding UML diagrams to aid in understanding
+    * Describing the implementation for the finding feature; adding UML diagrams to aid in understanding
     * Added user stories relevant to our app
     * Added use cases relevant to our app, such as use cases on finding clients and projects

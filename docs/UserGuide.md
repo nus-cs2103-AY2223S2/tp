@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with efficiently managing clients and project information**. It is optimized for use via keyboard commands that you can enter quickly and easily while displaying your data in an appealing and well-organised visual format so you can always find what you need. If you can type fast, ArB can get your client and project management tasks done faster than other applications that only use the mouse.
+Artistic AddressBook (ArB) is a **desktop app for artists, meant to help with efficiently managing clients and project information**. It is optimized for use via keyboard commands that you can enter quickly and easily while displaying your data in an appealing and well-organised visual format so you can always find what you need. If you can type fast, ArB can get your client and project management tasks done faster than other applications that only use the mouse.
 
 ## **Table of Contents**
 {:toc}

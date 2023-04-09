@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Artistic Addressbook
+title: Artistic AddressBook
 ---
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-T14-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T14-1/tp/actions)
@@ -8,7 +8,7 @@ title: Artistic Addressbook
 
 ![Ui](images/Ui.png)
 
-**Artistic Addressbook (ArB) is a desktop app for artists, meant to help with efficiently managing clients and project information.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**Artistic AddressBook (ArB) is a desktop app for artists, meant to help with efficiently managing clients and project information.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using ArB, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing ArB, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
