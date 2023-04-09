@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
         // Subscribe to tracker system
         ListObserver listObserver = new ListObserver(model);
         NavigationObserver navObserver = new NavigationObserver(model);
-        this.trackerEventSystem.addOnModuleModifiedObserver(navObserver, listObserver);
-        this.trackerEventSystem.addOnLectureModifiedObserver(navObserver, listObserver);
+        this.trackerEventSystem.addOnModuleModifiedObserver(listObserver, navObserver);
+        this.trackerEventSystem.addOnLectureModifiedObserver(listObserver, navObserver);
         this.trackerEventSystem.addOnVideoModifiedObserver(listObserver);
 
         logger.info("----------------[USER COMMAND][" + commandText + "]");
