@@ -224,11 +224,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* private math tuition teachers
-* has a need to manage a number of students' contacts and performance
-* prefer desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Private math tuition teachers
+* Has a need to manage a number of students' contacts and performance
+* Prefer desktop apps over other types
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
@@ -242,21 +242,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​ | I want to …​                                                | So that I can…​                                                                          |
 |----------|---------|-------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | `* * *`  | user    | see a list of my students                                   | know who my students are and how many students I have                                    |
-| `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app                         |
+| `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app                        |
 | `* * *`  | user    | create my student contacts                                  | add new students into my contact list                                                    |
-| `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible                                               |
-| `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore                                   |
+| `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible                                              |
+| `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore                                  |
 | `* * *`  | user    | use the help section                                        | learn the available commands in the application                                          |
-| `* * *`  | user    | import my data                                              | backup data and open in another device                                                   |
+| `* * *`  | user    | import my data                                              | backup data and open in another device                                                  |
 | `* * *`  | user    | export my data                                              | load data into a new device                                                              |
-| `* * *`  | user    | delete / mark student’s tasking(s)                          | identify what taskings are done/obsolete                                                 |
-| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing                                                 |
-| `* * `   | user    | filter my student contacts                                  | look up on a single student/students of the same level instead of reading through a list |
-| `* * `   | user    | create a progress report                                    | keep track of the student's progress                                                     |
-| `* * `   | user    | extract students' progress report                           | show the parents their kids' performance                                                 |
-| `* `     | user    | note down a more detailed class description                 | know what I need to do for a certain class                                               |
-| `* `     | user    | filter the calendar                                         | see clearly how many classes I have within a period of time (week/month, etc.)           |
-| `* `     | user    | be able to do a wildcard search                             | know what I can do on the app if I forgot the exact command I want to execute            |
+| `* * *`  | user    | add / delete / mark student’s tasking(s)                    | keep track of the task(s) that assign to a student and identify what taskings are done/in progress/overdue |
+| `* * *`  | user    | add / delete student’s score(s)                             | record down the student's score(s)                                                      |
+| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing                                                |
+| `* * *`  | user    | check the student’s score(s)                                | understand the student's performance in school                                          |
+| `* * `   | user    | filter my student contacts                                  | easily find a group of students based on the tag given
+                   |
+| `* * `   | user    | generate a progress chart                                   | keep track of the student's progress                                                    |
+| `* * `   | user    | extract students' progress report                           | show the parents their kids' performance                                                |
 
 ### Use cases
 
