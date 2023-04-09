@@ -228,7 +228,7 @@ Examples:
 
 Shows a list of all patients with their details that match input name or NRIC.
 
-Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`
+Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`, `find w/WARD`
 
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -399,19 +399,19 @@ the file that contains the data of your previous MedInfo home folder.<br>
 
 ## Command summary
 
-| Action          | Format, Examples                                                                           |
-|-----------------|--------------------------------------------------------------------------------------------|
-| **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN` |
-| **List**        | `list`                                                                                     |
-| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                   |
-| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`, `sort d/desc`                               |
-| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
-| **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                        |
-| **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                  |
-| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
-| **Clear**       | `clear`                                                                                    |
-| **Help**        | `help`                                                                                     |
-| **Exit**        | `exit`                                                                                     |
+| Action          | Format, Examples                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------------------- |
+| **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN`          |
+| **List**        | `list`                                                                                              |
+| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                            |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`, `sort d/desc`                                        |
+| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`or `find w/WARD` <br> e.g., `find name/John` |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                                 |
+| **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                                 |
+| **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                           |
+| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                                        |
+| **Clear**       | `clear`                                                                                             |
+| **Help**        | `help`                                                                                              |
+| **Exit**        | `exit`                                                                                              |
 
 [Back to Table of Contents](#table-of-contents)
