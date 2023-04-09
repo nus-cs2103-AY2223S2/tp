@@ -44,7 +44,7 @@ Given below are my contributions to the project.
         * Added UML diagrams of the `undo` and `redo` feature [(PR #85)](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/85)
         * Added implementation details of the `totalappointment` feature [(PR #102)](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/102).
         * Added Product Scope, User Stories, Glossary and NFRs [(PR #34)](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/34)
-        * Added UML diagrams of the `totalAppointment` feature [(PR #159)](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/159)
+        * Added UML diagram of the `totalAppointment` feature [(PR #159)](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/159)
 
 - **Bugfixes**
    * [\#144](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/144), [\#147](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/147)
