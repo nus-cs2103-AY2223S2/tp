@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalDecks.VALID_DECK_HISTORY;
 import static seedu.address.testutil.TypicalDecks.VALID_DECK_SCIENCE;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.deck.exceptions.DeckNotFoundException;
@@ -77,4 +80,56 @@ public class UniqueDeckListTest {
         assertEquals(expectedUniqueDeckList, uniqueDeckList);
     }
 
+    @Test
+    public void equals_validUniqueDecksList_true() {
+        UniqueDeckList uniqueDeckList1 = new UniqueDeckList();
+        uniqueDeckList1.add(new Deck("Deck A"));
+        uniqueDeckList1.add(new Deck("Deck B"));
+
+        UniqueDeckList uniqueDeckList2 = new UniqueDeckList();
+        uniqueDeckList2.add(new Deck("Deck A"));
+        uniqueDeckList2.add(new Deck("Deck B"));
+
+        assertTrue(uniqueDeckList1.equals(uniqueDeckList2));
+    }
+
+    @Test
+    public void hashCode_validUniqueDecksList_sameHashCode() {
+        UniqueDeckList uniqueDeckList1 = new UniqueDeckList();
+        uniqueDeckList1.add(new Deck("Deck A"));
+        uniqueDeckList1.add(new Deck("Deck B"));
+
+        UniqueDeckList uniqueDeckList2 = new UniqueDeckList();
+        uniqueDeckList2.add(new Deck("Deck A"));
+        uniqueDeckList2.add(new Deck("Deck B"));
+
+        assertEquals(uniqueDeckList1.hashCode(), uniqueDeckList2.hashCode());
+    }
+
+    @Test
+    public void setDecks_validReplacement_replacesInternalList() {
+        UniqueDeckList originalList = new UniqueDeckList();
+        originalList.add(new Deck("Deck 1"));
+        originalList.add(new Deck("Deck 2"));
+
+        UniqueDeckList replacementList = new UniqueDeckList();
+        replacementList.add(new Deck("Deck A"));
+        replacementList.add(new Deck("Deck B"));
+
+        originalList.setDecks(replacementList);
+
+        assertEquals(originalList.asUnmodifiableObservableList(), replacementList.asUnmodifiableObservableList());
+    }
+
+    @Test
+    public void iterator_success() {
+        List<Deck> decks = Arrays.asList(new Deck("Deck 1"),
+                new Deck("Deck 2"), new Deck("Deck 3"));
+        uniqueDeckList.setDecks(decks);
+
+        int count = 0;
+        for (Deck deck : uniqueDeckList) {
+            assertEquals(decks.get(count++), deck);
+        }
+    }
 }

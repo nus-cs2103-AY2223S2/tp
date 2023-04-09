@@ -3,6 +3,7 @@ package seedu.address.logic.commands.cardcommands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.model.tag.Tag.TagName.HARD;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.CardBuilder.DEFAULT_DECK;
 
@@ -17,8 +18,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MasterDeck;
 import seedu.address.model.ModelStub;
 import seedu.address.model.ReadOnlyMasterDeck;
+import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
+import seedu.address.model.card.Question;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AddCardDescriptorBuilder;
 import seedu.address.testutil.CardBuilder;
 
@@ -58,6 +62,19 @@ public class AddCardCommandTest {
         AddCardCommand addCardCommand = new AddCardCommand(cardDescBuilder.build());
         assertThrows(AssertionError.class, AddCardCommand.MESSAGE_NO_SELECTED_DECK, ()
                 -> addCardCommand.execute(modelStub));
+    }
+
+    @Test
+    public void constructor_validDescriptor_success() {
+        Question question = new Question("What is the capital of France?");
+        Answer answer = new Answer("Paris");
+        Tag tag = new Tag(HARD);
+
+        AddCardCommand.AddCardDescriptor descriptor = new AddCardCommand.AddCardDescriptor(question, answer, tag);
+
+        assertEquals(question, descriptor.getQuestion());
+        assertEquals(answer, descriptor.getAnswer());
+        assertEquals(tag, descriptor.getTag());
     }
 
     @Test

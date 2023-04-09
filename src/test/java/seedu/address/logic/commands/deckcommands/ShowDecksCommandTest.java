@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.deckcommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 
@@ -39,5 +41,13 @@ public class ShowDecksCommandTest {
                 ShowDecksCommand.MESSAGE_SUCCESS, false, false, false, false, false, false, false, false, false, true);
         expectedModel.updateFilteredDeckList(Model.PREDICATE_SHOW_ALL_DECKS);
         assertCommandSuccess(new ShowDecksCommand(), model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    void equals() {
+        ShowDecksCommand command = new ShowDecksCommand();
+        assertEquals(command, command); // same instance -> returns true
+        assertEquals(command, new ShowDecksCommand()); // same class -> returns true
+        assertNotEquals(command, null); // null -> returns false
     }
 }
