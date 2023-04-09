@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Logger;
@@ -59,15 +61,25 @@ public class ExportProgressCommand extends Command {
         String fileName = studentName + "'s Progress Report.pdf";
 
         if (this.filePath.equals("")) {
-            this.filePath = "";
+            this.filePath = "data";
         }
+
+        Path parentDir = Paths.get(this.filePath).getParent();
+        if (parentDir != null) {
+            try {
+                Files.createDirectories(parentDir);
+            } catch (IOException e) {
+                throw new CommandException(e.getMessage());
+            }
+        }
+
         try {
             model.exportProgress(studentToExport, String.valueOf(Paths.get(this.filePath, fileName)));
         } catch (IOException e) {
             throw new CommandException("Error!\n" + e.getMessage());
         }
-        if (this.filePath.equals("")) {
-            this.filePath = Paths.get("").toAbsolutePath().toString();
+        if (this.filePath.equals("data")) {
+            this.filePath = Paths.get("data").toAbsolutePath().toString();
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, studentToExport.getName().fullName,
                 this.filePath, fileName));
