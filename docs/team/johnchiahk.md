@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Group member
     * Attended weekly meetings
-  * Reviewed PRs for team members
+  * Reviewed PRs for team members, [providing suggestions](https://github.com/AY2223S2-CS2103T-T14-1/tp/pull/83#discussion_r1129502715)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=johnchiahk&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
