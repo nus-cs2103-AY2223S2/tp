@@ -22,6 +22,7 @@ title: Developer Guide
     - [Info Panel](#info-panel)
     - [Theme](#theme)
   - [Logic](#logic-implementation)
+    - [Add Command](#add-command)
     - [Edit Command](#edit-command)
     - [Find Command](#find-command)
   - [Model](#model-implementation)
@@ -627,6 +628,49 @@ for more information about this package.
 
 <br>
 
+#### **Add Command**
+
+Adding a person is implemented such that the user must specify the person's `name`, `year`, `course` and `email`. 
+An error will be shown if the user failed to specify these compulsory parameters.
+The optional parameters are `GitHub`, `LinkedIn`, `Skills` and `Modules`. These will be instantiated as `null` if the user did not specify.
+
+`Add` has the prefixes as follows:
+* `n/` for name
+* `e/` for email
+* `y/` for year
+* `c/` for course
+* `g/` for GitHub
+* `l/` for LinkedIn
+* `m/` for updating the current module list
+* `s/` for updating the current skill list
+
+##### Implementation Flow
+
+Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to add a new
+person.
+
+![Add Command Sequence Diagram](images/AddSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
+Given below is an activity diagram to illustrate the behaviour of adding Person within `Logic`.
+
+![Add Activity Diagram](images/AddActivityDiagram.png)
+
+##### Design Considerations
+
+To add more skills and modules, the user will have to specify the prefix. E.g. to add python and java as a skill, the user will need to input `s/python` and `s/java` instead of `s/python java`.
+This is because some skills such as `Microsoft Office` or `React Native` have more than 1 word and will create a conflict with `s/React Native` and `s/python java`. Hence, separating 2 skills with spaces cannot work.
+
+Another consideration is the implementation of the `course` parameter. We wanted to prevent users from entering different interpretations of the same course.
+E.g. `Computer Science` could be represented by `comp sci` or `cs` etc. Hence, to standardize our `Storage` and `Ui` for every person, we implemented a `Courselist` that users can select the respective `course` using the `index`.
+More details about the `Course` class can be found [here](#course-and-courselist-class)
+
+Lastly, if the application has an empty contact list, the [Info Panel](#info-panel) will display the newly added person once the execution of the `add command` is completed. 
+However, when the person list is not empty, the [Info Panel](#info-panel) will not display the newly added person as we did not to change the state of other panels within the application with the execution of this `add command`.
+
+[Scroll back to top](#table-of-contents)
+
 #### **Edit Command**
 
 Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.
@@ -1075,14 +1119,21 @@ to effectively sort/filter contacts to easily identify people of interest, such 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                                   | I want to …​                                         | So that I can…​                                                               |
-|---------|---------------------------------------------------------------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *` | user                                                                      | add/remove contacts of peers                         | save/manage them                                                              |
-| `* * *` | user                                                                      | edit the details of the contacts                     | update my contacts to be accurate and relevant                                |
-| `* * `  | student who is interested in joining various coding or programming events | search contacts by skill sets                        | identify potential team members for projects                                  |
-| `* * *` | user                                                                      | find a person by name                                | locate a particular person without scrolling the entire list of contacts      |
-| `*`     | student                                                                   | find people who have taken a specific module         | I can ask for help related to the module such as upcoming topics to study for |
-| `*`     | student                                                                   | find people who are currently taking the same module | work together (discuss questions, find project members, teach each other)     |
+| Priority | As a …​                                                                   | I want to …​                                               | So that I can…​                                                                  |
+|----------|---------------------------------------------------------------------------|------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | user                                                                      | add/remove contacts of peers                               | save/manage them                                                                 |
+| `* * *`  | user                                                                      | edit the details of the contacts                           | update my contacts to be accurate and relevant                                   |
+| `* * *`  | user                                                                      | find a person by name                                      | locate a particular person without scrolling the entire list of contacts         |
+| `* * *`  | user                                                                      | find a person by course                                    | locate contacts in a particular course                                           |
+| `* * *`  | student who is interested in joining various coding or programming events | search contacts by skill sets                              | identify potential team members for projects                                     |
+| `* * *`  | student                                                                   | find people who **have taken** a specific module           | I can ask for help related to the module such as upcoming topics to study for    |
+| `* * *`  | student                                                                   | find people who **are currently taking** the same module   | work together (discuss questions, find project members, teach each other)        |
+| `* * `   | student                                                                   | view the LinkedIn profile of my contacts                   | check out their past work experience, portfolio and any other additional details |
+| `* * `   | Computing student                                                         | view the GitHub username of my contacts                    | view and learn about the projects that other Computing students have undertaken  |
+| `* * `   | user                                                                      | view the history of my filters applied on the contact list | remember what parameters I use to filter my contact list                         |
+| `*   `   | user                                                                      | load the previous command into the text box                | enter the command again without retyping                                         |
+| `*   `   | user                                                                      | undo my previous command                                   | undo any new changes that might have been wrong                                  |
+
 
 *{More to be added}*
 

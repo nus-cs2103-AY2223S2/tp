@@ -1,0 +1,118 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CodocParser" as CodocParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "d:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add n/James y/2 c/13 e/james@gmail.com")
+activate LogicManager
+
+LogicManager -> CodocParser : parseCommand("add n/James y/2 c/13 e/james@gmail.com")
+activate CodocParser
+
+create AddCommandParser
+CodocParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> CodocParser
+deactivate AddCommandParser
+
+CodocParser -> AddCommandParser : parse("add n/James y/2 c/13 e/james@gmail.com")
+activate AddCommandParser
+
+AddCommandParser -> ParserUtil : parseName("James")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : name
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseGithub(null)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : github
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseEmail("james@gmail.com")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : email
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseCourse("13")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : course
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseYear("2")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : year
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseLinkedin(null)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : linkedin
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseSkillSet(null)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : skillList
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseModuleSet(null)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : moduleSet
+deactivate ParserUtil
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : d
+deactivate AddCommand
+
+AddCommandParser --> CodocParser : d
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> CodocParser
+destroy AddCommandParser
+
+CodocParser --> LogicManager : d
+deactivate CodocParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addPerson(toAdd)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
