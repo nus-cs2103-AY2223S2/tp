@@ -64,6 +64,9 @@ public class Person {
      * Returns the first role in the set of roles.
      */
     public String getRole() {
+        if (roles.isEmpty()) {
+            return null;
+        }
         return roles.iterator().next().toString();
     }
 
