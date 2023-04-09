@@ -14,7 +14,7 @@ public class OrderQuantity {
     public final String value;
 
     /**
-     * Constructs an Order Quantity Object
+     * Constructs an Order Quantity Object.
      */
     public OrderQuantity(String quantity) {
         requireNonNull(quantity);
@@ -24,6 +24,7 @@ public class OrderQuantity {
 
     /**
      * Returns true if a given string matches the validation regex for quantity.
+     *
      * @param test the string to test for validity as a quantity value
      * @return true if test is a valid quantity value, false otherwise
      */
@@ -32,16 +33,18 @@ public class OrderQuantity {
     }
 
     /**
-     * Returns a quantity value in the form of an int from a string value
-     * @return int form of value string
+     * Returns a quantity value in the form of an int from a string value.
+     *
+     * @return {@code int} form of value string.
      */
     public int getOrderQuantity() {
         return Integer.parseInt(value);
     }
 
     /**
-     * Returns a quantity value in the form of a string
-     * @return value in the form of a string
+     * Returns a quantity value in the form of a string.
+     *
+     * @return value in the form of a string.
      */
     public String getValue() {
         return value;

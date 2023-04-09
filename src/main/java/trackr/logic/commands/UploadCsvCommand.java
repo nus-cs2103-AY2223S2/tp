@@ -9,7 +9,7 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 
 /**
- * Uploads csv information to trackr
+ * Uploads information retrieved from a csv file onto Trackr.
  */
 public class UploadCsvCommand extends Command {
 
@@ -22,13 +22,25 @@ public class UploadCsvCommand extends Command {
     private List<String> commands;
 
     /**
-     * Creates an UploadCSVCommand
+     * Creates an UploadCSVCommand to upload data onto Trackr.
+     *
+     * @commands A list that contains commands to be executed for uploading of information onto Trackr.
      */
     public UploadCsvCommand(List<String> commands) {
         requireNonNull(commands);
         this.commands = commands;
     }
 
+    /**
+     * Parses and executes all the commands in the list {@code commands}
+     * to add data retrieved from csv file into Trackr's data file.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Success message of the upload csv operation for display.
+     * @throws CommandException If any of the commands cannot be executed successfully.
+     * @throws ParseException If any of the commands in the list {@code commands} cannot be parsed
+     *                        or executed properly.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
         TrackrParser trackrParser = new TrackrParser();

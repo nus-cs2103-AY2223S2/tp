@@ -29,14 +29,14 @@ import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
 /**
- * Parser for add order command
+ * Parses input arguments and creates a new AddOrderCommand object.
  */
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddOrderCommand
      * and returns an AddOrderCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddOrderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -63,6 +63,10 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         return new AddOrderCommand(order);
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }

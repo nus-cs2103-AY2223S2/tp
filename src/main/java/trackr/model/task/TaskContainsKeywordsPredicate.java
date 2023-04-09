@@ -20,6 +20,7 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
     /**
      * Constructs a new {@code TaskContainsKeywordsPredicate} object with the same keywords of task details as the
      * {@code OrderContainsKeywordsPredicate} object specified.
+     *
      * @param toCopy The {@code TaskContainsKeywordsPredicate} object to copy the task name keywords from.
      */
     public TaskContainsKeywordsPredicate(TaskContainsKeywordsPredicate toCopy) {
@@ -38,7 +39,8 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
 
     /**
      * Returns true if any of the fields in the {@code Task} object are present or not.
-     * @return true if any of the fields in the {@code Task} object are present or not.
+     *
+     * @return True if any of the fields in the {@code Task} object are present or not.
      */
     public boolean isAnyFieldPresent() {
         return isAnyFieldNonNull() || taskNameKeywords != null;

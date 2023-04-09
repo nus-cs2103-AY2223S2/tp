@@ -26,7 +26,10 @@ public class Tag {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Checks if the given tag name conforms to the expected format.
+     *
+     * @param test The given tag name.
+     * @return True if a given string is of valid format, false otherwise.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -47,6 +50,7 @@ public class Tag {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
         return '[' + tagName + ']';
     }

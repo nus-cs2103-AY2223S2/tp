@@ -29,8 +29,7 @@ import trackr.model.person.PersonPhone;
 public class EditOrderCommand extends EditItemCommand<Order> {
     public static final String COMMAND_WORD = "edit_order";
     public static final String COMMAND_WORD_SHORTCUT = "edit_o";
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited %s: %s";
-    public static final String MESSAGE_NO_MENU_ITEM = "No such item in your menu.";
+
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This %s already exists in the %s list.";
 
@@ -51,13 +50,16 @@ public class EditOrderCommand extends EditItemCommand<Order> {
             + PREFIX_STATUS + "D";
 
     /**
-     * @param index               of the order in the filtered order list to edit
-     * @param editItemDescriptor details to edit the order with
+     * Creates an EditOrderCommand to edit the order at the given index.
+     *
+     * @param index The index of the order to be edited.
+     * @param editOrderDescriptor The details to edit the order with.
      */
     public EditOrderCommand(Index index, OrderDescriptor editOrderDescriptor) {
         super(index, new OrderDescriptor(editOrderDescriptor), ModelEnum.ORDER);
     }
 
+    @Override
     protected Order createEditedItem(Order itemToEdit, ItemDescriptor<? super Order> itemDescriptor) {
         assert itemToEdit != null;
 

@@ -17,14 +17,15 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.menu.MenuItemDescriptor;
 
 /**
- * Parses input arguments and creates a new EditMenuItemCommand object
+ * Parses input arguments and creates a new EditMenuItemCommand object.
  */
 public class EditMenuItemCommandParser implements Parser<EditMenuItemCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditMenuItemCommand
      * and returns an EditMenuItemCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public EditMenuItemCommand parse(String args) throws ParseException {
         requireNonNull(args);

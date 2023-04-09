@@ -10,14 +10,15 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.menu.ItemNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindMenuItemCommand object
+ * Parses input arguments and creates a new FindMenuItemCommand object.
  */
 public class FindMenuItemCommandParser implements Parser<FindMenuItemCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindMenuItemCommand
      * and returns a FindMenuItemCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public FindMenuItemCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();

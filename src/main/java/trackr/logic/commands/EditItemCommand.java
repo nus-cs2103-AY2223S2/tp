@@ -33,6 +33,10 @@ public abstract class EditItemCommand<T extends Item> extends Command {
 
     /**
      * Creates an EditItemCommand to edit the specified {@code Item} at the target index with the new details.
+     *
+     * @param index Index of the item to be edited in the filtered list.
+     * @param editItemDescriptor Details to edit the item with.
+     * @param modelEnum A representation of the name of the list to edit.
      */
     public EditItemCommand(Index index, ItemDescriptor editItemDescriptor, ModelEnum modelEnum) {
         requireAllNonNull(index, editItemDescriptor, modelEnum);
@@ -41,6 +45,17 @@ public abstract class EditItemCommand<T extends Item> extends Command {
         this.editItemDescriptor = editItemDescriptor;
     }
 
+    /**
+     * Edits the item at the target index.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Success message of the edit operation result for display.
+     * @throws CommandException If given target index is out of bounds,
+     *                          if edited item is considered to be duplicates
+     *                          with any of the existing items in the list,
+     *                          or (when editing an order) if an order's edited order item field
+     *                          does not match with an existing menu item.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -86,7 +101,12 @@ public abstract class EditItemCommand<T extends Item> extends Command {
     }
 
     /**
-     * Creates and returns a {@code Item} with the details of {@code itemToEdit} edited with {@code editItemDescriptor}.
+     * Creates and returns a {@code Item} with the details of {@code itemToEdit}
+     * edited with {@code editItemDescriptor}.
+     *
+     * @param itemToEdit The item to be edited.
+     * @param itemDescriptor Details to edit the item with.
+     * @return An edited {@code Item}.
      */
     protected abstract T createEditedItem(T itemToEdit, ItemDescriptor<? super T> itemDescriptor);
 

@@ -24,12 +24,10 @@ import trackr.model.order.Order;
 
 /**
  * Adds an order to the order list.
- * May violate LSP. Does not extend AddItemCommand.
  */
 public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "add_order";
     public static final String COMMAND_WORD_SHORTCUT = "add_o";
-
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a order to the order list. "
             + "Parameters: "
@@ -53,7 +51,9 @@ public class AddOrderCommand extends Command {
     private final Order toAdd;
 
     /**
-     * Creates an AddOrderCommand to add the specified {@code Order}
+     * Creates an AddOrderCommand to add the specified {@code Order}.
+     *
+     * @param order The order to be added.
      */
     public AddOrderCommand(Order order) {
         requireNonNull(order);

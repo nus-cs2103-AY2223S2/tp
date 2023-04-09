@@ -15,14 +15,15 @@ import trackr.model.menu.MenuItem;
 import trackr.model.menu.MenuItemDescriptor;
 
 /**
- * Edits the details of an existing task in the menu.
+ * Edits the details of an existing item in the menu.
  */
 public class EditMenuItemCommand extends EditItemCommand<MenuItem> {
 
     public static final String COMMAND_WORD = "edit_item";
     public static final String COMMAND_WORD_SHORTCUT = "edit_i";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the details of the item identified "
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -35,8 +36,10 @@ public class EditMenuItemCommand extends EditItemCommand<MenuItem> {
             + PREFIX_COST + "1";
 
     /**
-     * @param index              of the task in the filtered menu to edit
-     * @param editMenuItemDescriptor details to edit the task with
+     * Creates an EditMenuItemCommand to edit the menu item at the given index.
+     *
+     * @param index The index of the menu item to be edited.
+     * @param editMenuItemDescriptor The details to edit the menu item with.
      */
     public EditMenuItemCommand(Index index, MenuItemDescriptor editMenuItemDescriptor) {
         super(index, new MenuItemDescriptor(editMenuItemDescriptor), ModelEnum.MENUITEM);

@@ -18,9 +18,10 @@ public class ItemPrice {
 
     /**
      * Constructs an ItemPrice object with the given price value as a String.
-     * @param value the price value as a String
-     * @throws NullPointerException if value is null
-     * @throws IllegalArgumentException if value is not a valid price value
+     *
+     * @param value The price value as a String.
+     * @throws NullPointerException If value is null.
+     * @throws IllegalArgumentException If value is not a valid price value.
      */
     public ItemPrice(String value) {
         requireNonNull(value);
@@ -31,8 +32,9 @@ public class ItemPrice {
 
     /**
      * Constructs an ItemPrice object with the given price value as a Double.
-     * @param itemPrice the price value as a Double
-     * @throws NullPointerException if itemPrice is null
+     *
+     * @param itemPrice The price value as a Double.
+     * @throws NullPointerException If itemPrice is null.
      */
     public ItemPrice(Double itemPrice) {
         requireNonNull(itemPrice);
@@ -42,8 +44,9 @@ public class ItemPrice {
 
     /**
      * Returns true if a given string matches the validation regex for price.
-     * @param test the string to test for validity as a price value
-     * @return true if test is a valid price value, false otherwise
+     *
+     * @param test The string to test for validity as a price value.
+     * @return True if test is a valid price value, false otherwise.
      */
     public static boolean isValidPrice(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -51,6 +54,7 @@ public class ItemPrice {
 
     /**
      * Returns the price value as a Double.
+     *
      * @return the price value as a Double
      */
     public Double getValue() {
@@ -59,7 +63,8 @@ public class ItemPrice {
 
     /**
      * Returns the formatted price value as a String.
-     * @return the formatted price value as a String
+     *
+     * @return the formatted price value as a String.
      */
     public String getFormattedValue() {
         return formattedValue;
@@ -67,6 +72,7 @@ public class ItemPrice {
 
     /**
      * Returns the formatted price value of the item as a JSON string for storage purposes.
+     *
      * @return The formatted price value as a JSON string.
      */
     public String toJsonString() {

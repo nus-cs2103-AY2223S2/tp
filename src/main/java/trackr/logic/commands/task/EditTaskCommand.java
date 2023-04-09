@@ -34,8 +34,9 @@ public class EditTaskCommand extends EditItemCommand<Task> {
             + PREFIX_STATUS + "D";
 
     /**
-     * @param index              of the task in the filtered task list to edit
-     * @param editTaskDescriptor details to edit the task with
+     * Creates an EditTaskCommand to edit the task at given index.
+     * @param index              of the task in the filtered task list to edit.
+     * @param editTaskDescriptor details to edit the task with.
      */
     public EditTaskCommand(Index index, TaskDescriptor editTaskDescriptor) {
         super(index, new TaskDescriptor(editTaskDescriptor), ModelEnum.TASK);

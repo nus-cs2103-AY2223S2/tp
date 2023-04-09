@@ -19,6 +19,11 @@ public class FindTaskCommand extends FindItemCommand<Task> {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " flour buy";
 
+    /**
+     * Creates an FindTaskCommand to find all {@code Task} that match the predicate.
+     *
+     * @param predicate The predicate to find the tasks with.
+     */
     public FindTaskCommand(TaskContainsKeywordsPredicate predicate) {
         super(predicate, ModelEnum.TASK);
     }

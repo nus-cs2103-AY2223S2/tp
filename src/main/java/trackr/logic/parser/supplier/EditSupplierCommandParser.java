@@ -24,14 +24,15 @@ import trackr.model.commons.Tag;
 import trackr.model.person.PersonDescriptor;
 
 /**
- * Parses input arguments and creates a new EditSupplierCommand object
+ * Parses input arguments and creates a new EditSupplierCommand object.
  */
 public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditSupplierCommand
      * and returns an EditSupplierCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public EditSupplierCommand parse(String args) throws ParseException {
         requireNonNull(args);

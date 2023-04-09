@@ -18,6 +18,11 @@ public class DeleteSupplierCommand extends DeleteItemCommand<Supplier> {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    /**
+     * Creates a DeleteSupplierCommand to delete the supplier at the given index.
+     *
+     * @param targetIndex The index of the supplier to be deleted.
+     */
     public DeleteSupplierCommand(Index targetIndex) {
         super(targetIndex, ModelEnum.SUPPLIER);
     }

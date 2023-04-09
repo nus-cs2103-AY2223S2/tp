@@ -12,6 +12,9 @@ public class ListSupplierCommand extends ListItemCommand<Supplier> {
     public static final String COMMAND_WORD = "list_supplier";
     public static final String COMMAND_WORD_SHORTCUT = "list_s";
 
+    /**
+     * Creates a ListSupplierCommand to list all the suppliers.
+     */
     public ListSupplierCommand() {
         super(ModelEnum.SUPPLIER);
     }

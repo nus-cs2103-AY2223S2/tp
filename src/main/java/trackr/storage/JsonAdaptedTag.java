@@ -2,6 +2,7 @@ package trackr.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.model.commons.Tag;
 
@@ -27,6 +28,10 @@ class JsonAdaptedTag {
         tagName = source.tagName;
     }
 
+    @JsonValue
+    public String getTagName() {
+        return tagName;
+    }
 
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.

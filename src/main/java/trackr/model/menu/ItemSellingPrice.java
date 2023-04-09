@@ -7,7 +7,7 @@ package trackr.model.menu;
 public class ItemSellingPrice extends ItemPrice {
 
     /**
-     * Constructs a {@code ItemSellingPrice}
+     * Constructs a {@code ItemSellingPrice}.
      */
     public ItemSellingPrice(String value) {
         super(value);

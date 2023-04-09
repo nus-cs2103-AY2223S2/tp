@@ -25,7 +25,9 @@ public class AddTaskCommand extends AddItemCommand<Task> {
             + PREFIX_STATUS + "N ";
 
     /**
-     * Creates an AddTaskCommand to add the specified {@code Task}
+     * Creates an AddTaskCommand to add the specified {@code Task}.
+     *
+     * @param task The task to be added.
      */
     public AddTaskCommand(Task task) {
         super(task, ModelEnum.TASK);

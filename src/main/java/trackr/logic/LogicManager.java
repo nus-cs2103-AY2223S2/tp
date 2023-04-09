@@ -45,6 +45,14 @@ public class LogicManager implements Logic {
         trackrParser = new TrackrParser();
     }
 
+    /**
+     * Parses the given command and executes it.
+     *
+     * @param commandText The command as entered by the user.
+     * @return Feedback message of the operation for display.
+     * @throws CommandException If command given cannot be executed.
+     * @throws ParseException If command string given cannot be parsed.
+     */
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -53,7 +61,6 @@ public class LogicManager implements Logic {
         Command command = trackrParser.parseCommand(commandText);
         commandResult = command.execute(model);
         try {
-            logger.info("Should not reach here");
             storage.saveTrackr(model.getSupplierList(), model.getTaskList(), model.getMenu(), model.getOrderList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

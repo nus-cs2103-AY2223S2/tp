@@ -13,7 +13,7 @@ public class ItemName extends Name {
 
 
     /**
-     * Constructs a {@code ItemName}.
+     * Constructs an {@code ItemName}.
      *
      * @param itemName A valid Item name.
      */

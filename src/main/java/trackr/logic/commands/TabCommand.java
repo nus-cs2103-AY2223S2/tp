@@ -30,8 +30,14 @@ public class TabCommand extends Command {
         this.targetTab = targetTab;
     }
 
+    /**
+     * Switches to the specified tab.
+     *
+     * @param unused {@code Model} which is not used.
+     * @return Success message of the tab operation for display.
+     */
     @Override
-    public CommandResult execute(Model unused) throws CommandException {
+    public CommandResult execute(Model unused) {
         ObservableTabIndex.updateToTab(targetTab);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

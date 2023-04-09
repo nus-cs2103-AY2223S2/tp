@@ -19,6 +19,11 @@ public abstract class Status {
 
     /**
      * Constructs a {@code Status}.
+     *
+     * @param status The status string given by user.
+     * @param type The type of status. (e.g. order stauts, task status, etc.)
+     * @param statuses The HashMap of valid statues to be created
+     *                 and used to check the given status for validity.
      */
     public Status(String status, String type, HashMap<String, String> statuses) {
         requireAllNonNull(status, type, statuses);
@@ -33,7 +38,11 @@ public abstract class Status {
     }
 
     /**
-     * Returns true if a given string is a valid status.
+     * Checks if a given status String conforms to the expected format.
+     *
+     * @param test The string to check.
+     * @param statuses The HashMap of valid string to check the given string with.
+     * @return Returns true if a given string is of valid format, false otherwise.
      */
     public static boolean isValidStatus(String test, HashMap<String, String> statuses) {
         String validationRegex = String.format("^[%s]$",
@@ -43,6 +52,8 @@ public abstract class Status {
 
     /**
      * Returns a string that represents the types of valid statuses.
+     *
+     * @return A String Message that list out the valid statues.
      */
     public String getStatusMessage() {
         StringBuilder statusMessageBuilder = new StringBuilder();
@@ -57,7 +68,9 @@ public abstract class Status {
     }
 
     /**
-     * Compare this status to a given status.
+     * Compares this status to a given status.
+     *
+     * @other The status to compare this status with.
      * @return -1, 1 or 0 according to the sorting criteria.
      */
     public abstract int compare(Status other);

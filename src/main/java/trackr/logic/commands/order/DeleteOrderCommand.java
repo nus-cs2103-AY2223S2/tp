@@ -17,6 +17,11 @@ public class DeleteOrderCommand extends DeleteItemCommand<Order> {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    /**
+     * Creates a DeleteOrderCommand to delete the order at given index.
+     *
+     * @param targetIndex The index of the order to be deleted.
+     */
     public DeleteOrderCommand(Index targetIndex) {
         super(targetIndex, ModelEnum.ORDER);
     }

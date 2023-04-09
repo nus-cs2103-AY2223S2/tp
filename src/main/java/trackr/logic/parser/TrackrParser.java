@@ -70,9 +70,9 @@ public class TrackrParser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput Full user input string.
+     * @return The command based on the user input.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -205,6 +205,13 @@ public class TrackrParser {
         }
     }
 
+    /**
+     * Returns a String representation of the list the command is working on.
+     *
+     * @param userInput The given user command input.
+     * @return The string representation of the list name.
+     * @throws ParseException If user input is invalid and cannot be parsed.
+     */
     public static String getModel(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
 

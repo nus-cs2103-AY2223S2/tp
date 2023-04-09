@@ -19,7 +19,10 @@ public abstract class AddItemCommand<T extends Item> extends Command {
     private final T toAdd;
 
     /**
-     * Creates an AddItemCommand to add the specified {@code Item}
+     * Creates an AddItemCommand to add the specified {@code Item} to its respective item list.
+     *
+     * @param item The item to be added.
+     * @param modelEnum A representation of the name of the list we add to.
      */
     public AddItemCommand(T item, ModelEnum modelEnum) {
         requireAllNonNull(item, modelEnum);
@@ -31,6 +34,13 @@ public abstract class AddItemCommand<T extends Item> extends Command {
         return toAdd;
     }
 
+    /**
+     * Adds the item {@code toAdd} to its respective item list.
+     * @param model {@code Model} which the command should operate on.
+     * @return Success message of the add operation for display.
+     * @throws CommandException If item to be added is considered to be duplicates
+     *                          with any of the other existing items in the list.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

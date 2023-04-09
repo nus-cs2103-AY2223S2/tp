@@ -13,7 +13,7 @@ public class PersonName extends Name {
                     + "alphanumeric characters and spaces, and it should not be blank";
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code PersonName}.
      *
      * @param personName A valid person name.
      */

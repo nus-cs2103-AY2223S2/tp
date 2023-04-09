@@ -19,6 +19,11 @@ public class FindSupplierCommand extends FindItemCommand<Supplier> {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
+    /**
+     * Creates an FindSupplierCommand to find all {@code Supplier} that match the predicate.
+     *
+     * @param predicate The predicate to find the suppliers with.
+     */
     public FindSupplierCommand(PersonNameContainsKeywordsPredicate predicate) {
         super(predicate, ModelEnum.SUPPLIER);
     }

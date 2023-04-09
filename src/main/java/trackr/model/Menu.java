@@ -4,8 +4,8 @@ import trackr.model.item.ItemList;
 import trackr.model.menu.MenuItem;
 
 /**
- * Wraps all data at the menu item-list level
- * Duplicates are not allowed (by .isSameItem comparison)
+ * Wraps all data at the menu item-list level.
+ * Duplicates are not allowed (by .isSameItem comparison).
  */
 public class Menu extends ItemList<MenuItem> implements ReadOnlyMenu {
 
@@ -14,7 +14,7 @@ public class Menu extends ItemList<MenuItem> implements ReadOnlyMenu {
     }
 
     /**
-     * Creates a Menu using the Menu Items in the {@code toBeCopied}
+     * Creates a Menu using the Menu Items in the {@code toBeCopied}.
      */
     public Menu(ReadOnlyMenu toBeCopied) {
         super(toBeCopied);
