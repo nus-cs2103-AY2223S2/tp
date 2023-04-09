@@ -20,9 +20,9 @@ such as flight scheduling and management of crew, pilot, plane and location.
 
 - **[How to Use This Guide?](#how-to-use-this-guide)**
 - **[Getting Started](#getting-started)**
-- **[Layout of Wingman Application Window](#layout-of-wingman-application-window)**
-- **[Modal Editing: `mode`](#modal-editing)**
-- **[Command Formatting](#command-formatting)**
+  - **[Layout of Wingman Application Window](#layout-of-wingman-application-window)**
+  - **[Modal Editing: `mode`](#modal-editing)**
+  - **[Command Formatting](#command-formatting)**
 - **[Features](#features)**
   - **[Shared Commands](#shared-commands)**
     - **[Adding a resource: `add`](#1-adding-a-resource-add)**
