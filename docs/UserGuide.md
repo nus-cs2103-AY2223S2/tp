@@ -6,12 +6,12 @@ title: User Guide
 ![Logo](images/UI/AlternateLogo.png)
 
 PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI!
-You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
+You can now focus on spending quality time with your furry friends without having to worry about things accidentally slipping your mind.
 
-**PetPal is optimized for a Pet DayCare owners to use via the Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
-PetPal can help get your pet administrative tasks done without needing to be tech-savvy.
+**PetPal is optimized for Pet DayCare owners to use via the Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+PetPal can help get your pet's administrative tasks done without needing to be tech-savvy.
 
-This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet caring duties**.
+This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet-caring duties**.
 
 # Table of Contents
 
@@ -102,13 +102,13 @@ Information that you need to know
 * Words in `UPPER_CASE` are the information supplied by you.<br>
   e.g. `OWNER_NAME` is a parameter in `add o/OWNER_NAME`, where you can input `add o/John Doe`.
 * Parameters in `[]` are optional.<br>
-  e.g. `DEADLINE` is an optional parameter in `create o/OWNER_NAME [d/DEADLINE]`, where you can input `add on/John Doe d/Feed dog - 2023-03-27 21:09:09` or just `create n/John Doe`.
+  e.g. `DEADLINE` is an optional parameter in `add o/OWNER_NAME [d/DEADLINE]`, where you can input `add on/John Doe d/Feed dog - 2023-03-27 21:09:09` or just `add n/John Doe`.
 * Items with `...` after them can be used multiple times.<br>
   e.g. `[t/TAG...]` can be used as `t/Pomeranian`, `t/Pomeranian t/Vegetarian` etc.
 * `INDEX` represents the index of a specific pet in PetPal list you are **currently viewing**, which can change based on prior commands executed (e.g. `find`, `remind`)<br>
   e.g. You can use the command `delete INDEX` as `delete 2`.
 * Parameters can be in **any order**.<br>
-  e.g. You can input either `add o/OWNER_NAME p/PHONE_NUMBER` or ` create p/PHONE_NUMBER o/OWNER_NAME`.
+  e.g. You can input either `add o/OWNER_NAME p/PHONE_NUMBER` or ` add p/PHONE_NUMBER o/OWNER_NAME`.
 * Only the last occurrence of a parameter that is expected once will be taken **if you specify it more than once.**<br>
   e.g. Given `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear` and `undo`) will be ignored.<br>
@@ -126,7 +126,7 @@ Shows a message explaining how you can access our user guide.
 
 Format: `help`, `h` or Press `F1`
 
-![help](images/UG/help.png)
+![help](images/UG/help_new.png)
 
 
 
@@ -136,7 +136,7 @@ Shows a list of all pets stored in your PetPal.
 
 Format: `list` or `l`
 
-![list](images/UG/list.png)
+![list](images/UG/list_new.png)
 
 
 
@@ -153,35 +153,35 @@ Format: `add n/PET_NAME o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_ST
 * :information_source: **Information**
 
 Note:
-1. The field `n/PET_NAME` is **case-sensitive**. That is `n/Doggo` and `n/doggo` will be treated as 2 different pets
-2. There certain constraints which might differ for each parameter, please refer to **Figure 1** below for details on each constraint
+1. The field `n/PET_NAME` is **case-sensitive**. That is `n/Doggo` and `n/doggo` will be treated as 2 different pets.
+2. There certain constraints which might differ for each parameter, please refer to **Figure 1** below for details on each constraint.
 3. Pets with the `PET_NAME` **cannot** be created.
-4. There can be multiple tags associated with each pet, simply repeat the tag prefix e.g. `t/Dog t/BichonFrise`
+4. There can be multiple tags associated with each pet, simply repeat the tag prefix. e.g. `t/Dog t/BichonFrise`
 </div>
 
 Figure 1 provides a summary of the parameters with their descriptions, prefixes and constraints.
 
-| Parameter      | Description                                    | Prefix | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Required?  |
-|----------------|------------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
-| `OWNER_NAME`   | The name of the owner                          | `o/`   | Names should only contain alphanumeric characters and spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | COMPULSORY |
-| `PET_NAME`     | The name of the pet                            | `n/`   | Names should only contain alphanumeric characters and spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | COMPULSORY |
-| `PHONE_NUMBER` | The owner's phone number                       | `p/`   | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | COMPULSORY |
-| `EMAIL`        | The owner's email                              | `e/`   | Emails should be of the format local-part@domain and adhere to the following constraints:<br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, ( + SPECIAL_CHARACTERS + ). The local-part may not start or end with any special "characters."<br/>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | COMPULSORY |
-| `ADDRESS`      | The owner's address                            | `a/`   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | COMPULSORY |
-| `TIMESTAMP`    | The date and time when the pet starts boarding | `ts/`  | Timestamps should be in the `YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09  and in the future.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | COMPULSORY |
-| `DEADLINE`     | A deadline attributed with the pet             | `d/`   | Timestamps given in the deadline should be in the `YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09  and in the future                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | OPTIONAL   |
-| `TAG`          | A label that you can attach to a pet           | `t/`   | Tags should be alphanumeric, and **cannot** include spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | OPTIONAL   |
+| Parameter      | Description                                    | Prefix | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Required?  |
+|----------------|------------------------------------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| `OWNER_NAME`   | The name of the owner                          | `o/`   | Names should only contain alphanumeric characters and spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | COMPULSORY |
+| `PET_NAME`     | The name of the pet                            | `n/`   | Names should only contain alphanumeric characters and spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | COMPULSORY |
+| `PHONE_NUMBER` | The owner's phone number                       | `p/`   | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | COMPULSORY |
+| `EMAIL`        | The owner's email                              | `e/`   | Emails should be of the format local-part@domain and adhere to the following constraints:<br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, ( + SPECIAL_CHARACTERS + ). The local-part may not start or end with any special "characters."<br/>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any | COMPULSORY |
+| `ADDRESS`      | The owner's address                            | `a/`   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | COMPULSORY |
+| `TIMESTAMP`    | The date and time when the pet starts boarding | `ts/`  | Timestamps should be in the `YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09  and in the future                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | COMPULSORY |
+| `DEADLINE`     | A deadline attributed with the pet             | `d/`   | Timestamps given in the deadline should be in the `YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09  and in the future                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | OPTIONAL   |
+| `TAG`          | A label that you can attach to a pet           | `t/`   | Tags should be alphanumeric, and **cannot** include spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | OPTIONAL   |
 
-<p style="text-align: center;"><b>Figure 1</b>: Parameters with their descriptions, prefixes and constraints</p>
+<p style="text-align: center;"><b>Figure 1</b>: Parameters with their descriptions, prefixes and constraints.</p>
 
 <div markdown="block" class="alert alert-block alert-danger">
 
 * :heavy_exclamation_mark: **Caution:**
 The format of the timestamp should strictly follow the convention `YYYY-MM-DD HH:MM:SS` eg. `2023-03-27 21:09:09`
-otherwise you will encounter errors when adding a new pet
+otherwise you will encounter errors when adding a new pet.
 </div>
 
-![create](images/UG/add.png)
+![create](images/UG/add_new.png)
 
 Example given: `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua`
 
@@ -202,7 +202,7 @@ Get a filtered list of things you should do soon!
 
 Format: `remind`
 
-![remind](images/UG/remind.png)
+![remind](images/UG/remind_new.png)
 
 :bulb: **Note:**
 The pets highlighted in bright orange are reminders that are due within a day!<br>
@@ -221,12 +221,13 @@ Find your pets by their names.
 **Constraints**
 * The search is case-insensitive. e.g. `woofers` will match `Woofers`
 * Only the **pet name** is searched. e.g. `find Alex` will not return owner names, addresses or emails with `Alex`
-* Partial words will not be matched. e.g. `Jack` will not match `Jackson`.
+* Partial words will not be matched. e.g. `Jack` will not match `Jackson`
 * Order of the name given does not matter. e.g. `Milo Charlie` will match `Charlie` and `Milo`
 
 Format: `find n/PET_NAME`
 
-![find](images/UG/find.png)
+![find](images/UG/find_new.png)
+
 Example given: `find Milo Charlie`
 
 Other examples:
@@ -251,7 +252,7 @@ Format: `f n/PET_NAME`
 
 A pet owner changed their contact information? or did you find out new information about your pet client?
 
-You can edit these changes with the `edit` command. This command can be used to edit: phone number, address, email, tags
+You can edit these changes with the `edit` command. This command can be used to edit: phone number, address, email, and tags.
 
 If you accidentally invoked this command with the wrong parameters, you can use the `edit` command to re-edit the wrong fields or
 the `undo` command to revert the wrong changes.
@@ -262,16 +263,18 @@ the `undo` command to revert the wrong changes.
 * You must provide **at least one** of the optional fields.
 * Allows you to update a pet to have same owner name but different phone number or, same number but different owner name as a current pet in the PetPal.
 * Pet profiles are auto saved in PetPal and are reflected in the PetPal list.
-* Cost is constantly being updated in PetPal but the latest information may not be reflected to you. To get the latest information, either click on the pet profile or run a command (e.g. `list` or `l`)
+* Cost is constantly being updated in PetPal but the latest information may not be reflected to you. To get the latest information, either click on the pet profile or run a command (e.g. `list` or `l`).
 
 Format: `edit INDEX [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG...]`
 
-![update](images/UG/edit.png)
-Example given: `edit 6 t/Golden Retriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`
+![update](images/UG/edit_new.png)
+
+Example given: `edit 6 t/GoldenRetriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`
 
 <div markdown="block" class="alert alert-block alert-success">
 
 :bulb: **Note:**
+
 If you wish to add tags to the pet, take note to include all previous tags in the edit, or they will be overridden.
 
 Only parameters provided will be changed.
@@ -290,7 +293,7 @@ Pet Card information indicates the amount of money owed to you for taking good c
 
 Cost is calculated based on initial timestamp input by user. The cost is updated based on user interaction, clicking the petcard or reopening petpal!
 
-![](images/UG/amount.png)
+![](images/UG/amount_new.png)
 
 
 #### Changing the cost : `changecost`
@@ -303,17 +306,18 @@ Cost is incremented in real time and is calculated based on `FLAT_RATE + (TIMEST
 
 <div markdown="block" class="alert alert-block alert-success">
 
-* :bulb: **Note:**
+:bulb: **Note:**
 
 The cost will only update in your PetPal list when you click on the PetPal entry.
 
-The update applies to all PetPal entries.
+The update only applies to the selected PetPal entry.
 </div>
 
 Format: `changecost INDEX RATE FLAT_RATE`
 
-![update](images/UG/changecost.png)
-Example given `changecost 1 0.1 0.5`
+![update](images/UG/cc_new.png)
+
+Example given: `changecost 1 0.1 0.5`
 
 <div markdown="block" class="alert alert-block alert-info">
 
@@ -332,14 +336,15 @@ Pets that are already marked will not be highlighted.
 
 Format: `mark INDEX`
 
-Example given `mark 1`
+Example given: `mark 1`
 
 <div markdown="block" class="alert alert-block alert-success">
 
-* :bulb: **Note:**
+:bulb: **Note:**
 
-1. You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
-2. Pet deadline status will be automatically saved in the form of `status` field in the `petpal.json` file. `Unmarked` means have not finished yet and `Marked` means already finished.
+You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
+
+Pet deadline status will be automatically saved in the form of `status` field in the `petpal.json` file. `Unmarked` means have not finished yet and `Marked` means already finished.
 
 </div>
 
@@ -359,9 +364,9 @@ You can use this command when:
 
 Format: `delete INDEX`
 
-![delete](images/UG/delete.png)
+![delete](images/UG/delete_new.png)
 
-Examples:
+Example:
 * `delete 2` deletes the second pet in the currently displayed pet list in the PetPal.
 
 
@@ -380,9 +385,10 @@ Note that:
 
 Format: `archive INDEX`
 
-![archive](images/UG/archive.png)
+![archive](images/UG/archive_new.png)
+
 Example:
-* `delete 3` deletes the third pet in the currently displayed list in PetPal
+* `archive 2` archives the second pet in the currently displayed list in PetPal
 
 
 
@@ -392,7 +398,7 @@ Clears all entries from `PetPal.json`.
 
 Format: `clear`
 
-![clear](images/UG/clear.png)
+![clear](images/UG/clear_new.png)
 
 <div markdown="block" class="alert alert-block alert-warning">
 
@@ -414,20 +420,12 @@ make a mistake while using PetPal.
 
 Format: `undo`
 
-![undo](images/UG/undo.png)
-
-<div markdown="block" class="alert alert-block alert-success">
-
-* :bulb: **Note:**
-You can `undo` an `undo` command
-
-</div>
-
+![undo](images/UG/undo_new.png)
 
 
 ### Exiting the program : `exit`
 
-Exits the program. Data is [automatically saved](#saving-the-data)
+Exits the program. Data is [automatically saved](#saving-the-data).
 
 Format: `exit` or `e`
 
@@ -442,7 +440,7 @@ This means hassle-free saving.
 ### Editing the data file
 
 PetPal data are saved as a JSON file `[JAR file location]/data/PetPal.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
-Archive data is also in a JSON format and can be found `[JAR file location]/data/archive.json`. You can also
+Archive data is also in a JSON format and can be found `[JAR file location]/data/archive.json`.
 
 <div markdown="block" class="alert alert-block alert-danger">
 
@@ -528,7 +526,7 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 | **Edit**        | `edit p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG...]`<br> e.g `Example: edit 6 t/Golden Retriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`                                                                                                       |                       |
 | **Delete**      | `delete INDEX`<br>e.g. `delete 2`                                                                                                                                                                                                                                       |                       |
 | **Remind**      | `remind`                                                                                                                                                                                                                                                                |                       |
-| **Mark**        | `mark INDEX`                                                                                                                                                                                                                                                            |                       | 
+| **Mark**        | `mark INDEX` <br>e.g `mark 1`                                                                                                                                                                                                                                           |                       | 
 | **Find**        | `find n/PET_NAME`<br>e.g `find Milo`                                                                                                                                                                                                                                    | `f`                   |
 | **Undo**        | `undo`                                                                                                                                                                                                                                                                  |                       |
 | **Change Cost** | `changecost INDEX RATE FLAT_COST`<br>e.g. `changecost 1 0.1 0.5`                                                                                                                                                                                                        | `cc`                  |
