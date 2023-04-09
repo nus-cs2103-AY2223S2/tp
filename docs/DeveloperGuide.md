@@ -429,10 +429,10 @@ Step 5. The `UI` component listens to changes in this `FilteredList`, and update
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
 
-1. Currently, user can filter employees by creating a `Predicate` with the `=` (equal to), `>` (greater than) or `<` (lesser than) 
-operator to compare with inputted value. We plan to include further options for the user to use relational operators such as `>=` 
+1. Currently, user can filter employees by creating a `Predicate` with the `=` (equal to), `>` (greater than) or `<` (lesser than)
+operator to compare with inputted value. We plan to include further options for the user to use relational operators such as `>=`
 (greater than or equal to), `<=` (lesser than or equal to) and `!=` (not equal to) for filtering employees.
-2. Currently, user can find employees using either `Name` or `Department`. We plan to add functionality to find 
+2. Currently, user can find employees using either `Name` or `Department`. We plan to add functionality to find
 employees based on the `Tag` too.
 3. Currently, error messages do not appear in certain cases of invalid input for employees' fields like the negative payroll.
 As such, we plan to implement more checks that return error messages: `Invalid input for payroll`
@@ -594,7 +594,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The given file type is invalid
   * 1a1. ExecutivePro returns an error message.
-   
+
     Use case ends
 
 **Use case: UC8 - batchexport details of current employees**
@@ -623,7 +623,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. There is no employee matching the given EmployeeId
     * 1a1. ExecutivePro returns an error message.
 * 1b. The remaining number of leaves inputted is invalid
-    * 1b1. ExecutivePro returns an error message   
+    * 1b1. ExecutivePro returns an error message
+
         Use case ends
 
 **Use case: UC9 - Changing the theme of ExecutivePro**
@@ -725,22 +726,22 @@ testers are expected to do more *exploratory* testing.
 ### Adding an employee
 1. Adding an employee with all fields specified:
    1. Test case: `add n/John Doe p/98765432 d/Marketing pr/1000 15 e/johnd@example.com a/311, Clementi Ave 2, #02-25 l/19 dob/2000-04-21 doj/2022-01-04 t/SoftwareEngineer`
-   
+
       Expected: A new employee, with the name "John Doe" will appear at the bottom of the list on the left panel.
    
 2. Adding an employee with optional fields missing:
-   1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000 15`
-   
+   1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000 15` 
+
       Expected: A new employee, with the name "Jane Doe" will appear at the bottom of the list on the left panel.
-   
+
 3. Adding an employee with compulsory fields missing:
    1. Test case: `add n/Janet Doe p/12345678 pr/1000 15`
-   
+
       Expected: An error message `Invalid commant format!` appears.
 
 4. Adding an employee with invalid fields:
    1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000`
-   
+
       Expected: An error message appears, stating that invalid field has been inputted.
 
 ### Saving/Exporting data
