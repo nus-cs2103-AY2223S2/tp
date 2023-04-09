@@ -16,12 +16,13 @@ Given below are my contributions to the project.
   Additionally, NEA personnel are more likely to be familiar with CSV files than json files!
   * Highlight: It was challenging to write to CSV as it required exploring a new package `OpenCSV`. Exploring a new codebase and adding it into our project was nonetheless a very fruitful experience.
   I had to add a new `CsvUtil` class to handle all the reading and writing from CSV.
-* **New Feature**: Added the ability to import and export data as a csv file
-  * Justification: This feature allows users to export, edit, and import csv files into `DengueHotspotTracker`. 
+* **New Feature**: Added the ability to import and export data as a CSV file
+  * Justification: This feature allows users to export, edit, and import CSV files into `DengueHotspotTracker`. 
   Additionally, allowing users to export files, edit them offline, then import them back into the `DengueHotspotTracker` is more convenient for sharing information with those without direct access to the app.
   * This feature also pairs with the `find` function, as users can use `find` to filter the data before exporting that specific set of data to share with others.
-* **New Feature**: Added the ability to checkout overview data as a csv file
-  * Justification: This feature allows users to store the aggregated data in the overview outside of `DengueHotspotTracker`. This means that they will be able to export a much smaller file compared to exporting all the persons in the case list.
+* **New Feature**: Added the ability to checkout overview data as a CSV file
+  * Justification: This feature allows users to store the aggregated data from the overview tab and export it outside of `DengueHotspotTracker` into a CSV file.
+  This means that they will be able to checkout a much smaller file compared to exporting the entire persons case list when they want to just get the aggregated numbers.
 * **New Feature:** Added the GUI for overview.
   * Justification: Our original way of including the overview in our GUI did not match the rest of the GUI. We wanted a design that looked neat and blended with the rest of our GUI. I wrote the `BinCard` class which enabled us to have a UI for the overview section that matched that of the case list it is displayed alongside.
   This allowed us to have a nice scaleable overview tab.
