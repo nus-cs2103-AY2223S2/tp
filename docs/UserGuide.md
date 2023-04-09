@@ -187,6 +187,7 @@ Restrictions:
   * Date is valid to the calendar (eg. `30-13-2023 10:00` is not a valid `DATE`)
   * Time is in 24-hour notation
   * Accepts a past, current or future date
+  * The patient does not have any prior booking on this date, **and** the doctor is not scheduled to meet any other patients on the same date.
 
 Examples:
 * `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment for the patient with the NRIC number `S1234567A` and the doctor with the NRIC number `S7654321Z` on `01-04-2023 10:00`.
