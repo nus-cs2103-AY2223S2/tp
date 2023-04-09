@@ -33,13 +33,13 @@ public enum CommandTargetType {
         }
 
         throw new ParseException("Unrecognised type for command: " + type
-                + "\nCurrent available types: course, group, student, session");
+                + "\nCurrent available types: course, group, student, session, task");
     }
 
     /**
      * Placeholder
      */
-    public static boolean isValidAddType(String type) throws ParseException {
+    public static boolean isValidAddType(String type) {
         for (CommandTargetType sc : CommandTargetType.values()) {
             if (sc.getType().equalsIgnoreCase(type)) {
                 return true;

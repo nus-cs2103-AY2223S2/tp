@@ -1,18 +1,17 @@
-package tfifteenfour.clipboard.logic.commands;
+package tfifteenfour.clipboard.logic.commands.editcommand;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.DESC_AMY;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.DESC_BOB;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_MODULE_CS2105;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.parser.EditCommandParser.EditStudentDescriptor;
 import tfifteenfour.clipboard.testutil.EditStudentDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
@@ -49,10 +48,6 @@ public class EditStudentDescriptorTest {
 
         // different address -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withStudentId(VALID_STUDENTID_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different tags -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_MODULE_CS2105).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

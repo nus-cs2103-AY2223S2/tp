@@ -10,7 +10,6 @@ import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
-import tfifteenfour.clipboard.model.tag.Tag;
 import tfifteenfour.clipboard.model.util.SampleDataUtil;
 
 /**
@@ -31,7 +30,6 @@ public class StudentBuilder {
     private StudentId studentId;
     private Set<Course> modules;
     private Remark remark;
-    private Set<Tag> tags;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -44,7 +42,6 @@ public class StudentBuilder {
         modules = new HashSet<>();
         modules.add(new Course(DEFAULT_MODULE));
         remark = new Remark(DEFAULT_REMARK);
-        tags = new HashSet<>();
     }
 
     /**
@@ -73,14 +70,6 @@ public class StudentBuilder {
      */
     public StudentBuilder withModules(String ... modules) {
         this.modules = SampleDataUtil.getModuleSet(modules);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
-     */
-    public StudentBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
