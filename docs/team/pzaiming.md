@@ -15,7 +15,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 * [Enhancements](#enhancements)
 * [Documentation](#documentation)
 * [Contributions to Team-based Tasks](#contributions-to-team-based-tasks)
-* [Review/Mentoring/Community Contributions](#review/mentoring/community-contributions)
+* [Review/Mentoring/Community Contributions](#Review/Mentoring/Community-Contributions)
 * [Links to Contributions](#links-to-contributions)
 
 ## Contributions
