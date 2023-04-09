@@ -768,7 +768,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a person
+### [Features related to Customers] Deleting a person
 
 1. Deleting a person while all persons are being shown
    1. Prerequisites: List all persons in Customers Window using the `list` command. Multiple persons in the list.
@@ -779,7 +779,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Adding a delivery job 
+### [Features related to Delivery Job System] Adding a delivery job 
 
 1. Add a job through command
    1. Prerequisites: User is in the main window. Valid recipient and sender id. 
@@ -805,7 +805,7 @@ testers are expected to do more *exploratory* testing.
       - `earning`, multiple decimal points.  
       - `date`, invalid date.  
 
-### Notifications
+### Notifications 
 
 1. Display a notification for a reminder
    1. Prerequisites: Added a reminder using the `add_reminder` command. Make sure the `time/` field is set to an appropriate time.
