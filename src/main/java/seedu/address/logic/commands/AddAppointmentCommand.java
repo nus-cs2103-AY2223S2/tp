@@ -57,7 +57,9 @@ public class AddAppointmentCommand extends Command {
 
         if (model.hasPatientName(toAdd.getPatientName())) {
             model.addAppointment(toAdd);
-            CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
+            if (CalendarCard.getIsInstantiated()) {
+                CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
+            }
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
