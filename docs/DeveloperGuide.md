@@ -49,11 +49,44 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
+    - [Navigate to a lecture context](#navigate-to-a-lecture-context)
+    - [List modules](#list-modules)
+    - [List module's lectures](#list-modules-lectures)
+    - [List lecture's videos](#list-lectures-videos)
+    - [Find module](#find-module)
+    - [Find lecture](#find-lecture)
+    - [Find video](#find-video)
+    - [Add a module](#add-a-module)
+    - [Add a lecture](#add-a-lecture)
+    - [Add a video](#add-a-video)
+    - [Edit a module](#edit-a-module)
+    - [Edit a lecture](#edit-a-lecture)
+    - [Edit a video](#edit-a-video)
+    - [Mark/Unmark a video](#markunmark-a-video)
+    - [Mark/Unmark multiple videos](#markunmark-multiple-videos)
+    - [Delete a Module](#delete-a-module)
+    - [Delete multiple Modules](#delete-multiple-modules)
+    - [Delete a Lecture](#delete-a-lecture)
+    - [Delete multiple Lectures](#delete-multiple-lectures)
+    - [Delete a Video](#delete-a-video)
+    - [Delete multiple Videos](#delete-multiple-videos)
+    - [Tag a module](#tag-a-module)
+    - [Tag a lecture](#tag-a-lecture)
+    - [Tag a video](#tag-a-video)
+    - [Untag a module](#untag-a-module)
+    - [Untag a lecture](#untag-a-lecture)
+    - [Tag a video](#tag-a-video-1)
+    - [Export all modules to a new file](#export-all-modules-to-a-new-file)
+    - [Export all modules to an existing file](#export-all-modules-to-an-existing-file)
+    - [Import all modules from a file](#import-all-modules-from-a-file)
+    - [Import all modules from a file](#import-all-modules-from-a-file-1)
+    - [Import some modules from a file](#import-some-modules-from-a-file)
+    - [Clear all Modules](#clear-all-modules)
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
-  - [List Modules](#list-modules)
+  - [List Modules](#list-modules-1)
   - [List Lectures of a Module](#list-lectures-of-a-module)
   - [List Videos of a Lecture](#list-videos-of-a-lecture)
   - [Find Modules](#find-modules)
@@ -67,11 +100,11 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Delete Module(s)](#delete-modules)
   - [Delete Lecture(s)](#delete-lectures)
   - [Delete Video(s)](#delete-videos)
-  - [Tag a Module](#tag-a-module)
-  - [Tag a Lecture](#tag-a-lecture)
-  - [Tag a Video](#tag-a-video)
-  - [Untag a Module](#untag-a-module)
-  - [Untag a Lecture](#untag-a-lecture)
+  - [Tag a Module](#tag-a-module-1)
+  - [Tag a Lecture](#tag-a-lecture-1)
+  - [Tag a Video](#tag-a-video-2)
+  - [Untag a Module](#untag-a-module-1)
+  - [Untag a Lecture](#untag-a-lecture-1)
   - [Untag a Video](#untag-a-video)
   - [Export All Modules to a File](#export-all-modules-to-a-file)
   - [Import Modules from a File](#import-modules-from-a-file)
@@ -1093,7 +1126,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Navigate to a lecture context**
+#### Navigate to a lecture context
 
 **MSS**
 
@@ -1116,7 +1149,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: List modules
+#### List modules
 
 **MSS**
 
@@ -1133,7 +1166,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: List module's lectures
+#### List module's lectures
 
 **MSS**
 
@@ -1156,7 +1189,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: List lecture's videos
+#### List lecture's videos
 
 **MSS**
 
@@ -1185,7 +1218,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Find module
+#### Find module
 
 **MSS**
 
@@ -1206,7 +1239,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Find lecture
+#### Find lecture
 
 **MSS**
 
@@ -1233,7 +1266,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Find video
+#### Find video
 
 **MSS**
 
@@ -1267,7 +1300,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Add a module**
+#### Add a module
 
 **MSS**
 
@@ -1296,7 +1329,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Add a lecture**
+#### Add a lecture
 
 **MSS**
 
@@ -1331,7 +1364,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Add a video**
+#### Add a video
 
 **MSS**
 
@@ -1372,7 +1405,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Edit a module**
+#### Edit a module
 
 **MSS**
 
@@ -1407,7 +1440,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Edit a lecture**
+#### Edit a lecture
 
 **MSS**
 
@@ -1448,7 +1481,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Edit a video**
+#### Edit a video
 
 **MSS**
 
@@ -1495,7 +1528,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Mark/Unmark a video**
+#### Mark/Unmark a video
 
 **Preconditions**: User has added a module, a lecture and a video
 
@@ -1557,7 +1590,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Mark/Unmark multiple videos**
+#### Mark/Unmark multiple videos
 
 **Preconditions**: User has added a module, a lecture and a few videos
 
@@ -1617,7 +1650,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Delete a Module**
+#### Delete a Module
 
 **Preconditions**: User has added a module
 
@@ -1643,7 +1676,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Delete multiple Modules**
+#### Delete multiple Modules
 
 **Preconditions**: User has added a few modules
 
@@ -1673,7 +1706,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Delete a Lecture**
+#### Delete a Lecture
 
 **Preconditions**: User has added a module and a lecture
 
@@ -1711,7 +1744,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Delete multiple Lectures**
+#### Delete multiple Lectures
 
 **Preconditions**: User has added a module and a few lectures
 
@@ -1753,7 +1786,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Delete a Video**
+#### Delete a Video
 
 **Preconditions**: User has added a module, a lecture and a video
 
@@ -1803,7 +1836,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Delete multiple Videos**
+#### Delete multiple Videos
 
 **Precondition**: User has added a module, a lecture and a few videos
 
@@ -1857,7 +1890,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Tag a module**
+#### Tag a module
 
 **MSS**
 
@@ -1887,7 +1920,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Tag a lecture**
+#### Tag a lecture
 
 **Precondition: User has added a module and a lecture**
 
@@ -1931,7 +1964,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Tag a video**
+#### Tag a video
 
 **Precondition: User has added a module, a lecture, and a video**
 
@@ -1988,7 +2021,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Untag a module**
+#### Untag a module
 
 **Precondition: User has added a module, and has tagged that module**
 
@@ -2026,7 +2059,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Untag a lecture**
+#### Untag a lecture
 
 **Precondition: User has added a module and a lecture, and has tagged the lecture**
 
@@ -2076,7 +2109,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Tag a video**
+#### Tag a video
 
 **Precondition: User has added a module, a lecture, and a video, and has tagged the video**
 
@@ -2139,7 +2172,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Export all modules to a new file**
+#### Export all modules to a new file
 
 **MSS**
 
@@ -2163,7 +2196,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Export all modules to an existing file**
+#### Export all modules to an existing file
 
 **MSS**
 
@@ -2193,7 +2226,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Import all modules from a file**
+#### Import all modules from a file
 
 **MSS**
 
@@ -2229,7 +2262,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Import all modules from a file**
+#### Import all modules from a file
 
 **MSS**
 
@@ -2265,7 +2298,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Import some modules from a file**
+#### Import some modules from a file
 
 **MSS**
 
@@ -2307,7 +2340,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use Case: Clear all Modules**
+#### Clear all Modules
 **MSS**
 
 1. User requests to clear all modules
