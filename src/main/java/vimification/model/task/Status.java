@@ -11,6 +11,9 @@ public enum Status {
      * Returns a status, based on a numeric value.
      */
     public static Status fromInt(int level) {
+        if (level < 0 || level > 3) {
+            throw new IllegalArgumentException("Status level must be between 0 and 3");
+        }
         switch (level) {
         case 1:
             return IN_PROGRESS;
@@ -18,7 +21,7 @@ public enum Status {
             return COMPLETED;
         case 3:
             return OVERDUE;
-        default:
+        default: // 0
             return NOT_DONE;
         }
     }
