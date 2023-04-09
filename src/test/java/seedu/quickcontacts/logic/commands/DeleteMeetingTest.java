@@ -24,7 +24,7 @@ public class DeleteMeetingTest {
     public static final Index INDEX_FIRST_MEETING = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_MEETING = Index.fromOneBased(2);
     private Model model = new ModelManager(getTypicalQuickBook(), new UserPrefs());
-    
+
     @Test
     public void execute_deleteMeeting_success() {
         Meeting meetingToDelete = model.getMeetingsList().get(INDEX_FIRST_MEETING.getZeroBased());
