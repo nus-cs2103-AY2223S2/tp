@@ -343,8 +343,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Event** | `delevent EVENT_INDEX` <br> e.g., `delevent 2`
-**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g.,`editevent 1 ev/Birthday Party from/17-07-2023 12:00`
+**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
+**Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g., `editevent 1 ev/Birthday Party from/17-07-2023 12:00`
 **Find Contact** |  `find KEYWORD [MORE_KEYWORDS]`
 **Find Event** | `findevent KEYWORD [MORE_KEYWORDS]`
 **List All Contacts and Events** | `listall`
