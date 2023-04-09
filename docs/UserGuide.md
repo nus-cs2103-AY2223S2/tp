@@ -306,6 +306,7 @@ Examples:
 Course code can have special characters! i.e. "AY2223S2-CS2103T" 
 </div>
 <br>
+
 [Back to list of commands](#commands)
 
 ### Deleting a course: `delete course`
@@ -465,6 +466,11 @@ session <INDEX>
 Examples:
 - `session 1` will return a list of sessions from the first group.
 
+<div markdown="span" class="alert alert-primary">:exclamation: *Note:**
+ Adding new student under a group will propagate to session, but deleting a student will NOT propagate to session.
+</div>
+<br>
+
 [Back to list of commands](#commands)
 
 
@@ -480,6 +486,11 @@ task <INDEX>
 
 Examples:
 - `task 1` will return a list of tasks for the first group.
+
+<div markdown="span" class="alert alert-primary">:exclamation: *Note:**
+ Adding new student under a group will propagate to task, but deleting a student will NOT propagate to task.
+</div>
+<br>
 
 [Back to list of commands](#commands)
 
@@ -541,11 +552,6 @@ delete student <INDEX>
 
 Examples:
 - `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
-
-<div markdown="span" class="alert alert-primary">:exclamation: *Note:**
- Adding new student under a group will propagate to session, but deleting a student will NOT propagate to session.
-</div>
-<br>
 
 [Back to list of commands](#commands)
 
