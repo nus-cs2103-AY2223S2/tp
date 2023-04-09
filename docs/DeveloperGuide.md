@@ -175,7 +175,8 @@ Each object type has been defined as a separate class with its own set of proper
 The relationships between these object types have been established using object references.
 Changes to one object type will trigger an update to the related object types by means of cascading method calls.
 Overall, the implementation of these object types and their dependencies has been designed to provide a robust, 
-scalable, and user-friendly solution for managing the student roster.
+scalable, and user-friendly solution for managing the student roster. Given below is the class diagram omitting most of the details.
+![ObjectDependencyDiagram](images/ObjectDependencyClassDiagram.png)
 
 ### Undo feature
 `undo` allows restoring up to 5 previous states, but can be modified to better suit performance needs. It is important 
