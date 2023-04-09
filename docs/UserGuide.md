@@ -36,16 +36,16 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
 4.Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all athletes.
+* `list` : Lists all athletes.
 
-    * `add n/John Doe p/98765432 a/311, Clementi Ave 2, r/35 t/friends t/owesMoney`
-        : Adds athlete `John Doe` to SportSync.
+* `add n/John Doe p/98765432 a/311, Clementi Ave 2, r/35 t/friends t/owesMoney`
+    : Adds athlete `John Doe` to SportSync.
 
-    * `delete 3` : Deletes the 3rd athlete shown in the current list.
+* `delete 3` : Deletes the 3rd athlete shown in the current list.
 
-    * `clear` : Deletes all athletes and sessions.
+* `clear` : Deletes all athletes and sessions.
 
-    * `exit` : Exits the app.
+* `exit` : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
 <div style="page-break-after: always;"></div>
@@ -349,22 +349,6 @@ Deletes the 3rd session in the session list.
 
 <div style="page-break-after: always;"></div>
 
-### Editing the details of an existing session : `session-edit`
-
-Edits the details of an existing session in the session list, by its index.
-
-Format: `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`
-
-* The index refers to the index number shown in the displayed session list.
-* The index **must be a positive integer** 1, 2, 3, …​ not more than the number of sessions in the session list.
-* At least one of the optional fields must be provided.
-* Session must already exist for it to be edited.
-
-Examples:<br>
-`session-edit 2 n/Hall`<br>
-Changes the location of the 2nd session in the session list to `Hall`.
-
-
 ### Marking an athlete as present : `mark`
 
 Marks an athlete (by name) as present for a specified session (by index).
@@ -429,19 +413,21 @@ Removes the athlete at index 1 of the contact list from the session `Hall`.
 <div style="page-break-after: always;"></div>
 
 ## **Calendar**
-The **Calendar** includes various functions that enable users to manage their schedules effectively. These features are designed to simplify the process of tracking Sessions.
+The **Calendar** includes various functions that enable you to manage your schedule effectively. These features are designed to simplify the process of tracking sessions.
 
 ## How to view
-Users can access the Calendar Features by interacting with the Calendar UI in the Calendar tab. 
-<br> The user can click on the "Prev" and "Next" buttons to navigate through the months. 
+You can access the Calendar Features by interacting with the Calendar tab. 
+<br> You can click on the `Prev` and `Next` buttons to navigate through the months. 
 
 ## Features
-The Calendar Features allow users to view their schedules on a monthly basis. Users can also click on a Session to view its details.
+The Calendar features allow you to view your schedule on a monthly basis.<br>You can also click on a session to view its details.
 
 <br>
 ![CalendarUI](images/calendar.png)
 <br>
 ![PopUpContent](images/popup.png)
+
+<div style="page-break-after: always;"></div>
 
 ## **Income Analytics**
 
@@ -512,7 +498,6 @@ If your changes to the data file makes its format invalid, SportSync will discar
 | **Show Athletes with Tags**     | `show TAG_NAME [MORE_TAGS]…​`<br> e.g. `show Hall Varsity`                                                                                  |
 | **Create Session**              | `create-session n/NAME s/SESSION l/LOCATION`<br> e.g. `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`                |
 | **Delete Session**              | `delete-session INDEX`<br> e.g. `delete-session 3`                                                                                          |
-| **Edit Session**                | `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`<br> e.g. `session-edit 2 n/Hall`                                                     |
 | **Mark Athlete Attendance**     | `mark SESSION_INDEX n/ATHLETE_NAME` <br> e.g. `mark 1 n/John Doe`                                                                           |
 | **Unmark Athlete Attendance**   | `unmark SESSION_INDEX n/ATHLETE_NAME` <br> e.g. `unmark 1 n/John Doe`                                                                       |
 | **Add Athlete to Session**      | `student-add INDEX n/SESSION_NAME` <br> e.g. `student-add 1 n/Hall`                                                                         |
