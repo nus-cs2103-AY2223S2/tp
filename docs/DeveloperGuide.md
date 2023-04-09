@@ -95,11 +95,11 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Find Lectures of a Module by Tag](#find-lectures-of-a-module-by-tag)
   - [Find Videos of a Lecture](#find-videos-of-a-lecture)
   - [Find Videos of a Lecture by Tag](#find-videos-of-a-lecture-by-tag)
-  - [Mark a Video](#mark-a-video)
-  - [Unmark a Video](#unmark-a-video)
   - [Delete Module(s)](#delete-modules)
   - [Delete Lecture(s)](#delete-lectures)
   - [Delete Video(s)](#delete-videos)
+  - [Mark a Video](#mark-a-video)
+  - [Unmark a Video](#unmark-a-video)
   - [Tag a Module](#tag-a-module-1)
   - [Tag a Lecture](#tag-a-lecture-1)
   - [Tag a Video](#tag-a-video-1)
@@ -2524,32 +2524,6 @@ TODO: to be removed
 | `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
 | `nav /mod CS2040S /lec Week 2`<br/>`find`                | Invalid command                             |
 
-### Mark a Video
-
-| Test Case                                    | Expected Result |
-| -------------------------------------------- | --------------- |
-| `mark Vid 1 /mod CS2040S /lec Week 1`        | Vid 1 of CS2040S Week 1 marked as watched |
-| 1. `nav CS2040S` <br> 2. `mark Vid 1 /lec Week 1` | Same as previous | <!--TODO: do we need this?-->
-| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `mark Vid 1` | Same as previous |
-| `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as watched |
-| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as watched |
-| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| 1. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of CS2040S were already marked as watched |
-| `mark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
-| `mark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
-
-### Unmark a Video
-
-| Test Case                                    | Expected Result |
-| -------------------------------------------- | --------------- |
-| `unmark Vid 1 /mod CS2040S /lec Week 1`      | Vid 1 of CS2040S Week 1 marked as unwatched |
-| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as unwatched |
-| `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as unwatched |
-| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| 1. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| `unmark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
-| `unmark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
-
 ### Delete Module(s)
 
 | Test Case                                   | Expected Result |
@@ -2592,6 +2566,32 @@ TODO: to be removed
 | 1. `delete CS2040S` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
 | 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Vid 1 /mod CS2040S /lec Week 1` | Alert user that Week 1 of CS2040S does not exist |
 | 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+
+### Mark a Video
+
+| Test Case                                    | Expected Result |
+| -------------------------------------------- | --------------- |
+| `mark Vid 1 /mod CS2040S /lec Week 1`        | Vid 1 of CS2040S Week 1 marked as watched |
+| 1. `nav CS2040S` <br> 2. `mark Vid 1 /lec Week 1` | Same as previous | <!--TODO: do we need this?-->
+| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `mark Vid 1` | Same as previous |
+| `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as watched |
+| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as watched |
+| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of CS2040S were already marked as watched |
+| `mark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
+| `mark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+
+### Unmark a Video
+
+| Test Case                                    | Expected Result |
+| -------------------------------------------- | --------------- |
+| `unmark Vid 1 /mod CS2040S /lec Week 1`      | Vid 1 of CS2040S Week 1 marked as unwatched |
+| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as unwatched |
+| `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as unwatched |
+| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| `unmark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
+| `unmark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
 
 ### Tag a Module
 
