@@ -15,7 +15,6 @@ With MediMeet, we make it easy to add and edit patient information, appointments
 a one-stop solution to manage your individual medical practice or small clinic! <br>
 
 ## Table of Contents
-{:.no_toc}
 
 * Table of Contents
   {:toc}
