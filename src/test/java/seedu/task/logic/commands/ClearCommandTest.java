@@ -11,6 +11,7 @@ import seedu.task.model.ModelManager;
 import seedu.task.model.TaskBook;
 import seedu.task.model.UserPrefs;
 
+//@@author
 public class ClearCommandTest {
 
     @Test
@@ -21,6 +22,7 @@ public class ClearCommandTest {
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
+    //@@author joyngjr
     @Test
     public void execute_nonEmptyTaskBook_success() {
         Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalPlanner());
