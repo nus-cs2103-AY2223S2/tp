@@ -213,7 +213,7 @@ Our UI components have been carefully crafted to fulfil specific functions, ensu
 We have chosen a light purple and white colour scheme for the application, as these cool colours promote a sense of calm and clarity, making it easier for you to focus on your work.
 
 ![Ui](images/UG_ui_pictures/user_interface.png)
-<center>Diagram 2: <code>EduMate</code>'s UI</center>
+<center>Diagram 2: EduMate's UI</center>
 
 ### **Breakdown of EduMate's UI**
 
@@ -231,7 +231,7 @@ The following diagram shows the layout of components numbered exactly as above.
 
 <img src="images/UG_ui_pictures/ui_labelled.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 3: Labelled layout of <code>EduMate</code>'s UI components.</center>
+<center>Diagram 3: Labelled layout of EduMate's UI components.</center>
 
 ### Person List
 
@@ -331,7 +331,7 @@ The Command Box is located at the bottom of the application. You may refer to th
 
 <img src="images/UG_ui_pictures/command_input_box.png" style="width:80%;margin:0 10%">
 
-<center>Diagram 12: Command input box in <code>EduMate</code> boxed in red</center>
+<center>Diagram 12: Command input box in EduMate boxed in red</center>
 
 <br>
 
@@ -342,7 +342,7 @@ Did you know that the **UP** and **DOWN** arrow keys can be used to quickly acce
 You can now **save time and increase your productivity!**<br>
 <br>
 
-<code>EduMate</code> saves up to 100 of your most recent commands to a file for your convenience when you relaunch the application as well!
+EduMate saves up to 100 of your most recent commands to a file for your convenience when you relaunch the application as well!
 That way, you can reuse commands from your previous session with ease!
 
 </div>
@@ -358,7 +358,7 @@ Both commands will result in a Help Window appearing which shows the various com
 
 <img src="images/UG_ui_pictures/HelpWindow.svg" style="width:40%;margin:1% 1% 1% 30%">
 
-<center>Diagram 13: Help Window of <code>EduMate</code></center>
+<center>Diagram 13: Help Window of EduMate</center>
 
 ### Exit Button
 
@@ -585,7 +585,7 @@ What you should see:
 
 <img src="images/ug_cmds_pics/addcommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 14: A new contact: Weixiang is added to <code>EduMate</code>.</center>
+<center>Diagram 14: A new contact: Weixiang is added to EduMate.</center>
 
 ##### More Examples of Usage:
 
@@ -1151,7 +1151,7 @@ Command entered: `organise 2`
 What you should see:<br>
 
 <img src="images/ug_cmds_pics/OrganiseCommand.svg" style="width:80%;margin:0 10%">
-<center>Diagram 23: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
+<center>Diagram 23: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to EduMate's Scheduled Meet Up Panel.</center>
 
 ##### More Examples of Usage:
 
@@ -1194,7 +1194,7 @@ What you should see: <br>
 
 <img src="images/ug_cmds_pics/UnorganiseCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 24: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
+<center>Diagram 24: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from EduMate's Scheduled Meet Up Panel.</center>
 
 
 ### Other Commands
@@ -1208,7 +1208,7 @@ What you should see: <br>
 
 </div>
 
-This command was built to help you and other new users get acquainted with EduMate functions. 
+This command was built to help you and other new users get acquainted with EduMate's functions. 
 
 `sample` helps to populate EduMate with fake profiles, so you can experiment with the commands without affecting your real contacts.
 
@@ -1226,7 +1226,7 @@ You can only sample at most 100 contacts into EduMate.
 
 :warning: **Warning**<br>
 
-Do not execute <code>sample</code> after you have started using <code>EduMate</code> properly yourself. Doing so will clear all your contacts!
+Do not execute <code>sample</code> after you have started using EduMate properly yourself. Doing so will clear all your contacts!
 
 </div>
 
