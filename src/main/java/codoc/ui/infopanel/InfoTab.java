@@ -59,8 +59,6 @@ public class InfoTab extends UiPart<Region> {
         }
 
         if (protagonist != null) {
-            //String profilePicturePath = protagonist.getProfilePicture().profilePicturePath;
-            //Image image = new Image("file:" + profilePicturePath);
             Image image = new Image(protagonist.getProfilePicture().profilePicturePath);
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(100);
