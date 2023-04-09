@@ -896,6 +896,29 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
    **Expected**: A list of valid genres are displayed in Result Display.
 
+### Listing valid tags
+1. `tags`
+
+   **Expected**: A list of valid tags are displayed in Result Display.
+
+
+2. `tags hello`
+
+**Expected**: A list of valid tags are displayed in Result Display.
+
+### Adding tags to the tag list
+Assumptions: The default tags provided by MyLib is used.
+1. `addtag t/Hero`
+
+   **Expected**: A new tag "Hero" is successfully added to the tag list. A success message is displayed in the Result Display.
+
+2. `addtag t/HighSchool t/Security`
+
+   **Expected**: Two new tags "HighSchool" and "Security" are successfully added to the tag list. A success message is displayed in the Result Display.
+
+3. `addtag t/Novel`
+
+**Expected**: No new tag added to the tag list. An error message is displayed in the Result Display. This is because the tag "Novel" already exists in the tag list.
 ### Get Help
 
 1. `help`
@@ -962,5 +985,4 @@ than 1 0" since the bookmarklist index starts from 1. And keep the current error
 In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be less than 1" when 
 ParseException is thrown.
 
---------------------------------------------------------------------------------------------------------------------
-## **Appendix C: Effort**
+
