@@ -362,7 +362,7 @@ Navigates backwards to a higher context unless already at root context.
 
 #### List Modules
 
-> `list` List all modules in root context.
+> `list`
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
