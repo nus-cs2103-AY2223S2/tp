@@ -11,16 +11,13 @@ Class "<u>detailedPatientView:DetailedView</u>" as DetailedView UI_COLOR {
 }
 show DetailedView fields
 
-Class "<u>displayFunction:Function</u>" as Function #000000
+Class "<u>:ChangeListener</u>" as ChangeListener UI_COLOR
 
-Class "<u>:ChangeListener</u>" as ChangeListener #000000
-
-Class "<u>detailPatientProperty:ObjectProperty</u>" as ObjectProperty #000000
+Class "<u>detailPatientProperty:ObjectProperty</u>" as ObjectProperty MODEL_COLOR
 Class "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 
 ModelManager -down-> ObjectProperty
 ObjectProperty -down-> ChangeListener : updates >
 ChangeListener -down-> DetailedView : updates >
-DetailedView -> Function
 
 @enduml
