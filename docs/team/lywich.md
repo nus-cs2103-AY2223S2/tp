@@ -27,13 +27,13 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * `sort` command enhancement. [#61](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/61)
-      * `sort` is meant to organise the task list for the users to have a clearer image of the tasks at hand. 
+      * `sort` is meant to organise the task list for the users to have a clearer image of the tasks at hand.
       * This is such that a user can see all `Event`, `Deadline`, `SimpleTask` objects adjacent to each other rather than scattered according to input sequence.
     * Color code UI enhancement. [#74](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/74)
       * AB3 has all its tags of the same color background, which impacts the users ability to sieve out different `Task` with the same tags.
       * From a 20 predefined colors, a color is assigned to a tag based on the tag's name.
         * This ensures tags with the same name will have the same color.
-      * Some other alternatives thought up during the process: 
+      * Some other alternatives thought up during the process:
         * A `Task`'s `R`, `G`, `B` values calculated independent of each other.
           * This gives us 256^3 colors to choose from, but this does not guarantee visually appealing combinations.
         * Randomized `R`, `G`, `B` values calculated on new tag and store it somewhere.
@@ -45,7 +45,7 @@ Given below are my contributions to the project.
         * Write-up for `sort` command. [#64](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/64)
         * Write-up for color codes. [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
         * Add new image for `help` window. [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
-      
+
     * Developer Guide:
         * Add table of contents and indexing. [#94](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/94)
         * Write-up for `sort` command. [#94](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/94)
@@ -61,5 +61,5 @@ Given below are my contributions to the project.
     * Released v1.3 jar.
     * Enabled assertions in team repo. [#114](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/114/files)
     * Reviewed 20/71 Pull Requests.
-    * Gave suggestion comments on reviews as needed. 
+    * Gave suggestion comments on reviews as needed.
 

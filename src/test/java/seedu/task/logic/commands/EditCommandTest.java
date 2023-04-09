@@ -12,6 +12,7 @@ import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.task.testutil.TypicalDailyPlans.getTypicalPlanner;
+import static seedu.task.testutil.TypicalDeadlines.getTypicalDeadlineBook;
 import static seedu.task.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.task.testutil.TypicalIndexes.INDEX_SECOND_TASK;
@@ -28,7 +29,9 @@ import seedu.task.model.ModelManager;
 import seedu.task.model.TaskBook;
 import seedu.task.model.UserPrefs;
 import seedu.task.model.task.Task;
+import seedu.task.testutil.DeadlineBuilder;
 import seedu.task.testutil.EditTaskDescriptorBuilder;
+import seedu.task.testutil.EventBuilder;
 import seedu.task.testutil.SimpleTaskBuilder;
 
 /**
@@ -39,6 +42,7 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalPlanner());
     private Model eventModel = new ModelManager(getTypicalEventBook(), new UserPrefs(), getTypicalPlanner());
 
+    private Model deadlineModel = new ModelManager(getTypicalDeadlineBook(), new UserPrefs(), getTypicalPlanner());
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Task editedTask = new SimpleTaskBuilder().build();
@@ -50,6 +54,26 @@ public class EditCommandTest {
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        Task editedEvent = new EventBuilder().build();
+        EditTaskDescriptor descriptor1 = new EditTaskDescriptorBuilder(editedEvent).build();
+        EditCommand editCommand1 = new EditCommand(INDEX_FIRST_TASK, descriptor1);
+        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedEvent);
+        expectedModel = new ModelManager(new TaskBook(eventModel.getTaskBook()),
+            new UserPrefs(), eventModel.getPlanner());
+        expectedModel.setTask(eventModel.getFilteredTaskList().get(0), editedEvent);
+
+        assertCommandSuccess(editCommand1, eventModel, expectedMessage, expectedModel);
+
+        Task editedDeadline = new DeadlineBuilder().build();
+        EditTaskDescriptor descriptor2 = new EditTaskDescriptorBuilder(editedDeadline).build();
+        EditCommand editCommand2 = new EditCommand(INDEX_FIRST_TASK, descriptor2);
+        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedDeadline);
+        expectedModel = new ModelManager(new TaskBook(deadlineModel.getTaskBook()),
+            new UserPrefs(), deadlineModel.getPlanner());
+        expectedModel.setTask(deadlineModel.getFilteredTaskList().get(0), editedDeadline);
+
+        assertCommandSuccess(editCommand2, deadlineModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -100,7 +124,61 @@ public class EditCommandTest {
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
     }
+
+    @Test
+    public void execute_deadlineOnSimpleTask_failure() {
+        Task editedDeadline = new DeadlineBuilder().build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedDeadline).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DEADLINE_ON_TASK);
+    }
+
+    @Test
+    public void execute_deadlineOnEvent_failure() {
+        Task editedDeadline = new DeadlineBuilder().build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedDeadline).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, eventModel, EditCommand.MESSAGE_DEADLINE_ON_EVENT);
+    }
+
+    @Test
+    public void execute_fromOnSimpleTask_failure() {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withFrom("2023-01-01 1800").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_FROM_ON_TASK);
+    }
+
+    @Test
+    public void execute_fromOnDeadline_failure() {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withFrom("2023-01-01 1800").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, deadlineModel, EditCommand.MESSAGE_FROM_ON_DEADLINE);
+    }
+
+    @Test
+    public void execute_toOnSimpleTask_failure() {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTo("2023-01-03 1800").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_TO_ON_TASK);
+    }
+
+    @Test
+    public void execute_toOnDeadline_failure() {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTo("2023-01-03 1800").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, deadlineModel, EditCommand.MESSAGE_TO_ON_DEADLINE);
+    }
+
+
+
 
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() {

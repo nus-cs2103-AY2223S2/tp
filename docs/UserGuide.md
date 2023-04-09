@@ -88,7 +88,7 @@ Now that you've opened up the app, let's start by introducing you to the basic G
 ### Basic Information about the GUI
 * The GUI is made up of 4 primary components:
   * The **Command Box**, where commands are typed in.
-  * The **Result Display**, where the result messages of commands is displayed. 
+  * The **Result Display**, where the result messages of commands is displayed.
   * The **Task List Panel**, where you can view your tasks.
   * The **Alert Panel**, where your upcoming tasks are displayed.
 
@@ -225,6 +225,7 @@ Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
 * You can remove a description with `d/` without specifying any tags after it.
+* The `INDEX` needs to come before other prefixes.
 
 Examples:
 *  `edit 1 t/CS2102 t/URGENT` Edits the tags of the first task to now be `CS2102` and `URGENT`
@@ -401,14 +402,15 @@ Examples:
 ### 4.10.1 Adding a Subsection to a Task : `subsection`
 
 Adds a subsection to a task in the task book. The subsection added will appear as in the corresponding task's task card.
-You can do so by entering `subsection index n/name d/description`, and the description prefix `d/` is optional.
+You can do so by entering `subsection INDEX n/NAME d/DESCRIPTION`, and the description prefix `d/` is optional. Note that the `index` must come before `n/` and `d/` prefixes.
 
 Examples:
 - Assuming your current task list has a task with index 1, `subsection 1 n/homework d/Math` will add a subsection to the main task at index 1 with a subsection with the name "homework" and description "Math".
 
 ### 4.10.2 Deleting a Subsection From a Task : `remove-subsection`
 
-Deletes a subsection from a task, assuming you have one in the task. You can do so by entering `remove-subsection index I/subsection index`, where the first index is the main task's index, and the latter is the subsection's.
+Deletes a subsection from a task, assuming you have one in the task. You can do so by entering `remove-subsection INDEX I/SUBSECTION INDEX`, where the first index is the main task's index, and the latter is the subsection's.
+Note that the `index` must come before `I` prefixes.
 
 Examples:
 - Assuming your current task list has a task with index 1, which in turn contains a subsection with index 1. You can delete it with `remove-subsection 1 I/1`. The newly updated task will be shown.

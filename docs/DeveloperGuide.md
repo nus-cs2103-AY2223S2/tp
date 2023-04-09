@@ -27,7 +27,7 @@ title: Developer Guide
     * [3.9 Sort Feature](#39-sort-feature)
     * [3.10 Alert Feature](#310-alert-feature)
     * [3.11 Schedule Feature](#311-schedule-feature)
-      * [3.11.1 How it works](#3111-how-it-works) 
+      * [3.11.1 How it works](#3111-how-it-works)
       * [3.11.2 Generating a new plan](#3112-generating-a-new-plan)
     * [3.12 Tag Color Codes](#312-tag-color-codes)
   * [4. Documentation, Logging, Testing, Configuration, DevOps](#4-documentation-logging-testing-configuration-dev-ops)
@@ -168,24 +168,25 @@ How the parsing works:
 ### 2.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-<!--- insert main class diagram here --->
+<img src="images/ModelClassDiagram1.png" width="450" />
+
 
 The `Model` component,
 * stores `TaskBook`, `Planner` and `UserPref` object.
 * `TaskBook` stores the data of all `Task` objects.
 * `Planner` stores the data of all generated `DailyPlan` objects.
-* `UserPref` stores an object that represents the user's preference. This is exposed to the outside as a `ReadOnlyUserPref` objects. 
+* `UserPref` stores an object that represents the user's preference. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<!--- insert TaskBook class diagram here --->
+<img src="images/ModelClassDiagram2.png" width="450" />
 The `TaskBook` component,
 * stores `Task` are contained in a `UniqueTaskList` object.
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
-<!--- insert Planner class diagram here --->
+<img src="images/ModelClassDiagram3.png" width="450" />
+* stores the generated plan, i.e. all `DailyPlan` objects<br>
+We wish to show more details in the DailyPlan Class but the styling restricts us from doing so
 The `Planner` component,
-* stores the generated plan, i.e. all `DailyPlan` objects
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskBook`, which `Task` references. This allows `TaskBook` to only require one `Tag` object per unique tag, instead of each `Task` needing their own `Tag` objects.<br>
 
@@ -271,7 +272,7 @@ The following diagram summarises how the activities unfold after the user types 
 
 #### 3.1.2 Delete a Subsection
 The user can delete a subsection from a parent task by entering `remove-subsection` command.
-A user may wish to delete a subsection from a task with index 1 in the list currently displayed to the user, and the user can do so by entering `remove-subsection 1 I/1`, where the first index is the index of 
+A user may wish to delete a subsection from a task with index 1 in the list currently displayed to the user, and the user can do so by entering `remove-subsection 1 I/1`, where the first index is the index of
 the parent task, and the index after the `I` parameter refers to the index of the subsection in the parent task.
 
 Given below is an example usage scenario and how `subsection` is executed.
@@ -356,7 +357,7 @@ Cons: Takes more time to delete multiple task at once.
 
 ### 3.4 Edit Feature
 
-The edit feature now can edit many possible fields of a task, including the task's name, description, tags and effort. The editing is based on the index of the task in the list currently shown to the user. Entering `edit` with 
+The edit feature now can edit many possible fields of a task, including the task's name, description, tags and effort. The editing is based on the index of the task in the list currently shown to the user. Entering `edit` with
 prefixes after it, such as `n/homework` will change the name of the original task to homework.
 
 You can find the specific implementation in the `EditCommandParser` and `EditCommand` class.
@@ -369,7 +370,7 @@ Step 2. The `EditCommandParser` recognises that the parameter being changed is t
 
 Step 3. The `EditCommandParser` creates an `EditTaskDescriptor` that stores the changed parameter value, which is `homework` in this case.
 
-Step 4. The `EditCommandParser` calls `EditCommand` with the index of the task and the `EditTaskDescriptor`. 
+Step 4. The `EditCommandParser` calls `EditCommand` with the index of the task and the `EditTaskDescriptor`.
 
 Step 5. The `EditCommand` is executed and a new task is created, with the name parameter changed to "homework". The new task replaces the original task in the task list.
 
@@ -909,14 +910,65 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+### Adding a task
+
+1. Adding a simple task
+
+   1. Test case: `add n/homework d/chapter 1 t/CS2103T E/20`<br>
+     Expected: A new simple task with the name homework, description chapter 1 and tag CS2103T with an effort level of 20 will be added. The success message will be shown in the message panel.
+   2. Test case: `add n/homework`<br>
+     Expected: A new simple task with name homework, no description, no tags with default effort level of 24 will be added to the task list. The success message will be shown in the message panel.
+   3. Incorrect Test case: `Add d/homework`(no name provided)<br>
+     Expected: No task will be added to the task panel and the error message will be shown in the message panel.
+
+2. Adding a deadline task
+
+   1. Test case: `add n/submission d/chapter 1 t/CS2103T E/20 D/2023-05-05 1200`<br>
+     Expected: A new deadline task with the name submission, description chapter 1, tag CS2103T, an effort level of 20 and a deadline on 5th May 2023 at 12:00 will be added to the task list. Success message will be shown in the message panel.
+   2. Incorrect test case: `add n/submission d/chapter 1 t/CS2103T E/20 D/2023-05-05`(no time provided)<br>
+     Expected: No new task will be added to the task list, error message will be shown in the message panel.
+
+3. Adding an event task
+
+   1. Test case: `add n/test d/chapter 1 t/CS2103T E/20 F/2023-05-05 1200 T/2023-05-05 1400`<br>
+     Expected: A new event task with the name test, description chapter 1, tag CS2103T, effort level 20, with start time on 5th May 2023 at 12:00 to end time on 5th May 2023 at 14:00 will be added. Success message will be shown in the message panel.
+   2. Incorrect test case: `add n/test d/chapter 1 t/CS2103T E/20 F/2023-05-05 1200`(no to date)<br>
+     Expected: No new event will be added to the task list, error message will be shown in the message panel.
+
+4. Adding multiple tasks at the same time
+   1. Test case: `add n/homework 1 n/homework 2 d/chapter 1 t/CS2103T E/20`<br>
+     Expected: Two simple tasks will be added to the task list. They have the same description of chapter 1, tag of CS2103T, and effort level of 20. However, the only difference is that they have different names.
+
+
+### Adding a subsection
+
+1. Adding a subsection where there is at least one main task
+
+   1. Prerequisites: Add at least one main task to the task list. Assuming that we are adding subsections to the task with index number 1.
+   2. Test case: `subsection 1 n/homework d/CS2103T`<br>
+     Expected: The subsection with name "homework" and description "CS2103T" is added to the first main task in the list.
+   3. Other incorrect `subsection` commands: `subsection 1 n/` and  `subsection 0 n/Test`. The result of the command would be no subsection added
+     and error details are shown in the status message.
+
+### Deleting a subsection
+
+1. Deleting a subsection where there is at least one main task
+
+   1. Prerequisites: Add at least one main task to the task list and one subsection to the first task in the list.
+   2. Test case: `remove-subsection 1 I/1`<br>
+     Expected: The first subsection in the first main task will be removed. The other indexes of the subsections within the same main task will be numbered again.
+   3. Other incorrect `subsection` commands: `remove-subsection 0 I/1` and `remove-subsection 1 I/0`. The result of the command would be no subsection added
+     and error details are shown in the status message.
+
 
 ### Deleting a task
 
@@ -925,7 +977,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
    2. Test case: `delete 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the result display. 
+      Expected: First task is deleted from the list. Details of the deleted task shown in the result display.
 
    3. Test case: `delete 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Command box remains the same.
@@ -962,14 +1014,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Add 1 each of `Events`, `Deadline`, `SimpleTask` in the order stated with a tag of liking to it. Then, repeat it again, but with no tags assigned to each.
 
-   1. Test case: `sort`<br>
+   2. Test case: `sort`<br>
      Expected: The order of the tags will be as follows: `SimpleTask` with no tag, `SimpleTask` with tag, `Deadline` with no tags, `Deadline` with tags, `Event` with no tags, `Event` with tags.
 
 2. Sorting a `Deadline` with different deadlines
-   
+
    1. Prerequisites: Add 1 `Deadline` task with a deadline of liking (e.g. 2023-04-14 1400) and another `Deadline` task with an earlier deadline (e.g. 2023-04-14 1200).
-  
-   1. Test case: `sort`<br>
+
+   2. Test case: `sort`<br>
      Expected: The `Deadline` task with an earlier deadline is above the other.
 
 
@@ -979,7 +1031,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: It is the first start-up of Clock-Work with no `alert` command calls. OR <br>
     User has already called `alert 24`.
 
-   1. Test case: `add n/Test D/2023-04-08 0900` assuming that is it currently `2023-04-07 1000` <br>
+   2. Test case: `add n/Test D/2023-04-08 0900` assuming that is it currently `2023-04-07 1000` <br>
     Expected: Task added to the task list. Details of added task shown in status message. <br>
     If it is first time start up of Clock-Work or alert window already set to 24, the task should already appear in the alert window.
 
@@ -987,29 +1039,29 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: It is the first start-up of Clock-Work with no changes `alert` command calls. OR <br>
       User has already called `alert` with an alert window less than 48 hours.
 
-   1. Set up: `add n/Test D/2023-04-09 0900` assuming that is it currently `2023-04-07 1000` <br>
+   2. Set up: `add n/Test D/2023-04-09 0900` assuming that is it currently `2023-04-07 1000` <br>
       Expected: Task added to the task list. Details of added task shown in status message. <br>
 
-   1. Test case: `alert 48`. <br>
+   3. Test case: `alert 48`. <br>
    Expected: The task should already appear in the alert window.
 
 
 ### Generating and Displaying a schedule
 1. Generate a new schedule and display tasks assigned
 
-  1. Prerequisites:
-     1. Clear all tasks from Clock-Work with `clear`.
-     2. Add a `Deadline` task which is due 1 day from today. For example, if today is 18 July 2023, add a `Deadline` using the command `add n/deadline D/2023-07-19`.
-     3. Add an `Event` task that starts today and ends tomorrow. For example, if today is 18 July 2023, add an `Event` using `add n/event F/2023-07-18 1000 T/2023-07-19 1300`
-     4. Add a `SimpleTask` task with effort level 6. This can be done by running the command `add n/simpletask E/6`
+   1. Prerequisites:
+      1. Clear all tasks from Clock-Work with `clear`.
+      2. Add a `Deadline` task which is due 1 day from today. For example, if today is 18 July 2023, add a `Deadline` using the command `add n/deadline D/2023-07-19`.
+      3. Add an `Event` task that starts today and ends tomorrow. For example, if today is 18 July 2023, add an `Event` using `add n/event F/2023-07-18 1000 T/2023-07-19 1300`
+      4. Add a `SimpleTask` task with effort level 6. This can be done by running the command `add n/simpletask E/6`
 
-  2. Test case: `schedule D/2023-07-18 E/30`<br>
+   2. Test case: `schedule D/2023-07-18 E/30`<br>
      Expected: `Deadline` task and `Event` task is displayed.
-  3. Test case: `schedule D/2023-07-19`<br>
+   3. Test case: `schedule D/2023-07-19`<br>
      Expected: `Event` task and `SimpleTask` task is displayed.
-  4. Test case: `schedule D/2023-07-20`<br>
+   4. Test case: `schedule D/2023-07-20`<br>
      Expected: No tasks are displayed.
-  5. Test case: `schedule D/2023-07-17`<br>
+   5. Test case: `schedule D/2023-07-17`<br>
      Expected: Task list panel remains the same. Error details shown in the result display. Command box remains the same.
 
 ### Saving data
@@ -1018,10 +1070,42 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Locate the `data` folder in the same directory as where the jar file is located. (If the data folder is not yet generated, add a dummy task `add n/dummyTask` to generate one).
 
-   1. Exit the application and delete the `data` folder.
+   2. Exit the application and delete the `data` folder.
 
-   1. Open the application again. <br>
+   3. Open the application again. <br>
       Expected: A list of sample Task is displayed.
+
+### Find a task
+
+1. Find a task by its name/description/tags/effort level
+
+   1. Prerequisites: There is at least one task in the task list with description and one task with tags. Please note that the find command can only find using one prefix at a time.
+   2. For the following test cases, you could create a task using `add n/test d/all chapters t/CS2103T E/20`
+   3. Test cases: `find n/test`, `find d/all chapters`， `find t/CS2103T`, `find E/20`.<br>
+   Expected: The task with the relevant name/description/tags/effort level will be listed in the task panel now. The status bar shows the success message.
+   4. Some incorrect test cases: `find n/`, `find d/`, `find t/`, `find E/`.<br>
+   Expected: The task list will not change and the error message will be shown in the message panel.
+
+2. Find a task by its from date/to date/deadline
+
+   1. Prerequisites: Create an event and a deadline in the task list. <br>
+   You can do so using `add n/test F/2023-05-05 1200 T/2023-05-05 1400` and `add n/homework D/2023-05-05 1200`.
+   2. Test cases: `find F/2023-05-05`, `find T/2023-05-05`<br>
+   Expected: Events with a from date on 5th May 2023 and events with a to date on 5th May 2023 will be listed in the task list. Success message will be shown in the message panel.
+   3. Test case: `find D/2023-05-05`<br>
+   Expected: Deadlines on 5th May 2023 will be listed in the task list. Success message will be shown in the message panel.
+   4. Some incorrect test cases: `find F/`, `find D/` and `find T/`.<br>
+   Expected: The task list will not change and the error message will be shown in the message panel.
+
+3. Find a task using the `all/` prefix so that tasks containing all inputs will be returned. Bear in mind that only one single type of prefix should be searched, i.e. you still only can search using a single type of prefix but many inputs can be entered.
+
+   1. Prerequisites: Create a task that contains the fields you wish to search.
+   2. Test cases: `find all/ n/watch n/lecture`<br>
+   Expected: Only tasks that contains both "watch" and "lecture" in their name will be listed in the task list now. Success message will be shown in the message panel.
+   3. Test cases: `find all/ t/CS2103T t/urgent`<br>
+   Expected: Only tasks that has both "CS2103T" and "urgent" as tags will be displayed in the task list. Success message will be shown in the message panel.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1031,7 +1115,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.1 Accommodating long inputs
 
-- As brought up by issue [#193](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/193) and [#168](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/168), 
+- As brought up by issue [#193](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/193) and [#168](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/168),
 long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` causes the user to not be able to see the parameter.
 
 #### Possible Solution
@@ -1067,20 +1151,20 @@ a task by its subsection name or description.
 #### Possible Solution
 - One possible solution is to add a predicate in the `model.task` package that allows the list to be filtered based on whether the task has a certain subsection name/description.
 - The find command parser also needs to be modified to take in prefixes such as `sub-n/` and `sub-d/`.
-- Inside the predicates, we go through each task's subsections and see whether at least one subsection contains the user's input name or description. 
-- The new command will look something like `find sub-n/NAME`, which finds a task by its subsection name. Find by subsection description command can look like 
+- Inside the predicates, we go through each task's subsections and see whether at least one subsection contains the user's input name or description.
+- The new command will look something like `find sub-n/NAME`, which finds a task by its subsection name. Find by subsection description command can look like
 `find sub-d/DESCRIPTION`.
 - An example call could be `find sub-n/homework` or `find sub-d/chapter 1`.
 - The result of the command will be a  displayed list of tasks found:
 ![text-wrap0](images/find-bysubsectionname.png)
 
 #### Pros
-- This gives the user more options for searching a task. 
+- This gives the user more options for searching a task.
 - User can find a task even if the user only remembers the subsection's name or description.
 
 #### Cons
 - The flaw of this approach is that user needs to specify whether he/she is searching for the task by its main name or subsection name. Sometimes the user might not remember exactly
-whether the name of the task he/she wants to find is in the parent task or subsection. 
+whether the name of the task he/she wants to find is in the parent task or subsection.
 - The user also needs to remember that `sub-n` means subsection name and `sub-d` means subsection description.
 
 ### 7.3 Enabling `edit` by subsection
@@ -1092,7 +1176,7 @@ whether the name of the task he/she wants to find is in the parent task or subse
 - This is extendable to all fields in subsections, such as effort level, deadline, from date and to date.
 - The new command will look something like `edit INDEX I/INDEX sub-n/NAME`, which edits a task's subsection name. Edit by subsection description command can look like
   `edit INDEX I/INDEX sub-d/DESCRIPTION`. Here, the first index corresponds to the main task's index in the current task list displayed and the index after
-prefix `I/` corresponds to the index of the subsection in the parent task. 
+prefix `I/` corresponds to the index of the subsection in the parent task.
 - An example could be `edit 1 I/1 sub-n/lab` or `edit 1 I/1 sub-d/chapter 1`.
 - Other proposed command prefixes include `sub-e/`, `sub-D/`, `sub-F/`, and `sub-T/` for editing subsections' effort level, deadline, from dates and to dates respectively.
 - The result of the command will be the following text on success: `Edited Task: cs2103t tasks, edited subsection: name: milestone 1  description: build homepage`
@@ -1113,14 +1197,14 @@ prefix `I/` corresponds to the index of the subsection in the parent task.
 - One possible solution is to allocate the main task's effort level to the subsection and allow the subsection to be one of a simple task, deadline or event. The scheduling algorithm will allocate big tasks by putting them across different days with different subsections on each day.
 - The new `subsection` command will look something like `subsection n/NAME [d/DESCRIPTION] [E/EFFORT LEVEL] [D/DEADLINE] [F/FROM DATE] [T/TO DATE]`. If the effort level is not specified, then the effort level of the main task will be evenly distributed among the subsections.
 - The `schedule` command will still look like `schedule E/EFFORT D/DATE` but the result will be the parent tasks along with only part of the subsections that is set to be completed on that day.
-- For example, if the task list only contains a parent task that has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/25 D/2023-05-04` and today is 2023-05-04, the displayed result 
+- For example, if the task list only contains a parent task that has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/25 D/2023-05-04` and today is 2023-05-04, the displayed result
 will only be the parent task and the subsection "homework A". If the user enters `schedule E/25 D/2023-05-05` then, the same parent task with subsection "homework B" will be displayed.
-- The effort level will be checked when user creates a subsection because user may enter an effort level that is higher than the main task's effort level. If the user specifies an effort level for a subsection, and the new total effort level of subsections is smaller than or equal 
+- The effort level will be checked when user creates a subsection because user may enter an effort level that is higher than the main task's effort level. If the user specifies an effort level for a subsection, and the new total effort level of subsections is smaller than or equal
 to the effort level of the main task, the remaining effort level of a main task will just belong to the main task and the main task will be scheduled again on some day without any subsection. The same checks will happen if the user edits the subsection's effort level, i.e. making sure
 that the total effort level is smaller than the main task's.
-- This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadline date, even if that may result in 
-the total effort on a certain date exceeding daily effort level. Also, the events' subsections should occur between the events' start and end time. 
-- Moreover, allowing parent tasks to have deadlines and events as subsections will allow deadlines to be broken down into multiple deadlines and events to contain multiple events. Those components will be scheduled individually and displayed along with the parent tasks. 
+- This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadline date, even if that may result in
+the total effort on a certain date exceeding daily effort level. Also, the events' subsections should occur between the events' start and end time.
+- Moreover, allowing parent tasks to have deadlines and events as subsections will allow deadlines to be broken down into multiple deadlines and events to contain multiple events. Those components will be scheduled individually and displayed along with the parent tasks.
 This ensures that the user have more flexibility in handling subsections.
 
 #### Pros
@@ -1146,32 +1230,39 @@ of the selected parent task sorted. The sorting will sort subsections in the ord
 - With sorting enabled, user will be able to see `SimpleTask`, `Event` and `Deadlines` being grouped together with same type of tasks. This gives user a better overview of what subsections are there.
 
 #### Cons
-- The sorting simply sorts the subsections according to their type and fields such as name and dates, it would not really benefit user in planning.  
+- The sorting simply sorts the subsections according to their type and fields such as name and dates, it would not really benefit user in planning.
 
 ### 7.6 Better error messages
 
 - Currently, there are still some error messages that are not specific enough. For some commands, generic message about command usage is shown, instead of specific reason about why the command is rejected. For example, for the edit command, when the user enters an index that is out of bounds, i.e. the index is negative or the index is larger than the maximum index currently displayed in the list, the error message will be:<br>
   ![text-wrap0](images/index-error.png)
+
 <br>
   However, a more specific error would be `The index provided is invalid`. In the future, the error message will be changed to `The index provided is invalid` for index errors.
 <br>
 - More bugs arising from the same issue of weak parameter handling are as follows:
 
-  1. Invalid index inputs from user, such as `0`, in commands such as `delete`, `edit`, `subsection`, and `remove-subsection`. 
-  Observed behavior: The error message shows each command's expected usage, such as the one shown in the example above. 
+
+  1. Invalid index inputs from user, such as `0`, in commands such as `delete`, `edit`, `subsection`, and `remove-subsection`.
+  Observed behavior: The error message shows each command's expected usage, such as the one shown in the example above.
   Preferred behavior: Explain cause of command rejection, such as with an error message `The index provided is invalid`.
   Proposed modification: Create an `IndexOutOfBoundsException` to handle invalid indexes.
 
   2. Invalid date inputs from user for `schedule` command.
   Observed behavior: The same error message (below) is displayed for all invalid dates entered (date entered is outside of planner range - could be before or after).
-  Preferred behavior: Inform the user about why the date entered is invalid. 
+  Preferred behavior: Inform the user about why the date entered is invalid.
      1. For dates which are invalid because the previous plan was generated too long ago but would be valid if a new plan is generated, a message like `Please regenerate your plans to view your schedule.` could be displayed.
      2. For dates entered which are before previous plan's generation date, a message like `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}` could be displayed.
      3. For dates entered which are too far ahead of any possible plan dates, a message like `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}` could be displayed.
-  Proposed modification: Whenever `schedule` is run, retrieve the generation date of the current plan from the planner.json file. If the date is deemed to be invalid, check the input date against the retrieved generation date. 
+  Proposed modification: Whenever `schedule` is run, retrieve the generation date of the current plan from the planner.json file. If the date is deemed to be invalid, check the input date against the retrieved generation date.
   If input date is within 30 days from current date but outside of planner range, return an error message prompting user to regenerate plans (e.g. `Please regenerate your plans to view your schedule.`).
   If input date is before generation date, return an error message informing user that the date is an invalid date and the previous generation date (e.g. `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}`).
   If input date is too far in the future, return an error message informing user that the date is an invalid date as it is too far into the future. (e.g. `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}`)
+  
+  3. Invalid tag input from the user, such as `t/1 1` where there is a blank space in the tag, for commands such as `edit`, `find`.
+  Observed behaviour: The error message shows that `Tags names should be alphanumeric and not blank`.
+  Preferred behaviour: Explain more specifically the cause of command rejection, such as with an error message `Tags names should not contain blank spaces`.
+  Proposed Modification: Add more functionalities in the parser for tags so that blank spaces are checked as well.
 
 ### 7.7 Empty planner file error handling
 - Currently, a new and empty `planner.json` file is created on starting the app for the first time, or when users modify the file such that it becomes invalid, or when users delete the `planner.json` file. However, data is not automatically populated and the user will need to generate a new plan to retrieve plans.

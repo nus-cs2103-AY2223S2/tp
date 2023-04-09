@@ -7,8 +7,10 @@ import java.util.stream.Stream;
 import seedu.task.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Date;
+import seedu.task.model.task.Deadline;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Effort;
+import seedu.task.model.task.Event;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.Task;
 
@@ -37,6 +39,13 @@ public class EditTaskDescriptorBuilder {
         descriptor.setDescription(task.getDescription());
         descriptor.setTags(task.getTags());
         descriptor.setEffort(task.getEffort());
+        if (task instanceof Event) {
+            descriptor.setFrom(((Event) task).getFrom());
+            descriptor.setTo(((Event) task).getTo());
+        }
+        if (task instanceof Deadline) {
+            descriptor.setDeadline(((Deadline) task).getDeadline());
+        }
     }
 
     /**
