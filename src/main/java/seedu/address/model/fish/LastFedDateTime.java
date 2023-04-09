@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.date.DateUtil;
 
@@ -18,7 +17,6 @@ public class LastFedDateTime {
             "Last Fed Date Time is a date time in the format of \"dd/MM/yyyy HH:mm\"";
     public static final String VALIDATION_REGEX =
             "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4} (?:[01]\\d|2[0-3]):[0-5]\\d$";
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public final String value;
     public final LocalDateTime localDateTime;
@@ -33,8 +31,8 @@ public class LastFedDateTime {
         requireNonNull(lastFedDateTime);
         checkArgument(isValidLastFedDateTime(lastFedDateTime), MESSAGE_CONSTRAINTS);
 
-        value = lastFedDateTime;
-        localDateTime = LocalDateTime.parse(lastFedDateTime, formatter);
+        localDateTime = DateUtil.parseStringToDateTime(lastFedDateTime);
+        value = DateUtil.convertDateTimeToString(localDateTime);
         alphaNumericDateTime = DateUtil.getTaskDescriptionDateTimeFormat(localDateTime);
     }
 

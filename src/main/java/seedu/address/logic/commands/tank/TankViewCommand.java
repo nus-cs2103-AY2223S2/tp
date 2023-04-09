@@ -45,7 +45,7 @@ public class TankViewCommand extends TankCommand {
         List<Tank> lastShownList = model.getFilteredTankList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TANK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_TANK_INDEX_OUTOFBOUNDS);
         }
 
         Tank tankToView = lastShownList.get(targetIndex.getZeroBased());

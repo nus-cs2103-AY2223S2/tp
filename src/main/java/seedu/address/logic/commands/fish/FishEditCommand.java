@@ -77,7 +77,7 @@ public class FishEditCommand extends FishCommand {
         List<Fish> lastShownList = model.getFilteredFishList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
         }
 
         Fish fishToEdit = lastShownList.get(index.getZeroBased());
@@ -117,7 +117,7 @@ public class FishEditCommand extends FishCommand {
 
         try {
             updatedTank = editFishDescriptor.getTankIndex()
-                    .map(ind -> model.getFilteredTankList().get(ind.getZeroBased()))
+                    .map(ind -> model.getTankFromIndex(ind))
                     .orElse(fishToEdit.getTank());
             //            int ind = Integer.valueOf(editedFish.getTank().getTankName().fullTankName);
             //            Index tankIndex = Index.fromOneBased(ind);

@@ -15,7 +15,6 @@ import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.readings.AmmoniaLevel;
 import seedu.address.model.tank.readings.PH;
 import seedu.address.model.tank.readings.Temperature;
-import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * Parses input arguments and creates a new ReadingsAddCommand object
@@ -50,6 +49,8 @@ public class ReadingsAddCommand extends TankCommand {
     public ReadingsAddCommand(AmmoniaLevel ammoniaLevel, PH pH, Temperature temperature, Index tankIndex) {
         requireNonNull(ammoniaLevel);
         requireNonNull(tankIndex);
+        requireNonNull(pH);
+        requireNonNull(temperature);
         toAddAmmonia = ammoniaLevel;
         toAddPH = pH;
         toAddTemp = temperature;
@@ -68,7 +69,6 @@ public class ReadingsAddCommand extends TankCommand {
         }
         // check that tank is non-null
         requireNonNull(tank);
-        UniqueIndividualReadingLevels readingLevels = tank.getReadingLevels();
         model.addReadingsToIndividualReadingLevels(toAddAmmonia, toAddPH, toAddTemp, tank);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddAmmonia, toAddPH, toAddTemp));
     }

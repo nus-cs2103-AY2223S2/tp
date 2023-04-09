@@ -6,8 +6,8 @@ title: Developer Guide
 <img src="images/logo_DG.png" width="300">
 </p>
 
-* Table of Contents
-  {:toc}
+* Table of Contents 
+{:toc}
 
 ## About
 
@@ -134,7 +134,7 @@ This could allow the user to supply their own types of readings (which would be 
 Combining this with the ability to choose which chart to display for each tank would allow for a lot of flexibility in terms of how the user can view their tank readings.
 However, this would requite significant changes to the way readings are stored. It might require a rework of the entire `readings` package to make it more flexible.
 
-### Logic component 
+### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -162,7 +162,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `FishAddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `FishAddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `FishAddCommandParser`, `TaskDeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-* The 3 main types of `XYZCommandParser` are divided into command parsers for `Fish`, `Tank` and `Task`. 
+* The 3 main types of `XYZCommandParser` are divided into command parsers for `Fish`, `Tank` and `Task`.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -214,7 +214,7 @@ The entrypoint of this feature is in the `start()` method of MainApp, which is a
 `Fish`. For each tank with unfed `Fish`, we create a `TaskFeedingReminder`. We then return an `ArrayList` of
 `TaskFeedingReminders` as `feedingReminders`. In the `Logic` component, we create a `TaskFeedingReminderCommand` for
 each `TaskFeedingReminder`, then execute these commands, updating the `Model` component before saving the states
-if the various lists. 
+if the various lists.
 
 ![FeedingReminderSequenceDiagram](images/FeedingReminderSequenceDiagram.png)
 
@@ -237,13 +237,13 @@ Specifically, it currently sorts by the five compulsory fields of a fish:
 * Feeding Interval
 * Tank
 
-Currently, upon instantiation of `ModelManager`, it creates a `SortedList` from a `AddressBook`. 
-A `Filteredlist` is created based off the same `SortedList`. Hence, when we perform sorting operations, we are able to 
+Currently, upon instantiation of `ModelManager`, it creates a `SortedList` from a `AddressBook`.
+A `Filteredlist` is created based off the same `SortedList`. Hence, when we perform sorting operations, we are able to
 manipulate and display the filtered list. As a result, we are able to sort the fish list and filter at the same time.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user is currently using the application, and there are three entries currently existing in the 
+Step 1. The user is currently using the application, and there are three entries currently existing in the
 `AddressBook`, `Marlin, Nemo, Dory`, added in that order to a tank, named `Ocean tank`.
 
 Step 2. The user executes `fish sort by/n tk/1`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
@@ -297,7 +297,7 @@ Thus, `LogicManager` will invoke `execute` on `TaskAddCommand` with the followin
 
 #### Design Considerations
 * Alternative 1 (current choice): Create a parser for task commands and a taskAdd parser for add-specific task commands
-    * Pros: Easy to manage TaskList functionalities. 
+    * Pros: Easy to manage TaskList functionalities.
     * Cons: May have performance issues due to numerous calls down command-specific parsers
 
 * Alternative 2 : Do not abstract task command parsing to a `TaskParser`
@@ -309,32 +309,42 @@ Thus, `LogicManager` will invoke `execute` on `TaskAddCommand` with the followin
 
 ### TankFeedCommand feature
 #### Motivation
-As a FishTracker application, we provide a way for fishkeepers to track the `LastFedDates` of all their fishes,
+As a FishTracker application, we provide a way for fishkeepers to track the `LastFedDate` of all their fishes,
 as having multiple tanks and fishes makes feeding difficult to keep track of without a tracking system.
 
 #### Implementation summary
-As such, every `Fish` contains a `LastFedDate` object, which contains a date field which records their `lastFedDate`.
+As such, every `Fish` contains a `LastFedDateTime` object, which contains a date field which records their `lastFedDate`.
 
 When the fishkeeper decides to feed a particular tank by invoking the command `tank feed <index>`,
 the program will feed all fishes in that tank, changing `LastFedDate`  of all fishes in that tank.
 
 #### How `TankFeedCommand` is executed
-When a command `tank feed <index>` is invoked, it first passes through the main parser `AddressBookParser`,
+When command `tank feed <index>` is invoked, it first passes through the main parser `AddressBookParser`,
 before being delegated to command-specific parsers, namely `TankParser` -> `TankFeedCommandParser`,
 which returns a `TankFeedCommand` to `LogicManager`.
 
 With this, `LogicManager` will invoke `execute` on `TankFeedCommand` with the following code `command.execute(model);`,
 where `model.setLastFedDateFishes(tankToFeed, formattedDate);` will be called.
 
-The `setLastFedDateFishes(tankToFeed, formattedDate)` function will be called down the chain of classes
+The `setLastFedDateTimeFishes(tankToFeed, formattedDate)` function will be called down the chain of classes
 [`ModelManager` -> `Tank` -> `AddressBook` -> `UniqueFishList`].
 
 `UniqueFishList#setLastFedDateFishes(String newDate)` will then call
-`internalList.stream().forEach(fish -> fish.setLastFedDate(newDate));`,
+`internalList.stream().forEach(fish -> fish.setLastFedDateTime(newDate));`,
 creating a new stream from `internalList` containing references to all Fish objects in `internalList`.
 
-Every `Fish` object will call `fish.setLastFedDate(newDate)`, where a new `LastFedDate` object with the updated date
-will be created and replace the `Fish`'s `lastFedDate` field.
+Every `Fish` object will call `fish.setLastFedDateTime(newDate)`, where a new `LastFedDateTime` object with the updated date
+will be created and replace the `Fish`'s `lastFedDateTime` field.
+
+![TankFeedDiagram](images/TankFeedDiagram.png)
+
+#### Design Considerations
+* Alternative 1 (current choice): Create a setLastFed(tankToFeed, formattedDate) which allows for flexible date
+    * Pros: Allows for flexible setting of `LastFedDateTime` for future implementations.
+    * Cons: Higher chance of bugs as function allows for variability of date-time.
+* Alternative 2: Create a setLastFedToNow(tankToFeed) which hard codes `LastFedDateTime` to current date time
+    * Pros: Straightforward behaviour of function, since `TankFeedCommand` sets the `LastFedDateTime` to the current date-time.
+    * Cons: Not flexible, may not be useful for future implementations which requires variable settings of date-time.
 
 
 ### \[Proposed\] Undo/redo feature
@@ -580,7 +590,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-   
 
 ### Deleting a fish
 
@@ -589,14 +598,13 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all fish using the `list fishes` command. Multiple fish in the list.
 
    1. Test case: `fish delete 1`<br>
-      Expected: First fish is deleted from the list. Details of the deleted fish shown in the status message. 
+      Expected: First fish is deleted from the list. Details of the deleted fish shown in the status message.
 
    1. Test case: `fish delete 0`<br>
       Expected: No fish is deleted. Error details shown in the status message. Fish panels remains the same.
 
    1. Other incorrect delete commands to try: `fish delete`, `fish delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
 
 ### Readings graph feature
 
@@ -627,7 +635,7 @@ testers are expected to do more *exploratory* testing.
 Expected: <br>
 ![expectedReadingFromSample](images/expectedReadingFromSample.png)
 
-:exclamation: Warning: If you want to test with more of your own values, you should ensure all 3 types of 
+:exclamation: Warning: If you want to test with more of your own values, you should ensure all 3 types of
 readings come as a set e.g. if any readings were to be made, it would be all 3 and they are made at the same time
 as the app ensures this
 
@@ -642,12 +650,10 @@ as the app ensures this
 
 ## Appendix: Planned Enhancements
 
-1. The current error message for an invalid index is too general. We plan to make the error message also more accurate 
+1. The current error message for an invalid index is too general. We plan to make the error message also more accurate
    by filtering by why the index is invalid.
-   
-    1. [-MAX_INT....0]: Index must be a positive non-zero integer
-    2. [4..MAX_INT]: Index is out-of-bounds. Index must correspond to a valid tank.
-   
+    1. \[-MAX_INT....0]: Index must be a positive non-zero integer
+    2. \[4..MAX_INT]: Index is out-of-bounds. Index must correspond to a valid tank.
 
 2. The current parameter parsing does not check for nonsensical or invalid values. We plan do execute sanity checks to 
     protect the user from receiving unintentional results for the following parameters:

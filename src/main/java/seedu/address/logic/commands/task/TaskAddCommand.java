@@ -62,12 +62,12 @@ public class TaskAddCommand extends TaskCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        Tank tank = getTaskTank(tankIndex, model);
+        toAdd.setTank(tank);
+
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
-        Tank tank = getTaskTank(tankIndex, model);
-        toAdd.setTank(tank);
 
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

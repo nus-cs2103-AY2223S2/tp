@@ -41,7 +41,7 @@ public class FishViewCommand extends FishCommand {
         List<Fish> lastShownList = model.getFilteredFishList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
         }
 
         Fish fishToView = lastShownList.get(targetIndex.getZeroBased());

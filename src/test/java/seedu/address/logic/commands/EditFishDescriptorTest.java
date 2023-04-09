@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 import seedu.address.testutil.EditFishDescriptorBuilder;
 
 public class EditFishDescriptorTest {

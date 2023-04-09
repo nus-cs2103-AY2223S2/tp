@@ -26,11 +26,11 @@ This made the implementation more difficult as I could not reference the github 
   * Credits: Task implementation was inspired by [SoConnect](https://github.com/AY2223S1-CS2103T-W15-1/tp) and fxml file was reused. However, our implementation is entirely new.
 
 * **New Feature**: Added a backend of the whole tank readings feature excluding some basic model files that required further enhancement
-  * What it does: 
+  * What it does:
     * Allows users to keep track of aquarium environmental readings by adding and deleting readings and saving them to the hard disk
   * Justification: This is crucial for fish survival, as indicated by some user stories
-  * Highlights: Storage architecture of this feature did not follow that of previous features like fish, tank or task. There is 
-one additional layer of abstraction where the complete readings are a list of individual tank readings, which then contain 
+  * Highlights: Storage architecture of this feature did not follow that of previous features like fish, tank or task. There is
+one additional layer of abstraction where the complete readings are a list of individual tank readings, which then contain
 each tank's respective ammonia level, pH and temperature readings. This reduces code needed and increases the ease of adding enhancements
 like adding more types of readings in the future.
 
@@ -49,7 +49,7 @@ pass CI checks: [232](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/232), [7
 * **Documentation**:
   * User Guide:
     * Wrote the entire draft of the user guide in doc format and transferred it to `md` format in `v1.1`
-    * Rewrote the entire `features` section of every command to tackle documentation bugs surfaced in PE-D, adding examples and 
+    * Rewrote the entire `features` section of every command to tackle documentation bugs surfaced in PE-D, adding examples and
 more detailed usage (`v1.4`)
     * Added `using this guide` and `glossary` section in `v1.4`
     * Ensured that additional information (:information_source:), warnings (:exclamation:) and tips (:bulb:) are consistent
@@ -61,4 +61,4 @@ throughout the UG. Added several useful additional information, warnings and tip
 * **Community**:
   * Posted in forum when github was down so `v1.3` deadline was extended [298](https://github.com/nus-cs2103-AY2223S2/forum/issues/298)
   * Helped team clarify `v1.4` feature freeze constraints [335](https://github.com/nus-cs2103-AY2223S2/forum/issues/335)
-  
+
