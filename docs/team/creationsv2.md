@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page 
 title: Jonathon Low Eng Kiat's Project Portfolio Page
 ---
 
@@ -44,7 +44,7 @@ Given below are my contributions to the project.
 
 * **Project Management**:
   * Organised and coordinated team meetings.
-  * Published Releases `v1.2b`, `v1.3.trial` and `v1.3.1`.
+  * Published Releases `v1.2b`, `v1.3.trial`, `v1.3.1` and `v1.4`.
   * Set up and maintained team Organisation and Repo.
   * Used GitHub issue tracker.
   * Reviewed and approved PRs for merging.
@@ -68,7 +68,7 @@ Given below are my contributions to the project.
     * Added implementation details for using `tag` as patient conditions. [#86](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/86/files)
     * Added local testing details for `add` command. [#110](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/110)
     * General formatting aesthetic changes/fixes. [#20](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/20), [#97](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/97)
-    , [#126](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/126)
+    , [#126](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/126), [#214](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/214)
 
 
 * **Documentation**:
