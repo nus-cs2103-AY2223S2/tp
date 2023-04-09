@@ -283,7 +283,7 @@ public class ParserUtil {
         requireNonNull(orderDeadline);
         String trimmedOrderDeadline = orderDeadline.trim();
         if (!OrderDeadline.isValidDeadline(trimmedOrderDeadline)) {
-            throw new ParseException(String.format(OrderDeadline.MESSAGE_CONSTRAINTS, "Order"));
+            throw new ParseException(OrderDeadline.MESSAGE_CONSTRAINTS);
         }
         return new OrderDeadline(trimmedOrderDeadline);
     }

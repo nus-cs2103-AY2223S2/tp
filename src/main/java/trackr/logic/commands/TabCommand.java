@@ -37,8 +37,8 @@ public class TabCommand extends Command {
      * @return Success message of the tab operation for display.
      */
     @Override
-    public CommandResult execute(Model unused) {
-        ObservableTabIndex.updateToTab(targetTab);
+    public CommandResult execute(Model unused) throws CommandException {
+        ObservableTabIndex.updateToTab(targetTab.getZeroBased());
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

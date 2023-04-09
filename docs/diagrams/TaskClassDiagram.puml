@@ -29,8 +29,8 @@ TaskList *--r> "1 " UniqueTaskList
 UniqueTaskList -r> "*" Task
 Task *--> "1" TaskName
 Task *--> "            1" TaskDeadline
-Task *--> "1 " TaskStatus
-Task *--> "timeAdded 1" LocalDateTime
+Task *--> "1   " TaskStatus
+Task *--> "1" LocalDateTime
 Task -u|> Item
 
 TaskName --|> Name

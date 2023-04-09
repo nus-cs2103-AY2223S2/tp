@@ -23,6 +23,7 @@ You can click on any of the links below to navigate to the respective sections f
 # Table of Contents
 
 <!-- TOC -->
+
 * [1 Quick start](#1-quick-start)
   * [1.1 Prerequisites](#11-prerequisites)
     * [1.1.1 Java](#111-java)
@@ -81,6 +82,7 @@ You can click on any of the links below to navigate to the respective sections f
 * [6 Summary](#6-summary)
 * [6.1 Prefix Summary](#61-prefix-summary)
   * [6.2 Command Summary](#62-command-summary)
+
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -235,7 +237,7 @@ If there is an error with the command, the input would turn **<span style="color
 Command result screen shows the success message for your command that executed successfully.
 
 Otherwise, it would show an error message with hints on what was missing / invalid in the command that you have entered.
-Refer to the error message or look back at this User Guide for more information on how to correct your command input. 
+Refer to the error message or look back at this User Guide for more information on how to correct your command input.
 
 **<span style="background-color:rgba(252.4, 248.4, 124.1, 1)">Tabs</span>**
 
@@ -298,7 +300,7 @@ Order Card consists of the following components:
 Task Card consists of the following components:
 
 1. Index of the task
-2. Name of the task 
+2. Name of the task
 3. Deadline of the task
 4. Status of the task
 
@@ -392,7 +394,7 @@ Menu Item Card consists of the following components:
   <span> </span>
   <span style="color:brown">&lt;prefix/paramater&gt; &lt;prefix/paramater&gt; ...</span>
   </div>
-  
+
   * Index depends on the command.
   * Number of parameters depend on the command.
 
@@ -411,12 +413,12 @@ Menu Item Card consists of the following components:
 Duplicate data are not allowed. Hence, adding of duplicate data or editing of an existing data such that it matches
 with another existing data in the data list will not be successful. Here's how we check for duplicates:
 
-| Any two     | are considered to be duplicates if                                          |
-|-------------|-----------------------------------------------------------------------------| 
-| Suppliers   | they have the same phone numbers                                            |
-| Orders      | all the parameters (excluding `STATUS`) are the same (with matching cases). |
-| Tasks       | they have the same task names (case-insensitive) and deadlines.             |
-| Menu items  | they have the same item names (with matching cases).                        |
+| Any two    | are considered to be duplicates if                                          |
+|------------|-----------------------------------------------------------------------------| 
+| Suppliers  | they have the same phone numbers                                            |
+| Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases). |
+| Tasks      | they have the same task names (case-insensitive) and deadlines.             |
+| Menu items | they have the same item names (with matching cases).                        |
 
 ## 2.1 Add
 
@@ -460,7 +462,7 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 Adds an order into the list of orders.
 
-Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER s/STATUS`
+Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
 
 <div markdown="block" class="alert alert-tip">
 
@@ -470,7 +472,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * `N` or `n` for `Not Delivered`
   * `I` or `i` for `In Progress`
   * `D` or `d` for `Delivered`
-* A status must be provided.
+* If no status is provided, it is defaulted to `Not Delivered`.
 
 * All `ORDER_ITEM` **must** match (case-sensitive) a menu item in the menu. (e.g. `choclate` and `Chocolate` are considered different items).<br>
   i.e. If `ORDER_ITEM` does not match any of the existing menu items, you need to add it as a menu item first.<br>
@@ -482,7 +484,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
 
 :clipboard: **Example 1: Standard command without status**
 
-* `add_order on/Cupcake q/5 d/01/12/2024 n/John Cat p/91234567 a/John Street s/N`<br>
+* `add_order on/Cupcake q/5 d/01/12/2024 n/John Cat p/91234567 a/John Street`<br>
   Adds an order with the following details:
   * Order Item: `Cupcake`
   * Quantity: `5`
@@ -490,7 +492,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * Name: `John Cat`
   * Phone Number: `91234567`
   * Address: `John Street`
-  * Status: `Not Delivered`
+  * Status: `Not Delivered` (Default)
 
 :clipboard: **Example 2: Shortcut command with status**
 
@@ -566,8 +568,6 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   * For example: 9283212222332323 and 92832122223323.55 are both 16 digits.
 * You cannot add an item if there is another item that has the same name in the menu. The item name is case-sensitive.
   * For example, chocolate and Chocolate are considered as different item.
-
-
 
 </div>
 
@@ -749,7 +749,6 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
 * Note that profit calculated is only accurate when price and cost each have at most 16 digits.
   * For example: 9283212222332323 and 92832122223323.55 are both 16 digits.
 
-
 </div>
 
 <div markdown="block" class="alert alert-example">
@@ -803,23 +802,23 @@ Syntax: `find_supplier NAME`
   * Supplier Name contains either `Prima` or `Flour`.<br>
 
   :heavy_check_mark: Example of suppliers that match:
-    * `Prima`
-    * `Soon Flour Pte Ltd`
-    * `PRIMA CONFECTIONARY`
-  
+  * `Prima`
+  * `Soon Flour Pte Ltd`
+  * `PRIMA CONFECTIONARY`
+
   :x: Example of suppliers that do not match:
-    * `Prim`
-    * `PrimaFlour`
+  * `Prim`
+  * `PrimaFlour`
 
 :clipboard: **Example 2: Shortcut command**
 
 * `find_s Pte`<br>
   Finds the supplier with the following details:
   * Supplier Name contains `Pte`.
-  
+
   :heavy_check_mark: Example of suppliers that match:
-    * `Soon Flour Pte Ltd`
-    * `Tech Leong PTE LTD`
+  * `Soon Flour Pte Ltd`
+  * `Tech Leong PTE LTD`
 
   :x: Example of suppliers that do not match:
   * `Private`
@@ -848,22 +847,29 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 
 * For `STATUS`:
   * Search is case-insensitive.
-  * Search 
+  * Search
     * `D` or `d` for `Delivered`
     * `I` or `i` for `In Progress`
     * `N` or `n` for `Not delivered`.
     * e.g. `find_o s/D` will return orders marked as `Delivered`.<br>
 
 * For `CUSTOMER_NAME` and `CUSTOMER_ADDRESS`:
+<<<<<<< HEAD
   * Search is case-insensitive for `CUSTOMER_NAME` but case-sensitive for `CUSTOMER_ADDRESS` 
   (e.g. The search for orders with customer address `smith` will match with `smith` but not with `Smith`).
+=======
+  * Search is case-insensitive (e.g. The search for orders with customer name `amy` will match with `Amy` and with `amy`).
+>>>>>>> master
   * Order of the keywords matter (e.g. `Amy Lee` will not match with `Lee Amy`).
   * Only full words will match.
   * Order's respective parameter must fully match with the given parameter.<br>
     (e.g. `Amy Lee` will only match with `Amy Lee` and not with `Amy Lee Tan`).
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
 </div>
 
 <div markdown="block" class="alert alert-example">
@@ -923,7 +929,7 @@ Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
   * Search is case-insensitive.
   * Search
     * `D` or `d` for `Done`
-    * `N` or `n` for `Not delivered`. 
+    * `N` or `n` for `Not delivered`.
     * e.g. `find_o s/D` will return tasks marked as `Done`.<br>
 
 </div>
@@ -1141,7 +1147,7 @@ Sorting of information in the specific list. Below are the specific sort command
     * Sorts data in lexicographical order (ignoring case) with respect to the name.
     * Data with name starting with "**a**" will be placed **above** a data with name starting with "**B**".
   * `Status_and_deadline` (Default)
-    * Sorts all data by their status first, followed by their deadline 
+    * Sorts all data by their status first, followed by their deadline
       (while preserving the relative ordering from the first sort, i.e. Stable sort)
 
 </div>
@@ -1531,10 +1537,10 @@ Here is the layout of the data file:
 
 ```json
 {
-  "suppliers" : [ ],
-  "tasks" : [ ],
-  "menuItems": [ ],
-  "orders" : [ ]
+  "suppliers": [],
+  "tasks": [],
+  "menuItems": [],
+  "orders": []
 }
 ```
 
@@ -1600,14 +1606,11 @@ Here are the respective formats for each of the data types:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trackr home folder.
 
-
 **Q**: Can I search for `suppliers` by other fields such as `tags`?<br>
 **A**: Currently it is not supported but will be added in the future. You can only find `suppliers` by their `names`. Sorry for the inconvenience caused.
 
-
 **Q**: Can I edit tags present in `suppliers`?<br>
 **A**: This is not supported currently. You can just replace the tags directly using the [<ins>`edit_supplier`</ins>](#221-editing-a-supplier-edit_supplier) command. We will consider adding this as a feature in the future.
-
 
 **Q**: Do I require internet access to use Trackr?<br>
 **A**: No, you can use Trackr without any internet access.

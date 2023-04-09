@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     * Checked and updated UG to match with actual product []()
   * Maintain code quality
     * Refactor methods to obey OOP principles
-    
+
 
 * **Documentation**:
   * User Guide (UG):
@@ -45,8 +45,8 @@ Given below are my contributions to the project.
     * Added documentation and activity diagram for Add feature
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 
-  * Reported Issues 
+  * PRs reviewed (with non-trivial review comments):
+  * Reported Issues
 
 * **Tools**:
   * Java 11, JavaFx, Jekyll

@@ -1,6 +1,5 @@
 package trackr.ui;
 
-import static trackr.commons.core.index.Index.fromZeroBased;
 import static trackr.logic.parser.TrackrParser.getModel;
 import static trackr.model.TabEnum.getTabIndex;
 
@@ -209,7 +208,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            ObservableTabIndex.updateToTab(fromZeroBased(getTabIndex(getModel(commandText))));
+            ObservableTabIndex.updateToTab(getTabIndex(getModel(commandText)));
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
