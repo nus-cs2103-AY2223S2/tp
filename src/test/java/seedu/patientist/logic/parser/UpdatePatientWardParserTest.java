@@ -24,4 +24,23 @@ public class UpdatePatientWardParserTest {
         assertParseFailure(parser, "a w/Block A Ward 2",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdatePatientWardCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        assertParseFailure(parser, "1 n/Block A Ward 2",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdatePatientWardCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidPrefixes_throwsParseException() {
+        assertParseFailure(parser, "1 w/Block A Ward 2 n/Johnnie",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdatePatientWardCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidMultipleArgs_throwsParseException() {
+        assertParseFailure(parser, "1 w/Block A Ward 2 w/Block A Ward 3",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        UpdatePatientWardCommand.MESSAGE_USAGE));
+    }
 }
