@@ -30,8 +30,8 @@ public class SampleDataUtil {
                     LocalDateTime.of(2023, 5, 20, 16, 0));
 
         ArrayList<Meeting> junjieMeetingList = new ArrayList<>();
-        junjieMeetingList.add(introMeeting);
         junjieMeetingList.add(followupMeeting);
+        junjieMeetingList.add(introMeeting);
 
         return new Person[] {
             new Person(new Name("Lim Jun Jie"), new Phone("87438807"), new Email("limjunjie@gmail.com"),

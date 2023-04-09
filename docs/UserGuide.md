@@ -344,7 +344,9 @@ the data of your previous AddressBook home folder.
 
 ## Troubleshooting
 
-1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
+1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
+   operating system if you haven't installed it. <br>
+   To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
    command: `java --version`. <br>
    If java is installed successfully, your output should be similar to the following (Note that it may look slightly
    different depending on your exact version and operating system): <br>
