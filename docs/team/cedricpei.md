@@ -69,4 +69,4 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial comments):[\#42](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/42), [\#58](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/58)
-    * Reported a total of [12] (https://github.com/CedricPei/ped) bugs and issues for PE-D.
+    * Reported a total of [12](https://github.com/CedricPei/ped) bugs and issues for PE-D.
