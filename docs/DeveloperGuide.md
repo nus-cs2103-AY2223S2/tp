@@ -471,7 +471,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a preferred location. Close the window by typing in `exit` in the command box.
 
-   1. Re-launch the app by following step 1(ii).<br>
+   1. Re-launch the app by following step 1.2<br>
       Expected: The most recent window size and location is retained.
 
 3. Exit application.
@@ -546,7 +546,7 @@ These commands should be tested on the Course Page.
        Expected: No course is deleted. Error details shown in the log box.
 
     1. Other incorrect `delete course` commands to try: `delete`, `delete course x` (where x is larger than the list size)<br>
-       Expected: Similar to previous step 1(ii) under `Deleting a course`.
+       Expected: Similar to previous step 1.2 under `Deleting a course`.
 
 2. Deleting a course while the course list is empty in the Course Page.
 
@@ -564,11 +564,11 @@ These commands should be tested on the Course Page.
        Expected: No course is edited. Error details shown in the log box.
 
     1. Other incorrect `edit course` commands to try: `edit`, `edit course x` (where x is any number), `edit course x CS4225` (where x is larger than the list size) <br>
-       Expected: Similar to previous step 1(ii) under `Editing a course`.
+       Expected: Similar to previous step 1.2 under `Editing a course`.
 
 2. Editing a course while the course list is empty in the Course Page.
 
-    1. Refer to step 1(iii) above under `Editing a course`.
+    1. Refer to step 1.3 above under `Editing a course`.
 
 #### Selecting a course
 
@@ -652,11 +652,11 @@ These commands should be tested on the Group Page.
        Expected: No group is edited. Error details shown in the log box.
 
     1. Other incorrect `edit group` commands to try: `edit`, `edit group x` (where x is any number), `edit group x T02` (where x is larger than the list size) <br>
-       Expected: Similar to previous step 1(ii) under `Editing a group`.
+       Expected: Similar to previous step 1.2 under `Editing a group`.
 
 2. Editing a group while the group list is empty in the Group Page.
 
-    1. Refer to step 1(iii) above under `Editing a group`.
+    1. Refer to step 1.3 above under `Editing a group`.
 
 #### Selecting a group
 
@@ -779,7 +779,7 @@ These commands should be tested on the Task Page.
        Expected: No task is deleted. Error details shown in the log box.
 
     1. Other incorrect `delete task` commands to try: `delete`, `delete task x` (where x is larger than the list size)<br>
-       Expected: Similar to previous step 1(ii) under `Deleting a task`.
+       Expected: Similar to previous step 1.2 under `Deleting a task`.
 
 2. Deleting a task while the task list is empty in the Task Page.
 
@@ -798,11 +798,11 @@ These commands should be tested on the Task Page.
 
     1. Other incorrect `edit task` commands to try: `edit`, `edit task x` (where x is any number), `edit task x CA4` 
        (where x is larger than the list size) <br>
-       Expected: Similar to previous step 1(ii) under `Editing a task`.
+       Expected: Similar to previous step 1.2 under `Editing a task`.
 
 2. Editing a task while the task list is empty in the Task Page.
 
-    1. Refer to step 1(iii) above under `Editing a task`.
+    1. Refer to step 1.3 above under `Editing a task`.
 
 #### Selecting a task
 
