@@ -49,12 +49,12 @@ public interface Model {
     /**
      * Sets the user prefs' medinfo book file path.
      */
-    void setMedInfoFilePath(Path addressBookFilePath);
+    void setMedInfoFilePath(Path medInfoFilePath);
 
     /**
-     * Replaces medinfo book data with the data in {@code addressBook}.
+     * Replaces medinfo book data with the data in {@code medInfo}.
      */
-    void setMedInfo(ReadOnlyMedInfo addressBook);
+    void setMedInfo(ReadOnlyMedInfo medInfo);
 
     /** Returns the MedInfo */
     ReadOnlyMedInfo getMedInfo();

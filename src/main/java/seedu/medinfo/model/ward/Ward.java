@@ -124,24 +124,6 @@ public class Ward {
     //// patient-level operations
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in
-     * the ward.
-     */
-    public boolean hasPatient(Patient patient) {
-        requireNonNull(patient);
-        return patients.contains(patient);
-    }
-
-    /**
-     * Returns true if a patient with the same NRIC as {@code patient} exists in
-     * the ward.
-     */
-    public boolean hasPatientNric(Patient patient) {
-        requireNonNull(patient);
-        return patients.containsNric(patient);
-    }
-
-    /**
      * Adds a patient to the ward.
      * The patient must not already exist in the medinfo book.
      */

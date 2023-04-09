@@ -18,7 +18,7 @@ import seedu.medinfo.model.ward.Ward;
 /**
  * An Immutable MedInfo that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "medinfo")
 class JsonSerializableMedInfo {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";

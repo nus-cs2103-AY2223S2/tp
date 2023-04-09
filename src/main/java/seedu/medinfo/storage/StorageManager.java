@@ -67,14 +67,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveMedInfo(ReadOnlyMedInfo addressBook) throws IOException {
-        saveMedInfo(addressBook, medInfoStorage.getMedInfoFilePath());
+    public void saveMedInfo(ReadOnlyMedInfo medInfo) throws IOException {
+        saveMedInfo(medInfo, medInfoStorage.getMedInfoFilePath());
     }
 
     @Override
-    public void saveMedInfo(ReadOnlyMedInfo addressBook, Path filePath) throws IOException {
+    public void saveMedInfo(ReadOnlyMedInfo medInfo, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        medInfoStorage.saveMedInfo(addressBook, filePath);
+        medInfoStorage.saveMedInfo(medInfo, filePath);
     }
 
 }

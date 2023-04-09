@@ -72,15 +72,15 @@ public class MainApp extends Application {
      * or an empty medinfo book will be used instead if errors occur when reading {@code storage}'s medinfo book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyMedInfo> addressBookOptional;
+        Optional<ReadOnlyMedInfo> medInfoOptional;
         ReadOnlyMedInfo initialData;
         try {
-            addressBookOptional = storage.readMedInfo();
-            if (!addressBookOptional.isPresent()) {
+            medInfoOptional = storage.readMedInfo();
+            if (!medInfoOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample MedInfo");
             }
             Optional<ReadOnlyMedInfo> sampleData = Optional.ofNullable(SampleDataUtil.getSampleMedInfo());
-            initialData = addressBookOptional.orElseGet(() -> {
+            initialData = medInfoOptional.orElseGet(() -> {
                 try {
                     return SampleDataUtil.getSampleMedInfo();
                 } catch (CommandException e) {
@@ -178,7 +178,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping MedInfo ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

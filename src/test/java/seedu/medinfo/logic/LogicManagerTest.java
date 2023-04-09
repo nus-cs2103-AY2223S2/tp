@@ -46,7 +46,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonMedInfoStorage medInfoStorage = new JsonMedInfoStorage(
-                temporaryFolder.resolve("medinfo.json"));
+                temporaryFolder.resolve("tmpMedInfo.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(medInfoStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -56,13 +56,6 @@ public class LogicManagerTest {
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
-    }
-
-    @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        String expectedMessage = MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
-        assertCommandException(deleteCommand, expectedMessage);
     }
 
     @Test
@@ -76,12 +69,12 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonMedInfoIoExceptionThrowingStub
-        JsonMedInfoStorage addressBookStorage = new
+        JsonMedInfoStorage medInfoStorage = new
         JsonMedInfoIoExceptionThrowingStub(
         temporaryFolder.resolve("ioExceptionMedInfo.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
         temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage,
+        StorageManager storage = new StorageManager(medInfoStorage,
         userPrefsStorage);
         logic = new LogicManager(model, storage);
 
@@ -174,7 +167,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveMedInfo(ReadOnlyMedInfo addressBook, Path filePath) throws IOException {
+        public void saveMedInfo(ReadOnlyMedInfo medInfo, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

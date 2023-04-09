@@ -28,6 +28,6 @@ public interface Storage extends MedInfoStorage, UserPrefsStorage {
     Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException, IOException, CommandException;
 
     @Override
-    void saveMedInfo(ReadOnlyMedInfo addressBook) throws IOException;
+    void saveMedInfo(ReadOnlyMedInfo medInfo) throws IOException;
 
 }

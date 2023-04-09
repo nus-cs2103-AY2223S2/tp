@@ -32,12 +32,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given medInfo and userPrefs.
      */
-    public ModelManager(ReadOnlyMedInfo addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyMedInfo medInfo, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(medInfo, userPrefs);
 
-        logger.fine("Initializing with MedInfo: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with MedInfo: " + medInfo + " and user prefs " + userPrefs);
 
-        this.medInfo = new MedInfo(addressBook);
+        this.medInfo = new MedInfo(medInfo);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.medInfo.getPatientList());
         filteredWards = new FilteredList<>(this.medInfo.getWardList());
@@ -77,16 +77,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setMedInfoFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setMedInfoFilePath(addressBookFilePath);
+    public void setMedInfoFilePath(Path medInfoFilePath) {
+        requireNonNull(medInfoFilePath);
+        userPrefs.setMedInfoFilePath(medInfoFilePath);
     }
 
     //=========== MedInfo ================================================================================
 
     @Override
-    public void setMedInfo(ReadOnlyMedInfo addressBook) {
-        this.medInfo.resetData(addressBook);
+    public void setMedInfo(ReadOnlyMedInfo medInfo) {
+        this.medInfo.resetData(medInfo);
     }
 
     @Override

@@ -34,14 +34,14 @@ public interface MedInfoStorage {
 
     /**
      * Saves the given {@link ReadOnlyMedInfo} to the storage.
-     * @param addressBook cannot be null.
+     * @param medInfo cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveMedInfo(ReadOnlyMedInfo addressBook) throws IOException;
+    void saveMedInfo(ReadOnlyMedInfo medInfo) throws IOException;
 
     /**
      * @see #saveMedInfo(ReadOnlyMedInfo)
      */
-    void saveMedInfo(ReadOnlyMedInfo addressBook, Path filePath) throws IOException;
+    void saveMedInfo(ReadOnlyMedInfo medInfo, Path filePath) throws IOException;
 
 }
