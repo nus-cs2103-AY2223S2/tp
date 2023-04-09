@@ -480,6 +480,9 @@ output as per normal. However, if the object `T` is a `Role`, we can render a cu
 * Pros: Provides an easy and extendable way to create custom views
 * Cons: Need to refactor some UI code and `CommandResult.java` class
 
+(This idea was inspired from [FoodRem](https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu/foodrem/views/UiView.java)
+but the implementation is done by ourselves).
+
 ### UI Enhancement
 
 TechTrack's UI components are highlighted below:
@@ -530,6 +533,8 @@ this is shown below in the form of a class diagram:
 
 ![Enhanced UI Class Diagram](images/EnhancedUIClassDiagram.png)
 
+(This idea was inspired from [FoodRem](https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu/foodrem/views/UiView.java)
+but the implementation is done by ourselves).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -991,7 +996,7 @@ Expected Output: TechTrack closes.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Planned enhancements for Feature Flaws**
+## **Appendix: Planned enhancements**
 
 The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as
 feature flaws, therefore the team will not be addressing these flaws for now.
@@ -1038,7 +1043,7 @@ class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Won't Fix / Out of Scope**
+## **Appendix: Won't Fix / Out of Scope**
 
 ### Issue #205 Sort Command not recognised
 
@@ -1050,7 +1055,7 @@ class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Effort**
+## **Appendix: Effort**
 
 ### Refactoring
 
@@ -1086,7 +1091,7 @@ We added various new commands like:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Glossary**
+## Appendix: **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Role**: Refers to internships or full-time jobs
