@@ -56,7 +56,11 @@ public class DetailsPopup extends UiPart<Region> {
     @FXML
     private Label priority;
     @FXML
+    private HBox statusBox;
+    @FXML
     private VBox status;
+    @FXML
+    private HBox todosBox;
     @FXML
     private VBox todos;
     @FXML
@@ -98,6 +102,9 @@ public class DetailsPopup extends UiPart<Region> {
                 this.todos.getChildren()
                         .add(new Label(String.format("%d. ", i) + todos.get(i - 1).getTodo()));
             }
+        } else {
+            statusBox.setVisible(false);
+            todosBox.setVisible(false);
         }
         tags.getChildren().add(new Label(person.getRoleTag().tagName));
         person.getTags().stream()

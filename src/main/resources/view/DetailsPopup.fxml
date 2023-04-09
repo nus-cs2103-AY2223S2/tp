@@ -77,7 +77,7 @@
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox minHeight="-Infinity">
+                <HBox fx:id="statusBox" minHeight="-Infinity">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status:  " />
                         <VBox fx:id="status" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
@@ -86,7 +86,7 @@
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox minHeight="-Infinity">
+                <HBox fx:id="todosBox" minHeight="-Infinity">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Todo:  " />
                         <VBox fx:id="todos" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
