@@ -1,0 +1,38 @@
+@startuml
+start
+:User executes add command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Missing
+arguments])
+    :Error: Invalid
+    command format;
+stop
+else if () then ([Invalid
+arguments])
+    :Error: Invalid
+    arguments;
+stop
+else if () then ([Identical
+event exists])
+    :Error: Duplicate event;
+stop
+else if () then ([End time earlier
+than start time])
+    :Error: End time earlier
+    than start time;
+stop
+else if () then ([Time slot is occupied
+by another Event])
+    :Error: Event exists
+    at chosen time;
+stop
+else ([else])
+endif
+    :Common modules and index are computed;
+    :Event is added to Ez-Schedule;
+    :Success message is returned;
+stop
+@enduml
