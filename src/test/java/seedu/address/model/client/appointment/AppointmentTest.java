@@ -15,8 +15,8 @@ import seedu.address.testutil.ClientBuilder;
 
 public class AppointmentTest {
 
-    private final Appointment DISCUSSION = new AppointmentBuilder().build();
-    private final Appointment EMPTY = new AppointmentBuilder().emptyBuild();
+    private static final Appointment DISCUSSION = new AppointmentBuilder().build();
+    private static final Appointment EMPTY = new AppointmentBuilder().emptyBuild();
 
     @Test
     public void constructor_null_throwsNullPointerException() {

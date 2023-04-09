@@ -20,6 +20,23 @@ class CustomDateTest {
     }
 
     @Test
+    public void isValidDate_validDate_returnsTrue() {
+        String date1 = "01.01.2023";
+        String date2 = "01/01/2023";
+
+        assertTrue(CustomDate.isValidDate(date1));
+        assertFalse(CustomDate.isValidDate(date2));
+    }
+
+    @Test
+    public void isValidDate_invalidDate_returnsFalse() {
+        assertFalse(CustomDate.isValidDate("31.04.2023"));
+        assertFalse(CustomDate.isValidDate("31.06.2023"));
+        assertFalse(CustomDate.isValidDate("32.06.2023"));
+        assertFalse(CustomDate.isValidDate("01.13.2023"));
+    }
+
+    @Test
     public void isValidDate_invalidDateFormat_returnsFalse() {
         assertFalse(CustomDate.isValidDate("01/01/2022"));
     }

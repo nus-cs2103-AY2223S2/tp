@@ -19,8 +19,8 @@ import seedu.address.testutil.ClientBuilder;
 
 public class MeetupDateTest {
 
-    private final MeetupDate FUTURE = new MeetupDate(VALID_APPOINTMENT_DATE);
-    private final MeetupDate EMPTY = DEFAULT_EMPTY_APPOINTMENT.getMeetupDate();
+    private static final MeetupDate FUTURE = new MeetupDate(VALID_APPOINTMENT_DATE);
+    private static final MeetupDate EMPTY = DEFAULT_EMPTY_APPOINTMENT.getMeetupDate();
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -39,12 +39,33 @@ public class MeetupDateTest {
 
 
     @Test
-    public void isValidDate() {
+    public void isValidDate_validDate_returnsTrue() {
         String date1 = "01.01.2023";
         String date2 = "01/01/2023";
 
         assertTrue(MeetupDate.isValidDate(date1));
         assertFalse(MeetupDate.isValidDate(date2));
+    }
+
+    @Test
+    public void isValidDate_invalidDate_returnsFalse() {
+        assertFalse(MeetupDate.isValidDate("31.04.2023"));
+        assertFalse(MeetupDate.isValidDate("31.06.2023"));
+        assertFalse(MeetupDate.isValidDate("32.06.2023"));
+        assertFalse(MeetupDate.isValidDate("01.13.2023"));
+    }
+
+    @Test
+    public void isValidDate_invalidDateWithLeapYear_returnsFalse() {
+        assertFalse(MeetupDate.isValidDate("29.02.2021"));
+        assertFalse(MeetupDate.isValidDate("30.02.2021"));
+        assertFalse(MeetupDate.isValidDate("31.02.2021"));
+    }
+
+    @Test
+    public void isValidDate_validDateWithLeapYear_returnsTrue() {
+        assertTrue(MeetupDate.isValidDate("29.02.2024"));
+        assertTrue(MeetupDate.isValidDate("29.02.2028"));
     }
 
     @Test

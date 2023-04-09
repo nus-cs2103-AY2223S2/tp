@@ -3,13 +3,11 @@ package seedu.address.model.client.policy;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-import seedu.address.logic.parser.ParserUtil;
 
 
 /**
@@ -77,7 +75,7 @@ public class CustomDate {
                 if (localDate == null) {
                     valid = false;
                 }
-            } catch (DateTimeParseException | NumberFormatException e) {
+            } catch (NumberFormatException | DateTimeException e) {
                 valid = false;
             }
         }

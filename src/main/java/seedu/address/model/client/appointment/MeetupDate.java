@@ -3,11 +3,11 @@ package seedu.address.model.client.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 
 /**
@@ -94,7 +94,7 @@ public class MeetupDate {
             if (localDate == null) {
                 valid = false;
             }
-        } catch (DateTimeParseException | NumberFormatException e) {
+        } catch (NumberFormatException | DateTimeException e) {
             valid = false;
         }
         return valid;

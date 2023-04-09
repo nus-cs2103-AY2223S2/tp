@@ -17,7 +17,7 @@ import seedu.address.testutil.ClientBuilder;
 public class AppointmentNameTest {
 
 
-    private final AppointmentName DISC = new AppointmentName(VALID_APPOINTMENT_NAME);
+    private static final AppointmentName DISC = new AppointmentName(VALID_APPOINTMENT_NAME);
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AppointmentName(null));
@@ -66,11 +66,11 @@ public class AppointmentNameTest {
         // different object -> returns false
         assertNotEquals(alice, DISC);
 
-       // empty appointment -> returns true
+        // empty appointment -> returns true
         assertEquals(empty, emptyCopy);
 
-       // empty appointment with a non-empty appointment -> returns false
-       assertNotEquals(empty, DISC);
+        // empty appointment with a non-empty appointment -> returns false
+        assertNotEquals(empty, DISC);
     }
 
     @Test
