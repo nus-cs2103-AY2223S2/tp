@@ -146,6 +146,6 @@ public class Crew implements Item {
 
         Crew other = (Crew) obj;
 
-        return other.getName().equals(getName());
+        return ((other.getName().equals(getName())) && (other.getRank() == this.getRank()));
     }
 }
