@@ -119,7 +119,7 @@ for your reference. </div>
 
 
 <p align="center">
-  <img height="400" width="600" src="images/Ui.png">
+  <img height="400" width="400" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
@@ -243,7 +243,7 @@ Examples of valid usages:
 * `add n/CS2030S t/Lab a/COM1-B112 d/040423 23:59 r/Attendance not compulsory :)`
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762259-5f9f5b2c-18d2-4e9b-9d27-6a07c99c6bcb.png">
+   <img height="400" width="300" src="images/add.png">
 </p>
 
 <div align="center">Figure 3 : Adding a new module into the tracker.</div>  
@@ -275,7 +275,7 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230761749-73b7be3f-117d-42f5-bcc2-a1bbbe63fe6b.png">
+   <img height="400" width="335" src="images/delete.png">
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>
@@ -307,7 +307,7 @@ Examples of valid usages:
   module to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762280-a40ed804-c8a7-40cd-87ac-a921654ec1bd.png">
+   <img height="400" width="300" src="images/edit.png">
 </p>
 
 <div align="center">Figure 5 : Editing a module in the tracker.</div>  
@@ -341,7 +341,7 @@ Examples:
 * `find CS2103T` finds all modules with name and/or description including the word `CS2103T`. 
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762292-af7a1943-277f-499e-835f-0f4fec87f16d.png">
+   <img height="350" width="250" src="images/find.png">
 </p>
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
@@ -367,10 +367,10 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 * For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/230762314-1a02a759-57a6-45e1-84cc-fad35ef77804.png">
+   <img height="350" width="250" src="images/sort.png">
 </p>
 
-<div align="center">Figure 7 : Sorting the modules in the tracker.</div>
+<div align="center">Figure 7 : Sorting the modules based on deadline.</div>
 
 <br>  
 
@@ -433,7 +433,7 @@ to display the pop-up window at any other point in time. However, this will be a
 features [coming soon](#coming-soon) if you are interested. 
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png">
+   <img height="150" width="250" src="images/reminder.png">
 </p>
 
 <div align="center">Figure 9 : Reminder window.</div>
