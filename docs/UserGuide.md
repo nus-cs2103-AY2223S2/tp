@@ -390,15 +390,15 @@ This section shares with you on how to use each command in detail.
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li>All fields apart from `APPLIED DATE TIME` and `NOTE` are compulsory.</li>
-    <li>Both `NAME` and `PHONE` together must be unique.</li>
-    <li>`NAME` is case-sensitive. (e.g. "Thomas" is different from "thomas").</li>
-    <li>`PHONE` does not require you to include the country code. Only include the numbers.</li>
-    <li>The value of `APPLIED DATE TIME` will be the time you add a new applicant if it is not provided.</li>
-    <li>The value of `NOTE` will be empty if it is not provided.</li>
+    <li>All fields apart from <code>APPLIED DATE TIME</code> and <code>NOTE</code> are compulsory.</li>
+    <li>Both <code>NAME</code> and <code>PHONE</code> together must be unique.</li>
+    <li><code>NAME</code> is case-sensitive. (e.g. "Thomas" is different from "thomas").</li>
+    <li><code>PHONE</code> does not require you to include the country code. Only include the numbers.</li>
+    <li>The value of <code>APPLIED DATE TIME</code> will be the time you add a new applicant if it is not provided.</li>
+    <li>The value of <code>NOTE</code> will be empty if it is not provided.</li>
     <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 </li>
-    <li>However, if two or more `NOTE` are added, all the notes will be added to the applicant.
+    <li>However, if two or more <code>NOTE</code> are added, all the notes will be added to the applicant.
 </li>
 </ul> </div>
 
@@ -428,9 +428,9 @@ What you should see:
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li>We take in name, phone or both. In this case, at least `NAME` or `PHONE` is required.</li>
-    <li>The `n/[NAME]` is case-insensitive. (e.g. "thomas" will match "Thomas").</li>
-    <li>This means that providing both `NAME` and `PHONE` narrows down the scope.</li>
+    <li>We take in name, phone or both. In this case, at least <code>NAME</code> or <code>PHONE</code> is required.</li>
+    <li>The <code>NAME</code> is case-insensitive. (e.g. "thomas" will match "Thomas").</li>
+    <li>This means that providing both <code>NAME</code> and <code>PHONE</code> narrows down the scope.</li>
     <li> The <code>find</code> command only finds applicants which has a name, phone or both 
 that fully matches the specified search of the full name, phone or both!</li>
     <li> This means that if the <code>NAME</code> <code>Thomas Lee</code> and <code>Thomas Tan</code> is in HMHero, 
@@ -517,7 +517,7 @@ that fully matches the specified search.</li>
 <br>
 * You want to delete an applicant who exist in HMHero.
 
-Command Input Box: `delete n/Bernice Yu p/99272758`
+Command Input Box: `delete n/Bernice Yu p/91234567`
 
 What you should see:
 1. Bernice Yu is deleted from the Applicant list.
