@@ -179,17 +179,38 @@ This section describes some noteworthy details on how certain features are imple
 
 ### **Add Command**
 
+![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)  
+Activity Diagram for a typical `add` command
+
 ### **Recur Command**
+
+![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
+Activity Diagram for a typical `recur` command
 
 ### **Edit Command**
 
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)  
+Activity Diagram for a typical `edit` command
+
 ### **Delete Command**
+
+![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
+Activity Diagram for a typical `delete` command
 
 ### **Find Command**
 
+![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
+Activity Diagram for a typical `find` command
+
 ### **Next Command**
 
+![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
+Activity Diagram for a typical `next` command
+
 ### **Undo Command**
+
+![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
+Activity Diagram for a typical `undo` command
 
 ### **List Command**
 
@@ -521,7 +542,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * The `Event` has been successfully added to _Ez-Schedule_
-* Details of the `Event` is also added to the Events List Panel and the Calendar
+* Details of the `Event` is also added to the Events Panel and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -550,7 +571,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:**
 * The `Event` will be added repeatedly until the specified end date
-* Details of all the `Event` is also added to the Events List Panel and the Calendar
+* Details of all the `Event` is also added to the Events Panel and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -590,7 +611,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * The `Event` is removed from _Ez-Schedule_
-* Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
+* Details of the `Event` is also removed from the Events Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -600,7 +621,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * All the `Event` is removed from _Ez-Schedule_
-* Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
+* Details of the `Event` is also removed from the Events Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 3
 {: .no_toc}  
@@ -622,7 +643,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Tennis`
 
 **Result:** 
-* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
+* The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
 #### Scenario 2
@@ -632,7 +653,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Ten`
 
 **Result:**
-* The Events List Panel will be updated to display only `Event` whose `Name` includes Ten, which may include `Name` such as Tennis
+* The Events Panel will be updated to display only `Event` whose `Name` includes Ten, which may include `Name` such as Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
 #### Scenario 3
@@ -642,7 +663,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find d/2023-05-01`
 
 **Result:**
-* The Events List Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
+* The Events Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 #### Scenario 4
@@ -652,7 +673,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Tennis d/2023-05-01`
 
 **Result:**
-* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
+* The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 
