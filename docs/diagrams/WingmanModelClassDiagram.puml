@@ -12,7 +12,7 @@ Class ItemManager
 Class ModelManager
 Class UserPrefs
 
-Class Items
+Class UniqueList
 Class Pilot
 Class Gender <<Enumeration>>
 Class PilotRank <<Enumeration>>
@@ -26,12 +26,12 @@ ItemManager .up.|> ReadOnlyItemManager
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyItemManager
-ModelManager -left-> "1" ItemManager
+ModelManager -left-> "5" ItemManager
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ItemManager *--> "1" Items
-Items --> "~* all" Pilot
+ItemManager *--> "1" UniqueList
+UniqueList --> "~* all" Pilot
 Pilot *--> "1" Gender
 Pilot *--> "1" PilotRank
 

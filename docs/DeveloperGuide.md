@@ -63,17 +63,25 @@ The rest of the App consists of four components.
 
 ### UI Component
 
-The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+**API**
+[`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <p align="center">
 <img src="images/WingmanUiClassDiagram.png" width="1021" alt="UI Class diagram">
 </p>
 
 The UI consists of a `MainWindow` that is made up of parts
-e.g.`CommandBox`, `ResultDisplay`, `FlightListPanel`, `StatusBarFooter` etc.
+e.g.`CommandBox`, `ResultDisplay`, `XYZListPanel`, `StatusBarFooter` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
+
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+<strong>Note:</strong> XYZ in XYZListPanel and XYZCard is used to represent Flight, Pilot, Plane, Crew and Location.
+All these resources are displayed in the Ui, but we have chosen to use the term XYZ to represent them in order to
+to keep the diagram simple.
+</div>
+
+<br>
 
 The `UI` component uses the JavaFx UI framework.
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
@@ -87,11 +95,15 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Flight`, `Crew`, `Plane`, `Pilot`, `Location`
+objects residing in the `Model`.
 
 <div style="page-break-after: always;"></div>
 
 ### Logic Component
+
+**API** :
+[`Logic.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/logic/Logic.java)
 
 <p align="center">
 <img src="images/WingmanLogicClassDiagram.png" width="608" alt="UI Class diagram">
@@ -103,24 +115,34 @@ Description coming soon - to be updated after adjusting for code duplication
 
 ### Model Component
 
-**API
-** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** :
+[`Model.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 <p align="center">
 <img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
 </p>
 
 The `Model` component,
 
-* stores Wingman data i.e., all `Item` objects (which are contained in a `UniquePersonList` object).
-    * `Item` here refers to `Flight`, `Pilot`, `Plane`, `Location` and `Crew`
-* stores the currently 'selected' `Item` objects (e.g., results of a search query) as a separate _filtered_ list
-  which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that can be 'observed'
-  e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores Wingman data
+i.e., all `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects (which are contained in `UniqueList` objects).
+* stores the currently 'selected' `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects
+  as separate _filtered_ lists (one for each resource type).
+  * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
+  For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
+  lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
 * stores a `UserPref` object that represents the user’s preferences.
   This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components
   (as the `Model` represents data entities of the domain,
   they should make sense on their own without depending on other components)
+
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+<strong>Note:</strong> In the diagram above, we have used the Pilot class to give specific examples of the relations
+between a resource class and its attributes as well as the relations between a resource class and
+the UniqueList class. It must be noted however that different resource classes have different attributes and thus
+will have some minor but important differences in their corresponding class diagrams.
+Attributes of primitive types (e.g. age) have also been omitted from the diagrams for brevity.
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -134,8 +156,12 @@ The `Storage` component,
 
 * can save both Wingman data and user preference data in json format,
   and read them back into corresponding objects.
-* depends on some classes in the `Model` component
-  (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (e.g. `UserPref`)
+  because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
+
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+<strong>Note:</strong> XYZ in the diagram above is used to refer to Flight, Pilot, Plane, Crew and Location.
+</div>
 
 <div style="page-break-after: always;"></div>
 
