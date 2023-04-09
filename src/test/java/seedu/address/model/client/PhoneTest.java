@@ -1,7 +1,10 @@
 package seedu.address.model.client;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -36,5 +39,21 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+    }
+
+    @Test
+    public void equals() {
+        Phone phone = new Phone("12345678");
+        Phone phoneCpy = new Phone("12345678");
+
+        // same object
+        assertEquals(phone, phone);
+
+        // null -> false
+        assertNotEquals(null, phone);
+
+        // same value
+        assertEquals(phone, phoneCpy);
+
     }
 }
