@@ -21,6 +21,8 @@ CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard ca
 - [Introduction](#introduction)
 - [Table of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
+- [Visual Guide](#visual-guide)
+- [Fields for Student Commands](#fields-for-student-commands)
 - [Navigation Guide](#navigation-guide)
 - [List of Commands](#commands)
     - [General Commands](#general-commands)
@@ -31,6 +33,7 @@ CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard ca
     - [Attendance Page Commands](#attendance-page-commands)
     - [Task Page Commands](#task-page-commands)
     - [Grades Page Commands](#grades-page-commands)
+- [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -79,6 +82,16 @@ product effectively.
 5. Log Box
    * Clipboard will give you feedback on whether or not your command was successful here.
    * Help messages on the valid arguments of the command you are typing will also appear here if your command has failed.
+
+--------------------------------------------------------------------------------------------------------------
+## Fields for Student Commands
+| **Prefix** | **Prefix meaning**          | **Character Restrictions**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/         | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| p/         | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| e/         | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| sid/       | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -192,8 +205,6 @@ home
 
 [Back to list of commands](#commands)
 
-
-
 ### Displaying the previous page you were at: `back`
 
 Goes back to the previous page you were at.
@@ -205,8 +216,6 @@ back
 
 [Back to list of commands](#commands)
 
-
-
 ### Undoing the last command you did: `undo`
 
 
@@ -216,8 +225,6 @@ undo
 ```
 
 [Back to list of commands](#commands)
-
-
 
 ### Opening help window: `help`
 
@@ -230,8 +237,6 @@ help
 
 [Back to list of commands](#commands)
 
-
-
 ### Scrolling through command history: `UP` or `DOWN` arrow key
 
 Scrolls through past commands in command box.
@@ -241,8 +246,6 @@ Scrolls through past commands in command box.
 - Press `ENTER` to execute the command.
 
 [Back to list of commands](#commands)
-
-
 
 ### Clearing all entries: `clear`
 
@@ -264,8 +267,6 @@ Accidentally cleared your data? Don't worry, try <code>undo</code> command!
 
 [Back to list of commands](#commands)
 
-
-
 ### Exiting the program: `exit`
 
 Format:
@@ -280,7 +281,6 @@ exit
 ## Course Page Commands
 ![image](./images/UiCoursePage.png)
 ###### Figure 4
-
 
 ### Adding a course: `add course`
 
@@ -302,9 +302,12 @@ Examples:
 - `add course CS2103T` will add a new course with module code `CS2103T`
 - `add course CS2105` will add a new course with module code `CS2105`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+Course code can have special characters! i.e. "AY2223S2-CS2103T" 
+</div>
+<br>
+
 [Back to list of commands](#commands)
-
-
 
 ### Deleting a course: `delete course`
 
@@ -315,13 +318,10 @@ Format:
 delete course <INDEX>
 ```
 
-
 Examples:
 - `delete course 1` will delete the first course listed in the course list.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a course: `edit course`
 
@@ -334,13 +334,10 @@ edit course <INDEX> <NEW COURSE NAME>
 
 - Edits the module code of the course at index `<INDEX>`.
 
-
 Examples:
 - `edit course 1 CS2106` will rename the first course listed in the course list to `CS2106`.
 
 [Back to list of commands](#commands)
-
-
 
 ### Selecting a course: `select`
 
@@ -403,9 +400,12 @@ Examples:
 - `add group T15` will add a new group with group name `T15`
 - `add group L08` will add a new group with group name `L08`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+Group names can have special characters! i.e. "AY2223S2-T15" 
+</div>
+<br>
+
 [Back to list of commands](#commands)
-
-
 
 ### Deleting a group: `delete group`
 
@@ -415,14 +415,10 @@ Format:
 ```
 delete group <INDEX>
 ```
-
-
 Examples:
 - `delete group 1` will delete the first group listed in the group list panel of CLIpboard.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a group: `edit group`
 
@@ -440,7 +436,6 @@ Examples:
 - `edit group 1 T16` will rename the first group listed in the group list to `T16`.
 
 [Back to list of commands](#commands)
-
 
 ### Selecting a group: `select`
 
@@ -471,6 +466,11 @@ session <INDEX>
 Examples:
 - `session 1` will return a list of sessions from the first group.
 
+<div markdown="span" class="alert alert-primary">:exclamation: *Note:**
+ Adding new student under a group will propagate to session, but deleting a student will NOT propagate to session.
+</div>
+<br>
+
 [Back to list of commands](#commands)
 
 
@@ -486,6 +486,11 @@ task <INDEX>
 
 Examples:
 - `task 1` will return a list of tasks for the first group.
+
+<div markdown="span" class="alert alert-primary">:exclamation: *Note:**
+ Adding new student under a group will propagate to task, but deleting a student will NOT propagate to task.
+</div>
+<br>
 
 [Back to list of commands](#commands)
 
@@ -529,9 +534,12 @@ Examples:
 - `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
 - `add student n/Amirul Bin Othman p/98884417 e/amirul@example.com sid/A1324356G`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+The same student can exist in different groups, because that student can be in tutorial group T1 and project group Team15 at the same time.
+</div>
+<br>
+
 [Back to list of commands](#commands)
-
-
 
 ### Deleting a student: `delete student`
 
@@ -546,8 +554,6 @@ Examples:
 - `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a student: `edit student`
 
@@ -573,8 +579,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
-
 ### Copying a student's email: `copy`
 
 Copies a student's email to your clipboard.
@@ -588,8 +592,6 @@ Examples:
 - `copy 1` will copy the email of the first student in the list to your clipboard.
 
 [Back to list of commands](#commands)
-
-
 
 ### Finding students by name or student ID: `find student`
 
@@ -631,8 +633,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
-
 ### Displays a student's information: `select`
 
 ![image](./images/UiStudentView.png)
@@ -649,8 +649,6 @@ Examples:
 - `select 1` will select the 1st student in the student list and display his / her particulars on the view panel on the right.
 
 [Back to list of commands](#commands)
-
-
 
 ### Adding or deleting a remark: `remark`
 
@@ -679,8 +677,6 @@ Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
 </div>
 
 [Back to list of commands](#commands)
-
-
 
 ### Uploading a student's photo: `upload`
 
@@ -723,8 +719,6 @@ attendance
 
 [Back to list of commands](#commands)
 
-
-
 --------------------------------------------------------------------------------------------------------------
 
 ## Session Page Commands
@@ -750,9 +744,11 @@ Examples:
 - `add session Tutorial4`
 - `add session Lab3`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+Session names can have special characters! i.e. "AY2223S2-Tutorial15" 
+</div>
+
 [Back to list of commands](#commands)
-
-
 
 ### Deleting a session: `delete session`
 
@@ -763,13 +759,10 @@ Format:
 delete session <INDEX>
 ```
 
-
 Examples:
 - `delete session 1` will delete the first session listed in the session list panel of CLIpboard.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a session: `edit session`
 
@@ -784,8 +777,6 @@ Examples:
 - `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
 
 [Back to list of commands](#commands)
-
-
 
 ### Selecting a session to start attendance-taking: `select`
 
@@ -842,8 +833,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
-
 ### Marking selected students as absent: `unmark`
 
 Marks selected students' attendance as absent for current session.
@@ -859,8 +848,6 @@ Examples:
 - `unmark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
 
 [Back to list of commands](#commands)
-
-
 
 ### View the overall attendance of the session: `attendance`
 
@@ -899,9 +886,12 @@ Examples:
 - `add task OP3`
 - `add task Critical Reflection 3`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper" 
+</div>
+<br>
+
 [Back to list of commands](#commands)
-
-
 
 ### Deleting a task: `delete task`
 
@@ -912,13 +902,10 @@ Format:
 delete task <INDEX>
 ```
 
-
 Examples:
 - `delete task 1` will delete the first task listed.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a task: `edit task`
 
@@ -929,13 +916,10 @@ Format:
 edit task <INDEX> <NEW TASK NAME>
 ```
 
-
 Examples:
 - `edit task 1 CA5` will rename the first task listed to `CA5`.
 
 [Back to list of commands](#commands)
-
-
 
 ### Selecting a task to assign grades: `select`
 
@@ -970,8 +954,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
-
 ## Grades Page Commands
 ![images](./images/UiGradesPage.png)
 ###### Figure 13
@@ -992,7 +974,18 @@ Examples:
 
 [Back to list of commands](#commands)
 
+--------------------------------------------------------------------------------------------------------------
+
 ## Glossary
 
-
-
+| **Term**              | **Definition**                                                                                            | **Example(s)**                          |                                                             
+|-----------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------|
+| **Course**            | A module that provides a certain level of understanding in a subject area.                                | CS2103T, CS2105                         |
+| **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc.  | T15, Team15                             |
+| **Session**           | A period of class for a Group which can be tutorial session, lab session etc.                             | Tutorial1, Lab3                         |
+| **Task**              | An assignment dedicated to a Group which can be presentation, reflection etc.                             | OP1, Critical Reflection 2              |
+| **Path**              | A string of characters used to uniquely identify a location in a directory structure.                     | C:/Users/AlexYeoh/Desktop/A0123456X.png |
+| **Absolute Path**     | A path that always contains the root element and the complete directory list required to locate the file. | C:/Users/AlexYeoh/Desktop/A0123456X.png |
+| **Relative Path**     | A hierarchical path that locates a file or folder on a file system starting from the current directory.   | ../A1234567X.png                        |
+| **Special Character** | A character that does not fall under the category of either alphabet or a number.                         | -,+,*                                   |                   
+| **Student ID**        | A unique identification number given to a student.                                                        | A1234567X |                              | 
