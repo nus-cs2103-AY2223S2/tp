@@ -23,7 +23,8 @@ Given below are my contributions to the project.
   * Mark and unmark feature of project
     * Determines if project is done or not done
     * Relevant tests implemented
-  * Created Json files to accommodate client and project list tests
+  * Summary containing information about the list of projects
+  * Create Json files to accommodate client and project list tests
 
 * **Documentation**:
   * Contributions to [User Guide](https://ay2223s2-cs2103t-t14-1.github.io/tp/UserGuide.html)
@@ -31,3 +32,4 @@ Given below are my contributions to the project.
   * Contributions to [Developer Guide](https://ay2223s2-cs2103t-t14-1.github.io/tp/DeveloperGuide.html)
     * Listing and clearing
     * Marking and unmarking
+    * Use cases 
