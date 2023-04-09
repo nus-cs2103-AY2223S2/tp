@@ -30,7 +30,6 @@ Given below are my contributions to the project.
   * [PRs Authored](https://github.com/AY2223S2-CS2103T-W14-2/tp/pulls?q=is%3Apr+author%3Akennycjy)
   * [PRs reviewed](https://github.com/AY2223S2-CS2103T-W14-2/tp/pulls?q=is%3Apr+commenter%3Akennycjy+-author%3Akennycjy)
   * [Issues and Bugs Reported](https://github.com/AY2223S2-CS2103T-W14-2/tp/issues?q=is%3Aissue+author%3Akennycjy)
-  * [Forum Activity](https://github.com/nus-cs2103-AY2223S2/forum/issues?q=is%3Aissue+commenter%3Akennycjy)
 
 * **Tools**:
     * Java 11 and JavaFX and Joda-Time
