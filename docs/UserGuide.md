@@ -322,7 +322,7 @@ Examples:
 - Note to user:
   - The index refers to the index number shown in the displayed doctor list.
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Selecting doctor command displays only the recently queried doctor's information in the Enlarged Contact Card.
 If no patients appear in the patients list, it is because none have been assigned to the doctor.
 
@@ -352,7 +352,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient`
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Adding patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
 
@@ -370,7 +370,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Examples:
   - `assign-ptn ptn/1 doc/1` assigns the first patient to the first doctor.
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Assign patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to.
 
@@ -388,7 +388,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Examples:
   - `unassign-ptn ptn/1 doc/1` undoes the assignment of the first patient from the first doctor.
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Unassign (undo assignment) patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient is assigned to no doctors).
 
