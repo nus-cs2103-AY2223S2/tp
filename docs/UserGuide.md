@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+--- 
+
 MediMate (MM) is a cross-platform desktop application for medical professionals, specifically for private doctors or
 their receptionists,
 who are experienced with computers and currently using paper records to store patient information.
@@ -15,16 +20,16 @@ than traditional GUI apps.
   - [Add a patient](#add-a-patient--add)
   - [List all patients](#listing-all-patients--list)
     - [List patients in alphabetical order](#listing-patients-in-alphabetical-order--list_name)
-  - [Show](#UserGuide.md#show-a-patients-information-show)
+  - [Show](#show-a-patients-information-show)
   - [Edit a patient](#editing-a-patient--edit)
   - [Appointment](#appointment)
     - [Make or change an appointment](#making-appointment-to-a-patient--makeapp)
-    - [Mark an appointment](#marking-appointment-with-a-patient--markapp)
-  - [Create a medical certificate for patient](#create-a-medical-certificate-for-patient--create)
-  - [View a medical file](#view-the-medical-file-of-a-patient--view)
-  - [Upload a medical file](#upload-a-patients-medical-file--upload)
+    - [Mark an appointment](#marking-appointment-with-a-patient-markapp)
+  - [Create a medical certificate for patient](#create-a-medical-certificate-for-patient-create)
+  - [View a medical file](#view-the-medical-file-of-a-patient-view)
+  - [Upload a medical file](#upload-a-patients-medical-file-upload)
   - [Find a patient](#locating-patients-by-name--find)
-  - [Search Appointment date](#searching-patients-with-appointment-on-specified-date--searchdate)
+  - [Search Appointment date](#searching-patients-with-appointment-on-specified-date-searchdate)
   - [Delete](#deleting-a-patient--delete)
     - [Deletes multiple patients](#deleting-multiple-patients--deletes)
     - [Delete a medical file](#delete-a-medical-file-for-the-specified-patient-deletefile)
@@ -110,8 +115,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITI
   e.g. `.abc@gmail.com` is not allowed
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
 * OPTIONAL: You can also add patient's age, medical condition, nric.
-* NRIC need to be in the correct format. The first letter must be either 'S', 'T' or 'G' (E.g. S9935010Y)
+* NRIC has restriction for first letter, where it must be either 'S', 'T' or 'G' (E.g. S9935010Y) and length must be 9. 
 * NRIC is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
+* NRIC has no restriction from second letter onwards, hence user need to be careful as alphabets can still be added.
 * NRIC is not unique. Hence, please be aware to check your NRIC input before adding to prevent duplicate.
 * Age need to be less than or equal to 120 and must be a positive integer.
 * To record a patient's other information, add them as additional tags to the patient's profile.
@@ -125,7 +131,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
-* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` will cause MediMate to assumes that `A/John street, block 123, #01-01` is a part of the email address, causing `add` to fail.
+* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` will cause MediMate to assumes that `A/John street, block 123, #01-01` is a part of the email address, causing `add` command to fail.
 
 <div markdown="span" class="alert alert-primary">
 :bulb:**Tip:** A patient can have any number of tags (including 0)
@@ -425,10 +431,6 @@ MediMate data are saved in the hard disk automatically after any command that ch
 MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 span
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 ---
 
