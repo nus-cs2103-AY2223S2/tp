@@ -1030,6 +1030,7 @@ testers are expected to do more *exploratory* testing.
 
 - As brought up by issue [#193](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/193) and [#168](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/168), 
 long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` causes the user to not be able to see the parameter.
+
 #### Possible Solution
 - One **possible** fix would be for us to limit the length of parameters to a reasonable length (we considered 50 chars)
 - However, this does not fully solve the issue as tags numerous.
@@ -1146,17 +1147,34 @@ of the selected parent task sorted. The sorting will sort subsections in the ord
 
 ### 7.6 Better error messages
 
-- Currently, there are still some error messages that are not specific enough. For example, for the edit command, if the user enters an index that is out of bounds, i.e. the index is negative or the index is larger than the maximum index currently displayed in the list, the error message will be:
+- Currently, there are still some error messages that are not specific enough. For some commands, generic message about command usage is shown, instead of specific reason about why the command is rejected. For example, for the edit command, when the user enters an index that is out of bounds, i.e. the index is negative or the index is larger than the maximum index currently displayed in the list, the error message will be:<br>
   ![text-wrap0](images/index-error.png)
-However, a more specific error would be `The index provided is invalid`. In the future, the error message will be changed to `The index provided is invalid` for index errors.
-- Moreover, there is another minor bug about index inputs when the user enters the index `0` in all sorts of commands, such as `delete`, `edit`, `subsection`, and `remove-subsection`. The error message will show each command's expected usage, such as the one shown in the example above. However, a more
-specific usage will still be `The index provided is invalid`, which will be the standard behaviour for index errors in the future.
-- Perhaps we can add an `IndexOutOfBoundsException` for all the above errors, such that when the catcher catches the exception, error message will always be `The index provided is invalid`.
+<br>
+  However, a more specific error would be `The index provided is invalid`. In the future, the error message will be changed to `The index provided is invalid` for index errors.
+<br>
+- More bugs arising from the same issue of weak parameter handling are as follows:
 
+  1. Invalid index inputs from user, such as `0`, in commands such as `delete`, `edit`, `subsection`, and `remove-subsection`. 
+  Observed behavior: The error message shows each command's expected usage, such as the one shown in the example above. 
+  Preferred behavior: Explain cause of command rejection, such as with an error message `The index provided is invalid`.
+  Proposed modification: Create an `IndexOutOfBoundsException` to handle invalid indexes.
 
+  2. Invalid date inputs from user for `schedule` command.
+  Observed behavior: The same error message (below) is displayed for all invalid dates entered (date entered is outside of planner range - could be before or after).
+  Preferred behavior: Inform the user about why the date entered is invalid. 
+     1. For dates which are invalid because the previous plan was generated too long ago but would be valid if a new plan is generated, a message like `Please regenerate your plans to view your schedule.` could be displayed.
+     2. For dates entered which are before previous plan's generation date, a message like `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}` could be displayed.
+     3. For dates entered which are too far ahead of any possible plan dates, a message like `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}` could be displayed.
+  Proposed modification: Whenever `schedule` is run, retrieve the generation date of the current plan from the planner.json file. If the date is deemed to be invalid, check the input date against the retrieved generation date. 
+  If input date is within 30 days from current date but outside of planner range, return an error message prompting user to regenerate plans (e.g. `Please regenerate your plans to view your schedule.`).
+  If input date is before generation date, return an error message informing user that the date is an invalid date and the previous generation date (e.g. `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}`).
+  If input date is too far in the future, return an error message informing user that the date is an invalid date as it is too far into the future. (e.g. `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}`)
 
-
-
+### 7.7 Empty planner file error handling
+- Currently, a new and empty `planner.json` file is created on starting the app for the first time, or when users modify the file such that it becomes invalid, or when users delete the `planner.json` file. However, data is not automatically populated and the user will need to generate a new plan to retrieve plans. 
+- Issue: When users run a `schedule D/VALID_DATE` command on an empty `planner.json` file, Task Book acknowledges the command as valid and does not display any tasks since the data file is empty.
+  Expected behavior: Inform users about empty data file and prompt users to generate a new plan.
+- Proposed modification: Generate a new `planner.json` when the schedule command is run with an `E/EFFORT` tag and file is invalid or not found. In other situations, when `schedule D/VALID_DATE` encounters corrupted data or is unable to find the `planner.json` file, prompt users to generate another plan with `schedule D/VALID_DATE E/EFFORT`, which will then handle the problematic file.
 
 
 
