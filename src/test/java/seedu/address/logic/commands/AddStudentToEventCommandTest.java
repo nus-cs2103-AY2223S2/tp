@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.AddStudentToEventCommand.CONSULTATION
 import static seedu.address.logic.commands.AddStudentToEventCommand.LAB_STRING;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_EVENT_INDEX_TOO_BIG;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED;
-import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_STUDENT_INDEX_INVALID;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_STUDENT_INDEX_TOO_BIG;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_USAGE;
