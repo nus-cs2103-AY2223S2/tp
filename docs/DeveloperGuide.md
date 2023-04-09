@@ -543,23 +543,31 @@ The application provides users with two different methods of entering or editing
 * Using the pop-up text box implemented in this feature
 * Adding the remark through the [add feature](#add-feature)
 
+In addition, we should take special note of the format for the `remark` command: `remark INDEX [REMARK]`.
+
 The remark mechanism will be facilitated by a pop-up text box.
 They can do this by simply omitting the optional `REMARK` parameter, which will cause the pop-up text box to appear.
 This will allow users to format their remarks however they like, rather than being restricted to a single line in the command line.
 Users can use the `CTRL` + `S` combination to close the remark box without using the mouse to click on the "X", thereby
-staying through to the goal of catering to fast typists.
+staying true to the goal of catering to fast typists.
+
+We implemented this by keeping the `remark INDEX` command when it is specified, while pulling up the text box.
+When the text box is closed, the remark will be appended entirely to the saved `remark INDEX` command. This makes it
+conform to the `remark INDEX REMARK` format and this command will be run again. 
 
 However, should the user prefer it, they can also directly input their remarks into the pop-up text box
-by specifying the optional `REMARK` parameter.
+by directly specifying the optional `REMARK` parameter, thereby skipping the 2-step nature of the command.
 
-Currently, to differentiate between an empty remark specified from the text box and the `remark INDEX` command to open
-the text box, empty, or whitespace only remarks are represented by the null character `\0`. This means that if the
+Deletion of remarks will be done by specifying an empty remark from the text box.
+
+Currently, to differentiate between deletion of the remark and the `remark INDEX` command to open the text box,
+empty or whitespace only remarks are represented by the null character `\0`. This means that if the
 user somehow types only a single `\0` character into the text box, it can be seen as a bug as it will be cleared 
 upon closing the text box. However, we do not consider this to be a legitimate use of the program, and see no use in
 changing the design.
 
 #### Feature Details
-1. The remark feature can be facilitated by a pop-up text box using `remark INDEX [REMARK]`.
+1. The remark feature can be facilitated by a pop-up text box using `remark INDEX`.
 2. The contents of the pop-up text box are saved by pressing `Ctrl + S` on the keyboard.
 3. If the content of the remarks is blank, the command will be treated as a delete command and any existing remarks will be deleted.
 
