@@ -27,7 +27,7 @@ activate TotalAppointmentCommandParser
 TotalAppointmentCommandParser --> AddressBookParser
 deactivate TotalAppointmentCommandParser
 
-AddressBookParser -> TotalAppointmentCommandParser : parse("2023-02-04")
+AddressBookParser -> TotalAppointmentCommandParser : parse("d/2023-02-04")
 activate TotalAppointmentCommandParser
 
 create TotalAppointmentCommand
