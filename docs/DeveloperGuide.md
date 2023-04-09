@@ -201,33 +201,49 @@ Some txt here.
 ### Find feature
 
 #### Find Command Implementation
-This section will explain the implementation of the FindCommand and the FindCommandParser. The FindCommand allows users
-to search for modules whose names or types contain any of the specified keywords (case-insensitive).
+This section explains the implementation of the **FindCommand** and **FindCommandParser**. The **FindCommand** allows users to search for modules whose names or types contain any of the specified keywords (case-insensitive).
 
-FindCommand Class
-The FindCommand class is responsible for finding and listing all modules in the module tracker whose name contains any
-of the argument keywords. Keyword matching is case insensitive.
-The FindCommandParser is responsible for parsing the input given by the user.
+##### FindCommand Class
+The **FindCommand** class is responsible for finding and listing all modules in the module tracker whose name contains any of the argument keywords. Keyword matching is case-insensitive. The **FindCommandParser** is responsible for parsing the user input.
 
-The FindCommand utilizes the FilteredList from JavaFx and uses a predicate to initialize a FindCommand object. This
-predicate is programmed such that it will match for the name of the module and type of the module.
+The **FindCommand** utilizes the **FilteredList** from JavaFX and uses a predicate to initialize a **FindCommand** object. This predicate is programmed to match both the name and the type of the module.
 
-The predicate passed to the FindCommand constructor is from the class NameContainsKeywordsPredicate. This class has a
-test method which is used by the FilteredList.
+The predicate passed to the **FindCommand** constructor is from the **NameContainsKeywordsPredicate** class. This class has a test method, which is used by the **FilteredList**.
 
-Given below is an example usage scenario and how the find command behaves at each step.
+Below is an example usage scenario and how the find command behaves at each step:
 
-Step 1. The user launches the application for the first time. The `ModuleTracker` will be initialized with the initial
-module tracker state.
+**Step 1:** he user launches the application for the first time. The **ModuleTracker** will be initialized with the initial module tracker state.
 
-Step 2. The user executes `find CS3263` command. The 'find CS3263' will be handled by the LogicManager and
-ModuleTrackerParser which will extract out the needed argument, more importantly the predicate.
+**Step 2:** The user writes "find CS3263" in the terminal. This command will be handled by the **LogicManager** and **ModuleTrackerParser**, which will extract the needed argument, most importantly the predicate.
 
-Step 3. Now, the command is executed through the execute method which will update the list through
-`Model#updateFilteredModuleList`
+**Step 3:** The command is executed through the execute method, which updates the list through **Model#updateFilteredModuleList**.
 
-Step 4. The method set the predicate to the filtered list which will run the `NameContainsKeywordsPredicate#test()` to
-find the items based on name or type
+**Step 4:** The method sets the predicate to the filtered list, which runs the **NameContainsKeywordsPredicate#test()** method to find the items based on name or type.
+
+### Reminder feature
+
+#### Reminder Implementation
+This section explains the implementation of the reminder feature. The reminder allows users to view all the timeslots and deadlines on the current day (based on the system's time).
+
+The **LogicManager** class is responsible for finding all the modules in the module tracker whose date (timeslot or deadline) matches the current date. The **UiManager** class is responsible for alerting the user of the deadlines and timeslots for today.
+
+There are 3 methods in the **LogicManager** class:
+1. A method that deals with finding the timeslots for the day.
+2. A method that deals with finding the deadlines for the day.
+3. A method that combines and parses everything into a string.
+
+The string is then passed to a method in the **UiManager** that handles showing the alert to the user upon launching the application. Exceptions and null values are handled to avoid processing null dates, as they are optional fields.
+
+Exceptions and null values are handled to avoid looking at null dates as they are optional.
+
+Below is an example usage scenario of the reminder feature:
+
+**Step 1:** The user launches the application for the first time. The **`ModuleTracker`** will be initialized with the initial module tracker state.
+
+**Step 2:** An alert pops up, showing the user the timeslots and deadlines for the day, along with the module name and type. The title of the alert is "Work Today."
+
+**Step 3:** The user can now close the alert and continue using the application.
+
 
 <!-- ### \[Proposed\] Undo/redo feature
 
