@@ -16,7 +16,8 @@ Given below are my contributions to the project.
     * Since the syntax to be used is displayed in the output box right below the input box, users can easily follow rather than scrolling around in the UserGuide to find the syntax the user wants to know. 
     * Help is divided into 3 different categories: `help student`, `help event`  & `help organisation`, and this reduces the clutter of displaying every single syntax available.
     * To select the desired help category, chaining of keyword is used. Say the categories under events are Tutorial, Lab and Consultation, the user will enter `help event tutorial`, `help event lab` or `help event consultation` to select their desired category.
-    * Syntaxes displayed are aligned vertically to enable better reading and makes the displayed texts less overwhelming (PR: [\#171](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/171))
+    * Syntaxes displayed are aligned vertically to enable better reading and makes the displayed texts less overwhelming (PR: [\#170](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/170))
+    * Headers added to further split all the syntaxes into sub-categories (PR: [\#171](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/171))
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=nerdyboy98&tabRepo=AY2223S2-CS2103-F11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
