@@ -287,6 +287,22 @@ After each field prefix, the user should enter the desired change they would lik
 Once all the desired fields have been updated, the Success Message will prompt to the user that the event has been updated in the Events Calendar UI of NeoBook.
 It is important to note that the index number must be specified in order to edit an event, and at least one field prefix/desired-change argument must be included in the command. If an incorrect index number is entered or if a field prefix is misspelled or not recognized, the command will not work and an error message will be displayed.
 
+### Command for Tagging Person to Event Command
+
+The Tag Person to Event command allows users to tag a contact in their NeoBook to an event. Not only does it tag the person to the event, but any changes to the person will also dynamically change the information of the tagged person to the event. Currently, due to how the storage is set up, there is no way to have the same Person object be linked properly to the event. This is because on startup, NeoBook recreates a new Person object in its addressbook while each event essentially just creates a new Person object that it is tagged to. However, it would not make sense if the user had to manually update the tag if anything within the contact changed. So to dynamically pair the Person object being tagged to the event and the Person object in the Contacts list, NeoBook checks through all events on any EditPersonCommand and to look for any event where the person is tagged to. Then it edits those Person objects to its new edited version.
+
+In the future, a more proper implementation would include more coupling with storage. The flow on startup would be:
+1) All Person objects in NeoBook's contact list is loaded up
+2) All events in NeoBook are loaded up
+   1) While loading the events, make a reference to the appropriate Person object within the contact list within the taggedPerson set in events.
+
+This would make it such that we would not have to check through every single contact in NeoBook for edits as any changes to the Person object would be reflected in events.
+
+Alternatively, you could set up an Observable<Person> such that we subscribe to any changes for the certain person that NeoBook has tagged to an event and appropriately make any changes.
+
+Regardless, it is important to note that the implementation will likely have to change depending on the direction of the project.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -354,7 +370,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design considerations
 
-**Aspect: How undo & redo executes:**
+**Aspect: How undo & redo executes**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -367,10 +383,48 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+### \[Proposed\] Exporting User information
 
+#### Proposed Implementation
+
+Using the User model already implemented into NeoBook. We can create a string that a user can copy to send to their friends, such that when they run that string, the user's contact will be added into their NeoBook. The string can then be easily copy-pasted by displaying it as the CommandResult of the ExportCommand.
+
+The following sequence diagram shows how the undo operation works:
+
+![ExportUserSequence](images/ExportUserSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The return result of exportData(ReadOnlyObjectWrapper<User>) will be the String that the user can copy and easily send to a friend.
+
+For example:
+User has
+- Name: John
+- Address: Serangoon Central
+- Tags: Friend, Soccer Fanatic
+- Gender: Male
+
+The return result of exportData(ReadOnlyObjectWrapper<User>) will be:
+<br>
+`add n/John a/Serangoon Central t/Friend t/Soccer Fanatic g/Male`
+
+Then this String will be displayed as a CommandResult on the UI for the User to easily copy.
+
+#### Design considerations
+
+**Aspect: How the user can send the information to another user:**
+
+* **Alternative 1 (current choice):** Copy and paste.
+    * Pros: Easy to implement.
+    * Cons: May be too analog.
+    * Extra: Make the result be auto copied to the user's clipboard upon click.
+
+* **Alternative 2:** Email.
+    * Pros: Easier to format and for the user to use in a more professional setting. The user can also specify which contact he is sending the exported information to and NeoBook can create a draft email to the email of the contact specified.
+    * Cons: Difficult to implement.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -570,6 +624,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **SuperField**: A field that can store multiple values.
+* **Field**: A field for a contact.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -763,6 +819,49 @@ testers are expected to do more *exploratory* testing.
 2. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
+
+To give evaluators an estimate on the effort put into NeoBook, our team has put together a list of difficulties and challenges faced, effort required, and achievements that should be taken into account when evaluating NeoBook, especially when compared to AB3.
+
+For starters, below are the commands that we have added:
+1) `Light`/`Dark` Command
+2) `Favorite`/`Unfavorite` Command
+3) `Select` Command
+4) `EditUser` Command
+5) `Tab` Command
+6) `AddEvent` Command
+7) `EditEvent` Command
+8) `DeleteEvent` Command
+9) `TagEvent` Command
+
+All 8 commands have their own respectively complexities, of note are commands 4-8, which allow you to interact with an entirely new section of NeoBook added in, known as Events. We estimate that the effort required to add just commands 4-8 alone were equivalent to the effort required to design the initial commands for AB3 (i.e. add, find, delete, e.t.c.). The tag event command especially is extremely complex. It dynamically links a Person object to an Event such that any changes to the Person would also update the Person in the Event.
+
+Moving on, below are the commands that we enhanced with their enhancements abbreviated
+1) `Add` Command
+   1) Added compatibility with the new fields of our contacts
+2) `Edit` Command
+   1) Added compatibility with the new fields of our contacts
+   2) Changed behavior to deal with SuperFields (also known as FieldGroups in the User Guide)
+3) `Find` Command
+   1) Added ability to search based on multiple fields
+4) `Help` Command
+   1) Added a more comprehensive list of commands for users to refer to.
+
+All commands above had their behavior either enhanced or changed to suit the new behavior of NeoBook.
+
+Up next, we would like to speak about the Events system in NeoBook. There were many challenges dealing with Events. One such problem was the decision of the GUI. Initially, we used a much more visually appealing version with CalendarFX, a JavaFX library for calendars. However, after realizing how buggy it was, we moved to a more traditional events list rather than a calendar. The implementation of Events, as mentioned above, was in terms of effort, almost at the same level of the entire AB3 on its own. This is because we had to implement our own persistent storage for events, build a new GUI window for it and also create commands for them. 
+
+Next, we would like to speak about the changes we made to the addressbook in NeoBook. To put it simply, we researched and added in new fields that NUS students would love to have in their addressbook. Fields that were added are:
+- Gender
+- Race
+- Major
+- Faculty
+- And much more!
+
+Along with these new fields, we had to change all our contact-related commands (such as AddCommand and EditCommand) to account for these new fields. Moreover, we abstracted common logic between all these fields into a more generic `Fields` class for use of polymorphism. There is another class of fields that instead holds multiple values, known as `SuperField` (renamed to `FieldGroup` in UG for non-technical readers). These `SuperFields` have different behavior in that they store multiple values, so commands such as the `Edit` and `Add` commands will interact differently for these fields.
+
+We also created our own persistent storage for the Events and the User systems. The events are currently stored in the User object, but we believe we have made it trivial to expand the functionality such that events can also be stored for Contacts in the NeoBook.
+
+We believe that every decision we made was also to improve the maintainability of this project by following good software engineering principles so that this project can be easily built upon.
 
 
 ## **Appendix: Planned enhancements**
