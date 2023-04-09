@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TankFeedCommand" as TankFeedCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Tank" as Tank LOGIC_COLOR
+participant ":AddressBook" as AddressBook LOGIC_COLOR
+participant ":UniqueFishList" as UFL LOGIC_COLOR
+participant ":Fish" as Fish LOGIC_COLOR
+participant ":LastFedDate" as LFD LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("tank feed 1")
+activate LogicManager
+
+LogicManager -> TankFeedCommand : execute(model)
+activate TankFeedCommand
+
+TankFeedCommand -> Model : setLastFedDateTimeFishes(tank, now)
+activate Model
+
+Model -> Tank : setLastFedDateTimeFishes(newDateTime)
+activate Tank
+
+Tank -> AddressBook : setLastFedDateTimeFishes(newDateTime)
+activate AddressBook
+
+AddressBook -> UFL : setLastFedDateTimeFishes(newDateTime)
+activate UFL
+
+loop for each fish
+    UFL -> Fish : setLastFedDateTime(newDateTime)
+    activate Fish
+
+    create LFD
+    Fish -> LFD : new LastFedDate(newDateTime)
+    activate LFD
+
+    LFD --> Fish :
+    deactivate LFD
+
+    Fish --> UFL :
+    deactivate Fish
+end
+
+UFL --> AddressBook :
+deactivate UFL
+
+AddressBook --> Tank :
+deactivate AddressBook
+
+Tank --> Model :
+deactivate Tank
+
+
+Model --> TankFeedCommand : commandResult
+deactivate Model
+
+TankFeedCommand --> LogicManager : commandResult
+deactivate TankFeedCommand
+
+[<-- LogicManager : commandResult
+
+
+@enduml

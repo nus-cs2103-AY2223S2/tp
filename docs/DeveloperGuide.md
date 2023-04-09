@@ -277,7 +277,7 @@ Thus, `LogicManager` will invoke `execute` on `TaskAddCommand` with the followin
 
 ### TankFeedCommand feature
 #### Motivation
-As a FishTracker application, we provide a way for fishkeepers to track the `LastFedDates` of all their fishes,
+As a FishTracker application, we provide a way for fishkeepers to track the `LastFedDate` of all their fishes,
 as having multiple tanks and fishes makes feeding difficult to keep track of without a tracking system.
 
 #### Implementation summary
@@ -287,22 +287,32 @@ When the fishkeeper decides to feed a particular tank by invoking the command `t
 the program will feed all fishes in that tank, changing `LastFedDate`  of all fishes in that tank.
 
 #### How `TankFeedCommand` is executed
-When a command `tank feed <index>` is invoked, it first passes through the main parser `AddressBookParser`,
+When command `tank feed <index>` is invoked, it first passes through the main parser `AddressBookParser`,
 before being delegated to command-specific parsers, namely `TankParser` -> `TankFeedCommandParser`,
 which returns a `TankFeedCommand` to `LogicManager`.
 
 With this, `LogicManager` will invoke `execute` on `TankFeedCommand` with the following code `command.execute(model);`,
 where `model.setLastFedDateFishes(tankToFeed, formattedDate);` will be called.
 
-The `setLastFedDateFishes(tankToFeed, formattedDate)` function will be called down the chain of classes
+The `setLastFedDateTimeFishes(tankToFeed, formattedDate)` function will be called down the chain of classes
 [`ModelManager` -> `Tank` -> `AddressBook` -> `UniqueFishList`].
 
 `UniqueFishList#setLastFedDateFishes(String newDate)` will then call
-`internalList.stream().forEach(fish -> fish.setLastFedDate(newDate));`,
+`internalList.stream().forEach(fish -> fish.setLastFedDateTime(newDate));`,
 creating a new stream from `internalList` containing references to all Fish objects in `internalList`.
 
-Every `Fish` object will call `fish.setLastFedDate(newDate)`, where a new `LastFedDate` object with the updated date
-will be created and replace the `Fish`'s `lastFedDate` field.
+Every `Fish` object will call `fish.setLastFedDateTime(newDate)`, where a new `LastFedDateTime` object with the updated date
+will be created and replace the `Fish`'s `lastFedDateTime` field.
+
+![TankFeedDiagram](images/TankFeedDiagram.png)
+
+#### Design Considerations
+* Alternative 1 (current choice): Create a setLastFedDateTimeFishes(tankToFeed, formattedDate) which allows for flexible date
+    * Pros: Allows for flexible setting of `LastFedDateTime` for future implementations.
+    * Cons: Higher chance of bugs as function allows for variability of date-time.
+* Alternative 2: Create a setLastFedDateTimeFishes(tankToFeed) which hard codes `LastFedDateTime` to current date time
+    * Pros: Straightforward behaviour of function, since `TankFeedCommand` sets the `LastFedDateTime` to the current date-time.
+    * Cons: Not flexible, may not be useful for future implementations which requires variable settings of date-time.
 
 
 ### \[Proposed\] Undo/redo feature
