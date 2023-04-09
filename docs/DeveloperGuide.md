@@ -11,6 +11,8 @@ title: Developer Guide
 
 * COVID-19 vaccination data - [MOH ｜ COVID-19 Vaccination](https://www.moh.gov.sg/covid-19/vaccination)
 * Chemical name synonyms - [PubChem](https://pubchem.ncbi.nlm.nih.gov/)
+* Code snippet in [`ResultMessageBox`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/bd171c0108f75ff1c61c6bca63f618fb758eacda/src/main/java/seedu/vms/ui/ResultMessageBox.java#L44-L54) to size `TextArea` adapted and modified from - [StackOverflow - Javafx textfield resize to text length?](https://stackoverflow.com/a/25643696)
+* CLI presentation format in UG adapted from - [Document command-line syntax](https://developers.google.com/style/code-syntax)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,9 +55,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `patient delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -1467,20 +1469,20 @@ Before every test case, ensure that the there are no patients. This can be done 
 1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A+ --a catfur --a pollen --v covax`
 1. `patient add --n John Does --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 1. `patient add --n John Po --p 98765432 --d 2001-03-19 --b AB+ --a catfur --a pollen --v covax`
-1. Find patient with name "John Doe"
-  `patient find John Doe`
+1. Find patient with name "John Doe"<br>
+  `patient find John Doe`<br>
   **Expected**: 2 patients listed! (John Doe, John Does)
-1. Find patient with name "John Does"
-  `patient find John Does`
+1. Find patient with name "John Does"<br>
+  `patient find John Does`<br>
   **Expected**: 1 patients listed! (John Does)
-1. Find patient with name "John"
-  `patient find John`
+1. Find patient with name "John"<br>
+  `patient find John`<br>
   **Expected**: 3 patients listed! (John Doe, John Does, John Po)
-1. Find patient with "A+" Blood Type
-  `patient find --b A+`
+1. Find patient with "A+" Blood Type<br>
+  `patient find --b A+`<br>
   **Expected**: 1 patients listed! (John Doe)
-1. Find patient with "A+" Blood Type and named "John"
-  `patient find --b A+ --n John`
+1. Find patient with "A+" Blood Type and named "John"<br>
+  `patient find --b A+ --n John`<br>
   **Expected**: 1 patients listed! (John Doe)
 
 ### Adding a vaccination
@@ -1610,4 +1612,36 @@ Before every test case, ensure that the there are no patients and vaccinations.
 
 ## Appendix: Planned enhancements
 
-1. We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
+#### Less strict patient name check
+
+We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
+
+#### Decrease the warning severity message of invalid appointment data file
+
+On start up, in same cases, the `DEATH` severity (the highest due to an uncaught exception) will show if the loaded appointment file is invalid (eg. start time of an appointment after end time). We plan to decrease this severity.
+
+#### ID count saving
+
+We plan to save the current ID count to hard disk as well on every auto save. This will resolve the issue where the ID counts is forgotten when the application is closed and defaulted to the highest ID. Here are some examples on what may happen if the ID count is forgotten:
+
+* User adds 100 patients and then deletes all of them. ID count is at 100. A restart of the application will cause the ID count to reset to 1.
+* User adds 1000 patients, deletes the patients with IDs 11 to 20, adds 5 additional patients and deletes the added 5. ID count will be 15. A restart of the application will cause the ID count to reset to 1000 and the addition of the next patient will have an ID of 11.
+
+#### Validation of requirements of type `NONE`
+
+The validation checks for history requirements specifically the `NONE` type is planned to be enhanced. The enhancement will disallow the addition or creation of a history requirement if there exist a requirement of `NONE` that causes the entire history requirement to become meaningless. These cases are as follows:
+
+* Duplicate requirements of `NONE` type (eg. 2 `NONE::G1`).
+* Conflicting requirements with a `NONE` type (eg. `NONE::G1` and `ANY::G1`).
+
+#### Ignore whitespace for name parsing
+
+We plan to improve teh parsing of names such that any additional whitespace characters between non-whitespace characters are taken only to be 1. For example, the following names `A NAME`, `A  NAME` or `A   NAME` will be parsed to be `A NAME`. Extra spaces are likely to be an error by the user and in the real world, these extra whitespace characters are taken to be a single space. This enhancement applies to **patient names**, **vaccination names**, **allergy names** and **vaccination group names**.
+
+#### Emptying vaccination history requirement
+
+Currently when a vaccination has been added, there is no way to update its history requirement to become empty if it is not. The `--set true` argument flag is only able to replace the entire history requirement list with another that is not empty.
+
+We plan to enhance this by adding an additional flag to vaccination's edit <code>--empty <var>SHOULD_EMPTY</var></code> where <code><var>SHOULD_EMPTY</var></code> is of `boolean` type with a default value of `false`. The presence of this argument in the vaccination `edit` command will cause the history requirement of the vaccination to be emptied.
+
+The enhancement will also be implemented such that if both `--h` and `--empty` argument were to appear in the same `edit` command, the command will not be processed and an error message will be shown. This is the protect the user's data from unintended changes.

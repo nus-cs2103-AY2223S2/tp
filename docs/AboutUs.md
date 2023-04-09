@@ -18,7 +18,7 @@ You can reach us by creating Github issues [here](https://github.com/AY2223S2-CS
 [[portfolio](team/francisyzy.md)]
 
 * Role: Team Lead
-* Responsibilities: NOT UI
+* Responsibilities: Patient Feature Enhancement, Documentation, Dev Ops
 
 ### daitenshionyan
 

@@ -5,18 +5,18 @@ skinparam RoundCorner 0
 
 skinparam arrowThickness 1.1
 
-Class "<u>detailedpatientView:DetailedView</u><IdData<Patient>>" as DetailedView UI_COLOR {
+Class "<u>detailedPatientView:DetailedView</u>" as DetailedView UI_COLOR {
     -isUpdated: boolean
     -value: IdData<Patient>
 }
 show DetailedView fields
 
-Class "<u>displayFunction:Function</u><IdData<Patient>, Node>" as Function #000000
+Class "<u>displayFunction:Function</u>" as Function #000000
 
-Class "<u>:ChangeListener</u><IdData<Patient>>" as ChangeListener #000000
+Class "<u>:ChangeListener</u>" as ChangeListener #000000
 
-Class "<u>detailPatientProperty:ObjectProperty</u><IdData<Patient>>" as ObjectProperty #000000
-Class "<u>:ModelManager</u>" as ModelManager LOGIC_COLOR
+Class "<u>detailPatientProperty:ObjectProperty</u>" as ObjectProperty #000000
+Class "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 
 ModelManager -down-> ObjectProperty
 ObjectProperty -down-> ChangeListener : updates >

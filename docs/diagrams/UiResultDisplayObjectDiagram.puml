@@ -10,7 +10,7 @@ Class "<u>:ResultDisplay</u>" as ResultDisplay UI_COLOR {
 show ResultDisplay fields
 
 Class "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
-Class "<u>completionHandler:Consumer</u><List<CommandMessage>>" as Consumer #000000
+Class "<u>completionHandler:Consumer</u>" as Consumer LOGIC_COLOR
 
 LogicManager -down-> Consumer
 Consumer -down-> ResultDisplay : queues messages >
