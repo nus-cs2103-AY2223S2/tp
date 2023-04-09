@@ -274,17 +274,25 @@ Step 7. The `RecipeDesriptor` instance is converted to a new `Recipe` instance t
 
 ### Feature: "Edit" Form UI
 
+The `EditRecipeForm` allows users to make changes to a recipe details directly over a Graphical User Interface edit form instead of the command box. The following sequence diagram illustrates how the different components interact with one another in the execution of an edit form command.   
+
+<img class="diagram" src="images/EditRecipeFormSequenceDiagram.png" width="1128"/>  
+
 #### Implementation
 
-The `RecipeForm` class extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields` and `Buttons`, 
-that are used for displaying and editing recipe details. The class has a constructor that takes a `Recipe` object and an `int` representing the displayed index. 
+The `EditRecipeForm` class inherits from the `RecipeForm` base class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details and `Buttons` for saving and closing the form.  
+
+The class has a constructor that takes the currect selected `Recipe` object, a `StringBuilder` object to be returned to the caller in `RecipeCard`, and the `title` of the form.
+The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.  
+
 The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
 
 In addition, it implements the following operations:
+* `RecipeForm#display` —  Displays the pre-populated form with corresponding UI components such as the <kbd>Save</kbd> button and `TextField` rows.
 * `RecipeForm#saveInitialValues()` —  Stores the initial values of the form fields in a HashMap.
 * `RecipeForm#populateFields()` —  Prepopulates the form fields with values of current recipe.
-* `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by calling `EditRecipeEvent`.
-* `RecipeForm#display` —  Displays the pre-populated form with corresponding UI components such as the <kbd>Save</kbd> button and `TextField` rows.
+* `RecipeForm#collectFields` —  Stores changed recipe fields in the HashMap into the data StringBuilder.
+* `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by passing the `StringBuilder` instance containing the command string back to `EditRecipeEvent` to be executed.
 * `RecipeForm#closeForm()` —  Closes the form without saving any changes.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
@@ -295,19 +303,17 @@ Step 1. The user selects a recipe and presses the <kbd>F</kbd> key, triggering t
 
 Step 2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
 
-Step 3. The user clicks on the <kbd>Save</kbd> button, causing the `RecipeForm#saveRecipe()` method to be called. This method checks which fields have been changed by comparing their current values with the initial values stored in the `initialValues` HashMap. Changed values are stored in a new `changedValues` HashMap.
+Step 3. The user clicks on the <kbd>Save</kbd> button, causing the `RecipeForm#saveRecipe()` method to be called. This method checks which fields have been changed by comparing their current values with the initial values stored in the `initialValues` HashMap. Changed values are stored in a new `changedValues` HashMap. The `changedValues` HashMap is then collected into the `StringBuilder` instance through `RecipeForm#collectFields`
 
-Step 4. The `changedValues` HashMap, along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
+Step 4. The form is closed and the new `StringBuilder` instance is returned to `RecipeCard` for execution.
 
-Step 5. The form is closed upon successful saving of the edited recipe.
+Step 5. The final command text is generated from the `StringBuilder` instance, and along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
 
-_EditFormSequenceDiagram
-
-Activity Diagram
+#### Activity Diagram
 
 The following activity diagram summarizes the process when a user edits a recipe using the RecipeForm:
 
-_EditFormActivityDiagram
+<img class="diagram" src="images/EditRecipeFormActivityDiagram.png" width="1128"/>  
 
 :information_source: Note:
 If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>ESC</kbd> key, the form will be closed without saving any changes.
