@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -115,23 +114,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
-
-    /**
-     * Get total number of clients present in address book.
-     */
-    int getNumberOfClients();
-
-    /**
-     * Get summary of all the data to be displayed
-     */
-    HashMap<String, Integer> getSummary();
-
-    /**
-     * Get total weekly earnings of the user.
-     *
-     * @return Total weekly earnings from all the clients the user has.
-     */
-    double getWeeklyEarnings();
 
     boolean canRedo();
 

@@ -10,13 +10,13 @@ public class AppointmentName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment names should only contain alphanumeric characters and spaces, and it should not be blank, "
-                    + "and it should not be longer than 50 characters.";
+                    + "and it should not be longer than 35 characters.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]{0,48}[\\p{Alnum}]?";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]{0,33}[\\p{Alnum}]?";
     public final String value;
 
     /**

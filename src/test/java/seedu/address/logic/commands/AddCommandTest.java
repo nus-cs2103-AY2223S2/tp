@@ -8,7 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -185,21 +184,6 @@ public class AddCommandTest {
         public void commit() {
 
         }
-
-        public int getNumberOfClients() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public double getWeeklyEarnings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public HashMap<String, Integer> getSummary() {
-            throw new AssertionError("This method should not be called.");
-        }
-
 
         //todo
         public void redo() {
