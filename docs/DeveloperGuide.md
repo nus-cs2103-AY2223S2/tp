@@ -1381,20 +1381,20 @@ Before every test case, ensure that the there are no patients. This can be done 
 1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A+ --a catfur --a pollen --v covax`
 1. `patient add --n John Does --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 1. `patient add --n John Po --p 98765432 --d 2001-03-19 --b AB+ --a catfur --a pollen --v covax`
-1. Find patient with name "John Doe"
-  `patient find John Doe`
+1. Find patient with name "John Doe"<br>
+  `patient find John Doe`<br>
   **Expected**: 2 patients listed! (John Doe, John Does)
-1. Find patient with name "John Does"
-  `patient find John Does`
+1. Find patient with name "John Does"<br>
+  `patient find John Does`<br>
   **Expected**: 1 patients listed! (John Does)
-1. Find patient with name "John"
-  `patient find John`
+1. Find patient with name "John"<br>
+  `patient find John`<br>
   **Expected**: 3 patients listed! (John Doe, John Does, John Po)
-1. Find patient with "A+" Blood Type
-  `patient find --b A+`
+1. Find patient with "A+" Blood Type<br>
+  `patient find --b A+`<br>
   **Expected**: 1 patients listed! (John Doe)
-1. Find patient with "A+" Blood Type and named "John"
-  `patient find --b A+ --n John`
+1. Find patient with "A+" Blood Type and named "John"<br>
+  `patient find --b A+ --n John`<br>
   **Expected**: 1 patients listed! (John Doe)
 
 ### Adding a vaccination
