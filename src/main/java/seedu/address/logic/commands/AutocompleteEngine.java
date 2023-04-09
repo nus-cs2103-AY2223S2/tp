@@ -68,7 +68,7 @@ public class AutocompleteEngine {
     private final Model model;
 
     /**
-     * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
+     * Constructs a {@code AutocompleteEngine} with a predefined model.
      */
     public AutocompleteEngine(Model model) {
         this.model = model;
