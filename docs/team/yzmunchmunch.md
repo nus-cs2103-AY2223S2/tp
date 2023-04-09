@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-  * Enhanced the `isSameClient` method in the `Client` class, such that it now checks if all attributes of both comparing clients are the same, instead of the original method where it only checks if the client names are the same
+  * Enhanced the `isSameClient` method in the `Client` class, such that it now checks if all client's `Name` AND (`Phone` OR `Email`) of both comparing clients are the same, instead of the original method where it only checks if the client names are the same
 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=yzmunchmunch&breakdown=true)
