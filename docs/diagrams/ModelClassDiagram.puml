@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as iModel
 Class AddressBook
 Class ModelManager
 Class UserPrefs
@@ -35,13 +35,13 @@ Class "Note" as oNote
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> iModel
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+ModelManager .up.|> iModel
+iModel .right.> ReadOnlyUserPrefs
+iModel .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
@@ -66,6 +66,6 @@ Order *--> Status
 Order *--> CreatedDate
 Order *--> oName
 
-ModelManager --> "filtered\n and sorted" UniqueCustomerList
-ModelManager --> "filtered\n and sorted" UniqueOrderList
+ModelManager --> "filtered\n and\nsorted" Customer
+ModelManager --> "filtered\n and sorted" Order
 @enduml
