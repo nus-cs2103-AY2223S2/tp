@@ -350,90 +350,83 @@ Future versions of Java contain features that can handle the problems mentioned 
 
 ### Atomic data modification
 
-#### Reasons
+#### Motivation
 
 Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all of the changes completed so far must be discarded. This ensures that the system is always left in a consistent state.
 
-<!-- insert diagram here -->
-
 #### Implementation details
 
+Currently, the only modification that can fail is modification to `Task`s.
+
+Whenever a task (in the task list) need to be modified, the following workflow will be applied:
+
+- Copy the task to be modified.
+- Sequentially applies different modifications on the new task.
+- If there is a failure, we discard the new task and return.
+- If there is no failure, we replace the old task with the new (modified) task.
+
+Refer to the diagram below for a visualization of this workflow:
+
+<!-- insert diagram here -->
+
+Apart from ensuring atomic data operation, this implementation greatly simpifies the implementation of the undo feature. Must be nice!
 
 ### Undo feature
 
+The undo can undo the previous command (that modifies the internal data) by typing `"undo"` in the command box.
+
+#### Motivation
+
+Users may make mistakes in their command, and command can be destructive. For example, the user may accidentally issue a delete command and delete _all_ information about a task. This is annoying and sometimes can be troublesome - because the lost information may be very important.
+
+Undo command is implemented to addresss this concern. Note that in our application, undo command only undoes modifications to the internal data.
+
 #### Current implementation
 
-lol this section is sooooooo \*\*\*\*ing verbose
+The undo mechanism is facilitated by 2 classes: `CommandStack` and `UndoableLogicCommand`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `Vimification` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+```java
+public interface UndoableLogicCommand extends LogicCommand {
 
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+    public CommandResult undo(LogicTaskList taskList);
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+    // other methods, if any
+}
+```
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+All command that modifies the internal data (`AddCommand`, `DeleteCommand`, etc.) must implement `UndoableLogicCommand` and provide an implementation for the `undo` method.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Also, apart from modifying the data (atomically), `execute` method now:
 
-![UndoRedoState0](images/UndoRedoState0.png)
+- Maintains relevant information (before modification) for the `undo` method.
+- Pushes the command (itself) into the stack of previous commands (if the command succeeds).
 
-Step 2. The user executes `delete 5` command to delete the 5th task in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+To undo a command, the following steps are executed:
 
-![UndoRedoState1](images/UndoRedoState1.png)
+- A `UndoCommand` instance is created after the user type `"undo"` into the command box.
+- The command pops the first command out of the stack.
+- The command then calls the `undo` method of the poped command.
 
-Step 3. The user executes `add n/David …​` to add a new task. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Refer to the diagram below for a visualization of this workflow:
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<!-- insert diagram here -->
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Recall that, we modify the data by copying the old task and replacing it with a modified version. We can store this old task before replacing it, and restore it back when we undo the command. Simple!
 
-</div>
+#### Design considerations
 
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Vimification state, then there are no previous Vimification states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone Vimification states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
+Currently, undo command does not support commands that modify the macros and GUI. We do not plan to implement a undo command that reverses changes to the GUI, it does not make sense (as the user can just refresh or retype the command to change the view again). However, undoing a command that modifies the macros may be beneficial. We can extend the behavior of undo command to support this behavior in future versions.
 
 
 ### Macro feature
 
-#### Current implementation
+Macro are just shortcuts for longer commands. This feature allows the user to define, delete and view macro(s) in the application.
 
+#### Motivation
 
+The motivation for this feature comes from **bash aliases**, where the user may define customized shortcut to invoke their command. Even for a fast typing user, this feature may still be benefical as it allows them to define custom format that they are more comfortable with.
 
+#### Implementation details
 
 
 
@@ -449,18 +442,6 @@ One downside of this implementation is that `JsonAdoptedTask` must know all of i
 
 
 ### Syncing view with internal logic
-
-
-
-
-
-
-
-### Using more unchecked exceptions
-
-
-
-
 
 
 
