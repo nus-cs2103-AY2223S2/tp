@@ -47,6 +47,8 @@ The following typographical conventions are used in this guide.
 * Table of Contents
 {:toc}
 
+---
+
 ## Quick Start
 
 Mycelium runs on Java 11, so you should first head over to [Oracle's
@@ -87,6 +89,8 @@ Corruption or tampering with it may lead to the data file becoming unreadable
 or containing invalid values. This will result in the file being ignored
 and Mycelium will start as an empty application with no projects and clients.
 </div>
+
+---
 
 ## Glossary
 
@@ -619,6 +623,8 @@ mode**.
 no searching can be done while in **command mode**.
 </div>
 
+---
+
 ## Fuzzy Search
 
 Fuzzy search allows us to find projects or clients which match *closely* to
@@ -733,6 +739,8 @@ might wish to note:
   project. The behaviour of fzf and most IDEs is to list no results.
 * You might experience some input lag while in **search mode**. This is expected to
   improve as we refine the implementation.
+
+---
 
 ## Command summary
 
