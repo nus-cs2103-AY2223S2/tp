@@ -721,4 +721,3 @@ Examples:
       <td>
             <li><code>:wq</code>
             </li>
-</table>
