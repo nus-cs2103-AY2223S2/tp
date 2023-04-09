@@ -14,11 +14,16 @@ Class ItemList<T extends Item>
 
 
 Class MenuItem
+Class ItemSellingPrice
+Class ItemProfit
 Class ItemPrice
 Class ItemCost
 Class ItemName
 Class Menu extends ItemList
 Class UniqueMenuItemList extends UniqueItemList
+Class ItemSellingPrice extends ItemPrice
+Class ItemCost extends ItemPrice
+
 
 ItemList *--r> "1" UniqueItemList
 UniqueItemList -r>"*" Item
@@ -29,10 +34,9 @@ MenuItem *--> "1" ItemName
 MenuItem *--> "1 " ItemSellingPrice
 MenuItem *--> "1 " ItemCost
 MenuItem *--> "1 " ItemProfit
-ItemProfit --> "1 " ItemPrice
-ItemProfit --> "1 " ItemCost
-ItemPrice --> "1 " ItemSellingPrice
-ItemPrice --> "1 " ItemCost
+ItemProfit --> "1 " ItemSellingPrice
+ItemProfit -left-> "1 " ItemCost
+
 
 MenuItem -u|> Item
 

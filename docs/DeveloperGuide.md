@@ -236,10 +236,11 @@ This is the class representation for the `Menu` class.
 
 Here is how `Menu` works:
 
-* Each `Menu` contains non-negative and non-zero number of `MenuItem`.
-* Each `MenuItem` contains their description, price, cost and profit (e.g., `ItemName` for menu's item name).
+* Each `Menu` contains non-negative number of `MenuItem`.
+* Each `MenuItem` contains their description, selling price, cost and profit (e.g., `ItemName` for menu's item name).
 * The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
-* The`ItemProfit` is obtained using `ItemPrice` and `ItemCost`, meaning that `ItemProfit` depends on `ItemPrice` and `ItemCost`.
+* The`ItemProfit` is obtained using `ItemSellingPrice` and `ItemCost`(i.e. `ItemProfit` depends on `ItemSellingPrice` and `ItemCost`).
+* `ItemSellingPrice` and `ItemCost` inherits off the `ItemPrice`.
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 * The `MenuItem` is an attribute of `Order`
 
@@ -263,7 +264,7 @@ This is the class representation for the `Order` class.
 
 Here is how `Order` works:
 
-* Each `OrderList` contains non-negative and non-zero number of `Order`.
+* Each `OrderList` contains non-negative number of `Order`.
 * Each `Order` contains a menu item(from a locally stored menu), customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
 * The menu item and customer each contains attributes as mentioned in their respective section above on how `Menu` and `Customer` works.
 * The `Order`'s `OrderDeadline` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
