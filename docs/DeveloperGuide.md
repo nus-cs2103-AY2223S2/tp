@@ -2285,6 +2285,7 @@ with module, lecture and keyword supplied.
     Use case resumes at step 1.
 
 #### Clear all Modules
+
 **MSS**
 
 1. User requests to clear all modules
@@ -2396,7 +2397,7 @@ TODO: to be removed
 
 | Test Case  | Expected Result                                          |
 | ---------- | -------------------------------------------------------- |
-| `list`     | List should show modules with code [`CS2040S`, `ST2334`] |
+| `list`     | **Message:**<br/>`Listed all modules`<br/> **List updates:** <br/>Show modules with code [`CS2040S`, `ST2334`] |
 | `list /r`  | Same as previous                                         |
 | `list foo` | Same as previous                                         |
 
@@ -2404,65 +2405,69 @@ TODO: to be removed
 
 | Test Case                     | Expected Result                                                          |
 | ----------------------------- | ------------------------------------------------------------------------ |
-| `nav CS2040S`<br/>`list` | List should show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
+| 1.`nav CS2040S`<br/> 2.`list` | **Message:**<br/>`Listed all lectures from module: CS2040S`<br/> **List updates:** <br/>Show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
 | `list /mod CS2040S`           | Same as previous                                                         |
 
 ### List Videos of a Lecture
 
 | Test Case                                        | Expected Result                             |
 | ------------------------------------------------ | ------------------------------------------- |
-| `nav CS2040S`<br/> `nav Week 1`<br/>`list` | List should show videos with name [`Vid 3`] |
-| `nav CS2040S`<br/> `list /lec Week 1`        | Same as previous                            |
-| `nav /mod CS2040S /lec Week 1`<br/>`list`    | Same as previous                            |
+| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`list` | **Message:**<br/>`Listed all videos from module: CS2040S, lecture: Week 1`<br/> **List updates:** <br/>Show videos with name [`Vid 3`] |
+| 1.`nav CS2040S`<br/> 2.`list /lec Week 1`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`list`    | Same as previous                            |
 | `list /mod CS2040S /lec Week 1`                  | Same as previous                            |
 
 ### Find Modules
 
 | Test Case    | Expected Result                                |
 | ------------ | ---------------------------------------------- |
-| `find cs`    | List should show modules with code [`CS2040S`] |
+| `find cs`    | **Message:**<br/>`1 modules listed!`<br/> **List updates:** Show modules with code [`CS2040S`] |
 | `find cs /r` | Same as previous                               |
-| `find foo`   | An empty list is shown                         |
+| `find foo`   | **Message:**<br/>`0 modules listed!`<br/> **List updates:** Shows an empty list
 
 ### Find Modules by Tag
 
 | Test Case             | Expected Result                                          |
 | --------------------- | -------------------------------------------------------- |
-| `find intro /byTag`   | List should show modules with code [`CS2040S`, `ST2334`] |
-| `find prob /r /byTag` | List should show modules with code [`ST2334`]            |
-| `find foo /byTag`     | An empty list is shown                                   |
+| `find math /byTag`   | **Message:**<br/>`2 modules listed!`<br/> **List updates:** Show modules with code [`CS2040S`, `ST2334`] |
+| `find prob /r /byTag` | **Message:**<br/>`1 modules listed!`<br/> **List updates:** Show modules with code [`ST2334`]            |
+| `find foo /byTag`     | **Message:**<br/>`0 modules listed!`<br/> **List updates:** Shows an empty list                           |
 
 ### Find Lectures of a Module
 
 | Test Case                            | Expected Result                                |
 | ------------------------------------ | ---------------------------------------------- |
-| `nav CS2040S`<br/> `find week 1` | List should show lectures with name [`Week 1`] |
+| 1.`nav CS2040S`<br/> 2.`find week 1` | **Message:**<br/>`1 lectures listed!`<br/> **List updates:** Show lectures with name [`Week 1`] |
 | `find week 1 /mod CS2040S`           | Same as previous                               |
-| `find wk /mod CS2040S`               | An empty list is shown                         |
+| `find wk /mod CS2040S`               | **Message:**<br/>`0 lectures listed!`<br/> **List updates:** Shows an empty list                 |
 
 ### Find Lectures of a Module by Tag
 
 | Test Case                                | Expected Result                                          |
 | ---------------------------------------- | -------------------------------------------------------- |
-| `nav CS2040S`<br/> `find arr /byTag` | List should show lectures with name [`Week 2`, `Week 4`] |
+| 1.`nav CS2040S`<br/> 2.`find arr /byTag` | **Message:**<br/>`2 lectures listed!`<br/> **List updates:** Show lectures with name [`Week 2`, `Week 4`] |
 | `find arr /mod CS2040S /byTag`           | Same as previous                                         |
-| `find arry /mod CS2040S /byTag`          | An empty list is shown                                   |
+| `find arry /mod CS2040S /byTag`          | **Message:**<br/>`0 lectures listed!`<br/> **List updates:** Shows an empty list |
 
 ### Find Videos of a Lecture
 
 | Test Case                                              | Expected Result                             |
 | ------------------------------------------------------ | ------------------------------------------- |
-| `nav CS2040S`<br/> `nav Week 1`<br/>`find vid 3` | List should show videos with name [`Vid 3`] |
-| `nav CS2040S`<br/> `find vid 3 /lec Week 1`        | Same as previous                            |
-| `nav /mod CS2040S /lec Week 1`<br/>`find vid 3`    | Same as previous                            |
+| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`find vid 3` | **Message:**<br/>`1 videos listed!`<br/> **List updates:** Show videos with name [`Vid 3`] |
+| 1.`nav CS2040S`<br/> 2.`find vid 3 /lec Week 1`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find vid 3`    | Same as previous                            |
 | `find vid 3 /mod CS2040S /lec Week 1`                  | Same as previous                            |
-| `nav /mod CS2040S /lec Week 1`<br/>`find`          | Invalid command                             |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find`          | **Message:**<br/>`Invalid command format!`<br/> **List updates:** None |
 
 ### Find Videos of a Lecture by Tag
 
 | Test Case                                                    | Expected Result                             |
 | ------------------------------------------------------------ | ------------------------------------------- |
-| `nav CS2040S`<br/> `nav Week 2`<br/>`find math /byTag` | List should show videos with name [`Vid 2`] |
+| 1.`nav CS2040S`<br/> 2.`nav Week 2`<br/>3.`find math /byTag` | **Message:**<br/>`1 videos listed!`<br/> **List updates:** Show videos with name [`Vid 2`] |
+| 1.`nav CS2040S`<br/> 2.`find math /lec Week 2 /byTag`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find math /byTag`    | Same as previous                            |
+| `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | **Message:**<br/>`Invalid command format!`<br/> **List updates:** None |
 
 ### Add a Module
 
@@ -2473,6 +2478,7 @@ TODO: to be removed
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `add CS2103T /r /name Software Engineering /tags Coding, 4MCs` | **Message:**<br/>`New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]`<br/>**List updates:** None                                                                                    |
 
 Some incorrect commands to try from root context:
+
 - `add` (incorrect format)
 - `add CS2040S` (duplicate module)
 - `add 123` (invalid module code)
@@ -2488,6 +2494,7 @@ Some incorrect commands to try from root context:
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `add Week 7 /mod CS2040S /tags AVLTree, Census` | **Message:**<br/>`New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`<br/>**List updates:** None                                                    |
 
 Some incorrect commands to try from root context:
+
 - `add /mod CS2040S` (incorrect format)
 - `add Week 1 /mod CS2040S` (duplicate lecture)
 - `add Lecture N@me /mod CS2040S` (invalid lecture name)
@@ -2502,6 +2509,7 @@ Some incorrect commands to try from root context:
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `add Vid 3 /lec Week 1 /timestamp 01:04:20 /tags Analysis, BigO` | **Message:**<br/>`New video added to module CS2040S of lecture Week 1: Vid 3; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** New entry for "Vid 3" with timestamp "01:04:20", tags "Analysis" and "BigO", and video marked as "not watched" |
 
 Some incorrect commands to try from root context:
+
 - `add /mod CS2040S /lec Week 1` (incorrect format)
 - `add Vid 1 /mod CS2040S /lec Week 1` (duplicate video)
 - `add V!deo /mod CS2040S /lec Week 1` (invalid video name)
@@ -2516,6 +2524,7 @@ Some incorrect commands to try from root context:
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `edit CS2040S /r /code CS2040 /name DSAG /tags Analytical, 4MCs` | **Message:**<br/>`Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20`<br/>**List updates:** None                                                                                       |
 
 Some incorrect commands to try from root context:
+
 - `edit` (incorrect format)
 - `edit CS2040S /code ST2334` (duplicate module)
 - `edit 123` (invalid module code)

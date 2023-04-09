@@ -38,18 +38,18 @@ Now it's time to **CONQUER** the semester!
 - [Command Manual](#command-manual)
   - [Nav](#nav)
   - [List](#list)
+  - [Find](#find)
   - [Add](#add)
   - [Edit](#edit)
   - [Delete](#delete)
   - [Mark or Unmark Video](#mark-or-unmark-video)
   - [Tag](#tag)
   - [Untag](#untag)
-  - [Find](#find)
   - [Export Data](#export-data)
   - [Import Data](#import-data)
-  - [Clear all Modules](#clear-all-modules)
-  - [Exit the App](#exit-the-app)
-- [Note](#note)
+  - [Clear](#clear)
+  - [Exit](#exit)
+- [Notes](#notes)
 - [Warning](#warning)
 - [FAQ](#faq)
 
@@ -189,6 +189,7 @@ e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unn
    - There is a whitespace before `/{argument_name}`
    - `/{argument_name}` is followed by a whitespace or it is the end of the command
 
+   <br/>
    <details>
    <summary>Example</summary>
    For the command <code>find Intro /mod CS2040S /byTag</code>, <code>/mod</code> and <code>/byTag</code> are both recognised as named arguments.
@@ -404,6 +405,91 @@ The code of the module that contains the lecture specified in `lecture_name`
     <li>
     <code>list /mod CS2040 /lec Week 1</code><br/>
     lists videos in lecture Week 1 belonging to CS2040S
+    </li>
+</ul>
+</details>
+
+### Find
+
+:exclamation: This is a case insensitive search and matches a target that starts with the search term.\
+E.g:
+
+|Type|Data|Keyword|Matched|
+|-|-|-|-|
+|ModuleCode|[CS2040S, CS2103, ST2334, MA2001]|cs21|[CS2103]|
+|LectureName|[Week 1, Week 2, Week 3]|week|[Week 1, Week 2, Week 3]|
+|VideoName|[Video 1, Video 2, Some video]|video 1, some|[Video 1, Some video]|
+
+#### Find Modules
+
+> `find {keywords} [/byTag]`
+
+Find all modules whose code starts with any of the keyword(s).
+
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for modules whose tag list contains any tag that starts with any of the keyword(s)
+
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures](#find-lectures) or [Find Videos](#find-videos) (refer to [Navigation Injection](#navigation-injection) for more information).
+
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    Assuming only a module <code>CS2040S</code> has tags <code>["heavy", "math"]</code>,<br/>
+    <code>find heav /byTag</code><br/>
+    will list modules [CS2040S].
+    </li>
+</ul>
+</details>
+
+#### Find Lectures
+
+> `find {keywords} /mod {module_code} [/byTag]`
+
+Find all lectures in a specified module whose name starts with any of the keyword(s).
+
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker
+
+
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>find week 1, week 2 /mod CS2040S</code><br/>
+    will list lectures ["Week 1", "Week 2"] of module "CS2040S".
+    </li>
+    <li>
+    <code>find intro, array /mod CS2040S /byTag</code><br/>
+    will list lectures belonging to module "CS2040S" with tags containing "intro" or "array".
+    </li>
+</ul>
+</details>
+
+#### Find Videos
+
+> `find {keywords} /mod {module_code} /lec {lecture_name} [/byTag]`
+
+Find all videos in a specified lecture in a specified module whose name starts with any of the keyword(s).
+
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
+  - Must belong to an existing lecture in the specified `module_code`
+
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>find vid1, vid2 /mod CS2040S /lec Week 2</code><br/>
+    will list videos ["Vid1", "Vid2"] in lecture Week 2 of module "CS2040S".
+    </li>
+    <li>
+    <code>find content /mod CS2040S /lec Week 2 /byTag</code><br/>
+    will list videos belonging to lecture "Week 2" of module "CS2040S" with tags containing "content".
     </li>
 </ul>
 </details>
@@ -727,9 +813,7 @@ Example:
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming 
-the user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) 
-(refer to [Navigation Injection](#navigation-injection) for more information).
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Tag a lecture
 
@@ -795,9 +879,7 @@ Example:
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming 
-the user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video) 
-(refer to [Navigation Injection](#navigation-injection) for more information).
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Untag a lecture
 
@@ -842,91 +924,6 @@ Examples:
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
-### Find
-
-:exclamation: This is a case insensitive search and matches a target that starts with the search term.\
-E.g:
-
-|Type|Data|Keyword|Matched|
-|-|-|-|-|
-|ModuleCode|[CS2040S, CS2103, ST2334, MA2001]|cs21|[CS2103]|
-|LectureName|[Week 1, Week 2, Week 3]|week|[Week 1, Week 2, Week 3]|
-|VideoName|[Video 1, Video 2, Some video]|video 1, some|[Video 1, Some video]|
-
-#### Find Modules
-
-> `find {keywords} [/byTag]`
-
-Find all modules whose code starts with any of the keyword(s).
-
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for modules whose tag list contains any tag that starts with any of the keyword(s)
-
-<img src="images/ModContext.png" height="20" />
-<img src="images/LectureContext.png" height="20" />
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures](#find-lectures) or [Find Videos](#find-videos) (refer to [Navigation Injection](#navigation-injection) for more information).
-
-<details open>
-<summary>Example</summary>
-<ul>
-    <li>
-    Assuming only a module <code>CS2040S</code> has tags <code>["heavy", "math"]</code>,<br/>
-    <code>find heav /byTag</code><br/>
-    will list modules [CS2040S].
-    </li>
-</ul>
-</details>
-
-#### Find Lectures
-
-> `find {keywords} /mod {module_code} [/byTag]`
-
-Find all lectures in a specified module whose name starts with any of the keyword(s).
-
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
-- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker
-
-
-<details open>
-<summary>Example</summary>
-<ul>
-    <li>
-    <code>find week 1, week 2 /mod CS2040S</code><br/>
-    will list lectures ["Week 1", "Week 2"] of module "CS2040S".
-    </li>
-    <li>
-    <code>find intro, array /mod CS2040S /byTag</code><br/>
-    will list lectures belonging to module "CS2040S" with tags containing "intro" or "array".
-    </li>
-</ul>
-</details>
-
-#### Find Videos
-
-> `find {keywords} /mod {module_code} /lec {lecture_name} [/byTag]`
-
-Find all videos in a specified lecture in a specified module whose name starts with any of the keyword(s).
-
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
-- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker
-- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
-  - Must belong to an existing lecture in the specified `module_code`
-
-<details open>
-<summary>Example</summary>
-<ul>
-    <li>
-    <code>find vid1, vid2 /mod CS2040S /lec Week 2</code><br/>
-    will list videos ["Vid1", "Vid2"] in lecture Week 2 of module "CS2040S".
-    </li>
-    <li>
-    <code>find content /mod CS2040S /lec Week 2 /byTag</code><br/>
-    will list videos belonging to lecture "Week 2" of module "CS2040S" with tags containing "content".
-    </li>
-</ul>
-</details>
-
 ### Export Data
 
 > `export {file_path} [/overwrite]`
@@ -936,12 +933,9 @@ Export all module data to a file.
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file
   - User must have writing permission to `file_path`
   - If `/overwrite` is not specified, the file specified in `file_path` must not exist
-  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is
-    `{JAR_file_location}/data`)
-  - Must not coincide with Le Tracker's current tracker file path. (:exclamation:The default tracker file path is
-    `{JAR_file_location}/data/letracker.json`)
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path`
-  if it exists
+  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR_file_location}/data`)
+  - Must not coincide with Le Tracker's current tracker file path. (:exclamation:The default tracker file path is `{JAR_file_location}/data/letracker.json`)
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path` if it exists
   - If the file specified in `file_path` doesn't exist, the flag `/overwrite` will be ignored
 
 Examples:
@@ -958,22 +952,16 @@ Import data from a specified file path to the current tracker.
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file
   - User must have read permission of the file in `file_path`
   - Must be a valid Le Tracker data file
-  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `
-    {JAR_file_location}/data`)
-  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must
-    exist in the default saving directory at `{JAR_file_location}/data`)
-- <span style="color:#e46c0a">`/mod`</span> : If specified, Le Tracker will only import progress from the modules 
-  specified in `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
+  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR_file_location}/data`)
+  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must exist in the default saving directory at `{JAR_file_location}/data`)
+- <span style="color:#e46c0a">`/mod`</span> : If specified, Le Tracker will only import progress from the modules specified in `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
   - If specified, `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]` must also be specified
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-- <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span> : The modules to import from 
-  `file_path`
-  - If `/overwrite` is not specified, `module_code_1, module_code_2, module_code_3, ...` must not exist in the current 
-    tracker
+- <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span> : The modules to import from `file_path`
+  - If `/overwrite` is not specified, `module_code_1, module_code_2, module_code_3, ...` must not exist in the current tracker
   - Must belong to existing modules in the file specified in `file_path`
   - Repeated modules (if any) will be ignored
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules
-  progress with the progress of the imported modules, provided they have the same code
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules progress with the progress of the imported modules, provided they have the same code
   - If the imported modules do not exist in the current tracker, the flag `/overwrite` will be ignored
 
 Examples:
@@ -983,13 +971,13 @@ Examples:
 - `import hehe.json /mod CS2040, MA2401`
 - `import hihi.json /mod EG2310 /overwrite`
 
-### Clear all Modules
+### Clear
 
 > `clear`
 
 Clears all data from Le Tracker.
 
-### Exit the App
+### Exit
 
 > `exit`
 
