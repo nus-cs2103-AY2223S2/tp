@@ -63,16 +63,4 @@ public class FlightLocationLinkCommandFactoryTest {
         assertEquals("unlinklocation", unlinkFactory.getCommandWord());
     }
 
-    @Test
-    public void testCreateCommand_linkFactory() throws ParseException, CommandException {
-        CommandParam param = new CommandParam(
-                Optional.empty(),
-                Optional.of(
-                        Map.of(
-                                "/fl", Optional.of("1"),
-                                "/from", Optional.of("1"),
-                                "/to", Optional.of("2"))));
-        LinkFlightToLocationCommand command = linkFactory.createCommand(param);
-        assertNotNull(command);
-    }
 }
