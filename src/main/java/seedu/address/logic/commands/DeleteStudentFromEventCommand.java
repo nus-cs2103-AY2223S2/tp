@@ -28,7 +28,8 @@ public class DeleteStudentFromEventCommand extends Command {
             + "bigger than the size of the specified event list";
     public static final String MESSAGE_EVENT_INDEX_INVALID = "The event index "
             + "needs to be a non-zero integer";
-
+    public static final String MESSAGE_TOO_MANY_FIELDS = "There are too many fields or duplicated fields "
+            + "in your input!";
     public static final String MESSAGE_USAGE = "Delete Student from Event Syntax: "
             + COMMAND_WORD + " "
             + "STUDENT_INDEX EVENT_TYPE/EVENT_INDEX\n"

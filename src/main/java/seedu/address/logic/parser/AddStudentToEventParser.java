@@ -16,7 +16,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * and creates a new AddStudentToEventCommand object.
  */
 public class AddStudentToEventParser implements Parser<AddStudentToEventCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddStudentToEventCommand
      * and returns an AddStudentToEventCommand object for execution.
@@ -33,6 +32,13 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
         Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
+
+        if (argMultimap.getSize() > 2 ||
+                argMultimap.getAllValues(PREFIX_TUTORIAL).size() > 1 ||
+                argMultimap.getAllValues(PREFIX_LAB).size() > 1 ||
+                argMultimap.getAllValues(PREFIX_CONSULTATION).size() > 1) {
+            throw new ParseException(AddStudentToEventCommand.MESSAGE_TOO_MANY_FIELDS);
+        }
 
         if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {
             throw new ParseException(AddStudentToEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED

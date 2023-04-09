@@ -33,6 +33,13 @@ public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEve
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
 
+        if (argMultimap.getSize() > 2 ||
+                argMultimap.getAllValues(PREFIX_TUTORIAL).size() > 1 ||
+                argMultimap.getAllValues(PREFIX_LAB).size() > 1 ||
+                argMultimap.getAllValues(PREFIX_CONSULTATION).size() > 1) {
+            throw new ParseException(DeleteStudentFromEventCommand.MESSAGE_TOO_MANY_FIELDS);
+        }
+
         Index studentIndex;
         Index eventIndex;
         try {
