@@ -118,7 +118,7 @@ that will bring you to another part of this documentation that is relevant to th
 If you are a **new user**, head over to the [Installation](#4-installation) section to download the application.
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 We highly recommend that you read through this User Guide in **sequential order** to get a thorough understanding
 of how to use HMHero.
 </div>
@@ -325,7 +325,7 @@ in the format. This indicates that the parameter is **optional**. Each of these 
 have a default value based on the commands. These are documented in the [Commands](#6-commands) section for each command.
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 The <a href="#524-placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
 the format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
@@ -883,7 +883,7 @@ The JAR file not launching even after double-clicking the file.
 
 The JAR file not launching in Windows Subsystem for Linux (WSL).
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info" role="alert">:information_source: **Info:** 
 WSL does not support GUI applications by default. 
 </div>
 
