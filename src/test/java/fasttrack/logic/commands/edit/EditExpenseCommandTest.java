@@ -71,6 +71,17 @@ public class EditExpenseCommandTest {
     }
 
     @Test
+    public void execute_testSameObjectEquals() {
+        model = new ModelManager();
+        model.addCategory(category);
+        model.addExpense(expense);
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
+                "NewExpenseName", null, null,
+                category.getCategoryName());
+        assert(editExpenseCommand.equals(editExpenseCommand));
+    }
+
+    @Test
     public void execute_testEquals() {
         model = new ModelManager();
         model.addCategory(category);
