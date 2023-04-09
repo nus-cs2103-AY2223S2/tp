@@ -9,7 +9,7 @@ src/main/resources/docs/
 /bin/
 
 # IDEA files
-/.idea/
+*/.idea/
 /out/
 /*.iml
 

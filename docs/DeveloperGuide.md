@@ -187,7 +187,7 @@ How the parsing works:
 
 ### Navigation component
 
-**API**: `Navigation.java`
+**API**: [`Navigation.java`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/model/Navigation.java)
 
 Here's a (partial) class diagram of the `Navigation` component:
 
@@ -223,7 +223,7 @@ The `Model` component,
 - stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate *filteredModules* list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores the currently 'selected' `Lecture` objects (e.g., results of a search query) as a separate *filteredLectures* list which is exposed to outsiders as an unmodifiable `ObservableList<Lecture>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores the currently 'selected' `Video` objects (e.g., results of a search query) as a separate *filteredVideos* list which is exposed to outsiders as an unmodifiable `ObservableList<Video>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- <!-- TODO: Include details on Navigation @jedidiahC -->TODO: Navigation
+- stores the [navigation component](#navigation-component) which tracks the current working context.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
@@ -248,6 +248,67 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Navigation feature
+
+> The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
+
+#### How the navigation system works
+
+Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the module-lecture-video hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
+
+Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, context-sensitive commands will be able to infer the specified module or lecture from these arguments without being directly coupled to the navigation system.
+
+#### Navigation injection
+
+Here's a (partial) class diagram for the `NavigationInjector` component.
+
+![NavigationInjectorClassDiagram](images//NavigationInjectorClassDiagram.png)
+
+How `NavigationInjector` injects the correct arguments into the command based on the current working context:
+
+1. When `Logic` is called upon to execute a command, the command text string is first passed to the `Injector` object via its `inject(String, Model)` method.
+
+2. The `NavigationInjector` implementation of `Injector` then obtains the `NavigationContext` object which represents the current working context by communicating with the `Model`.
+
+3. The `NavigationInjector` then injects the appropriate `/mod` and `/lec` arguments that represent the current working context into the command text string based on the arguments obtained from the `NavigationContext` object.
+
+4. The modified command text string is then returned back from `NavigationInjector` to `Logic`.
+
+#### Usage scenario
+
+Given below is an example usage scenario and how the navigation system behaves at each step.
+
+Steps:
+
+1. The user launches the application. The Navigation system is initialized with a root context as the current working context.
+
+2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command. The following sequence diagram depicts `nav CS2040S`'s execution:
+   ![FindActivityDiagram](images/NavSequenceDiagram0.png)
+
+3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
+
+#### Designing context-sensitive commands
+
+We want to reduce the need for similar sounding command names such as `add-module`, `add-lecture`, `add-video` which all involve the "adding" operation. Hence, these context-sensitive commands share a single command name such as `add`. To determine whether a module, lecture or video is being processed for a given command, we instead parse the context-specifying arguments such as `/mod`, `/lec` to instantiate the **context specific command**.
+
+Hence, we define a common format for context-sensitive commands:
+> `command [/mod {module_code}] [/lec {lecture_name}]`
+
+Parsing context-specifying arguments to determine context:
+
+| Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
+| -----------------   | -----------------   | ------------------   | ----------------------   |
+|         No          |         No          | Root Context         |  `XYZModuleCommand`      |
+|         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
+|         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
+
+If you are *confused* about why there appears to be a mismatch between Context and Context Specific Command (i.e. Module Context -> `XYZLectureCommand`), remember that a context specific command does **NOT** manipulate the **context** itself but the objects that are **contained** under that context (i.e. modules contain lectures).
+
+Implementing your context-sensitive command based on this format will ensure seamless integration with the navigation system.
+
+For concrete examples on how to implement a context-sensitive command, you can refer to the
+[add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
 
 ### Add module, lecture, and video feature
 
@@ -381,11 +442,11 @@ The following is a description of the code execution flow
 1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
    The following table below depicts the consideration of inputs against the user's argument:
 
-   | Has Preamble | has `/mod` argument | has `/lec` agrgument | Intent        |
-   | ------------ | ------------------- | -------------------- | ------------- |
-   | Yes          | No                  | No                   | Delete Module |
-   | Yes          | Yes                 | No                   | DeleteLecture |
-   | Yes          | Yes                 | Yes                  | DeleteVideo   |
+   | Has Preamble | has `/mod` argument | has `/lec` agrgument | Intent         |
+   | ------------ | ------------------- |----------------| ------------- |
+   | Yes          | No                  | No                   | Delete Module  |
+   | Yes          | Yes                 | No                   | Delete Lecture |
+   | Yes          | Yes                 | Yes                  | Delete Video   |
 
 2. The argument values are then checked on as such:
 
@@ -678,157 +739,232 @@ The following is a description of the code execution flow:
 
 5. If no errors occur (no exceptions are thrown), the command succeeds in finding the module/lecture/video associated to the keyword.
 
-### Navigation feature
-
-> The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
-
-#### How the navigation system works
-
-Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the module-lecture-video hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
-
-Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, context-sensitive commands will be able to infer the specified module or lecture from these arguments without being directly coupled to the navigation system.
-
-#### Navigation injection
-
-Here's a (partial) class diagram for the `NavigationInjector` component.
-
-![NavigationInjectorClassDiagram](images//NavigationInjectorClassDiagram.png)
-
-How `NavigationInjector` injects the correct arguments into the command based on the current working context:
-
-1. When `Logic` is called upon to execute a command, the command text string is first passed to the `Injector` object via its `inject(String, Model)` method.
-
-2. The `NavigationInjector` implementation of `Injector` then obtains the `NavigationContext` object which represents the current working context by communicating with the `Model`.
-
-3. The `NavigationInjector` then injects the appropriate `/mod` and `/lec` arguments that represent the current working context into the command text string based on the arguments obtained from the `NavigationContext` object.
-
-4. The modified command text string is then returned back from `NavigationInjector` to `Logic`.
-
-#### Usage scenario
-
-Given below is an example usage scenario and how the navigation system behaves at each step.
-
-Steps:
-
-1. The user launches the application. The Navigation system is initialized with a root context as the current working context.
-
-2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command. The following sequence diagram depicts `nav CS2040S`'s execution:
-   ![FindActivityDiagram](images/NavSequenceDiagram0.png)
-
-3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
-
-#### Designing context-sensitive commands
-
-We want to reduce the need for similar sounding command names such as `add-module`, `add-lecture`, `add-video` which all involve the "adding" operation. Hence, these context-sensitive commands share a single command name such as `add`. To determine whether a module, lecture or video is being processed for a given command, we instead parse the context-specifying arguments such as `/mod`, `/lec` to instantiate the **context specific command**.
-
-Hence, we define a common format for context-sensitive commands:
-> `command [/mod {module_code}] [/lec {lecture_name}]`
-
-Parsing context-specifying arguments to determine context:
-
-| Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
-| -----------------   | -----------------   | ------------------   | ----------------------   |
-|         No          |         No          | Root Context         |  `XYZModuleCommand`      |
-|         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
-|         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
-
-If you are *confused* about why there appears to be a mismatch between Context and Context Specific Command (i.e. Module Context -> `XYZLectureCommand`), remember that a context specific command does **NOT** manipulate the **context** itself but the objects that are **contained** under that context (i.e. modules contain lectures).
-
-Implementing your context-sensitive command based on this format will ensure seamless integration with the navigation system.
-
-For concrete examples on how to implement a context-sensitive command, you can refer to the
-[add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
-
 ### Tag module, lecture, and video feature
 
 The `tag` command supports:
 
-- Tagging a module in the tracker
-- Tagging a lecture of a module in the tracker
-- Tagging a video of a lecture which belongs to a module in the tracker
+- Adding multiple `Tag` objects to a `Module` object in a `Tracker` object contained in the `ModelManager` object
+- Adding multiple `Tag` objects to a `Lecture` object of a `Module` object contained in a `Tracker` object
+- Adding multiple `Tag` objects to a `Video` object of a `Lecture` object contained in a `Module` object in a `Tracker` object
 
-The `tag` behaviour is dependent on the arguments provided by the user. Modules, lectures, and videos can have
-multiple, unique tags. If a command contains new tags and tags that were already added to modules, lectures, or
-videos, only the new tags will be added.
+The `tag` behaviour is dependent on the arguments provided by the user. `Module` objects, `Lecture` objects, and 
+`Video` objects can have multiple, unique `Tag` objects. If a command contains new tags and tags that were already 
+added to `Module` objects, `Lecture` objects, or `Video` objects, only the new tags will be added.
+
+**Notable Classes**
 
 The feature utilises the following classes:
 
-- `TagCommandParser` – Creates the appropriate `TagCommand` subclass object based on the user's input
-- `TagCommand` – Execute the command to add tags to a module, lecture, or video based on the user's input
+- `TagCommandParser` – Creates the appropriate `TagCommand` object based on the user's input
+- `TagCommand` – Handles adding `Tag` objects to a `Module`/`Lecture`/`Video` object based on 
+  the user's input
+
+**Execution**
+
+The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a 
+`Tracker` object.
+
+![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
 The following is a description of the code execution flow:
 
-1. `TagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to tag a module,
+1. `TagCommandParser#parse()` takes in the user input and determine whether the user wanted to tag a module,
    a lecture, or a video based on the appropriate prefixes included in the user's input.
 2. The user input is then checked to determine whether it contains the required prefixes according to the table
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
    A `ParseException` will be thrown, and the command will not be executed.
 
-   | Intent      | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
-   | ----------- | ----------------- | ----------------- | ----------------- | ------------------ |
-   | Tag Module  | No                | No                | No                | Yes                |
-   | Tag Lecture | Optional          | No                | No                | Yes                |
-   | Tag Video   | Optional          | Optional          | No                | Yes                |
+   | Intent       | has `/mod` prefix | has `/lec` prefix | has `/tags` prefix |
+   |:------------:|:-----------------:|:-----------------:|:------------------:|
+   | Tag Module   |        No         |        No         |        Yes         |
+   | Tag Lecture  |        Yes        |        No         |        Yes         |
+   | Tag Video    |        Yes        |        Yes        |        Yes         |
 
-3. A set of tags to add is then determined from the user's input. Afterwards, The command creates an
-   appropriate `TagCommand` object and returns it to the called.
-4. `LogicManager` calls the `Command#execute(Model)` method of the `TagCommand` object returned by
-   `TagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were
-   provided, or if the tracker doesn't contain the specified module, lecture, or video.
-5. If no errors occur (no exceptions are thrown), the command succeeds in tagging the module, lecture, or video.
+3. A set of `Tag` objects to add is then determined from the user's input. Afterwards, The command creates an
+   appropriate `TagCommand` object and returns it to the caller.
+4. `LogicManager` calls the `Command#execute()` method of the `TagCommand` object returned by
+   `TagCommandParser#parse()`. During the execution, a `CommandException` will be thrown if no tags were
+   provided, or if the tracker doesn't contain the specified `Module` object, `Lecture` object, or `Video` object.
+5. If no exceptions are thrown, the command succeeds in adding `Tag` objects to the `Module` object, `Lecture` object,
+   or `Video` object.
+
+**Notes for `TagCommandParser#parse()`**
+- A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included.
+
+**Notes for `TagCommand#execute()`**
+- A `CommandException` will be thrown for the following scenarios:
+    - The user did not specify any tags to add.
+    - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
 
 ### Untag module, lecture, and video feature
 
 The `untag` command supports:
 
-- Removing tags from a module in the tracker
-- Removing tags from a lecture of a module in the tracker
-- Removing tags from a video of a lecture which belongs to a module in the tracker
+- Removing multiple `Tag` objects from a `Module` object in a `Tracker` object that is contained in a `ModelManager` 
+  object
+- Removing multiple `Tag` objects from a `Lecture` object of a `Module` object in a `Tracker` object
+- Removing multiple `Tag` objects from a `Video` object of a `Lecture` object which belongs to a `Module` object in a 
+  `Tracker` object
 
-The `untag` behaviour is dependent on the arguments provided by the user. Multiple tags can be deleted in a single
-command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
-videos, a `CommandException` will be thrown.
+The `untag` behaviour is dependent on the arguments provided by the user. Multiple `Tag` objects can be deleted in a 
+single command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
+videos, a `CommandException` will be thrown. Duplicated tags in the command, if any, will be ignored. 
+
+**Notable Classes**
 
 The feature utilises the following classes:
 
-- `UntagCommandParser` – Creates the appropriate `UntagCommand` subclass object based on the user's input
-- `UntagCommand` – Execute the command to remove tags from a module, lecture, or video based on the user's input
+- `UntagCommandParser` – Creates the appropriate `UntagCommand` object based on the user's input
+- `UntagCommand` – Handles removing `Tag` objects from a `Module`/`Lecture`/`Video` object
+  based on the user's input
+
+**Execution**
+
+The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object 
+in a `Tracker` object.
+
+![UntagSequenceDiagram](images/UntagSequenceDiagram.png)
 
 The following is a description of the code execution flow:
 
-1. `UntagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to untag a module,
-   a lecture, or a video based on the appropriate prefixes included in the user's input.
+1. `UntagCommandParser#parse()` takes in the user input and determine whether the user wants to remove `Tag` 
+   objects a `Module`, `Lecture`, or `Video` object based on the appropriate prefixes included in the user's input.
 2. The user input is then checked to determine whether it contains the required prefixes according to the table
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
-   A `ParseException` will be thrown, and the command will not be executed.
 
-   | Intent        | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
-   | ------------- | ----------------- | ----------------- | ----------------- | ------------------ |
-   | Untag Module  | No                | No                | No                | Yes                |
-   | Untag Lecture | Optional          | No                | No                | Yes                |
-   | Untag Video   | Optional          | Optional          | No                | Yes                |
 
-3. A set of tags to remove is then determined from the user's input. Afterwards, The command creates an
-   appropriate `UntagCommand` object and returns it to the called.
-4. `LogicManager` calls the `Command#execute(Model)` method of the `UntagCommand` object returned by
-   `UntagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were
-   provided, if the tracker doesn't contain the specified module, lecture, or video, or if there are tags from the
-   user input that doesn't exist in the module, lecture, or video.
-5. If no errors occur (no exceptions are thrown), the command succeeds in removing the tags from the module, lecture,
-   or video.
+   | Intent        | has `/mod` prefix | has `/lec` prefix | has `/tags` prefix |
+   |:-------------:|:-----------------:|:-----------------:|:------------------:|
+   | Untag Module  |        No         |        No         |        Yes         |
+   | Untag Lecture |        Yes        |        No         |        Yes         |
+   | Untag Video   |        Yes        |        Yes        |        Yes         |
+
+3. A set of `Tag` objects to remove is then determined from the user's input. Afterwards, the command creates an
+   appropriate `UntagCommand` object and returns it to the caller.
+4. `LogicManager` calls the `Command#execute()` method of the `UntagCommand` object returned by
+   `UntagCommandParser#parse()`. 
+5. If no exceptions are thrown, the command succeeds in removing the `Tag` objects from the 
+   `Module`/`Lecture`/`Video` object. 
+
+**Notes for `UntagCommandParser#parse()`**
+- A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included. 
+
+**Notes for `UntagCommand#execute()`**
+- A `CommandException` will be thrown for the following scenarios:
+  - The user did not specify any tags to remove. 
+  - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
+  - The specified tags do not correspond with existing `Tag` objects in the `Module`/`Lecture`/`Video` object.
+
 
 ### Import archived data feature
 
-**Reasons for such implementation**
+The `import` command supports:
+- Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object
+- Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting 
+  current `Module` objects with imported `Module` objects if these modules exist in the current `Tracker` object
+- Importing specific `Module` objects from a valid Le Tracker data file into the current `Tracker` object
+- Importing specific `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting
+  current `Module` objects with imported `Module` objects if these modules exist in the current `Tracker` object
 
-- The user need to retrieved data when the user wants to review the concepts taught in a module,
-  lecture, or video
+The `import` behaviour is dependent on the arguments provided by the user.
+
+**Notable Classes**
+
+The feature utilises the following classes:
+- `ImportCommandParser` - Creates the appropriate `ImportCommand` object based on the user's input
+- `ImportCommand` - Creates the appropriate `CommandResult` object containing the file path for import and the set 
+  of `ModuleCode` objects that references the `Module` objects to import
+- `Archive` - Handles importing `Module` objects from the file path in `CommandResult` to the current `Tracker` object
+
+**Execution**
+
+The following sequence diagram depicts a `import` command execution for importing a single module from a specified 
+file path to the current `Tracker` object
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+![ImportSequenceDiagramRef](images/ImportSequenceDiagramRef.png)
+
+
+The following is a description of the code execution flow:
+
+1. `ImportCommandParser#parse()` takes in the user input and determine the file path that the user wants to
+   import from, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the
+   `/overwrite` flag. 
+2. The command creates an appropriate `ImportCommand` object and returns it to the caller.
+3. `LogicManager` calls `Command#execute()` method of the `ImportCommand` object. An appropriate `CommandResult` object containing a `Path` object with the
+   importing file path and a set of `ModuleCode` objects to reference the `Module` objects to import is then 
+   returned to the caller.
+4. `LogicManager` calls the `Archive#importFromArchive()` method. The `Archive` object then checks whether the 
+   modules in user's input exist in the current Tracker, and in the specified file path.
+5. If no exceptions are thrown, the command succeeds in importing `Module` objects from the specified file path to the 
+   current `Tracker` object.
+
+**Notes for `ImportCommandParser#parse()`**
+- A `ParseException` will be thrown for the following scenarios:
+  - The user specified `/mod` without providing any module code
+  - The importing file path is not specified in user's input
+
+**Notes for `ImportCommand#execute()`**
+- A `CommandException` will be thrown if the specified file path is invalid.
+
+**Notes for `Archive#importFromArchive()`**
+- A `CommandException` will be thrown for the following scenarios:
+  - The file doesn't exist in the specified file path.
+  - The file doesn't have read permission
+  - The file isn't a valid Le Tracker data file
+  - The user is importing modules that doesn't exist in the saving file
+  - The user is importing modules that exists in the current `Tracker` object without the `/overwrite` flag
 
 ### Exporting data feature
 
-**Reasons for such implementation**
+The `export` command supports:
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to a new file path, in a JSON 
+  format file
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to an existing file path, in a 
+  JSON format file, overwriting its content
 
-- The user need to save storage space after finished studying a module. The UI will also be less packed
+The `export` behaviour is dependent on the arguments provided by the user.
+
+**Notable Classes**
+
+The feature utilises the following classes:
+- `ExportCommandParser` – Creates the appropriate `ExportCommand` object based on the user's input
+- `ExportCommand` – Creates the appropriate `CommandResult` object containing the file path for export
+- `Archive` – Handles saving the `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to
+  the specified file path in `CommandResult`
+
+**Execution**
+
+The following sequence diagram depicts a `export` command execution for exporting a `Tracker` object to a specified 
+file path
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+The following is a description of the code execution flow:
+
+1. `ExportCommandParser#parse()` takes in the user input and determine the file path that the user wants to 
+   export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the 
+   `/overwrite` flag.
+2. The command creates an appropriate `ExportCommand` object and returns it to the caller.
+3. `LogicManager` calls the `Command#execute()` method of the `ExportCommand`. An appropriate `CommandResult` object containing a `Path` object with the 
+   saving file path is then returned to the caller. 
+4. `LogicManager` calls the `Archive#exportToArchive()` method.
+5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and 
+   `Video` objects it contains to the specified file path.
+
+**Notes for `ExportCommandParser#parse()`**
+- A `ParseException` will be thrown if the saving file path is not specified in user's input.
+
+**Notes for `ExportCommand#execute()`**
+- A `CommandException` will be thrown if the specified file path is invalid.
+
+**Notes for `Archive#exportToArchive()`**
+- A `CommandException` will be thrown for the following scenarios:
+  - The file at the specified file path does not have write permission.
+  - The user is trying to export to the current working tracker path.
+  - The user is trying to export to an existing file without the `/overwrite` flag.
+
 
 ### Clear feature
 
@@ -2360,6 +2496,75 @@ Expected:
 | `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
 | 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |
 
+### Mark a Video
+
+| Test Case                                    | Expected Result |
+| -------------------------------------------- | --------------- |
+| `mark Vid 1 /mod CS2040S /lec Week 1`        | Vid 1 of CS2040S Week 1 marked as watched |
+| 1. `nav CS2040S` <br> 2. `mark Vid 1 /lec Week 1` | Same as previous | <!--TODO: do we need this?-->
+| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `mark Vid 1` | Same as previous |
+| `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as watched |
+| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as watched |
+| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of CS2040S were already marked as watched |
+| `mark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
+| `mark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+
+### Unmark a Video
+
+| Test Case                                    | Expected Result |
+| -------------------------------------------- | --------------- |
+| `unmark Vid 1 /mod CS2040S /lec Week 1`      | Vid 1 of CS2040S Week 1 marked as unwatched |
+| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as unwatched |
+| `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as unwatched |
+| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| `unmark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
+| `unmark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+
+### Delete Module(s)
+
+| Test Case                                   | Expected Result |
+| ------------------------------------------- | --------------- |
+| `delete CS2040S`                            | CS2040S is deleted |
+| 1. `nav CS2040S` <br> 2. `delete CS2040S /r`| Same as previous |
+| `delete CS2040S, ST2334`                    | CS2040S and ST2334 are deleted |
+| 1. `nav CS2040S` <br> 2. `delete CS2040S, ST2334 /r`| Same as previous |
+| 1. `delete CS2040S` <br> 2. `delete CS2040S` | Alert user that CS2040S does not exist and cannot be deleted. No change made to LeTracker |
+| 1. `delete CS2040S` <br> 2. `delete CS2040S, ST2334` | Same as previous |
+| 1. `delete CS2040S, ST2334` <br> 2. `delete CS2040S, ST2334` | Alert user that CS2040S and ST2334 do not exist and cannot be deleted. No change made to LeTracker |
+
+### Delete Lecture(s)
+
+| Test Case                                   | Expected Result |
+| ------------------------------------------- | --------------- |
+| `delete Week 1 /mod CS2040S`                | Week 1 of CS2040S is deleted |
+| 1. `nav CS2040S` <br> 2. `delete Week 1`    | Same as previous |
+| `delete Week 1, Week 2 /mod CS2040S`        | Week 1 and Week 2 of CS2040S are deleted |
+| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Week 1 /mod CS2040S` | Alert user that Week 1 of CS2040S does not exist and cannot be deleted |
+| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Same as previous |
+| 1. `delete Week 1, Week 2 /mod CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Alert user that Week 1 and Week 2 of CS2040S do not exist and cannot be deleted |
+| `delete Week 1, Week 1, Week 3 /mod CS2040S` | Alert user that Week 1 was duplicated in command |
+| `delete Week 1, Week 1, Week 1 /mod CS2040S` | Same as previous |
+| 1. `delete CS2040S` <br> 2. `delete Week 1 /mod CS2040S` | Alert user that CS2040S does not exist |
+| 1. `delete CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Same as previous |
+
+### Delete Video(s)
+
+| Test case                                   | Expected Result |
+| ------------------------------------------- | --------------- |
+| `delete Vid 1 /mod CS2040S /lec Week 1`     | Vid 1 of Week 1 of CS2040S is deleted |
+| `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of Week 1 of CS2040S are deleted |
+| 1. `delete Vid 1 /mod CS2040S /lec Week 1` <br> 2. `delete Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of Week 1 of CS2040S does not exist and cannot be deleted |
+| 1. `delete Vid 1 /mod CS2040S /lec Week 1` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1`  <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of Week 1 of CS2040S do not exist and cannot be deleted |
+| `delete Vid 1, Vid 3, Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 was duplicated in command |
+| `delete Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `delete CS2040S` <br> 2. `delete Vid 1 /mod CS2040S /lec Week 1` | Alert user that CS2040S does not exist |
+| 1. `delete CS2040S` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Vid 1 /mod CS2040S /lec Week 1` | Alert user that Week 1 of CS2040S does not exist |
+| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+
 ### Tag a Module
 
 | Test Case                       |                   Expected Result                    |
@@ -2429,3 +2634,11 @@ Expected:
 | 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` |                    `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker                     |
 | 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | `ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` |
 | 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  |                           `CS2040S` should be deleted and imported back into Le Tracker                           |
+
+### Clear
+
+| Test Case | Expected Result |
+| --------- | --------------- |
+| `clear`   | All modules deleted from LeTracker |
+| 1. `nav CS2040S` <br> 2. `clear` | Same as previous |
+| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `clear` | Same as previous |
