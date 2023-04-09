@@ -10,23 +10,37 @@ An increasing number of vaccinations now have more complicated prerequisites to 
 Given below are my contributions to the project
 
 * **New Feature**:
+  * Added `vaccination` feature.
+    * CRUD features.
+    * Clear feature.
+    * Patient eligibility validation feature.
+    * Find feature.
+    * Referencing vaccination by index.
+    * Sample vaccination data.
 
 * **Enhancement to existing features**:
+  * Enhanced message presentation of application.
+    * Colorize messages based on severity.
+    * Allow past messages to be seen.
+  * Separate GUI and application processes into different threads.
 
-* **Code contributed**:
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=daitenshionyan&breakdown=true)
 
 * **Project management**:
-  * Managed group coordination and communication on Telegram.
   * Managed project issue tracker.
+  * Coordinated integration of code between team members.
+  * Managed various version releases.
 
 * **Documentation**:
+  * Edited the theme of the documentation.
   * User Guide:
     * Added documentation for the `vaccination` features and its attributes.
-    * Did cosmetic tweaks to documentation made by others to standardise syntax presentation.
+    * Added documentation for data files for all features.
+    * Did cosmetic tweaks to documentation made by others to standardize syntax presentation.
   * Developer Guide:
+    * Added documentation details for `UI` component.
     * Added implementation details for the `Logic` component.
-
-* **Community**:
+    * Added test cases for `vaccination`
 
 * **Tools**:
   * Set up CodeCov.
