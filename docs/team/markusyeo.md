@@ -40,6 +40,6 @@ Given below are my contributions to the project.
     * Added documentation for the `import`, `export` and `checkout` command
     * Added `Navigating the User Guide` portion to help users to understand the Ui
   * Developer Guide
-    * Added implementation details and UML diagrams of the multi-index `import`, `export` and `checkout` features
+    * Added implementation details and UML diagrams of the `import`, `export` and `checkout` features
 * **Community:**
   * PRs reviewed (with non-trivial review comments):
