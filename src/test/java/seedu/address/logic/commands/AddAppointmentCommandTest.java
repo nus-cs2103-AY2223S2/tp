@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.appointment.Appointment;
 import seedu.address.testutil.AppointmentBuilder;
 
@@ -45,6 +48,24 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
+    public void execute_appointmentAcceptedByClient_addsSuccessful() {
+        Client client = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
+        AddAppointmentCommand addApt = new AddAppointmentCommand(validIndex, validAppointment);
+        String expectedMessage = String.format("Added Appointment: %1$s to Client: %2$s",
+                validAppointment.getAppointmentName(), client);
+
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+
+
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        addPolicyCommand.execute(expectedModel);
+
+        assertCommandSuccess(addPolicyCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
     public void equals_sameObject_returnsTrue() {
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validIndex, validAppointment);
         assertEquals(addAppointmentCommand, addAppointmentCommand);
@@ -58,10 +79,17 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void equals_differentIndex_returnsFalse() {
-        AddAppointmentCommand addAppointmentCommand1 = new AddAppointmentCommand(validIndex, validAppointment);
-        AddAppointmentCommand addAppointmentCommand2 = new AddAppointmentCommand(Index.fromOneBased(2),
+        AddAppointmentCommand addAppointmentCommandOne = new AddAppointmentCommand(validIndex, validAppointment);
+        AddAppointmentCommand addAppointmentCommandTwo = new AddAppointmentCommand(Index.fromOneBased(2),
             validAppointment);
-        assertNotEquals(addAppointmentCommand1, addAppointmentCommand2);
+        assertNotEquals(addAppointmentCommandOne, addAppointmentCommandTwo);
+    }
+
+    @Test
+    public void equals_sameValue_returnsTrue() {
+        AddAppointmentCommand addAppointmentCommandOne = new AddAppointmentCommand(validIndex, validAppointment);
+        AddAppointmentCommand addAppointmentCommandTwo = new AddAppointmentCommand(validIndex, validAppointment);
+        assertEquals(addAppointmentCommandTwo, addAppointmentCommandTwo);
     }
 
 }
