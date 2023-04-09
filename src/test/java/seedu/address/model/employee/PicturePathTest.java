@@ -31,29 +31,29 @@ public class PicturePathTest {
         assertFalse(PicturePath.isValidPicturePath("")); // empty string
         assertFalse(PicturePath.isValidPicturePath("src/main/default_employee.png")); // invalid directory
         // invalid file type
-        assertFalse(PicturePath.isValidPicturePath("src/main/resources/employeepictures/default.jpg"));
+        assertFalse(PicturePath.isValidPicturePath("data/employeepictures/default.jpg"));
 
 
         // valid addresses
-        assertTrue(PicturePath.isValidPicturePath("src/main/resources/employeepictures/default_employee.png"));
+        assertTrue(PicturePath.isValidPicturePath("data/employeepictures/default.png"));
         // inside another directory
-        assertTrue(PicturePath.isValidPicturePath("src/main/resources/employeepictures/anotherfolder/default_employee.png"));
+        assertTrue(PicturePath.isValidPicturePath("data/employeepictures/anotherfolder/default.png"));
         // file does not exist, but still valid
-        assertTrue(PicturePath.isValidPicturePath("src/main/resources/employeepictures/doesnotexist.png"));
+        assertTrue(PicturePath.isValidPicturePath("data/employeepictures/doesnotexist.png"));
     }
 
     @Test
     public void toPath() {
-        PicturePath picturePath = new PicturePath("src/main/resources/employeepictures/default_employee.png");
-        Path expectedPath = Paths.get("src", "main", "resources", "employeepictures", "default_employee.png");
+        PicturePath picturePath = new PicturePath("data/employeepictures/default.png");
+        Path expectedPath = Paths.get("data", "employeepictures", "default.png");
         assertTrue(expectedPath.equals(picturePath.toPath()));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        PicturePath defaultPicturePath = new PicturePath("src/main/resources/employeepictures/default_employee.png");
-        PicturePath defaultPicturePathCopy = new PicturePath("src/main/resources/employeepictures/default_employee.png");
+        PicturePath defaultPicturePath = new PicturePath("data/employeepictures/default.png");
+        PicturePath defaultPicturePathCopy = new PicturePath("data/employeepictures/default.png");
         assertTrue(defaultPicturePath.equals(defaultPicturePathCopy));
 
         // same object -> returns true
@@ -63,10 +63,10 @@ public class PicturePathTest {
         assertFalse(defaultPicturePath.equals(null));
 
         // different type -> returns false
-        assertFalse(defaultPicturePath.equals("src/main/resources/employeepictures/default_employee.png"));
+        assertFalse(defaultPicturePath.equals("data/employeepictures/default.png"));
 
         // different employee -> returns false
-        PicturePath anotherPicturePath = new PicturePath("src/main/resources/employeepictures/another.png");
+        PicturePath anotherPicturePath = new PicturePath("data/employeepictures/another.png");
         assertFalse(defaultPicturePath.equals(anotherPicturePath));
     }
 }

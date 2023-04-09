@@ -110,11 +110,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
@@ -218,4 +213,58 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseName_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
+    public void parsePhone_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(""));
+    }
+
+    @Test
+    public void parseAddress_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(""));
+    }
+
+    @Test
+    public void parseEmail_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(""));
+    }
+
+    @Test
+    public void parseTheme_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTheme(""));
+    }
+
+    @Test
+    public void parseTag_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(""));
+    }
+
+    @Test
+    public void parseTags_withWhitespace_returnsTrimmedTagSet() throws Exception {
+        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList("  " + VALID_TAG_1 + "  ", "  "
+                + VALID_TAG_2 + "  "));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+
+        assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTags_withDuplicates_returnsUniqueTagSet() throws Exception {
+        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2, VALID_TAG_1));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+
+        assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTags_mixedValidAndInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG,
+                VALID_TAG_2)));
+    }
+
 }

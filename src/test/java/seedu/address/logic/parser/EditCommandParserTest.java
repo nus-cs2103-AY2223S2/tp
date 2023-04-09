@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
-import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Department;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.EmployeeId;
@@ -62,8 +61,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + CommandTestUtil.INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
         // invalid email
         assertParseFailure(parser, "1" + CommandTestUtil.INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
-        // invalid address
-        assertParseFailure(parser, "1" + CommandTestUtil.INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS);
         // invalid department
         assertParseFailure(parser, "1" + CommandTestUtil.INVALID_DEPARTMENT_DESC,
                 Department.MESSAGE_CONSTRAINTS);
@@ -82,13 +79,13 @@ public class EditCommandParserTest {
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser,
-                "1" + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.TAG_DESC_HUSBAND + TAG_EMPTY,
+                "1" + CommandTestUtil.TAG_DESC_MANAGER + CommandTestUtil.TAG_DESC_SOFTWARE_ENGINEER + TAG_EMPTY,
                 Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser,
-                "1" + CommandTestUtil.TAG_DESC_FRIEND + TAG_EMPTY + CommandTestUtil.TAG_DESC_HUSBAND,
+                "1" + CommandTestUtil.TAG_DESC_MANAGER + TAG_EMPTY + CommandTestUtil.TAG_DESC_SOFTWARE_ENGINEER,
                 Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser,
-                "1" + TAG_EMPTY + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.TAG_DESC_HUSBAND,
+                "1" + TAG_EMPTY + CommandTestUtil.TAG_DESC_MANAGER + CommandTestUtil.TAG_DESC_SOFTWARE_ENGINEER,
                 Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
@@ -101,15 +98,15 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         EmployeeId targetEmployeeId = EMPLOYEE_ID_TWO;
-        String userInput = "2" + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND
+        String userInput = "2" + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.TAG_DESC_SOFTWARE_ENGINEER
                 + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.NAME_DESC_AMY
-                + CommandTestUtil.DEPARTMENT_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND;
+                + CommandTestUtil.DEPARTMENT_DESC_AMY + CommandTestUtil.TAG_DESC_MANAGER;
 
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_AMY).withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withEmail(CommandTestUtil.VALID_EMAIL_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
                 .withDepartment(CommandTestUtil.VALID_DEPARTMENT_AMY)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND, CommandTestUtil.VALID_TAG_FRIEND).build();
+                .withTags(CommandTestUtil.VALID_TAG_SOFTWARE_ENGINEER, CommandTestUtil.VALID_TAG_MANAGER).build();
         EditCommand expectedCommand = new EditCommand(targetEmployeeId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -162,8 +159,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = "1" + CommandTestUtil.TAG_DESC_FRIEND;
-        descriptor = new EditEmployeeDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+        userInput = "1" + CommandTestUtil.TAG_DESC_MANAGER;
+        descriptor = new EditEmployeeDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_MANAGER).build();
         expectedCommand = new EditCommand(targetEmployeeId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -173,16 +170,16 @@ public class EditCommandParserTest {
         EmployeeId targetEmployeeId = EMPLOYEE_ID_ONE;
         String userInput = "1"
                 + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
-                + CommandTestUtil.DEPARTMENT_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.DEPARTMENT_DESC_AMY + CommandTestUtil.TAG_DESC_MANAGER
                 + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
-                + CommandTestUtil.DEPARTMENT_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.DEPARTMENT_DESC_AMY + CommandTestUtil.TAG_DESC_MANAGER
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
-                + CommandTestUtil.DEPARTMENT_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND;
+                + CommandTestUtil.DEPARTMENT_DESC_BOB + CommandTestUtil.TAG_DESC_SOFTWARE_ENGINEER;
 
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder()
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_BOB)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withDepartment(CommandTestUtil.VALID_DEPARTMENT_BOB)
-                .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND).build();
+                .withTags(CommandTestUtil.VALID_TAG_MANAGER, CommandTestUtil.VALID_TAG_SOFTWARE_ENGINEER).build();
 
         EditCommand expectedCommand = new EditCommand(targetEmployeeId, descriptor);
 

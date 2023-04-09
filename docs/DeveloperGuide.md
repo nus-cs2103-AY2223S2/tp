@@ -2,14 +2,41 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+## About ExecutivePro
+
+--------------------------------------------------------------------------------------------------------------------
+_ExecutivePro (EP)_ is a **desktop app** for **Human Resource (HR) managers** to manage their employee information, optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+
+It allows HR Managers to:
+1. Manage employees and their details
+2. Find or filter employees according to various criterion
+3. Export and import data from _ExecutivePro_ to other formats
+
+The purpose of this Developer Guide is to record the design and development of _ExecutivePro_, with the intention of assisting developers in understanding the thought process behind each feature. Alongside this, the guide offers a comprehensive overview of the architecture of _ExecutivePro_, both at a macro and micro level, aimed at aiding new developers in navigating through the code base.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Symbols and Syntax
+
+Here are some of the symbols to take note of when going through this user guide:
+
+| Symbol               | Meaning                                                           |
+|----------------------|-------------------------------------------------------------------|
+| `code`               | Text relevant to commands or name of a file.                      |
+| [`code`]             | The brackets around the code indicate that the field is optional. |
+| :bulb:               | Tips for ExecutivePro Users.                                      |
+| :warning:            | Be wary and proceed with caution.                                 |
+| :information_source: | Take note.                                                        |
+
+* Table of Contents
+{:toc}
+
+
+
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/addressbook-level3/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +50,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W09-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +63,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +96,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,14 +113,14 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `ExecutiveProParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a employee).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,23 +137,23 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `ExecutiveProParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ExecutiveProParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the ExecutivePro data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExecutivePro`, which `Person` references. This allows `ExecutivePro` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -135,18 +162,18 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `ExecutiveProStorage` and `UserPrefsStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -176,7 +203,7 @@ Step 4. This adds the `employee` from the list to the model. The `employeeId` wi
 currently exists an `employee` object with the same field data, a `CommandException` will be thrown and
 a message indicating duplicate person will be shown.
 
-Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
+Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
 
 ### BatchAdd feature: `batchadd`
 
@@ -205,7 +232,7 @@ UML Diagram:
 
 Step 1. User launches the application.
 
-Step 2. User executes `batchadd filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
+Step 2. User executes `batchadd filename` command. In the `LogicManager` class, the `ExecutiveProParser` method is called.
 This will return a new `BatchAddCommandParser` object and `parse` function is then called.
 A helper function in `ParserUtil` helps to trim the filename and check if it is valid.
 
@@ -221,7 +248,7 @@ Note: If file does not exist in the folder, a `FileNotFound` exception is thrown
 Step 4. Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`.
 If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
 
-Step 5. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
+Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, updates the database to contain the new persons added.
 
 <h4 id="batch-add-feature-design-considerations">Design Considerations</h4>
 
@@ -265,7 +292,7 @@ Step 3. The `execute` method of `EditCommand` will be called, it returns a `Comm
 Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and
 a message indicating no such employee will be shown. If an employee with the given ID exists, a new `employee` object is created with the updated details, and it replaces the old employee using `Model#setEmployee()`.
 
-Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
+Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
 
 ### Delete Feature : `delete`
 
@@ -292,7 +319,7 @@ Step 4. This finds the `employee` with an Employee ID of 1. If there is no emplo
 if there is an employee with the given employee ID, then using `model#deletePerson()`, the person will be deleted
 from the database.
 
-Step 5. `storage#saveAddressBook()` is then called, and updates the storage to remove the employee.
+Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to remove the employee.
 
 ### List Feature: `list`
 This command displays the details of all employees in order of their employee ID.
@@ -365,6 +392,29 @@ Step 5. The `UI` component listens to changes in this `FilteredList`, and update
 
 Add functionality to find employees based on other details such as Department, Roles etc.
 
+### Filter Feature: `filter`
+This command displays all employees who satisfy the criteria inputted by the user.
+
+
+#### Implementation
+
+The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
+When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
+
+Below is a sequence diagram and the explanation of the `filter` command.
+
+![FilterCommand](images/FilterSequenceDiagram.png)
+
+Step 1. User enters the command `filter pr > 1000`.
+
+Step 2. `LogicManager#execute` method is called on the user input.
+This prompts the `ExecutiveProParser` to parse the user input, which then returns a `FilterCommand` object.
+
+Step 3. The `execute` method of this `FilterCommand` is then called, which uses `ModelManager#UpdateFilteredEmployeeList` to set the `Predicate` of the `FilteredList` to one that filters all the Employees who `Payroll` value is greater than 1000.
+
+Step 4. The `FilteredList` now only contains those employees which satisfy the `Predicate` by satisfying the inputted criteria.
+
+Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of filtered employees to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -377,7 +427,25 @@ Add functionality to find employees based on other details such as Department, R
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
 
+1. Currently, user can filter employees by creating a `Predicate` with the `=` (equal to), `>` (greater than) or `<` (lesser than)
+operator to compare with inputted value. We plan to include further options for the user to use relational operators such as `>=`
+(greater than or equal to), `<=` (lesser than or equal to) and `!=` (not equal to) for filtering employees.
+2. Currently, user can find employees using either `Name` or `Department`. We plan to add functionality to find
+employees based on the `Tag` too.
+3. Currently, error messages do not appear in certain cases of invalid input for employees' fields like the negative payroll.
+As such, we plan to implement more checks that return error messages: `Invalid input for payroll`
+4. Currently, duplicated employees are not handled as we did not take case sensitivty into account for the names of employees.
+We plan to take into account case sensitivity in addition to the current check of phone number and email.
+5. Currently, there are no error messages for invalid Date Of Birth, such as using future dates.
+We plan to implement checks for date validity and return an error message: `Invalid Date Of Birth`
+6. Currently, batchExport with invalid path is not handled. We plan to check for file path validity and
+return an error message: `Invalid file path`
+7. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
+the right panel horizontally scrollable as well as increase the size of the right panel to ensure that the information
+remains centralized during the launch of our application.
+--------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -397,15 +465,20 @@ Add functionality to find employees based on other details such as Department, R
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                            | So that I can…​                                          |
-|----------|-----------------|-----------------------------------------|----------------------------------------------------------|
-| `* * *`  | HR manager      | add the details of current employees    | access their data in the future                          |
-| `* * *`  | HR manager      | edit the details of current employees   | keep their details up to date                            |
-| `* * *`  | HR manager      | delete the details of current employees | clear their details if they leave the company            |
-| `* * *`  | HR manager      | list all employee details               | retrieve the whole list of employees                     |
-| `* * *`  | HR manager      | find the details of current employees   | get all relevant information about a particular employee |
+| Priority | As a …​    | I want to …​                                 | So that I can…​                                          |
+|----------|------------|----------------------------------------------|----------------------------------------------------------|
+| `* * *`  | HR manager | add the details of current employees         | access their data in the future                          |
+| `* * *`  | HR manager | edit the details of current employees        | keep their details up to date                            |
+| `* * *`  | HR manager | delete the details of current employees      | clear their details if they leave the company            |
+| `* * *`  | HR manager | list all employee details                    | retrieve the whole list of employees                     |
+| `* * *`  | HR manager | find the details of current employees        | get all relevant information about a particular employee |
+| `* * *`  | HR manager | clear all employees                          | prevent data leakage                                     |
+| `* *`    | HR manager | batchadd the details of current employees    | easily add multiple employees at once                    |
+| `* *`    | HR manager | batchexport the details of current employees | easily export multiple employees at once                 |
+| `* *`    | HR manager | check the leaves of current employees        | keep track of the number of leaves remaining             |
+| `* *`    | HR manager | set pictures for current employees           | identify employees                                       |
+| `* *`    | HR manager | change the theme of application              | use the application with my preferred mode               |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -495,8 +568,80 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: UC6 - Clearing details of all employees**
 
-**Use case: UC6 - Exiting the ExecutivePro program**
+**MSS**
+
+1. HR Manager requests to clear the entire database.
+2. ExecutivePro will clear details of all employees and show an empty screen.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+**Use case: UC7 - batchadd details of current employees**
+
+**MSS**
+1. HR Manager requests to batchadd details of employees by importing csv file.
+2. ExecutivePro adds the employees with the given details.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given file type is invalid
+  * 1a1. ExecutivePro returns an error message.
+
+    Use case ends
+
+**Use case: UC8 - batchexport details of current employees**
+
+**MSS**
+1. HR Manager requests to export details of employees.
+2. ExecutivePro returns a csv file that contains details of employees required.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given file path is invalid
+    * 1a1. ExecutivePro returns an error message.
+
+      Use case ends
+
+**Use case: UC9 - Change the number of leaves remaining for an employee**
+
+**MSS**
+1. HR Manager requests to update the number of leaves remaining for an employee.
+2. ExecutivePro updates the number of leaves remaining for that employee.
+
+   Use case ends.
+
+**Extensions**
+* 1a. There is no employee matching the given EmployeeId
+    * 1a1. ExecutivePro returns an error message.
+* 1b. The remaining number of leaves inputted is invalid
+    * 1b1. ExecutivePro returns an error message
+
+        Use case ends
+
+**Use case: UC9 - Changing the theme of ExecutivePro**
+
+**MSS**
+1. HR Manager requests to change the theme of the application.
+2. ExecutivePro changes the theme based on preferred choice.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The theme inputted is invalid
+    * 1a1. ExecutivePro returns an error message.
+
+      Use case ends
+
+**Use case: UC10 - Exiting the ExecutivePro program**
 
 **MSS**
 
@@ -520,8 +665,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. A user with above average typing speed (above 40 WPM) for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 2. The application should be easy to use by users with little experience of using a command line application.
 3. The application should be accessible and readily available to new users.
+4. The application should offer 2 different themes (light and dark theme to accommodate the user's preference)
+5. The application should not create unnecessary files after certain command(batchexport)
 
-*{More to be added}*
+
 
 ### Glossary
 
@@ -561,7 +708,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 
-### Deleting a employee
+### Deleting an employee
 
 1. Deleting a employee while all employees are being shown
 
@@ -576,11 +723,34 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Adding an employee
+1. Adding an employee with all fields specified:
+   1. Test case: `add n/John Doe p/98765432 d/Marketing pr/1000 15 e/johnd@example.com a/311, Clementi Ave 2, #02-25 l/19 dob/2000-04-21 doj/2022-01-04 t/SoftwareEngineer`
 
+      Expected: A new employee, with the name "John Doe" will appear at the bottom of the list on the left panel.
+   
+2. Adding an employee with optional fields missing:
+   1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000 15` 
 
-### Saving data
+      Expected: A new employee, with the name "Jane Doe" will appear at the bottom of the list on the left panel.
+
+3. Adding an employee with compulsory fields missing:
+   1. Test case: `add n/Janet Doe p/12345678 pr/1000 15`
+
+      Expected: An error message `Invalid commant format!` appears.
+
+4. Adding an employee with invalid fields:
+   1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000`
+
+      Expected: An error message appears, stating that invalid field has been inputted.
+
+### Saving/Exporting data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Multiple employees in the list
+   1. Test case: `batchexport`
+      Expected: `Invalid command format!` error message will be returned.
+   1. Test case: `batchexport file.csv`
+      Expected: A file named `file.csv` would be created in your folder.
 

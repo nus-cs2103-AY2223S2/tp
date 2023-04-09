@@ -6,7 +6,11 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "21",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -15,7 +19,11 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "payroll" : "1000 15",
+    "leaveCounter" : "21",
+    "dateOfBirth" : "2000-04-21",
+    "dateOfJoining" : "2022-01-04",
+    "picturePath" : "data/employeepictures/default.png",
     "tagged": [ "friends" ]
   } ]
 }

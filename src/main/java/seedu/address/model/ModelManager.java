@@ -45,6 +45,22 @@ public class ModelManager implements Model {
         this(new ExecutiveProDb(), new UserPrefs());
     }
 
+    /**
+     * Creates a new ModelManager by making a deep copy of the provided Model.
+     * This constructor is particularly useful when you need to create a deep copy of the ModelManager.
+     *
+     * @param model The Model to be copied.
+     */
+    public ModelManager(Model model) {
+        requireAllNonNull(model);
+        userPrefs = new UserPrefs(model.getUserPrefs());
+        executiveProDb = new ExecutiveProDb(model.getExecutiveProDb());
+        filteredEmployees = new FilteredList<>(this.executiveProDb.getEmployeeList());
+        allEmployees = new FilteredList<>(model.getFullEmployeeList());
+    }
+
+
+
     //=========== UserPrefs ==================================================================================
 
     @Override
