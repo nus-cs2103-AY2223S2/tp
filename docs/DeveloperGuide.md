@@ -613,10 +613,10 @@ as the app ensures this
 1. The current error message for an invalid index is too general. We plan to make the error message also more accurate 
    by filtering by why the index is invalid.
    
-    1. [-MAX_INT....0]: Index must be a positive non-zero integer
-    2. [4..MAX_INT]: Index is out-of-bounds. Index must correspond to a valid tank.
+    1. \[-MAX_INT....0]: Index must be a positive non-zero integer
+    2. \[4..MAX_INT]: Index is out-of-bounds. Index must correspond to a valid tank.
    
-2. The current parameter parsing does not check for nonsensical or invalid values. We plan do execute sanity checks to 
+2. The current parameter parsing does not check for nonsensical or invalid values. We plan to execute sanity checks to 
     protect the user from receiving unintentional results for the following parameters:
    1. Last fed dates: Check for invalid dates like 31st April and reject them
    2. Feeding interval: While it makes sense that a feeding interval can be 0 days and 25 hours, it 
@@ -635,4 +635,3 @@ We will limit the length of such parameters in future enhancements to avoid this
    "Addressbook" to "Fish Ahoy", as well as fixing the fxml versions in fxml files. Furthermore, we can add more useful 
    logging messages related to Fish Ahoy commands such as information on newly added commands, so the user may gain more 
    information. For instance, Tank readings could display the current list of values, so the user can understand the graph.
-   
