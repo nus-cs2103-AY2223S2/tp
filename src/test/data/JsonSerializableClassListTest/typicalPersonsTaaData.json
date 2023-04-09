@@ -7,7 +7,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "T01" ]
   }, {
     "name" : "Benson Meier",
     "attendance" : "0;0;0;0;0;0;0;0;0;0;0;0",
@@ -15,7 +15,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "T01", "L01" ]
   }, {
     "name" : "Carl Kurz",
     "attendance" : "0;0;0;0;0;0;0;0;0;0;0;0",
@@ -31,7 +31,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "R01" ]
   }, {
     "name" : "Elle Meyer",
     "attendance" : "0;0;0;0;0;0;0;0;0;0;0;0",

@@ -44,9 +44,6 @@ public class Student {
         hashcode = Objects.hash(name, this.classTags);
     }
 
-    public int getId() {
-        return this.id;
-    }
     public Name getName() {
         return name;
     }
@@ -106,6 +103,7 @@ public class Student {
 
     /**
      * Returns the latest submission by this student.
+     * If there are no submissions, null is returned.
      */
     public Submission getLatestSubmission() {
         return this.submissions.getLatestSubmission();
@@ -183,9 +181,15 @@ public class Student {
     }
 
     /**
-     * Updates the attendance counter for the entire class list.
+     * Takes in a counter of length Attendance.NUM_WEEKS and increments the value at index i
+     * if this Student is marked as present on week i.
+     *
+     * If the counter passed in is of incorrect size, it will not be updated. (i.e. will fail silently)
      */
     public void updateAttendanceCounter(int[] counter) {
+        if (counter.length != Attendance.NUM_WEEKS) {
+            return;
+        }
         this.atd.updateAttendanceCounter(counter);
     }
 

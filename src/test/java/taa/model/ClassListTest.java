@@ -3,7 +3,7 @@ package taa.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taa.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static taa.logic.commands.CommandTestUtil.VALID_TAG_TUT_15;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -44,7 +44,7 @@ public class ClassListTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two students with the same identity fields
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_TUT_15)
                 .build();
         List<Student> newStudents = Arrays.asList(TypicalPersons.ALICE, editedAlice);
         StudentListStub newData = new StudentListStub(newStudents);
@@ -71,7 +71,7 @@ public class ClassListTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         classList.addStudent(TypicalPersons.ALICE);
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_TUT_15)
                 .build();
         assertTrue(classList.hasStudent(editedAlice));
     }

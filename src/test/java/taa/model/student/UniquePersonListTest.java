@@ -3,7 +3,7 @@ package taa.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static taa.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static taa.logic.commands.CommandTestUtil.VALID_TAG_TUT_15;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,7 +40,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(TypicalPersons.ALICE);
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_TUT_15)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }
@@ -86,7 +86,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueStudentList.add(TypicalPersons.ALICE);
-        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_TUT_15)
                 .build();
         uniqueStudentList.setStudent(TypicalPersons.ALICE, editedAlice);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();

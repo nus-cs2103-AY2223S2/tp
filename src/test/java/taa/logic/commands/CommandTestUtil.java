@@ -24,16 +24,17 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_TUT_15 = "TUT_15";
+    public static final String VALID_TAG_LAB02 = "LAB02";
     public static final String VALID_CLASS_STAT_ATTENDANCE = "attendance";
     public static final String VALID_CLASS_STAT_GRADES = "grades";
     public static final String VALID_ASSIGNMENT_NAME_TEST1 = "test1";
 
+
     public static final String NAME_DESC_AMY = " " + CliSyntax.PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + CliSyntax.PREFIX_NAME + VALID_NAME_BOB;
-    public static final String TAG_DESC_FRIEND = " " + CliSyntax.PREFIX_CLASS_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + CliSyntax.PREFIX_CLASS_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + CliSyntax.PREFIX_CLASS_TAG + VALID_TAG_LAB02;
+    public static final String TAG_DESC_HUSBAND = " " + CliSyntax.PREFIX_CLASS_TAG + VALID_TAG_TUT_15;
     public static final String CLASS_STAT_DESC_ATTENDANCE = " "
         + CliSyntax.PREFIX_STAT_TYPE + VALID_CLASS_STAT_ATTENDANCE;
     public static final String CLASS_STAT_DESC_GRADES = " " + CliSyntax.PREFIX_STAT_TYPE + VALID_CLASS_STAT_GRADES;
@@ -55,9 +56,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_LAB02).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_TUT_15, VALID_TAG_LAB02).build();
     }
 
     /**
