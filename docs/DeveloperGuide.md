@@ -494,20 +494,22 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 
-### Deleting a person
+### Deleting cases
 
-1. Deleting a person while all persons are being shown
-
+1. Deleting a single person while all persons are being shown
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
+       Expected: First case is deleted from the list. Details of the deleted contact shown in the status message.
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: No person is deleted. Error details shown in the status message.
+    1. Other incorrect single-index delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+2. Deleting multiple persons while all persons are being shown
+   2. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. Test case: `delete 1 2`<br>
+      Expected: First and second cases are deleted from the list. Number of cases deleted shown in the status message.
+   2. Test case: `delete 0 1` <br>
+      Expected: No person is deleted as at least one of the given indexes is out of range. Error details shown in the status message.
 
 ### Exporting/Importing data
 1. Testing import CSV
@@ -526,3 +528,26 @@ testers are expected to do more *exploratory* testing.
    1. Open `data/denguehotspottracker.csv` file with your favourite text editor.
    1. Remove any of the quotation marks.
    1.Run `DengueHotspotTracker`. Since the data file is not in the correct format, `DengueHotspotTracker` should start without any data.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+### Sorting by descending order
+
+The sort command currently only allows users to sort in ascending order. Users might find it more useful in some cases to
+sort by descending order instead, e.g. if they wish to examine the most recent cases, or find the cases with the highest ages.
+We plan to add the ability to sort by descending order to make the app more useful for our users.
+
+### Wrapping longer names for better readability
+
+Currently, longer names will be truncated; to see the full name, the user needs to manually resize the app window. To
+reduce inconvenience on users, we plan to add text wrapping so that longer names can still be fully read without the user
+having to manually adjust the window size.
+
+### Standardising success messages
+
+Although both the `find` and `delete` commands can filter the case list by date and date range, their success messages differ:
+the `find` command merely states the number of cases found, while the `delete` command further clarifies the date or date range
+within which the cases were found. While minor, the discrepancy may cause confusion to users.  We plan to standardise the
+success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
