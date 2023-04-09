@@ -244,6 +244,7 @@ Deletes the student(s) at the specified index(es) from the student list.
 - More than 1 `INDEX` can be specified, and all of them will be deleted.
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, ...
+- Every index must be unique.
 
 <div markdown="span" class="alert alert-info">:bulb: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
 none of the students will be deleted.
