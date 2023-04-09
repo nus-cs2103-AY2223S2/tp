@@ -287,7 +287,7 @@ Step 2. The user executes `deleteAppointment 1 ic/S1234567X` command to delete t
 {add a object diagram}
 
 The sequence diagram below shows how the DeleteAppointmentCommand works:
-{add a sequence diagram}
+![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
 
 * When the user inputs `deleteAppointment INDEX ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates a `DeleteAppointmentCommandParser` to parse the patient's `Nric`, and `INDEX` through `ParserUtil`
     * Any invalid inputs will throw a `ParseException`
