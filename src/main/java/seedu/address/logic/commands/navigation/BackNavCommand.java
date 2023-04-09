@@ -30,11 +30,6 @@ public class BackNavCommand extends Command {
 
     private void list(NavigationContext navContext, Model model) throws CommandException {
         switch (navContext.getLayer()) {
-        case INVALID:
-            break;
-        case LECTURE:
-            new ListCommand(navContext.getModuleCode(), navContext.getLectureName()).execute(model);
-            break;
         case MODULE:
             new ListCommand(navContext.getModuleCode()).execute(model);
             break;

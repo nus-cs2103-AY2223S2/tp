@@ -42,9 +42,9 @@ public class DirectNavCommand extends NavCommand {
         boolean hasModuleTarget = targetModuleCode != null;
         boolean hasLectureTarget = targetLectureName != null;
 
-        if (!hasModuleTarget && hasLectureTarget) {
+        if (!hasModuleTarget) {
             throw new CommandException(NavCommand.MESSAGE_NAV_INVALID);
-        } else if (hasModuleTarget && !model.hasModule(targetModuleCode)) {
+        } else if (!model.hasModule(targetModuleCode)) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, targetModuleCode));
         } else if (hasLectureTarget && !model.hasLecture(targetModuleCode, targetLectureName)) {
             throw new CommandException(

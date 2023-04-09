@@ -12,6 +12,7 @@ import seedu.address.model.NavigationStack;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.navigation.NavigationContext;
+import seedu.address.testutil.ObjectUtil;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 
@@ -57,7 +58,11 @@ public class BackNavCommandTest {
         BackNavCommand cmd = new BackNavCommand();
         CommandResult result = cmd.execute(model);
 
-        assertEquals(NavCommand.getSuccessfulNavMessage(new NavigationContext()),
-                result.getFeedbackToUser());
+        assertEquals(NavCommand.getSuccessfulNavMessage(new NavigationContext()), result.getFeedbackToUser());
+    }
+
+    @Test
+    void equals() {
+        ObjectUtil.testEquals(new BackNavCommand(), new BackNavCommand(), 1);
     }
 }
