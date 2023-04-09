@@ -54,7 +54,7 @@ Given below are my contributions to the project.
         * Added Appendix: Effort (PR #270)
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): #180, #156, #264 
+    * PRs reviewed (with non-trivial review comments): example: #180, #156, #264,.. 
     * Identified bugs in commands and brought up discussion among the group in weekly meeting
     * Contributed to forum discussions (examples: #24)
 
