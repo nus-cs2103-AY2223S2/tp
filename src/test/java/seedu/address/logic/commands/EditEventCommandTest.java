@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CARNIVAL;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SPORTS_DAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TIME_CARNIVAL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_CARNIVAL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME_CARNIVAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TIME_SPORTS_DAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_SPORTS_DAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME_SPORTS_DAY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
@@ -56,13 +56,13 @@ public class EditEventCommandTest {
         Event lastEvent = model.getFilteredEventList().get(indexLastEvent.getZeroBased());
 
         EventBuilder eventInList = new EventBuilder(lastEvent);
-        Event editedEvent = eventInList.withName(VALID_EVENT_NAME_CARNIVAL)
-                .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
-                .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL).build();
+        Event editedEvent = eventInList.withName(VALID_EVENT_NAME_SPORTS_DAY)
+                .withStartDateTime(VALID_START_DATE_TIME_SPORTS_DAY)
+                .withEndDateTime(VALID_END_DATE_TIME_SPORTS_DAY).build();
 
-        EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_CARNIVAL)
-                .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
-                .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL).build();
+        EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_SPORTS_DAY)
+                .withStartDateTime(VALID_START_DATE_TIME_SPORTS_DAY)
+                .withEndDateTime(VALID_END_DATE_TIME_SPORTS_DAY).build();
         EditEventCommand editEventCommand = new EditEventCommand(indexLastEvent, descriptor);
 
         String expectedMessage = String.format(EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
@@ -90,9 +90,9 @@ public class EditEventCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         Event eventInFilteredList = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        Event editedEvent = new EventBuilder(eventInFilteredList).withName(VALID_EVENT_NAME_CARNIVAL).build();
+        Event editedEvent = new EventBuilder(eventInFilteredList).withName(VALID_EVENT_NAME_SPORTS_DAY).build();
         EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT,
-                new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_CARNIVAL).build());
+                new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_SPORTS_DAY).build());
 
         String expectedMessage = String.format(EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
@@ -128,7 +128,7 @@ public class EditEventCommandTest {
     public void execute_invalidEventIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder()
-                .withEventName(VALID_EVENT_NAME_CARNIVAL).build();
+                .withEventName(VALID_EVENT_NAME_SPORTS_DAY).build();
         EditEventCommand editEventCommand = new EditEventCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
@@ -146,7 +146,7 @@ public class EditEventCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
 
         EditEventCommand editEventCommand = new EditEventCommand(outOfBoundIndex,
-                new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_CARNIVAL).build());
+                new EditEventDescriptorBuilder().withEventName(VALID_EVENT_NAME_SPORTS_DAY).build());
 
         assertCommandFailure(editEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }

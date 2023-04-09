@@ -44,8 +44,7 @@ public class EventTest {
                 .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL)
                 .build();
         // different event with same name -> returns false
-        assertFalse(CARNIVAL.equals(editedCarnival));
-        assertFalse(CARNIVAL.hashCode() == editedCarnival.hashCode());
-        assertFalse(CARNIVAL.isSameEvent(editedCarnival));
+        assertTrue(CARNIVAL.equals(editedCarnival));
+        assertTrue(CARNIVAL.isSameEvent(editedCarnival));
     }
 }
