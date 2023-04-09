@@ -4,7 +4,6 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import seedu.address.model.event.IsolatedEvent;
@@ -67,8 +66,12 @@ public class TimeMask {
                 return;
             }
 
-            LocalDateTime start = event.getStartDate();
-            LocalDateTime end = event.getEndDate();
+            if (startDate.isAfter(event.getEndDate().toLocalDate())) {
+                continue;
+            }
+
+            LocalDate start = event.getStartDate().toLocalDate();
+            LocalDate end = event.getEndDate().toLocalDate();
 
             int startIndex = getZeroBasedDayIndex(event.getStartDate().getDayOfWeek());
             int startTime = event.getStartDate().getHour();
@@ -77,16 +80,21 @@ public class TimeMask {
 
             if (endTime < 0) {
                 endTime = LAST_HOUR_INDEX;
+                end = end.minusDays(1);
             }
 
-            if (!start.toLocalDate().isEqual(end.toLocalDate())) {
+            if (!start.isEqual(end)) {
                 // check if end date after date limit
-                boolean isAfterDateLimit = isEndDateAfterDateLimit(end.toLocalDate(), dateLimit);
+                boolean isAfterDateLimit = isEndDateAfterDateLimit(end, dateLimit);
                 // get the days between the start and end/ start and date limit
-                long daysBetween = getDaysBetween(start.toLocalDate(), end.toLocalDate(), dateLimit);
+                long daysBetween = getDaysBetween(start, end, dateLimit, startDate);
                 // if end date after date limit, need to change end time of event
                 int modifiedEndTime = getUpdatedEndTime(endTime, isAfterDateLimit);
-                occupyMultipleDay(startIndex, daysBetween, startTime, modifiedEndTime);
+                // if user indicated a start date that is after the event start date, need to change the start index
+                int modifiedStartIndex = start.isBefore(startDate) ? startDate.getDayOfWeek().getValue() - 1
+                        : startIndex;
+                occupyMultipleDay(modifiedStartIndex, daysBetween, startTime, modifiedEndTime,
+                        startIndex == modifiedStartIndex);
             } else {
                 occupySlots(startIndex, startTime, endTime);
             }
@@ -105,8 +113,12 @@ public class TimeMask {
         return endDate.isAfter(dateLimit);
     }
 
-    private long getDaysBetween(LocalDate start, LocalDate end, LocalDate dateLimit) {
+    private long getDaysBetween(LocalDate start, LocalDate end, LocalDate dateLimit, LocalDate startDate) {
         long daysBetween;
+
+        if (start.isBefore(startDate)) {
+            start = startDate;
+        }
         if (end.isAfter(dateLimit)) {
             daysBetween = DAYS.between(start, dateLimit);
         } else {
@@ -135,15 +147,22 @@ public class TimeMask {
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] | mask;
     }
 
-    private void occupyMultipleDay(int startDay, long diff, int startHour, int endHour) {
+    private void occupyMultipleDay(int startDay, long diff, int startHour, int endHour, boolean isEqualStartIndex) {
         int curr = startDay;
         int counter = 1;
+        int startBits;
+        int mask;
 
-        // find free time slots for the start date of the event
-        int startBits = Integer.parseInt("1".repeat(23 - startHour + 1), 2);
-        int mask = startBits << startHour;
-        weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
-        curr = curr == LAST_DAY_INDEX ? 0 : curr + 1;
+        // only do this if it is starDay = event start date
+        if (isEqualStartIndex) {
+            // find free time slots for the start date of the event
+            startBits = Integer.parseInt("1".repeat(23 - startHour + 1), 2);
+            mask = startBits << startHour;
+            weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
+            curr = curr == LAST_DAY_INDEX ? 0 : curr + 1;
+        } else {
+            counter = 0;
+        }
 
         // filled the in between days as busy for every time slots
         while (counter < diff) {
@@ -152,7 +171,6 @@ public class TimeMask {
             curr = curr == LAST_DAY_INDEX ? 0 : curr + 1;
             counter = counter + 1;
         }
-
         // find free time slots for the end date of the event
         startBits = Integer.parseInt("1".repeat(endHour + 1), 2);
         weeklyOccupancy[curr] = weeklyOccupancy[curr] | startBits;
