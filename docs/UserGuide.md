@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Introducing **MediConnect** - the hospital management application designed to  **streamline patient management, 
-doctor coordination, and hospital billing.** As a centralised platform, **MediConnect** offers healthcare 
-professionals and administrative staff an efficient solution to manage administrative matters in local clinics. 
+Introducing **MediConnect** - the hospital management application designed to  **streamline patient management,
+doctor coordination, and hospital billing.** As a centralised platform, **MediConnect** offers healthcare
+professionals and administrative staff an efficient solution to manage administrative matters in local clinics.
 The app simplifies the organization and maintenance of patient and doctor data, appointments and billing records. <br>
 **MediConnect** can be used with either a command line interface (CLI) or a graphical user interface (GUI).
 Users experienced with the CLI may get their tasks done faster than traditional GUI apps. <br>
@@ -77,10 +77,10 @@ _With MediConnect, managing your healthcare practice has never been easier._
 | Field            | Prefix | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Address**      | a/     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Cost**         | c/     | Should either be a positive number or 0. Supports up to 2 decimal places.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Cost**         | c/     | 1. Should either be a number larger or equal to 0. <br> 2. Supports up to 2 decimal places.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **Date**         | d/     | 1. Format should be DD-MM-YYYY HH:mm, e.g., 31-03-2023 14:00. <br> 2. 'DD' must be between 01-31 and 'MM' between 01-12. <br> 3. HH:mm should follow the 24-hour notation"                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | **Email**        | e/     | 1. Should be of the format local-part@domain <br> 2. The local-part should only contain alphanumeric characters and these special characters (+_.-). The local-part may not start or end with any special characters. <br> 3. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br> The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| **Medication**   | m/     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **Medication**   | m/     | Should only contain alphanumeric characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Name**         | n/     | Should only contain alphanumeric characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **NRIC**         | ic/    | 1. Should be 9 characters long. <br> 2. The first character must be one of [S,T,F,G,M], followed by 7 numerical digits and ending with [A-Z].                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **Phone Number** | p/     | 1. Should only contain numbers. <br> 2. Should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -168,7 +168,7 @@ Format: `appointment ic/NRIC d/DATE dric/NRIC`
 * Schedules an appointment on the given `DATE` for the patient with `ic/NRIC` with the doctor with `dric/NRIC`
 
 Examples:
-* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z. 
+* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z.
 
 ![Appointment](images/Appointment.png)
 
@@ -194,8 +194,8 @@ Examples:
 Format: `prescribe ic/NRIC m/MEDICATION c/COST`
 
 Examples:
-*  `prescribe m/paracetamol ic/S1234567X c/0.7` Prescribes paracetamol the patient of IC S1234567X at a cost of $0.7
-*  `prescribe m/Cough Syrup ic/S1234567X c/10.7` Prescribes cough syrup to the patient of IC S1234567X at a cost of $0.10
+*  `prescribe m/paracetamol ic/S1234567X c/0.7` prescribes paracetamol at a cost of $0.7 to the patient with NRIC number S1234567X.
+*  `prescribe m/Cough Syrup ic/S1234567X c/10.7` prescribes Cough Syrup at a cost of $10.7 to the patient with NRIC number S1234567X.
 
 ![Prescribe](images/Prescribe.png)
 
@@ -206,8 +206,8 @@ Removes a chosen medication from a patient.
 Format: `unprescribe ic/NRIC m/MEDICATION`
 
 Examples:
-*  `unprescribe ic/S1234567X m/paracetamol` Remove patient of IC S1234567X's paracetamol prescription
-*  `unprescribe m/Cough Syrup ic/S1234567X` Remove patient of IC S1234567X's cough syrup prescription
+*  `unprescribe ic/S1234567X m/paracetamol` removes paracetamol prescription from patient with NRIC number S1234567X.
+*  `unprescribe m/Cough Syrup ic/S1234567X` removes Cough Syrup prescription from patient with NRIC number S1234567X.
 
 ### Bill : `bill`
 
@@ -216,7 +216,7 @@ Calculates the cost of all medication given a Patient's prescription.
 Format: `bill ic/NRIC`
 
 Examples:
-* `bill ic/S1234567X` Calculates the cost of patient's (of IC S1234567X) medication.
+* `bill ic/S1234567X` calculates the cost of all medication for patient with NRIC S1234567X.
 
 ![Bill](images/Bill.png)
 
@@ -285,12 +285,12 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary 
+## Command summary
 
 | Action                 | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Person**         | 1. `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` <br> 2. `addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd` |
-| **Bill**               | `bill ic/NRIC` <br> e.g.,                               cost ic/S1234567X                                                                                                                                                                                                                                                                                |
+| **Bill**               | `bill ic/NRIC` <br> e.g.,                               bill ic/S1234567X                                                                                                                                                                                                                                                                                |
 | **Book Appointment**   | `appointment ic/NRIC d/DATE dric/NRIC` <br> e.g., `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z`                                                                                                                                                                                                                                           |
 | **Clear**              | `clear`                                                                                                                                                                                                                                                                                                                                                  |
 | **Delete Appointment** | `deleteAppointment INDEX ic/NRIC` <br> e.g., `deleteAppointment 2 ic/S1234567A`                                                                                                                                                                                                                                                                          |
@@ -301,5 +301,5 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 | **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                             |
 | **Help**               | `help`                                                                                                                                                                                                                                                                                                                                                   |
 | **List**               | `list` <br> `listDoctors` <br> `listPatients`                                                                                                                                                                                                                                                                                                            |
-| **Prescribe**          | `prescribe ic/NRIC m/MEDICATION c/Cost` <br> e.g, prescribe ic/S1234567X m/paracetamol c/10.7                                                                                                                                                                                                                                                            |
+| **Prescribe**          | `prescribe ic/NRIC m/MEDICATION c/COST` <br> e.g, prescribe ic/S1234567X m/paracetamol c/10.7                                                                                                                                                                                                                                                            |
 | **Unprescribe**        | `unprescribe ic/NRIC m/MEDICATION` <br> e.g., unprescribe ic/S1234567X  m/paracetamol                                                                                                                                                                                                                                                                    |
