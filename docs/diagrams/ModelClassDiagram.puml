@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyQuickBook" as ReadOnlyQuickBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class QuickBook
 Class ModelManager
 Class UserPrefs
 
@@ -22,17 +22,17 @@ Class Meeting
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+QuickBook .up.|> ReadOnlyQuickBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyQuickBook
+ModelManager -left-> "1" QuickBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-AddressBook *--> "1" UniqueMeetingList
+QuickBook *--> "1" UniquePersonList
+QuickBook *--> "1" UniqueMeetingList
 UniquePersonList --> "~*" Person
 UniqueMeetingList --> "~*" Meeting
 
