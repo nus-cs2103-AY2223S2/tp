@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":FindAppointmentCommandParser" as FindAppointmentCommandParser LOGIC_COLOR
+participant "p:TimeInTimeslotPredicate" as TimeInTimeslotPredicate LOGIC_COLOR
+participant "p:AppointmentHasOverlapPredicate" as AppointmentHasOverlapPredicate LOGIC_COLOR
+end box
+
+activate FindAppointmentCommandParser
+alt 1 time provided
+
+create TimeInTimeslotPredicate
+FindAppointmentCommandParser -> TimeInTimeslotPredicate
+activate TimeInTimeslotPredicate
+
+TimeInTimeslotPredicate --> FindAppointmentCommandParser : p
+deactivate TimeInTimeslotPredicate
+
+else 2 times provided
+
+create AppointmentHasOverlapPredicate
+FindAppointmentCommandParser -> AppointmentHasOverlapPredicate
+activate AppointmentHasOverlapPredicate
+
+AppointmentHasOverlapPredicate --> FindAppointmentCommandParser : p
+deactivate AppointmentHasOverlapPredicate
+
+end
+@enduml
