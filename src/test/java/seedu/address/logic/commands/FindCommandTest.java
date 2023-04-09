@@ -2,11 +2,17 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_EMPLOYEES_FOUND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEmployees.*;
+import static seedu.address.testutil.TypicalEmployees.ALICE;
+import static seedu.address.testutil.TypicalEmployees.BENSON;
+import static seedu.address.testutil.TypicalEmployees.CARL;
+import static seedu.address.testutil.TypicalEmployees.DANIEL;
+import static seedu.address.testutil.TypicalEmployees.ELLE;
+import static seedu.address.testutil.TypicalEmployees.FIONA;
+import static seedu.address.testutil.TypicalEmployees.GEORGE;
+import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -61,7 +67,7 @@ public class FindCommandTest {
         expectedModel.updateFilteredEmployeeList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredEmployeeList());
-        }
+    }
 
     @Test
     public void execute_multipleFullKeywordsName_multipleEmployeesFound() {
