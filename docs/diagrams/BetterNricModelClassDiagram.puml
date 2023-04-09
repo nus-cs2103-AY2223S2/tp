@@ -20,6 +20,6 @@ Person *--> Email
 Person *--> Address
 Person *--> DrugAllergy
 Person *--> Gender
-Person *--> Medicine
 Person *--> Doctor
+Person *--> "*" Medicine
 @enduml

@@ -248,6 +248,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles all view pane actions.
+     *
      * @param feedback
      * @param commandText
      */
@@ -259,6 +260,7 @@ public class MainWindow extends UiPart<Stage> {
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+            logic.updateFilteredPersonList(x -> true);
         } else if (feedback.startsWith("Edited Person:")) {
             int index = Character.getNumericValue(commandText.charAt(5));
             viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(index - 1));
@@ -275,6 +277,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Updates the person list panel after the action 'undo' or 'redo'
+     *
      * @param feedback
      */
     public void handleUndoRedo(String feedback) {
