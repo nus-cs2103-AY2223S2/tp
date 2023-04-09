@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Employee {
-    public static final String DEFAULT_PICTURE_PATH = "data/employeepictures/default.png";
+    public static final String DEFAULT_PICTURE_PATH = "data/employeepictures/default_employee.png";
 
     // Identity fields
     private final Name name;
@@ -53,7 +53,7 @@ public class Employee {
         this.leaveCounter = leaveCounter;
         this.dateOfBirth = dateOfBirth;
         this.dateOfJoining = dateOfJoining;
-        this.picturePath = picturePath.orElseGet(() -> new PicturePath(DEFAULT_PICTURE_PATH));
+        this.picturePath = picturePath.orElseGet(() -> new PicturePath(""));
         this.tags.addAll(tags);
     }
 

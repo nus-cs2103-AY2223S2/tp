@@ -18,7 +18,7 @@ public class PicturePathTest {
 
     @Test
     public void constructor_invalidPicturePath_throwsIllegalArgumentException() {
-        String invalidPicturePath = "";
+        String invalidPicturePath = "illegal argument";
         assertThrows(IllegalArgumentException.class, () -> new PicturePath(invalidPicturePath));
     }
 
@@ -27,15 +27,15 @@ public class PicturePathTest {
         // null address
         assertThrows(NullPointerException.class, () -> PicturePath.isValidPicturePath(null));
 
-        // invalid addresses
-        assertFalse(PicturePath.isValidPicturePath("")); // empty string
-        assertFalse(PicturePath.isValidPicturePath("src/main/default.png")); // invalid directory
+        // invalid directory
+        assertFalse(PicturePath.isValidPicturePath("src/main/default_employee.png"));
         // invalid file type
         assertFalse(PicturePath.isValidPicturePath("data/employeepictures/default.jpg"));
 
-
         // valid addresses
         assertTrue(PicturePath.isValidPicturePath("data/employeepictures/default.png"));
+        // empty string - default picture
+        assertTrue(PicturePath.isValidPicturePath(""));
         // inside another directory
         assertTrue(PicturePath.isValidPicturePath("data/employeepictures/anotherfolder/default.png"));
         // file does not exist, but still valid

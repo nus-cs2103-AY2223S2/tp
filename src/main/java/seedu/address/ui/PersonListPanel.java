@@ -1,8 +1,9 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
@@ -106,16 +107,23 @@ public class PersonListPanel extends UiPart<Region> {
         dateOfBirth.setText("Date of Birth: " + employee.getDateOfBirth());
         dateOfJoining.setText("Date of Joining: " + employee.getDateOfJoining());
 
-        File img = new File(employee.getPicturePath().value);
-
-        try {
-            InputStream isImage = (InputStream) new FileInputStream(img);
+        String val = employee.getPicturePath().value;
+        InputStream isImage;
+        if (val.equals("")) {
+            isImage = getClass().getResourceAsStream("/images/default_employee.png");
+            requireNonNull(isImage);
             imageView.setImage(new Image(isImage));
-            isImage.close();
-        } catch (FileNotFoundException e) {
-            // default image will be src/main/resources/employeepictures/default.png
-        } catch (IOException e) {
-            e.printStackTrace();
+            imageView.setVisible(true);
+        } else {
+            File img = new File(employee.getPicturePath().value);
+            try {
+                isImage = (InputStream) new FileInputStream(img);
+                imageView.setImage(new Image(isImage));
+                imageView.setVisible(true);
+                isImage.close();
+            } catch (IOException e) {
+                imageView.setVisible(false);
+            }
         }
     }
 
@@ -131,6 +139,7 @@ public class PersonListPanel extends UiPart<Region> {
         leaveCount.setText("");
         dateOfBirth.setText("");
         dateOfJoining.setText("");
+        imageView.setVisible(false);
     }
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
