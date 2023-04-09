@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/mynameizzhafeez.md)]
 
 * Role: Lead Developer
-* Responsibilities: TBD
+* Responsibilities: Data
 
 ### Tan Li Thai Sean
 
