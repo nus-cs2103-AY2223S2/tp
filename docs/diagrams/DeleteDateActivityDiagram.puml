@@ -1,0 +1,29 @@
+@startuml
+skinparam defaultTextAlignment center
+
+start
+:User requests to\ndelete cases from a given date;
+:Check that indexes and dates\nhave not been used together;
+if () then ([indexes and dates not mixed])
+    :Check that d/ has not\nbeen used with sd/ or ed/;
+
+    if () then ([date prefixes not mixed])
+        :Check that given\ndate is valid;
+        if () then ([date is valid])
+            :Delete cases associated\nwith the given date;
+            :Display\nsuccess message;
+            stop
+        else ([else])
+            :Display invalid\ndate message;
+            stop
+        endif
+    else ([else])
+        :Display invalid\ncommand message;
+        stop
+    endif
+else ([else])
+    :Display invalid\ncommand message;
+    stop
+endif
+
+@enduml

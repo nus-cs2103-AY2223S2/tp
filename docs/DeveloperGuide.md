@@ -339,6 +339,12 @@ Step 4. `DeleteCommand#execute()` will get the most updated list of filtered cas
 
 To see how the delete-by-date mechanism works, as well as to understand the design considerations taken, you may refer to the multi-index delete feature’s sequence diagram, as they work largely similarly besides the parsing of dates and the use of the `executeDate` method instead.
 
+The following activity diagram summarises what happens when a user executes a delete-by-date command:
+
+![DeleteDateActivityDiagram](images/DeleteDateActivityDiagram.png)
+
+#### Design Considerations
+
 **Aspect: What attributes the `delete` command can delete by:**
 
 * **Alternative 1 (current choice):** Allow users to `delete` only by date.
@@ -355,7 +361,6 @@ To see how the delete-by-date mechanism works, as well as to understand the desi
       If necessary, they can be accomplished by `find`ing by the relevant attribute before `clear`ing.
       Allowing deletion by date provides a handy shortcut for the most probable use case, keeping the app
       free of less important features.
-
 
 ### Delete-by-date-range feature
 
@@ -384,6 +389,10 @@ Step 4. `SortCommand#execute()` will sort a copy of the filtered list `toSort`. 
 The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** Sorting is performed directly on the **entire** list. Sorting is also **permanent**, i.e. it cannot be undone.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
