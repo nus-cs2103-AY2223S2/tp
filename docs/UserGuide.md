@@ -181,7 +181,7 @@ Examples:
 
 * `find lim jun jie ` returns `Lim Jun Jie`
 * `find Lim Qi` returns `Lim Jun Jie`, `Tan Jia Qi`<br>
-  ![result for 'find Lim Qi'](images/findPerson.png)
+  ![result for 'find Lim Qi'](images/findPersonAnnotated.png)
 
 ### Deleting a client : `delete`
 
@@ -204,15 +204,9 @@ Format: `meetingAdd CLIENT_INDEX md/DESCRIPTION ms/START me/END`
 
 Required Information:
 * `CLIENT_INDEX`: Index of a client in FAid
-<<<<<<< HEAD
 * `DESCRIPTION`: Description of the meeting to add
 * `START`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END`: End date and time (Format: dd-mm-yyyy HH:MM)
-=======
-* `DESC`: Description of the meeting to add
-* `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
-* `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
->>>>>>> upstream/master
 
 Example:
 
@@ -222,13 +216,8 @@ Example:
 Notes:
 * Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
 * Meeting must not conflict in timing with other meetings scheduled for the day.
-<<<<<<< HEAD
 * Meetings starting before the current time cannot be added.
-=======
-* Meetings must not be scheduled before the current date and time.
->>>>>>> upstream/master
-
-* ![result for meetingAdd 3 md/Meeting with Fariq ms/10-06-2023 12:30 me/10-06-2023 13:30](images/meetingAdd.png)
+* ![result for meetingAdd 3 md/Meeting with Fariq ms/10-06-2023 12:30 me/10-06-2023 13:30](images/meetingAddAnnotated.png)
 
 
 
