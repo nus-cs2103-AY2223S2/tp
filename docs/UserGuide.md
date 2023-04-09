@@ -139,6 +139,10 @@ Format: `display ic/NRIC`
 
 * Displays personal particulars, appointments and prescription for the patient with the specified `NRIC`.
 
+Restrictions:
+* `ic/NRIC`
+    * The patient specified by `ic/NRIC` should exist in MediConnect
+
 Examples:
 * `display ic/S1234567A` displays the information for the patient with NRIC number S1234567A.
 
@@ -167,7 +171,7 @@ Format: `appointment ic/NRIC d/DATE dric/NRIC`
 * Schedules an appointment for the patient with `ic/NRIC` and the doctor with `dric/NRIC` on the specified `d/DATE`
 * Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view panel when `display` command is used.
 
-#### Restrictions:
+Restrictions:
 * `ic/NRIC`
   * The patient specified by `ic/NRIC` should exist in MediConnect
 * `dric/NRIC`
@@ -186,16 +190,22 @@ Examples:
 ### Delete appointment : `deleteAppointment`
 
 Deletes an appointment specified by the index of the patient’s appointment list.
-Note that this command can only be used on patients (ie. you can only delete an appointment from the patient's end, and not from the doctor's end).
-Similarly, this updates the appointment list for the specified patient, and the specified doctor in the detailed person view when 'display' command is used.
 
 Format: `deleteAppointment INDEX ic/NRIC`
 
-* Deletes the appointment indicated by `INDEX` from the list of appointments for the person specified by `NRIC`.
-* `INDEX` refers to the index number shown in the displayed appointment list for the person. The *index must be a positive integer* 1, 2, 3, …​
+* Deletes the appointment indicated by `INDEX` from the list of appointments for the person specified by `NRIC`
+* `INDEX` refers to the index number shown in the appointment list of the patient.
+* Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view panel when `display` command is used.
+
+Restrictions:
+* `ic/NRIC`
+    * Nric must belong to a patient (not doctor)
+    * The patient specified by `ic/NRIC` should exist in MediConnect
+* `INDEX`
+  * The index must be a positive integer (eg. 1, 2, 3, …​)
 
 Examples:
-* `deleteAppointment 2 ic/S1234567A` deletes the 2nd appointment as displayed the list for person with NRIC number S1234567A.
+* `deleteAppointment 1 ic/S1234567X` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567X`."
 
 ### Prescribing patient’s medication : `prescribe`
 
