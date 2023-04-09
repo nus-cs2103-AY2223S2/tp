@@ -2,12 +2,10 @@ package tfifteenfour.clipboard.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,10 +34,6 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_STUDENTID_AMY = "A9876543Q";
     public static final String VALID_STUDENTID_BOB = "A2345678K";
-    public static final String VALID_MODULE_CS2105 = "CS2105";
-    public static final String VALID_MODULE_CS2103 = "CS2103";
-    public static final String VALID_TAG_TEAM1 = "Team1";
-    public static final String VALID_TAG_TEAM2 = "Team2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -49,17 +43,22 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String STUDENTID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENTID_AMY;
     public static final String STUDENTID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENTID_BOB;
-    public static final String MODULE_DESC_CS2105 = " " + PREFIX_COURSE + VALID_MODULE_CS2105;
-    public static final String MODULE_DESC_CS2103 = " " + PREFIX_COURSE + VALID_MODULE_CS2103;
-    public static final String TAG_DESC_TEAM1 = " " + PREFIX_TAG + VALID_TAG_TEAM1;
-    public static final String TAG_DESC_TEAM2 = " " + PREFIX_TAG + VALID_TAG_TEAM2;
+
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.\n";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
+
+    public static final String STUDENT_COMMAND_PREFIX = " student ";
+    public static final String COURSE_COMMAND_PREFIX = " course ";
+    public static final String GROUP_COMMAND_PREFIX = " group ";
+    public static final String SESSION_COMMAND_PREFIX = " session ";
+    public static final String TASK_COMMAND_PREFIX = " task ";
+    public static final String INVALID_COMMAND_PREFIX = " invalid ";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_STUDENTID_DESC = " " + PREFIX_STUDENTID; // empty string not allowed for address
-    public static final String INVALID_MODULE_DESC = " " + PREFIX_COURSE + "CS*"; // '*' not allowed in module codes
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -84,7 +83,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             System.out.println("expected feedback:" + expectedCommandResult.getFeedbackToUser());
@@ -102,7 +101,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(command, expectedMessage, command.getWillModifyState());
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -124,6 +123,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList,
                 actualModel.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s address book.

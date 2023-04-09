@@ -70,4 +70,16 @@ public class EditCourseCommand extends EditCommand {
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, courseToEdit, newCourse), willModifyState);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof EditCourseCommand)) {
+            return false;
+        }
+        EditCourseCommand other = (EditCourseCommand) obj;
+        return index.equals(other.index) && newCourse.equals(other.newCourse);
+    }
+
 }

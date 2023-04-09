@@ -61,4 +61,10 @@ public class AddTaskCommand extends AddCommand {
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetGroup, taskToAdd), willModifyState);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddTaskCommand // instanceof handles nulls
+                && taskToAdd.equals(((AddTaskCommand) other).taskToAdd));
+    }
 }

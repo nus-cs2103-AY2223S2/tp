@@ -186,6 +186,15 @@ public class Session {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Session)) {
+            return false;
+        }
+        Session otherSession = (Session) o;
+        return isSameSession(otherSession);
+    }
+
+    @Override
     public String toString() {
         return this.sessionName;
     }

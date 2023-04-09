@@ -280,6 +280,15 @@ public class Group {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Group)) {
+            return false;
+        }
+        Group otherGroup = (Group) o;
+        return isSameGroup(otherGroup);
+    }
+
+    @Override
     public String toString() {
         return this.groupName;
     }
