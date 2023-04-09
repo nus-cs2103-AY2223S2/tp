@@ -205,8 +205,6 @@ home
 
 [Back to list of commands](#commands)
 
-
-
 ### Displaying the previous page you were at: `back`
 
 Goes back to the previous page you were at.
@@ -218,8 +216,6 @@ back
 
 [Back to list of commands](#commands)
 
-
-
 ### Undoing the last command you did: `undo`
 
 
@@ -229,8 +225,6 @@ undo
 ```
 
 [Back to list of commands](#commands)
-
-
 
 ### Opening help window: `help`
 
@@ -243,8 +237,6 @@ help
 
 [Back to list of commands](#commands)
 
-
-
 ### Scrolling through command history: `UP` or `DOWN` arrow key
 
 Scrolls through past commands in command box.
@@ -254,8 +246,6 @@ Scrolls through past commands in command box.
 - Press `ENTER` to execute the command.
 
 [Back to list of commands](#commands)
-
-
 
 ### Clearing all entries: `clear`
 
@@ -277,8 +267,6 @@ Accidentally cleared your data? Don't worry, try <code>undo</code> command!
 
 [Back to list of commands](#commands)
 
-
-
 ### Exiting the program: `exit`
 
 Format:
@@ -293,7 +281,6 @@ exit
 ## Course Page Commands
 ![image](./images/UiCoursePage.png)
 ###### Figure 4
-
 
 ### Adding a course: `add course`
 
@@ -321,8 +308,6 @@ Course code can have special characters! i.e. "AY2223S2-CS2103T"
 
 [Back to list of commands](#commands)
 
-
-
 ### Deleting a course: `delete course`
 
 Deletes a course from the list of courses in the course page.
@@ -332,13 +317,10 @@ Format:
 delete course <INDEX>
 ```
 
-
 Examples:
 - `delete course 1` will delete the first course listed in the course list.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a course: `edit course`
 
@@ -351,13 +333,10 @@ edit course <INDEX> <NEW COURSE NAME>
 
 - Edits the module code of the course at index `<INDEX>`.
 
-
 Examples:
 - `edit course 1 CS2106` will rename the first course listed in the course list to `CS2106`.
 
 [Back to list of commands](#commands)
-
-
 
 ### Selecting a course: `select`
 
@@ -426,8 +405,6 @@ Group names can have special characters! i.e. "AY2223S2-T15"
 
 [Back to list of commands](#commands)
 
-
-
 ### Deleting a group: `delete group`
 
 Deletes a group from the list of groups in the group page.
@@ -436,14 +413,10 @@ Format:
 ```
 delete group <INDEX>
 ```
-
-
 Examples:
 - `delete group 1` will delete the first group listed in the group list panel of CLIpboard.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a group: `edit group`
 
@@ -461,7 +434,6 @@ Examples:
 - `edit group 1 T16` will rename the first group listed in the group list to `T16`.
 
 [Back to list of commands](#commands)
-
 
 ### Selecting a group: `select`
 
@@ -556,8 +528,6 @@ The same student can exist in different groups, because that student can be in t
 
 [Back to list of commands](#commands)
 
-
-
 ### Deleting a student: `delete student`
 
 Deletes a student from the student roster.
@@ -575,8 +545,6 @@ Examples:
 </div>
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a student: `edit student`
 
@@ -602,8 +570,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
-
 ### Copying a student's email: `copy`
 
 Copies a student's email to your clipboard.
@@ -617,8 +583,6 @@ Examples:
 - `copy 1` will copy the email of the first student in the list to your clipboard.
 
 [Back to list of commands](#commands)
-
-
 
 ### Finding students by name or student ID: `find student`
 
@@ -657,8 +621,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
-
 ### Displays a student's information: `select`
 
 ![image](./images/UiStudentView.png)
@@ -675,8 +637,6 @@ Examples:
 - `select 1` will select the 1st student in the student list and display his / her particulars on the view panel on the right.
 
 [Back to list of commands](#commands)
-
-
 
 ### Adding or deleting a remark: `remark`
 
@@ -705,8 +665,6 @@ Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
 </div>
 
 [Back to list of commands](#commands)
-
-
 
 ### Uploading a student's photo: `upload`
 
@@ -749,8 +707,6 @@ attendance
 
 [Back to list of commands](#commands)
 
-
-
 --------------------------------------------------------------------------------------------------------------
 
 ## Session Page Commands
@@ -782,8 +738,6 @@ Session names can have special characters! i.e. "AY2223S2-Tutorial15"
 
 [Back to list of commands](#commands)
 
-
-
 ### Deleting a session: `delete session`
 
 Deletes a session from the list of session in the session page.
@@ -793,13 +747,10 @@ Format:
 delete session <INDEX>
 ```
 
-
 Examples:
 - `delete session 1` will delete the first session listed in the session list panel of CLIpboard.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a session: `edit session`
 
@@ -814,8 +765,6 @@ Examples:
 - `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
 
 [Back to list of commands](#commands)
-
-
 
 ### Selecting a session to start attendance-taking: `select`
 
@@ -872,8 +821,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
-
 ### Marking selected students as absent: `unmark`
 
 Marks selected students' attendance as absent for current session.
@@ -889,8 +836,6 @@ Examples:
 - `unmark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
 
 [Back to list of commands](#commands)
-
-
 
 ### View the overall attendance of the session: `attendance`
 
@@ -935,8 +880,6 @@ Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper"
 
 [Back to list of commands](#commands)
 
-
-
 ### Deleting a task: `delete task`
 
 Deletes a task from the current list of tasks.
@@ -946,13 +889,10 @@ Format:
 delete task <INDEX>
 ```
 
-
 Examples:
 - `delete task 1` will delete the first task listed.
 
 [Back to list of commands](#commands)
-
-
 
 ### Editing a task: `edit task`
 
@@ -963,13 +903,10 @@ Format:
 edit task <INDEX> <NEW TASK NAME>
 ```
 
-
 Examples:
 - `edit task 1 CA5` will rename the first task listed to `CA5`.
 
 [Back to list of commands](#commands)
-
-
 
 ### Selecting a task to assign grades: `select`
 
@@ -1004,8 +941,6 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
-
 ## Grades Page Commands
 ![images](./images/UiGradesPage.png)
 ###### Figure 13
@@ -1025,7 +960,6 @@ Examples:
 - `assign 3 0` will assign the third student on the Studet Page the grade of 0.
 
 [Back to list of commands](#commands)
-
 
 ## Glossary
 
