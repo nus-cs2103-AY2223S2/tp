@@ -241,22 +241,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​ | I want to …​                                                | So that I can…​                                                                          |
 |----------|---------|-------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| `* * *`  | user    | see a list of my students                                   | know who my students are and how many students I have                                    |
-| `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app                        |
-| `* * *`  | user    | create my student contacts                                  | add new students into my contact list                                                    |
-| `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible                                              |
-| `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore                                  |
-| `* * *`  | user    | use the help section                                        | learn the available commands in the application                                          |
-| `* * *`  | user    | import my data                                              | backup data and open in another device                                                  |
-| `* * *`  | user    | export my data                                              | load data into a new device                                                              |
+| `* * *`  | user    | see a list of my students                                   | know who my students are and how many students I have |
+| `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app |
+| `* * *`  | user    | create my student contacts                                  | add new students into my contact list |
+| `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible |
+| `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore |
+| `* * *`  | user    | use the help section                                        | learn the available commands in the application |
+| `* * *`  | user    | import my data                                              | backup data and open in another device |
+| `* * *`  | user    | export my data                                              | load data into a new device |
 | `* * *`  | user    | add / delete / mark student’s tasking(s)                    | keep track of the task(s) that assign to a student and identify what taskings are done/in progress/overdue |
-| `* * *`  | user    | add / delete student’s score(s)                             | record down the student's score(s)                                                      |
-| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing                                                |
-| `* * *`  | user    | check the student’s score(s)                                | understand the student's performance in school                                          |
-| `* * `   | user    | filter my student contacts                                  | easily find a group of students based on the tag given
-                   |
-| `* * `   | user    | generate a progress chart                                   | keep track of the student's progress                                                    |
-| `* * `   | user    | extract students' progress report                           | show the parents their kids' performance                                                |
+| `* * *`  | user    | add / delete student’s score(s)                             | record down the student's score(s) |
+| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing |
+| `* * *`  | user    | check the student’s score(s)                                | understand the student's performance in school |
+| `* * `   | user    | filter my student contacts                                  | easily find a group of students based on the tag given |
+| `* * `   | user    | generate a progress chart                                   | keep track of the student's progress |
+| `* * `   | user    | extract students' progress report                           | show the parents their kids' performance |
 
 ### Use cases
 
