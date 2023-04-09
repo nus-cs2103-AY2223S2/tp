@@ -7,13 +7,15 @@ title: Developer Guide
 
 ## **Le Tracker** Development ~
 
-Welcome to the Developer's Guide for **Le Tracker**!
+Welcome to the Developer Guide for **Le Tracker**!
 
-This guide is intended to provide developers with a comprehensive overview of the **Le Tracker** system, as well as a detailed breakdown of the design pattern and features implementation required to build and customize the application.
+This guide is intended to provide developers with an overview of the **Le Tracker** codebase, such as the [design](#design) of the codebase and the [implementation](#implementation) details of each feature as needed.
 
-Whether you are an experienced developer looking to expand your skillset or a newcomer to the world of software development, this guide will provide you with the knowledge and tools you need to build a robust and efficient **Le Tracker** system.
+This guide also contains the [requirements](#appendix-requirements) of **Le Tracker** to provide insights on the decision making process of the team and the goals of the application.
 
-:information_source: **Le Tracker** GUI is built with *JavaFX* so you are highly recommended to develop in **Java**.
+Before reading, it is recommended that developers read the [User Guide](https://ay2223s2-cs2103-f10-2.github.io/tp/UserGuide.html) first to gain an understanding of the features provided by **Le Tracker**.
+
+:information_source: **Le Tracker** was developed with [**Java 11**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) and thus, it is recommended that developers use this version of Java.
 
 ---
 
