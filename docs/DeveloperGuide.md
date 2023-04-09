@@ -496,6 +496,7 @@ The following activity diagram shows the logic of the `help` command.
 
 **Feature Details:**
 
+
 [↑ Back to top of section](#4-implementation)
 
 [↑ Back to table of contents](#table-of-contents)
@@ -529,8 +530,17 @@ The following activity diagram shows the logic of the `help` command.
 ## 4.8 Upcoming Birthdays Command
 
 **Overview:**
+The `upcoming-b` command allows the user to view the birthdays of all contacts that are within the next 60 days.
 
 **Feature Details:**
+1. The user specifies the `upcoming-b` command to view the birthdays of all contacts that are within the next 60 days.
+2. The command iterates through the contact list and checks the birthday of each contact, if present.
+3. It then calculates the difference between the current date and the birthday of the contact by considering date of the year.
+4. If the difference is less than or equal to 60 days, the contact is added to the list of contacts whose birthdays are within the next 60 days.
+5. The list of contacts whose birthdays are within the next 60 days is then displayed to the user.
+
+![UpcomingBirthdaysCommandActivityDiagram](images/UpcomingBirthdayCommandActivityDiagram.png)
+
 
 [↑ Back to top of section](#4-implementation)
 
