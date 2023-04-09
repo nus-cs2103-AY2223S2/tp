@@ -969,14 +969,14 @@ Examples:
 
 ## Glossary
 
-| **Term**              | **Definition**                                                                                           | **Example(s)**                          |                                                             
-|-----------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------|
-| **Course**            | A module that provides a certain level of understanding in a subject area.                               | CS2103T, CS2105                         |
-| **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc. | T15, Team15                             |
-| **Session**           | A period of class for a Group which can be tutorial session, lab session etc.                            | Tutorial1, Lab3                         |
-| **Task**              | An assignment dedicated to a Group which can be presentation, reflection etc.                            | OP1, Critical Reflection 2              |
-| **Path**              | A string of characters used to uniquely identify a location in a directory structure.                    | C:/Users/AlexYeoh/Desktop/A0123456X.png |
-| **Absolute Path**     | A path that always contains the root element and the complete directory list required to locate the file | C:/Users/AlexYeoh/Desktop/A0123456X.png |
-| **Relative Path**     | A hierarchical path that locates a file or folder on a file system starting from the current directory   | ../A1234567X.png                        |
-| **Special Character** | A character that does not fall under the category of either alphabet or a number                         | -,+,*                                   |                   
-| **Student ID**        | A unique identification number given to a student.  | A1234567X |                              | 
+| **Term**              | **Definition**                                                                                            | **Example(s)**                          |                                                             
+|-----------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------|
+| **Course**            | A module that provides a certain level of understanding in a subject area.                                | CS2103T, CS2105                         |
+| **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc.  | T15, Team15                             |
+| **Session**           | A period of class for a Group which can be tutorial session, lab session etc.                             | Tutorial1, Lab3                         |
+| **Task**              | An assignment dedicated to a Group which can be presentation, reflection etc.                             | OP1, Critical Reflection 2              |
+| **Path**              | A string of characters used to uniquely identify a location in a directory structure.                     | C:/Users/AlexYeoh/Desktop/A0123456X.png |
+| **Absolute Path**     | A path that always contains the root element and the complete directory list required to locate the file. | C:/Users/AlexYeoh/Desktop/A0123456X.png |
+| **Relative Path**     | A hierarchical path that locates a file or folder on a file system starting from the current directory.   | ../A1234567X.png                        |
+| **Special Character** | A character that does not fall under the category of either alphabet or a number.                         | -,+,*                                   |                   
+| **Student ID**        | A unique identification number given to a student.                                                        | A1234567X |                              | 
