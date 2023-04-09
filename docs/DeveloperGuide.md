@@ -523,15 +523,6 @@ abbreviations can be confusing for new users as they do not provide any informat
 would result in a constant need to refer to the User Guide for assistance. Likewise, this requires the user to put 
 in extra effort to learn and memorize the commands.
 
-### 4.3
-### 4.4
-### 4.5
-### 4.6
-### 4.7
-### 4.8
-### 4.9
-### 4.10
-
 --------------------------------------------------------------------------------------------------------------------
 ## 5. Documentation, logging, testing, configuration, dev-ops
 
@@ -1359,4 +1350,3 @@ Although OfficeConnect is a brownfield project building on the AB3, it was neces
 * (Can talk more about UI for this point)
 ### 8.2 Technical Challenges
 * As AB3 is quite a big project, it was quite difficult for us to understand the structure and details behind the code initially. To overcome this, we decided to start project meetings on our project early to allow us more time to understand AB3's implementation, and also help each other clarify our doubts regarding AB3. This understanding helped reduce the learning curve when trying to implement OfficeConnect's new features, as some of the features had a similar concept and understanding how it was implemented in AB3 significantly lowered the difficulty level when implementing those methods.
-* Next pt
