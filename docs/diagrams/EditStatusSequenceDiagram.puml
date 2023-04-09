@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":EditStatusCommandParser" as EditStatusCommandParser LOGIC_COLOR
+participant "a:EditStatusCommand" as EditStatusCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(edit_contact)
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand(edit_contact)
+activate InternEaseParser
+
+create EditStatusCommandParser
+InternEaseParser -> EditStatusCommandParser
+activate EditStatusCommandParser
+
+EditStatusCommandParser --> InternEaseParser
+deactivate EditStatusCommandParser
+
+InternEaseParser -> EditStatusCommandParser : parse(args)
+activate EditStatusCommandParser
+
+create EditStatusCommand
+EditStatusCommandParser -> EditStatusCommand
+activate EditStatusCommand
+
+EditStatusCommand --> EditStatusCommandParser : e
+deactivate EditStatusCommand
+
+EditStatusCommandParser --> InternEaseParser : e
+deactivate EditStatusCommandParser
+EditStatusCommandParser -[hidden]-> InternEaseParser : result
+destroy EditStatusCommandParser
+
+InternEaseParser --> LogicManager : e
+deactivate InternEaseParser
+
+LogicManager -> EditStatusCommand : execute()
+activate EditStatusCommand
+
+EditStatusCommand -> Model : setApplication(original, statusEdited)
+activate Model
+
+Model --> EditStatusCommand
+deactivate Model
+
+create CommandResult
+EditStatusCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditStatusCommand : r
+deactivate CommandResult
+
+EditStatusCommand --> LogicManager : r
+deactivate EditStatusCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

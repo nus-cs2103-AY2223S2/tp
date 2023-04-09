@@ -391,6 +391,115 @@ The execution process of the `delete_docs` command can be demonstrated by the ac
 > [Delete Contact Feature](#delete-contact-feature)
 
 
+### Edit status feature
+
+#### How is the feature implemented
+
+The `edit_status` command allows users to edit the status of an internship application. The implementation of the `edit_status` command is facilitated by the `EditStatusCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand` and the `EditStatusCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `edit_status` command during its execution.
+
+![EditStatusActivityDiagram](images/EditStatusActivityDiagram.png)
+
+The constructor of the class `EditStatusCommand` requires 2 arguments, a valid positive `Integer` index and a `InternshipStatus` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `edit_contact` command.
+
+![EditStatusSequenceDiagram](images/EditStatusSequenceDiagram.png)
+
+Given below is an explanation on the `edit_status` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand`.
+The method `EditStatusCommandParser#parse` is invoked only if the command word matches `EditStatusCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `EditContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application where the status is to be edited is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the new status. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `EditStatusCommand` follows the design intuition behind the `EditContactCommand` by separating the process of editing status of the internship application from the process of
+editing other attributes of an existing internship application.
+
+
+### Archive feature
+
+#### How is the feature implemented
+
+The `archive` command allows users to archive an internship application. The implementation of the `archive` command is facilitated by the `ArchiveCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand` and the `ArchiveCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `archive` command during its execution.
+
+![ArchiveActivityDiagram](images/ArchiveActivityDiagram.png)
+
+The constructor of the class `ArchiveCommand` requires 1 argument, a valid positive `Integer` index, which is obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `archive` command.
+
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
+
+Given below is an explanation on the `archive` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand`.
+The method `ArchiveCommandParser#parse` is invoked only if the command word matches `ArchiveCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `ArchiveCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application to be archived is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new archived `InternshipApplication` object is created. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `ArchiveCommand` allows an internship application to be archived in an easier way, as otherwise the user would have to remember a specific prefix
+if it is implemented as part of the `EditCommand`.
+
+
+### Unarchive feature
+
+#### How is the feature implemented
+
+The `unarchive` command allows users to unarchive an internship application. The implementation of the `unarchive` command is facilitated by the `UnarchiveCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand` and the `UnarchiveCommandParser#parse` methods.
+
+The execution process of the `unarchive` command can be demonstrated by the activity diagram of `archive` by replacing `archive` related phrases or methods with `unarchive` related phrases or methods.
+
+> [Archive Feature](#archive-feature)
+
+
+### List archived applications feature
+#### How is the feature implemented
+
+The `list_archived` command lists all currently archived internship applications. The implementation of the `list_archived` command is facilitated by the `ListArchivedCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The execution of the `ListArchivedCommand` is similar to the `ListCommand`.
+
+The execution process of `list_archived` is demonstrated by the activity diagram below.
+
+![ListArchivedActivityDiagram](images/ListArchivedActivityDiagram.png)
+
+
 ### Find feature
 
 The `find` command allows user to find all `InternshipApplication` whose 

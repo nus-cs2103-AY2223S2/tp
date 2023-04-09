@@ -20,7 +20,7 @@ LogicManager -> InternEaseParser : parseCommand(edit_contact)
 activate InternEaseParser
 
 create ContactParser
-InternEaseParser -> ContactParser : parseContactCommand(edit_contact, arguments)
+InternEaseParser -> ContactParser : parseContactCommand(edit_contact, args)
 activate ContactParser
 
 create EditContactCommandParser
@@ -30,7 +30,7 @@ activate EditContactCommandParser
 EditContactCommandParser --> ContactParser
 deactivate EditContactCommandParser
 
-ContactParser -> EditContactCommandParser : parse(arguments)
+ContactParser -> EditContactCommandParser : parse(args)
 activate EditContactCommandParser
 
 create EditContactCommand
@@ -54,7 +54,7 @@ deactivate InternEaseParser
 LogicManager -> EditContactCommand : execute()
 activate EditContactCommand
 
-EditContactCommand -> Model : setApplication(internshipToUpdateContact, internshipWithUpdatedContact)
+EditContactCommand -> Model : setApplication(original, contactEdited)
 activate Model
 
 Model --> EditContactCommand

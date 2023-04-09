@@ -20,7 +20,7 @@ LogicManager -> InternEaseParser : parseCommand(add_docs)
 activate InternEaseParser
 
 create DocumentsParser
-InternEaseParser -> DocumentsParser : parseDocumentsCommand(add_docs, arguments)
+InternEaseParser -> DocumentsParser : parseDocumentsCommand(add_docs, args)
 activate DocumentsParser
 
 create AddDocumentsCommandParser
@@ -30,7 +30,7 @@ activate AddDocumentsCommandParser
 AddDocumentsCommandParser --> DocumentsParser
 deactivate AddDocumentsCommandParser
 
-DocumentsParser -> AddDocumentsCommandParser : parse(arguments)
+DocumentsParser -> AddDocumentsCommandParser : parse(args)
 activate AddDocumentsCommandParser
 
 create AddDocumentsCommand
@@ -54,7 +54,7 @@ deactivate InternEaseParser
 LogicManager -> AddDocumentsCommand : execute()
 activate AddDocumentsCommand
 
-AddDocumentsCommand -> Model : setApplication(internshipToAddDocuments, internshipWithDocuments)
+AddDocumentsCommand -> Model : setApplication(original, documentsAdded)
 activate Model
 
 Model --> AddDocumentsCommand
