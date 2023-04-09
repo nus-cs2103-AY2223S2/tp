@@ -3,15 +3,15 @@ layout: page
 title: Setting up and getting started
 ---
 
-* Table of Contents
-{:toc}
-
+## Table of Contents
+* **[Setting up the project in your computer](#setting-up-the-project-in-your-computer)**
+* **[Before writing code](#before-writing-code)**
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Setting up the project in your computer
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+**:exclamation: Caution:**<br>
 
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
@@ -39,10 +39,10 @@ If you plan to use Intellij IDEA (highly recommended):
    Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
    </div>
 
-1. **Set up CI**
+2. **Set up CI**
 
    This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up required.
 
-1. **Learn the design**
+3. **Learn the design**
 
    When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
