@@ -27,6 +27,8 @@ making it a reliable and efficient tool for organizing events.
 * Contributed to approximately 6 kLoC. Check it
   out [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jrmckh&breakdown=true).
 
+<div style="page-break-after: always;"></div>
+
 <h3 id="new-features">New Features</h3>
   
 **1. Delete Multiple Events**  
@@ -58,6 +60,8 @@ making it a reliable and efficient tool for organizing events.
     - This enhancement affects both existing commands and commands that may be added in the future.
     - Any actions related to events, such as adding, deleting, or editing an event, will impact the events that appear
       in the calendar.
+
+<div style="page-break-after: always;"></div>
 
 <h3 id="enhancements-to-existing-features">Enhancements to existing features</h3>
 
