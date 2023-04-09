@@ -15,11 +15,11 @@ Given below are my contributions to the project.
     * Justification: This feature enhances the application significantly because a user might make mistakes in what command he or she keys in. It should not be needed by the user to do different commands to rectify each mistake. Hence, this feature provides a convenient way to rectify those errors.
     * Consideration: This feature required numerous design and usability considerations due to how familiar most users are with this feature. In addition, the implementation as well required an in-depth analysis of design alternatives to determine the most optimal solution for this project.
     * Credits: [zhixianggg](https://github.com/zhixianggg) - I reused and adapted some of his code to implement the UndoRedoStack.
-               [bakano98](https://github.com/bakano98) - I reused and adapted some of his code to implement the undo redo test. 
+               [bakano98](https://github.com/bakano98) - I reused and adapted some of his code to implement the undo redo test.
 
-* **New Feature**: Added the totalappointment command. 
+* **New Feature**: Added the totalappointment command.
   * What it does: Finds the number of appointments on a specified date.
-  * Justification: This feature enhances the application significantly because users can keep track of the number of appointments they have on any single date.  
+  * Justification: This feature enhances the application significantly because users can keep track of the number of appointments they have on any single date.
   * Consideration: This feature required in depth understanding of localDatesTime API to determine the most optimal solution for this project.
   * Credits: [stackoverflow](https://stackoverflow.com/questions/494180/how-do-i-check-if-a-date-is-within-a-certain-range) - I reused and adapted the code to check if a date is within a certain range.
 
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Fixed Bugs relating to undo and redo feature (Pull requests [\#91](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/91))
     * Added undo command test (Pull requests [\#139](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/139))
-    * Added redo command test (Pull requests [\#141](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/141)) 
+    * Added redo command test (Pull requests [\#141](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/141))
 
 
 * **Documentation**:
@@ -50,9 +50,9 @@ Given below are my contributions to the project.
    * [\#144](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/144), [\#147](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/147)
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#88](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/88), [\#73](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/73) 
+    * PRs reviewed (with non-trivial review comments): [\#88](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/88), [\#73](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/73)
     * Reported bugs and suggestions for other teams in the class (examples: [\#90](https://github.com/AY2223S2-CS2103-W17-4/tp/issues/90), [\#86](https://github.com/AY2223S2-CS2103-W17-4/tp/issues/86)
- 
+
 
 
 

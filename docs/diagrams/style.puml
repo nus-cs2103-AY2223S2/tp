@@ -73,3 +73,14 @@ skinparam packageStyle Rectangle
 hide footbox
 hide members
 hide circle
+
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}

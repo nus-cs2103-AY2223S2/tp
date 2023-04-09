@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -165,6 +165,111 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### ID generation
+
+Each entity in AutoM8 has a unique ID (e.g. `Customer` has a unique `customerId`, `Appointment` has a unique `appointmentId`, etc.).
+This is to ensure that each entity can be uniquely identified and referenced without each object storing references to other objects and vice versa.
+Hence, it is important to ensure that each entity has a unique ID which is generated via an API call.
+
+This ID generation is facilitated by the `IdGenerator` class.
+The class consists of `SortedSets` and `PriorityQueues`, one for each entity.
+The `SortedSets` are used to keep track of all the IDs that are in use while the `PriorityQueues` are used to update the `IdGenerator` about all the IDs that are not in use.
+When the `generateXId()` method is called, the `IdGenerator` will first check if the `PriorityQueue` containing unused IDs is empty.
+If it is empty, it will pop off the smallest ID from the `PriorityQueue` and return it.
+If it is empty, the `IdGenerator` will check the largest ID in the `SortedSet` of used IDs, return a number one larger than that, and add it to the `SortedSet` of used IDs.
+The API call `setXIdUnused(int)` is used to update the `PriorityQueue` of unused IDs when an entity is deleted.
+
+### Entity Data
+
+AutoM8 consists of 6 entities: `Customer`, `Appointment`, `Service`, `Vehicle`, `Part`, and `Technician` which are related to each other in the following way:
+
+![Entity Relationship](images/EntityRelationshipClassDiagram.png)
+
+All the entity data is stored in the `Shop` class which consists of the following (X is a placeholder for the entity name e.g. `Customer`):
+
+![Shop Class Diagram](images/ShopClassDiagram.png)
+
+The shop class simulates a relational database by automating all the cascading deletes and updates between entities.
+The only way to modify the data is via the exposed `Shop` API calls (and other methods necessary for loading data from file).
+
+#### Internal Logic
+
+![Add Vehicle Activity Diagram](images/AddVehicleInternalActivityDiag.png)
+
+Above is the activity diagram for adding a vehicle to the `Shop`. Adding other entities follow a similar process.
+Related entities are updated automatically.
+
+<img src="images/RemoveCustomerInternalActivityDiag.png" height="800">
+<img src="images/RemoveVehicleInternalActivityDiag.png" height="700">
+<img src="images/RemoveAppointmentInternalActivityDiag.png" height="700">
+<img src="images/RemoveServiceInternalActivityDiag.png" height="1130">
+
+Above are the activity diagrams relevant to removing a customer. The cascading effects are automated by the `Shop` class and entity relations are preserved.
+
+**Undo/Redo**
+
+As shown in the class and activity diagrams above, the undo/redo functionality is implemented using 2 stacks: `undoStack` and `redoStack`.
+Whenever there is a modification on the data, a copy of the `Shop` before modification is pushed onto the `undoStack` and the `redoStack` is cleared to prevent conflicts.
+
+The undo and redo commands call the `revert()` and `redo()` API of the `Shop`. Activity diagrams for the respective API calls are shown below.
+
+![Undo Activity Diagram](images/UndoInternalActivityDiag.png)
+![Redo Activity Diagram](images/RedoInternalActivityDiag.png)
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+    * Pros: Implementation is easy.
+    * Cons: Memory usage may cause performance issues.
+
+* **Alternative 2:** Individual command has an 'inverse' command which will perform the opposite action.
+    * Pros: Will use less memory (e.g. No need to save entire shop every update).
+    * Cons:
+        * Must ensure that the implementation of each command is correct. Adds a lot of complexity that may not seem justified as it is to only accommodate the undo/redo feature.
+        * Difficult to implement for commands that have cascading effects.
+
+**Aspect: Data structure to support the undo/redo commands:**
+
+* **Alternative 1 (current choice):** Use 2 stacks to store the history of the Models.
+    * Pros: Implementation is easier and the logic would be much more manageable to debug.
+    * Cons: Duplicated Logic.
+
+* **Alternative 2:** Use `HistoryManager` for undo/redo.
+    * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
+    * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application.
+
+**Aspect: How to structure and store Entity data**
+* **Current:**
+  * Each entity has a unique ID and each entity stores the IDs of the entities that it is related to.
+  * The `Shop` class stores all the entities as various Observable Lists.
+  * `Shop` class manages all the data modification. It manages all the cascading effects and relationships between entities and ID generation as well as input validation on primitive data input.
+  * Pros:
+    * Outer classes (e.g Commands) just have to call the relevant API of `Shop` to modify the data. They do not have to worry about relationships between entities.
+    * `Shop` class has full 'low level' control of the data. It can ensure that the data is consistent and relationships between entities are preserved.
+    * Isolate all data manipulation bugs to the `Shop` class. This makes it easier to debug and test.
+  * Cons:
+    * Shop class has very high responsibility. Relatively long and complex methods.
+    * Certain constraints of `Shop` have to be violated to support loading data from file.
+        `Shop` requires other classes to call its API to modify the data.
+        However, when loading data from file, the `Storage` classes needs to modify the data directly.
+      Some 'unsafe' methods of `Shop` are public to facilitate this.
+      This could be avoided if `Shop` manages storing and loading data as well, but this would violate the Single Responsibility Principle and there was not enough time to implement this.
+* **Alternative:**
+  * Each entity stores references to the entities that it is related to.
+  * `Shop` class stores all the top level entities (e.g. `Customer` and `Technician`) as various Observable Lists.
+  * Commands and entities manage their own data and relationships.
+  * Pros:
+    * Commands and entities can freely manipulate the data and relationships.
+    * `Shop` class has less responsibility.
+        * `Shop` class does not need to violate personal constraints to facilitate loading data from file.
+  * Cons:
+      * Retrieving/modifying bottom level entities (e.g. `Service`) is very complex and hard to manage
+      * Commands and entities have to manage the data and relationships themselves. This could lead to bugs and inconsistencies.
+      * `Shop` class has no control over the data. It cannot ensure that the data is consistent and relationships between entities are preserved.
+      * Bugs could be caused by any of the many commands and entities across different packages. This makes it extremely hard to debug and test.
+
 ### Add Feature
 
 ### Current Implementation
@@ -240,6 +345,8 @@ The following sequence diagram shows how the `totalAppointmentCommand` operation
 
 The `totalAppointmentCommand` feature mainly involves iterating through the appointment list and checking if the specified date falls on the same date as the appointment. The way that the validation check is done is by setting the previous day to be the start date and the next day to be the end date. Finally, we check if the current appointment is within the start and end date.
 
+<<<<<<< HEAD
+=======
 ### Undo/Redo Feature
 
 #### Current Implementation
@@ -323,6 +430,7 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
     * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
     * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application.
 
+>>>>>>> master
 ### \[Proposed\] Data archiving
 
 1. If impact of loading save file:
@@ -337,14 +445,14 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
 **Mitigating the effects of malicious save file edit**
 
 * Issue 1: An malicious user is able to modify the save file
-    * Proposed solution: encrypting the save file and storing hash
+  * Proposed solution: encrypting the save file and storing hash
 
 
 * Issue 2: An malicious user is able to modify the save file such that running a command may have adverse effects on other parts of the program.
-    * Example: Malicious user edits save file and adds `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
-    * Effects: Command `Deletecustomer` will delete the vehicle with id 5
-    * Proposed solution: Implement post load save checks to ensure that vehicle to customer mapping is 1:1 on both vehicle and customer end.
-    * Note: This is applicable for all entries that have some form of mapping.
+  * Example: Malicious user edits save file and adds `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
+  * Effects: Command `Deletecustomer` will delete the vehicle with id 5
+  * Proposed solution: Implement post load save checks to ensure that vehicle to customer mapping is 1:1 on both vehicle and customer end.
+  * Note: This is applicable for all entries that have some form of mapping.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -742,15 +850,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 
@@ -758,23 +866,22 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a customer while all customers are being shown
 
-    1. Prerequisites: List all customers using the `listcustomer` command. Multiple persons in the list.
+   1. Prerequisites: List all customers using the `listcustomer` command. Multiple persons in the list.
 
-    1. Test case: `deletecustomer 1`<br>
-       Expected: Customer with id of 1 is deleted from the list. Details of the deleted contact shown in the status message.
+   1. Test case: `deletecustomer 1`<br>
+      Expected: Customer with id of 1 is deleted from the list. Details of the deleted contact shown in the status message.
 
-    1. Test case: `deletecustomer 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `deletecustomer 0`<br>
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `deletecustomer`, `deletecustomer x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `deletecustomer`, `deletecustomer x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
-

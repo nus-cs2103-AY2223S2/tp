@@ -86,11 +86,11 @@ Format: `addtechnician n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAGS]`
 Example: `addtechnician n/Robert Low p/90253789 e/roblow@gmail.com a/25 Bedok East Rd, #08-20, SG405100 t/Leader`
 
 #### Adding a vehicle: `addvehicle`
-Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID. 
+Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID.
 
 Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID cl/COLOR t/TYPE`
 
-Examples: 
+Examples:
 * `addvehicle p/SBA1234A b/Toyota c/1 cl/red t/car`
 * `addvehicle p/SBG5678B b/Honda c/2 cl/blue t/motorbike`
 
@@ -140,7 +140,7 @@ Adds an existing technician to an exiting appointment.
 
 Format: `addappointmenttech a/APPOINTMENT_ID t/TECHNICIAN_ID`
 
-Example: `addappointmenttech a/1 t/2` 
+Example: `addappointmenttech a/1 t/2`
 
 ---
 ### List/Sort
@@ -150,10 +150,10 @@ Shows all vehicles/customers/parts/appointments/services/technicians and helps n
 
 We also have a global `list` command. The "list" command helps to display all entities in their respective tabs while staying on the current tab. Just keep in mind that it doesn't switch tabs for you, so you'll need to do that manually by clicking or using the specific `listX` commands available to help you navigate to the respective tabs.
 
-Format: 
-* `list(vehicles/customers/parts/appointments/services/technicians)` 
+Format:
+* `list(vehicles/customers/parts/appointments/services/technicians)`
 * `list`
-  
+
 
 Examples:
 * `list`
@@ -166,12 +166,12 @@ Examples:
 
 
 #### Sorting displayed lists: `sort`
-Sorts all vehicles/customers/parts/appointments list in ascending or descending direction by a specific param. 
+Sorts all vehicles/customers/parts/appointments list in ascending or descending direction by a specific param.
 
 Format: `sort(vehicles/customers/parts/appointments/services) by/OBJECT_PARAMS [r/]`
 OBJECT_PARAMS are dependent on which object* and adding `r/` means to reverse the sort direction
 
-Examples: 
+Examples:
 * `sortcustomers by/id r/`
 * `sortvehicles by/brand`
 * `sortappointments by/date r/`
@@ -270,8 +270,8 @@ Format: `redo`
 
 Examples:
 
-- `deletecustomer 3`  
-  `undo`  
+- `deletecustomer 3` 
+  `undo` 
   `redo`
 
 After deleting a customer at Index 3 and using `undo` to reverse the deletion of the customer, using `redo` will restore the customer back into the list.

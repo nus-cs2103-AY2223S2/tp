@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+title Remove Appointment Activity Diagram
+start
+skinparam conditionStyle diamond
+:check if appointment exists;
+if () then ([else])
+    :throw AppointmentNotFoundException;
+stop
+else ([exist])
+:push copy of shop to undostack;
+:clear redo stack;
+:remove appointment ID from customer;
+:update customerMapppings;
+repeat: for tech ID in appointment;
+    :remove appointment ID from tech;
+    :update techMappings;
+repeat while ([has next]);
+:remove appointment from shop;
+:update appointmentMappings;
+:set appointment ID unused;
+stop
+
+@enduml
