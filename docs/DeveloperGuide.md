@@ -824,6 +824,15 @@ These commands should be tested on the Grades Page.
 
 #### Assigning a grade to a student
 
+1. Assigning a grade to a student, with at least one student in the list.
+
+    1. Test case: `assign 1 80`<br>
+       Expected: First student is assigned the grade. Details of the student assigned a grade shown in the log box.
+
+    1. Other incorrect `assign` commands to try: `assign`, `assign x` (where x is larger than the student list size)
+       , `assign x -1` or `assign x 101` (where x is a valid index from the student list) <br>
+       Expected: No student is assigned a mark. Error details shown in the log box.
+
 ---
 
 ### Saving data
