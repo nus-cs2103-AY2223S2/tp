@@ -20,7 +20,7 @@ LogicManager -> InternEaseParser : parseCommand(delete_contact)
 activate InternEaseParser
 
 create ContactParser
-InternEaseParser -> ContactParser : parseContactCommand(delete_contact, arguments)
+InternEaseParser -> ContactParser : parseContactCommand(delete_contact, args)
 activate ContactParser
 
 create DeleteContactCommandParser
@@ -30,7 +30,7 @@ activate DeleteContactCommandParser
 DeleteContactCommandParser --> ContactParser
 deactivate DeleteContactCommandParser
 
-ContactParser -> DeleteContactCommandParser : parse(arguments)
+ContactParser -> DeleteContactCommandParser : parse(args)
 activate DeleteContactCommandParser
 
 create DeleteContactCommand
@@ -54,7 +54,7 @@ deactivate InternEaseParser
 LogicManager -> DeleteContactCommand : execute()
 activate DeleteContactCommand
 
-DeleteContactCommand -> Model : setApplication(internshipToDeleteContact, internshipWithContactDeleted)
+DeleteContactCommand -> Model : setApplication(original, contactDeleted)
 activate Model
 
 Model --> DeleteContactCommand
