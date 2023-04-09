@@ -474,16 +474,35 @@ DengueHotspotTracker data is stored in a CSV file format.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                                             | So that I can…​                                                      |
-| -------- |----------|--------------------------------------------------------------------------|----------------------------------------------------------------------|
-| `* * *`  | new user | easily view a help page                                                  | know how to use the app                                              |
-| `* * *`  | user     | add a new dengue case                                                    | keep track of the dengue cases in Singapore                          |
-| `* * *`  | user     | delete cases from the dengue case list by case ID                        | remove entries that I no longer need                                 |
-| `* * *`  | user     | find dengue cases whose postal codes start with any of the input numbers | locate details of cases without having to go through the entire list |
-| `* *`    | user     | export the data from the dengue case list from a database in a csv file  | analyse them outside of the app              |
-| `*`      | new user | clear all entries                                                        | start over with an empty data set                                               |
-
-*{More to be added}*
+| Priority | As a …​       | I want to …​                                                            | So that I can…​                                                           |
+|----------|---------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user      | easily view a help page                                                 | know how to use the app                                                   |
+| `* * *`  | new user      | list all dengue cases                                                   | have a high-level overview of the cases                                   |
+| `* * *`  | user          | add a new dengue case                                                   | keep track of the dengue cases in Singapore                               |
+| `* * *`  | user          | delete cases from the dengue case list by index                         | remove cases that I no longer need                                        |
+| `* * *`  | user          | delete multiple cases from the dengue case list by index at once        | remove multiple cases that I no longer need at once                       |
+| `* * *`  | user          | delete multiple cases from the dengue case list by date at once         | remove multiple cases that I no longer need at once                       |
+| `* * *`  | user          | delete multiple cases from the dengue case list by date range at once   | remove multiple cases that I no longer need at once                       |
+| `* * *`  | user          | find dengue cases by name                                               | locate details of cases without having to go through the entire list      |
+| `* * *`  | user          | find dengue cases by age                                                | locate details of cases without having to go through the entire list      |
+| `* * *`  | user          | find dengue cases by age range                                          | locate details of cases without having to go through the entire list      |
+| `* * *`  | user          | find dengue cases by the starting digits of their postal code           | locate details of cases without having to go through the entire list      |
+| `* * *`  | user          | find dengue cases by date                                               | locate details of cases without having to go through the entire list      |
+| `* * *`  | user          | find dengue cases by date range                                         | locate details of cases without having to go through the entire list      |
+| `* * *`  | user          | find dengue cases by variant                                            | locate details of cases without having to go through the entire list      |
+| `* * *`  | user          | automatically save the list of cases upon exit                          | reload them again the next time I open the app                            |
+| `* *`    | careless user | undo an action                                                          | undo my mistakes                                                          |
+| `* *`    | careless user | redo an action                                                          | redo an action that I mistakenly thought was a mistake                    |
+| `* *`    | user          | edit a dengue case                                                      | correct mistakes in case details                                          |
+| `* *`    | user          | sort dengue cases by name                                               | get an ordered view of the cases                                          |
+| `* *`    | user          | sort dengue cases by age                                                | get an ordered view of the cases                                          |
+| `* *`    | user          | sort dengue cases by postal code                                        | get an ordered view of the cases                                          |
+| `* *`    | user          | sort dengue cases by date                                               | get an ordered view of the cases                                          |
+| `* *`    | user          | get an overview of the cases by postal code                             | have an overview of the geographical location of the cases                |
+| `* *`    | user          | get an overview of the cases by age                                     | have an overview of the age distribution of the cases                     |
+| `* *`    | user          | get an overview of the cases by variant                                 | have an overview of the variant distribution of the cases                 |
+| `* *`    | user          | export the data from the dengue case list from a database in a CSV file | analyse the data outside of the app or share it with non-users of the app |
+| `* *`    | new user      | clear all entries                                                       | start over with an empty data set                                         |
 
 ### Use cases
 
