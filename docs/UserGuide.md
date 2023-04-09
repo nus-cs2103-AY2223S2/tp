@@ -111,8 +111,8 @@ that you should pay attention to. </div>
 1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer 
 to [how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
 
-2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). Note 
-that the file is named `coNtactUs.jar`
+2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). 
+The file is named `coNtactUs.jar`
 
 <div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
 on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div>
@@ -127,7 +127,7 @@ for your reference. </div>
 
 
 <p align="center">
-  <img height="400" width="400" src="images/Ui.png">
+  <img height="370" width="370" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
