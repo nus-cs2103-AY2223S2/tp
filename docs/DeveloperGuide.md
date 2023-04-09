@@ -569,7 +569,7 @@ testers are expected to do more *exploratory* testing.
          It will clear all the contacts and events in the `/data/addressbook.json` file when a valid input is entered by the user.
          Format of `/data/addressbook.json` file becomes valid.
 
-## **Appendix:** Planned Enhancements
+## **Appendix: Planned Enhancements**
 
 ### Person name will not be case-sensitive
 
