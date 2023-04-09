@@ -837,7 +837,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually. You are recommended to start with an empty FriendlyLink and follow the instructions sequentially
-in order for the example commands provided to be relevant.
+in order for the example commands provided to be relevant. You can refer to the user guide for more details on the features.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
