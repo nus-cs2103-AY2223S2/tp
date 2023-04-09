@@ -3,6 +3,7 @@ package taa.logic.commands;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import taa.logic.commands.enums.ChartType;
+import taa.logic.commands.exceptions.CommandException;
 import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ModelManager;
@@ -100,21 +101,30 @@ public class ClassStatisticsCommandTest {
         Model testModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
 
         try {
-            testModel.addAssignment("test1", 100);
+            testModel.addAssignment("test2", 100);
         } catch (Exception e) {
             Assertions.fail("ModelManager::addAssignment failed: " + e.getMessage());
         }
 
         try {
-            testModel.grade("test1", 1, 50, false);
-            testModel.grade("test1", 3, 50, true);
-            testModel.grade("test1", 5, 50, false);
-            testModel.grade("test1", 7, 50, true);
+            testModel.grade("test2", 1, 50, false);
+            testModel.grade("test2", 3, 50, true);
+            testModel.grade("test2", 5, 50, false);
+            testModel.grade("test2", 7, 50, true);
         } catch (Exception e) {
             Assertions.fail("ModelManager::grade failed: " + e.getMessage());
         }
 
         CommandTestUtil.assertCommandFailure(displayGradesChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
+    }
+
+    @Test
+    public void execute_nonEmptyClassList_invalidAssignmentName_displayGradesChart_failure() {
+        ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "unknown");
+
+        Model testModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
+
+        Assertions.assertThrows(CommandException.class, () -> displayGradesChartCommand.execute(testModel));
     }
 
     @Test
@@ -128,5 +138,8 @@ public class ClassStatisticsCommandTest {
         Assertions.assertEquals(test1GradesCommand, new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1"));
         Assertions.assertNotEquals(test1GradesCommand, new ClassStatisticsCommand(ChartType.CLASS_ATTENDANCE));
         Assertions.assertNotEquals(test1GradesCommand, new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test2"));
+
+        Assertions.assertEquals(attendanceCommand, attendanceCommand);
+        Assertions.assertNotEquals(attendanceCommand, "");
     }
 }

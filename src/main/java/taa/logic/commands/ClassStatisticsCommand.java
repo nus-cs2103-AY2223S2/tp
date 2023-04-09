@@ -88,11 +88,8 @@ public class ClassStatisticsCommand extends Command {
             throws CommandException {
         try {
             model.displayChart(this.field);
-        } catch (AssignmentNotFoundException | NoSubmissionsFoundException e) {
-            throw new CommandException("Could not display attendance distribution: \n"
-                    + e.getMessage());
-        } catch (NoGradeVarianceException e) {
-            // should not ever reach this, attendance distribution will not require grade variance
+        } catch (AssignmentNotFoundException | NoSubmissionsFoundException | NoGradeVarianceException e) {
+            // should not ever reach this, attendance distribution does not involve assignments/submissions/grades
             assert false;
         }
 
