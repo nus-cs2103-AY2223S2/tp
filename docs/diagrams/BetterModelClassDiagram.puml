@@ -15,4 +15,10 @@ UniqueModuleList -right-> Module
 Module -up-> "*" Tag
 
 Module *--> Name
+Module *--> TimeSlot
+Module *--> Venue
+Module *--> Teacher
+Module *--> Deadline
+Module *--> Remark
+Module *--> Resource
 @enduml
