@@ -831,6 +831,8 @@ task list will only display the first 29 letters, with the remaining letters sho
 * If the exam label is more than 11 letters, the full exam label will be displayed in the score list, text panel.
 However, the chart tooltip will only display the first 11 letters, with the remaining letters shown as ellipsis.
 
+* When you try to open the JavaFX window, you might notice that it doesn't open if it is minimized. The proposed solution is already in the developer guide.
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -839,6 +841,9 @@ However, the chart tooltip will only display the first 11 letters, with the rema
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MATHUTORING home folder.
+
+**Q**: I can't find the `mathutoring.json` file and the files exported for `export` and `exportp`. What should I do? <br>
+**A**: Open the application using `java -jar mathutoring.jar` instead of opening the application by clicking the JAR file. More details can be found in the [Quick start](#quick-start) section.
 
 [Back to top](#table-of-contents)
 
