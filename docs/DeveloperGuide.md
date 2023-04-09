@@ -876,6 +876,30 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
    **Expected**: The first bookmark of title `Solo Leveling` is deleted. A success message is displayed in the Result Display.
 
+
+### Going to bookmarks' url
+Prerequisites: List all bookmarks using the `list` command. Multiple bookmarks are present in the list.
+Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries.
+
+1. `goto 1`
+
+   **Expected**: The first bookmark's url is opened in users default browser. A success message is displayed in the Result Display.
+
+2. `goto 1 2`
+
+   **Expected**: An error message is displayed in the Result Display. This is because goto only takes in 1 positive index.
+
+3. `goto`
+
+   **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1 index must be specified.
+
+3. Going to bookmark's url after finding
+    1. `find n/Solo`
+    2. `goto 1`
+
+   **Expected**: The first bookmark's url of title `Solo Leveling` is opened in browser. A success message is displayed in the Result Display.
+
+
 ### Clear all bookmark
 
 1. `clear`
