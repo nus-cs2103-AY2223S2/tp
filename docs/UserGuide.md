@@ -8,7 +8,26 @@ If you can type fast, NBF can get your client and lead management tasks done fas
 NBF allows client contacts to hold data on their potential business size and counts of past transactions and aids users in categorising them using `tag`s
 On top of that, NBF also provides a summary page to allow users to quickly get an overview of their performance each season, detailing relevant statistics.
 
-* Table of Contents {:toc}
+## Table of Contents
+
+- [Quick Start Guide](#quick-start)
+- [Features](#features)
+  - [Viewing help : `help`](#viewing-help--help)
+  - [Adding a person: `add`](#adding-a-person--add)
+  - [Listing all persons : `list`](#listing-all-persons--list)
+  - [Editing a person : `edit`](#editing-a-person--edit)
+  - [Incrementing a person's Transaction Count : `incr`](#incrementing-a-persons-transaction-count--incr)
+  - [Decrementing a person's Transaction Count : `decr`](#decrementing-a-persons-transaction-count--decr)
+  - [Filtering contacts : `filter`](#filtering-contacts--filter)
+  - [Sorting contacts : `sort`](#sorting-contacts--sort)
+  - [Marking contacts : `mark`](#marking-contacts--mark)
+  - [Deleting a person : `delete`](#deleting-a-person--delete)
+  - [Finding via keywords : `find`](#finding-via-keywords--find)
+  - [Open a window containing summary of contacts : `summary`](#open-a-window-containing-summary-of-contacts--summary)
+  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
