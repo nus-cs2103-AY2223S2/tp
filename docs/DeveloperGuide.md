@@ -1315,18 +1315,19 @@ Similar to `UC04 Delete contact details of the company for an internship applica
       Steps 3b1 to 3b2 are repeated until a valid command is provided.
       Use case resumes at step 4.
 
-**Use case: UC11 Find an application by its field**
+**Use case: UC11 Sort internship applications**
 
 **MSS**
 
-1.  User enters keyword of field for the application.
-2.  InternEase shows a list of application whose company name or description fulfill the matching keyword.
+1. User specifies the order, either company name, job title, status or interview date for the list of internship 
+applications to be sorted.
+2. InternEase shows the sorted list of application ordered by the attribute specified.
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-    * 1a1. InternEase shows an alert message that there is no internship application in the list.
+* 1a. User specifies more than one attribute.
+    * 1a1. InternEase notices user that the command format is invalid.
 
       Use case ends.
 
@@ -1470,55 +1471,78 @@ Similar to `UC17 Archive an internship application` except that the internship a
 
 Similar to `UC15 List` except that only archived internship applications are shown.
 
+**Use case: UC20 Find an application by its company name and job title**
+
+**MSS**
+
+1.  User specifies keyword for matching company name and job title for the internship application.
+2.  InternEase shows a list of application whose company name or job title fulfill the matching keyword.
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. InternEase notices user that there is no internship application in the list.
+
+      Use case ends.
+    
+**Use case: UC21 Find an application by its status**
+
+Similar to `UC20 Find an application by its company name and job title` except it's now finding by status.
+
+**Use case: UC22 Find an application by the range of interview date**
+
+Similar to `UC20 Find an application by its company name and job title` except user specifies a range of date when the interview date falls within.
+
 ### Side features
 
-**Use case: UC20 Add a todo task entry**
+**Use case: UC23 Add a todo task entry**
 
 Similar to `UC01 Add an internship application entry` except todo task is added instead of an internship application.
 
-**Use case: UC21 List todo**
+**Use case: UC24 List todo**
 
 Similar to `UC15 List` except todo tasks are listed instead of internship applications.
 
-**Use case: UC22 Edit the note content of a todo task**
+**Use case: UC25 Edit the note content of a todo task**
 
 Similar to `UC13 Edit the status of an internship application` except the note content of a todo task is edited.
 
-**Use case: UC23 Edit the deadline of a todo task**
+**Use case: UC26 Edit the deadline of a todo task**
 
 Similar to `UC13 Edit the status of an internship application` except the deadline of a todo task is edited.
 
-**Use case: UC24 Delete a todo task entry**
+**Use case: UC27 Delete a todo task entry**
 
 Similar to `UC10 Delete an internship application entry` except the specified todo task is deleted.
  
-**Use case: UC25 Clear all todo task entries**
+**Use case: UC28 Clear all todo task entries**
 
 Similar to `UC12 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
 
-**Use case: UC26 Add a note**
+**Use case: UC29 Add a note**
 
 Similar to `UC01 Add an internship application entry` except a note entry is added instead of an internship application.
 
-**Use case: UC27 List note**
+**Use case: UC30 List note**
 
 Similar to `UC15 List` except note entries are listed instead of internship applications.
 
-**Use case: UC28 Delete a note entry**
+**Use case: UC31 Delete a note entry**
 
 Similar to `UC10 Delete an internship application entry` except the specified note entry is deleted.
 
-**Use case: UC29 Clear all note entries**
+**Use case: UC32 Clear all note entries**
 
 Similar to `UC12 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
 
-**Use case: UC30 List task**
+**Use case: UC33 List task**
 
 Similar to `UC15 List` except todo task entries and note entries are listed instead of internship applications.
 
-**Use case: UC31 Find a task by its field**
+**Use case: UC34 Find a task by its field**
 
-Similar to `UC11 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
+Similar to `UC20 Find an application by its company name and job title` except todo task entries and note entries which match the specified keyword are filtered out and listed.
 
 ### Non-Functional Requirements
 
@@ -1526,7 +1550,7 @@ Similar to `UC11 Find an application by its field` except todo task entries and 
 2. Should be able to hold up to 1000 persons without a noticeable increase in sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster typing commands than using the mouse.
 4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application.
-5. InternEase is unable to remind user through platform outside of the application.
+5. InternEase is unable to remind user through any platform outside of the application.
 
 
 ### Glossary
