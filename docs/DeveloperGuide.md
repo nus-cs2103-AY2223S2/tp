@@ -81,9 +81,9 @@ This project is a **part of the se-education.org** initiative. If you would like
 
 Java libraries used in this project:
 
-- [Jackson](https://github.com/FasterXML/jackson) for Storage,
-- [JavaFX](https://openjfx.io/) for UI,
-- [JUnit5](https://github.com/junit-team/junit5) for Testing.
+* [Jackson](https://github.com/FasterXML/jackson) for Storage,
+* [JavaFX](https://openjfx.io/) for UI,
+* [JUnit5](https://github.com/junit-team/junit5) for Testing.
 
 ## 1.2 Setting Up, Getting Started
 
@@ -694,7 +694,7 @@ testers are expected to do more _exploratory_ testing.
 
 <div style="page-break-after: always"></div>
 
-## 7.2 Adding a contact:
+## 7.2 Adding a `Person`:
 
 1. Adding a `Person` with just name, email and phone
    1. Test case: `add n/John Doe e/email@example.com p/88291322`<br>
@@ -703,7 +703,8 @@ testers are expected to do more _exploratory_ testing.
    2. Test case: `add n/ e/email@example.com`<br>
       Expected: No `Person` is created. Error details shown in status message.
 2. Adding a `Person` with additional fields such as address, birthday, social medias etc. (For a detailed list see [this](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#5-information-fields--prefixes))
-   1. Test case: `add n/Peter Davis e/peter@example.com p/92849132 b/11/09/1989 a/Road No. 12, Kent Ridge, Singapore ig/peterdavid`. Expected a new `Person` named Peter Davis with given email, phone number, birthday, address and Instagram handle is created. Details of the new `Person` shown in the status message. `Person` is visible in contact list.
+   1. Test case: `add n/Peter Davis e/peter@example.com p/92849132 b/11/09/1989 a/Road No. 12, Kent Ridge, Singapore ig/peterdavis cca/ICS mod/CS3230`. Expected a new `Person` named Peter Davis with given email, phone number, birthday, address and Instagram handle is created. It also
+   adds two tags showing that he is in the ICS cca and in the CS3230 module.  Details of the new `Person` shown in the status message. `Person` is visible in contact list.
   
 
 
@@ -713,7 +714,7 @@ testers are expected to do more _exploratory_ testing.
 
 <div style="page-break-after: always"></div>
 
-## 7.3 Editing a contact:
+## 7.3 Editing a `Person`:
 1. Editing a `Person`'s details:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
     2. Test case: `edit 1 b/12/10/2003 tg/example p/88923444`<br>
@@ -726,8 +727,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-
-## 7.3 Deleting a contact:
+## 7.3 Deleting a `Person`:
 
 1. Deleting a `Person` while all persons are being shown
    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
@@ -741,10 +741,9 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
-
 <div style="page-break-after: always"></div>
 
-## 7.4 Adding additional tags to a contact:
+## 7.4 Adding additional tags to a `Person`:
 1. Adding tags to a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
     2. Test case: `add-t 1 r/friends mod/CS2103T`<br>
@@ -762,7 +761,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.5 Deleting tags from a contact:
+## 7.5 Deleting tags from a `Person`:
 1. Deleting tags from a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. Assuming the first
         `Person` in the list has the remark tag `friends` and module tag `CS2103T`.
@@ -778,7 +777,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.6 Searching for a contact:
+## 7.6 Searching for a `Person`:
 1. Searching for a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
     2. Test case: `search cs`<br>.
@@ -796,7 +795,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.7 Opening a contact's social media links in app:
+## 7.7 Opening a `Person`'s social media links in app:
 1. Opening a `Person`'s social media links:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
     2. Test case: `open 1 tg/`<br>
@@ -816,9 +815,9 @@ testers are expected to do more _exploratory_ testing.
 1. Opening a social media platform with prefilled message:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
     2. Test case: `open 1 wa/ m/Hello World`<br>
-        Expected: The first `Person`'s whatsapp account is opened in the app with the message `Hello World`. Assuming the first `Person` whatsapp field is not empty,
-        is a valid whatsapp number and the whatsapp app is installed on the user's computer.
-    3. **Note:** Only whatsapp is supported right now due to platform limitations.
+        Expected: The first `Person`'s WhatsApp account is opened in the app with the message `Hello World`. Assuming the first `Person` WhatsApp field is not empty,
+        is a valid WhatsApp number and the WhatsApp app is installed on the user's computer.
+    3. **Note:** Only WhatsApp is supported right now due to platform limitations.
 
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
@@ -832,6 +831,7 @@ testers are expected to do more _exploratory_ testing.
     Expected: All `Persons` whose birthday is in the next 60 days are shown in the list.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
+
 [↑ Back to table of contents](#table-of-contents)
 <div style="page-break-after: always"></div>
 
