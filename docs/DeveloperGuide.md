@@ -426,6 +426,24 @@ Use case ends.
 
 <br>
 
+**Use case: Find an event**
+
+**MSS**
+
+1. User requests to look for an existing event in the list of events.
+2. PlanEase searches for the events with event names containing the keyword the user used in the command.
+3. PlanEase displays the list of events that contain the keyword in the event name.
+
+Use case ends.
+
+**Extensions**
+
+- 3a. The given keyword does not exist in any of the event's event name.
+
+  - 3a1. PlanEase does not display any events.
+
+  Use case ends.
+
 **Use case: Add an existing event to a new contact**
 
 **MSS**
@@ -542,7 +560,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting event list
 
-1. Prerequisite: Current list of events has at least 2 events.
+1. Prerequisite: Current list of events have at least 2 events.
 
 2. Test case: `sortevent a`<br>
    Expected: Current list of events is sorted according to their names in ascending order. Sorting details is shown in the status message.
@@ -552,6 +570,19 @@ testers are expected to do more *exploratory* testing.
 
 4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
    Expected: Similar to previous.
+
+### Finding an event
+
+1. Prerequisite: Current list of events have three events with event names as `Spring Fair`, `May Spring Anniversary` and `Spring Sale` only.
+
+2. Test case: `findevent spring` <br>
+   Expected: The Ui should display all three events in the prerequisite.
+
+3. Test case: `findevent sale` <br>
+   Expected: The Ui should only display the event with event name `Spring Sale`.
+
+4. Test case: `findevent august` <br>
+   Expected: The Ui should not display any event as the there are no events with event name containing the keyword specified.
 
 ### Saving data
 
@@ -579,4 +610,21 @@ For example, the user is allowed to enter these 2 commands and create 2 Persons 
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
 * `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
 
-For future enhancement, Person names with the same sequence of characters but different casing will be considered the same Person.
+For future enhancements, Person names with the same sequence of characters but different casing will be considered the same Person.
+
+### Person name is not flexible
+
+The current version of this application is not able to accept names that contain non-alphanumeric characters. The non-alphanumeric characters found in most names are `/` and `'`.
+For example, the user is not allowed to enter these 2 commands and create the following Persons in the list of Contacts due to the current constraint:
+* `add n/John O'neal p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
+* `add n/John s/o Raju p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
+
+For future enhancements, Person names should be more flexible in catering for names that may contain non-alphanumeric characters in the English language.
+
+### Events that have passed are not marked
+
+In this version of the application, the displayed events does not have any special indicator to show that it has "expired" or ended.
+For example, if today's date is 9th April 2023 and there are events that have end dates earlier than 9th April, they should be shown as greyed out events to indicate to the user that the event has ended.
+This Ui enhancement would help allow the users to focus on upcoming events.
+
+For future enhancements, the Ui should display past events with a special indicator or color to differentiate itself from future events.
