@@ -25,7 +25,6 @@ import seedu.address.model.ReadOnlyNote;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.application.InternshipApplication;
-import seedu.address.model.application.Person;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 import seedu.address.testutil.InternshipBuilder;
@@ -157,12 +156,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setInternEase(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -198,12 +191,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteInternship(InternshipApplication target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -235,22 +222,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setNote(Note target, Note editedNote) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -267,11 +244,6 @@ public class AddCommandTest {
         @Override
         public ObservableList<Note> getFilteredNoteList() {
             return null;
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
         }
 
         @Override

@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
@@ -37,7 +36,7 @@ public class EditStatusCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the status the specified application from the list of internships applied.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_STATUS + "STATUS] (must be one of NA, PENDING, RECEIVED, REJECTED or NO)\n"
+            + PREFIX_STATUS + "STATUS (must be one of PENDING, RECEIVED, ACCEPTED, DECLINED or REJECTED)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_STATUS + "NA";
 
@@ -71,7 +70,6 @@ public class EditStatusCommand extends Command {
         InternshipApplication updatedApplication = createdUpdatedApplication(internshipToUpdateStatus, toUpdate);
 
         model.setApplication(internshipToUpdateStatus, updatedApplication);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedApplication));
     }
 

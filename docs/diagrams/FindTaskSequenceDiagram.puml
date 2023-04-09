@@ -14,14 +14,14 @@ box Model MODEL_COLOR_T1
 participant "model:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find_task kw")
+[-> LogicManager : execute(input)
 activate LogicManager
 
-note right: kw = keyword
-LogicManager -> InternEaseParser : parseCommand("find_task kw")
+note right: kw = keyword \n input = "find_task kw" \n cmd = "find_task"
+LogicManager -> InternEaseParser : parseCommand(input)
 activate InternEaseParser
 
-InternEaseParser -> TaskParser : parseTaskCommand("find_task", "kw")
+InternEaseParser -> TaskParser : parseTaskCommand(cmd, kw)
 activate TaskParser
 
 create FindTaskCommandParser

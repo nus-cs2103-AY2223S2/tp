@@ -9,22 +9,27 @@ InternEase is a **powerful and innovative desktop app designed to streamline the
 
 Given below are my contributions to the project.
 
-* **New Feature**: To be added soon
-    * To be added soon
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zm-l&breakdown=true)
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jianminglok&breakdown=true)
+* **New Feature**:
+    * Manage an internship application
+      * What it does: Users are able to add and edit internship application
+      * Justification: This feature allows the user, an internship applicant in this case to add and edit an internship application they have.
+      * Highlights: Regular expressions are used to ensure user are typing in correct informations. Some fields are left as optional to give user more freedom to insert relevant details.
+      * Credits: Some parts of the code was reused and adapted from the [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative]
 
 * **Project management**:
-    * To be added soon
+    * Managed release `v1.1` on GitHub.
 
 * **Enhancements to existing features**:
-    * To be added soon
+    * Improved UI/UX by designing and implementing a form for user to type in details when using the `add` and `edit` command.
+    * Implemented buttons for `add`, `edit`, `delete`, `archive` and `unarchive` command.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `add_contact` and `edit_status` in [#45](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/45).
+        * Added documentation for the features `add` and `edit` command in [#211](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/211).
     * Developer Guide:
-        * To be added soon
+        * Added use cases for `add` command in [#143](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/143)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): To be added soon
@@ -32,4 +37,4 @@ Given below are my contributions to the project.
     * Reported bugs and suggestions for other teams in the class (examples: To be added soon)
 
 * **Tools**:
-    * To be added soon
+    * Java 11 and Java FX

@@ -3,7 +3,6 @@ package seedu.address.logic.commands.documents;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COVER_LETTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESUME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -91,7 +90,6 @@ public class EditDocumentsCommand extends Command {
                 createInternshipWithUpdatedDocuments(internshipToEditDocuments, editDocumentsDescriptor);
 
         model.setApplication(internshipToEditDocuments, internshipWithUpdatedDocuments);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_DOCUMENTS_SUCCESS, internshipToEditDocuments));
     }
 

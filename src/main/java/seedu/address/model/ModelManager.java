@@ -16,7 +16,6 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.application.InternshipApplication;
-import seedu.address.model.application.Person;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 
@@ -34,8 +33,7 @@ public class ModelManager implements Model {
     private final SortedList<InternshipApplication> sortedFilteredInternships;
     private final FilteredList<InternshipTodo> filteredTodo;
     private final FilteredList<Note> filteredNote;
-    private final FilteredList<Person> filteredPersons;
-    private Reminder reminder;
+    private final Reminder reminder;
     private List<InternshipApplication> cachedInternshipList;
 
     /**
@@ -51,7 +49,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.noteList = new NoteList(noteList);
         this.todoList = new TodoList(todoList);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
         sortedFilteredInternships = new SortedList<>(filteredInternships);
         filteredTodo = new FilteredList<>(this.todoList.getTodoList());
@@ -160,12 +157,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
     public void deleteInternship(InternshipApplication application) {
         addressBook.removeApplication(application);
     }
@@ -193,9 +184,7 @@ public class ModelManager implements Model {
     @Override
     public void addApplication(InternshipApplication application) {
         addressBook.addApplication(application);
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
-
 
     @Override
     public void addTodo(InternshipTodo todo) {
@@ -214,13 +203,6 @@ public class ModelManager implements Model {
      */
     public void addApplications(List<InternshipApplication> applications) {
         addressBook.addApplications(applications);
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -228,13 +210,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedApplication);
 
         addressBook.setApplication(target, editedApplication);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
     }
 
     @Override
@@ -298,17 +273,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
     public List<InternshipApplication> getCachedInternshipList() {
         return cachedInternshipList;
     }
@@ -354,7 +318,6 @@ public class ModelManager implements Model {
 
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
                 && filteredTodo.equals(other.filteredTodo)
                 && filteredNote.equals(other.filteredNote);
     }

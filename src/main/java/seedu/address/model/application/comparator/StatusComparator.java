@@ -12,4 +12,10 @@ public class StatusComparator implements Comparator<InternshipApplication> {
     public int compare(InternshipApplication i, InternshipApplication j) {
         return i.getStatus().compareTo(j.getStatus());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatusComparator); // instanceof handles nulls
+    }
 }

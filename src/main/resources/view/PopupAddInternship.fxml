@@ -283,6 +283,6 @@
                </VBox>
             </content>
          </ScrollPane>
-        </Scene>
-    </scene>
+      </Scene>
+   </scene>
 </fx:root>

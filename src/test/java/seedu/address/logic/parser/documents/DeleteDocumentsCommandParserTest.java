@@ -21,7 +21,7 @@ public class DeleteDocumentsCommandParserTest {
     private DeleteDocumentsCommandParser parser = new DeleteDocumentsCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteDocumentCommand() {
         assertParseSuccess(parser, "1", new DeleteDocumentsCommand(INDEX_FIRST_APPLICATION));
     }
 

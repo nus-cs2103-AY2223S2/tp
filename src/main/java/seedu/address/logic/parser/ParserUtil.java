@@ -10,13 +10,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.application.Address;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.InternshipStatus;
 import seedu.address.model.application.InterviewDate;
 import seedu.address.model.application.JobTitle;
 import seedu.address.model.application.Location;
-import seedu.address.model.application.Name;
 import seedu.address.model.application.Note;
 import seedu.address.model.application.ProgrammingLanguage;
 import seedu.address.model.application.Qualification;
@@ -28,7 +26,6 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.documents.CoverLetterLink;
 import seedu.address.model.documents.ResumeLink;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.NoteContent;
 
@@ -271,21 +268,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new Name(trimmedName);
-    }
-
-    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -298,21 +280,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**
@@ -333,43 +300,11 @@ public class ParserUtil {
     /**
      * Parses a {@code String interviewDate} into an {@code InterviewDate}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code interviewDate} is invalid.
      */
-    public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
+    public static InterviewDate parseInterviewDate(String interviewDate) {
         requireNonNull(interviewDate);
         String trimmedInterviewDate = interviewDate.trim();
-        if (!InterviewDate.isValidInterviewDate(trimmedInterviewDate)) {
-            throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
-        }
         return new InterviewDate(interviewDate);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**

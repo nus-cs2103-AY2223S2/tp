@@ -47,14 +47,6 @@ deactivate InternEaseParser
 LogicManager -> ClearByCommand : execute(model)
 activate ClearByCommand
 
-ClearByCommand -> Model : getSortedFilteredInternshipList()
-activate Model
-
-Model --> ClearByCommand : internshipList
-deactivate Model
-
-ClearByCommand -> ClearByCommand : getFilteredList(internshipList) : filteredList
-
 loop size of filteredList
 
 ClearByCommand -> Model : addInternshipToCache(application)

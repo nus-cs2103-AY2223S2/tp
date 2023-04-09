@@ -128,11 +128,16 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
+* Note that the following are reserved keyword in InternEase, and including these characters in the company name, job title,
+  review, and other fields may lead to unspecified behaviour:
+    * `n/`, `j/`, `p/`, `q/`, `l/`, `s/`, `e/`, `t/`, `d/`
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* InternEase has 4 window interfaces which include the internship application list, the todo list, the note list and the task list. 
-  All the commands can be used in any interface. If the command for a different interface is executed in current interface, the current interface will switch to the respective interface and display the result of the command.
+* >**Note:** <br/>
+  > InternEase has 4 window interfaces which include the internship application list, the todo list, the note list and the task list. 
+  > All the commands can be used in any interface. If the command for a different interface is executed in current interface, the current interface will switch to the respective interface and display the result of the command.
 
 </div>
 
@@ -180,7 +185,7 @@ Format: `add_date INDEX d/DATE_TIME`
 - Adds an interview date to the internship application at the specified `INDEX`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
-- `DATE_TIME` should be a valid date time of the format `yyyy-MM-dd hh:mm a`, where `a` is either `AM` or `PM`, and the date and time must be before the current date and time.
+- `DATE_TIME` should be a valid date time of the format `yyyy-MM-dd hh:mm a`, where `a` is either `AM` or `PM`, and the date and time must be after the current date and time.
 
 Examples:
 * `add_date 1 d/2023-05-02 11:30 AM` adds the date and time 2023-05-02 11:30 AM to the first application in the list of applications.
@@ -195,22 +200,24 @@ Format: `add_contact INDEX p/PHONE_NUMBER e/EMAIL`
 - Adds contact details to the internship application at the specified `INDEX`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
+- **Both** the phone number and email must be provided.
 - `PHONE_NUMBER` should be a valid phone number of at least 3 digits.
 - `EMAIL` should be a valid email of the format `username@domain.com`.
 
 Examples:
 * `add_contact 1 p/87654321 e/abc@gmail.com` adds the contact number `87654321` and email `abc@gmail.com` to the 1st application in the list of applications.
-* `add_contact 2 e/someemail@gmail.com` adds the email `someemail@gmail.com` to the 2nd application in the list of applications.
+* `add_contact 2 p/65432100 e/someemail@gmail.com` adds the contact number `65432100` and the email `someemail@gmail.com` to the 2nd application in the list of applications.
 
 ### Edit contact details : `edit_contact`
 
 Edits the contact details of a company previously added to a specified application.
 
-Format: `edit_contact INDEX p/PHONE_NUMBER e/EMAIL`
+Format: `edit_contact INDEX [p/PHONE_NUMBER] [e/EMAIL]`
 
 - Edits contact details of the internship application at the specified `INDEX`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
+- **At least one** field should be provided.
 - `PHONE_NUMBER` should be a valid phone number of at least 3 digits.
 - `EMAIL` should be a valid email of the format `username@domain.com`.
 
@@ -258,6 +265,7 @@ Format: `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK`
 
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
+- **Both** the resume link and the cover letter link must be provided.
 - `RESUME_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
 - `COVER_LETTER_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
 
@@ -271,10 +279,11 @@ Examples:
 
 Edits the documents which include the resume link and cover letter link previously added to a specified application.
 
-Format: `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK`
+Format: `edit_docs INDEX [rs/RESUME_LINK] [cl/COVER_LETTER_LINK]`
 
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
+- **At least one** field should be provided.
 - `RESUME_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
 - `COVER_LETTER_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
 
@@ -352,7 +361,8 @@ Clear all relevant internship application entries from the internship tracker wi
 Format: `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
 
 * Clears all internship applications with the specified keyword - `COMPANY_NAME`, `JOB_TITLE` or `STATUS`.
-* Three types of clear_by features are provided, but can only execute independently.
+* As a protective approach, only internship applications with desired particulars that are **fully matched** with the entire, case-sensitive keyword will be cleared.
+* Three types of clear_by features are provided, they can only be executed independently.
 
 Examples:
 * `clear_by n/Meta` Clears all application with COMPANY_NAME as Meta.
@@ -432,7 +442,8 @@ Format: `revert`
 Examples:
 1. Assume the most recent delete command was `delete 2` which has data `n/Tech j/Job`, the data was removed from the applications list.
 2. Command `revert` restores the entries at the back the application list, which has effect similar to `add  n/Tech j/Job`.
-   ** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+   
+**This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
 ### Revert all recently deleted or cleared internship applications : `revert_all`
 
@@ -440,7 +451,7 @@ Reverts all recent delete command or clear command and restores the affected dat
 
 Format: `revert_all`
 
-** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+**This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
 ### Exiting the program : `exit`
 
@@ -458,9 +469,8 @@ Format: `list_task`
 
 Examples:
 
-* `list_task` shows all the todos and notes that the user has written for together in one window.
-* If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown.
-* If there is either no todo or note, it will show `No todo at the moment` or `No note at the moment` respectively. The other list will be displayed normally.
+* `list_task` shows all the todos and notes that the user has written all together in one window.
+* If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown in the result dialog.
 
 ### Search for a task (todo and notes) : `find_task`
 
@@ -468,11 +478,11 @@ Searches the recorded lists of todos and notes by keyword (company name in todos
 
 Format: `find_task KEYWORD`
 
-Searches for the todos or notes with the specified `KEYWORD`.
+Searches for the todos or notes with the specified case-insensitive `KEYWORD`.
 The keyword refers to the company name in todos or the note content in notes that the user intends to look for.
 
 Examples:
-`find_task test` searches for all todos with `COMPANY_NAME` or all notes with `NOTE_CONTENT` as test.
+`find_task test week` searches for all todos with `COMPANY_NAME` or all notes with `NOTE_CONTENT` that contain `test` or `week`.
 
 ### Display a list of todo internship applications : `list_todo`
 
@@ -545,6 +555,7 @@ Examples:
 Clears all todo application entries from the todo applications list
 
 Format: `clear_todo`
+
 **Note that this action is irreversible**
 
 ### Display list of short note : `list_note`
@@ -586,6 +597,7 @@ Examples:
 Clears all notes from the note.
 
 Format: `clear_note`
+
 **Note that this action is irreversible**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -621,8 +633,8 @@ Action | Format, Examples
 **Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
 **Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
 **Edit** | `edit INDEX [n/COMPANY_NAME] [j/JOB_TITLE] [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...` <br> e.g., `edit 1 q/Singapore citizen q/Pursuing CS degree` 
-**Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
-**Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
+**Edit Contact** | `edit_contact INDEX [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
+**Edit Documents** | `edit_docs INDEX [rs/RESUME_LINK] [cl/COVER_LETTER_LINK]` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
 **Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
 **Edit Note Content** |`edit_content c/NOTE_CONTENT` <br> e.g., `edit_content 2 c/Venue changed`
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.documents;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
@@ -75,7 +74,6 @@ public class DeleteDocumentsCommand extends Command {
                 createInternshipWithDocumentsDeleted(internshipToDeleteDocuments);
 
         model.setApplication(internshipToDeleteDocuments, internshipWithDocumentsDeleted);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_DELETE_DOCUMENTS_SUCCESS, internshipToDeleteDocuments));
     }
 

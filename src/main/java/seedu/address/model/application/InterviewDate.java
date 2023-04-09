@@ -1,7 +1,6 @@
 package seedu.address.model.application;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +24,6 @@ public class InterviewDate extends InternshipApplicationAttribute {
      */
     public InterviewDate(String interviewDate) {
         requireNonNull(interviewDate);
-        checkArgument(isValidInterviewDate(interviewDate), MESSAGE_CONSTRAINTS);
         value = LocalDateTime.parse(interviewDate, FORMATTER);
     }
 
@@ -90,9 +88,10 @@ public class InterviewDate extends InternshipApplicationAttribute {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                || (other instanceof InterviewDate // instanceof handles nulls
+                && value.equals(((InterviewDate) other).value)); // state check
     }
+
     @Override
     public int hashCode() {
         return value.hashCode();

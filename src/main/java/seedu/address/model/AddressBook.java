@@ -6,9 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.application.InternshipApplication;
-import seedu.address.model.application.Person;
 import seedu.address.model.application.UniqueApplicationList;
-import seedu.address.model.application.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,7 +14,6 @@ import seedu.address.model.application.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
     private final UniqueApplicationList applications;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,7 +23,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
         applications = new UniqueApplicationList();
     }
 
@@ -51,14 +47,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -77,14 +65,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return applications.contains(application);
     }
     //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
 
     /**
      * Adds an internship application to the tracker.
@@ -112,14 +92,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
-    /**
      * Replaces the given person {@code target} in the list with {@code editedApplication}.
      * {@code target} must exist in the address book.
      * The application identity of {@code editedApplication}
@@ -129,24 +101,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedApplication);
 
         applications.setApplication(target, editedApplication);
-    }
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
     }
 
     /**
@@ -166,11 +120,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<InternshipApplication> getInternshipList() {
         return applications.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
     }
 
 

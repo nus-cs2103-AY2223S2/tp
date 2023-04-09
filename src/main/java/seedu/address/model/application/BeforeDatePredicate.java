@@ -13,6 +13,7 @@ public class BeforeDatePredicate extends DatePredicate {
      * @param beforeDate The date to compare to
      */
     public BeforeDatePredicate(InterviewDate beforeDate) {
+        assert beforeDate != null : "date should not be null";
         this.beforeDate = beforeDate;
     }
 

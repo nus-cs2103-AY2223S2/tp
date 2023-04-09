@@ -1,20 +1,16 @@
 @startuml
 start
 :User enters command add_contact;
-if () then ([PREFIX p/ and e/ is present])
+if () then ([PREFIX p/ and e/ are present])
     :Parse command arguments;
-    if () then ([Provided index is valid])
-        if () then ([Phone number is valid])
-            if () then ([Email address is valid])
+    if () then ([Phone number and email are valid])
             :Generate new AddContactCommand;
-            :Add contact details to specified internship;
-            :Generate success message;
+            if () then ([Provided index is valid])
+                    :Add contact details to the specified application;
+                    :Generate success message;
                 else ([else])
                 :Generate error message;
                 endif
-            else ([else])
-            :Generate error message;
-            endif
         else ([else])
         :Generate error message;
         endif

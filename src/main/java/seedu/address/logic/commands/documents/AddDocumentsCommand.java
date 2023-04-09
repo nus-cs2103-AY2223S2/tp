@@ -3,7 +3,6 @@ package seedu.address.logic.commands.documents;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COVER_LETTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESUME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
@@ -42,8 +41,8 @@ public class AddDocumentsCommand extends Command {
             + ": Adds link to a resume and/or cover letter to the specified application from the "
             + "list of internships applied.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_RESUME + "RESUME] "
-            + "[" + PREFIX_COVER_LETTER + "COVER_LETTER]\n"
+            + PREFIX_RESUME + "RESUME "
+            + PREFIX_COVER_LETTER + "COVER_LETTER\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_RESUME + "https://docs.google.com/document/d/EXAMPLE_RESUME/edit "
             + PREFIX_COVER_LETTER + "https://docs.google.com/document/d/EXAMPLE_COVER_LETTER/edit";
@@ -79,7 +78,6 @@ public class AddDocumentsCommand extends Command {
         InternshipApplication internshipWithDocuments = createInternshipWithDocuments(internshipToAddDocuments, toAdd);
 
         model.setApplication(internshipToAddDocuments, internshipWithDocuments);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENTS_SUCCESS, internshipToAddDocuments + "\n" + toAdd));
     }
 

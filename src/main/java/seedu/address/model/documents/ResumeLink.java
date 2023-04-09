@@ -18,12 +18,16 @@ import seedu.address.model.application.InternshipApplicationAttribute;
 public class ResumeLink extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Link to resume should be in the form http://domain/path "
-            + "or https://domain/path";
-    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
-    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
-    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
+            + "or https://domain/path\n"
+            + "The domain part can be an IP address, otherwise it is a domain name that must:\n"
+            + "    - cannot be localhost\n"
+            + "    - end with a domain label of 2 to 7 characters long\n"
+            + "    - have each domain label start and end with alphanumeric characters\n"
+            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+    private static final String DOMAIN_REGEX = "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    private static final String IP_ADDRESS_REGEX =
+            "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\."
+                    + "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
 
     public final String value;
 
@@ -49,7 +53,8 @@ public class ResumeLink extends InternshipApplicationAttribute {
             if (isNull(domain)) {
                 return false;
             }
-            return test.matches("^(https?)://.*$") && domain.matches(DOMAIN_REGEX);
+            return test.matches("^(https?)://.*$") && (domain.matches(DOMAIN_REGEX)
+                    || domain.matches(IP_ADDRESS_REGEX));
         } catch (URISyntaxException | MalformedURLException exception) {
             return false;
         }

@@ -113,7 +113,7 @@ public class InternshipApplication implements Comparable<InternshipApplication> 
      * Every field must be present and not null.
      */
     public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews, Contact contact,
-                                 InternshipStatus status, Documents documents) {
+                                 InternshipStatus status, boolean isArchived, Documents documents) {
         requireAllNonNull(name, job);
         this.companyName = name;
         this.jobTitle = job;
@@ -124,8 +124,8 @@ public class InternshipApplication implements Comparable<InternshipApplication> 
         this.location = null;
         this.salary = null;
         this.rating = null;
-        this.isArchived = false;
         this.documents = documents;
+        this.isArchived = isArchived;
     }
 
     /**

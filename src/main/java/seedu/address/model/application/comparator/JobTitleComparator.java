@@ -17,4 +17,10 @@ public class JobTitleComparator implements Comparator<InternshipApplication> {
         }
         return i.getJobTitle().compareTo(j.getJobTitle());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof JobTitleComparator); // instanceof handles nulls
+    }
 }

@@ -1,0 +1,22 @@
+@startuml
+start
+:User enters command edit_contact;
+if () then ([PREFIX p/ and/or e/ is present])
+    :Parse command arguments;
+    if () then ([Provided argument(s) is/are valid])
+            :Generate new EditContactCommand;
+            if () then ([Provided index is valid])
+                    :Edit contact details of the specified application;
+                    :Generate success message;
+                else ([else])
+                :Generate error message;
+                endif
+        else ([else])
+        :Generate error message;
+        endif
+    else ([else])
+    :Generate error message;
+endif
+:Display result message to user;
+stop
+@enduml

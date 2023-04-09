@@ -9,7 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.application.InternshipApplication;
-import seedu.address.model.application.Person;
 import seedu.address.model.statstics.StatsManager;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
@@ -44,9 +43,6 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the sorted filtered list of internship applications */
     ObservableList<InternshipApplication> getSortedFilteredInternshipList();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered list of todos. */
     ObservableList<InternshipTodo> getFilteredTodoList();

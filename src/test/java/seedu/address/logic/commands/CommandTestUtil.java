@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESUME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -45,11 +46,13 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_COMPANY_A = "33333333";
     public static final String VALID_PHONE_COMPANY_B = "55555555";
     public static final String VALID_COMPANY_NAME_BANK_OF_AMERICA = "Bank of America";
+    public static final String VALID_COMPANY_NAME_CARL_KURZ = "Carl Kurz";
     public static final String VALID_COMPANY_NAME_DEUTSCHE_BANK = "Deutsche Bank";
     public static final String VALID_COMPANY_NAME_META = "Meta";
     public static final String VALID_JOB_TITLE_SOFTWARE_ENGINEER = "Software Engineer";
     public static final String VALID_JOB_TITLE_SOFTWARE_TESTER = "Software Tester";
     public static final String VALID_JOB_TITLE_CLOUD_ENGINEER = "Cloud Engineer";
+    public static final String VALID_JOB_TITLE_WEB_DEVELOPER = "Web Developer";
     public static final String VALID_COMPANY_NAME_AMAZON = "Amazon";
     public static final String VALID_JOB_TITLE_META = "Software Tester";
     public static final String VALID_PHONE_BANK_OF_AMERICA = "33333333";
@@ -70,6 +73,8 @@ public class CommandTestUtil {
     public static final String VALID_COVER_LETTER_LINK_GOOGLE = "https://drive.example.com/coverletter_google";
     public static final String VALID_COVER_LETTER_LINK_NETFLIX = "https://drive.example.com/coverletter_netflix";
     public static final String VALID_COVER_LETTER_LINK_ORACLE = "https://drive.example.com/coverletter_oracle";
+    public static final String VALID_STATUS_PENDING = "PENDING";
+    public static final String VALID_STATUS_ACCEPTED = "ACCEPTED";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -94,6 +99,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BANK_OF_AMERICA = " " + PREFIX_EMAIL + VALID_EMAIL_BANK_OF_AMERICA;
     public static final String PHONE_DESC_META = " " + PREFIX_PHONE + VALID_PHONE_META;
     public static final String EMAIL_DESC_META = " " + PREFIX_EMAIL + VALID_EMAIL_META;
+    public static final String STATUS_DESC_PENDING = " " + PREFIX_STATUS + VALID_STATUS_PENDING;
+    public static final String STATUS_DESC_ACCEPTED = " " + PREFIX_STATUS + VALID_STATUS_ACCEPTED;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -104,6 +111,7 @@ public class CommandTestUtil {
     public static final String INVALID_RESUME_DESC = " " + PREFIX_RESUME + "example.com/resume_google";
     // missing domain name
     public static final String INVALID_COVER_LETTER_DESC = " " + PREFIX_COVER_LETTER + "https://-/cover_letter_google";
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "DELETED";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

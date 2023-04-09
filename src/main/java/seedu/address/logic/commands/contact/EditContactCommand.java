@@ -3,7 +3,6 @@ package seedu.address.logic.commands.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -87,7 +86,6 @@ public class EditContactCommand extends Command {
                 createInternshipWithUpdatedContact(internshipToUpdateContact, editContactDescriptor);
 
         model.setApplication(internshipToUpdateContact, internshipWithUpdatedContact);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_CONTACT_SUCCESS, internshipWithUpdatedContact));
     }
 

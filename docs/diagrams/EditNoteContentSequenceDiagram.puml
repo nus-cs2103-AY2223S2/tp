@@ -14,14 +14,14 @@ box Model MODEL_COLOR_T1
 participant "model:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit_content 1 c/nc")
+[-> LogicManager : execute(input)
 activate LogicManager
 
-note right: nc = new content
-LogicManager -> InternEaseParser : parseCommand("edit_content 1 c/nc")
+note right: nc = new content \n input = "edit_content 1 c/nc" \n cmd = "edit_content" , args = "1 c/nc"
+LogicManager -> InternEaseParser : parseCommand(input)
 activate InternEaseParser
 
-InternEaseParser -> TaskParser : parseTaskCommand("edit_content", "1 c/nc")
+InternEaseParser -> TaskParser : parseTaskCommand(cmd, args)
 activate TaskParser
 
 create EditNoteContentCommandParser
@@ -54,16 +54,7 @@ deactivate InternEaseParser
 
 LogicManager -> EditNoteContentCommand : execute(model)
 activate EditNoteContentCommand
-
-EditNoteContentCommand -> Model : getFilteredTodoList()
-activate Model
-
-Model --> EditNoteContentCommand
-deactivate Model
-
-EditNoteContentCommand -> EditNoteContentCommand : createUpdatedTodo(todo, update) : updatedTodo
-
-EditNoteContentCommand -> Model : setTodo(originalTodo, updatedTodo)
+EditNoteContentCommand -> Model : setTodo(original, updated)
 activate Model
 
 Model --> EditNoteContentCommand

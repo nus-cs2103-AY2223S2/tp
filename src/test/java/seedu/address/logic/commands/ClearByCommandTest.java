@@ -110,7 +110,7 @@ public class ClearByCommandTest {
                 getTypicalNoteList());
 
         List<InternshipApplication> filteredList = getTypicalInternships().stream()
-                .filter(a -> (a.getStatus().equals(status)))
+                .filter(a -> (a.getStatus().equals(status) && !a.isArchived()))
                 .collect(Collectors.toList());
 
         for (InternshipApplication ia : filteredList) {

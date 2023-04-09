@@ -47,6 +47,7 @@ public class SampleDataUtil {
             new InternshipApplication(new CompanyName("Grab"), new JobTitle("Backend Developer"),
                     getReviewSet("Competitive environment"),
                     new Contact(new Phone("98765432"), new Email("career@grab.com")), InternshipStatus.RECEIVED,
+                    false,
                     new Documents(new ResumeLink("https://myowndrive.com/resume_grab"),
                             new CoverLetterLink("https://myowndrive.com/cover_letter_grab"))),
             new InternshipApplication(new CompanyName("Foodpanda"), new JobTitle("Fullstack Developer"),

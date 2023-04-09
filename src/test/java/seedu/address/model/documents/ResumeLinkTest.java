@@ -53,8 +53,8 @@ public class ResumeLinkTest {
         assertTrue(ResumeLink.isValidResumeLink("https://example.com/resume+1")); // '+' symbol in path
         assertTrue(ResumeLink.isValidResumeLink("https://example.com/resume-1")); // hyphen in path
         assertTrue(ResumeLink.isValidResumeLink("https://example-1.com/resume-1")); // hyphen in domain name
-        assertTrue(ResumeLink.isValidResumeLink("http://localhost/resume")); // alphabets only
-        assertTrue(ResumeLink.isValidResumeLink("http://12.34.56.78/9")); // numeric domain name and path
+        assertTrue(ResumeLink.isValidResumeLink("http://example.com/resume")); // alphabets only
+        assertTrue(ResumeLink.isValidResumeLink("http://12.34.56.78/9")); // IP address and path
         // mixture of alphanumeric and special characters
         assertTrue(ResumeLink.isValidResumeLink("http://example1.com/a1+be."));
         // long domain name
