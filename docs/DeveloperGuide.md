@@ -1183,7 +1183,7 @@ The increased number of classes, along with all the commands, means that code co
 
 Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests for our commands, 
 parsers and model objects. We redesigned how testing is done for commands and manage to cover all commands successfully. 
-We maintained a ~83% code coverage from the original ~72% in AB3, and increased the number of test cases from 248 (in AB3) to 527 (in HMHero).
+We achieved a ~86% code coverage from the original ~72% in AB3, and increased the number of test cases from 248 (in AB3) to 301 (in HMHero).
 
 ## **Planned Enhancements**
 
