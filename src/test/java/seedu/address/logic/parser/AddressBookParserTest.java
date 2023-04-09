@@ -69,7 +69,7 @@ public class AddressBookParserTest {
     public void parseCommand_isolatedEvent() throws Exception {
         AddIsolatedEventCommand command = (AddIsolatedEventCommand) parser.parseCommand(
                 AddIsolatedEventCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
-                        + "ie/biking" + " " + "f/09/03/2023 14:00" + " " + "t/09/03/2023 15:00");
+                        + "ie/biking" + " " + "f/09/03/2025 14:00" + " " + "t/09/03/2025 15:00");
         assertTrue(command.COMMAND_WORD == "event_create");
     }
 

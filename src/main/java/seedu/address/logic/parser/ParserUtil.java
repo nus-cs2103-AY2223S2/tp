@@ -163,6 +163,11 @@ public class ParserUtil {
         return dueDate;
     }
 
+    /**
+     * Check if the start date of the event if before the current date time.
+     * @param date in which the event starts
+     * @throws ParseException to be thrown if it is before the current date time.
+     */
     public static void checkValidDateTime(LocalDateTime date) throws ParseException {
         requireNonNull(date);
         LocalDateTime now = LocalDateTime.now();
