@@ -18,9 +18,11 @@ such as flight scheduling and management of crew, pilot, plane and location.
 
 ## Table of Contents
 
-- **[How to use this guide?](#how-to-use-this-guide)**
+- **[How to Use This Guide?](#how-to-use-this-guide)**
 - **[Getting Started](#getting-started)**
+- **[Layout of Wingman Application Window](#layout-of-wingman-application-window)**
 - **[Modal Editing: `mode`](#modal-editing)**
+- **[Command Formatting](#command-formatting)**
 - **[Features](#features)**
   - **[Shared Commands](#shared-commands)**
     - **[Adding a resource: `add`](#1-adding-a-resource)**
@@ -32,10 +34,10 @@ such as flight scheduling and management of crew, pilot, plane and location.
     - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight)**
     - **[Checking a resource's availability: `check`](#5-checking-a-resources-availability)**
 - **[Prefix Summary](#prefix-summary)**
-- **[Command summary](#command-summary)**
+- **[Command Summary](#command-summary)**
 - **[FAQ](#faq)**
 - **[Glossary](#glossary)**
-- **[Other information](#other-information)**
+- **[Other Information](#other-information)**
 
 <div style="page-break-after: always;"></div>
 
@@ -76,18 +78,35 @@ A GUI similar to the one below should appear in a few seconds.
 Take note how the app below contains some sample data. This may not be the case if it's your first time using Wingman.
 </div>
 
-<img src = "images/UG-start.png" width="2032">
+<img src="images/ug/UG-gettingStarted.jpg" width="2032">
 
 (If you encounter any issues during installation, please head over to our [FAQ](#faq) section to troubleshoot.)
 
 Congratulations on successfully setting up Wingman! Before you start using Wingman, do take a moment to read the
 following sections:
 
-1. [Modal Editing](#modal-editing) to understand how Wingman's commands are operated.
-2. [Command Formatting](#command-formatting) to understand how we explain how to use each command in the following
+1. [Layout of Wingman Application Window](#layout-of-wingman-application-window) to understand how you can navigate
+   through the various sections.
+2. [Modal Editing](#modal-editing) to understand how Wingman's commands are operated.
+3. [Command Formatting](#command-formatting) to understand how we explain how to use each command in the following
    [Features](#features) section.
 
 <div style="page-break-after: always;"></div>
+
+### Layout of Wingman Application Window
+<img src="images/ug/UG-labelled.jpg" width="2032">
+
+The following table describes the sections in detail:
+
+| **Section**          | **Description**                                                                     |
+|----------------------|-------------------------------------------------------------------------------------|
+| `Toolbars`           | Contains buttons to exit the app/view help.                                         |
+| `Command Box`        | Accepts text input for you to type in your commands.                                |
+| `Result Display Box` | Displays various messages (e.g. success/error messages) after commands are entered. |
+| `Menu Bar`           | Displays labels of each mode (flight/crew/plane/pilot/location)                     |
+| `Item List Card`     | Displays information of a flight/crew/plane/pilot/location saved in Wingman.        |
+| `Item List Panel`    | Displays the list of flight/crew/plane/pilot/location saved in Wingman.             |
+| `Mode Indicator`     | Displays the current mode.                                                          |
 
 ### Modal Editing
 
@@ -168,7 +187,7 @@ line.
 
 The commands in this section are available across ALL 5 modes.
 
-#### **1. Adding a resource**
+#### **1. Adding a resource: `add`**
 
 Use this command when you wish to add a new resource entity (e.g. a new plane that has been added to your fleet)
 to Wingman, for you to manage the resource.
@@ -187,7 +206,7 @@ for each attribute as shown in the following examples.
 </div>
 
 If the command is valid, upon pressing enter, your application window will be updated as shown below.
-The response box describes the addition that was made and the new entity should be displayed in the left list.
+The result display box describes the addition that was made and the new entity should be displayed in the list.
 
 <img src="images/ug/UG-add.jpg" width="2032">
 
@@ -298,16 +317,11 @@ Output:
 Added A380.
 ```
 
-If the command is valid, upon pressing enter, your application window will be updated as shown below.
-The response box describes the addition that was made and the new entity should be displayed in the left list.
-
-<img src="images/AddSuccessPage.jpg" width="2032" alt="Successful plane addition page">
-
 [Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
-#### **2. Deleting a resource**
+#### **2. Deleting a resource: `delete`**
 
 Use this command when you wish to remove a resource entity (e.g. a pilot that has retired)
 from Wingman, to keep your database of resources up to date.
@@ -343,10 +357,6 @@ Output:
 Deleted A380.
 ```
 
-For instance, Junior Crew Member Mary will have an index number of 1 in the image below.
-
-<img src="images/ModeCrewLanding.jpg" width="2032" alt="Mode crew page">
-
 [Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -355,7 +365,7 @@ For instance, Junior Crew Member Mary will have an index number of 1 in the imag
 
 The commands in this section are only available in the specified modes.
 
-#### **1. Linking a resource to a location**
+#### **1. Linking a resource to a location: `linklocation`**
 
 Use this command when you wish to link a resource entity to a location (e.g. a pilot that has just landed in Tokyo can
 have their location set as Tokyo, so you are able to identify the correct pilots when filtering the pilots by location).
@@ -461,7 +471,7 @@ Linked A380 to Tokyo.
 
 <div style="page-break-after: always;"></div>
 
-#### **2. Unlinking a resource from a location**
+#### **2. Unlinking a resource from a location: `unlinklocation`**
 
 Use this command when you wish to unlink a resource entity from a location (e.g. when a plane has departed from Tokyo,
 you can unlink it from Tokyo, so you get the correct information when filtering planes by location).
@@ -567,7 +577,7 @@ Unlinked A380 from Tokyo.
 
 <div style="page-break-after: always;"></div>
 
-#### **3. Linking a resource to a flight**
+#### **3. Linking a resource to a flight: `linkflight`**
 
 Use this command when you wish to link a resource entity to a flight (e.g. when assigning pilots to flights,
 you can use this command to link each pilot to a flight).
@@ -682,7 +692,7 @@ Linked A380 to SQ230.
 
 <div style="page-break-after: always;"></div>
 
-#### **4. Unlinking a resource from a flight**
+#### **4. Unlinking a resource from a flight: `unlinkflight`**
 
 Use this command when you wish to unlink a resource entity from a flight (e.g. when a flight has been cancelled,
 you can use this command to unlink the crew members from the flight).
@@ -792,7 +802,7 @@ Output:
 Unlinked A380 from SQ230.
 ```
 
-#### **5. Checking a resource's availability**
+#### **5. Checking a resource's availability: `check`**
 
 Use this command when you wish to check a resource's availability (i.e. when deciding to use a resource for flight, you
 can use this command to check whether the resource is already currently linked to another flight).
