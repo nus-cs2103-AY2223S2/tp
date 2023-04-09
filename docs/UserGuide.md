@@ -161,7 +161,7 @@ In TinS, an internship application is stored as an **Internship**. An Internship
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Each Internship is **uniquely identifiable** by a **combination** of its `POSITION` and
-`COMPANY`. `POSITION` and `COMPANY` fields are **case-insensitive**. <br>
+`COMPANY`. `POSITION` and `COMPANY` fields are **case-insensitive**. <br><br>
 
 Example: An Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab` will be identified to be the
 same internship as an Internship with `POSITION` as `Software ENGINEER` and `COMPANY` as `GRAB`.
