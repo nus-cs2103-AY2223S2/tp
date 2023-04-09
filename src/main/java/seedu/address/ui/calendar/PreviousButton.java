@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import seedu.address.logic.CalendarLogic;
 
-
+//@@author wongyewjon
 /**
  * A button that displays the previous month's CalendarEvents
  * when interacted with.
@@ -20,7 +20,7 @@ public class PreviousButton extends CalendarButton {
     @FXML
     private Button previousButton;
 
-
+    //@@author wongyewjon
     /**
      * Creates a {@code PreviousButton} with the given {@code String} and {@code CalendarLogic}.
      */
@@ -31,7 +31,7 @@ public class PreviousButton extends CalendarButton {
         previousButton.setText(content);
         previousButton.focusedProperty().addListener(this::handleFocusedEvent);
     }
-
+    //@@author wongyewjon
     @FXML
     protected void handleFocusedEvent(Observable observable) {
         if (previousButton.isFocused()) {
@@ -40,7 +40,7 @@ public class PreviousButton extends CalendarButton {
             previousButton.setStyle(CALENDAR_BUTTON_STYLE + GREY_BORDER);
         }
     }
-
+    //@@author wongyewjon
     @FXML
     protected void handleOnAction(ActionEvent event) {
         calendarLogic.previous();

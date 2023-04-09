@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.session.Session;
 import seedu.address.ui.UiPart;
 
-
+//@@author wongyewjon
 /**
  * The content that is displayed within the {@code CalendarPopup}
  */
@@ -36,7 +36,7 @@ public class CalendarPopupContent extends UiPart<Region> {
     @FXML
     private VBox popupVBox;
 
-
+    //@@author wongyewjon
     /**
      * Creates a {@code CalendarPopupContent} with the given CalendarEvent details.
      * @param session

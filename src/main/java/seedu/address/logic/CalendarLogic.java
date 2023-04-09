@@ -17,6 +17,7 @@ import seedu.address.model.session.Session;
 import seedu.address.ui.calendar.CalendarDisplay;
 import seedu.address.ui.calendar.CalendarEventListPanel;
 
+//@@author wongyewjon
 //Solution below adapted from http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html
 
 /**
@@ -42,6 +43,7 @@ public class CalendarLogic {
     private ObservableList<Session> filteredSessionsList;
     private CalendarDisplay calendarDisplay;
 
+    //@@author wongyewjon
     /**
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
      * {@code GridPane} and {@code HBox}.
@@ -59,7 +61,7 @@ public class CalendarLogic {
         filteredSessionsList.addListener(temp);
     }
 
-
+    //@@author wongyewjon
     /**
      * Initialises the logic components for the Calendar.
      */
@@ -69,7 +71,7 @@ public class CalendarLogic {
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
     }
 
-
+    //@@author wongyewjon
     /**
      * Fills body of the Calendar with the individual date components.
      */
@@ -103,15 +105,16 @@ public class CalendarLogic {
         }
     }
 
+    //@@author wongyewjon
     public String getDayName(int n) {
         return DAY_NAMES[n - 1];
     }
-
+    //@@author wongyewjon
     public String getMonthName(int n) {
         return MONTH_NAMES[n];
     }
 
-
+    //@@author wongyewjon
     /**
      * Returns the {@code Text} representing the current month.
      */
@@ -124,7 +127,7 @@ public class CalendarLogic {
         return header;
     }
 
-
+    //@@author wongyewjon
     /**
      * Refreshes the CalendarEvents.
      */
@@ -134,7 +137,7 @@ public class CalendarLogic {
         calendarDisplay.drawCalendar();
     }
 
-
+    //@@author wongyewjon
     /**
      * Displays the CalendarEvents in the previous month.
      */
@@ -144,7 +147,7 @@ public class CalendarLogic {
         updateCalendarMonth();
     }
 
-
+    //@@author wongyewjon
     /**
      * Displays the CalendarEvents in the next month.
      */
@@ -154,7 +157,7 @@ public class CalendarLogic {
         updateCalendarMonth();
     }
 
-
+    //@@author wongyewjon
     private void updateCalendarMonth() {
         Text newMonthHeader = getTextHeader();
         calendarDisplay.setTopCalendarHeader(0, newMonthHeader);
@@ -163,6 +166,7 @@ public class CalendarLogic {
         drawBody();
     }
 
+    //@@author wongyewjon
     private GregorianCalendar getPreviousMonth(Calendar cal) {
         int prevMonth;
         int prevYear;
@@ -177,7 +181,7 @@ public class CalendarLogic {
         }
         return new GregorianCalendar(prevYear, prevMonth, 1);
     }
-
+    //@@author wongyewjon
     private GregorianCalendar getNextMonth(Calendar cal) {
         int futureMonth;
         int futureYear;

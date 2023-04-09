@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import seedu.address.logic.CalendarLogic;
 
-
+//@@author wongyewjon
 /**
  * A button that displays the next month's CalendarEvents when interacted with.
  * The button extends {@code CalendarButton} which contains the common behaviour
@@ -21,7 +21,7 @@ public class NextButton extends CalendarButton {
     @FXML
     private Button nextButton;
 
-
+    //@@author wongyewjon
     /**
      * Constructs a new {@code NextButton} with the given content and {@code CalendarLogic}.
      * @param content the text displayed on the button
@@ -35,7 +35,7 @@ public class NextButton extends CalendarButton {
         nextButton.focusedProperty().addListener(this::handleFocusedEvent);
     }
 
-
+    //@@author wongyewjon
     /**
      * Handles the button's focused event.
      * When the button is focused, it changes its border color to orange,
@@ -52,7 +52,7 @@ public class NextButton extends CalendarButton {
         }
     }
 
-
+    //@@author wongyewjon
     /**
      * Handles the button's onAction event.
      * When the button is clicked, it moves the calendar to the next month.

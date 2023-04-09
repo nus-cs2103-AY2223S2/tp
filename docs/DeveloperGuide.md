@@ -137,7 +137,7 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
-The `Addressbook` component, contained under `Model` is responsible for supporting the main functionalities of our app. Mainly the `Person` class facilitates that contact list functionality, while the `Session` class
+The `AddressBook` component, contained under `Model` is responsible for supporting the main functionalities of our app. Mainly the `Person` class facilitates that contact list functionality, while the `Session` class
 facilitates the scheduling, calendar and data Analytics functionality. 
 
 
@@ -180,9 +180,13 @@ Step 4. The Coach then decides to execute the command `sort 1`.
 
 Restricting attribute and order to an integer value allows for the input to be easily anticipated and controlled.
 
-* **Alternative 1 (current choice):** Allow Coaches to specify how to sort their list.
-    * Pros: More flexible and customisable to the needs of the Coach.
+* **Alternative 1 (current choice):** Allow Coaches to specify how to sort their list by integer.
+    * Pros: Easier to implement in the code and faster to type by the Coach.
     * Cons: More troublesome as Coach needs to check the User Guide to learn what integers to use.
+
+* **Alternative 2:** Allow Coaches to specify how to sort their list by words.
+    * Pros: Easier to understand by the Coach.
+    * Cons: Harder to implement in the code and slower to type by the Coach.
 
 ### Undo/redo feature
 
@@ -266,7 +270,7 @@ The following activity diagram summarizes what happens when a Coach executes a n
 
 #### Implementation
 
-The proposed session feature is facilitated by a `Session`, contained in a `UniqueSessionList`, which is subsequently contained an `addressbook`.
+The proposed session feature is facilitated by a `Session`, contained in a `UniqueSessionList`, which is subsequently contained an `AddressBook`.
 
 It supports the following sub-features:
 * Adding/Removing students from a session
@@ -278,20 +282,20 @@ To better understand how each sub-feature is implemented, we need to have a bett
 <img src="images/SessionClassDiagram.png" width="" />
 
 As seen above, a Session needs a:
-* SessionName: to uniquely identify a session
-* Location: extra information for the Coach
-* AttendanceMap: to store references of participating athletes
-* PayRateMap: to support the Data-Analytics functionality
+* `SessionName`: to uniquely identify a session
+* `Location`: extra information for the Coach
+* `AttendanceMap`: to store references of participating athletes
+* `PayRateMap`: to support the Data-Analytics functionality
 
 The `Session` object implements the following operations to enable the respective sub-features:
 
 ##### Adding/Removing athletes from a session
-* `Session#addPersonToSession()` — Adds a person reference to a `Session` object's attendanceMap.
-* `Session#removePersonFromSession()` — Removes a person reference from a `Session` object's attendanceMap.
+* `Session#addPersonToSession()` — Adds a `Person` reference to a `Session` object's `AttendanceMap`.
+* `Session#removePersonFromSession()` — Removes a `Person` reference from a `Session` object's `AttendanceMap`.
 
 ##### Taking the attendance of an athlete in a session
-* `Session#markStudentPresent()` —  set person reference in a `Session` object's attendanceMap as present.
-* `Session#markStudentAbsent()` —  set person reference in a `Session` object's attendanceMap as absent.
+* `Session#markStudentPresent()` —  set `Person` reference in a `Session` object's `AttendanceMap` as present.
+* `Session#markStudentAbsent()` —  set `Person` reference in a `Session` object's `AttendanceMap` as absent.
 
 
 These operations are exposed in the `Model` interface as `Model#addPersonToSession()`, `Model#removePersonFromSession()` and `Model#setSession()`.
@@ -300,23 +304,23 @@ Given below is an example usage scenario and for each sub-feature:
 
 ### Adding/Removing athletes from a session
 
-To enable this feature, we need to have a data structure that can store references to athletes in a session. A naive way to do this would be to have a `UniquePersonList` in a `Session` object. However, since we also need to track the attendance of every student, we propose using a `HashMap` class to store key-value pairs where the key is a `String` (the athlete's name), and the value is a `Boolean` (to indicate attendance).
+To enable this feature, we need to have a data structure that can store references to athletes in a session. A naive way to do this would be to have a `UniquePersonList` in a `Session` object. However, since we also need to track the attendance of every athlete, we propose using a `HashMap` class to store key-value pairs where the key is a `String` (the athlete's name), and the value is a `Boolean` (to indicate attendance).
 
 <img src="images/StudentAddRemoveSequenceDiagram.png" width="" />
 
 Step 1. The coach decides to create a new session object named "Hall". A session is initialized, creating an empty `AttendanceMap`.
 
 Step 2. The coach decides to add athlete Bob (a `Person` object) to the Hall session.
-- We first find the `Name` of Bob and convert it to its `String` equivalent.
-- We then insert a key-value pair of `String`: "Bob" and `Boolean`: `false` into our `AttendanceMap`.
-- We now have a reference to athlete Bob in our `AttendanceMap` in the `Session`.
-- Note that attendance is set to `false` by default since the session hasn't started yet.
+1. We first find the `Name` of Bob and convert it to its `String` equivalent.
+2. We then insert a key-value pair of `String`: "Bob" and `Boolean`: `false` into our `AttendanceMap`.
+3. We now have a reference to athlete Bob in our `AttendanceMap` in the `Session`.
+4. Note that attendance is set to `false` by default since the session hasn't started yet.
 
-Step 3. Bob decides to quit the session, and the coach decides to remove Bob from the Hall `Session`.
-- We first find the `Name` of Bob and convert it to its `String` equivalent.
-- We then check our `AttendanceMap` to make sure Bob is an existing student, i.e., an existing key in the `HashMap`.
-- We then remove the key of `String`: "Bob" from our `AttendanceMap`.
-- We no longer have a reference to Bob in our Hall `Session` object.
+Step 3. Bob decides to quit the session, and the coach decides to remove Bob from the Hall session.
+1. We first find the `Name` of Bob and convert it to its `String` equivalent.
+2. We then check our `AttendanceMap` to make sure Bob is an existing athlete, i.e., an existing key in the `HashMap`.
+3. We then remove the key of `String`: "Bob" from our `AttendanceMap`.
+4. We no longer have a reference to Bob in our Hall `Session` object.
 
 ### Taking Attendance of an Athlete in a Session
 
@@ -347,8 +351,46 @@ The `Session` class uses the `getTotalPay()` method to find the total `Payrate` 
 
 To find the daily, weekly, and monthly earnings, we iterate through our `UniqueSessionList` and find all sessions that fall between a specified period.
 
+### Calendar features
+The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+
+* `Calendar Display`Can display appointments of a month in a calendar format.
+* `Calendar Navigation`Can navigate between months with/without a mouse.
+* `Calendar Pop-Up`Can view the details of each appointment.
+
+#### Overall implementation of Calendar
+
+The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `topCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `calendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
+
+Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar()` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
 
 
+**Calendar Display**
+
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Display` is implemented:
+1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
+2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class.
+3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `FlowPane`, `topCalendar`, displays the current month.
+4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the Calendar and each individual day of the month is created in the Calendar.
+5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
+6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
+
+
+**Calendar Navigation**
+
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
+
+These are the ways that a user can use the `Calendar Navigation` feature.
+1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
+
+#### Calendar Pop-up
+The calendar Pop-up allows user to view the details of the appointment in the calendar
+
+These are the ways that a user can use the `Calendar Pop-up` feature.
+1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar after selecting one
+2. Clicking on a desired appointment to view the appointment in the calendar
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -378,6 +420,15 @@ To find the daily, weekly, and monthly earnings, we iterate through our `UniqueS
    Mouse clicks are still required to select an athlete/session even after using keyboard shortcuts to switch tabs.
    This may make it inconvenient for those who may prefer CLI apps.<br>
    We plan on making the app completely navigable through keyboard input while also allowing one to click parts of the GUI.
+
+4. **Once created, a session cannot be edited.**<br>
+   This makes it inconvenient for the user when they mistakenly create a session with the wrong details.
+   Hence, we plan on adding a `session-edit` command.<br>
+   This will allow users to edit created sessions and not have to create new ones entirely.
+
+5. **The side panel for a session does not update until you click it again.**<br>
+   This is inconvenient for users as they have to manually the panel by clicking on it again.<br>
+   We plan on making the panel update itself in real time with every command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -562,7 +613,7 @@ one tag is created and added to the contact list.
 **Extensions**
 
 * 2a. The given integer is not 1 or 2.
-    * 2a1. SportSync does not sort the contact list.<br>
+    * 2a1. SportSync displays an error message.<br>
       Use case resumes at step 1.
 
 
