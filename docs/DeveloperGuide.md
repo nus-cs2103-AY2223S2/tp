@@ -195,7 +195,7 @@ object.
 
 OfficeConnect Storage Component
 
-<img src="images/OfficeStorageClassDiagram.png" width="750" />
+<img src="images/StorageClassDiagram.png" width="750" />
 
 The initial storage component was specifically designed to accommodate the address book model. However, OfficeConnect
 necessitates the inclusion of two additional storage types, namely task storage and assignment storage.
