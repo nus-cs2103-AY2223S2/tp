@@ -3,7 +3,7 @@
 
 start
 :User executes undo n;
-if () then ([n is not an integer, " " \n or "")])
+if () then ([n contains non-digits \nother than whitespaes)])
     :display an invalid message;
     stop
 else ([else])
