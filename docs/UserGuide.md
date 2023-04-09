@@ -16,6 +16,7 @@ title: User Guide
 - [Student Features](#student-features)
     - [Add Student](#adding-student)
     - [Delete Student](#deleting-student)
+    - [Edit Student](#edit-student--edit)
     - [Add Student to Event](#add-student-to-event)
     - [Delete Student from Event](#delete-student-from-event)
 - [Note Features](#note-features)
@@ -326,6 +327,7 @@ Add a student to an event.
 - Valid indexes must be provided.
 - EVENT_TYPE refers to the type of event (Tutorial/Lab/Consultation).
 - Event type input must be valid and the first letter must be capitalized.
+- Extra fields that are not applicable in the command format of this command will be treated like regular Strings.
 
 Format: `addStudent STUDENT_INDEX EVENT_TYPE/EVENT_INDEX`
 
@@ -352,6 +354,7 @@ You will not be able to undo the deletion." %}
 - Valid indexes must be provided (TrAcker checks for valid event index first before checking for valid student index).
 - EVENT_TYPE refers to the type of event (Tutorial/Lab/Consultation).
 - Event type input must be valid and the first letter must be capitalized.
+- Extra fields that are not applicable in the command format of this command will be treated like regular Strings.
 
 Format: `deleteStudent STUDENT_INDEX EVENT_TYPE/EVENT_INDEX`
 

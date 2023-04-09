@@ -17,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStudentToEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteStudentFromEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -95,6 +96,12 @@ public class AddressBookParserTest {
     public void parseCommand_addStudentToEvent() throws Exception {
         assertTrue(parser.parseCommand(AddStudentToEventCommand.COMMAND_WORD + " 3 Tutorial/1")
                 instanceof AddStudentToEventCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteStudentFromEvent() throws Exception {
+        assertTrue(parser.parseCommand(DeleteStudentFromEventCommand.COMMAND_WORD + " 3 Tutorial/1")
+                instanceof DeleteStudentFromEventCommand);
     }
 
     @Test
