@@ -46,6 +46,7 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
+* Font used: [Roboto](https://fonts.google.com/specimen/Roboto) (used under the Apache license).
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 [Scroll back to top](#table-of-contents)
@@ -652,19 +653,80 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
 person.
 
-![Edit Command Sequence Diagram](images/EditSequenceDiagram.png)
+![Edit Command Sequence Diagram](images/NewEditSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
-Given below is an activity diagram to illustrate the behaviour of editing Person within `Logic`.
+The EditCommandParser parses the passed command and create a EditPersonDescriptor for the EditCommand to execute
+on. It checks if prefix are present in the command to update the EditPersonDescriptor.
 
-![Edit Activity Diagram](images/EditActivityDiagram.png)
+One notable thing about EditPersonDescriptor are its sets to handle : skillsAdded, skillsRemoved and skillsFinal. Similar sets
+were implemented for modules as well. Parser handles all entries and get them assigned to EditPersonDescriptor.
+
+As the EditCommand executes, it will look into these sets and create editedPerson accordingly:
+
+1. If skillsRemoved or modulesRemoved are not empty, it will look through existing skills and modules of protagonist to
+ensure all of them are present (using containsAll method for Set). If any one of them does not exist in protagonist,
+it will throw CommandException with respective error messages. This can be improved by using contains method instead
+for every element then throwing the exception with specific skill/module that caused the exception.
+
+```java
+if (editPersonDescriptor.getSkillsRemoved().isPresent()) {
+    Set<Skill> original = personToEdit.getSkills();
+    Set<Skill> edited = editPersonDescriptor.getSkillsRemoved().get();
+    if (!original.containsAll(edited)) { // Can be improved by specifying which skill is not present
+        throw new CommandException(MESSAGE_SKILL_DOES_NOT_EXIST);
+    }
+}
+
+if (editPersonDescriptor.getModulesRemoved().isPresent()) {
+    Set<Module> original = personToEdit.getModules();
+    Set<Module> edited = editPersonDescriptor.getModulesRemoved().get();
+    if (!original.containsAll(edited)) { // Can be improved by specifying which module is not present
+        throw new CommandException(MESSAGE_MOD_DOES_NOT_EXIST);
+    }
+}
+```
+2. When creating edited person:
+   1. It will first look into original skills and modules.
+   2. Entries to be removed are first removed, then entries to be added are added.
+   3. If any final set of an attribute exists, the updates above are ignored and new set will be created with entries
+   within the final set. If the final set is an empty one, it will clear all existing set
+
+```java
+Set<Skill> removedSkills = editPersonDescriptor.getSkillsRemoved().orElse(new HashSet<>());
+Set<Skill> addedSkills = editPersonDescriptor.getSkillsAdded().orElse(new HashSet<>());
+Set<Skill> updatedSkills = new HashSet<>(personToEdit.getSkills()); // Copy off original
+updatedSkills.removeAll(removedSkills); // Remove takes priority
+updatedSkills.addAll(addedSkills);
+Set<Skill> finalSkills = editPersonDescriptor.getSkillsFinal().orElse(updatedSkills);
+Set<Module> removedModules = editPersonDescriptor.getModulesRemoved().orElse(new HashSet<>());
+Set<Module> addedModules = editPersonDescriptor.getModulesAdded().orElse(new HashSet<>());
+Set<Module> updatedModules = new HashSet<>(personToEdit.getModules()); // Copy off original
+updatedModules.removeAll(removedModules); // Remove takes priority
+updatedModules.addAll(addedModules);
+Set<Module> finalModules = editPersonDescriptor.getModulesFinal().orElse(updatedModules);
+```
+
+<br>
 
 ##### Design Considerations
 
 We initially created 2 additional prefixes to updating the `Skills` and `Modules` using old and new prefixes.
 However, we realised the behaviour is similar to simply deleting and adding new modules and skills.
 Hence, we removed the implementation of the old and new prefixes.
+
+`s/` is the strongest, entailing `s+/` and `s-/` will be ignored because users can include them within `s/` anyway.
+All `s-/` will happen before all `s+/`, so that editing specific modules can happen correctly (both `s-/abc s+/abc` and
+`s+/abc s-/abc` will keep skill `abc`). If the order of execution was reversed, edit would not work correctly.
+
+The priority had to be in place so that it is able to handle cases where all prefixes are present during execution, 
+since `ArgumentMultimap` only maps the prefixes to a list but is unable to hold any information about specific ordering
+of prefixes
+
+This logic is only important when user is adding/removing a same skill (or module), which act as a safety net for users
+using edit command in a poor way.
+
 
 [Scroll back to top](#table-of-contents)
 

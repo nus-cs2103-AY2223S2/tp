@@ -16,13 +16,7 @@ end box
 [-> LogicManager : execute("edit c/2 s+/python")
 activate LogicManager
 
-LogicManager -> Model : getProtagonist()
-activate Model
-
-Model --> LogicManager : protagonist
-deactivate Model
-
-LogicManager -> CodocParser : parseCommand("edit c/2 s+/python", protagonist)
+LogicManager -> CodocParser : parseCommand("edit c/2 s+/python")
 activate CodocParser
 
 create EditCommandParser
@@ -39,16 +33,16 @@ create EditCommand
 EditCommandParser -> EditCommand
 activate EditCommand
 
-EditCommand --> EditCommandParser : d
+EditCommand --> EditCommandParser : EditCommand
 deactivate EditCommand
 
-EditCommandParser --> CodocParser : d
+EditCommandParser --> CodocParser : EditCommand
 deactivate EditCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 EditCommandParser -[hidden]-> CodocParser
 destroy EditCommandParser
 
-CodocParser --> LogicManager : d
+CodocParser --> LogicManager : EditCommand
 deactivate CodocParser
 
 LogicManager -> EditCommand : execute()
