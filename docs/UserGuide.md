@@ -214,7 +214,7 @@ overrides *Mycelium*. So we end up with a project named *Desktop*.
 
 ## Managing Clients
 
-This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command line arguments in Mycelium.
+This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command in Mycelium.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
