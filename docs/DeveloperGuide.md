@@ -393,12 +393,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 1a. New event added duplicate of recent deleted event.
-    * 1a1. System shows an error message.<br>
-      Use case ends.
 
-* 1b. Undo is the first command given to the scheduler.
-    * 1b1. System shows an error message.<br>
+* 1a. Undo is the first command given to the scheduler.
+    * 1a1. System shows an error message.<br>
       Use case ends.
 
 </details>
