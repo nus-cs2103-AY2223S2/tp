@@ -522,7 +522,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User chooses to retrieve patient’s information..
 2. MC retrieves the patient’s information
 3. MC displays the patient information that was retrieved..
-   Use case ends.
+   
+    Use case ends.
 
 **Extensions**
 
@@ -551,7 +552,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User choose to delete patient information.
 2. MC request for the patient's nric number.
 3. User enters the requested details
-4. MC displays the confirmation of the deleted patient.
+4. MC displays the confirmation of the deleted patient..
+
    Use case ends.
 
 **Extensions**
@@ -592,47 +594,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User chooses to book patient’s information..
+1. User chooses to book patient’s appointment..
 2. MC requests for details of the information..
 3. User enters the requested details..
-4. MC displays the appointment information for the patient and the doctor..
-   Use case ends.
+4. MC displays the updated appointment information for the patient and the doctor.
+   
+    Use case ends.
 
 **Extensions**
-* 3a. MC detects that the patient already has an appointment scheduled for that appointment slot.
-  * 3a1. MC informs the user that the appointment has been booked
-  * 3a2. User enters another appointment slot.
-  Steps 3a1-3a2 are repeated until the data entered are correct.
-  Use case resumes from step 4.
-* 3b. MC detects that the doctor has already scheduled an appointment with another patient at this particular time slot.
-  * 3b1. MC informs the user that the appointment has been booked
-  * 3b2. User enters another appointment slot.
-      Steps 3b1-3b2 are repeated until the data entered are correct.
-      Use case resumes from step 4.
-* 3c. MC detects that the patient's nric does not exist.
-  * 3c1. MC informs the user that the patient's nric is invalid
-  * 3c2. User enters another patient nric
-    Steps 3c1-3c2 are repeated until the data entered are correct.
+* 4a. MC detects that the patient already has an appointment scheduled for that appointment slot.
+
+  * 4a1. MC informs the user that the appointment has been booked
+  
+  * 4a2. User enters another appointment slot.
+  
+    Steps 4a1-4a2 are repeated until the data entered are correct.
+  
     Use case resumes from step 4.
-* 3d. MC detects that the doctor's nric does not exist.
-    * 3d1. MC informs the user that the doctor's nric is invalid
-    * 3d2. User enters another doctor nric
-      Steps 3d1-3d2 are repeated until the data entered are correct.
+  
+* 4b. MC detects that the doctor has already scheduled an appointment with another patient at this particular time slot.
+  
+  * 4b1. MC informs the user that the appointment has been booked
+  
+  * 4b2. User enters another appointment slot. 
+  
+    Steps 4b1-4b2 are repeated until the data entered are correct. 
+  
+    Use case resumes from step 4.
+
+* 4c. MC detects that the patient's nric does not exist.
+  
+  * 4c1. MC informs the user that the patient's nric is invalid
+  
+  * 4c2. User enters another patient nric
+  
+    Steps 4c1-4c2 are repeated until the data entered are correct. 
+  
+    Use case resumes from step 4.
+  
+* 4d. MC detects that the doctor's nric does not exist.
+  
+    * 4d1. MC informs the user that the doctor's nric is invalid
+  
+    * 4d2. User enters another doctor nric 
+  
+      Steps 4d1-4d2 are repeated until the data entered are correct.
+
       Use case resumes from step 4.
 
 **Use case: UC05 - Cancel patient's appointment**
 
-**Actor: Doctor**
+**Actor: Healthcare administrator**
 
 **MSS**
 
-1. User chooses to retrieve patient’s information..
-2. MC retrieves the patient’s information
-3. MC displays the patient information that was retrieved..
-   Use case ends.
+1. User chooses to cancel patient’s appointment..
+2. MC requests for details of the information..
+3. User enters the requested details..
+4. MC displays the updated appointment information for the patient and the doctor. 
+   
+    Use case ends.
 
 **Extensions**
 
+* 5a. MC detects that an invalid index is entered.
+  
+    * 5a1. MC informs the user that the specified index is invalid
+  
+    * 5a2. User enters another index.
+    
+      Steps 5a1-5a2 are repeated until the data entered are correct. 
+
+      Use case resumes from step 4. 
+
+* 5b. MC detects that the patient's nric does not exist.
+  
+    * 5b1. MC informs the user that the patient's nric is invalid
+  
+    * 5b2. User enters another patient nric
+  
+      Steps 5b1-5b2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
