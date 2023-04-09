@@ -13,7 +13,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.commons.util.FileUtil;
-import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
