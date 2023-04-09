@@ -12,7 +12,7 @@ import seedu.address.logic.commands.cardcommands.ShowCardsCommand;
 import seedu.address.logic.commands.deckcommands.ShowDecksCommand;
 import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.logic.commands.reviewcommands.EndReviewCommand;
-import seedu.address.logic.commands.reviewcommands.FlipCardCommand;
+import seedu.address.logic.commands.reviewcommands.FlipCardCommandTest;
 import seedu.address.logic.commands.reviewcommands.NextCardCommand;
 import seedu.address.logic.commands.reviewcommands.PreviousCardCommand;
 import seedu.address.logic.commands.reviewcommands.TagEasyCommand;
@@ -133,7 +133,7 @@ public class MasterDeckParserTest {
 
         assertEquals(new EndReviewCommand(), parser.parseCommandInReviewMode("endReview"));
 
-        assertEquals(new FlipCardCommand(), parser.parseCommandInReviewMode("p"));
+        assertEquals(new FlipCardCommandTest(), parser.parseCommandInReviewMode("p"));
         assertEquals(new TagEasyCommand(), parser.parseCommandInReviewMode("l"));
         assertEquals(new PreviousCardCommand(), parser.parseCommandInReviewMode("["));
         assertEquals(new NextCardCommand(), parser.parseCommandInReviewMode("]"));
