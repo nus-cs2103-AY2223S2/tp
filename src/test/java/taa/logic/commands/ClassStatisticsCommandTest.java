@@ -67,15 +67,10 @@ public class ClassStatisticsCommandTest {
             Assertions.fail("ModelManager::deleteAssignment failed: " + e.getMessage());
         }
 
-        //cleanup -- delete submissions
-        Student student1 = testModel.getFilteredStudentList().get(0);
-        Student student3 = testModel.getFilteredStudentList().get(2);
-        Student student5 = testModel.getFilteredStudentList().get(4);
-        Student student7 = testModel.getFilteredStudentList().get(6);
-        student1.deleteSubmission(student1.getLatestSubmission());
-        student3.deleteSubmission(student3.getLatestSubmission());
-        student5.deleteSubmission(student5.getLatestSubmission());
-        student7.deleteSubmission(student7.getLatestSubmission());
+        testModel.deleteStudentSubmission(testModel.getFilteredStudentList().get(0));
+        testModel.deleteStudentSubmission(testModel.getFilteredStudentList().get(2));
+        testModel.deleteStudentSubmission(testModel.getFilteredStudentList().get(4));
+        testModel.deleteStudentSubmission(testModel.getFilteredStudentList().get(6));
     }
 
     @Test
@@ -120,6 +115,18 @@ public class ClassStatisticsCommandTest {
         CommandTestUtil.assertCommandFailure(displayGradesChartCommand,
             emptyClassListModel,
             ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
+
+        // cleanup -- delete assignment
+        try {
+            testModel.deleteAssignment("test2");
+        } catch (Exception e) {
+            Assertions.fail("ModelManager::deleteAssignment failed: " + e.getMessage());
+        }
+
+        testModel.deleteStudentSubmission(testModel.getFilteredStudentList().get(0));
+        testModel.deleteStudentSubmission(testModel.getFilteredStudentList().get(2));
+        testModel.deleteStudentSubmission(testModel.getFilteredStudentList().get(4));
+        testModel.deleteStudentSubmission(testModel.getFilteredStudentList().get(6));
     }
 
     @Test
