@@ -1,0 +1,19 @@
+@startuml
+
+start
+
+:User types in text into CLI input \n              and press enter;
+:SocketParser parses text;
+if () then ([is valid command] )
+  :Argument is given to command parser \n         for that Command to parse;
+  if () then ([is valid arguments] )
+    :Command object is returned\n               & executed;
+  else ( [else])
+    :Throws ParseException;
+  endif
+else ( [else])
+  :Throws ParseException;
+endif
+
+stop
+@enduml
