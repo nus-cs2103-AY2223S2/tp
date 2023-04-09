@@ -133,6 +133,26 @@ The `Model` component,
 
 </div>
 
+# Person
+{add diagram}
+
+* The `Person` object under the `Model` component, stores information of a generic person 
+* A `Person` object extends a `Patient` or a `Doctor`, which stores information specific to a patient and a doctor respectively
+* Note that only the `Nric` uniquely identifies each `Person`
+
+# Appointment
+{add diagram}
+
+* The `Appointment` object is stored within the `Appointment` package, under the `Model` component.
+* Stores the required information of an appointment, including patient's `Nric`, `Booking`, and doctor's `Nric`
+  * Note that the patient's `Nric` and doctor's `Nric` has to exist in `MediConnect`
+
+# Prescription
+{add diagram}
+
+* The `Prescription` object is stored within the `Prescription` package, under the `Model` component.
+* Stores the required information of a prescription, including `Cost`, and `Medication`
+    * Note that `Prescription` can only be created for an existing `Patient` in `MediConnect`
 
 ### Storage component
 
@@ -203,15 +223,14 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
     * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
 
 
-### Adding an appointment
+### Appointment feature
 
-The add appointment mechanism is facilitated by the `Appointment` package, which is packaged within `Model`.
+* `Appointment` represents a scheduled meeting between a `Patient` and a `Doctor`. When a `Patient` is scheduled an appointment with a `Doctor`, that corresponding `Doctor` will have an appointment scheduled with that particular `Patient`. Each `Appointment` consists of the following:
+  * Patient's `Nric` of the `Patient` scheduled for an appointment
+  * `Booking` consisting the date of the appointment
+  * Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
 
-`Appointment` represents a scheduled meeting between a `Patient` and a `Doctor`. When a `Patient` is scheduled an appointment with a `Doctor`, that corresponding `Doctor` will have an appointment scheduled with that particular `Patient`. Each `Appointment` consists of the following:
-* Patient's `Nric` of the `Patient` scheduled for an appointment
-* `Booking` consisting the date of the appointment
-* Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
-
+The sequence diagram below shows how the AppointmentCommand is parsed:
 {add a sequence diagram}
 
 Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
@@ -221,6 +240,9 @@ Scenario: Mary Smith is an outpatient (already registered in the system) due for
 Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `appointment ic/S1234567X d/01-02-2023 10:00 dric/S7654321R` command to add an appointment for Mary Smith at the specified date, with Dr Paul West. This adds an `Appointment` to Mary, an`Appointment` to Dr. Paul, and an `Appointment` to the `HospitalAppointmentList`. The successful execution of the command confirms that both Mary Smith does not have any prior booking on this date and that Dr. Paul West is not scheduled to meet any other patients on the same date.
 
 {add a object diagram}
+
+The sequence diagram below shows the AppointmentCommand works:
+{add a sequence diagram}
 
 ### \[Proposed\] Deleting an appointment
 
