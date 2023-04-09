@@ -25,7 +25,7 @@ import seedu.modtrek.model.module.Module;
 public class TypicalModules {
 
     public static final Module CS2100 = new ModuleBuilder().withCode("CS2100")
-            .withGrade("A").withSemYear("Y1S2")
+            .withGrade("A-").withSemYear("Y1S2")
             .withCredit("4")
             .withTags("COMPUTER SCIENCE FOUNDATION").build();
     public static final Module ST2334 = new ModuleBuilder().withCode("ST2334")
@@ -33,7 +33,7 @@ public class TypicalModules {
             .withSemYear("Y1S2").withCredit("4")
             .withTags("MATHEMATICS AND SCIENCES").build();
     public static final Module MA1521 = new ModuleBuilder().withCode("MA1521").withCredit("4")
-            .withSemYear("Y1S1").withGrade("A").build();
+            .withSemYear("Y1S1").withGrade("A-").build();
     public static final Module CS1231 = new ModuleBuilder().withCode("CS1231").withCredit("4")
             .withSemYear("Y1S1").withGrade("A+").withTags("COMPUTER SCIENCE FOUNDATION").build();
     public static final Module GEA1000 = new ModuleBuilder().withCode("GEA1000").withCredit("4")
@@ -48,6 +48,25 @@ public class TypicalModules {
             .withSemYear("Y1S2").withGrade("A").build();
     public static final Module CS2040S = new ModuleBuilder().withCode("CS2040S").withCredit("4")
             .withSemYear("Y1S2").withGrade("B+").build();
+    public static final Module CS2109S = new ModuleBuilder().withCode("CS2109S")
+            .withCredit("4")
+            .withSemYear("Y2S1")
+            .withGrade("A")
+            .withTags("COMPUTER SCIENCE FOUNDATION")
+            .build();
+    public static final Module CS2102 = new ModuleBuilder().withCode("CS2102")
+            .withCredit("4")
+            .withSemYear("Y2S1")
+            .withGrade("A-")
+            .withTags("COMPUTER SCIENCE BREADTH AND DEPTH")
+            .build();
+    public static final Module CS2103T = new ModuleBuilder().withCode("CS2103T")
+            .withCredit("4")
+            .withSemYear("Y2S2")
+            .withGrade("A+")
+            .withTags("COMPUTER SCIENCE FOUNDATION", "COMPUTER SCIENCE BREADTH AND DEPTH")
+            .build();
+
 
     // Manually added - Module's details found in {@code CommandTestUtil}
     public static final Module CS1101S = new ModuleBuilder().withCode(VALID_CODE_CS1101S)

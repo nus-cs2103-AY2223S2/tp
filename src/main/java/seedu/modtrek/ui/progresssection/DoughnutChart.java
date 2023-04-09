@@ -131,7 +131,7 @@ public class DoughnutChart extends PieChart {
             doughnutCenterLabel = new StackPane(innerCircle, labels);
         } else {
             Text invalid = new Text("INVALID MODULES");
-            invalid.setStyle("-fx-fill: -white;");
+            invalid.setStyle("-fx-fill: -teal;");
             invalid.getStyleClass().add("h3");
 
             Text helpText = new Text("Input `view progress`\nto find out more!");
@@ -325,7 +325,7 @@ public class DoughnutChart extends PieChart {
 
         double accCredits = 0;
 
-        double fullAngle = 2 * Math.PI;
+        final double fullAngle = 2 * Math.PI;
 
         Map<String, Integer> totalCreditsMap = degreeProgressionData.getTotalRequirementCredits();
 
