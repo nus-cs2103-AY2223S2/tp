@@ -369,7 +369,21 @@ To learn more about CalendarFX, you may visit its Developer Guide [here](https:/
 
 The `stats` command displays useful statistics based on `Internship` and `Event` data.
 
-**Implementation**
+#### Design considerations:
+
+**Aspect: How statistics are generated and used:**
+
+* **Alternative 1 (current choice):** Separate `Statistics` class. `Statistics` parses lists of `Internship` and `Event` to create specified `Datapoint` fields.
+  The `Statistics` is then passed into the `CommandResult`.
+    * Pros: Allows for easy expansion for more kinds of statistics to be shown by adding more `Datapoint` fields in `Statistics`.
+    * Cons: Difficult to implement.
+
+* **Alternative 2:** `StatsCommand` parses the lists of `Internship` and `Event` to create list of `Datapoint`.
+  The list of `Datapoint` is then passed into `CommandResult`.
+    * Pros: Easy to implement.
+    * Cons: Difficult to expand to add more kinds of statistics.
+
+#### Implementation
 
 The `stats` command is a standard command that extends `Comand` and returns a `CommandResult` in the `execute()` methods, which does the following:
 
@@ -392,20 +406,6 @@ Step 5. Finally, a `CommandResult` is created containing that `Statistics` insta
 The following sequence diagram shows how the `stats` command works:
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
-
-#### Design considerations:
-
-**Aspect: How statistics are generated and used:**
-
-* **Alternative 1 (current choice):** Separate `Statistics` class. `Statistics` parses lists of `Internship` and `Event` to create specified `Datapoint` fields.
-  The `Statistics` is then passed into the `CommandResult`.
-    * Pros: Allows for easy expansion for more kinds of statistics to be shown by adding more `Datapoint` fields in `Statistics`.
-    * Cons: Difficult to implement.
-
-* **Alternative 2:** `StatsCommand` parses the lists of `Internship` and `Event` to create list of `Datapoint`.
-  The list of `Datapoint` is then passed into `CommandResult`.
-    * Pros: Easy to implement.
-    * Cons: Difficult to expand to add more kinds of statistics.
 
 
 ### View all clashing `Event`: `clash` command
@@ -661,7 +661,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to view all clashes of internship Event dates.
-2.  AddressBook shows a list of dates that have clashes and the Events that clashed.
+2.  TinS shows a list of dates that have clashes and the Events that clashed.
 
     Use case ends.
 
@@ -710,7 +710,7 @@ testers are expected to do more <b>exploratory</b> testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample internships. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -718,8 +718,6 @@ testers are expected to do more <b>exploratory</b> testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting an Internship
 
@@ -736,13 +734,4 @@ testers are expected to do more <b>exploratory</b> testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
