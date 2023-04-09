@@ -20,29 +20,30 @@ With basic commands like `add`, `delete`, `edit`, and special commands like `ale
 
 Table of Contents
 * [1. Quick start](#1-quick-start)
-* [2. Introducing a Task](#2-a-task-in-clock-work)
-* [3. Features and commands](#3-features-and-commands)
-  * [3.1 add](#31-adding-a-task--add)
-  * [3.2 edit](#32-editing-a-task--edit)
-  * [3.3 delete](#33-deleting-a-task--delete)
-  * [3.4 list](#34-listing-all-tasks--list)
-  * [3.5 sort](#35-sorting-tasks--sort)
-  * [3.6 find](#36-locating-tasks-by-name--find)
-  * [3.7 stats](#37-getting-statistics--stats)
-  * [3.8 alert](#38-get-alerts--alert-alert-window)
-  * [3.9 schedule](#39-schedule-of-the-day--schedule-dshortdate-eeffort)
-  * [3.10 subsection](#310-subsections)
-    * [3.10.1 subsection](#3101-adding-a-subsection-to-a-task--subsection)
-    * [3.10.2 remove-subsection](#3102-deleting-a-subsection-from-a-task--remove-subsection)
-  * [3.11 help](#311-viewing-help--help)
-  * [3.12 clear](#312-clearing-all-entries--clear)
-  * [3.13 exit](#313-exiting-the-program--exit)
-* [4. Storage](#4-storage)
-  * [4.1 saving the data](#41-saving-the-data)
-  * [4.2 editing the data](#42-editing-the-data-file)
-* [5. FAQ](#5-faq)
-* [6. Command summary](#6-command-summary)
-* [7. Glossary](#7-glossary)
+* [2. The GUI of Clock-Work](#2-the-gui-of-clock-work)
+* [3. Introducing a Task](#3-a-task-in-clock-work)
+* [4. Features and commands](#4-features-and-commands)
+  * [4.1 add](#41-adding-a-task--add)
+  * [4.2 edit](#42-editing-a-task--edit)
+  * [4.3 delete](#43-deleting-a-task--delete)
+  * [4.4 list](#44-listing-all-tasks--list)
+  * [4.5 sort](#45-sorting-tasks--sort)
+  * [4.6 find](#46-locating-tasks-by-name--find)
+  * [4.7 stats](#47-getting-statistics--stats)
+  * [4.8 alert](#48-get-alerts--alert-alert-window)
+  * [4.9 schedule](#49-schedule-of-the-day--schedule-dshortdate-eeffort)
+  * [4.10 subsection](#410-subsections)
+    * [4.10.1 subsection](#4101-adding-a-subsection-to-a-task--subsection)
+    * [4.10.2 remove-subsection](#4102-deleting-a-subsection-from-a-task--remove-subsection)
+  * [4.11 help](#411-viewing-help--help)
+  * [4.12 clear](#412-clearing-all-entries--clear)
+  * [4.13 exit](#413-exiting-the-program--exit)
+* [5. Storage](#5-storage)
+  * [5.1 saving the data](#51-saving-the-data)
+  * [5.2 editing the data](#52-editing-the-data-file)
+* [6. FAQ](#6-faq)
+* [7. Command summary](#7-command-summary)
+* [8. Glossary](#8-glossary)
 
 If you like our product and want to contribute to it, consider looking at the [Developer Guide](DeveloperGuide.md) instead.
 
@@ -80,7 +81,23 @@ If you like our product and want to contribute to it, consider looking at the [D
 9. Refer to the [Features and Commands](#2-features-and-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 2. A Task in Clock-Work
+## 2. The GUI of Clock-Work
+
+Now that you've opened up the app, let's start by introducing you to the basic GUI of Clock-Work.
+
+### Basic Information about the GUI
+* The GUI is made up of 4 primary components:
+  * The **Command Box**, where commands are typed in.
+  * The **Result Display**, where the result messages of commands is displayed. 
+  * The **Task List Panel**, where you can view your tasks.
+  * The **Alert Panel**, where your upcoming tasks are displayed.
+
+This is a visual breakdown of the different components in the GUI.
+
+![Ui](images/UiBreakdown.png)
+
+--------------------------------------------------------------------------------------------------------------------
+## 3. A Task in Clock-Work
 
 The life of a student is busy, but also vibrant and filled with a variety of activities. Clock-Work helps students manage their diverse task-management needs by supporting 3 types of tasks.
 
@@ -115,7 +132,7 @@ This is what each component mean:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Features and Commands
+## 4. Features and Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -157,7 +174,7 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 </div>
 
-### 3.1 Adding a task : `add`
+### 4.1 Adding a task : `add`
 
 :man_technologist: **Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task!**
 
@@ -192,7 +209,7 @@ Add multiple tasks with the same parameters except for name with this command:`a
 :bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q10-why-does-two-different-tags-have-the-same-tag-color)
 
 
-### 3.2 Editing a task : `edit`
+### 4.2 Editing a task : `edit`
 
 :man_technologist: **Hmm, have a task that you want to modify but find that it takes too much effort to create and delete a task? Try this command.**
 
@@ -217,7 +234,7 @@ Examples:
 e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 
-### 3.3 Deleting a task : `delete`
+### 4.3 Deleting a task : `delete`
 
 :man_technologist: **Congratulations! You have completed a task. Now, you can remove it by using this command.**
 
@@ -236,7 +253,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 
-### 3.4 Listing all tasks : `list`
+### 4.4 Listing all tasks : `list`
 
 :man_technologist: **Want to have an overview of all your tasks? Try this!**
 
@@ -247,7 +264,7 @@ Format: `list`
 :bulb: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
 
 
-### 3.5 Sorting tasks : `sort`
+### 4.5 Sorting tasks : `sort`
 
 :man_technologist: **Is the displayed list too messy for your liking? Sort is here to help.**
 
@@ -274,7 +291,7 @@ Sorts the list using the following format:
 Format: `sort`
 
 
-### 3.6 Locating tasks by name : `find`
+### 4.6 Locating tasks by name : `find`
 
 :man_technologist: **Oops! Are you unable to locate a task? Try find.**
 
@@ -308,7 +325,7 @@ Examples:
 e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return a list with only the latter task.
 
 
-### 3.7 Getting statistics : `stats`
+### 4.7 Getting statistics : `stats`
 
 :man_technologist: **Some statistics will do no harm. Stats is here to help you visualise your tasks in numbers!**
 
@@ -317,12 +334,12 @@ Prints the top 10 tags (if applicable) and its corresponding number of occurrenc
 Format: `stats`
 
 
-### 3.8 Get alerts : `alert [ALERT WINDOW]`
+### 4.8 Get alerts : `alert [ALERT WINDOW]`
 
 :man_technologist: **Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!**
 
-Displays in the tasks that fall within the window specified on the right panel. If not supplied, assumed to be 24 hours.
 On opening of app, the **alert panel** will open to show **Tasks** which **start or have deadlines** within the **latest** window specified.
+Displays in the tasks that fall within the window specified in the **Alert Panel**. If not supplied, assumed to be 24 hours.
 Have to specify `ALERT WINDOW` in hours and only integers.
 
 Examples:
@@ -330,7 +347,7 @@ Examples:
 - `alert` alone will show the alert window with all tasks which **start or end** within 24 hours.
 
 
-### 3.9 Schedule of the day : `schedule D/SHORTDATE [E/EFFORT]`
+### 4.9 Schedule of the day : `schedule D/SHORTDATE [E/EFFORT]`
 
 :man_technologist: **Wouldn't it be great if you can have your life planned out for you? Schedule can help!**
 
@@ -375,11 +392,11 @@ Examples:
 - Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
 - `schedule D/2023-04-02` will show tasks which should be completed on April 2, 2023, based on a previously generated schedule (which should be generated between 3 Mar 2023, and 2 Apr 2023).
 
-## 3.10 Subsections
+## 4.10 Subsections
 
 :man_technologist: **Have a task that is really long? Want to organise it in smaller sections? Why not use subsection?**
 
-### 3.10.1 Adding a Subsection to a Task : `subsection`
+### 4.10.1 Adding a Subsection to a Task : `subsection`
 
 Adds a subsection to a task in the task book. The subsection added will appear as in the corresponding task's task card.
 You can do so by entering `subsection index n/name d/description`, and the description prefix `d/` is optional.
@@ -387,7 +404,7 @@ You can do so by entering `subsection index n/name d/description`, and the descr
 Examples:
 - Assuming your current task list has a task with index 1, `subsection 1 n/homework d/Math` will add a subsection to the main task at index 1 with a subsection with the name "homework" and description "Math".
 
-### 3.10.2 Deleting a Subsection From a Task : `remove-subsection`
+### 4.10.2 Deleting a Subsection From a Task : `remove-subsection`
 
 Deletes a subsection from a task, assuming you have one in the task. You can do so by entering `remove-subsection index I/subsection index`, where the first index is the main task's index, and the latter is the subsection's.
 
@@ -395,7 +412,7 @@ Examples:
 - Assuming your current task list has a task with index 1, which in turn contains a subsection with index 1. You can delete it with `remove-subsection 1 I/1`. The newly updated task will be shown.
 
 
-### 3.11 Viewing help : `help`
+### 4.11 Viewing help : `help`
 
 :man_technologist: **For the beginner user who is still unfamiliar with the commands. Welcome!**
 
@@ -406,13 +423,13 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### 3.12 Clearing all entries : `clear`
+### 4.12 Clearing all entries : `clear`
 
 Clears all entries from the task book.
 
 Format: `clear`
 
-### 3.13 Exiting the program : `exit`
+### 4.13 Exiting the program : `exit`
 
 :man_technologist: **We hope to see you again!**
 
@@ -420,13 +437,13 @@ Exits the program.
 
 Format: `exit`
 
-## 4. Storage
+## 5. Storage
 
-### 4.1 Saving the data
+### 5.1 Saving the data
 
 TaskBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 4.2 Editing the data file
+### 5.2 Editing the data file
 
 TaskBook data are saved as a JSON file `[JAR file location]/data/taskbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -434,13 +451,13 @@ TaskBook data are saved as a JSON file `[JAR file location]/data/taskbook.json`.
 If your changes to the data file make its format invalid, taskBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### 4.3 Archiving data files `[coming in v2.0]`
+### 5.3 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. FAQ
+## 6. FAQ
 
 ### Q1 How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
@@ -475,9 +492,10 @@ _Details coming soon ..._
 
 ### Q11 What is a free day?
 **A**: The sum of allocated effort in a free day does not exceed the user preferred workload.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 7. Command summary
 <table>
     <thead>
         <tr>
@@ -643,7 +661,7 @@ _Details coming soon ..._
     </tbody>
 </table>
 
-## 7. Glossary
+## 8. Glossary
 1. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
 2. Long date: Date in the format YYYY-MM-DD HHMM.
 3. Short date: Date in the format YYYY-MM-DD.
