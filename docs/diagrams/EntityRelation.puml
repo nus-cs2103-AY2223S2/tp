@@ -16,3 +16,4 @@ Service : int id
 Appointment : int id
 Technician : int id
 @enduml
+

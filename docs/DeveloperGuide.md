@@ -682,7 +682,7 @@ Use case ends.
 
 * 1a. Previous command was `add`, `edit` or `delete` and user tries to undo.
 
-    * 1a1. System will not the previous command and displays an error message.  
+    * 1a1. System will not the previous command and displays an error message.
       Use case ends.
 
 **Use case: UC35 - Redo previous command**
@@ -693,7 +693,7 @@ Use case ends.
 
 **Extensions**
 - 1a. There is no command to redo.
-    - 3a1. System displays an error message.  
+    - 3a1. System displays an error message.
       Use case ends.
 
 **Use case: UC36 - Exiting the application**
@@ -777,3 +777,4 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
