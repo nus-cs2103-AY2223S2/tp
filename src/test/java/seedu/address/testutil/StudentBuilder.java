@@ -36,7 +36,6 @@ public class StudentBuilder {
     public static final String DEFAULT_RELATIONSHIP = "Father";
     public static final String DEFAULT_ADDRESS = "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)";
     public static final String DEFAULT_AGE = "14";
-    public static final String DEFAULT_IMAGESTUDENT = "Insert student image here!";
     public static final String DEFAULT_IMAGEPARENT = "Insert parent image here!";
     public static final String DEFAULT_PARENTAGE = "41";
     public static final String DEFAULT_STUDENTPHONE = "91234567";

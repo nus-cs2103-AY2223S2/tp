@@ -62,18 +62,18 @@ Given below are my contributions to the project.
   * Managed releases `v1.1` - `v1.4` (6 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull request [\#77](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/77))
-  * Updated parser for each new added command [\#44](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/44)
-  * Provided new StudentCommandParser [\#44](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/44)
+  * Updated the GUI color scheme and implemented images display for students and parents (Pull request [\#77](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/77))
+  * Updated parser for each new added command (Pull request[\#44](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/44))
+  * Provided new StudentCommandParser (Pull request [\#44](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/44))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `student add`, `student comment`, `student find`, `student grade`, `student gradedelete`, `student list`, `list` [\#128](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/128)
-    * Added documentation for `Command Summary` [\#128](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/128)
-    * Enhanced documentation for `help` feature [\#128](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/128)
-    * Added hyperlinks to abbreviations [\#128](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/128)
+    * Added documentation for the features `student add`, `student comment`, `student find`, `student grade`, `student gradedelete`, `student list`, `list` (Pull request [\#128](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/128))
+    * Added documentation for `Command Summary` (Pull request [\#128](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/128))
+    * Enhanced documentation for `help` feature (Pull request [\#128](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/128))
+    * Added hyperlinks to abbreviations (Pull request [\#128](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/128))
   * Developer Guide:
-    * Added implementation details of the `grade` feature. [\#110](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/110)
+    * Added implementation details of the `grade` feature. (Pull request [\#110](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/110))
 
 * **Review Contributions during team project**:
   * PRs reviewed and merged: 34 <br><br>

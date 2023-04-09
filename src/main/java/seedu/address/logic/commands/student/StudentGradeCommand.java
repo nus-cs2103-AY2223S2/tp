@@ -89,18 +89,163 @@ public class StudentGradeCommand extends StudentCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Student> lastShownList =
-                model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
-        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
-            if (model.getPcClass().getClassList().get(i).getClassName().equals(sc.getClassName())) {
-                lastShownList = model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
-                break;
-            }
-        }
-        Student studentToEdit = null;
+        List<Student> lastShownList = getClassList(model);
         if (lastShownList.size() == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
+        Student studentToEdit = getStudentToEdit(lastShownList);
+        if (this.homework != null) {
+            Set<Homework> homeworkSet = studentToEdit.getHomework();
+            Set<Homework> homeworkSetReplaced = generateHomeWorkSet(homeworkSet);
+            int weightage = getHomeWorkWeightage(homeworkSetReplaced);
+            checkHomeworkWeightage(weightage, homework);
+            homeworkSetReplaced.add(homework);
+            Student editedStudent = generateHomeworkNewStudent(studentToEdit, homeworkSetReplaced);
+            model.setStudent(studentToEdit, editedStudent);
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+            return new CommandResult(MESSAGE_SUCCESSHOMEWORK);
+        } else {
+            Set<Test> testSet = studentToEdit.getTest();
+            Set<Test> testSetReplaced = generateTestSet(testSet);
+            int weightage = getTestWeightage(testSetReplaced);
+            checkTestWeightage(weightage, test);
+            testSetReplaced.add(test);
+            Student editedStudent = generateTestNewStudent(studentToEdit, testSetReplaced);
+            model.setStudent(studentToEdit, editedStudent);
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+            return new CommandResult(MESSAGE_SUCCESSTEST);
+        }
+    }
+
+    /**
+     * Check if test weightage is more than 100
+     * @param currWeightage
+     * @param test
+     * @throws CommandException
+     */
+    public void checkTestWeightage(int currWeightage, Test test) throws CommandException {
+        if (currWeightage + test.getWeightage() > 100) {
+            throw new CommandException(Messages.MESSAGE_INVALID_WEIGHTAGE);
+        }
+    }
+    /**
+     * Check if homework weightage is more than 100
+     * @param currWeightage
+     * @param homework
+     * @throws CommandException
+     */
+    public void checkHomeworkWeightage(int currWeightage, Homework homework) throws CommandException {
+        if (currWeightage + homework.getWeightage() > 100) {
+            throw new CommandException(Messages.MESSAGE_INVALID_WEIGHTAGE);
+        }
+    }
+    /**
+     * Gets the student to be edited
+     * @param studentToEdit
+     * @param testSetReplaced
+     * @return editedStudent
+     * @throws CommandException
+     */
+    public Student generateTestNewStudent(Student studentToEdit, Set<Test> testSetReplaced) throws CommandException {
+        return new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
+                studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
+                studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
+                studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
+                studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
+                studentToEdit.getHomework(), testSetReplaced, studentToEdit.getTags(), studentToEdit.getComment());
+    }
+
+    /**
+     * Gets test weightage
+     * @param testSetReplaced
+     * @return weightage of all tests
+     */
+    public int getTestWeightage(Set<Test> testSetReplaced) {
+        int weightage = 0;
+        for (Test t: testSetReplaced) {
+            if (t.getWeightage() == -100) {
+                continue;
+            }
+            weightage += t.getWeightage();
+        }
+        return weightage;
+    }
+    /**
+     * Generates a new test set without the default homework
+     * @param testSet
+     * @return Set of test
+     */
+    public Set<Test> generateTestSet(Set<Test> testSet) {
+        Set<Test> testSetReplaced = new HashSet<>();
+        testSetReplaced.addAll(testSet);
+        for (Test t: testSetReplaced) {
+            if (t.getName().equals("Insert student test here!")) {
+                testSetReplaced.remove(t);
+                break;
+            }
+        }
+        return testSetReplaced;
+    }
+    /**
+     * Generates a new student with the updated homework set
+     * @param studentToEdit
+     * @param homeworkSetReplaced
+     * @return New student with updated homework
+     */
+    public Student generateHomeworkNewStudent(Student studentToEdit, Set<Homework> homeworkSetReplaced) {
+        return new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
+                studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
+                studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
+                studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
+                studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
+                homeworkSetReplaced, studentToEdit.getTest(), studentToEdit.getTags(), studentToEdit.getComment());
+    }
+
+    /**
+     *  Generates a homework set without the default homework
+     * @param homeworkSet
+     * @return a homework set to be replaced with the new student
+     */
+    public Set<Homework> generateHomeWorkSet(Set<Homework> homeworkSet) {
+        Set<Homework> homeworkSetReplaced = new HashSet<>();
+        homeworkSetReplaced.addAll(homeworkSet);
+        for (Homework hw:homeworkSetReplaced) {
+            if (hw.getName().equals("Insert student homework here!")) {
+                homeworkSetReplaced.remove(hw);
+                break;
+            }
+        }
+        return homeworkSetReplaced;
+    }
+    /**
+     * Returns the homework weightage
+     * @param homeworkSetReplaced
+     * @return homework weightage total
+     */
+    public int getHomeWorkWeightage(Set<Homework> homeworkSetReplaced) {
+        int weightage = 0;
+        for (Homework hw:homeworkSetReplaced) {
+            if (hw.getWeightage() == -100) {
+                continue;
+            }
+            weightage += hw.getWeightage();
+        }
+        return weightage;
+    }
+    /**
+     * Returns the class list of the model
+     * @param model
+     * @return class list of model
+     */
+    public List<Student> getClassList(Model model) {
+        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
+            if (model.getPcClass().getClassList().get(i).getClassName().equals(sc.getClassName())) {
+                return model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
+            }
+        }
+        return model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
+    }
+    public Student getStudentToEdit(List<Student> lastShownList) throws CommandException {
         for (int i = 0; i < lastShownList.size(); i++) {
             Student curr = lastShownList.get(i);
             if (i == lastShownList.size() - 1 && !curr.getIndexNumber().equals(indexNumber)) {
@@ -120,66 +265,11 @@ public class StudentGradeCommand extends StudentCommand {
                         throw new CommandException(Messages.MESSAGE_DUPLICATE_TEST);
                     }
                 }
-                studentToEdit = curr;
-                break;
+                return curr;
             }
 
         }
-        if (this.homework != null) {
-            Set<Homework> homeworkSet = studentToEdit.getHomework();
-            Set<Homework> homeworkSetReplaced = new HashSet<>();
-            homeworkSetReplaced.addAll(homeworkSet);
-            int weightage = 0;
-            for (Homework hw:homeworkSetReplaced) {
-                if (hw.getName().equals("Insert student homework here!")) {
-                    homeworkSetReplaced.remove(hw);
-                    break;
-                }
-                weightage += hw.getWeightage();
-            }
-            if (weightage + homework.getWeightage() > 100) {
-                throw new CommandException(Messages.MESSAGE_INVALID_WEIGHTAGE);
-            }
-            homeworkSetReplaced.add(homework);
-            Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
-                    studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
-                    studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
-                    studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
-                    studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
-                    homeworkSetReplaced, studentToEdit.getTest(), studentToEdit.getTags(), studentToEdit.getComment());
-
-            model.setStudent(studentToEdit, editedStudent);
-            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-
-            return new CommandResult(MESSAGE_SUCCESSHOMEWORK);
-        } else {
-            Set<Test> testSet = studentToEdit.getTest();
-            Set<Test> testSetReplaced = new HashSet<>();
-            testSetReplaced.addAll(testSet);
-            int weightage = 0;
-            for (Test t: testSetReplaced) {
-                if (t.getName().equals("Insert student test here!")) {
-                    testSetReplaced.remove(t);
-                    break;
-                }
-                weightage += t.getWeightage();
-            }
-            if (weightage + test.getWeightage() > 100) {
-                throw new CommandException(Messages.MESSAGE_INVALID_WEIGHTAGE);
-            }
-            testSetReplaced.add(test);
-            Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
-                    studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
-                    studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
-                    studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
-                    studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
-                    studentToEdit.getHomework(), testSetReplaced, studentToEdit.getTags(), studentToEdit.getComment());
-
-            model.setStudent(studentToEdit, editedStudent);
-            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-
-            return new CommandResult(MESSAGE_SUCCESSTEST);
-        }
+        return null;
     }
 
 }

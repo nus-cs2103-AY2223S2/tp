@@ -64,38 +64,45 @@ public class StudentAttendanceCommand extends StudentCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
-        List<Student> lastShownList =
-                model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
-        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
-            if (model.getPcClass().getClassList().get(i).getClassName().equals(sc.getClassName())) {
-                lastShownList = model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
-                break;
-            }
-        }
-        Student studentToEdit = null;
+        List<Student> lastShownList = getStudentList(model);
+
         if (lastShownList.size() == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
-        for (int i = 0; i < lastShownList.size(); i++) {
-            Student curr = lastShownList.get(i);
-            if (i == lastShownList.size() - 1 && !curr.getIndexNumber().equals(indexNumber)) {
+        Student studentToEdit = getStudentToEdit(lastShownList);
 
-                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-            }
-            if (curr.getIndexNumber().equals(indexNumber) && curr.getStudentClass().equals(sc)) {
-                Set<Attendance> attendanceSet = curr.getAttendance();
-                if (attendanceSet.contains(attendance)) {
-                    throw new CommandException(Messages.MESSAGE_DUPLICATE_ATTENDANCE);
-                }
-
-                studentToEdit = curr;
-                break;
-            }
-        }
         if (studentToEdit == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
         Set<Attendance> attendanceSet = studentToEdit.getAttendance();
+        Set<Attendance> attendanceSetReplaced = getAttendanceSet(attendanceSet);
+        Student editedStudent = getEditedStudent(studentToEdit, attendanceSetReplaced);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedStudent));
+    }
+
+    /**
+     * Returns the edited student
+     * @param studentToEdit
+     * @param attendanceSetReplaced
+     * @return Student
+     */
+    public Student getEditedStudent(Student studentToEdit, Set<Attendance> attendanceSetReplaced) {
+        return new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
+                studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
+                studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
+                studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
+                studentToEdit.getCca(), studentToEdit.getAddress(), attendanceSetReplaced,
+                studentToEdit.getHomework(), studentToEdit.getTest(),
+                studentToEdit.getTags(), studentToEdit.getComment());
+    }
+    /**
+     * Returns the attendance set with updated attendance
+     * @param attendanceSet
+     * @return Set of Attendance
+     */
+    public Set<Attendance> getAttendanceSet(Set<Attendance> attendanceSet) {
         Set<Attendance> attendanceSetReplaced = new HashSet<>();
         if (attendance.isAbsent()) {
             LocalDate today = LocalDate.now();
@@ -108,18 +115,47 @@ public class StudentAttendanceCommand extends StudentCommand {
             attendanceSetReplaced.addAll(attendanceSet);
             attendanceSetReplaced.add(attendance);
         }
-        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
-                studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
-                studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
-                studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
-                studentToEdit.getCca(), studentToEdit.getAddress(), attendanceSetReplaced,
-                studentToEdit.getHomework(), studentToEdit.getTest(),
-                studentToEdit.getTags(), studentToEdit.getComment());
-        model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedStudent));
+        return attendanceSetReplaced;
     }
 
+    /**
+     * Returns the student to be edited
+     * @param lastShownList
+     * @return Student
+     * @throws CommandException
+     */
+    public Student getStudentToEdit(List<Student> lastShownList) throws CommandException {
+        Student studentToEdit = null;
+        for (int i = 0; i < lastShownList.size(); i++) {
+            Student curr = lastShownList.get(i);
+            if (i == lastShownList.size() - 1 && !curr.getIndexNumber().equals(indexNumber)) {
+                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            }
+            if (curr.getIndexNumber().equals(indexNumber) && curr.getStudentClass().equals(sc)) {
+                Set<Attendance> attendanceSet = curr.getAttendance();
+                if (attendanceSet.contains(attendance)) {
+                    throw new CommandException(Messages.MESSAGE_DUPLICATE_ATTENDANCE);
+                }
+                studentToEdit = curr;
+                break;
+            }
+        }
+        return studentToEdit;
+    }
+
+    /**
+     * Returns the student list of the class
+     * @param model
+     * @return List of Students
+     */
+    public List<Student> getStudentList(Model model) {
+        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
+            if (model.getPcClass().getClassList().get(i).getClassName().equals(sc.getClassName())) {
+                return model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
+            }
+        }
+        return model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
+    }
     @Override
     public String toString() {
         return super.toString();
