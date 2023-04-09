@@ -13,8 +13,8 @@ Class Description
 
 Meeting *--> Title
 Meeting *--> DateTime
-Meeting *--> "~* attendees\n" Person
-Meeting *--> Location
-Meeting *--> Description
+Meeting *--> "      ~* attendees\n" Person
+Meeting *--> "0..1" Location
+Meeting *--> "0..1   " Description
 
 }
