@@ -2,23 +2,23 @@
 layout: page
 title: Developer Guide
 ---
-## Table of Contents
+## **Table of Contents**
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Introduction to PetPal
+## **Introduction to PetPal**
 PetPal is a desktop application meant for Pet Daycare owners to manage their pet clients. It is optimized for typing
 using the Command Line Interface (CLI) while also having a Graphical User Interface (GUI) to complement its use.
 
-Use of PetPal can be scaled to include pet shelters, groomers or trainers.
+The use of PetPal can be scaled to include pet shelters, groomers or trainers.
 
-PetPal uses Java 11, and can be run on most operating systems that supports Java (e.g. Windows, macOS, Linux)
+PetPal uses Java 11 and can be run on most operating systems that support Java (e.g. Windows, macOS, Linux)
 
 
 
-## About the Developer Guide
+## **About the Developer Guide**
 ### Objectives
 This guide is targeted towards potential developers that would want to contribute to the open-source project - PetPal.
 
@@ -32,9 +32,9 @@ The Design section makes use of various UML diagrams which were created using [P
 
 ### Instructions for use
 #### General formatting conventions
-* Text in [blue](#about-the-developer-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
-* Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text.
-* Text in `code snippets such as this` are used to show inputs and their format.
+* Text in [blue](#about-the-developer-guide) are hyperlinks that direct you to the relevant section of the page or other websites.
+* Text in **bold** is used to emphasize important details to look out for or to distinguish headers from the rest of the text.
+* Text in `code snippets such as this` is used to show inputs and their format.
 
 
 <div markdown="block" class="alert alert-block alert-success">
@@ -89,14 +89,14 @@ to learn how to create and edit diagrams.
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At app launch: Initializes the components in the correct sequence, and connect them up with each other.
+* At shutdown: Shuts down the components and invoke cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -117,13 +117,13 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside components from being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/diagrams/ComponentManagers.png" width="288"  alt=""/>
 
-The sections below give more details of each component.
+The sections below give more details about each component.
 
 ### UI component
 
@@ -133,14 +133,14 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `petListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts is defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `pet` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays a `pet` object residing in the `Model`.
 
 ### Logic component
 
@@ -154,13 +154,13 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `PetPalParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a pet).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/diagrams/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -168,13 +168,13 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/diagrams/ParserClasses.png" width="648" alt=""/>
 
 How the parsing works:
-* When called upon to parse a user command, the `PetPalParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `PetPalParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `PetPalParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create an `XYZCommand` object (e.g., `AddCommand`) which the `PetPalParser` returns as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/diagrams/ModelClassDiagram.png" width="445"  alt=""/>
+<img src="images/diagrams/ModelClassDiagram.png" width="658"  alt=""/>
 
 
 The `Model` component,
@@ -195,10 +195,10 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/diagrams/StorageClassDiagram.png" width="557"  alt=""/>
+<img src="images/diagrams/StorageClassDiagram.png" width="567"  alt=""/>
 
 The `Storage` component,
-* can save both `PetPal` data and user preference data in json format, and read them back into corresponding objects.
+* can save both `PetPal` data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `PetPalStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -218,7 +218,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-The `remind` mechanism is facilitated by the `Deadline`, `RemindCommand`,  classes.
+The `remind` mechanism is facilitated by the `Deadline` and `RemindCommand`,  classes.
 The `Deadline` class has a `deadline` field which is of type `LocalDateTime`. Additionally, it also has a description of type `String`.
 
 'RemindCommand' extends from the abstract class `Command`. It overrides the `Command#execute()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
@@ -228,13 +228,13 @@ Given below is an example usage scenario and how the `remind` mechanism behaves 
 
 Step 1. The user launches the application for the first time.
 
-Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
+Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with a reminder to feed the dog and deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
 
-Step 3. The user may exit and reopen Petpal at a future date. The user intends to see all deadlines that are due soon. The user executes `remind` command to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date. The `remind` command calls the `RemindCommand#execute()` method.
+Step 3. The user may exit and reopen PetPal at a future date. The user intends to see all deadlines that are due soon. The user executes the `remind` command to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date. The `remind` command calls the `RemindCommand#execute()` method.
 
 Step 4. The `RemindCommand#execute()` method calls the `Model#updateFilteredPetList()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
 
-The following sequence diagram shows how the remind operation works:
+The following sequence diagram shows how the `remind` operation works:
 
 ![RemindSequenceDiagram](images/diagrams/RemindSequenceDiagram.png)
 
@@ -244,13 +244,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 
 #### Design Considerations:
-**Choice 1 (Current Choice) : Filter pet list upon command**
+**Choice 1 (Current Choice): Filter pet list upon command**
 * Pros:
-    * User can easily find upcoming deadlines easily.
+    * User can easily find upcoming deadlines.
 * Cons:
     * Counterintuitive since reminders shouldn't need user input to be shown.
 
-**Choice 2 : Alert users of upcoming deadlines upon startup**
+**Choice 2: Alert users of upcoming deadlines upon startup**
 * Pros:
     * User will be reminded of upcoming deadlines upon startup.
 * Cons:
@@ -271,14 +271,14 @@ Step 1. The user launches the application for the first time.
 
 Step 2. The user decides to add a pet to the pet list. The user executes
 `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog -
-2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of
+2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` a with reminder to feed the dog and the deadline of
 `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
 
-Step 3. The user may exit and reopen PetPal at a future date. The user will see how much is the amount due to them as a field in each pet card by their respective owners.
+Step 3. The user may exit and reopen PetPal at a future date. The user will see the amount due to them as a field in each pet card by their respective owners.
 
-Step 4. The amount updates upon clicking on the PetCard on panel, or upon restarting the client.
+Step 4. The amount updates upon clicking on the PetCard on the panel, or upon restarting the client.
 
-The calculator feature is not an additional command, and does not have an activity or sequence diagram.
+The calculator feature is not an additional command and does not have an activity or sequence diagram.
 
 
 
@@ -294,7 +294,7 @@ the `Pet` must exist in the pet list, and the index provided must be a valid ind
 ```text
 Step 1. The user launches the application for the first time
 Step 2. The user decides to archive a pet in the pet list. The user executes `archive 1`
-Step 3. The user can view the archived pets in data/archive.json file
+Step 3. The user can view the archived pets in the data/archive.json file
 ```
 ##### Extensions:
 ```text
@@ -317,13 +317,13 @@ The following **activity diagram** summarizes what happens when a user executes 
 
 #### Current Implementation
 The highlight mechanism is facilitated by the 'PetListPanel', 'Pet', and 'MarkCommand' classes.
-This feature highlight pets that have not been marked and have a deadline within a day in the GUI.
-The highlight feature will be executed automatically every certain time window without user input to support real-time state.
+This feature highlights pets that have not been marked and have a deadline within a day in the GUI.
+The highlight feature will be executed automatically every certain time window without user input to support a real-time state.
 
 #### Given below is an example usage scenario and how the highlight mechanism behaves at each step:
 Step 1. The user launches the application.
 
-Step 2. The user decides to add two pet to the pet list with a deadline due three days later.
+Step 2. The user decides to add two pets to the pet list with a deadline due three days later.
 
 Step 3. The given pet will not be highlighted at this moment.
 
@@ -331,23 +331,23 @@ Step 4. The user decides to mark the first pet as done.
 
 Step 5. The user exit the application and decided to reopen it two days later.
 
-Step 6. The second pet that have not been marked will be highlighted while the first pet will not be highlighted since it was already marked.
+Step 6. The second pet that has not been marked will be highlighted while the first pet will not be highlighted since it was already marked.
 
 The following activity diagram summarizes what happens during the process:
 
 ![HighlightActivityDiagram](images/diagrams/HighlightDiagram.png)
 
-### Design Considerations:
+#### Design Considerations:
 **Aspect: How to reduce human error:**
 
-**Alternative 1 (Current Choice) : Automatically execute the feature every certain period of time**
+**Alternative 1 (Current Choice): Automatically execute the feature after every certain period**
 * Pros:
     * Shows real-time state.
     * Will not show outdated list state.
 * Cons:
-    * Use more memory executing the feature at every period of time.
+    * Uses more memory to execute the feature at every time.
 
-**Alternative 2 : Provide Refresh button to update the pet list**
+**Alternative 2: Provide a Refresh button to update the pet list**
 * Pros:
     * Use less memory since it will be executed only when needed.
 * Cons:
@@ -356,7 +356,7 @@ The following activity diagram summarizes what happens during the process:
 ### **Undo Feature**
 
 #### Current Implementation
-The undo mechanism is facilitated by the `ModelManager`, `UndoCommand`,  classes.
+The undo mechanism is facilitated by the `ModelManager` and `UndoCommand`,  classes.
 The `ModelManager` class is implemented by PetPal and has a `petPalCache` field which is of type`PetPal`.
 
 'UndoCommand' extends from the abstract class `Command`. It overrides the `Command#execute()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
@@ -364,20 +364,20 @@ The `ModelManager` class is implemented by PetPal and has a `petPalCache` field 
 <pre>
 Step 1. The user launches the application for the first time.
 
-Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
+Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with a reminder to feed the dog and deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
 
 Step 3. The user realises that he has made a mistake and executes `undo`.
 
-Step 4. The list displayed returns to previous state without the new Doggo added.
+Step 4. The list displayed returns to the previous state without the new Doggo added.
 </pre>
 ##### Extensions:
 <pre>
 Step 2a. The user decides to delete a pet from the pet list. The user executes `delete 1`.
      2b. The user realises that he has made a mistake and executes `undo`.
-     2c. The list displayed returns to previous state with item 1 that was just deleted.
+     2c. The list displayed returns to the previous state with item 1 which was just deleted.
 </pre>
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagram shows how the `undo` operation works:
 
 ![UndoSequenceDiagram](images/diagrams/UndoSequenceDiagram.png)
 
@@ -386,37 +386,18 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![UndoActivityDiagram](images/diagrams/UndoActivityDiagram.png)
 
 #### Design considerations:
-- **Current implementation** : Before any command, a cache of previous state of archive and petpal is saved
-into a PetPal object. Undo returns the `Archive` and `Model` to this previous saved state.
+- **Current implementation** : Before any command, a cache of the previous state of the archive and PetPal is saved
+into a PetPal object. Undo returns the `Archive` and `Model` to this previously saved state.
   - Pros: Easier to implement
   - Cons: Might be memory inefficient
-
-### \[Proposed\] Importing data from excel (csv)
-
-#### Proposed Implementation
-The proposed importing function is an extension of the base `PetPal`, uses a `CsvToJsonParser` to convert csv data
-to application readable json data.
-
-#### Design considerations:
-- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
-  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
-  for PetPal to be able to read and modify the imported data
-    - Pros: Might be easier to implement
-    - Cons: Might be confusing for users to use (running external script)
-
-- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
-  the data into json format and refreshes the database.
-    - Pros: Easier and more intuitive for users to use
-    - Cons: Builds upon **Alternative 1**, requiring more work to implement
-
 
 ### \[Proposed\] Add medical key information to pet (not shown in UI)
 #### Proposed Implementation
 The proposed function is an extension of the base `PetPal`, uses a `Medical` class to store medical information, and users will be able to input medical information.
 
 #### Design considerations:
-- **Alternative 1 (current choice)** : Store information such as vaccination information all in the Medical Class
-  Users will only be able to access if they type in keyword such as "vaccination" or "vaccine" followed by their password
+- **Alternative 1 (current choice)** : Store information such as vaccination information in the Medical Class
+  Users will only be able to access it if they type in a keyword such as "vaccination" or "vaccine" followed by their password
   which they will have to set at the start of the application.
     - Pros: Provides a way for users to store medical information without having to worry about it being shown in the UI
     - Cons: Might be hard for users to remember the password
@@ -425,23 +406,24 @@ The proposed function is an extension of the base `PetPal`, uses a `Medical` cla
     - Pros: Easier and more intuitive for users to use
     - Cons: Not secure, anyone can see the information
 
-### \[Proposed\] Importing data from excel (csv)
+### \[Proposed\] Importing data from Excel (CSV)
 
 #### Proposed Implementation
-The proposed importing function is an extension of the base `PetPal`, uses a `CsvToJsonParser` to convert csv data
-to application readable json data.
+The proposed importing function is an extension of the base `PetPal` and uses a `CsvToJsonParser` to convert CSV data
+to application readable JSON data.
 
 #### Design considerations:
-- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
-  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
+- **Alternative 1 (current choice)**: Write an external script that parses the CSV data based on the column names
+  into a JSON save file that works with PetPal, which they will then put into the data file before starting PetPal
   for PetPal to be able to read and modify the imported data
     - Pros: Might be easier to implement
-    - Cons: Might be confusing for users to use (running external script)
+    - Cons: Might be confusing for users to use (running an external script)
 
-- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
-  the data into json format and refreshes the database.
+- **Alternative 2**: Provide an interface for users to upload their CSV data into PetPal and automatically parse
+  the data into JSON format and refreshes the database.
     - Pros: Easier and more intuitive for users to use
     - Cons: Builds upon **Alternative 1**, requiring more work to implement
+
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -462,14 +444,14 @@ to application readable json data.
 
 **Target user profile**:
 
-* has a need to manage a significant number of pet details
+* needs to manage a significant number of pet details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 * prefers an app with GUI.
 
-**Value proposition**: manage pet details better than a typical mouse driven app
+**Value proposition**: manage pet details better than a typical mouse-driven app
 
 
 ### User stories
@@ -498,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | general staff       | write and save notes for pets          | track additional information if needed                                     |
 | `* *`    | staff               | export pet data                        | backup pet data                                                            |
 | `* *`    | new staff           | import pet data                        |                                                                            |
-| `*`      | staff               | input feedback for pet owners          | let the pet owners know how to better care for their pets behaviours       |
+| `*`      | staff               | input feedback for pet owners          | let the pet owners know how to better care for their pets' behaviours      |
 | `*`      | pet owner           | give staff feedback                    | let the staff know how to improve their services                           |
 | `*`      | pet owner           | check pet attendance                   | track how long my pet has been in daycare                                  |
 | `*`      | pet owner           | look at staff comments on the feedback | acknowledge staff feedback and give clarification                          |
@@ -523,7 +505,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 
-**Use case:List the list of pets**
+**Use case: List the list of pets**
 
 **MSS**
 
@@ -539,7 +521,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a pet**
 
 **MSS**
-1. Actor requests to add pet
+1. Actor requests to add a pet
 2. System deletes the pet<br>
    Use case ends.
 
@@ -572,7 +554,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. Actor requests to change a pet's cost calculation rate and additional flat cost
 2. System updates cost based on calculation
-3. Update is done when user clicks on another PetCard
+3. Update is done when the user clicks on another PetCard
 
 
 **Use case: View Cost of Pet**
@@ -590,14 +572,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Mark deadline**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to list pets
+2. System shows a list of pets 
+3. Actor requests to mark deadline for a specific pet
+4. System marks the pet<br>
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.<br>
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.<br>
+      Use case resumes at step 2.
 
 **Use case: Delete a pet**
 
 **MSS**
 1.  Actor requests to list pets
 2.  System shows a list of pets
-3.  Actor requests to delete a specific pet in the list
+3.  Actor requests to delete a specific pet from the list
 4.  System deletes the pet<br>
     Use case ends.
 
@@ -613,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Archive a pet**
 
 **MSS**
-1. Actor requests to lists all pets
+1. Actor requests to list all pets
 2. System shows the list of all pets
 3. Actor requests to archive a specific pet in the list
 4. System archives the pet<br>
@@ -634,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Clear the pet list**
 
 **MSS**
-1. Actor requests to lists all pets
+1. Actor requests to list all pets
 2. System shows the list of all pets
 3. Actor requests to clear the list
 4. System clears the list
@@ -646,7 +641,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Actor requests a `add`, `delete` or `archive`
 2. System executes
 3. Actor realises he made a mistake and `undo`
-4. System returns to previous state
+4. System returns to the previous state
 
 **Use case: Exit the System**
 
@@ -663,16 +658,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 pets without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 500 pets without a noticeable sluggishness in performance for typical usage.
+3.  A user with above-average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 
 
 
 ### Glossary
-| Term          | Definition                            |
-|---------------|---------------------------------------|
-| Mainstream OS | Refers to Windows, Linux, Unix, MacOS |
+| Term          | Definition                                                                                         |
+|---------------|----------------------------------------------------------------------------------------------------|
+| Mainstream OS | Refers to Windows, Linux, Unix, MacOS                                                              |
+| JSON          | The data format used to store PetPal saves, consisting of a name/value pair                        |
+| CSV           | Stands for Comma-seperated-values, a type of file where information/values are seperated by commas |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -693,7 +690,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy it into an empty folder
 
    2. Double-click the jar file.<br>Expected: Shows the GUI with a set of sample contacts
 
@@ -702,7 +699,7 @@ testers are expected to do more *exploratory* testing.
    1.  Move the window to a different location. Close the window.
 
    2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       Expected: The most recent window size and location are retained.
 
 ### Deleting a pet
 
@@ -711,11 +708,11 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all pets using the `list` or `l` command. Multiple pets in the list.
 
    2. Test case: `delete 1`<br>
-      Expected: First Pet entry is deleted from the list. Details of the deleted pet entry shown in the status message.
+      Expected: First Pet entry is deleted from the list. Details of the deleted pet entry are shown in the status message.
       Timestamp in the status bar is updated.
 
    3. Test case: `delete 0`<br>
-      Expected: No pet is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No pet is deleted. Error details are shown in the status message. The status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete`, `delete x` (where x is an integer larger than the list size), `delete abc`, (where abc is a string or special characters)<br>
       Expected: Similar to previous.
@@ -727,7 +724,7 @@ testers are expected to do more *exploratory* testing.
 1. Viewing the save files
 
     1. Exit the app by typing `exit` or `e`.<br>Expected: A new folder called `data` is created in the folder where your jar file is at
-    2. Double-click the `data` folder.<br>Expected: 2 files, `petpal.json` (which includes sample data) and `archive.json` is present in the `data` folder
+    2. Double-click the `data` folder.<br>Expected: 2 files, `petpal.json` (which includes sample data) and `archive.json` present in the `data` folder
 
 2. Dealing with missing data files
 
@@ -742,7 +739,7 @@ testers are expected to do more *exploratory* testing.
     </div>
 
 3. Dealing with corrupted data files
-    1. To simulate a corrupted data file, go to the `data` folder and edit the `petpal.json` and/or `archive.json` with random strings not of json format
+    1. To simulate a corrupted data file, go to the `data` folder and edit the `petpal.json` and/or `archive.json` with random strings not of JSON format
     2. Start PetPal, the corrupted data file is replaced with the sample data
     3. The corrupted files are re-created in the `data` folder with sample data
     <div markdown="block" class="alert alert-block alert-success">
