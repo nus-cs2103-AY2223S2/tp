@@ -175,6 +175,8 @@ public class UniqueModuleListTest {
         assertEquals(uniqueModuleList.getSort(), "YEAR");
         uniqueModuleList.sortByObject(SortCommand.Sort.GRADE);
         assertEquals(uniqueModuleList.getSort(), "GRADE");
+        uniqueModuleList.sortByObject(SortCommand.Sort.TAG);
+        assertEquals(uniqueModuleList.getSort(), "TAG");
     }
 
     @Test

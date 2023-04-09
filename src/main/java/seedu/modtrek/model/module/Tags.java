@@ -51,10 +51,6 @@ public class Tags implements Comparable<Tags> {
         return tagStrings.toString().replace("[", "").replace("]", "");
     }
 
-    public boolean isNotSingleTag() {
-        return tagStrings.size() != 1;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Tags)) {

@@ -39,4 +39,15 @@ public class TagsTest {
         assertTrue(new Tags(Set.of(new Tag("ULR"), new Tag("CSF")))
                 .contains(new Tags(Set.of(new Tag("CSF")))));
     }
+
+    @Test
+    public void equals() {
+        assertTrue(new Tags(new HashSet<>()).equals(new Tags(new HashSet<>())));
+        assertFalse(new Tags(Set.of(new Tag("CSF"))).equals(new Tags(new HashSet<>())));
+        assertFalse(new Tags(new HashSet<>()).equals(new Tags(Set.of(new Tag("CSF")))));
+        assertFalse(new Tags(Set.of(new Tag("ULR")))
+                .equals(new Tags(Set.of(new Tag("CSF")))));
+        assertFalse(new Tags(new HashSet<>()).equals(new HashSet<>()));
+    }
+
 }
