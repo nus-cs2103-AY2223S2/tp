@@ -163,8 +163,8 @@ Examples:
 
 GUI alternative:
 1. Click the <img align="center" src = "images/ui/buttons/add-internship-button.png" alt="Add Internship" height = "25"/> button to add a new internship application.
-2. A popup window similar to the image below will appear.
-[add](images/add-internship-popup)
+2. A popup window similar to the image below will appear. <br/>
+<img align="center" src = "images/ui/popups/add-internship-popup.png" alt="Add Internship Popup">
 3. Fields that are marked with red asterisk are compulsory fields while others are optional fields.
 4. You can fill in the fields accordingly and press the `Add` button to execute the `add` command.
 
