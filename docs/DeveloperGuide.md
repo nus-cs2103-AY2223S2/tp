@@ -122,8 +122,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` _(`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`)_ which uses the other classes shown above to parse the user command and create a `XYZCommand` object _(e.g., `AddCommand`)_ which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes _(e.g., `AddCommandParser`, `DeleteCommandParser`, ...)_ inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -225,7 +225,7 @@ The implementation of the attributes of a `Person` is very similar to that of a 
 Some additions made were the `Education`, `Module` and `Remark` attributes.
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
 2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accommodate module names that are more than one word long as in real life.
-3. Every attribute except`Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
+3. Every attribute except `Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
     * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
 4. Every `add` will commit the previous version of the `VersionedAddressBook` to `versionStateHistory`.
 
