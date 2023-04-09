@@ -18,7 +18,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Here are the list of commands available: "
             + "\n1. add n/{name} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} "
-            + "$/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
+            + "w/{WEBSITE} $/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
             + "\n2. edit {index} [n/{name}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
             + "[t/{TAG}]... [w/{WEBSITE}] [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]"
             + "\n3. delete {index}"
@@ -32,7 +32,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n11. clear"
             + "\n12. help"
             + "\n13. exit"
-            + "\n\nOr, you can also refer to our user guide: " + USERGUIDE_URL;
+            + "\n**Fields in '[field]' are optional (Edit command require at least one field)"
+            + "\nOr, you can also refer to our user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
