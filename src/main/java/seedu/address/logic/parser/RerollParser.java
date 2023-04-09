@@ -18,7 +18,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MakeCommand;
 import seedu.address.logic.commands.ShowTemplatesCommand;
 import seedu.address.logic.commands.TemplateCommand;
-import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -74,9 +73,6 @@ public class RerollParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case ViewCommand.COMMAND_WORD:
-            return new ViewCommand();
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
