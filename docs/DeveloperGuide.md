@@ -505,8 +505,8 @@ When the FindTimeCommand executes with a Group and Date as its parameters,
 1. A empty parent TimeMask is created, meaning that all time slots in the 7 days are unoccupied by default. 
 2. Then iterate through all Persons in the UniquePersonList and if they are members of the specified Group:
    a. Check the Person's RecurringEventList and get its TimeMask and merge with the parent TimeMask. This is done by comparing all 7 integers, each representing a day, doing a bitwise OR operation.
-   b. Check through the Person's IsolatedEventList for any events that fall within 7 days of the specified Date and update the corresponding integer in the parent TimeMask. 
-3. The parent TimeMask is then converted to a list of unoccupied time slots and it is updated in the AddressBook's ScheduleWeek, that acts as an internal list that UI observes.
+   b. Check through the Person's IsolatedEventList for any events that fall within 7 days from the specified Date and update the corresponding integer in the parent TimeMask. 
+3. The parent TimeMask is then converted to a list of unoccupied time slots, and it is updated in the AddressBook's ScheduleWeek, that acts as an internal list that UI observes.
 4. The UI detects the changes and then displays the updated timetable.
 
 ### Sequence Diagram
@@ -962,7 +962,7 @@ Similar to UC03
 * **MSS**: Main Success Scenario
 * **API**: Application Programming Interface
 * **Time slots**: Hourly time intervals 
-* **Free time**: Unoccupied time intervals that a Person or a Group has
+* **Free time slots**: Unoccupied time intervals that a Person or a Group has
 * **Timetable**: Collection of occupied and unoccupied time slots throughout a week
 * **Schedule**: Used interchangeably with timetable
 --------------------------------------------------------------------------------------------------------------------
