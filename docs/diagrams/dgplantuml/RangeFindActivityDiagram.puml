@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters find persons by age range command;
+if () then ([age range and specific age is not mixed])
+if () then ([age range is valid])
+    :Finds dengue cases associates in the given age range;
+    :Displays how many cases was found given age range;
+    stop
+else ([else])
+endif
+else ([else])
+endif
+:Displays error message;
+stop
+@enduml
