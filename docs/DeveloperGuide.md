@@ -7,12 +7,6 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -301,7 +295,7 @@ For the sake of convenience, explanation of the feature will be in terms of the 
 The increment/decrement command takes in an  `index` and an  `AMOUNT_TO_INCREMENTED`. This  `AMOUNT_TO_INCREMENTED` is demarcated with a prefix `tr/`.
 The activity diagram below describes how the increment feature works. 
 
-![IncrementActivityDiagram](images/IncrementCommandActivityDiagram.png) 
+<img src="images/IncrementCommandActivityDiagram.png" width="250" />
 
 Given below 
 The following sequence diagram shows how the increment operation works:
@@ -702,7 +696,7 @@ testers are expected to do more *exploratory* testing.
        Expected: List of contacts will be sorted and displayed by their transaction count in descending order (lower transaction counts displayed lower on the list). Whitespace is ignored.
     3. Test case: `sort desc`<br>
        Expected: Error message is shown prompting the user to specify the field that they like the contacts to be sorted by. 
-    4. Other incorrect delete commands to try: `sort` (No specified field or ordering ), `sort company asc` (invalid field ) <br> 
+    4. Other incorrect sort commands to try: `sort` (No specified field or ordering ), `sort company asc` (invalid field ) <br> 
        Expected: Error messages corresponding to the error described is shown and list is not sorted. User is prompted to key in command correctly.
 
 ### Filtering the list by various tags
@@ -716,8 +710,6 @@ testers are expected to do more *exploratory* testing.
           Expected: List of contacts will be filtered. Only the contacts with both 'friends' and 'clients' tag will be shown. Whitespace is ignored.
        3. Test case: `filter `<br>
           Expected: Error message is shown prompting the user to specify the tags that they like the contacts to be filtered by.
-       4. Other incorrect delete commands to try: `sort` (No specified field or ordering ), `sort company asc` (invalid field ) <br>
-          Expected: Error messages corresponding to the error described is shown and list is not sorted. User is prompted to key in command correctly.
 
 ### Marking a contact as requiring follow-up
 
@@ -725,11 +717,11 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `mark 1 m/yes`<br>
        Expected: Person at index 1 will be displayed as requiring follow-up action. 
-    2. Test case: `makr 1 m/no` <br>
+    2. Test case: `mark 1 m/no` <br>
        Expected: Person at index 1 will be displayed as not requiring follow-up action. 
     3. Test case: `mark `<br>
        Expected: Error message is shown prompting the user to specify the index of the individual that they would like to mark. 
-    4. Other incorrect delete commands to try: `mark x m/yes` (where x is longer than the current contact list length). 
+    4. Other incorrect mark commands to try: `mark x m/yes` (where x is longer than the current contact list length). 
        Expected: Error messages corresponding to the error described is shown and list is not updated. User is prompted to key in command correctly.
 
  
@@ -757,7 +749,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: summary 
    1. Expected: Summary window pops up.
-2. Test case: click 'Summary' 
+2. Test case: click 'Summary' -> 'Summary'
    1. Expected: Summary window pops up.
 
 
