@@ -3,8 +3,8 @@ layout: page
 title: coNtactUS
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://tinyurl.com/2p8ctpc9)
-[![codecov](https://tinyurl.com/2ua6jts9)](https://tinyurl.com/23da5y3w)
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W10-1/tp/actions)
+[![codecov](https://tinyurl.com/2ua6jts9)](https://codecov.io/gh/AY2223S2-CS2103T-W10-1/tp)
 
 ![Ui](images/Ui.png)
 
