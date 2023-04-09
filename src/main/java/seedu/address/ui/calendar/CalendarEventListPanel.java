@@ -35,7 +35,6 @@ public class CalendarEventListPanel extends UiPart<Region> {
      * @param calendarDayEvents The list of {@code CalendarEvent} objects to be displayed in the panel.
      * @param primaryStage The primary stage of the application.
      */
-
     public CalendarEventListPanel(ObservableList<Session> calendarDayEvents,
                                   Stage primaryStage) {
         super(FXML);

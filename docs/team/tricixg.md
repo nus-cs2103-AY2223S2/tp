@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 
 * Justification: This feature greatly improved the usability of the application by allowing coaches to easily track their training sessions and view their schedules at a glance. The popup window feature also made it easier to view the details of each session and provided coaches with a more interactive and user-friendly interface.
 
-  * Credits: adapted from http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html
+  * Credits: adapted from http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html % wongyewjon 
 
 
 
@@ -74,18 +74,5 @@ Given below are my contributions to the project.
   * Formatted the user guide to make it more visually appealing and easier to navigate.
   * Added subheadings for visibility and ensured consistency throughout the document.
   * Updated the command summary to provide a comprehensive and clear overview of the application's functionality.
-
-* Developer Guide:
-
-
-### Community:
-
-[//]: # (  * PRs reviewed &#40;with non-trivial review comments&#41;: [\#12]&#40;&#41;, [\#32]&#40;&#41;, [\#19]&#40;&#41;, [\#42]&#40;&#41;)
-
-[//]: # (  * Contributed to forum discussions &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;, [4]&#40;&#41;&#41;)
-
-[//]: # (  * Reported bugs and suggestions for other teams in the class &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;&#41;)
-
-[//]: # (  * Some parts of the history feature I added was adopted by several other class mates &#40;[1]&#40;&#41;, [2]&#40;&#41;&#41;)
-
+  
 
