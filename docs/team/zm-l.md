@@ -32,44 +32,9 @@ Given below are my contributions to the project.
         * Added use cases for `add` command in [#143](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/143)
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): To be added soon
-    * Contributed to forum discussions (examples: To be added soon)
+    * PRs reviewed (with non-trivial review comments): [262](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/262)
+    * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/360))
     * Reported bugs and suggestions for other teams in the class: [CS2103-W17-4](https://github.com/zm-l/ped/issues)
 
 * **Tools**:
     * Java 11 and Java FX
-
-<table>
-  <tbody>
-    <tr>
-      <th>Tables</th>
-      <th align="center">Are</th>
-      <th align="right">Cool</th>
-    </tr>
-    <tr>
-      <td>col 3 is</td>
-      <td align="center">right-aligned</td>
-      <td align="right">$1600</td>
-    </tr>
-    <tr>
-      <td>col 2 is</td>
-      <td align="center">centered</td>
-      <td align="right">$12</td>
-    </tr>
-    <tr>
-      <td>zebra stripes</td>
-      <td align="center">are neat</td>
-      <td align="right">$1</td>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-          <li>item1</li>
-          <li>item2</li>
-        </ul>
-      </td>
-      <td align="center">See the list</td>
-      <td align="right">from the f column</td>
-    </tr>
-  </tbody>
-</table>
