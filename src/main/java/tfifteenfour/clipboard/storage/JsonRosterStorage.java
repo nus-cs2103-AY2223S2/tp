@@ -52,10 +52,10 @@ public class JsonRosterStorage implements RosterStorage {
     public Optional<ReadOnlyRoster> readRoster(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
-        File file = new File(filePath.toString());
+        File jsonFile = new File(filePath.toString());
 
         try {
-            SerializedRoster jsonRoster = mapper.readValue(file, SerializedRoster.class);
+            SerializedRoster jsonRoster = mapper.readValue(jsonFile, SerializedRoster.class);
             Roster roster = jsonToRoster(jsonRoster);
 
             return Optional.of(roster);
