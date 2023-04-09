@@ -33,6 +33,6 @@ deactivate storage
 logic --[LOGIC_COLOR]> ui
 deactivate logic
 
-ui--[UI_COLOR]> user
+ui --[UI_COLOR]> user
 deactivate ui
 @enduml

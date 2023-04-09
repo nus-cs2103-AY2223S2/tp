@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":CommandBox" as commandBox UI_COLOR
+
+user -[USER_COLOR]> commandBox : "add"
+activate commandBox UI_COLOR
+
+commandBox -[UI_COLOR]> commandBox : handleInputUpdated()
+activate commandBox UI_COLOR
+
+create Participant ":Autocompletion" as autocompletion LOGIC_COLOR
+
+commandBox -[UI_COLOR]> autocompletion : Autocompletion("add")
+activate autocompletion LOGIC_COLOR
+
+autocompletion --[LOGIC_COLOR]> commandBox
+deactivate autocompletion
+
+commandBox -[UI_COLOR]> autocompletion : getListOfSuggestions()
+activate autocompletion LOGIC_COLOR
+
+autocompletion --[LOGIC_COLOR]> commandBox
+deactivate autocompletion
+
+commandBox --[UI_COLOR]> commandBox
+deactivate commandBox
+
+commandBox -[UI_COLOR]> commandBox : setStyleToDefault()
+activate commandBox UI_COLOR
+
+commandBox --[UI_COLOR]> commandBox
+
+deactivate commandBox
+@enduml
