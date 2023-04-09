@@ -134,11 +134,19 @@ The `Model` component
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
+The `Storage` component can be divided into two main components, one for `temporary` storage, and one for permanent storage of the file.
+The permanent storage component
 * can save both Dengue Hotspot Tracker data and user preference data in csv format, and read them back into corresponding objects.
 * inherits from both `DengueHotspotTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-* temporarily saves `DengueHotspotTracker` data while the app is running, for `undo` and `redo` commands.
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+
+The `temporary` component temporarily saves `DengueHotspotTracker` data while the app is running to support `undo` and `redo` commands. To prevent taking up too much memory,
+only up to 10 states of the `DengueHotspotTracker`. This component supports
+* undoing and redoing up to a maximum of 10 steps.
+* multiple undo and redo operations at once.
+
+Once a user makes a change to the state of the `DengueHotspotTracker` after an undo operation is called, redos will no longer be possible, and all other "future" states of the `DengueHotspotTracker`
+will be cleared.
 
 ### Common classes
 
@@ -158,9 +166,9 @@ The undo/redo mechanism is facilitated by `TemporaryMemory`. It extends `Special
 `TemporaryMemory` only stores the 10 most recent actions performed by the user, when the app is open. This means that when the app is closed and open again, the user will not be able to perform an undo or redo.
 `TemporaryMemory` can be viewed as a stack which supports additional operations.
 
-1. `TemporaryMemory` only contains 10 saved iterations of the file. Therefore, older iterations are deleted.
-2. `TemporaryMemory` supports the redo command, and therefore, after performing an undo, more recent iterations of the file are still stored in an auxiliary storage component.
-3. When the user performs an undo and then edits/saves the file once again, more recent iterations of the file must be overwritten. Therefore, this temporary storage is cleared.
+1. `TemporaryMemory` only contains 10 saved states or iterations of the file. Therefore, older states are deleted.
+2. `TemporaryMemory` supports the redo command, and therefore, after performing an undo, more recent states of the file are still stored in an auxiliary storage component.
+3. When the user performs an undo and then edits/saves the file once again, more recent states of the file must be overwritten. Therefore, this temporary storage is cleared.
 
 `TemporaryMemory`, therefore, is a specialised memory stack, where each item is an iteration of the Dengue Hotspot Tracker file. It holds as attributes a `Deque` for the primary memory stack and an auxiliary storage `Stack`, which temporarily stores popped items (undone operations).
 
@@ -198,7 +206,7 @@ than attempting to perform the undo.
 
 Step 5. The user again decides that adding the case was not a mistake, and decides to redo the action by executing the `redo` command. The `redo` command pops an item from the auxiliary `Stack` in `TemporaryMemory` and pushes it back into the primary stack `Deque`, where it is being read as the current file.
 
-Step 6. The user now wishes to perform an undo twice. The user executes the `undo 2` command to undo two steps. As with before, 2 iterations of the tracker data are popped from the `TemporaryMemory` primary `Deque` and pushed into the auxiliary `Stack`.
+Step 6. The user now wishes to perform an undo twice. The user executes the `undo 2` command to undo two steps. As with before, 2 states of the tracker data are popped from the `TemporaryMemory` primary `Deque` and pushed into the auxiliary `Stack`.
 
 The following sequence diagram shows how the undo operation works:
 
@@ -224,11 +232,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves up to 10 previous iterations of the entire dengue case list temporarily while the app is running.
-    * Pros: Saves memory as all tracker iterations are deleted when the app closes. Deleting older tracker iterations also helps to improve performance.
+* **Alternative 1 (current choice):** Saves up to 10 previous states of the entire dengue case list temporarily while the app is running.
+    * Pros: Saves memory as all tracker states are deleted when the app closes. Deleting older tracker states also helps to improve performance.
     * Cons: User may not have access to older data.
 
-* **Alternative 2:** Saves up to 10 previous iterations of the entire dengue case list in a JSON file.
+* **Alternative 2:** Saves up to 10 previous states of the entire dengue case list in a JSON file.
     * Pros: User can have direct access to older data.
     * Cons: Can be very messy to implement.
 
