@@ -11,6 +11,8 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":Patient" as Patient MODEL_COLOR
+participant ":Doctor" as Doctor MODEL_COLOR
 end box
 
 [-> LogicManager : execute("deleteAppointment ...")
@@ -53,6 +55,18 @@ activate Model
 
 Model --> DeleteAppointmentCommand
 deactivate Model
+
+DeleteAppointmentCommand -> Patient : deletePatientAppointment(d)
+activate Patient
+
+Patient --> DeleteAppointmentCommand
+deactivate Patient
+
+DeleteAppointmentCommand -> Doctor : deletePatientAppointment(d)
+activate Doctor
+
+Doctor --> DeleteAppointmentCommand
+deactivate Doctor
 
 create CommandResult
 DeleteAppointmentCommand -> CommandResult
