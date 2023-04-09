@@ -408,33 +408,49 @@ it directly with every change. However, this approach had a few limitations as d
 
 <div style="page-break-after: always;"></div>
 
-### 5. Displaying flights across all modes
+### 5. Displaying item list of all modes
 
-Initially, there is only one `ItemListPanel` that displays an item list specific to each mode.
+Initially, there is only one `ItemListPanel` that displays an item list storing resource entities specific to each mode.
 However, in order to link an object (pilot/crew/location/plane) to a flight, a separate list panel displaying flights is
-necessary for ease of selecting and linking to a specific flight.
+necessary for ease of selecting and linking to a specific flight. 
 
-**Implementation of display of flight list**
+To further simplify navigation between modes, lists
+displaying flights, pilots, crew members, locations and planes are all shown in one display window. While switching mode
+is still necessary for adding/deleting/linking a resource entity of a specific mode, viewing lists from other modes can
+be done across all modes.
 
-In the implementation as seen in the image below, the `MainWindow` can be filled by `ItemListPanel` as well
-as `FlightListPanel`:
+**Implementation of display of item lists**
 
-`ItemListPanel`: displays information about each `Item` using an `ItemCard` in a `ListView`.
+In the implementation as seen in the image below, the `MainWindow` can be filled by `FlightListPanel`, `CrewListPanel`,
+`PlaneListPanel`,`PilotListPanel`,`LocationListPanel`:
 
 `FlightListPanel`: displays information about each `Flight` using a `FlightCard` in a `ListView`.
 
-<p align="center">
-<img src="images/WingmanUI.png" width="600px" alt="Wingman UI">
-</p>
+`CrewListPanel`: displays information about each `Crew` using a `CrewCard` in a `ListView`.
 
+`PlaneListPanel`: displays information about each `Plane` using a `PlaneCard` in a `ListView`.
+
+`PilotListPanel`: displays information about each `Pilot` using a `PilotCard` in a `ListView`.
+
+`LocationwListPanel`: displays information about each `Location` using a `LocationCard` in a `ListView`.
+
+<p align="center">
+<img src="images/Ui.png" width="600px" alt="Wingman UI">
+</p>
 
 By having separate list panels, it will be easier to customise the display of different Item types if required by ui
 improvements.
 
-In each `ItemCard` as seen in the image below, the item’s name will be shown together with its id and respective
-attributes.
+In each `FlightCard` as seen in the image below, the flight’s code will be shown together with the planes/pilots/crew
+members/locations linked to it.
 
-In each `FlightCard`, the structure is similar to that of `ItemCard` but specific to flight objects.
+In each `CrewCard`, the crew member's name will be shown with his/her rank.
+
+In each `PlaneCard`, the plane's model and its age are shown.
+
+In each `PilotCard`, the pilot's name, rank, age, gender and flight hours are shown.
+
+In each `LocationCard`, the location and its linked planes, pilots and crew members will be shown.
 
 By modifying the layout and dividing into a left section which shows the resources, and a right section which shows the
 flights,
@@ -442,7 +458,7 @@ we can keep the information displayed organised and clear to the user.
 
 **Alternatives considered for display of flights:**
 
-* Alternative 1 (current choice): Has two panels to display items and flights in one display window
+* Alternative 1 (current choice): Has five panels to display items in one display window
 * Pros: Easy to implement and can view all the information simultaneously after a command is executed.
     * Cons: Too cramped, which may lead to information overload.
 * Alternative 2: Has one display window for items and a separate display window for flights
