@@ -215,10 +215,10 @@ An order can be cancelled at any stage of the order. This can be performed with 
 ![result after cancelling order](images/cancelOrderResult.png)
 
 
-Looking at the order status, it is now reflected as 'Cancelled'.
+Looking at the order status, it is now reflected as 'Cancelled'. Once an order is cancelled, its status can no longer be advanced.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Once an order is cancelled, the action is irreversible, and the order can no longer revert nor advance! <br />
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you accidentally cancel an order, you can still revert its status!
 </div>
 
 ### Rewarding your customers
@@ -251,22 +251,31 @@ Here are some recommended features to explore after this tutorial.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [p/PHONE_NUMBER]` can be used as `n/John Doe p/12341234` or as `n/John Doe`.
 
 * Items in curly brackets are an indication to use one of the given options, separated by the character `|`.
-* e.g. `ct/{ind|ent}` is a parameter that should be used as `ct/ind` or `ct/ent` exactly.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `ct/{ind|ent}` is a parameter that should be used as `ct/ind` or `ct/ent` exactly.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is specified multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `listc`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Some commands require you to specify an `INDEX`:**<br>
+
+* The index **must be a positive integer** 1, 2, 3, …​ 
+
+* The index refers to the index number of a customer or order as shown in the **Table Panel**.
+  * `CINDEX` refers to a customer's index
+  * `OINDEX` refers to an order's index
 
 </div>
 
@@ -276,40 +285,77 @@ Here are some recommended features to explore after this tutorial.
 
 Adds a customer to the current list.
 
-Format: `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+**Format**
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Customers are 'individiuals' by default! <br />
-ind - Individuals <br />
-ent - Enterprise
+```
+addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/{ind|ent}]
+```
+
+| Prefix  | Parameter     | Optional | Description                              |
+|---------|---------------|:--------:|------------------------------------------|
+| `n/`    | Name          |          | Alphanumeric characters and spaces       |
+| `p/`    | Phone         |          | A sequence of numbers, at least 3 digits |
+| `e/`    | Email         |          | Of the format `local-part@domain`        |
+| `a/`    | Address       |          | Any value                                |
+| `ct/`   | Customer Type | ✅       | `ind` - Individual<br>`ent` - Enterprise<br>Customers are 'Individuals' by default |
+
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `addc ct/ind n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+  Add an individual customer named "John Doe"
+
+* `addc ct/ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`<br>
+  Add an enterprise customer named "The Potato Farm"
+
+* `addc n/Mary Jane p/93130151 e/maryjane@example.com a/Mary Lamb Street, block 23, #01-12`<br>
+  Add an individual customer named "Mary Jane"
+
 </div>
 
-Examples:
-* `addc ct/ind n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addc ct/ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`
-* `addc n/Mary Jane p/93130151 e/maryjane@example.com a/Mary Lamb Street, block 23, #01-12`
+#### Listing customers : `listc`
 
-#### Listing all customers : `listc`
+Shows a list of customers in the **Table Panel**.
 
-Shows a list of all customers.
+**Format**
 
-Format: `listc [s/{name|points}] [f/{marked|ind|ent}]`
+```
+listc [s/{name|points}] [f/{marked|ind|ent}]
+```
 
-* Lists all customer with the specified sorting option.
-* By default, customers are sorted by name
-* If `f/marked` is provided, then shows only bookmarked customers.
-* If `f/ind` or `f/ent` is provided, then shows only individual or enterprise customers respectively.
+* Lists customers with the specified sort and filter option.
 
-Examples:
-* `listc` lists all customers sorted by name
-* `listc s/points` lists all customers sorted by points
-* `listc f/marked` lists all bookmarked customers. 
+| Prefix  | Parameter | Optional | Description                              |
+|---------|-----------|:--------:|------------------------------------------|
+| `s/`    | Sort      | ✅       | `name` - Sort by name<br>`points` - Sort by points<br>By default, customers are sorted by name |
+| `f/`    | Filter    | ✅       | `marked` - Show only marked customers<br>`ind` - Show only individuals<br>`ent` - Show only enterprises<br>By default, all customers are shown |
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc`<br>
+  Lists all customers sorted by name
+
+* `listc s/points`<br>
+  Lists all customers sorted by points
+
+* `listc s/points f/marked`<br>
+  Lists marked customers sorted by points
+
+</div>
 
 #### Locating customers by name : `findc`
 
 Finds customers whose names contain any of the given keywords.
 
-Format: `findc KEYWORD [MORE_KEYWORDS]`
+**Format**
+
+```
+findc KEYWORD [MORE_KEYWORDS]
+```
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -318,123 +364,220 @@ Format: `findc KEYWORD [MORE_KEYWORDS]`
 * Customers matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `findc John` returns `john` and `John Doe`
-* `findc alex david` returns `Alex Yeoh`, `David Li`<br>
+<div markdown="block" class="alert alert-secondary">
 
+**:keyboard: Examples:**<br>
 
+* `findc John`<br>
+  Returns `john` and `John Doe`
+
+* `findc alex david`<br>
+  Returns `Alex Yeoh` and `David Li`<br>
   ![result for 'findc alex david'](images/findAlexDavidResult.png)
 
+</div>
 
 #### View a customer : `viewc`
 
-Display a customer's information in the information panel.
+Displays a customer's information in the **Information Panel**.
 
-Format: `viewc INDEX`
+**Format**
 
-* Displays the customer's information at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
+```
+viewc CINDEX
+```
+
+* Displays the customer's information at the specified `CINDEX`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can click on the customer in the table directly for the same effect!
 </div>
 
-Examples:
-* `listc` and `viewc 2` opens `Bernice Yu` on the information panel on the right
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc` and `viewc 2`<br>
+  Displays the second customer in the **Information Panel**<br>
   ![result for 'viewc 2'](images/viewcBerniceYuResult.png)
+
+</div>
 
 #### Editing a customer : `editc`
 
 Edits an existing customer in the address book.
 
-Format: `editc INDEX [ct/{ind|env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+**Format**
 
-* Edits the customer at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed customer list. 
-* The index **must be a positive integer** 1, 2, 3, …​
+```
+editc CINDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/{ind|env}]
+```
+
+* Edits the customer at the specified `CINDEX`. 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples:
-*  `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st customer to be `91234567` and `johndoe@example.com` respectively.
-*  `editc 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd customer to be `Betsy Crower` and clears all existing tags.
+| Prefix  | Parameter     | Optional | Description                              |
+|---------|---------------|:--------:|------------------------------------------|
+| `n/`    | Name          | ✅       | Alphanumeric characters and spaces       |
+| `p/`    | Phone         | ✅       | A sequence of numbers, at least 3 digits |
+| `e/`    | Email         | ✅       | Of the format `local-part@domain`        |
+| `a/`    | Address       | ✅       | Any value                                |
+| `ct/`   | Customer Type | ✅       | `ind` - Individual<br>`ent` - Enterprise |
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `editc 1 p/91234567 e/johndoe@example.com`<br>
+  Edits the phone number and email address of the 1st customer to be `91234567` and `johndoe@example.com` respectively.
+
+* `editc 2 ct/ind n/Betsy Crower t/`<br>
+  Edits the name of the 2nd customer to be `Betsy Crower` and clears all existing tags.
+
+</div>
 
 #### Deleting a customer : `deletec`
 
 Delete a customer from the list.
 
-Format: `deletec INDEX`
+**Format**
 
-* Deletes the customer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
+```
+deletec CINDEX
+```
 
-Examples:
-* `listc` followed by `deletec 2` deletes the 2nd customer in the address book.
-* `findc Betsy` followed by `deletec 1` deletes the 1st customer in the results of the `findc` command.
+* Deletes the customer at the specified `CINDEX`.
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc` followed by `deletec 2`<br>
+  Deletes the 2nd customer in the address book.
+
+* `findc Betsy` followed by `deletec 1`<br>
+  Deletes the 1st customer in the results of the `findc` command.
+
+</div>
+
+[//]: # (@@author JavonTeo)
 
 #### Marking a customer : `markc`
 
 Bookmarks a customer from the list of customers.
 
-Format: `markc INDEX`
+**Format**
 
-* Bookmarks the customer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
+```
+markc CINDEX
+```
 
-Examples:
-* `listc` followed by `markc 2` bookmarks the 2nd customer in the address book.
-* `findc Betsy` followed by `markc 1` bookmarks the 1st customer in the results of the `findc` command.
+* Bookmarks the customer at the specified `CINDEX`.​
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc` followed by `markc 2`<br>
+  Bookmarks the 2nd customer in the address book.
+
+* `findc Betsy` followed by `markc 1`<br>
+  Bookmarks the 1st customer in the results of the `findc` command.
+
+</div>
 
 #### Unmarking a customer : `unmarkc`
 
 Un-bookmarks a customer from the list of customers.
 
-Format: `unmarkc INDEX`
+**Format**
 
-* Un-bookmarks the customer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
+```
+unmarkc CINDEX
+```
 
-Examples:
-* `listc` followed by `unmarkc 2` un-bookmarks the 2nd customer in the address book.
-* `findc Betsy` followed by `unmarkc 1` bookmarks the 1st customer in the results of the `findc` command.
+* Un-bookmarks the customer at the specified `CINDEX`.
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc` followed by `unmarkc 2`<br>
+  Un-bookmarks the 2nd customer in the address book.
+
+* `findc Betsy` followed by `unmarkc 1`<br>
+  Un-bookmarks the 1st customer in the results of the `findc` command.
+
+</div>
+
+[//]: # (@@author CloudHill)
 
 #### Setting a customer's note : `setnotec`
 
 Sets a customer's note.
 
-Format: `setnotec INDEX nt/NOTE`
+**Format**
 
-* Sets the note of the customer at the specified `INDEX` to `NOTE`.
+```
+setnotec CINDEX nt/NOTE
+```
+
+* Sets `NOTE` as the note of the customer at the specified `CINDEX`.
 * Customers, by default, have a blank note.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The note refers to the customer's new note.
-* Any existing note will be overwritten.
-* A customer's note can be removed by setting an empty note.
 
-Examples:
-* `listc` followed by `setnotec 2 nt/Very friendly!` sets the 2nd customer's note as "Very friendly!".
-* `listc` followed by `setnotec 2 nt/` removes the 2nd customer's note.
-* `findc Betsy` followed by `setnotec 1 nt/Vegetarian` sets the 1st customer's note as "Vegetarian" in the results of the `findc` command.
+| Prefix  | Parameter     | Optional | Description |
+|---------|---------------|:--------:|-------------|
+| `nt/`   | Note          |          | Any value   |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove a customer's note by setting an empty note.
+</div>
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc` followed by `setnotec 2 nt/Very friendly!`<br>
+  Sets the 2nd customer's note as "Very friendly!".
+
+* `listc` followed by `setnotec 2 nt/`<br>
+  Removes the 2nd customer's note.
+
+* `findc Betsy` followed by `setnotec 1 nt/Vegetarian`<br>
+  Sets the 1st customer's note as "Vegetarian" in the results of the `findc` command.
+
+</div>
 
 #### Appending a customer's note : `appendnotec`
 
 Adds more text to a customer's note.
 
-Format: `appendnotec INDEX nt/NOTE`
+**Format**
 
-* Adds `NOTE` to any existing note of the customer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The note refers to the new text that will be added to the end of the customer's existing note.
+```
+appendnotec CINDEX nt/NOTE
+```
 
-Examples:
-* `listc` followed by `appendnotec 2 nt/Very friendly!` will add "Very friendly!" to the 2nd customer's existing note.
-* `findc Betsy` followed by `appendnotec 1 nt/Vegetarian` adds "Vegetarian" to the note of the 1st customer in the results of the `findc` command.
+* Adds `NOTE` to any existing note of the customer at the specified `CINDEX`.
+
+| Prefix  | Parameter     | Optional | Description |
+|---------|---------------|:--------:|-------------|
+| `nt/`   | Note          |          | Any value   |
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc` followed by `appendnotec 2 nt/Very friendly!`<br>
+  Adds "Very friendly!" to the 2nd customer's existing note.
+
+* `findc Betsy` followed by `appendnotec 1 nt/Vegetarian`<br>
+  Adds "Vegetarian" to the note of the 1st customer in the results of the `findc` command.
+
+</div>
+
+[//]: # (@@author Dawson)
 
 ### Rewards
 
@@ -442,88 +585,158 @@ Examples:
 
 Sets a customer's reward points.
 
-Format: `setpoints INDEX pt/POINTS`
+**Format**
 
-* Sets the points of the customer at the specified `INDEX` to `POINTS`.
-* Customers by default, have 0 points initially.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The points refers to the reward points of the customer
-* The points **must be a positive integer** 1, 2, 3, ​​…
-* The points can only range from 0 to 999999
-* Setting points will also set cumulative points to the same amount, if you wish to keep the current cumulative points,
-  use the `addpoints` command instead.
+```
+setpoints CINDEX pt/POINTS
+```
 
-Examples:
-* `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
-* `findc Betsy` followed by `setpoints 1 pt/300` sets the 1st customer points as 300 in the results of the `findc` command.
+* Sets the points of the customer at the specified `CINDEX` to `POINTS`.
+* Customers, by default, have 0 points.
 
-#### Adding points for a customer / Removing points from a customer : `addpoints`
+| Prefix  | Parameter     | Optional | Description                     |
+|---------|---------------|:--------:|---------------------------------|
+| `pt/`   | Points        |          | A positive integer up to 999999 |
 
-Edits a customer's reward points by adding or removing from it.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Setting points will also set cumulative points to the same amount, if you wish to keep the current cumulative points, use the `addpoints` command instead.
+</div>
 
-Format: `addpoints INDEX pt/[+/-]POINTS`
+<div markdown="block" class="alert alert-secondary">
 
-* Add or subtract the points of the customer at the specified `INDEX` to `POINTS`.
-* If the points subtracted is greater than what the user has, the command will not be executed
-* If + or - is not explictly stated, the command will default to an addition of `POINTS`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The +/- refers to whether you wish to add or subtract from the reward points of the customer, + to add, - to subtract
-* The points refers to how much you wish to add or subtract the reward points of the customer
-* The points **must be a positive integer** 1, 2, 3, ​​…
-* Addition will also result in an addition of cumulative points, subtraction will not change cumulative points.
+**:keyboard: Examples:**<br>
 
-Examples:
-* `listc` followed by `addpoints 2 pt/100` adds 100 reward points to the 2nd customer.
-* `findc Betsy` followed by `addpoints 1 pt/-300` deducts 300 reward points from
-  the 1st customer in the results of the `findc` command.
+* `listc` followed by `setpoints 2 pt/100`<br>
+  Sets the 2nd customer's points as 100.
+
+* `findc Betsy` followed by `setpoints 1 pt/300`<br>
+  Sets the 1st customer points as 300 in the results of the `findc` command.
+
+</div>
+
+#### Adding/Subtracting points for a customer : `addpoints`
+
+Edits a customer's reward points by adding or subtracting from it.
+
+**Format**
+
+```
+addpoints CINDEX pt/POINTS
+```
+
+* Adds or subtracts the points of the customer at the specified `CINDEX` by `POINTS`.
+* If the points subtracted is greater than what the user has, the command will not be executed.
+
+| Prefix  | Parameter     | Optional | Description                                                                   |
+|---------|---------------|:--------:|-------------------------------------------------------------------------------|
+| `pt/`   | Points        |          | - A positive integer to add points<br>- A negative integer to subtract points |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Addition will also result in an addition of cumulative points, while subtraction will not affect cumulative points.
+</div>
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc` followed by `addpoints 2 pt/100`<br>
+  Adds 100 reward points to the 2nd customer.
+
+* `findc Betsy` followed by `addpoints 1 pt/-300`<br>
+  Seducts 300 reward points from the 1st customer in the results of the `findc` command.
+
+</div>
+
+[//]: # (@@author jednghk)
 
 ### Orders
 
 #### Adding an order : `addo`
 
-Adds an order tagged to a customer, to the current order list.
+Adds an order for a customer to the current order list.
 
-Format: `addo INDEX n/NAME [q/QUANTITY] [a/ADDRESS]`
+**Format**
+
+```
+addo CINDEX n/NAME [q/QUANTITY] [a/ADDRESS]
+```
+
+* Adds an order for the customer at the specified `CINDEX`.
+
 
 * Adds an order, tagged to INDEX.
 * The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * ADDRESS is optional and will be set to the customer's address by default
-* QUANTITY is optional and will be set to 1 by default. Otherwise, it must be a positive integer (e.g. 1, 2, 3...999)
+* QUANTITY is optional and will be set to 1 by default. 
+* QUANTITY must be a positive integer (e.g. 1, 2, 3...999) and be less than or equal to 1 million (1000000)
 
-Examples:
-* `addo 1 n/Banana Cake 1 q/2 a/Changi Airport`
-  * Adds the order, 2 x Banana cakes to the list, tags it to customer at index 1, and status is "pending", address is "Changi Airport".
-* `addo 4 n/Strawberry ice cream`
-  * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending", address is the customer's address.
+| Prefix  | Parameter    | Optional | Description                                     |
+|---------|--------------|:--------:|-------------------------------------------------|
+| `n/`    | Product Name |          | Alphanumeric characters and spaces              |
+| `q/`    | Quantity     | ✅       | A positive integer up to 999<br>Defaults to 1   |
+| `a/`    | Address      | ✅       | Any value<br>Defaults to the customer's address |
+
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `addo 1 n/Banana Cake 1 q/2 a/Changi Airport`<br>
+  Adds the order, 2 x Banana cakes to the list, tags it to customer at index 1, and status is "pending", address is "Changi Airport".
+
+* `addo 4 n/Strawberry ice cream`<br>
+  Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending", address is the customer's address.
+
+</div>
+
+#### Listing all orders : `listo`
+
+Shows a list of orders in the **Table Panel**.
+
+**Format**
+
+```
+listo [s/{created|name|status}] [f/STATUS]
+```
+
+* Lists orders with the specified sort and filter option.
+
+| Prefix  | Parameter | Optional | Description                              |
+|---------|-----------|:--------:|------------------------------------------|
+| `s/`    | Sort      | ✅       | `created` - Sort by created date<br>`name` - Sort by name<br>`points` - Sort by points<br>By default, orders are sorted by created date |
+| `f/`    | Filter    | ✅       | Show only orders with the specified status<br>By default, all orders are shown |
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Currently, you are unable to add the same order name and quantity for the same customer twice on the same day!
 </div>
 
-#### Listing all customers : `listo`
+<div markdown="block" class="alert alert-secondary">
 
-Shows a list of all orders, with an optional filter and sort option.
+**:keyboard: Examples:**<br>
 
-Format: `listo [s/{created|name|status}] [f/STATUS]`
+* `listo`<br>
+  Lists all orders sorted by created date.
 
-* Lists all orders with the specified sorting option.
-* By default, orders are sorted by their created date.
-* If `f/STATUS` is provided, then show only the given status.
-* `STATUS` is case-insensitive and can be one of: pending, paid, shipped, completed, cancelled.
+* `listo s/status`<br>
+  Lists all orders sorted by status.
 
-Examples:
-* `listo` lists all orders sorted by created date.
-* `listo s/status` lists all orders sorted by status.
-* `listo f/pending` lists all orders with "pending" status.
+* `listo s/name f/pending`<br>
+  Lists all pending orders sorted by name.
+
+</div>
+
+[//]: # (@@author CloudHill)
 
 #### Locating orders by name : `findo`
 
 Find orders whose names contain any of the given keywords.
 
-Format: `findo KEYWORD [MORE_KEYWORDS]`
+**Format**
+
+```
+findo KEYWORD [MORE_KEYWORDS]
+```
 
 * The search is case-insensitive. e.g `chocolate` will match `Chocolate`
 * The order of the keywords does not matter. e.g. `chocolate cake` will match ` cake chocolate`.
@@ -532,122 +745,251 @@ Format: `findo KEYWORD [MORE_KEYWORDS]`
 * Orders matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chocolate cake` will return `chocolate muffin`, `crepe cake`
 
-Examples:
-* `findo chocolate` returns `chocolate cake` and `chocolate muffin`
-* `findo banana muffin` returns `banana cake`, `chocolate muffin`<br>
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `findo chocolate`<br>
+  Returns `chocolate cake` and `chocolate muffin`
+
+* `findo banana muffin`<br>
+  Returns `banana cake`, `chocolate muffin`
+
+</div>
+
+[//]: # (@@author Junyi00)
 
 #### View an order : `viewo`
 
-Display an order's information in the information panel.
+Displays an order's information in the **Information Panel**.
 
-Format: `viewo INDEX`
+**Format**
 
-* Displays the order's information at the specified `INDEX`.
-* The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
+```
+viewo OINDEX
+```
+
+* Displays the order's information at the specified `OINDEX`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can click on the order in the table directly for the same effect!
 </div>
 
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listc` and `viewo 2`<br>
+  Displays the second order in the **Information Panel**
+
+</div>
+
+[//]: # (@@author jednghk)
+
 #### Editing an order : `edito`
 
 Edits an existing order in LoyaltyLift.
 
-Format: `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]`
+**Format**
 
-* Edits the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+```
+edito OINDEX [n/NAME] [q/QUANTITY] [a/ADDRESS]
+```
+
+* Edits the order at the specified `OINDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples:
-*  `edito 1 q/100 a/Gardens by the Bay` Edits order quantity to 100, and changes the address to Gardens by the Bay.
-*  `edito 2 n/Brownies q/10` Edits the name of the 2nd order in the list to be `Brownies` and the quantity to 10.
+| Prefix  | Parameter    | Optional | Description                                     |
+|---------|--------------|:--------:|-------------------------------------------------|
+| `n/`    | Product Name | ✅       | Alphanumeric characters and spaces              |
+| `q/`    | Quantity     | ✅       | A positive integer up to 999<br>Defaults to 1   |
+| `a/`    | Address      | ✅       | Any value<br>Defaults to the customer's address |
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `edito 1 q/100 a/Gardens by the Bay`<br>
+  Edits the quantity and address of the 1st order to `100` and `Gardens by the Bay` respectively.
+
+* `edito 2 n/Brownies q/10`<br>
+  Edits the name and quantity of the 2nd order to be `Brownies` and `10` respectively.
+
+</div>
 
 #### Advancing an order status: `advo`
 
-Advances the order status.
+Advances an order's status.
 
-Format: `advo ORDER_INDEX`
+**Format**
 
-* Advances the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
-* If the order is completed, the status cannot be advanced further
+```
+advo OINDEX
+```
 
-Examples:
-*  `advo 1`: The status that it advances to, follows this sequence: "Pending", "Paid", "Shipped", "Completed".
+* Advances the order at the specified `OINDEX`.
+* An order's status will be advanced in the following sequence: "Pending", "Paid", "Shipped", "Completed".
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the order is completed, the status cannot be advanced further
+</div>
+
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `advo 1`<br>
+  Advances the status of the 1st order
+
+</div>
 
 #### Reverting an order status: `revo`
 
-Reverts the order status to its previous status. 
+Reverts an order's status to its previous status. 
 
-Format: `revo ORDER_INDEX`
+**Format**
 
-* Edits the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+```
+revo OINDEX
+```
+
+* Edits the order at the specified `OINDEX`.
+* An order's status will be reverted in the following sequence: "Completed", "Shipped", "Paid", "Pending".
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
 * If the order is "Pending", the status cannot be reverted further.
-* If the order is "Cancelled", `revo` will revert the status back to just before it was cancelled.
 
-Examples:
-*  `revo 1`: The status that it reverts to, follows this sequence: "Completed", "Shipped", "Paid", "Pending".
-* `revo 2`: If 2 was "Pending", before being cancelled, revo will revert back to "Pending"
+* If the order is "Cancelled", `revo` will revert the order to its previous status prior to cancellation.
+
+</div>
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `revo 1`<br>
+  Reverts the status of the 1st order.
+
+</div>
 
 #### Cancel an order: `cancelo`
 
-Changes the order status to "Cancelled"
+Changes an order's status to "Cancelled"
 
-Format: `cancelo ORDER_INDEX`
+**Format**
 
-* Cancels the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+```
+cancelo OINDEX
+```
 
-Examples:
-*  `cancelo 1`: Changes the status of the order at index 1 to "Cancelled"
+* Cancels the order at the specified `OINDEX`.
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `cancelo 1`<br>
+  Changes the status of the 1st order to "Cancelled".
+
+</div>
 
 #### Deleting an order : `deleteo`
 
 Deletes the specified order from the address book.
 
-Format: `deleteo ORDER_INDEX`
+**Format**
 
-* Deletes the order at the specified `ORDER_INDEX`.
-* The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
+```
+deleteo OINDEX
+```
 
-Examples:
-* `listo` followed by `deleteo 2` deletes the 2nd order on the displayed order list.
-* `findo chocolate` followed by `deleteo 1` deletes the 1st order in the results of the `findo` command.
+* Deletes the order at the specified `OINDEX`.
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listo` followed by `deleteo 2`<br>
+  Deletes the 2nd order on the displayed order list.
+
+* `findo chocolate` followed by `deleteo 1`<br>
+  Deletes the 1st order in the results of the `findo` command.
+
+</div>
+
+[//]: # (@@author CloudHill)
 
 #### Setting an order's note : `setnoteo`
 
 Sets an order's note.
 
-Format: `setnoteo INDEX nt/NOTE`
+**Format**
 
-* Sets the note of the order at the specified `INDEX` to `NOTE`.
-* Orders, by default, have a blank note.F
-* The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The note refers to the order's new note.
-* Any existing note will be overwritten.
-* An order's note can be removed by setting an empty note.
+```
+setnoteo OINDEX nt/NOTE
+```
 
-Examples:
-* `listo` followed by `setnoteo 2 nt/Keep cool` sets the 2nd order's note as "Keep cool".
-* `listc` followed by `setnoteo 2 nt/` removes the 2nd order's note.
-* `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` sets the 1st order's note as "Vegan-friendly" in the results of the `findo` command.
+* Sets `NOTE` as the note of the order at the specified `OINDEX`.
+* Orders, by default, have a blank note.
+
+| Prefix  | Parameter     | Optional | Description |
+|---------|---------------|:--------:|-------------|
+| `nt/`   | Note          |          | Any value   |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove an order's note by setting an empty note.
+</div>
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listo` followed by `setnoteo 2 nt/Keep cool`<br>
+  Sets the 2nd order's note as "Keep cool".
+
+* `listc` followed by `setnoteo 2 nt/`<br>
+  Removes the 2nd order's note.
+
+* `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly`<br>
+  Sets the 1st order's note as "Vegan-friendly" in the results of the `findo` command.
+
+</div>
 
 #### Appending an order's note : `appendnoteo`
 
 Adds more text to an order's note.
 
-Format: `appendnoteo INDEX nt/NOTE`
+**Format**
 
-* Adds `NOTE` to any existing note of the order at the specified `INDEX`.
-* The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The note refers to the new text that will be added to the end of the order's existing note.
+```
+appendnoteo OINDEX nt/NOTE
+```
 
-Examples:
-* `listo` followed by `appendnoteo 2 nt/Keep cool` will add "Keep cool" to the 2nd order's existing note.
-* `findo Brownies` followed by `appendnoteo 1 nt/Vegan-friendly` adds "Vegan-friendly" to the note of the 1st order in the results of the `findo` command.
+* Adds `NOTE` to any existing note of the customer at the specified `OINDEX`.
+
+| Prefix  | Parameter     | Optional | Description |
+|---------|---------------|:--------:|-------------|
+| `nt/`   | Note          |          | Any value   |
+
+<div markdown="block" class="alert alert-secondary">
+
+**:keyboard: Examples:**<br>
+
+* `listo` followed by `appendnoteo 2 nt/Keep cool`<br>
+  Adds "Keep cool" to the 2nd order's existing note.
+
+* `findo Brownies` followed by `appendnoteo 1 nt/Vegan-friendly`<br>
+  Adds "Vegan-friendly" to the note of the 1st order in the results of the `findo` command.
+
+</div>
+
+[//]: # (@@author)
 
 ### Miscellaneous
 
@@ -655,21 +997,33 @@ Examples:
 
 Clears all customers and orders from the address book.
 
-Format: `clear`
+**Format**
+
+```
+clear
+```
 
 #### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+**Format**
+
+```
+exit
+```
 
 #### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+**Format**
 
-Format: `help`
+```
+help
+```
+
+![help message](images/helpMessage.png)
 
 ### Saving the data
 
@@ -708,20 +1062,20 @@ If this is not ideal, we recommend to avoid deleting any customers.
 |             **Add Customer** | <code>addc [ct/{ind&#124;ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code> |
 |            **List Customer** | `listc` <br>                                                                                                                                                                                 |
 |            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                                                   |
-|            **View Customer** | `viewc INDEX` <br> e.g. `viewc 2`                                                                                                                                                            |
-|            **Edit Customer** | <code>editc INDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]` <br> e.g. `editc 1 p/91234567 e/johndoe@example.com</code>                                                   |
-|          **Delete Customer** | `deletec INDEX`<br> e.g., `deletec 3`                                                                                                                                                        |
-|            **Mark Customer** | `markc INDEX` <br> e.g., `markc 1`                                                                                                                                                           |
-|          **Unmark Customer** | `unmarkc INDEX` <br> e.g., `unmarkc 1`                                                                                                                                                       |                                                                                                                                      |
-|    **Set Note for Customer** | `setnotec INDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                                                           |
-| **Append Note for Customer** | `appendnotec INDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                                     |
+|            **View Customer** | `viewc CINDEX` <br> e.g. `viewc 2`                                                                                                                                                            |
+|            **Edit Customer** | <code>editc CINDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]` <br> e.g. `editc 1 p/91234567 e/johndoe@example.com</code>                                                   |
+|          **Delete Customer** | `deletec CINDEX`<br> e.g., `deletec 3`                                                                                                                                                        |
+|            **Mark Customer** | `markc CINDEX` <br> e.g., `markc 1`                                                                                                                                                           |
+|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g., `unmarkc 1`                                                                                                                                                       |                                                                                                                                      |
+|    **Set Note for Customer** | `setnotec CINDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                                                           |
+| **Append Note for Customer** | `appendnotec CINDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                                     |
 
 ### Rewards
 
 |              Action | Format, Examples                                                                       |
 |--------------------:|----------------------------------------------------------------------------------------|
-|      **Set Points** | `setpoints INDEX pt/POINTS` <br> e.g., `setpoints 2 pt/100`                            |
-|      **Add Points** | `addpoints INDEX pt/[+/-]POINTS` <br> e.g., `addpoints 2 pt/100`, `addpoints 1 pt/-50` |
+|      **Set Points** | `setpoints CINDEX pt/POINTS` <br> e.g., `setpoints 2 pt/100`                            |
+|      **Add Points** | `addpoints CINDEX pt/[+/-]POINTS` <br> e.g., `addpoints 2 pt/100`, `addpoints 1 pt/-50` |
 | **Set Reward Tier** | `settier TIER_NUM POINT_THRESHOLD` <br> e.g., `settier 1 500`                          |
 
 
@@ -729,17 +1083,17 @@ If this is not ideal, we recommend to avoid deleting any customers.
 
 |                     Action | Format, Examples                                                                                   |
 |---------------------------:|----------------------------------------------------------------------------------------------------|
-|              **Add Order** | `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2`      |
+|              **Add Order** | `addo CINDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2`      |
 |             **List Order** | `listo` <br>                                                                                       |
 |             **Find Order** | `findo KEYWORD [MORE_KEYWORDS]` <br> e.g., `findo banana muffin`                                   |
-|             **View Order** | `viewo INDEX` <br> e.g. `viewo 2`                                                                  |
-|             **Edit Order** | `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g., `edito 2 n/Brownies q/10` |
-|          **Advance Order** | `advo INDEX`<br> e.g., `advo 1`                                                                    |
-|           **Revert Order** | `revo INDEX`<br> e.g., `revo 2`                                                                    |
-|           **Cancel Order** | `cancelo INDEX`<br> e.g., `cancelo 3`                                                              |
-|           **Delete Order** | `deleteo INDEX`<br> e.g., `deletec 3`                                                              |                                                                                                                                     |
-|     **Set Note for Order** | `setnoteo INDEX nt/NOTE` <br> e.g., `setnoteo 2 nt/Very friendly!`                                 |
-|  **Append Note for Order** | `appendnoteo INDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`                           |
+|             **View Order** | `viewo OINDEX` <br> e.g. `viewo 2`                                                                  |
+|             **Edit Order** | `edito OINDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g., `edito 2 n/Brownies q/10` |
+|          **Advance Order** | `advo OINDEX`<br> e.g., `advo 1`                                                                    |
+|           **Revert Order** | `revo OINDEX`<br> e.g., `revo 2`                                                                    |
+|           **Cancel Order** | `cancelo OINDEX`<br> e.g., `cancelo 3`                                                              |
+|           **Delete Order** | `deleteo OINDEX`<br> e.g., `deletec 3`                                                              |                                                                                                                                     |
+|     **Set Note for Order** | `setnoteo OINDEX nt/NOTE` <br> e.g., `setnoteo 2 nt/Very friendly!`                                 |
+|  **Append Note for Order** | `appendnoteo OINDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`                           |
 
 ### Miscellaneous
 

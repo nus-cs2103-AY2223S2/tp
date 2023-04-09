@@ -21,9 +21,13 @@ import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.tag.Tag;
 
 public class ParserUtilTest {
+
+    private static final String INVALID_QUANTITY_1 = "0";
+    private static final String INVALID_QUANTITY_2 = "1000001";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -32,6 +36,8 @@ public class ParserUtilTest {
     private static final String INVALID_CUSTOMER_TYPE = "person";
     private static final String INVALID_SORT_OPTION = "invalid";
 
+    private static final String VALID_QUANTITY_1 = "1";
+    private static final String VALID_QUANTITY_2 = "1000000";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -65,6 +71,36 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseQuantity_validWithoutWhitespace_returnsQuantity() throws Exception {
+        Quantity expectedQuantity1 = new Quantity(Integer.parseInt(VALID_QUANTITY_1));
+        assertEquals(expectedQuantity1, ParserUtil.parseQuantity(VALID_QUANTITY_1));
+
+        Quantity expectedQuantity2 = new Quantity(Integer.parseInt(VALID_QUANTITY_2));
+        assertEquals(expectedQuantity2, ParserUtil.parseQuantity(VALID_QUANTITY_2));
+    }
+
+    @Test
+    public void parseQuantity_validWithWhitespace_returnsQuantity() throws Exception {
+        Quantity expectedQuantity1 = new Quantity(Integer.parseInt(VALID_QUANTITY_1));
+        String quantityWithWhitespace = WHITESPACE + VALID_QUANTITY_1 + WHITESPACE;
+        assertEquals(expectedQuantity1, ParserUtil.parseQuantity(quantityWithWhitespace));
+    }
+
+    @Test
+    public void parseQuantity_null_throwsNullPointerException() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity((String) null));
+    }
+
+    @Test
+    public void parseQuantity_invalidValue_throwsParseException() throws Exception {
+        assertThrows(ParseException.class,
+                Quantity.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_1));
+
+        assertThrows(ParseException.class,
+                Quantity.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_2));
     }
 
     @Test

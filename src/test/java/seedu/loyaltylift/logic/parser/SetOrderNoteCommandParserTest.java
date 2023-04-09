@@ -41,7 +41,7 @@ public class SetOrderNoteCommandParserTest {
         // no parameters
         assertParseFailure(parser, SetOrderNoteCommand.COMMAND_WORD, expectedMessage);
 
-        // no index
-        assertParseFailure(parser, SetOrderNoteCommand.COMMAND_WORD + " " + nonEmptyNote, expectedMessage);
+        // no note
+        assertParseFailure(parser, SetOrderNoteCommand.COMMAND_WORD + " 1" + nonEmptyNote, expectedMessage);
     }
 }

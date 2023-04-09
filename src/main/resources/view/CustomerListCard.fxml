@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" stylesheets="@CustomerListCard.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" stylesheets="@CustomerListCard.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -56,7 +56,7 @@
          <children>
             <HBox fx:id="accessoryPlaceholder" alignment="TOP_RIGHT" spacing="5.0" />
             <Separator orientation="VERTICAL" visible="false" VBox.vgrow="ALWAYS" />
-            <Label text="Last Ordered: " />
+            <Label />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />

@@ -38,7 +38,7 @@ public class AppendCustomerNoteCommandParserTest {
         // no parameters
         assertParseFailure(parser, AppendCustomerNoteCommand.COMMAND_WORD, expectedMessage);
 
-        // no index
-        assertParseFailure(parser, AppendCustomerNoteCommand.COMMAND_WORD + " " + nonEmptyString, expectedMessage);
+        // no note
+        assertParseFailure(parser, AppendCustomerNoteCommand.COMMAND_WORD + " 1" + nonEmptyString, expectedMessage);
     }
 }

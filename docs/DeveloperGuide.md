@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CustomerListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,11 +82,11 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Customer` and `Order` objects residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,15 +94,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCustomerCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletec 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletec 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCustomerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,8 +110,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCustomerCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCustomerCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCustomerCommandParser`, `DeleteCustomerCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Bookmark Customer 
+
+The commands `markc` and `unmarkc` are responsible for bookmarking or un-bookmarking a customer respectively. 
+Parsing of the user input is done by the `LogicManager` and `AddressBookParser` (as explained in the section of [Logic component](#logic-component)).
+
+Using `markc` command as an example, the parsing process will create a `MarkCustomerCommand` object.
+The `MarkCustomerCommand` is then executed, and its process is described in the following sequence diagram.
+
+![Sequence diagram for bookmarking a customer](images/MarkCustomerSequenceDiagram.png)
+ 
+1. The list of filtered customers is retrieved from the `Model`, and the index is used to find the customer that needs to be bookmarked.
+2. A new `Customer` object is created with it's `Marked` attribute to reflect that it is bookmarked.
+3. `Model` is called again to replace the original customer to the newly created customer.
+
+The sequence for `unmarkc` command is similar as the above.
+
+### Future Enhancements
+
+Instead of using commands to manipulate the bookmark-ed status of a customer, LoyaltyLift can allow users to use the mouse to select the bookmark icon to swap between bookmarked and not bookmarked.
+As we wanted to ensure that LoyaltyLift is optimised as a CLI application, we prioritised the implementation of `markc` and `unmarkc` over the ability to select on the graphical user interface.
+However, certain users may find it more convenient to select the icon or prefer the flexibility of doing both depending on the situation.
 
 ### Add/Deduct reward points feature
 
@@ -377,6 +398,64 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Design Tweaks**
+
+### Enabling Customers with Duplicate Names to be Created
+
+#### Current Situation / Problem
+
+It is a common occurrence for 2 customers to have the same full name. 
+However, an attempt to create a 2nd customer with the same name will fail as the user will face an error.
+
+The error occurs because LoyaltyLift does not allow 2 customers with the same name to exist. 
+In [`Customer.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/model/customer/Customer.java), `Customer::isSameCustomer` is responsible for determining if 2 customers have the same identity, and it returns true if they have the same name.
+
+
+#### Possible Tweaks
+
+Ideally, a customer can be uniquely identified by a government-issued identification number (e.g. NRIC for Singaporeans). 
+However, this information is most likely unavailable to the small business owner; hence is not a feasible solution.
+
+Therefore, we propose 3 possible tweaks or solutions.
+
+1. **Use phone number to uniquely identify a customer**
+
+   Instead of using the customer's name, their phone number is a better unique identifier. 
+   With this solution, `Customer::isSameCustomer` will return true if 2 customers' phone numbers are equal. 
+   
+   **Pros**: There is a much lower probability of conflicts in the customer's phone number. One of the few possible occurrences is when a customer changes phone number, and another customer obtains that customer's previous phone number.
+
+   **Cons**: However, a customer may not want to be contacted through phone but through email instead. Hence, the business owner will not be able to create a customer in this situation.
+
+2. **Combining multiple attributes to uniquely identify a customer**
+
+   Building upon the idea of using phone number as a unique identifier, we can instead use a combination of attributes as a unique identifier.
+   Combining the customer's name, phone number and home address is possible. 
+   With this combination, `Customer::isSameCustomer` will return true if 2 customers' names, phone numbers and home addresses are all equal.
+
+   **Pros**: More robustly uniquely identify a customer in the absence of government-issued identification number.
+
+   **Cons**: It is more error-prone as a customer's information, such as his phone number and address can change over time. More attributes must be updated compared to just using a single attribute as a unique identifier.
+
+3. **Use a hidden identification number**
+
+   Instead of using the customer's name, a customer can be uniquely identified with a hidden, randomly generated unique identifier.
+   On creating every customer object, LoyaltyLift will allocate a new unique identifier number to the customer.
+   `Customer::isSameCustomer` will return true if 2 customers' hidden unique identifier are the same.
+
+   **Pros**: This tweak removes the dependency on the customer's personal information. Randomly generated unique identifier are quick to generate and have a very low chance of generating the same unique identifier.
+
+   **Cons**: Duplicated customers may be created in the application. Without any dependency, this increases the possibility for a single real customer to exist as 2 customers in LoyaltyLift. If the business owner is not careful or is unaware that the customer already exists in LoyaltyLift, he may accidentally create the same customer again. With a unique identifier such as the phone number or customer's name, the user will face an error when adding a 2nd customer with the same personal information. This indicates that the business owner may be making a mistake because the customer already exists in LoyaltyLift. 
+
+#### Extra Remarks
+
+While the above solutions are mostly feasible, we can also explore the idea of giving the flexibility to the business owner to decide the unique identifier.
+Using a phone number as the default unique identifier, most business owners may be satisfied and only face a few issues. This is because business owners can request that all customers share their phone numbers.
+
+However, future implementations can allow the business owner to configure LoyaltyLift to use an email address or a combination of phone number and email address as the unique identifier instead. 
+More experience users may wish for the freedom to configure this option or some users may require this feature to comply with regulations around sensitive customer data.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -410,41 +489,41 @@ Help small business owners manage customers and their orders to boost customer s
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | small business owner | create, view, update and delete basic profile information of my customers | - |
-| `* * *`  | small business owner |	view a centralized tab containing all customers |	view all the customers’ information. |
-| `* * *`  | small business owner |	save the addresses of my customers | provide an easier checkout experience to frequent customers |
-| `* * *`  | forgetful small business owner |	bookmark customers for required updates | remind myself to communicate with some customers |
-| `* * *`  | attentive business owner | track reward points given associated to my customers | determine who I should reward as part of the reward system |
-| `* * *`  | small business owner | create, view, update and delete basic profile information of my orders | - |
-| `* * *`  | small business owner | view a centralized tab containing all orders | view all the orders' information |
-| `* * *`  | small business owner |	set an order as paid for | - |
-| `* * *`  | customer-focused small business owner | see which orders have been paid for | ship it out as soon as possible |
-| `* * *`  | customer-focused small business owner | see how long an order has been unprocessed | prevent customers from waiting for too long |
-| `* * *`  | small business owner | view the orders that I have completed | send a feedback form to the customer if necessary |
-| `* * *`  | forgetful small business owner | move an order from "paid" to "shipped" | reference in future if the order has been shipped out |
-| `* * *`  | occupied small business owner | move orders between different statuses (eg. To ship, Pending payment) | see what order I should focus on |
-| `* * *`  | customer-focused small business owner | sort the order list by status of its timeline | be on track with customers' orders |
-| `* * *`  | small business owner | view or search my customers’ previous orders | easily navigate to their previous orders to view relevant information |
-| `* *`  | small business owner | categorize my customers by a few metrics | - |
-| `* *`  | analytical small business owner | view some basic summary of my customer base | understand the demographics of my customers better |
-| `* *`  | attentive small business owner | add customised notes to each customer | track more specific details of each customer |
-| `* *`  | small business owner | include tags in my customer notes | view notes from multiple customers with a similar theme |
-| `* *`  | small business owner | sort customers by their reward points | determine who are my loyal customers |
-| `* *`  | small business owner | spend points for my customers | redeem rewards for them |
-| `* *`  | devoted small business owner | keep a list of rewards and its availability and points | know what rewards I have prepared to give away to loyal customers |
-| `* *`  | small business owner | add enterprise customers | include other companies in my list |
-| `* *`  | small business owner | filter between individual and enterprise customers | - |
-| `* *`  | small business owner | assign individuals to an enterprise | group individuals working in the enterprise |
-| `* *`  | small business owner | view an order timeline for each order | refer to it for future reference |
-| `* *`  | attentive small business owner | view what were my customers’ previous preferences for my product | can easily communicate with the customer about their previous preferences to provide a good service |
-| `* *`  | analytical small business owner | view an overall history tab to have a high level view of the orders I have completed on any particular date | see what orders are popular or unpopular to decide on goods to sell |
-| `* *`  | small business owner | tag an order to a specific customer | resolve conflicts regarding a particular order swiftly |
-| `* *`  | small business owner who wants to reduce costs | group orders with delivery addresses close to each other | order delivery can be done more efficiently |
-| `*`  | small business owner | search for customers using a keyword | easily find specific customers |
-| `*`  | small business owner | search for orders using a keyword | easily find specific orders |
-| `*`  | small business owner | save the customers and orders list | - |
+| Priority | As a …​                                        | I can …​                                                                                                    | So that I can…​                                                                                     |
+|----------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `* * *`  | small business owner                           | create, view, update and delete basic profile information of my customers                                   | track and view who are my current customers                                                         |
+| `* * *`  | small business owner                           | create, view, update and delete basic information of my customers' orders                                   | track and view what are my customers' orders                                                        |
+| `* * *`  | small business owner                           | assign an order to a specific customer                                                                      | I can track all the orders under a specific customer                                                |
+| `* * *`  | small business owner                           | advance & revert status of an order (eg. Pending, Paid, Shipped, Completed, Cancelled)                      | track the progress of my customer's order                                                           |
+| `* * *`  | forgetful small business owner                 | bookmark customers                                                                                          | remind myself to communicate with some customers                                                    |
+| `* * *`  | customer-focused small business owner          | track current and cumulated reward points associated to my customers                                        | determine who I should reward as part of the reward system                                          |
+| `* * *`  | customer-focused small business owner          | add or deduct reward points from a customer                                                                 | claim rewards for my customers                                                                      |
+| `* * *`  | small business owner                           | view or search my customers’ previous orders                                                                | easily navigate to their previous orders to view relevant information                               |
+| `* * *`  | small business owner                           | save the customers and orders list after every action                                                       | avoid remembering information of my customers and orders                                            |
+| `* * *`  | small business owner                           | assign a customer as an enterprise or an individual                                                         | include companies in my list of customers                                                           |
+| `* * *`  | attentive business owner                       | set or append note for a customer                                                                           | take note of details such as preferences of my customers                                            |
+| `* * *`  | attentive business owner                       | set or append note for an order                                                                             | take note of details such as special requests of my orders                                          |
+| `* *`    | customer-focused small business owner          | sort customers by their reward points                                                                       | determine who are my loyal customers                                                                |
+| `* *`    | customer-focused small business owner          | sort the order list by status                                                                               | be on track with customers' orders                                                                  |
+| `* *`    | small business owner                           | filter between individual and enterprise customers                                                          | view customers of a specific type when necessary                                                    |
+| `* *`    | small business owner                           | filter order based on status                                                                                | view orders that require specific attention                                                         |
+| `* *`    | small business owner                           | filter customers that are bookmarked                                                                        | identify customers that requires attention                                                          |
+| `* *`    | small business owner                           | view an order progress or history for each order                                                            | refer to it for future reference                                                                    |
+| `* *`    | small business owner                           | search for customers using a keyword                                                                        | easily find specific customers                                                                      |
+| `* *`    | small business owner                           | search for orders using a keyword                                                                           | easily find specific orders                                                                         |
+| `* *`    | small business owner                           | clear my saved data                                                                                         | reset the application's state                                                                       |
+| `* *`    | analytical small business owner                | view basic statistics of my customer base                                                                   | understand the demographics of my customers better                                                  |
+| `* *`    | analytical small business owner                | view an overall history tab to have a high level view of the orders I have completed on any particular date | see what orders are popular or unpopular to decide on goods to sell                                 |
+| `* *`    | customer-focused small business owner          | see how long an order has been unprocessed                                                                  | prevent customers from waiting for too long                                                         |
+| `*`      | attentive business owner                       | create, view and delete multiple notes for a customer                                                       | customise notes for each customer                                                                   |
+| `*`      | attentive business owner                       | create, view and delete multiple notes for an order                                                         | customise notes for each order                                                                      |
+| `*`      | small business owner                           | include tags in my customer notes                                                                           | view notes from multiple customers with a similar theme                                             |
+| `*`      | attentive small business owner                 | view what were my customers’ previous preferences for my product                                            | can easily communicate with the customer about their previous preferences to provide a good service |
+| `*`      | small business owner who wants to reduce costs | group orders with delivery addresses close to each other                                                    | allocate resources efficiently for order deliveries                                                 |
+| `*`      | small business owner                           | assign individuals to an enterprise                                                                         | group individuals working in the enterprise                                                         |
+| `*`      | customer-focused business owner                | set the reward points threshold for each tier                                                               | customise tiers to decide who are my loyal customers                                                |
+| `*`      | customer-focused small business owner          | create, view, update and delete reward prizes with its availability and points                              | know what rewards I have prepared to give away to loyal customers                                   |
+
 
 ### Use cases
 
@@ -501,7 +580,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C4 - Update Customer
+#### Use case: UC C4 - Edit Customer
 
 **MSS**
 
@@ -543,31 +622,13 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C6 - Assign Individual to Enterprise
-
-**MSS**
-
-1.  User gets <u>list of customers (UC C1)</u>.
-2.  User requests to assign an individual to an enterprise.
-3.  LL assigns the individual to the enterprise and displays the enterprise information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested individual or enterprise does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC C7 - Create Customer Note
+#### Use case: UC C6 - Set/Append Customer Note
 
 **MSS**
 
 1.  User <u>gets list of customers (UC C1)</u>.
 2.  User enters note for a customer.
-3.  LL adds note to the customer and displays the customer information.
+3.  LL adds/appends note to the customer and displays the customer information.
 
     Use case ends.
 
@@ -579,13 +640,13 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C8 - Append Customer Note
+#### Use case: UC C7 - Set/Add Customer Points
 
 **MSS**
 
 1.  User <u>gets list of customers (UC C1)</u>.
-2.  User enters new note data to append.
-3.  LL updates the note and displays the customer information.
+2.  User enters customer points.
+3.  LL updates the customer's points and displays the customer.
 
     Use case ends.
 
@@ -597,33 +658,15 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-* 2b. Requested note does not exist.
+* 2b. LL detects invalid input data.
 
     * 2b1. LL shows an error message.
 
       Use case resumes from step 1.
 
-#### Use case: UC C9 - Delete Customer Note
+* 3a. Update results in invalid value.
 
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User requests to delete a customer note.
-3.  LL deletes the note and displays the customer information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested customer does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. Requested note does not exist.
-
-    * 2b1. LL shows an error message.
+    * 3a1. LL shows an error message.
 
       Use case resumes from step 1.
 
@@ -647,7 +690,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 **MSS**
 
 1.  User gets <u>list of customers (UC O1)</u>.
-2.  User enters customer id and new data order.
+2.  User enters customer id and new order data.
 3.  LL creates the order and assigns the order to the customer.
 4.  LL displays the order information.
 
@@ -703,7 +746,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O5 - Update Order
+#### Use case: UC O5 - Edit Order
 
 **MSS**
 
@@ -727,12 +770,12 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O6 - Advance Order Status
+#### Use case: UC O6 - Advance/Revert/Cancel Order Status
 
 **MSS**
 
 1.  User <u>gets list of orders (UC O1)</u>.
-2.  User requests to advance an order's status.
+2.  User requests to advance/revert/cancel an order's status.
 3.  LL updates the order's status and displays the order information.
 
     Use case ends.
@@ -745,142 +788,29 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-* 2b. Requested order is already at last stage.
+* 2b. Order status cannot be advanced/reverted/cancelled.
 
     * 2b1. LL shows an error message.
 
       Use case resumes from step 1.
 
-#### Use case: UC R1 - List Rewards
+#### Use case: UC O7 - Set/Append Order Note
 
 **MSS**
 
-1.  User requests list of rewards.
-2.  LL displays list of rewards.
+1.  User <u>gets list of orders (UC O1)</u>.
+2.  User enters note for an order.
+3.  LL adds/appends note to the order and displays the order information.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Reward list is empty.
-
-  Use case ends.
-
-#### Use case: UC R2 - View Reward
-
-**MSS**
-
-1.  User gets <u>list of rewards (UC R1)</u>.
-2.  User requests to view a reward.
-3.  LL displays the reward information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
+* 2a. Requested order does not exist.
 
     * 2a1. LL shows an error message.
 
       Use case resumes from step 1.
-
-#### Use case: UC R3 - Delete Reward
-
-**MSS**
-
-1.  User gets <u>list of rewards (UC R1)</u>.
-2.  User requests to delete a reward.
-3.  LL deletes the reward.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R4 - Update Reward
-
-**MSS**
-
-1.  User <u>gets list of rewards (UC R1)</u>.
-2.  User enters new data for a reward.
-3.  LL updates the reward and displays the reward information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. LL detects invalid input data.
-
-    * 2b1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R5 - Set/Add Customer Points
-
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User enters customer points.
-3.  LL updates the customer's points and displays the customer.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested customer does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. LL detects invalid input data.
-
-    * 2b1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R6 - Give Reward to Customer
-
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User <u>gets list of rewards (UC R1)</u>.
-3.  User requests to give a reward to a customer.
-4.  LL deducts points from the customer.
-5.  LL adds the reward to the customer and displays the customer information.
-
-    Use case ends.
-
-**Extensions**
-
-* 3a. Requested reward does not exist.
-
-    * 3a1. LL shows an error message.
-
-      Use case resumes from step 2.
-
-* 3b. Requested customer does not exist.
-
-    * 3b1. LL shows an error message.
-
-      Use case resumes from step 2.
-
-* 4a. Customer does not have enough points.
-
-    * 4a1. LL shows an error message.
-
-      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
@@ -948,3 +878,16 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+### Allow Customers to have similar Orders
+
+Currently, a customer cannot have two orders with the same product name, quantity, and address on the same day.
+This is because the orders will be considered as duplicates, as defined by `Order::isSameOrder`.
+
+To improve this, we plan to assign a unique ID for each order such that two orders are considered duplicates if they have the same ID.
+
+This ID can initially be randomly generated, but we then allow the user to define their own format as required by their business (e.g. some users may want to incorporate the order's created date into the identifier).

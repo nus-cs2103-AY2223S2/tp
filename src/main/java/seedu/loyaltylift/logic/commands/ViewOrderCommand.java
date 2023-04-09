@@ -1,10 +1,11 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 
 import java.util.List;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
@@ -35,16 +36,14 @@ public class ViewOrderCommand extends Command {
         List<Order> lastShownList = model.getFilteredOrderList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_ORDER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
-        Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Order orderToView = lastShownList.get(targetIndex.getZeroBased());
+        model.setOrderToDisplay(orderToView);
 
         return new CommandResult(
-                String.format(MESSAGE_VIEW_ORDER_SUCCESS, orderToDelete),
-                false,
-                false,
-                null,
-                targetIndex.getZeroBased());
+                String.format(MESSAGE_VIEW_ORDER_SUCCESS, orderToView),
+                LIST_AND_SHOW_ORDER);
     }
 
     @Override
