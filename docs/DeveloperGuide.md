@@ -448,7 +448,7 @@ Sequence Diagram:
 
 1. The user enters the command, eg. `aetd eid/100 n/Software Engineering`. It represents that the employee with ID 100
    is supposed to be added to the Software Engineering department.
-2. The parser instantiate a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
+2. The parser instantiates a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
 3. The command is executed. It first tries to find the employee with ID 100 and department called Software Engineering.
 4. If the employee and department exists, the command checks if the same employee exists in the department.
 5. If there is no duplicate employee in the department, the model adds the employee to the department.
@@ -539,7 +539,7 @@ Sequence Diagram:
 ##### Flow
 
 1. The user enters the command `aetl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
-2. The parser would i a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
+2. The parser instantiates a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
 3. The `Id` and `LeaveDate` are passed down to the command.
 4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Leave` does not exist, a new one is created and added to `SudoHR`. If the `Employee` does not exist, an error message will be displayed.
 5. If the employee already exists in `Leave`, an error message will be displayed.
