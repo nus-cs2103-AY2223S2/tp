@@ -76,7 +76,7 @@ Here is a short overview of the features and capabilities of **CookHub**:
 In order to make the most out of your experience in CookHub, let us understand the application's GUI better.
 
 <p align="center" width="100%">
-    <img src="images/annotated/GUI.png" width="120%">
+    <img src="images/annotated/GUI.png" width="100%">
 </p>
 
 
@@ -180,7 +180,7 @@ Examples:
 shown below will be added to the recipe book:
 
 <p align="center" width="100%">
-    <img src="images/AddResult1.png" width=100%>
+    <img src="images/AddResult1.png" width="100%">
 </p>
 
 
@@ -255,7 +255,7 @@ Examples:
 
 Our initial recipe book:
 <p align="center" width="100%">
-    <img src="images/UiInWindows.png" width=500 height=400>
+    <img src="images/UiInWindows.png" width=400 height=300>
 </p>
 
 - `delete 1` will result in a recipe book as shown below:
@@ -378,7 +378,7 @@ Examples:
 Our initial recipe book:
 
 <p align="center" width="100%">
-    <img src="images/AddResult2.png" width=500 height=400>
+    <img src="images/FindInitial.png" width="100%">
 </p>
 
 - e.g. `only eggs` is valid, and will search for recipes that have ingredients that at most contain eggs, and nothing more. The result of the command is as shown below:
@@ -426,7 +426,7 @@ Example:
 Our initial recipe book:
 
 <p align="center" width="100%">
-    <img src="images/AddResult2.png" width=500 height=400>
+    <img src="images/FindInitial.png" width="100%">
 </p>
 
 - `sort desc` will display your sorted recipe book similar to the image shown below:
@@ -459,7 +459,7 @@ Example:
 
 Our initial recipe book:
 <p align="center" width="100%">
-    <img src="images/GroceriesStart.png" width=500 height=400>
+    <img src="images/GroceriesStart.png" width=400 height=300>
 </p>
 
 Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the result 
@@ -497,7 +497,7 @@ Example:
 
 Our initial recipe book:
 <p align="center" width="100%">
-<img src="images/AddResult2.png" width=500 height=400>
+<img src="images/FindInitial.png" width="100%">
 </p>
 
 - `fp < 4.50` will display all recipes that have a lower price than $4.50, as shown in the image below:
@@ -531,7 +531,7 @@ Examples:
 
 Our initial recipe book:
 <p align="center" width="100%">
-<img src="images/AddResult2.png" width=500 height=400>
+<img src="images/FindInitial.png" width="100%">
 </p>
 
 - `star 2` will star the second recipe, as shown in the image below:
@@ -565,7 +565,7 @@ Examples:
 
 Our initial recipe book:
 <p align="center" width="100%">
-    <img src="images/AllRecipesStarred.png" width=500 height=400>
+    <img src="images/AllRecipesStarred.png" width=400>
 </p>
 
 - `unstar 2` will remove the star of the second recipe, as shown in the image below:
@@ -589,7 +589,7 @@ Example:
 Our initial recipe book:
 
 <p align="center" width="100%">
-    <img src="images/StarResult1.png" width=500 height=400>
+    <img src="images/StarResult1.png" width=400 height=300>
 </p>
 
 - `favorites` will display all your starred recipes, as shown in the image below:
