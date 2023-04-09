@@ -5,9 +5,9 @@ title: User Guide
 
 # Introduction
 
-Streamline your patient management with lightning-fast efficiency using HospiSearch - the CLI optimized GUI desktop app.
+Streamline your patient management with lightning-fast efficiency using HospiSearch
 
-HospiSearch is a **desktop app for managing hospital/clinic patients' particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
+HospiSearch is a **desktop app for managing hospital/clinic patients' particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. HospiSearch can help you complete your contact management tasks faster than traditional GUI apps, regardless of your typing speed.
 
 Our target audience is hospital and clinical administrative staff who deal with the management of large physical patient records and seek a more efficient and streamlined solution.
 
@@ -26,7 +26,6 @@ The purpose of this user guide document is to provide staff with a clear underst
 - [GUI Information](#gui-information)
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
-  - [Help](#viewing-help--help): `help`
   - [Undo](#undoing-previous-command-undo): `undo`
   - [Redo](#redoing-previous-undo-redo): `redo`
   - [Add patient](#adding-a-patient-record-add): `add`
@@ -42,6 +41,7 @@ The purpose of this user guide document is to provide staff with a clear underst
   - [Clear all data](#clearing-all-data-clear): `clear`
   - [Light mode](#switching-to-light-mode-light): `light`
   - [Dark mode](#switching-to-dark-mode-dark): `dark`
+  - [Help](#viewing-help--help): `help`
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -127,19 +127,9 @@ executed in lower case. E.g., `find` is valid, but `FIND` or `FinD` is considere
 not need to be in lower case.
 </div>
 
-### Viewing help : `help`
-
-Lists out all the commands available, along with a brief description.
-
-Format: `help`
-
-![Help](images/command_result/Help.png)
-
-Above is the view of help window after the input `help`.
-
 ### Undoing previous command: `undo`
 
-Reverts the patient records to the state before the previous command was executed.
+In the event that your previous change was a mistake, you can use this feature to revert the patient records to the state before the previous command was executed.
 
 Format: `undo`
 
@@ -153,7 +143,7 @@ Above is the execution result of the input `undo` (the list has been cleared).
 
 ### Redoing previous undo: `redo`
 
-Reverts the patient records to the state before the previous undo was executed.
+In the event that you accidentally removed the changes you made, you can use this feature to revert the patient records to the state before the previous undo was executed.
 
 <div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
 has run.
@@ -167,7 +157,7 @@ Above is the execution result of the input `redo` (the list is cleared again).
 
 ### Adding a patient record: `add`
 
-Adds a person to the patient records.
+In a situation when you want to register a patient who is visiting your clinc for the first time, this feature can allow you to add the patient's record to the patient records list.
 
 Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -191,7 +181,7 @@ Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/
 
 ### Editing a patient record: `edit`
 
-Edits an existing patient in the patient records.
+In a situation when you want to update a patient's phone number or other particulars this feature can allow you to do so.
 
 Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -212,7 +202,7 @@ Above is the execution result of the input `edit 7 i/G0000000A`.
 
 ### Viewing a patient detailed particulars: `view`
 
-Views a patient detailed particulars.
+In a situation when you want to obtain in depth information of a particular patient which is not available in the patient records list, you can use this feature to do so.
 
 Format : `view i/NRIC`
 
@@ -229,7 +219,7 @@ Above is the execution result of the input `view i/S1234567H`.
 
 ### Deleting a patient record: `delete`
 
-Deletes the specified patient from the patient records.
+In a situation when you want to delete a patient from the patient records list due to death and the specified retention period is over, you can use this feature to do so.
 
 Format: `delete i/NRIC…​`
 
@@ -248,7 +238,7 @@ Above is the execution result of the input `delete i/S1234567A`.
 
 ### Listing all patients: `list`
 
-Shows a list of all patients in the patient records.
+You can use this feature to get a list of all patients in the records.
 
 Format: `list`
 
@@ -263,7 +253,7 @@ Above is the execution result of the input `list`.
 
 ### Filtering patients by attribute: `find`
 
-Find patients according to a particular command prefix stated followed by the change.
+You can search for patients based on their name, age, medical condition, or any other relevant criteria
 
 Command Prefixes that can be searched:
 
@@ -299,7 +289,7 @@ Above is the execution result of the input `find ad/Alex`.
 
 ### Backing up patient records: `backup`
 
-Backs up the patient records to a specified slot represented by an index. Can add a description to the backup.
+In order to prevent data loss, you can back up the patient records to a specified slot represented by an index and add a description for the backup.
 
 Format: `backup INDEX_NO [b/DESCRIPTION]`
 
@@ -326,7 +316,7 @@ Above is the execution result of the input `backup 1`.
 
 ### Loading data: `load`
 
-Loads the data from a specified slot represented by an index.
+In the event of a data loss, you can load the backup data from a specified slot represented by an index.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Allows access to a specific backup.
 </div>
@@ -343,7 +333,7 @@ Above is the execution result of the input `load 1`.
 
 ### Viewing backup data: `viewbackups`
 
-Shows all the backups available.
+You can use this feature to shows all the data you have backed up.
 
 Format: `viewbackups`
 
@@ -356,7 +346,7 @@ Above is the execution result of the input `viewbackups`.
 
 ### Deleting backup data: `deletebackup`
 
-Deletes the data from a specified slot represented by an index.
+You can use this feature to delete the backup data from a specified slot represented by an index.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Deleted backups cannot be retrieved after
 deletion.
@@ -409,6 +399,16 @@ Format: `dark`
 ![Dark](images/command_result/Dark.png)
 
 Above is the execution result of the input `dark`.
+
+### Viewing help : `help`
+
+In case you need help navigating HospiSearch, you can use this feature which lists out all the commands available, along with a brief description.
+
+Format: `help`
+
+![Help](images/command_result/Help.png)
+
+Above is the view of help window after the input `help`.
 
 
 --------------------------------------------------------------------------------------------------------------------
