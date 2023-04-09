@@ -13,20 +13,21 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 
 * [Contributions](#contributions)
 * [Enhancements](#enhancements)
-* [Bug Fixes](#bug-fixes)
+* [Documentation](#documentation)
+* [Contributions to Team-based Tasks](#contributions-to-team-based-tasks)
+* [Community Contributions](#community-contributions)
 * [Links to Contributions](#links-to-contributions)
 
 ## Contributions
 
-* **New Feature**: Added the deadline parameter for `add` command.
+* **New Feature**: Add deadline parameter for `add` command.
     * What it does: User can input deadline for the roles.
-    * Justification: The addition of deadline is important to allow the user to have enough time to prepare for its
-      internship.
+    * Justification: The addition of deadline is important to allow the user to have enough time to prepare for the
+      role.
     * Highlights: TechTrack users can now add their deadline. The restriction of deadline must be in the format '
-      YYYY-MM-DD'.
+        YYYY-MM-DD'.
 
-
-* **New Feature**: Add a new `salary` command to allow the sorting of roles based on salary.
+* **New Feature**: Add new `salary` command to allow the sorting of roles based on salary.
     * What it does: Allow user to see which roles are the most attractive or least attractive depending on the salary.
     * Justification: This is an important feature from the user point of view as salary is tied closely to the
       importance of different roles.
@@ -40,12 +41,6 @@ I worked on the backend and documentation. I was mainly in charge of implementat
     * Highlights: OOP design to allow more sorting features to develop in the future by accessing this class.
 
 
-* **Refactoring**: Refactored the `address` package to the `roles` package.
-    * What it does: The package is changed accordingly to the needs of the application.
-    * Justification: Roles fits towards TechTrack instead of address and would be clearer for future developments.
-    * Highlights: Refactored AB3 code and tests.
-
-
 * **Testing**: Tests new implementation and class created.
     * What it does: Allow the code to be covered by more tests and making it more robust.
     * Justification: New classes such as `OrderParser`, `Deadline` and `DeadlineCommand` needs to be added to allow the
@@ -54,25 +49,48 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 
 ## Enhancements
 
-* Implementation of sorting for salary.
-* Allow the user to enter the deadline for adding of roles.
-* Enhanced the salary restriction to make it more intuitive for the user.
-* Add welcome message on startup to let the user know the available commands.
+* Refactoring: Refactored the `address` package to the `techtrack` package [#169](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/169)
+  * What it does: The package is changed accordingly to the needs of the application
+  * Justification: Roles fits towards TechTrack instead of address and would be clearer for future developments
+  * Highlights: Refactored AB3 code and tests
+* Enhanced the salary restriction to make it more intuitive for the user [#255](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/255)
+* Add welcome message on startup to let the user know the available commands [#118](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/118)
 
-## Bug Fixes
 
-* Fixed a bug where the left padding of salary is allowed, E.g.: $00001.
-* Fixed a bug where zero salary is allowed.
-* Fixed a bug where the sorting after searching commands such as tag, name deletes the original list in storage.
+## Documentation
 
-* **Documentation:**
-    * User Guide:
-        * Wrote to specify that add command will take the latter if multiple similar parameters is given.
-        * Wrote and provided the screenshots of salary asc/desc command.
-    * Developer Guide (TO BE ADDED):
-        * Wrote the implementation of SalaryCommand.
-        * Wrote the alternatives of SalaryCommand.
-        * Constructed the sequence diagram of SalaryCommand.
+* User Guide:
+  * Added and provided the UI screenshots of `salary asc/desc` command.
+  * Added restrictions for the role table.
+* Developer Guide:
+  * Added the implementation of sorting for `salary` and `deadline`.
+  * Constructed the sequence diagram of sorting for `salary` and `deadline`.
+  * Added documentation for `salary`, `deadline` and `view` manual testing appendix.
+  * Added the first 7 of NFR section of requirement details.
+  * Adjusted and ensure proper formatting of guide.
+
+
+## Contributions to Team-based Tasks
+* Created priority and type tags in team repository.
+* Managed Milestones for 1.2, 1.3, 1.4.
+* Bug Fixes:
+  * Fixed DG bug for the sequence diagram of sorting, where the `SalaryCommand` and `DeadlineCommand` object is created 
+    before `OrderParser`.
+  * Fixed salary bug where salary of zero is allowed.
+  * Fixed sorting bug, where sorting after filter commands such as tag, name deletes the original list in storage.
+  * Fixed UG bug to specify that add command will take the latter details if multiple similar parameters is given.
+* Offered useful and feedback with issues and reviewing PRs
+  (examples: [1](https://github.com/AY2223S2-CS2103-W16-2/tp/issues/138),
+             [2](https://github.com/AY2223S2-CS2103-W16-2/tp/issues/149),
+             [3](https://github.com/AY2223S2-CS2103-W16-2/tp/issues/242) )
+
+
+## Community Contributions
+
+* Reported bugs and suggestions for other team
+  (examples: [1](https://github.com/AY2223S2-CS2103T-W14-4/tp/issues/135),
+             [2](https://github.com/AY2223S2-CS2103T-W14-4/tp/issues/142), 
+             [3](https://github.com/AY2223S2-CS2103T-W14-4/tp/issues/156) )
 
 ## Links to Contributions
 
