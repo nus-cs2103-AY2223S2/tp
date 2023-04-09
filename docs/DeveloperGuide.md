@@ -14,7 +14,7 @@ FastTrack is an easy-to-use financial management desktop application designed fo
 
 The purpose of this guide is to give you a comprehensive insight for developing and maintaining FastTrack.
 
-If you are a developer, this guide will give you an overview of the high-level [design](#design) and architecture of FastTrack. It also delves into the [implementation](#implementation) and design considerations of FastTrack features, allowing you to learn the ins and outs of FastTrack in no time. If you are lost now, you can start by first looking at the [set up](#setting-up-getting-started) portion.
+If you are a developer, this guide will give you an overview of the high-level [design](#design) and architecture of FastTrack. It also delves into the [implementation](#implementation) and design considerations of FastTrack features, allowing you to learn the ins and outs of FastTrack in no time. If you are lost now, you can start by first looking at the [set-up](#setting-up-getting-started) portion.
 
 If you like to know more about the motivation behind FastTrack, checkout the [requirements](#appendix-requirements) section where we cover the [product scope](#product-scope) as well as the [user stories](#user-stories) and [use cases](#use-cases).
 
@@ -28,6 +28,7 @@ Here are some notations used in this guide.
 * `Command` is used to label commands and components.
 * {Placeholder} are used to label placeholders.
 * [Optional], square brackets are used to notate optional fields.
+* :information_source: **Note** is used to provide additional information that you should know. 
 
 ---
 
@@ -246,16 +247,14 @@ This command allows the user to add a new category to FastTrack. If the new cate
 #### **Sequence of actions:**
 
 1. The user enters `addcat c/food s/expense on food` in the command box.<br><br>
-
 2. The input is then [parsed](#how-the-parsing-works) and a `AddCategoryCommand` object is created with the new `Category` object. <br><br>
-3. `AddCategoryCommand#execute()` is called, which will trigger the model to add a category. Note if the new category has the same name as an existing category, a `CommandException` will be thrown and displayed to the user.<br><br>
-
+3. `AddCategoryCommand#execute()` is called, which will trigger the model to add a category.<br><br>
 4. `Model#addCategory()` is called, which further calls `ExpenseTracker#addCategory()`. <br><br>
-
 5. `UniqueCategoryList#add()` is called to add the new category to FastTrack.<br><br>
-
 6. A `CommandResult` is returned.<br><br>
 
+:information_source: **Note:**
+* At step 3, if the new category has the same name as an existing category, a `CommandException` will be thrown and the sequence of action will be terminated.
 
 ### \[Implemented\] Delete Category feature
 
@@ -268,16 +267,15 @@ This command allows user to delete a category of choice, expenses with the delet
 #### **Sequence of actions:**
 
 1. The user enters `delcat 1` in the command box.<br><br>
-
-2. The input is then [parsed](#how-the-parsing-works) and a `DeleteCategoryCommand` object is created using the given `INDEX`. Note if an invalid `INDEX` is given, a `CommandException` will be thrown and displayed to the user.<br><br>
-
-3. `DeleteCategoryCommand#execute()` is called, this will retrieve the category object to be deleted from the list of categories. Note if the `INDEX` given is out of range, a `CommandException` will be thrown and displayed to the user.<br><br>
-
+2. The input is then [parsed](#how-the-parsing-works) and a `DeleteCategoryCommand` object is created using the given `INDEX`.<br><br>
+3. `DeleteCategoryCommand#execute()` is called, this will retrieve the category object to be deleted from the list of categories. <br><br>
 4. This will call `Model#deleteCategory()`, which will further call `ExpenseTracker#removeCategory()`.<br><br>
-
 5. `UniqueCategoryList#remove()` is called to remove the `Category` at index 2, and `ExpenseList#replaceDeletedCategory()` is called to replace all expenses with the deleted `Category` with `MiscellaneousCategory`.<br><br>
-
 6. A `CommandResult` object is returned.<br><br>
+
+:information_source: **Note:**
+* At step 2, if an invalid `INDEX` is given, a `CommandException` will be thrown and the sequence of action will be terminated.
+* At step 3, if the `INDEX` given is out of range, a `CommandException` will be thrown and the sequence of action will be terminated.
 
 ### \[Implemented\] Edit Category feature
 
@@ -290,16 +288,15 @@ This command allows user to edit a category of choice. We allow users to edit ei
 #### **Sequence of actions:**
 
 1. User enters `edcat 1 c/food s/expense on food` in the command box.<br><br>
-
-2. The input is then [parsed](#how-the-parsing-works) and a `EditCategoryCommand` object is created using the given index `1`, new category name `food` and new summary `expense on food`. Note if an invalid `INDEX` is given or **both** `c/NAME` and `s/SUMMARY` is missing, a `CommandException` will be thrown and displayed to the user.<br><br>
-
+2. The input is then [parsed](#how-the-parsing-works) and a `EditCategoryCommand` object is created using the given index `1`, new category name `food` and new summary `expense on food`. <br><br>
 3. `EditCategoryCommand#execute()` is called. The category to edit is obtained from the `Model` and stored as `categoryToEdit`. <br><br>
-
-4. The function checks that a new category name is present, thus it calls `UserDefinedCategory#setCategoryName()` on `categoryToEdit`, changing the name of the target category to the given new name. Note if there is a category with the same name as the new name given, a `CommandException` is thrown.<br><br>
-
+4. The function checks that a new category name is present, thus it calls `UserDefinedCategory#setCategoryName()` on `categoryToEdit`, changing the name of the target category to the given new name.<br><br>
 5. The function checks that a new category summary is present, thus is calls `UserDefinedCategory#setDescription()` on `categoryToEdit`, changing the summary of the target category with the given new summary.<br><br>
-
 6. A `CommandResult` object is returned.<br><br>
+
+:information_source: **Note:**
+* At step 2, if an invalid `INDEX` is given or **both** `c/NAME` and `s/SUMMARY` is missing, a `CommandException` will be thrown and the sequence of actions will be terminated.
+* At step 4, if there is a category with the same name as the new name given, a `CommandException` is thrown and the sequence of actions will be terminated.
 
 #### Design considerations:
 **Aspect: How the category object is edited**:
@@ -321,7 +318,7 @@ Since recurring expenses are prominent in today's society (e.g. Netflix, Transpo
 To implement this feature, 3 classes were added:
 1. [`RecurringExpenseManager`](#the-recurringexpensemanager-class)
 2. [`RecurringExpenseList`](#the-recurringexpenselist-class)
-3. `RecurringExpenseType`
+3. [`RecurringExpenseType`](#the-recurringexpensetype-class)
 
 ##### **The `RecurringExpenseManager` class:**
 The `RecurringExpenseManager` class is used as a generator of recurring expenses. When a user wants to add a recurring expense in FastTrack, the user can use the `addrec` command to create a new `RecurringExpenseManager` object. This object will have the following fields:
@@ -340,17 +337,29 @@ The `RecurringExpenseList` class works similar to the `ExpenseList` and `UniqueC
 This is an enum class that stores the valid intervals (day, week, month, year) for a recurring expense. It also contains the `RecurringExpenseType#getNextExpenseDate()` method that calculates the next date given the interval and target date.
 
 #### **Sequence of actions:**
-1. The user adds a new recurring expense into FastTrack using the `addrec` command. Recurring expenses from the `startDate` till today's date/ `endDate` (depending on which is earlier) is generated. If `endDate` is before today's date or not specified, `nextExpenseDate` is updated to reflect the next date to add a new expense into FastTrack. <br><br>
-2. When the user closes and reopens FastTrack, `Mainapp` will instantiate a new `ExpenseTracker` object with the saved data. This will call `ExpenseTracker#resetData()`. <br><br>
-3. `ExpenseTracker#generateRetroactiveExpenses()` is then called, this method goes through the user's `RecurringExpenseList` and checks each `RecurringExpenseManager` object. <br><br>
-4. If the `nextExpenseDate` of the `RecurringExpenseManager` object is equal or before today's date, a new expense will be added to FastTrack based on the expense parameters in the `RecurringExpenseManager` object until `nextExpenseDate` is after today's date or `endDate` if specified.
+
+Below is the sequence diagram when a user opens FastTrack:
+
+<img src="images/RecurringExpenseStartUpSequenceDiagram.png" width="650">
+
+Pre-requisite: The user has added some `RecurringExpenseManager` into FastTrack and all `RecurringExpenseManager` objects have their `nextExpenseDate` updated.
+
+1. When the user reopens FastTrack, `Mainapp` will instantiate a new `Model` and `ExpenseTracker` object with the saved data. This will call `ExpenseTracker#resetData()`. <br><br>
+2. `ExpenseTracker#generateRetroactiveExpenses()` is then called, this method goes through the user's `RecurringExpenseList` and calls the `RecurringExpenseManager#getExpenses()` method on each object. <br><br>
+3. If the `nextExpenseDate` of the `RecurringExpenseManager` object is equal or before today's date, a new expense based on the parameters in the `RecurringExpenseManager` object will be added to a list until `nextExpenseDate` is after today's date or `endDate` if specified. The list is returned to the `ExpenseTracker`.<br><br>
+4. The `ExpenseTracker` will then add each of the expenses in the returned list to FastTrack.
 
 #### **Design considerations:**
 ##### Aspect: Making `RecurringExpenseManager` a class:
 
-* **Alternative 1:** Have a RecurringExpenseManager extend from Expense. Consist of another list of expenses made by the RecurringExpenseManager. 
-  * Pros: 
-  * 
+* **Alternative 1:** Have a `RecurringExpenseManager` extend from `Expense`. Consist of another list of recurring expenses generated by the RecurringExpenseManager. 
+  * Pros: Addition of 1 class only. Works similar to an `Expense` object with just an addition list to store the recurring expenses. 
+  * Cons: Methods for adding a new recurring expense is longer as we need to traverse the entire expense list to locate the `RecurringExpenseManager` and add to the back of the list. Furthermore, the deletion of the `RecurringExpenseManager` also removes the existing recurring expenses. <br><br> 
+* **Alternative 2 (current choice):** Abstract `RecurringExpenseManager` to its own class, similar to category. 
+  * Pros: Able to easily locate all `RecurringExpenseManager` objects that the user created, making addition of recurring expenses into FastTrack simpler and quicker. Deletion of the `RecurringExpenseManager` does not delete existing recurring expenses.
+  * Cons: Requires the addition of another `RecurringExpenseList` class to store all `RecurringExpenseManager` objects. Tedious to maintain and implement. 
+
+**Alternative 2** was chosen as it would be more ideal to abide by the _Separation of Concerns_ principle. This allows proper separation of the generator class `RecurringExpenseManager` and the `Expense` class.
 
 ### **\[Implemented\] Budget feature:**
 
@@ -358,17 +367,21 @@ This is an enum class that stores the valid intervals (day, week, month, year) f
 `set p/AMOUNT` where `AMOUNT` refers to the monthly budget amount. 
 
 #### **What is the feature about:**
-This feature allows users to add a monthly budget to FastTrack. A weekly budget will be calculated for users by taking `AMOUNT` / 4. The `Budget` class is meant to be coupled with `AnalyticModel` to allow users to view helpful statistics such as remaining budget etc. 
+This feature allows users to add a monthly budget to FastTrack. A weekly budget will be calculated for users by taking `AMOUNT` / 4. The `Budget` class is meant to be coupled with `AnalyticModel` to allow users to view helpful [statistics](#implemented-expense-statistics-feature) such as remaining budget etc. 
 
 #### **Sequence of actions:**
+
+Below is the sequence diagram when a user uses the `set` command:
+
+<img src="images/SetBudgetSequenceDiagram.png" width="600"/>
+
 1. User enters `set p/1000` in the command box.<br><br>
-
-2. The input is then [parsed](#how-the-parsing-works) and a `SetBudgetCommand` object is created with the amount `1000`. Note if an invalid amount is given, a `CommandException` will be thrown. <br><br>
-
-3. `SetBudgetCommand#execute()` is called, this will further call `Model#setBudget()` and `ExpenseTracker#setBudget()`. <br><br>
-
+2. The input is then [parsed](#how-the-parsing-works) and a `SetBudgetCommand` object is created with a `Budget` object with an amount of `1000`.<br><br>
+3. `SetBudgetCommand#execute()` is called, this will further call `Model#setBudget()` and `ExpenseTracker#setBudget()`. This will set the observable `simpleBudget` in `ExpenseTracker` to the given new `Budget`. <br><br>
 4. A `CommandResult` object is returned.<br><br>
 
+:information_source: **Note:**
+* At step 2, if an invalid amount is given, a `CommandException` will be thrown and the sequence of action will be terminated.
 #### **Design considerations:**
 
 ##### Aspect: Making `Budget` a class:
@@ -444,91 +457,6 @@ This method of implementation closely follows the _Observer Pattern_, which prom
     * Cons: Was more time-consuming to implement, due to the need to learn about mechanisms like bindings and change listeners in JavaFX.
 
 **Alternative 2** was chosen as it was neater to implement and performs statistic calculations only when absolutely necessary, this preventing unnecessary wastage of computational resources.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
