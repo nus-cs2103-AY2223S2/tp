@@ -8,7 +8,7 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 Features
 * Customers' contacts management system:
-  - View list of contacts of customers
+    - View list of contacts of customers
     - Add contact
     - Delete contact
     - Edit contact

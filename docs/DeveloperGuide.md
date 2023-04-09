@@ -69,27 +69,58 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 ### UI component
-
+#### General
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI layer consist of multiple UIWindows from different components. All windows inherits the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-On start, the `UIManager` will display the `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DeliveryJobListPanel`, `StatusBarFooter` etc. The `MainWindow` serve as a main interaction and entry point to other windows for users.
-
-![Structure of the Main Window](images/UiClassDiagramMainWindow.png)
-
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* calls predefined event handlers when an action, `button`, `mouse` or `keyboard` etc, is perform by the user.
+* listens for changes to `Model` data so that the UI can be updated with the modified data (using `addEventListener`).
+* calls predefined event handlers when an action, `button`, `mouse` or `keyboard` etc, is performed by the user.
 * some window keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `DeliveryJob` or `Person` object residing in the `Model`.
 * Although not represented in the diagram, the UI component starts the Notification function as soon as the app runs.
+
+#### Main Window
+
+On start, the `UIManager` will display the `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DeliveryJobListPanel`, `StatusBarFooter` etc. The `MainWindow` serve as a main interaction and entry point to other windows for users.
+
+![Structure of the Main Window](images/UiClassDiagramMainWindow.png)
+
+#### Timetable Window
+
+Timetable Window displays timetable of the specific week - which is specified by user. The "main" timetable window only contains scheduled jobs (jobs that are scheduled and not yet completed). However, we also have separated windows for completed and unscheduled jobs (`UnscheduleWindow` and `CompleteWindow`). Timetable Window helps users to stay organized and structure their plans for the week.
+
+`Timetable Window`:
+* gets the sorted job list by date and slot using `Logic` component
+* displays the corresponding job list with the correct date and slot
+* returns command execution result.
+* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+
+`Unschedule Window`:
+* displays the list of unscheduled jobs
+* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+
+`Complete Window`:
+* displays the list of completed jobs
+* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+
+Structure of `UnscheduleWindow` and `CompleteWindow` can be shown using the Main Window UI Class diagram.
+
+However, for `TimetableWindow`, the structure is more complicated than those 2 - it contains a few more parts such as `CommandBox`, `ResultDisplay`, etc.
+
+Below is the structure of Timetable Window through class diagram:
+
+![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
+
+
+#### Job System component
 
 The `Job System` component,  
 ![Structure of the Create Job Component](images/UiClassDiagramCreateJob.png)
@@ -112,11 +143,11 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_job ABCDEF")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_job ABCDEF")` API call (accessed from Main Window):
 
 ![Interactions Inside the Logic Component for the `delete_job ABCDEF` Command](images/DeleteDeliveryJobSequenceDiagram.png)
 
-Another example would be `execute("delete 1")`
+Another example would be `execute("delete 1")` - accessed from Customers' Window:
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -251,32 +282,68 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### Timetable feature
+### Delivery Job System
 #### Implementation
 
+##### 1. Edit job command
+Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar execution pattern with their own command logics.
+
+GUI Mode:
+Step 1. The user launches the application for the first time.
+Step 2. The user selects a job to be updated.
+Step 3. The user edits preexisting inputs to update the job.
+
+The command pattern was followed closely with difference only in the execution layer where the `EditDeliveryJobCommand` constructs a `DeliveryJob` object through a builder pattern.
+
+The builder construct was initially introduced to handle optional and null arguments from `find_job` command and GUI. Here, we are reusing the builder to construct a `DeliveryJob` class.
+
+The builder class returns a `DeliveryJob` object only when `EditDeliveryJobCommand` calls the `DeliveryJob.Builder#build()` method.
+
+Operation resume to standard process from this point onwards.
+
+The following sequence diagram shows how the update operation works:
+
+![EditDeliveryJobSequenceDiagram](images/EditDeliveryJobSequenceDiagram.png)
+
+##### 2. Delete job command
+Similarly to `edit_job`, we have an example for the implementation for Delete Delivery Job command:
+
+Given below is an example usage scenario and how the delete job mechanism behaves at each step. The logic is quite similar to `edit_job` command.
+
+GUI Mode:
+Step 1. The user launches the application for the first time.
+Step 2. The user selects a job to delete.
+Step 3. The user deletes the job by using the corresponding button.
+
+The command pattern was followed closely with difference only in the execution layer where the `DeleteDeliveryJobCommand` prompts `Model` to delete the job.
+
+Operation resume to standard process from this point onwards.
+
+The following sequence diagram shows how the update operation works:
+
+
+_In this example, user input is `delete_job ABCDEF`. The logic for `add_job` command is similar to this._
+![Delete Delivery job for the `delete_job ABCDEF` Command](images/DeleteDeliveryJobSequenceDiagram.png)
+
+
+### Timetable feature
+#### Implementation
+#### 1. Display timetable of specific week (current week or week specified by users)
 Given below is an example usage scenario and how the timetable mechanism behaves at each step.
 
-* `DeliveryJobSystem#commit()` — Saves the current delivery job system state in its history.
-* `DeliveryJobSystem#timetable_date()` — Shows timetable of the specified week by user.
-* `DeliveryJobSystem#timetable()` — Shows timetable of current week.
-
-These operations are exposed in the `Model` and `Logic` interface as `Model#commitDeliveryJob()`, `Logic#executeTimetableCommand()` and `Logic#execute()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time.
 
-Step 2. The user executes `delete_job ALBE6DD723` command to delete job with ID ALBE6DD723 in the DeliveryJobSystem. The `delete` command calls `Model#commitDeliveryJob()`, causing the modified state of the delivery job list system after the `delete_job ALBE6DD723` command executes to be saved in the `deliveryJobSystemStateList`.
+Step 2. The user inputs a series of commands to modify the state of the deliveryJobList.
 
-Step 3. The user executes `add_job si/ALE48 …​` to add a new job. The `add_job` command also calls `Model#addDeliveryJob()`, causing another modified delivery job list system to be saved into the `deliveryJobListSystem`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitDeliveryJob()`, so the delivery job list state will not be saved into the `deliveryJobListSystem`.
 
 </div>
 
-Step 4. The user now wants to view timetable of the current week by executing the `timetable` command. The `timetable` command will call `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the current week.
+Step 4. The user now wants to view timetable of the current week by executing the `timetable` command. The `timetable` command will call `Model#updateFocusDate(LocalDate.now())`, `Model#updateSortedDeliveryJobList()`, `Model#updateSortedDeliveryJobListByDate()` and `Model#updateWeekDeliveryJobList`. The sorter functions will re-sort the most updated delivery job list by date. Then, `Model#updateWeekDeliveryJobList` will update the week job list to the specific week's job list.
 
-The `timetable_date` command is quite similar — it calls `Model#updateFocusDate()`, before calling `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the week according to the given date.
+The `timetable_date` command is quite similar — it calls `Model#updateFocusDate()` using the date specified by user, before calling `Model#updateSortedDeliveryJobList()`, `Model#updateSortedDeliveryJobListByDate()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the week according to the given date.
 
 
 The following sequence diagram shows how the timetable operation works:
@@ -292,21 +359,51 @@ The following sequence diagram shows how the timetable_date operation works:
 
 </div>
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
 **Aspect: How timetable executes:**
 
-* **Alternative 1 (current choice):** Saves the entire delivery job list system.
+* **Alternative 1 (current choice):** Timetable uses sorted job list which saves the entire delivery job list system.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows which date to show timetable of specific week.
+* **Alternative 2:** Individual command knows which date to show timetable of specific week - timetable will only need to use job list of specific week.
     * Pros: Will use less memory.
     * Cons: We must ensure that the implementation of each individual command are correct.
+
+#### 2. Display list of unscheduled or completed jobs
+Given below is an example usage scenario and how the mechanism for showing list of unscheduled or completed jobs behaves at each step.
+
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user inputs a series of commands to modify the state of the deliveryJobList.
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitDeliveryJob()`, so the delivery job list state will not be saved into the `deliveryJobListSystem`.
+
+</div>
+
+Step 4. The user now wants to view list of unscheduled or completed jobs by executing the `timetable_unscheduled` or `timetable_completed` command.
+
+The `timetable_unscheduled`/`timetable_completed` command will call `Model#updateSortedDeliveryJobList()` and `Model#getUnscheduledDeliveryJobList()` or `Model#getCompletedDeliveryJobList()` correspondingly. 
+
+The sorter functions will re-sort the most updated delivery job list by date. Then, the model will proceed to update the lists of unscheduled or completed jobs.
+
+The following sequence diagram shows how the `timetable_unscheduled` operation works:
+
+![TimetableSequenceDiagram](images/TimetableUnscheduledSequenceDiagram.png)
+
+The following sequence diagram shows how the `timetable_completed` operation works:
+
+![TimetableSequenceDiagram](images/TimetableCompletedSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TimetableCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 
 ### Statistics feature
 #### Implementation
@@ -342,28 +439,6 @@ The following sequence diagram shows how the statistics operation works:
 
 
 _{more aspects and alternatives to be added}_
-
-### Delivery Job System
-#### Implementation
-
-Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar execution pattern with their own command logics.
-
-GUI Mode: 
-Step 1. The user launches the application for the first time. 
-Step 2. The user selects a job to be updated. 
-Step 3. The user edits preexisting inputs to update the job. 
-
-The command pattern was followed closely with difference only in the execution layer where the `EditDeliveryJobCommand` constructs a `DeliveryJob` object through a builder pattern.
-
-The builder construct was initially introduced to handle optional and null arguments from `find_job` command and GUI. Here, we are reusing the builder to construct a `DeliveryJob` class.
-
-The builder class returns a `DeliveryJob` object only when `EditDeliveryJobCommand` calls the `DeliveryJob.Builder#build()` method.
-
-Operation resume to standard process from this point onwards.
-
-The following sequence diagram shows how the update operation works:
-
-![EditDeliveryJobSequenceDiagram](images/EditDeliveryJobSequenceDiagram.png)
 
 ### Notification feature
 #### Implementation
@@ -430,7 +505,7 @@ Design considerations:
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile: Delivery man**
 
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other mediums
@@ -442,151 +517,147 @@ Design considerations:
 * lazy, doesn't like to micromanage
 * forgetful
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Also helps delivery men to stay on track with their delivery schedule.
+**Value proposition**: 
+* Manage contacts faster than a typical mouse/GUI driven app. 
+* Helps delivery men to stay on track with their delivery schedule.
+* Assists delivery men to structure their upcoming tasks.
+* Manage job lists and customers' contacts - keep their information descriptive and updated/concise information.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                         | I want to …​                                 | So that I can…​                                                       |
-|----------|-----------------------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                       | refer to instructions when I forget how to use the App                |
-| `* * *`  | delivery driver                                                 | add/delete jobs                              | keep track of my upcoming and old jobs                                |
-| `* * *`  | delivery driver                                                 | mark/unmark jobs                             | keep track of completed jobs                                          |
-| `* * *`  | delivery driver                                                 | add a new person                             | keep in touch with my clients                                         |
-| `* * *`  | delivery driver                                                 | delete a person                              | remove entries that I no longer need                                  |
-| `* * *`  | organised delivery driver                                       | find a person by name                        | locate details of persons without having to go through the entire list |
-| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines  | complete all my jobs on time and not forget a task                    |
-| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines | plan for my next schedule                                             |
-| `* * *`  | busy person                                                     | view timetable of my tasks in a week         | organise my timetable and complete everything on time                 |
-| `* * *`  | busy person                                                     | view list of completed and unscheduled jobs  | keep track of my work                                                 |
-| `* *`    | delivery driver                                                 | hide private contact details                 | minimize chance of someone else seeing them by accident               |
-| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information               | track my earnings and other statistics                                |
-| `*`      | delivery driver with many customers in the address book         | sort persons by name                         | locate a person/client easily and thus increase delivery efficiency   |
-| `*`      | user                                                            | adjust how my notifications are shown        | have a clutter free desktop                                           |
+| Priority | As a …​                                                         | I want to …​                                                       | So that I can…​                                                                      |
+|----------|-----------------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                                             | refer to instructions when I forget how to use the App                               |
+| `* * *`  | delivery driver                                                 | add/delete jobs                                                    | keep track of my upcoming and old jobs                                               |
+| `* * *`  | delivery driver                                                 | mark/unmark jobs                                                   | keep track of completed jobs                                                         |
+| `* * *`  | organised and busy delivery driver                              | search for jobs in my Duke Driver job list                         | easily find the information that I need without having to go through the entire list |
+| `* * *`  | busy delivery driver                                            | mass import job list from file to Duke Driver                      | easily move my data between devices or other apps.                                   |
+| `* * *`  | delivery driver                                                 | add a new person                                                   | keep in touch with my clients                                                        |
+| `* * *`  | delivery driver                                                 | delete a person                                                    | remove entries that I no longer need                                                 |
+| `* * *`  | organised delivery driver                                       | find a person by their information                                 | locate details of persons without having to go through the entire list               |
+| `* * *`  | busy Duke Driver user                                           | edit existing contacts in my address book                          | update their information if it changes                                               |
+| `* * *`  | busy Duke Driver user                                           | edit existing jobs in my Duke Driver job list                      | update their information if it changes                                               |
+| `* * *`  | forgetful person                                                | received notifications/be reminded of upcoming tasks and deadlines | complete all my jobs on time and not forget a task                                   |
+| `* * *`  | forgetful person                                                | add reminders to the app                                           | complete all my jobs on time and not forget a task                                   |
+| `* * *`  | organised person                                                | delete reminders from the app                                      | keep myself updated to my progress                                                   |
+| `* * *`  | busy person                                                     | snooze reminders                                                   | ignore/forget about jobs that I am not able to complete at the scheduled time        |
+| `* * *`  | busy person                                                     | view list of reminders                                             | keep track of my progress                                                            |
+| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines                       | plan for my next schedule                                                            |
+| `* * *`  | busy and organised person                                       | view schedule of my tasks in a week                                | organise my timetable/to-do list and keep track/complete everything on time          |
+| `* * *`  | busy  and organised person                                      | view list of completed and unscheduled jobs                        | keep track of my work                                                                |
+| `* * *`  | productive and motivated delivery driver                        | view statistics of my jobs and earnings                            | keep track of my work and get motivated to work harder                               |
+| `* *`    | delivery driver                                                 | hide private contact details                                       | minimize chance of someone else seeing them by accident                              |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information                                     | track my earnings and other statistics                                               |
+| `*`      | delivery driver with many jobs in Duke Driver                   | sort and filter jobs                                               | locate jobs easily and thus increase delivery efficiency                             |
+| `*`      | user                                                            | adjust how my notifications are shown                              | have a clutter free desktop                                                          |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
-<details>
-<summary><b>[ST1] View statistics</b></summary>
-<pre>
-<b>MSS</b>
+#### [ST1] View statistics
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to view overall statistics.
 3. System shows total earnings, monthly earnings,
    weekly earnings, daily earnings and top customers visited.
    Use case ends.
-<b>Extensions</b>
+
+_**Extensions**_
 * 2a. The list is empty.
       Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE1] View delivery job details</b></summary>
-<pre>
-<b>MSS</b>
+
+#### [DE1] View delivery job detailsummary>
+_**MSS**_
 1. User opens the system.
 2. System list all pending jobs.
 3. User selects the job for details.
 4. System displays the full detail of the delivery job.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE2] Add a delivery job</b></summary>
-<pre>
-<b>MSS</b>
+
+#### [DE2] Add a delivery job
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to add a job in the list.
 3. System adds job and job appears in list of jobs.
    Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE3] Delete a delivery job</b></summary>
-<pre>
-<b>MSS</b>
+#### [DE3] Delete a delivery job
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests to delete a specific job in the list.
 4. System deletes the job.
    Use case ends.
-<b>Extensions</b>
+
+_**Extensions**_
 * 2a. The list is empty.
   Use case ends.
 * 3a. The given index is invalid.
     * 3a1. System shows an error message.
       Use case resumes at step 2.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE4] Edit a delivery job</b></summary>
-<pre>
-<b>MSS</b>
+#### [DE4] Edit a delivery job
+
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests to edit a specific job in the list.
 4. User fill in and submit the changes.
 4. System update the job and list the new information.
    Use case ends.
-<b>Extensions</b>
+
+_**Extensions**_
 * 2a. The list is empty.
   Use case ends.
 * 3a. The given index is invalid.
     * 3a1. System shows an error message.
       Use case resumes at step 2.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE5] Find a delivery job</b></summary>
-<pre>
-<b>MSS</b>
+#### [DE5] Find a delivery job
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests search for a job with options.
 4. System displays search results that matches the query.
    Use case ends.
-<b>Extensions</b>
+
+_**Extensions**_
 * 3a. Invalid search option given.
     * 3a1. System shows an error message.
       Use case resumes at step 2.
 * 4a. No item matches the query options.
     * 4a. System shows empty list.
       Use case resumes at step 2.
-</pre>
-</details>
 
-<details>
-<summary><b>[TT1] Display timetable and scheduling tasks of current week</b></summary>
-<pre>
-<b>MSS</b>
+#### [TT1] Display timetable of scheduling tasks of current week
+
+_**MSS**_
 1. User requests to display timetable by selecting Timetable option on homepage.
-2. System displays timetable of uncompleted/upcoming jobs in current week.
+2. System displays timetable of uncompleted/upcoming jobs in current week in Timetable Window.
    Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[TT2] Display timetable and scheduling tasks of week containing a specific date</b></summary>
-<pre>
-<b>MSS</b>
+#### [TT2] Display timetable of scheduling tasks of week containing a specific date
+_**MSS**_
 1. User requests to display timetable of specific week containing a specific date.
-2. System displays timetable of uncompleted/upcoming jobs in the week.
+2. System displays timetable of uncompleted/upcoming jobs in the week in Timetable Window.
    Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[RE1] Alert scheduled jobs</b></summary>
-<pre>
-<b>MSS</b>
+#### [TT3] Display list of unscheduled/completed jobs
+
+_**MSS**_
+1. User requests to display list of unscheduled/completed jobs.
+2. System displays list of unscheduled/completed jobs in Unscheduled/Completed Window.
+   Use case ends.
+
+#### [RE1] Alert scheduled jobs
+
+_**MSS**_
+
 1. User starts up System.
 2. System checks the time. 
 3. If the current timing falls more than 20 mins before a timetable slot, System will check if there is any current job. 
@@ -594,7 +665,8 @@ If yes, it will count and alert the user through the notification feature.
 4. System runs in the background to only check the timetable for upcoming jobs.
    System will repeat step 2 every hour, 20 mins before the next timetable slot.
    Use case ends.
-<b>Extensions:</b>
+
+_**Extensions**_
 * 3a. If the current time is within 20 mins before the next timetable slot
     * 3a1. System will check the next timetable slot and count number of upcoming jobs.
     * 3a2. Alert the user through the notification feature.
@@ -604,13 +676,9 @@ If yes, it will count and alert the user through the notification feature.
 * 3c. If the current time is after the last timetable slot
     * 3c1. System will not check for any or upcoming scheduled jobs.
       Use case resumes from step 4.
-</pre>
-</details>
 
-<details>
-<summary><b>[RE2] Alert reminders</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE2] Alert reminders
+_**MSS**_
 1. User starts up System.
 2. System loads address book from memory.
 3. System checks from address book, list of reminders. If the current date and time has pass or is equal to the date 
@@ -619,52 +687,47 @@ specified in a reminder, System will count it as an active reminder.
 5. System runs in the background to check against the list of reminders after every minute.
    System will repeat the check at step 3.
    Use case ends.
-<b>Extensions:</b>
+
+_**Extensions**_
 * 4a. User can dismiss the reminder. Doing will prevent the app from showing anymore notifications.
     * 4a1. A new reminder is activated.
       Use case resumes from step 4.
     * 4a2. No new reminder is activated.
       Use case resumes from step 5
-</pre>
-</details>
 
-<details>
-<summary><b>[RE3] Add reminders</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE3] Add reminders
+_**MSS**_
+
 1. User details the description, date and time of a reminder to the System.
 2. System adds the reminder into the reminder list.
    Use case ends.
-<b>Extensions:</b>
+
+_**Extensions**_
 * 2a. date and time of reminder is not provide.
     * 2a1. System will prompt user again.
            Use case resumes from step 1.
-</pre>
-</details>
 
-<details>
-<summary><b>[RE4] Delete reminders</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE4] Delete reminders
+
+_**MSS**_
+
 1. User specifies a reminder to be deleted based on its index number.
 2. System finds the corresponding reminder, and deletes it from the reminder list.
    Use case ends.
-<b>Extensions:</b>
+
+_**Extensions**_
 * 2a. Index provided by user is not found in reminder list.
     * 2a1. System will prompt user again.
       Use case resumes from step 1.
-</pre>
-</details>
 
-<details>
-<summary><b>[RE5] List reminders</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE5] List reminders
+
+_**MSS**_
+
 1. User request System to show all reminders in reminder list.
 2. System displays all reminders.
    Use case ends.
-</pre>
-</details>
+
 
 ### Non-Functional Requirements
 
@@ -677,7 +740,9 @@ specified in a reminder, System will count it as an active reminder.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Customer/Client**: Those who placed orders and created work for delivery men.
 * **GUI**: Graphical User Interface
+* **PlantUML**: An open-source tool allowing users to create diagrams from a plain text language. Refer to plantuml.com.
 * **CLI**: Command Line Interface
 
 --------------------------------------------------------------------------------------------------------------------
@@ -785,11 +850,17 @@ has been activated.
 
 
 ### Appendix: Effort
-As our application contains different windows and features, such as Timetable Window, Statistics Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on how to display each and every window that we have. This was quite challenging as we had to learn and design the structures of the windows and components so that it follows a good design principles. In order to make sure that Duke Driver is friendly to users who prefer typing, asides from including buttons on GUI mode, we tried to include commands for users to switch to different windows. 
+As our application contains different windows and features, such as Timetable Window, Statistics Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on the structure/design of each and every window that we have to maintain good design principles. In order to make sure that Duke Driver is friendly to users who prefer typing, asides from including buttons on GUI mode, we also include commands (typing-preferred) for users to switch to different windows. 
 
 Moreover, AB3 code base only consists of features supporting only `Person` class, meanwhile for Duke Driver, we had to work with and update the code base to support different entity types - for example, `Delivery Job` and `Reminder`. With the extensions that we planned to do, we also had to update the Parser to support a much larger set of commands, as we were working with numerous commands from different windows (Timetable, Reminder, Statistics,...).
 
-For Timetable Window, we wanted users to be able to structure their plans for the week, thus we added a Timetable feature. However, as Timetable is directly linked with the delivery job list, thus changes made in the existing functions could affect the features directly. Moreover, the implementation was also challenging as it required changes to the existing commands. We also had to decide on the design of the Timetable Window, and learn to use the `ListView` class in our timetable.
+For Delivery Job Management System, as the job details were very long and could not be viewed inside a small cell in the job list, we wanted to add a feature for users to use mouse or arrow keys and click on the job to view its detail correspondingly. This was challenging as we need to learn how to make use of the UI and keyboard clicks. 
+
+We also added a GUI mode for our app - to speed up the speed of each command and thus, help to enhance users' experience. Throughout this process, we learn how to use various JavaFX classes and interfaces.
+
+We wanted to introduce a notification function to the app, so that users could be reminded of their jobs and upcoming tasks more easily. It was challenging to implement this function as JavaFx did not have any native notification feature. Hence, we had to find an external library that did so. We decided to used ControlFX, an open source project for JavaFX that serves to provide high quality UI controls on top of the existing JavaFX distribution. Through abstraction, this feature can be used by other portions of the applications (i.e. reminders, scheduling, etc). Hence, the implementation extended the functionalities and benefits of the application.
+
+For Timetable Window, we wanted users to be able to structure their plans for the week, thus we added a Timetable feature. However, as Timetable is directly linked with the delivery job list, thus changes made in the existing functions could affect the features directly and it required changes to the existing commands. We also had to decide on the design/structure of the Timetable Window, and learn to use the `ListView` class in our timetable.
 
 Overall, the Team Project for us was quite challenging, as it requires us to learn to work together and help each other. We had to divide the work among ourselves so that everyone can get a grasp of and understand the code base. Understanding and updating the code base was quite tough at first, due to high levels of abstraction and the amount of classes that AB3 has. We tried to break it down into small tasks and understand it little by little each week. These small improvements day-by-day helped us get used to the codebase and the workload eventually. 
 

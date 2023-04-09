@@ -29,10 +29,12 @@ package Statistics <<Rectangle>> {
 Class StatisticsWindow
 }
 
-package TimeTable <<Rectangle>> {
-Class TimeTableWindow
+package Timetable <<Rectangle>> {
+Class TimetableWindow
 Class CompleteWindow
 Class UnscheduleWindow
+Class UnscheduledDeliveryJobListPanel
+Class DeliveryJobCard
 }
 
 package Reminder <<Rectangle>> {
@@ -54,13 +56,19 @@ DeliveryJobListPane -down-> "*" JobListCard
 DeliveryJobDetailPane -down-> "2" PersonCard
 
 MainWindow *-down-> "1" JobSystem
-MainWindow *-down-> "1" TimeTable
+MainWindow *-down-> "1" Timetable
 MainWindow *--> "1" AddressBook
 MainWindow *--> "1" Reminder
 MainWindow *-down-> "1" Statistics
 
-TimeTableWindow -[hidden]- CompleteWindow
+TimetableWindow -[hidden]- CompleteWindow
 CompleteWindow -[hidden]- UnscheduleWindow
+
+CompleteWindow *-down-> "1" UnscheduledDeliveryJobListPanel
+UnscheduledDeliveryJobListPanel *-down-> "*" DeliveryJobCard
+
+UnscheduleWindow *-down-> "1" UnscheduledDeliveryJobListPanel
+UnscheduledDeliveryJobListPanel *-down-> "*" DeliveryJobCard
 
 JobSystem *-down-> "1" AddressBook
 Statistics -[hidden]down- Reminder

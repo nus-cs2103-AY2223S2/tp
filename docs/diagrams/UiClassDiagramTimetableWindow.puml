@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+
+package TimetableWindow <<Rectangle>> {
+Class StatusBarFooter
+Class CommandBox
+Class ResultDisplay
+Class HelpWindow
+
+}
+package TimetableDetailPanel <<Rectangle>> {
+Class DayOfWeekPanel
+Class DayOfMonthPanel
+Class WeekJobListPanel
+Class DayJobListPanel
+Class DayDeliveryJobCard
+}
+
+
+}
+
+Class MainWindow
+MainWindow *-down-> "1" TimetableWindow
+
+HelpWindow -[hidden]down- CommandBox
+CommandBox -[hidden]down- ResultDisplay
+ResultDisplay -[hidden]down- StatusBarFooter
+
+TimetableWindow *-down-> "1" TimetableDetailPanel
+
+DayOfWeekPanel -[hidden]down- DayOfMonthPanel
+WeekJobListPanel -[hidden]left- DayOfWeekPanel
+WeekJobListPanel *-down-> "7" DayJobListPanel
+DayJobListPanel *-down-> "*" DayDeliveryJobCard
+
+
+@enduml
