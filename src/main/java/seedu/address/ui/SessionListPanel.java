@@ -231,12 +231,10 @@ public class SessionListPanel extends UiPart<Region> {
      * Set up event listener to listen to updates within the ObservableList
      */
     private void setUpdateEventListener(Logic logic) {
-        logic.getFilteredSessionList().addListener(new ListChangeListener<Session>() {
-            @Override
-            public void onChanged(Change<? extends Session> c) {
-                Session selectedSession = sessionListView.getSelectionModel().getSelectedItem();
-                updateDisplay(selectedSession);
-            }
+        logic.getFilteredSessionList().addListener((ListChangeListener<Session>) change -> {
+            getStatistics(logic.getFilteredSessionList());
+            Session selectedSession = sessionListView.getSelectionModel().getSelectedItem();
+            updateDisplay(selectedSession);
         });
     }
 
@@ -331,7 +329,6 @@ public class SessionListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new SessionCard(session, getIndex() + 1).getRoot());
-                updateDisplay(session);
             }
         }
     }
