@@ -247,7 +247,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
+## **Planned Enhancements**
 
+### Unable to see long texts
+Currently CLIpboard's UI automatically truncates very long strings, however the whole string is unable to be seen.
+#### Proposed Changes:
+* Alternative 1: Show full text when mouse hovers over the long string
+    * Pros: Provides a solution without potentially cluttering the UI.
+    * Cons: Involving mouse action might diminish our selling point as a CLI app optimised for keyboard users.
+* Alternative 2: Text wrapping
+    * Pros: Easy to implement.
+    * Cons: Could clog up the UI.
+
+### After executing `find`, the list cannot be refreshed
+After the user calls `find student` in the Students page, they are unable to display the original unfiltered list again.
+#### Proposed Changes:
+* Alternative 1 (current choice): Get the user to use the `undo` command
+    * Pros: No need to implement a new command.
+    * Cons: Does not feel intuitive.
+* Alternative 2: Implement a `list` command that displays the unfiltered list
+    * Pros: Intuitive for the user.
+    * Cons: We are unable to implement it in v1.4 due to the feature freeze.
+
+### Orderings of students in Attendance Page and Students Page are not standardised
+Currently, the ordering of the student list in Students Page is not consistent with that in the Attendance Page.
+#### Proposed Changes:
+* Alternative 1: Save the student list from the Students Page to transfer it to the Attendance Page
+    * Pros: Ordering is standardised everytime.
+    * Cons: Might slow the performance down.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
