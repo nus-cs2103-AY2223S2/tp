@@ -1010,7 +1010,7 @@ testers are expected to do more *exploratory* testing.
 ### Export a person
 
 1. Export a person while all persons are being shown
-   1. Prerequisities: List all persons using the `list` command. The preloaded data for groups are not modified. (No groups are removed or added)
+   1. Prerequisities: List all persons using the `list` command. 
    
    2. Test case: `export 1`
       Expected: First person in the personList is exported and details of the person are shown in the status message
@@ -1023,7 +1023,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Export a person while person list is filtered
 
-   1. Prerequisities: List one person using the `find` command (e.g `find Bernice`). The preloaded data for groups are not modified. (No groups are removed or added)
+   1. Prerequisities: List one person using the `find` command (e.g `find Bernice`). 
    
    2. Test case: `export 1`
       Expected: First person in the personList is exported and details of the person are shown in the status message
@@ -1031,6 +1031,27 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `export 2`
       Expected: No person is exported. Status message indicated person index provided is invalid
 
+### Find free time slot
+
+1. Find free time slot while all groups are being shown
+   1. Prerequisities: List all groups using the `group_list` command. Add an isolated/events to a person with a group to see different time slots available. The preloaded data for groups are not modified. (No groups are removed or added)
+
+   2. Test case: `free 1`
+      Expected: Free time slots shown for the first group in groupList starting from today's date
+      
+   3. Test case: `free 2`
+      Expected: Free time slots shown for the second group in groupList starting from today's date
+      
+   4. Test case: `free 99`
+      Expected: No free time is shown. Status message indicated group index provided is invalid
+      
+   5. Test case: `free 1 f/20/04/2023`
+      Expected: Free time slots shown for the first group in groupList starting from 09/04/2023.
+      Note: Results may vary depending on when this test case is ran. 
+      
+   6. Test case: `free 1 f/aaaa`
+      Expected: No free time shown. Status message indicated that date format is incorrect.
+      
 
 
 ### Saving data
