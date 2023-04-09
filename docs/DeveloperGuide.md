@@ -259,7 +259,7 @@ Here is how `Menu` works:
 * Each `MenuItem` contains their description, selling price, cost and profit (e.g., `ItemName` for menu's item name).
 * The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
 * The`ItemProfit` is obtained using `ItemSellingPrice` and `ItemCost`(i.e. `ItemProfit` depends on `ItemSellingPrice` and `ItemCost`).
-* `ItemSellingPrice` and `ItemCost` inherits off the `ItemPrice`.
+* `ItemSellingPrice` and `ItemCost` class inherits off the `ItemPrice` class.
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 * The `MenuItem` is an attribute of `Order`
 
@@ -535,26 +535,26 @@ Our application:
 
 **MSS**
 
- 1. Actor requests to add a new supplier.
- 2. Actor enters a command to add a supplier with the required information.
- 3. Trackr saves the new supplier to the system.
- 4. Trackr shows the new supplier added to the list.
+1. Actor enters the command to add a supplier with the required information.
+2. Trackr saves the new supplier to the system.
+3. Trackr display success message that a new supplier added to the list
+4. Actor can see the new supplier information in the contacts list.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The Actor does not enter all required information.
+* 1a. The Actor does not enter all required information.
 
-    * 2a1. Trackr shows an error message.
+    * 1a1. Trackr shows an error message.
 
-      Use case resumes at step 1.
+      Use case goes back to step 1.
 
-* 2b. The Actor adds a supplier that already exists in the list.
+* 1b. The Actor adds a supplier that already exists in the list.
 
-    * 2b1. Trackr shows an error message.
+    * 1b1. Trackr shows an error message.
 
-      Use case resumes at step 1.
+      Use case goes back to step 1.
 
 **Use case: UC11 - Add a new customer**
 
@@ -576,7 +576,7 @@ Our application:
 
 **MSS**
 
-1. Actor requests to list contacts.
+1. Actor enters the command to list contacts.
 2. Trackr shows a list of contacts.
 3. Actor requests to delete a specific contact from the list.
 4. Trackr deletes the contact.
@@ -611,7 +611,7 @@ Our application:
 
 **MSS**
 
-1. Actor requests to list contacts.
+1. Actor enters the command to list contacts.
 2. Trackr shows a list of contacts.
 3. Actor enters an edit contact command for a specific contact and the updated information.
 4. Trackr updates the contact details with the new information.
@@ -643,6 +643,8 @@ Our application:
 **Use case: UC33 - Edit an order**
 
 (Similar to UC03)
+
+*
 
 **Use case: UC43 - Edit a menu item**
 
