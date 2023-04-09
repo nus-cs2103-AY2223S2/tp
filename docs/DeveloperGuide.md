@@ -893,7 +893,7 @@ Currently, there a few feature flaws with the application. These are some propos
 
 ![edit-8](images/edit-8.png)
 <figcaption style="text-align:center"><em><strong>
-   Figure 1
+   Figure 2
    </strong>
    : After executing edit 8
    </em></figcaption>
