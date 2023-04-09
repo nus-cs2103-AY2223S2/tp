@@ -74,6 +74,13 @@ public interface Model {
      */
     boolean hasEventAtTime(Event event);
 
+
+    /**
+     * Returns true if another event exists (excluding {@code currentEvent})
+     * at the same time as {@code event} in the scheduler.
+     */
+    boolean hasEventAtTime(Event currentEvent, Event eventToCheck);
+
     /**
      * Adds the given event.
      * {@code event} must not already exist in the scheduler.
@@ -97,6 +104,10 @@ public interface Model {
      * Adds the given event as recent event.
      */
     void addRecentEvent(Event event);
+    /**
+     * Adds the given command as most recently executed command
+     */
+    void addRecentCommand(Command command);
 
     /**
      * Clears the recent event.
