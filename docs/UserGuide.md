@@ -1165,18 +1165,18 @@ Customer and order data are saved in the hard disk automatically after any comma
 
 ### Customer
 
-|                       Action | Format, Examples                                                                                                                                                                      |
-|-----------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|             **Add Customer** | <code>addc [ct/{ind&#124;ent}] n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code> |
-|            **List Customer** | `listc` <br>                                                                                                                                                                          |
-|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                                            |
-|            **View Customer** | `viewc CINDEX` <br> e.g. `viewc 2`                                                                                                                                                    |
-|            **Edit Customer** | <code>editc CINDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]` <br> e.g. `editc 1 p/91234567 e/johndoe@example.com</code>                                           |
-|          **Delete Customer** | `deletec CINDEX`<br> e.g., `deletec 3`                                                                                                                                                |
-|            **Mark Customer** | `markc CINDEX` <br> e.g., `markc 1`                                                                                                                                                   |
-|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g., `unmarkc 1`                                                                                                                                               |                                                                                                                                      |
-|    **Set Note for Customer** | `setnotec CINDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                                                   |
-| **Append Note for Customer** | `appendnotec CINDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                             |
+|                       Action | Format, Examples                                                                                                                                                 |
+|-----------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|             **Add Customer** | <code>addc [ct/{ind&#124;ent}] n/NAME p/PHONE e/EMAIL a/ADDRESS</code> <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665` |
+|            **List Customer** | `listc` <br>                                                                                                                                                     |
+|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                       |
+|            **View Customer** | `viewc CINDEX` <br> e.g. `viewc 2`                                                                                                                               |
+|            **Edit Customer** | <code>editc CINDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]</code> <br> e.g. `editc 1 p/91234567 e/johndoe@example.com`                      |
+|          **Delete Customer** | `deletec CINDEX`<br> e.g., `deletec 3`                                                                                                                           |
+|            **Mark Customer** | `markc CINDEX` <br> e.g., `markc 1`                                                                                                                              |
+|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g., `unmarkc 1`                                                                                                                          |                                                                                                                                      |
+|    **Set Note for Customer** | `setnotec CINDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                              |
+| **Append Note for Customer** | `appendnotec CINDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                        |
 
 ### Rewards
 
