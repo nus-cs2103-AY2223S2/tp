@@ -52,9 +52,9 @@ title: User Guide
 
 ## About HMHero
 
-Have you ever found it difficult to manage the constant influx of applicants during each application cycle?
-Have you ever found it strenuous filtering through countless applicants to find those that fit specific job requirements?
-HMHero is here to help!
+Have you ever found managing the constant influx of applicants during each application cycle challenging? Do you struggle to filter through numerous applicants to find the right fit for the job?
+
+Look no further as HMHero is here to ease your troubles and save your valuable time!
 
 ## Overview of key features
 
