@@ -9,7 +9,7 @@ title: dsja612's Project Portfolio Page
 
 I worked on the entire stack, both frontend and backend. I was mainly in charge of refactoring and working on the new UI.
 
-### **Contributions**
+## **Contributions**
 
 * **New Feature**: Added the ability to store a `JobDescription` field.
   * What it does: TechTrack users can now store job descriptions for each role.
@@ -40,16 +40,18 @@ I worked on the entire stack, both frontend and backend. I was mainly in charge 
 
 * **Testing**: Refactored old variables in test classes to reflect the changes in TechTrack.
 
-### **Enhancements**
 
-* Enhanced help window to show list of commands for all messages
-* Add message on startup to let the user know if TechTrack fails to load a file
-* Improved support of unnecessarily long fields for the UI
-* Change legacy logging details
+* **Enhancements**
+  * Enhanced help window to show list of commands for all messages
+  * Add message on startup to let the user know if TechTrack fails to load a file
+  * Improved support of unnecessarily long fields for the UI
+  * Change legacy logging details
 
-## **Bug Fixes**
-* Fixed a bug where TechTrack crashes if a `Deadline` field in `TechTrack.json` is past the current date
-* Fixed a bug where loading sample data on a fresh installation of TechTrack would cause the program to crash
+
+* **Bug Fixes**
+  * Fixed a bug where TechTrack crashes if a `Deadline` field in `TechTrack.json` is past the current date
+  * Fixed a bug where loading sample data on a fresh installation of TechTrack would cause the program to crash
+
 
 * **Documentation**:
   * User Guide:
@@ -63,7 +65,8 @@ I worked on the entire stack, both frontend and backend. I was mainly in charge 
     * Wrote the `Planned enhancements for Feature Flaws` section
     * Wrote the `Effort` section
 
-### **Contribution to team-based tasks**:
+
+* **Contribution to team-based tasks**:
   * Sourcing of images
     * Sourced for application icon from [PNGEgg](https://www.pngegg.com/en/png-ewtjs)
     * Sourced for contact icon for `view` command from [icons8](https://icons8.com/icon/104074/contact-us)
@@ -74,15 +77,13 @@ I worked on the entire stack, both frontend and backend. I was mainly in charge 
   * Added summary text to `/docs/data/techtrack.yml` to ensure summary of TechTrack is consistent among
     documents
 
-### **Review/mentoring contributions**
-* Reviewed [PRs from other members](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+reviewed-by%3Adsja612)
-* Commented on [PRs from other members](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+commenter%3Adsja612)
+* **Review/mentoring contributions**
+  * Reviewed [PRs from other members](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+reviewed-by%3Adsja612)
+  * Commented on [PRs from other members](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+commenter%3Adsja612)
 
-## Links to Contributions
-[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=dsja612&breakdown=true)
 
-[Commit History](https://github.com/AY2223S2-CS2103-W16-2/tp/commits?author=dsja612)
-
-[Pull Requests](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+author%3Adsja612)
-
-[Issues](https://github.com/AY2223S2-CS2103-W16-2/tp/issues?q=is%3Aissue+author%3Adsja612)
+## **Links to Contributions**
+[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=dsja612&breakdown=true) 
+| [Commit History](https://github.com/AY2223S2-CS2103-W16-2/tp/commits?author=dsja612) 
+| [Pull Requests](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+author%3Adsja612)
+| [Issues](https://github.com/AY2223S2-CS2103-W16-2/tp/issues?q=is%3Aissue+author%3Adsja612)
