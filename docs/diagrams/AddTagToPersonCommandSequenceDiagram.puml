@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+skinparam SequenceReferencebackgroundColor LightYellow
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ConnectUsParser" as ConnectUsParser LOGIC_COLOR
+participant ":AddTagToPersonCommandParser" as AddTagToPersonCommandParser LOGIC_COLOR
+participant ":AddTagToPersonCommand" as AddTagToPersonCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":EditPersonDescriptor" as AddTagDescriptor MODEL_COLOR
+participant ":Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> ConnectUsParser : parseCommand(input)
+activate ConnectUsParser
+
+create AddTagToPersonCommandParser
+ConnectUsParser -> AddTagToPersonCommandParser++
+return
+
+ConnectUsParser -> AddTagToPersonCommandParser : parse(args)
+activate AddTagToPersonCommandParser
+
+create AddTagDescriptor
+AddTagToPersonCommandParser -> AddTagDescriptor++
+return addTagDescriptor
+
+
+create AddTagToPersonCommand
+AddTagToPersonCommandParser -> AddTagToPersonCommand++
+return
+
+return addTagToPersonCommand
+destroy AddTagToPersonCommandParser
+
+return addTagToPersonCommand
+
+
+LogicManager->AddTagToPersonCommand : execute(model)
+activate AddTagToPersonCommand
+
+AddTagToPersonCommand -> Model : getFilteredPersonList()
+activate Model
+return
+
+AddTagToPersonCommand -> AddTagToPersonCommand : createEditedPerson(personToEdit, addTagDescriptor)
+
+AddTagToPersonCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+return
+
+AddTagToPersonCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+return
+
+create CommandResult
+AddTagToPersonCommand ->CommandResult++
+return
+
+return commandResult
+return
+
+@enduml
