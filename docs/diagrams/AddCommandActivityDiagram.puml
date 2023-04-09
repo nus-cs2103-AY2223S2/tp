@@ -8,26 +8,32 @@ start
 
 if () then ([missing
 arguments])
-    :Error: Invalid
-    command format;
+    :Response Box shows
+    invalid command
+    format message;
 stop
 else if () then ([invalid
 arguments])
-    :Error: Invalid
-    arguments;
+    :Response Box
+    shows invalid
+    arguments message;
 stop
 else if () then ([identical
 event exists])
-    :Error: Duplicate event;
+    :Response Box
+    shows duplicate
+    event message;
 stop
 else if () then ([end time earlier
 than start time])
-    :Error: End time earlier
-    than start time;
+    :Response Box shows
+    end time earlier than
+    start time message;
 stop
 else if () then (time slot is occupied
 by another event])
-    :Error: Event exists
+    :Response Box
+    shows event exists
     at chosen time;
 stop
 else ([else])

@@ -7,26 +7,20 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([missing arguments])
-    :Error: Invalid command format;
+    :Response Box shows
+    invalid command
+    format message;
 stop
 else if () then ([invalid arguments])
-    :Error: Invalid arguments;
+    :Response Box
+    shows invalid
+    index message;
 stop
 else ([else])
 endif
-switch ()
-case ( [name and date are both present])
-    :Create
-    EventMatchesKeywordsAndDatePredicate;
-case ( [only name is present])
-    :Create
-    EventContainsKeywordsPredicate;
-case ( [else])
-    :Create
-    EventMatchesDatePredicate;
-endswitch
-:Update FilteredEventList and FindEventList
-(both are ObservableList) with predicate;
+:Filter the events based given argument(s);
+:Update events list panel to show the filtered event(s);
+:Highlight all the date boxes on  which the filtered event(s) are scheduled;
 :Success message is returned;
 stop
 @enduml

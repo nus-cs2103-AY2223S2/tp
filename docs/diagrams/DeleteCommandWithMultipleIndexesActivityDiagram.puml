@@ -6,13 +6,15 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([invalid arguments])
-    :Error: Invalid
-    command format;
+if () then ([missing or invalid arguments])
+    :Response Box shows
+    invalid command
+    format message;
 stop
 else if () then ([invalid index])
-    :Error: Invalid
-    event index;
+    :Response Box
+    shows invalid
+    index message;
 stop
 else ([else])
     :Store the index or indexes in a list;

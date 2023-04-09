@@ -5,22 +5,22 @@ start
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
-if () then ( [recent command used is empty])
+if () then ( [recent command is empty])
     :Nothing to undo;
     stop;
 else ([else])
 endif
 switch ()
-case ( [recent is add])
+case ( [recent command is add])
     :Delete the recently
     added event;
-case ( [recent is recur])
+case ( [recent command is recur])
     :Delete the recently added
     recurring events;
-case ( [recent is edit])
+case ( [recent command is edit])
     :Edit the event back
     to its original state;
-case ( [recent is delete])
+case ( [recent command is delete])
     :Add back the recently
     deleted event;
 endswitch

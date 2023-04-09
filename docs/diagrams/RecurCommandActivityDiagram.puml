@@ -8,45 +8,50 @@ start
 
 if () then ([missing
 arguments])
-    :Error: Invalid
-    command format;
+    :Response Box shows
+    invalid command
+    format message;
 stop
 else if () then ([invalid
 arguments])
-    :Error: Invalid
-    arguments;
+    :Response Box
+    shows invalid
+    arguments message;
 stop
 else if () then ([invalid
 index])
-    :Error: Invalid
-    event index;
+    :Response Box
+    shows invalid
+    index message;
 stop
 else if () then ([end date
 has past])
-    :Error: End date
-    is in the past;
+    :Response Box
+    shows end date
+    has past message;
 stop
 else if () then ([recur factor exceeds
 max allowable])
-    :Error: Recur factor
-    exceeds max allowable;
+    :Response Box
+    shows recur factor
+    exceeds max
+    allowable message;
 stop
 else ([else])
 while () is ([end date has not reached])
     if () then ([time slot is occupied
     by another event])
-        :Error: Event exists
+        :Response Box
+        shows event exists
         at chosen time;
-        :None of the recur
-        events are added;
     stop;
     else ([else])
     :Common modules and
     index are computed;
-    :Compute event
-    and store in list;
+    :Computes the event
+    and store it in a list;
     endif
 endwhile ([else])
-:Add all recur events from computed list;
+:Add all recurring events from computed list to Ez-Schedule;
 stop
 @enduml
