@@ -64,7 +64,7 @@ public class ExportProgressCommand extends Command {
             this.filePath = "data";
         }
 
-        Path parentDir = Paths.get(this.filePath).getParent();
+        Path parentDir = Paths.get(this.filePath).toAbsolutePath().getParent();
         if (parentDir != null) {
             try {
                 Files.createDirectories(parentDir);
@@ -74,7 +74,7 @@ public class ExportProgressCommand extends Command {
         }
 
         try {
-            model.exportProgress(studentToExport, String.valueOf(Paths.get(this.filePath, fileName)));
+            model.exportProgress(studentToExport, String.valueOf(Paths.get(this.filePath, fileName).toAbsolutePath()));
         } catch (IOException e) {
             throw new CommandException("Error!\n" + e.getMessage());
         }
