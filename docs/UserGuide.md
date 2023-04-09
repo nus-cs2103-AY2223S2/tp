@@ -374,6 +374,8 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
     * e.g `d/ 30/03/22-2045` would be **30th March 2022, 8:45 p.m.**
 * A project is considered to be the same if it has the same project name **(case-insensitive)**.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`
 <br/><br/>
@@ -383,8 +385,6 @@ Examples:
   <br>
   </p>
 
-
-<div style="page-break-after: always;"></div>
 
 #### Editing a project: `editpj`
 
@@ -399,6 +399,8 @@ Format: `editpj INDEX [n/PROJECT_NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `editpj 1 n/Project Alpha d/02/01/23-2359` Edits the project name and deadline of the first project to be `Project Alpha` and `02/01/2023-2359` respectively.
 <br/><br/>
@@ -408,8 +410,6 @@ Examples:
   <br>
   </p>
 
-
-<div style="page-break-after: always;"></div>
 
 #### Removing a project's field: `removepj`
 
@@ -425,6 +425,8 @@ Format: `removepj INDEX [h/[REPO_HOST]] [r/[REPO_NAME]] [d/[DEADLINE]] [m/[MEETI
   * e.g. `r/alex-yeoh` will remove project’s repository name.
 * Removes the entire field value when that prefix has no keyword provided.
   * e.g. `m/` will remove project's meeting.
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `removepj 1 r/` Removes repository name from first project in the project list.
@@ -446,6 +448,8 @@ Examples:
   <br>
   </p>
 
+
+<div style="page-break-after: always;"></div>
 
 #### Deleting a project: `deletepj`
 
@@ -544,8 +548,7 @@ Format: `unassign INDEX n/NAME`
 
 * Removes the contact with the specified `NAME` from the project with the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed project list.
-* `NAME` is case-insensitive.
-* `NAME` must match in full.
+* `NAME` is case-insensitive, and must match in full.
 
 Examples:
 * Before Unassigning:<br/><br/>
