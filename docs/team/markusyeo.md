@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to checkout overview data as a csv file
   * Justification: This feature allows users to store the aggregated data in the overview outside of `DengueHotspotTracker`. This means that they will be able to export a much smaller file compared to exporting all the persons in the case list.
 * **New Feature:** Added the GUI for overview.
-  * Justification: It looked unmatching initially and we wanted a neat way as well as one which blended with the rest of our GUI. I wrote the `BinCard` class which enabled us to have a unified UI as that of the personList it is displayed alongside.
+  * Justification: Our original way of including the overview in our GUI did not match the rest of the GUI. We wanted a design that looked neat and blended with the rest of our GUI. I wrote the `BinCard` class which enabled us to have a UI for the overview section that matched that of the case list it is displayed alongside.
   This allowed us to have a nice scaleable overview tab.
 * **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=markusyeo)
 * **Project management:**
