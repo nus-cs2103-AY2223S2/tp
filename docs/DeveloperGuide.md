@@ -184,7 +184,6 @@ If new commands are to be added, it's interaction with `undo` must be kept in mi
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
-
 ### Unique list of items
 Represented by the `UniqueList<T>` class, where `T` is the type of the item to be contained.
 
@@ -210,10 +209,13 @@ The `ListableItem` interface would require that its classes also support the han
 Found in `src/main/storage/serializedclasses`, these classes are for serializing a `Roster` and its containing objects into `json` objects, or vice versa.
 This serves to store/load data to/from a data file.
 
-#### During saving of data
-
-
 #### During loading of data
+Loading in of data (if a data file exists) is done once during the initialization of the program. The sequence diagram below illustrates how `MainApp` creates a `Model` through interactions with `Storage`.
+![LoadingStorageSequenceDiagram](images/LoadingStorageSequenceDiagram.png)
+
+#### During saving of data
+Saving of data is done every time a command is executed. The sequence diagram below illustrates \
+
 
 
 --------------------------------------------------------------------------------------------------------------------
