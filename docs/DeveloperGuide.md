@@ -161,65 +161,108 @@ Classes used by multiple components are in the `seedu.quickcontacts.commons` pac
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Feature Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented. Person and Meetings have similar functionality, how they are implemented are similar.
+Without loss of generality the specifications below can be applied to both class of objects.
 
-### CRUD Operations of Meeting and Find Meeting
-#### Implementation
-##### Adding
-The `AddMeetingCommand` adds a meeting to the address book. The meeting is added by creating a `Meeting` object and 
-adding it to the `UniqueMeetingList` in the `Model` component. The `AddMeetingCommandParser` parses the user input and
-creates an `AddMeetingCommand` object. The `AddMeetingCommand` is executed and the meeting is added to the 
-address book's `UniqueMeetingList`. The input format is as follows: 
-```
-// a standard addMeeting command where all arguments are compulsory where Person is minimally 1
-addm t/TITLE d/DATE_TIME [p/PERSON...] l/LOCATION d/DESCRIPTION
-```
-The `AddMeetingCommand` throws a `CommandException` if any of the person's names is not found in the address book (i.e. 
+For example. in the sections we refer to a `UnqiueList` object, In the code there are two of such objects. One that acts on meeting `UniqueMeetingList`
+, and another that acts on person `UniquePersonList`. Depending on which object functionality you are exploring just substitute the general object with the 
+specific object. We write in a general so that we cover breath first, and so that we may adhere to [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+
+To help, general objects are underlined to indicate that each object has its own implementation of the object.
+### CRUD Operations
+#### Adding
+##### Description
+The <u>`AddCommand`</u> handles the addition of Objects into quickbook. See the syntax here [add command](#command-summary)
+##### Implementation
+
+When adding an `Object` the control flow is like the [main sequence diagram](#interaction-between-architecture-components)
+1. The user queries the `UI` to add using an [add command](#command-summary) prefix
+2. `UI` calls the QuickBookParser through `LogicManager` to initiate an <u>`AddParser`</u> object
+3. QuickBookParser then passes the arguments to the <u>`AddParser`</u> object
+4. <u>`AddParser`</u> initiates an <u>`AddCommand`</u> object
+5. <u>`AddCommand`</u> object is passed all the way back to `LogicManager`
+6. `LogicManager` calls execute on <u>`AddCommand`</u>
+7.  `AddCommand` updates the model and returns a `CommandResult` to `LogicManager`
+8. `LogicManager` updates the <u>`UniqueList`</u> pertaining to the `Object`
+
+Below is the Sequence Diagram
+![Interactions Inside the Logic Component for the `add n/bob` Command](images/AddSequenceDiagram.png)
+
+##### Exceptions
+The `AddMeetingCommand` throws a `CommandException` if the object's names is found in the address book (i.e. 
 no person in the address book has a matching name). The name must match exactly (**case-sensitive**) or else the 
 'CommandException' will be thrown.
 
-##### Editing
-The `EditMeedingCommand`handles the editing of an existing meeting. It contains information such as the meeting's index, its new details to update, and methods to execute the command and create an edited meeting.
+#### Editing
+##### Description
+The `EditCommand` is responsible for handling the editing of `Objects` in QuickBook. It allows users to modify the details of a specific meeting. See the syntax here: [editMeeting command](#command-summary)
+##### Implementation
 
-The class extends the Command class and overrides its execute() method to update the specified meeting in the model with the edited details. If the meeting already exists in the address book or the provided index is invalid, an exception is thrown.
+When editing a meeting, the control flow is as follows:
 
-The `EditMeetingsCommand` class also has an inner class`EditMeetingDescriptor`, which contains the new details for the meeting, such as its title, date and time, attendees, location, and description. It has a method `createEditedMeeting()` that creates a new meeting object with the edited details provided.
+1. The user queries the UI to edit a meeting using the "edit" command prefix.
+2. The UI calls the `QuickBookParser` through `LogicManager` to initiate an <u>`EditParser`</u> object.
+3. The `QuickBookParser` then passes the arguments to the <u>`EditParser`</u> object.
+4. The <u>`EditParser`</u> initiates an <u>`EditCommand`</u> object.
+5. The <u>`EditCommand`</u> object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on the <u>`EditCommand`</u>.
+7. The <u>`EditCommand`</u> updates the model with the edited meeting details and returns a `CommandResult` to `LogicManager`.
+8. `LogicManager` updates the `UniqueList` with the edited object information by deleting the old and replacing with the new object with the updated information.
 
-There are also constant variables for this class that store messages to display when the command is executed or when there are errors. The `MESSAGE_USAGE` constant holds the command syntax and format, while the `MESSAGE_EDIT_MEETING_SUCCESS`, `MESSAGE_NOT_EDITED`, and `MESSAGE_DUPLICATE_MEETING` constants hold the success message, error message when no fields are provided, and error message when the edited meeting already exists in the address book, respectively.
+Below is the Sequence Diagram
+![Interactions Inside the Logic Component for the `editMeeting` Command](images/EditSequenceDiagram.png)
 
-This class also overrides the equals() method to check if two `EditMeetingsCommnds` are equal.
+##### Exceptions
+The `EditCommand` throws a `CommandException` if any of the object's names is not found in the address book. The name must match exactly (**case-sensitive**) or else the
+'CommandException' will be thrown.
 
 
-##### Deleting
-The `DeleteCommand` class is a command in a address book management system that deletes a person from the address book using its displayed index. The class extends the Command class and overrides its `execute()` method to delete the specified person in the model. It also contains a constant variable `MESSAGE_USAGE` that stores the syntax and format for the command, as well as `MESSAGE_DELETE_PERSON_SUCCESS` that holds the success message to display when the command is executed.
+#### Deleting
+##### Description
+The `DeleteCommand` handles the deletion of Objects from quickbook. See the syntax here [delete command](#command-summary)
+##### Implementation
 
-The `DeleteCommand` class also has a constructor that takes in an index for the person to delete. It also overrides the `equals()` method to check if two DeleteCommand objects are equal by comparing their targetIndex fields.
+When deleting an `Object`, the control flow is as follows
+1. The user queries the UI to delete using a delete command prefix.
+2. The UI calls the QuickBookParser through LogicManager to initiate a <u>`DeleteParser`</u> object.
+3. QuickBookParser then passes the arguments to the <u>`DeleteParser`</u> object.
+4. <u>`DeleteParser`</u> initiates a <u>`DeleteCommand`</u> object.
+5. <u>`DeleteCommand`</u> object is passed all the way back to LogicManager.
+6. LogicManager calls execute on <u>`DeleteCommand`</u>.
+7. <u>`DeleteCommand`</u> updates the model and returns a `CommandResult` to LogicManager.
+8. LogicManager updates the <u>`UniqueList`</u> pertaining to the Object.
 
-During execution, the `DeleteCommand` class gets the filtered person list from the model and checks if the specified index is within the range of the list. If it is not, an exception is thrown with an error message. Otherwise, it retrieves the person to delete using the index and calls the `deletePerson()` method from the model to remove the person. The `execute()` method then returns a `CommandResult` object with a success message that contains the deleted person's details.
+Below is the Sequence Diagram for the interactions inside the Logic Component for the delete command:
+![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
 
-##### Finding
+##### Exceptions
+The `DeleteCommand` throws a CommandException if the specified index is not found in quickbook.
 
-The `FindMeetingCommand` finds meetings in the address book. The meeting is found by creating a 
-`MeetingContainsNamesPredicate` object and passing it to the `updateFilteredMeetingList` method in the `Model` 
-component. The `FindMeetingCommandParser` takes in a list of names and creates a `FindMeetingCommand` object. 
-The `FindMeetingCommand` is executed and the `MeetingContainsNamesPredicate` is passed to the 
-`updateFilteredMeetingList` method. The input format is as follows:
-```
-// no arguments to list all meetings
-findm
+#### Finding (only for person in contacts)
+##### Description
+The `FindCommand` finds persons in the address book. See the syntax here [find command](#command-summary).
+##### Implementation
+When finding meetings, the control flow is as follows:
+1. The user queries the `UI` to find using a [find command](#command-summary) prefix.
+2. `UI` calls the QuickBookParser through `LogicManager` to initiate a `FindCommandParser` object.
+3. `FindCommandParser` takes in a list of names and creates a `FindCommand` object.
+4.`FindCommand` is executed, and a `MeetingContainsNamesPredicate` is passed to the `updateFilteredMeetingList` method in the `Model` component.
+5. `LogicManager` creates a  `ContainsNamesPredicate`
+6. passing it to the `updateFilteredMeetingList` method in the `Model` component
+7.`UI` displays the filtered meetings to the user.
 
-// arguments supplied to find meetings with matching names
-findm n/NAME [n/NAME]... 
-```
+Below is the Sequence Diagram:
+![Interactions Inside the Logic Component for the `find` Command](images/FindSequenceDiagram.png)
+
+#### Exceptions
 The `FindMeetingCommand` throws a `CommandException` if no names are provided and there is trailing whitespace.
 The names no need to match exactly (**case-INsensitive**) but the Meetings are only filtered by one of the contact's names,
 as *space* is used as a delimiter. The command can be used **without arguments** to get back the original view of all meetings.
 
 ### Exporting and importing of contacts
-#### Implementation
-##### Exporting
+##### Description
 Exporting generates a JSON for the contacts at the indices given.
 For example, `export p/ 1 p/2` generates a JSON for the first and second contacts.
 Example JSON:
@@ -238,7 +281,7 @@ Example JSON:
   "tagged" : [ "owesMoney", "friends" ]
 } ]
 ```
-The JSON is generated using the Jackson library, through the use of the JsonUtil utility class.
+The JSON is generated using the Jackson library, through the use of the JsonUtil utility class. The JSON can be pasted in again proceeding the import command to import the information in the export command
 
 #### Design Considerations
 
@@ -250,30 +293,44 @@ Could provide more readable and/or less text for copying.
 
 Benefit: can directly copy-paste to and from the data files that already exist in the system.
 
-##### Importing
-Using the exported JSON, one can then import it using `import THE_JSON`.
-Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing 
-to ensure we do not have "half imports". 
-
-Consider a situation where we have `[Person2, Person3]` in the system. If we 
-import `[Person1, Person2, Person3, Person4]` without considering duplicates first, Person1 will be imported 
-followed by the import of Person2 throwing a DuplicatePersonError, resulting in the command throwing a failure 
-message and Person4 not being imported but the system now has `[Person1, Person2, Person3]`. 
-
-However, if the user wishes to "force import", a `f/` parameter is provided. This imports for each `Person` if the 
-Person does not already exist, and ignores those that do. 
-This allows the previous situation to complete with `[Person1, Person2, Person3, Person4]` in the system.
-
-The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message 
-is thrown.
-
-### Exporting and importing of Meetings
 #### Implementation
-Exporting and importing for meetings is similar to that of contacts, with the main difference being that meetings 
-has additional functionality of returning meetings between two dates. This is implemented through the use of a 
+Here we only describe the Export command. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
+Control flow is as follows.
+1. The user queries the `UI` to export using a [export command](#command-summary) prefix.
+2. `UI` calls the QuickBookParser through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
+3. `ExportCommandParser` creates a <u>`ExportCommand`</u> object.
+4. <u>`ExportCommand`</u> is returned to `LogicManager`
+5. `LogicManager` executes <u>`ExportCommand`</u>
+6. <u>`ExportCommand`</u> queries `ModelManager` for Json string
+7. <u>`ExportCommand`</u> returns Json string to `LogicManager` and `ModelManager`
+8. `UI` outputs the JSON string
+
+Below is the Sequence Diagram:
+![Interactions Inside the Logic Component for the `export` Command](images/ExportSequenceDiagram.png)
+
+### Difference in Meetings
+#### Implementation
+meetings  has additional functionality of returning meetings between two dates. This is implemented through the use of a 
 `isBetween` function implemented in the `Meeting` class. The program will first gather all the meetings in the 
 corresponding indexes provided, then search for meetings between the start and end dates. If either date is empty, then 
 only the other date is considered.
+
+#### Exceptions
+Using the exported JSON, one can then import it using `import THE_JSON`.
+
+Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing
+to ensure we do not have "half imports".
+
+Consider a situation where we have `[Person2, Person3]` in the system. If we
+import `[Person1, Person2, Person3, Person4]` without considering duplicates first, Person1 will be imported
+followed by the import of Person2 throwing a DuplicatePersonError, resulting in the command throwing a failure
+message and Person4 not being imported but the system now has `[Person1, Person2, Person3]`.
+The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message
+is thrown.
+
+However, if the user wishes to "force import", a `f/` parameter is provided. This imports for each `Person` if the
+Person does not already exist, and ignores those that do.
+This allows the previous situation to complete with `[Person1, Person2, Person3, Person4]` in the system.
 
 ### Autocompletion of Argument Prefixes
 
@@ -338,8 +395,23 @@ This way, formats are easily extensible and maintainable. The parsing of `dateTi
 * **Alternative 3 (current choice)**: Utilise Java `Optional` to wrap the time.
   * By doing so, there will not be any `NullPointerException` and enables us to make use of the provided methods (`orElse` etc.) that helps to carry out the logic based on the presence of the time.
 
-### Sort Meeting commands
-`SortMeetingCommand` is a Java class that sorts the meeting objects stored in a Model object based on a specified attribute. This command allows the user to sort meetings by their title, date and time, location, or description. The user can also specify whether the sorting should be done in reverse order. The sorting is done by creating a Comparator for the specified attribute and passing it to the Model object's sortFilteredMeetingList method. The execute method of this class takes a `Model` object as an argument, applies the correct `Comparator` based on the prefix given by the user, and then returns a `CommandResult` object with a success message indicating the attribute that the meetings have been sorted by. If an invalid prefix is provided, a `CommandException` is thrown.
+### Sort Meeting commands (only in meetings)
+#### Sorting
+##### Description
+The `SortMeetingCommand` is a Java class that allows the user to sort meetings stored in a `Model` object based on a specified attribute, such as title, date and time, location, or description. The sorting is done by creating a `Comparator` for the specified attribute and passing it to the `sortFilteredMeetingList` method in the `Model` object. See the syntax here [sort command](#command-summary).
+##### Implementation
+
+When sorting meetings, the control flow is as follows:
+1. The user issues a sort command with the desired attribute and optional reverse flag.
+2. The `UI` calls the `QuickBookParser` through `LogicManager` to initiate a `SortMeetingCommandParser` object.
+3. The `SortMeetingCommandParser` parses the command and creates a `SortMeetingCommand` object.
+4. The `SortMeetingCommand` is executed, and the correct `Comparator` for the specified attribute is applied to the `Model` object's `sortFilteredMeetingList` method.
+5. `LogicManager` returns a `CommandResult` to the `UI` with a success message indicating the attribute by which the meetings have been sorted.
+
+Below is the Sequence Diagram:
+![Interactions Inside the Logic Component for the `sortm` Command](images/SortMeetingSequenceDiagram.png)
+
+
 
 ### Light Theme
 The current theme is stored as a boolean inside GuiSettings, which is stored inside UserPrefs. Clicking the button 
@@ -825,3 +897,28 @@ testers are expected to do more *exploratory* testing.
    5. Launch `QuickContacts`.
 
    Expected: `QuickContacts` will launch normally with the data restored from the backup.
+
+## Command summary
+
+| Action                       | Format, Examples                                                                                                                                                                                                     |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Create a contact**         | `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Reset all data**           | `clear`                                                                                                                                                                                                              |
+| **Delete a contact**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                  |
+| **Edit a contact**           | `edit INDEX [n/CONTACT_NAME] [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
+| **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
+| **List all contacts**        | `list`                                                                                                                                                                                                               |
+| **Help**                     | `help`                                                                                                                                                                                                               |
+| **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
+| **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
+| **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
+| **List all meetings**        | `findm`                                                                                                                                                                                                              |
+| **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                          <br/>                        <br/>                                                                                       |
+| **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                        <br/>            <br/>                                                                                                   |
+| **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
+| **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
+| **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
+| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
+| **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
+| **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
+| **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
