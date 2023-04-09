@@ -43,12 +43,12 @@ public class DeleteCommand extends Command {
         StringBuilder feedback = new StringBuilder();
         Collections.sort(targetIndexes); // sort index in order
         Collections.reverse(targetIndexes); // reverse index order to prevent exception when deleting
-        model.clearRecent();
         for (Index targetIndex : targetIndexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(
                         String.format(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, targetIndex.getZeroBased() + 1));
             } else {
+                model.clearRecent();
                 model.addRecentCommand(this);
                 Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
                 model.deleteEvent(eventToDelete);
