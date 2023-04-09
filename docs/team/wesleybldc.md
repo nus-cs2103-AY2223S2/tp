@@ -54,6 +54,8 @@ for fast typists.
 
 #### Community & Team
   * PRs reviewed: ([#150](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/150),[#147](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/147), [#141](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/141), [#186](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/186),[#146](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/146), [#145](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/145), [#78](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/78)...)
+  * Reported bugs and suggestions for our team members for TP: [Issues Link](https://github.com/AY2223S2-CS2103-W16-4/tp/issues?q=is%3Aissue+author%3AWesleyBLDC+is%3Aclosed)
+  * Reported bugs and suggestions for other teams in the class: [Issues Link](https://github.com/WesleyBLDC/ped/issues)
 
 <!-- #### Contributions to team-based tasks:
 
