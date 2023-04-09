@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Code and documentations reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,9 +70,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram.png) <br/>
+The reference of the `panels` node is as shown below: <br/>
+![refPanels](images/PanelsRef.png) <br/>
+The detailed components of `MixedPanel` and `ApplicationListPanel` are as shown below: <br/>
+![refMixedPanel](images/MixedPanelRef.png) ![refApplicationPanel](images/ApplicationListPanelRef.png) <br/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `MixedPanel`, `NoteListPanel`, `TodoListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -84,7 +89,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `InternshipApplication` object residing in the `Model`.
 * listens on each other in the `Ui` component, as `CommandBox` calls functions in `MainWindow` to `execute()` `Logic`.
-* keeps a reference to other `Ui` component, as `MainWindow` keeps references of `NoteListPanel`, `InternshipListPanel` and `NoteListPanel` to implement the switching between each panel.
+* keeps a reference to other `Ui` component, as `MainWindow` keeps references of `MixedPanel`, `NoteListPanel`, `InternshipListPanel` and `TodoListPanel` to implement the switching between each panel.
 
 ### Logic component
 
@@ -302,7 +307,7 @@ by using its prefix, i.e. in this form `find s/PENDING`.
 
 
 ### Clear feature
-This section elaborated the `clear` feature by its functionality and the path of execution together with the `ClearCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `clear` feature by its functionality and the path of execution together with the `ClearCommand` implementation. Uml diagram is used to aid this description.
 
 #### How CLEAR Feature is implemented
 
@@ -328,7 +333,7 @@ The result model is saved. A `CommandResult` with execution result message is re
 
 #### Why is it implemented this way
 
-The `ClearFeature` is an enhanced extension for the `DeleteFeature`. It provides an execution for a series operations of the `DeleteCommands` at once.
+The `ClearFeature` is an enhanced extension for the `DeleteFeature`. It provides an execution for a series operations of the `DeleteCommands` at once. Furthermore, it is made reversible by adding the entries into a cacheList immediately after clearing them.
 
 
 ### Clear By feature
@@ -339,7 +344,7 @@ This section elaborated the `clear_by` feature by its functionality and the path
 The `clear_by` feature enables user to clear the internship applications in batch with the specific attribute and the specific keyword. There are 3 cases (attributes) available in this feature.
 In `Logic` interface, `ClearByCommand` extends `Command` with a `ClearByCommand#execute` functionality. The parsing process is facilitated by both the `InternEaseParser#parse` and `ClearByCommandParser#parse`.
 
-The workflow of a `clear_by` command during its execution is shown by the activity diagram below:
+The workflow of a `clear_by` command during its execution is shown by the activity diagrams below, the alternatives of the main diagrams are shown in 3 break-downs activity diagram below:
 ![ClearByActivityDiagram](images/ClearByActivityDiagram.png) <br/>
 Group - Company Name <br/>
 ![GroupCompanyName](images/GroupCompanyName.png) <br/>
@@ -352,15 +357,15 @@ There are 3 constructors `ClearByCommand::new` provided for 3 different cases st
 
 * Case 1 : clear_by `COMPANY_NAME`
   * `PREFIX` should be set to `n`
-  * Allows user to remove all internship applications with `ParamType=COMPANYNAME` fully match with the provided keyword.
+  * Allows user to remove all internship applications with `ParamType=COMPANY_NAME` **fully match** with the entire provided keyword (case-sensitive).
   
 * Case 2 : clear_by `JOB_TITLE`
   * `PREFIX` should be set to `j`
-  * Allows user to remove all internship applications with `ParamType=JOBTITLE` fully match with the provided keyword.
+  * Allows user to remove all internship applications with `ParamType=JOB_TITLE` **fully match** with the entire provided keyword (case-sensitive).
   
 * Case 3 : clear_by `STATUS`
   * `PREFIX` should be set to `s`, the keywords accepted include `ACCEPTED, PENDING, RECEIVED, REJECTED, DECLINED`.
-  * Allows user to remove all internship applications with `ParamType=STATUS` fully match with the correct provided keyword.
+  * Allows user to remove all internship applications with `ParamType=STATUS` **fully match** with the correct provided keyword (case-sensitive).
 
 >**Note:** 
 > The assignation of cases will be done by `ClearByCommandParser#parse`, each unavailable fields will be set to null.
@@ -395,14 +400,14 @@ The other implementation aspects of `clear_by` feature follow the convention of 
 
 
 ### Delete feature
-This section elaborated the `delete` feature by its functionality and the path of execution together with the `DeleteCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `delete` feature by its functionality and the path of execution together with the `DeleteCommand` implementation. Uml diagram is used to aid this description.
 
 #### How DELETE Feature is implemented
 
 The `delete` feature enables user to delete an internship applications with the specified index. 
 In `Logic` interface, `DeleteCommand` extends `Command` with a `DeleteCommand#execute` functionality. The parsing process is facilitated by both the `InternEaseParser#parse` and `DeleteCommandParser#parse`.
 
-All the delete operations should only have INDEX within the displayed Internship Application List.
+All the delete operations should only have `INDEX` within the displayed Internship Application List.
 The deleted application(s) in current session (after InternEase initialization, before exit) will be cached in a cacheList to enable the `revert` and `revert_all` features.
 
 These operations are involved in the `Model` interface as `Model#getSortedFilteredInternshipList`, `Model#addInternshipToCache` and `Model#deleteInternship`
@@ -432,7 +437,7 @@ The `DeleteCommand` is a common, must-have feature which helps to clean-up unwan
 
 
 ### Revert feature
-This section elaborated the `revert` feature by its functionality and the path of execution together with the `RevertCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `revert` feature by its functionality and the path of execution together with the `RevertCommand` implementation. Uml diagram is used to aid this description.
 
 #### How REVERT Feature is implemented
 
@@ -475,13 +480,13 @@ a temporary data-storing data structure that acts as a buffer for the current se
     * Pros: Shorter command, easy to implement.
     * Cons: Less efficient as compared to Alternative 2.
 
-* **Alternative 2:** We can also make it in such format revert <INDEX>, e.g. revert 3, reverts 3 most recent deleted internship applications.
+* **Alternative 2:** We can also make it in such format `revert INDEX`, e.g. revert 3 (reverts 3 most recent deleted internship applications).
     * Pros: More powerful feature.
     * Cons: More complicate to implement.
   
 
 ### Revert All feature
-This section elaborated the `revert_all` feature by its functionality and the path of execution together with the `RevertAllCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `revert_all` feature by its functionality and the path of execution together with the `RevertAllCommand` implementation. Uml diagram is used to aid this description.
 
 #### How REVERT_ALL Feature is implemented
 
@@ -511,7 +516,7 @@ The `RevertAllFeature` is an enhanced extension for the `RevertFeature`. It prov
 
 
 ### Exit feature
-This section elaborated the `exit` feature by its functionality and the path of execution together with the `ExitCommand` implementation. Uml diagrams are used to aid this description.
+This section elaborated the `exit` feature by its functionality and the path of execution together with the `ExitCommand` implementation. Uml diagram is used to aid this description.
 
 #### How Exit Feature is implemented
 
@@ -593,17 +598,15 @@ adding a new internship application. This prevents the `AddCommand` from getting
 
 For example, the main differences in these features are on the specific functions used to carry out the execution and the specific lists used to store the relevant items. <br/>
   - `Task` is a combination of `Todo` and `Note`.<br/>
-  - `TodoList` or `NoteList` are used instead of `InternshipApplicationList`, and other relevant data structure.<br/>
+  - `TodoList` or `NoteList` are used instead of `InternshipApplicationList` and other related methods.<br/>
   - Methods with `Todo` or `Note` are used instead of `Application` or `Internship` (e.g., updateFiltered`Todo`List and updateFiltered`Note`List are used instead of updateFiltered`Internship`List).<br/>
-  - CacheList is not applicable.<br/>
+  - CacheList is not applicable here.<br/>
   - All the commands (include main features) can be executed in any of the panels. It will automatically switch to the related panel and display the results after every execution.<br/>
-  - All commands need to go through the `TaskParser` after being processed in the `InternEaseParser`.<br/>
+  - All commands here need to go through the `TaskParser` after being processed in the `InternEaseParser`.<br/>
   - For GUI settings, `Todo` uses `TodoListPanel`, `Note` uses `NoteListPanel`, while `Task` uses `MixedPanel`.<br/>
-
-
+  
   
 ### Task related features
-
 ### Find Task feature
 #### How is the feature implemented
 
@@ -630,16 +633,15 @@ The execution process of `list_task` is demonstrated by the activity diagram bel
 
 #### Why is it implemented this way
 
-By implementing the listing of both `TodoList` and `NoteList` together, user can have a quick overview of current available `Tasks` and long-lasting reminders (Notes).
+By implementing the listing of both `TodoList` and `NoteList` together, user can have a quick overview of current available `Todo Tasks` and long-lasting reminders -- `Notes`.
 
 
 ### Todo related features
-
 ### Add Todo feature
 #### How is the feature implemented
 
 The `AddTodoFeature` enables the adding of new `InternshipTodo` instance into the current `TodoList`.
-The execution of `AddTodoCommand` is similar to `AddCommand`, the main difference is `AddTodoCommand` comes with an extra mandatory attribute of `ApplicaionDeadline`.
+The execution of `AddTodoCommand` is similar to `AddCommand`, the main difference is `AddTodoCommand` comes with an extra mandatory attribute of `ApplicationDeadline`.
 
 The execution process of `add_todo` is demonstrated by the activity diagram below.<br/>
 ![AddTodoActivityDiagram](images/AddTodoActivityDiagram.png)
@@ -785,13 +787,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | internship applicant                       | delete all my applications                                                     | start fresh                                                                               |
 | `* * *` | internship applicant                       | update the status of my application as it progresses                           | identify which stage of the application I am in                                           |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is `InternEase` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 Add an internship application entry**
+**Use case: UC01 Add an internship application entry** 
 
 **MSS**
 
@@ -917,8 +918,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Similar to `UC02 Add contact details of a company to an internship application` except that the documents link submitted to a company for an internship application is added.
 
 **Use case: UC06 Edit links for documents submitted to the company for an internship application**
-
-**MSS**
 
 Similar to `UC03 Edit contact details of the company for an internship application` except that the documents link submitted to a company for an internship application is edited.
 
@@ -1154,74 +1153,53 @@ Similar to `UC17 Archive an internship application` except that the internship a
 
 Similar to `UC15 List` except that only archived internship applications are shown.
 
-**Use case: UC20 Add a todo task entry**
+### Side features
 
-**MSS**
+**Use case: UC20 Add a todo task entry**
 
 Similar to `UC01 Add an internship application entry` except todo task is added instead of an internship application.
 
 **Use case: UC21 List todo**
 
-**MSS**
-
-Similar to `UC15 List`except todo tasks are listed instead of internship applications.
+Similar to `UC15 List` except todo tasks are listed instead of internship applications.
 
 **Use case: UC22 Edit the note content of a todo task**
 
-**MSS**
-
-Similar to `UC13 Edit the status of an internship application`except the note content of a todo task is edited.
+Similar to `UC13 Edit the status of an internship application` except the note content of a todo task is edited.
 
 **Use case: UC23 Edit the deadline of a todo task**
 
-**MSS**
-Similar to `UC19 Edit the note content of a todo task` except the deadline is edited.
+Similar to `UC13 Edit the status of an internship application` except the deadline of a todo task is edited.
 
 **Use case: UC24 Delete a todo task entry**
-
-**MSS**
 
 Similar to `UC10 Delete an internship application entry` except the specified todo task is deleted.
  
 **Use case: UC25 Clear all todo task entries**
 
-**MSS**
-
 Similar to `UC12 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
 
 **Use case: UC26 Add a note**
-
-**MSS**
 
 Similar to `UC01 Add an internship application entry` except a note entry is added instead of an internship application.
 
 **Use case: UC27 List note**
 
-**MSS**
-
-Similar to `UC15 List`except note entries are listed instead of internship applications.
+Similar to `UC15 List` except note entries are listed instead of internship applications.
 
 **Use case: UC28 Delete a note entry**
-
-**MSS**
 
 Similar to `UC10 Delete an internship application entry` except the specified note entry is deleted.
 
 **Use case: UC29 Clear all note entries**
 
-**MSS**
-
 Similar to `UC12 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
 
 **Use case: UC30 List task**
 
-**MSS**
-
 Similar to `UC15 List` except todo task entries and note entries are listed instead of internship applications.
 
 **Use case: UC31 Find a task by its field**
-
-**MSS**
 
 Similar to `UC11 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
 
@@ -1277,3 +1255,7 @@ testers are expected to do more *exploratory* testing.
     2. All prior activities will be saved.
     3. Re-launch InternEase by [Step 1(ii)](#Launch-and-shutdown).<br>Expected: All the saved data will be loaded and displayed.
 
+## **Appendix: Planned Enhancement**
+
+1. The current display duration may not suit everyone and the dialog content looks messy on showing all particulars. The display duration could be customized (can be decided by user) and the dialog content could be enhanced to show important particulars only in further enhancement.
+2. All commands are executable on any panel (e.g., command `delete_note 2` can delete the 2nd note even though the panel is showing the todo list only). We plan to have some enhancement on it by implementing some custom restrictions (can be decided by user) to limit the command executions according to the displaying GUI.

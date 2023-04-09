@@ -131,8 +131,9 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* InternEase has 4 window interfaces which include the internship application list, the todo list, the note list and the task list. 
-  All the commands can be used in any interface. If the command for a different interface is executed in current interface, the current interface will switch to the respective interface and display the result of the command.
+* >**Note:** <br/>
+  > InternEase has 4 window interfaces which include the internship application list, the todo list, the note list and the task list. 
+  > All the commands can be used in any interface. If the command for a different interface is executed in current interface, the current interface will switch to the respective interface and display the result of the command.
 
 </div>
 
@@ -356,7 +357,8 @@ Clear all relevant internship application entries from the internship tracker wi
 Format: `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
 
 * Clears all internship applications with the specified keyword - `COMPANY_NAME`, `JOB_TITLE` or `STATUS`.
-* Three types of clear_by features are provided, but can only execute independently.
+* As a protective approach, only internship applications with desired particulars that are **fully matched** with the entire, case-sensitive keyword will be cleared.
+* Three types of clear_by features are provided, they can only be executed independently.
 
 Examples:
 * `clear_by n/Meta` Clears all application with COMPANY_NAME as Meta.
@@ -436,7 +438,8 @@ Format: `revert`
 Examples:
 1. Assume the most recent delete command was `delete 2` which has data `n/Tech j/Job`, the data was removed from the applications list.
 2. Command `revert` restores the entries at the back the application list, which has effect similar to `add  n/Tech j/Job`.
-   ** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+   
+**This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
 ### Revert all recently deleted or cleared internship applications : `revert_all`
 
@@ -444,7 +447,7 @@ Reverts all recent delete command or clear command and restores the affected dat
 
 Format: `revert_all`
 
-** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+**This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
 ### Exiting the program : `exit`
 
@@ -462,9 +465,8 @@ Format: `list_task`
 
 Examples:
 
-* `list_task` shows all the todos and notes that the user has written for together in one window.
-* If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown.
-* If there is either no todo or note, it will show `No todo at the moment` or `No note at the moment` respectively. The other list will be displayed normally.
+* `list_task` shows all the todos and notes that the user has written all together in one window.
+* If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown in the result dialog.
 
 ### Search for a task (todo and notes) : `find_task`
 
@@ -472,11 +474,11 @@ Searches the recorded lists of todos and notes by keyword (company name in todos
 
 Format: `find_task KEYWORD`
 
-Searches for the todos or notes with the specified `KEYWORD`.
+Searches for the todos or notes with the specified case-insensitive `KEYWORD`.
 The keyword refers to the company name in todos or the note content in notes that the user intends to look for.
 
 Examples:
-`find_task test` searches for all todos with `COMPANY_NAME` or all notes with `NOTE_CONTENT` as test.
+`find_task test week` searches for all todos with `COMPANY_NAME` or all notes with `NOTE_CONTENT` that contain `test` or `week`.
 
 ### Display a list of todo internship applications : `list_todo`
 
@@ -549,6 +551,7 @@ Examples:
 Clears all todo application entries from the todo applications list
 
 Format: `clear_todo`
+
 **Note that this action is irreversible**
 
 ### Display list of short note : `list_note`
@@ -590,6 +593,7 @@ Examples:
 Clears all notes from the note.
 
 Format: `clear_note`
+
 **Note that this action is irreversible**
 
 --------------------------------------------------------------------------------------------------------------------

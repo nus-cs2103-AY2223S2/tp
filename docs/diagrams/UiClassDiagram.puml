@@ -10,26 +10,11 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
-Class MixedPanel
-Class StatsInformationListPanel
-Class StatsInformationCard
+Class ReminderWindow
 Class CommandBox
 Class ResultDialog
-Class ReminderWindow
-Class ViewContentPanel
+Class Panels #CF2765
 Class QuickAccessToolbar
-Class ControlBox
-Class Popup
-Class ApplicationListPanel
-Class ApplicationCard
-Class TodoListPanel
-Class NoteListPanel
-Class TodoCard
-Class NoteCard
-}
-
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
 }
 
 package Logic <<Rectangle>> {
@@ -42,58 +27,27 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" MixedPanel
-MainWindow *-down-> "1" StatsInformationListPanel
 MainWindow *-down-> HelpWindow
-MainWindow --> "0..1" ResultDialog
 MainWindow *-down-> ReminderWindow
-MainWindow *-down-> "1" ViewContentPanel
+MainWindow --> "0..1" ResultDialog
+MainWindow *-down-> "1" Panels
 MainWindow *-down-> "1" QuickAccessToolbar
-MainWindow *-down-> "1" ApplicationListPanel
-MainWindow *-down-> "1" TodoListPanel
-MainWindow *-down-> "1" NoteListPanel
 
 MainWindow --|> UiPart
 CommandBox --|> UiPart
-StatsInformationListPanel --|> UiPart
-MixedPanel --|> UiPart
 HelpWindow --|> UiPart
-StatsInformationCard --|> UiPart
-TodoCard --|> UiPart
-NoteCard --|> UiPart
 ReminderWindow --|> UiPart
-ViewContentPanel --|> UiPart
+Panels --|> UiPart
 QuickAccessToolbar --|> UiPart
-ApplicationListPanel --|> UiPart
-TodoListPanel --|> UiPart
-NoteListPanel --|> UiPart
-ControlBox --|> UiPart
-Popup --|> UiPart
-ApplicationCard --|> UiPart
 
-MixedPanel -down-> TodoListPanel
-MixedPanel -down-> NoteListPanel
-StatsInformationListPanel -down-> StatsInformationCard
-TodoListPanel -down-> TodoCard
-NoteListPanel -down-> NoteCard
-ApplicationListPanel -down-> ControlBox
-ApplicationListPanel -down-> ApplicationCard
-ControlBox -down-> Popup
-
-StatsInformationCard .right.> Model
-UiManager -right-> Logic
+UiManager -left-> Logic
 MainWindow -left-> Logic
 
 HelpWindow -[hidden]right- ResultDialog
 ResultDialog -[hidden]right- CommandBox
-CommandBox -[hidden]right- ViewContentPanel
-ViewContentPanel -[hidden]right- ReminderWindow
-ReminderWindow -[hidden]right- QuickAccessToolbar
-QuickAccessToolbar -[hidden]right- ApplicationListPanel
-ApplicationListPanel -[hidden]right- StatsInformationListPanel
-MixedPanel -[hidden]right- StatsInformationListPanel
+CommandBox -[hidden]right- Panels
 MainWindow -[hidden]right- QuickAccessToolbar
-ApplicationCard -[hidden]right- ControlBox
+UiManager -[hidden]down- Logic
 
 MainWindow -[hidden]-|> UiPart
 @enduml
