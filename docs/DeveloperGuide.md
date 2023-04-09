@@ -577,5 +577,8 @@ within which the cases were found:
 
 <img src="images/FindDateRangeSuccess.png" width="425"/> <img src="images/DeleteDateRangeSuccess.png" width="425"/> 
 
-While minor, the discrepancy may cause confusion to users.  We plan to standardise the
+While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
+
+In addition, the success messages differ in whether they use "case" or "person". Standardising this could also reduce
+confusion for the user.
