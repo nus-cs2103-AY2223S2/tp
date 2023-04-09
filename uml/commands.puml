@@ -93,7 +93,7 @@ hide empty members
 hide circle
 skinparam classAttributeIconSize 0
 
-inteface DeleteCommand {}
+interface DeleteCommand {}
 
 class DeleteCategoryCommand {
     + DeleteCategoryCommand(index: Index)
