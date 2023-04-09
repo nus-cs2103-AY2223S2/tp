@@ -1,14 +1,18 @@
 package seedu.vms.model.appointment.predicates;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.vms.commons.core.index.Index;
-import seedu.vms.model.GroupName;
-import seedu.vms.model.appointment.Appointment;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.vms.commons.core.index.Index;
+import seedu.vms.model.GroupName;
+import seedu.vms.model.appointment.Appointment;
 
 class EndTimePredicateTest {
 
