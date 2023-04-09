@@ -2,8 +2,7 @@
 layout: page title: User Guide
 ---
 
-* Table of Contents
-{:toc}
+* Table of Contents {:toc}
 
 ## **Introduction**
 
@@ -277,6 +276,8 @@ Examples
 * `markAtd 1 w/1` (marks attendance of student with index 1 for week 1)
 * `markAtd 2 w/1` (marks attendance of student with index 2 for week 1)
 
+<img src="images/markAtd.png">
+
 #### Unmark attendance: `unmarkAtd`
 
 Unmarks the attendance of a student for that week<br>
@@ -292,6 +293,8 @@ Examples
 
 * `unmarkAtd 1 w/1` (unmarks attendance of student with index 1 for week 1)
 * `unmarkAtd 2 w/1` (unmarks attendance of student with index 2 for week 1)
+
+<img src="images/unmarkAtd.png">
 
 #### List Attendance: `listAtd`
 
@@ -326,6 +329,8 @@ Week 10: []
 Week 11: []
 Week 12: []
 ```
+
+<img src="images/listAtd.png">
 
 The above example shows that the student is present for week 1,2,3 and absent for the rest of the weeks
 
@@ -368,6 +373,8 @@ Examples
 * `insertPP 1 w/1 pp/200` (inserts participation points of 200 for week 1 of student with index 1)
 * `insertPP 2 w/1 pp/300` (inserts participation points of 300 for week 1 of student with index 2)
 
+<img src="images/insetPP.png">
+
 #### List participation points: `listPP`
 
 Lists the participation points of a student from week 1 to week 12<br>
@@ -404,6 +411,8 @@ Week 12: [-1]
 The above example shows that the student have a participation point of 200 for week 1, 300 for week 2, 400 for week 3,
 and -1 for the rest of the weeks (attendance is not marked)
 
+<img src="images/listPP.png">
+
 ### Assignments & Submissions
 
 #### Preface
@@ -427,8 +436,8 @@ Adds an assignment with a specified name and total marks.
 
 If the total marks for the assignment is unspecified, a default value of 100 will be given.
 
-Student submissions for that assignment will be immediately created for all existing students. All student submissions
-for that assignment will initially be ungraded.
+Submission records for that assignment will be immediately created for all existing students. All these submissions will
+be initially ungraded.
 
 Format: `add_asgn n/ASSIGNMENT_NAME [m/TOTAL_MARKS]`<br>
 Example:
@@ -478,17 +487,19 @@ Example:
 * `ungrade n/Lab 1 i/2`
 
 #### List all assignments: `list_asgn`
+
 Lists all assignments, submissions and their respective information.
 
 Format: `list_asgn`
 
 Example Output:
+
 * `Assignment Lab 1:` <br>
-`  [X] Alice: 50/100 marks.` <br>
-`  [ ] Bob: 0/100 marks.` <br>
-*  `Assignment Lab 2:` <br>
-`  [ ] Alice: 0/100 marks.` <br>
-`  [X] Bob: 77/100 marks. (*Late Submission*)` <br>
+  `  [X] Alice: 50/100 marks.` <br>
+  `  [ ] Bob: 0/100 marks.` <br>
+* `Assignment Lab 2:` <br>
+  `  [ ] Alice: 0/100 marks.` <br>
+  `  [X] Bob: 77/100 marks. (*Late Submission*)` <br>
 
 The example output above shows that there are 2 assignments: Lab 1 & Lab 2.
 
