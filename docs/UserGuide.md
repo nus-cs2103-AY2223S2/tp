@@ -14,6 +14,12 @@ fast typist.
 With MediMeet, we make it easy to add and edit patient information, appointments and so much more, making it
 a one-stop solution to manage your individual medical practice or small clinic! <br>
 
+## Table of Contents
+{:.no_toc}
+
+* Table of Contents
+  {:toc}
+
 --------------------------------------------------------------------------------------------------------------------
 ## How to (best) use this guide
 
@@ -76,7 +82,7 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
    * `delete_patient 3` : Deletes the 3rd patient shown in the current list.
    * `add_appt n/Brenda Song ts/04032023 10:00,04032023 11:00 d/Regular checkup doc/Xiao Lu` : adds an appointment on `March 4, 2023` from `10:00` to `11:00` hrs for `Brenda Song` with doctor `Xiao Lu` for a `Regular checkup`.
    * `delete_appt 1` deletes the 1st appointment shown in the current list.
-  * `exit` : Exits the app.
+   * `exit` : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -194,7 +200,6 @@ Format: `find_patient_details KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find_patient_details 87438807` returns the patient with a phone number `87438807`
 
-    ![](images/findPatientDetails.png)
     ![result for 'find patient details 87438807'](images/findPatientDetailsResult.png)
 
 ### Deleting a patient : `delete_patient`
@@ -249,9 +254,8 @@ Format: `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR…​`
 
 Example:
 *  `add_appt n/Alex Yeoh ts/04032023 10:00,04032023 11:00 d/Regular checkup doc/Xiao Lu` : adds an appointment on `March 4, 2023` from `10:00` to `11:00` hrs for `Alex Yeoh` with doctor `Xiao Lu` for a `Regular checkup`.
-
-![](images/addApptCommand.png)
-![Adding an appointment](images/addApptCommandSuccess.png)
+    
+    ![Adding an appointment](images/addApptCommandSuccess.png)
 
 ### Listing all appointments : `list_appt`
 
