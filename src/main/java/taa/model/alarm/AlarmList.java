@@ -38,23 +38,6 @@ public class AlarmList {
     }
 
     /**
-     * Returns the alarm that has the least remaining time
-     * @return the alarm that has the least remaining time
-     */
-    public static Alarm getSoonestAlarm() {
-        int i = 0;
-        double maxRemainingTime = Double.MAX_VALUE;
-        int maxIndex = -1;
-        for (Alarm a : alarms) {
-            if (a.getRemainingTime() < maxRemainingTime) {
-                maxIndex = i;
-            }
-            i++;
-        }
-        return alarms.get(maxIndex);
-    }
-
-    /**
      * Returns the alarm message of the specified alarm
      * @param alarm whose message is to be retrieved
      * @return the message of the specified alarm

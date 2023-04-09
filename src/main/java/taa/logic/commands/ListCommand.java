@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import taa.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all students in the application.
  */
+//@@author cyli133-reused
+//Reused from https://se-education.org/addressbook-level3/
+// with minor modifications
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";

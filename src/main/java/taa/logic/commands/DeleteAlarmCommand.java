@@ -8,7 +8,7 @@ import taa.model.alarm.AlarmList;
 
 
 /**
- * Deletes an alarm identified using it's displayed index.
+ * Deletes an alarm identified using its displayed index.
  */
 public class DeleteAlarmCommand extends Command {
 

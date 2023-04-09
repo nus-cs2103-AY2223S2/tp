@@ -5,9 +5,11 @@ import java.text.DecimalFormat;
 import java.util.Objects;
 
 import javafx.animation.Timeline;
+
 /**
  * Defines the Alarm class
  */
+//Credits: Solution below adapted from chatGPT3.5 codes
 public class Alarm {
     private final int minutes;
     private final String message;
@@ -34,7 +36,6 @@ public class Alarm {
         return this.minutes;
     }
 
-    //credits: adapted from chatGPT3.5 codes
     public double getRemainingTime() {
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.HALF_UP);

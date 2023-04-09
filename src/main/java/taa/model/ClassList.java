@@ -10,9 +10,10 @@ import taa.model.student.Student;
 import taa.model.student.UniqueStudentList;
 
 /**
- * Wraps all data at the address-book level
+ * Adds another layer on top of the students in the application, allow them to be organized in classes
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
+//Credits: Solution below are adapted from original AB3 codes, with significant modifications.
 public class ClassList implements ReadOnlyStudentList {
 
     private static int lastId;
@@ -51,11 +52,8 @@ public class ClassList implements ReadOnlyStudentList {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
-
     /**
      * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameClassList(ClassList otherClassList) {
         if (otherClassList == this) {
@@ -121,6 +119,7 @@ public class ClassList implements ReadOnlyStudentList {
     public UniqueStudentList getUniqueStudentList() {
         return this.students;
     }
+
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.
@@ -142,8 +141,6 @@ public class ClassList implements ReadOnlyStudentList {
         this.studentCount -= 1;
     }
 
-    //// util methods
-
     @Override
     public String toString() {
         return "class name: " + this.className + " " + students.asUnmodifiableObservableList().size() + " person(s)";
@@ -155,6 +152,7 @@ public class ClassList implements ReadOnlyStudentList {
         return students.asUnmodifiableObservableList();
     }
 
+    //Credits: Solution below is adapted from ChatGPT3.5 codes.
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
