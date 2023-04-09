@@ -911,3 +911,6 @@ for index <=0 since the bookmarklist index starts from 1. And keep the current e
 
 In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be <= 0" when 
 ParseException is thrown.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix C: Effort**

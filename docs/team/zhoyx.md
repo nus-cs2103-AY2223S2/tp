@@ -31,5 +31,6 @@ Given below are my contributions to the project.
     * Developer Guide:
       * Updated plantUML diagrams to reflect new Fields and classes. [#140](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/140)
       * Added Implementation for Rating Field. [#167](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/167)
+      * Added User Stories for Tag, Sort and Delete
 
 
