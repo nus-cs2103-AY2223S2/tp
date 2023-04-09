@@ -38,6 +38,7 @@ public class PlaneFlightLinkCommandFactory<T extends Command>
     private final PlaneFlightCommandFactory<T> linkFunction;
     private final String commandWord;
 
+
     /**
      * Creates a new link command factory with the model registered.
      */
@@ -92,8 +93,10 @@ public class PlaneFlightLinkCommandFactory<T extends Command>
      * @return the link plane command factory.
      */
     public static PlaneFlightLinkCommandFactory<LinkPlaneToFlightCommand> linkFactory() {
-        return new PlaneFlightLinkCommandFactory<>(LinkPlaneToFlightCommand::new,
-                LINK_COMMAND_WORD);
+        return new PlaneFlightLinkCommandFactory<>(
+                LinkPlaneToFlightCommand::new,
+                LINK_COMMAND_WORD
+        );
     }
 
     /**
@@ -102,8 +105,10 @@ public class PlaneFlightLinkCommandFactory<T extends Command>
      * @return the unlink plane command factory.
      */
     public static PlaneFlightLinkCommandFactory<UnlinkPlaneToFlightCommand> unlinkFactory() {
-        return new PlaneFlightLinkCommandFactory<>(UnlinkPlaneToFlightCommand::new,
-                UNLINK_COMMAND_WORD);
+        return new PlaneFlightLinkCommandFactory<>(
+                UnlinkPlaneToFlightCommand::new,
+                UNLINK_COMMAND_WORD
+        );
     }
 
     @Override

@@ -21,7 +21,9 @@ Given below are my contributions to the project.
    - This class is used to model the flight object in a way suitable for use in Wingman,
      from a storage and interaction perspective. Implemented in a similar way to AB3's person class,
      with separate files in Ui, logic, model, and storage packages.
-   - This also included the implementation of the add and delete feature for the flight objects.
+   - Each flight object was modelled to have a code attribute, and links to the pilot, crew, plane and location
+     resources that are allocated to the flight.
+   - At the logic layer, this implementation also included adding the add and delete feature for the flight objects.
    
 2. **Unlink Flight** feature for all resource types (crew, pilot, plane, location)
    - This was implemented in a similar way to the `linkflight` feature, with the main difference being that the

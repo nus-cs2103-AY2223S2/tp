@@ -42,6 +42,7 @@ public class FlightLocationLinkCommandFactory<T extends Command>
     private final FlightLocationLinkFunction<T> linkFunction;
     private final String commandWord;
 
+
     /**
      * Creates a new link command factory with the model registered.
      */

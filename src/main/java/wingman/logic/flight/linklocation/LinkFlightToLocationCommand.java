@@ -24,14 +24,14 @@ public class LinkFlightToLocationCommand implements Command {
     private final Flight flight;
 
     /**
-     * The locations to be linked to.
+     * A map of the locations to be linked to and the types of the links to be made.
      */
     private final Map<FlightLocationType, Location> locations;
 
     /**
      * Creates a new link command.
      *
-     * @param locations the id of the locations.
+     * @param locations a map storing the id of the locations and their type of link to this flight.
      * @param flight    the id of the flight.
      */
     public LinkFlightToLocationCommand(
@@ -58,7 +58,7 @@ public class LinkFlightToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<FlightLocationType, Location> entry : locations.entrySet()) {
-                flight.locationLink.putRevolve(
+                flight.setLocation(
                         entry.getKey(),
                         entry.getValue()
                 );
