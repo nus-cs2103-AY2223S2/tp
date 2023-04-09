@@ -75,8 +75,6 @@ public class ClassStatisticsCommand extends Command {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
         }
 
-        CommandResult result;
-
         if (this.field == ChartType.CLASS_ATTENDANCE) {
             return displayAttendanceChart(model);
         } else if (this.field == ChartType.CLASS_GRADES) {
@@ -90,11 +88,8 @@ public class ClassStatisticsCommand extends Command {
             throws CommandException {
         try {
             model.displayChart(this.field);
-        } catch (AssignmentNotFoundException | NoSubmissionsFoundException e) {
-            throw new CommandException("Could not display attendance distribution: \n"
-                    + e.getMessage());
-        } catch (NoGradeVarianceException e) {
-            // should not ever reach this, attendance distribution will not require grade variance
+        } catch (AssignmentNotFoundException | NoSubmissionsFoundException | NoGradeVarianceException e) {
+            // should not ever reach this, attendance distribution does not involve assignments/submissions/grades
             assert false;
         }
 
@@ -130,7 +125,8 @@ public class ClassStatisticsCommand extends Command {
         if (other instanceof ClassStatisticsCommand) { // instanceof handles null values
             ClassStatisticsCommand otherCommand = (ClassStatisticsCommand) other;
             return this.field == otherCommand.field
-                    && this.assignmentName.equals(otherCommand.assignmentName);
+                    && (this.assignmentName == otherCommand.assignmentName
+                || this.assignmentName.equals(otherCommand.assignmentName));
         }
         return false;
     }
