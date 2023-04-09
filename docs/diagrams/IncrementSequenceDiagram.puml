@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":IncrementCommandParser" as IncrementCommandParser LOGIC_COLOR
+participant "d:IncrementCommand" as IncrementCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("incr 1 tr/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("incr 1 tr/1")
+activate AddressBookParser
+
+create IncrementCommandParser
+AddressBookParser -> IncrementCommandParser
+activate IncrementCommandParser
+
+IncrementCommandParser --> AddressBookParser
+deactivate IncrementCommandParser
+
+AddressBookParser -> IncrementCommandParser : parse("1 tr/1")
+activate IncrementCommandParser
+
+create IncrementCommand
+IncrementCommandParser -> IncrementCommand
+activate IncrementCommand
+
+IncrementCommand --> IncrementCommandParser : d
+deactivate IncrementCommand
+
+IncrementCommandParser --> AddressBookParser : d
+deactivate IncrementCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+IncrementCommandParser -[hidden]-> AddressBookParser
+destroy IncrementCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> IncrementCommand : execute()
+activate IncrementCommand
+
+IncrementCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> IncrementCommand
+deactivate Model
+
+create CommandResult
+IncrementCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> IncrementCommand
+deactivate CommandResult
+
+IncrementCommand --> LogicManager : result
+deactivate IncrementCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
