@@ -501,7 +501,7 @@ These commands can be tested on any page. Specific pages are given for this sect
        Expected: Error message shows up on the log box as the course page is the home page.<br>
        The application begins from the home page.
 
-1. Undoing a select command from the course page, indicating that the current page is the group page.
+1. Undoing a select command from the course page, indicating that the current page to run the test case is the group page.
 
     1. Test case: `undo`<br>
        Expected: Course page is displayed.
@@ -518,7 +518,7 @@ These commands should be tested on the Course Page.
 
 #### Adding a course
 
-1. Adding a course while course list is empty, or the course does not exist in the course list.
+1. Adding a course while the course list is empty, or the course does not exist in the course list.
 
     1. Test case: `add course CS3223`<br>
        Expected: New course is added into the list. Details of the added course shown in the log box.
@@ -533,7 +533,7 @@ These commands should be tested on the Course Page.
 
 #### Deleting a course
 
-1. Deleting a course while all courses are being shown from the course page.
+1. Deleting a course while all courses are being shown from the course page. At least 1 course exists in the list.
 
     1. Test case: `delete course 1`<br>
        Expected: First course is deleted from the list. Details of the deleted course shown in the log box.
@@ -542,7 +542,7 @@ These commands should be tested on the Course Page.
        Expected: No course is deleted. Error details shown in the log box.
 
     1. Other incorrect `delete course` commands to try: `delete`, `delete course x` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+       Expected: Similar to previous step 1(ii) under `Deleting a course`.
 
 1. Deleting a course while the course list is empty in the course page.
 
@@ -560,7 +560,7 @@ These commands should be tested on the Course Page.
        Expected: No course is edited. Error details shown in the log box.
 
     1. Other incorrect `edit course` commands to try: `edit`, `edit course x` (where x is any number), `edit course x CS4225` (where x is larger than the list size) <br>
-       Expected: Similar to previous.
+       Expected: Similar to previous step 1(ii) under `Editing a course`.
 
 1. Editing a course while the course list is empty in the course page.
 
@@ -580,6 +580,19 @@ These commands should be tested on the Course Page.
 
 #### Finding a course
 
+1. Finding a course while on the course page, with the following courses - `CS3223`, `CS1101`, `PL1101` in the list.
+
+    1. Test case: `find course CS`<br>
+       Expected: `CS3223` and `CS1101` is displayed. Details of the found courses shown in the log box.
+
+    1. Test case: `find course 1101`<br>
+       Expected: `CS1101` and `PL1101` is displayed. Details of the found courses shown in the log box.
+
+    1. Test case: `find course CS4225` (this course does not exist in the list)<br>
+       Expected: The list is not filtered. Details of no found courses shown in the log box.
+
+    1. Other incorrect `find course` commands to try: `find`, `find course`<br>
+       Expected: The list is not filtered. Error details shown in the log box.
 ---
 
 ### Group Page Commands
@@ -587,17 +600,105 @@ These commands should be tested on the Group Page.
 
 #### Adding a group
 
+1. Adding a group while the group list is empty, or the group does not exist in the group list.
+
+    1. Test case: `add group T10`<br>
+       Expected: New group is added into the list. Details of the added group shown in the log box.
+
+    1. Other incorrect `add group` commands to try: `add`, `add group` (where the group name is empty)<br>
+       Expected: No group is added. Error details shown in the log box.
+
+1. Adding a group into the list containing the following groups - `T01`, `T02`, `L01`.
+
+    1. Test case: `add group L02`<br>
+       Expected: New group is added. Details of the added group shown in the log box.
+
+    1. Test case: `add group T01`<br>
+       Expected: No group is added. Error details shown in the log box.
+
 #### Deleting a group
+
+1. Deleting a group while all groups are being shown from the group page. At least 1 group exists in the list.
+
+    1. Test case: `delete group 1`<br>
+       Expected: First group is deleted from the list. Details of the deleted group shown in the log box.
+
+    1. Test case: `delete group 0`<br>
+       Expected: No group is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete group` commands to try: `delete`, `delete group x` (where x is larger than the list size)<br>
+       Expected: Similar to previous step 1(ii) under `Deleting a group`.
+
+1. Deleting a group while the group list is empty in the group page.
+
+    1. Incorrect `delete group` commands to try: `delete`, `delete group x` (where x is any number)<br>
+       Expected: No group is deleted. Error details shown in the log box.
 
 #### Editing a group
 
+1. Editing a group which exists in the group list.
+
+    1. Test case: `edit group 1 T02`<br>
+       Expected: First group is edited to the new group name. Details of the edited group shown in the log box.
+
+    1. Test case: `edit group 0 T02`<br>
+       Expected: No group is edited. Error details shown in the log box.
+
+    1. Other incorrect `edit group` commands to try: `edit`, `edit group x` (where x is any number), `edit group x T02` (where x is larger than the list size) <br>
+       Expected: Similar to previous step 1(ii) under `Editing a group`.
+
+1. Editing a group while the group list is empty in the group page.
+
+    1. Refer to step 1(iii) above under `Editing a group`.
+
 #### Selecting a group
+
+1. Selecting a group while on the group page.
+
+    1. Test case: `select 1`<br>
+       Expected: First group is selected. Details of the selected group shown in the log box. Page redirected to the
+       selected students page.
+
+    1. Test case: `select x` (where x is larger than the list size)<br>
+       Expected: No group is selected. Error details shown in the log box.
 
 #### Displaying sessions of a group
 
+1. Selecting a group to display its sessions while on the group page.
+
+    1. Test case: `session 1`<br>
+       Expected: First group is selected to view its sessions. Details of the selected group to view its
+       sessions shown in the log box. Page redirected to the session page for the selected group.
+
+    1. Test case: `session x` (where x is larger than the list size)<br>
+       Expected: No group is selected to view its sessions. Error details shown in the log box.
+
 #### Displaying tasks of a group
 
+1. Selecting a group to display its tasks while on the group page.
+
+    1. Test case: `task 1`<br>
+       Expected: First group is selected to view its tasks. Details of the selected group to view its
+       tasks shown in the log box. Page redirected to the task page for the selected group.
+
+    1. Test case: `task x` (where x is larger than the list size)<br>
+       Expected: No group is selected to view its tasks. Error details shown in the log box.
+
 #### Finding a group
+
+1. Finding a group while on the group page, with the following groups - `T01`, `T02`, `L01`. in the list.
+
+    1. Test case: `find group T`<br>
+       Expected: `T01` and `T02` is displayed. Details of the found groups shown in the log box.
+
+    1. Test case: `find group 01`<br>
+       Expected: `T01` and `L01` is displayed. Details of the found groups shown in the log box.
+
+    1. Test case: `find group T03` (this group does not exist in the list)<br>
+       Expected: The list is not filtered. Details of no found groups shown in the log box.
+
+    1. Other incorrect `find group` commands to try: `find`, `find group`<br>
+       Expected: The list is not filtered. Error details shown in the log box.
 
 ---
 
@@ -634,11 +735,7 @@ These commands should be tested on the Attendance Page.
 ### Task Page Commands
 These commands should be tested on the Task Page.
 
-#### Adding a task
 
-#### Deleting a task
-
-#### Editing a task
 
 #### Selecting a task
 
