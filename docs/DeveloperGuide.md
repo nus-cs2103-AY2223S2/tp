@@ -1599,6 +1599,62 @@ Before every test case, ensure that the there are no patients and vaccinations.
   `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
 
+### Adding a keyword
+
+#### Prerequisites
+
+Before every test case, ensure that the keyword mapping of main keyword "patient" and keyword "pa" does not exist. This
+can be done by executing the following before every test case:
+
+`keyword delete pa`
+
+#### Test:
+
+`keyword add --k patient --n pa`
+
+##### Expected
+
+![Expected display](images/keyword/Keyword_Add.png)
+
+### Keyword attribute validation
+
+Before every test case, ensure that keyword mapping of main keyword "patient" and keyword "pa", main keyword 
+"appointment" and keyword "appo", and main keyword "vaccination" and keyword "vacci" does not exist. 
+This can be done by executing all of the following commands before every test case:
+
+`keyword delete pa`
+`keyword delete appo`
+`keyword delete vacci`
+
+#### Test: Keyword validation
+
+##### Valid Keyword
+
+* `keyword add --k patient --n pa`
+* `keyword add --k appointment --n appo`
+* `keyword add --k vaccination --n vacci`
+
+##### Invalid Keyword {#invalid-keyword-name}
+
+* `keyword add --k patient --n patient`
+* `keyword add --k vaccination --n appointment`
+* `keyword add --k appointment --n ap pt`
+
+#### Test: Main Keyword validation
+
+##### Valid Main Keyword
+
+* `keyword add --k patient --n pa`
+* `keyword add --k appointment --n appo`
+* `keyword add --k vaccination --n vacci`
+
+##### Invalid Main Keyword
+
+* `keyword add --k patientt --n pa`
+* `keyword add --k help --n appo`
+* `keyword add --k blank --n vacci`
+
+
 ## Appendix: Planned enhancements
 
 1. We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
