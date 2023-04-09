@@ -745,7 +745,7 @@ testers are expected to do more _exploratory_ testing.
 <div style="page-break-after: always"></div>
 
 ## 7.4 Adding additional tags to a contact:
-1. Adding additional tags to a `Person`:
+1. Adding tags to a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
     2. Test case: `add-t 1 r/friends mod/CS2103T`<br>
         Expected: The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T`. 
@@ -763,13 +763,66 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to table of contents](#table-of-contents)
 
 ## 7.5 Deleting tags from a contact:
+1. Deleting tags from a `Person`:
+    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. Assuming the first
+        `Person` in the list has the remark tag `friends` and module tag `CS2103T`.
+    2. Test case: `delete-t 1 r/1`<br>
+        Expected: The first `Person` in the list is edited to have the remark tag `friends` removed. 
+    3. Test case: `delete-t 1 r/1 m/1`<br>
+        Expected: The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T` removed.
+    4. Test case: `delete-t 1 r/10`<br>
+        Expected: No `Person` is edited. Error showing invalid index shown
+        in the status bar. Assuming there are less than 10 remark tags in the first `Person`'s remark tag list.
 
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
+## 7.6 Searching for a contact:
+1. Searching for a `Person`:
+    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+    2. Test case: `search cs`<br>.
+        Expected: All `Persons` whose information contains `cs` in any of the fields (name, email, address, telegram etc.).
+        For instance, if a person with a cca tag `ICS` would be shown in the list.
+    3. Test case: `search alex may`<br>
+        Expected: All `Persons` whose information contains `alex` and `may` in any of the fields (name, email, address, telegram etc.).
+        For instance, if a person with a name `Alex May` would be shown in the list.
+    4. Test case: `search r/friends`<br>
+        Expected: All `Persons` whose information contains `friends` in any of the remark tags.
+        For instance, if a person with a remark tag `friends` would be shown in the list.
+    
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
 
 [↑ Back to table of contents](#table-of-contents)
 
----
+## 7.7 Opening a contact's social media links in app:
+1. Opening a `Person`'s social media links:
+    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+    2. Test case: `open 1 tg/`<br>
+        Expected: The first `Person`'s telegram account is opened in the app. Assuming the first `Person` telegram field is not empty,
+        is a valid telegram username and the telegram app is installed on the user's computer.
+    3. Test case: `open 1 wa/`<br>
+        Expected: The first `Person`'s whatsapp account is opened in the app. Assuming the first `Person` whatsapp field is not empty,
+        is a valid whatsapp number and the whatsapp app is installed on the user's computer.
+    4. Test case: `open 1 ig/`<br>
+        Expected: Nothing happens. Error showing that the `Person`'s corresponding field is empty. Assuming the first `Person` instagram field is empty.
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
+## 7.8 Opening a social media platform with prefilled message:
+1. Opening a social media platform with prefilled message:
+    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+    2. Test case: `open 1 wa/ m/Hello World`<br>
+        Expected: The first `Person`'s whatsapp account is opened in the app with the message `Hello World`. Assuming the first `Person` whatsapp field is not empty,
+        is a valid whatsapp number and the whatsapp app is installed on the user's computer.
+    3. **Note:** Only whatsapp is supported right now due to platform limitations.
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
