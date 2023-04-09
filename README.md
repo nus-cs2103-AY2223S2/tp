@@ -2,23 +2,26 @@
 
 ![Ui](docs/images/Ui.png)
 
-# This is Contact nUS.<br>
+# This is coNtactUs.<br>
 
 ## Target User:
-#### NUS Computing Students who are more tech-savvy than the general population and are also fast typists.
+#### NUS Computing Students who need a powerful desktop application to keep track of their modules as they go about their hectic university life. 
 
 ## Value Proposition:
-#### In order for NUS computing students to function effectively and productively in university
-It is important for them to keep track of:
+#### In order for NUS computing students to function effectively and productively in university,
+It is important for them to keep track of a variety of information related to their modules. 
 
-- Lecturers and their contact details
-- Tutors/teaching assistants and their contact details
-- Locations of classes
-- Online links provided by lecturer and tutors where slides or other resources are uploaded (Eg. Canvas, Google Drive,
-Coursemology)
-- Deadlines for handing in assignments
-- Lecture and tutorial timings
-- Exam timings
+- Lecture and tutorial timeslots
+- Lecture and tutorial venues
+- Deadlines
+- Module official resources
+- Module notes
+- Contact details of Professors and Teaching assistants
+and more...
+
+NUS computing students may find it hard to keep track of all these information. They may feel overwhelmed by the constant influx of weekly lectures, tutorials, deadlines and assignments. They may also find it difficult to keep their module resources and notes well-organised.
+
+coNtactUS provides an excellent one-stop solution for NUS computing students to solve all of the above problems. By providing a centralised platform for NUS computing students to conveniently store and access information about their modules, coNtactUS helps them become the most productive and organised version of themselves. Even better, coNtactUS is optimised for use via typing instead of clicking, which allows them to store and retrieve information faster than ever before. 
 
  ## Example usages:
   * `add n/CS2101 t/Tutorial e/Tuesday 10:00 12:00 a/COM1-0117 s/Prof Cyrus Lee r/UG DG Peer Review c/www.youtube.com`
