@@ -307,7 +307,7 @@ Shows a list of all tasks in OfficeConnect.
 
 Format: `listt`
 
-#### 3.3.5 Locating a Specific Task: `findt`
+#### 3.3.5 Locating a specific Task: `findt`
 
 Finds the task based on given keyword.
 
@@ -438,7 +438,7 @@ Format: `filterp tag/TAG`
 
 Examples: `filterp tag/Logistics` shows all persons with the Logistics tag.
 
-#### 3.5.9 Viewing a person : `pi`
+#### 3.5.9 Viewing a Person : `pi`
 
 Shows a list of tasks assigned to a person according to the displayed index.
 
@@ -451,7 +451,7 @@ Format: `pi INDEX`
 Example:
 - `pi 2` displays person 2 and all tasks assigned to that person
 
-#### 3.5.10 Viewing a task : `ti`
+#### 3.5.10 Viewing a Task : `ti`
 
 Shows a list of persons assigned to a task according to the displayed index.
 
@@ -524,7 +524,7 @@ _Details coming soon ..._
 
 ## 4. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another Computer?  
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OfficeConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
