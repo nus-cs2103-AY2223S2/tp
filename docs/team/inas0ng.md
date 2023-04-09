@@ -38,6 +38,7 @@ Given below are my contributions to the project.
   * Added `v1.3`'s user stories crafted by the team ([\#54](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/54))
   * Added sequence diagram and implementation details of the `delevent` feature ([\#58](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/58))
   * Added use case for "Edit an event", and added details to "Instructions for manual testing" ([\#127](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/127))
+  * Added activity diagram and implementation details of the `editevent` feature ([\#130](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/130))
 
 * **Contributions to the User Guide**:
   * Added documentation for the features `delevent` ([\#13](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/13)), `editevent` ([\#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55)), and `findevent` ([\#82](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/82))
