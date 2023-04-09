@@ -39,13 +39,13 @@ Given below are my contributions to the project.
         * Edit notes about command format under `Features` [\#182](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/182)
         * Update minor notes for features `sort` and `clear` [\#277](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/277)
     * Developer Guide:
-        * Added use cases `UC07`, `UC08`, `UC10`  [\#67](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/67)
+        * Added use cases `UC07`, `UC08`, `UC10`, `UC24`, `UC25`, `UC26`  [\#67](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/67) [\#290](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/290) 
         * Added documentation for `list` [\#167](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/167)
         * Added UML diagram for to show how `list` works [\#201](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/201)
         * Updated "Appendix: Instructions for manual testing with instructions for testing `list`, `editpj`, `removepj` [\#201](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/201)
        
 * **Community**:
-    * PRS reviewed with non-trivial comments: [\#78](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/78) [\#165](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/165) [\#166](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/166) [\#108](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/108) [\#111](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/111)   
+    * PRs reviewed with non-trivial comments: [\#78](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/78) [\#165](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/165) [\#166](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/166) [\#108](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/108) [\#111](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/111)   
     * Helped in UI mockup [figma link](https://www.figma.com/file/X12b0dJWmXPLCo5kouWR8P/SOCket-Mockup?node-id=0%3A1&t=wJLRjq7hqexXQG2E-1)
     * Reported bugs and suggestions for other teams (examples: [\#274](https://github.com/AY2223S2-CS2103T-W14-2/tp/issues/274)  [\#277](https://github.com/AY2223S2-CS2103T-W14-2/tp/issues/277) [\#289](https://github.com/AY2223S2-CS2103T-W14-2/tp/issues/289) [\#299](https://github.com/AY2223S2-CS2103T-W14-2/tp/issues/299))
 
