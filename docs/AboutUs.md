@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/sfcoding123.png" width="200px">
 
 [[github](https://github.com/sfcoding123)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/sfcoding123.md)]
 
 * Role: Team Lead
 * Responsibilities: Project Management and Testing
@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/weideteo.png" width="200px">
 
 [[github](https://github.com/WeideTeo)]
-[[portfolio](https://www.linkedin.com/in/weideteo/)]
+[[portfolio](team/weideteo.md)]
 
 * Role: Developer
 * Responsibilities: Add Functions
@@ -34,27 +34,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/lxz333.png" width="200px">
 
-[[github](https://github.com/lxz333)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/lxz333)] [[portfolio](team/lxz333.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Developer, UI manager
+* Responsibilities: UI & backend functions
 
 ### Shen Chenzi
 
 <img src="images/shenchenzizoe.png" width="220px">
 
 [[github](https://github.com/shenchenzizoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/shenchenzizoe.md)]
 
 * Year 2 NUS Computer Science Student
 * Sleep >= 12 hours per day
+* Role: Developer
+* Responsibilities: UI & Backend functions
 
 ### Xiao Yan
 
 <img src="images/windycall.png" width="220px" height="200px">
 
 [[github](http://github.com/windycall)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/windycall.md)]
 
 * Role: Developer
 * Responsibilities: Storage, Backend
