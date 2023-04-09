@@ -14,7 +14,7 @@ You can reach us at the email `darrensim999@gmail.com`
 <img src="images/kevineyo1.png" width="200px">
 
 [[github](https://github.com/KevinEyo1)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/kevineyo1.md)]
 
 * Role: Team Lead/Developer
 * Responsibilities: Scheduling and tracking
@@ -24,7 +24,7 @@ You can reach us at the email `darrensim999@gmail.com`
 <img src="images/lanreath.png" width="200px">
 
 [[github](https://github.com/Lanreath)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/lanreath.md)]
 
 * Role: Developer
 * Responsibilities: Testing and developer guide
@@ -34,7 +34,7 @@ You can reach us at the email `darrensim999@gmail.com`
 <img src="images/antonlee59.png" width="200px">
 
 [[github](https://github.com/antonlee59)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/antonlee59.md)]
 
 * Role: Developer
 * Responsibilities: Code quality and developer guide
@@ -44,7 +44,7 @@ You can reach us at the email `darrensim999@gmail.com`
 <img src="images/varstak.png" width="200px">
 
 [[github](https://github.com/Varstak)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/varstak.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines, user guide
@@ -54,7 +54,7 @@ You can reach us at the email `darrensim999@gmail.com`
 <img src="images/bagdownb3nny.png" width="200px">
 
 [[github](https://github.com/BagDownB3nny)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/bagdownb3nny.md)]
 
 * Role: Developer
 * Responsibilities: Integration

@@ -15,7 +15,8 @@ title: Developer Guide
   - [Add remark feature](#add-remark-feature)
   - [Show opening details feature](#show-opening-details-feature)
   - [Upcoming keydates feature](#upcoming-keydates-feature)
-  - [Filter by status feature](#filter-by-status-feature)
+  - [Status filtering feature](#status-filtering-feature)
+    - [Design considerations:](#design-considerations)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
@@ -38,6 +39,10 @@ title: Developer Guide
   - [Difficulties faced](#difficulties-faced)
   - [Achievements](#achievements)
 - [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
+  - [**Enhancement 1: Optional Contact Field**](#enhancement-1-optional-contact-field)
+  - [**Enhancement 2: Keydates should accept time**](#enhancement-2-keydates-should-accept-time)
+  - [**Enhancement 3: Position should allow for special characters**](#enhancement-3-position-should-allow-for-special-characters)
+  - [**Enhancement 4: Addition of keydates should be accumulative**](#enhancement-4-addition-of-keydates-should-be-accumulative)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -509,7 +514,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a remark
 
-    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. 
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
 
     2. Test case: `remark x r/3 rounds of interviews` (where x is the index of an opening without an existing remark) <br>
        Expected: Opening gets edited. Success message shown in the status message. Opening now has "3 rounds of interviews" in its remark field, visible after using the show command.
