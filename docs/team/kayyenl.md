@@ -28,12 +28,15 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=kayyenl&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
 * **Project management**:
-  * Added user stores
-  * Added respective deadlines to big milestones (such as v1.2b and v1.3, v1.3b) in order to keep team's progress in check.
+  * Organized and sent reminders to the team chatgroup about meetings when they are drawing near.
+  * Added respective deadlines to big milestones (such as v1.2b and v1.3, v1.3b, 1.4 and etc.) in order to keep team's progress in check.
+  * Added critical user stories, which served the basis of some of our increments to date.
 
 * **Documentation**:
   * Contributed to Help Section, and Quickstart Section in the Implementations of DG.
-  * Included Activity Diagrams to better illustrate point being made in DG.
+  * In charge of debugging critical formatting issues in both UG and DG, which impeded the readability of the docs.
+  * Included Activity Diagrams and Use Cases to better illustrate points being made in DG.
+  * Reformatted critical UML diagrams originally in AB3 which were too cluttered, to facilitate reader's ease of understanding.
   * Through several PR reviews, made rectifications to teammates' documentation errors and suggested alternatives.
   * Contributed to group's collaborative docs, where reflections and discussion notes were written down (Google Docs).
 
