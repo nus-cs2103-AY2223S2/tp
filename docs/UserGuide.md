@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: MediMate 
 --- 
 
 MediMate (MM) is a cross-platform desktop application for medical professionals, specifically for private doctors or
