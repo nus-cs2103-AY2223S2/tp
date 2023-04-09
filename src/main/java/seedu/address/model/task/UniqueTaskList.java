@@ -82,10 +82,28 @@ public class UniqueTaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code persons}.
+     * @param replacement
+     */
     public void setTasks(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
+
+    /**
+     * Removes the deleted person from all tasks.
+     * @param personIndex
+     */
+    public void deletePersonFromTask(Index personIndex) {
+        requireNonNull(personIndex);
+        int index = personIndex.getZeroBased();
+
+        for (int i = 0; i < internalList.size(); i++) {
+            internalList.get(i).deletePersonFromTask(index);
+        }
+    }
+
 
     /**
      * Replaces the contents of this list with {@code Tasks}.

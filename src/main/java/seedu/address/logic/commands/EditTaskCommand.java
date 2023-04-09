@@ -114,8 +114,6 @@ public class EditTaskCommand extends Command {
             }
             updatedDate = String.format("From: %s To: %s", updatedStartDate, updatedEndDate);
         }
-        System.out.println(updatedDate);
-
 
         Task updatedTask = new Task(updatedTaskDescription, updatedDate, updatedTaskType);
         updatedTask.setTaskComment(updatedComment);
