@@ -936,6 +936,9 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Planned Enhancements
 1. Currently, the UI shows a blank area when an attribute is undefined for contacts and meetings.
-    1.1. Proposed Fix: Have a placeholder `No ATTRIBUTE defined` for each attribute.
+
+    Proposed Fix: Have a placeholder `No ATTRIBUTE defined` for each undefined attribute.
 2. Currently, once we define an attribute for a contact, we are unable to remove it.
-    2.1. Proposed Fix: Add a new command "deleteattribute" for this purpose.
+    
+    Proposed Fix: Add a new command "deleteattribute" for this purpose. For example, `deleteattribute p/1 e/`
+    to remove email for a contact or `deleteattribute m/1 des/` to remove description for a meeting.
