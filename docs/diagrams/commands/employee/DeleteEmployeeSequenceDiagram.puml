@@ -1,0 +1,74 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("del eid/..")
+activate LogicManager
+
+LogicManager -> SudoHrParser : parseCommand("del eid/..")
+activate SudoHrParser
+
+create DeleteCommandParser
+SudoHrParser -> DeleteCommandParser
+activate DeleteCommandParser
+
+DeleteCommandParser --> SudoHrParser
+deactivate DeleteCommandParser
+
+SudoHrParser -> DeleteCommandParser : parse("eid/..")
+activate DeleteCommandParser
+
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> DeleteCommandParser
+deactivate DeleteCommand
+
+DeleteCommandParser --> SudoHrParser
+deactivate DeleteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommandParser -[hidden]-> SudoHrParser
+destroy DeleteCommandParser
+
+SudoHrParser --> LogicManager
+deactivate SudoHrParser
+
+LogicManager -> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> Model : getEmployee(targetId)
+
+DeleteCommand -> Model : DeleteEmployee(toDelete)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : refresh()
+
+create CommandResult
+DeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteCommand
+deactivate CommandResult
+
+DeleteCommand --> LogicManager : result
+deactivate DeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

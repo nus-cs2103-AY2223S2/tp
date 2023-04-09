@@ -320,7 +320,7 @@ Examples:
 
 
 
-### 4.1.5. Find employees by ID: `feid`
+### 4.1.5. Find employee by ID: `feid`
 
 Finds and displays the employee with the given ID.
 

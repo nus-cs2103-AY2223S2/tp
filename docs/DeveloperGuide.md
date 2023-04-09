@@ -1445,7 +1445,7 @@ Here are a list of fixes we plan to add in the near future to counter known feat
 
 #### 1. Department name constraints
 
-* Department name will be case insensitive as case sensitivity does not create ambiguity between department names.
+* Department name will be case-insensitive as case sensitivity does not create ambiguity between department names.
 For example, 'Marketing' and 'marketing' are clearly the same department.
 
 * Department names will also allow special characters such as '(', ')' and ',' to account for department names with

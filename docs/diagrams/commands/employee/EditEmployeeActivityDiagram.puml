@@ -1,0 +1,30 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters edit command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Command format is valid] )elseif () then ([else])
+  :Error: At least one field to edit must be provided;
+   stop
+([At least one field is changed]) elseif () then ([else])
+  :Error: Employee to edit is not found in SudoHR;
+   stop
+([Employee with the specified Id exists]) elseif () then ([else])
+   :Error: This employee already exists in SudoHR;
+   stop
+([New Id does not clash with existing employees in SudoHR]) elseif() then ([else])
+   :Error: There already exists someone with this phone number;
+   stop
+([New phone number does not clash with existing employees in SudoHR]) elseif() then ([else])
+   :Error: There already exists someone with this email;
+   stop
+
+else ([New email address does not clash with existing employees in SudoHR])
+
+endif
+  :edit command successfully executes.;
+stop
+
+@enduml
