@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 * **New Feature**: Changed most of bookmark data to be optional
   * What it does: allows the user to omit certain bookmark data when adding bookmarks
   * Justification: many fields that a bookmark can contain may not be required for bookmarking tasks. For example, some users may not care about the author of a book. Hence, it is more convenient for the user if only certain fields were made compulsory.
-  * Highlights: although it seemed like a simple task, there were many issues that arose when trying to make a subset of fields in a bookmark optional. Most of these issues were due to the fact that we inherited most of AB3's code with MyLib. In AB3, all the fields in a Person object were compulsory, leading to these issues:
+  * Highlights:  many issues arose due to the fact that we inherited most of AB3's code, where all the fields in a Person object were compulsory.
     * When creating a Bookmark class to convert from AB3 to MyLib, we essentially modified the Person class to hold the data we wanted to have in a Bookmark rather than its original member variables. While doing so, we let MyLib inherit all the old test cases for the Person class from AB3. The inherited test cases expect all the fields in a bookmark to be compulsory. I needed to track down and update these test cases, as well as the sample test data they were using.
     * When loading the data for MyLib from json, the conversion from json to a `Bookmark` object expects the fields to be present and non-null, else an exception will be thrown. I needed to modify JsonAdaptedBookmark and its dependencies to accept a bookmark where optional fields can be empty.
 
