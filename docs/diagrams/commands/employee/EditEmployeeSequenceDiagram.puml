@@ -4,11 +4,10 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
-participant ":EditDepartmentCommandParser" as EditDepartmentCommandParser LOGIC_COLOR
-participant ":DepartmentName" as DepartmentName LOGIC_COLOR
-participant "editDepartmentDescriptor:EditDepartmentDescriptor" as EditDepartmentDescriptor LOGIC_COLOR
-participant "editedDepartment:Department" as Department LOGIC_COLOR
-participant "EditDepartmentCommand" as EditDepartmentCommand LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "editEmployeeDescriptor:EditEmployeeDescriptor" as EditEmployeeDescriptor LOGIC_COLOR
+participant "editedEmployee:Employee" as Employee LOGIC_COLOR
+participant "EditCommand" as EditCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -16,94 +15,79 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edep Marketing n/Sales")
+[-> LogicManager : execute("edit eid/.. ..")
 activate LogicManager
 
-LogicManager -> SudoHrParser : parseCommand("edep Marketing n/Sales")
+LogicManager -> SudoHrParser : parseCommand("edit eid/.. ..")
 activate SudoHrParser
 
-create EditDepartmentCommandParser
-SudoHrParser -> EditDepartmentCommandParser
-activate EditDepartmentCommandParser
+create EditCommandParser
+SudoHrParser -> EditCommandParser
+activate EditCommandParser
 
-EditDepartmentCommandParser --> SudoHrParser
-deactivate EditDepartmentCommandParser
+EditCommandParser --> SudoHrParser
+deactivate EditCommandParser
 
-SudoHrParser -> EditDepartmentCommandParser : parse("Marketing n/Sales")
-activate EditDepartmentCommandParser
+SudoHrParser -> EditCommandParser : parse("eid/.. ..")
+activate EditCommandParser
 
-create DepartmentName
-EditDepartmentCommandParser -> DepartmentName
-activate DepartmentName
+create EditEmployeeDescriptor
+EditCommandParser -> EditEmployeeDescriptor
+activate EditEmployeeDescriptor
 
-DepartmentName -> EditDepartmentCommandParser
-deactivate
+EditEmployeeDescriptor --> EditCommandParser
+deactivate EditEmployeeDescriptor
 
-create EditDepartmentDescriptor
-EditDepartmentCommandParser -> EditDepartmentDescriptor
-activate EditDepartmentDescriptor
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
 
-EditDepartmentDescriptor -> EditDepartmentCommandParser
-deactivate
+EditCommand --> EditCommandParser
+deactivate EditCommand
 
-create EditDepartmentCommand
-EditDepartmentCommandParser -> EditDepartmentCommand
-activate EditDepartmentCommand
-
-EditDepartmentCommand --> EditDepartmentCommandParser
-deactivate EditDepartmentCommand
-
-EditDepartmentCommandParser --> SudoHrParser
-deactivate EditDepartmentCommandParser
+EditCommandParser --> SudoHrParser
+deactivate EditCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-EditDepartmentCommandParser -[hidden]-> SudoHrParser
-destroy EditDepartmentCommandParser
+EditCommandParser -[hidden]-> SudoHrParser
+destroy EditCommandParser
 
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> EditDepartmentCommand : execute()
-activate EditDepartmentCommand
+LogicManager -> EditCommand : execute()
+activate EditCommand
 
-EditDepartmentCommand -> Model : getDepartment(name)
-activate Model
+EditCommand -> Model: checkEmployeeExists(id)
+EditCommand -> Model : getEmployee(id)
 
-Model --> EditDepartmentCommand
-deactivate Model
+EditCommand -> EditCommand : createEditedEmployee(employeeToEdit, editEmployeeDescriptor)
+activate EditCommand
 
-EditDepartmentCommand -> EditDepartmentCommand : createEditedDepartment(departmentToEdit, editDepartmentDescriptor)
-activate EditDepartmentCommand
+create Employee
+EditCommand -> Employee
+activate Employee
+Employee --> EditCommand
+deactivate Employee
 
-create Department
-EditDepartmentCommand -> Department
-activate Department
-Department -> EditDepartmentCommand
-deactivate
+EditCommand --> EditCommand
+deactivate EditCommand
 
-EditDepartmentCommand -> EditDepartmentCommand
-deactivate EditDepartmentCommand
+EditCommand -> Model : hasEmployee(editedEmployee, employeeExcludedFromCheck)
+EditCommand -> Model : hasClashingPhoneNumber(editedEmployee, employeeExcludedFromCheck)
+EditCommand -> Model : hasClashingEmail(editedEmployee, employeeExcludedFromCheck)
 
-EditDepartmentCommand -> Model : hasDepartment(editedDepartment)
-activate Model
-
-Model --> EditDepartmentCommand
-deactivate Model
-
-EditDepartmentCommand -> Model : setDepartment(departmentToEdit, editedDepartment)
-activate Model
-
-Model --> EditDepartmentCommand
-deactivate Model
+EditCommand -> Model : setEmployee(employeeToEdit, editedEmployee)
+EditCommand -> Model : refresh()
 
 create CommandResult
-EditDepartmentCommand -> CommandResult
+EditCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> EditDepartmentCommand
+CommandResult --> EditCommand
 deactivate CommandResult
 
-EditDepartmentCommand --> LogicManager : result
-deactivate EditDepartmentCommand
+EditCommand --> LogicManager : result
+deactivate EditCommand
 
 [<--LogicManager
 deactivate LogicManager
