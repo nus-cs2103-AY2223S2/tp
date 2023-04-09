@@ -273,17 +273,49 @@ in year 2023 is the same as `01012023`.
 
 ## Features
 
-### Theme toggling
+Here, you may find all the details about every feature that QuickContacts provide to empower you to
+make full use of the power of QuickContacts.
 
-Toggles the theme from dark to light or vice versa.
+### Autocomplete inputs
+
+Simply hit the `TAB` key on your keyboard when you are entering a certain command to have QuickContacts autocomplete the
+next nearest command word similar to the one you are typing!
+
+Examples:
+
+* `a` -> `add` after hitting `TAB` (since `add` is the next most similar command word)
+* `ex` -> `export` after hitting `TAB`
+
+Autocompletion also works for the next possible prefix for a given command! This way, you will never have to memorise
+any prefix nor syntax for commands.
+
+Examples:
+
+* `add` -> `add n/` after hitting `TAB` (since `n/` is the next prefix for `add`)
+* `add n/Bobby` -> `add n/Bobby p/` after hitting `TAB` (since `p/` is the next prefix for `add` after `n/`)
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+Prefix autocomplete behaviour defers from commands to enhance user experience. For example:<br>
+* `edit 1 n/` -> `edit 1 p/` after hitting `TAB` (if you did not input anything for the prefix `n/`, it would be probable
+that you do not want to edit that field)
+
+</div>
+
+### Traversing commands
+
+Have you ever wanted to input commands similar to one that you have just inputted? With command traversal provided in
+QuickContacts, you will **never** have to copy and paste commands ever again.
+
+All you have to do is to hit the `UP` and `DOWN` arrow keys on your keyboard to go to the previous and next command
+respectively. It is as simple as that!
 
 ![toggle theme](images/toggleTheme.png)
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
 ## Person-Related Commands
+
+In this subsection, you may find all the commands that are related to contacts.
 
 ### Adding a person: `add`
 
@@ -424,6 +456,8 @@ Duplicate values will still be ignored, but you can be assured the value is adde
 Format: `import JSON [f/]`
 
 ## Meeting-Related Commands
+
+In this subsection, you may find all the commands that are related to meetings.
 
 ### Adding a Meeting : `addm`
 
@@ -615,8 +649,10 @@ Examples:
 ### Marking Meetings as done or undone : `mark` or `unmark`
 
 Marks the specified meetings as either done or undone.
+
 ![img.png](images/markasdone.png)
-Format: "mark m/INDEX [m/INDEXES]..." or "unmark m/INDEX [m/INDEXES]..."
+
+Format: `mark m/INDEX [m/INDEXES]...` or `unmark m/INDEX [m/INDEXES]...`
 
 * The index refers to the index number shown in the displayed meetings list.
 * The index **must be a positive integer**: 1, 2, 3...
