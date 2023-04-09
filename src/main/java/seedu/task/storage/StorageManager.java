@@ -34,7 +34,7 @@ public class StorageManager implements Storage {
     }
 
     // ================ UserPrefs methods ==============================
-
+    //@@author
     @Override
     public Path getUserPrefsFilePath() {
         return userPrefsStorage.getUserPrefsFilePath();
@@ -74,6 +74,7 @@ public class StorageManager implements Storage {
         saveTaskBook(taskBook, taskBookStorage.getTaskBookFilePath());
     }
 
+    //@@author joyngjr
     @Override
     public void saveTaskBook(ReadOnlyTaskBook taskBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to task data file: " + filePath);
