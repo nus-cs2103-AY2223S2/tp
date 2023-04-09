@@ -27,6 +27,10 @@ public class FilterCommandParserTest {
         assertParseFailure(parser, "filter department > 1000", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
     }
     @Test
+    public void parse_wrongSyntax_throwsParseException() {
+        assertParseFailure(parser, "filter department", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+    }
+    @Test
     public void parse_validArgsPayrollPredicate_returnsFilterCommand() {
         // no leading and trailing whitespaces
         int comparisonAmount = 1000;
