@@ -304,11 +304,11 @@ The default status for a Transaction is `OPEN`. This represents an incomplete tr
 ![](images/TxnStatusDiagram.png)
 
 
-### Tasks Feature
+### TaskList Feature
 
 #### About
 
-The Tasks feature aims to provide information about the tasks to be done for contacts.
+The TaskList feature aims to provide information about the tasks to be done for a contact.
 
 #### Implementation
 
@@ -316,8 +316,12 @@ Tasks are represented by a `Task` object that is stored as an attribute of `Pers
 the description of the task. In the future, it is possible to include various types of tasks such as events or
 deadlines.
 
-Under the `Model` for `Person`, created an attribute `Task` to store the description of the task.
-The updating of the `Task` is done by editing the `Person` (contact) to have the new `Task`.
+Under the `Model` for `Person`, created an attribute `TaskList` to store the various tasks of a person, where each 
+`Task` stores the description of each task. The adding of `Task` to `TaskList` is done by the `AddTaskCommand` and 
+clearing of all `Task` from the person is done by `ClearTaskCommand`. 
+
+![](images/TaskListDiagram.png)
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -472,6 +476,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | new user                  | import my current database                                                                     |                                                                          |
 | `*`      | salesperson               | record down all transactions with clients                                                      |                                                                          |
 | `*`      | salesperson               | search through transactions based on an existing contact's name, while also seeing the contact | conveniently refer to persons' and transactions' info on the same screen |
+| `*`      | forgetful salesperson     | add tasks for each contact                                                                     | refer to the tasks of each person to be done                             |
+| `*`      | salesperson               | clear tasks for each contact                                                                   | edit the tasks and add new tasks for the contact                         |
 
 ### Use cases
 
@@ -595,6 +601,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 4a1. SalesPunch alerts the user that the lead status is the same.  
     Use case resumes at step 2
 
+**Use case: Add tasks for a person**
+
+**MSS**
+
+1.  User adds task to a person
+2.  SalesPunch updates the tasklist of the person in the contact list
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. User is able to add more types of tasks to a person. 
+
+    - 1a1. SalesPunch requests for the correct data.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
+
+  Use case ends.
+
+**Use case: Edit tasks**
+
+**MSS**
+
+1.  User clears tasks for a person
+2.  SalesPunch updates the tasklist of the person in the contact list
+3.  User adds new tasks for a person
+4.  SalesPunch updates the tasklist of the person in the contact list
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. User is able to edit the specific task directly.
+
+    - 1a1. SalesPunch requests for the correct data.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
