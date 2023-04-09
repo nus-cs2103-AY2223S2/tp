@@ -17,7 +17,6 @@ you all the pain and "scratching head moment" you face when trying to find a tim
 
 Not just that, WGT allows you to **keep track of all your events** such as your weekly tutorials,
 lectures and cca timings. No more digging through your pinned messages or photo album to find your timetable
->>>>>>> 4208ba1b47695106530b1d263869995ba3541951
 anymore!
 
 Useful links:
