@@ -18,7 +18,7 @@ easier way to set up proper communication channels.
     * [Help command](#help-command-help)
     * [Add an image for contacts](#add-an-image-for-contacts-add-image)
     * [Delete an image for contacts](#delete-an-image-for-contacts-delete-image)
-    * [Quick import admin contacts](#quick-import-for-faculty-contacts--import)
+    * [Quick import admin contacts](#quick-import-for-faculty-contacts-import)
     * [Exit the program](#exit-the-program-exit)
     * [Editing the data file](#editing-the-data-file)
 * [Command summary](#command-summary)
