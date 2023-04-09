@@ -122,8 +122,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` _(`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`)_ which uses the other classes shown above to parse the user command and create a `XYZCommand` object _(e.g., `AddCommand`)_ which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes _(e.g., `AddCommandParser`, `DeleteCommandParser`, ...)_ inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -171,13 +171,13 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation Details
 
-The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`.
+The implementation of the `add` command involves creating a new `Person` object and storing it in `AddressBook`.
 
-Given below is a class diagram on the `Student` class and the classes related to its attributes:
+Given below is a class diagram on the `Person` class and the classes related to its attributes:
 
 ![student_diagram](images/StudentClassDiagram.png)
 
-The `Student` object is composed of attributes:
+The `Person` object is composed of attributes:
 
 * `Name`: The name of the student.
 * `Phone`: The phone number of the student.
@@ -193,10 +193,10 @@ The `Student` object is composed of attributes:
 
 The `add` command has the following fields:
 
-> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
-> Unless stated as`[COMPULSORY]`, the field is optional.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** (COMPULSORY) indicates that the field is cannot be omitted when using `add`. Unless stated as (COMPULSORY), the field is optional.
+</div>
 
-* Prefix `n/` followed by the name of the student `[COMPULSORY]`.
+* Prefix `n/` followed by the name of the student (COMPULSORY).
 * Prefix `p/` followed by the phone number of the student.
 * Prefix `e/` followed by the student's email.
 * Prefix `a/` followed by the student's address.
@@ -216,23 +216,23 @@ Here is a sequence diagram showing the interactions between components when `add
 #### Feature details
 1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
-3. If the input passes the validation check, a new `Student` entry is created and stored in the `VersionedAddressBook`.
+3. If the input passes the validation check, a new `Person` entry is created and stored in the `VersionedAddressBook`.
 
 #### General Design Considerations
 
-The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. Hence, resulting in a similar implementation of the `add` feature. </br>
+The implementation of the attributes of a `Person` is very similar to that of a `Person` in the original AB3 codebase. Hence, resulting in a similar implementation of the `add` feature.
 
-Some additions made were the `Education`, `Module` and `Remark` attributes. </br>
+Some additions made were the `Education`, `Module` and `Remark` attributes.
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
 2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accommodate module names that are more than one word long as in real life.
-3. Every attribute except`Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
+3. Every attribute except `Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
     * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
 4. Every `add` will commit the previous version of the `VersionedAddressBook` to `versionStateHistory`.
 
 When adding a student entry, these were the alternatives considered.
-* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Student` entry, making the other attributes optional.
+* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Person` entry, making the other attributes optional.
     * Pros:
-        * Improves user convenience by allowing them to add a `Student` entry even with limited knowledge about their details.
+        * Improves user convenience by allowing them to add a `Person` entry even with limited knowledge about their details.
     * Cons:
         * A lot of modification for empty/*null* inputs have to be accounted for when saving the data and testing.
 * **Alternative 2:** All parameters have to be filled in
@@ -248,9 +248,9 @@ When adding a student entry, these were the alternatives considered.
 
 #### Implementation Details
 
-The `delete` implementation is identical to the implementation in AB3's codebase.
+The `delete` implementation is similar to the implementation in AB3's codebase. However, we've made some additions to support deletion of multiple (unique) indexes.
 
-Here is a sequence diagram showing the interactions between components when `delete 1` is run.:
+Here is a sequence diagram showing the interactions between components when `delete 1 2` is run.:
 
 ![delete_sequence](images/DeleteSequenceDiagram2.png)
 
@@ -259,27 +259,36 @@ Here is a sequence diagram showing the interactions between components when `del
 
 ### Proposed Implementation
 
-The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example, `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100`, none of the `Student` entries will be deleted.
+The proposed `delete` implementation supports deleting multiple `Person` entries at once. For example, `delete 1 3 5` will delete the `Person` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100`, none of the `Person` entries will be deleted.
 
 
 #### Design Considerations
 
-Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Student` entries, we believe that if a single invalid `INDEX` is given, the system should generate an error message.
+Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Person` entries, we believe that if a single invalid `INDEX` is given, the system should generate an error message.
 
 **Aspect: Handling invalid indexes in delete**
 
-* **Alternative 1: (Current choice)** Delete none of the given `Student` entries, even if they are valid.
+* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're invalid indexes.
   * Pros:
-    * Potentially save the user time they may have had to spend re-adding their `Student` entries
-    * Allows user the opportunity to edit the command input without having to re-type the entire command again
+    * Invalid indexes might mean the command contain other erroneous indexes.
+    * Allows user to edit the erroneous command input _(as the command isn't cleared from the input box)_.
   * Cons:
-    * May be cumbersome for users to find the invalid index and correc it.
-* **Alternative 2:** Delete all valid `Student` entries out of the given indexes.
+    * Harder for users to find the invalid index and correct it.
+* **Alternative 2:** Delete all valid `Person` entries out of the given indexes.
   * Pros:
-    * Potentially save the user time editing their command if there was only a minor typo.
+    * If command had only minor typos, it might saves the user time editing their command.
   * Cons:
-    * Harder to implement as we have to keep track of the valid indexes to be deleted.
-    * May cost the user a lot of time if an unintended `Student` entry is deleted due to the typo and additional time is needed to re-enter the entry or `undo` the command.
+    * Harder to implement as we have to keep track of the valid indexes.
+    * If command unintentionally deletes wrong user, it'll costs the user more time to correct the mistake + retype their correct delete command.
+
+**Aspect: Handling duplicate indexes in delete _(`delete 1 1`)_**
+
+* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're duplicate indexes.
+  * Pros/Cons:
+    * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 1**
+* **Alternative 2:** Delete all unique `Person` entries out of the given indexes.
+  * Pros/Cons:
+    * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 2**
 
 [↑ Back to top](#table-of-contents)
 
@@ -287,12 +296,14 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 
 #### Implementation Details
 
-The implementation of `edit` involves creating a new `Student` object with updated details to replace the previous `Student` object.
-This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Student` object.
+The implementation of `edit` involves creating a new `Person` object with updated details to replace the previous `Person` object.
+This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Person` object.
 
-`edit` has similar fields to the [Add feature](#add-feature) and an additional `INDEX` parameter. </br>
-> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
-> Unless stated as`[COMPULSORY]`, the field is optional.
+`edit` has similar fields to the [Add feature](#add-feature) and an additional `INDEX` parameter.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** While all the fields are optional, at least 1 needs to be given.
+</div>
+
 * `INDEX` which represents the index number of the student to be edited in the list.
 * Prefix `n/` followed by the name of the student.
 * Prefix `p/` followed by the phone number of the student.
@@ -303,7 +314,7 @@ This is done with the help of the `EditPersonDescriptor` class, which helps crea
 * Prefix `t/` followed by the tag name.
 * Prefix `r/` followed by the remarks/notes on the student.
 
-Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.:
+Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Year 2` is run.:
 
 ![edit_sequence](images/EditSequenceDiagram.png)
 
@@ -313,21 +324,21 @@ Here is a sequence diagram showing the interactions between components when `edi
 #### Feature details
 1. Similar to `add`, the app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
-3. If the input passes the validation check, the corresponding `Student` is replaced by a new edited `Student` object and stored in the `AddressBook`.
+3. If the input passes the validation check, the corresponding `Person` is replaced by a new edited `Person` object and stored in the `VersionedAddressBook`.
 
 #### General Design Considerations
-Whether a new `Student` object should be created when editing a student entry.
-* **Alternative 1 (Current choice):** `edit` will create a new `Student` object with the help of `EditPersonDescriptor`
+Whether a new `Person` object should be created when editing a student entry.
+* **Alternative 1 (Current choice):** `edit` will create a new `Person` object with the help of `EditPersonDescriptor`
     * Pros:
-        * Meets the expectations of the immutable `Student` class.
+        * Meets the expectations of the immutable `Person` class.
     * Cons:
-        * Inefficient as an entire `Student` object is created even if only one field is changed. </br>
+        * Inefficient as an entire `Person` object is created even if only one field is changed.
 
-* **Alternative 2:** `edit` directly sets the updated values in the existing `Student` object.
+* **Alternative 2:** `edit` directly sets the updated values in the existing `Person` object.
     * Pros:
         * More timely option and space efficient.
     * Cons:
-        * In order to execute this, `Student` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
+        * In order to execute this, `Person` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
 
 [↑ Back to top](#table-of-contents)
 
@@ -337,11 +348,11 @@ Whether a new `Student` object should be created when editing a student entry.
 
 The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate`.
 
-Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Student` contains the specified keyword.
+Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
 The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
 
 
-Here is a sequence diagram showing the interactions between components when `find Alice` is run.:
+Here is a sequence diagram showing the interactions between components when `find n/Alice p/12345678` is run.:
 
 ![find_sequence](images/FindSequenceDiagram.png)
 
@@ -350,7 +361,7 @@ Here is a sequence diagram showing the interactions between components when `fin
 
 ### Feature details
 
-Our implementation extends from the `find` implementation in AB3 by enchancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
+Our implementation extends from the `find` implementation in AB3 by enhancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
 
 > Take a person's name to be `Michelle Yeoh`.  \\
 > An example of finding by `PARTIAL_KEYWORD` is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh".
@@ -363,9 +374,9 @@ Furthermore, users are also allowed to specify the field that they want to find 
 > ```
 > In the `find` command, users are then allowed to input their prefix of choice, eg.
 > ```
-> find n/ bo
-> find p/ 9871
-> find edu/ p5
+> find n/bo
+> find p/9871
+> find edu/p5
 > ```
 
 This allows the user to narrow down their `find` results even more.
@@ -377,7 +388,7 @@ We felt that the default `find` feature was too restrictive.
 Our implementation has some additions such as:
 
 1. Allowing `PARTIAL_KEYWORD` finds so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
-2. `find PREFIX` across the various attributes of a `Student` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
+2. `find PREFIX` across the various attributes of a `Person` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
 
 **Aspect: Command format:**
 * **Alternative 1 (Current choice):** `find PREFIX KEYWORD/PARTIAL_KEYWORD`
@@ -400,6 +411,28 @@ Our implementation has some additions such as:
 
 [↑ Back to top](#table-of-contents)
 
+### Filter feature
+
+#### Implementation Details
+
+Filter was implemented on top of find to allow users to find students with fewer restrictions. As `find` only returns the students that satisfy all the specified criteria, filter` on the other hand will allow users to find all students that satisfy at least 1 criteria.
+
+This was done to take improve the flexibility of filtering the student list.
+
+Here is a sequence diagram showing the interactions between components when `filter n/Alice p/12345678` is run:
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Feature details
+
+### General Design Considerations
+
+
+[↑ Back to top](#table-of-contents)
+
 ### List feature
 
 #### Implementation Details
@@ -418,12 +451,12 @@ a filtered list.
 
 ### Remark feature
 
-##### Feature Implementation Details
+#### Feature Implementation Details
 The current implementation provides users with two different methods of entering a remark for a student.
-1. `remark INDEX r/REMARK` where `INDEX` is the `Student` entry in the list, and `REMARK` is the remark to be added.
+1. `remark INDEX r/REMARK` where `INDEX` is the `Person` entry in the list, and `REMARK` is the remark to be added.
 2. Adding the remark through the [add feature](#Add-feature)
 
-##### Proposed Implementation
+#### Proposed Implementation
 
 The proposed remark mechanism will be facilitated by a pop-up text box. This will allow users to format their remarks however they like, rather than being restricted to a single line in the command line (current implementation).
 
@@ -431,37 +464,37 @@ The proposed remark mechanism will be facilitated by a pop-up text box. This wil
 
 In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs).
 
-Additionally, the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
+Additionally, we opted for a pop-up text window as the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
 
 **Aspect: Command input format**
-* **Alternative 1: (Current implementation)** Adding the `remark` through the command line.
+* **Alternative 1:** Adding the `remark` through the command line.
   * Pros:
     * Easier to implement
   * Cons:
     * Restricts users to a single line or continuous paragraph of remark.
     * Limits formatting options for remark.
-* **Alternative 2: (Future implementation)** Adding remark through a pop-up text window
+* **Alternative 2: (Current implementation)** Adding remark through a pop-up text window
   * Pros:
     * Provides users flexibility in the format of their remarks.
     * Remarks are not restricted to a single line or continuous paragraph.
   * Cons:
-    * More complicated to implement as the format of the remarks have to be saved and loaded into `AddressBook` without any formatting erros.
+    * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting erros.
 
 **Aspect: Remark display**
-* **Alternative 1: (Current choice)** Preview the first line of a student's remarks under all the other attributes
+* **Alternative 1: (Current implementation)** Preview the first line (truncated) of a student's remarks under all the other attributes
   * Pros:
     * Short remarks are instantly visible to users.
     * Easy to implement.
   * Cons:
-    * Remarks are limited to a single line as long as the width of the window.
-    * Formatting of remarks are not visible.
-* **Alternative 2: (Future implementation)** If a remark is present, simply display an indicator in `PersonCard`
+    * A short remark which has a length slightly over the character limit for truncation can only be viewed via the [`show`](#show-feature)
+* **Alternative 2:** If a remark is present, simply display an indicator in `PersonCard`
   * Pros:
     * Easy to implement.
-    * Viewing the remark in `ResultDisplay` is supported by the [show](#show-feature) command.
+    * Viewing the remark in `ResultDisplay` is supported by the [`show`](#show-feature) command.
     * Supports formatting of `remark` since it is not restricted to the `PersonCard` view.
   * Cons:
     * An extra step for users may be inconvenient
+    * Inconvenient for short remarks compared to alternative 1.
 * **Alternative 3:** Show the full remark in `PersonCard` beside all the other attributes
   * Pros:
     * Remark is directly visible from the list.
@@ -469,6 +502,128 @@ Additionally, the command line only provides a restricted view and input option 
   * Cons:
     * Remarks are limited to the view of `PersonCard` and size of the window.
     * Remarks that are too long will be cut off and not visible.
+
+[↑ Back to top](#table-of-contents)
+
+### Show feature
+
+#### Implementation Details
+
+The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature.
+
+Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
+
+#### General Design Considerations
+**Aspect: Display output**
+* **Alternative 1: (Future implementation)** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
+  * Pros:
+    * Allows users to view the student details and remarks all at once.
+    * Supports the `remark` feature as intended
+  * Cons:
+    * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
+    * Harder to implement as the size of the `PersonCard` for the `Person` has to be updated everytime `show` is executed.
+
+* **Alternative 2: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
+  * Pros:
+    * Supports the `remark` feature as intended since scrolling is possible.
+    * Allows users to view the student details and remarks all at once.
+  * Cons:
+    * Harder to implement
+
+[↑ Back to top](#table-of-contents)
+
+### Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `versionStateHistory` and `currentVersionPointer`. Additionally, it implements the following operations:
+
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history as well as the command that was last executed.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentVersionPointer` pointing to that single address book state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentVersionPointer` is shifted to the newly inserted address book state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentVersionPointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#checkUndoable()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works (assuming `VersionedAddressBook is undoable`):
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentVersionPointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+
+The following sequence diagrama shows how the redo operation works (assuming `VersionedAddressBook` is redoable):
+
+![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#checkRedoable()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentVersionPointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentVersionPointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+**Aspect: Command History:**
+
+* **Alternative 1 (Current implementation):** Only saves the commands that modify the address book.
+  * Pros: Easy to implement.
+  * Cons: Reduces user experience as keeping track of all commands will also allow us to improve the error messages by specifying the specific recent command which does not allow `undo` or `redo`
+
+* **Alternative 2 (Future implementation):** Save every command executed regardless of whether it modifies the address book.
+  * Pros: 
+  * Improves user experience by improving the quality of the error message for `undo` and `redo`
+  * Cons: Slightly more complicated to implement as a separate `currentStatePointer` for the command history will have to be added.
 
 [↑ Back to top](#table-of-contents)
 
@@ -514,115 +669,6 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
 
 _{more aspects to be added}_
 
-
-[↑ Back to top](#table-of-contents)
-
-### Show feature
-
-#### Implementation Details
-
-The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature.
-
-Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
-
-#### General Design Considerations
-**Aspect: Display output**
-* **Alternative 1: (Future implementation)** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
-  * Pros:
-    * Allows users to view the student details and remarks all at once.
-    * Supports the `remark` feature as intended
-  * Cons:
-    * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
-    * Harder to implement as the size of the `PersonCard` for the `Student` has to be updated everytime `show` is executed.
-
-* **Alternative 2: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
-  * Pros:
-    * Supports the `remark` feature as intended since scrolling is possible.
-    * Allows users to view the student details and remarks all at once.
-  * Cons:
-    * Harder to implement
-
-[↑ Back to top](#table-of-contents)
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentVersionPointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentVersionPointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentVersionPointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentVersionPointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentVersionPointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentVersionPointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentVersionPointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 [↑ Back to top](#table-of-contents)
 
@@ -892,26 +938,46 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Effort**
+
+
+
 ## **Appendix: Planned enhancements**
 
 The current version of TeachMeSenpai certainly has its flaws and here are some of our plans for future enhancements to improve TeachMeSenpai further for TAs.
 
-#### Add/Edit
-**Feature flaw 1** : STUDENT_NAME is currently case-sensitive so an input like `Shaun` and `shaun` will be considered as unique names. A planned enhancement for student names is to check for case-insensitivity in `add` and `edit` in order to disallow duplicate names.
+### Add/Edit
+#### Feature flaw 1
+Currently, name fields are case-sensitive so an input like `Shaun` and `shaun` will be considered as unique names. A planned enhancement for the name field is to check for case-insensitivity in `add` and `edit` in order to disallow such duplicate names.
 
-**Feature flaw 2** : STUDENT_NAME allows alphanumeric characters only. This means that inputs like `Mary 123` is allowed, while names like `Roy s/o Balakrishnan` is not allowed. In order to make the app more inclusive, STUDENT_NAME will be enhanced to allow alphabets, and symbols only.
+#### Feature flaw 2
+Currently, name fields allow alphanumeric characters only. This means that inputs like:
 
-**Feature flaw 3** : Duplicate TELEGRAM and PHONE are allowed. This means that entries like `add n/Shaun p/000` and `add n/Shao Hong p/000` as well as `add n/Shaun tele/@sh123` and `add n/Shao Hong tele/@sh123` are valid.
+- `Mary 2` is allowed
+- `Roy s/o Balakrishnan` is not allowed _(contains `/`)_
+- `John D. Smith` is not allowed _(contains `.`)_
+- `D'Angelo` is not allowed _(contains `'`)_
+- Elon Musk's son's name `X AE A-XII` is not allowed _(contains `-`)_
+
+In order to make the app more inclusive, the name field will be enhanced to allow the characters `.`, `'`, `'`, but not the `/` symbol as in `Roy s/o Balakrishnan`, as in this case it can be parsed as the `s/` prefix and cause other problems.
+
+We still plan to allow numbers in names to allow users to number their student names _(eg. `Shaun 1`, `Shaun 2`)_ in the case where students having same names.
+
+#### Feature flaw 3
+Currently, duplicate Telegram handle and phone fields are allowed. This means that entries like `add n/Shaun p/000` and `add n/Shao Hong p/000` as well as `add n/Shaun tele/@sh123` and `add n/Shao Hong tele/@sh123` are valid.
 However, in reality phone numbers and telegram handles are unique so our future implementations will check that the student list can only contain unique telegram handles and phone numbers.
 
-**Feature flaw 4** : The current `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks.
+#### Feature flaw 4
+Currently, the `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks.
 
-#### Autocomplete
-**Feature flaw** : Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/STUDENT_NAME` input which
-leads users to believe that their input (without `n/STUDENT_NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/STUDENT_NAME`.
+### Autocomplete
+#### Feature flaw
+Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/NAME` input which
+leads users to believe that their input (without `n/NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/NAME`.
 
-#### Find/Filter
-**Feature flaw** : Currently, we don't explicitly handle such cases, which results in the behaviour where argument-less `find` shows all users, while `filter` shows none.
+### Find/Filter
+#### Feature flaw
+Currently, we don't explicitly handle the case of argument-less `find`/`filter` nor do we disallow it, which results in the behaviour where argument-less `find` shows all users, while `filter` shows none.
 
 Let's say argument-less `find`/`filter` is allowed, the possible behaviours could be:
 
@@ -920,11 +986,13 @@ Let's say argument-less `find`/`filter` is allowed, the possible behaviours coul
 
 Both behaviours don't add value to the app. Thus, we plan to disallow argument-less `find`/`filter` commands and give an error message encouraging users to add arguments if they use `find`/`filter` without any arguments.
 
-#### Ui
-**Feature flaw** : At the moment, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
+### Ui
+#### Feature flaw
+Currently, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
 
-#### Error handling
-**Feature flaw** : The current error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
+### Error handling
+#### Feature flaw
+Currently, the error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
 
 [↑ Back to top](#table-of-contents)
 

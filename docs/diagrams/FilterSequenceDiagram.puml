@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+participant  "p:ContainsKeywordPredicate" as Predicate LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("filter n/Alice p/12345678")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("find n/Alice p/12345678")
+activate AddressBookParser
+
+create FilterCommandParser
+AddressBookParser -> FilterCommandParser
+activate FilterCommandParser
+
+FilterCommandParser --> AddressBookParser
+deactivate FilterCommandParser
+
+AddressBookParser -> FilterCommandParser : parse("find n/Alice p/12345678")
+activate FilterCommandParser
+
+create Predicate
+FilterCommandParser -> Predicate
+activate Predicate
+
+Predicate --> FilterCommandParser : predicate
+deactivate Predicate
+
+create FilterCommand
+FilterCommandParser -> FilterCommand
+activate FilterCommand
+destroy Predicate
+
+FilterCommand --> FilterCommandParser
+deactivate FilterCommand
+
+FilterCommandParser --> AddressBookParser : f
+deactivate  FilterCommandParser
+
+FilterCommandParser -[hidden]> AddressBookParser : f
+destroy FilterCommandParser
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+LogicManager -> FilterCommand : execute()
+activate FilterCommand
+
+FilterCommand -> Model : updateFilteredPersonList(predicate)
+activate Model
+
+Model --> FilterCommand
+deactivate Model
+
+FilterCommand --> LogicManager : result
+deactivate FilterCommand
+
+FilterCommand -[hidden]-> LogicManager : result
+destroy FilterCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
