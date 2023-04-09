@@ -44,7 +44,7 @@ title: User Guide
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TrAcker.jar` command to run the application.<br>
    A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-  <img src="images/Ui.png" width="750" height="450" />
+  <img src="images/Ui.png" width="850" height="450" />
 
 --------------------------------------------------------------------------------------------------------------------
 
