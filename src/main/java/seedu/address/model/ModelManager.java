@@ -143,6 +143,10 @@ public class ModelManager implements Model {
         filteredMeetings.setPredicate(predicate);
     }
 
+    @Override
+    public void removeMeeting(Meeting key) {
+        addressBook.removeMeeting(key);
+    }
 
     @Override
     public boolean equals(Object obj) {

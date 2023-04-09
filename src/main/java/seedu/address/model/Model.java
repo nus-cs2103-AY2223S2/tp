@@ -132,6 +132,12 @@ public interface Model {
     void addMeeting(Meeting meeting);
 
     /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    void removeMeeting(Meeting meeting);
+
+    /**
      * Returns an unmodifiable view of the meetings list
      */
     ObservableList<Meeting> getMeetingsList();
