@@ -234,8 +234,6 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANG
     * e.g. `Han` will not match `Hans`.
     * e.g. `t/2103t` will not match `t/cs2103t`.
 
-<div style="page-break-after: always;"></div>
-
 * Contacts with multiple keyword(s) in the prefix matching at least one keyword for the respective field will be returned (i.e. `OR` search).
     * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`.
     * e.g. `find n/Hans l/Java` will return contacts whose name contains `Hans` or language contains `Java` or both.
@@ -376,8 +374,6 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
     * e.g `d/ 30/03/22-2045` would be **30th March 2022, 8:45 p.m.**
 * A project is considered to be the same if it has the same project name **(case-insensitive)**.
 
-<div style="page-break-after: always;"></div>
-
 Examples:
 * `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`
 <br/><br/>
@@ -514,8 +510,6 @@ Examples:
   </p>
 
 
-<div style="page-break-after: always;"></div>
-
 #### Assign a contact to a project: `assign`
 
 Format: `assign CONTACT_INDEX PROJECT_INDEX`
@@ -541,8 +535,6 @@ Examples:
   <br>
   </p>
 
-
-<div style="page-break-after: always;"></div>
 
 #### Unassign a contact from a project: `unassign`
 

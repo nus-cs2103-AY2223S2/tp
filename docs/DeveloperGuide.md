@@ -139,9 +139,11 @@ How the parsing works:
 * When called upon to parse a user command, the `SocketParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SocketParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 Shown below is the activity diagram for how SOCket parses a user input:
 
-<p align="center"><img src="images/UserInputActivityDiagram.png" width="800" /></p>
+<p align="center"><img src="images/UserInputActivityDiagram.png" width="600" /></p>
 
 <div style="page-break-after: always;"></div>
 
@@ -164,7 +166,7 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has `Language` and `Tag` lists in `Socket`, which `Person` references. This allows `Socket` to only require one `Language`/`Tag` object per unique language/tag, instead of each `Person` needing their own `Language`/`Tag` objects. <br>
 
 
-<img src="images/BetterModelClassDiagram.png"/>
+<img src="images/BetterModelClassDiagram.png" width="800" />
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -189,8 +191,6 @@ Classes used by multiple components are in the `seedu.socket.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -211,11 +211,11 @@ These operations are exposed in the `Model` interface as `Model#commitSocket()`,
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
+<div style="page-break-after: always;"></div>
+
 Step 1. The user launches the application for the first time. The `VersionedSocket` will be initialized with the initial `Socket` state, and the `currentStatePointer` pointing to that single `Socket` state.
 
 <p align="center"><img src="images/UndoRedoState0.png" /></p>
-
-<div style="page-break-after: always;"></div>
 
 Step 2. The user executes `delete 5` command to delete the 5th person in 'Socket'. The `delete` command calls `Model#commitSocket()`, causing the modified state of `Socket` after the `delete 5` command executes to be saved in the `socketStateList`, and the `currentStatePointer` is shifted to the newly inserted `Socket` state.
 
@@ -876,8 +876,6 @@ Use case ends.
 
       Use case ends.
 
-<div style="page-break-after: always;"></div>
-
 **Use case: UC14 Redo recent undone changes**
 
 **MSS:**
@@ -886,6 +884,8 @@ Use case ends.
 2. SOCket restores undone changes.
 
    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Extensions:**
 
@@ -920,8 +920,6 @@ Use case ends.
 
    Use case ends.
 
-<div style="page-break-after: always;"></div>
-
 **Extensions:**
 
 * 5a. SOCket detects a syntax error in the entered date.
@@ -931,6 +929,8 @@ Use case ends.
       Use case resume at step 6 when the date entered is correct.
 
    Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC17 Removing tag/language(s)**
 
@@ -1016,14 +1016,13 @@ Similar to **UC01 Add a contact**, except,
 * A projects is added instead of contact.
 * Only meeting date is an optional field, all other fields are compulsory.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC23 Delete a project**
 
 Similar to **UC03 Delete a contact**, except,
 * a list of projects is shown instead of contacts.
 * a project is deleted instead of a contact.
-
-<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -1042,6 +1041,8 @@ Similar to **UC03 Delete a contact**, except,
 * **GitHub repository**: repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Planned Enhancements**
 
@@ -1076,6 +1077,9 @@ Similar to **UC03 Delete a contact**, except,
       1. `Text Executive Programming Language`
    
    We plan to update the `VALIDATION_REGEX` to allow other possible languages including, but not limited to, those under "Invalid `Language` fields" above. This entails enhancements such as allowing a `Language` field to consist of multiple words in the case that users choose to store the full name of a language instead of its acronym, or names of languages with multiple words without a conventionally accepted acronym, as well as allowing `.` in the `Language` field.
+
+<div style="page-break-after: always;"></div>
+ 
 1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline` and/or `ProjectMeeting` field, without any indication that the deadline or meeting has passed. As users may want to keep the details of finished projects or meetings for posterity, we plan on continuing to allow the `ProjectDeadline` and `ProjectMeeting` fields to be set to past date and time, however, further checks will be added when setting the `ProjectDeadline` or `ProjectMeeting` fields to notify users when setting a date and time that has already passed, showing an additional message: `The project deadline has already passed.` or `The project meeting has already passed.` 
 1. The current `Project` only allows users to set a single `ProjectMeeting`, which could be problematic in the case that users would like to store the details of several meetings in advance, as opposed to just the upcoming meeting. We plan to enhance this feature to allow users to set several `ProjectMeeting` fields for a `Project`, to enable users to manage more meetings for a `Project`, such as future meetings past the upcoming meeting, as well as keep a record of previous meetings if such a need arises.
 1. The current UI makes use of a horizontal scroll bar to handle the interaction of overflowing text with tags in the contact panel. To enhance the user experience, we plan to only display the tag count initially. If the user chooses to view a specific contact, the contact card will then expand to show the full list of tags associated with that contact.
@@ -1169,7 +1173,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find n/next n/alex`<br>
        Expected: Same list of contacts as *find test case 1i* is shown as only the value of the last occurrence of a prefix is used.<br>
 
-2. Listing contacts while some contacts are being shown.
+1. Listing contacts while some contacts are being shown.
     1. Prerequisites: Filter the contact list with `find` or `list` command.
 
     1. Test case: `find n/alex`<br>
@@ -1209,7 +1213,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `list 12345`<br>
       Expected: Same list of contacts is shown as this would be regarded as a `list` command.<br>
    
-2. Listing contacts while some contacts are being shown. 
+1. Listing contacts while some contacts are being shown. 
    1. Prerequisites: Filter the contact list with `find` or `list` command. At least one contact in the list. 
    
    1. Test case: `list`<br>
@@ -1268,6 +1272,8 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `clear t/enemy`
       Expected: If there are no contact with the tag `enemy`, no contact is cleared. An error message is shown as no such tag was found in the SOCket.
+
+<div style="page-break-after: always;"></div>
 
 ### Sorting contacts
 
@@ -1336,6 +1342,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit commands to try: `editpj`, `editpj Project Alpha`<br>
        Expected: No project is edited. An error message is shown as an invalid command was given.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a project
 
 1. Deleting a project while all projects are being shown
@@ -1370,6 +1378,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `removepj 0`<br>
       Expected: No project field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing all projects
 
