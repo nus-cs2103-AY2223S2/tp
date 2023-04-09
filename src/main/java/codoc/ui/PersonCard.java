@@ -54,8 +54,6 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         this.displayedIndex = displayedIndex;
         id.setText(displayedIndex + "");
-        //String profilePicturePath = person.getProfilePicture().profilePicturePath;
-        //Image image = new Image("file:" + profilePicturePath);
         Image image = new Image(person.getProfilePicture().profilePicturePath);
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(50);
