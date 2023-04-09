@@ -92,7 +92,7 @@ The main GUI has 7 sections as highlighted above.
 ## How to use the User Guide
 
 ### Navigation
-This Guide contains detailed explanations on the **commmands** available and what they do. If you wish to navigate to
+This Guide contains detailed explanations on the **commands** available and what they do. If you wish to navigate to
 any section within this Guide, the [**Table of Contents**](#table-of-contents) above provides a quick way to do so.
 Each section in the User Guide comes with a [Back to Table of Contents](#table-of-contents) link in the footer to
 take you back to the Table of Contents.
@@ -237,6 +237,11 @@ Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+<!-- EXAMPLE OF TIP -->
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Using `find` with a status acts as a filter on that status.
+</div>
+
 Examples:
 
 - `find name/John` returns `john` and `John Smith`
@@ -363,7 +368,7 @@ MedInfo data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-MedInfo data are saved as a JSON file `[JAR file location]/data/medinfo.json`. Advanced users are welcome to update the data directly by editing that data file.
+MedInfo data are saved as a JSON file `[JAR file location]/data/medinfo.json`. Advanced users can update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Edit the data file at your own risk! Any changes that make the data invalid will lead to MedInfo clearing
