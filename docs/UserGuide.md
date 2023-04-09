@@ -35,12 +35,12 @@ _Note that ExpressLibrary is only compatible with Linux, Windows and Mac OS._
   <div style="page-break-after: always;"></div>
   
 <ol start="10"> <li> In a few seconds, a graphical user interface (GUI) similar to the one shown below should appear. Please note that ExpressLibrary initially includes sample data that demonstrates how it can be used in a corporate library.
-  <br> </li> </ol>
+</li> </ol>
 
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
-<br>
+<ol start="11"> <li> <div markdown="block">
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
    Some example commands you can try:
 
@@ -50,7 +50,11 @@ _Note that ExpressLibrary is only compatible with Linux, Windows and Mac OS._
    * `clear` : Clears all persons and books in the ExpressLibrary.
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+</div> </li> </ol>
+
+<ol start="12"> <li> <div markdown="block"> 
+  Refer to the [Features](#features) below for details of each command.
+</div> </li> </ol>
 
 --------------------------------------------------------------------------------------------------------------------
 
