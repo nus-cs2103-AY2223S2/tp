@@ -25,20 +25,29 @@ Contributions to the project:
   * Justification: Enhances user experience, reduces eye strain, and offers personalization.
   * Highlights: Quick theme switching and improved usability in different lighting conditions.
 
+---
+</br>
+
 * **Feature Enhancement**: Local Storage
   * What it does: Save and restore OfficeConnect data to a local file.
   * Justification: Convenient, reliable data storage and access, improves productivity.
   * Highlights: Streamlined data management and user control over their data.
+
+
 
 * **New Feature**: View Assigned and Unassigned Elements
   * What it does: Filter and view assigned and unassigned persons, tasks, and persons to tasks in the address book.
   * Justification: Enhances usability and helps manage assignments more efficiently.
   * Highlights: Flexible filtering and focus on relevant elements.
 
+
+
 * **New Feature**: Unassign People from Tasks
   * What it does: Remove people from specific tasks, updating their assignment status.
   * Justification: Allows users to manage assignments more efficiently.
   * Highlights: Easy removal of people from tasks and better assignment management.
+
+
 
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=spwwj&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
