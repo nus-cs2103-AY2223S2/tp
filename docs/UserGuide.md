@@ -76,7 +76,7 @@ You can use the links in the Table of Contents to quickly navigate through this 
   e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.<br>
   **Note:** If keyword is left empty, SOCket will assume that it has removed an empty field so an error message will not be shown even if there is a wrong keyword in a subsequent prefix.
 
-* Fields in square brackets are optional.<br>
+* Fields in square brackets are optional but may result in different behaviors as specified in the feature section.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.<br>
   e.g `[p/[PHONE]]` can be used as `p/`.
 
@@ -106,6 +106,8 @@ Commands that help you make changes to the contact list.
 Adds a contact to SOCket.
 
 Format: `add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE]…​ [t/TAG]…​`
+
+* It is possible to specify an empty string for phone, email, address, github profile (i.e. `p/ e/ a/ g/`) but it will not result in a different behavior compared to not using the prefixes.
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 A contact can have any number of languages/tags (including 0).
@@ -357,8 +359,6 @@ Adds a project to SOCket.
 
 Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
 
-* If a prefix is specified, it cannot be blank.
-    * e.g `n/  ` is not allowed.
 * Project Name should contain only alphanumeric & space.
     * e.g `n/project 1`.
 * Repository Host should:
@@ -373,6 +373,8 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
 * Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
     * e.g `d/30/03/22-2045` would be **30th March 2022, 8:45 p.m.**
 * A project is considered to be the same if it has the same project name **(case-insensitive)**.
+* It is possible to specify an empty string for meeting (i.e. `m/ `) but it will not result in a different behavior compared to not using the prefixes.
+
 
 <div style="page-break-after: always;"></div>
 
