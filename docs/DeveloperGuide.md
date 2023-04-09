@@ -220,9 +220,9 @@ Here is a sequence diagram showing the interactions between components when `add
 
 #### General Design Considerations
 
-The implementation of the attributes of a `Person` is very similar to that of a `Person` in the original AB3 codebase. Hence, resulting in a similar implementation of the `add` feature. </br>
+The implementation of the attributes of a `Person` is very similar to that of a `Person` in the original AB3 codebase. Hence, resulting in a similar implementation of the `add` feature.
 
-Some additions made were the `Education`, `Module` and `Remark` attributes. </br>
+Some additions made were the `Education`, `Module` and `Remark` attributes.
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
 2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accommodate module names that are more than one word long as in real life.
 3. Every attribute except`Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
@@ -299,9 +299,11 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 The implementation of `edit` involves creating a new `Person` object with updated details to replace the previous `Person` object.
 This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Person` object.
 
-`edit` has similar fields to the [Add feature](#add-feature) and an additional `INDEX` parameter. </br>
+`edit` has similar fields to the [Add feature](#add-feature) and an additional `INDEX` parameter.
+
 > NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
 > Unless stated as`[COMPULSORY]`, the field is optional.
+
 * `INDEX` which represents the index number of the student to be edited in the list.
 * Prefix `n/` followed by the name of the student.
 * Prefix `p/` followed by the phone number of the student.
@@ -330,7 +332,7 @@ Whether a new `Person` object should be created when editing a student entry.
     * Pros:
         * Meets the expectations of the immutable `Person` class.
     * Cons:
-        * Inefficient as an entire `Person` object is created even if only one field is changed. </br>
+        * Inefficient as an entire `Person` object is created even if only one field is changed.
 
 * **Alternative 2:** `edit` directly sets the updated values in the existing `Person` object.
     * Pros:
