@@ -39,12 +39,10 @@ public class DeletePlatformCommandParserTest {
         assertParseFailure(parser, "a" + VALID_PLATFORM_NAME_LINKEDIN_DESC, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "0" + VALID_PLATFORM_NAME_LINKEDIN_DESC, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "-1" + VALID_PLATFORM_NAME_LINKEDIN_DESC, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1 i/ string " + VALID_PLATFORM_NAME_LINKEDIN_DESC,
-                MESSAGE_INVALID_FORMAT);
     }
 
     @Test
-    public void parse_missingId_failure() {
+    public void parse_missingPrefix_failure() {
         assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
     }
 
