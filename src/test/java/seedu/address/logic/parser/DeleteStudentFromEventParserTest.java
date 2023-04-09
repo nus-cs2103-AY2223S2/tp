@@ -38,26 +38,31 @@ class DeleteStudentFromEventParserTest {
 
     @Test
     void parse_invalidEventField_throwsParseException() {
-        assertThrows(ParseException.class, () -> new DeleteStudentFromEventParser().parse(INVALID_EVENT_FIELD_COMMAND));
+        assertThrows(ParseException.class, () ->
+                new DeleteStudentFromEventParser().parse(INVALID_EVENT_FIELD_COMMAND));
     }
 
     @Test
     void parse_tooManyEventFields_throwsParseException() {
-        assertThrows(ParseException.class, () -> new DeleteStudentFromEventParser().parse(TOO_MANY_EVENT_FIELDS_COMMAND));
+        assertThrows(ParseException.class, () ->
+                new DeleteStudentFromEventParser().parse(TOO_MANY_EVENT_FIELDS_COMMAND));
     }
 
     @Test
     void parse_invalidStudentIndex_throwsParseException() {
-        assertThrows(ParseException.class, () -> new DeleteStudentFromEventParser().parse(INVALID_STUDENT_INDEX_COMMAND));
+        assertThrows(ParseException.class, () ->
+                new DeleteStudentFromEventParser().parse(INVALID_STUDENT_INDEX_COMMAND));
     }
 
     @Test
     void parse_invalidEventIndex_throwsParseException() {
-        assertThrows(ParseException.class, () -> new DeleteStudentFromEventParser().parse(INVALID_EVENT_INDEX_COMMAND));
+        assertThrows(ParseException.class, () ->
+                new DeleteStudentFromEventParser().parse(INVALID_EVENT_INDEX_COMMAND));
     }
 
     @Test
     void parse_emptyEvent_throwsParseException() {
-        assertThrows(ParseException.class, () -> new DeleteStudentFromEventParser().parse(EMPTY_EVENT_COMMAND));
+        assertThrows(ParseException.class, () ->
+                new DeleteStudentFromEventParser().parse(EMPTY_EVENT_COMMAND));
     }
 }
