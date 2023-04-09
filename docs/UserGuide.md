@@ -4,16 +4,13 @@ title: AIMS User Guide
 ---
 
 Army Information Management System (AIMS) is **the** desktop app built for army admin clerks with **3 main aims:**.
-1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a clear [favorites](#adding-a-person-to-favorites--favorite) sidebar).
-2. Ensuring that your **data is properly and efficiently checked and validated** before storing.
-3. Keeping your **transition** away from other contact storage applications as **smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv). 
+1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a optimally placed [favorites](#adding-a-person-to-favorites--favorite) sidebar).
+2. Ensure that your **data is properly and efficiently checked and validated** before storing.
+3. Keep your **transition** from other contact storage applications as **smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
 
-
-AIMS is optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical
-User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional
+AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical
+User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional
 GUI apps.
-
-This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples.
 
 <!-- omit from toc -->
 ## Table of Contents
@@ -45,7 +42,8 @@ This user guide shows you how to get started using AIMS and how to make use of t
 ---
 
 ## Purpose
-This user guide is designed to help all army admin clerks adopt, learn and master AIMS.
+This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. The user guide designed to help all army admin clerks adopt, learn and master AIMS.
+
 
 AIMS is intended to make your life easier. With an emphasis of proper checking and validation of contact information, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. Seasoned users will find that AIMS helps smoothen the administrative flow of managing contact information. Let's start your journey with AIMS today!
 
