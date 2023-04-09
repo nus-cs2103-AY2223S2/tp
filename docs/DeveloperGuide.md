@@ -2,7 +2,7 @@
 layout: page title: Developer Guide
 ---
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -323,7 +323,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Student Feature
 #### Implementation
-The ability to add students is one of the core features of the application. 
+The ability to add students is one of the core features of the application.
 This feature allows users to add students to their defined classes/class lists, which will be essential for other features to work in tandem.
 
 This feature is facilitated through the command `add_student`, with a mandatory `STUDENT_NAME` and one or more `CLASS_NAME`s.

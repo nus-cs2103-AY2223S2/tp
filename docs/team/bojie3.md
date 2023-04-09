@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 - **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bojie3&breakdown=true)
 - **New Features**
   - **Attendance and Participation**
-    - **What it does**: 
+    - **What it does**:
       - Allows user to easily mark, unmark attendance and allocate participation points
       - Users can easily preform the operations with just one command
       - User can view the overall attendance and average participation points easily in the GUI
@@ -47,4 +47,4 @@ Given below are my contributions to the project.
       - `insertPP` ([PR #221](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/221))
 
 - **Team-based Tasks**
-  - Helped with discussions on project ideas and core features 
+  - Helped with discussions on project ideas and core features

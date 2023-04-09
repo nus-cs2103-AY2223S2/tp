@@ -24,7 +24,7 @@ Given below are my contributions to the project.
         - Allows the user to indicate which student submissions are graded as a late submission.
         - Users can easily see the late submissions in the GUI.
     - **Modified storage to store student's Attendance and Participation info** ([PR #143](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/143))
-        - Created InitStorage and CheckValidStorage in AssignmentList class to initialise assignments & 
+        - Created InitStorage and CheckValidStorage in AssignmentList class to initialise assignments &
           student submissions from their submission storage strings.
         - Fixed failing test cases due to the modifications.
 - **Bug Fixes**
