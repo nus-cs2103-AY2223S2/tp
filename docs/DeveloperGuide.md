@@ -3,7 +3,24 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents 
-{:toc}
+* **[Acknowledgements](#acknowledgements)**
+* **[Setting up, getting started](#setting-up-getting-started)**
+* **[Design](#design)**
+    * **[Architecture](#architecture)**
+    * **[UI component](#ui-component)**
+    * **[Logic component](#logic-component)**
+    * **[Model component](#model-component)**
+        * [Task Model](#task-model)
+        * [Score Model](#score-model)
+    * **[Storage component](#storage-component)**
+    * **[Common classes](#common-classes)**
+* **[Appendix: Requirements](#appendix-requirements)**
+    * **[Product scope](#product-scope)**
+    * **[User stories](#user-stories)**
+    * **[User cases](#use-cases)**
+    * **[Non-Functional Requirements](#non-functional-requirements)**
+    * **[Glossary](#glossary)**
+* **[Appendix: Planned Enhancements](#appendix-planned-enhancements)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -150,7 +167,8 @@ The `Model` component,
 
 <img src="images/DG-images/ScoreClassDiagram.png" width="280" />
 
-* Stores the currently 'selected' Student's `UniqueScoreList` objects (e.g., results of a search query) as a separate filtered list which is exposed to outsiders as an unmodifiable ObservableList<Student> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* A `Student` has a `UniqueScoreList` object which holds all their `Score` objects.
+* `UniqueScoreList` is a separate filtered list with recent score at front which is exposed to outsiders as an unmodifiable ObservableList<Student> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 ### Storage component
 
