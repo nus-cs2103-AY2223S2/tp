@@ -33,8 +33,6 @@ Given below are my contributions to the project.
   * Highlights: `VALIDATION_REGEX` and `isValid*` methods for fields ensure validity of inputs stored in `Project` instance (does not guarantee that `ProjectRepoHost` or `ProjectRepoName` exist, only that they are valid); `Project` instances are stored in an additional list in the `socket.json` data file, with its own copies of the `Person` instances that are members of the `Project`; references to the `Person` instances are restored upon reading in the `socket.json` data file
   * Credits: *{-}*
 
-<div style="page-break-after: always;"></div>
-
 * **New Feature**: `deletepj` command to delete existing projects [\#150](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/150)
   * What it does: Allows users to delete existing projects
   * Justification: Users are able to remove finished projects from `SOCket`
