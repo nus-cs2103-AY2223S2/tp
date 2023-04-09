@@ -827,7 +827,7 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
     1. `find n/Solo n/Cheats`
     2. `view 2`
 
-   **Expected**: An error message is displayed in the Result Display. This is because in the filtered bookmark list, there is only 1 bookmark entry, implying that`2` is not a valid value for the `INDEX` field.
+   **Expected**: An error message is displayed in the Result Display. This is because in the filtered bookmark list, there is only 1 bookmark entry, implying that `2` is not a valid value for the `INDEX` field.
 
 4. `view -1`
 
@@ -843,7 +843,7 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
 2. `find n/Solo n/Defense`
 
-   **Expected**: The List Panel shows the bookmark entries whose Title  matches with `Defense` as find ignores first prefix if more than one of same prefix is given. A success message is displayed in the Result Display.
+   **Expected**: The List Panel shows the bookmark entries whose Title  matches with `Defense`. This is because if only one field is required, find ignores all fields of the same prefix except the last. A success message is displayed in the Result Display.
 
 3. `find`
 
@@ -947,7 +947,7 @@ Currently, there a few feature flaws with the application. These are some propos
    : After executing edit 8
    </em></figcaption>
 
-Currently there is a discrepancy where `edit 0` with missing prefix causes an error message of invalid command format 
+Currently, there is a discrepancy where `edit 0` with missing prefix causes an error message of invalid command format 
 while `edit` with any positive index and missing prefix causes an error message of at least 1 field must be present.
 
 **Potential Enhancement and Suggested Implementation:**

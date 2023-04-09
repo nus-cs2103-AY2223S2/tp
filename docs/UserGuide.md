@@ -323,11 +323,12 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * At least one of the optional fields must be provided.
 * The search for name and author is case-insensitive. e.g. `rankers` will match `Rankers`
 * The search for genre and tag is case-sensitive. e.g. `fantasy` will not match `Fantasy`
-* The valid values for each items is the same as the [`add` command](#adding-a-bookmark-add).
+* The valid values for each item is the same as the [`add` command](#adding-a-bookmark-add).
 * The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
 * Only the fields of the specified prefixes are searched.
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
+* If multiple tags are provided, any bookmarks containing at least one of the tags would be returned.
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
