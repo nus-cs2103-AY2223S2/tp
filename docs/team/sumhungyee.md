@@ -56,9 +56,4 @@ Summary of Contributions:
     - Added UML diagrams for creating `Date` objects.
 - **Community:**
   - PRs reviewed (with non-trivial review comments):
-    - [#173](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/173)
-    - [#157](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/157)
-    - [#140](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/140)
-    - [#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104)
-    - [#156](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/156)
-    - [#159](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/159)
+    - [#173](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/173), [#157](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/157), [#140](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/140), [#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104), [#156](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/156), [#159](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/159)
