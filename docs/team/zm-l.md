@@ -69,7 +69,7 @@ Given below are my contributions to the project.
         </ul>
       </td>
       <td align="center">See the list</td>
-      <td align="right">from the first column</td>
+      <td align="right">from the f column</td>
     </tr>
   </tbody>
 </table>
