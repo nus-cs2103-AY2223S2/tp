@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/PROGRAMMERHAO)] [[portfolio](team/programmerhao.md)]
 
 * Role: Developer
-* Responsibilities: tbc
+* Responsibilities: Subsection/Remove-subsection feature, Find/Add features enhancements
 
 ### Joy Ng Jing Ru
 
