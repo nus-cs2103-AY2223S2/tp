@@ -25,6 +25,6 @@ deactivate AutocompleteEngine
 LogicManager --> CommandBox : "add t/tag1"
 deactivate LogicManager
 
-CommandBox --> UI : set user input to "add t/tag1"
+CommandBox --> : set user input to "add t/tag1"
 deactivate CommandBox
 @enduml
