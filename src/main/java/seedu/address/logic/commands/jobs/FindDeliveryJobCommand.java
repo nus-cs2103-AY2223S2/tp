@@ -37,6 +37,16 @@ public class FindDeliveryJobCommand extends DeliveryJobCommand {
         this.query = query;
     }
 
+    /**
+     * Constructs a FindDeliveryJobCommand without feedback.
+     * @param predicate
+     * @param query for feedback
+     */
+    public FindDeliveryJobCommand(Predicate<DeliveryJob> predicate) {
+        this.predicate = predicate;
+        this.query = "";
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

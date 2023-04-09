@@ -225,38 +225,32 @@ public class AddCommandTest {
 
         @Override
         public void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setDeliveryJobSystem'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyDeliveryJobSystem getDeliveryJobSystem() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getDeliveryJobSystem'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasDeliveryJob(DeliveryJob job) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'hasDeliveryJob'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteDeliveryJob(DeliveryJob target) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deleteDeliveryJob'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addDeliveryJob(DeliveryJob job) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addDeliveryJob'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setDeliveryJob'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -310,37 +304,31 @@ public class AddCommandTest {
 
         @Override
         public Optional<Person> getPersonById(String id) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getPersonById'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Path getDeliveryJobSystemFilePath() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getDeliveryJobSystemFilePath'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setDeliveryJobSystemFilePath(Path deliveryJobSystemFilePath) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setDeliveryJobSystemFilePath'");
+            throw new AssertionError("This method should not be called.");
         }
 
         public ObservableList<DeliveryJob> getFilteredDeliveryJobList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredDeliveryJobList'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'updateSortedDeliveryJobListByComparator'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getSortedDeliveryJobListByComparator'");
+            throw new AssertionError("This method should not be called.");
         }
 
     }
