@@ -398,18 +398,26 @@ Note: ExecutivePro currently only accepts images in the `.jpg`, `.jpeg`, or `.pn
 
 #### Implementation
 
+`Employee` objects have a `picturePath` field that represents the file path where the employee's profile picture is stored on the user's computer.
+The `setpicture` feature makes use of the [`edit` feature](#edit-feature--edit) to set the `picturePath` of an `Employee` to the file path of the selected image,
+as shown below:
 
-![ListCommand](images/ThemeSequenceDiagram.png)
+![SetPictureCommand](images/SetPictureSequenceDiagram.png)
 
-Step 1. User enters a valid command, e.g. `theme light`.
+Step 1. User enters a valid command, e.g. `setpicture 1`, to set the profile picture of the employee with employee ID 1.
 
-Step 2. `LogicManager` parses and executes the command, and returns to the `MainWindow` a `CommandResult` object containing the specified theme "light".
+Step 2. `LogicManager#execute` method is called to parse the user input as described in the [Logic Component](#logic-component) section,
+and constructs a `SetPictureCommand` object accordingly.
 
-Step 3. `MainWindow` gets the theme "light" from the `CommandResult`,  then calls its own `handleChangeTheme` method with this theme.
+Step 3. The `execute` method of the `SetPictureCommand` is called, which opens a file explorer where the user can select an image from their computer.
 
-Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by the current `Scene`, empties the list, and adds in the desired stylesheets matching the theme "light".
+Step 4. After the user selects an image, the `SetPictureCommand#savePicture` method is called.
+This copies the selected image, saves the copy in ExecutivePro's data folder, and returns the file path of the saved copy as `destPicturePath`.
 
-Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
+Step 5. An `EditCommand` that will set the specified employee's `picturePath` to be `destPicturePath` is then constructed and executed, as described in the [Edit Feature](#edit-feature--edit) section.
+
+Step 6. The `UI` component listens to this change in the model, and updates the GUI to display the employee's new picture.
+Note that if the employee's `picturePath` is set to the empty String, the picture displayed will be a default silhouette image.
 
 
 ### Find Feature: `find`
