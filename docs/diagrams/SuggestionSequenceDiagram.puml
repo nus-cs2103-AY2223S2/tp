@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AutocompleteEngine" as AutocompleteEngine LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+[-> CommandBox : user types command
+activate CommandBox
+
+CommandBox -> LogicManager : suggestCommand(userInput)
+activate LogicManager
+
+LogicManager -> AutocompleteEngine : suggestCommand(userInput)
+activate AutocompleteEngine
+
+AutocompleteEngine -> Model : getExistingTagValues()
+activate Model
+
+Model --> AutocompleteEngine
+deactivate Model
+
+AutocompleteEngine --> LogicManager : suggestion
+deactivate AutocompleteEngine
+
+LogicManager --> CommandBox : suggestion
+deactivate LogicManager
+
+CommandBox --> UI : display suggestion
+deactivate CommandBox
+@enduml
