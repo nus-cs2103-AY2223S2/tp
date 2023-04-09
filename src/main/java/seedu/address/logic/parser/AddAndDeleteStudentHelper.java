@@ -13,8 +13,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Deals with common checks between the 2 classes.
  */
 public class AddAndDeleteStudentHelper {
-    public static int FIELD_COUNT = 2;
-    public static int NUM_OF_EACH_FIELD = 1;
+    public static final int FIELD_COUNT = 2;
+    public static final int NUM_OF_EACH_FIELD = 1;
     public static final String MESSAGE_TOO_MANY_FIELDS = "There are too many fields or duplicated fields "
             + "in your input!";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "Either you did not enter an "
