@@ -20,7 +20,7 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Planner
 
 Planner --> "~* all" DailyPlan
-DailyPlan --> "allocated" Task
+DailyPlan --> "~* allocated" Task
 
 
 @enduml

@@ -1258,6 +1258,11 @@ of the selected parent task sorted. The sorting will sort subsections in the ord
   If input date is within 30 days from current date but outside of planner range, return an error message prompting user to regenerate plans (e.g. `Please regenerate your plans to view your schedule.`).
   If input date is before generation date, return an error message informing user that the date is an invalid date and the previous generation date (e.g. `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}`).
   If input date is too far in the future, return an error message informing user that the date is an invalid date as it is too far into the future. (e.g. `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}`)
+  
+  3. Invalid tag input from the user, such as `t/1 1` where there is a blank space in the tag, for commands such as `edit`, `find`.
+  Observed behaviour: The error message shows that `Tags names should be alphanumeric and not blank`.
+  Preferred behaviour: Explain more specifically the cause of command rejection, such as with an error message `Tags names should not contain blank spaces`.
+  Proposed Modification: Add more functionalities in the parser for tags so that blank spaces are checked as well.
 
 ### 7.7 Empty planner file error handling
 - Currently, a new and empty `planner.json` file is created on starting the app for the first time, or when users modify the file such that it becomes invalid, or when users delete the `planner.json` file. However, data is not automatically populated and the user will need to generate a new plan to retrieve plans.
