@@ -27,6 +27,7 @@ Given below are my contributions to the project.
 
 * **Contributions to the Developer Guide**
   * Added implementation details and sequence diagram of the `listevcontact` feature ([\#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68))
+  * Added implementation details and activity diagram of the `add` feature ([\#133](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/133))
 
 
 * **Contributions to the User Guide**
