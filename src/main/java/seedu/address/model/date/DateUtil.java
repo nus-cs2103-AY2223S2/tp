@@ -1,6 +1,5 @@
 package seedu.address.model.date;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,25 +13,22 @@ public class DateUtil {
     /**
      * Format of dates in Fish Ahoy!.
      */
-    public static final String DATE_FORMAT = "dd/MM/yyyy";
-
     public static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
 
     /**
      * Format of dates in Task descriptions.
      */
-    public static final String VALID_NAME_FORMAT_DATE = "dd-LLL-yyyy";
     public static final String VALID_NAME_FORMAT_DATETIME = "dd-LLL-yyyy HH:mm";
 
     /**
-     * Parses a string date  format in {@code DATE_FORMAT}
+     * Parses a string date  format in {@code DATE_TIME_FORMAT}
      * @param date Date in {@code String} form
-     * @return {@code LocalDate} instance from given String
+     * @return {@code LocalDateTime} instance from given String
      */
-    public static LocalDate parseStringToDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        LocalDate localDate = LocalDate.parse(date, formatter);
-        return localDate;
+    public static LocalDateTime parseStringToDateTime(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
+        LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+        return localDateTime;
     }
 
     /**
@@ -73,24 +69,14 @@ public class DateUtil {
     }
 
     /**
-     * Returns a String that is a valid Task description
-     * @param date LocalDateTime to be formated
-     * @return Formatted string that is alphanumeric
+     * Converts LocalDateTime to a string using DATE_TIME_FORMAT
+     * @param dateTime local date time
+     * @return string format
      */
-    public static String getTaskDescriptionDateFormat(LocalDate date) {
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern(VALID_NAME_FORMAT_DATE);
-        return date.format(outputFormat);
-    }
-
-    /**
-     * Returns the current date
-     * @return current date
-     */
-    public static String getCurrentDate() {
-        LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        String formattedDate = today.format(formatter);
-        return formattedDate;
+    public static String convertDateTimeToString(LocalDateTime dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
+        String formatted = dateTime.format(formatter);
+        return formatted;
     }
 
     /**

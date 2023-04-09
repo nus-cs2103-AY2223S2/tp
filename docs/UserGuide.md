@@ -262,6 +262,9 @@ In general, the command format is as follows:<br>
 > :exclamation: Warning: Remember to input 2 digits for `DD` and `MM`.
 > <br> For example, `DD` and `MM` for the 9th of April should be `09` and `04` respectively.
 
+> :bulb: Tip: *Fish Ahoy!* automatically corrects invalid dates like 30th February to the closest
+> lower valid date. For example, 30th Feb becomes 29th Feb on leap years and 28th Feb on non leap years
+
 #### Species `s/<SPECIES>`
 * Type: `Fish`
 * `<SPECIES>` should only contain alphanumeric characters and spaces
@@ -447,9 +450,6 @@ Parameters:
 > :information_source: Additional information: After viewing a specific tank, use `list fishes` and `list tasks` to see
 > the rest of the fishes and tasks belonging to other tanks again!
 
-> :exclamation: Warning: To ensure you are still viewing the correct tank after adding or editing a fish or task,
-> use `tank view` again!
-
 > :exclamation: Warning: Tasks that do not have a tank attached will not be shown when you view a tank! To see them
 > again, use `list tasks`
 
@@ -576,6 +576,8 @@ Parameters:
 
 > :exclamation: Warning: You **cannot** add two fishes of the same name to *Fish Ahoy!*
 
+> :bulb: Tip: See what happens to [invalid last fed dates!](#last-fed-date-lfdlast_fed_date)
+
 Example:
 * `fish add n/Nemo s/Clown Fish lfd/04/04/2023 11:30 fi/2d0h tk/1` adds a new fish with the following details:
   * Name: Nemo
@@ -638,8 +640,6 @@ Parameters:
 > :information_source: Additional information: Editing tags will cause the tags to be set to your input!
 > <br> For example: If a fish with index 1 has no tags, and you use `fish edit 1 tg/Fat tg/Sick`, that fish
 > will have the tags 'Fat' and 'Sick'!
-
-> :information_source: Additional information: After editing a fish, **all** fishes will be listed, akin to `list fishes`
 
 > :exclamation: Warning: Even though all parameters are listed as optional, you still need to edit
 > at least 1 parameter!
