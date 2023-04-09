@@ -291,12 +291,12 @@ Additional things to note:
 * `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
 * Existing values of the application entry will be updated to what you have inputted.
-* Refer to the following section [here](#413-adding-and-editing-tags-for-an-application--using-add-app-and-edit-app)
+* Refer to the following section [here](#414-managing-application-tags-with-add-app-and-edit-app)
   to learn more about editing an application's tag(s).
 * For more information about each parameter's constraints, refer to the table in section [4.1.1](#411-adding-an-application--add-app).
 
 Examples:
-* `edit-app 1 r/Cloud Engineer e/googleHR@example.com`: edits the role and email address of the 1st application to be `Cloud Engineer` and `googleHR@gmail.com` respectively.
+* `edit-app 1 r/Cloud Engineer e/googleHR@gmail.com`: edits the role and email address of the 1st application to be `Cloud Engineer` and `googleHR@gmail.com` respectively.
 * `edit-app 2 s/Rejected`: edits the status of the 2nd application to be `Rejected`.
 
 <div style="page-break-after: always;"></div>
@@ -311,13 +311,15 @@ available or relevant to you.
 Format: `delete-app INDEX`
 
 Additional things to note: 
-* `INDEX` refers to the index of the application to delete, as shown in the Application Card. It must be a **positive
+* `INDEX` refers to the index of the application to delete, as shown on the Application Card. It must be a **positive
   [integer](#integer).**
+* `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
 
 Examples:
-* `list` followed by `delete-app 2`: deletes the 2nd application in the internship book.
-* `find Google` followed by `delete-app 1`: deletes the 1st application shown in the results of the `find` command.
+* `list` followed by `delete-app 2`: deletes the 2nd application shown on the Application List Panel.
+* `find Google` followed by `delete-app 1`: deletes the 1st application shown on the Application List Panel after
+execution of the `find` command.
 
 <div style="page-break-after: always;"></div>
 
@@ -327,7 +329,7 @@ Examples:
 
 sprINT currently supports 2 ways of adding [tags](#tag) to an application entry:
 
-1. Tags can be added when you are creating a new application, as a parameter to the `add-app` command. For more 
+1. Tags can be added when you are creating a **new** application, as a parameter to the `add-app` command. For more 
 information, refer to [section 4.1.1](#411-adding-an-application--add-app).
 2. Tags can also be added to an **existing** application in the internship book as described below.   
 
@@ -335,23 +337,23 @@ If an application does not have any existing tags, you can add 1 or more tags to
 
 Format: `edit-app INDEX t/TAG(s)`
 
-Examples (assuming applications *don't* have an existing tag):
+Examples (assuming applications *do not* have an existing tag):
 * `edit-app 2 t/doResearch`: adds 1 tag to the 2nd application on the Application List Panel. 
 * `edit-app 1 t/creditBearing t/workFromHome`: adds 2 tags to the 1st application on the Application List Panel. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
 Remember! When adding and editing tags, the tag must be inputted as a **single word** with **no spacing and/or symbols**.<br/>
-For example, if you wish to tag an application to remind yourself that it is your dream company, you have to use 
+For example, if you wish to tag an application to remind yourself that it is for your dream company, you have to use 
 `t/dreamCompany` or `t/dreamcompany`, instead of `t/dream company`, `t/dream-company` and so on.
 </div>
 
-If an application already has (an) existing tag(s), you have to enter all existing tags **AND** the new tag you wish to
-add. 
+If an application already has (an) existing tag(s) that you wish to keep, you have to enter all existing tags
+**AND** the new tag that you wish to add.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
 Adding of tags is not cumulative, and existing tags in the application **will be removed** if they are not entered 
-together with the new tag. This means that for example, if an application has an existing `highSalary` tag, executing 
-the command `edit-app 1 t/creditBearing` would remove the original `highSalary` tag, replacing it with the `creditBearing` tag.
+together with the new tag. For example, if an application has an existing `highSalary` tag, executing 
+the command `edit-app 1 t/creditBearing` would remove the original `highSalary` tag, and only the new `creditBearing` tag will be left.
 </div>
 
 Format: `edit-app INDEX t/EXISTING_TAG(s) t/NEW_TAG(s)`
@@ -383,15 +385,20 @@ You can remove **all** existing tags from an application using `edit-app` as fol
 
 Format: `edit-app INDEX t/` (i.e. without specifying any values after `t/`)
 
-Otherwise, to remove any number of existing tags, simply enter the existing tags you wish to keep. 
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** This is the only time when the `t/` prefix can be associated with an **empty** parameter.
+</div>
+
+Otherwise, to remove any combination of existing tags, simply enter the tags that you wish to keep. 
 
 Format: `edit-app INDEX t/EXISTING_TAG(s)_EXCLUDING_THOSE_TO_DELETE`
 
 Example:
-* `edit-app 1 t/workFromHome`: removes all tags except `workFromHome` from the 1st application on the Application 
-  List Panel, assuming the application had more than 1 tag initially. 
-* `edit-app 2 t/creditBearing t/mentoringProvided`: removes all tags except `creditBearing` and `mentoringProvided`
-  from the 2nd application on the Application List Panel, assuming the application had more than 2 tags initially.
+* `edit-app 1 t/workFromHome`: removes all other tags except `workFromHome` from the 1st application on the Application 
+  List Panel, assuming the application had the `workFromHome` tag initially.
+* `edit-app 2 t/creditBearing t/mentoringProvided`: removes all other tags except `creditBearing` and `mentoringProvided`
+  from the 2nd application on the Application List Panel, assuming the application had the `creditBearing` and
+`mentoringProvided` tags initially.
 
 #### *Return to the [Table of Contents](#table-of-contents).*
 
@@ -415,14 +422,16 @@ Format: `add-task INDEX d/DESCRIPTION by/DEADLINE`
 
 The following table details the [parameters](#parameter) to be used with the `add-app` command:
 
-| Prefix | Parameter   | Compulsory | Constraints| 
-|--------|-------------|------------|------------|
-| `d/`   | Description | Yes        |            |
-| `by/`  | Deadline    | Yes        |            |
+| Prefix | Parameter   | Compulsory | Constraints                                                              | 
+|--------|-------------|------------|--------------------------------------------------------------------------|
+| `d/`   | Description | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty. |
+| `by/`  | Deadline    | Yes        | Must be a valid calendar date of the format DD-MM-YYYY.                  |
 
 Additional things to note:
 * `INDEX` refers to the index of the application you wish to add a task to, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
+* `INDEX` must be of a positive value (1 and above).
+* `INDEX` cannot be greater than 2147483647.
 
 You can see how the new task will appear in the updated Application Card, following the scenario given above:
 ![UiAfterAddTask](images/UiAfterAddTask.png)
@@ -436,11 +445,11 @@ Format: `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]`
 Additional things to note:
 * `INDEX` refers to the index of the application you wish to edit the task of, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
-* **At least one** of the optional fields must be provided.
 * `INDEX` must be of a positive value (1 and above).
 * `INDEX` cannot be greater than 2147483647.
+* **At least one** of the optional parameters must be provided.
 * Existing description and/or deadline of the task will be updated to what you have inputted.
-* For more information about each parameter's constraints, refer to the table in section [4.2.1](#421-adding-an-application-task--add-task).
+* For more information about each parameter's constraints, refer to the table in section [4.2.1](#421-adding-a-task--add-task).
 * For more information about each parameter and other sprINT-specific terminology, feel free to refer to our 
   [Glossary](#6-glossary).
 
@@ -456,7 +465,8 @@ Format: `delete-task INDEX`
 
 * `INDEX` refers to the index of the application you wish to delete the task from, as shown in the Application Card. It must be a **positive
   [integer](#integer).**
-* `INDEX` must be of a positive value (1 and above) but smaller than 2147483647.
+* `INDEX` must be of a positive value (1 and above).
+* `INDEX` cannot be greater than 2147483647.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Deleting an application's task will not delete the underlying application entry itself.
@@ -466,7 +476,8 @@ if you wish to delete an application entirely, including its task.
 
 Examples:
 * `list` followed by `delete-task 2`: deletes the task for the 2nd application on the Application List Panel.
-* `find Google` followed by `delete-task 1`: deletes the task of the 1st application shown in the results of the `find` command.
+* `find Google` followed by `delete-task 1`: deletes the task of the 1st application on the Application List Panel
+after the execution of the `find` command.
 
 #### *Return to the [Table of Contents](#table-of-contents).*
 
@@ -490,8 +501,8 @@ Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]
 
 Additional things to note:
 * The keywords are case-insensitive. e.g. You can type `GOoGlE` and it will match with `Google`.
-* In `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`, `r/`, `c/` and `s/` are prefixes that stand for `ROLE`, `COMPANY NAME` and `STATUS` respectively.
-* In `find keyword(s)`, when none of the prefixes is specified, the keyword(s) will be searched according to the information under all 3 prefixes mentioned.
+* In `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`, `r/`, `c/` and `s/` are prefixes that represent the `ROLE`, `COMPANY NAME` and `STATUS` parameters respectively.
+* In `find keyword(s)`, if none of the prefixes is specified, the keyword(s) will be searched according to the information under all 3 prefixes mentioned.
 * When at least one prefix is provided, the keyword(s) is searched according to the information under that particular prefix.
 * Only full words will be matched e.g. `Han` will not match `Hans` but `Google` will match with `Google LLC`.
 
@@ -505,7 +516,7 @@ Examples:
 Sorts internship applications in the order you desire.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-While you can't undo a sort command, if you wish to go back to the default view, you can just use list.
+While you can't undo a sort command, if you wish to go back to the default view, you can just use the `list` command.
 </div>
 
 
@@ -527,8 +538,8 @@ Additional things to note:
 an empty list will be displayed.) The applications will be sorted by their task's deadline. 
 
 Examples:
-* `sort a deadline` will show applications with task deadlines. Those with earlier deadlines will be higher up in the list.
-* `sort d alphabetical` will show applications in descending alphabetical order. (Z to A)
+* `sort a deadline` will show only applications with task deadlines. Those with earlier deadlines will be higher up in the list.
+* `sort d alphabetical` will show all applications in descending alphabetical order. (Z to A)
 
 #### *Return to the [Table of Contents](#table-of-contents).*
 
@@ -548,7 +559,7 @@ Format: `help`
 
 Undoes the previous command that you have typed in.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Info:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Only `add-app`, `edit-app`, `delete-app`, `add-task`, `edit-task`, `delete-task`, `undo` and `clear` can be undone.  
 </div>
 
@@ -568,7 +579,7 @@ Format: `redo`
 
 #### 4.4.4 Clearing all applications : `clear`
 
-Clears all entries from the internship book.
+Clears all existing application entries.
 
 Format: `clear`
 
@@ -587,8 +598,8 @@ Format: `exit`
 
 #### 4.4.6 Saving the data
 
-Data in the internship book are automatically saved in your local storage after any command that modifies the data. 
-There is no need to save manually.
+Changes you've made  to your applications are automatically saved in your local storage after each command you execute
+that modifies the application data. There is no need to save manually.
 
 #### 4.4.7 Editing the data file **(for Advanced users)**
 
@@ -596,7 +607,7 @@ Data in the internship book are actually saved as a JSON file `[JAR file locatio
 Advanced users are welcome to update their data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, sprINT automatically discards all data and starts with an empty data file.
 </div>
 
 #### *Return to the [Table of Contents](#table-of-contents).*
@@ -608,7 +619,8 @@ If your changes to the data file makes its format invalid, the internship book w
 ## **5. FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous internship book's home folder.
+**A**: Install sprINT on the other computer and run it for the first time. A new data file will be created with
+the sample data. Overwrite this data file with the original data file from the computer you have been using sprINT on previously.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -620,7 +632,7 @@ If your changes to the data file makes its format invalid, the internship book w
 
 #### Application
 Represents an internship application entry in the internship book. Each application contains minimally a role,
-company name, company email and one of four possible statuses. An application can also have 1 or more tags and 1 task
+company name, company email and one of four possible statuses. An application may also have 1 or more tags and 1 task
 associated with it. 
 
 #### Command word
@@ -633,8 +645,8 @@ for the `status` parameter.
 
 #### Parameter
 Refers to a specific input value from the user that provides details to execute a command. Most parameters, other than 
-the `INDEX` and `SEQUENCE` parameters, are identified by its [prefix](#prefix). Examples include `d/DESCRIPTION` and 
-`by/DEADLINE`.
+the `INDEX` and `SEQUENCE` parameters, are identified by its [prefix](#prefix). Examples include `c/COMPANY_NAME`,
+`d/DESCRIPTION` and `by/DEADLINE`.
 
 #### Status
 Represents the current stage of the internship application. Can be one of 4 values:
@@ -657,11 +669,15 @@ graphical interface. On Windows, this is either the Command Prompt or Powershell
 The folder that will contain all sprINT-related data (including the application itself). 
 
 #### Integer
-A whole number like 1, 3, 5, 8 etc. Numbers with decimals like 2.1, 4.002 are not considered integers. 
+A whole number like 1, 3, 5, 8 etc. Numbers with decimals like 2.1, 4.002 are not considered integers.
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+In the context of sprINT, **positive integers** refer to whole numbers in the range 1 to 2147483647 (inclusive).  
+</div>
 
 #### JSON (Javascript Object Notation)
 JSON is a way of storing and sharing data in a simple and standardised format that can be easily read by computers and
-understood by humans. sprINT uses JSON to store your internship book because it is _lightweight_, which means that
+understood by humans. sprINT uses JSON to store all your applications because it is _lightweight_, which means that
 sprINT can process your data more quickly! 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -673,7 +689,7 @@ sprINT can process your data more quickly!
 | Action                      | Can undo?          | Format, Examples                                                                                                                                                         |
 |-----------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add** <br/> Application   | :heavy_check_mark: | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application   | :heavy_check_mark: | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`                       |
+| **Edit**<br/> Application   | :heavy_check_mark: | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@gmail.com`                         |
 | **Delete**<br/> Application | :heavy_check_mark: | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                             |
 | **Add** <br/> Task          | :heavy_check_mark: | `add-task INDEX d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task 1 d/Technical Interview by/01-05-2023`                                                                    |
 | **Edit** <br/> Task         | :heavy_check_mark: | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                    |
