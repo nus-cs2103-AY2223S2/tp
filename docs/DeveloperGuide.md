@@ -458,19 +458,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                   | I want to …​                                                                                   | So that I can…​                                                          |
 |----------|---------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
 | `* * *`  | new user                  | see usage instructions                                                                         | refer to instructions when I forget how to use the App                   |
-| `* * *` | salesperson               | add a new client                                            | keep track of all my clients                             |
-| `* * *` | salesperson               | view all my clients                                         | have access to each and every client                     |
+| `* * *` | salesperson               | add a new client                                                                               | keep track of all my clients                                             |
+| `* * *` | salesperson               | view all my clients                                                                            | have access to each and every client                                     |
 | `* * *`  | salesperson               | delete a client                                                                                | remove leads that have fallen cold, or are false entries                 |
 | `* * *`  | forgetful salesperson     | filter my contacts by lead status                                                              | prioritise what to follow up on                                          |
-| `* *`  | salesperson               | update client information                                   | keep my clients' informations up to date                 |
+| `* *`  | salesperson               | update client information                                                                      | keep my clients' informations up to date                                 |
 | `* *`    | forgetful salesperson     | see the timestamp of the contact's lead status                                                 | prioritise customers who I have not followed up with                     |
 | `* *`    | salesperson               | have a keyword search                                                                          | find lead based on a company or persons name                             |
 | `* *`    | forgetful salesperson     | associate my contacts with the day of first creation                                           | determine the next time I should contact them                            |
 | `* *`    | frantic salesperson       | be warned when I make certain actions in my application                                        | won’t jeopardise my work through carelessness                            |
-| `*`    | cross-product salesperson | sort persons by their attributes such as gender or industry | perform targeted sales strategy                          |
+| `*`    | cross-product salesperson | sort persons by their attributes such as gender or industry                                    | perform targeted sales strategy                                          |
 | `*`      | new user                  | import my current database                                                                     |                                                                          |
 | `*`      | salesperson               | record down all transactions with clients                                                      |                                                                          |
 | `*`      | salesperson               | search through transactions based on an existing contact's name, while also seeing the contact | conveniently refer to persons' and transactions' info on the same screen |
+| `*`      | forgetful salesperson     | add tasks for each contact                                                                     | refer to the tasks of each person to be done                             |
+| `*`      | salesperson               | clear tasks for each contact                                                                   | edit the tasks and add new tasks for the contact                         |
 
 ### Use cases
 
@@ -594,6 +596,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 4a1. SalesPunch alerts the user that the lead status is the same.  
     Use case resumes at step 2
 
+**Use case: Add tasks for a person**
+
+**MSS**
+
+1.  User adds task to a person
+2.  SalesPunch updates the tasklist of the person in the contact list
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. User is able to add more types of tasks to a person. 
+
+    - 1a1. SalesPunch requests for the correct data.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
+
+  Use case ends.
+
+**Use case: Edit tasks**
+
+**MSS**
+
+1.  User clears tasks for a person
+2.  SalesPunch updates the tasklist of the person in the contact list
+3.  User adds new tasks for a person
+4.  SalesPunch updates the tasklist of the person in the contact list
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. User is able to edit the specific task directly.
+
+    - 1a1. SalesPunch requests for the correct data.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
