@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.model.task.Task;
 
+//@@author
 /**
  * Panel containing the list of tasks.
  */

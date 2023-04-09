@@ -13,6 +13,7 @@ import seedu.task.commons.util.JsonUtil;
 import seedu.task.model.TaskBook;
 import seedu.task.testutil.TypicalTasks;
 
+//@@author
 public class JsonSerializableTaskBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTaskBookTest");

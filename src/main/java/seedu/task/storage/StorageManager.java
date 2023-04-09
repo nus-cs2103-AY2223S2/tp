@@ -34,7 +34,7 @@ public class StorageManager implements Storage {
     }
 
     // ================ UserPrefs methods ==============================
-
+    //@@author
     @Override
     public Path getUserPrefsFilePath() {
         return userPrefsStorage.getUserPrefsFilePath();
@@ -82,6 +82,7 @@ public class StorageManager implements Storage {
 
     // ================ Planner methods ==============================
 
+    //@@author joyngjr
     @Override
     public Path getPlannerFilePath() {
         return plannerStorage.getPlannerFilePath();
