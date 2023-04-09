@@ -49,11 +49,16 @@ title: User Guide
        *  [Viewing help: `help`](#1-viewing-help-help)
        *  [Clearing all entries: `clear`](#2-clearing-all-entries-clear)
        *  [Exiting the program: `exit`](#3-exiting-the-program-exit)
+   *  **[Saving the data](#saving-the-data)**
+   *  **[Editing the data file](#editing-the-data-file)**
 *  **[GUI display restrictions](#gui-display-restrictions)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## Overview
 
 Finding it hard to manage your student contact details and keep track of their progress?
@@ -74,6 +79,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have `Java 11` or above installed in your Computer.
@@ -87,6 +94,8 @@ If you need to switch to a new device, you can also export and import your previ
    The initial GUI below should appear in a few seconds. Note how the app contains some sample data for your reference, you are free to delete the sample data after you get familiar with the MATHUTORING.<br>
    
     ![InitialUi](images/UG-images/InitialUi.png)
+
+    <div style="page-break-after: always;"></div>
    
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -109,6 +118,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## User interface layout
 
 There are two options to display a student's scores (__score list__ and __score chart__) by clicking the *Text* and *Chart* buttons (referred as Switch Display Button below) respectively.
@@ -121,6 +132,8 @@ There are two options to display a student's scores (__score list__ and __score 
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Layout with score chart
 
 ![Layout with Score Chart](images/UG-images/Layout2.png)
@@ -128,6 +141,8 @@ There are two options to display a student's scores (__score list__ and __score 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## User input restrictions
 To achieve the best performance, we have set **restrictions** for the user command input.<br><br>
@@ -223,6 +238,8 @@ Note if the index given is too large and exceed the integer limit, the command w
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -254,6 +271,8 @@ Note if the index given is too large and exceed the integer limit, the command w
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Managing student contact
 
 ### 1. Adding a student: `add`
@@ -284,12 +303,16 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 * The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
     ![Add a student](images/UG-images/Add%20a%20student.png)
 
 [Back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 2. Deleting a student: `delete`
 
@@ -311,6 +334,8 @@ Examples:
 * `filter female` followed by `delete 3` deletes the 3rd student (if the student exists) in the results of the `filter` command.
 
 [Back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 3. Editing a student: `edit`
 
@@ -336,6 +361,8 @@ Examples:
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 4. Checking a student: `check`
 
 Displays the information of the student being checked, including their task list and score list.
@@ -357,9 +384,11 @@ After the user checked a student, the respective student's task list and score l
 **Any of the above actions will alter the status to no student being checked now.**
 </div>
 
-
 Examples:
 * `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.<br>
+    
+    <div style="page-break-after: always;"></div>
+    
     Before command execution:
     ![Check a student (before)](images/UG-images/Check%20a%20student%20(before).png)
     After command execution:<br>
@@ -369,6 +398,8 @@ Examples:
         ![Check a student with tasks and scores](images/UG-images/Check%20a%20student.png)
 
 [Back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 5. Finding a student: `find`
 
@@ -390,6 +421,8 @@ Examples:
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 6. Filtering students: `filter`
 
 Filters students whose tags match with any of the given keywords.
@@ -410,6 +443,8 @@ Examples:
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 7. Listing all students: `list`
 
 Lists all the students in the student list.
@@ -421,6 +456,8 @@ Format: `list`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Managing task list of a student
 
@@ -448,6 +485,8 @@ Examples:
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 2. Deleting a task of a student: `deletetask`
 
 Deletes the specified task from the task list of a student.
@@ -471,6 +510,8 @@ Examples:
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 3. Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`
 
 Marks the specified task from the task list of a student as complete, in progress, or late.
@@ -489,6 +530,9 @@ Format:
 Examples:
 
 * `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.<br>
+    
+    <div style="page-break-after: always;"></div>
+    
     The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
     ![Mark a task (before)](images/UG-images/Mark%20a%20task%20(before).png)
@@ -506,6 +550,8 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Managing score list of a student
 
@@ -554,6 +600,8 @@ Examples:
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 2. Deleting a score of a student: `deletescore`
 
 Deletes the specified score from the score list of a student.
@@ -574,14 +622,11 @@ Examples:
     ![Delete a score Score List (before)](images/UG-images/Delete%20a%20score%20Score%20List%20(before).png)
     After command execution:
     ![Delete a score Score List (after)](images/UG-images/Delete%20a%20score%20Score%20List%20(after).png)
-  * Current display for score tab is using score chart.<br>
-    Before command execution:
-    ![Delete a score Score Chart (before)](images/UG-images/Delete%20a%20score%20Score%20Chart%20(before).png)
-    After command execution:
-    ![Delete a score Score Chart (after)](images/UG-images/Delete%20a%20score%20Score%20Chart%20(after).png)
 * `find Betsy` followed by `deletescore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
 [Back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 3. Switching between score tabs: `switch`
 
@@ -597,6 +642,8 @@ Format: There we support using CLI or GUI.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Managing the data of the students
 
@@ -618,7 +665,7 @@ An export window will pop up, the user is required to specify which folder to st
 ![Export the data of the students.png](images/UG-images/Export%20the%20data%20of%20the%20students.png)
 
 Examples:
-* `export` will export the file under the _home folder_ (the folder that contains the "mathutoring.jar" file).
+* `export` will export the file as a JSON file `[JAR file location]/data/data.json`
 * For Windows users
   * `export` p/C:\bin export `data.json` to bin folder under C disk.
 * For Mac users
@@ -633,6 +680,8 @@ Examples:
 </div>
 
 [Back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 2. Importing the data of the students: `import`
 
@@ -663,6 +712,8 @@ Examples:
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 3. Exporting the progress of a student: `exportp`
 
 Exports the specified student progress into a PDF file. Users can export without specifying the path. The default
@@ -677,7 +728,7 @@ up, the user is required to specify which folder to store the exported file.
 
 * Exports the score list and task list of the specified student `INDEX` in the form of a PDF file.
 * The `INDEX` **must be a positive integer** 1, 2, 3, ...
-* If `FILE_PATH` is not specified, the PDF file will be saved into the _home folder_ (same folder as `mathutoring.jar`).
+* If `FILE_PATH` is not specified, file will be exported as a JSON file in `[JAR file location]/data`
 * `FILE_PATH` should be a valid path to a **directory**.
 * The exported file name is `[STUDENT_NAME]'s Progress Report.pdf`, e.g. `Alex Yeoh's Progress Report.pdf`
 * Sample PDF output file: [Alex Yeoh's Progress Report.pdf](pdfs/Alex Yeoh's Progress Report.pdf)
@@ -686,7 +737,7 @@ up, the user is required to specify which folder to store the exported file.
 
 Examples:
 
-* `exportp 1` will export the file under the _home folder_.
+* `exportp 1` will export the file as a PDF file `[JAR file location]/data/[FIRST_STUDENT_NAME]'s Progress Report.pdf`
 * For Windows users
   * `exportp 1 p/C:\Users\John Doe\Downloads`
 * For Mac users
@@ -703,6 +754,8 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### General commands
 
@@ -722,6 +775,8 @@ Click the "Help" on the top menu, then choose "Help" again under the drop-down l
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 2. Clearing all entries: `clear`
 
 Clears all entries from the MATHUTORING.
@@ -732,6 +787,8 @@ Format: `clear`
 
 [Back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 3. Exiting the program: `exit`
 
 Exits from MATHUTORING.
@@ -741,6 +798,8 @@ Format: `exit`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Saving the data
 
@@ -762,6 +821,8 @@ If the changes to the data file make its format invalid, MATHUTORING will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## GUI display restrictions
 We have set up a few GUI display restrictions in order to avoid the GUI being affect by extreme inputs (e.g. super long name) or small screen size, and thus hinder the user experience.
 * If the student name is more than 29 letters, the full student name will be displayed in the student list. However, the
@@ -772,6 +833,8 @@ However, the chart tooltip will only display the first 11 letters, with the rema
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -780,6 +843,8 @@ However, the chart tooltip will only display the first 11 letters, with the rema
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
