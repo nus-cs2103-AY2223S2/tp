@@ -41,6 +41,7 @@ Given below are my contributions to the project.
   * Add design considerations for `Employee` class in DG [[PR#146]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/146)
   * Add documentation for `Employee` fields and commands in UG [[PR#177]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/177)
   * Add documentation for `Employee` fields, commands, and design consideration in DG [[PR#295]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/295)
+  * Add UML diagrams for `Employee` class and commands [[PR#306]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/306)
 
 * **Code Quality and Bug Fixing**:
   * Fixed issue where changes cascaded to `Leave` and `Department` classes were not reflected in UI [[PR#205]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/205)
