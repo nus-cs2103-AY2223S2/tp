@@ -49,7 +49,11 @@ easy-to-understand explanations and examples.
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-![Ui](images/Ui.png)
+<div style="text-align: center;">
+  <img src="images/Ui.png">
+  <p style="font-style: italic;"><br>Default state of the app on startup</p>
+  <br>
+</div>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -115,7 +119,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-![help message](images/helpMessage.png)
+<div style="text-align: center;">
+  <img src="images/helpMessage.png">
+  <p style="font-style: italic;"><br>Dialog with instructions to navigate to the help page</p>
+  <br>
+</div>
 
 ### Adding a person : `add`
 
@@ -134,7 +142,11 @@ Examples:
  `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`
   adds a new person `Lawrence Tay` to AIMS with the following information:
 
-![add Lawrence success](images/addLawrenceSuccess.png)
+<div style="text-align: center;">
+  <img src="images/addLawrenceSuccess.png">
+  <p style="font-style: italic;"><br>Success screen upon successful addition of Lawrence Tay</p>
+  <br>
+</div>
 
 ### Importing multiple persons from a CSV file : `importcsv`
 
@@ -156,14 +168,27 @@ Examples:
 
 - example of a Google Sheet that would be valid once converted to CSV.
 
-![demo sheets](images/demoSheets.png)
+<div style="text-align: center;">
+  <img src="images/demoSheets.png">
+  <p style="font-style: italic;"><br>Google sheet containing contact information in the correct format</p>
+  <br>
+</div>
+
 - valid CSV file:
 
-![demo CSV](images/demoCsv.png)
+<div style="text-align: center;">
+  <img src="images/demoCsv.png">
+  <p style="font-style: italic;"><br>CSV file containing contact information exported from the Google Sheet above</p>
+  <br>
+</div>
 
 - `importcsv C:\file\6coy_platoon_four_data.csv`
 
-![importcsv success](images/importcsvSuccess.png)
+<div style="text-align: center;">
+  <img src="images/importcsvSuccess.png">
+  <p style="font-style: italic;"><br>Success screen upon successful import of CSV file into AIMS</p>
+  <br>
+</div>
 
 ### Listing all persons : `list`
 
@@ -194,7 +219,12 @@ see all the text.
 Examples:
 
 - `copy 2` will show this when your clipboard is accessible
-    ![result for 'copy 2'](images/copy2Result.png)
+
+    <div style="text-align: center;">
+      <img src="images/copy2Result.png">
+      <p style="font-style: italic;"><br>Success screen upon successful copying of information to clipboard</p>
+      <br>
+    </div>
 
     The following text will be copied into your clipboard.
 
@@ -211,7 +241,12 @@ Examples:
      ```
 
 - `copy 2` will show this when your clipboard is not accessible.
-  ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
+
+   <div style="text-align: center;">
+     <img src="images/copy2_noclipboard.png">
+     <p style="font-style: italic;"><br>Warning screen when the AIMS detects that the clipboard is not accessible</p>
+     <br>
+   </div>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -261,7 +296,11 @@ Examples:
   - `Irfan Ibrahim` (email matches `live`)
   - `Roy Balakrishnan` (company matches `delta`)<br>
 
-![result for 'find charlotte irfan roy'](images/findCharlotteIrfanRoyResult.png)
+<div style="text-align: center;">
+  <img src="images/findCharlotteIrfanRoyResult.png">
+  <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
+  <br>
+</div>
 
 ### Locating persons using filters on fields : `filter`
 
@@ -280,7 +319,8 @@ Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/CO
 Examples:
 
 - `filter n/Jo` returns `john`, `John Doe` and `joseph`
-- `filter a/street r/sg` returns `David Li`, `S Lee Chong Wei`<br>
+- `filter a/street r/sg` returns `David Li`, `S Lee Chong Wei`
+
   ![result for 'filter david lee'](images/filterDavidLeeResult.png)
 
 ### Deleting a person : `delete`
@@ -335,11 +375,11 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
 
 ### Toggling the favorite status of a person : `favorite`
 
-Favorites the specified person from AIMS.
+Toggles the favorite status of a person from AIMS.
 
 Format: `favorite INDEX`
 
-- Toggles favorite for the person at the specified `INDEX`.
+- Toggles favorite status for the person at the specified `INDEX`.
 - If the command is run on a person who is not in the favorite list, he will be added to the favorite list.
 - If the command is run on a person who is already in the favorite list, he will be removed from the favorite list.
 - The index refers to the index number shown in the displayed person list.
@@ -348,7 +388,12 @@ Format: `favorite INDEX`
 Example:
 
 - `favorite 3` will pin the third person in the favorites panel.
-  ![result for `favorite 3`](images/favorite3.png)
+
+  <div style="text-align: center;">
+    <img src="images/favorite3.png">
+    <p style="font-style: italic;"><br>Screen showing the result of favoriting person 3, causing the contact to be pinned to the sidebar</p>
+    <br>
+  </div>
 
 :bulb: **Tip:** You can use `find`/`filter` to find a person first before using `favorite`!
 
