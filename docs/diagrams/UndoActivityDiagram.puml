@@ -4,7 +4,7 @@
 start
 :User executes undo n;
 if () then ([n contains non-digits \nother than whitespaes)])
-    :displays error message;
+    :Displays error message;
     stop
 else ([else])
     if () then ([n is not an empty string or whitespace])
