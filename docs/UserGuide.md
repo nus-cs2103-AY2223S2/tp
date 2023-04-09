@@ -45,10 +45,10 @@ Now it's time to **CONQUER** the semester!
   - [Tag](#tag)
   - [Untag](#untag)
   - [Find](#find)
-  - [Clear all Modules](#clear-all-modules)
-  - [Exit the App](#exit-the-app)
   - [Export Data](#export-data)
   - [Import Data](#import-data)
+  - [Clear all Modules](#clear-all-modules)
+  - [Exit the App](#exit-the-app)
 - [Note](#note)
 - [Warning](#warning)
 - [FAQ](#faq)
@@ -590,19 +590,27 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 Deletes the specified module(s) and all its embodied content from the application
 
-- <span style="color:#e46c0a">`module_code_1`, `module_code_2`, `module_code_3`, ...</span>: The codes of modules to be deleted
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Le Tracker
+- [<span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>](#module-code-format): The codes of the modules
+  - Must belong to an existing module in Le Tracker
   - Must not contain duplicates
 
-Examples:
+<details open>
+  <summary>Examples:</summary>
+  <ul>
+    <li>
+      <code>delete CS2040</code><br/>
+      deletes <code>CS2040</code> module
+    </li>
+    <li>
+      <code>delete CS2040, ST2334</code><br/>
+      deletes <code>CS2040</code> and <code>ST2334</code> modules
+    </li>
+  </ul>
+</details>
 
-- `delete CS2040`
-- `delete CS2040, ST2334`
-
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the navigation system will automatically inject the `/mod` and/or `/lec` arguments, transforming the user's command into the command specified in [Delete Lecture](#delete-lecture) or [Delete Video](#delete-video) (refer to [Navigation Injection](#navigation-injection) for more information)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
+When in a module or lecture context, the navigation system will automatically inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Delete Lecture](#delete-lecture) or [Delete Video](#delete-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Delete Lecture
 
@@ -610,18 +618,25 @@ When in a module or lecture context, the navigation system will automatically in
 
 Deletes the specified lecture(s) and all its embodied content from the same specified module
 
-- <span style="color:#e46c0a">`lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...</span>: The Names of Lectures to be deleted
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Must exist in Module of `module_code`
+- [<span style="color:#e46c0a">`lecture_name_1, lecture_name_2, lecture_name_3, ...`</span>](#lecture-name-format): The names of lectures
+  - Must belong to an existing lecture in the module specified in `module_code`
   - Must not contain duplicates
-- <span style="color:#e46c0a">`module_code`</span>: The Code of Module to delete Lectures from
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Le Tracker
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of module that contains the lectures specified by the names of lectures
+  - Must belong to an existing module in Le Tracker
 
-Examples:
-
-- `delete lecture 1 /mod CS2040` deletes `lecture 1` lecture found in module `CS2040`
-- `delete lecture 1, lecture 2 /mod ST2334` deletes `lecture 1` and `lecture 2` lectures found in module `ST2334`
+<details open>
+  <summary>Examples:</summary>
+  <ul>
+    <li>
+      <code>delete lecture 1 /mod CS2040</code><br/>
+      deletes <code>lecture 1</code> lecture found in module <code>CS2040</code>
+    </li>
+    <li>
+      <code>delete lecture 1, lecture 2 /mod ST2334</code><br/>
+      deletes <code>lecture 1</code> and <code>lecture 2</code> lectures found in module <code>ST2334</code>
+    </li>
+  </ul>
+</details>
 
 #### Delete Video
 
@@ -629,21 +644,31 @@ Examples:
 
 Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
 
-- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be deleted
-  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-  - Must exist in the Lecture of `lecture_name` in the Module of `module_code`
+- [<span style="color:#e46c0a">`video_name_1, video_name_2, video_name_3, ...`</span>](#video-name-format): The names of videos
+  - Must belong to existing videos in the lecture specified in `lecture_name`
   - Must not contain duplicates
-- <span style="color:#e46c0a">`module_code`</span>: The Code of the Module that contains the lecture to delete from
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span>: The Name of the Lecture to delete from
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Must exist in the Module of `module_code`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format): The name of the lecture that contains the videos specified by the names of videos
+  - Must belong to an existing lecture in the module specified in `module_code`
 
-Examples:
+<details open>
+  <summary>Examples:</summary>
+  <ul>
+    <li>
+      <code>delete video 3 /mod CS2040 /lec lecture 1</code><br/>
+      deletes <code>video 3</code> from lecture <code>lecture 1</code> of module `CS2040`
+    </li>
+    <li>
+      <code>delete video 1, video 3 /mod CS2040 /lec lecture 1</code><br/>
+      deletes <code>video 1</code> and <code>video 3</code> from lecture <code>lecture 1</code> of module <code>CS2040</code>
+    </li>
+  </ul>
+</details>
 
-- `delete video 3 /mod CS2040 /lec lecture 1` deletes `video 3` from lecture `lecture 1` of module `CS2040`
-- `delete video 1, video 3 /mod CS2040 /lec lecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
+When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Mark or Unmark Video
 
@@ -655,22 +680,31 @@ Marks video(s) as **watched** in lecture of its specified module
 
 Marks video(s) as **unwatched** in a lecture of its specified module.
 
-- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be marked
-  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-  - Must exist in the Lecture of `lecture_name` in the Module of `module_code`
-- <span style="color:#e46c0a">`module_code`</span>: The Code of the Module containing the lecture that contains the videos
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span>: The Name of the Lecture containing the videos
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Must exist in the Module of `module_code`
+- [<span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>](#video-name-format): The names of videos
+  - Must belong to existing videos in the lecture specified in `lecture_name`
+  - For `mark`, must not contain duplicates
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code): The code of the module
+  - Must belong to an existing module in Le Tracker
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name): The name of the lecture
+  - Must belong to an existing lecture in the module specified in `module_code`
 
-Examples:
+<details open>
+  <summary>Examples:</summary>
+  <ul>
+    <li><code>mark Vid 1 /mod CS2040 /lec Week 1</code><br/>
+    marks `Vid 1` in `Week 1` lecture of `CS2040` module as watched</li>
+    <li><code>mark Vid 1, Vid 2 /mod CS2040 /lec Week 1</code><br/>
+    marks `Vid 1` and `Vid 2` in lecture of `Week 1` of `CS2040` module as watched</li>
+    <li><code>unmark Vid 2 /mod CS2040 /lec Week 1</code><br/>
+    marks `Vid 2` in lecture `Week 1` of module `CS2040` as unwatched</li>
+    <li><code>unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1</code><br/>
+    marks `Vid 1` and `Vid 2` in lecture `Week 1` of `CS2040` module as unwatched</li>
+  </ul>
+</details>
 
-- `mark Vid 1 /mod CS2040 /lec Week 1`
-- `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
-- `unmark Vid 2 /mod CS2040 /lec Week 1`
-- `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
+When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Tag
 
@@ -893,21 +927,6 @@ Find all videos in a specified lecture in a specified module whose name starts w
 </ul>
 </details>
 
-### Clear all Modules
-
-> `clear`
-
-Clears all information (modules, lectures, videos, tags) from Le Tracker
-
-- any following term entered after `clear` is ignored
-- calling `clear` will result in an empty Tracker
-
-### Exit the App
-
-> `exit`
-
-Exit the application.
-
 ### Export Data
 
 > `export {file_path} [/overwrite]`
@@ -964,7 +983,17 @@ Examples:
 - `import hehe.json /mod CS2040, MA2401`
 - `import hihi.json /mod EG2310 /overwrite`
 
----
+### Clear all Modules
+
+> `clear`
+
+Clears all data from Le Tracker.
+
+### Exit the App
+
+> `exit`
+
+Exit the application.
 
 ## Notes
 
