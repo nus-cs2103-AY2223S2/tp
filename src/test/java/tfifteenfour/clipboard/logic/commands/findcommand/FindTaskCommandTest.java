@@ -58,7 +58,8 @@ class FindTaskCommandTest {
                 .filtered(predicate).size();
 
         expectedModel.getCurrentSelection().getSelectedGroup().updateFilteredTasks(predicate);
-        assertCommandSuccess(command, model, String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
+        assertCommandSuccess(command, model,
+                String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
     }
 
     @Test
@@ -72,7 +73,8 @@ class FindTaskCommandTest {
                 .filtered(predicate).size();
 
         expectedModel.getCurrentSelection().getSelectedGroup().updateFilteredTasks(predicate);
-        assertCommandSuccess(command, model, String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
+        assertCommandSuccess(command, model,
+                String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
     }
 
     @Test

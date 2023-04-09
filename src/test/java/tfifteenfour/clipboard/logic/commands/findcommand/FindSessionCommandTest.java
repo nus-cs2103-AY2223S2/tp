@@ -54,7 +54,8 @@ class FindSessionCommandTest {
                 .filtered(predicate).size();
 
         expectedModel.getCurrentSelection().getSelectedGroup().updateFilteredSessions(predicate);
-        assertCommandSuccess(command, model, String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
+        assertCommandSuccess(command, model,
+                String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
     }
 
     @Test
@@ -68,7 +69,8 @@ class FindSessionCommandTest {
                 .filtered(predicate).size();
 
         expectedModel.getCurrentSelection().getSelectedGroup().updateFilteredSessions(predicate);
-        assertCommandSuccess(command, model, String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
+        assertCommandSuccess(command, model,
+                String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
     }
 
     @Test

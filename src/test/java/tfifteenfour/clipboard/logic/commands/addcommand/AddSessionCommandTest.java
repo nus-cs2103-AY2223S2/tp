@@ -52,8 +52,8 @@ class AddSessionCommandTest {
         Session validSession = new Session("New Session");
         AddSessionCommand addSessionCommand = new AddSessionCommand(validSession);
 
-        assertThrows(CommandException.class, AddSessionCommand.MESSAGE_WRONG_PAGE,
-                () -> addSessionCommand.execute(model));
+        assertThrows(CommandException.class,
+                AddSessionCommand.MESSAGE_WRONG_PAGE, () -> addSessionCommand.execute(model));
     }
 
     @Test
@@ -61,7 +61,7 @@ class AddSessionCommandTest {
         Session existingSession = selectedSession;
 
         AddSessionCommand commandCopy = new AddSessionCommand(new Session(existingSession.getSessionName()));
-        assertThrows(CommandException.class, AddSessionCommand.MESSAGE_DUPLICATE_SESSION,
-                () -> commandCopy.execute(model));
+        assertThrows(CommandException.class,
+                AddSessionCommand.MESSAGE_DUPLICATE_SESSION, () -> commandCopy.execute(model));
     }
 }

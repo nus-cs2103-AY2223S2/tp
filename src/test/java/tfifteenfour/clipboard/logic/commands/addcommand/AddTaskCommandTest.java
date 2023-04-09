@@ -52,8 +52,8 @@ class AddTaskCommandTest {
         Task validTask = new Task("New Task");
         AddTaskCommand addTaskCommand = new AddTaskCommand(validTask);
 
-        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_WRONG_PAGE,
-                () -> addTaskCommand.execute(model));
+        assertThrows(CommandException.class,
+                AddTaskCommand.MESSAGE_WRONG_PAGE, () -> addTaskCommand.execute(model));
     }
 
     @Test
@@ -61,7 +61,7 @@ class AddTaskCommandTest {
         Task existingTask = selectedTask;
 
         AddTaskCommand commandCopy = new AddTaskCommand(new Task(existingTask.getTaskName()));
-        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_TASK,
-                () -> commandCopy.execute(model));
+        assertThrows(CommandException.class,
+                AddTaskCommand.MESSAGE_DUPLICATE_TASK, () -> commandCopy.execute(model));
     }
 }

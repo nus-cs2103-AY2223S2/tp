@@ -48,8 +48,8 @@ class AddCourseCommandTest {
         Course validCourse = new Course("New course");
         AddCourseCommand addCourseCommand = new AddCourseCommand(validCourse);
 
-        assertThrows(CommandException.class, AddCourseCommand.MESSAGE_WRONG_PAGE,
-                () -> addCourseCommand.execute(model));
+        assertThrows(CommandException.class,
+                AddCourseCommand.MESSAGE_WRONG_PAGE, () -> addCourseCommand.execute(model));
     }
 
     @Test
@@ -63,8 +63,8 @@ class AddCourseCommandTest {
         assertCommandSuccess(addCourseCommand, model, expectedMessage, expectedModel);
 
         AddCourseCommand commandCopy = new AddCourseCommand(new Course("New course"));
-        assertThrows(CommandException.class, AddCourseCommand.MESSAGE_DUPLICATE_COURSE,
-                () -> commandCopy.execute(model));
+        assertThrows(CommandException.class,
+                AddCourseCommand.MESSAGE_DUPLICATE_COURSE, () -> commandCopy.execute(model));
     }
 
     @Test

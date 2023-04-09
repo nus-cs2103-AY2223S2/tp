@@ -19,26 +19,24 @@ import tfifteenfour.clipboard.testutil.StudentBuilder;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
 class AddStudentCommandTest {
-    private Model model;
-    private Model expectedModel;
-    private Group selectedGroup;
-    private Session selectedSession;
-    private Student selectedStudent;
-    private CurrentSelection actualSelection;
-
     public static final Student JOHN = new StudentBuilder()
             .withName("John")
             .withPhone("98765422")
             .withEmail("johnstub@example.com")
             .withStudentId("A3456789B")
             .build();
-
     public static final Student BOB = new StudentBuilder()
             .withName("Bob")
             .withPhone("98765433")
             .withEmail("bobstub@example.com")
             .withStudentId("A3459876C")
             .build();
+    private Model model;
+    private Model expectedModel;
+    private Group selectedGroup;
+    private Session selectedSession;
+    private Student selectedStudent;
+    private CurrentSelection actualSelection;
 
     @BeforeEach
     public void setUp() {
@@ -68,8 +66,8 @@ class AddStudentCommandTest {
         actualSelection.setCurrentPage(PageType.COURSE_PAGE);
 
         AddStudentCommand addStudentCommand = new AddStudentCommand(JOHN);
-        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_WRONG_PAGE,
-                () -> addStudentCommand.execute(model));
+        assertThrows(CommandException.class,
+                AddStudentCommand.MESSAGE_WRONG_PAGE, () -> addStudentCommand.execute(model));
     }
 
     @Test
@@ -78,8 +76,8 @@ class AddStudentCommandTest {
         Student duplicateStudent = new StudentBuilder(existingStudent).build();
 
         AddStudentCommand commandCopy = new AddStudentCommand(duplicateStudent);
-        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT,
-                () -> commandCopy.execute(model));
+        assertThrows(CommandException.class,
+                AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> commandCopy.execute(model));
     }
 
     @Test

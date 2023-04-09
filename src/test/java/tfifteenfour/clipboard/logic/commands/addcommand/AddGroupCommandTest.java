@@ -55,8 +55,8 @@ class AddGroupCommandTest {
         Group validGroup = new Group("New Group");
         AddGroupCommand addGroupCommand = new AddGroupCommand(validGroup);
 
-        assertThrows(CommandException.class, AddGroupCommand.MESSAGE_WRONG_PAGE,
-                () -> addGroupCommand.execute(model));
+        assertThrows(CommandException.class,
+                AddGroupCommand.MESSAGE_WRONG_PAGE, () -> addGroupCommand.execute(model));
     }
 
     @Test
@@ -64,8 +64,8 @@ class AddGroupCommandTest {
         Group existingGroup = selectedGroup;
 
         AddGroupCommand commandCopy = new AddGroupCommand(new Group(existingGroup.getGroupName()));
-        assertThrows(CommandException.class, AddGroupCommand.MESSAGE_DUPLICATE_GROUP,
-                () -> commandCopy.execute(model));
+        assertThrows(CommandException.class,
+                AddGroupCommand.MESSAGE_DUPLICATE_GROUP, () -> commandCopy.execute(model));
     }
 
     @Test

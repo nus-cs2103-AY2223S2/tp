@@ -21,8 +21,8 @@ import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
 class FindStudentCommandTest {
-    private static Student FIRST_STUDENT;
-    private static Student SECOND_STUDENT;
+    private static Student firstStudent;
+    private static Student secondStudent;
     private Model model;
     private Model expectedModel;
     private Course selectedCourse;
@@ -44,14 +44,14 @@ class FindStudentCommandTest {
         actualSelection = this.model.getCurrentSelection();
         actualSelection.setCurrentPage(PageType.COURSE_PAGE);
 
-        FIRST_STUDENT = selectedGroup.getUnmodifiableStudentList().get(INDEX_FIRST.getZeroBased());
-        SECOND_STUDENT = selectedGroup.getUnmodifiableStudentList().get(INDEX_SECOND.getZeroBased());
+        firstStudent = selectedGroup.getUnmodifiableStudentList().get(INDEX_FIRST.getZeroBased());
+        secondStudent = selectedGroup.getUnmodifiableStudentList().get(INDEX_SECOND.getZeroBased());
     }
 
 
     @Test
     public void execute_nameMatchesOneStudent_success() {
-        String searchTerm = String.valueOf(FIRST_STUDENT.getName());
+        String searchTerm = String.valueOf(firstStudent.getName());
         StudentParticularsContainsPredicate predicate =
                 new StudentParticularsContainsPredicate(new String[]{searchTerm});
         FindStudentCommand findStudentCommand = new FindStudentCommand(predicate, actualSelection);
@@ -69,7 +69,7 @@ class FindStudentCommandTest {
 
     @Test
     public void execute_idMatchesOneStudent_success() {
-        String searchTerm = String.valueOf(FIRST_STUDENT.getStudentId());
+        String searchTerm = String.valueOf(firstStudent.getStudentId());
         StudentParticularsContainsPredicate predicate =
                 new StudentParticularsContainsPredicate(new String[]{searchTerm});
         FindStudentCommand findStudentCommand = new FindStudentCommand(predicate, actualSelection);
@@ -81,7 +81,8 @@ class FindStudentCommandTest {
                 .getUnmodifiableFilteredStudentList()
                 .filtered(predicate).size();
 
-        assertCommandSuccess(findStudentCommand, model, String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
+        assertCommandSuccess(findStudentCommand, model,
+                String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
     }
 
     @Test
@@ -96,7 +97,8 @@ class FindStudentCommandTest {
                 .getUnmodifiableFilteredStudentList()
                 .filtered(predicate).size();
 
-        assertCommandSuccess(findStudentCommand, model, String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
+        assertCommandSuccess(findStudentCommand, model,
+                String.format(FindStudentCommand.MESSAGE_SUCCESS, expectedSize), expectedModel);
     }
 
     @Test
@@ -117,8 +119,8 @@ class FindStudentCommandTest {
 
     @Test
     public void equals() {
-        String searchTerm1 = String.valueOf(FIRST_STUDENT.getName());
-        String searchTerm2 = String.valueOf(SECOND_STUDENT.getName());
+        String searchTerm1 = String.valueOf(firstStudent.getName());
+        String searchTerm2 = String.valueOf(secondStudent.getName());
 
         StudentParticularsContainsPredicate predicate1 =
                 new StudentParticularsContainsPredicate(new String[]{searchTerm1, searchTerm1});
