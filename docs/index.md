@@ -17,4 +17,5 @@ title: EduMate
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Some icons and graphics used were sourced from [upklyak](https://www.freepik.com/free-vector/pensive-people-think-about-question-problem-vector-flat-set-curious-doubt-confused-puzzled-women-men-with-hand-head-chin-expression-people-making-decision-choice_23639641.htm) and [flaticon](https://www.flaticon.com).
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
