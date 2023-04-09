@@ -489,7 +489,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `DengueHotspotTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a case**
+#### Use case: Add a case
+
+**MSS**
+
+1. placeholder
+
+**Extensions**
+
+1. placeholder
+
+#### Use case: Edit a case
+
+**MSS**
+
+1. placeholder
+
+**Extensions**
+
+1. placeholder
+
+#### Use case: Delete a case
 
 **MSS**
 
@@ -512,7 +532,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Sort the case list**
+#### Use case: Find cases
+
+**MSS**
+
+1. placeholder
+
+**Extensions**
+
+1. placeholder
+
+**Use case: Add a case**
+
+**MSS**
+
+1. placeholder
+
+**Extensions**
+
+1. placeholder
+
+#### Use case: Sort the case list
 
 **MSS**
 
@@ -534,6 +574,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. DengueHotspotTracker shows an error message.
 
       Use case resumes at step 2.
+
+#### Use case: Undo/redo an action
+
+**MSS**
+
+1. placeholder
+
+**Extensions**
+
+1. placeholder
+
+**Use case: Add a case**
+
+**MSS**
+
+1. placeholder
+
+**Extensions**
+
+1. placeholder
+
+#### Use case: Import/export/checkout data
+
+**MSS**
+
+1. placeholder
+
+**Extensions**
+
+1. placeholder
+
+**Use case: Add a case**
+
+**MSS**
+
+1. placeholder
+
+**Extensions**
+
+1. placeholder
 
 ### Non-Functional Requirements
 
