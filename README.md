@@ -28,4 +28,6 @@ Optimized for quick inputs using a Command Line Interface (CLI) while still havi
 # Acknowledgements
 
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
+- This project uses the [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX) library, an open source calendar framework for JavaFX 8. 
+
 
