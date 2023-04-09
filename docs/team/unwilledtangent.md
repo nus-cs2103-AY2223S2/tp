@@ -7,14 +7,7 @@ title: unwilledtangent's Project Portfolio Page
 
 {{ site.data.techtrack.about.summary }}
 
-I worked on implementing features, such as adding the required experience, as well as filtering by tags
-
-## Table of Contents
-
-* [Contributions](#contributions)
-* [Enhancements](#enhancements)
-* [Bug Fixes](#bug-fixes)
-* [Links to Contributions](#links-to-contributions)
+I worked on implementing features, such as adding the required experience, as well as filtering by tags. I also worked on the various documentations, UG, DG
 
 ## Contributions
 
@@ -47,25 +40,28 @@ I worked on implementing features, such as adding the required experience, as we
       respective test classes. These tests are written to ensure the reliability of these classes.
     * Highlights: Better code coverage and robustness of TechTrack.
 
+* **Documentation**:
+    * User Guide:
+      * Added the `x/` parameter for the `experience` field in the `add` command
+      * Wrote and provided the screenshots of `tag` command.
+      * Added UI Images to each command.
+    * Developer Guide:
+        * Added Sequence diagram and Commit Activity Diagram for `tag` Command.
+        * Edited Sequence diagram for `Model` component.
+        * Added Sequence diagram and description  for `tag` and `name` Command.
+        * Added documentation for `add` and `edit` manual testing appendix.
+        * Edited Product Scope
+        * Added User Stories to reflect the team's implemented commands
+        * Added Appendix: Won't Fix / Out of Scope
+        * Adjusted and ensure proper formatting of guide.
+
 ## Enhancements
 
 * Implementation of `Experience` in TechTrack.
 * Implementation of `TagCommand` where users can filter for various companies.
-* ...
 
 ## Bug Fixes
 * Fixed UG bugs. (missing commands in command summary)
-* ...
-
-* **Documentation:**
-    * User Guide:
-        * Added the `x/` parameter for the `experience` field in the `add` command
-        * Wrote and provided the screenshots of `tag` command.
-    * Developer Guide (TO BE ADDED):
-        * Wrote the implementation of TagCommand.
-        * Wrote the alternatives of TagCommand.
-        * Constructed the sequence diagram of TagCommand.
-        * Added Use cases for TechTrack v2 commands.
 
 ## Links to Contributions
 
