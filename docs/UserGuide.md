@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-#Pied Piper
+# Pied Piper
 
 Pied Piper is a user-friendly task management application tailored for current and future university student leaders. 
 The app helps them stay organised and prepare for real-world situations by helping them manage project groups, and 
@@ -381,7 +381,7 @@ Opens a window linking to this user guide
 
 [↑ Back to list of features](#2-features)
 
-## 2.17 Toggling light and dark mode
+## 2.17 Toggling between light and dark mode
 
 Allows for toggling between light mode and dark mode based on user preference.
 
