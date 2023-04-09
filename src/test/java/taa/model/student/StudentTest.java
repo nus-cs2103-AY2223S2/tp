@@ -5,19 +5,17 @@ import static taa.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static taa.logic.commands.CommandTestUtil.VALID_TAG_LAB02;
 import static taa.logic.commands.CommandTestUtil.VALID_TAG_TUT_15;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import taa.model.assignment.Assignment;
 import taa.model.assignment.Submission;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
-import taa.model.assignment.exceptions.InvalidGradeException;
-import taa.model.assignment.exceptions.SubmissionNotFoundException;
 import taa.model.tag.Tag;
 import taa.testutil.Assert;
 import taa.testutil.PersonBuilder;
@@ -243,6 +241,7 @@ public class StudentTest {
 
     @Test
     public void getGradesForAssignment_noSuchAssignment_throwsAssignmentNotFoundException() {
-        Assertions.assertThrows(AssignmentNotFoundException.class, () -> TypicalPersons.AMY.getGradesForAssignment("nonexistent"));
+        Assertions.assertThrows(AssignmentNotFoundException.class, ()
+            -> TypicalPersons.AMY.getGradesForAssignment("nonexistent"));
     }
 }
