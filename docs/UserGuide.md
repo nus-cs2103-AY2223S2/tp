@@ -17,7 +17,7 @@ a one-stop solution to manage your individual medical practice or small clinic! 
 ## Table of Contents
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## How to (best) use this guide
