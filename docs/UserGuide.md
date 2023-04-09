@@ -252,7 +252,7 @@ Rewarding your customers points is an effortless process on LoyaltyLift using
 [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or 
 [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints).
 
-You would like to add points to _Lyndon Edwards_ for his _Banana Cake_ order.
+In this scenario, we would like to add points to _Lyndon Edwards_ for his _Banana Cake_ order!
 Here, we assume that _Lyndon Edwards_ is at your first index.
 
 Enter the following command to add points to _Lyndon Edwards_ to reward him with some points.
@@ -263,8 +263,9 @@ Enter the following command to add points to _Lyndon Edwards_ to reward him with
 
 You should be able to see that _Lyndon Edwards_ has _800 points_.
 
-Now that _Lyndon Edwards_ has some points, you would like to claim a reward on his behalf for being a loyal customer.
-Perhaps, you would like to use _500 points_ from _Lyndon Edwards_ to reward him with a water bottle!
+Now that _Lyndon Edwards_ has some points, let's claim a reward on his behalf for being a loyal customer.
+In this scenario, let's say that it costs _500 points_ for a water bottle. 
+Let's use _500 points_ from _Lyndon Edwards_ to reward him with a water bottle!
 You can then easily track his new points by again, 
 using the [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints) command!
 
@@ -314,7 +315,7 @@ Here are some recommended features to explore after this tutorial.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+* You should supply parameters to words in `UPPER_CASE`.<br>
   e.g. `addc n/NAME ...`, `NAME` is a parameter which can be used as `addc n/John Doe ...`.
 
 * Items in square brackets are optional.<br>
@@ -323,7 +324,7 @@ Here are some recommended features to explore after this tutorial.
 * Items in curly brackets are an indication to use one of the given options, separated by the character `|`.
   e.g. `ct/{ind|ent}` is a parameter that should be used as `ct/ind` or `ct/ent` exactly.
 
-* Parameters can be in any order by you.<br>
+* You can enter parameters in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is specified multiple times, only the last occurrence of the parameter will be taken.<br>
