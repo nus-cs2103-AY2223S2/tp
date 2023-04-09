@@ -453,7 +453,7 @@ a filtered list.
 
 #### Feature Implementation Details
 The current implementation provides users with two different methods of entering a remark for a student.
-1. `remark INDEX r/REMARK` where `INDEX` is the `Person` entry in the list, and `REMARK` is the remark to be added.
+1. `remark INDEX REMARK` where `INDEX` is the `Person` entry in the list, and `REMARK` is the remark to be added.
 2. Adding the remark through the [add feature](#Add-feature)
 
 #### Proposed Implementation
