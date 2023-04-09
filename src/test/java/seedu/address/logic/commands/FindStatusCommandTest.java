@@ -5,9 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_APPLICATION_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.application.InternshipStatus.ACCEPTED;
+import static seedu.address.model.application.InternshipStatus.DECLINED;
+import static seedu.address.model.application.InternshipStatus.PENDING;
+import static seedu.address.model.application.InternshipStatus.RECEIVED;
 import static seedu.address.testutil.TypicalInternships.ALICE;
-import static seedu.address.testutil.TypicalInternships.FIONA;
-import static seedu.address.testutil.TypicalInternships.META;
+import static seedu.address.testutil.TypicalInternships.BANK_OF_AMERICA;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalNotes.getTypicalNoteList;
 import static seedu.address.testutil.TypicalTodos.getTypicalTodoList;
@@ -20,12 +23,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.application.NameContainsKeywordsPredicate;
+import seedu.address.model.application.StatusPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindStatusCommand}.
  */
-public class FindCommandTest {
+public class FindStatusCommandTest {
     private Model model = new ModelManager(
             getTypicalAddressBook(), new UserPrefs(), getTypicalTodoList(), getTypicalNoteList());
     private Model expectedModel = new ModelManager(
@@ -33,19 +36,17 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        StatusPredicate firstPredicate = new StatusPredicate(PENDING);
+        StatusPredicate secondPredicate = new StatusPredicate(ACCEPTED);
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindStatusCommand findFirstCommand = new FindStatusCommand(firstPredicate);
+        FindStatusCommand findSecondCommand = new FindStatusCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindStatusCommand findFirstCommandCopy = new FindStatusCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -59,29 +60,22 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noApplicationFound() {
-        String expectedMessage = String.format(MESSAGE_APPLICATION_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+    public void execute_oneStatus_multipleApplicationsFound() {
+        String expectedMessage = String.format(MESSAGE_APPLICATION_LISTED_OVERVIEW, 2);
+        StatusPredicate predicate = new StatusPredicate(DECLINED);
+        FindStatusCommand command = new FindStatusCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getSortedFilteredInternshipList());
+        assertEquals(Arrays.asList(BANK_OF_AMERICA, ALICE), model.getSortedFilteredInternshipList());
     }
 
     @Test
-    public void execute_multipleKeywords_multipleApplicationsFound() {
-        String expectedMessage = String.format(MESSAGE_APPLICATION_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Meta Alice Kunz");
-        FindCommand command = new FindCommand(predicate);
+    public void execute_noMatchingStatus_noApplicationsFound() {
+        String expectedMessage = String.format(MESSAGE_APPLICATION_LISTED_OVERVIEW, 0);
+        StatusPredicate predicate = new StatusPredicate(RECEIVED);
+        FindStatusCommand command = new FindStatusCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(META, ALICE, FIONA), model.getSortedFilteredInternshipList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        assertEquals(Collections.emptyList(), model.getSortedFilteredInternshipList());
     }
 }

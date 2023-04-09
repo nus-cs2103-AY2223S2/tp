@@ -12,6 +12,7 @@ public class AfterDatePredicate extends DatePredicate {
      * @param afterDate The date to compare to
      */
     public AfterDatePredicate(InterviewDate afterDate) {
+        assert afterDate != null : "date should not be null";
         this.afterDate = afterDate;
     }
 

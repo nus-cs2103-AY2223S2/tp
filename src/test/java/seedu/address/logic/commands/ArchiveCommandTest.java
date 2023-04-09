@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_META;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.address.model.application.InternshipStatus.ACCEPTED;
+import static seedu.address.model.application.InternshipStatus.DECLINED;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalNotes.getTypicalNoteList;
 import static seedu.address.testutil.TypicalTodos.getTypicalTodoList;
@@ -26,6 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
@@ -51,6 +54,8 @@ public class ArchiveCommandTest {
         InternshipApplication archivedApplication = new InternshipBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_BANK_OF_AMERICA)
                 .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER)
+                .withInterviewDate(new InterviewDate("2023-04-09 12:00 PM"))
+                .withStatus(DECLINED)
                 .withIsArchived(true).build();
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_APPLICATION_SUCCESS, archivedApplication);
@@ -85,6 +90,8 @@ public class ArchiveCommandTest {
                 .withCompanyName(VALID_COMPANY_NAME_META)
                 .withJobTitle(VALID_JOB_TITLE_SOFTWARE_TESTER)
                 .withContact(new Contact(new Phone(VALID_PHONE_META), new Email(VALID_EMAIL_META)))
+                .withInterviewDate(new InterviewDate("2023-04-01 08:00 PM"))
+                .withStatus(ACCEPTED)
                 .withIsArchived(true).build();
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_APPLICATION_SUCCESS, archivedApplication);

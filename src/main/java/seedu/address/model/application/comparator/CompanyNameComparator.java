@@ -17,4 +17,10 @@ public class CompanyNameComparator implements Comparator<InternshipApplication> 
         }
         return i.getCompanyName().compareTo(j.getCompanyName());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CompanyNameComparator); // instanceof handles nulls
+    }
 }

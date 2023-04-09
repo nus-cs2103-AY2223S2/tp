@@ -22,4 +22,10 @@ public class InterviewDateComparator implements Comparator<InternshipApplication
             return 1;
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof InterviewDateComparator); // instanceof handles nulls
+    }
 }
