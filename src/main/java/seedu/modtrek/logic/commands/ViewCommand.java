@@ -43,4 +43,13 @@ public class ViewCommand extends Command {
             return new CommandResult(MESSAGE_MODULES_SUCCESS);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof ViewCommand)) {
+            return false;
+        }
+        return this.isProgress == ((ViewCommand) o).isProgress;
+    }
+
 }
