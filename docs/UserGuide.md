@@ -128,6 +128,10 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
+* Note that the following are reserved keyword in InternEase, and including these characters in the company name, job title,
+  review, and other fields may lead to unspecified behaviour:
+    * `n/`, `j/`, `p/`, `q/`, `l/`, `s/`, `e/`, `t/`, `d/`
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
