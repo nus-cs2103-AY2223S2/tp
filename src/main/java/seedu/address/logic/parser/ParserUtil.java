@@ -2,10 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -49,33 +47,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static List<Index> parseTwoIndexes(String oneBasedIndexes) throws ParseException {
-        String trimmedIndexes = oneBasedIndexes.trim();
-        String[] splitIndexes = trimmedIndexes.split("\\s+");
-        if (splitIndexes.length != 2) {
-            throw new ParseException(MESSAGE_INVALID_INDEXES);
-        }
-
-        String firstIndex = splitIndexes[0];
-        String secondIndex = splitIndexes[1];
-        if (!StringUtil.isNonZeroUnsignedInteger(firstIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEXES);
-        }
-        if (!StringUtil.isNonZeroUnsignedInteger(secondIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEXES);
-        }
-
-        List<Index> returnList = new ArrayList<>();
-        returnList.add(Index.fromOneBased(Integer.parseInt(firstIndex)));
-        returnList.add(Index.fromOneBased(Integer.parseInt(secondIndex)));
-        return returnList;
     }
 
     /**

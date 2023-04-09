@@ -119,6 +119,7 @@ public class LogicManagerTest {
         assertEquals(logic.getGuiSettings(), model.getGuiSettings());
     }
 
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
