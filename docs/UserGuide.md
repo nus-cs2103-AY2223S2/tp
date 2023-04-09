@@ -346,6 +346,18 @@ Format: `free GROUP_INDEX [f/START_DATE]`
 * `START_DATE` must be of the format: `dd/MM/yyyy`
 * Note that if there are any changes to a person's event(s), the time table will only be updated upon entering the `free` command.
 
+Example:
+
+![Free time](images/FreeTime.png)
+1) Let's say you want to find a free time slot within the group 'CS2103'.
+2) Type the command `free` followed by the group index. In this case, the group index is 2.
+3) Hit enter.
+
+![Free time](images/FreeTime2.png)
+1) The free time slots will be generated and shown below.
+2) The free time slots are shown from the current day that the command is entered.
+3) However, if you would like to change the start date, you can indicate the `START_DATE` but it is optional.
+
 ## Data-related commands
 ### Importing data : `import`
 Import one person into your address book to update their details and events.
