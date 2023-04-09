@@ -475,7 +475,7 @@ If your changes to the data file makes its format invalid, ***RIZZ***ipe will di
 The keyboard input <kbd>F3</kbd> will open an import window from the main window (as shown in the image below). From there, select the JSON
 file to be imported using the selector.
 
-![ImportDataWindow](images/ImportWindow.jpg)
+![ImportDataWindow](images/ImportWindow.png)
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Additional information**:
@@ -490,7 +490,7 @@ file to be imported using the selector.
 Alternatively, you can access the import function from the <kbd>File</kbd> tab in the top left corner of the main window.
 </div>
 
-![ImportExportFromTopLeftOfWindow](images/ImportExportDisplay.jpg)
+![ImportExportFromTopLeftOfWindow](images/ImportExportDisplay.png)
 
 
 ### Exporting data
@@ -498,7 +498,7 @@ Alternatively, you can access the import function from the <kbd>File</kbd> tab i
 The keyboard input <kbd>F4</kbd> will open an export window from the main window (as shown in the image below). From there, input the file name of the
 JSON file to be exported and select the desired location for it to be saved!
 
-![ExportDataWindow](images/ExportWindow.jpg)
+![ExportDataWindow](images/ExportWindow.png)
 
 <div markdown="block" class="alert alert-success">
 :bulb: **Tip**:<br>
