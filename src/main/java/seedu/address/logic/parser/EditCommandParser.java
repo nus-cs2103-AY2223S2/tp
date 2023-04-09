@@ -8,6 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
@@ -17,6 +20,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -34,6 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            logger.info("Missing Index: " + args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
@@ -52,9 +58,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (!editClientDescriptor.isAnyFieldEdited()) {
+            logger.info("Missing parameters: " + args);
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
+        logger.info("Parsed: " + args);
         return new EditCommand(index, editClientDescriptor);
     }
 
