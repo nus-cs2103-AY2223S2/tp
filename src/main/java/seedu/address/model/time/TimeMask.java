@@ -4,7 +4,6 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import seedu.address.model.event.IsolatedEvent;
