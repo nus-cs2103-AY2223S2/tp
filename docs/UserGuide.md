@@ -15,9 +15,9 @@ PetPal can help get your pet's administrative tasks done without needing to be t
 
 This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet-administrative duties**.
 
-## Table of Contents
+## **Table of Contents**
 
-* **Table of Contents**
+* Table of Contents
   {:toc}
 
 ---
