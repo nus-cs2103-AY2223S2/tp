@@ -37,6 +37,6 @@ Given below are my contributions to the project.
         * Added Target user profile and Value proposition under "Product Scope" 
 
 * **Community**:
-    * Several PRs reviewed
+    * Reviewed 28 PRs, 1 with non-trivial comments: [#15](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/15)
     * Reported bugs and suggestions for other teams taking the module ([Issues reported](https://github.com/JavonTeo/ped/issues))
     * Contributed to forum discussions (Issue [#171](https://github.com/nus-cs2103-AY2223S2/forum/issues/171))
