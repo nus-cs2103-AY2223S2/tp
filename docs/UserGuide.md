@@ -23,8 +23,8 @@ Salespeople managing client contacts who prefer a CLI
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person: `add`](#adding-a-person-add)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
-  - [Sorting all persons : `sort`](#sorting-all-persons--sort)
   - [Listing all persons : `list`](#listing-all-persons--list)
+  - [Sorting all persons : `sort`](#sorting-all-persons--sort)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Assigning lead status: `status`](#assigning-lead-status-status)
   - [Finding a contact name: `find`](#finding-a-contact-name-find)
@@ -213,7 +213,7 @@ to mitigate the chances of accidental reassignment of the same lead status by th
 The 4 types of lead statuses supported are:
 
 | Type        | Formats (Case-sensitive) | Meaning                                                                                                                                                      |
-|-------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | UNCONTACTED | `Uncontacted` or `U`     | The user has not gotten in touch with (contacted) the saved person. By default, newly added contacts have this status                                        |
 | WORKING     | `Working` or `W`         | The person has been contacted. The user is currently nurturing a relationship with the contact with the hopes of making them a qualified lead.               |
 | QUALIFIED   | `Qualified` or `Q`       | The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here.   |
@@ -272,7 +272,7 @@ Format: `findlead STATUS`
 The user can use either the long form or short form method to search
 
 | Type        | Formats (Case-sensitive) | Meaning                                                                                                                                                      |
-|-------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | UNCONTACTED | `Uncontacted` or `U`     | The user has not gotten in touch with (contacted) the saved person. By default, newly added contacts have this status                                        |
 | WORKING     | `Working` or `W`         | The person has been contacted. The user is currently nurturing a relationship with the contact with the hopes of making them a qualified lead.               |
 | QUALIFIED   | `Qualified` or `Q`       | The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here.   |
@@ -293,7 +293,7 @@ Search for a contact based on matching KEYWORD to any attribute of a Person reco
 Format: `findall KEYWORD`
 
 \*`TAG` and `STATUS` attributes as they have their own separate commands for searching.  
-\*Does not parse through tasklist and transactions (For future extensions).  
+\*Does not parse through tasklist and transactions (For future extensions).
 
 The user can search for any attribute and if it matches with any Person, that person will be listed.
 
@@ -324,9 +324,8 @@ Adds a transaction record to the transaction list.
 
 Format: `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER`
 
-
 | Type   | Formats (Case-sensitive) | Meaning                |
-|--------|--------------------------|------------------------|
+| ------ | ------------------------ | ---------------------- |
 | OPEN   | `Open` or `O`            | Incomplete transaction |
 | CLOSED | `Closed` or `C`          | Completed transaction  |
 
@@ -425,25 +424,20 @@ If your changes to the data file makes its format invalid, SalesPunch will disca
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                                                                                                                                      |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**      | `help`                                                                                                                                                                                                                                                                |
-| **Add**       | `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL c/COMPANY l/LOCATION o/OCCUPATION j/JOBTITLE a/ADDRESS [t/TAG…] ​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |     
-| **List**      | `list`                                                                                                                                                                                                                                                                |
-| **Sort**      | `sort ATTRIBUTE`, where `ATTRIBUTE` is one of: <br> `name, gender, phone number, email, company, location, occupation, job title, address, status`<br> e.g., `sort name`                                                                                              |
-| **Edit**      | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                          |
-| **Status**    | `status INDEX_NUMBER s/STATUS` <br> e.g., `status 1 s/Unqualified`                                                                                                                                                                                                    |
-| **Find**      | `find [n/NAME]`<br> e.g., `find Alex`                                                                                                                                                                                                                                 |
-| **FindTag**   | `findtag [t/TAG]`<br> e.g., `findtag [friends]`                                                                                                                                                                                                                       |
-| **FindLead**  | `findlead [s/STATUS]`<br> e.g., `findlead Qualified` , `findlead Q`                                                                                                                                                                                                   |
-| **FindAll**   | `findall [Anything except for [s/STATUS] & [t/TAG]]`<br> e.g., `findall Alex` , `findall 93282505` , `findall Dover Crescent Road`                                                                                                                                    |
-| **FindTxn**   | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                     |
-| **AddTxn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                   |
-| **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                             |
-| **ListTxn**   | `listtxn`                                                                                                                                                                                                                                                             |
-| **EditTxn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                                                                                                                                                   |
-| **AddTask**   | `addtask INDEX at/TASK_DESCRIPTION` <br> e.g. `addtask 1 at/Arrange for sales pitch meeting`                                                                                                                                                                          |
-| **ClearTask** | `cleartask INDEX` <br> e.g., `cleartask 1`                                                                                                                                                                                                                            |
-| **Clear**     | `clear`                                                                                                                                                                                                                                                               |
-| **Exit**      | `exit`                                                                                                                                                                                                                                                                |
+| Action     | Format, Examples                                                                                                                                                                                                                                                      |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Help**   | `help`                                                                                                                                                                                                                                                                |
+| **Add**    | `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL c/COMPANY l/LOCATION o/OCCUPATION j/JOBTITLE a/ADDRESS [t/TAG…] ​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |
+| **List**   | `list`                                                                                                                                                                                                                                                                |
+| **Sort**   | `sort ATTRIBUTE`, where `ATTRIBUTE` is one of: <br> `name, gender, phone number, email, company, location, occupation, job title, address, status`<br> e.g., `sort name`                                                                                              |
+| **Edit**   | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                          |
+| **Status** | `status INDEX_NUMBER s/STATUS` <br> e.g., `status 1 s/Unqualified`                                                                                                                                                                                                    |
+| **AddTxn** | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` |
+| **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3` |
+| **ListTxn** | `listtxn` |
+| **EditTxn** | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed` |
+| **AddTask** | `addtask INDEX at/TASK_DESCRIPTION` <br> e.g. `addtask 1 at/Arrange for sales pitch meeting` |
+| **ClearTask** | `cleartask INDEX` <br> e.g., `cleartask 1` |
+| **Clear** | `clear` |
+| **Exit** | `exit` |
