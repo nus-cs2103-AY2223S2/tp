@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.entity.person.Address;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
@@ -46,17 +47,17 @@ public class AutoM8EditCommandTest {
     private static final Address technicianAddressA = new Address("Blk 586 Bedok Street 23, #08-46");
     private static final Set<Tag> customerTagA = getTagSet("regular");
     private static final Set<Tag> technicianTagA = getTagSet("big boss");
-    private static final Set<Integer> customerVehicleIdA = getIntegerSet(1, 2);
-    private static final Set<Integer> customerAppointmentIdA = getIntegerSet(1, 2, 3, 4);
-    private static final Set<Integer> technicianServiceIdA = getIntegerSet(1, 4, 5, 6);
-    private static final Set<Integer> technicianAppointmentIdA = getIntegerSet(1, 4);
+    //    private static final Set<Integer> customerVehicleIdA = getIntegerSet(1, 2);
+    //    private static final Set<Integer> customerAppointmentIdA = getIntegerSet(1, 2, 3, 4);
+    //    private static final Set<Integer> technicianServiceIdA = getIntegerSet(1, 4, 5, 6);
+    //    private static final Set<Integer> technicianAppointmentIdA = getIntegerSet(1, 4);
     private static final LocalDateTime sampleLocalDateTimeA = LocalDateTime.parse("10/12/2022 02:00 PM",
             AutoM8CommandTestUtil.getDtf());
     private static final String vehiclePlateNumberA = "SKA1234A";
     private static final String vehicleColorA = "Red";
     private static final String vehicleBrandA = "Toyota Corolla";
     private static final VehicleType vehicleTypeA = VehicleType.CAR;
-    private static final Set<Integer> vehicleServiceIdsA = getIntegerSet(1, 5);
+    //    private static final Set<Integer> vehicleServiceIdsA = getIntegerSet(1, 5);
     private static final Set<Tag> noTag = new HashSet<>();
     private static final Set<Integer> noValueIntegerSet = new HashSet<>();
 
@@ -164,6 +165,21 @@ public class AutoM8EditCommandTest {
                         Optional.empty(), Optional.empty(), Optional.empty()), model,
                 new NoFieldEditedException());
     }
+
+    // @Test
+    // private void validVehicle_success() {
+    //    Model model = new TypicalShop().getTypicalModel();
+
+    //}
+
+    //    private void foo(Model model) {
+    //        Vehicle editedVehicle = new Vehicle(vehicleId,
+    //                newOwnerId, newPlateNumber, newColor, newBrand, newType, vehicle.getServiceIdsSet());
+    //
+    //        editedVehicleCommand....
+    //
+    //        find vehicle with id... == editedVehicleCommand ? success.
+    //    }
 
     /**
      * Returns a tag set containing the list of strings given.
