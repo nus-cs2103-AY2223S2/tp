@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+--- 
+
 MediMate (MM) is a cross-platform desktop application for medical professionals, specifically for private doctors or
 their receptionists,
 who are experienced with computers and currently using paper records to store patient information.
@@ -15,16 +20,16 @@ than traditional GUI apps.
   - [Add a patient](#add-a-patient--add)
   - [List all patients](#listing-all-patients--list)
     - [List patients in alphabetical order](#listing-patients-in-alphabetical-order--list_name)
-  - [Show](#UserGuide.md#show-a-patients-information-show)
+  - [Show](#show-a-patients-information-show)
   - [Edit a patient](#editing-a-patient--edit)
   - [Appointment](#appointment)
     - [Make or change an appointment](#making-appointment-to-a-patient--makeapp)
-    - [Mark an appointment](#marking-appointment-with-a-patient--markapp)
-  - [Create a medical certificate for patient](#create-a-medical-certificate-for-patient--create)
-  - [View a medical file](#view-the-medical-file-of-a-patient--view)
-  - [Upload a medical file](#upload-a-patients-medical-file--upload)
+    - [Mark an appointment](#marking-appointment-with-a-patient-markapp)
+  - [Create a medical certificate for patient](#create-a-medical-certificate-for-patient-create)
+  - [View a medical file](#view-the-medical-file-of-a-patient-view)
+  - [Upload a medical file](#upload-a-patients-medical-file-upload)
   - [Find a patient](#locating-patients-by-name--find)
-  - [Search Appointment date](#searching-patients-with-appointment-on-specified-date--searchdate)
+  - [Search Appointment date](#searching-patients-with-appointment-on-specified-date-searchdate)
   - [Delete](#deleting-a-patient--delete)
     - [Deletes multiple patients](#deleting-multiple-patients--deletes)
     - [Delete a medical file](#delete-a-medical-file-for-the-specified-patient-deletefile)
