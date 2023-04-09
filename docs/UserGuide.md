@@ -243,7 +243,7 @@ Example:
 Import staff contacts for relevant faculties.
 > **Note**: 'staff' can refer to any person in the teaching, administrative or management teams in the faculty
 
-Format: `import [faculty]`
+Format: `import FACULTY`
 
 * Faculty acronyms (e.g. soc)
 * Only selected faculties (soc and chs) are available
