@@ -1,6 +1,5 @@
 package expresslibrary.logic.parser;
 
-import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_BORROW_DATE;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_DUE_DATE;
