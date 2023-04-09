@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 * **New Feature**: Improved User Interface (UI) for displaying fridge contents
     * What it does:  Enables users to easily view the contents of their fridge and feedback provided.
     * Justification: Our group has updated the GUI to make it more user-friendly. We have achieved this by making the display brighter and reducing sharp edges that can strain the eyes.
-    * Highlights: Implementing these changes was challenging as it required a deep understanding of the interplay between various elements of the UI, such as the fxml files and css. The updated fxml files had to look good together and be consistent with the new design while still functioning correctly. The css had to be updated to fit the new display, ensuring that the overall design was cohesive and visually appealing.
+    * Highlights: Implementing these changes was challenging as the FXML files and CSS files were difficult to work with as they required a deep understanding of the JavaFX framework to work with.. The updated fxml files had to look good together and be consistent with the new design while still functioning correctly. The css had to be updated to fit the new display, ensuring that the overall design was cohesive and visually appealing. 
 
 * **New Feature**: Added the ability to view foods.
     * What it does: allows the user to view their food items in the fridge.
