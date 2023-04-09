@@ -18,17 +18,17 @@ arguments])
     shows invalid
     arguments message;
 stop
-else if () then ([identical
-event exists])
-    :Response Box
-    shows duplicate
-    event message;
-stop
 else if () then ([end time earlier
 than start time])
     :Response Box shows
     end time earlier than
     start time message;
+stop
+else if () then ([identical
+event exists])
+    :Response Box
+    shows duplicate
+    event message;
 stop
 else if () then (time slot is occupied
 by another event])

@@ -179,8 +179,40 @@ This section describes some noteworthy details on how certain features are imple
 
 ### **Add Command**
 
-![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)  
-Activity Diagram for a typical `add` command
+EZ-Schedule mainly follows the Command design pattern. Elaboration on how the application parses commands is given in the 
+_Architecture_ section above. For _Add_ command, the noteworthy classes are:
+- `AddCommandParser.java` - For parsing the arguments to `AddCommand.java`.
+- `AddCommand.java` - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- ParseException for invalid time
+- CommandException for identical events
+- CommandException for events with clashing time
+
+Given below is an example usage scenario of how the _Add_ command executes.
+
+-- user input -- <br>
+Step 1. User executes add command with correct and valid arguments.<br>
+
+-- `SchedulerParser` -- <br>
+Step 2. Returns new `AddCommandParser`.<br>
+
+-- `AddCommandParser` -- <br>
+Step 3. Verify that all argument prefixes are present.<br>
+Step 4. Verify that all argument format is valid.<br>
+Step 5. Verify that the given event start time is before end time.<br>
+Step 6. Returns new `AddCommand`.<br>
+
+-- `AddCommand` -- <br>
+Step 7. Verify that the same event has not already been added.<br>
+Step 8. Verify that the new event to be added does not have time conflict with another event on the same day.<br>
+Step 9. Event is added.<br>
+
+The execution can be seen in the activity diagram given below.
+
+![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)
 
 ### **Recur Command**
 
