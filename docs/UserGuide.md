@@ -139,7 +139,7 @@ Preamble is a special piece of information specified for certain commands that a
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Notes on display resolution**
 
-FriendlyLink is designed to work best on a display resolution of 1920 X 1200 and a display zoom of 125%.
+FriendlyLink is designed to work best on a display resolution of 1920 X 1080 and a display zoom of 125%.
 It is recommended that you switch to this resolution before using FriendlyLink.
 
 </div>
