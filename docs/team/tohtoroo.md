@@ -5,7 +5,7 @@ title: Aeron Toh's Project Portfolio Page
 
 ### Project: Dengue Hotspot Tracker
 
-Dengue Hotspot Tracker is a desktop app for managing dengue cases. The user interacts with it using a CLI, 
+Dengue Hotspot Tracker is a desktop app for managing dengue cases. The user interacts with it using a CLI,
 and it has a GUI created with JavaFX. It is written in Java, and has about 9.5 kLoC.
 
 Given below are my contributions to the project.
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to find by date ranges to find people in the dengue case list.
   * What it does: Allows the user to find cases by a specified date range using the prefixes `sd/` and `ed/`.
-  * Justification: This feature improves the product significantly because an NEA staff may realistically require to 
+  * Justification: This feature improves the product significantly because an NEA staff may realistically require to
   search for cases that happened in a specific date range to use for data analytics.
   * Highlights: This enhancement affects existing commands. It required a team member (Valerie) and I to decide on a
   design option to accommodate for date ranges as she also needed it for her delete command. The implementation required

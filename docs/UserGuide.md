@@ -22,7 +22,7 @@ The National Environmental Agency (NEA) of Singapore is responsible for monitori
 To aid in this task, a new application called DengueHotspotTracker (DHT) has been developed, which allows NEA to track all reported cases of dengue fever in Singapore.
 
 This application serves as a case tracker, containing the name, postal code, age, date, and (optional) variant type
-of the reported case. The user-friendly interface provides an easy-to-view overview of the cases, enabling NEA to 
+of the reported case. The user-friendly interface provides an easy-to-view overview of the cases, enabling NEA to
 monitor the trends of the disease in different areas, spread in different age groups, and spread of
 different variant types of dengue. Overall, this application would allow NEA to stay informed about the latest trends
 and take proactive measures to prevent the spread of the disease.
@@ -53,7 +53,7 @@ so you can improve your knowledge on the use of DengueHotspotTracker.
 We recommend that you follow along the instructions to download and use DengueHotspotTracker with the commands introduced in this guide.
 2. Do have a glance at [Conventions](#conventions) to understand the symbols and formatting used across this guide.
 3. Now that you have had an initial look at DengueHotspotTracker, we have a detailed listing of how to understand the user interface [here](#navigating-the-user-interface).
-4. Now that you understand how to use the interface of DengueHotspotTracker, you are ready to take a deeper dive into our commands. 
+4. Now that you understand how to use the interface of DengueHotspotTracker, you are ready to take a deeper dive into our commands.
 We have some general guidelines on what user input is considered as valid. You should refer to [commands](#commands) to get a detailed coverage of the available commands.
 
 ### Conventions
@@ -95,7 +95,7 @@ open the help window.<br>
    * `add n/John Tan p/543299 d/2023 February 13 a/20`: Adds a case named `John Tan` to DengueHotspotTracker.
 
    * `delete 3`: Deletes the third case shown in the current list.
-   
+
    * `find n/John`: Finds all cases whose name contains `John` (non-case sensitive) and shows it in a filtered list.
 
    * `clear`: Deletes all cases shown in the current list.
@@ -105,7 +105,7 @@ open the help window.<br>
    * `undo 5`: Undoes five actions.
 
    * `redo 5`: Redoes five actions.
-   
+
 6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -236,7 +236,7 @@ Aside from Variants, data fields must contain at least one non-whitespace charac
   * Year:
     * 4-digit years `YYYY`
   * Month:
-    * 2-digit months `MM` 
+    * 2-digit months `MM`
     * 3-letter months `MMM`
     * Fully-spelled months `MMMM`
   * Day:
@@ -500,7 +500,7 @@ Format: `import [FILENAME]`
 <div markdown="span" class="alert alert-warning">
 
 **:exclamation: Caution:**
-As DengueHotspotTracker does not allow cases with duplicate **names, postal codes, and ages**, 
+As DengueHotspotTracker does not allow cases with duplicate **names, postal codes, and ages**,
 please ensure that the cases you are importing do not conflict with existing data within DengueHotspotTracker.
 This applies to **all** cases, not just those currently displayed.
 
