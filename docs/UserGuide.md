@@ -85,12 +85,12 @@ product effectively.
 
 --------------------------------------------------------------------------------------------------------------
 ## Fields for Student Commands
-| **Prefix** | **Prefix meaning**          | **Character Restrictions**                                                                |
-|------------|-----------------------------|-------------------------------------------------------------------------------------------|
-| n/         | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank. |
-| p/         | Phone Number                |       Phone numbers should only contain numbers, and it should be at least 3 digits long. |
+| **Prefix** | **Prefix meaning**          | **Character Restrictions**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/         | Name                        | Names should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| p/         | Phone Number                | Phone numbers should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | e/         | Email                       | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| sid/       | Student Identification (ID) | Student IDs should be alphanumeric with no special characters |
+| sid/       | Student Identification (ID) | Student IDs should be alphanumeric with no special characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 
 --------------------------------------------------------------------------------------------------------------
@@ -305,7 +305,7 @@ Examples:
 <div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
 Course code can have special characters! i.e. "AY2223S2-CS2103T" 
 </div>
-
+<br>
 [Back to list of commands](#commands)
 
 ### Deleting a course: `delete course`
@@ -402,6 +402,7 @@ Examples:
 <div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
 Group names can have special characters! i.e. "AY2223S2-T15" 
 </div>
+<br>
 
 [Back to list of commands](#commands)
 
@@ -525,6 +526,7 @@ Examples:
 <div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
 The same student can exist in different groups, because that student can be in tutorial group T1 and project group Team15 at the same time.
 </div>
+<br>
 
 [Back to list of commands](#commands)
 
@@ -540,9 +542,10 @@ delete student <INDEX>
 Examples:
 - `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
 
-<div markdown="span" class="alert alert-primary">:bulb: *Note:**
+<div markdown="span" class="alert alert-primary">:exclamation: *Note:**
  Adding new student under a group will propagate to session, but deleting a student will NOT propagate to session.
 </div>
+<br>
 
 [Back to list of commands](#commands)
 
@@ -877,6 +880,7 @@ Examples:
 <div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
 Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper" 
 </div>
+<br>
 
 [Back to list of commands](#commands)
 
@@ -960,6 +964,8 @@ Examples:
 - `assign 3 0` will assign the third student on the Studet Page the grade of 0.
 
 [Back to list of commands](#commands)
+
+--------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
