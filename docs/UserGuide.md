@@ -7,9 +7,9 @@ title: User Guide
 
 Streamline your patient management with lightning-fast efficiency using HospiSearch
 
-HospiSearch is a **desktop app for managing hospital/clinic patients' particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. HospiSearch can help you complete your contact management tasks faster than traditional GUI apps, regardless of your typing speed.
+HospiSearch is a **desktop app for managing hospital/clinic patients' particulars, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. HospiSearch can also help you complete your patient management tasks faster than traditional GUI apps, regardless of your typing speed.
 
-Our target audience is hospital and clinical administrative staff who deal with the management of large physical patient records and seek a more efficient and streamlined solution.
+Our target audience is hospital and clinical administrative staff who deal with the management of large physical patient records and seek a more efficient and streamlined solution. Our app provides them with the ability to add, edit, delete, filter patient records and so much more.
 
 ## About this Guide
 
@@ -55,13 +55,25 @@ The purpose of this user guide document is to provide staff with a clear underst
 2. Download the latest `HospiSearch.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-4/tp/releases).
 
 
-3. Copy the file to the folder you want to use as the _home folder_ for your HospiSearch.
+3. Copy the file to the folder you want to use as the _home folder_ for  HospiSearch.
 
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar`command to run the application.<br>
 
+Note:
+  - For Mac Users:
+    1. Click on the Finder icon in the Dock (the bar of icons at the bottom of the screen).
+    2. Click on Applications in the left-hand sidebar.
+    3. Open the Utilities folder.
+    4. Double-click on the Terminal application to launch the command terminal.
 
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+  - For Windows Users:
+    1. Click on the Start button in the bottom left corner of the screen.
+    2. Type command prompt into the search bar.
+    3. Click on the Command Prompt application that appears in the search results to launch the command terminal.
+
+
+   A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 
