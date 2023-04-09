@@ -78,7 +78,7 @@ After setting up, double-click the jar file to launch PetPal.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the
-[diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder.
+[diagrams](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/docs/diagrams) folder.
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
 to learn how to create and edit diagrams.
 </div>
@@ -133,7 +133,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `petListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -343,27 +343,6 @@ The following activity diagram summarizes what happens during the process:
 * Cons:
     * User might forget to refresh to the updated state and shows the outdated instead.
 
-
-
-### \[Proposed\] Importing data from excel (csv)
-
-#### Proposed Implementation
-The proposed importing function is an extension of the base `PetPal`, uses a `CsvToJsonParser` to convert csv data
-to application readable json data.
-
-#### Design considerations:
-- **Alternative 1** : Write an external script that parses the csv data based on the column names
-  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
-  for PetPal to be able to read and modify the imported data
-    - Pros: Might be easier to implement
-    - Cons: Might be confusing for users to use (running external script)
-
-- **Alternative 2 (Current Choice)** : Provide an interface for users to upload their csv data into PetPal and automatically parses
-  the data into json format and refreshes the database.
-    - Pros: Easier and more intuitive for users to use
-    - Cons: Builds upon **Alternative 1**, requiring more work to implement
-
-
 ### Undo Feature
 #### Current Implementation
 The undo mechanism is facilitated by the `ModelManager`, `UndoCommand`,  classes.
@@ -394,7 +373,30 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![UndoActivityDiagram](images/diagrams/UndoActivityDiagram.png)
 
+#### Design considerations:
+- **Current implementation** : Before any command, a cache of previous state of archive and petpal is saved
+into a PetPal object. Undo returns the `Archive` and `Model` to this previous saved state.
+  - Pros: Easier to implement
+  - Cons: Might be memory inefficient
 
+### \[Proposed\] Importing data from excel (csv)
+
+#### Proposed Implementation
+The proposed importing function is an extension of the base `PetPal`, uses a `CsvToJsonParser` to convert csv data
+to application readable json data.
+
+#### Design considerations:
+- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
+  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
+  for PetPal to be able to read and modify the imported data
+    - Pros: Might be easier to implement
+    - Cons: Might be confusing for users to use (running external script)
+
+- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
+  the data into json format and refreshes the database.
+    - Pros: Easier and more intuitive for users to use
+    - Cons: Builds upon **Alternative 1**, requiring more work to implement
+  
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
