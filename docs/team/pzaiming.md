@@ -15,8 +15,8 @@ I worked on the backend and documentation. I was mainly in charge of implementat
   * What it does: User can input deadline for the roles.
   * Justification: The addition of deadline is important to allow the user to have enough time to prepare for the
     role.
-  * Highlights: TechTrack users can now add their deadline. The restriction of deadline must be in the format '
-        YYYY-MM-DD'.
+  * Highlights: TechTrack users can now add their deadline. The restriction of deadline must be in the format 
+    `YYYY-MM-DD`.
 
 * **New Feature**: Add new `salary` command to allow the sorting of roles based on salary.
   * What it does: Allow user to see which roles are the most attractive or least attractive depending on the salary.
@@ -26,7 +26,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 
 
 * **Implementation**: Add a new `OrderParser` class to allow order in asc/desc of sorting commands.
-  * What it does: Allow developers to easy parse the sorting requirement for their sorting commands.
+  * What it does: Allow developers to easily parse the `ORDER` for their sorting commands.
   * Justification: The order needs to be either ascending or descending and makes it more OOP by creating a Parser
     class.
   * Highlights: OOP design to allow more sorting features to develop in the future by accessing this class.
@@ -42,7 +42,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 * **Enhancements to existing features**:
   * Refactoring: Refactored the `address` package to the `techtrack` package [#169](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/169)
     * What it does: The package is changed accordingly to the needs of the application
-    * Justification: Roles fits towards TechTrack instead of address and would be clearer for future developments
+    * Justification: `techtrack` instead of `address` as it will be clearer for future developments
     * Highlights: Refactored AB3 code and tests
   * Enhanced the salary restriction to make it more intuitive for the user [#255](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/255)
   * Add welcome message on startup to let the user know the available commands [#118](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/118)
@@ -53,9 +53,9 @@ I worked on the backend and documentation. I was mainly in charge of implementat
     * Added and provided the UI screenshots of `salary asc/desc` command.
     * Added restrictions for the role table.
   * Developer Guide:
-    * Added the implementation, alternatives and limitations of sorting for `salary` and `deadline`.
+    * Added implementation, alternatives and limitations for `salary` and `deadline` sort.
     * Constructed the sequence diagram of sorting for `salary` and `deadline`.
-    * Added documentation for `salary`, `deadline` and `view` manual testing appendix.
+    * Added documentation for `salary`, `deadline` and `view` for manual testing.
     * Added the first 7 of NFR section of requirement details.
     * Adjusted and ensure proper formatting of guide.
 
@@ -63,7 +63,6 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 * **Contributions to Team-based Tasks**:
   * Created priority and type tags in team repository.
   * Reviewed Pull Requests done by the team.
-  * Facilitated team meetings by planning out what we needed to do for the week.
   * Bug Fixes:
     * Fixed DG bug for the sequence diagram of sorting, where the `SalaryCommand` and `DeadlineCommand` object is 
       created before `OrderParser`.
