@@ -179,9 +179,9 @@ public class UniqueModuleList implements Iterable<Module> {
     private TreeMap<Object, ObservableList<Module>> sortByTag() {
         TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
         Comparator<Module> comparator = Comparator.comparing(Module::toString);
-        Set<Tags> OverallTags = Tags.getAllShortFormTags();
+        Set<Tags> overallTags = Tags.getAllShortFormTags();
 
-        for (Tags t : OverallTags) {
+        for (Tags t : overallTags) {
             ObservableList<Module> newList = FXCollections.observableArrayList();
             internalList.stream().filter(x -> parseTagsForSort(x.getTags()).contains(t)).forEach(y -> newList.add(y));
             if (!newList.isEmpty()) {

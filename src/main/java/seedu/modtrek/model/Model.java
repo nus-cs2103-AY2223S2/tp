@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.logic.commands.SortCommand;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.model.module.Module;
 
 /**
@@ -122,8 +123,17 @@ public interface Model {
 
     /**
      * Returns the predicate
+     *
+     * @return the current predicate
      */
     Predicate<Module> getPredicate();
+
+    /**
+     * Generates and return the current degree data
+     *
+     * @return the data
+     */
+    DegreeProgressionData generateData();
 
     TreeMap<?, ObservableList<Module>> getModuleGroups();
 
