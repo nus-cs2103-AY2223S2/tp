@@ -67,7 +67,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated the UML diagram from AddressBook to Wife [#286](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/286)
     * Added implementation details for `createtag` feature (Pull Request [#125](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/125))
-    * Added implementation details for `add`, `edit` and `tag` featu
+    * Added implementation details for `add`, `edit` and `tag` feature
     * Added further enhancement on `Unit` for `Food` in WIFE.
     
   <br/>
