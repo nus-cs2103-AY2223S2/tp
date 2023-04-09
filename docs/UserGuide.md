@@ -26,32 +26,34 @@ Are you excited yet? Let's get started!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. 
-You can check what version of Java you have, from [here](https://www.java.com/en/download/help/version_manual.html).
+1. Ensure you have Java `11` or above installed in your computer.
+   * If you have not installed Java, you can download and install Java for your computer from this [official website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+   * If you already have Java installed, you can refer to this [instruction](https://appuals.com/check-java-version-win-mac/) to verify the version of Java installed.
 
-1. Download the latest `loyaltylift.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-3/tp/releases).
+2. Download the latest `loyaltylift.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for LoyaltyLift.
+3. Copy the file to an empty folder. The folder will be your _home folder_ for LoyaltyLift.
 
-1. Open a command terminal by searching for terminal and launching it. Then, `cd` into the folder you put the jar file in, and use the `java -jar loyaltylift.jar` command to run the application.<br>
-   You can learn more about the `cd` command [here](https://www.ibm.com/docs/en/aix/7.1?topic=directories-changing-another-directory-cd-command). <br> 
-   An application similar to the one below should appear in a few seconds. Note how the app contains some sample data. You can click on one of the customers in the left hand panel to view more information about them. <br>
+4. Double-click on `loyaltylift.jar` to launch LoyaltyLift. <br>
+   A GUI similar as seen below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box (which says 'Enter command here...') and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `listc` : Lists all customers.
 
-   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to LoyaltyLift.
+   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to the Address Book.
+     
+   * `viewc 1` : Displays information of the 1st customer in the current customer list on the right panel (Information Panel) 
 
-   * `deletec 3` : Deletes the 3rd customer shown in the current list.
+   * `deletec 3` : Deletes the 3rd customer shown in the current customer list.
 
    * `clear` : Deletes all customers and orders.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 [🠕 Back To Top](#table-of-contents)
 
