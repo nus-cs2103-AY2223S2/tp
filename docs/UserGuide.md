@@ -149,7 +149,7 @@ This section aims to provide a brief overview of the features available in Power
 
 * PowerConnect does not verify if the input phone number is valid for the country (e.g. Singapore), please ensure that you input the phone number correctly.
 
-* Phone numbers should only contain numbers and must be at least 3 digits long. 
+* Phone numbers should only contain numbers and must be at least 3 digits long.
 
 
 * Student Particulars:

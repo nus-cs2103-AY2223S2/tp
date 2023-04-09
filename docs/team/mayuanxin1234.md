@@ -15,9 +15,9 @@ Given below are my contributions to the project.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *AB3's Add Command*
 
-* **New Feature**: Added to ability to add comments to students. 
+* **New Feature**: Added to ability to add comments to students.
   * What it does: Allows the user to add a comment to a student
-  * Justification: This feature allows the user to be able to take notes for each student so that the teacher would know what to take note for each student. 
+  * Justification: This feature allows the user to be able to take notes for each student so that the teacher would know what to take note for each student.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *AB3's Tag Command*
 
@@ -27,14 +27,14 @@ Given below are my contributions to the project.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *AB3's find Command*
 
-* **New Feature**: Added the ability to add student grades to PowerConnect. 
-  * What it does: Allows the user to keep track of homework/tests done by the student. 
-  * Justification: This feature contributes significantly to the product as one of the intended features is allowing the user to record student assignments for the user to keep track of. 
+* **New Feature**: Added the ability to add student grades to PowerConnect.
+  * What it does: Allows the user to keep track of homework/tests done by the student.
+  * Justification: This feature contributes significantly to the product as one of the intended features is allowing the user to record student assignments for the user to keep track of.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *Nil*
 
 * **New Feature**: Added the ability to delete student grades to PowerConnect.
-  * What it does: Allows the user to delete homework/tests added to the student. 
+  * What it does: Allows the user to delete homework/tests added to the student.
   * Justification: This feature contributes significantly to the product as one of the intended features is allowing the user to delete student assignments for the user to keep track of.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *Nil*
@@ -46,13 +46,13 @@ Given below are my contributions to the project.
   * Credits: *Nil*
 
 * **New Feature**: Added the ability to save the student and parent details properly.
-  * What it does: Allows the user to auto-save the students and parents added to PowerConnect. 
-  * Justification: This feature contributes significantly to the product as one of the intended features is allowing the user to not worry about saving the application. 
-  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required revamp to the whole storage package. 
+  * What it does: Allows the user to auto-save the students and parents added to PowerConnect.
+  * Justification: This feature contributes significantly to the product as one of the intended features is allowing the user to not worry about saving the application.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required revamp to the whole storage package.
   * Credits: *AB3's storage package*
 
 * **New Feature**: Implemented images for students and parents.
-  * What it does: Allows the user to display images for students and parents. 
+  * What it does: Allows the user to display images for students and parents.
   * Justification: Allows the user to remember the students and parents better. This is an intended feature of our application too.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required revamp existing commands.
   * Credits: *Nil*
