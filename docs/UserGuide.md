@@ -52,10 +52,6 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 
 1. Refer to the [Features](#features) below for details of each command.
 
-## **Detailed Setup**
-
-[To be added]
-
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
 
@@ -173,6 +169,8 @@ The available client-related commands are:
 Short form: `lc`
 
 Lists out all clients and shows the client list.
+
+![Client List](images/ClientList.png)
 
 ### Adding a client
 #### Format: `add-client <name/NAME> [email/EMAIL] [phone/PHONE] [tag/TAG]*`
