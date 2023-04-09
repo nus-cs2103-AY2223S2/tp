@@ -1,5 +1,6 @@
 package taa.logic.commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import taa.logic.commands.enums.ChartType;
 import taa.model.ClassList;
@@ -31,6 +32,34 @@ public class ClassStatisticsCommandTest {
         Model testModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(displayAttendanceChartCommand, testModel, expectedMessage, model);
+    }
+
+    @Test
+    public void execute_nonEmptyClassList_withGradeVariance_displayGradesChart_success() {
+        ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1");
+
+        String expectedMessage = String.format(ClassStatisticsCommand.MESSAGE_SUCCESS, "grades", "(test1)")
+            + "\n\n" + ClassStatisticsCommand.SAVE_IMAGE_HINT;
+
+        Model testModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
+
+        try {
+            testModel.addAssignment("test1", 100);
+        } catch (Exception e) {
+            Assertions.fail("ModelManager::addAssignment failed: " + e.getMessage());
+        }
+
+        try {
+            testModel.grade("test1", 1, 20, false);
+            testModel.grade("test1", 3, 30, true);
+            testModel.grade("test1", 5, 50, false);
+            testModel.grade("test1", 7, 70, true);
+        } catch (Exception e) {
+            Assertions.fail("ModelManager::grade failed: " + e.getMessage());
+        }
+
+        Model originalModel = new ModelManager(testModel.getTaaData(), testModel.getUserPrefs());
+        CommandTestUtil.assertCommandSuccess(displayGradesChartCommand, testModel, expectedMessage, originalModel);
     }
 
     @Test
