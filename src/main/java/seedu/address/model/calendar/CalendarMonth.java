@@ -12,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.session.Session;
 
-
+//@@author wongyewjon
 /**
  * Represents a Calendar in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -22,7 +22,7 @@ public class CalendarMonth {
     // Data fields
     private ObservableList<Session> sessions;
 
-
+    //@@author wongyewjon
     /**
      * Every field must be present and not null.
      */
@@ -32,7 +32,7 @@ public class CalendarMonth {
         this.sessions = sessions;
     }
 
-
+    //@@author wongyewjon
     /**
      * Returns a mutable list of CalendarEvents.
      */
@@ -40,7 +40,7 @@ public class CalendarMonth {
         return sessions;
     }
 
-
+    //@@author wongyewjon
     public ObservableList<Session> getSessionsInDayOfMonth(Integer day, Integer month, Integer year) {
         requireAllNonNull(day, month, year);
         List<Session> sessionsInDayOfMonth = new ArrayList<>();
@@ -49,7 +49,7 @@ public class CalendarMonth {
         return FXCollections.observableList(sessionsInDayOfMonth);
     }
 
-
+    //@@author wongyewjon
     /**
      * Returns true if both calendar month data field.
      * This defines a stronger notion of equality between two calendar month.
@@ -68,7 +68,7 @@ public class CalendarMonth {
         CalendarMonth otherCalendar = (CalendarMonth) other;
         return otherCalendar.getSessions().equals(getSessions());
     }
-
+    //@@author wongyewjon
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

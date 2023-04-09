@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import seedu.address.model.session.Session;
 import seedu.address.ui.UiPart;
 
-
+//@@author wongyewjon
 /**
  * Panel containing the list of CalendarEvents for a specific day in the calendar month.
  * This UI component displays the events in a vertical list, where each event is represented by an {@code EventButton}.
@@ -28,7 +28,7 @@ public class CalendarEventListPanel extends UiPart<Region> {
     @FXML
     private VBox calendarEventList;
 
-
+    //@@author wongyewjon
     /**
      * Constructs a new {@code CalendarEventListPanel} object with the specified list of {@code CalendarEvent} objects
      * and primary stage of the application.
@@ -44,7 +44,7 @@ public class CalendarEventListPanel extends UiPart<Region> {
 
     }
 
-
+    //@@author wongyewjon
     /**
      * Returns a {@code VBox} object containing the list of {@code CalendarEvent} objects for the specified day.
      * The list is displayed in a vertical list, where each event is represented by an {@code EventButton}.
@@ -61,7 +61,7 @@ public class CalendarEventListPanel extends UiPart<Region> {
         return calendarEventList;
     }
 
-
+    //@@author wongyewjon
     /**
      * Returns a {@code Text} object displaying the current day of the month.
      * @param currentDay The current day of the month.
