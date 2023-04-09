@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":UnassignCommandParser" as UnassignCommandParser LOGIC_COLOR
-participant "d:UnassignCommand" as UnassignCommand LOGIC_COLOR
+participant "u:UnassignCommand" as UnassignCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +13,10 @@ box OfficeConnectModel MODEL_COLOR_T1
 participant ":OfficeConnectModel" as OfficeConnectModel MODEL_COLOR
 end box
 
-[-> LogicManager : execute("unassign pi/1 ti/1")
+[-> LogicManager : execute(commandText)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("unassign pi/1 ti/1")
+LogicManager -> AddressBookParser : parseCommand(userInput)
 activate AddressBookParser
 
 create UnassignCommandParser
@@ -26,17 +26,17 @@ activate UnassignCommandParser
 UnassignCommandParser --> AddressBookParser
 deactivate UnassignCommandParser
 
-AddressBookParser -> UnassignCommandParser : parse("1", "1")
+AddressBookParser -> UnassignCommandParser : parse(args)
 activate UnassignCommandParser
 
 create UnassignCommand
 UnassignCommandParser -> UnassignCommand
 activate UnassignCommand
 
-UnassignCommand --> UnassignCommandParser : r
+UnassignCommand --> UnassignCommandParser : u
 deactivate UnassignCommand
 
-UnassignCommandParser --> AddressBookParser : r
+UnassignCommandParser --> AddressBookParser : u
 
 
 deactivate UnassignCommandParser
@@ -44,13 +44,13 @@ deactivate UnassignCommandParser
 UnassignCommandParser -[hidden]-> AddressBookParser
 destroy UnassignCommandParser
 
-AddressBookParser --> LogicManager : r
+AddressBookParser --> LogicManager : u
 deactivate AddressBookParser
 
-LogicManager -> UnassignCommand : execute()
+LogicManager -> UnassignCommand : execute(model, officeConnectModel)
 activate UnassignCommand
 
-UnassignCommand -> OfficeConnectModel : deleteAssignment(1,1)
+UnassignCommand -> OfficeConnectModel : deleteAssignment(personToUnassign, taskToUnassign)
 activate OfficeConnectModel
 
 OfficeConnectModel --> UnassignCommand
@@ -63,7 +63,7 @@ activate CommandResult
 CommandResult --> UnassignCommand
 deactivate CommandResult
 
-UnassignCommand --> LogicManager : result
+UnassignCommand --> LogicManager : CommandResult(MESSAGE_SUCCESS)
 deactivate UnassignCommand
 
 [<--LogicManager

@@ -13,10 +13,10 @@ box OfficeConnectModel MODEL_COLOR_T1
 participant ":OfficeConnectModel" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("deletep 1")
+[-> LogicManager : execute(commandText)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("deletep 1")
+LogicManager -> AddressBookParser : parseCommand(userInput)
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -26,7 +26,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+AddressBookParser -> DeleteCommandParser : parse(args)
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -45,10 +45,10 @@ destroy DeleteCommandParser
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model, officeConnectModel)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deletePerson(person)
 activate Model
 
 Model --> DeleteCommand
@@ -61,7 +61,7 @@ activate CommandResult
 CommandResult --> DeleteCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
+DeleteCommand --> LogicManager : CommandResult(MESSAGE_SUCCESS)
 deactivate DeleteCommand
 
 [<--LogicManager
