@@ -1,5 +1,6 @@
 ---
-Javon Teo's Project Portfolio Page
+layout: page
+title: Javon Teo's Project Portfolio Page
 ---
 
 ### Project: LoyaltyLift
