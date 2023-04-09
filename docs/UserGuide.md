@@ -358,11 +358,11 @@ Format: `undo`
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 </div>
 
-![Undo-1](images/command_result/Undo-1.png)
+<br/>![Undo-1](images/command_result/Undo-1.png)
 
 Changing the name of a patient above `edit 6 n/John Balakrishnan` (Previously Roy Balakrishnan)
 
-![Undo-2](images/command_result/Undo-2.png)
+<br/>![Undo-2](images/command_result/Undo-2.png)
 
 And above is the execution of `undo`
 
