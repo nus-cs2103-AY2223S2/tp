@@ -109,7 +109,7 @@ ________________________________________________________________________________
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `t/TAG…​` can be used as 0 times, `t/friend`, `t/friend t/family` etc.
+  e.g. `t/TAG…​` means that we can exclude the tag prefix completely or use it as `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
