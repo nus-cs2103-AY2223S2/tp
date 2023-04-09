@@ -322,7 +322,7 @@ Below shows the activity diagram when the user inputs the sort command in the co
 
 The subsidiary diagram, for SortCommandParser, is as shown below:
 
-![Activity Diagram for sort command parser](images/sortcommandparser.png){:.center}
+![Activity Diagram for sort command parser](images/newsortcommandparser.png){:.center}
 
 #### Implementation
 
