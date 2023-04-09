@@ -21,10 +21,11 @@ title: Developer Guide
     - [Edit patient feature](#edit-patient-feature)
     - [View patient particulars feature](#view-patient-particulars-feature)
     - [Delete patient feature](#delete-patient-record-by-nric-feature)
-    - [Find patients feature](#filter-patient-record-by-attribute)
+    - [Filter patients feature](#filter-patient-record-by-attribute)
     - [Light/dark theme](#lightdark-theme)
-    - [Adding NRIC as unique identifier](#adding-nric-as-identifier)
+    - [Adding Nric as identifier](#adding-nric-as-identifier)
     - [Adding health conditions](#adding-health-conditions)
+    - [Adding attending doctor](#adding-attending-doctor)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
     - [Product Scope](#product-scope)
@@ -34,8 +35,10 @@ title: Developer Guide
     - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     - [Launch and shutdown](#launch-and-shutdown)
+    - [Adding a person](#adding-a-person)
     - [Deleting a person](#deleting-a-person)
-    - [Saving data](#saving-data)
+    - [Finding a person](#finding-a-person)
+    - [Saving and Loading data](#saving-and-loading-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -593,7 +596,7 @@ what known conditions he/she has.
     * Cons: This will require more restructuring of the codebase, the location to display health conditions may not be
       as obvious as well compared to the current display of tags.
 
-## Adding Attending Doctor
+### Adding Attending Doctor
 
 The proposed implementation of separate `Doctor` object to encapsulate the current attending doctor of a patient.
 
@@ -648,20 +651,22 @@ appointment schedules, and billing information all in one place
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                | So that I can…​                                     |
-|----------|----------|-----------------------------|-----------------------------------------------------|
-| `* * *`  | new user | see the user guide          | know about all functions                            |
-| `* * *`  | new user | access a help menu          | know about all commands                             |
-| `* * *`  | admin    | add patients’ records       | keep track of their information                     |
-| `* * *`  | admin    | edit patients’ records      | update their information                            |
-| `* * *`  | admin    | view a patient particulars  | have an overall understanding of the patient        |
-| `* * *`  | admin    | delete patients’ records    | free up space for other patient records             |
-| `* *`    | admin    | list all patients           | have an overview                                    |
-| `* *`    | admin    | search for a patient record | find the needed information quickly                 |
-| `**`     | admin    | backup data                 | recover data in the event of a primary data failure |
-| `*`      | admin    | clear data                  | start the database from scratch                     |
+| Priority | As a …​  | I want to …​                | So that I can…​                                        |
+|----------|----------|-----------------------------|--------------------------------------------------------|
+| `* * *`  | new user | see the user guide          | know about all functions                               |
+| `* * *`  | new user | access a help menu          | know about all commands                                |
+| `* * *`  | admin    | add patients’ records       | keep track of their information                        |
+| `* * *`  | admin    | edit patients’ records      | update their information                               |
+| `* * *`  | admin    | view a patient particulars  | have an overall understanding of the patient           |
+| `* * *`  | admin    | delete patients’ records    | free up space for other patient records                |
+| `* *`    | admin    | list all patients           | have an overview                                       |
+| `* *`    | admin    | search for a patient record | find the needed information quickly                    |
+| `**`     | admin    | backup data                 | backup data in the event of a primary data failure     |
+| `**`     | admin    | load data                   | load data in the event of a primary data failure       |
+| `**`     | admin    | undo commands               | roll back current state if I made a unintended command |
+| `**`     | admin    | redo commands               | roll back current state if I made an unintended redo   |
+| `*`      | admin    | clear data                  | start the database from scratch                        |
 
-*{More to be added}*
 
 <sub>[return to table of contents](#table-of-contents)</sub>
 
@@ -746,7 +751,6 @@ otherwise)
 
 * 1a. There is no such patient with specified NRIC in the HS system. Use case ends.
 
-*{More to be added}*
 
 <sub>[return to table of contents](#table-of-contents)</sub>
 
@@ -793,7 +797,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Adding a person
 
@@ -811,7 +814,6 @@ testers are expected to do more *exploratory* testing.
        Expected: No person is added. Error details shown in the status message. Status bar remains the same.
     6. Other incorrect add commands to try: `add`, `add x/...`, `...` (where x is some invalid tag)
 
-2. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -825,7 +827,6 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
 
 ### Finding a person
 
@@ -853,19 +854,22 @@ testers are expected to do more *exploratory* testing.
        Expected: Multiple attributes have been input. Error details shown in the status message. Status bar remains the
        same.
 
-    8. Other incorrect delete commands to try: `find`, `find x`(no prefix have been given),<br />
-       , `find n/ i/`,  `find n/ m/ i/` `...` <br>
+    8. Other incorrect delete commands to try: `find`, `find x`(no prefix have been given),<br>
+       `find n/ i/`,  `find n/ m/ i/`, `...` <br>
        Expected: Similar to previous wrong commands.
 
 2. Returning to the full list of persons
     1. List all persons using the `list` command to return back to the full list of persons in the database.
 
-### Saving data
+### Saving and Loading data
 
-1. Dealing with missing/corrupted data files
+1. Saving current state of HospiSearch
+   1. Prerequisites: There are 1 or more patient records in HospiSearch. <br>
+   The following test cases should be executed sequentially (one after the other)/
+   2. Test case 1.1: `backup 1`, then `viewbackups` <br>
+      Expected: Current state is saved in backup slot 1.
+   3. Test case 1.2: `delete i/x`, (replace x with `nric` of the first patient), then `load 1`
+      Expected: The state of HospiSearch should be as if the `delete` command was not executed.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 <sub>[return to table of contents](#table-of-contents)</sub>
