@@ -281,9 +281,9 @@ It is *possible* but **not recommended** for users to manually edit any of the J
 | **Find**         | `find PREFIX/Keyword [MORE PREFIX/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                        |
 | **List**         | `list`                                                                                                                                                                                                                        |
 | **Help**         | `help`                                                                                                                                                                                                                        |
-| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                          |
+| **Add-Image**    | `add-image INDEX ai/PATH-TO-IMAGE` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                            |
 | **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                             |
-| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                       |
+| **Import**       | `import FACULTY` <br> e.g.,  `import soc, import chs`                                                                                                                                                                         |
 | **Exit**         | `exit`                                                                                                                                                                                                                        |
 
 [Back to top](#top)
