@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<fx:root minHeight="450" minWidth="450" resizable="false" title="Statistics" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="450" minWidth="450" resizable="false" title="Statistics" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/stats_icon.png" />
     </icons>

@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added "How to use this Guide?"" and "Windows and Features Overview" sections (PR #253)
+        * Added _How to use this Guide?_ and _Windows and Features Overview_ sections (PR #253)
         * Added documentation for Timetable commands (PR #184)
         * Added and updated documentation for Delivery Job commands (PR #184, #253)
         * Added documentation for Job Detail (UI) in Main Window (PR #254)
@@ -49,9 +49,9 @@ Given below are my contributions to the project.
         * Re-format, touch up, fix minor bugs and finalize UG (PR #200, #205, #260)
       
     * Developer Guide:
-        * Added implementation details for Timetable functions (PR #128)
-        * Added sequence diagram for `delete_job` command
-        * Added user stories, use cases and glossary (PR #20, #23, #34)
+        * Added implementation details and diagrams for `UI component`, `Timetable` and `delete_job` (PR #128, #270)
+        * Added user stories for timetable, reminder; use cases for timetable and glossary (PR #20, #23, #34, #270)
+        * Added Appendix: Effort (PR #270)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): #180, #156, #264 

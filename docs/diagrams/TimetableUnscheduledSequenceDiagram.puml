@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DukeDriverParser" as DukeDriverParser LOGIC_COLOR
+participant "t:TimetableUnscheduleCommand" as TimetableUnscheduleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("timetable_unscheduled")
+activate LogicManager
+
+LogicManager -> DukeDriverParser : parseCommand("timetable_unscheduled")
+activate DukeDriverParser
+
+create TimetableUnscheduleCommand
+DukeDriverParser -> TimetableUnscheduleCommand
+activate TimetableUnscheduleCommand
+
+TimetableUnscheduleCommand --> DukeDriverParser : t
+deactivate TimetableUnscheduleCommand
+
+DukeDriverParser --> LogicManager : t
+deactivate DukeDriverParser
+
+LogicManager -> TimetableUnscheduleCommand : execute()
+activate TimetableUnscheduleCommand
+TimetableUnscheduleCommand -> Model : updateSortedDeliveryJobList(new SortbyTimeAndEarn())
+TimetableUnscheduleCommand -> Model : getUnscheduledDeliveryJobList()
+activate Model
+
+
+Model --> TimetableUnscheduleCommand
+deactivate Model
+
+TimetableUnscheduleCommand --> LogicManager : result
+deactivate TimetableUnscheduleCommand
+TimetableUnscheduleCommand -[hidden]-> LogicManager : result
+destroy TimetableUnscheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

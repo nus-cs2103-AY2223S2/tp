@@ -28,7 +28,7 @@ public class TimetableDateCommand extends Command {
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_DATE + "2023-03-15";
 
-    public static final String SHOWING_TIMETABLE_MESSAGE = "Show timetable of the week containing day: %s.";
+    public static final String SHOWING_TIMETABLE_MESSAGE = "Showed timetable of the week containing day: %s.";
 
     public static final SortbyTimeAndEarn SORTER = new SortbyTimeAndEarn();
     private final LocalDate jobDate;

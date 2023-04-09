@@ -35,6 +35,7 @@ public class TimetableWindow extends UiPart<Stage> {
     private int focusDayOfWeek;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimetableDetailPanel timetableDetail;
 
 
     @FXML
@@ -139,7 +140,7 @@ public class TimetableWindow extends UiPart<Stage> {
         focusDate = logic.getFocusDate();
 
         timetablePlaceholder.getChildren().clear();
-        TimetableDetailPanel timetableDetail = new TimetableDetailPanel(focusDate, logic, primaryStage);
+        timetableDetail = new TimetableDetailPanel(focusDate, logic, primaryStage);
         timetablePlaceholder.getChildren().add(timetableDetail.getRoot());
     }
 

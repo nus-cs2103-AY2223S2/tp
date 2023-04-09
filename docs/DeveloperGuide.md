@@ -69,27 +69,39 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 ### UI component
-
+#### General
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI layer consist of multiple UIWindows from different components. All windows inherits the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-On start, the `UIManager` will display the `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DeliveryJobListPanel`, `StatusBarFooter` etc. The `MainWindow` serve as a main interaction and entry point to other windows for users.
-
-![Structure of the Main Window](images/UiClassDiagramMainWindow.png)
-
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* calls predefined event handlers when an action, `button`, `mouse` or `keyboard` etc, is perform by the user.
+* listens for changes to `Model` data so that the UI can be updated with the modified data (using `addEventListener`).
+* calls predefined event handlers when an action, `button`, `mouse` or `keyboard` etc, is performed by the user.
 * some window keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `DeliveryJob` or `Person` object residing in the `Model`.
 * Although not represented in the diagram, the UI component starts the Notification function as soon as the app runs.
+
+#### Main Window
+
+On start, the `UIManager` will display the `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DeliveryJobListPanel`, `StatusBarFooter` etc. The `MainWindow` serve as a main interaction and entry point to other windows for users.
+
+![Structure of the Main Window](images/UiClassDiagramMainWindow.png)
+
+#### Timetable Window
+
+Timetable Window displays timetable of the specific week - which is specified by user. The "main" timetable window only contains scheduled jobs (jobs that are scheduled and not yet completed). Meanwhile, we also have separated windows for completed and unscheduled jobs. Timetable Window helps users to stay organized and structure their plans for the week.
+
+
+For `TimetableWindow`, the structure is a little bit more complicated than other windows - it contains a few more parts such as `CommandBox`, `ResultDisplay`, etc.
+![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
+
+
 
 The `Job System` component,  
 ![Structure of the Create Job Component](images/UiClassDiagramCreateJob.png)
@@ -251,32 +263,68 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### Timetable feature
+### Delivery Job System
 #### Implementation
 
+##### 1. Edit job command
+Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar execution pattern with their own command logics.
+
+GUI Mode:
+Step 1. The user launches the application for the first time.
+Step 2. The user selects a job to be updated.
+Step 3. The user edits preexisting inputs to update the job.
+
+The command pattern was followed closely with difference only in the execution layer where the `EditDeliveryJobCommand` constructs a `DeliveryJob` object through a builder pattern.
+
+The builder construct was initially introduced to handle optional and null arguments from `find_job` command and GUI. Here, we are reusing the builder to construct a `DeliveryJob` class.
+
+The builder class returns a `DeliveryJob` object only when `EditDeliveryJobCommand` calls the `DeliveryJob.Builder#build()` method.
+
+Operation resume to standard process from this point onwards.
+
+The following sequence diagram shows how the update operation works:
+
+![EditDeliveryJobSequenceDiagram](images/EditDeliveryJobSequenceDiagram.png)
+
+##### 2. Delete job command
+Similarly to `edit_job`, we have an example for the implementation for Delete Delivery Job command:
+
+Given below is an example usage scenario and how the delete job mechanism behaves at each step. The logic is quite similar to `edit_job` command.
+
+GUI Mode:
+Step 1. The user launches the application for the first time.
+Step 2. The user selects a job to delete.
+Step 3. The user deletes the job by using the corresponding button.
+
+The command pattern was followed closely with difference only in the execution layer where the `DeleteDeliveryJobCommand` prompts `Model` to delete the job.
+
+Operation resume to standard process from this point onwards.
+
+The following sequence diagram shows how the update operation works:
+
+
+_In this example, user input is `delete_job ABCDEF`. The logic for `add_job` command is similar to this._
+![Delete Delivery job for the `delete_job ABCDEF` Command](images/DeleteDeliveryJobSequenceDiagram.png)
+
+
+### Timetable feature
+#### Implementation
+#### 1. Display timetable of specific week (current week or week specified by users)
 Given below is an example usage scenario and how the timetable mechanism behaves at each step.
 
-* `DeliveryJobSystem#commit()` — Saves the current delivery job system state in its history.
-* `DeliveryJobSystem#timetable_date()` — Shows timetable of the specified week by user.
-* `DeliveryJobSystem#timetable()` — Shows timetable of current week.
-
-These operations are exposed in the `Model` and `Logic` interface as `Model#commitDeliveryJob()`, `Logic#executeTimetableCommand()` and `Logic#execute()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time.
 
-Step 2. The user executes `delete_job ALBE6DD723` command to delete job with ID ALBE6DD723 in the DeliveryJobSystem. The `delete` command calls `Model#commitDeliveryJob()`, causing the modified state of the delivery job list system after the `delete_job ALBE6DD723` command executes to be saved in the `deliveryJobSystemStateList`.
+Step 2. The user inputs a series of commands to modify the state of the deliveryJobList.
 
-Step 3. The user executes `add_job si/ALE48 …​` to add a new job. The `add_job` command also calls `Model#addDeliveryJob()`, causing another modified delivery job list system to be saved into the `deliveryJobListSystem`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitDeliveryJob()`, so the delivery job list state will not be saved into the `deliveryJobListSystem`.
 
 </div>
 
-Step 4. The user now wants to view timetable of the current week by executing the `timetable` command. The `timetable` command will call `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the current week.
+Step 4. The user now wants to view timetable of the current week by executing the `timetable` command. The `timetable` command will call `Model#updateFocusDate(LocalDate.now())`, `Model#updateSortedDeliveryJobList()`, `Model#updateSortedDeliveryJobListByDate()` and `Model#updateWeekDeliveryJobList`. The sorter functions will re-sort the most updated delivery job list by date. Then, `Model#updateWeekDeliveryJobList` will update the week job list to the specific week's job list.
 
-The `timetable_date` command is quite similar — it calls `Model#updateFocusDate()`, before calling `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the week according to the given date.
+The `timetable_date` command is quite similar — it calls `Model#updateFocusDate()` using the date specified by user, before calling `Model#updateSortedDeliveryJobList()`, `Model#updateSortedDeliveryJobListByDate()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the week according to the given date.
 
 
 The following sequence diagram shows how the timetable operation works:
@@ -292,21 +340,51 @@ The following sequence diagram shows how the timetable_date operation works:
 
 </div>
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
 **Aspect: How timetable executes:**
 
-* **Alternative 1 (current choice):** Saves the entire delivery job list system.
+* **Alternative 1 (current choice):** Timetable uses sorted job list which saves the entire delivery job list system.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows which date to show timetable of specific week.
+* **Alternative 2:** Individual command knows which date to show timetable of specific week - timetable will only need to use job list of specific week.
     * Pros: Will use less memory.
     * Cons: We must ensure that the implementation of each individual command are correct.
+
+#### 2. Display list of unscheduled or completed jobs
+Given below is an example usage scenario and how the mechanism for showing list of unscheduled or completed jobs behaves at each step.
+
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user inputs a series of commands to modify the state of the deliveryJobList.
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitDeliveryJob()`, so the delivery job list state will not be saved into the `deliveryJobListSystem`.
+
+</div>
+
+Step 4. The user now wants to view list of unscheduled or completed jobs by executing the `timetable_unscheduled` or `timetable_completed` command.
+
+The `timetable_unscheduled`/`timetable_completed` command will call `Model#updateSortedDeliveryJobList()` and `Model#getUnscheduledDeliveryJobList()` or `Model#getCompletedDeliveryJobList()` correspondingly. 
+
+The sorter functions will re-sort the most updated delivery job list by date. Then, the model will proceed to update the lists of unscheduled or completed jobs.
+
+The following sequence diagram shows how the `timetable_unscheduled` operation works:
+
+![TimetableSequenceDiagram](images/TimetableUnscheduledSequenceDiagram.png)
+
+The following sequence diagram shows how the `timetable_completed` operation works:
+
+![TimetableSequenceDiagram](images/TimetableCompletedSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TimetableCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 
 ### Statistics feature
 #### Implementation
@@ -342,28 +420,6 @@ The following sequence diagram shows how the statistics operation works:
 
 
 _{more aspects and alternatives to be added}_
-
-### Delivery Job System
-#### Implementation
-
-Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar execution pattern with their own command logics.
-
-GUI Mode: 
-Step 1. The user launches the application for the first time. 
-Step 2. The user selects a job to be updated. 
-Step 3. The user edits preexisting inputs to update the job. 
-
-The command pattern was followed closely with difference only in the execution layer where the `EditDeliveryJobCommand` constructs a `DeliveryJob` object through a builder pattern.
-
-The builder construct was initially introduced to handle optional and null arguments from `find_job` command and GUI. Here, we are reusing the builder to construct a `DeliveryJob` class.
-
-The builder class returns a `DeliveryJob` object only when `EditDeliveryJobCommand` calls the `DeliveryJob.Builder#build()` method.
-
-Operation resume to standard process from this point onwards.
-
-The following sequence diagram shows how the update operation works:
-
-![EditDeliveryJobSequenceDiagram](images/EditDeliveryJobSequenceDiagram.png)
 
 ### Notification feature
 #### Implementation
@@ -430,7 +486,7 @@ Design considerations:
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile: Delivery man**
 
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other mediums
@@ -442,7 +498,11 @@ Design considerations:
 * lazy, doesn't like to micromanage
 * forgetful
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app. Also helps delivery men to stay on track with their delivery schedule.
+**Value proposition**: 
+* Manage contacts faster than a typical mouse/GUI driven app. 
+* Helps delivery men to stay on track with their delivery schedule.
+* Assists delivery men to structure their upcoming tasks.
+* Manage job lists and customers' contacts - keep their information descriptive and updated/concise information.
 
 
 ### User stories
@@ -573,21 +633,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 <details>
-<summary><b>[TT1] Display timetable and scheduling tasks of current week</b></summary>
+<summary><b>[TT1] Display timetable of scheduling tasks of current week</b></summary>
 <pre>
 <b>MSS</b>
 1. User requests to display timetable by selecting Timetable option on homepage.
-2. System displays timetable of uncompleted/upcoming jobs in current week.
+2. System displays timetable of uncompleted/upcoming jobs in current week in Timetable Window.
    Use case ends.
 </pre>
 </details>
 
 <details>
-<summary><b>[TT2] Display timetable and scheduling tasks of week containing a specific date</b></summary>
+<summary><b>[TT2] Display timetable of scheduling tasks of week containing a specific date</b></summary>
 <pre>
 <b>MSS</b>
 1. User requests to display timetable of specific week containing a specific date.
-2. System displays timetable of uncompleted/upcoming jobs in the week.
+2. System displays timetable of uncompleted/upcoming jobs in the week in Timetable Window.
+   Use case ends.
+</pre>
+</details>
+
+<details>
+<summary><b>[TT3] Display list of unscheduled/completed jobs</b></summary>
+<pre>
+<b>MSS</b>
+1. User requests to display list of unscheduled/completed jobs.
+2. System displays list of unscheduled/completed jobs in Unscheduled/Completed Window.
    Use case ends.
 </pre>
 </details>
@@ -794,11 +864,17 @@ has been activated.
 
 
 ### Appendix: Effort
-As our application contains different windows and features, such as Timetable Window, Statistics Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on how to display each and every window that we have. This was quite challenging as we had to learn and design the structures of the windows and components so that it follows a good design principles. In order to make sure that Duke Driver is friendly to users who prefer typing, asides from including buttons on GUI mode, we tried to include commands for users to switch to different windows. 
+As our application contains different windows and features, such as Timetable Window, Statistics Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on the structure/design of each and every window that we have to maintain good design principles. In order to make sure that Duke Driver is friendly to users who prefer typing, asides from including buttons on GUI mode, we also include commands (typing-preferred) for users to switch to different windows. 
 
 Moreover, AB3 code base only consists of features supporting only `Person` class, meanwhile for Duke Driver, we had to work with and update the code base to support different entity types - for example, `Delivery Job` and `Reminder`. With the extensions that we planned to do, we also had to update the Parser to support a much larger set of commands, as we were working with numerous commands from different windows (Timetable, Reminder, Statistics,...).
 
-For Timetable Window, we wanted users to be able to structure their plans for the week, thus we added a Timetable feature. However, as Timetable is directly linked with the delivery job list, thus changes made in the existing functions could affect the features directly. Moreover, the implementation was also challenging as it required changes to the existing commands. We also had to decide on the design of the Timetable Window, and learn to use the `ListView` class in our timetable.
+For Delivery Job Management System, as the job details were very long and could not be viewed inside a small cell in the job list, we wanted to add a feature for users to use mouse or arrow keys and click on the job to view its detail correspondingly. This was challenging as we need to learn how to make use of the UI and keyboard clicks. 
+
+We also added a GUI mode for our app - to speed up the speed of each command and thus, help to enhance users' experience. Throughout this process, we learn how to use various JavaFX classes and interfaces.
+
+We wanted to introduce a notification function to the app, so that users could be reminded of their jobs and upcoming tasks more easily. It was challenging to implement this function as JavaFx did not have any native notification feature. Hence, we had to find an external library that did so. We decided to used ControlFX, an open source project for JavaFX that serves to provide high quality UI controls on top of the existing JavaFX distribution. Through abstraction, this feature can be used by other portions of the applications (i.e. reminders, scheduling, etc). Hence, the implementation extended the functionalities and benefits of the application.
+
+For Timetable Window, we wanted users to be able to structure their plans for the week, thus we added a Timetable feature. However, as Timetable is directly linked with the delivery job list, thus changes made in the existing functions could affect the features directly and it required changes to the existing commands. We also had to decide on the design/structure of the Timetable Window, and learn to use the `ListView` class in our timetable.
 
 Overall, the Team Project for us was quite challenging, as it requires us to learn to work together and help each other. We had to divide the work among ourselves so that everyone can get a grasp of and understand the code base. Understanding and updating the code base was quite tough at first, due to high levels of abstraction and the amount of classes that AB3 has. We tried to break it down into small tasks and understand it little by little each week. These small improvements day-by-day helped us get used to the codebase and the workload eventually. 
 

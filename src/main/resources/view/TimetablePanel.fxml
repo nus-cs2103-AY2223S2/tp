@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="timetablePanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="393.0" minWidth="790.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="timetablePanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="393.0" minWidth="790.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
       <HBox fx:id="monthYearPanel" layoutX="-3.0" layoutY="14.0" stylesheets="@DarkTheme.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />

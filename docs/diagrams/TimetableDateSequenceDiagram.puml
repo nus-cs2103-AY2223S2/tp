@@ -3,45 +3,64 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "t:TimetableCommand" as TimetableCommand LOGIC_COLOR
+participant ":DukeDriverParser" as DukeDriverParser LOGIC_COLOR
+participant ":TimetableDateCommandParser" as TimetableDateCommandParser LOGIC_COLOR
+participant "t:TimetableDateCommand" as TimetableDateCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute(timetable)
+[-> LogicManager : execute("timetable_date date/2023-03-03")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(timetable)
-activate AddressBookParser
+LogicManager -> DukeDriverParser : parseCommand("timetable_date date/2023-03-03")
+activate DukeDriverParser
 
-create TimetableCommand
-AddressBookParser -> TimetableCommand
-activate TimetableCommand
+create TimetableDateCommandParser
+DukeDriverParser -> TimetableDateCommandParser
+activate TimetableDateCommandParser
 
-TimetableCommand --> AddressBookParser
-deactivate TimetableCommand
+TimetableDateCommandParser --> DukeDriverParser
+deactivate TimetableDateCommandParser
 
-AddressBookParser --> LogicManager : t
-deactivate AddressBookParser
+DukeDriverParser -> TimetableDateCommandParser : parse("2023-03-03")
+activate TimetableDateCommandParser
 
-LogicManager -> TimetableCommand : execute()
-activate TimetableCommand
+create TimetableDateCommand
+TimetableDateCommandParser -> TimetableDateCommand
+activate TimetableDateCommand
 
-TimetableCommand -> Model : updateFocusDate()
-TimetableCommand -> Model : updateSortedDeliveryJobList()
-TimetableCommand -> Model : updateSortedDeliveryJobListByDate()
-TimetableCommand -> Model : updateWeekDeliveryJobList()
+TimetableDateCommand --> TimetableDateCommandParser : t
+deactivate TimetableDateCommand
+
+TimetableDateCommandParser --> DukeDriverParser : t
+deactivate TimetableDateCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TimetableDateCommandParser -[hidden]-> DukeDriverParser
+destroy TimetableDateCommandParser
+
+DukeDriverParser --> LogicManager : t
+deactivate DukeDriverParser
+
+LogicManager -> TimetableDateCommand : execute()
+
+activate TimetableDateCommand
+
+TimetableDateCommand -> Model : updateFocusDate(LocalDate.now())
+TimetableDateCommand -> Model : updateSortedDeliveryJobList(new SortbyTimeAndEarn())
+TimetableDateCommand -> Model : updateSortedDeliveryJobListByDate()
+TimetableDateCommand -> Model : updateWeekDeliveryJobList(LocalDate.now())
 activate Model
 
-Model --> TimetableCommand
+Model --> TimetableDateCommand
 deactivate Model
 
-TimetableCommand --> LogicManager : result
-deactivate TimetableCommand
-TimetableCommand -[hidden]-> LogicManager : result
-destroy TimetableCommand
+TimetableDateCommand --> LogicManager : result
+deactivate TimetableDateCommand
+TimetableDateCommand -[hidden]-> LogicManager : result
+destroy TimetableDateCommand
 
 [<--LogicManager
 deactivate LogicManager

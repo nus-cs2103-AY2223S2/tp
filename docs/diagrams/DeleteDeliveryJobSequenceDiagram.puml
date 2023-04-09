@@ -16,10 +16,8 @@ end box
 [-> LogicManager : execute("delete_job ABCDEF", g -> !g.equals(CommandGroup.PERSON))
 activate LogicManager
 
-LogicManager -> DukeDriverParser : parseCommandGroup("delete_job ABCDEF")
 activate DukeDriverParser
 
-DukeDriverParser --> LogicManager : CommandGroup of "delete_job ABCDEF"
 
 
     LogicManager -> DukeDriverParser : parse("delete_job ABCDEF")
