@@ -569,9 +569,6 @@ the data. There is no need to save manually.
 
 <br>
 
-## Advanced features
-
-This section contains features intended for advanced users.
 
 ### Editing the data file
 
