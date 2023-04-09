@@ -8,6 +8,8 @@ header_pages:
 
 markdown: kramdown
 
+toc: true
+
 repository: "AY2223S2-CS2103T-T17-2/tp"
 github_icon: "images/github-icon.png"
 
