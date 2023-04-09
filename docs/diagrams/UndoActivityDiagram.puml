@@ -13,7 +13,7 @@ else ([else])
         :Argument is 1;
     endif
     if () then ([can undo])
-        :undo once;
+        :Undo once;
         if () then ([enough undos available])
         :undo argument number of times;
         else ([else])
