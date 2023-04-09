@@ -831,9 +831,15 @@ Tag a specified module.
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the module (if any) will be ignored
 
-Example:
-
-- `tag EG2310 /tags fun, hard`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>tag EG2310 /tags fun, hard</code><br/>
+    Tag the module <code>EG2310</code> with the tags <code>fun</code> and <code>hard</code>
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -854,9 +860,15 @@ Tag a specified lecture.
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the lecture (if any) will be ignored
 
-Examples:
-
-- `tag Lecture_1 /mod CS2040 /tags Yay`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>tag Lecture_1 /mod CS2040 /tags Yay</code><br/>
+    Tag the lecture <code>Lecture_1</code> of module <code>CS2040</code> with the tag <code>Yay</code>
+    </li>
+</ul>
+</details>
 
 #### Tag a Video
 
@@ -875,9 +887,15 @@ Tag a specified video.
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the video (if any) will be ignored
 
-Examples:
-
-- `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay</code><br/>
+    Tag the video <code>Video_1</code> of lecture <code>Lecture_1</code> in module <code>CS2040</code> with the tag <code>Yay</code>
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -899,9 +917,15 @@ Remove specified tags from a module.
   - Must belong to existing tags in the module specified by `module_code`
   - Repeated tags (if any) will be ignored
 
-Example:
-
-- `untag EG2310 /tags fun, hard`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>untag EG2310 /tags fun, hard</code><br/>
+    Remove the tags <code>fun</code> and <code>hard</code> from module <code>EG2310</code>
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -921,9 +945,15 @@ Remove specified tags from a lecture.
   - Must belong to existing tags in the lecture specified in `lecture_name`
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `untag Lecture_1 /mod CS2040 /tags Yay`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>untag Lecture_1 /mod CS2040 /tags Yay</code><br/>
+    Remove the tag <code>Yay</code> from lecture <code>Lecture_1</code> of module <code>CS2040</code>
+    </li>
+</ul>
+</details>
 
 #### Untag a Video
 
@@ -941,9 +971,15 @@ Remove specified tags from a video.
   - Must belong to existing tags in the video specified in `video_name`
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay</code><br/>
+    Remove the tag <code>Yay</code> from video <code>Video_1</code> of lecture <code>Lecture_1</code> in module <code>CS2040</code>
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -965,10 +1001,19 @@ Export all module data to a file.
 - <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path` if it exists
   - If the file specified in `file_path` doesn't exist, the flag `/overwrite` will be ignored
 
-Examples:
-
-- `export hello.json`
-- `export /../../haha.json /overwrite`
+<details open>
+<summary>Examples:</summary>
+<ul>
+    <li>
+    <code>export hello.json</code><br/>
+    Export all modules in tracker to the file <code>hello.json</code> in the default directory
+    </li>
+    <li>
+    <code>export /../../haha.json /overwrite</code><br/>
+    Export all modules in tracker to the file path <code>/../../haha.json</code>, overwriting its content
+    </li>
+</ul>
+</details>
 
 [Back to TOC :clipboard:](#table-of-contents)
 
@@ -993,12 +1038,27 @@ Import data from a specified file path to the current tracker.
 - <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules progress with the progress of the imported modules, provided they have the same code
   - If the imported modules do not exist in the current tracker, the flag `/overwrite` will be ignored
 
-Examples:
-
-- `import hello.json`
-- `import /../../haha.json /overwrite`
-- `import hehe.json /mod CS2040, MA2401`
-- `import hihi.json /mod EG2310 /overwrite`
+<details open>
+<summary>Examples:</summary>
+<ul>
+    <li>
+    <code>import hello.json</code><br/>
+    Import all modules from the file <code>hello.json</code> in the default directory to the tracker
+    </li>
+    <li>
+    <code>import /../../haha.json /overwrite</code><br/>
+    Import all modules from the file path <code>/../../haha.json</code>, overwriting any modules that currently exists in the tracker
+    </li>
+    <li>
+    <code>import hehe.json /mod CS2040, MA2401</code><br/>
+    Import modules <code>CS2040</code> and <code>MA2401</code> from the file <code>hehe.json</code> in the default directory
+    </li>
+    <li>
+    <code>import hihi.json /mod EG2310 /overwrite</code><br/>
+    Import modules <code>EG2310</code> from the file <code>hihi.json</code>, overwriting the current progress of <code>EG2310</code> in the tracker
+    </li>
+</ul>
+</details>
 
 [Back to TOC :clipboard:](#table-of-contents)
 
