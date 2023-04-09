@@ -8,7 +8,7 @@ import taa.model.ClassList;
 import taa.model.Model;
 
 /**
- * Adds a student to the class list.
+ * Creates a new class list.
  */
 public class CreateClassCommand extends Command {
 
@@ -21,12 +21,12 @@ public class CreateClassCommand extends Command {
             + PREFIX_CLASS_TAG + "T01 ";
 
     public static final String MESSAGE_SUCCESS = "New class added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This class already exists";
+    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists";
 
     private final ClassList toAdd;
 
     /**
-     * Creates an AddStudentCommand to add the specified {@code Student}
+     * Creates an CreateClassCommand to add the specified ClassList
      */
     public CreateClassCommand(ClassList classList) {
         requireNonNull(classList);
@@ -38,17 +38,18 @@ public class CreateClassCommand extends Command {
         requireNonNull(model);
 
         if (model.hasClassList(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+            throw new CommandException(MESSAGE_DUPLICATE_CLASS);
         }
 
         model.addClassList(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
+    //Credits: Solution below adapted from ChatGPT3.5 codes.
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof CreateClassCommand // instanceof handles nulls
+        return other == this
+                || (other instanceof CreateClassCommand
                 && toAdd.equals(((CreateClassCommand) other).toAdd));
     }
 }

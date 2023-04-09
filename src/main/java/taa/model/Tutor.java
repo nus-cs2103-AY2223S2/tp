@@ -17,7 +17,6 @@ import taa.model.tag.Tag;
  */
 public class Tutor implements ReadOnlyStudentList {
     private static int lastId;
-    // Identity fields
     private final Name name;
     private final int id;
     private final UniqueClassLists classLists;

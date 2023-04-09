@@ -10,6 +10,9 @@ import taa.model.student.NameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
+//@@author cyli133-reused
+//Reused from https://se-education.org/addressbook-level3/
+// with minor modifications
 public class FindCommandParser implements Parser<FindCommand> {
 
     /**

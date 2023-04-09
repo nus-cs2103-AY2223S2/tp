@@ -18,11 +18,11 @@ public class ClassIdMatchesPredicate implements Predicate<ClassList> {
         return classList.getClassId().equals(keywords);
     }
 
+    //Credits: Solution below adapted from ChatGPT3.5 codes.
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ClassIdMatchesPredicate // instanceof handles nulls
-                && keywords == ((ClassIdMatchesPredicate) other).keywords); // state check
+        return other == this || (other instanceof ClassIdMatchesPredicate
+                && keywords == ((ClassIdMatchesPredicate) other).keywords);
     }
 
 }
