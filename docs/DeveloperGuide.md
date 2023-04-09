@@ -384,7 +384,7 @@ The activity diagram below describes how the increment feature works.
 ![IncrementActivityDiagram](images/IncrementCommandActivityDiagram.png) 
 
 Given below 
-The following sequence diagram shows how the filter operation works:
+The following sequence diagram shows how the increment operation works:
 ![IncrementSequenceDiagram](images/IncrementCommandSequenceDiagram.png) 
 
 _Notes:_
@@ -406,7 +406,33 @@ This is because most of the commonalities are already captured in the command cl
 If new functions would be made just for these commands, they would not be as well tested and moreover contain very similar logic. 
 
 
+### Mark/Unmark feature
 
+#### Implementation
+
+The proposed feature will allow users to mark certain contacts they have in NBF as needing follow-ups or to unmark them as no need to follow-up.
+
+The mark/unmark command takes in an `index` and a `YES/NO`, which is demarcated with a prefix `m/`, which is used to inform the model to mark or to unmark the specified contact. More simply, `m/yes` marks that contact and `m/no` unmarks the contact.
+
+The activity diagram below describes how the mark feature works.
+
+![MarkActivityDiagram](images/MarkCommandDiagram.png)
+
+Given below
+The following sequence diagram shows how the marking operation works:
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
+_Notes:_
+
+#### Design considerations
+
+1. Sometimes users may forget if a contact they have in NBF is marked or unmarked, and proceed to mark or umark the contact again respectively. This may cause the contact to unmarked / marked, opposite of the user's intention. Hence an error message is shown, informing the user that the spcified contact is already marked or unmarked, and the original marking of the specified contact does not change.
+2. When adding a new contact into NBF using `add`, the new contact is marked as requiring follow-ups by default. This is so that the user does not get overwhelmed with all the fields that need to be filled in with the `add` command. Furthermore, it doesn't make sense for new contacts to not need any follow-ups in the general case.
+3. Intead of using `unmark`, the `mark` command is implemented with an addition field `m/ YES/NO` to indicate to mark or to unmark. This is to simplify the model by using 1 command to do both things.
+
+#### Why this implementation
+
+This feature adds functionality for users, as it allows the user to easily check for which contacts require following-up, by using this command in combination with the `find` command.
 
 
 
