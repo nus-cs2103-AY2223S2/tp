@@ -365,7 +365,7 @@ and detect that it is a "sort-student" command that is being called.
 
 The sort command involves comparators, and the diagram is given below.
 
-<img src="images/SortCommandClassDiagram.png" width="450" />
+<img src="images/SortCommandClassDiagram.png" width="450" height="150" />
 
 So, the SortCommand creates a copy of the FilterList and sorts the respective list depending on the group specified, based on the metric provided. Depending on the metric, it calls the respective Comparator and sorts the entries in the list in the desired order.
 
