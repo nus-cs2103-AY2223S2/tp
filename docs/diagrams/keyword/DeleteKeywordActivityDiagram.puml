@@ -1,0 +1,15 @@
+@startuml DeleteKeywordActivityDiagram
+start
+if() then ([valid input])
+    :Create new keyword;
+    if() then ([keyword does not exist])
+        :Throw CommandExeception;
+    else ([else])
+        :Delete keyword from KeywordManager;
+    endif;
+else ([else])
+    :Throw ParseException;
+endif;
+:Display message to user;
+stop
+@enduml
