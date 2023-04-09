@@ -230,7 +230,7 @@ Format:
 `list`
 
 <div markdown="block" class="alert alert-info">
-:information_source:
+:information_source: **Additional information**:
 
 * Lists all recipes that are in the storage, in the chronological order they were added.
 
@@ -241,14 +241,14 @@ Format:
 </div>
 
 <div markdown="block" class="alert alert-success">
-:bulb:
+:bulb: **Tips**:
 
 * The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:computer:
+:computer: **Keyboard Shortcut**:
 
 * To navigate the list, you can use the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd> arrow keys (as previously mentioned in the QuickStart).
 While the recipe to that you want to zoom in to is being selected, simply type <kbd>p</kbd> to view that particular recipe's details! 
