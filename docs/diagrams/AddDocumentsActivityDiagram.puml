@@ -1,12 +1,12 @@
 @startuml
 start
-:User enters command add_contact;
-if () then ([PREFIX p/ and e/ are present])
+:User enters command add_docs;
+if () then ([PREFIX rs/ and cl/ are present])
     :Parse command arguments;
-    if () then ([Phone number and email are valid])
-            :Generate new AddContactCommand;
+    if () then ([Resume and cover letter links are valid])
+            :Generate new AddDocumentsCommand;
             if () then ([Provided index is valid])
-                    :Add contact details to the specified application;
+                    :Add document links to the specified application;
                     :Generate success message;
                 else ([else])
                 :Generate error message;

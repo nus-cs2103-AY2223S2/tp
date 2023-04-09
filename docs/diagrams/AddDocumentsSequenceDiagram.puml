@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":DocumentsParser" as DocumentsParser LOGIC_COLOR
+participant ":AddDocumentsCommandParser" as AddDocumentsCommandParser LOGIC_COLOR
+participant "a:AddDocumentsCommand" as AddDocumentsCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(add_docs)
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand(add_docs)
+activate InternEaseParser
+
+create DocumentsParser
+InternEaseParser -> DocumentsParser : parseDocumentsCommand(add_docs, arguments)
+activate DocumentsParser
+
+create AddDocumentsCommandParser
+DocumentsParser -> AddDocumentsCommandParser
+activate AddDocumentsCommandParser
+
+AddDocumentsCommandParser --> DocumentsParser
+deactivate AddDocumentsCommandParser
+
+DocumentsParser -> AddDocumentsCommandParser : parse(arguments)
+activate AddDocumentsCommandParser
+
+create AddDocumentsCommand
+AddDocumentsCommandParser -> AddDocumentsCommand
+activate AddDocumentsCommand
+
+AddDocumentsCommand --> AddDocumentsCommandParser : a
+deactivate AddDocumentsCommand
+
+AddDocumentsCommandParser --> DocumentsParser : a
+deactivate AddDocumentsCommandParser
+AddDocumentsCommandParser -[hidden]-> InternEaseParser : result
+destroy AddDocumentsCommandParser
+
+DocumentsParser --> InternEaseParser : a
+deactivate DocumentsParser
+
+InternEaseParser --> LogicManager : a
+deactivate InternEaseParser
+
+LogicManager -> AddDocumentsCommand : execute()
+activate AddDocumentsCommand
+
+AddDocumentsCommand -> Model : setApplication(internshipToAddDocuments, internshipWithDocuments)
+activate Model
+
+Model --> AddDocumentsCommand
+deactivate Model
+
+create CommandResult
+AddDocumentsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddDocumentsCommand : r
+deactivate CommandResult
+
+AddDocumentsCommand --> LogicManager : r
+deactivate AddDocumentsCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml
