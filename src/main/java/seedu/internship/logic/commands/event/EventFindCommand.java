@@ -24,8 +24,8 @@ import seedu.internship.model.event.Start;
  */
 public class EventFindCommand extends EventCommand {
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + COMMAND_WORD
-            + ": Finds internships from the catalogue based on parameters given.\n"
+    public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Finds events from the catalogue based on parameters given.\n"
             + "Parameters: [" + PREFIX_EVENT_NAME + "NAME] "
             + "[" + PREFIX_EVENT_START + "START] "
             + "[" + PREFIX_EVENT_END + "END] "
