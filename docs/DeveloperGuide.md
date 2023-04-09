@@ -878,6 +878,15 @@ Currently, some commands do not show a comprehensive error message to display wh
 For example some command return a success message of `Edited task: task`. We suggest a more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
 Specifically, `Edited task: Buy eggs; Deadline:01 January 2023; Status: Not Done`.
 
+**3.** Fix error messages for commands.<br>
+Currently, some commands have an issue with their error message.<br>
+For example, if there is a duplicate from this command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`, the error message should be `This Order already exists in the order list`. However, this error message is shown now `This Order already exists in the Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street list`.
+
+**4.** Improve validity checks.<br>
+Currently, there is no comprehensive validity check for some of our parameters, which might result in bugs shown within the application.<br>
+For example, profit and cost should be limited within `1000` or else there might be an issue with the calculation if the user keys in an obsessive number for them.
+For example, name should contain at least a few alphabets `Vanilla Cake 2002` and not be solely numeric `1234`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4.7 Instructions for manual testing
@@ -1040,7 +1049,7 @@ Expected Outcome:
 
 **Test Case 3**
 
-Context: There **is** a no supplier at index `5` in Trackr.
+Context: There **is** no supplier at index `5` in Trackr.
 
 Action: Execute command `edit_supplier 5 p/11111111`
 
@@ -1076,7 +1085,7 @@ Expected Outcome:
 
 **Test Case 3**
 
-Context: There **is** a no task at index `5` in Trackr.
+Context: There **is** no task at index `5` in Trackr.
 
 Action: Execute command `edit_task 5 n/Buy eggs d/10/10/2023`
 
@@ -1112,7 +1121,7 @@ Expected Outcome:
 
 **Test Case 3**
 
-Context: There **is** a no order at index `5` in Trackr.
+Context: There **is** no order at index `5` in Trackr.
 
 Action: Execute command `edit_task 5 n/Buy eggs d/10/10/2023`
 
@@ -1148,7 +1157,7 @@ Expected Outcome:
 
 **Test Case 3**
 
-Context: There **is** a no menu item at index `5` in Trackr.
+Context: There **is** no menu item at index `5` in Trackr.
 
 Action: Execute command `edit_item 1 n/Chocolate Cookies`
 
@@ -1157,31 +1166,308 @@ Expected Outcome:
 * Error message shown in command result box.<br>
   Specifically, `The menu item index provided is invalid`
 
-### Saving data
+### Find supplier
 
-1. Dealing with missing/corrupted data files
+**Test Case 1**
 
-1. (If this is your first time using the product) Run the application and close it so that the data file is generated with sample data.<br>
+Context: There **is** a supplier with name containing `John` in Trackr.
 
-2. Navigate to `data/trackr.json` and remove a line of data / make one of the data invalid (check our [User Guide](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/docs/UserGuide.md) for how we check for valid inputs)
-   <br>Example: Change one of the orderDeadline to an invalid date like `00/13/2024`.
+Action: Execute command `find_supplier John`
 
- <p align="center">
-   <img src="images/CorruptedData.png">
-   <br>Figure 21: Corrupted data file
- </p><br>
+Expected Outcome:
 
-3. Run Trackr.
-   <br>Expected: Blank `Order List` is displayed.
+* Shows the **1** supplier with name containing `John`.
+* Success message shown in command result box.<br>
+  Specifically, `1 suppliers listed!`
 
- <p align="center">
-   <img src="images/CorruptedOrderList.png">
-   <br>Figure 22: Corrupted Order List
- </p><br>
+### Find task
 
-4. To resolve this issue, either
+**Test Case 1**
 
-1. Locate your corrupted `trackr.json`, delete this file and re-run Trackr.
-   This will allow you to restart with a new data file filled with sample data.
+Context: There **is** a task with name containing `Buy` in Trackr.
 
-2. Navigate to your `trackr.json` file and find the missing/corrupted part of the data and change it accordingly.
+Action: Execute command `find_task n/Buy`
+
+Expected Outcome:
+
+* Shows the **1** task with name containing `Buy`.
+* Success message shown in command result box.<br>
+  Specifically, `1 tasks listed!`
+
+### Find order
+
+**Test Case 1**
+
+Context: There **is** an order with customer name containing `John` in Trackr.
+
+Action: Execute command `find_order n/John`
+
+Expected Outcome:
+
+* Shows the **1** order with customer name containing `Buy`.
+* Success message shown in command result box.<br>
+  Specifically, `1 orders listed!`
+
+### Find menu item
+
+**Test Case 1**
+
+Context: There **is** a menu item with name containing `Chocolate` in Trackr.
+
+Action: Execute command `find_item Chocolate`
+
+Expected Outcome:
+
+* Shows the **1** menu item with name containing `Chocolate`.
+* Success message shown in command result box.<br>
+  Specifically, `1 menu items listed!`
+
+### Delete supplier
+
+**Test Case 1**
+
+Context: There **is** a supplier at index `1` in Trackr.
+
+Action: Execute command `delete_supplier 1`
+
+Expected Outcome:
+
+* Deleted the **first** supplier.
+* Success message shown in command result box.
+
+**Test Case 2**
+
+Context: There **is** no supplier at index `5` in Trackr.
+
+Action: Execute command `delete_supplier 5`
+
+Expected Outcome:
+
+* Error message shown in command result box.<br>
+  Specifically, `The supplier index provided is invalid`
+
+### Delete task
+
+**Test Case 1**
+
+Context: There **is** a task at index `1` in Trackr.
+
+Action: Execute command `delete_task 1`
+
+Expected Outcome:
+
+* Deleted the **first** task.
+* Success message shown in command result box.
+
+**Test Case 2**
+
+Context: There **is** no task at index `5` in Trackr.
+
+Action: Execute command `delete_task 5`
+
+Expected Outcome:
+
+* Error message shown in command result box.<br>
+  Specifically, `The task index provided is invalid`
+
+### Delete order
+
+**Test Case 1**
+
+Context: There **is** an order at index `1` in Trackr.
+
+Action: Execute command `delete_order 1`
+
+Expected Outcome:
+
+* Deleted the **first** order.
+* Success message shown in command result box.
+
+**Test Case 2**
+
+Context: There **is** no order at index `5` in Trackr.
+
+Action: Execute command `delete_order 5`
+
+Expected Outcome:
+
+* Error message shown in command result box.<br>
+  Specifically, `The order index provided is invalid`
+
+### Delete menu item
+
+**Test Case 1**
+
+Context: There **is** a menu item at index `1` in Trackr.
+
+Action: Execute command `delete_item 1`
+
+Expected Outcome:
+
+* Deleted the **first** menu item.
+* Success message shown in command result box.
+
+**Test Case 2**
+
+Context: There **is** no menu item at index `5` in Trackr.
+
+Action: Execute command `delete_item 5`
+
+Expected Outcome:
+
+* Error message shown in command result box.<br>
+  Specifically, `The menu item index provided is invalid`
+
+### Sort task
+
+**Test Case 1**
+
+Context: There are tasks not sorted by name in Trackr.
+
+Action: Execute command `sort_task c/Name`
+
+Expected Outcome:
+
+* Sorted tasks by name in alphabetical order (Task name starting with `A` at the top and `Z` at the bottom).
+* Success message shown in command result box.<br>
+  Specifically, `Tasks sorted!`
+
+### Sort order
+
+**Test Case 1**
+
+Context: There are orders not sorted by order item name in Trackr.
+
+Action: Execute command `sort_order c/Name`
+
+Expected Outcome:
+
+* Sorted orders by menu item name in alphabetical order (Menu item name starting with `A` at the top and `Z` at the bottom).
+* Success message shown in command result box.<br>
+  Specifically, `Orders sorted!`
+
+### List all suppliers
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `list_supplier`
+
+Expected Outcome:
+
+* List and shows all suppliers.
+* Success message shown in command result box.<br>
+  Specifically, `Listed all suppliers`
+
+### List all tasks
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `list_task`
+
+Expected Outcome:
+
+* List and shows all tasks.
+* Success message shown in command result box.<br>
+  Specifically, `Listed all tasks`
+
+### List all orders
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `list_order`
+
+Expected Outcome:
+
+* List and shows all orders.
+* Success message shown in command result box.<br>
+  Specifically, `Listed all orders`
+
+### List all menu items
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `list_menu`
+
+Expected Outcome:
+
+* List and shows all menu items.
+* Success message shown in command result box.<br>
+  Specifically, `Listed all menu items`
+
+### Clear all suppliers
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `clear_supplier`
+
+Expected Outcome:
+
+* Cleared all suppliers.
+* Success message shown in command result box.<br>
+  Specifically, `Supplier list has been cleared!`
+
+### Clear all tasks
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `clear_task`
+
+Expected Outcome:
+
+* Cleared all tasks.
+* Success message shown in command result box.<br>
+  Specifically, `Task list has been cleared!`
+
+### Clear all orders
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `clear_order`
+
+Expected Outcome:
+
+* Cleared all orders.
+* Success message shown in command result box.<br>
+  Specifically, `Order list has been cleared!`
+
+### Clear all menu items
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `clear_menu`
+
+Expected Outcome:
+
+* Cleared all menu items.
+* Success message shown in command result box.<br>
+  Specifically, `Menu Item list has been cleared!`
+
+### Switch tabs
+
+**Test Case 1**
+
+Context: None.
+
+Action: Execute command `tab t/MENU`
+
+Expected Outcome:
+
+* Switched to the menu tab.
+* Success message shown in command result box.<br>
+  Specifically, `Switched tab.`
