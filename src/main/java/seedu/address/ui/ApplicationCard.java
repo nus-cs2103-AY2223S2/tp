@@ -12,7 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.InterviewDate;
-import seedu.address.ui.control.PopupEditInternship;
+import seedu.address.ui.popups.PopupEditInternship;
 
 /**
  * A UI component that displays information of a {@code InternshipApplication}.
