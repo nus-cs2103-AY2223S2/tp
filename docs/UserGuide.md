@@ -98,8 +98,8 @@ and Mycelium will start as an empty application with no projects and clients.
 | Term                                     | Definition                                                                                                                                                                                                                                       |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Graphical User Interface (GUI)           | A form of user interface that allows users to interact with electronic devices through graphical icons                                                                                                                                           |
-| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
 | Integrated Development Environment (IDE) | A software application that helps programmers develop software code efficiently. It increases developer productivity by combining capabilities such as software editing, building, testing, and packaging in an easy-to-use application.         |
+| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
 
 --------------------------------------------------------------------------------------------------------------------
 
