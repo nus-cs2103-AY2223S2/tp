@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.deck.exceptions.DeckNotFoundException;
 import seedu.address.model.deck.exceptions.DuplicateDeckException;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class UniqueDeckListTest {
 
     private final UniqueDeckList uniqueDeckList = new UniqueDeckList();
@@ -118,5 +121,15 @@ public class UniqueDeckListTest {
         assertEquals(originalList.asUnmodifiableObservableList(), replacementList.asUnmodifiableObservableList());
     }
 
+    @Test
+    public void iterator_success() {
+        List<Deck> decks = Arrays.asList(new Deck("Deck 1"),
+                new Deck("Deck 2"), new Deck("Deck 3"));
+        uniqueDeckList.setDecks(decks);
 
+        int count = 0;
+        for (Deck deck : uniqueDeckList) {
+            assertEquals(decks.get(count++), deck);
+        }
+    }
 }
