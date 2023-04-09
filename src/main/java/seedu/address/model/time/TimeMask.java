@@ -1,5 +1,7 @@
 package seedu.address.model.time;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,8 +10,6 @@ import java.util.ArrayList;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Class to generate the bit masking for the events.
@@ -20,6 +20,8 @@ public class TimeMask {
     private static final int WINDOW_RANGE = 7;
     private static final int SLOTS_PER_DAY = 24;
     private static final int LAST_HOUR_INDEX = 23;
+    private static final int LAST_DAY_INDEX = 6;
+
     // 0's represent free slot
     private final int[] weeklyOccupancy;
 
@@ -93,7 +95,7 @@ public class TimeMask {
 
     private int getUpdatedEndTime(int endTime, boolean isAfterDateLimit) {
         if (isAfterDateLimit) {
-            return 23;
+            return LAST_HOUR_INDEX;
         } else {
             return endTime;
         }
@@ -106,7 +108,7 @@ public class TimeMask {
     private long getDaysBetween(LocalDate start, LocalDate end, LocalDate dateLimit) {
         long daysBetween;
         if (end.isAfter(dateLimit)) {
-            daysBetween =  DAYS.between(start, dateLimit);
+            daysBetween = DAYS.between(start, dateLimit);
         } else {
             daysBetween = DAYS.between(start, end);
         }
@@ -141,13 +143,13 @@ public class TimeMask {
         int startBits = Integer.parseInt("1".repeat(23 - startHour + 1), 2);
         int mask = startBits << startHour;
         weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
-        curr = curr == 6 ? 0 : curr + 1;
+        curr = curr == LAST_DAY_INDEX ? 0 : curr + 1;
 
         // filled the in between days as busy for every time slots
         while (counter < diff) {
             startBits = Integer.parseInt("1".repeat(24), 2);
             weeklyOccupancy[curr] = weeklyOccupancy[curr] | startBits;
-            curr = curr == 6 ? 0 : curr + 1;
+            curr = curr == LAST_DAY_INDEX ? 0 : curr + 1;
             counter = counter + 1;
         }
 
