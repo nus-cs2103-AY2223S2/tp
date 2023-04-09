@@ -4,7 +4,8 @@ import vimification.internal.command.CommandResult;
 import vimification.ui.MainScreen;
 
 /**
- * Command to edit a task from the displayed list.
+ * Changes the right-side component of Ui based on the condition of the TaskList after editing a
+ * task.
  */
 public class EditTaskUiCommand extends UiCommand {
 
