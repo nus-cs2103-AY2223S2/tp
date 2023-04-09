@@ -228,6 +228,11 @@ Shows a list of all students. This is useful for displaying the full list after 
 
 > Format: `list`
 
+<p align=center>
+    <img alt="list before and after" src="images/user-guide/list_remark_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>list</code> command</i>
+</p>
+
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -250,7 +255,6 @@ Adds a student to the list, along with their education level and any student-spe
 
 For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
-
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
@@ -270,16 +274,9 @@ Examples:
 
 **Using the following input** `add n/Shao Hong edu/Bachelors y2 r/Good in german m/CS2101`
 <p align=center>
-    <img alt="add before" src="images/user-guide/add_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>add</code> command</i>
+    <img alt="add before and after" src="images/user-guide/add_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>add</code> command with student's details</i>
 </p>
-
-<p align=center>
-    <img alt="add after" src="images/user-guide/add_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>add</code> command</i>
-</p>
-
-
 
 [↑ Back to top](#table-of-contents)
 
@@ -307,13 +304,8 @@ Examples:
 
 **Using the following input** `delete 1 4`
 <p align=center>
-    <img alt="delete before" src="images/user-guide/delete_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>delete</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="delete after" src="images/user-guide/delete_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>delete</code> command</i>
+    <img alt="delete before" src="images/user-guide/delete_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>delete 1 4</code> command</i>
 </p>
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
@@ -355,15 +347,10 @@ Examples:
 - `edit 1 n/Lao Hong`
 - `edit 3 a/ p/` _(removes student's address & phone number)_
 
-**Using the following input** `edit 4 n/Lao Hong`
+**Using the following input** `edit 1 edu/Year 1`
 <p align=center>
-    <img alt="edit before" src="images/user-guide/edit_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>edit</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="edit after" src="images/user-guide/edit_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>edit</code> command</i>
+    <img alt="edit before and after" src="images/user-guide/edit_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>edit 1 edu/Year 1</code> command</i>
 </p>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
@@ -378,7 +365,7 @@ edited student's details.
 
 Edits a student's remarks.
 
-> Format: `remark INDEX`
+> Format: `remark INDEX [REMARK]`
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
 
@@ -398,17 +385,17 @@ Examples:
 **Using the following input** `remark 2`:
 <p align=center>
     <img alt="remark before" src="images/user-guide/remark_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>
+    <br><i><b>Above:</b> Before entering <code>remark 2</code> command</i>
 </p>
 
 <p align=center>
     <img alt="remark after" src="images/user-guide/remark_during.jpg" />
-    <br><i><b>Above:</b> After pressing Ctrl + S <code>remark</code> command</i>
+    <br><i><b>Above:</b> Editing remarks using the <code>remark 2</code> command</i>
 </p>
 
 <p align=center>
     <img alt="remark during" src="images/user-guide/remark_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>remark</code> command</i>
+    <br><i><b>Above:</b> After pressing <code>CTRL + S</code></i>
 </p>
 
 <div markdown="span" class="alert alert-info">
@@ -429,17 +416,12 @@ Displays all the details, including the full remark of a specified student. This
 
 Examples:
 
-- `show 4`
+- `show 1`
 
-**Using the following input** `show 4`:
+**Using the following input** `show 1`:
 <p align=center>
-    <img alt="show before" src="images/user-guide/show_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>show</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="show after" src="images/user-guide/show_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>show</code> command</i>
+    <img alt="show before" src="images/user-guide/show_remark_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>show 1</code> command</i>
 </p>
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:** After typing a long remark with `remark`, use `show` to view the full remark in the [result box](#guide-to-teachmesenpais-gui)
@@ -500,13 +482,8 @@ Examples:
 
 **Using the following input** `find n/a m/CS2103T`:
 <p align=center>
-    <img alt="find before" src="images/user-guide/find_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>find</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="find after" src="images/user-guide/find_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>find</code> command</i>
+    <img alt="find before" src="images/user-guide/find_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>find n/a m/CS2103T</code> command</i>
 </p>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
@@ -514,13 +491,8 @@ Examples:
 
 **Using the following input** `filter n/a m/CS2103T` :
 <p align=center>
-    <img alt="filter before" src="images/user-guide/filter_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>filter</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="filter after" src="images/user-guide/filter_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>filter</code> command</i>
+    <img alt="filter before" src="images/user-guide/filter_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>filter n/a m/CS2103T</code> command</i>
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
@@ -552,7 +524,12 @@ Examples:
 - `list` followed by `undo` will cause TeachMeSenpai to give you an error message since `list` is not **undoable**
 - `delete 2` followed by `list` then `undo` will reverse the deletion done before `list`!
 
-Example: `delete 1 4` followed by `undo`.
+**Using the following inputs** `delete 1 4` followed by `undo`:
+
+<p align=center>
+    <img alt="undo before and after" src="images/user-guide/undo_before_and_after.png" />
+    <br><i><b>Above:</b> Original state before entering <code>delete 1 4</code>, before entering <code>undo</code> command and after entering <code>undo</code> command</i>
+</p>
 
 ### Redo a previous `undo`: `redo`
 
