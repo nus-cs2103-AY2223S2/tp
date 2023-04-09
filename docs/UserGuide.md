@@ -75,10 +75,12 @@ that you should pay attention to. </div>
   * [Reminder for modules](#reminder-for-items)
 * [**Format Restrictions**](#format-restrictions)
 * [**Further information about commands**](#further-information-about-commands)
-* [**Valid and invalid data**](#more-examples-of-valid-and-invalid-input-values)
+* [**More examples of valid and invalid input values**](#more-examples-of-valid-and-invalid-input-values)
 * [**Data storage**](#data-storage)
   * [**Saving the data**](#saving-the-data)
   * [**Editing the data file**](#editing-the-data-file)
+* [**Current product limitations**](#current-product-limitations-important)
+* [**Coming soon**](#coming-soon)
 * [**Glossary**](#glossary)
 * [**FAQ**](#faq)
 * [**Command summary**](#command-summary)
@@ -336,7 +338,7 @@ By using the `exit` command, you can close and exit the application.
 
 ## Additional Features 
 
-### Reminder for items
+### Reminder for modules
 
 Whenever you open coNtactUS, a pop-up window will appear showing you modules that have a deadline due today 
 or have a timeslot that is occurring today.
@@ -492,6 +494,16 @@ that are located at different venues (`LT-19` and `COM1-B1`) at the same timing 
 felt that this allows you the flexibility to supply an input value that you desire without being subjected to unnecessary
 conflict checks. After all, `Bob` may be referring to two different persons. 
 
+--------------------------------------------------------------------------------------------------------------------
+## Coming soon
+
+coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
+Here are some new features that you can look forward to in the near future: 
+
+* Currently, the reminder pop-up window only appears when coNtactUS is launched. We understand that you may want to 
+view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
+for you to do so, so you can see the reminders at any time you wish. 
+
 
  --------------------------------------------------------------------------------------------------------------------
 ## Glossary
@@ -508,20 +520,6 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 
 **Q**: Can I only exit coNtactUS through the `exit` command? <br>
 **A**: Not at all! It is one of the ways you can exit the program. You may also simply close the browser window.
-
---------------------------------------------------------------------------------------------------------------------
-## Coming soon
-coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
-Here are some new features that you can look forward to in the near future: 
-
-* Currently, the reminder pop-up window only appears when coNtactUS is launched. We understand that you may want to 
-view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
-for you to do so, so you can see the reminders at any time you wish. 
-
-* 
-
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
