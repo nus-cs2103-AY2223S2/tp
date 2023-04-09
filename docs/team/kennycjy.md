@@ -11,9 +11,9 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=kennycjy&breakdown=true)
 
-* **New Feature**: [Tag command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java)Implemented the `Tag` and `Untag` commands.
+* **New Feature**: [Tag command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) Implemented the `Tag` and `Untag` commands.
   * Justification: The command allows user to tag and untag modules additively to persons without going through the `edit` command.
-* **Enhancement**: Collaborated with [@mynameizzhafeez] to modify tag and untag implement `Lessons`
+* **Enhancement**: Collaborated with [@mynameizzhafeez](https://ay2223s2-cs2103t-w14-2.github.io/tp/team/mynameizzhafeez.html) to modify tag and untag implement `Lessons`
   * Justification: Needed a way to assign lessons to persons in the address book while holding information about the module it belongs to.
 * **Enhancement**: Modified `Tag` and `Untag` command to allow tagging and untagging of groups.
   * Justification: The command allows user to tag and untag groups without going through `edit` command
