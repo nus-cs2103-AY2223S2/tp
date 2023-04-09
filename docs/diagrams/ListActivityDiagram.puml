@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters command list;
+:Generate new ListCommand;
+:Update the list filteredInternshipList to show all ongoing applications;
+    if () then ([filteredInternshipList is not empty])
+        :Generate success message;
+    else ([else])
+        :Generate no active applications message;
+    endif
+stop
+
+@enduml
