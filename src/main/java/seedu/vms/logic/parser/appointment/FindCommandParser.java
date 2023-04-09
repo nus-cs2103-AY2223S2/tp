@@ -50,7 +50,8 @@ public class FindCommandParser implements CommandParser {
         }
         if (argsMap.getValue(PREFIX_ENDTIME).isPresent()) {
             flagsPresent = true;
-            findAppointmentDescriptor.setAppointmentEndTime(ParserUtil.parseDate(argsMap.getValue(PREFIX_ENDTIME).get()));
+            findAppointmentDescriptor.setAppointmentEndTime(ParserUtil
+                    .parseDate(argsMap.getValue(PREFIX_ENDTIME).get()));
         }
         if (argsMap.getValue(PREFIX_VACCINATION).isPresent()) {
             flagsPresent = true;
