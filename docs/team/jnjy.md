@@ -5,9 +5,8 @@ title: Ng Jin Yuan's Project Portfolio Page
 
 ### Project: Well Informed Fridge Environment (WIFE)
 
-Enhance life with WIFE! Our product Well Informed Fridge Environment <WIFE/> helps users to manage their food items 
-in the fridge. With this, one never have to worry about optimizing storage and organization of food items in their 
-refrigerator!
+Enhance life with WIFE! Our product Well Informed Fridge Environment <WIFE/> helps users to manage their items in the 
+fridge. With this, one never has to worry about optimizing storage and organisation of food items in their refrigerator!
 
 Given below are my contributions to the project.
 
@@ -39,6 +38,7 @@ Given below are my contributions to the project.
     of the food item in the fridge.
 
   <br/>
+  
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jnjy&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
   <br/>
@@ -67,42 +67,41 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated the UML diagram from AddressBook to Wife [#286](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/286)
     * Added implementation details for `createtag` feature (Pull Request [#125](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/125))
-    * Added implementation details for `add`, `edit` and `tag` feature (Pull Request [#166](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/166))
-
+    * Added implementation details for `add`, `edit` and `tag` featu
+    * Added further enhancement on `Unit` for `Food` in WIFE.
+    
   <br/>
   
 * **Community**:
-  * PRs reviewed and merged:
-    - [#40](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/40)
-    - [#47](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/47)
-    - [#48](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/48)
-    - [#57](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/57)
-    - [#62](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/62)
-    - [#83](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/83)
-    - [#91](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/91)
-    - [#92](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/92)
-    - [#93](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/93)
-    - [#94](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/94)
-    - [#96](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/96)
-    - [#99](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/99)
-    - [#107](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/107)
-    - [#118](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/118)
-    - [#124](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/124)
-    - [#126](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/126)
-    - [#130](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/130)
-    - [#142](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/142)
-    - [#148](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/148)
-    - [#150](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/150)
-    - [#155](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/155)
-    - [#158](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/158)
-    - [#159](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/159)
-    - [#160](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/160)
-    - [#165](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/165)
-    - [#169](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/169)
-    - [#170](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/170)
-    - [#175](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/175)
-    - [#176](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/176)
-    - [#177](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/177)
+  * PRs reviewed and merged (only the most recent PRs are shown):
+    - [[#130]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/130)
+    [[#142]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/142)
+    [[#148]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/148)
+    [[#155]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/155)
+    [[#158]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/158)
+    [[#159]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/159)
+    [[#165]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/165)
+    [[#169]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/169)
+    [[#170]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/170)
+    [[#175]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/175)
+    [[#176]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/176)
+    [[#177]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/177)
+    [[#178]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/178)
+    [[#179]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/179)
+    [[#186]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/186)
+    [[#189]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/189)
+    [[#192]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/192)
+    [[#195]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/195)
+    [[#196]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/196)
+    [[#278]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/278)
+    [[#280]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/280)
+    [[#287]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/287)
+    [[#291]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/291)
+    [[#293]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/293)
+    [[#295]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/295)
+    [[#297]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/297)
+    [[#299]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/299)
+    [[#305]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/305)
 
   <br/>
   
@@ -112,4 +111,4 @@ Given below are my contributions to the project.
   <br/>
   
 * **Additional Contribution**:
-  * Refactored `AddressBook` to `Wife` #74
+  * Refactored `AddressBook` to `Wife` [[#74]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/74)
