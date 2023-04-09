@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 15
+skinparam SequenceReferencebackgroundColor LightYellow
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ConnectUsParser" as ConnectUsParser LOGIC_COLOR
+participant ":SearchCommandParser" as SearchCommandParser LOGIC_COLOR
+participant ":SearchCommand" as SearchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":FieldsContainKeywordsPredicate" as FieldsContainKeywordsPredicate MODEL_COLOR
+participant ":Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> ConnectUsParser : parseCommand(input)
+activate ConnectUsParser
+
+create SearchCommandParser
+ConnectUsParser -> SearchCommandParser++
+return
+
+ConnectUsParser -> SearchCommandParser:parse(args)
+activate SearchCommandParser
+
+ref over SearchCommandParser
+Search Parse Args
+end
+
+create FieldsContainKeywordsPredicate
+SearchCommandParser -> FieldsContainKeywordsPredicate++
+return e
+
+create SearchCommand
+SearchCommandParser -> SearchCommand++
+
+return
+return searchCommand
+destroy SearchCommandParser
+return searchCommand
+
+LogicManager->SearchCommand : execute(model)
+activate SearchCommand
+
+SearchCommand -> Model : updateFilteredPersonList(fieldsContainKeywordsPredicate)
+activate Model
+return
+
+create CommandResult
+SearchCommand ->CommandResult++
+return
+
+return commandResult
+return
+
+@enduml
+

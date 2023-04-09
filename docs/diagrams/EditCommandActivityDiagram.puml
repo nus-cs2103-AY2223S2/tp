@@ -2,19 +2,19 @@
 !pragma useVerticalIf on
 start
 :User enters edit command;
-if () then ([else])
+if () then ( [else])
   :Error: Invalid index provided;
   stop
-([Positive index provided]) elseif () then ([else])
+( [Positive index provided]) elseif () then ( [else])
   :Error: Invalid command format;
   stop
-([at least one field to be edited is provided]) elseif () then ([else])
+( [at least one field to be edited is provided]) elseif () then ( [else])
   :Error: Invalid index provided;
   stop
-([Person index is in valid range of contact list])elseif () then ([else])
+( [Person index is in valid range of contact list])elseif () then ( [else])
   :Error: Person already exists in the contact list;
    stop
- else ([Edited Person does not share a name with any other Persons])
+ else ( [Edited Person does not share a name with any other Persons])
 endif
   :Edit command successfully executes.
 Person is successfully edited.;
