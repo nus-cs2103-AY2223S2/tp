@@ -944,3 +944,5 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
    1. User cannot see the indices of contacts further down the list, and needs to scroll.
    2. The `select` command can integrate `find` functionality.
 8. Splitting the description field of events into title and description fields, so as not to clutter the UI with long descriptions.
+
+[Back To Contents](#table-of-contents)
