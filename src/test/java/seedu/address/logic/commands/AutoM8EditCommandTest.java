@@ -408,6 +408,7 @@ public class AutoM8EditCommandTest {
 
     }
 
+    
     /**
      * Returns a tag set containing the list of strings given.
      */
