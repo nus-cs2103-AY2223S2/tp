@@ -270,7 +270,10 @@ Examples of invalid usages:
 
 Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
 `d/DEADLINE`. Please refer to [format restrictions](#format-restrictions) to find out more.
+
+
 --------------------------------------------------------------------------------------------------------------------
+
 ### Finding a module: `find`
 
 By using the `find` command, you can find a module based on its name or description. 

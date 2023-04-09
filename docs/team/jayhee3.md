@@ -16,12 +16,14 @@ coNtactUS is written in Java, and has about 10 kLoC. The development team consis
    * What it does: allows the user to add a deadline to a module. 
    * Justification: Computing students have numerous deadlines that they have to keep track of for each module. Such a feature would help them to always be ahead of their tasks.
  
+
 2. New Feature: Added a command for the user to sort the modules based on their timeslot or deadline. [\#78](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/78)
    * What it does: Each module can have a deadline and/or timeslot attached to it. An example of a deadline would be 23rd Jan 2023. On the other hand, a timeslot is a recurring event with an example being Tuesday 2pm - 4pm. This feature allows the user to sort the modules based on the timeslot or deadline of the modules, based on which has a deadline due first or has a timeslot that is occuring next. 
    * Justification: This feature would let computing students quickly see what lectures, tutorials, or meetings they have for the day, as well as the deadlines due soon.
    * Highlights: This was a challenging task as it required an in-depth understanding of how the user interface displayed the modules. I found out that the user interface was actively "listening" for changes to the list of modules in the background to make sure that it always displayed the desired list. In order to get the user interface to display a sorted version of the list of modules when requested by the user, I had to understand the mechanism by which I could change the list of modules and ensure that the user interface was always aware of the change. 
   
-3. New Feature: Changed the theme of the user interface [\#84](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/84)
+
+1. New Feature: Changed the theme of the user interface [\#84](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/84)
    * What it does: Changed the theme of the user interface to make it cleaner, more minimalistic and conducive for work. The new theme utilises a mixture of light blue and white hues to achieve an aesthetic appeal. 
    * Highlights: The graphical user interface of the desktop application was built using `JavaFX`. As such, changing the theme of the user interface was a challenging task that required a strong understanding of `JavaFX` documentation and `FXML` files. Using the `Scene Builder` software proved particularly useful as it helped with visualing how the code interacted with the GUI across several layers. 
  
@@ -31,14 +33,17 @@ coNtactUS is written in Java, and has about 10 kLoC. The development team consis
 3. Fixing of failing test cases
 4. Fixing checkstyle errors 
 
+--------------------------------------------------------------------------------------------------------------------
 #### Contributions to the User Guide (UG) 
 
+--------------------------------------------------------------------------------------------------------------------
 #### Contributions to the Developer Guide (DG) 
 
+--------------------------------------------------------------------------------------------------------------------
 #### See code contribution in detail
 * Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jayhee3&breakdown=true)
 
-
+ --------------------------------------------------------------------------------------------------------------------
 #### Contributions to team-based tasks
 My contributions to team-based tasks include but are not limited to the following: 
 1. Creating of issues and project milestones
@@ -47,13 +52,15 @@ My contributions to team-based tasks include but are not limited to the followin
 4. Creating and management of releases  
 5. Organising internal project documents to make them cleaner and better structured 
 
+ --------------------------------------------------------------------------------------------------------------------
 #### Review/ Mentoring contributions 
 1. Reviewing pull requests from team members (Example: [\#153](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/153)
 2. Helping team members to better understand the code base and assisting them with difficulties they faced implementing features or bug fixing 
 
+ --------------------------------------------------------------------------------------------------------------------
 #### Contributions beyond the project team
 1. Participated in software testing of other project teams to catch bugs and help them improve their product 
-
+ --------------------------------------------------------------------------------------------------------------------
 * Documentation:
   * User Guide:
     * Added documentation for the features delete and find [\#72]()
