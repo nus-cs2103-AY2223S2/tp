@@ -397,6 +397,24 @@ to application readable json data.
     - Pros: Easier and more intuitive for users to use
     - Cons: Builds upon **Alternative 1**, requiring more work to implement
 
+<<<<<<< HEAD
+=======
+### \[Proposed\] Add medical key information to pet (not shown in UI)
+#### Proposed Implementation
+The proposed function is an extension of the base `PetPal`, uses a `Medical` class to store medical information, and users will be able to input medical information.
+
+#### Design considerations:
+- **Alternative 1 (current choice)** : Store information such as vaccination information all in the Medical Class
+  Users will only be able to access if they type in keyword such as "vaccination" or "vaccine" followed by their password
+  which they will have to set at the start of the application.
+    - Pros: Provides a way for users to store medical information without having to worry about it being shown in the UI
+    - Cons: Might be hard for users to remember the password
+
+- **Alternative 2** : Show all the information in the UI
+    - Pros: Easier and more intuitive for users to use
+    - Cons: Not secure, anyone can see the information
+  
+>>>>>>> 8f1240eb2bd098729da937fc276a402e9407cb2a
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -506,12 +524,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: View reminders**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to see reminders that are due soon
+2. System filters the pet list to show desired pets<br>
+   Use case ends.
 
 
 **Use case: Find pet by name**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to find pet(s) by name(s)
+2. System filter the list to show the desired pet(s)<br>
+   Use case ends.
 
 
 **Use case: Edit a pet**
@@ -521,7 +545,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Change rate of Cost**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to change a pet's cost calculation rate and additional flat cost
+2. System edits the pet's cost calculation formula<br>
+   Use case ends.
+
+**Extensions**
+* 2a. Any required detail(s) are missing
+    * 2a1. System shows an error message.<br>
+      Use case ends.
 
 
 **Use case: Mark deadline**
