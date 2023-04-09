@@ -149,15 +149,15 @@ public class ImageReader implements FileReader<BufferedImage> {
         int height = 200;
         BufferedImage errorImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
-        // Create graphics object and set anti-aliasing
+        //Create graphics object and set anti-aliasing
         Graphics2D g2d = errorImage.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Draw background
+        //Draw background
         g2d.setColor(Color.LIGHT_GRAY);
         g2d.fillRect(0, 0, width, height);
 
-        // Draw red error icon
+        //Draw red error icon
         g2d.setColor(Color.RED);
         int iconSize = 50;
         g2d.fillOval(20, (height - iconSize) / 2, iconSize, iconSize);
@@ -168,7 +168,7 @@ public class ImageReader implements FileReader<BufferedImage> {
         g2d.drawLine(20 + iconSize / 2 - 7, (height - iconSize) / 2
                 + iconSize - 20, 20 + iconSize / 2 + 7, (height - iconSize) / 2 + iconSize - 20);
 
-        // Draw error message
+        //Draw error message
         g2d.setColor(Color.BLACK);
         g2d.setFont(new Font("Arial", Font.PLAIN, 24));
         g2d.drawString("Error loading image", 90, height / 2 - 10);
