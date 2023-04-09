@@ -52,12 +52,15 @@ deactivate InternBuddyParser
 
 LogicManager -> EditCommand : execute()
 activate EditCommand
-EditCommand -> Descriptor
-activate Descriptor
-Descriptor --> EditCommand : edited
-deactivate Descriptor
-Descriptor -[hidden]-> EditCommand
-destroy Descriptor
+EditCommand -> EditCommand : createEditedInternship(internshipToEdit, editInternshipDescriptor)
+activate EditCommand
+deactivate EditCommand
+'EditCommand -> Descriptor
+'activate Descriptor
+'Descriptor --> EditCommand : edited
+'deactivate Descriptor
+'Descriptor -[hidden]-> EditCommand
+'destroy Descriptor
 EditCommand -> Model : setInternship(toEdit, edited)
 activate Model
 
@@ -81,5 +84,6 @@ deactivate EditCommand
 
 [<--LogicManager : cr
 destroy EditCommand
+destroy Descriptor
 deactivate LogicManager
 @enduml
