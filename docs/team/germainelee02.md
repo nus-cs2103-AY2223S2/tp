@@ -54,6 +54,7 @@ Given below are my contributions to the project.
   * Updated the value proposition in the Developer Guide [\#124](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/124)
   * Contributed to the user stories in the Developer Guide
   * Added the use cases in the Developer Guide
+  * Added CLI tutorial to the User Guide [\#240](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/240)
   * Fixed the grammar mistakes in the User Guide and changed the language in the User Guide to sound more welcoming [\#212](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/212)
 
 * **Community**:
