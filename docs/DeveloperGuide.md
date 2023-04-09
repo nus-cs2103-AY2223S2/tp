@@ -170,14 +170,15 @@ A member of our core team will attend to you as soon as possible.
 ---
 
 ## **Core Technologies**
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html), [TestFX](https://github.com/TestFX/TestFX).
 
 ---
 
 ## **Acknowledgements**
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
 * This project utilised GUI tests from the [AddressBook Level 4 (AB4)](https://github.com/se-edu/addressbook-level4) project created by the [SE-EDU initiative](https://se-education.org) as well.
-* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html), [TestFX](https://github.com/TestFX/TestFX).
+
 
 ---
 
@@ -1161,7 +1162,7 @@ The process of getting a recommendation is as follows:
 
 <img src="images/StorageClassDiagram.svg" style="width:100%;margin:0 0%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.1</b> Class Diagram for Storage Components
+    <b>Figure 4.16</b> Class Diagram for Storage Components
 </div>
 <br>
 
@@ -1206,6 +1207,60 @@ Equivalence partitions and stubs were mainly used to test commands.
 ### **Testing Parsers**
 
 Positive and negative test cases were mainly used to test parsers.
+
+## **GUI Tests**
+Our organisation utilises `TestFX` for conducting GUI tests. `TestFX` is a popular testing framework for `JavaFX` applications as it provides a set of tools and utilities for writing tests that interact with `JavaFX` UI components, simulate user interactions, and perform assertions on the state of the UI.
+
+We referenced from [Addressbook Level 4 (AB4)](https://github.com/se-edu/addressbook-level4) on automated GUI testing. 
+* What's different from AB4:
+  * We used the Github Actions Workflow located in `.github/workflows/gradle.yml` rather than setting up `Travis CI` as per `TestFX` [documentation](https://github.com/TestFX/TestFX#continuous-integration-ci).
+  * `build.gradle` runs both unit tests and GUI tests in the same task, which is also used by `Github Actions workflow`.
+  * `TestFX` version is upgraded to `4.0.16-alpha` while `openjfx-monocle` version is upgraded to `jdk-12.0.1+2`.
+
+### **Setting up automated GUI Tests in Github Actions**
+Due to the Github Actions environment, there is a need to test in a headless environment. To test in a headless environment, you must add `Monocle` as a test dependency as per [TestFX documentation](https://github.com/TestFX/TestFX#continuous-integration-ci).
+
+The current [build.gradle](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/build.gradle) sets the GUI tests to run in a headless environment by default. To remove that or set it to run with visual output on your local computer, find the code block below and set the `jvmArgs` and `systemProperties` according to your needs.
+```groovy
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
+    systemProperties = [
+            'testfx.robot': 'glass',
+            'testfx.headless': 'true',
+            'prism.order': 'sw',
+            'prism.text': 't2k',
+    ]
+}
+```
+
+## Understanding GUI tests
+We utilised GUI tests from [AB4](https://github.com/se-edu/addressbook-level4/tree/master/src/test/java) and here is a summary of it.
+
+<img src="images/UiTestClassDiagram.svg" style="width:70%;margin:0 15%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 5.1</b> Class Diagram for UI Tests
+</div>
+<br>
+
+Note that `AllUITests` above refer to all UI Tests in `seedu.address.ui` except for `TestFxmlObject`. The handles used in the corresponding test cases can be easily seen from their names. For example, `CommandBoxTest` contains `CommandBoxHandle`.
+<br>
+
+<img src="images/NodeHandleClassDiagram.svg" style="width:70%;margin:0 15%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 5.2</b> Class Diagram for Node Handle
+</div>
+<br>
+
+<img src="images/StageHandleClassDiagram.svg" style="width:70%;margin:0 15%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 5.3</b> Class Diagram for Stage Handle
+</div>
+<br>
+
+All UI tests using `TestFX` extend from `GuiUnitTest` and handles are created for the corresponding UI test, which extends from either `StageHandle` or `NodeHandle` depending on the type used for `UiPart` in the actual class to be tested.
+
 
 ---
 

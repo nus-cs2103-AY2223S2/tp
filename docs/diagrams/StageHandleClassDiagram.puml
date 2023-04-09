@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_DARK
+skinparam classBackgroundColor UI_COLOR
+
+package guihandles <<Rectangle>> UI_COLOR_BACKGROUND {
+Class "{abstract}\nStageHandle" as StageHandle
+Class HelpWindowHandle
+}
+HelpWindowHandle .|> StageHandle
+StageHandle -down->"1" GuiRobot
+GuiRobot .|> FxRobot
+
+@enduml
