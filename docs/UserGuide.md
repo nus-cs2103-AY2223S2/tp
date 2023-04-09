@@ -99,7 +99,7 @@ Let's get you _rizzed_ up in the fastest way possible!
 * We use [prefixes](#what-is-a-recipe) such as `/n` to label our arguments for the command. 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  i.e. in `add NAME`, `NAME` is a parameter which can be used as `add Grilled Salmon`.
+  i.e. in `add n/RECIPE_NAME`, `RECIPE_NAME` is a parameter which can be used as `add Grilled Salmon`.
 
 * Parameters in square brackets `[]` refer to optional parameters that can be excluded.
   i.e. `n/RECIPE_NAME [d/RECIPE_DURATION]` can be used as `n/Cheese Sandwich d/10 minutes` or `n/Cheese Sandwich`.
@@ -247,7 +247,7 @@ Format:
 
 <div markdown="span" class="alert alert-warning">
 
-Keyboard shortcut: 
+**Keyboard shortcut**: 
 To navigate the list, you can use the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd> arrow keys (as previously mentioned in the QuickStart).
 While the recipe to that you want to zoom in to is being selected, simply type <kbd>p</kbd> to view that particular recipe's details! 
 
@@ -288,7 +288,7 @@ Format:
 
 <div markdown="span" class="alert alert-warning">
 
-Keyboard shortcut:
+**Keyboard shortcut**:
 As an alternate means to typing the full command, we provide a popup form to edit a recipe!
 While the recipe to that you want to edit is being selected, simply type <kbd>f</kbd> to display the popup form for that particular recipe!
 
@@ -303,8 +303,8 @@ Or want to look up all recipes associated with a specific tag or those containin
 only those that match any of your specified keywords straight away!
 
 Format:
-`find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`
-Tip: Supported properties: `name`, `tag` and `ingredient`
+`find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`<br>
+Supported properties: `name`, `tag` and `ingredient`
 
 i.e. `find name KEYWORD [ADDITIONAL KEYWORDS]...`, `find tag KEYWORD [ADDITIONAL KEYWORDS]...`, `find ingredient KEYWORD [ADDITIONAL KEYWORDS]...`
 
@@ -354,7 +354,7 @@ Example(s) of usage:
 
 <div markdown="span" class="alert alert-warning">
 
-Keyboard shortcut:
+**Keyboard shortcut**:
 While the recipe you want to delete is being selected, simply hit the <kbd>Delete</kbd> or 
 <kbd>Backspace</kbd> key and click on confirm to delete that particular recipe!
 
