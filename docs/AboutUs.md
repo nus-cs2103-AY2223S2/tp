@@ -46,5 +46,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/joyngjr)]
 [[portfolio](team/joyngjr.md)]
 
-* Role: tbc
-* Responsibilities: tbc
+* Role: Developer
+* Responsibilities: Delete/Stats/Schedule Feature
