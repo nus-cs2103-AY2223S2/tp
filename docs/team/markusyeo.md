@@ -32,7 +32,7 @@ Given below are my contributions to the project.
   * Handled product releases for `v1.1`, `v1.2` and `v1.3` (including uploading and testing of JAR files).
   * Facilitated weekly meetings.
 * **Team Tasks**
-  * Refactored the entire code base including test cases to be adapted for Dengue Hotspot Tracker.
+  * Refactored the entire code base including test cases to be adapted for DengueHotspotTracker.
 
 * **Documentation:**
   * User Guide
