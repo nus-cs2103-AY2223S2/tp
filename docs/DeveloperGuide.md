@@ -426,7 +426,7 @@ is created, empty note list will be created and up to 20 notes can be added to a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Requirements**
 
 ### Product scope
 
@@ -463,7 +463,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`     | New TA         | see all upcoming the 2040 events | can effectively pre-plan the schedule for the rest of my modules. |
 
 
-2. Epic: As a CS2040 TA, I can effectively manage and keep track of all my students.
+- Epic: As a CS2040 TA, I can effectively manage and keep track of all my students.
 
 | Priority | As a CS2040 …​| I want to …​                                             | so that I …​                                                                                            |
 |----------|------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
@@ -473,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | TA               | have a filter function to filter for the desired student | do not have to scroll through the namelist when marking attendance or giving class participation marks. |
 | `* * *`  | New TA           | see all my students of CS2040                            | can view all my students at a glance.                                                                   |
 
-3. Epic: As a CS2040 TA, I can track students progress.
+- Epic: As a CS2040 TA, I can track students progress.
 
 | Priority | As a CS2040 …​   | I want to …​                                                                                                                    | So that I …​                                                                                                              |
 |----------|------------------|---------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -485,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Motivational TA  | find out who are the most consistent students                                                                                   | can recommend them for future TA positions.                                                                               |
 
 
-4. Epic: As a CS2040 TA, I want to note down important information during an event.
+- Epic: As a CS2040 TA, I want to note down important information during an event.
 
 | Priority | As a CS2040 …​ | I want to …​                                                        | so that I …​                                               |
 |----------|----------------|---------------------------------------------------------------------|------------------------------------------------------------|
@@ -496,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | TA             | note my performances at the end of this semester for the last event | may reflect upon them.                                     |
 | `*`      | Lab TA         | note down some common vim commands as a cheatsheet                  | can better navigate to inspect student codes via terminal. |
 
-5. Epic: As a CS2040 TA, I want to see a help guide.
+- Epic: As a CS2040 TA, I want to see a help guide.
 
 | Priority | As a CS2040 …​ | I want to …​                                          | so that I …​                                                               |
 |----------|----------------|----------------------------------------------------------|----------------------------------------------------------------------------|
@@ -505,11 +505,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | New TA         | have an interactive help guide                           | do not have to manually read the user guide and developer guide everytime. |
 
 
-### Use cases
+### Non-Functional Requirements
 
-(For all use cases below, the **System** is the `TrAcker` and the **Actor** is the `CS2040 TA`, unless specified otherwise)
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 20 students without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The Help syntax should be easily rendered.
+5. Help displayed should be segmented properly.
+6. Help displayed should be easy to follow.
+7. Syntax help provided should be unambiguous.
+8. Each page should load within 5 seconds.
+9. The application should run on any operating system.
+10. Any sorting should run in a maximum time of O(nlogn).
+11. Events should be added in 5 second.
+12. Events should be delete in 5 second.
+13. There should be maximum 2 seconds keyboard input lag at any time.
+14. Displaying a student profile picture should take at most 5 seconds.
+15. Data should be saved to local storage after any data change has been made within the application.
+16. Event notes should be text-only (no images or videos).
 
 ---
+
+## **Use Cases**
 
 #### Students / Events use cases
 
@@ -695,9 +712,8 @@ Use case ends.
 * a. At any time, TA decides not to remove student from the event.
     * a1. TA removes input from TrAcker.
 
-Use case ends
+    Use case ends
 
----
 
 #### Help Functionality Use Cases
 
@@ -747,8 +763,6 @@ Use case ends.
     * 3c1. TrAcker displays instructions and syntaxes for all valid organisational related commands.
 
   Use case ends.
-
----
 
 #### Sort / Filter Students Use Cases
 
@@ -843,8 +857,6 @@ Use case ends.
     * 2a1. TA removes input from TrAcker.
 
   Use case ends
-
----
 
 #### Notes Use Cases
 
@@ -969,28 +981,7 @@ Use case ends.
 
 ---
 
-### Non-Functional Requirements
-
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 20 students without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The Help syntax should be easily rendered.
-5. Help displayed should be segmented properly.
-6. Help displayed should be easy to follow.
-7. Syntax help provided should be unambiguous.
-8. Each page should load within 5 seconds.
-9. The application should run on any operating system.
-10. Any sorting should run in a maximum time of O(nlogn).
-11. Events should be added in 5 second.
-12. Events should be delete in 5 second.
-13. There should be maximum 2 seconds keyboard input lag at any time.
-14. Displaying a student profile picture should take at most 5 seconds.
-15. Data should be saved to local storage after any data change has been made within the application.
-16. Event notes should be text-only (no images or videos).
-
----
-
-### Glossary
+## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
@@ -1069,28 +1060,26 @@ Given below are our planned enhancements.
 
 ### Planned Enhancements
 
-1. The current mapping of students to student photo is mapped randomly to any 23 icons. This means that two or more students could
+- The current mapping of students to student photo is mapped randomly to any 23 icons. This means that two or more students could
    be mapped to the same photo, which undermines the uniqueness of the photo. Since the photo is suppose to simulate the student's profile, it
    is considered a feature flaw that two or more students have the same face, as seen for student index 5 and index 8 below.
+  We plan to remedy it by restricting the number of students a TA can take. For example, in a usual class size, there can be a maximum of about 20 students to a TA
+  for CS2040 events. Therefore, by restricting the class size, we can ensure no two students in the current list have the same profile photo since there are a total of 23 icons.
+  However, this does not fully solve an issue, because deleting a student and adding a new student might result in the same profile photo. Hence, we plan to further enhance this by
+  changing from icons to fetching from a simulated database that ensures a unique photo is always fetched for a new unique student, which slightly pivots to more backend heavy tasks.
 
 <img src="images/SameProfile.png" width="550" /> 
 
-We plan to remedy it by restricting the number of students a TA can take. For example, in a usual class size, there can be a maximum of about 20 students to a TA
-for CS2040 events. Therefore, by restricting the class size, we can ensure no two students in the current list have the same profile photo since there are a total of 23 icons.
-However, this does not fully solve an issue, because deleting a student and adding a new student might result in the same profile photo. Hence, we plan to further enhance this by
-changing from icons to fetching from a simulated database that ensures a unique photo is always fetched for a new unique student, which slightly pivots to more backend heavy tasks.
-
-2. The current TrAcker displays empty students and empty events if the json data is garbled. This results in the user being unsure if what he / she has to do.
+- The current TrAcker displays empty students and empty events if the json data is garbled. This results in the user being unsure if what he / she has to do.
    We plan to implement a warning window to warn the user that the data is corrupted / garbled and they will have to close the application. Once the application
    is closed, TrAcker will refresh the garbled data with a new original data. Then when the user starts TrAcker again, TrAcker will inform the user that due to a corrupted
    data, the data has been reset to the original one. This way, the user will not have to manually reset and delete the data file without knowing the cause.
 
-3. The current noting-take function does not support editing notes directly on old notes. For example, user can click
+- The current noting-take function does not support editing notes directly on old notes. For example, user can click
    on an old note and edit its content to update the notes. This would be especially useful for super long notes.
+  We plan to update the GUI to include an expandable panel that holds the existing note once clicked, and users may edit
+  the texts as they like. After finishing editing, there is a yes button to click and exit. Display box will also be slightly enlarged to
+  allow users to view the help messages more comfortably. An external help display window may be a feasible feature as well if enlarging the main window
+  is deemed undesirable.
 
-4. As of now, the help messages are displayed in the result box and the result box may be too small to view large chunks of help messages.
-
-We plan to update the GUI to include an expandable panel that holds the existing note once clicked, and users may edit
-the texts as they like. After finishing editing, there is a yes button to click and exit. Display box will also be slightly enlarged to
-allow users to view the help messages more comfortably. An external help display window may be a feasible feature as well if enlarging the main window
-is deemed undesirable.
+- As of now, the help messages are displayed in the result box and the result box may be too small to view large chunks of help messages.
