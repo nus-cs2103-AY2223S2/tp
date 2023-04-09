@@ -25,7 +25,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox styleClass="pane">
+      <VBox maxHeight="1.7976931348623157E308" styleClass="pane">
         <MenuBar fx:id="menuBar" style="-fx-background-color: #000026;" styleClass="pane" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -42,13 +42,13 @@
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <StackPane fx:id="mainView" prefHeight="150.0" prefWidth="200.0">
+               <StackPane fx:id="mainView" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                   <children>
-                     <SplitPane fx:id="splitScreen" dividerPositions="0.29797979797979796" maxHeight="1.7976931348623157E308" prefWidth="200.0" styleClass="pane">
+                     <SplitPane fx:id="splitScreen" dividerPositions="0.7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane">
                        <items>
-                           <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                           <VBox maxHeight="1.7976931348623157E308">
                               <children>
-                                 <VBox maxWidth="1.7976931348623157E308" minHeight="80.0" prefHeight="80.0" prefWidth="100.0" VBox.vgrow="NEVER">
+                                 <VBox maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" VBox.vgrow="ALWAYS">
                                     <children>
                                        <StackPane fx:id="resultsHeaderPlaceholder" prefWidth="200.0" VBox.vgrow="NEVER">
                                           <VBox.margin>
@@ -61,10 +61,10 @@
                                        <Insets left="5.0" right="5.0" />
                                     </padding>
                                  </VBox>
-                            <StackPane fx:id="listPanelPlaceholder" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" styleClass="dialog-pane" VBox.vgrow="ALWAYS" />
+                            <StackPane fx:id="listPanelPlaceholder" maxHeight="1.7976931348623157E308" styleClass="dialog-pane" VBox.vgrow="ALWAYS" />
                               </children>
                            </VBox>
-                           <VBox prefHeight="169.0" prefWidth="100.0">
+                           <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                               <children>
                                  <HBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
                                     <children>
@@ -75,7 +75,7 @@
                                        </Label>
                                     </children>
                                  </HBox>
-                                 <StackPane fx:id="statisticsPlaceholder" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+                                 <StackPane fx:id="statisticsPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
                               </children>
                            </VBox>
                        </items>
@@ -84,7 +84,7 @@
                </StackPane>
         </VBox>
 
-           <StackPane fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" styleClass="pane" VBox.vgrow="ALWAYS">
+           <StackPane fx:id="resultDisplayPlaceholder" maxHeight="140.0" minHeight="140.0" styleClass="pane">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
