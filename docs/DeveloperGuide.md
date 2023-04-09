@@ -271,7 +271,7 @@ Step 2. The user executes `deleteStudent 1 Tutorial/1` to delete the student at 
 
 The following activity diagram summarizes what happens when a TA executes delete student from event from step 2. Assume valid command format.
 
-<img src="images/TrAcker-activity-diagrams/DeleteStudentUpdated.png.png" width="550" />
+<img src="images/TrAcker-activity-diagrams/DeleteStudentUpdated.png" width="550" />
 
 #### Design considerations:
 
