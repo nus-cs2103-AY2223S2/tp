@@ -460,7 +460,7 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 Adds an order into the list of orders.
 
-Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER s/STATUS`
+Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
 
 <div markdown="block" class="alert alert-tip">
 
@@ -470,7 +470,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * `N` or `n` for `Not Delivered`
   * `I` or `i` for `In Progress`
   * `D` or `d` for `Delivered`
-* A status must be provided.
+* If no status is provided, it is defaulted to `Not Delivered`.
 
 * All `ORDER_ITEM` **must** match (case-sensitive) a menu item in the menu. (e.g. `choclate` and `Chocolate` are considered different items).<br>
   i.e. If `ORDER_ITEM` does not match any of the existing menu items, you need to add it as a menu item first.<br>
@@ -482,7 +482,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
 
 :clipboard: **Example 1: Standard command without status**
 
-* `add_order on/Cupcake q/5 d/01/12/2024 n/John Cat p/91234567 a/John Street s/N`<br>
+* `add_order on/Cupcake q/5 d/01/12/2024 n/John Cat p/91234567 a/John Street`<br>
   Adds an order with the following details:
   * Order Item: `Cupcake`
   * Quantity: `5`
@@ -490,7 +490,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * Name: `John Cat`
   * Phone Number: `91234567`
   * Address: `John Street`
-  * Status: `Not Delivered`
+  * Status: `Not Delivered` (Default)
 
 :clipboard: **Example 2: Shortcut command with status**
 
@@ -855,7 +855,7 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
     * e.g. `find_o s/D` will return orders marked as `Delivered`.<br>
 
 * For `CUSTOMER_NAME` and `CUSTOMER_ADDRESS`:
-  * Search is case-sensitive (e.g. The search for orders with customer name `Amy` will match with `Amy` but not with `AMY`).
+  * Search is case-insensitive (e.g. The search for orders with customer name `amy` will match with `Amy` and with `amy`).
   * Order of the keywords matter (e.g. `Amy Lee` will not match with `Lee Amy`).
   * Only full words will match.
   * Order's respective parameter must fully match with the given parameter.<br>
