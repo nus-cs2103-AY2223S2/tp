@@ -14,21 +14,23 @@ Class UserPrefs
 
 Class UniqueCustomerList
 Class Customer
-Class Address
+Class "Address" as cAddress
 Class Email
-Class Name
+Class "Name" as cName
 Class Phone
 Class Marked
-Class Note
+Class "Note" as cNote
 Class CustomerType
 Class Points
 
 Class UniqueOrderList
+Class "Name" as oName
+Class "Address" as oAddress
 Class Order
 Class CreatedDate
 Class Quantity
 Class Status
-Class Note
+Class "Note" as oNote
 
 }
 
@@ -48,26 +50,22 @@ AddressBook *--> "1" UniqueCustomerList
 AddressBook *--> "1" UniqueOrderList
 UniqueCustomerList --> "~* all" Customer
 UniqueOrderList --> "~* all" Order
-Customer *--> Name
+Customer *--> cName
 Customer *--> Phone
 Customer *--> Email
-Customer *--> Address
+Customer *--> cAddress
 Customer *--> Marked
-Customer *--> "*" Note
+Customer *--> "*" cNote
 Customer *--> CustomerType
 Customer *--> Points
-Order *--> Customer
-Order *--> "*" Note
+Order *--> "1" Customer
+Order *--> "*" oNote
 Order *--> Quantity
-Order *--> Address
+Order *--> oAddress
 Order *--> Status
 Order *--> CreatedDate
-Order *--> Name
+Order *--> oName
 
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"~* filtered" Customer
+ModelManager --> "filtered\n and sorted" UniqueCustomerList
+ModelManager --> "filtered\n and sorted" UniqueOrderList
 @enduml
