@@ -19,20 +19,22 @@ create ExportCommand
 FitBookParser -> ExportCommand
 activate ExportCommand
 
-ExportCommand --> ExportCommand : writeToCsv()
-writeToCsv --> FitBookModel
+ExportCommand --> FitBookModel : writeToCsvFile()
+activate ExportCommand
 activate FitBookModel
 
 FitBookModel --> FitBookModel : getFilteredClientlist
 
-FitBookModel --> writeToCsv : getFilteredClientlist
-deactivate FitBookModel
+FitBookModel --> ExportCommand :
+deactivate ExportCommand
 box FitBookModel MODEL_COLOR_T1
 participant ":FitBookModel" as FitBookModel MODEL_COLOR
 end box
 
 ExportCommand --> FitBookParser : feedback
 deactivate ExportCommand
+ExportCommand -[hidden]-> LogicManager : result
+destroy ExportCommand
 
 FitBookParser --> LogicManager : feedback
 deactivate FitBookParser
