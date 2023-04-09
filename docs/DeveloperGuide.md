@@ -281,7 +281,7 @@ As a FishTracker application, we provide a way for fishkeepers to track the `Las
 as having multiple tanks and fishes makes feeding difficult to keep track of without a tracking system.
 
 #### Implementation summary
-As such, every `Fish` contains a `LastFedDate` object, which contains a date field which records their `lastFedDate`.
+As such, every `Fish` contains a `LastFedDateTime` object, which contains a date field which records their `lastFedDate`.
 
 When the fishkeeper decides to feed a particular tank by invoking the command `tank feed <index>`,
 the program will feed all fishes in that tank, changing `LastFedDate`  of all fishes in that tank.
