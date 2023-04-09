@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+!define JAVAFX_COLOR gray
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+skinparam linetype ortho
+
+hide stereotype
+
+skinparam Class<<JavaFX>> {
+    BorderColor JAVAFX_COLOR
+    backgroundColor JAVAFX_COLOR
+}
+
+skinparam Class<<Generic>> {
+    StereotypeFontColor black
+    StereotypeFontStyle normal
+    borderColor UI_COLOR
+}
+
+Class ListView<Tank> <<JavaFX>> <<Generic>>
+Class ObservableList<Tank> <<JavaFX>> <<Generic>>
+Class UiPart<Region> <<Generic>>
+together {
+    Class ListCell<Tank> <<JavaFX>> <<Generic>>
+    Class TankListViewCell
+}
+Class Tank MODEL_COLOR
+
+TankListPanel --> ListView
+TankListPanel .> ObservableList
+TankListPanel -> TankListViewCell
+
+TankListViewCell -up-> TankCard
+
+UiPart <|-down- TankListPanel
+UiPart <|-down- TankCard
+ListCell <|-left TankListViewCell
+
+TankCard ..> Tank
+TankListViewCell ..> Tank
+@enduml

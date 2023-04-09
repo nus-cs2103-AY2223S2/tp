@@ -3,18 +3,20 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
+skinparam linetype ortho
 
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
-Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class MainContent
-Class FishListPanel
-Class TaskListPanel
-Class TankListPanel
+together {
+    Class FishListPanel
+    Class TaskListPanel
+    Class TankListPanel
+}
 Class FishCard
 Class TankCard
 Class TaskCard
@@ -34,33 +36,19 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
+UiManager -down-> "1    " MainWindow
+MainWindow *-down->  "1    " CommandBox
+MainWindow *-down-> "1 " ResultDisplay
 MainWindow *-down-> "1" MainContent
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1 " StatusBarFooter
+MainWindow --> "1 " HelpWindow
 
-MainContent *-down-> "1" FishListPanel
-MainContent *-down-> "1" TaskListPanel
-MainContent *-down-> "1" TankListPanel
+MainContent *-down-> "1  " FishListPanel
+MainContent *-down-> "\n\n1 " TaskListPanel
+MainContent *-down> "1  " TankListPanel
 FishListPanel -down-> "*" FishCard
 TankListPanel -down-> "*" TankCard
 TaskListPanel -down-> "*" TaskCard
-
-MainWindow -left-|> UiPart
-
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-MainContent --|> UiPart
-FishCard --|> UiPart
-TaskCard --|> UiPart
-TankCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
-FishListPanel --|> UiPart
-TaskListPanel --|> UiPart
-TankListPanel --|> UiPart
 
 FishCard ..> Model
 TaskCard ..> Model
@@ -73,5 +61,4 @@ HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
-MainWindow -[hidden]-|> UiPart
 @enduml

@@ -87,11 +87,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T17-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `MainContent`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `MainContent`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from a generic abstract `UiPart` class (not shown above) which captures the commonalities between classes that represent parts of the visible GUI.
+
+![Breakdown of MainWindow](images/UiMainWindowLabelled.png)
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -100,7 +102,37 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Fish` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Fish`, `Tank`, and `Task` objects residing in the `Model`.
+* does not depend on the `Storage` component, as it does not read or save data to files directly.
+
+#### Displaying Panels
+All information about the fish, tanks, and tasks are displayed in their respective panels. 
+These panels have a `ListView` that displays the information in a scrollable list. 
+The `ListView` is populated by an `ObservableList` that is stored in the `Model` component. 
+The `ListView` is automatically notified when the `ObservableList` is updated, so that the `ListView` can be updated with the new information. 
+This is not triggered if any items inside the `ObservableList` are modified, so the `Logic` component calls the `refresh` functions of each pane when a command is executed.
+
+Shown below is the class diagram for all the relevant classes for a `TankListPanel`. The other panels are similar.
+
+![Class diagram for the tank panel](images/UiTankPanelOverview.png)
+
+`TankListPanel` has a `ListView` that displays the `TankCard` objects. Since these are custom objects, they require a custom cell factory to be created. 
+`TankListViewCell` is the custom cell factory that creates the `TankCard` objects. 
+All the required JavaFX components are described in the corresponding `TankListCard.fxml` file.
+
+#### Displaying Tank Readings
+Unlike the rest of the UI, the charts used to display the tank readings are not described in any `.fxml` file. 
+Instead, they are created in the `TankCard` class. This was done to allow for greater flexibility in terms of which chart should be displayed for any given tank.
+While this version of the app does not have this functionality, future versions of the app could allow the user to choose which chart to display for each tank.
+It may also allow the user to add custom tank readings based on the equipment that they have.
+
+To populate the charts, the `TankCard` class uses the `Tank` object stored in the `Model` component passed to it by the `TankListPanel`.
+Each of the three types of readings has their own `ObservableList` which is then looped through to create the data points for the chart.
+
+A possible improvement to the way that readings are currently stored is to use a `HashMap` instead of three separate `ObservableList`s.
+This could allow the user to supply their own types of readings (which would be the key of the `HashMap`) and the corresponding values.
+Combining this with the ability to choose which chart to display for each tank would allow for a lot of flexibility in terms of how the user can view their tank readings.
+However, this would requite significant changes to the way readings are stored. It might require a rework of the entire `readings` package to make it more flexible.
 
 ### Logic component 
 
@@ -616,23 +648,26 @@ as the app ensures this
     1. [-MAX_INT....0]: Index must be a positive non-zero integer
     2. [4..MAX_INT]: Index is out-of-bounds. Index must correspond to a valid tank.
    
+
 2. The current parameter parsing does not check for nonsensical or invalid values. We plan do execute sanity checks to 
     protect the user from receiving unintentional results for the following parameters:
    1. Last fed dates: Check for invalid dates like 30th February and reject them
    2. Feeding interval: While it makes sense that a feeding interval can be 0 days and 25 hours, it 
    makes our `fish sort by/fi` less intuitive as ours sorts by days then hours. `0d25h` will appear before `1d0h`
    . We can automatically convert feeding intervals such that hours is less than 24 in future iterations
-   3. Readings: Ammonia levels, temperatures and pH can accept amy numerical value that may be far out of the boundaries
-   of our GUI graph axes. In future iterations, we will check that they are realistic values, which are
-   values bounded by the axes of our respective graphs.
+
 
 3. Alphanumeric fields may be truncated if they are too long as we do not limit their length. They
 may also become truncated if the user's app window size is too small. A side effect of this can be for example,
 fish with long names, which are supposed to be distinct, will appear as the same after truncation.
 We will limit the length of such parameters in future enhancements to avoid this. 
     
+
 4. Logging messages on the terminal are not optimized for Fish Ahoy! We plan to improve this by simple changes from 
    "Addressbook" to "Fish Ahoy", as well as fixing the fxml versions in fxml files. Furthermore, we can add more useful 
    logging messages related to Fish Ahoy commands such as information on newly added commands, so the user may gain more 
    information. For instance, Tank readings could display the current list of values, so the user can understand the graph.
    
+
+5. Make the offline version of the User Guide more user-friendly by adding a css file for style.
+   Also fix links so that they work for navigation.
