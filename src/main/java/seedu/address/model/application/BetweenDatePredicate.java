@@ -15,6 +15,8 @@ public class BetweenDatePredicate extends DatePredicate {
      * @param endDate The end date of the interval
      */
     public BetweenDatePredicate(InterviewDate startDate, InterviewDate endDate) {
+        assert startDate != null : "date should not be null";
+        assert endDate != null : "date should not be null";
         this.startDate = startDate;
         this.endDate = endDate;
     }

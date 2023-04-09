@@ -300,15 +300,10 @@ public class ParserUtil {
     /**
      * Parses a {@code String interviewDate} into an {@code InterviewDate}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code interviewDate} is invalid.
      */
-    public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
+    public static InterviewDate parseInterviewDate(String interviewDate) {
         requireNonNull(interviewDate);
         String trimmedInterviewDate = interviewDate.trim();
-        if (!InterviewDate.isValidInterviewDate(trimmedInterviewDate)) {
-            throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
-        }
         return new InterviewDate(interviewDate);
     }
 

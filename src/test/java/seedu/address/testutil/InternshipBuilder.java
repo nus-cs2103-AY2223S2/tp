@@ -6,8 +6,16 @@ import java.util.Set;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.model.application.JobTitle;
+import seedu.address.model.application.Location;
+import seedu.address.model.application.Note;
+import seedu.address.model.application.ProgrammingLanguage;
+import seedu.address.model.application.Qualification;
+import seedu.address.model.application.Rating;
+import seedu.address.model.application.Reflection;
 import seedu.address.model.application.Review;
+import seedu.address.model.application.Salary;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
 
@@ -18,13 +26,26 @@ public class InternshipBuilder {
     public static final String DEFAULT_COMPANY_NAME = "Company A";
     public static final String DEFAULT_JOB_TITLE = "Position A";
 
+    // Identity fields
     private CompanyName companyName;
     private JobTitle jobTitle;
     private Set<Review> reviews;
-    private Documents documents;
-    private Contact contact;
+    private Set<ProgrammingLanguage> programmingLanguages = new HashSet<>();
+    private Set<Qualification> qualifications = new HashSet<>();
+    private Location location;
+    private Salary salary;
+    private Set<Note> notes = new HashSet<>();
+    private Rating rating;
+    private Set<Reflection> reflections = new HashSet<>();
+
+    // Interview fields
+    private InterviewDate interviewDate;
     private InternshipStatus status;
     private boolean isArchived;
+
+    // Data fields
+    private Contact contact;
+    private Documents documents;
 
     /**
      * Creates an {@code InternshipApplicationBuilder} with the default details.
@@ -48,6 +69,7 @@ public class InternshipBuilder {
         contact = internshipToCopy.getContact();
         status = internshipToCopy.getStatus();
         isArchived = internshipToCopy.isArchived();
+        interviewDate = internshipToCopy.getInterviewDate();
     }
 
     /**
@@ -98,7 +120,16 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code InterviewDate} of the {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withInterviewDate(InterviewDate interviewDate) {
+        this.interviewDate = interviewDate;
+        return this;
+    }
+
     public InternshipApplication build() {
-        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, isArchived, documents);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate, documents);
     }
 }
