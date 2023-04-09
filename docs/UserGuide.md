@@ -15,34 +15,30 @@ With FAid, financial advisors will no longer have to worry about missing a meeti
 
 ## Quick start
 
-1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
-   operating system.
+<!-- 1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
+   operating system. <br> See the [Troubleshooting section](#troubleshooting) if you run into any issues. -->
+FAid requires `Java 11` to function.
+If you do not have `Java 11` or are unsure if you have it, refer to the [Troubleshooting section](#troubleshooting) for help.
+Otherwise, refer to the following steps to get started.
 
-1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
-   command: `java --version`. <br>
-   If java is installed successfully, your output should be similar to the following (Note that it may look slightly
-   different depending on your exact version and operating system): <br>
-   `openjdk 11.0.17 2022-10-18 LTS` <br>
-   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
-   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
-   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
-   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
-   If you see an error message like this even after installing Java `11`, consider restarting your computer or
-   reinstalling Java.
+1. Download the application called `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
-1. Download the latest `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
+1. Double click the `faid.jar` file you downloaded and the app should launch automatically.<br>
+   If this is your first time using a .jar file, see the [Troubleshooting section](#troubleshooting) for help.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FAid application.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar faid.jar` command to
-   run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. An application similar to the below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
+1. Type the command in the command box and press Enter to execute it.
+   ![Ui](images/Ui.png)
 
+
+
+
+   <!-- Some example commands you can try: -->
+
+
+<!-- 
     * `list` : Lists all clients.
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe`
@@ -52,7 +48,7 @@ With FAid, financial advisors will no longer have to worry about missing a meeti
 
     * `clear` : Deletes all clients.
 
-    * `exit` : Exits the app.
+    * `exit` : Exits the app. -->
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -348,8 +344,17 @@ the data of your previous AddressBook home folder.
 
 ## Troubleshooting
 
-**Q**
-
+1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
+   command: `java --version`. <br>
+   If java is installed successfully, your output should be similar to the following (Note that it may look slightly
+   different depending on your exact version and operating system): <br>
+   `openjdk 11.0.17 2022-10-18 LTS` <br>
+   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
+   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
+   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
+   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
+   If you see an error message like this even after installing Java `11`, consider restarting your computer or
+   reinstalling Java.
 
 
 --------------------------------------------------------------------------------------------------------------------
