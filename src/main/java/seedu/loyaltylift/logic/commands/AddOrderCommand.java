@@ -2,10 +2,10 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,6 @@ import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
-import seedu.loyaltylift.model.order.Status;
 
 /**
  * Adds an order to LoyaltyLift.
@@ -67,8 +66,9 @@ public class AddOrderCommand extends Command {
         }
 
         model.addOrder(createdOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, createdOrder));
+        model.setOrderToDisplay(createdOrder);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, createdOrder),
+                LIST_AND_SHOW_ORDER);
     }
 
     /**
@@ -82,7 +82,6 @@ public class AddOrderCommand extends Command {
         Name name = addOrderDescriptor.getName();
         Address address = addOrderDescriptor.getAddress().orElse(taggedCustomer.getAddress());
         Quantity quantity = addOrderDescriptor.getQuantity().orElse(new Quantity(1));
-        Status status = new Status();
 
         return new Order(taggedCustomer, name, quantity, address);
     }

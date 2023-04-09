@@ -138,6 +138,7 @@ public class ModelManager implements Model {
     @Override
     public void setCustomerToDisplay(Customer customer) {
         displayCustomer = customer;
+        displayOrder = null;
     }
 
     @Override
@@ -174,6 +175,7 @@ public class ModelManager implements Model {
     @Override
     public void setOrderToDisplay(Order order) {
         displayOrder = order;
+        displayCustomer = null;
     }
 
     @Override

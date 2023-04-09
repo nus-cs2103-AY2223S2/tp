@@ -2,12 +2,12 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -86,8 +86,9 @@ public class EditCustomerCommand extends Command {
         }
 
         model.setCustomer(customerToEdit, editedCustomer);
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer));
+        model.setCustomerToDisplay(editedCustomer);
+        return new CommandResult(String.format(MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
     }
 
     /**

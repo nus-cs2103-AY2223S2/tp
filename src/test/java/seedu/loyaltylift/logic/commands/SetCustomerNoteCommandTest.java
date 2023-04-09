@@ -3,6 +3,7 @@ package seedu.loyaltylift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -47,12 +48,14 @@ public class SetCustomerNoteCommandTest {
         SetCustomerNoteCommand setCustomerNoteCommand = new SetCustomerNoteCommand(indexLastCustomer,
                 new Note(VALID_NOTE_BOB));
 
-        String expectedMessage = String.format(SetCustomerNoteCommand.MESSAGE_SET_NOTE_SUCCESS, editedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(SetCustomerNoteCommand.MESSAGE_SET_NOTE_SUCCESS, editedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCustomer(lastCustomer, editedCustomer);
 
-        assertCommandSuccess(setCustomerNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(setCustomerNoteCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -64,12 +67,15 @@ public class SetCustomerNoteCommandTest {
         SetCustomerNoteCommand setCustomerNoteCommand = new SetCustomerNoteCommand(INDEX_FIRST,
                 new Note(VALID_NOTE_BOB));
 
-        String expectedMessage = String.format(SetCustomerNoteCommand.MESSAGE_SET_NOTE_SUCCESS, editedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(SetCustomerNoteCommand.MESSAGE_SET_NOTE_SUCCESS, editedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setCustomer(model.getFilteredCustomerList().get(0), editedCustomer);
+        expectedModel.setCustomer(customerInFilteredList, editedCustomer);
+        showCustomerAtIndex(expectedModel, INDEX_FIRST);
 
-        assertCommandSuccess(setCustomerNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(setCustomerNoteCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

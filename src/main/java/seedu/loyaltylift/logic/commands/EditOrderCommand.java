@@ -2,10 +2,10 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,8 +79,9 @@ public class EditOrderCommand extends Command {
         }
 
         model.setOrder(orderToEdit, editedOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
+        model.setOrderToDisplay(editedOrder);
+        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder),
+                LIST_AND_SHOW_ORDER);
     }
 
     /**

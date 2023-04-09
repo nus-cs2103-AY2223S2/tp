@@ -3,6 +3,7 @@ package seedu.loyaltylift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -41,12 +42,14 @@ public class EditCustomerCommandTest {
                 new EditCustomerDescriptorBuilder(editedCustomer).build();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST, descriptor);
 
-        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), editedCustomer);
 
-        assertCommandSuccess(editCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCustomerCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -62,12 +65,14 @@ public class EditCustomerCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(indexLastCustomer, descriptor);
 
-        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCustomer(lastCustomer, editedCustomer);
 
-        assertCommandSuccess(editCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCustomerCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -76,11 +81,13 @@ public class EditCustomerCommandTest {
                 new EditCustomerCommand(INDEX_FIRST, new EditCustomerCommand.EditCustomerDescriptor());
         Customer editedCustomer = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCustomerCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -88,16 +95,19 @@ public class EditCustomerCommandTest {
         showCustomerAtIndex(model, INDEX_FIRST);
 
         Customer customerInFilteredList = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
-        Customer editedCustomer = new CustomerBuilder(customerInFilteredList).withName(VALID_NAME_BOB).build();
+        Customer editedCustomer = new CustomerBuilder(customerInFilteredList).withPhone(VALID_PHONE_BOB).build();
         EditCustomerCommand editCustomerCommand = new EditCustomerCommand(INDEX_FIRST,
-                new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_BOB).build());
 
-        String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), editedCustomer);
+        showCustomerAtIndex(expectedModel, INDEX_FIRST);
 
-        assertCommandSuccess(editCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCustomerCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

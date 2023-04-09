@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.REMOVE_INFO_FROM_VIEW;
 
 import java.util.List;
 
@@ -40,8 +41,14 @@ public class DeleteCustomerCommand extends Command {
         }
 
         Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
+
         model.deleteCustomer(customerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
+        // customer or order belonging to customer is displayed
+        boolean isDisplayed = customerToDelete.isSameCustomer(model.getCustomerToDisplay())
+                || (model.getOrderToDisplay() != null
+                && customerToDelete.isSameCustomer(model.getOrderToDisplay().getCustomer()));
+        return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete),
+                isDisplayed ? REMOVE_INFO_FROM_VIEW : null);
     }
 
     @Override

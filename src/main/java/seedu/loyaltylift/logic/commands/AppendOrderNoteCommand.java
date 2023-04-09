@@ -2,8 +2,8 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.List;
 
@@ -65,8 +65,9 @@ public class AppendOrderNoteCommand extends Command {
         Order editedOrder = createEditedOrder(orderToEdit, newNote);
 
         model.setOrder(orderToEdit, editedOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(String.format(MESSAGE_APPEND_NOTE_SUCCESS, editedOrder));
+        model.setOrderToDisplay(editedOrder);
+        return new CommandResult(String.format(MESSAGE_APPEND_NOTE_SUCCESS, editedOrder),
+                LIST_AND_SHOW_ORDER);
     }
 
     /**

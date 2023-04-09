@@ -1,6 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_CUSTOMER_TYPE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -58,7 +59,9 @@ public class AddCustomerCommand extends Command {
         }
 
         model.addCustomer(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.setCustomerToDisplay(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                LIST_AND_SHOW_CUSTOMER);
     }
 
     @Override

@@ -260,6 +260,11 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public void setCustomerToDisplay(Customer customer) {
+            return;
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
