@@ -591,8 +591,7 @@ unmarkc CINDEX
 
 Sets a customer's note.
 
-Do you have additional information to remember about your customer? 
-This command helps you to remember anything you want about your customer.
+Note that information about your customer down with the `setnotec` command!
 
 **Format**
 
