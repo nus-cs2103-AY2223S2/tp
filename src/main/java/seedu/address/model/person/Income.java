@@ -38,7 +38,7 @@ public class Income {
 
     @Override
     public String toString() {
-        return this.income.toString();
+        return income.toString();
     }
 
     @Override
