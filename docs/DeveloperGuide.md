@@ -538,6 +538,8 @@ The following activity diagram shows the logic of the `delete-t` command.
 
 ![DeleteTagFromPersonCommandActivityDiagram](images/DeleteTagFromPersonCommandActivityDiagram.png)
 
+<div style="page-break-after: always"></div>
+
 The sequence of the `delete-t` command is as follows:
 
 1. The command `delete-t INPUT` is entered by the user, where the `INPUT` is an integer index followed by a tag index to delete (e.g. `delete-t 1 r/1`).
@@ -594,6 +596,8 @@ The sequence of the `search` command is as follows:
 The following sequence diagram shows how `search` works:
 ![SearchCommandSequenceDiagram](images/SearchCommandSequenceDiagram.png)
 
+<div style="page-break-after: always"></div>
+
 The following sequence diagram provides details on how the `informationFields` are being parsed by `ParserUtil`:
 ![SearchCommandParseInformationFieldsSequenceDiagram](images/SearchCommandParseInformationFieldsDiagram.png)
 
@@ -614,6 +618,10 @@ The `upcoming-b` command allows the user to view the birthdays of all contacts t
 3. It then calculates the difference between the current date and the birthday of the contact by considering date of the year.
 4. If the difference is less than or equal to 60 days, the contact is added to the list of contacts whose birthdays are within the next 60 days.
 5. The list of contacts whose birthdays are within the next 60 days is then displayed to the user.
+
+<div style="page-break-after: always"></div>
+
+The following activity diagram shows the logic of the upcoming birthdays command.
 
 ![UpcomingBirthdaysCommandActivityDiagram](images/UpcomingBirthdayCommandActivityDiagram.png)
 
@@ -1008,13 +1016,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. There is an error in the given information.
-
   - 1a1. ConnectUS shows an error message.
 
   Use case ends.
 
 - 4a. User requests to add more information to the contact.
-
   - 4a1. ConnectUS adds the given information to the contact.
   - 4a2. ConnectUS displays confirmation message
   - 4a3. Updated contact is visible in the contacts list
@@ -1041,7 +1047,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 - 3a. The given index is invalid.
-
   - 3a1. ConnectUS shows an error message.
 
     Use case resumes at step 2.
@@ -1064,13 +1069,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends
 
 - 3a. The given index is invalid.
-
   - 3a1. ConnectUS shows an error message.
 
     Use case resumes at step 2.
 
 - 3b. There is an error in the given information.
-
   - 3b1. ConnectUS shows an error message.
 
     Use case resumes at step 2.
@@ -1122,20 +1125,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. No keywords are provided
-
   - 1a1. ConnectUS displays error message
 
   Use case ends
 
 - 1b. User requests to find a contact by specific tag type
-
   - 1b1. ConnectUS displays confirmation message
   - 1b2. ConnectUS displays all contacts with given tag type
 
   Use case ends
 
 - 1c. User requests to find a contact by specific contact information fields
-
   - 1c1. ConnectUS displays confirmation message
   - 1c2. ConnectUS displays all contacts with given contact information fields
 
@@ -1154,7 +1154,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. There is an error in the request
-
   - 1a1. ConnectUS displays error message
 
   Use case ends
@@ -1174,7 +1173,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. No keywords are provided
-
   - 1a1. ConnectUS displays general help message
 
     Use case ends
@@ -1194,6 +1192,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. The person has no Instagram record.
   - 3a1. ConnectUS displays error message.
+  
     Use case ends.
 
 <div style="page-break-after: always"></div>
@@ -1212,11 +1211,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 3a. The person has no WhatsApp record.
-
   - 3a1. ConnectUS displays error message.
+  
     Use case ends.
 
-- 4a. WhatsApp is launched but it does not fill the message.
+- 4a. WhatsApp is launched, but it does not fill the message.
+
   Use case resumes from step 3.
 
 [↑ Back to top of section](#8-requirements)
