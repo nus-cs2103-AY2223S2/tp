@@ -8,13 +8,13 @@ personnel, optimized for use via a Command Line Interface** (**CLI**) while stil
 User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional
 GUI apps.
 
-This user guide shows you how to get started using AIMS and how to make use of the features by following the
-easy-to-understand explanations and examples.
+This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples.
 
 <!-- omit from toc -->
 ## Table of Contents
 
 - [Quick start](#quick-start)
+- [Legend](#legend)
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person : `add`](#adding-a-person--add)
@@ -37,47 +37,31 @@ easy-to-understand explanations and examples.
 
 ---
 
+## Legend
+
+Here are some symbols used throughout the user guide to inform you of additional details.
+
+:information_source: **Notes:** Notes aim to provide you with extra information.
+
+:bulb: **Tip:** Tips are useful suggestions that you can follow.
+
+:exclamation: **Caution:** Cautions are used as warnings for certain actions that may cause errors.
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your computer.
 
-1. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
+2. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the *home folder* for AIMS.
+3. Copy the file to the folder you want to use as the *home folder* for AIMS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
 ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
-
-    - `list` : Lists all contacts.
-
-    - `add r/3SG n/Jaden Ng u/3 SIR c/Alpha pl/4 p/91297723 e/jadend@gmail.com a/Smith Street, Block 13, #07-04` adds
-      a new person `Jaden Ng` to AIMS with the following information:
-
-   | Field        | Value                          |
-   |--------------|--------------------------------|
-   | rank         | 3SG                            |
-   | name         | Jaden Ng                       |
-   | unit         | 3 SIR                          |
-   | company      | Alpha                          |
-   | platoon      | 4                              |
-   | phone number | 91297723                       |
-   | email        | jadend@gmail.com               |
-   | address      | Smith Street, Block 13, #07-04 |
-
-    - `delete 3` : Deletes the 3rd contact shown in the current list.
-
-    - `clear` : Deletes all contacts.
-
-    - `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
 
 ---
 
@@ -123,9 +107,9 @@ Adds a person to AIMS.
 
 Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Tip:** A person can have any number of tags (including 0)
+:information_source: **Note:** You can have any number of tags for a person (including 0).
 
 </div>
 
