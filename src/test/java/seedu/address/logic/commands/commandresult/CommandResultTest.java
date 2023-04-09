@@ -1,12 +1,46 @@
 package seedu.address.logic.commands.commandresult;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class CommandResultTest {
+
+    @Test
+    public void constructor_noArguments_commandResultWithDefaultValues() {
+        CommandResult commandResult = new CommandResult("feedback");
+
+        assertEquals("feedback", commandResult.getFeedbackToUser());
+        assertFalse(commandResult.isShowHelp());
+        assertFalse(commandResult.isExit());
+        assertFalse(commandResult.isStartReview());
+        assertFalse(commandResult.isEndReview());
+        assertFalse(commandResult.isSelectDeck());
+        assertFalse(commandResult.isUnselectDeck());
+        assertFalse(commandResult.isFindCards());
+        assertFalse(commandResult.isFindDecks());
+        assertFalse(commandResult.isShowCards());
+        assertFalse(commandResult.isShowDecks());
+    }
+
+    @Test
+    public void constructor_allArguments_commandResultWithSpecifiedValues() {
+        CommandResult commandResult = new CommandResult(
+                "feedback", true, true, true, true, true, true, true, true, true, true);
+
+        assertEquals("feedback", commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isShowHelp());
+        assertTrue(commandResult.isExit());
+        assertTrue(commandResult.isStartReview());
+        assertTrue(commandResult.isEndReview());
+        assertTrue(commandResult.isSelectDeck());
+        assertTrue(commandResult.isUnselectDeck());
+        assertTrue(commandResult.isFindCards());
+        assertTrue(commandResult.isFindDecks());
+        assertTrue(commandResult.isShowCards());
+        assertTrue(commandResult.isShowDecks());
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
