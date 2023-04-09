@@ -42,6 +42,9 @@ public class DateTimeParser {
 
     /**
      * Returns if a given dateTime string is valid
+     * Format: DD-MM-YYYY HH:MM
+     * @param dateTime String input for datetime.
+     * @return boolean value representing if the input is valid.
      */
     public static boolean isValidDateTime(String dateTime) {
         try {
