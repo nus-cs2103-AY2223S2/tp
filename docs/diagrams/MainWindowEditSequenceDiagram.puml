@@ -28,7 +28,7 @@ activate MainWindow
 MainWindow -> logic : execute(commandText)
 activate logic
 
-logic -> parser : parseCommand(commandText)
+logic -> parser : parseCommand(\ncommandText)
 activate parser
 
 create editParser
@@ -42,7 +42,7 @@ parser -> editParser : parse(arguments)
 activate editParser
 
 create command
-editParser -> command : new EditCommand(index, recipeDescriptor)
+editParser -> command : new EditCommand(\nindex, recipeDescriptor)
 activate command
 command --> editParser
 deactivate command

@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> RecipeBookParser : parseCommand("delete 1")
+LogicManager -> RecipeBookParser : parseCommand(\n"delete 1")
 activate RecipeBookParser
 
 create DeleteCommandParser

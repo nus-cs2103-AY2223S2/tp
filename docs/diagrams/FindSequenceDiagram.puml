@@ -14,10 +14,10 @@ participant "predicate:\nPropertyCollection\nContainsKeywords\nPredicate" as Pro
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find tag \nindian italian")
+[-> LogicManager : execute("find tag\nindian italian")
 activate LogicManager
 
-LogicManager -> RecipeBookParser : parseCommand("find\n tag indian italian")
+LogicManager -> RecipeBookParser : parseCommand(\n"find tag\nindian italian")
 activate RecipeBookParser
 
 create FindCommandParser
@@ -30,7 +30,7 @@ deactivate FindCommandParser
 RecipeBookParser -> FindCommandParser : parse("tag \nindian italian")
 activate FindCommandParser
 
-FindCommandParser -> FindCommandParser : validateFindKeywords("indian italian")
+FindCommandParser -> FindCommandParser : validateFindKeywords(\n"indian italian")
 
 create PropertyCollectionContainsKeywordsPredicate
 FindCommandParser -> PropertyCollectionContainsKeywordsPredicate
@@ -78,4 +78,6 @@ deactivate FindCommand
 
 [<--LogicManager
 deactivate LogicManager
+destroy FindCommand
+
 @enduml
