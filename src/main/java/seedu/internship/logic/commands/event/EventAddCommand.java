@@ -16,7 +16,7 @@ import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Adds an event to the selected internship.
+ * Adds an event belonging to an internship to the event catalogue.
  */
 public class EventAddCommand extends EventCommand {
     public static final String COMMAND_WORD = "add";
@@ -44,7 +44,7 @@ public class EventAddCommand extends EventCommand {
     private final Event eventToAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Event}
+     * Creates an EventAddCommand to add the specified {@code Event}
      */
     public EventAddCommand(Event event) {
         requireNonNull(event);
@@ -54,7 +54,7 @@ public class EventAddCommand extends EventCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (eventToAdd.getStart().compareTo(eventToAdd.getEnd()) == 1) {
+        if (eventToAdd.getStart().compareTo(eventToAdd.getEnd()) >= 1) {
             throw new CommandException(MESSAGE_END_BEFORE_START);
         }
 

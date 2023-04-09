@@ -14,7 +14,7 @@ import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 
 /**
- * View the details selected internship in the internship catalogue.
+ * Selects an internship from the internship catalogue and views its details.
  */
 public class SelectCommand extends Command {
 
@@ -29,6 +29,9 @@ public class SelectCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a SelectCommand which selects the specified internship of index {@code Index}
+     */
     public SelectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

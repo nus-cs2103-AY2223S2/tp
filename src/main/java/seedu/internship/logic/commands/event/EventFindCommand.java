@@ -20,7 +20,7 @@ import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
 
 /**
- * Finds an Event from TinS.
+ * Finds events from the event catalogue based on parameters given.
  */
 public class EventFindCommand extends EventCommand {
     public static final String COMMAND_WORD = "find";

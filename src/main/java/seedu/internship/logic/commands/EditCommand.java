@@ -61,8 +61,8 @@ public class EditCommand extends Command {
     /**
      * Creates Edit Command.
      *
-     * @param index of the person in the filtered person list to edit
-     * @param editInternshipDescriptor details to edit the person with
+     * @param index of the internship in the filtered internship list to edit
+     * @param editInternshipDescriptor details to edit the internship with
      */
     public EditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(index);

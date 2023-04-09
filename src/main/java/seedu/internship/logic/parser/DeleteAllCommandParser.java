@@ -7,7 +7,7 @@ import seedu.internship.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses input arguments and creates a new DeleteAllCommand object
+ * Parses input arguments and creates a new DeleteAllCommand object.
  */
 public class DeleteAllCommandParser implements Parser<DeleteAllCommand> {
 

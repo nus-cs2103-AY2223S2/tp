@@ -9,8 +9,8 @@ import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.UniqueInternshipList;
 
 /**
- * Wraps all data at the internship-catalogue level
- * Duplicates are not allowed (by .isSameInternship comparison)
+ * Wraps all data at the internship-catalogue level.
+ * Duplicates are not allowed (by .isSameInternship comparison).
  */
 public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
 
@@ -31,7 +31,7 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
     public InternshipCatalogue() {}
 
     /**
-     * Creates an InternshipCataloue using the internships in the {@code toBeCopied}
+     * Creates an InternshipCatalogue using the internships in the {@code toBeCopied}
      */
     public InternshipCatalogue(ReadOnlyInternshipCatalogue toBeCopied) {
         this();
@@ -61,7 +61,7 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
     //// internship-level operations
 
     /**
-     * Returns true if a internship is the same as another {@code internship} exists in the internship catalogue.
+     * Returns true if an internship is the same as another {@code internship} exists in the internship catalogue.
      */
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
@@ -70,7 +70,7 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
 
 
     /**
-     * Adds a internship to the internship Catalogue.
+     * Adds an internship to the internship Catalogue.
      * The internship must not already exist in the internship Catalogue.
      */
     public void addInternship(Internship p) {
@@ -81,7 +81,7 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
     /**
      * Replaces the given internship {@code target} in the list with {@code editedInternship}.
      * {@code target} must exist in the internship Catalogue.
-     * The  {@code editedInternship} must not be the same as another existing internship in the internship Catalogue.
+     * The {@code editedInternship} must not be the same as another existing internship in the internship Catalogue.
      */
     public void setInternship(Internship target, Internship editedInternship) {
         requireNonNull(editedInternship);

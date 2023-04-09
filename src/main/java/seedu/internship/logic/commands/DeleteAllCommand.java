@@ -8,7 +8,7 @@ import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.Model;
 
 /**
- * Clears the internship catalogue.
+ * Deletes all data in the internship and event catalogue.
  */
 public class DeleteAllCommand extends Command {
 
@@ -27,6 +27,9 @@ public class DeleteAllCommand extends Command {
 
     private final String code;
 
+    /**
+     * Creates a DeleteALlCommand with the given code {@code String}
+     */
     public DeleteAllCommand(String str) {
         this.code = str;
     }

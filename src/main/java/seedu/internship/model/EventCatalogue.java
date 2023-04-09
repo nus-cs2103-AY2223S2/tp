@@ -11,8 +11,8 @@ import seedu.internship.model.event.Event;
 import seedu.internship.model.event.UniqueEventList;
 
 /**
- * Wraps all data at the event-catalogue level
- * Duplicates are not allowed (by .isSameEvent comparison)
+ * Wraps all data at the event-catalogue level.
+ * Duplicates are not allowed (by .isSameEvent comparison).
  */
 public class EventCatalogue implements ReadOnlyEventCatalogue {
     private final UniqueEventList events;
@@ -60,7 +60,7 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
     //// event-level operations
 
     /**
-     * Returns true if a event is the same as another {@code event} exists in the event catalogue.
+     * Returns true if an event is the same as another {@code event} exists in the event catalogue.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -69,7 +69,7 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
 
 
     /**
-     * Adds a event to the event Catalogue.
+     * Adds an event to the event Catalogue.
      * The event must not already exist in the event Catalogue.
      */
     public void addEvent(Event p) {
@@ -80,7 +80,7 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
     /**
      * Replaces the given event {@code target} in the list with {@code editedEvent}.
      * {@code target} must exist in the event Catalogue.
-     * The  {@code editedEvent} must not be the same as another existing event in the event Catalogue.
+     * The {@code editedEvent} must not be the same as another existing event in the event Catalogue.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);

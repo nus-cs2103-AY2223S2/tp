@@ -13,7 +13,7 @@ import seedu.internship.model.internship.Datapoint;
 import seedu.internship.model.internship.Statistics;
 
 /**
- * A panel to display statistics.
+ * A page to display statistical information about internship applications.
  */
 public class StatsPage extends Page {
     private static final String FXML = "StatsPage.fxml";
@@ -40,7 +40,7 @@ public class StatsPage extends Page {
     private Label statsSummary;
 
     /**
-     * Creates a StatsPage based on given Statistics
+     * Creates a {@code StatsPage} based on given Statistics
      *
      * @param statistics Calculated statistics
      */
@@ -51,12 +51,19 @@ public class StatsPage extends Page {
         setBodyContent();
     }
 
+    /**
+     * Fills in the content for the page's title and subtitle.
+     */
     private void setHeadContent() {
         pageTitle.setText(PAGE_TITLE);
         chartInfo.setText(statistics.getTotalInternships().getNameValue());
 
     }
 
+    /**
+     * Sets the content for the body of HomePage.
+     * The body of HomePage contains the Events Reminder segment and the Useful Commands segment.
+     */
     private void setBodyContent() {
         buildPieChart();
         StringBuilder summary = new StringBuilder();
@@ -68,6 +75,9 @@ public class StatsPage extends Page {
         statsSummary.setText(summary.toString());
     }
 
+    /**
+     * Fills in the details of the pie chart element.
+     */
     private void buildPieChart() {
         pieChart.setData(pieCharDataFrom(statistics.getNumInterested(),
                 statistics.getNumApplied(),
@@ -76,6 +86,9 @@ public class StatsPage extends Page {
         pieChart.setTitle("Internship Application Progress");
     }
 
+    /**
+     * Creates a list of {@code PieChart.Data} from given {@code Datapoint}.
+     */
     private ObservableList<PieChart.Data> pieCharDataFrom(Datapoint ... datapoints) {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         for (Datapoint datapoint : datapoints) {

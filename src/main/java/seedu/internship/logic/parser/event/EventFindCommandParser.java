@@ -14,14 +14,14 @@ import seedu.internship.logic.parser.Parser;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EventFindCommand object
+ * Parses input arguments and creates a new EventFindCommand object.
  */
 public class EventFindCommandParser implements Parser<EventFindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EventFindCommand
      * and returns an EventFindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EventFindCommand parse(String args) throws ParseException {
         requireNonNull(args);

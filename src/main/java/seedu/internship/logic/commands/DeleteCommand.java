@@ -13,7 +13,7 @@ import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes an internship identified using it's displayed index from the internship catalogue.
  */
 public class DeleteCommand extends Command {
 
@@ -28,6 +28,9 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteCommand to delete the specified internship of index {@code Index}
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -49,15 +52,15 @@ public class DeleteCommand extends Command {
         }
         model.deleteInternship(internshipToDelete);
 
-        // After Deleting Internship , it is important to delete all the events associated.
+        // After Deleting Internship, it is important to delete all the events associated.
         model.updateFilteredEventList(new EventByInternship(internshipToDelete));
         List<Event> eventListToDelete = model.getFilteredEventList();
-        // Necessary to create an unmofifable array , as eventListToDelete() is getting updated with deletion
+        // Necessary to create an unmodifiable array , as eventListToDelete() is getting updated with deletion
         Event[] eventListToDeleteArray = eventListToDelete.toArray(new Event[eventListToDelete.size()]);
 
         for (int i = 0; i < eventListToDeleteArray.length; i++) {
             Event e = eventListToDeleteArray[i];
-            // Delete the Events associated with that iternship
+            // Delete the Events associated with that internship
             model.deleteEvent(e);
         }
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete),

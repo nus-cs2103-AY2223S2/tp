@@ -21,7 +21,7 @@ import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
 
 /**
- * Finds internships from the catalogue based on predicates provided by the user.
+ * Finds internships from the internship catalogue based on parameters given.
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
@@ -37,7 +37,6 @@ public class FindCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Found internships : %1$s";
 
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
-
 
     private final FilterInternshipDescriptor filterInternshipDescriptor;
 

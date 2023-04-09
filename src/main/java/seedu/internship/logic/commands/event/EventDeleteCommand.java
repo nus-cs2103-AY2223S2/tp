@@ -30,6 +30,9 @@ public class EventDeleteCommand extends EventCommand {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an EventDeleteCommand to delete the specified event of index {@code Index}
+     */
     public EventDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

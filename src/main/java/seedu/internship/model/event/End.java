@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
  */
 public class End extends DateTime {
     /**
-     * Constructs a {@code Start}.
+     * Constructs a {@code End}.
      *
-     * @param endDateTime A valid startDateTime for a Start.
+     * @param endDateTime A valid endDateTime for a End.
      */
     public End(LocalDateTime endDateTime) {
         super(endDateTime);

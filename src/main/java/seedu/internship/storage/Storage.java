@@ -11,7 +11,7 @@ import seedu.internship.model.ReadOnlyUserPrefs;
 import seedu.internship.model.UserPrefs;
 
 /**
- * API of the Storage component
+ * API of the Storage component.
  */
 public interface Storage extends InternshipCatalogueStorage, UserPrefsStorage, EventCatalogueStorage {
 
