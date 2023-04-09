@@ -36,10 +36,18 @@ public class JsonAdaptedAssignment {
         if (totalMarks == null) {
             throw new IllegalValueException("An assignment in JSON file has totalMarks value missing.");
         }
+        int assignmentMarks;
         try {
-            return new Assignment(name, Integer.parseInt(totalMarks));
+            assignmentMarks = Integer.parseInt(totalMarks);
         } catch (NumberFormatException e) {
             throw new IllegalValueException("Invalid total marks value \"" + totalMarks + "\" in JSON file.");
         }
+        if (!Assignment.isValidAssignmentMarks(assignmentMarks)) {
+            throw new IllegalValueException("Invalid total marks value \"" + totalMarks + "\" in JSON file.");
+        }
+        if (!Assignment.isValidAssignmentName(name)) {
+            throw new IllegalValueException("Invalid name \"" + name + "\" in JSON file.");
+        }
+        return new Assignment(name, assignmentMarks);
     }
 }

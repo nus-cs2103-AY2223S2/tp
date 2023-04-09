@@ -388,6 +388,8 @@ Example:
 * `add_asgn n/Lab 1`
 * `add_asgn n/Lab 2 m/50`
 
+<img src="images/AddAssignmentDemo.png">
+
 #### Delete Assignment: `delete_asgn`
 Deletes the assignment of assignment_name you provided, along with the student submissions for that assignment.
 
@@ -408,6 +410,8 @@ Format: `grade n/ASSIGNMENT_NAME i/STUDENT_ID m/MARKS [late/]`<br>
 Example:
 * `grade n/Lab 1 i/2 m/20`
 * `grade n/Lab 1 i/3 m/30 late/`
+
+<img src="images/GradeDemo.png">
 
 #### Ungrade Assignment: `ungrade`
 Resets the grade of the submission of assignment_name and student_id. It will also reset
@@ -436,6 +440,8 @@ Example Output:
 The example output above shows that there are 2 assignments: Lab 1 & Lab 2.
 
 Alice has a graded submission for Lab 1, and Bob has a graded late submission for Lab 2.
+
+<img src="images/ListAssignmentDemo.png">
 
 ### Class List
 For class lists, you can call the following commands:
