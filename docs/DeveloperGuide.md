@@ -1013,14 +1013,21 @@ to effectively sort/filter contacts to easily identify people of interest, such 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                                   | I want to …​                                         | So that I can…​                                                               |
-|---------|---------------------------------------------------------------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *` | user                                                                      | add/remove contacts of peers                         | save/manage them                                                              |
-| `* * *` | user                                                                      | edit the details of the contacts                     | update my contacts to be accurate and relevant                                |
-| `* * `  | student who is interested in joining various coding or programming events | search contacts by skill sets                        | identify potential team members for projects                                  |
-| `* * *` | user                                                                      | find a person by name                                | locate a particular person without scrolling the entire list of contacts      |
-| `*`     | student                                                                   | find people who have taken a specific module         | I can ask for help related to the module such as upcoming topics to study for |
-| `*`     | student                                                                   | find people who are currently taking the same module | work together (discuss questions, find project members, teach each other)     |
+| Priority | As a …​                                                                   | I want to …​                                               | So that I can…​                                                                  |
+|----------|---------------------------------------------------------------------------|------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | user                                                                      | add/remove contacts of peers                               | save/manage them                                                                 |
+| `* * *`  | user                                                                      | edit the details of the contacts                           | update my contacts to be accurate and relevant                                   |
+| `* * *`  | user                                                                      | find a person by name                                      | locate a particular person without scrolling the entire list of contacts         |
+| `* * *`  | user                                                                      | find a person by course                                    | locate contacts in a particular course                                           |
+| `* * *`  | student who is interested in joining various coding or programming events | search contacts by skill sets                              | identify potential team members for projects                                     |
+| `* * *`  | student                                                                   | find people who **have taken** a specific module           | I can ask for help related to the module such as upcoming topics to study for    |
+| `* * *`  | student                                                                   | find people who **are currently taking** the same module   | work together (discuss questions, find project members, teach each other)        |
+| `* * `   | student                                                                   | view the LinkedIn profile of my contacts                   | check out their past work experience, portfolio and any other additional details |
+| `* * `   | Computing student                                                         | view the GitHub username of my contacts                    | view and learn about the projects that other Computing students have undertaken  |
+| `* * `   | user                                                                      | view the history of my filters applied on the contact list | remember what parameters I use to filter my contact list                         |
+| `*   `   | user                                                                      | load the previous command into the text box                | enter the command again without retyping                                         |
+| `*   `   | user                                                                      | undo my previous command                                   | undo any new changes that might have been wrong                                  |
+
 
 *{More to be added}*
 
