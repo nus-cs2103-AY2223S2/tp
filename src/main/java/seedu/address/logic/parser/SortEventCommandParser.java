@@ -33,18 +33,18 @@ public class SortEventCommandParser implements Parser<SortEventCommand> {
     }
 
     /**
-     * Gets the last user input as the sort type and returns it in SortEventType if it is a valid sort event type.
-     * @param sortEventTypes User inputs
-     * @return SortEventType object converted from user's last input
+     * Gets the last user input as the sort type and returns it in SortEventKey if it is a valid sort event type.
+     * @param sortEventKeys User inputs
+     * @return SortEventKey object converted from user's last input
      * @throws ParseException if the user input does not conform the expected format
      */
-    private SortEventType getSortType(String[] sortEventTypes) throws ParseException {
-        SortEventType sortEventType = SortEventType.getSortEventType(sortEventTypes[sortEventTypes.length - 1]);
-        if (sortEventType == null) {
+    private SortEventKey getSortType(String[] sortEventKeys) throws ParseException {
+        SortEventKey sortEventKey = SortEventKey.getSortEventKey(sortEventKeys[sortEventKeys.length - 1]);
+        if (sortEventKey == null) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortEventCommand.MESSAGE_USAGE));
         }
-        logger.info(String.format("User wish to sort events based on %s", sortEventType.toString()));
-        return sortEventType;
+        logger.info(String.format("User wish to sort events based on %s", sortEventKey.toString()));
+        return sortEventKey;
     }
 }
