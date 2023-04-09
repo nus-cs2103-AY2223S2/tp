@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.parser.SortEventType;
+import seedu.address.logic.parser.SortEventKey;
 import seedu.address.model.Model;
 
 /**
@@ -14,32 +14,32 @@ public class SortEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all events in the address book.\n"
             + "Types of sorting: \n"
-            + SortEventType.SORT_BY_NAME_ASC.getSortEventTypeString() + ": "
-            + SortEventType.SORT_BY_NAME_ASC.getDescription() + "\n"
-            + SortEventType.SORT_BY_NAME_DESC.getSortEventTypeString() + ": "
-            + SortEventType.SORT_BY_NAME_DESC.getDescription() + "\n"
-            + SortEventType.SORT_BY_START_DATE_TIME.getSortEventTypeString()
-            + ": " + SortEventType.SORT_BY_START_DATE_TIME.getDescription() + "\n"
-            + SortEventType.SORT_BY_END_DATE_TIME.getSortEventTypeString()
-            + ": " + SortEventType.SORT_BY_END_DATE_TIME.getDescription() + "\n"
-            + "Example: " + COMMAND_WORD + " " + SortEventType.SORT_BY_START_DATE_TIME.getSortEventTypeString();
+            + SortEventKey.SORT_BY_NAME_ASC.getSortEventKeyString() + ": "
+            + SortEventKey.SORT_BY_NAME_ASC.getDescription() + "\n"
+            + SortEventKey.SORT_BY_NAME_DESC.getSortEventKeyString() + ": "
+            + SortEventKey.SORT_BY_NAME_DESC.getDescription() + "\n"
+            + SortEventKey.SORT_BY_START_DATE_TIME.getSortEventKeyString()
+            + ": " + SortEventKey.SORT_BY_START_DATE_TIME.getDescription() + "\n"
+            + SortEventKey.SORT_BY_END_DATE_TIME.getSortEventKeyString()
+            + ": " + SortEventKey.SORT_BY_END_DATE_TIME.getDescription() + "\n"
+            + "Example: " + COMMAND_WORD + " " + SortEventKey.SORT_BY_START_DATE_TIME.getSortEventKeyString();
 
     public static final String MESSAGE_SUCCESS = "Sorted all events in the address book successfully";
     public static final String MESSAGE_TOO_FEW_EVENTS = "Too few events in the current list to sort";
 
-    private final SortEventType sortEventType;
+    private final SortEventKey sortEventKey;
 
-    public SortEventCommand(SortEventType sortEventType) {
-        this.sortEventType = sortEventType;
+    public SortEventCommand(SortEventKey sortEventKey) {
+        this.sortEventKey = sortEventKey;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         if (model.getFilteredEventList().size() > 1) {
-            model.sortEventList(sortEventType);
+            model.sortEventList(sortEventKey);
             return new CommandResult(String.format("%s based on the %s", MESSAGE_SUCCESS,
-                    sortEventType.getDescription()));
+                    sortEventKey.getDescription()));
         } else {
             return new CommandResult(MESSAGE_TOO_FEW_EVENTS);
         }
@@ -49,6 +49,6 @@ public class SortEventCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortEventCommand // instanceof handles nulls
-                && sortEventType.equals(((SortEventCommand) other).sortEventType)); // state check
+                && sortEventKey.equals(((SortEventCommand) other).sortEventKey)); // state check
     }
 }

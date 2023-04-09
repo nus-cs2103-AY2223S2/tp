@@ -2,7 +2,7 @@ package seedu.address.model.event;
 
 import java.util.Comparator;
 
-import seedu.address.logic.parser.SortEventType;
+import seedu.address.logic.parser.SortEventKey;
 import seedu.address.model.event.exceptions.SortComparatorException;
 
 /**
@@ -37,8 +37,8 @@ public class EventComparator {
         }
     };
 
-    public static final Comparator<Event> getComparator(SortEventType sortEventType) throws SortComparatorException {
-        switch (sortEventType) {
+    public static final Comparator<Event> getComparator(SortEventKey sortEventKey) throws SortComparatorException {
+        switch (sortEventKey) {
         case SORT_BY_NAME_ASC:
             return NAME_ASC_COMPARATOR;
         case SORT_BY_NAME_DESC:
