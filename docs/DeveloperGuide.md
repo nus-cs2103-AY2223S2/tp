@@ -627,16 +627,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list. **OR** <br>
+    Filter or find students as desired using the `filter` or `find` commands. Number of students in the list depends on the condition given.
 
     2. Test case: `delete 1`<br>
-    Expected: First student is deleted from the list. Details of the deleted student shown in the status message. If the deleted student was being checked
+    Expected: If the displayed student list is empty, error details shown in the status message. No student is deleted.
+    Else, the first student is deleted from the displayed list. Details of the deleted student shown in the status message. If the deleted student was being checked
     using the `check` command, the task list and score list of the student will be cleared.
 
     3. Test case: `delete 0`<br>
     Expected: No student is deleted. Error details shown in the status message.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
+
     Expected: Similar to previous.
 
 1. Deleting a student being checked
