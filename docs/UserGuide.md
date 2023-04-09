@@ -1315,7 +1315,8 @@ Keyword data are stored in `[JAR file location]/data/keyword.json`.
 
 ###### Restrictions
 
-On top of the type restrictions of the parameters, if these restrictions are violated, it will render the patient invalid. In all cases, VMS will ignore the entire patient data file if an invalid patient is present.
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the keyword 
+invalid. In all cases, VMS will ignore the entire keyword data file if an invalid keyword is present.
 * <code><var>keyword</var></code> must not contain any newline characters, e.g. `\n`.
 
 
