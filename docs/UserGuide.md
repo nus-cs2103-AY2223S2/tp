@@ -122,7 +122,7 @@ for your reference. </div>
 
 
 <p align="center">
-  <img height="480" width="480" src="images/Ui.png">
+  <img height="450" width="450" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
@@ -662,7 +662,6 @@ know what information are considered valid and what are not.<br>
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
---------------------------------------------------------------------------------------------------------------------
 
 ## <a id="data"></a>Data Storage 
 
@@ -747,7 +746,6 @@ as prefix for ```TEACHER``` attribute.
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## <a id="faq"></a>FAQ 
 
