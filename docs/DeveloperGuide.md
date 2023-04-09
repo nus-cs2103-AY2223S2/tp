@@ -457,42 +457,211 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+---
+
+### Launch and Shutdown
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the latest jar file from our [releases](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases) and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Open terminal/command prompt and `cd` to the empty folder. Run the application with `java -jar clipboard.jar`. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a preferred location. Close the window by typing in `exit` in the command box.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by following step 1(ii).<br>
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Exit application
 
-### Deleting a student
+    1. Type in `exit` on any page in CLIpboard.
+
+    1. Clicking on the `File` tab at the navigation bar above and then clicking `Exit` also exits the app.
+
+---
+
+### General Commands
+These commands can be tested on any page. Specific pages are given for this section as a starting point.
+
+1. Displaying the home page while on the course page
+
+    1. Test case: `home`<br>
+       Expected: Course page is displayed.
+
+1. Displaying the previous page while on the group page
+
+    1. Test case: `back`<br>
+       Expected: Course page is displayed.
+
+1. Displaying the previous page while on the course page
+
+    1. Test case: `back`<br>
+       Expected: Error message shows up on the log box as the course page is the home page.<br>
+       The application begins from the home page.
+
+1. Undoing a select command from the course page, indicating that the current page is the group page.
+
+    1. Test case: `undo`<br>
+       Expected: Course page is displayed.
+
+1. Opening the help window from the course page.
+
+    1. Test case: `help`<br>
+       Expected: Help window for course page pops up.
+
+---
+
+### Course Page Commands
+These commands should be tested on the Course Page.
+
+#### Adding a course
+
+1. Adding a course while course list is empty, or the course does not exist in the course list.
+
+    1. Test case: `add course CS3223`<br>
+       Expected: New course is added into the list. Details of the added course shown in the log box.
+
+    1. Other incorrect `add course` commands to try: `add`, `add course` (where the course code is empty)<br>
+       Expected: No course is added. Error details shown in the log box.
+
+1. Adding a course which already exists in the list.
+
+    1. Test case: `add course CS3223`<br>
+       Expected: No course is added. Error details shown in the log box.
+
+#### Deleting a course
+
+1. Deleting a course while all courses are being shown from the course page.
+
+    1. Test case: `delete course 1`<br>
+       Expected: First course is deleted from the list. Details of the deleted course shown in the log box.
+
+    1. Test case: `delete course 0`<br>
+       Expected: No course is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete course` commands to try: `delete`, `delete course x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+1. Deleting a course while the course list is empty in the course page.
+
+    1. Incorrect `delete course` commands to try: `delete`, `delete course x` (where x is any number)<br>
+       Expected: No course is deleted. Error details shown in the log box.
+
+#### Editing a course
+
+1. Editing a course which exists in the course list.
+
+    1. Test case: `edit course 1 CS4225`<br>
+       Expected: First course is edited to the new course code. Details of the edited course shown in the log box.
+
+    1. Test case: `edit course 0 CS4225`<br>
+       Expected: No course is edited. Error details shown in the log box.
+
+    1. Other incorrect `edit course` commands to try: `edit`, `edit course x` (where x is any number), `edit course x CS4225` (where x is larger than the list size) <br>
+       Expected: Similar to previous.
+
+1. Editing a course while the course list is empty in the course page.
+
+    1. Refer to step 1(iii) above under `Editing a course`.
+
+#### Selecting a course
+
+1. Selecting a course while on the course page.
+
+    1. Test case: `select 1`<br>
+       Expected: First course is selected. Details of the selected course shown in the log box. Page redirected to the 
+       selected group page.
+
+    1. Test case: `select x` (where x is larger than the list size)<br>
+       Expected: No course is selected. Error details shown in the log box.
+
+
+#### Finding a course
+
+---
+
+### Group Page Commands
+These commands should be tested on the Group Page.
+
+#### Adding a group
+
+#### Deleting a group
+
+#### Editing a group
+
+#### Selecting a group
+
+#### Displaying sessions of a group
+
+#### Displaying tasks of a group
+
+#### Finding a group
+
+---
+
+### Students Page Commands
+These commands should be tested on the Students Page.
+
+#### Deleting a student
 
 1. Deleting a student while all students are being shown from the Student Page.
 
-   1. Test case: `delete student 1`<br>
-      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
+    1. Test case: `delete student 1`<br>
+       Expected: First student is deleted from the list. Details of the deleted student shown in the log box.
 
-   1. Test case: `delete student 0`<br>
-      Expected: No student is deleted. Error details shown in the status message.
+    1. Test case: `delete student 0`<br>
+       Expected: No student is deleted. Error details shown in the log box.
 
-   1. Other incorrect delete commands to try: `delete`, `delete student x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect `delete student` commands to try: `delete`, `delete student x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+---
+
+### Session Page Commands
+These commands should be tested on the Session Page.
+
+---
+
+### Attendance Page Commands
+These commands should be tested on the Attendance Page.
+
+---
+
+### Task Page Commands
+These commands should be tested on the Task Page.
+
+#### Adding a task
+
+#### Deleting a task
+
+#### Editing a task
+
+#### Selecting a task
+
+#### Finding a task
+
+---
+
+### Grades Page Commands
+These commands should be tested on the Grades Page.
+
+#### Assigning a grade to a student
+
+---
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: Corrupted data file. This includes any invalid fields in `roster.json` located in `tp/data`. <br>
+      Expected: A new set of roster sample data from `sampleRoster.json` will be loaded into the original file. Do exit the app for the new
+      data from the uncorrupted sample file to overwrite `roster.java`.
 
-1. _{ more test cases …​ }_
+   1. Test case: Missing data file. This indicates that `roster.java` does not exist in `tp/data`. <br>
+      Expected: A set of roster sample data from `sampleRoster.json` will be copied and loaded into a newly created `roster.java` 
+      Do exit the app for `roster.java` to be created.
+
