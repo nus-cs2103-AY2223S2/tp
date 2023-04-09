@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="412px" preserveAspectRatio="none"
+     style="width:544px;height:412px;background:#FFFFFF;" version="1.1" viewBox="0 0 544 412" width="544px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--class Item-->
+        <g id="elem_Item">
+            <rect codeLine="9" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="346" y="24.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="27" x="363" y="40.3145">Item
+            </text>
+        </g><!--class Name-->
+        <g id="elem_Name">
+            <rect codeLine="10" fill="#9D0012" height="41.2813" id="Name" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="213" y="280"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="216" y="297.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="37" x="228" y="313.3145">Name
+            </text>
+        </g><!--class UniqueItemList-->
+        <g id="elem_UniqueItemList">
+            <rect codeLine="11" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="181" y="14.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="184"
+                  y="32.1738">UniqueItemList&lt;T&gt;
+            </text>
+        </g><!--class ItemList-->
+        <g id="elem_ItemList">
+            <rect codeLine="12" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="7" y="14.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10"
+                  y="32.1738">ItemList
+            </text>
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="83" x="66" y="11.5"/>
+            <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="81" x="67" y="25.4492">T extends Item
+            </text>
+        </g><!--class MenuItem-->
+        <g id="elem_MenuItem">
+            <rect codeLine="15" fill="#9D0012" height="25.6406" id="MenuItem" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="346"
+                  y="125.6738">MenuItem
+            </text>
+        </g><!--class ItemPrice-->
+        <g id="elem_ItemPrice">
+            <rect codeLine="16" fill="#9D0012" height="25.6406" id="ItemPrice" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="64" x="392.5" y="381"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="58" x="395.5"
+                  y="398.6738">ItemPrice
+            </text>
+        </g><!--class ItemCost-->
+        <g id="elem_ItemCost">
+            <rect codeLine="17" fill="#9D0012" height="25.6406" id="ItemCost" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="61" x="335" y="287.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="55" x="338"
+                  y="305.1738">ItemCost
+            </text>
+        </g><!--class ItemName-->
+        <g id="elem_ItemName">
+            <rect codeLine="18" fill="#9D0012" height="25.6406" id="ItemName" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="68" x="212.5" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="215.5"
+                  y="211.6738">ItemName
+            </text>
+        </g><!--class Menu-->
+        <g id="elem_Menu">
+            <rect codeLine="19" fill="#9D0012" height="25.6406" id="Menu" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="50" x="70.5" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="35" x="78"
+                  y="125.6738">Menu
+            </text>
+        </g><!--class UniqueMenuItemList-->
+        <g id="elem_UniqueMenuItemList">
+            <rect codeLine="20" fill="#9D0012" height="25.6406" id="UniqueMenuItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="133" x="175" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="127" x="178"
+                  y="125.6738">UniqueMenuItemList
+            </text>
+        </g><!--class ItemSellingPrice-->
+        <g id="elem_ItemSellingPrice">
+            <rect fill="#9D0012" height="25.6406" id="ItemSellingPrice" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="106" x="431.5" y="287.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="100" x="434.5"
+                  y="305.1738">ItemSellingPrice
+            </text>
+        </g><!--class ItemProfit-->
+        <g id="elem_ItemProfit">
+            <rect fill="#9D0012" height="25.6406" id="ItemProfit" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="65" x="387" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="59" x="390"
+                  y="211.6738">ItemProfit
+            </text>
+        </g><!--reverse link ItemList to Menu-->
+        <g id="link_ItemList_Menu">
+            <path d="M83.38,61.64 C86.7,77.6 90.47,95.79 92.92,107.56 " fill="none" id="ItemList-backto-Menu"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="76.58,63.33,79.37,42.32,90.29,60.48,76.58,63.33"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link UniqueItemList to UniqueMenuItemList-->
+        <g id="link_UniqueItemList_UniqueMenuItemList">
+            <path d="M243.4,62.19 C242.88,78.03 242.29,95.93 241.91,107.56 " fill="none"
+                  id="UniqueItemList-backto-UniqueMenuItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="236.39,62.11,244.05,42.35,250.39,62.57,236.39,62.11"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link ItemList to UniqueItemList-->
+        <g id="link_ItemList_UniqueItemList">
+            <path codeLine="22" d="M160.67,27.5 C162.67,27.5 164.67,27.5 166.67,27.5 " fill="none"
+                  id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="147.9,27.5,153.9,31.5,159.9,27.5,153.9,23.5,147.9,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="179.37,27.5,170.37,23.5,174.37,27.5,170.37,31.5,179.37,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="174.37" x2="166.37" y1="27.5" y2="27.5"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="166.1193" y="23.5831">1
+            </text>
+        </g><!--link UniqueItemList to Item-->
+        <g id="link_UniqueItemList_Item">
+            <path codeLine="23" d="M308.44,27.5 C317.73,27.5 327.02,27.5 336.3,27.5 " fill="none"
+                  id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="341.22,27.5,332.22,23.5,336.22,27.5,332.22,31.5,341.22,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="329.7959" y="22.67">*
+            </text>
+        </g><!--link Menu to UniqueMenuItemList-->
+        <g id="link_Menu_UniqueMenuItemList">
+            <path codeLine="25" d="M135.15,121 C143.47,121 151.79,121 160.11,121 " fill="none"
+                  id="Menu-UniqueMenuItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="122.39,121,128.39,125,134.39,121,128.39,117,122.39,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="173.08,121,164.08,117,168.08,121,164.08,125,173.08,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="168.08" x2="160.08" y1="121" y2="121"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="156.1227" y="117.1853">1
+            </text>
+        </g><!--link UniqueMenuItemList to MenuItem-->
+        <g id="link_UniqueMenuItemList_MenuItem">
+            <path codeLine="26" d="M308.47,121 C317.76,121 327.04,121 336.32,121 " fill="none"
+                  id="UniqueMenuItemList-to-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="341.24,121,332.24,117,336.24,121,332.24,125,341.24,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="329.8203" y="116.2401">*
+            </text>
+        </g><!--link MenuItem to ItemSellingPrice-->
+        <g id="link_MenuItem_ItemSellingPrice">
+            <path codeLine="28"
+                  d="M414.32,141.78 C434.02,154.11 456.62,171.84 469.5,194 C483.49,218.07 486.22,250.29 486.09,272.77 "
+                  fill="none" id="MenuItem-ItemSellingPrice" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="403.23,135.24,406.3587,141.737,413.5593,141.3479,410.4306,134.8508,403.23,135.24"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="485.66,285.64,489.9544,276.7767,485.8247,280.6427,481.9587,276.5131,485.66,285.64"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="485.8247" x2="486.09" y1="280.6427" y2="272.65"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="492.0474" y="276.2547">1
+            </text>
+        </g><!--link MenuItem to ItemProfit-->
+        <g id="link_MenuItem_ItemProfit">
+            <path codeLine="29" d="M389.38,147.16 C394.83,157.81 401.17,170.19 406.62,180.84 " fill="none"
+                  id="MenuItem-ItemProfit" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="383.53,135.74,382.7059,142.9039,389.0018,146.4199,389.8258,139.256,383.53,135.74"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="412.44,192.21,411.8961,182.3762,410.1601,187.7601,404.7762,186.024,412.44,192.21"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="410.1601" x2="406.52" y1="187.7601" y2="180.635"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="393.0154" y="182.6042">1
+            </text>
+        </g><!--link MenuItem to ItemCost-->
+        <g id="link_MenuItem_ItemCost">
+            <path codeLine="30"
+                  d="M373.53,148.63 C372.12,162.19 370.52,178.96 369.5,194 C367.69,220.81 366.64,251.52 366.08,272.87 "
+                  fill="none" id="MenuItem-ItemCost" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="374.9,135.97,370.2773,141.5045,373.6081,147.9003,378.2308,142.3658,374.9,135.97"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="365.77,285.63,369.9864,276.7293,365.8908,280.6315,361.9887,276.536,365.77,285.63"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="365.8908" x2="366.08" y1="280.6315" y2="272.63"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="353.8367" y="276.2274">1
+            </text>
+        </g><!--link MenuItem to ItemName-->
+        <g id="link_MenuItem_ItemName">
+            <path codeLine="31" d="M345.31,142.15 C324.91,155.34 298.34,172.51 277.89,185.72 " fill="none"
+                  id="MenuItem-ItemName" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="356.05,135.22,348.8396,135.1189,345.973,141.7357,353.1834,141.8369,356.05,135.22"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="267.03,192.73,276.7596,191.2022,271.2287,190.0151,272.4158,184.4842,267.03,192.73"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="271.2287" x2="277.95" y1="190.0151" y2="185.68"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="264.5715" y="182.6042">1
+            </text>
+        </g><!--link ItemProfit to ItemSellingPrice-->
+        <g id="link_ItemProfit_ItemSellingPrice">
+            <path codeLine="33" d="M428.27,220.34 C439.51,236.17 459.08,263.72 471.92,281.79 " fill="none"
+                  id="ItemProfit-to-ItemSellingPrice"
+                  style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012"
+                     points="474.79,285.83,472.8266,276.1788,471.8892,281.7575,466.3106,280.8201,474.79,285.83"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="450.5358" y="276.1179">1
+            </text>
+        </g><!--link ItemProfit to ItemCost-->
+        <g id="link_ItemProfit_ItemCost">
+            <path codeLine="34" d="M412.22,220.34 C402.88,236.17 386.62,263.72 375.95,281.79 " fill="none"
+                  id="ItemProfit-to-ItemCost" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012"
+                     points="373.61,285.76,381.6259,280.0376,376.1488,281.4525,374.7339,275.9755,373.61,285.76"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="391.7873" y="276.1179">1
+            </text>
+        </g><!--link ItemSellingPrice to ItemPrice-->
+        <g id="link_ItemSellingPrice_ItemPrice">
+            <path codeLine="36" d="M476.41,313.84 C468.22,326.32 455.25,346.1 444.32,362.77 " fill="none"
+                  id="ItemSellingPrice-to-ItemPrice" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="450.31,366.41,433.49,379.3,438.6,358.73,450.31,366.41"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link ItemCost to ItemPrice-->
+        <g id="link_ItemCost_ItemPrice">
+            <path codeLine="37" d="M373.46,313.84 C381.46,326.26 394.12,345.89 404.83,362.5 " fill="none"
+                  id="ItemCost-to-ItemPrice" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="410.71,358.69,415.66,379.29,398.94,366.28,410.71,358.69"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link Item to MenuItem-->
+        <g id="link_Item_MenuItem">
+            <path codeLine="40" d="M376.5,69.83 C376.5,83.63 376.5,97.96 376.5,107.76 " fill="none"
+                  id="Item-backto-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="369.5,69.87,376.5,49.87,383.5,69.87,369.5,69.87"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link ItemName to Name-->
+        <g id="link_ItemName_Name">
+            <path codeLine="42" d="M246.5,220.34 C246.5,230.15 246.5,244.46 246.5,258.23 " fill="none"
+                  id="ItemName-to-Name" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="253.5,258.15,246.5,278.15,239.5,258.15,253.5,258.15"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--SRC=[VP5BJmCX58Nt_8ehooOp2NlJH4SNJLfhjEvC36Mm9MLW12PgrFzkUKpdqKbPmUMxvnuELq8nsPGShFkMFA-RIY9x4AgcXbP0ZT6VcxrW1yMj1PAJyMMXfJQmMj_TBz-AzNBzr0EOfDRUKdRO6TseyXBgYNgXzjm8HnNZG11okWQdOQkTqnMKmd3cX5O8tMojCvGvAFm0m3yq5VvUrSBn2WEru3SNoGTQyK3w3Kh0Yn8V3VUzIs7TzMOE0HcM4znHmBySLsKipH5Am8gh9jZe-4SZ6E-T2psGwrdnpGFTtkHefvNt5oTov1ITW5cMcUDh21uZmoCSAJp3CJuKJBITW2S6emalIUBqVDJkl9HFb4JzPowbKBkOoOWX03Wbfj-5EvFmAyc43CVjkCiJTJAGvsrpMWGcl4mqj5mOXiOTa6M_yzu7j-IuteiYQz9DLFDE8nqy_mC0]-->
+    </g>
+</svg>

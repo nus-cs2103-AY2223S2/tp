@@ -1,164 +1,250 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="329px" preserveAspectRatio="none" style="width:595px;height:329px;background:#FFFFFF;" version="1.1" viewBox="0 0 595 329" width="595px" zoomAndPan="magnify"><defs/><g><!--MD5=[44a1b4afaef76c16e6c9ec4990ad0c8d]
-class Item--><g id="elem_Item"><rect codeLine="9" fill="#9D0012" height="42.1973" id="Item" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="346" y="25.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="27" x="363" y="41.2305">Item</text></g><!--MD5=[53f6a92bd21ca2f2960392a061f3a1c6]
-class Name--><g id="elem_Name"><rect codeLine="10" fill="#9D0012" height="42.1973" id="Name" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="278" y="281"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="281" y="299.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="37" x="293" y="315.2305">Name</text></g><!--MD5=[007886e900a243ece686dc981ec5213f]
-class Deadline--><g id="elem_Deadline"><rect codeLine="11" fill="#9D0012" height="42.1973" id="Deadline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="508" y="281"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="511" y="299.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="56" x="513.5" y="315.2305">Deadline</text></g><!--MD5=[e3d83ec5fd90ea9f3f2bfe265cb53458]
-class Status--><g id="elem_Status"><rect codeLine="12" fill="#9D0012" height="42.1973" id="Status" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="388" y="281"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="391" y="299.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="40" x="401.5" y="315.2305">Status</text></g><!--MD5=[0413c2967cbcbb9b55cfe9d1f30bae3b]
-class UniqueItemList--><g id="elem_UniqueItemList"><rect codeLine="13" fill="#9D0012" height="26.0986" id="UniqueItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="127" x="181" y="15"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="184" y="33.1318">UniqueItemList&lt;T&gt;</text></g><!--MD5=[a7724e71618d3dacaca1ec2d24889dc2]
-class ItemList--><g id="elem_ItemList"><rect codeLine="14" fill="#9D0012" height="26.0986" id="ItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="139" x="7" y="15"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10" y="33.1318">ItemList</text><rect fill="#FFFFFF" height="17.0938" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" width="83" x="66" y="12"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="81" x="67" y="25.457">T extends Item</text></g><!--MD5=[38cbc5fc88b06498bbb77355b03ca902]
-class LocalDateTime--><g id="elem_LocalDateTime"><rect codeLine="16" fill="#9D0012" height="26.0986" id="LocalDateTime" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="101" x="139" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="95" x="142" y="213.1318">LocalDateTime</text></g><!--MD5=[b34797a66dc35cbf1d65f7e3ca75530e]
-class Task--><g id="elem_Task"><rect codeLine="17" fill="#9D0012" height="26.0986" id="Task" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="50" x="341.5" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="31" x="351" y="127.1318">Task</text></g><!--MD5=[cfa77d5c669501401925471e6c9e1da2]
-class TaskName--><g id="elem_TaskName"><rect codeLine="18" fill="#9D0012" height="26.0986" id="TaskName" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="73" x="275" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="67" x="278" y="213.1318">TaskName</text></g><!--MD5=[007b513da6771087a86fbb3bd355c48d]
-class TaskStatus--><g id="elem_TaskStatus"><rect codeLine="19" fill="#9D0012" height="26.0986" id="TaskStatus" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="77" x="383" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="386" y="213.1318">TaskStatus</text></g><!--MD5=[a502ac6dd9067578fee93a0ea367e575]
-class TaskDeadline--><g id="elem_TaskDeadline"><rect codeLine="20" fill="#9D0012" height="26.0986" id="TaskDeadline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="93" x="495" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="498" y="213.1318">TaskDeadline</text></g><!--MD5=[cf2635f8a68afd84898027166f4516bc]
-class TaskList--><g id="elem_TaskList"><rect codeLine="21" fill="#9D0012" height="26.0986" id="TaskList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="59" x="73" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="53" x="76" y="127.1318">TaskList</text></g><!--MD5=[75b6c2ed89a40aea61dd9d2f01a6d908]
-class UniqueTaskList--><g id="elem_UniqueTaskList"><rect codeLine="22" fill="#9D0012" height="26.0986" id="UniqueTaskList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="103" x="193" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="97" x="196" y="127.1318">UniqueTaskList</text></g><!--MD5=[34e8c164b1866cd7ba27496f84f7211e]
-reverse link ItemList to TaskList--><g id="link_ItemList_TaskList"><path d="M85.4,60.48 C90.11,77.18 95.64,96.71 99.1,108.97 " fill="none" id="ItemList-backto-TaskList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="78.6,62.18,79.9,41.03,92.07,58.37,78.6,62.18" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[737be0e4e92cd33054fb52d50c544ec4]
-reverse link UniqueItemList to UniqueTaskList--><g id="link_UniqueItemList_UniqueTaskList"><path d="M244.5,61.05 C244.5,77.61 244.5,96.85 244.5,108.97 " fill="none" id="UniqueItemList-backto-UniqueTaskList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="237.5,61.03,244.5,41.03,251.5,61.03,237.5,61.03" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[4e7777d310d747d2c1947315482d4a2c]
-link ItemList to UniqueItemList--><g id="link_ItemList_UniqueItemList"><path codeLine="24" d="M158.06,28 C158.06,28 164.87,28 167.65,28 " fill="none" id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="180.67,28,171.67,24,175.67,28,171.67,32,180.67,28" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="175.67" x2="167.67" y1="28" y2="28"/><polygon fill="#9D0012" points="146.06,28,152.06,32,158.06,28,152.06,24,146.06,28" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="165.885" y="24.5847">1</text></g><!--MD5=[be517f24292d6b5fd6945ff9c04a4f08]
-link UniqueItemList to Item--><g id="link_UniqueItemList_Item"><path codeLine="25" d="M308.18,28 C318.03,28 327.88,28 337.72,28 " fill="none" id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="342.87,28,333.87,24,337.87,28,333.87,32,342.87,28" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="329.9666" y="23.762">*</text></g><!--MD5=[089d5f13e08a1ea034356ea8ddaf0f26]
-link TaskList to UniqueTaskList--><g id="link_TaskList_UniqueTaskList"><path codeLine="27" d="M144.18,122 C144.18,122 168.09,122 179.42,122 " fill="none" id="TaskList-UniqueTaskList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="192.73,122,183.73,118,187.73,122,183.73,126,192.73,122" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="187.73" x2="179.73" y1="122" y2="122"/><polygon fill="#9D0012" points="132.18,122,138.18,126,144.18,122,138.18,118,132.18,122" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="174.0343" y="118.4371">1</text></g><!--MD5=[c5cd6db58ce454a0eebfbb460c781f70]
-link UniqueTaskList to Task--><g id="link_UniqueTaskList_Task"><path codeLine="28" d="M296.45,122 C309.65,122 322.86,122 336.06,122 " fill="none" id="UniqueTaskList-to-Task" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="341.32,122,332.32,118,336.32,122,332.32,126,341.32,122" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="328.535" y="117.2807">*</text></g><!--MD5=[550af48e5ae98225f600f8d903c1e369]
-link Task to TaskName--><g id="link_Task_TaskName"><path codeLine="29" d="M352.0551,145.085 C352.0551,145.085 334.37,172.06 326.67,183.83 " fill="none" id="Task-TaskName" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="319.37,194.99,327.6452,189.6495,322.1079,190.8062,320.9512,185.2689,319.37,194.99" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="322.1079" x2="326.485" y1="190.8062" y2="184.11"/><polygon fill="#9D0012" points="358.62,135.04,351.9892,137.8742,352.0551,145.085,358.6859,142.2508,358.62,135.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="314.0907" y="184.2622">1</text></g><!--MD5=[f5aeb8700a5faf75bd8a4f726f95a914]
-link Task to TaskDeadline--><g id="link_Task_TaskDeadline"><path codeLine="30" d="M402.3862,140.2371 C402.3862,140.2371 474.72,174.95 504.5,189.24 " fill="none" id="Task-TaskDeadline" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="516.47,194.99,510.0902,187.4868,511.9632,192.8246,506.6255,194.6976,516.47,194.99" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="511.9632" x2="504.75" y1="192.8246" y2="189.36"/><polygon fill="#9D0012" points="391.57,135.04,395.2458,141.2439,402.3862,140.2371,398.7105,134.0331,391.57,135.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="502.9353" y="184.0613">1</text></g><!--MD5=[e7470f68175942cba5d83e095e35829d]
-link Task to TaskStatus--><g id="link_Task_TaskStatus"><path codeLine="31" d="M380.9449,145.085 C380.9449,145.085 398.63,172.06 406.33,183.83 " fill="none" id="Task-TaskStatus" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="413.63,194.99,412.0488,185.2689,410.8921,190.8062,405.3548,189.6495,413.63,194.99" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="410.8921" x2="406.515" y1="190.8062" y2="184.11"/><polygon fill="#9D0012" points="374.38,135.04,374.3141,142.2508,380.9449,145.085,381.0108,137.8742,374.38,135.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="397.3656" y="184.2622">1</text></g><!--MD5=[0089e16a4d94df37c8ada2207a2d81d2]
-link Task to LocalDateTime--><g id="link_Task_LocalDateTime"><path codeLine="32" d="M330.3035,140.1946 C330.3035,140.1946 257.04,174.95 226.92,189.24 " fill="none" id="Task-LocalDateTime" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="214.81,194.99,224.6558,194.746,219.3273,192.8467,221.2266,187.5182,214.81,194.99" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="219.3273" x2="226.56" y1="192.8467" y2="189.41"/><polygon fill="#9D0012" points="341.14,135.04,334.0035,134.0051,330.3035,140.1946,337.4399,141.2295,341.14,135.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="73" x="137.4039" y="184.2622">timeAdded 1</text></g><!--MD5=[d716af0bb16c5d8d17310f6d7d9ed31b]
-reverse link Item to Task--><g id="link_Item_Task"><path codeLine="33" d="M372.1,69.46 C370.55,83.73 368.92,98.71 367.82,108.82 " fill="none" id="Item-backto-Task" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="365.16,68.54,374.28,49.42,379.08,70.06,365.16,68.54" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[c87c46b74994448f8cb86bd7c8db957a]
-link TaskName to Name--><g id="link_TaskName_Name"><path codeLine="35" d="M311.5,221.03 C311.5,231.18 311.5,246.32 311.5,260.7 " fill="none" id="TaskName-to-Name" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="318.5,260.88,311.5,280.88,304.5,260.88,318.5,260.88" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[fb5085bca9d9a34e0bede80da882c548]
-link TaskDeadline to Deadline--><g id="link_TaskDeadline_Deadline"><path codeLine="36" d="M541.5,221.03 C541.5,231.18 541.5,246.32 541.5,260.7 " fill="none" id="TaskDeadline-to-Deadline" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="548.5,260.88,541.5,280.88,534.5,260.88,548.5,260.88" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[79643553a087d0cd8bb61bffc090d809]
-link TaskStatus to Status--><g id="link_TaskStatus_Status"><path codeLine="37" d="M421.5,221.03 C421.5,231.18 421.5,246.32 421.5,260.7 " fill="none" id="TaskStatus-to-Status" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="428.5,260.88,421.5,280.88,414.5,260.88,428.5,260.88" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[24f7db9ee1064f346bd8239ad48ea73f]
-@startuml
-!include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
-skinparam classBackgroundColor MODEL_COLOR
-skinparam groupInheritance 1
-
-top to bottom direction
-
-Abstract Class "{abstract}\nItem" as Item
-Abstract Class "{abstract}\nName" as Name
-Abstract Class "{abstract}\nDeadline" as Deadline
-Abstract Class "{abstract}\nStatus" as Status
-Class "UniqueItemList<T> " as UniqueItemList
-Class ItemList<T extends Item>
-
-Class LocalDateTime
-Class Task
-Class TaskName
-Class TaskStatus
-Class TaskDeadline
-Class TaskList extends ItemList
-Class UniqueTaskList extends UniqueItemList
-
-ItemList *- -r> "1" UniqueItemList
-UniqueItemList -r> "*" Item
-
-TaskList *- -r> "1 " UniqueTaskList
-UniqueTaskList -r> "*" Task
-Task *- -> "1" TaskName
-Task *- -> "            1" TaskDeadline
-Task *- -> "1 " TaskStatus
-Task *- -> "timeAdded 1" LocalDateTime
-Task -u|> Item
-
-TaskName - -|> Name
-TaskDeadline - -|> Deadline
-TaskStatus - -|> Status
-
-@enduml
-
-@startuml
-
-
-
-
-
-
-
-
-
-skinparam BackgroundColor #FFFFFFF
-
-skinparam Shadowing false
-
-skinparam Class {
-    FontColor #FFFFFF
-    BorderThickness 0
-    FontName Arial
-}
-
-skinparam Actor {
-    BorderColor #000000
-    Color #000000
-    FontName Arial
-}
-
-skinparam Sequence {
-    MessageAlign center
-    BoxFontSize 15
-    BoxPadding 0
-    BoxFontColor #FFFFFF
-    FontName Arial
-}
-
-skinparam Participant {
-    FontColor #FFFFFFF
-    Padding 20
-}
-
-skinparam MinClassWidth 50
-skinparam ParticipantPadding 10
-skinparam Shadowing false
-skinparam DefaultTextAlignment center
-skinparam packageStyle Rectangle
-
-hide footbox
-hide members
-hide circle
-skinparam arrowThickness 1.1
-skinparam arrowColor #9D0012
-skinparam classBackgroundColor #9D0012
-skinparam groupInheritance 1
-
-top to bottom direction
-
-Abstract Class "{abstract}\nItem" as Item
-Abstract Class "{abstract}\nName" as Name
-Abstract Class "{abstract}\nDeadline" as Deadline
-Abstract Class "{abstract}\nStatus" as Status
-Class "UniqueItemList<T> " as UniqueItemList
-Class ItemList<T extends Item>
-
-Class LocalDateTime
-Class Task
-Class TaskName
-Class TaskStatus
-Class TaskDeadline
-Class TaskList extends ItemList
-Class UniqueTaskList extends UniqueItemList
-
-ItemList *- -r> "1" UniqueItemList
-UniqueItemList -r> "*" Item
-
-TaskList *- -r> "1 " UniqueTaskList
-UniqueTaskList -r> "*" Task
-Task *- -> "1" TaskName
-Task *- -> "            1" TaskDeadline
-Task *- -> "1 " TaskStatus
-Task *- -> "timeAdded 1" LocalDateTime
-Task -u|> Item
-
-TaskName - -|> Name
-TaskDeadline - -|> Deadline
-TaskStatus - -|> Status
-
-@enduml
-
-PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: Cp1252
-Language: en
-Country: SG
---></g></svg>
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="327px" preserveAspectRatio="none"
+     style="width:595px;height:327px;background:#FFFFFF;" version="1.1" viewBox="0 0 595 327" width="595px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--class Item-->
+        <g id="elem_Item">
+            <rect codeLine="9" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="346" y="24.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="27" x="363" y="40.3145">Item
+            </text>
+        </g><!--class Name-->
+        <g id="elem_Name">
+            <rect codeLine="10" fill="#9D0012" height="41.2813" id="Name" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="278" y="280"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="281" y="297.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="37" x="293" y="313.3145">Name
+            </text>
+        </g><!--class Deadline-->
+        <g id="elem_Deadline">
+            <rect codeLine="11" fill="#9D0012" height="41.2813" id="Deadline" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="508" y="280"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="511" y="297.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="56" x="513.5" y="313.3145">Deadline
+            </text>
+        </g><!--class Status-->
+        <g id="elem_Status">
+            <rect codeLine="12" fill="#9D0012" height="41.2813" id="Status" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="388" y="280"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="391" y="297.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="40" x="401.5" y="313.3145">Status
+            </text>
+        </g><!--class UniqueItemList-->
+        <g id="elem_UniqueItemList">
+            <rect codeLine="13" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="181" y="14.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="184"
+                  y="32.1738">UniqueItemList&lt;T&gt;
+            </text>
+        </g><!--class ItemList-->
+        <g id="elem_ItemList">
+            <rect codeLine="14" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="7" y="14.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10"
+                  y="32.1738">ItemList
+            </text>
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="83" x="66" y="11.5"/>
+            <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="81" x="67" y="25.4492">T extends Item
+            </text>
+        </g><!--class LocalDateTime-->
+        <g id="elem_LocalDateTime">
+            <rect codeLine="16" fill="#9D0012" height="25.6406" id="LocalDateTime" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="101" x="139" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="95" x="142"
+                  y="211.6738">LocalDateTime
+            </text>
+        </g><!--class Task-->
+        <g id="elem_Task">
+            <rect codeLine="17" fill="#9D0012" height="25.6406" id="Task" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="50" x="341.5" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="31" x="351"
+                  y="125.6738">Task
+            </text>
+        </g><!--class TaskName-->
+        <g id="elem_TaskName">
+            <rect codeLine="18" fill="#9D0012" height="25.6406" id="TaskName" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="73" x="275" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="67" x="278"
+                  y="211.6738">TaskName
+            </text>
+        </g><!--class TaskStatus-->
+        <g id="elem_TaskStatus">
+            <rect codeLine="19" fill="#9D0012" height="25.6406" id="TaskStatus" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="77" x="383" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="386"
+                  y="211.6738">TaskStatus
+            </text>
+        </g><!--class TaskDeadline-->
+        <g id="elem_TaskDeadline">
+            <rect codeLine="20" fill="#9D0012" height="25.6406" id="TaskDeadline" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="93" x="495" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="498"
+                  y="211.6738">TaskDeadline
+            </text>
+        </g><!--class TaskList-->
+        <g id="elem_TaskList">
+            <rect codeLine="21" fill="#9D0012" height="25.6406" id="TaskList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="59" x="73" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="53" x="76"
+                  y="125.6738">TaskList
+            </text>
+        </g><!--class UniqueTaskList-->
+        <g id="elem_UniqueTaskList">
+            <rect codeLine="22" fill="#9D0012" height="25.6406" id="UniqueTaskList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="103" x="193" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="97" x="196"
+                  y="125.6738">UniqueTaskList
+            </text>
+        </g><!--reverse link ItemList to TaskList-->
+        <g id="link_ItemList_TaskList">
+            <path d="M85.84,61.36 C90.39,77.39 95.6,95.73 98.97,107.56 " fill="none" id="ItemList-backto-TaskList"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="79.15,63.45,80.42,42.3,92.62,59.62,79.15,63.45"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link UniqueItemList to UniqueTaskList-->
+        <g id="link_UniqueItemList_UniqueTaskList">
+            <path d="M244.5,62.19 C244.5,78.03 244.5,95.93 244.5,107.56 " fill="none"
+                  id="UniqueItemList-backto-UniqueTaskList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="237.5,62.35,244.5,42.35,251.5,62.35,237.5,62.35"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link ItemList to UniqueItemList-->
+        <g id="link_ItemList_UniqueItemList">
+            <path codeLine="24" d="M160.67,27.5 C162.67,27.5 164.67,27.5 166.67,27.5 " fill="none"
+                  id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="147.9,27.5,153.9,31.5,159.9,27.5,153.9,23.5,147.9,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="179.37,27.5,170.37,23.5,174.37,27.5,170.37,31.5,179.37,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="174.37" x2="166.37" y1="27.5" y2="27.5"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="166.1193" y="23.5831">1
+            </text>
+        </g><!--link UniqueItemList to Item-->
+        <g id="link_UniqueItemList_Item">
+            <path codeLine="25" d="M308.44,27.5 C317.73,27.5 327.02,27.5 336.3,27.5 " fill="none"
+                  id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="341.22,27.5,332.22,23.5,336.22,27.5,332.22,31.5,341.22,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="329.7959" y="22.67">*
+            </text>
+        </g><!--link TaskList to UniqueTaskList-->
+        <g id="link_TaskList_UniqueTaskList">
+            <path codeLine="27" d="M146.61,121 C157.21,121 167.8,121 178.4,121 " fill="none"
+                  id="TaskList-UniqueTaskList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="133.97,121,139.97,125,145.97,121,139.97,117,133.97,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="191.34,121,182.34,117,186.34,121,182.34,125,191.34,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="186.34" x2="178.34" y1="121" y2="121"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="174.1705" y="116.9298">1
+            </text>
+        </g><!--link UniqueTaskList to Task-->
+        <g id="link_UniqueTaskList_Task">
+            <path codeLine="28" d="M296.45,121 C309.22,121 322,121 334.78,121 " fill="none" id="UniqueTaskList-to-Task"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="339.54,121,330.54,117,334.54,121,330.54,125,339.54,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="328.5384" y="115.8313">*
+            </text>
+        </g><!--link Task to TaskName-->
+        <g id="link_Task_TaskName">
+            <path codeLine="29" d="M350.64,146.23 C343.35,157.35 334.74,170.51 327.44,181.65 " fill="none"
+                  id="Task-TaskName" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="357.56,135.66,350.9249,138.4841,350.9799,145.695,357.6149,142.8709,357.56,135.66"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="320.48,192.29,328.752,186.9445,323.2154,188.1046,322.0553,182.5679,320.48,192.29"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="323.2154" x2="327.6" y1="188.1046" y2="181.41"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="314.3647" y="182.6042">1
+            </text>
+        </g><!--link Task to TaskDeadline-->
+        <g id="link_Task_TaskDeadline">
+            <path codeLine="30" d="M404.95,140.46 C433.99,154.4 473.69,173.45 502.79,187.42 " fill="none"
+                  id="Task-TaskDeadline" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="393.31,134.87,396.9887,141.0722,404.1287,140.0619,400.45,133.8597,393.31,134.87"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="514.37,192.98,507.9866,185.4798,509.8622,190.8167,504.5253,192.6923,514.37,192.98"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="509.8622" x2="502.65" y1="190.8167" y2="187.355"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="505.4114" y="182.7747">1
+            </text>
+        </g><!--link Task to TaskStatus-->
+        <g id="link_Task_TaskStatus">
+            <path codeLine="31" d="M382.36,146.23 C389.65,157.35 398.26,170.51 405.56,181.65 " fill="none"
+                  id="Task-TaskStatus" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="375.44,135.66,375.3851,142.8709,382.0201,145.695,382.0751,138.4841,375.44,135.66"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="412.52,192.29,410.9447,182.5679,409.7846,188.1046,404.248,186.9445,412.52,192.29"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="409.7846" x2="405.4" y1="188.1046" y2="181.41"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="387.8416" y="182.6042">1
+            </text>
+        </g><!--link Task to LocalDateTime-->
+        <g id="link_Task_LocalDateTime">
+            <path codeLine="32" d="M328.46,140.05 C298.96,154.05 258.23,173.38 228.49,187.5 " fill="none"
+                  id="Task-LocalDateTime" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="339.77,134.68,332.6346,133.638,328.9284,139.8238,336.0638,140.8658,339.77,134.68"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="217.05,192.93,226.8958,192.686,221.5673,190.7867,223.4666,185.4582,217.05,192.93"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="221.5673" x2="228.79" y1="190.7867" y2="187.35"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="217.0433" y="182.6452">1
+            </text>
+        </g><!--reverse link Item to Task-->
+        <g id="link_Item_Task">
+            <path codeLine="33" d="M372.01,69.58 C370.49,83.45 368.91,97.91 367.84,107.76 " fill="none"
+                  id="Item-backto-Task" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="365.03,68.98,374.17,49.86,378.95,70.5,365.03,68.98"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link TaskName to Name-->
+        <g id="link_TaskName_Name">
+            <path codeLine="35" d="M311.5,220.34 C311.5,230.15 311.5,244.46 311.5,258.23 " fill="none"
+                  id="TaskName-to-Name" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="318.5,258.15,311.5,278.15,304.5,258.15,318.5,258.15"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link TaskDeadline to Deadline-->
+        <g id="link_TaskDeadline_Deadline">
+            <path codeLine="36" d="M541.5,220.34 C541.5,230.15 541.5,244.46 541.5,258.23 " fill="none"
+                  id="TaskDeadline-to-Deadline" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="548.5,258.15,541.5,278.15,534.5,258.15,548.5,258.15"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link TaskStatus to Status-->
+        <g id="link_TaskStatus_Status">
+            <path codeLine="37" d="M421.5,220.34 C421.5,230.15 421.5,244.46 421.5,258.23 " fill="none"
+                  id="TaskStatus-to-Status" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="428.5,258.15,421.5,278.15,414.5,258.15,428.5,258.15"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--SRC=[VP71JeGm48RlVOgHuoPimjriehiUDa5956ycPhOqRWEqs0vHexwxb09RC853C_tdc_upmvLKl6eB0PQ-Ah5jshfYjfIgGOCre37w8pzBNYfXBIJRP9dSwqeRkCyET-dhFakpnm3W5LfxYxnyCxfLnHhgYEQepi98GiK598oHRe0qd3IHhg6GHd2IMZ5sSx9aa1FidG54tpW8lo_gIAAE02suO9Lym5hqf0jMoOF0efBAq-DbjUA9a5hRypva0_Iiv7ihN6-fj7ITxw27vl80NoWGdoHKuQKT6_AfvbWTa4Gkkm6ybgCjWx0VxNATzUA4QPYBv1ndVa57lir_rA9xDaQmYMFJJPX4IsH-XPxQHFwViUdziHoYXJDRD3BMzzExmvLwusaBWGp1Do3J8iBgBXs5Uvk_F5z_dulRdrqmXFE5EEwqgOFHnyipLs_Y4uFX7m00]-->
+    </g>
+</svg>

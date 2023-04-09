@@ -16,7 +16,7 @@ Given below are my contributions to the project.
     * Justification: This improves the product because the differentiation between `Supplier` and `Person` fits the use case of our product.
   * Refactor `Order` to have a reference to `MenuItem`
     * Justification: This association is needed as users should only be able to create orders from pre-existing `MenuItem`.
-    * Highlight: 
+    * Highlight:
       * Adapt `Storage` and `JSON` files to support `MenuItem` nested within `Order`
       * Generate total profits and sales from each order and all orders
       * Profits and sales responsive to changes in `OrderQuantity` and `OrderItem`
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
       * Added tabbed views for different data
   * New feature: `TabCommand` that allows users to switch between tabs
     * Justification: Like most applications, users can use `CTRL + TAB` or `ARROW KEYS` to cycle through area of focus. This added feature allow users to skip tabs while using a verbose command. This also further optimises the product for CLI use.
-    *  Highlight: Used the `Observer / Observable` pattern with JavaFX `SimpleIntegerProperty` to listen to changes in the selected tab index. This decouples `TabCommand` in `Logic` from `Ui` and enforces Law of Demeter. Some commands such as `list`/`find` also snaps to relevant tab for better user experience.
+    * Highlight: Used the `Observer / Observable` pattern with JavaFX `SimpleIntegerProperty` to listen to changes in the selected tab index. This decouples `TabCommand` in `Logic` from `Ui` and enforces Law of Demeter. Some commands such as `list`/`find` also snaps to relevant tab for better user experience.
 
 * **Review / Peer Help**
   * Helped teammates with debugging and test cases
@@ -38,8 +38,8 @@ Given below are my contributions to the project.
     * Drafted command syntax and examples
     * Provided overall feedback [\#267](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/267)
   * Developer Guide:
-    * Updated UML diagram for `Ui` and its description 
-    * Added activity diagram for `DeleteCommand` 
+    * Updated UML diagram for `Ui` and its description
+    * Added activity diagram for `DeleteCommand`
     * Updated user stories and use cases.
 
 * **Community**:

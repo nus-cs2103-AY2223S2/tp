@@ -20,4 +20,9 @@ public class ObservableTabIndex {
     public static final int getTargetTab() {
         return targetTabIndex.getValue();
     }
+
+    public static final int getTargetTab() {
+        return targetTabIndex.getValue();
+    }
+
 }
