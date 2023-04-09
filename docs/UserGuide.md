@@ -215,7 +215,6 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 
 * The detailed list of commands and their command formats can be found in [Features](#4-features).
 * You can also find a condensed summary of these commands in the [Command Summary](#7-command-summary).
-
 <div style="page-break-after: always"></div>
 
 <div markdown="block" class="alert alert-info">
