@@ -2,98 +2,96 @@
 layout: page
 title: Developer Guide
 ---
-## DEVELOPER GUIDE FOR WIFE
-
----
-
 ## Introduction
 
 WIFE is a food inventory management system that aims to aid busy users in managing food items in their fridge. With its
 inventory management system, users can easily edit their fridge's inventory and view it in a sleek and easy-to-read
-list. Users can also tag their food items according to their preferences. 
-</br>
+list. Users can also tag their food items according to their preferences.
 
 This developer guide aims to provide detailed documentation for WIFE's design and implementation. This includes its
 architecture, design choices as well outlines for all features of the software. This project is released under the MIT
 license, making it open source and available for anyone to use and modify.
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
-- [DEVELOPER GUIDE FOR WIFE](#developer-guide-for-wife)
 - [Introduction](#introduction)
-- [license, making it open source and available for anyone to use and modify.](#license-making-it-open-source-and-available-for-anyone-to-use-and-modify)
-- [Table of Contents](#table-of-contents)
 - [Acknowledgements](#acknowledgements)
-- [**Setting up, getting started**](#setting-up-getting-started)
-- [**Design**](#design)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
   - [Architecture](#architecture)
   - [UI component](#ui-component)
   - [Logic component](#logic-component)
   - [Model component](#model-component)
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
-- [**Implementation**](#implementation)
+- [Implementation](#implementation)
   - [Food-related Features](#food-related-features)
     - [General Implementation Details](#general-implementation-details)
     - [General Consideration Design](#general-consideration-design)
-    - [Add a Food](#add-a-food)
-    - [Edit a Food](#edit-a-food)
-    - [Increase/Decrease quantity of a Food.](#increasedecrease-quantity-of-a-food)
-    - [View details of a Food.](#view-details-of-a-food)
+    - [Add a `Food`](#add-a-food)
+    - [Edit a `Food`](#edit-a-food)
+    - [Increase/Decrease quantity of a `Food`](#increasedecrease-quantity-of-a-food)
+    - [View details of a `Food`.](#view-details-of-a-food)
   - [Tag-related Features](#tag-related-features)
     - [Overview](#overview)
     - [Design considerations:](#design-considerations)
     - [Create a new tag](#create-a-new-tag)
-    - [Tag a Food](#tag-a-food)
-    - [Untag a Food](#untag-a-food)
-    - [List Foods by tag(s).](#list-foods-by-tags)
-    - [Delete Foods by tag(s).](#delete-foods-by-tags)
+    - [Tag a `Food`](#tag-a-food)
+    - [Untag a `Food`](#untag-a-food)
+    - [List `Food` by tag(s).](#list-foods-by-tags)
+    - [Delete `Food` by tag(s).](#delete-foods-by-tags)
     - [Delete tag(s)](#delete-tags)
   - [Dynamic Help](#dynamic-help)
     - [Feature Details:](#feature-details)
-- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
-- [**Appendix: Requirements**](#appendix-requirements)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Future enhancements](#appendix-planned-enhancements)
+- [Appendix: Requirements](#appendix-requirements)
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
-  - [**Use case UC01: Add a Food**](#use-case-uc01-add-a-food)
-  - [**Use case UC02: Lists all Foods**](#use-case-uc02-lists-all-foods)
-  - [**Use case UC03: Edit a Food**](#use-case-uc03-edit-a-food)
-  - [**Use case UC04: Increase the quantity of a Food**](#use-case-uc04-increase-the-quantity-of-a-food)
-  - [**Use case UC05: Decrease the quantity of a Food**](#use-case-uc05-decrease-the-quantity-of-a-food)
-  - [**Use case UC06: Delete a Food**](#use-case-uc06-delete-a-food)
-  - [**Use case UC07: Create a new tag**](#use-case-uc07-create-a-new-tag)
-  - [**Use case UC08: Tag a Food**](#use-case-uc08-tag-a-food)
-  - [**Use case UC09: List Foods by tags**](#use-case-uc09-list-foods-by-tags)
-  - [**Use case UC10: Delete Foods by tags**](#use-case-uc10-delete-foods-by-tags)
-  - [**Use case UC11: Delete tags**](#use-case-uc11-delete-tags)
-  - [**Use case UC12: View help**](#use-case-uc12-view-help)
+  - [Use case UC01: Add a `Food`](#use-case-uc01-add-a-food)
+  - [Use case UC02: Lists all `Food`](#use-case-uc02-lists-all-foods)
+  - [Use case UC03: Edit a `Food`](#use-case-uc03-edit-a-food)
+  - [Use case UC04: Increase the quantity of a `Food`](#use-case-uc04-increase-the-quantity-of-a-food)
+  - [Use case UC05: Decrease the quantity of a `Food`](#use-case-uc05-decrease-the-quantity-of-a-food)
+  - [Use case UC06: Delete a `Food`](#use-case-uc06-delete-a-food)
+  - [Use case UC07: Create a new tag](#use-case-uc07-create-a-new-tag)
+  - [Use case UC08: Tag a `Food`](#use-case-uc08-tag-a-food)
+  - [Use case UC09: List `Food` by tags](#use-case-uc09-list-foods-by-tags)
+  - [Use case UC10: Delete `Food` by tags](#use-case-uc10-delete-foods-by-tags)
+  - [Use case UC11: Delete tags](#use-case-uc11-delete-tags)
+  - [Use case UC12: View help](#use-case-uc12-view-help)
   - [Non-Functional Requirements](#non-functional-requirements)
-- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   - [Initial Launch](#initial-launch)
   - [Tests for Food-related features](#tests-for-food-related-features)
-    - [Add a Food](#add-a-food-1)
-    - [List all Foods](#list-all-foods)
-    - [Edit a Food](#edit-a-food-1)
-    - [Find a Food](#find-a-food)
-    - [Increase quantity of a Food](#increase-quantity-of-a-food)
-    - [Decrease quantity of a Food](#decrease-quantity-of-a-food)
-    - [Delete a Food](#delete-a-food)
-  - [Sort Foods by expiry date](#sort-foods-by-expiry-date)
-  - [Tag-related features](#tag-related-features-1)
-    - [Create a new tag](#create-a-new-tag-1)
-    - [Tag a Food](#tag-a-food-1)
-    - [Untag a Food](#untag-a-food-1)
-    - [List all tags](#list-all-tags)
-    - [List Foods by tag(s)](#list-foods-by-tags-1)
-    - [Delete Foods by tag(s)](#delete-foods-by-tags-1)
-    - [Delete tag(s)](#delete-tags-1)
-  - [General Features](#general-features)
-    - [Help](#help)
-    - [Clear](#clear)
-    - [Exit](#exit)
+    - [Add a `Food`](#test-to-add-a-food)
+    - [List all `Food`](#test-to-list-all-foods)
+    - [Edit a `Food`](#test-to-edit-a-food)
+    - [Find a `Food`](#test-to-find-a-food)
+    - [Increase quantity of a`Food`](#test-to-increase-quantity-of-a-food)
+    - [Decrease quantity of a `Food`](#test-to-decrease-quantity-of-a-food)
+    - [Delete a `Food`](#test-to-delete-a-food)
+  - [Sort `Food` by expiry date](#test-to-sort-foods-by-expiry-date)
+  - [Tag-related features](#tests-for-tag-related-features)
+    - [Create a new tag](#test-to-create-a-new-tag)
+    - [Tag a `Food`](#test-to-tag-a-food)
+    - [Untag a `Food`](#test-to-untag-a-food)
+    - [List all tags](#test-to-list-all-tags)
+    - [List `Food` by tag(s)](#test-to-list-foods-by-tags)
+    - [Delete `Food` by tag(s)](#test-to-delete-foods-by-tags)
+    - [Delete tag(s)](#test-to-delete-tags)
+  - [General Features](#tests-for-general-features)
+    - [Help](#test-for-help)
+    - [Clear](#test-to-clear-foods)
+    - [Exit](#test-to-exit)
   - [Glossary](#glossary)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Acknowledgements
 
@@ -113,12 +111,12 @@ Documentation dependencies:
 -   [PlantUML](https://plantuml.com/) for UML diagrams
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -156,8 +154,8 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
--   defines its _API_ in an `interface` with the same name as the Component.
--   implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+-   Defines its _API_ in an `interface` with the same name as the Component.
+-   Implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -170,7 +168,6 @@ The sections below give more details of each component.
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
-_(Diagram to be updated)_
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -195,8 +192,8 @@ How the `Logic` component works:
 
 * When `Logic` is called upon to execute a command, it uses the `WifeParser` class to parse the user command.
 * This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-* The command can communicate with the `Model` when it is executed (e.g. to add a Food).
-* The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+* The command can communicate with the `Model` when it is executed (e.g. to add a `Food`).
+* The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -220,8 +217,6 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-_(Model Diagram to be updated)_
-
 The `Model` component,
 
 -   stores WIFE data i.e., all `Food` and `Tag` objects (which are contained in a `UniqueFoodList` and `UniqueTagList` objects).
@@ -240,8 +235,6 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
-
-_(Model Diagram to be updated)_
 
 The `Storage` component,
 
@@ -287,7 +280,7 @@ the usage of WIFE.
 -   `Person` class was renamed to `Food` with its attribute modified to the attributes mentioned above.
 -   Addition of individual tags storage for each item to store their associated `Tag`.
 
-#### Add a Food
+#### Add a `Food`
 
 **Overview**
 
@@ -318,7 +311,7 @@ The following sequence diagram shows how the `add` command.
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
-#### Edit a Food
+#### Edit a `Food`
 
 **Overview**
 
@@ -353,28 +346,28 @@ The following sequence diagram shows how the `edit` command.
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-#### Increase/Decrease quantity of a Food.
+#### Increase/Decrease quantity of a `Food`.
 
 **Overview**
 
-The increase/decrease quantity feature is meant to be a shorthand for users to change the quantity of a particular food item.
-Traditionally, to change the quantity of an item, the user would use the edit command to edit the quantity of a food item.
-The user can now specify `inc` or `dec` to increase or decrease the quantity of the indexed food item respectively.
+The increase/decrease quantity feature is meant to be a shorthand for users to change the quantity of a particular `Food`.
+Traditionally, to change the quantity of an item, the user would use the edit command to edit the quantity of a `Food`.
+The user can now specify `inc` or `dec` to increase or decrease the quantity of the indexed `Food` respectively.
 
 **Design considerations**
 
--   **Alternative 1:** The command parameter will be the new quantity of the food item to edit
+-   **Alternative 1:** The command parameter will be the new quantity of the `Food` to edit
 
     -   Pros:
-        -   Easily implemented. The command parameter will be set as the new quantity of the item.
+        -   Easily implemented. The command parameter will be set as the new quantity of the `Food`.
     -   Cons:
         -   May not be intuitive for the user, as the command is to increase/decrease the quantity.
-        -   Can be unnecessarily complicated for the user, i.e entering a higher quantity than the current quantity for
+        -   Can be unnecessarily complicated for the user, i.e. entering a higher quantity than the current quantity for
             `inc` and vice versa.
         -   Does not significantly value-add to the product as compared to just using the edit command.
 
 -   **Alternative 2 (Current implementation):** The command parameter will be the quantity to increase/decrease the
-    quantity of the food item by.
+    quantity of the `Food` by.
     -   Pros:
         -   Intuitive for the user to key in the quantity they want to increase/decrease by.
     -   Cons:
@@ -394,17 +387,17 @@ new quantity (Addition/Subtraction) The described implementation is for the `inc
 
 The first stage of the implementation is parsing the user input to `IncreaseCommand`. `IncreaseCommandParser` is used
 to parse and check whether the user input  is valid. After which a `IncreaseCommand` object is created along with a
-`IncreaseFoodDescriptor` instance to increase the quantity of the current food item.
+`IncreaseFoodDescriptor` instance to increase the quantity of the current `Food`.
 
 The second step necessitates the execution of `IncreaseCommand#execute()`.
 
 **Usage Scenario**
 
-1. The user specifies an index of the food item to be edited.
-2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
+1. The user specifies an index of the `Food` to be edited.
+2. If the index is out of bounds from the Food List, an error response is returned and users will be prompted to key in
    the command with the valid index.
-3. If no specific quantity is specified, the quantity of the indexed food item will be increased by one.
-4. If a specific quantity is specified, the quantity of the indexed food item will be increased by that value.
+3. If no specific quantity is specified, the quantity of the indexed `Food` will be increased by one.
+4. If a specific quantity is specified, the quantity of the indexed `Food` will be increased by that value.
 5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to
    key in the command with a valid quantity.
 
@@ -412,32 +405,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![IncreaseQuantityActivityDiagram](images/IncreaseQuantityActivityDiagram.png)
 
-**Design considerations**
 
--   **Alternative 1 (Current implementation):** The command view with the index of the food item to view the details of.
-
-    -   Pros:
-        -   Intuitive for the user to key in the quantity they want to increase/decrease by.
-    -   Cons:
-        -   Parameter to increase/decrease quantity must be checked that it is a positive integer.
-        -   Feels like a hacky solution to the problem.
-        -   Does not significantly value-add to the product as compared to just using the edit command.
-
--   **Alternative 2 :** Have a ui switcher to switch between the different views i.e. list view and details view.
-    -   Pros:
-        -   Code should be easier to maintain, or add new views in the future.
-    -   Cons:
-        -   Difficulty in implementing the switcher.
-        -   Difficulty in implementing the different views.
-
-
-#### View details of a Food.
+#### View details of a `Food`.
 
 **Overview**
 
-The view feature is meant to be a shorthand for users to view the details of a particular Food.
-Traditionally, to view the details of a FOod, the user would use the list command to view its details.
-The user can now specify `view` to view more details of the indexed Food such as its full name.
+The view feature is meant to be a shorthand for users to view the details of a `Food`.
+Traditionally, to view the details of a `Food`, the user would use the list command to view its details.
+The user can now specify `view` to view more details of the indexed `Food` such as its full name.
 
 The following UML diagram shows `view` and its associated class.
 
@@ -451,8 +426,8 @@ created which will be used to switch the view from the list view to the details 
 
 **Usage Scenario**
 
-1. The user specifies an index of the food item to be viewed.
-2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
+1. The user specifies an index of the `Food` to be viewed.
+2. If the index is out of bounds from the Food List, an error response is returned and users will be prompted to key in
    the command with the valid index.
 3. If no specific quantity is specified, an error response is returned and users will be prompted to key in
    the command with the valid index.
@@ -462,7 +437,6 @@ created which will be used to switch the view from the list view to the details 
 
 The following activity diagram shows the usage of the `view` command.
 
-_(Actvity diagram to be inserted)_
 
 ### Tag-related Features
 
@@ -470,7 +444,7 @@ _(Actvity diagram to be inserted)_
 
 The tagging functionality is facilitated by the `UniqueTagList` stored in `WIFE`. Creating or deleting tags will result 
 in changes being made to the tags that exist within the `UniqueTagList`, which is home to all current `Tag` objects. 
-Furthermore, each food item within WIFE has its own assortment of associated `Tag` objects, which are stored in an 
+Furthermore, each `Food` within WIFE has its own assortment of associated `Tag` objects, which are stored in an 
 internal `Set<Tag>`.
 
 When a `Tag` is tagged or untagged from a `Food`, the corresponding `Tag` object is added to or removed from the 
@@ -483,7 +457,7 @@ The following UML diagram shows `Tag` and its associated class.
 
 #### Design considerations:
 
-**Aspect: How to store the tags for WIFE and each food item. **
+**Aspect: How to store the tags for WIFE and each `Food`.**
 
 * **Alternative 1 (current choice):** Store `Tag` in `UniqueTagList` and each `Food` stores its own set of associated
   `Tag` objects.
@@ -494,8 +468,8 @@ The following UML diagram shows `Tag` and its associated class.
     * Cons:
         * May have performance issues in terms of memory usage as additional storage is used.
 
-* **Alternative 2:** Instantiates `Tag` with a specified name and stores all food classified by the tag as a parameter
-  of the associated food list in the instantiated `Tag` class.
+* **Alternative 2:** Instantiates `Tag` with a specified name and stores all `Food` classified by the tag as a parameter
+  of the associated Food List in the instantiated `Tag` class.
     * Pros:
         * Low space requirement. There is no need to store the set of associated `Tag`, `Set<Tag>` in `Food`. The association
           of `Food` to `Tag` is represented by `List<Food>` in `Tag` object.
@@ -509,8 +483,8 @@ The following UML diagram shows `Tag` and its associated class.
 **Overview**
 
 User can create a new pre-defined `Tag` in WIFE with the `createtag` command. The `createtag` command creates a new tag
-in WIFE which can be used to classify food items in food lists. Once the tag is
-created using this command, the tag can be applied to food items using the `tag` command.
+in WIFE which can be used to classify `Food` in the Food List. Once the tag is
+created using this command, the tag can be applied to `Food` using the `tag` command.
 
 **Implementation**
 
@@ -543,7 +517,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CreateTagActivityDiagram](images/CreateTagActivityDiagram.png)
 
-#### Tag a Food
+#### Tag a `Food`
 
 **Overview**
 
@@ -566,49 +540,49 @@ The following sequence diagram shows how the `tag` command works.
 
 **Usage Scenario**
 
-1. The user specifies the index of the food to be tagged and the name of the tag.
-2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
+1. The user specifies the index of the `Food` to be tagged and the name of the tag.
+2. If the index is out of bounds from the Food List, an error response is returned and users will be prompted to key in
    the command with the valid index.
 3. If no specific tag name is specified, an error response is returned and users will be prompted to key in
    the command with a tag name.
 4. If the tag name specified does not exist in WIFE, an error response is returned and users will need to create the tag
    before having access to the tag.
-5. Completion of step 4 without any exception will result in successful tagging of the food with the
+5. Completion of step 4 without any exception will result in successful tagging of the `Food` with the
    specified tag.
 
 The following activity diagram summarizes what happens when a user executes a new `createtag` command:
 
 ![TagFoodActivityDiagram](images/TagFoodActivityDiagram.png)
 
-#### Untag a Food
+#### Untag a `Food`
 
 **Overview**
 
-The `untag` feature removes a specified tag from a food item.
+The `untag` feature removes a specified tag from a `Food`.
 
 **Implementation**
 
 The first stage of the implementation is parsing the user input to `UntagCommand`. `UntagCommandParser` is used to 
-parse and check whether the user input is valid - if the tag exists or does not exist in the food item's internal tag 
+parse and check whether the user input is valid - if the tag exists or does not exist in the `Food` internal tag 
 set. After which, an `UntagCommand` object is created with the specified tag name to be removed. 
 
 The second stage requires `UntagCommand#execute()` to be called which then removes the tag from the `Food` at specified index.
 
 **Usage Scenario**
 
-1. The user specifies tag name to be removed for a food item index.
-2. If the food item does not have that tag, an error response is returned and users will be prompted to key in the command with a valid tag name.
+1. The user specifies tag name to be removed for a `Food` index.
+2. If the `Food` does not have that tag, an error response is returned and users will be prompted to key in the command with a valid tag name.
 3. Completion of step 1 without any exceptions will result in successful removal of the specified `Tag` from the `Food` item.
 
 The activity diagrams of the `untag` and `tag` commands are similar.
 
 ![UntagFoodActivityDiagram](images/UntagFoodActivityDiagram.png)
 
-#### List Foods by tag(s).
+#### List `Food` by tag(s).
 
 **Overview**
 
-The List by tag feature is meant to be a list all the food by the specified tags.
+The List by tag feature is meant to be a list all `Food` by the specified tags.
 
 The following sequence diagram shows `listbytag`.
 
@@ -616,14 +590,14 @@ The following sequence diagram shows `listbytag`.
 
 **Design considerations**
 
--   **Alternative 1:** The command parameter will be the tag name of the food to display
+-   **Alternative 1:** The command parameter will be the tag name of the `Food` to display
 
     -   Pros:
-        -   Easily implemented. The command parameter will show the food with the specified tag name
+        -   Easily implemented. The command parameter will show the `Food` with the specified tag name
     -   Cons:
         -   May not be convenient for the user, as the command allows only 1 tag name at a time.
 
--   **Alternative 2 (Current implementation):** The command parameter will be the tag name of the food to display.
+-   **Alternative 2 (Current implementation):** The command parameter will be the tag name of the `Food` to display.
     -   Pros:
         -   Convenient for the user to key in multiple tag names to display.
     -   Cons:
@@ -641,20 +615,19 @@ The second step necessitates the execution of `ListByTagCommand#execute()`. This
 
 **Usage Scenario**
 
-1. The user specifies tags of the food item to be displayed.
+1. The user specifies tags of the `Food` to be displayed.
 2. If no tag is specified, an error response is returned to prompt user to follow the command format.
 3. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
-4. If a valid tag is specified, the indexed food item with the specified tags will be displayed.
+4. If a valid tag is specified, the indexed `Food` with the specified tags will be displayed.
 
 The following activity diagram shows the usage of the `listbytag` command.
 
 ![ListByTagActivityDiagram](images/ListByTagActivityDiagram.png)
 
-#### Delete Foods by tag(s).
+#### Delete `Food` by tag(s).
 
 **Overview**
-
-The Delete by tag feature is meant to be delete all the food by the specified tags.
+The Delete by tag feature is meant to delete all `Food` by the specified tags.
 
 The following sequence diagram shows `delbytag`.
 
@@ -662,14 +635,14 @@ The following sequence diagram shows `delbytag`.
 
 **Design considerations**
 
--   **Alternative 1:** The command parameter will be the tag name of the food to delete
+-   **Alternative 1:** The command parameter will be the tag name of the `Food` to delete
 
     -   Pros:
-        -   Easily implemented. The command parameter will delete the food with the specified tag name
+        -   Easily implemented. The command parameter will delete the `Food` with the specified tag name
     -   Cons:
         -   May not be convenient for the user, as the command allows only 1 tag name at a time.
 
--   **Alternative 2 (Current implementation):** The command parameter will be the tag name of the food to delete.
+-   **Alternative 2 (Current implementation):** The command parameter will be the tag name of the `Food` to delete.
     -   Pros:
         -   Convenient for the user to key in multiple tag names to display.
     -   Cons:
@@ -686,10 +659,10 @@ The second step necessitates the execution of `DeleteByTagCommand#execute()`. Th
 
 **Usage Scenario**
 
-1. The user specifies tags of the food item to be delete.
+1. The user specifies tags of the `Food` to be deleted.
 2. If no tag is specified, an error response is returned to prompt user to follow the command format.
 3. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
-4. If a valid tag is specified, the food item with the specified tags will be deleted.
+4. If a valid tag is specified, the `Food` with the specified tags will be deleted.
 
 The following activity diagram shows the usage of the `delbytag` command.
 
@@ -699,7 +672,7 @@ The following activity diagram shows the usage of the `delbytag` command.
 
 **Overview**
 
-The `deltag` command deletes existing tag(s) in WIFE. This means food that are initially tagged with the specified tag(s) will have that tag removed.
+The `deltag` command deletes existing tag(s) in WIFE. This means `Food` that are initially tagged with the specified tag(s) will have that tag removed.
 
 **Implementation**
 
@@ -748,8 +721,7 @@ Step 2. The `LogicManager` executes the `HelpCommand` object which generates a `
 
 Step 3. MainWindow#executeCommand() extracts the help message from the `CommandResult` and sends it to `HelpWindow` as the text to be set in the FXML `label`.
 
----
-
+--------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 Here are links to other documentation that you might find useful when developing WIFE:
@@ -760,7 +732,7 @@ Here are links to other documentation that you might find useful when developing
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
----
+--------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
 
 #### User Interface
@@ -771,6 +743,7 @@ It has been recognized that some users prefer to utilize specific unit represent
 such as using 1L or 2L to indicate the volume of milk. To accommodate this, future iterations of the system will 
 incorporate alphanumeric representations of `Unit`, enabling users to include such unit specifications.
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -810,7 +783,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Well Informed Fridge Environment (WIFE)` and the **Actor** is the `user`, unless specified otherwise)
 
-### **Use case UC01: Add a Food**
+### **Use case UC01: Add a `Food`**
 
 **MSS**
 
@@ -833,12 +806,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     -   \*a2. User confirms the cancellation. <br/>
         Use case ends.
 
-### **Use case UC02: Lists all Foods**
+### **Use case UC02: Lists all `Food`**
 
 **MSS**
 
-1. User ask to view all food items in WIFE.
-2. WIFE displays all food items that are in the fridge. <br/>
+1. User ask to view all `Food` in WIFE.
+2. WIFE displays all `Food` that are in the fridge. <br/>
    Use case ends.
 
 **Extensions:**
@@ -847,7 +820,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     -   1a1. WIFE displays a message that tells the User that there are no items. <br/>
         Use case ends.
 
-### **Use case UC03: Edit a Food**
+### **Use case UC03: Edit a `Food`**
 
 **MSS**
 
@@ -868,42 +841,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
     * 
-### **Use case UC04: Increase the quantity of a Food**
+### **Use case UC04: Increase the quantity of a `Food`**
 
 **MSS**
 
-1. User selects a food item to increase its quantity in WIFE.
+1. User selects a `Food` to increase its quantity in WIFE.
 2. WIFE informs the user that the increase has been completed.
    Use case ends.
 
 **Extensions**
 
-* 1a. User selects an invalid food item.
-    * 1a1. WIFE displays a message that tells the User that the selected food item is invalid.
+* 1a. User selects an invalid `Food`.
+    * 1a1. WIFE displays a message that tells the User that the selected `Food`is invalid.
       Use case ends.
 
-* 1b. The user does not specify the quantity of the food item to increase by
-    * 1b1. WIFE increases the quantity of the specified food item by 1.
+* 1b. The user does not specify the quantity of the `Food` to increase by
+    * 1b1. WIFE increases the quantity of the specified `Food` by 1.
       Use case resumes from Step 2.
-* 1c. The user specifies a value that is lesser than or equal to 0 for the quantity of the food item to increase by.
+* 1c. The user specifies a value that is lesser than or equal to 0 for the quantity of the `Food` to increase by.
     * 1b1. WIFE displays a message that tells the user that the specified value is invalid.
       Use case ends.
 
-### **Use case UC05: Decrease the quantity of a Food**
-The same as Use Case UC08: Increment the quantity of a food item, except that it is to decrease the quantity of a food
-item.
+### **Use case UC05: Decrease the quantity of a `Food`**
+The same as Use Case UC08: Increment the quantity of a `Food`, except that it is to decrease the quantity of a `Food`.
 
 **Additional Extensions**
-* 1d. The user specifies a value that is larger than the current quantity of the food item
+* 1d. The user specifies a value that is larger than the current quantity of the `Food`
   * 1d1. WIFE displays a message that tells the user that the specified value is invalid.
     Use case ends.
 
-### **Use case UC06: Delete a Food**
+### **Use case UC06: Delete a `Food`**
 
 **MSS**
 
-1. User requests to delete specified food items in WIFE.
-2. WIFE deletes food item and displays successful deletion message. <br/>
+1. User requests to delete specified `Food` in WIFE.
+2. WIFE deletes `Food` and displays successful deletion message. <br/>
    Use case ends.
 
 **Extensions:**
@@ -911,8 +883,8 @@ item.
 -   1a. WIFE is empty.
     -   1a1. WIFE displays a message that tells the User that there are no items and cannot delete specified item. <br/>
         Use case ends.
--   1b. User selects an index that is more than the food items in WIFE.
-    -   1b1. WIFE displays a message that tells the User that the food item index provided is invalid. <br/>
+-   1b. User selects an index that is more than the `Food` in WIFE.
+    -   1b1. WIFE displays a message that tells the User that the `Food` index provided is invalid. <br/>
         Use case ends.
 
 ### **Use case UC07: Create a new tag**
@@ -938,14 +910,14 @@ item.
 
       Use case ends.
 
-### **Use case UC08: Tag a Food**
+### **Use case UC08: Tag a `Food`**
 
 **MSS**
 
-1.  User requests to list the food items stored in WIFE.
-2.  WIFE shows the full list of food items.
-3.  User tag food item at specified index with tags pre-defined by WIFE.
-4.  WIFE tagged the food item with the chosen tag.
+1.  User requests to list the `Food` stored in WIFE.
+2.  WIFE shows the full list of `Food`.
+3.  User tags `Food` at specified index with tags pre-defined by WIFE.
+4.  WIFE tags the `Food` with the chosen tag.
 
     Use case ends.
 
@@ -965,42 +937,42 @@ item.
     -   4a2. WIFE asks if the user wish to add the new tags into the tag list. <br/>
         Use case resumes at step 2.
 
-### **Use case UC09: List Foods by tags**
+### **Use case UC09: List `Food` by tags**
 
 **MSS**
 
-1. User requests to view food items with specified tags.
-2. WIFE displays all the food items with the specified tags.
+1. User requests to view `Food` with specified tags.
+2. WIFE displays all `Food` with the specified tags.
    Use case ends.
 
 **Extensions**
 
 -   1a. User requests an invalid tag.
 
-    -   1a1. WIFE displays a message that tells the User that there are no food item tagged with the specified tag.
+    -   1a1. WIFE displays a message that tells the User that there are no `Food` tagged with the specified tag.
         Use case ends.
 
--   1b. The user specify valid and invalid tags togther.
-    -   1b1. WIFE displays food items with valid tags. It also tells User which tag is valid or invalid.
+-   1b. The user specify valid and invalid tags together.
+    -   1b1. WIFE displays `Food` with valid tags. It also tells User which tag is valid or invalid.
         Use case ends.
 
-### **Use case UC10: Delete Foods by tags**
+### **Use case UC10: Delete `Food` by tags**
 
 **MSS**
 
-1. User requests to delete food items with specified tags.
-2. WIFE deletes and displays all the food items with the specified tags.
+1. User requests to delete `Food` with specified tags.
+2. WIFE deletes and displays all `Food` with the specified tags.
    Use case ends.
 
 **Extensions**
 
 -   1a. User requests an invalid tag.
 
-    -   1a1. WIFE displays a message that tells the User that there are no food item tagged with the specified tag to be deleted.
+    -   1a1. WIFE displays a message that tells the User that there are no `Food` tagged with the specified tag to be deleted.
         Use case ends.
 
--   1b. The user specify valid and invalid tags togther.
-    -   1b1. WIFE deletes and displays food items with valid tags.
+-   1b. The user specify valid and invalid tags together.
+    -   1b1. WIFE deletes and displays `Food` with valid tags.
         Use case ends.
 
 ### **Use case UC11: Delete tags**
@@ -1008,7 +980,7 @@ item.
 **MSS**
 
 1. User requests to delete pre-defined tags in WIFE.
-2. WIFE deletes pre-defined tags in WIFE and untag itself from the food items. It then tells the users the tags that are deleted
+2. WIFE deletes pre-defined tags in WIFE and untag itself from associated `Food`. It then tells the users the tags that are deleted
    Use case ends.
 
 **Extensions**
@@ -1018,7 +990,7 @@ item.
     -   1a1. WIFE displays a message that tells the User that the tag specified is does not exit in WIFE
         Use case ends.
 
--   1b. The user specify valid and invalid tags togther.
+-   1b. The user specify valid and invalid tags together.
     -   1b1. WIFE ignores invalid tags.
         Use case resumes at step 2.
 
@@ -1060,14 +1032,14 @@ testers are expected to do more *exploratory* testing.
 
 ### Tests for Food-related features
 
-#### Add a Food
+#### Test to add a `Food`
 `add n/Broccoli u/STALK q/2 e/03-03-2033`
 
 Expected Output in Food List: New Food "Broccoli" added into the list.
 
 Expected Output in Result Display: New food added: Broccoli (expires on: 03-03-2033)
 
-#### List all Foods
+#### Test to list all `Food`
 
 `list`
 
@@ -1075,8 +1047,7 @@ Expected Output in Food List: All Foods stored in WIFE are shown.
 
 Expected Output in Result Display: Listed all food items!
 
-#### Edit a Food 
-
+#### Test to edit a `Food`
 `edit 2 q/10`
 
 Expected Output in Food List: "Broccoli" Food has new `Quantity` of 10.
@@ -1084,10 +1055,10 @@ Expected Output in Food List: "Broccoli" Food has new `Quantity` of 10.
 Expected Output in Result Display: Edited food item: Broccoli (expires on: 03-03-2033)
 
 <div markdown="block" class="alert alert-info">
-This command is editing the "Broccoli" Food that was added when testing the `add` command.
+This command is editing the "Broccoli" `Food`that was added when testing the `add` command.
 </div>
 
-#### Find a Food
+#### Test to find a `Food`
 
 `find broc meij`
 
@@ -1096,7 +1067,7 @@ Expected Output in Food List: "Meiji Milk" and "Broccoli" appear in the Food Lis
 Expected Output in Result Display: 2 food item(s) found!
 
 
-#### Increase quantity of a Food
+#### Test to increase quantity of a `Food`
 
 `inc 1 q/100`
 
@@ -1110,7 +1081,7 @@ Expected Output in Food List: "Meiji Milk" Food's `Quantity` increased by 1
 
 Expected Output in Result Display: Increased Food: Meiji Milk (expires on: 13-11-2024) by 1
 
-#### Decrease quantity of a Food
+#### Test to decrease quantity of a `Food`
 
 `dec 1 q/100`
 
@@ -1124,7 +1095,7 @@ Expected Output in Food List: "Meiji Milk" Food's `Quantity` decreased by 1
 
 Expected Output in Result Display: Decreased Food: Meiji Milk (expires on: 13-11-2024) by 1
 
-#### Delete a Food
+#### Test to delete a `Food`
 
 `delete 2`
 
@@ -1132,7 +1103,7 @@ Expected Output in Food List: "Broccoli" Food has been removed from the Food Lis
 
 Expected Output in Result Display: Deleted Food: Broccoli (expires on: 03-03-2033)
 
-### Sort Foods by expiry date
+#### Test to sort `Food` by expiry date
 
 `expiry`
 
@@ -1142,15 +1113,15 @@ the top)
 Expected Output in Result Display: Food items are being sorted by their expiry dates.
 
 
-### Tag-related features
+### Tests for tag-related features
 
-#### Create a new tag
+#### Test to create a new tag
 
 `createtag n/milky`
 
 Expected output in Result Display: Tag(s) successfully created: Milky
 
-#### Tag a Food
+#### Test to tag a `Food`
 
 `tag 1 n/milky`
 
@@ -1158,7 +1129,7 @@ Expected Output in Food List: "Meiji Milk" Food has been tagged with the tag "Mi
 
 Expected Output in Result Display: Meiji Milk successfully tagged with Milky
 
-#### Untag a Food
+#### Test to untag a `Food`
 
 `untag 1 n/milky`
 
@@ -1167,22 +1138,22 @@ Expected Output in Food List: "Meiji Milk" Food has been untagged with the tag "
 Expected Output in Result Display: Meiji Milk successfully untagged with Milky
 
 
-#### List all tags
+#### Test to list all tags
 
 `listtag`
 
 Expected output in Result Display: Here are your existing tags: New Used Dairy Milky
 
-#### List Foods by tag(s)
+#### Test to list `Food` by tag(s)
 
 <div markdown="block" class="alert alert-info">
 Prerequisite: Before testing this feature and the "Delete Foods by tag(s)" feature, please key in the following commands
 sequentially.
 
-`add n/Broccoli u/STALK q/2 e/03-03-2033`
-`createtag n/vegetables`
-`tag 1 n/milky`
-`tag 2 n/vegetables`
+`add n/Broccoli u/STALK q/2 e/03-03-2033` </br>
+`createtag n/vegetables` </br>
+`tag 1 n/milky` </br>
+`tag 2 n/vegetables` </br>
 </div>
 
 `listbytags n/vegetables`
@@ -1192,11 +1163,11 @@ Expected Output in Food List: "Broccoli" Food appears in the Food List
 Expected Output in Result Display: Listed all food with the following tags:
 [Vegetables]
 
-#### Delete Foods by tag(s)
+#### Test to delete `Food` by tag(s)
 
 <div markdown="block" class="alert alert-info">
 Prerequisite: Ensure you have entered the prerequisite commands mentioned in "List Foods by tag(s).
-THen, enter the `list` command to show all Food items first.
+Then, enter the `list` command to show all Food items first.
 </div>
 
 `delbytag n/vegetables`
@@ -1206,7 +1177,7 @@ Expected Output in Food List: "Broccoli" Food is removed from the Food List.
 Expected Output in Result Display: Deleted Food:
 Broccoli (expires on: 03-03-2033)
 
-#### Delete tag(s)
+#### Test to delete tag(s)
 
 `deltag n/milky`
 
@@ -1215,9 +1186,9 @@ will be deleted. ("Meiji Milk" Food will not be deleted!)
 
 Expected Output in Result Display: Tag successfully deleted: [Milky]
 
-### General Features
+### Tests for general features
 
-#### Help
+#### Test for Help
 
 `help`
 
@@ -1227,7 +1198,7 @@ Expected Output: The Help Window pops up and shows a general help message.
 
 Expected Output: The Help Window pops up and shows a help message for the `add` command.
 
-#### Clear
+#### Test to clear WIFE
 
 `clear`
 
@@ -1235,7 +1206,7 @@ Expected output in Food List: All Foods and tags have been removed.
 
 Expected output in Results Display: WIFE has been cleared!
 
-#### Exit
+#### Test to exit
 
 `exit`
 
