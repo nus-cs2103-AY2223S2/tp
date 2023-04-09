@@ -11,7 +11,7 @@ public class HelpStrings {
     public static final String ADDMETHODS_HELP = "Add commands allow you to "
             + "add tasks, or people.";
     public static final String ADDPERSON_HELP = "What it does: Adds a person to OfficeConnect. \n\n"
-            + "Format: addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\n"
+            + "Format: addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…\n"
             + "Example: addp n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01";
     public static final String ADDTASK_HELP = "What it does: Adds a task to OfficeConnect. \n\n"
             + "Datetime format for DEADLINE for tasks should be of the format YYYY-MM-DD HH:MM:SS. "
@@ -33,7 +33,7 @@ public class HelpStrings {
     public static final String EDITPERSON_HELP = "Edits an existing person in OfficeConnect.\n\n"
             + "Format: editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…";
     public static final String EDITTASK_HELP = "Edits an existing task in OfficeConnect.\n\n"
-            + "Format: editt INDEX [title/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]";
+            + "Format: editt INDEX [title/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE]";
     public static final String LISTMETHODS_HELP = "List commands shows results of persons, or tasks.";
     public static final String LISTPERSON_HELP = "What it does: Lists all persons in OfficeConnect. \n\n"
             + "Format: listp";
@@ -43,11 +43,11 @@ public class HelpStrings {
             + "Format: listall";
     public static final String FINDMETHODS_HELP = "Find commands allow you to find persons, or tasks.";
     public static final String FINDTASK_HELP = "What it does: Finds the task based on given keyword. \n\n"
-            + "Format: findt TITLE\n"
+            + "Format: findt KEYWORD [MORE_KEYWORDS]\n"
             + "Example: findt CS2103 TP";
     public static final String FINDPERSON_HELP = "Shows a list of tasks assigned "
-            + "to an existing person in OfficeConnect.\n\n"
-            + "Format: findp NAME\n"
+            + "to an existing person in OfficeConnect. This is order-sensitive, but case-insensitive.\n\n"
+            + "Format: findp KEYWORD [MORE_KEYWORDS]\n"
             + "Example: findp John Cena";
     public static final String ASSIGNMETHODS_HELP = "Assign or Unassigns a task to/from a person.";
     public static final String ASSIGN_HELP = "What it does: Assigns the task at"
@@ -58,7 +58,7 @@ public class HelpStrings {
     public static final String UNASSIGN_HELP = "What it does: Remove the existing task from"
             + " specified index to person at specified"
             + "index. The index refers to the index number shown in the displayed persons/task list. \n\n"
-            + "Format: assign ti/INDEX pi/INDEX\n"
+            + "Format: unassign ti/INDEX pi/INDEX\n"
             + "Example: unassign ti/ 2 pi/ 3 , which removes task 2 from person 3.";
     public static final String MARKMETHODS_HELP = "Marking commands mark or unmark an"
             + " existing task as done.";
