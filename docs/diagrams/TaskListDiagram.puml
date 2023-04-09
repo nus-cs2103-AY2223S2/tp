@@ -1,0 +1,31 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+
+class Person
+class TaskList
+class Task
+
+Task "*" <-- "1" TaskList
+TaskList "1" <-- Person
+
+class Task {
+value: String
+}
+
+class TaskList {
++{static} EMPTY_TASKLIST_MESSAGE: String
+-tasks: List<Task>
++getTaskList(): List<Task>
++add(task: Task): TaskList
++size(): Integer
++clear(): TaskList
++isEmpty(): Boolean
+-get(index: Integer): Task
+}
+
+class Person {
+}
+
+@enduml

@@ -57,7 +57,7 @@
                         <Insets bottom="10" left="10" right="10" top="10" />
                      </padding>
                      <children>
-                         <Label styleClass="window_title" text="Transactions">
+                         <Label style="-fx-font-weight: bold;" styleClass="window_title" text="Transactions">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" />
                            </VBox.margin></Label>
