@@ -8,6 +8,8 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_EXPENSES_LISTED_OVERVIEW = "%1$d expenses listed";
 
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Date should be of the form D/M/YY";
+
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_INDEX = "The index provided is invalid.";
     public static final String MESSAGE_INVALID_CATEGORY_DISPLAYED_INDEX = "The category index provided is invalid!";
