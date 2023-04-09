@@ -24,7 +24,7 @@ managers to efficiently delegate tasks in an organised manner.
 
 1. For **Windows** users, ensure you have Java **11** or above installed in your Computer.  For **MacOS** users, ensure you have **OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)** installed in your computer.
 
-2. Download the latest **officeconnect.jar** from [OfficeConnect Release Page](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
+2. Download the latest **officeconnect.jar** from [OfficeConnect Release Page](https://github.com/AY2223S2-CS2103-F10-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your OfficeConnect.
 
