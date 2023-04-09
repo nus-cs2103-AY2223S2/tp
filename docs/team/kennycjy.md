@@ -11,10 +11,12 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=kennycjy&breakdown=true)
 
-* **Enhancements to existing features**:
-    * Implemented the `Tag` and `Untag` commands.
-    * Drafted the first modifications to `ModuleTag` and `Tag` commands to implement `Lessons`
-    * Modify `Tag` and `Untag` to work with `GroupTag` and not just `ModuleTag`
+* **New Feature**: [Tag command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java)Implemented the `Tag` and `Untag` commands.
+  * Justification: The command allows user to tag and untag modules additively to persons without going through the `edit` command.
+* **Enhancement**: Collaborated with [@mynameizzhafeez] to modify tag and untag implement `Lessons`
+  * Justification: Needed a way to assign lessons to persons in the address book while holding information about the module it belongs to.
+* **Enhancement**: Modified `Tag` and `Untag` command to allow tagging and untagging of groups.
+  * Justification: The command allows user to tag and untag groups without going through `edit` command
 
 * **Documentation**:
     * User Guide:
@@ -22,9 +24,13 @@ Given below are my contributions to the project.
         * Updated the user guide for areas pertaining to `Tag` and `Untag`
     * Developer Guide:
         * Updated the developer guide for areas pertaining to `Tag` and `Untag`
+        * Updated the developer guide for testing to allow new developers to understand the types of testing we did and the rationale behind choosing such types.
 
 * **Community**:
-    * To be added
+  * [PRs Authored](https://github.com/AY2223S2-CS2103T-W14-2/tp/pulls?q=is%3Apr+author%3Akennycjy)
+  * [PRs reviewed](https://github.com/AY2223S2-CS2103T-W14-2/tp/pulls?q=is%3Apr+commenter%3Akennycjy+-author%3Akennycjy)
+  * [Issues and Bugs Reported](https://github.com/AY2223S2-CS2103T-W14-2/tp/issues?q=is%3Aissue+author%3Akennycjy)
+  * [Forum Activity](https://github.com/nus-cs2103-AY2223S2/forum/issues?q=is%3Aissue+commenter%3Akennycjy)
 
 * **Tools**:
     * Java 11 and JavaFX and Joda-Time
