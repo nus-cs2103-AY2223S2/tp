@@ -48,24 +48,6 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_appointmentAcceptedByClient_addsSuccessful() {
-        Client client = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        AddAppointmentCommand addApt = new AddAppointmentCommand(validIndex, validAppointment);
-        String expectedMessage = String.format("Added Appointment: %1$s to Client: %2$s",
-                validAppointment.getAppointmentName(), client);
-
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-
-
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        addPolicyCommand.execute(expectedModel);
-
-        assertCommandSuccess(addPolicyCommand, model, expectedCommandResult, expectedModel);
-    }
-
-    @Test
     public void equals_sameObject_returnsTrue() {
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validIndex, validAppointment);
         assertEquals(addAppointmentCommand, addAppointmentCommand);
