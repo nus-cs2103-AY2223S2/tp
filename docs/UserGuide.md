@@ -313,7 +313,7 @@ Required information:
 
 Examples:
 
-* `findPolicy Insurance` Find clients with Insurance Policy as their tag
+* `findPolicy Insurance` Find clients with Insurance as their tag
 
 ![result for findPolicy Insurance](images/findPolicyInsurance.png)
 
