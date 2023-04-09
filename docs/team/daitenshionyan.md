@@ -15,6 +15,7 @@ Given below are my contributions to the project
     * Clear feature.
     * Patient eligibility validation feature.
     * Find feature.
+    * Referencing vaccination by index.
     * Sample vaccination data.
 
 * **Enhancement to existing features**:
@@ -40,7 +41,6 @@ Given below are my contributions to the project
     * Added documentation details for `UI` component.
     * Added implementation details for the `Logic` component.
     * Added test cases for `vaccination`
-
 
 * **Tools**:
   * Set up CodeCov.
