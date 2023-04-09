@@ -10,9 +10,10 @@ software, inspired by the conventional CRM software, such as SalesForce, but use
 a CLI-based user interface instead of a GUI, aimed towards enhancing efficiency
 for fast typists.
 
-* **New feature**:
-    * What it does:
-    * Justification:
+* **New feature**: Tasks
+    * What it does: Provides the description of a task to be done.
+    * Justification: A salesperson with many contacts and many tasks to do will find it difficult to recall all the 
+      specific tasks that they need to do for all of their contacts. Being able to store 
     * Highlights:
     * Credits:
 
