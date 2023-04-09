@@ -282,13 +282,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -332,7 +325,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority   | As a …​ | I want to …​                                                                       | So that I can…​                                                                                                                |
 |------------|---------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | `* * *`    | User    | Record a person's age                                                              | Keep track of their basic profile                                                                                              |
-| `* * *`    | User    | Record a person's gender                                                           | Assign the male or female doctor when necessary                                                                                |
 | `* * *`    | User    | Record a person's phone number                                                     | Contact them conveniently                                                                                                      |
 | `* * *`    | User    | Record a person's email/address                                                    | Efficiently manage the communication and consultation process with patients                                                    |
 | `* * *`    | User    | Give patients zero or more tags                                                    | Easily classify different groups of patients by their illness, medication, and other information to serve their specific needs |
@@ -365,7 +357,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***`      | User    | Delete medication                                                                  | Remove a medication from the system                                                                                            | 
 | `***`      | User    | Delete appointment                                                                 | Remove an appointment from the system                                                                                          | 
 | `***`      | User    | Delete a patient file                                                              | Remove outdated or wrongly updated file from the system                                                                        |
-*{More to be added}*
 
 ### Use cases
 
@@ -394,8 +385,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Medimate shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
 
 **Use case: Edit a patient particulars**
 
@@ -611,16 +600,27 @@ Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should support the use of UK and US English language.
+5. The system should be designed with the private doctors and receptionist in mind, ensuring that it is user-friendly and easy to navigate.
+6. The user interface should be kept simple and intuitive, enabling doctors to quickly learn how to use the system to perform their tasks efficiently.
+7. Patient data should be protected at all times, with the system incorporating robust security measures to prevent unauthorized access or disclosure.
+8. The system should be scalable and flexible, allowing for easy addition of new features and functionalities as the doctors' needs evolving over time.
+9. The system's architecture should be well-documented, with a clear and logical structure that makes it easy to maintain, update, and troubleshoot any issues that may arise.
 
 ### Glossary
 
+* **Command Line Interface (CLI)**: A text-based interface used to interact with a computer program or operating system
+* **Graphical User Interface (GUI)**: A visual interface used to interact with a computer program or operating system
+* **Private doctors**: Doctors who operate in their own practice or clinic rather than in a hospital setting
+* **Receptionists**: Individuals who manage the front desk of a medical practice, including scheduling appointments and managing patient records
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Appointment**: A scheduled meeting or consultation with a private doctor.
+* **Patient**: A person who is receiving medical treatment from a doctor or other healthcare professional.
+* **Medical certificate**: A legal document issued by a doctor that certifies a patient's medical condition or ability to perform certain tasks.
 
 --------------------------------------------------------------------------------------------------------------------
 
