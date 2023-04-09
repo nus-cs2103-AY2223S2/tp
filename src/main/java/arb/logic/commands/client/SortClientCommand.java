@@ -17,7 +17,7 @@ import arb.model.Model;
  */
 public class SortClientCommand extends Command {
 
-    public static final String MESSAGE_SUCCESS = "Sorted all clients by name!";
+    public static final String MESSAGE_SUCCESS = "Sorted clients by name!";
 
     private static final String MAIN_COMMAND_WORD = "sort-client";
     private static final String ALIAS_COMMAND_WORD = "sc";
