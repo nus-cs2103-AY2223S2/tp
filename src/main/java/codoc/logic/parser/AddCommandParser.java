@@ -65,15 +65,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        /*
-        // randomly select a profile pic from the folder
-        File[] files =
-                new File("src/main/resources/images/avataricons").listFiles();
-        assert files != null;
-        int randomIndex = new Random().nextInt(files.length);
-        String profilePicturePath = files[randomIndex].getAbsolutePath();
-        */
-
         String[] picture = {"001-bear.png", "002-rabbit.png", "003-panda.png", "004-sloth.png", "005-hen.png", "006"
                 + "-puffer-fish.png", "007-beaver.png", "008-hedgehog.png", "009-penguin.png", "010-owl.png", "011"
                 + "-ostrich.png", "012-llama.png", "013-chicken.png", "014-giraffe.png", "015-bat.png", "016-koala"

@@ -1,0 +1,32 @@
+@startuml
+start
+:User inputs Add command;
+:CodocParser reads user input and recognises the add command;
+:AddCommandParser reads the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([has compulsory arguments])
+    :create new Name;
+    :create new Github;
+    :create new Email;
+    :create new Course;
+    :create new Year;
+    :create new Linkedin;
+    :create new SkillSet;
+    :create new ModuleSet;
+    :create new Person from attributes;
+    :create AddCommand using the Person;
+    if () then ([model does not have same person])
+        :add person to model;
+        :Ui displays new person in contact list;
+    else([else])
+        :Throw new CommandException;
+    endif
+else ([else])
+    :Throw new ParseException;
+    :Show error message to user;
+endif
+stop
+@enduml
