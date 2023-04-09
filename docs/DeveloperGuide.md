@@ -645,6 +645,7 @@ testers are expected to do more *exploratory* testing.
     Address: Blk 30 Geylang Street 29, #06-40
     Tags: [friends]
    ```
+   
    2. Test case:
    ``` text
    add n/Jack Wang
@@ -655,7 +656,9 @@ testers are expected to do more *exploratory* testing.
    e/jackywang@gmail.com
    a/Blk 19 Ghim Moh Rd, #04-10
    ```
+   <br>
    Expected: A person with the following information will be added to the list and displayed in the main panel of the GUI.
+   
    3. Test case:
    ``` text
    add n/Alex Yeoh
@@ -666,12 +669,15 @@ testers are expected to do more *exploratory* testing.
    e/alexyeoh@example.com
    a/Blk 21 Buona Vista Rd, #11-01
    ```
+   <br>
    Expected: Error details shown in the message box, indicating that duplicate emails or phones are not allowed.
+   
    4. Test case:
    ``` text
    add n/Zachary Tan
    r/CPL
    ```
+   <br>
    Expected: Error details shown in the message box, indicating that the command entered is invalid.
 
 [Return to Top](#table-of-contents)
@@ -690,11 +696,12 @@ testers are expected to do more *exploratory* testing.
     Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
     Tags: [colleagues][friends]
    ```
-   2. Test case: `edit 2 n/Sally Wee e/sallywee@gmail.com`
+   
+   2. Test case: `edit 2 n/Sally Wee e/sallywee@gmail.com`<br>
       Expected: The name and email of the second person in the list will be changed to `Sally Wee` and `sallywee@gmail.com` respectively, with the other information left unchanged.
-   3. Test case: `edit 2 t/`
+
+   3. Test case: `edit 2 t/`<br>
       Expected: All existing tags of the second person in the list will be removed, with the other information left unchanged.
-   4. Test case: 
 
 [Return to Top](#table-of-contents)
 
@@ -727,7 +734,7 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-   1. Prerequisite: Delete the `aims.json` file in `./data` folder and launch AIMS again.
+   1. Prerequisite: Delete the `aims.json` file in `./data` folder and launch AIMS again.<br>
       Expected: AIMS loads a default list of persons and the data file is created again.
 
 [Return to Top](#table-of-contents)
