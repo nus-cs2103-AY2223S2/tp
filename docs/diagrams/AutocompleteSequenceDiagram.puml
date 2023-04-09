@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AutocompleteEngine" as AutocompleteEngine LOGIC_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+[-> CommandBox : user presses TAB
+activate CommandBox
+
+CommandBox -> LogicManager : autocompleteCommand("add t/", "add t/tag1 | tag2")
+activate LogicManager
+
+LogicManager -> AutocompleteEngine : autocompleteCommand("add t/", "add t/tag1 | tag2")
+activate AutocompleteEngine
+
+AutocompleteEngine --> LogicManager : "add t/tag1"
+deactivate AutocompleteEngine
+
+LogicManager --> CommandBox : "add t/tag1"
+deactivate LogicManager
+
+CommandBox --> UI : set user input to "add t/tag1"
+deactivate CommandBox
+@enduml

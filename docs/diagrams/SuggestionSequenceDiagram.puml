@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AutocompleteEngine" as AutocompleteEngine LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+[-> CommandBox : user types "add t/"
+activate CommandBox
+
+CommandBox -> LogicManager : suggestCommand("add t/")
+activate LogicManager
+
+LogicManager -> AutocompleteEngine : suggestCommand("add t/")
+activate AutocompleteEngine
+
+AutocompleteEngine -> Model : getExistingTagValues()
+activate Model
+
+Model --> AutocompleteEngine : ["tag1", "tag2"]
+deactivate Model
+
+AutocompleteEngine -> Model : getExistingModuleValues()
+activate Model
+
+Model --> AutocompleteEngine
+deactivate Model
+
+AutocompleteEngine -> Model : getExistingEducationValues()
+activate Model
+
+Model --> AutocompleteEngine
+deactivate Model
+
+AutocompleteEngine --> LogicManager : "add t/tag1 | tag2"
+deactivate AutocompleteEngine
+
+LogicManager --> CommandBox : "add t/tag1 | tag2"
+deactivate LogicManager
+
+CommandBox --> UI : display suggestion
+deactivate CommandBox
+@enduml
