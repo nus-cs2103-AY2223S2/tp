@@ -228,7 +228,11 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState0.png">
 
-      <p>Initial state of the address book history upon startup</p>
+      <br>
+
+      <p style="font-style: italic;">Initial state of the address book history upon startup</p>
+
+      <br>
 
    </div>
 
@@ -238,7 +242,11 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState1.png">
 
-      <p>State of the address book history after calling <code>delete 5</code></p>
+      <br>
+
+      <p style="font-style: italic;">State of the address book history after calling <code>delete 5</code></p>
+
+      <br>
 
    </div>
 
@@ -248,7 +256,11 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState2.png">
 
-      <p>State of the address book history after calling <code>add n/David …​</code></p>
+      <br>
+
+      <p style="font-style: italic;">State of the address book history after calling <code>add n/David …​</code></p>
+
+      <br>
 
    </div>
 
@@ -264,7 +276,11 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState3.png">
 
-      <p>State of the address book history after calling <code>undo</code></p>
+      <br>
+
+      <p style="font-style: italic;">State of the address book history after calling <code>undo</code></p>
+
+      <br>
 
    </div>
 
@@ -274,7 +290,11 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState4.png">
 
-      <p>State of the address book history after calling <code>list</code>. Note that it hasn't changed from the previous figure above</p>
+      <br>
+
+      <p style="font-style: italic;">State of the address book history after calling <code>list</code>. Note that it hasn't changed from the previous figure above</p>
+
+      <br>
 
    </div>
 
@@ -284,7 +304,11 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState5.png">
 
-      <p>State of the address book history after calling <code>undo</code> again</p>
+      <br>
+
+      <p style="font-style: italic;">State of the address book history after calling <code>undo</code> again</p>
+
+      <br>
 
    </div>
 
@@ -300,7 +324,11 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState6.png">
 
-      <p>State of the address book history after having "overwritten" old states</p>
+      <br>
+
+      <p style="font-style: italic;">State of the address book history after having "overwritten" old states</p>
+
+      <br>
 
    </div>
 
