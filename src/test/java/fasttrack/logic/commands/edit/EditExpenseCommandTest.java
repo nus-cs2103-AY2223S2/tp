@@ -1,6 +1,7 @@
 package fasttrack.logic.commands.edit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
@@ -68,5 +69,33 @@ public class EditExpenseCommandTest {
                 null, null, null,
                 null);
         assertThrows(CommandException.class, () -> editExpenseCommand.execute(model));
+    }
+
+    @Test
+    public void execute_testEquals() {
+        model = new ModelManager();
+        model.addCategory(category);
+        model.addExpense(expense);
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
+                "NewExpenseName", null, null,
+                category.getCategoryName());
+        EditExpenseCommand sameExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
+                "NewExpenseName", null, null,
+                category.getCategoryName());
+        assertEquals(editExpenseCommand, sameExpenseCommand);
+    }
+
+    @Test
+    public void execute_testNotEquals() {
+        model = new ModelManager();
+        model.addCategory(category);
+        model.addExpense(expense);
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
+                "NewExpenseName", null, null,
+                category.getCategoryName());
+        EditExpenseCommand sameExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
+                "NewExpenseName", 200.0, null,
+                category.getCategoryName());
+        assertNotEquals(editExpenseCommand, sameExpenseCommand);
     }
 }
