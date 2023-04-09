@@ -269,7 +269,6 @@ The `Model` component,
 
 </div>
 
-<div style="page-break-after: always;"></div>
 
 ### Storage component
 
