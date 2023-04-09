@@ -280,7 +280,7 @@ Executing the command edits the details of the employee into the ExecutivePro da
 
 Below is a sequence diagram and the explanation of `edit` command.
 
-![AddCommand](images/EditSequenceDiagram.png)
+![EditCommand](images/EditSequenceDiagram.png)
 
 Step 1. A user wants to change the name of the employee with ID of 1 to Jane. User will enter the command `edit 1 n/John`.
 
@@ -293,6 +293,31 @@ Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employe
 a message indicating no such employee will be shown. If an employee with the given ID exists, a new `employee` object is created with the updated details, and it replaces the old employee using `Model#setEmployee()`.
 
 Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
+
+### Leave Feature : `leave`
+
+#### Implementation
+This section explains the implementation of the `leave` feature.
+The command takes in a first parameter which is the unique employee ID, then one integer which is the number of days of leave to take.
+Executing the command reduces the number of days of leave of the employee into the ExecutivePro database (if employee has enough leave).
+
+Below is a sequence diagram and the explanation of `leave` command.
+
+![LeaveCommand](images/LeaveSequenceDiagram.png)
+
+Step 1. A user wants to help the employee with ID of 1 to take 3 days of leave. User will enter the command `leave 1 l/3`.
+
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `LeaveCommandParser`
+to parse the user input. This creates a `LeaveCommand` object with the `EmployeeId` and number of days of leave.
+
+Step 3. The `execute` method of `LeaveCommand` will be called. A `CommandException` will be thrown if days of leave is not in range 0-365 (inclusive) and a message indicating the error is shown.
+
+Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and
+a message indicating no such employee will be shown. A `CommandException` will be thrown if employee does not have enough leave.
+
+Step 5. An equivalent `EditCommand` is created to update the leave count of the employee. The `execute` method of the `EditCommand` will be called.
+
+Step 6. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
 
 ### Delete Feature : `delete`
 
@@ -436,13 +461,15 @@ operator to compare with inputted value. We plan to include further options for 
 employees based on the `Tag` too.
 3. Currently, error messages do not appear in certain cases of invalid input for employees' fields like the negative payroll.
 As such, we plan to implement more checks that return error messages: `Invalid input for payroll`
-4. Currently, duplicated employees are not handled as we did not take case sensitivty into account for the names of employees.
+4. Currently, it is possible to take `0` days of leave, however it may not be useful in actual usage.
+As such, we plan to implement a check that requires at least `1` day specified for the `LeaveCommand`: `At least 1 day is needed`
+5. Currently, duplicated employees are not handled as we did not take case sensitivity into account for the names of employees.
 We plan to take into account case sensitivity in addition to the current check of phone number and email.
-5. Currently, there are no error messages for invalid Date Of Birth, such as using future dates.
+6. Currently, there are no error messages for invalid Date Of Birth, such as using future dates.
 We plan to implement checks for date validity and return an error message: `Invalid Date Of Birth`
-6. Currently, batchExport with invalid path is not handled. We plan to check for file path validity and
+7. Currently, BatchExport with invalid path is not handled. We plan to check for file path validity and
 return an error message: `Invalid file path`
-7. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
+8. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
 the right panel horizontally scrollable as well as increase the size of the right panel to ensure that the information
 remains centralized during the launch of our application.
 --------------------------------------------------------------------------------------------------------------------
@@ -475,7 +502,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | HR manager | clear all employees                          | prevent data leakage                                     |
 | `* *`    | HR manager | batchadd the details of current employees    | easily add multiple employees at once                    |
 | `* *`    | HR manager | batchexport the details of current employees | easily export multiple employees at once                 |
-| `* *`    | HR manager | check the leaves of current employees        | keep track of the number of leaves remaining             |
+| `* *`    | HR manager | check the leaves of current employees        | see if employee has enough leave for their leave request |
+| `* *`    | HR manager | help a current employees take leave          | keep track of the number of leaves remaining             |
 | `* *`    | HR manager | set pictures for current employees           | identify employees                                       |
 | `* *`    | HR manager | change the theme of application              | use the application with my preferred mode               |
 
@@ -624,6 +652,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. ExecutivePro returns an error message.
 * 1b. The remaining number of leaves inputted is invalid
     * 1b1. ExecutivePro returns an error message
+* 1c. The employee does not have enough leaves remaining
+    * 1c1. ExecutivePro returns an error message
 
         Use case ends
 
