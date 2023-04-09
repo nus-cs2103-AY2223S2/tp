@@ -1,4 +1,4 @@
-@startuml  list_recurring_expenses_command
+@startuml  ListRecurringExpensesSequenceDiagram
 
 hide footbox
 skinparam MinClassWidth 50
@@ -7,19 +7,23 @@ skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
+box Logic #C8C8FA
 participant ":ListRecurringExpenseCommand" as ListRecurringExpenseCommand  order 1
+end box
+box Model #F97181
 participant "model:Model" as Model order 3
+end box
 participant ":CommandResult" as CommandResult order 2
 [-> ListRecurringExpenseCommand : execute(model)
 activate ListRecurringExpenseCommand #LightBlue
 ListRecurringExpenseCommand -> Model : updateFilteredExpenseList(predicate) 
-activate Model #Orange
+activate Model 
 deactivate Model
 create CommandResult
 ListRecurringExpenseCommand -> CommandResult 
 
 activate CommandResult #SpringGreen
-CommandResult -> ListRecurringExpenseCommand
+CommandResult --> ListRecurringExpenseCommand
 deactivate CommandResult
 [<--ListRecurringExpenseCommand : result
 deactivate ListRecurringExpenseCommand

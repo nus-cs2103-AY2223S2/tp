@@ -1,4 +1,4 @@
-@startuml  add_expense_command
+@startuml  AddExpenseSequenceDiagram
 
 hide footbox
 skinparam MinClassWidth 50
@@ -26,7 +26,7 @@ participant ":AddExpenseCommand" as Command  order 1
 end box
 
 [->Command: execute(dataModel)
-activate Command
+activate Command #LightBlue
 Command -> Expense: getCategory()
 activate Expense
 Expense --> Command: newCategory
@@ -52,13 +52,14 @@ else else
     activate Model
     Model -> ExpenseTracker : addCategory(toAdd) 
     activate ExpenseTracker
-    ExpenseTracker --> Model
+    
     ExpenseTracker -> ExpenseList
     ref over ExpenseList
         : add newCategory to 
         : ObervableList<Expense>
     end ref
     ExpenseList --> ExpenseTracker
+    ExpenseTracker --> Model
     deactivate ExpenseTracker
     Model --> Command
     deactivate Model
@@ -86,7 +87,7 @@ Model --> Command
 deactivate Model
 create ":CommandResult" as CommandResult order 1
 Command -> CommandResult 
-activate CommandResult
+activate CommandResult #SpringGreen
 CommandResult --> Command
 deactivate CommandResult
 [<-- Command: result

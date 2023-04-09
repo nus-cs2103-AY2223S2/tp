@@ -1,4 +1,4 @@
-@startuml  edit_expense_command_find
+@startuml  EditExpenseFindPartSequenceDiagram
 
 hide footbox
 skinparam MinClassWidth 50
@@ -29,7 +29,7 @@ loop until matching category is found
     Category -> Category :equals(newExpenseCategoryInString)
     opt if equals check is true
        Category -[hidden]> Category
-       Category -> Command
+       Category --> Command
     end
     deactivate Category 
 end

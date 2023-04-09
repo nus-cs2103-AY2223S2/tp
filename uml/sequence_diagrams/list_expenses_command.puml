@@ -1,4 +1,4 @@
-@startuml  list_expense_command
+@startuml  ListExpensesSequenceDiagram
 
 hide footbox
 skinparam MinClassWidth 50
@@ -7,37 +7,44 @@ skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
-participant ":ListExpenseCommand" as ListExpenseCommand  order 1
+
+box Model #F97181
 participant "model:Model" as Model order 4
-participant "filterExpensesin\nTransomething" as filterModel order 3
+participant "filteredExpensesin\nExpenseTracker" as filterModel order 3
+end box
+
+box Logic #C8C8FA
+participant ":ListExpenseCommand" as ListExpenseCommand  order 1
+end box
 participant ":CommandResult" as CommandResult order 2
+
 [-> ListExpenseCommand : execute(model)
 activate ListExpenseCommand #LightBlue
 alt category predicate \nis present
     ListExpenseCommand -> filterModel : filter.getCategory()
-    activate filterModel #Yellow
-    filterModel -> ListExpenseCommand : category
+    activate filterModel 
+    filterModel --> ListExpenseCommand : category
     deactivate filterModel
     ListExpenseCommand -> Model: updateCategoryFilter(category)
-    activate Model #Orange
+    activate Model 
     deactivate Model
 else else
     ListExpenseCommand -> Model: updateCategoryFilter(null)
-    activate Model #Orange
+    activate Model
     deactivate Model
 end
 
 alt timespan predicate \nis present
     ListExpenseCommand -> filterModel : filter.getTimespan()
-    activate filterModel #Yellow
+    activate filterModel
     filterModel -> ListExpenseCommand : timespan
     deactivate filterModel
     ListExpenseCommand -> Model: updateTimespanFilter(timespan)
-    activate Model #Orange
+    activate Model
     deactivate Model
 else else
     ListExpenseCommand -> Model: updateTimespanFilter(timespan)
-    activate Model #Orange
+    activate Model 
     deactivate Model
 end
 
@@ -53,13 +60,13 @@ end
 
 
 ListExpenseCommand -> Model : updateFilteredExpenseList(combinedPredicate) 
-activate Model #Orange
+activate Model 
 deactivate Model
 create CommandResult
 ListExpenseCommand -> CommandResult 
 
 activate CommandResult #SpringGreen
-CommandResult -> ListExpenseCommand
+CommandResult --> ListExpenseCommand
 deactivate CommandResult
 [<--ListExpenseCommand : result
 deactivate ListExpenseCommand

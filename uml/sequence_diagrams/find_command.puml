@@ -1,18 +1,24 @@
-@startuml  find_command
+@startuml  FindSequenceDiagram
 
+box Logic #C8C8FA
 participant ":FindCommand" as FindCommand  order 1
+end box
+
+box Model #F97181
 participant "model:Model" as Model order 3
+end box
 participant ":CommandResult" as CommandResult order 2
+
 [-> FindCommand : execute(model)
 activate FindCommand #LightBlue
 FindCommand -> Model : updateFilteredPersonList(predicate) 
-activate Model #Orange
+activate Model 
 deactivate Model
 create CommandResult
 FindCommand -> CommandResult 
 
 activate CommandResult #SpringGreen
-CommandResult -> FindCommand
+CommandResult --> FindCommand
 deactivate CommandResult
 ' FindCommand --> [ : result
 [<--FindCommand : result

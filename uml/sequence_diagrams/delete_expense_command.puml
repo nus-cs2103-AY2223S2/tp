@@ -1,4 +1,4 @@
-@startuml  delete_expense_command
+@startuml  DeleteExpenseSequenceDiagram
 
 hide footbox
 skinparam MinClassWidth 50
@@ -26,7 +26,7 @@ participant ":DeleteExpenseCommand" as Command  order 1
 end box
 
 [->Command: execute(dataModel)
-activate Command
+activate Command #LightBlue
 Command -> Model: getFilteredExpenseList()
 activate Model
 Model --> Command: lastShownList
@@ -62,7 +62,7 @@ Model --> Command
 deactivate Model
 create ":CommandResult" as CommandResult order 1
 Command -> CommandResult 
-activate CommandResult
+activate CommandResult #SpringGreen
 CommandResult --> Command
 deactivate CommandResult
 [<-- Command: result
