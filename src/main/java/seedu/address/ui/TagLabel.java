@@ -9,15 +9,14 @@ import seedu.address.model.tag.Tag;
  */
 public class TagLabel extends Label {
 
-    private static double tagMaxWidth = 150.0;
-    private static boolean tagWrapText = true;
-
     /**
      * Creates a {@code TagLabel}.
      */
     public TagLabel(Tag tag) {
         this.setText(tag.getTagName());
+        double tagMaxWidth = 150.0;
         this.setMaxWidth(tagMaxWidth);
+        boolean tagWrapText = true;
         this.setWrapText(tagWrapText);
     }
 }
