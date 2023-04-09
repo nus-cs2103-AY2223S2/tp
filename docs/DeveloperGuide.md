@@ -833,13 +833,14 @@ logic, involving check digits. Such validation would need to be added before usi
 real-life scenario. However, due to the constraints it would place on testing during development,
 it shall be implemented in the future instead.
 
-### Status bar cutoff on resizing window
+### UI component behaviour on window resizing
 On resizing, the status bar maintains its centered location as from the full-size window. As a result,
-the information in it gets truncated. As this information is critical, future enhancements should address this.
+the information in it gets truncated. As this information is critical, future enhancements should address this, and
+other UI components that get cut off on window resizing.
 
 Possible implementations:
-- adjusting its left padding
-- setting its position constraint
+- adjusting padding
+- setting position constraint
 - setting a higher minimum window width
 
 ### Multiple parameter search
