@@ -10,7 +10,7 @@ It is written in Java and uses JavaFX to create GUI.
 
 Given below are my contributions to the project.
 
-* **Modified Components**: Restructured Parser component when modifying AB3 to CookHub. [\#78](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/78)
+* **Modified Components**: Restructured Parser component during morphing. [\#78](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/78)
   * What it does: Parses the string received in the command line.
   * Justification: The Parser component has to be redone when restructuring the model.
   * Highlights: The learning curve of handling the Parser is steep. I had to learn how the different subcomponents of Parser works (`ArgumentMultimap`, `ArgumentTokenizer`, `ParserUtil`). 
