@@ -183,7 +183,7 @@ The `FindEventCommand` object is then executed in `LogicManager#execute` through
 
 #### Current Implementation
 
-Editing an event is a feature that uses the command `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`. The following activity diagram shows how the edit event operation works when given valid and invalid parameters.
+Editing an event is a feature that uses the command `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`. The following activity diagram shows how the edit event operation works when given valid parameters or invalid parameters.
 
 ![EditEventActivityDiagram](images/EditEventActivityDiagram.png)
 
