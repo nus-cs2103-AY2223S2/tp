@@ -42,8 +42,12 @@ public class UndoCommandTest {
         Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
         Command editCommand = new EditCommand(targetIndex, new EditEventDescriptor());
         Event eventToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Event editedEvent = new EventBuilder(EventBuilder.EDIT_EVENT_NAME, EventBuilder.EDIT_EVENT_DATE,
-                EventBuilder.EDIT_EVENT_START_TIME, EventBuilder.EDIT_EVENT_END_TIME).build();
+        EventBuilder eventBuilder = new EventBuilder();
+        eventBuilder.withName(EventBuilder.EDIT_EVENT_NAME);
+        eventBuilder.withDate(EventBuilder.EDIT_EVENT_DATE);
+        eventBuilder.withStartTime(EventBuilder.EDIT_EVENT_START_TIME);
+        eventBuilder.withEndTime(EventBuilder.EDIT_EVENT_END_TIME);
+        Event editedEvent = eventBuilder.build();
         model.addRecentCommand(editCommand);
         model.addRecentEvent(eventToEdit);
         model.addRecentEvent(editedEvent);

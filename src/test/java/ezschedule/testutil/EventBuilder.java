@@ -33,15 +33,6 @@ public class EventBuilder {
         startTime = new Time(DEFAULT_START_TIME);
         endTime = new Time(DEFAULT_END_TIME);
     }
-    /**
-     * Creates a {@code EventBuilder} with the given details.
-     */
-    public EventBuilder(String name, String date, String startTime, String endTime) {
-        this.name = new Name(name);
-        this.date = new Date(date);
-        this.startTime = new Time(startTime);
-        this.endTime = new Time(endTime);
-    }
 
     /**
      * Initializes the EventBuilder with the data of {@code eventToCopy}.
