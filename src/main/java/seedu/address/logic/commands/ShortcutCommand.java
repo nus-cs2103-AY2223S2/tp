@@ -114,7 +114,7 @@ public class ShortcutCommand extends Command {
             throw new CommandException(MESSAGE_DEBUGGING_ERROR);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, command, shortForm), true, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, command, shortForm), false, true);
     }
 
     @Override
