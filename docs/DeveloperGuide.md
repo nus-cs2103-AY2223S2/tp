@@ -370,7 +370,7 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 The implementation of `edit` involves creating a new `Person` object with updated details to replace the previous `Person` object.
 This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Person` object.
 
-`edit` has similar fields to the [Add feature](#add-feature) and an additional `INDEX` parameter.
+`edit` has similar fields to the [add feature](#add-feature) and an additional `INDEX` parameter.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** While all the fields are optional, at least 1 needs to be given.
 </div>
@@ -416,12 +416,13 @@ Whether a new `Person` object should be created when editing a student entry.
 ### Find feature
 
 #### Implementation Details
+The implementation of `find` involves searching for entries that matches all the fields specified.
 
-The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate`.
+The `find` feature supports matching of partial keywords, as well as specifying which field to match the keyword in using [prefixes](#add-feature).
 
-Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
+
+The `find` feature uses `FullMatchKeywordsPredicate`, which implements the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
 The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
-
 
 Here is a sequence diagram showing the interactions between components when `find n/Alice p/12345678` is run.:
 
@@ -431,13 +432,12 @@ Here is a sequence diagram showing the interactions between components when `fin
 </div>
 
 #### Feature details
-
-Our implementation extends from the `find` implementation in AB3 by enhancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
-
+1. The `find` command allows the matching of partial keywords.
 > Take a person's name to be `Michelle Yeoh`.  \\
-> An example of finding by `PARTIAL_KEYWORD` is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh".
+> An example of finding by partial keyword is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh".
 
-Furthermore, users are also allowed to specify the field that they want to find in by using the default [prefixes](#Add-feature) given to them.
+2. Users are allowed to specify the field that they want to find in by using the default [prefixes](#add-feature) given to them.
+   This then returns the entry that matches all the fields specified.
 
 > The prefixes refer to those that the user input in the `Add` command, eg.
 > ```
@@ -447,10 +447,13 @@ Furthermore, users are also allowed to specify the field that they want to find 
 > ```
 > find n/bo
 > find p/9871
-> find edu/p5
+> find edu/p5 a/Pasir Ris
 > ```
 
-This allows the user to narrow down their `find` results even more.
+3. If `find` is used without any fields, it will [list](#list-feature) all existing entries.
+4. If no entries can be matched, nothing will be shown.
+
+
 
 #### General Design Considerations
 The implementation of `find` is built on top of the original AB3 codebase's `find` command.
@@ -458,7 +461,7 @@ We felt that the default `find` feature was too restrictive.
 
 Our implementation has some additions such as:
 
-1. Allowing `PARTIAL_KEYWORD` finds so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
+1. Allow matching by partial keyword so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
 2. `find PREFIX` across the various attributes of a `Person` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
 
 **Aspect: Command format:**
@@ -470,7 +473,7 @@ Our implementation has some additions such as:
   * Cons:
     * Adds complexity to the implementation as this implementation introduces a lot of potential errors in parsing the user's input.
     * Might be slightly challenging for new users to enter the `PREFIX`.
-* **Alternative 2:** `find KEYWORD/PARTIAL_KEYWORD`
+* **Alternative 2:** `find KEYWORD/PARTIAL_KEYWORD` (With no `PREFIX`)
   * Pros:
     * Easier to implement as there is lesser validating done by the app.
     * Provides the user flexibility in searching across all attributes by default.
@@ -486,21 +489,34 @@ Our implementation has some additions such as:
 
 #### Implementation Details
 
-Filter was implemented on top of find to allow users to find students with fewer restrictions. As `find` only returns the students that satisfy all the specified criteria, filter` on the other hand will allow users to find all students that satisfy at least 1 criteria.
+The `filter` command involves searching and listing all entries which has a match in at least one field specified. 
 
-This was done to take improve the flexibility of filtering the student list.
+Similar to [`find`](#find-feature), `filter` uses `ContainsKeywordsPredicate`, which implements the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
+The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
+
+Filter was implemented on top of find to allow users to find students with fewer restrictions, as `find` only returns the students that satisfy all the specified criteria.
+This was done to take improve the flexibility of filtering the student list, allowing the categorisation of students to be easier.
 
 Here is a sequence diagram showing the interactions between components when `filter n/Alice p/12345678` is run:
 
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommandParser` and `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 #### Feature details
+1. Similar to [`find`](#find-feature), `filter` allows matching of partial keywords.
+2. Similar to [`find`](#find-feature), `filter` allows different fields to be specified. 
+This will return all entries that match at least one keyword in any fields specified. 
+3. If no entries can be matched, an empty list will be shown.
+4. If `filter` is used without any fields specified, an empty list will be shown.
+
 
 #### General Design Considerations
-
+Although the function of `filter` is rather similar to that of `find`, there might be cases say the target user saved the tutorial timeslot of 
+each student in the `tag` field, and wants to view all students who are either in the 9am class or 1pm class.
+We felt that this is a common scenario that our target user might encounter and in this case, `find` is unable to give the desired outcome.
+Therefore, a `filter` feature is implemented on top of `find` to give users more flexibility in these scenarios.
 
 [↑ Back to top](#table-of-contents)
 
@@ -517,19 +533,20 @@ Here is a sequence diagram showing the interactions between components when `lis
 </div>
 
 #### Design Consideration
-The `list` command does not accept any arguments in order to make it as convenient for users to view their full list of students after a prior command such as `find` which displays
-a filtered list.
+The `list` command does not accept any arguments in order to make it as convenient for users to view their full list of students after a prior command 
+such as [`find`](#find-feature) or [`filter`](#filter-feature) which displays a filtered list.
 
 ### Remark feature
 
-#### Feature Implementation Details
-The current implementation provides users with two different methods of entering a remark for a student.
-1. `remark INDEX REMARK` where `INDEX` is the `Person` entry in the list, and `REMARK` is the remark to be added.
-2. Adding the remark through the [add feature](#Add-feature)
+#### Implementation Details
+The application provides users with two different methods of entering or editing a remark for a student.
+* Using the pop-up text box implemented in this feature
+* Adding the remark through the [add feature](#add-feature)
 
-#### Proposed Implementation
-
-The proposed remark mechanism will be facilitated by a pop-up text box. This will allow users to format their remarks however they like, rather than being restricted to a single line in the command line (current implementation).
+#### Feature Details
+1. The remark feature can be facilitated by a pop-up text box using `remark INDEX`.
+2. The contents of the pop-up text box are saved by pressing `Ctrl + S` on the keyboard.
+3. If the content of the remarks is blank, the command will be treated as a delete command and any existing remarks will be deleted.
 
 #### General Design Considerations
 
@@ -580,13 +597,21 @@ Additionally, we opted for a pop-up text window as the command line only provide
 
 #### Implementation Details
 
-The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature.
+The implementation of `show` is similar to the [`list`](#list-feature) command in the AB3 codebase. 
+The `show` feature was implemented to support the [`remark`](#remark-feature) feature.
 
-Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
+Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible. 
+Hence, `show` allows users to view the full remark in the `ResultDisplay` where scrolling is supported.
 
 #### General Design Considerations
 **Aspect: Display output**
-* **Alternative 1: (Future implementation)** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
+* **Alternative 1: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
+  * Pros:
+    * Supports the `remark` feature as intended since scrolling is possible.
+    * Allows users to view the student details and remarks all at once.
+  * Cons:
+    * Harder to implement
+* **Alternative 2:** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
   * Pros:
     * Allows users to view the student details and remarks all at once.
     * Supports the `remark` feature as intended
@@ -594,26 +619,30 @@ Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not 
     * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
     * Harder to implement as the size of the `PersonCard` for the `Person` has to be updated everytime `show` is executed.
 
-* **Alternative 2: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
-  * Pros:
-    * Supports the `remark` feature as intended since scrolling is possible.
-    * Allows users to view the student details and remarks all at once.
-  * Cons:
-    * Harder to implement
+
 
 [↑ Back to top](#table-of-contents)
 
 ### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation Details
+This feature involves restoring the current address book to its previous version after a command altering the address book is executed.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `versionStateHistory` and `currentVersionPointer`. Additionally, it implements the following operations:
+Examples of such commands are:
+* [`add`](#add-feature)
+* [`delete`](#delete-feature)
+* [`edit`](#edit-feature)
+* [`remark`](#remark-feature)
+
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `versionStateHistory` and `currentVersionPointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history as well as the command that was last executed.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
 * `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+#### Feature Details
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
@@ -664,7 +693,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentVersionPointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentVersionPointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentVersionPointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentVersionPointer` will be purged. Reason being it no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -687,13 +716,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: Command History:**
 
-* **Alternative 1 (Current implementation):** Only saves the commands that modify the address book.
+* **Alternative 1 (current choice):** Only saves the commands that modify the address book.
   * Pros: Easy to implement.
   * Cons: Reduces user experience as keeping track of all commands will also allow us to improve the error messages by specifying the specific recent command which does not allow `undo` or `redo`
 
-* **Alternative 2 (Future implementation):** Save every command executed regardless of whether it modifies the address book.
-  * Pros: 
-  * Improves user experience by improving the quality of the error message for `undo` and `redo`
+* **Alternative 2 :** Save every command executed regardless of whether it modifies the address book.
+  * Pros: Improves user experience by improving the quality of the error message for `undo` and `redo`
   * Cons: Slightly more complicated to implement as a separate `currentStatePointer` for the command history will have to be added.
 
 [↑ Back to top](#table-of-contents)
@@ -714,7 +742,7 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
 :information_source: **Note:** `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
 </div>
 
-**Exepected execution:**
+**Expected execution:**
 
 1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
 2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
@@ -1060,6 +1088,11 @@ Both behaviours don't add value to the app. Thus, we plan to disallow argument-l
 ### Ui
 #### Feature flaw
 Currently, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
+
+### General
+#### Feature Flaw
+Currently, the user will experience noticeable lagging issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
+We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient to tackle this issue in the future.
 
 ### Error handling
 #### Feature flaw
