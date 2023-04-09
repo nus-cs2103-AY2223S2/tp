@@ -74,7 +74,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-- Items in square brackets are optional.<br>
+- Items in square brackets are **optional**.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 - Items with `…` after them can be used multiple times including zero times.<br>
@@ -101,6 +101,8 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
+[Return to Top](#table-of-contents)
+
 ### Adding a person : `add`
 
 Adds a person to AIMS.
@@ -119,6 +121,8 @@ Examples:
   adds a new person `Lawrence Tay` to AIMS with the following information:
 
 ![add Lawrence success](images/addLawrenceSuccess.png)
+
+[Return to Top](#table-of-contents)
 
 ### Importing multiple persons from a CSV file : `importcsv`
 
@@ -149,11 +153,15 @@ Examples:
 
 ![importcsv success](images/importcsvSuccess.png)
 
+[Return to Top](#table-of-contents)
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in AIMS.
 
 Format: `list`
+
+[Return to Top](#table-of-contents)
 
 ### Copying information to clipboard : `copy`
 
@@ -175,9 +183,16 @@ see all the text.
 
 </div>
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `copy`!
+
+</div>
+
 Examples:
 
-- `copy 2` will show this when your clipboard is accessible
+- `copy 2` will show this when your clipboard is accessible.
+
     ![result for 'copy 2'](images/copy2Result.png)
 
     The following text will be copied into your clipboard.
@@ -195,13 +210,10 @@ Examples:
      ```
 
 - `copy 2` will show this when your clipboard is not accessible.
+
   ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `copy`!
-
-</div>
+[Return to Top](#table-of-contents)
 
 ### Editing a person : `edit`
 
@@ -247,6 +259,8 @@ Examples:
 
 ![result for 'find charlotte irfan roy'](images/findCharlotteIrfanRoyResult.png)
 
+[Return to Top](#table-of-contents)
+
 ### Locating persons using filters on fields : `filter`
 
 Filters all persons to only show those whose fields contain all the given keywords.
@@ -267,6 +281,8 @@ Examples:
 - `filter a/street r/sg` returns `David Li`, `S Lee Chong Wei`<br>
   ![result for 'filter david lee'](images/filterDavidLeeResult.png)
 
+[Return to Top](#table-of-contents)
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from AIMS.
@@ -282,11 +298,15 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd person in AIMS.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+[Return to Top](#table-of-contents)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from AIMS.
 
 Format: `clear`
+
+[Return to Top](#table-of-contents)
 
 ### Undoing last modification : `undo`
 
@@ -300,6 +320,8 @@ AIMS are not recorded in the undo history.
 </div>
 
 Format: `undo`
+
+[Return to Top](#table-of-contents)
 
 ### Viewing command history
 
@@ -317,6 +339,8 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
   from this point in the command history, the changes you've made to this current command in history will be lost.
 - The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
 
+[Return to Top](#table-of-contents)
+
 ### Adding a person to favorites : `favorite`
 
 Favorites the specified person from AIMS.
@@ -333,16 +357,22 @@ Example:
 - `favorite 3` will pin the third person in the favorites panel.
   ![result for `favorite 3`](images/favorite3.png)
 
+[Return to Top](#table-of-contents)
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+[Return to Top](#table-of-contents)
+
 ### Saving the data
 
 AIMS data is saved in the hard disk automatically after any command that changes the data. There is no need to save
 manually.
+
+[Return to Top](#table-of-contents)
 
 ### Editing the data file
 
@@ -355,6 +385,8 @@ directly by editing that data file.
 start with an empty data file at the next run.
 
 </div>
+
+[Return to Top](#table-of-contents)
 
 ---
 
@@ -381,3 +413,4 @@ the data of your previous AIMS home folder.
 | **Command history** | `↑` / `↓`                                                                                                                                                                                                                                  |
 | **List**            | `list`                                                                                                                                                                                                                                     |
 | **Help**            | `help`                                                                                                                                                                                                                                     |
+[Return to Top](#table-of-contents)
