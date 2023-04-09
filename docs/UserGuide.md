@@ -348,6 +348,10 @@ Use this command with caution.
 
 Format: `clear`
 
+![Clear](images/command_result/Clear.png)
+
+Above is the execution result of the input `clear`.
+
 ### Undoing previous command: `undo`
 
 In the event that your previous change was a mistake, you can use this feature to revert the patient records to the state before the previous command was executed.
@@ -358,11 +362,11 @@ Format: `undo`
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 </div>
 
-<br/>![Undo-1](images/command_result/Undo-1.png)
+<br/><br/>![Undo-1](images/command_result/Undo-1.png)
 
 Changing the name of a patient above `edit 6 n/John Balakrishnan` (Previously Roy Balakrishnan)
 
-<br/>![Undo-2](images/command_result/Undo-2.png)
+<br/><br/>![Undo-2](images/command_result/Undo-2.png)
 
 And above is the execution of `undo`
 
@@ -379,9 +383,6 @@ Format: `redo`
 ![Redo](images/command_result/Redo.png)
 Following the above example for `undo`, `redo` would subsequently change the name of the patient again.
 
-![Clear](images/command_result/Clear.png)
-
-Above is the execution result of the input `clear`.
 
 ### Switching to light mode: `light`
 
