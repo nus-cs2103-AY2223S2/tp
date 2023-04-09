@@ -640,7 +640,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### \[Proposed\] Aggregated data feature
 
-_{Explain here how the data archiving feature will be implemented}_
+Various aggregated data such as total number of clients, total earnings for the user from all the clients, will be displayed and updated automatically. 
 
 
 --------------------------------------------------------------------------------------------------------------------
