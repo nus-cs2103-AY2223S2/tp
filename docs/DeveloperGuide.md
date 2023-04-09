@@ -374,9 +374,9 @@ Furthermore, users are also allowed to specify the field that they want to find 
 > ```
 > In the `find` command, users are then allowed to input their prefix of choice, eg.
 > ```
-> find n/ bo
-> find p/ 9871
-> find edu/ p5
+> find n/bo
+> find p/9871
+> find edu/p5
 > ```
 
 This allows the user to narrow down their `find` results even more.

@@ -491,9 +491,9 @@ For more details and examples on prefixes, please refer to the [Prefix Summary](
 Examples:
 
 - `find n/Sh` will display the students named "Shao Hong" & "Shaun"
-- `find a/ pas` will display students who stay at places which names that contain `pas` such as `Pasir Ris`
-- `find t/ URGENT` will display students who have the exact tag `URGENT`
-- `find m/ CS2101` will display students who have the exact module `CS2101`
+- `find a/pas` will display students who stay at places which names that contain `pas` such as `Pasir Ris`
+- `find t/URGENT` will display students who have the exact tag `URGENT`
+- `find m/CS2101` will display students who have the exact module `CS2101`
 
 **Using the following input** `find n/a m/CS2103T`:
 <p align=center>
