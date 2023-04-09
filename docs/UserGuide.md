@@ -509,7 +509,7 @@ You can refer to this section for more examples of valid and invalid input value
 **:exclamation: Note:** the examples given here are **not exhaustive!** They serve as a **guideline** so that you
 know what information are considered valid and what are not.<br>
 
-:bulb: <code> </code> refers to a blank value.
+<p> :bulb: <code> </code> refers to a blank value. </p>
 </div>  
 
 <table class="center">
