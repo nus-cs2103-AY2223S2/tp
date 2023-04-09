@@ -488,6 +488,82 @@ respective field requested.
     * Cons:
         * Some part of the code is the same as EditCommand.
 
+
+### \[Developed\] Finding free time slots
+This feature allows a user to display unoccupied time slots shared by members of a group.
+
+Time slot finding feature requires a few pre-processing steps to function with efficiency.
+Instead of traversing through the IsolatedEvents and RecurringEvents of each Person in the Group, it would be a better to have some an auxiliary table to reduce computation. 
+The current implementation uses the idea of a bitmask to determine which intervals are occupied. A TimeMask is simply an array of 7 numbers, each reflecting the occupancy of each time slot (1 hour each) throughout a day. Thus, it reflects the occupancies of each time slot in a week. The ordering of the days follow that of Java’s DayOfWeek API where Monday has the lowest value of 1. The first number in the array then represents Monday, the second represents Tuesday and so on. Each Person’s RecurringEventList will then maintain a TimeMask that gets updated whenever a RecurringEvent is added for that Person. 
+
+### Activity Diagram
+The following activity diagram summarises what happens when a user executes a `free` command:
+
+<img src="images/FindTimeCommandActivityDiagram.png" width="300" />
+
+When the FindTimeCommand executes with a Group and Date as its parameters,
+1. A empty parent TimeMask is created, meaning that all time slots in the 7 days are unoccupied by default. 
+2. Then iterate through all Persons in the UniquePersonList and if they are members of the specified Group:
+   a. Check the Person's RecurringEventList and get its TimeMask and merge with the parent TimeMask. This is done by comparing all 7 integers, each representing a day, doing a bitwise OR operation.
+   b. Check through the Person's IsolatedEventList for any events that fall within 7 days from the specified Date and update the corresponding integer in the parent TimeMask. 
+3. The parent TimeMask is then converted to a list of unoccupied time slots, and it is updated in the AddressBook's ScheduleWeek, that acts as an internal list that UI observes.
+4. The UI detects the changes and then displays the updated timetable.
+
+### Sequence Diagram
+The following sequence diagram illustrates the interaction within the Logic component for the execute
+API call for FindTimeCommand.
+
+<img src="images/FindTimeCommandSequenceDiagram.png" width="1000" />
+
+Given below is an example usage scenario and how the command mechanism behaves at each step.
+1. When `LogicManager` is called upon to execute the user's command
+   `free 1 f/04/04/2023`, it calls the `AddressBookParser` class to parse the
+   user command.
+2. Since the user command has the `free` command word, it is a valid command. The `AddressBookParser` creates an
+   `FindTimeCommandParser` to parse the user input.
+3. The `FindTimeCommandParser` will checks if the command is valid through the `parse()` method.
+   If it parses the command successfully, `FindTimeCommand` is created.
+4. The `FindTimeCommand` instance is then returned to the `LogicManager`.
+5. The `LogicManager` then executes the `FindTimeCommand` instance which edit the isolated event to the
+   respective field requested.
+6. Execution of `FindTimeCommand` results in a CommandResult created and returned to the LogicManager.
+
+### Design Consideration
+
+**Aspect: Algorithm and data structure for finding of free time slot**
+* **Alternative 1: List of occupied intervals (start date time and end date time)**
+    * With each command call, merge all the intervals of Events belonging to all Persons in a Group. The Events would be limited within a week from the date parameter in the FindTimeCommand. It helps that the EventLists are already sorted. The ideal approach would be to combine all the lists of Events, then sort them based on the start DateTime and then sieve through the list for any overlapping intervals and combine them.
+    * Pros:
+        * Allows free time output to be more flexible. The time slots do not have to follow the fixed granularity of 1 hour. Instead of hour time slots, there can be slots like '12:33 to 13:11'.
+    * Cons:
+        * More complex to implement. This requires maintenance of lists of non-overlapping intervals.
+
+* **[Current implementation] Alternative 2: Use integers to store occupancy of daily time slots across the week**
+    * Use bits of 1s and 0s to represent the occupancy of a time slot. Thus, use 24 bits of a int data type for a day and have 7 of them to represent a week.
+    * Pros:
+      * Allows for simpler and faster comparisons of schedules with the use of Bitwise operations
+    * Cons:
+      * Fixed time slot granularity of 1 hour, requiring them to follow the hourly format.
+      * More complex to implement arbitrary granularity value, since int data type has a limit of 32 bits and exceeding that will cause overflow and thus cause unexpected calculation differences. It is only feasible to implement 0.5 hour granularity since a long data type can be used to cater 64 bits.
+
+* **Justification**
+    * Alternative 2 capitalizes on the property of RecurringEvents. It is more performant when users only has RecurringEvents and not IsolatedEvents. It may be more common and meaningful to find time slots that are recurring.
+      * Losing flexibility in the range of time slots may not be that significant since users may not require it.
+
+**Aspect: Additional storing of combined timetables**
+* **Alternative: Store the calculated timetables in the corresponding Group**
+  * Instead of having to recompute the timetables for Groups by checking every member, simply store them when they are calculated and retrieve directly when needed 
+  * Pros: 
+    * More efficient retrieval
+  * Cons:
+    * Bug-prone, requires more maintenance. 
+      * There are a couple of factors involved that might affect the correctness of this approach. For example, if a person were to be removed from a group, it is not certain that the Group now has more free time slots since there may be other members who share the same occupied time slots. Suppose Alice and Bob are both in the ‘CS2103’ Group and Alice has a recurring Lecture on Mondays from 1pm to 2pm. Alice has now been removed from the Group. We cannot update the shared ‘CS2103’ Group to free the 1pm time slot, since Bob might also have the same Event. 
+      * So, why not check if Bob has the same Event? It is then a possible approach to follow this implementation, but this requires extra checking of each member’s Events upon modification of any Group’s information.
+
+* **Justification**
+    * To ensure the correctness of our application within the insufficient amount of time remaining, we have decided not to implement this.
+  
+
 ### \[Developed\] Export
 
 The export feature allows users to export a person's details to a json file. Groups and tags are not exported.
@@ -885,6 +961,10 @@ Similar to UC03
 * **GUI**: Graphical User Interface
 * **MSS**: Main Success Scenario
 * **API**: Application Programming Interface
+* **Time slots**: Hourly time intervals 
+* **Free time slots**: Unoccupied time intervals that a Person or a Group has
+* **Timetable**: Collection of occupied and unoccupied time slots throughout a week
+* **Schedule**: Used interchangeably with timetable
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
