@@ -485,6 +485,32 @@ The following sequence diagram illustrates how the delete patient operation work
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+### Assign Patient Feature
+
+#### What it does
+{: .no_toc}
+
+Assigns a patient at the specified **one-based index** of list of currently existing/found patient to a doctor at the specified **one-based index** of list of currently existing/found doctor. If indexes provided are larger or equal to the size of their respective lists, the command will not be allowed and an error will be thrown. If specified patient is already assigned to specified doctor, the command will nto be allowed and an error will be thrown.
+
+Example Use: `assign-ptn ptn/1 doc/1`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the assign patient command, a `AssignPatientCommand` class is created. The `AssignPatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the patient at specified **one-based index** is assigned if the doctor at specified **one-based index** if both indexes provided are valid and the patient is not assigned to the doctor yet. The `AssignPatientCommand` class creates a new `Patient` object with `Doctor` reference and a new `Doctor` object with `Patient` reference. The previous `Patient` and `Doctor` objects are then replaced with the new `Patient` and `Doctor` objects
+
+Given below is an example usage scenario of how the assign patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `assign-ptn ptn/1 doc/1` to assign the patient at index 1 to the doctor at index 1 (one-based indexing).
+
+Step 3. If the indexes provided are valid and patient is not assigned to doctor yet, the patient at index 1 is replaced with a patient with doctor reference and the doctor at index 1 is replaced with a doctor with patient reference.
+
+The following sequence diagram illustrates how the assign patient operation works:
+
+![](images/AssignPatientSequenceDiagram.png)
+
 ### GUI Features
 
 #### Enlarged Info Card feature
