@@ -7,7 +7,7 @@ title: Developer Guide
 
 Vimification is a **desktop app for managing to-do and deadlines, optimized for use via a Command Line Interface** (CLI) **that uses vim-like command syntax** while still having the benefits of a Graphical User Interface (GUI).
 
-This Developer Guide will help you get familiar with the architecture of Vimification and understand the design choices and implementations of key features in Vimification, in case you are interested in contributing to this project. // TODO: Paraphrase
+If you're interested in contributing to the Vimification project, this Developer Guide will assist you in becoming acquainted with Vimification's architecture, as well as comprehending the design decisions and key feature implementations.
 
 ## **Table of Contents**
 
@@ -23,8 +23,8 @@ This Developer Guide will help you get familiar with the architecture of Vimific
 
 ## **Acknowledgements**
 
-- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
 - Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
+- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
 - Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
@@ -51,7 +51,7 @@ The following are the mapping of our components to their part in MVC.
 `Model` - Model
 `Logic` - Controller
 
-In particular, our `Model` is diffrent from the `Model` in AB3, as our `Model` does not bundle
+In particular, our `Model` is different from the `Model` in AB3, as our `Model` does not bundle
 
 <!-- TODO: Need feedback/input  -->
 
@@ -530,8 +530,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                   | I want to …​                                                     | So that I can…​                                                                                         |
 | -------- | ------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --- |
-| `* * *`  | SoC Student who knows Vim | use my task planner fast and efficiently                         | reduce time spent on editing the task planner                                                           |
-| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to do list                         | get an overview of all the things I need to do at one glance                                            |
+| `* * *`  | SoC Student who knows Vim | use my task planner fast and efficiently                         | reduce the time spent on editing or updating my task/deadlines                                          |
+| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to-do list                         | get an overview of all the things I need to do at one glance                                            |
 | `* * *`  | SoC Student who knows Vim | add entries of task for the things to do into the task planner   | keep track of things to do                                                                              |
 | `* * *`  | SoC Student who knows Vim | add priority to a task                                           | give higher priority to more important tasks which should be completed first                            |
 | `* * *`  | SoC Student who knows Vim | add tag to a task                                                | categorize the tasks                                                                                    |
@@ -553,7 +553,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SoC Student who knows Vim | search for tasks by deadlines within a specified period of time  | find all tasks that need to be done within that specified period of time                                |
 | `* * *`  | SoC Student who knows Vim | sort tasks by upcoming deadlines                                 | view all the tasks in the order of upcoming deadlines and know which tasks I should be completing first |
 | `* * *`  | SoC Student who knows Vim | sort tasks by priorities in descending order                     | see which are the more important tasks I should focus on completing first                               |
-| `* *`    | SoC Student who knows Vim | config the storage location of the file                          | customize the location to my own preference for easy reference                                          |
 | `* * *`  | SoC Student who knows Vim | view tasks with priorities in different color                    | visualize the important tasks more easily                                                               |
 | `* * *`  | New user                  | I can use :help                                                  | to access a brief user guide of all the commands and intended use cases of each command                 |
 
