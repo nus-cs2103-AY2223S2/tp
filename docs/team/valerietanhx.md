@@ -48,8 +48,9 @@ Given below are my contributions to the project.
     * Improved grammar, organisation, and clarity of documentation ([#243](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/243))
   * Developer Guide
     * Added implementation details and UML diagrams for the multi-index `delete`, `delete`-by-date, `delete`-by-date-range, and `sort` features
-    * Added Planned Enhancements appendix
+    * Added Planned Enhancements and Effort appendix
     * Added user stories
+    * Added use cases for the `add`, `edit`, `delete`, and `sort` commands
     * Added instructions for manually testing the `delete` command
     * Updated class diagrams to reflect DengueHotspotTracker architecture
     * Organised the Developer Guide and added placeholders for team members to easily add their own features' content

@@ -10,7 +10,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [OpenCSV](https://opencsv.sourceforge.net/)
+* Adapted from: [AddressBook Level 3](https://github.com/nus-cs2103-AY2223S2/tp)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -513,29 +514,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. placeholder
+1. User requests to add a case
+2. DengueHotspotTracker adds the case
+
+    Use case ends.
 
 **Extensions**
 
-1. placeholder
+* 1a. The case to be added is missing a required field, or has invalid input for a field.
+  * 1a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 1.
+
+* 1a. The proposed case to be added results in a duplicate case.
+    * 1a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 1.
 
 #### Use case: Edit a case
 
 **MSS**
 
-1. placeholder
+1.  User requests to list cases
+2.  DengueHotspotTracker shows a list of cases
+3.  User requests to edit a case at a particular index in the list
+4.  DengueHotspotTracker edits the case
+
+   Use case ends.
 
 **Extensions**
 
-1. placeholder
+* 2a. The list is empty.
+  Use case ends.
 
-#### Use case: Delete a case
+* 3a. The given index is invalid.
+    * 3a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 3.
+
+* 3a. The user does not provide a field to edit.
+    * 3a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 3.
+
+* 3a. The proposed edit results in a duplicate case.
+    * 3a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 3.
+
+#### Use case: Delete a single case by index
 
 **MSS**
 
 1.  User requests to list cases
 2.  DengueHotspotTracker shows a list of cases
-3.  User requests to delete a specific case in the list
+3.  User requests to delete a single case by index in the list
 4.  DengueHotspotTracker deletes the case
 
     Use case ends.
@@ -550,6 +578,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. DengueHotspotTracker shows an error message.
 
+      Use case resumes at step 2.
+
+#### Use case: Delete multiple cases by index
+
+**MSS**
+
+1.  User requests to list cases
+2.  DengueHotspotTracker shows a list of cases
+3.  User requests to delete multiple cases by index in the list
+4.  DengueHotspotTracker deletes cases
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. Any of the given indexes are invalid.
+    * 3a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 2.
+
+#### Use case: Delete multiple cases by date
+
+**MSS**
+
+1.  User requests to list cases
+2.  DengueHotspotTracker shows a list of cases
+3.  User requests to delete multiple cases by date in the list
+4.  DengueHotspotTracker deletes cases
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The given date is invalid.
+    * 3a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 2.
+
+#### Use case: Delete multiple cases by date
+
+**MSS**
+
+1.  User requests to list cases
+2.  DengueHotspotTracker shows a list of cases
+3.  User requests to delete multiple cases by date range in the list
+4.  DengueHotspotTracker deletes cases
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The given date range is invalid.
+    * 3a1. DengueHotspotTracker shows an error message.
       Use case resumes at step 2.
 
 #### Use case: Find cases
@@ -616,16 +704,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. placeholder
 
 #### Use case: Import/export/checkout data
-
-**MSS**
-
-1. placeholder
-
-**Extensions**
-
-1. placeholder
-
-**Use case: Add a case**
 
 **MSS**
 
@@ -716,26 +794,25 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Effort**
 
-### Difficulty level
+Our group found the project somewhat challenging despite being familiar with one another’s working styles beforehand
+and putting in significant effort into planning. Besides good ol’ merge conflicts, we also faced disagreements over
+what features to add and how to implement each of them. For instance, some of us had differing opinions on the value
+that certain features would bring to users, as well as the level of abstraction to achieve when implementing new features.
+Another challenge we faced was over- or underestimating the amount of effort required to implement certain features,
+leading to a slight imbalance in workload. Although we believe we have put in an average level of effort compared to
+other groups, one of our previous lectures did suggest that most groups tended to stretch themselves too much,
+going far beyond what was required.
 
-Our project was more complex than AB3 due to enhanced input validation:
-* Postal codes had to begin with a valid two-digit postal sector
-* Both age and date ranges had to be valid
-* Multiple date formats could be accepted
+Nevertheless, we found working on this software engineering project a gratifying and fulfilling experience.
+It was all our first times working on and collaborating with others on a large-scale code base. Those of us who were
+more experienced with GitHub, good code quality, etc. were able to share their expertise and still gain new insights
+from the less experienced members of the team. Each of us improved our software engineering skills: we learnt how
+to build good, maintainable software, and gained experience in both manual and automated testing.
 
-{To be added}
-
-### Challenges faced
-
-{To be added}
-
-### Effort required
-
-{To be added}
-
-### Achievements
-
-{To be added}
+Some more specific achievements include producing a product that was more complex than AB3 due to our enhanced
+input validation. For instance, postal codes have to begin with a valid two-digit postal sector, both age and
+date ranges have to be valid, and multiple date formats are accepted. We also greatly enhanced the UI of the
+product, enhancing the visual experience for users.
 
 --------------------------------------------------------------------------------------------------------------------
 
