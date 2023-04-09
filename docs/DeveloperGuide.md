@@ -58,8 +58,8 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
   - [7.2 Adding a Person](#72-adding-a-person)
   - [7.3 Editing a Person](#73-editing-a-person)
   - [7.4 Deleting a Person](#74-deleting-a-person)
-  - [7.5 Adding Additional Tags](#75-adding-additional-tags-to-a-person)
-  - [7.6 Deleting Individual Tags](#76-deleting-tags-from-a-person)
+  - [7.5 Adding Additional Tags to a Person](#75-adding-additional-tags-to-a-person)
+  - [7.6 Deleting Tags from a Person](#76-deleting-tags-from-a-person)
   - [7.7 Searching for a Person](#77-searching-for-a-person)
   - [7.8 Opening a Person's social media links in app](#78-opening-a-persons-social-media-links-in-app)
   - [7.9 Opening a social media platform with prefilled message](#79-opening-a-social-media-platform-with-prefilled-message)
@@ -785,7 +785,7 @@ testers are expected to do more _exploratory_ testing.
 
 <div style="page-break-after: always"></div>
 
-## 7.2 Adding a `Person`:
+## 7.2 Adding a Person:
 
 1. Adding a `Person` with just name, email and phone
    1. Test case: `add n/John Doe e/email@example.com p/88291322`<br>
@@ -803,7 +803,7 @@ testers are expected to do more _exploratory_ testing.
 
 <div style="page-break-after: always"></div>
 
-## 7.3 Editing a `Person`:
+## 7.3 Editing a Person:
 1. Editing a `Person`'s details:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
     2. Test case: `edit 1 b/12/10/2003 tg/example p/88923444`<br>
@@ -816,7 +816,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.4 Deleting a `Person`:
+## 7.4 Deleting a Person:
 
 1. Deleting a `Person` while all persons are being shown
    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
@@ -832,7 +832,7 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to table of contents](#table-of-contents)
 <div style="page-break-after: always"></div>
 
-## 7.5 Adding additional tags to a `Person`:
+## 7.5 Adding additional tags to a Person:
 1. Adding tags to a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
     2. Test case: `add-t 1 r/friends mod/CS2103T`<br>
@@ -849,7 +849,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.6 Deleting tags from a `Person`:
+## 7.6 Deleting tags from a Person:
 1. Deleting tags from a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. Assuming the first
         `Person` in the list has the remark tag `friends` and module tag `CS2103T`.
@@ -865,7 +865,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.7 Searching for a `Person`:
+## 7.7 Searching for a Person:
 1. Searching for a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
     2. Test case: `search cs`<br>.
@@ -882,7 +882,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.8 Opening a `Person`'s social media links in app:
+## 7.8 Opening a Person's social media links in app:
 1. Opening a `Person`'s social media links:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
     2. Test case: `open 1 tg/`<br>
