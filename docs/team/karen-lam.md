@@ -42,7 +42,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Merging of code of newly implemented features for v1.3 [(#125](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/125), 
     [#134](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/134), [#139)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/139)
-  * Merging and Formatting of User Guide
+  * Merging and Formatting of User Guide [(#233)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/223/)
   
 * **Documentation**:
     * User Guide:
@@ -54,7 +54,7 @@ Given below are my contributions to the project.
         * Modified feature description to match newer iterations of TinS [(#102)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/102)
         * Refine feature description to become more user-oriented
       * Crafted the "About the User Guide" and "About TinS" Section in User Guide [(#202)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/202)
-      * Overall Styling of User Guide 
+      * Overall Styling of User Guide [(#233)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/223/)
 
     * Developer Guide:
       * Crafted Use case and User story for `find` function [(#47)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/47)
