@@ -317,7 +317,7 @@ The second contact has the following tags `Friend`, `Amazing Coder`
 
 #### Example Usages:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/Marine` Edits the name of the 2nd person to be `Betsy Crower` and adds the tag `Marine` if it does not yet exist. If the tag `Marine` already exists on the contact, then it will be removed.
 
 #### Extra Notes
 
@@ -507,8 +507,9 @@ Events have 4 components to them
 - EndDateTime
 - Recurrence
 
-Events will auto-update to their next earliest occurrence for recurring events and will be automatically grayed out once
-the event has been passed.
+Events will auto-update to their next earliest occurrence for recurring events and will be automatically grayed out once the event has been passed.
+
+In the case where an event is supposed to be greyed out (i.e. the time is 2359 and the event is set to end at 2358 on the same day), then inputting any command will update the event to grey.
 
 </div>
 
