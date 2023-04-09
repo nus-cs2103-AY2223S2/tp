@@ -38,7 +38,7 @@ Given below are my contributions to the project.
   * User Guide
     * Reformatted the User Guide to be more readable
     * Added documentation for the `import`, `export` and `checkout` command
-    * Added `Navigating the User Guide` portion to help users to understand the Ui
+    * Added the `Navigating the User Interface` section to help users understand the UI
   * Developer Guide
     * Added implementation details and UML diagrams of the `import`, `export` and `checkout` features
 * **Community:**
