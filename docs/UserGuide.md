@@ -473,18 +473,121 @@ know what information are considered valid and what are not.<br>
 :bulb: ` ` refers to a blank value.
 </div>  
 
-| Attributes  | Valid                                                            | Invalid                                                            |
-|-------------|------------------------------------------------------------------|--------------------------------------------------------------------|
-| MODULE_NAME | `CS2103T` `CS 2101` `gea1000` `ST2334` `Programming Methodology` | ` ` `C$2103T` `CS2101!!` `CS21.01`                                 |
-| TAG         | `Lecture` `Tutorial` `Assignment2` `lab` `PROJECT` ` `           | ` ` `Assignment 2` `l@b`                                           |
-| TIMESLOT    | `Friday 12:00 14:00` `Tuesday 09:00 10:00`                       | ` ` `Mon 12:00 14:00` `Wednesday 7:00 8:00` `Thursday 11:00 10:00` |
-| VENUE       | `COM1` `COM 3.` `com1-0117`                                      | ` `                                                                |
-| TEACHER     | `Damyth.` `Prof John Lee` `Dr Ch'ng` `mr. anderson`              | ` `                                                                |
-| DEADLINE    | `100423 23:59` `120423 11:00` `280223 09:00` `290224 12:00`      | ` ` `10423 23:59` `320423 11:00` `290223 09:00` `290224 25:61`     |
-| REMARK      | `Hard module.` `Can S/U.` `Rewatch` `PAY ATTENTION`              | ` `                                                                |
-| RESOURCE    | `www.google.com` `WWW.YOUTUBE.COM` `WwW.GmAiL.cOm`               | ` `                                                                |
---------------------------------------------------------------------------------------------------------------------
+<table class="center">
+   <tr>
+      <th>Attributes</th>
+      <th>Valid</th>
+      <th>Invalid</th>
+   <tr>
+   <tr>
+      <td>MODULE_NAME</td>
+      <td>
+         <code>CS2103T</code>
+         <code>CS 2101</code>
+         <code>gea1000</code>
+         <code>ST2334</code>
+         <code>Programming Methodology</code>
+      </td>
+      <td>
+         <code> </code>
+         <code>C$2103T</code>
+         <code>CS2101!!</code>
+         <code>CS21.01</code>
+      </td>
+   <tr>
+   <tr>
+      <td>TAG</td>
+      <td>
+         <code>Lecture</code>
+         <code>Tutorial</code>
+         <code>Assignment2</code>
+         <code>lab</code>
+         <code>PROJECT</code>
+      </td>
+      <td>
+         <code> </code>
+         <code>Assignment 2</code>
+         <code>l@b</code>
+      </td>
+   <tr>
+   <tr>
+      <td>TIMESLOT</td>
+      <td>
+         <code>Friday 12:00 14:00</code>
+         <code>Tuesday 09:00 10:00</code>
+      </td>
+      <td>
+         <code> </code>
+         <code>Mon 12:00 14:00</code>
+         <code>Wednesday 7:00 8:00</code>
+         <code>Thursday 11:00 10:00</code>
+      </td>
+   <tr>
+   <tr>
+      <td>VENUE</td>
+      <td>
+         <code>COM1</code>
+         <code>COM 3.</code>
+         <code>com1-0117</code>
+      </td>
+      <td>
+         <code> </code>
+      </td>
+   <tr>
+   <tr>
+      <td>TEACHER</td>
+      <td>
+         <code>Prof Damyth.</code>
+         <code>Mr. John Lee</code>
+         <code>Dr Ch'ng</code>
+         <code>anderson</code>
+      </td>
+      <td>
+         <code> </code>
+      </td>
+   <tr>
+   <tr>
+      <td>DEADLINE</td>
+      <td>
+         <code>100423 23:59</code>
+         <code>120423 11:00</code>
+         <code>280223 09:00</code>
+         <code>290224 12:00</code>
+      </td>
+      <td>
+         <code> </code>
+         <code>10423 23:59</code>
+         <code>320423 11:00</code>
+         <code>290223 09:00</code>
+         <code>290224 25:61</code>
+      </td>
+   <tr>
+   <tr>
+      <td>REMARK</td>
+      <td>
+         <code>Hard module.</code>
+         <code>Can S/U</code>
+         <code>rewatch</code>
+         <code>PAY ATTENTION</code>
+      </td>
+      <td>
+         <code> </code>
+      </td>
+   <tr>
+   <tr>
+      <td>RESOURCES</td>
+      <td>
+         <code>www.google.com</code>
+         <code>WWW.YOUTUBE.COM</code>
+         <code>WwW.GmAiL.cOm</code>
+      </td>
+      <td>
+         <code> </code>
+      </td>
+   <tr>
+</table>  
 
+--------------------------------------------------------------------------------------------------------------------  
 
 ## Data Storage
 
