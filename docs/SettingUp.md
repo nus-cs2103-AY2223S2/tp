@@ -3,13 +3,14 @@ layout: page
 title: Setting up and getting started
 ---
 
-* Table of Contents
-{:toc}
+# Table of Contents
+- [1. Setting up](#1-setting-up-the-project-in-your-computer)
+- [2. Before writing code](#2-before-writing-code)
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Setting up the project in your computer
+# 1. Setting up the project in your computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
@@ -28,7 +29,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Before writing code
+# 2. Before writing code
 
 1. **Configure the coding style**
 

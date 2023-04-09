@@ -1,38 +1,91 @@
 ---
 layout: page
 title: Developer Guide
+
 ---
-* Table of Contents
-{:toc}
+# Pied Piper
 
---------------------------------------------------------------------------------------------------------------------
-## **Introduction**
+Pied Piper is a user-friendly task management application tailored for current and future university student leaders.
+The app helps them stay organised and prepare for real-world situations by helping them manage project groups, and
+simulate the real world review system. Key features include creating tasks, assigning tasks to team members, setting
+due dates, rating completed tasks out of 5, and providing feedback through comments. The ability to seamlessly toggle
+between a person list and task list also helps team leaders easily identify each team members' roles and their assigned
+task to complete. Ideal for personal projects and team collaboration, Pied Piper aims to improve productivity and equip
+university students with valuable skills for their future careers.
 
-Pied Piper is a desktop application for managing projects with a significant level of complexity. It functions
-via a Command-Line Interface (CLI) that allows more efficient management of events.
+Some of our main features:
+- **Adding tasks with or without due dates.**
+- **Adding team members and assigning them to created tasks.**
+- **Mark tasks as complete and give a rating to gauge the performance of each member.**
+- **Review each member's overall performances based on the tasks completed.**
 
---------------------------------------------------------------------------------------------------------------------
+This user guide provides a broad overview of how the various features work and how to use them properly. We hope you
+have fun using Pied Piper and may all your future endeavors be elevated with our product!
 
-## **Acknowledgements**
+---
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+<div style="page-break-after: always"></div>
 
---------------------------------------------------------------------------------------------------------------------
+# Table of Contents
+- [1. Acknowledgements](#1-acknowledgements)
+- [2. Setting up, getting started](#2-setting-up-getting-started)
+- [3. Design](#3-design)
+  - [3.1 Architecture](#31-architecture)
+  - [3.2 UI component](#32-ui-component)
+  - [3.3 Logic component](#33-logic-component)
+  - [3.4 Model component](#34-model-component)
+  - [3.5 Storage component](#35-storage-component)
+  - [3.6 Common classes](#36-common-classes)
+- [4. Implementation](#4-implementation)
+  - [4.1 Feature implementations](#41-feature-implementations)
+    - [4.1.1 Add task feature](#411-add-task-feature)
+    - [4.1.2 Delete feature](#412-deletedeletetask-feature)
+  - [4.2 Future features](#42-proposed-implementation-of-future-features)
+- [5. Other guides](#5-documentation-logging-testing-configuration-dev-ops)
+- [6. Appendix: Requirements](#6-appendix-requirements)
+  - [6.1 Product scope](#61-product-scope)
+  - [6.2 User stories](#62-user-stories)
+  - [6.3 Use cases](#63-use-cases)
+  - [6.4 Non-functional requirements](#64-non-functional-requirements)
+  - [6.5 Glossasry](#65-glossary)
+- [7. Manual testing](#7-appendix-instructions-for-manual-testing)
+  - [7.1 Launch and shutdown](#71-launch-and-shutdown)
+  - [7.2 Deleting a person](#72-deleting-a-person)
+  - [7.3 Clear people data](#73-clearing-people-data)
+  - [7.4 Edit a person](#74-editing-a-person)
+---
 
-## **Setting up, getting started**
+# 1. Acknowledgements
+
+* Pied Piper is a brownfield project that builds on [AB-3](https://se-education.org/addressbook-level3/).
+* This project is a part of the [se-education.org](https://se-education.org) initiative.
+
+The libraries used are as follows:
+- [Jackson](https://github.com/FasterXML/jackson) was used for storage.
+- [JavaFX](https://openjfx.io/) was used to render the UI.
+- [PlantUML](https://plantuml.com/) was used to create UML diagrams.
+- [JUnit](https://junit.org/junit5/) was used to make test scripts for testing.
+
+[↑ Return to table of contents](#table-of-contents)
+
+---
+
+# 2. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+[↑ Return to table of contents](#table-of-contents)
 
-## **Design**
+---
+
+# 3. Design
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+## 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -42,18 +95,18 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W15-3/tp/tree/master/src/main/java/seedu/address) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -73,9 +126,13 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+[↑ Return to start of section](#3-design)
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[↑ Return to table of contents](#table-of-contents)
+
+## 3.2 UI component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -90,9 +147,17 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+**Note**:
+- Above describes the UI component for the `PersonList`.
+- For our `TaskList`, the way it works is the same, but `Model` is changed to `TaskBookModel`, and `Person` is changed to `Task`.
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[↑ Return to start of section](#3-design)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 3.3 Logic component
+
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -100,9 +165,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -119,20 +184,30 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**Note**:
+- Our app also has a `TaskBook`, which works the same as `AddressBook`, except that it interacts with the classes that handle tasks, such as `TaskBookModel` and `DeleteTaskCommandParser`.
+
+[↑ Return to start of section](#3-design)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 3.4 Model component
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
 * stores all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores all `Task` objects (which are contained in a `UniqueTaskList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as 
+an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own 
+without depending on other components)
+
+**Note**:
+- Tasks are handled in a similar way in the `TaskBookModel` component. 
+- It interacts with components like `UniqueTaskList` and is 'observed' as an unmodifiable `ObservableList<Task>`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in Pied Piper, which `Person` references. This allows `Pied Piper` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -140,36 +215,49 @@ The `Model` component,
 
 </div>
 
+[↑ Return to start of section](#3-design)
 
-### Storage component
+[↑ Return to table of contents](#table-of-contents)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+##  3.5 Storage component
+
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
+
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `AddressBookStorage`, `TaskStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+[↑ Return to start of section](#3-design)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+[↑ Return to start of section](#3-design)
+
+[↑ Return to table of contents](#table-of-contents)
+
+---
+
+# 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Task feature
+## 4.1 Feature implementations
 
-#### Implementation
+### 4.1.1 Add Task feature
 
 The implementation of the add task function is facilitated by `LogicManager`. It takes user input as 2 arguments, the command word being "todo". The second argument is a description of the task.
 
 The format is as follows:
-- `todo task/{Task_Description}`
+- `todo task/TASK_DESCRIPTION`
 
 Step 1. The user executes `todo task/organise pantry` command to add the task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
 
@@ -187,13 +275,17 @@ The following sequence diagram shows how the addition operation works:
 
 <img src="images/ToDoSequenceDiagramUML.png"/>
 
-### Delete/deletetask feature
+[↑ Return to start of section](#4-implementation)
+
+[↑ Return to table of contents](#table-of-contents)
+
+### 4.1.2 Delete/deletetask feature
 
 The implementation of the delete/deletetask function is facilitated by `LogicManager`. It takes user input as 2 arguments, the command word being either `delete` or `deletetask`, depending on whether the user wants to delete a person or task respectively. The second argument is an index, denoting the index of the person or task the user wishes to delete.
 
 The format is as follows:
-- `delete {Person_ID}`
-- `deletetask {TASK_ID}`
+- `delete PERSON_INDEX`
+- `deletetask TASK_INDEX`
 
 Given below is an example scenario and how the delete function woks at each step.
 
@@ -217,8 +309,11 @@ The following sequence diagram shows how the delete operation works:
 
 <img src="images/DeleteCommandUML.png"/>
 
-#### Proposed Implementation
-#### Design considerations:
+[↑ Return to start of section](#4-implementation)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 4.2 Proposed implementation of future features:
 
 **Aspect: How undo & redo executes:**
 
@@ -233,14 +328,13 @@ The following sequence diagram shows how the delete operation works:
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+[↑ Return to start of section](#4-implementation)
 
-_{Explain here how the data archiving feature will be implemented}_
+[↑ Return to table of contents](#table-of-contents)
 
+---
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
+# 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -248,11 +342,13 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+[↑ Return to table of contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+# 6. Appendix: Requirements
 
-### Product scope
+## 6.1 Product scope
 
 **Target user profile**:
 
@@ -268,29 +364,37 @@ _{Explain here how the data archiving feature will be implemented}_
 - Adding of various tasks with descriptions.
 - Get an overview via the List view so that you can find the event that you need easily.
 
-### User Stories
+[↑ Return to start of section](#6-appendix-requirements)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 6.2 User Stories
 
 **Priorities**: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​ | I want to …​                          | So that I can…​                                                     |
-| -------- | ---- |---------------------------------------|---------------------------------------------------------------------|
-| `* * *`  | user | create tasks                          | keep track of the tasks I need to accomplish                        |
-| `* * *`  | user | delete tasks                          | remove tasks that are outdated or specified incorrectly             |
-| `* * *`  | user | view each team member's tasks         | have a clear and easily understandable list of what they have to do |
-| `* * *`  | user | assign tasks                          | keep track of who is responsible for which task                     |
-| `* * *`  | user | assign roles                          | remember the responsibilities of each member                        |
-| `* * *`  | user | create tasks with a deadline          | see the due date of the task easily                                 |
-| `* * *`  | user | create tasks that are events          | keep track of events we conduct as a group                          |
-| `* * *`  | user | comment on tasks                      | record my feedback for each accomplished task                       |
-| `* * *`  | user | mark a task as completed               | have a clear view of what tasks are accomplished                    |
-| `* * *`  | user | unmark a task as uncompleted          | undo any possible false marking of tasks                            |
-| `* * *`  | user | assign scores for each completed task | better evaluate overall performance of teammates                    |
+|----------|---------|---------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | user    | create tasks                          | keep track of the tasks I need to accomplish                        |
+| `* * *`  | user    | delete tasks                          | remove tasks that are outdated or specified incorrectly             |
+| `* * *`  | user    | view each team member's tasks         | have a clear and easily understandable list of what they have to do |
+| `* * *`  | user    | assign tasks                          | keep track of who is responsible for which task                     |
+| `* * *`  | user    | assign roles                          | remember the responsibilities of each member                        |
+| `* * *`  | user    | create tasks with a deadline          | see the due date of the task easily                                 |
+| `* * *`  | user    | create tasks that are events          | keep track of events we conduct as a group                          |
+| `* * *`  | user    | comment on tasks                      | record my feedback for each accomplished task                       |
+| `* * *`  | user    | mark a task as completed              | have a clear view of what tasks are accomplished                    |
+| `* * *`  | user    | unmark a task as uncompleted          | undo any possible false marking of tasks                            |
+| `* * *`  | user    | assign scores for each completed task | better evaluate overall performance of teammates                    |
 
-### Use cases
+[↑ Return to start of section](#6-appendix-requirements)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 6.3 Use cases
 
 (For all use cases below, the **System** is `Pied Piper` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+**Use case 1: Add a person**
 
 **MSS**
 
@@ -314,7 +418,7 @@ _{Explain here how the data archiving feature will be implemented}_
       Use case resumes at step 2.
 
 
-**Use case: Create a task**
+**Use case 2: Create a task**
 
 **MSS**
 
@@ -335,7 +439,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case resumes at step 2.
 
-**Use case: Delete a task**
+**Use case 3: Delete a task**
 
 **MSS**
 
@@ -355,7 +459,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
     Use case resumes at step 2.
 
-**Use Case: view tasks**
+**Use Case 4: view tasks**
 
 
 **MSS**
@@ -390,7 +494,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
     Use case resumes at step 1.
 
-### Non-Functional Requirements
+[↑ Return to start of section](#6-appendix-requirements)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -398,25 +506,33 @@ _{Explain here how the data archiving feature will be implemented}_
 4.  The response to any use action should become visible within 2 seconds.
 5.  The user interface should be intuitive enough for users who are not IT-savvy.
 
+[↑ Return to start of section](#6-appendix-requirements)
 
+[↑ Return to table of contents](#table-of-contents)
 
-### Glossary
+## 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
+[↑ Return to start of section](#6-appendix-requirements)
+
+[↑ Return to table of contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# 7. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+**Note** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -424,16 +540,18 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+[↑ Return to start of section](#7-appendix-instructions-for-manual-testing)
 
-### Deleting a person
+[↑ Return to table of contents](#table-of-contents)
+
+## 7.2 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -450,7 +568,11 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+[↑ Return to start of section](#7-appendix-instructions-for-manual-testing)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 7.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -458,7 +580,11 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Clearing people data
+[↑ Return to start of section](#7-appendix-instructions-for-manual-testing)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 7.3 Clearing people data
 
 1. Clearing data of all people while list of all people is being shown
     1. Prerequisites: List all persons using the `list` command.
@@ -466,7 +592,11 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `clear`<br>
        Expected: Every person is removed. Status message is displayed.
 
-### Editing a person
+[↑ Return to start of section](#7-appendix-instructions-for-manual-testing)
+
+[↑ Return to table of contents](#table-of-contents)
+
+## 7.4 Editing a person
 
 1. Editing details of person
     1. Prerequisites: List all persons using the `list` command. Multiple persons on the list. 
@@ -476,3 +606,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit 0 n/John Doe p/22224444`<br>
        Expected: No person is edited. Error details are shown in the status message.
+
+[↑ Return to start of section](#7-appendix-instructions-for-manual-testing)
+
+[↑ Return to table of contents](#table-of-contents)
