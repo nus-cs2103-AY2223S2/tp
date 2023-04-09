@@ -5,32 +5,32 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([Missing
+if () then ([missing
 arguments])
     :Error: Invalid
     command format;
 stop
-else if () then ([Invalid
+else if () then ([invalid
 arguments])
     :Error: Invalid
     arguments;
 stop
 else if () then (
-[Invalid Index])
+[invalid index])
     :Error: Invalid
-    event Index;
+    event index;
 stop
-else if () then ([Identical
+else if () then ([identical
 event exists])
     :Error: Duplicate event;
 stop
-else if () then ([End time earlier
+else if () then ([end time earlier
 than start time])
     :Error: End time earlier
     than start time;
 stop
-else if () then ([Time slot is occupied
-by another Event])
+else if () then ([time slot is occupied
+by another event])
     :Error: Event exists
     at chosen time;
 stop
