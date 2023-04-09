@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box UI #CCFF99
+participant ":MainWindow" as MainWindow #4D9900
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FitBookParser" as FitBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+box FitBookModel MODEL_COLOR_T1
+participant ":FitBookModel" as FitBookModel MODEL_COLOR
+participant ":Appointment" as Appointment MODEL_COLOR
+participant ":ClientAppointmentComparator" as ClientAppointmentComparator MODEL_COLOR
+end box
+
+[-> MainWindow : execute("edit 1 app/05-05-2023 19:00")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("edit 1 app/05-05-2023 19:00")
+activate LogicManager
+
+LogicManager -> FitBookParser : parseCommand("edit 1 app/05-05-2023 19:00")
+activate FitBookParser
+
+create EditCommandParser
+FitBookParser -> EditCommandParser : parse("edit 1 app/05-05-2023 19:00")
+activate EditCommandParser
+
+EditCommandParser --> FitBookParser
+deactivate EditCommandParser
+
+FitBookParser -> EditCommandParser : parse("edit 1 app/05-05-2023 19:00")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+EditCommandParser --> FitBookParser : e
+destroy EditCommandParser
+
+FitBookParser --> LogicManager : e
+deactivate FitBookParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> FitBookModel : getFilteredClientList()
+activate FitBookModel
+
+FitBookModel --> EditCommand
+deactivate FitBookModel
+
+EditCommand -> Appointment : setAppointments("05-05-2023 19:00")
+activate Appointment
+
+Appointment --> EditCommand
+deactivate Appointment
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+create ClientAppointmentComparator
+MainWindow -> ClientAppointmentComparator : compare(c1, c2)
+activate ClientAppointmentComparator
+
+ClientAppointmentComparator --> MainWindow : int
+deactivate ClientAppointmentComparator
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
