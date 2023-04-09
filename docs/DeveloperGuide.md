@@ -260,6 +260,8 @@ Step 6. The user executes `clear`, which calls `Model#commitSocket()`. Since the
 
 <p align="center"><img src="images/UndoRedoState5.png" /></p>
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <p align="center"><img src="images/CommitActivityDiagram.png" width="250" /></p>
@@ -277,6 +279,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+<div style="page-break-after: always;"></div>
 
 ### List Feature
 
@@ -967,13 +971,13 @@ Similar to **UC04 Sort Contacts**, except,
 * the list being sorted is the list of projects instead of contacts
 * the default sort when no category is provided is by the deadline of the project instead of the name.
 
-<div style="page-break-after: always;"></div>
-
 **Use case: UC20 Assigning a member from a project**
 1. User requests to add a contact to a project.
 2. SOCket adds the contact to the project.
 
    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -1016,13 +1020,13 @@ Similar to **UC01 Add a contact**, except,
 * A projects is added instead of contact.
 * Only meeting date is an optional field, all other fields are compulsory.
 
-<div style="page-break-after: always;"></div>
-
 **Use case: UC23 Delete a project**
 
 Similar to **UC03 Delete a contact**, except,
 * a list of projects is shown instead of contacts.
 * a project is deleted instead of a contact.
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -1056,7 +1060,7 @@ Similar to **UC03 Delete a contact**, except,
       1. `S. R. Nathan`
 
    We plan to update the `VALIDATION_REGEX` to also allow other possible names including, but not limited to, those under "Invalid `Name` fields" above. The `VALIDATION_REGEX` currently does not restrict `Name` length to allow for contacts with long names. These cases are handled in the UI by allowing the contact list to be scrollable, and wrapping long names in the detail panel.
-1. The current `VALIDATION_REGEX` for validating the `Phone` field is flawed, and does not consider phone numbers with `+`, `-`, ` `, `(`, or `)` valid.
+2. The current `VALIDATION_REGEX` for validating the `Phone` field is flawed, and does not consider phone numbers with `+`, `-`, ` `, `(`, or `)` valid.
    1. Valid `Phone` fields:
       1. `995`
       1. `12345678`
@@ -1066,7 +1070,10 @@ Similar to **UC03 Delete a contact**, except,
       1. `(01234) 012345` 
 
    We plan to update the `VALIDATION_REGEX` to allow other possible phone numbers including, but not limited to, those under "Invalid `Phone` fields" above, as well as limiting the length of a valid `Phone` field to follow the longest conventionally accepted phone number.
-1. The current `VALIDATION_REGEX` for validating `Language` fields is flawed, and does not consider languages with `.` or ` ` valid.
+
+<div style="page-break-after: always;"></div>
+
+3. The current `VALIDATION_REGEX` for validating `Language` fields is flawed, and does not consider languages with `.` or ` ` valid.
    1. Valid `Language` fields:
       1. `Java`
       1. `C++`
@@ -1077,12 +1084,10 @@ Similar to **UC03 Delete a contact**, except,
       1. `Text Executive Programming Language`
    
    We plan to update the `VALIDATION_REGEX` to allow other possible languages including, but not limited to, those under "Invalid `Language` fields" above. This entails enhancements such as allowing a `Language` field to consist of multiple words in the case that users choose to store the full name of a language instead of its acronym, or names of languages with multiple words without a conventionally accepted acronym, as well as allowing `.` in the `Language` field.
-
-<div style="page-break-after: always;"></div>
  
-1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline` and/or `ProjectMeeting` field, without any indication that the deadline or meeting has passed. As users may want to keep the details of finished projects or meetings for posterity, we plan on continuing to allow the `ProjectDeadline` and `ProjectMeeting` fields to be set to past date and time, however, further checks will be added when setting the `ProjectDeadline` or `ProjectMeeting` fields to notify users when setting a date and time that has already passed, showing an additional message: `The project deadline has already passed.` or `The project meeting has already passed.` 
-1. The current `Project` only allows users to set a single `ProjectMeeting`, which could be problematic in the case that users would like to store the details of several meetings in advance, as opposed to just the upcoming meeting. We plan to enhance this feature to allow users to set several `ProjectMeeting` fields for a `Project`, to enable users to manage more meetings for a `Project`, such as future meetings past the upcoming meeting, as well as keep a record of previous meetings if such a need arises.
-1. The current UI makes use of a horizontal scroll bar to handle the interaction of overflowing text with tags in the contact panel. To enhance the user experience, we plan to only display the tag count initially. If the user chooses to view a specific contact, the contact card will then expand to show the full list of tags associated with that contact.
+4. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline` and/or `ProjectMeeting` field, without any indication that the deadline or meeting has passed. As users may want to keep the details of finished projects or meetings for posterity, we plan on continuing to allow the `ProjectDeadline` and `ProjectMeeting` fields to be set to past date and time, however, further checks will be added when setting the `ProjectDeadline` or `ProjectMeeting` fields to notify users when setting a date and time that has already passed, showing an additional message: `The project deadline has already passed.` or `The project meeting has already passed.` 
+5. The current `Project` only allows users to set a single `ProjectMeeting`, which could be problematic in the case that users would like to store the details of several meetings in advance, as opposed to just the upcoming meeting. We plan to enhance this feature to allow users to set several `ProjectMeeting` fields for a `Project`, to enable users to manage more meetings for a `Project`, such as future meetings past the upcoming meeting, as well as keep a record of previous meetings if such a need arises.
+6. The current UI makes use of a horizontal scroll bar to handle the interaction of overflowing text with tags in the contact panel. To enhance the user experience, we plan to only display the tag count initially. If the user chooses to view a specific contact, the contact card will then expand to show the full list of tags associated with that contact.
 
 --------------------------------------------------------------------------------------------------------------------
 
