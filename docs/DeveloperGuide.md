@@ -123,7 +123,7 @@ The above diagram shows a quick overview of the Model component, while the three
 
 <img src="images/AddressBookClientDiagram.png" width="700" />
 <img src="images/AddressBookProjectDiagram.png" width="700" />
-<img src="images/AddressBookTagMappingDiagram.png" width="700" />
+<img src="images/AddressBookTagMappingDiagram.png" width="400" />
 
 The `Model` component,
 
@@ -137,7 +137,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="600" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -174,7 +174,7 @@ There are a set of Comparators defined inside the `ModelManager` class, that are
 
 Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator<T>`. The below diagram shows what occurs when a user executes a `sort-client` command, which sorts the client list by name.
 
-<img src="images/SortingSequenceDiagram.png" width="600" />
+<img src="images/SortingSequenceDiagram.png" width="700" />
 
 As the contents of the sorted list is the already filtered list, executing sorting will only sort clients/projects that are currently visible. Clients/projects that are hidden due to a previous `find command` will remain hidden.
 
@@ -226,7 +226,7 @@ The `CombinedPredicate` object `c` is then used to update the filtered client li
 
 `CombinedPredicate<T>` is a generic class that inherits from the generic class `Predicate<T>` and tests all predicates that were passed to it when it was initialised. The `FindClientCommand` and `FindProjectCommand` objects are unaware of what predicates it is specifically testing, since they only know that they are testing a `Predicate<T>` object, making use of the `Command` design pattern. This is shown by the class diagram below, where a `FindClientCommand` and `FindProjectCommand` stores a `Predicate<T>` object.
 
-<img src="images/CombinedPredicateClassDiagram.png" width="500" />
+<img src="images/CombinedPredicateClassDiagram.png" width="600" />
 
 ### Done Status
 
