@@ -87,7 +87,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays specific objects residing in the `Model` such as the `Customer`, `Vehicle`, `Service`, `Appointment` and `PartMap` objects.
-* also depends on some mapping classes in the `Model` component as certain objects have an integer array of object ids that refer to another object. One example is the Customer class, which has a `HashSet<Integer>` of `Vehicle` IDs. To associate each `Customer` object with the corresponding `Vehicle` objects, the Model uses an object called `CustomerVehicleMap`. The `UI` component then displays the relevant objects based on these mappings. In essence, the `Model` uses these mapping classes to ensure that objects with references to one another are properly connected and displayed in the user interface.
+* also depends on some mapping classes in the `Model` component as certain objects have an integer array of object ids that refer to another object. One example is the Customer class, which has a `HashSet<Integer>` of `Vehicle` IDs. To associate each `Customer` object with the corresponding `Vehicle` objects, the Model uses an object called `CustomerDataMap`. The `UI` component then displays the relevant objects based on these mappings. In essence, the `Model` uses these mapping classes to ensure that objects with references to one another are properly connected and displayed in the user interface.
 
 ### Logic component
 
@@ -173,9 +173,9 @@ Hence, it is important to ensure that each entity has a unique ID which is gener
 
 This ID generation is facilitated by the `IdGenerator` class.
 The class consists of `SortedSets` and `PriorityQueues`, one for each entity.
-The `SortedSets` are used to keep track of all the IDs that are in use while the `PriorityQueues` are used to update the `IdGenerator` about all the IDs that are not in use. 
+The `SortedSets` are used to keep track of all the IDs that are in use while the `PriorityQueues` are used to update the `IdGenerator` about all the IDs that are not in use.
 When the `generateXId()` method is called, the `IdGenerator` will first check if the `PriorityQueue` containing unused IDs is empty.
-If it is empty, it will pop off the smallest ID from the `PriorityQueue` and return it. 
+If it is empty, it will pop off the smallest ID from the `PriorityQueue` and return it.
 If it is empty, the `IdGenerator` will check the largest ID in the `SortedSet` of used IDs, return a number one larger than that, and add it to the `SortedSet` of used IDs.
 The API call `setXIdUnused(int)` is used to update the `PriorityQueue` of unused IDs when an entity is deleted.
 
@@ -200,7 +200,7 @@ Above is the activity diagram for adding a vehicle to the `Shop`. Adding other e
 Related entities are updated automatically.
 
 <img src="images/RemoveCustomerInternalActivityDiag.png" height="800">
-<img src="images/RemoveVehicleInternalActivityDiag.png" height="700"> 
+<img src="images/RemoveVehicleInternalActivityDiag.png" height="700">
 <img src="images/RemoveAppointmentInternalActivityDiag.png" height="700">
 <img src="images/RemoveServiceInternalActivityDiag.png" height="1130">
 
@@ -226,7 +226,7 @@ The undo and redo commands call the `revert()` and `redo()` API of the `Shop`. A
 
 * **Alternative 2:** Individual command has an 'inverse' command which will perform the opposite action.
     * Pros: Will use less memory (e.g. No need to save entire shop every update).
-    * Cons: 
+    * Cons:
         * Must ensure that the implementation of each command is correct. Adds a lot of complexity that may not seem justified as it is to only accommodate the undo/redo feature.
         * Difficult to implement for commands that have cascading effects.
 
@@ -241,41 +241,110 @@ The undo and redo commands call the `revert()` and `redo()` API of the `Shop`. A
     * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application.
 
 **Aspect: How to structure and store Entity data**
-* **Current:** 
+* **Current:**
   * Each entity has a unique ID and each entity stores the IDs of the entities that it is related to.
   * The `Shop` class stores all the entities as various Observable Lists.
   * `Shop` class manages all the data modification. It manages all the cascading effects and relationships between entities and ID generation as well as input validation on primitive data input.
-  * Pros: 
+  * Pros:
     * Outer classes (e.g Commands) just have to call the relevant API of `Shop` to modify the data. They do not have to worry about relationships between entities.
-    * `Shop` class has full 'low level' control of the data. It can ensure that the data is consistent and relationships between entities are preserved. 
+    * `Shop` class has full 'low level' control of the data. It can ensure that the data is consistent and relationships between entities are preserved.
     * Isolate all data manipulation bugs to the `Shop` class. This makes it easier to debug and test.
   * Cons:
-    * Shop class has very high responsibility. Relatively long and complex methods. 
-    * Certain constraints of `Shop` have to be violated to support loading data from file. 
+    * Shop class has very high responsibility. Relatively long and complex methods.
+    * Certain constraints of `Shop` have to be violated to support loading data from file.
         `Shop` requires other classes to call its API to modify the data.
-        However, when loading data from file, the `Storage` classes needs to modify the data directly. 
-      Some 'unsafe' methods of `Shop` are public to facilitate this. 
+        However, when loading data from file, the `Storage` classes needs to modify the data directly.
+      Some 'unsafe' methods of `Shop` are public to facilitate this.
       This could be avoided if `Shop` manages storing and loading data as well, but this would violate the Single Responsibility Principle and there was not enough time to implement this.
 * **Alternative:**
   * Each entity stores references to the entities that it is related to.
   * `Shop` class stores all the top level entities (e.g. `Customer` and `Technician`) as various Observable Lists.
   * Commands and entities manage their own data and relationships.
   * Pros:
-    * Commands and entities can freely manipulate the data and relationships. 
-    * `Shop` class has less responsibility. 
+    * Commands and entities can freely manipulate the data and relationships.
+    * `Shop` class has less responsibility.
     * `Shop` class does not need to violate personal constraints to facilitate loading data from file.
   * Cons:
       * Retrieving/modifying bottom level entities (e.g. `Service`) is very complex and hard to manage
       * Commands and entities have to manage the data and relationships themselves. This could lead to bugs and inconsistencies.
-      * `Shop` class has no control over the data. It cannot ensure that the data is consistent and relationships between entities are preserved. 
-      * Bugs could be caused by any of the many commands and entities across different packages. This makes it extremely hard to debug and test. 
-       
+      * `Shop` class has no control over the data. It cannot ensure that the data is consistent and relationships between entities are preserved.
+      * Bugs could be caused by any of the many commands and entities across different packages. This makes it extremely hard to debug and test.
+
+### Mapping classes
+We use nested integer object ID arrays to establish 1-to-many relationships between entities generated by an ID generator. However, this required multiple mapping classes to retrieve the nested objects by their IDs and display necessary information in the UI.
+
+Below shows an activity diagram of how `CustomerDataMap` is iniatialised/reset everytime there's a necessary update to any entities involved
+<img src="images/CustomerDataMapInitActivityDiag.png" height="700">
+
+> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+
+The XDataMap class represents a mapping between X and their associated entities. It maintains several maps to efficiently retrieve information based on unique IDs. The class also provides methods to initialize the mappings, modify them, and retrieve data from them.
+
+Overall, the XDataMap classes provides a convenient way to maintain and access information about X and their associated entities
+
+### Find/List Feature
+#### Current Implementation
+The List feature shows users the whole list of entities in their respective tabs. We have a specific List command and a global list command. The Find feature helps to find specific entities according to the keyword provided.
+
+Both features are essentially implemented the same way as both will filter the displayed lists to the user thus we will be using the sequence diagram of the Find feature to show how the different components interact with one another to execute the command.
+
+> <b>Note:</b> For List commands `X` can be `Customer/Appointment/Service/Vehicle/Technician/Part`. For Find commands `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
+
+A key detail to the Find/List implementation is that the respective Find and List commands executes which calls Model#updateFilteredXList() while passing in a predicate to update the filtered list shown to the user in the UI according to a predicate. The Find command would pass in the predicate created from the FindCommandParser while the List command simply uses a static predicate called SHOW_ALL_X.
+
+The Sequence Diagram below illustrates the interactions with the `Logic`, `Model` and `JavaFx` components for the `find KEYWORD` API call.
+
+<img src="images/FindSequenceDiagram.png" width="1100" />
+
+While both features are implemented similarly, it is also important to note that there is a slight difference between Find and List feature. It is shown in the partial sequence diagram of the ListXCommand below. The slight difference is the absence of a CommandParser for ListXCommands. \
+Note: The rest of the sequence diagram of ListCommands are the same as the Find Feature sequence diagram shown above
+
+<img src="images/ListXSequenceDiagramCropped.png" width="600" />
+
+#### Design considerations:
+
+**Aspect: The way find is implemented**
+
+* **Alternative 1 (current choice):** Use a single find command to iterate through all entities with the give keyword
+    * Pros: Implementation is easy, parsing is very similar to how previous find was implemented
+    * Cons: Probably unable to use keywords that are non-string
+
+* **Alternative 2:** Using separate find commands for respective entities, similar to how most other existing commands we have (e.g. FindVehicleCommand, FindCustomerCommand, etc.)
+    * Pros: Better UX, users can now use keywords specific to that entity, increasing the effectiveness of find
+    * Cons: Way more time needed for implementation as specific entity Find commands need parsers unique to the entities themselves
+
+### Sort Feature
+#### Current Implementation
+
+The Sort feature sorts the respective entities according to some of their entity specific parameters.
+
+> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+
+A key detail to the Sort implementation is that the SortXCommandParser parses the arguments from the user input to create a comparator which is then passed onto the SortXCommand. The SortXCommand then executes which calls the Model#updateXComparator which updates a SortedList<X> according to the comparator. There is also an option `r\` flag which can reverse the sort direction in the comparator.
+
+The Sequence Diagram below illustrates the interactions with the `Logic`, `Model` and `JavaFx` components for the `sortX by/PARAM` API call.
+
+<img src="images/SortXSequenceDiagram.png" width="1100" />
+
+#### Design considerations:
+
+**Aspect: The way sort is implemented**
+
+* **Alternative 1 (current choice):** Use a separate list to store sorted X lists
+    * Pros: Ease of sorting with the use of comparators as SortedLists allow us to use comparators
+    * Cons: Ensuring both original filtered lists and sorted filtered lists are in sync/both have the same data
+
+* **Alternative 2:** Sorting the existing filtered lists
+    * Pros: No need to worry about both original filtered lists and sorted filtered lists staying in sync/both have the same data
+    * Cons: More difficulty implementing sort, we will have to implement a sort function that works for filtered lists since filtered lists do not take in comparators.
+
+
 ### Add Feature
 
-### Current Implementation
+#### Current Implementation
 The add function is facilitated by `AddXCommand` (`X` is a placeholder for the specific entity to be added e.g. `AddCustomerCommand`)
 
-Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
 
 The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("addX args*")` API call, , where `argks*` represents the various arguments needed for the function to run.
 
@@ -283,20 +352,20 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 
 The `addX(x)` method of `Model` adds the entity into the system via adding the entity into `Shop`.
 
-Limitations of plant UML prevents us from putting an X at the correct spot. 
+Limitations of plant UML prevents us from putting an X at the correct spot.
 
 Omitted from the diagram above is:
 1. How Undo and Redo is implemented
-2. The other relevant add commands. For example, `addvehicle` requires `owner id` which would affect the relevant customer by adding the vehicle to that user. 
+2. The other relevant add commands. For example, `addvehicle` requires `owner id` which would affect the relevant customer by adding the vehicle to that user.
 
 ### Edit Feature
 
-### Current Implementation
+#### Current Implementation
 The edit function is facilitated by `EditXCommand` (`X` is a placeholder for the specific entity to be added e.g. `EditCustomerCommand`)
 
-Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
 
-The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("editX args*")` API call, where `argks*` represents the various arguments needed for the function to run. 
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("editX args*")` API call, where `argks*` represents the various arguments needed for the function to run.
 
 <img src="images/EditXSequenceDiagram.png"/>
 
@@ -310,34 +379,24 @@ Omitted from the diagram above is:
 
 ### View Feature
 
-### Current Implementation
+#### Current Implementation
 
 The view function is facilitated by `ViewXCommand` (`X` is a placeholder for the specific command name e.g., `ViewCustomerCommand`).
 
-Here X can be appointment/customer/service/technician/vehicle.
+> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
 
 The Sequence Diagram below illustrates the interactions within the Logic component for the execute("viewcustomer 1") API call.
 
-<img src="images/ViewSequenceDiagram.png"/>
 
-This feature is implemented this way to best match how existing list and find function is done.
+Note: The way ViewXCommand is parsed is the same to how Find/List Commands are parsed, thus this is a cropped version to show the key details and difference in the implementation for ViewCommand. The full sequence diagram for ViewXComamand is still available as a puml file in the diagrams directory.
 
-This is done this way so that the code is easily maintainable and readable if once the developer understands how `listX` functions works.
+<img src="images/ViewXSequenceDiagramCropped.png"/>
 
-However, as you may have noticed, `ViewPartCommand`'s diagram differs slightly.
-
-The Sequence Diagram that illustrates the interactions within the Logic component for the execute("viewpartcommand 1") API call is to be added.
-
-* To add image *
-
-
-
-
-
+While the first half of the execution of ViewXCommand is the same as Find/List Command as explained above, a key detail to how ViewXCommand is implemented is extra call of Model#selectX(), where a Function is passed into it as a selector. This Function then calls apply() to the sortedFilteredXs in the Model for the result to return the requested X to the replace the current selectedX object in the model.
 
 ### TotalAppointmentCommand Feature
 
-#### Current Implementation
+##### Current Implementation
 
 The following sequence diagram shows how the `totalAppointmentCommand` operation works:
 
@@ -358,9 +417,9 @@ The `totalAppointmentCommand` feature mainly involves iterating through the appo
 
 **Mitigating the effects of malicious save file edit**
 
-* Issue 1: An malicious user is able to modify the save file 
+* Issue 1: An malicious user is able to modify the save file
   * Proposed solution: encrypting the save file and storing hash
-  
+
 
 * Issue 2: An malicious user is able to modify the save file such that running a command may have adverse effects on other parts of the program.
   * Example: Malicious user edits save file and adds `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
@@ -395,22 +454,30 @@ The `totalAppointmentCommand` feature mainly involves iterating through the appo
 **Value proposition**: AutoM8 provides a platform that allows auto repair shop owners to manage their customer information, service details and logistics
 
 
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                  | So that I can…​                                                  |
-| -------- |--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------|
-| `* * *`  | Auto repair shop owner                     | add appointments I'm attending                | Keep track of appointments for the day                           |
-| `* * *`  | Auto repair shop owner                     | add vehicle I want to fix                     | Keep track of vehicle                                            |
-| `* * *`  | Auto repair shop owner                     | add spare parts                               | Keep track of how many spare parts remaining                     |
-| `* * *`  | Auto repair shop owner                     | add customer                                  | Keep track of customer details                                   |
-| `* * *`  | Auto repair shop owner                     | map which car plate belongs to which customer | hand the right car to the appropriate owner                      |
-| `* * *`  | Auto repair shop owner                     | delete a contact                              | remove entries I no longer need                                  |
-| `* * *`  | Auto repair shop owner                     | find a contact                                | locate details of that contact without searching the entire list |
-| `* * *`  | Auto repair shop owner                     | sort vehicles by brand                        | divide the vehicles                                              |
-| `* * *`  | Auto repair shop owner                     | edit a contact                                | make changes in case of mistakes                                 |
+| Priority | As a …​                | I want to …​                                   | So that I can…​                                                           |
+|----------|------------------------|------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | Auto repair shop owner | add customer appointments                      | keep track of appointments in the day or subsequent days                  |
+| `* * *`  | Auto repair shop owner | add vehicle I want to fix                      | keep track of vehicles to fix                                             |
+| `* * *`  | Auto repair shop owner | add spare parts                                | keep track of how many spare parts remaining                              |
+| `* * *`  | Auto repair shop owner | add customer                                   | keep track of customer details                                            |
+| `* * *`  | Auto repair shop owner | add vehicle service                            | keep track of services to do for a vehicle                                |
+| `* * *`  | Auto repair shop owner | know which car plate belongs to which customer | hand the right car to the appropriate owner                               |
+| `* * *`  | Auto repair shop owner | delete a customer record                       | remove entries I no longer need                                           |
+| `* * *`  | Auto repair shop owner | delete a vehicle record                        | remove entries I no longer need                                           |
+| `* * *`  | Auto repair shop owner | delete a service record                        | remove entries I no longer need                                           |
+| `* * *`  | Auto repair shop owner | delete an appointment record                   | remove entries I no longer need                                           |
+| `* * *`  | Auto repair shop owner | delete a spare part                            | remove entries I no longer need                                           |
+| `* * *`  | Auto repair shop owner | find a customer                                | find and view details of that customer without searching the entire list  |
+| `* * *`  | Auto repair shop owner | find a vehicle                                 | find and view details of that vehicle without searching the entire list   |
+| `* * `   | Auto repair shop owner | sort vehicles by brand                         | find vehicles of the same brand                                           |
+| `* *`    | Auto repair shop owner | edit a customer                                | make changes in case of mistakes or update it if there's a change in data |
+| `* *`    | Auto repair shop owner | edit a vehicle                                 | make changes in case of mistakes or update it if there's a change in data |
+| `* *`    | Auto repair shop owner | view a specific customer                       | see more details related to that customer                                 |
+| `* *`    | Auto repair shop owner | view a specific vehicle                        | see more details related to that vehicle                                  |
 
 *{More to be added}*
 
@@ -437,7 +504,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 **Use case: UC02 - Listing all vehicles**
 
-similar to use case one. 
+similar to use case one.
 
 **Use case: UC03 - Listing all appointments**
 
@@ -745,9 +812,9 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Vehicle**: A 4-wheel machine used to transport people
+* **Vehicle**: A 4-wheel or 2-wheel machine used to transport people
 * **Plate number**: An identifier put on the front and back of a vehicle
-* **Spare parts**: A duplicate part of a vehicle that can be used to replace a broken part in a car
+* **Spare parts**: A part that can be used to replace or fix a broken part in a vehicle
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -783,7 +850,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all customers using the `listcustomer` command. Multiple persons in the list.
 
    1. Test case: `deletecustomer 1`<br>
-      Expected: Customer with id of 1 is deleted from the list. Details of the deleted contact shown in the status message. 
+      Expected: Customer with id of 1 is deleted from the list. Details of the deleted customer shown in the status message.
 
    1. Test case: `deletecustomer 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -795,8 +862,52 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
+   1. Prerequisites: There is an existing data file, in the wrong json format.
+   2. User starts the AutoM8 app.
+   3. The corrupted data file will be overwritten and sample data generated will be displayed to the user.
+   4. To start the AutoM8 with sample data, delete the corrupted json file and restart the application.
+2. Dealing with data files that do not have proper entity mappings
+    1. Prerequisites: There is an existing data file, with the mapping not being accurate to current data. E.g. Customer has vehicleIds: 1, 3 but vehicle with id 3 does not exist
+    2. User starts the AutoM8 app.
+    3. The app may crash due to a `NullPointerException` being thrown which cause the app to catch the fatal exception and exit
+    4. To successfully start the AutoM8, either manually add the missing entity and ensure all mappings are correct in the data json file and restart the application or delete the corrupted json file and restart the application.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Appendix: Effort
+#### Effort Required
+The implementation of AutoM8 required a substantial amount of effort, primarily due to the extensive feature implementation required across six entities: Customer, Vehicle, Service, Appointment, Technician, and Part. We aimed to provide each feature to all entities, which added to the complexity of the implementation process. Additionally, our entities had one-to-many relationships, which further complicated the implementation process.<br>
+<br>
+For example, a single customer could have multiple appointments, services, and vehicles, and a technician could perform many appointments across different customers and vehicles. This required careful consideration of how the features interacted with each other and how the data would be stored and retrieved efficiently. Overall, the implementation of AutoM8 was a significant undertaking that required a thorough understanding of the relationships between entities and the various features required to meet our goals.
 
-1. _{ more test cases …​ }_
+#### Comparison with AB3
+* Every Command
+  * AutoM8: Deals with up to **6 entities** with various parameters that had different validations and logic
+  * AB3: Only dealt with 1 entity
+* Storage Handling
+    * AutoM8: Deals with up to **6 entities** with various parameters that had different validations and logic. Great effort required to create sample data for every entity
+    * AB3: Only dealt with 1 entity
+* View feature, Undo/Redo feature
+    * AutoM8: Enables these features
+    * AB3: Did not have these features
+* Sort feature
+  * AutoM8: Enables this feature and also goes the extra mile by allowing the sort based on multiple parameters of an entity
+  * AB3: Did not have this feature
+* GUI/State management during app runtime
+  * AutoM8: Had 2 panels for each Tab which contains a different Object entity, tab navigation was automatic and messages related to certain entities are persisted in the command result component when user switches tabs
+  * AB3: Only needed to handle states for 1 GUI panel
+
+#### Challenges faced:
+* Heavy GUI Improvement
+  * Significant styling changes from AB3
+  * More GUI components explored: SplitPane, Tab, Circle, ImageView, etc
+  * Dealing with the GUI with 6 entities, each entity has its respective tab, details panel and recent command result messages stored
+  * Required lots of trial and error to find the best way to display selected entities in the details panel
+  * Lots of effort on state management handling, due to our entities being closely related to one another (one-to-many relationships)
+    * Testing to ensure objects are mapped correctly and are mapped to objects that still exist
+    * A lot of time and effort used by multiple AutoM8 developers to debug incorrect mappings/delayed mapping resets to accurately reflect data after a CRUD command was executed
+    * Additional Mapping classes implemented to assist in displaying entities and their associated objects in the panels
+
+### Appendix: Planned Enhancements (Max 8*)
+1. Less general error messages, especially those for invalid indexes. The current error message is too general for the user to understand that the error comes from invalid indexes. (E.g. Command format may be correct except index but error message show is `Input is not a number` instead of a more intuitive error message like `Invalid vehicle index input` to help the user correct the command format entered)
+2. Enabling `Find` for Parts. As of v1.4, the find command works for all entities except parts, we plan to implement this to ensure the feature consistency of the app for all entities.
+3. `View` command should not filter the list panel, to allow users to continuously use the view command instead of needing to use the `list` command first to refer to the entity id, before using `view` again.
 

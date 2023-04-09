@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewXCommandParser" as ViewXCommandParser LOGIC_COLOR
+participant "x:ViewXCommand" as ViewXCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box JavaFx JAVAFX_COLOR_T1
+participant ":FilteredList<X>" as JavaFx JAVAFX_COLOR
+end box
+
+box JavaUtils JAVA_UTILS_COLOR_T3
+participant ":Function<? super List<? extends X>, ? extends X>" as JavaUtils JAVA_UTILS_COLOR
+end box
+
+[-> LogicManager : execute("listX / find KEYWORDS")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("listX / find KEYWORDS")
+activate AddressBookParser
+
+create ViewXCommandParser
+AddressBookParser -> ViewXCommandParser
+activate ViewXCommandParser
+
+ViewXCommandParser --> AddressBookParser
+deactivate ViewXCommandParser
+
+AddressBookParser -> ViewXCommandParser : parse("args*")
+activate ViewXCommandParser
+
+create ViewXCommand
+ViewXCommandParser -> ViewXCommand : new ViewXCommand()
+activate ViewXCommand
+
+ViewXCommand --> ViewXCommandParser : x
+deactivate ViewXCommand
+
+ViewXCommandParser --> AddressBookParser : x
+deactivate ViewXCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewXCommandParser -[hidden]-> AddressBookParser
+destroy ViewXCommandParser
+
+AddressBookParser --> LogicManager : x
+deactivate AddressBookParser
+
+LogicManager -> ViewXCommand : execute()
+activate ViewXCommand
+
+ViewXCommand -> Model : updateFilteredXList(Predicate<? super X> predicate)
+activate Model
+
+Model --> JavaFx : setPredicate(predicate)
+activate JavaFx
+
+JavaFx --> Model
+deactivate JavaFx
+
+Model --> ViewXCommand
+deactivate Model
+
+ViewXCommand -> Model : selectX(Function<? super List<? extends X>, ? extends X> selector)
+activate Model
+
+Model --> JavaUtils : apply(SortedList<X> sortedFilteredXs)
+activate JavaUtils
+
+JavaUtils --> Model : X:selectedX
+deactivate JavaUtils
+
+Model --> ViewXCommand
+deactivate Model
+
+create CommandResult
+ViewXCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewXCommand
+deactivate CommandResult
+
+ViewXCommand --> LogicManager : result
+deactivate ViewXCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
