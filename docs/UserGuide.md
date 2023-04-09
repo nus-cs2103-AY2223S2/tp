@@ -48,6 +48,7 @@ title: User Guide
 * [Glossary](#glossary)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## About HMHero
 
@@ -73,7 +74,6 @@ You can:
 3. Filter shortlisted applicants and sort them by interview date.
 4. Filter all applicants based on their skill-sets.
 5. View all applicants that have interviews coming up in three days.
-
 
 
 ### Hiring Process Analytics
@@ -112,6 +112,7 @@ that will bring you to another part of this documentation that is relevant to th
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### Purpose of User Guide
 
@@ -172,6 +173,7 @@ are already familiar with the application!
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 This section covers everything you should know about HMHero, as well as a tutorial on 
@@ -201,6 +203,7 @@ The Help Window looks like the following:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### Key Definitions
 
@@ -266,6 +269,8 @@ These placeholders follow immediately after a [Flag](#523-flags).
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 #### Placeholders
 Placeholder refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
@@ -286,6 +291,7 @@ section to see how Flags and Placeholders are used together.
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### Command Format
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
@@ -301,7 +307,7 @@ For example, `NAME` in `n/NAME` can be replaced with `n/John`.
 [Back to Table of Contents](#table-of-contents)
 
 ---
-
+<div style="page-break-after: always;"></div>
 
 ### Trying your First Command
 
@@ -366,6 +372,7 @@ Here is a checklist you can use before running a command:
 
 ---
 
+
 ## Commands
 
 This section shares with you on how to use each command in detail.
@@ -380,7 +387,7 @@ This section shares with you on how to use each command in detail.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
-
+<div style="page-break-after: always;"></div>
 
 ### Applicant Commands
 
@@ -465,7 +472,7 @@ What you should see:
 [Back to Table of Contents](#table-of-contents)
 
 ---
-
+<div style="page-break-after: always;"></div>
 
 #### List all applicants `list`
 
@@ -685,7 +692,7 @@ What you should see:
 [Back to Table of Contents](#table-of-contents)
 
 ---
-
+<div style="page-break-after: always;"></div>
 
 #### Get reminders for upcoming interviews `remind`
 
@@ -859,6 +866,7 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Troubleshooting
 
@@ -903,6 +911,7 @@ Unable to exit/save HMHero to data file
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -921,6 +930,8 @@ Unable to exit/save HMHero to data file
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
+
 ## Acknowledgements
 
 
@@ -938,6 +949,7 @@ Documentation dependencies:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
@@ -978,7 +990,7 @@ Documentation dependencies:
 - [URL](#url)
 
 ---
-
+<div style="page-break-after: always;"></div>
 
 ### A
 > #### ADDRESS Placeholder
