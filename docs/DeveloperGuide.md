@@ -656,7 +656,6 @@ testers are expected to do more *exploratory* testing.
    e/jackywang@gmail.com
    a/Blk 19 Ghim Moh Rd, #04-10
    ```
-   <br>
    Expected: A person with the following information will be added to the list and displayed in the main panel of the GUI.
    
    3. Test case:
@@ -669,7 +668,6 @@ testers are expected to do more *exploratory* testing.
    e/alexyeoh@example.com
    a/Blk 21 Buona Vista Rd, #11-01
    ```
-   <br>
    Expected: Error details shown in the message box, indicating that duplicate emails or phones are not allowed.
    
    4. Test case:
@@ -677,7 +675,6 @@ testers are expected to do more *exploratory* testing.
    add n/Zachary Tan
    r/CPL
    ```
-   <br>
    Expected: Error details shown in the message box, indicating that the command entered is invalid.
 
 [Return to Top](#table-of-contents)
