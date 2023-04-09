@@ -657,6 +657,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Finding a bookmark**
+
+**MSS**
+
+1.  User requests to find a bookmark by title of some keyword
+2.  MyLib finds and displays all bookmarks which contains keyword in its title
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Not all compulsory fields provided.
+
+    * 1a1. MyLib shows an error message.
+
+      Use case resumes at step 2
+
+* 1b. Value is invalid for any field.
+
+    * 1b1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Sorting all bookmark**
+
+**MSS**
+
+1. User requests to list bookmarks
+2. MyLib shows a list of bookmarks
+3. User requests to sort all bookmark 
+4. MyLib sorts all bookmarks by rating.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Not all compulsory fields provided.
+
+    * 1a1. MyLib shows an error message.
+
+      Use case resumes at step 2
+
+* 1b. Value is invalid for any field.
+
+    * 1b1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: View a bookmark**
 
 **MSS**
