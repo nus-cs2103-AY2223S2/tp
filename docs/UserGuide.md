@@ -5,7 +5,7 @@ title: User Guide
 
 NeoBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
 
-Apart from being your all-encompassing address book, NeoBook also has a Events function for you to keep track of your daily schedule.
+Apart from being your all-encompassing address book, NeoBook also has an Events function for you to keep track of your daily schedule.
 
 # Table Of Contents
 * Table of Contents
@@ -17,7 +17,7 @@ Apart from being your all-encompassing address book, NeoBook also has a Events f
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `neobook.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-3/tp/releases/tag/v1.2.1).
+2. Download the latest `neobook.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NeoBook.
 
@@ -96,7 +96,7 @@ ________________________________________________________________________________
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
-## Address-book Features
+## NeoBook Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -109,14 +109,14 @@ ________________________________________________________________________________
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `t/TAG…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `t/TAG…​` can be used as 0 times, `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter, which isn't a FieldGroup, is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-  e.g. if you specify `mt/CS1231S mt/CS2040S`, all will be taken unlike the previous example.
+  e.g. Since Phone is just a normal field, if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.<br>
+  e.g. Since Modules is a FieldGroup, if you specify `mt/CS1231S mt/CS2040S`, all will be taken unlike the previous example.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -134,14 +134,14 @@ Don't know how to get started? Don't worry!
 
 Simply use this command to get access to our help page!
 
-#### Syntax:
+#### Syntax
 
 `help`
 
-####  Description:
+####  Description
 Use this command when you need help!
 
-####  Image:
+####  Image
 ![help](images/userguide/help.png)
 
 1. Links to the user guide you are reading right now!
@@ -487,7 +487,7 @@ Use this command to exit the application!
 ____________________________________________________________________________________________________________________
 
 
-### Address Book Command Summary
+### NeoBook Command Summary
 
 | Action       | Format, Examples                                                                                                                                 |
 |--------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -538,7 +538,7 @@ Use this command to add events into your Event Section of your NeoBook.
 
 #### Syntax
 
-`addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE`
+`addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME [r/INTERVAL OF RECURRENCE]`
 
 #### Description
 
@@ -746,6 +746,7 @@ Examples:
 | **Edit Event**             | `editevent INDEX PREFIX/PARAMETER...` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                              |
 | **Tag Contact to Event**   | `tagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g., `tagpersonevent et/1 pt/John`                                                                                                                |
 | **Untag Contact to Event** | `untagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
+[Back To Contents](#table-of-contents)
 
 <hr style="border:2px solid gray">
 
@@ -807,8 +808,11 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 * At least one field must be provided.
 
 #### Example Usages
-*  `edituser p/91234567 e/johndoe@example.com` Edits the user's phone number and email address to be `91234567` and `johndoe@example.com` respectively.
-*  `edituser n/Betsy Crower t/` Edits the user's name to be `Betsy Crower` and clears all existing tags.
+* `edituser p/91234567 e/johndoe@example.com` Edits the user's phone number and email address to be `91234567` and `johndoe@example.com` respectively.
+* `edituser n/Betsy Crower t/Marine` Edits the user's name to be `Betsy Crower` and add the tag `Marine` if it has not already been tagged to the user. If it has already been tagged, then it will instead remove the tag.
+
+#### Extra Notes
+* Tags are not shown for the user because it is not relevant. However, you can still see them in the command results.
 
 [Back To Contents](#table-of-contents)
 
@@ -819,6 +823,9 @@ ________________________________________________________________________________
 | Action       | Format, Examples                                                                        |
 |--------------|-----------------------------------------------------------------------------------------|
 | **EditUser** | `edituser [PREFIX/PARAMETERS]…​`<br> e.g.,`edituser n/James Lee e/jameslee@example.com` |
+
+[Back To Contents](#table-of-contents)
+
 
 <hr style="border:2px solid gray">
 
