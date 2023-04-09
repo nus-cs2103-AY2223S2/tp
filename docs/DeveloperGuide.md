@@ -781,7 +781,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user            | delete a task                                 | delete a task that I erroneously added           |
 | `* * *`  | user            | find a task                                   | see a task that I need more quickly              |
 | `* * *`  | user            | view all my tasks                             | get an overview to plan my time more efficiently |
-| `* *`    | user            | sort my tasks                                 | organise my tasks easily                         |
+| `* *`    | user            | sort my tasks                                 | organize my tasks easily                         |
 | `* *`    | fickle user     | edit a task                                   | correct mistakes without deleting a task         |
 | `* *`    | user            | have a project folder                         | look at only my projects at a glance             |
 | `* *`    | organized user  | add tags to tasks                             | manage my tasks based on logical groupings       |
