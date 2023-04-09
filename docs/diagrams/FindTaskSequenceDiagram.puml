@@ -65,6 +65,6 @@ activate OfficeConnectModel
 OfficeConnectModel --> FindTaskCommand
 deactivate OfficeConnectModel
 
-FindTaskCommand --> LogicManager: CommandResult(successful message)
+FindTaskCommand --> LogicManager: CommandResult(MESSAGE_SUCCESS)
 
 @enduml
