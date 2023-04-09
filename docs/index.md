@@ -6,7 +6,7 @@ title: MATHUTORING
 [![CI Status](https://github.com/AY2223S2-CS2103-W17-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-W17-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103-W17-1/tp/branch/master/graph/badge.svg?token=XXJ15FVPPS)](https://codecov.io/gh/AY2223S2-CS2103-W17-1/tp)
 
-![Ui](images/Ui.png)
+![Ui](images/UG-images/Ui.png)
 
 **MATHUTORING is a desktop application for private Math tuition teachers to manage their student contact details and performance.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 

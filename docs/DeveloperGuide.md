@@ -114,9 +114,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `MathutoringParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -224,11 +224,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* private math tuition teachers
-* has a need to manage a number of students' contacts and performance
-* prefer desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Private math tuition teachers
+* Has a need to manage a number of students' contacts and performance
+* Prefer desktop apps over other types
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
@@ -241,22 +241,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​ | I want to …​                                                | So that I can…​                                                                          |
 |----------|---------|-------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| `* * *`  | user    | see a list of my students                                   | know who my students are and how many students I have                                    |
-| `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app                         |
-| `* * *`  | user    | create my student contacts                                  | add new students into my contact list                                                    |
-| `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible                                               |
-| `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore                                   |
-| `* * *`  | user    | use the help section                                        | learn the available commands in the application                                          |
-| `* * *`  | user    | import my data                                              | backup data and open in another device                                                   |
-| `* * *`  | user    | export my data                                              | load data into a new device                                                              |
-| `* * *`  | user    | delete / mark student’s tasking(s)                          | identify what taskings are done/obsolete                                                 |
-| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing                                                 |
-| `* * `   | user    | filter my student contacts                                  | look up on a single student/students of the same level instead of reading through a list |
-| `* * `   | user    | create a progress report                                    | keep track of the student's progress                                                     |
-| `* * `   | user    | extract students' progress report                           | show the parents their kids' performance                                                 |
-| `* `     | user    | note down a more detailed class description                 | know what I need to do for a certain class                                               |
-| `* `     | user    | filter the calendar                                         | see clearly how many classes I have within a period of time (week/month, etc.)           |
-| `* `     | user    | be able to do a wildcard search                             | know what I can do on the app if I forgot the exact command I want to execute            |
+| `* * *`  | user    | see a list of my students                                   | know who my students are and how many students I have |
+| `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app |
+| `* * *`  | user    | create my student contacts                                  | add new students into my contact list |
+| `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible |
+| `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore |
+| `* * *`  | user    | use the help section                                        | learn the available commands in the application |
+| `* * *`  | user    | import my data                                              | backup data and open in another device |
+| `* * *`  | user    | export my data                                              | load data into a new device |
+| `* * *`  | user    | add / delete / mark student’s tasking(s)                    | keep track of the task(s) that assign to a student and identify what taskings are done/in progress/overdue |
+| `* * *`  | user    | add / delete student’s score(s)                             | record down the student's score(s) |
+| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing |
+| `* * *`  | user    | check the student’s score(s)                                | understand the student's performance in school |
+| `* * `   | user    | filter my student contacts                                  | easily find a group of students based on the tag given |
+| `* * `   | user    | generate a progress chart                                   | keep track of the student's progress |
+| `* * `   | user    | extract students' progress report                           | show the parents their kids' performance |
 
 ### Use cases
 
@@ -599,9 +598,54 @@ of the student's scores. In future implementation, a student's performance will 
 
 ## **Appendix: Instructions for manual testing**
 
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
 ### Launch and shutdown
 
+1. Initial launch 
+
+   1. Download the jar file and copy into an empty folder 
+   2. Double-click the jar file <br>
+   Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
+
+2. Saving window preferences 
+
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   2. Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
+
+3. Typing `exit` into the command box
+   1. Type `exit` in the command box.<br>
+   Expected: The application window closes
+
 ### Deleting a student
+
+1. Deleting a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    1. Test case: `delete 1`<br>
+    Expected: First student is deleted from the list. Details of the deleted student shown in the status message. If the deleted student was being checked 
+    using the `check` command, the task list and score list of the student will be cleared.
+
+    1. Test case: `delete 0`<br>
+    Expected: No student is deleted. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    Expected: Similar to previous.
+
+1. Deleting a student being checked
+    2. Prerequisites: Check a student using `check` command.
+
+    3. Test case: `delete x` (where x is the index of the student being checked)<br>
+    Expected: The student is deleted from the list. Details of the deleted student shown in the status message. The task list and score list shown
+    will be cleared.
+
 
 ### Saving data
 
@@ -614,8 +658,9 @@ of the student's scores. In future implementation, a student's performance will 
 ### Challenges faced
   
 ### Effort required
-   
+
 ### Achievements
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
@@ -655,7 +700,9 @@ the window again.
 
 **Solution proposed:**
 
-* Similarly to how ```getRoot().isShowing()``` is used to check if the window is shown, there is also a function called ```getRoot().isIconified()``` to check whether the window is minimised (returns ```true``` if minimised). We can then return ```getRoot().setIconified(false)``` to restore the window to its previous state.
+* Similarly to how ```getRoot().isShowing()``` is used to check if the window is shown, there is also a function called 
+```getRoot().isIconified()``` to check whether the window is minimised (returns ```true``` if minimised). 
+We can then return ```getRoot().setIconified(false)``` to restore the window to its previous state.
 
 
 #### 4. Exams are not allowed to be on the same date
@@ -682,13 +729,14 @@ part of the displayed score table.<br>
 * To resolve the feature flaw, JavaFX label will be used to construct the table with CSS instead of using the JavaFX TableView.
 
 
-#### 6. Edit the tags will overwrite the whole tag list
+#### 6. Edit the tags will overwrite the whole list of tags
 
-Currently, if we want to add tags, we only can use `edit` command and need to input entire existing tag list again.
-If we want to edit a specific tag, we also need to use `edit` command and need to input entire existing tag list except for the one we want to edit.
-We also do not have deleted operations for tags. Without these operations, it is very hard to manage tags since the only way can do it is by using `edit`
-command and need to input entire existing tag list which is troublesome.
+* Currently, if the user wants to add tags to students in the list, they can only use `edit` command and will need to input all existing tags along with the new tag.
+* Also, if the user wants to edit a specific tag, they will also be required to input all existing tags along with the one they want to edit.
+* There are currently no delete operations for tags. 
+* Without these operations, it is very hard to manage tags since the only way to do it is by using the `edit` command which is deteriorates the user experience.
 
 **Solution proposed:**
 
 * To solve this issue, at least two more commands can be created which are `addtag` and `deletetag`.
+* With these new commands, the user will no longer be required to input the existing tags when adding a new tag.
