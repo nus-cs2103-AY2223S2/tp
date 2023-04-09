@@ -28,7 +28,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void executeSOCInput_success() {
+    public void executeSocInput_success() {
         ImportCommand importCommand = new ImportCommand("soc");
         String expectedMessage = String.format(MESSAGE_SUCCESS) + "\nBen Leong\nSteven Halim";
         for (Person person : SOC_CONTACTS) {
@@ -38,7 +38,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void executeCHSInput_success() {
+    public void executeChsInput_success() {
         ImportCommand importCommand = new ImportCommand("chs");
         String expectedMessage = String.format(MESSAGE_SUCCESS) + "\nChng Shu Sin\nChew Fook Tim";
         for (Person person : CHS_CONTACTS) {
@@ -49,15 +49,15 @@ public class ImportCommandTest {
 
     @Test
     public void equals() {
-        ImportCommand importCommandSOC = new ImportCommand("soc");
-        ImportCommand importCommandCHS = new ImportCommand("chs");
+        ImportCommand importCommandSoc = new ImportCommand("soc");
+        ImportCommand importCommandChs = new ImportCommand("chs");
         AddCommand addCommand = new AddCommand(SOC_CONTACTS.get(0));
 
         // same object -> returns true
-        assertTrue(importCommandSOC.equals(importCommandSOC));
-        assertTrue(importCommandCHS.equals(importCommandCHS));
+        assertTrue(importCommandSoc.equals(importCommandSoc));
+        assertTrue(importCommandChs.equals(importCommandChs));
 
         // different person -> returns false
-        assertFalse(importCommandCHS.equals(addCommand));
+        assertFalse(importCommandChs.equals(addCommand));
     }
 }
