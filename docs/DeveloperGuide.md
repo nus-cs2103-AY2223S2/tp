@@ -27,7 +27,7 @@ title: Developer Guide
     * [3.9 Sort Feature](#39-sort-feature)
     * [3.10 Alert Feature](#310-alert-feature)
     * [3.11 Schedule Feature](#311-schedule-feature)
-      * [3.11.1 How it works](#3111-how-it-works) 
+      * [3.11.1 How it works](#3111-how-it-works)
       * [3.11.2 Generating a new plan](#3112-generating-a-new-plan)
     * [3.12 Tag Color Codes](#312-tag-color-codes)
   * [4. Documentation, Logging, Testing, Configuration, DevOps](#4-documentation-logging-testing-configuration-dev-ops)
@@ -175,7 +175,7 @@ The `Model` component,
 * stores `TaskBook`, `Planner` and `UserPref` object.
 * `TaskBook` stores the data of all `Task` objects.
 * `Planner` stores the data of all generated `DailyPlan` objects.
-* `UserPref` stores an object that represents the user's preference. This is exposed to the outside as a `ReadOnlyUserPref` objects. 
+* `UserPref` stores an object that represents the user's preference. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <img src="images/ModelClassDiagram2.png" width="450" />
@@ -272,7 +272,7 @@ The following diagram summarises how the activities unfold after the user types 
 
 #### 3.1.2 Delete a Subsection
 The user can delete a subsection from a parent task by entering `remove-subsection` command.
-A user may wish to delete a subsection from a task with index 1 in the list currently displayed to the user, and the user can do so by entering `remove-subsection 1 I/1`, where the first index is the index of 
+A user may wish to delete a subsection from a task with index 1 in the list currently displayed to the user, and the user can do so by entering `remove-subsection 1 I/1`, where the first index is the index of
 the parent task, and the index after the `I` parameter refers to the index of the subsection in the parent task.
 
 Given below is an example usage scenario and how `subsection` is executed.
@@ -357,7 +357,7 @@ Cons: Takes more time to delete multiple task at once.
 
 ### 3.4 Edit Feature
 
-The edit feature now can edit many possible fields of a task, including the task's name, description, tags and effort. The editing is based on the index of the task in the list currently shown to the user. Entering `edit` with 
+The edit feature now can edit many possible fields of a task, including the task's name, description, tags and effort. The editing is based on the index of the task in the list currently shown to the user. Entering `edit` with
 prefixes after it, such as `n/homework` will change the name of the original task to homework.
 
 You can find the specific implementation in the `EditCommandParser` and `EditCommand` class.
@@ -370,7 +370,7 @@ Step 2. The `EditCommandParser` recognises that the parameter being changed is t
 
 Step 3. The `EditCommandParser` creates an `EditTaskDescriptor` that stores the changed parameter value, which is `homework` in this case.
 
-Step 4. The `EditCommandParser` calls `EditCommand` with the index of the task and the `EditTaskDescriptor`. 
+Step 4. The `EditCommandParser` calls `EditCommand` with the index of the task and the `EditTaskDescriptor`.
 
 Step 5. The `EditCommand` is executed and a new task is created, with the name parameter changed to "homework". The new task replaces the original task in the task list.
 
@@ -969,7 +969,7 @@ testers are expected to do more *exploratory* testing.
    3. Other incorrect `subsection` commands: `remove-subsection 0 I/1` and `remove-subsection 1 I/0`. The result of the command would be no subsection added
      and error details are shown in the status message.
 
-     
+
 ### Deleting a task
 
 1. Deleting a task while all tasks are being shown
@@ -977,7 +977,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
    2. Test case: `delete 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the result display. 
+      Expected: First task is deleted from the list. Details of the deleted task shown in the result display.
 
    3. Test case: `delete 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Command box remains the same.
@@ -1018,9 +1018,9 @@ testers are expected to do more *exploratory* testing.
      Expected: The order of the tags will be as follows: `SimpleTask` with no tag, `SimpleTask` with tag, `Deadline` with no tags, `Deadline` with tags, `Event` with no tags, `Event` with tags.
 
 2. Sorting a `Deadline` with different deadlines
-   
+
    1. Prerequisites: Add 1 `Deadline` task with a deadline of liking (e.g. 2023-04-14 1400) and another `Deadline` task with an earlier deadline (e.g. 2023-04-14 1200).
-  
+
    2. Test case: `sort`<br>
      Expected: The `Deadline` task with an earlier deadline is above the other.
 
@@ -1115,7 +1115,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.1 Accommodating long inputs
 
-- As brought up by issue [#193](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/193) and [#168](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/168), 
+- As brought up by issue [#193](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/193) and [#168](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/168),
 long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` causes the user to not be able to see the parameter.
 
 #### Possible Solution
@@ -1151,20 +1151,20 @@ a task by its subsection name or description.
 #### Possible Solution
 - One possible solution is to add a predicate in the `model.task` package that allows the list to be filtered based on whether the task has a certain subsection name/description.
 - The find command parser also needs to be modified to take in prefixes such as `sub-n/` and `sub-d/`.
-- Inside the predicates, we go through each task's subsections and see whether at least one subsection contains the user's input name or description. 
-- The new command will look something like `find sub-n/NAME`, which finds a task by its subsection name. Find by subsection description command can look like 
+- Inside the predicates, we go through each task's subsections and see whether at least one subsection contains the user's input name or description.
+- The new command will look something like `find sub-n/NAME`, which finds a task by its subsection name. Find by subsection description command can look like
 `find sub-d/DESCRIPTION`.
 - An example call could be `find sub-n/homework` or `find sub-d/chapter 1`.
 - The result of the command will be a  displayed list of tasks found:
 ![text-wrap0](images/find-bysubsectionname.png)
 
 #### Pros
-- This gives the user more options for searching a task. 
+- This gives the user more options for searching a task.
 - User can find a task even if the user only remembers the subsection's name or description.
 
 #### Cons
 - The flaw of this approach is that user needs to specify whether he/she is searching for the task by its main name or subsection name. Sometimes the user might not remember exactly
-whether the name of the task he/she wants to find is in the parent task or subsection. 
+whether the name of the task he/she wants to find is in the parent task or subsection.
 - The user also needs to remember that `sub-n` means subsection name and `sub-d` means subsection description.
 
 ### 7.3 Enabling `edit` by subsection
@@ -1176,7 +1176,7 @@ whether the name of the task he/she wants to find is in the parent task or subse
 - This is extendable to all fields in subsections, such as effort level, deadline, from date and to date.
 - The new command will look something like `edit INDEX I/INDEX sub-n/NAME`, which edits a task's subsection name. Edit by subsection description command can look like
   `edit INDEX I/INDEX sub-d/DESCRIPTION`. Here, the first index corresponds to the main task's index in the current task list displayed and the index after
-prefix `I/` corresponds to the index of the subsection in the parent task. 
+prefix `I/` corresponds to the index of the subsection in the parent task.
 - An example could be `edit 1 I/1 sub-n/lab` or `edit 1 I/1 sub-d/chapter 1`.
 - Other proposed command prefixes include `sub-e/`, `sub-D/`, `sub-F/`, and `sub-T/` for editing subsections' effort level, deadline, from dates and to dates respectively.
 - The result of the command will be the following text on success: `Edited Task: cs2103t tasks, edited subsection: name: milestone 1  description: build homepage`
@@ -1197,14 +1197,14 @@ prefix `I/` corresponds to the index of the subsection in the parent task.
 - One possible solution is to allocate the main task's effort level to the subsection and allow the subsection to be one of a simple task, deadline or event. The scheduling algorithm will allocate big tasks by putting them across different days with different subsections on each day.
 - The new `subsection` command will look something like `subsection n/NAME [d/DESCRIPTION] [E/EFFORT LEVEL] [D/DEADLINE] [F/FROM DATE] [T/TO DATE]`. If the effort level is not specified, then the effort level of the main task will be evenly distributed among the subsections.
 - The `schedule` command will still look like `schedule E/EFFORT D/DATE` but the result will be the parent tasks along with only part of the subsections that is set to be completed on that day.
-- For example, if the task list only contains a parent task that has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/25 D/2023-05-04` and today is 2023-05-04, the displayed result 
+- For example, if the task list only contains a parent task that has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/25 D/2023-05-04` and today is 2023-05-04, the displayed result
 will only be the parent task and the subsection "homework A". If the user enters `schedule E/25 D/2023-05-05` then, the same parent task with subsection "homework B" will be displayed.
-- The effort level will be checked when user creates a subsection because user may enter an effort level that is higher than the main task's effort level. If the user specifies an effort level for a subsection, and the new total effort level of subsections is smaller than or equal 
+- The effort level will be checked when user creates a subsection because user may enter an effort level that is higher than the main task's effort level. If the user specifies an effort level for a subsection, and the new total effort level of subsections is smaller than or equal
 to the effort level of the main task, the remaining effort level of a main task will just belong to the main task and the main task will be scheduled again on some day without any subsection. The same checks will happen if the user edits the subsection's effort level, i.e. making sure
 that the total effort level is smaller than the main task's.
-- This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadline date, even if that may result in 
-the total effort on a certain date exceeding daily effort level. Also, the events' subsections should occur between the events' start and end time. 
-- Moreover, allowing parent tasks to have deadlines and events as subsections will allow deadlines to be broken down into multiple deadlines and events to contain multiple events. Those components will be scheduled individually and displayed along with the parent tasks. 
+- This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadline date, even if that may result in
+the total effort on a certain date exceeding daily effort level. Also, the events' subsections should occur between the events' start and end time.
+- Moreover, allowing parent tasks to have deadlines and events as subsections will allow deadlines to be broken down into multiple deadlines and events to contain multiple events. Those components will be scheduled individually and displayed along with the parent tasks.
 This ensures that the user have more flexibility in handling subsections.
 
 #### Pros
@@ -1230,7 +1230,7 @@ of the selected parent task sorted. The sorting will sort subsections in the ord
 - With sorting enabled, user will be able to see `SimpleTask`, `Event` and `Deadlines` being grouped together with same type of tasks. This gives user a better overview of what subsections are there.
 
 #### Cons
-- The sorting simply sorts the subsections according to their type and fields such as name and dates, it would not really benefit user in planning.  
+- The sorting simply sorts the subsections according to their type and fields such as name and dates, it would not really benefit user in planning.
 
 ### 7.6 Better error messages
 
@@ -1243,18 +1243,18 @@ of the selected parent task sorted. The sorting will sort subsections in the ord
 - More bugs arising from the same issue of weak parameter handling are as follows:
 
 
-  1. Invalid index inputs from user, such as `0`, in commands such as `delete`, `edit`, `subsection`, and `remove-subsection`. 
-  Observed behavior: The error message shows each command's expected usage, such as the one shown in the example above. 
+  1. Invalid index inputs from user, such as `0`, in commands such as `delete`, `edit`, `subsection`, and `remove-subsection`.
+  Observed behavior: The error message shows each command's expected usage, such as the one shown in the example above.
   Preferred behavior: Explain cause of command rejection, such as with an error message `The index provided is invalid`.
   Proposed modification: Create an `IndexOutOfBoundsException` to handle invalid indexes.
 
   2. Invalid date inputs from user for `schedule` command.
   Observed behavior: The same error message (below) is displayed for all invalid dates entered (date entered is outside of planner range - could be before or after).
-  Preferred behavior: Inform the user about why the date entered is invalid. 
+  Preferred behavior: Inform the user about why the date entered is invalid.
      1. For dates which are invalid because the previous plan was generated too long ago but would be valid if a new plan is generated, a message like `Please regenerate your plans to view your schedule.` could be displayed.
      2. For dates entered which are before previous plan's generation date, a message like `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}` could be displayed.
      3. For dates entered which are too far ahead of any possible plan dates, a message like `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}` could be displayed.
-  Proposed modification: Whenever `schedule` is run, retrieve the generation date of the current plan from the planner.json file. If the date is deemed to be invalid, check the input date against the retrieved generation date. 
+  Proposed modification: Whenever `schedule` is run, retrieve the generation date of the current plan from the planner.json file. If the date is deemed to be invalid, check the input date against the retrieved generation date.
   If input date is within 30 days from current date but outside of planner range, return an error message prompting user to regenerate plans (e.g. `Please regenerate your plans to view your schedule.`).
   If input date is before generation date, return an error message informing user that the date is an invalid date and the previous generation date (e.g. `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}`).
   If input date is too far in the future, return an error message informing user that the date is an invalid date as it is too far into the future. (e.g. `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}`)

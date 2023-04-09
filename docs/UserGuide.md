@@ -88,7 +88,7 @@ Now that you've opened up the app, let's start by introducing you to the basic G
 ### Basic Information about the GUI
 * The GUI is made up of 4 primary components:
   * The **Command Box**, where commands are typed in.
-  * The **Result Display**, where the result messages of commands is displayed. 
+  * The **Result Display**, where the result messages of commands is displayed.
   * The **Task List Panel**, where you can view your tasks.
   * The **Alert Panel**, where your upcoming tasks are displayed.
 

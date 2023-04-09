@@ -22,7 +22,7 @@ Given below are my contributions to the project.
         * This has major implications for future attributes if we choose to add them
     * Add support for different types of `Tasks` [PR#59](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/59)
       * Added 3 subclasses, SimpleTask, Deadline, and Event.
-      * Add support in addCommandParser to add different type of tasks dynamically. 
+      * Add support in addCommandParser to add different type of tasks dynamically.
       * Change representation in JsonAdaptedTask such that it can represent new types of task and still parse them.
     * `alert` command [PR#78](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/78)
       * Adding `alert` command
@@ -41,12 +41,12 @@ based on the last call.
 
 * **Documentation**:
     * Contributions to the User Guide:
-        * GUI screenshot  
+        * GUI screenshot
 ![UI](../images/Ui.png)
         * Fix typos
-        * `find` command section  
+        * `find` command section
 ![findDoc](../images/findDoc.png)
-        * `alert` command section  
+        * `alert` command section
 ![alertDoc](../images/alertDoc.png)
     * Contributions to the Developer Guide:
         * Updating of the UI component

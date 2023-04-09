@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 <br>
 * **Refactoring** Added `Effort` component into Task [#85](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/85)
   * What it does: Effort serves as an estimate for students to gauge the amount of work required to complete a task.
-  * Highlights: 
+  * Highlights:
     * Created classes for `Effort` and integrated it into TaskBook, refactoring relevant files and components as needed.
     * Modify UI of a Task so that effort for each task can be seen.
     * Modify `add` command and `edit` command to support `Effort`.

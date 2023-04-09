@@ -53,7 +53,7 @@ Given below are my contributions to the project.
   * Highlights:
     * previously the edit command only creates a new simple task to replace the old task, now it will accommodate for `Event` and `Deadline`.
 
-  
+
 * **Documentation**:
   * Contribution to the user guide:
     * Subsection command [#135](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/135)
