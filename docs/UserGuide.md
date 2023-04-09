@@ -550,6 +550,10 @@ Examples:
 - `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
 - `add student n/Amirul Bin Othman p/98884417 e/amirul@example.com sid/A1324356G`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+The same student can exist in different groups, because that student can be in tutorial group T1 and project group Team15 at the same time.
+</div>
+
 [Back to list of commands](#commands)
 
 
@@ -565,6 +569,10 @@ delete student <INDEX>
 
 Examples:
 - `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
+
+<div markdown="span" class="alert alert-primary">:bulb: *Note:**
+ Adding new student under a group will propagate to session, but deleting a student will NOT propagate to session.
+</div>
 
 [Back to list of commands](#commands)
 
