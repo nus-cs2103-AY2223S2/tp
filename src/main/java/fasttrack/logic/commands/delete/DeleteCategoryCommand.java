@@ -24,7 +24,7 @@ public class DeleteCategoryCommand implements DeleteCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_CATEGORY_SUCCESS = "Deleted Category: %1$s";
+    public static final String MESSAGE_DELETE_CATEGORY_SUCCESS = "Deleted category: %1$s";
 
     private final Index targetIndex;
 

@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" maxHeight="50.0" maxWidth="1.7976931348623157E308" minHeight="50.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane maxHeight="50.0" minHeight="50.0" prefHeight="50.0" HBox.hgrow="ALWAYS">
+  <GridPane maxHeight="50.0" maxWidth="1.7976931348623157E308" minHeight="50.0" prefHeight="50.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
     </VBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.hgrow="ALWAYS">
+      <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.hgrow="ALWAYS">
          <children>
          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="200.0">
            <Label fx:id="id" minWidth="-Infinity" styleClass="cell_label">

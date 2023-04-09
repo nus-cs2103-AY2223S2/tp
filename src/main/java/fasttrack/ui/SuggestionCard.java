@@ -1,7 +1,6 @@
 package fasttrack.ui;
 
 import fasttrack.model.category.Category;
-import fasttrack.model.util.UserInterfaceUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -28,7 +27,7 @@ public class SuggestionCard extends UiPart<Region> {
     public SuggestionCard(Category category) {
         super(FXML);
         this.category = category;
-        categoryName.setText(UserInterfaceUtil.capitalizeFirstLetter(category.getCategoryName()));
+        categoryName.setText(category.getCategoryName());
     }
 
     @Override

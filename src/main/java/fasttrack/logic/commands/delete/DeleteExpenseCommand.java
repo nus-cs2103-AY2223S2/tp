@@ -40,7 +40,7 @@ public class DeleteExpenseCommand implements DeleteCommand {
         List<Expense> lastShownList = dataModel.getFilteredExpenseList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
         }
 
         Expense expense = lastShownList.get(targetIndex.getZeroBased());

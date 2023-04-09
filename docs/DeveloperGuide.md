@@ -753,6 +753,49 @@ This method of implementation closely follows the _Observer Pattern_, which prom
 
 **Alternative 2** was chosen as it was neater to implement and performs statistic calculations only when absolutely necessary, this preventing unnecessary wastage of computational resources.
 
+
+### \[Implemented\] Category Autocomplete feature
+
+The category autocompletion feature in FastTrack is implemented using two `UI` classes, namely the `SuggestionListPanel` and the `CommandBox`. 
+
+The `SuggestionListPanel` is a JavaFX `UI` component responsible for displaying the suggestion list for the category autocomplete feature. It receives two parameters in its constructor, namely an `ObservableList<Category>` and a `CommandBox`. 
+The `ObservableList<Category>` contains all available categories in FastTrack, and the `CommandBox` is the `UI` component that contains a text field which allows users to enter commands, as well as for setting text to autofill.
+
+To filter the categories based on the user's input, the `SuggestionListPanel` makes use of a `FilteredList<Category>`. This filtered list is used as the data source for the `ListView` `UI` component of the `SuggestionListPanel`. 
+The `FilteredList<Category>` displays filtered categories based on whether the category name matches the user's input.
+
+Upon initialization, the `SuggestionListPanel` sets up autocomplete handlers for the suggestion list by calling the `SuggestionListPanel#initialiseAutocompleteHandlers()` method. This method registers listeners for focus changes, key presses, and autocomplete filters, which work together to ensure the autocomplete feature works responsively.
+
+When the user enters a command, they can trigger the autocomplete feature by typing `c/` followed by a few characters. These characters can then be used to filter the categories, and the most likely suggestions are displayed in the suggestion list. 
+To load the filter for autocompletion, the `SuggestionListPanel#loadAutocompleteFilter()` method within `SuggestionListPanel#initialiseAutocompleteHandlers()` sets up a listener for changes in the text field of the `CommandBox`. 
+If the user types `c/` to start entering a category name, the `SuggestionListPanel#getAutocompleteSuggestions()` method is called to retrieve the most likely suggestions based on the user's input so far.
+This method filters the categories based on the user's input and updates the filtered categories as the items in the `ListView` `UI` component of the `SuggestionListPanel`.
+
+When the suggestion list is visible, the user can navigate through the suggestions using the `UP` and `DOWN` arrow keys. 
+
+The `CommandBox#initialiseAutocompleteHandler()` method adds a key press event filter to the command text field that listens for the `UP` arrow key.
+
+When the user presses the `UP` arrow key, the focus is given to the `SuggestionListPanel` if it is visible (i.e. the user had typed in `c/`), and the `SuggestionListPanel#selectLastItemOnFocus()` method selects the last item in the suggestion list by default. When the user presses the `DOWN` arrow key, the `SuggestionListPanel#handleDownArrowKey()` method is called to check if the user is about to navigate out of the suggestion list and is responsible for returning the focus back to the `CommandBox`.
+
+To select a category from the suggestion list, the user can either navigate through the list using the arrow keys and press the `ENTER` key or press the `TAB` key to select the bottom-most suggestion in the list. 
+When the user makes a selection using the `ENTER` key, a callback function within the `SuggestionListPanel#addKeyPressListener()` method is called. This function updates the suggested text in the `CommandBox` by calling the `SuggestionListPanel#updateSuggestedText()` method, which sets the text in the `CommandBox` and subsequently hides the suggestion list.
+
+If the user makes the selection by pressing the `TAB` key, the `CommandBox#initialiseAutocompleteHandler()` method simulates a `UP` arrow key press followed by an `ENTER` key press, which also causes the first suggestion in the list to be selected.
+
+
+#### Design considerations:
+
+**Aspect: How the autocomplete feature should be implemented**:
+
+* **Alternative 1 (Current choice):** Add the autocomplete logic within the `SuggestionListPanel` and `CommandBox` classes itself
+    * Pros: This design is more convenient and allows the methods within each class to focus specifically on their own behaviors, without explicit knowledge of the autocomplete feature.
+    * Cons: Currently, the `SuggestionListPanel` is tightly coupled to the `CommandBox` through its constructor parameters. This means that more modifications would need to be made if a new text input component was introduced.
+
+* **Alternative 2 :** Create a new `AutocompleteLogic` class which uses the _Observer Pattern_ to listen to and propagate changes across the `SuggestionListPanel` and `CommandBox` components.
+    * Pros: Enforces loose coupling by the _Observer Pattern_
+    * Cons: Tedious to implement, and the added flexibility might be unnecessary since the autocomplete feature is not likely to be further extended upon.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -832,6 +875,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
 
 ### \[Proposed\] Data archiving
 

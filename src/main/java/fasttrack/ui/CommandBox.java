@@ -115,6 +115,9 @@ public class CommandBox extends UiPart<Region> {
             if (event.getCode() == KeyCode.UP && suggestionsList.isVisible()) {
                 suggestionsList.requestFocus();
             }
+            if (event.getCode() == KeyCode.ENTER && suggestionsList.isVisible()) {
+                suggestionsList.setVisible(false);
+            }
             if (event.getCode() == KeyCode.TAB) {
                 // simulate UP key press
                 KeyEvent upEvent = new KeyEvent(
