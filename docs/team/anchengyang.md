@@ -14,10 +14,13 @@ Given below are my contributions to the project.
     * Justification: This allows the module and skill list to be easily updated. The original edit would only replace the original skill list with the new skills that the user fed as inputs.
     * Highlights: New prefixes were added, `m+/`, `m-/`, `s+/` and `s-/`. This allows the user to flexibly manage the lists without having to recreate the original list. For v1.2, there were other prefixes such as `so/` and `sn/` to represent a 1-to-1 update of the skill list. User would have to specify the old skill to be updated and the new skill. These were later removed in v1.3 as I realised that using `s-/` and `s+/` in the same command has the same functionality as `so/` and `sn/`.
 
+
 * **New Feature**: Course List: [#120](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/120)
   * What it does: A list of courses that our application supports.
   * Justification: The list was introduced to standardize user inputs for courses, preventing users from inputting `cs` or `comp sci` to represent `Computer Science`. This helped to make our `find` function more user-friendly as users know what to search for, rather than having to toggle between the different names representing the same course. Users could simply input the index of the course that is shown in the left panel, minimising the keystrokes as well.
   * Highlights: This is displayed as a list with index numbers in the left panel of our application.
+
+<div style="page-break-after: always;"></div>
 
 * **New Feature**: Help window: [#98](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/98), [#99](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/99)
   * What it does: Improved the help window to display a table of our command summary.
@@ -45,6 +48,8 @@ Given below are my contributions to the project.
     * Enhanced the add and edit command: [#67](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/67)
     * Provide bug fix support for new features whenever a bug is spotted: [#83](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/83), [#86](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/86), [#87](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/87)
     * Add `scroll back to Table of Contents` feature to help readers quickly navigate back to content page
+
+<div style="page-break-after: always;"></div>
 
 * **Documentation**:
     * User Guide:
