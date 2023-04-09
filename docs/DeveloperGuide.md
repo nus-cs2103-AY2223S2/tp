@@ -37,6 +37,11 @@ Images used:
 * Contact icon for `view` command from [icons8](https://icons8.com/icon/104074/contact-us)
 * Details icon for `view` command from [icons8](https://icons8.com/icon/set/details/color)
 
+Formatting of Developer Guide is adapted from:
+* [AY22/23S1 CS2103T Team W16-2](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)
+* [AY22/23S1 CS2103T Team W16-3](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**

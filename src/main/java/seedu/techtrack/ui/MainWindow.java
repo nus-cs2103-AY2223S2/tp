@@ -198,6 +198,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult<?> commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getOutput());
 
+            // Code snippet below adapted from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/
+            // java/seedu/foodrem/views/UiView.java (link truncated to pass checkstyle)
             if (commandResult.getOutput() instanceof String) {
                 logger.info("Output type: String");
                 resultDisplay.place(StringDisplay.of((String) commandResult.getOutput()));

@@ -6,6 +6,9 @@ import java.util.Objects;
 
 /**
  * Represents the result of a command execution.
+ * Refactoring to generic class inspired by
+ * https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main/java/seedu/foodrem/logic/commands/
+ * CommandResult.java (link truncated to pass checkstyle)
  */
 public class CommandResult<T> {
 
@@ -69,7 +72,7 @@ public class CommandResult<T> {
             return false;
         }
 
-        CommandResult otherCommandResult = (CommandResult) other;
+        CommandResult<?> otherCommandResult = (CommandResult<?>) other;
         return output.equals(otherCommandResult.output)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
