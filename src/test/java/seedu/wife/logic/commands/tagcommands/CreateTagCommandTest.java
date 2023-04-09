@@ -57,26 +57,26 @@ public class CreateTagCommandTest {
         Tag dairyTagDifferentCase = new TagBuilder().withTagName("daIRy").build();
         Tag vegetableTag = new TagBuilder().withTagName("vegetable").build();
 
-        CreateTagCommand addFruitsTag = new CreateTagCommand(dairyTag);
-        CreateTagCommand addFruitsTagDifferentCase = new CreateTagCommand(dairyTagDifferentCase);
+        CreateTagCommand addDairyTag = new CreateTagCommand(dairyTag);
+        CreateTagCommand addDairyTagDifferentCase = new CreateTagCommand(dairyTagDifferentCase);
         CreateTagCommand addVegetableTag = new CreateTagCommand(vegetableTag);
 
-        // same object -> returns true
-        assertEquals(addFruitsTag, addFruitsTag);
-        assertEquals(addFruitsTag, addFruitsTagDifferentCase);
+        // same tag name values -> return true
+        assertEquals(addDairyTag, addDairyTag);
+        assertEquals(addDairyTag, addDairyTagDifferentCase);
 
-        // same values -> returns true
-        CreateTagCommand addFruitsTagCopy = new CreateTagCommand(dairyTag);
-        assertEquals(addFruitsTag, addFruitsTagCopy);
+        // same tag name but different command object -> returns true
+        CreateTagCommand addDairyTagCopy = new CreateTagCommand(dairyTag);
+        assertEquals(addDairyTag, addDairyTagCopy);
 
         // different types -> returns false
-        assertNotEquals(1, addFruitsTag);
+        assertNotEquals("dairy", addDairyTag);
 
         // null -> returns false
-        assertNotEquals(null, addFruitsTag);
+        assertNotEquals(null, addDairyTag);
 
         // different item -> returns false
-        assertNotEquals(addFruitsTag, addVegetableTag);
+        assertNotEquals(addDairyTag, addVegetableTag);
     }
 
     /**

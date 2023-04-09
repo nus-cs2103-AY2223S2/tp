@@ -22,10 +22,9 @@ public class UntagFoodCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "%s successfully untagged from %s";
     private static final String EXPECTED_ERROR_TAG_NOT_FOUND = "There is no %s Tag!";
     private static final String EXPECTED_ERROR_FOOD_NOT_FOUND = "The food item index provided is invalid";
-
+    private Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
     @Test
     public void execute_untagFoodWithoutExistingTag_throwsCommandException() {
-        final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
         Tag dairyTag = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
         UntagFoodCommand untagFoodCommand = new UntagFoodCommand(dairyTag.getTagName(), INDEX_FIRST_FOOD);
 
@@ -42,7 +41,6 @@ public class UntagFoodCommandTest {
 
     @Test
     public void execute_foodIndexNotFound_throwsCommandException() {
-        final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
         Tag tag = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
         model.createTag(tag);
         UntagFoodCommand untagFoodCommand = new UntagFoodCommand(tag.getTagName(), INDEX_THIRD_FOOD);

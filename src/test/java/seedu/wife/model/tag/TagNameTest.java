@@ -45,14 +45,10 @@ public class TagNameTest {
     }
 
     @Test
-    public void tag_isEqual_anotherTag() {
-        final TagName tagNameCopy = new TagName(name);
-        assertEquals(tagNameCopy, tagName);
-    }
-
-    @Test
-    public void tag_isNotEqual_anotherTag() {
-        final TagName tagNameCopy = new TagName("anotherTag");
-        assertNotEquals(tagNameCopy, tagName);
+    public void equals() {
+        final TagName validTagNameCopy = new TagName(name);
+        final TagName invalidTagNameCopy = new TagName("anotherTag");
+        assertEquals(validTagNameCopy, tagName);
+        assertNotEquals(invalidTagNameCopy, tagName);
     }
 }
