@@ -372,7 +372,7 @@ Running `clear` will clear your entire recipe book and there's no going back!
 </div>
 
 <div markdown="block" class="alert alert-info">
-If you wish to save your data elsewhere first and then start afresh, consider using the [Export](#export) feature first!
+* If you wish to save your data elsewhere first and then start afresh, consider using the [Export](#export) feature first!
 </div>
 
 ### Asking for assistance: `help`
@@ -427,9 +427,11 @@ file to be imported using the selector.
 
 ![ImportDataWindow](images/ImportWindow.jpg)
 
+<div markdown="block" class="alert alert-info">
 * Only files with recipes that pass our formatting checks, and files with no duplicate recipes will be imported
 * Any imported recipes will be added to your current recipe book!
 * Alternatively, you can access the import function from the <kbd>File</kbd> tab in the top left corner of the main window.
+</div>
 
 ![ImportExportFromTopLeftOfWindow](images/ImportExportDisplay.jpg)
 
@@ -439,9 +441,11 @@ file to be imported using the selector.
 The keyboard input <kbd>F4</kbd> will open an export window from the main window (as shown in the image below). From there, input the file name of the
 JSON file to be exported and select the desired location for it to be saved!
 
-* Alternatively, like the import function, you can access the export function via the <kbd>File</kbd> tab in the top left corner of the main window.
-
 ![ExportDataWindow](images/ExportWindow.jpg)
+
+<div markdown="block" class="alert alert-info">
+* Alternatively, like the import function, you can access the export function via the <kbd>File</kbd> tab in the top left corner of the main window.
+</div>
 
 ---
 ## FAQ
