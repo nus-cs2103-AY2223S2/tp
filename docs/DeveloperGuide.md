@@ -322,41 +322,31 @@ streamlined and efficient.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority   | As a …​ | I want to …​                                                                       | So that I can…​                                                                                                                |
-|------------|---------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| `* * *`    | User    | Record a person's age                                                              | Keep track of their basic profile                                                                                              |
-| `* * *`    | User    | Record a person's phone number                                                     | Contact them conveniently                                                                                                      |
-| `* * *`    | User    | Record a person's email/address                                                    | Efficiently manage the communication and consultation process with patients                                                    |
-| `* * *`    | User    | Give patients zero or more tags                                                    | Easily classify different groups of patients by their illness, medication, and other information to serve their specific needs |
-| `* * *`    | User    | Add a certain medical condition and add the relevant patients in the same category | Organize patients based on their medical conditions                                                                            |
-| `* * *`    | User    | Add new types of medications and assign them to patients                           | Keep track of patients' medications and prescriptions                                                                          | 
-| `* * *`    | User    | Generate Medical Certificate for a patient                                         | Quickly provide comprehensive PDF medical certificate during consultation                                                      |
-| `* * *`    | User    | Upload local medical document of a patient                                         | Efficiently manage each patient files in a centralized digital location                                                        |
-| `* * *`    | User    | View patient's medical documents                                                   | Quickly find the specific information needed from the patient for further diagnosis and treatment                              |
-| `* * *`    | User    | List all current contacts                                                          | View general information, update list, and add filters/classifications                                                         |
-| `* * *`    | User    | Rank patients by schedule, name, and medical conditions                            | Manage consultation time and content efficiently                                                                               | 
-| `* * *`    | User    | Search for a medication and get the number of patients taking it                   | Determine how much medication to order for the clinic                                                                          | 
-| `* * *`    | User    | Edit patient information (phone number, name, location, medical condition)         | Update patient records                                                                                                         | 
-| `* * *`    | User    | Edit a patient contact                                                             | Modify patient contact information                                                                                             | 
-| `* * *`    | User    | Schedule appointments                                                              | Book and manage appointments to reduce workload                                                                                | 
-| `* * *`    | User    | Update appointment timing                                                          | Modify appointment times                                                                                                       | 
-| `* * *`    | User    | Mark appointments as done                                                          | Indicate when appointments are completed                                                                                       | 
-| `* *`      | User    | Edit available medication amount                                                   | Maintain inventory and stock levels                                                                                            | 
-| `* * *`    | User    | Search for patients by name                                                        | Locate patient records by name                                                                                                 | 
-| `* * *`    | User    | Search for patients by phone number                                                | Locate patient records by phone number                                                                                         | 
-| `* * *`    | User    | Search for patients by location                                                    | Locate patients by location                                                                                                    | 
-| `* * *`    | User    | Search for patients by medical condition                                           | Locate patients by medical condition                                                                                           | 
-| `* * *`    | User    | Search for appointments by date                                                    | View appointments on a specific date                                                                                           | 
-| `* * *`    | User    | Access help function                                                               | Get information on using the software                                                                                          | 
-| `* * *`    | User    | Access patient health information                                                  | View patient medical history                                                                                                   | 
-| `* * *`    | User    | Access patient prescriptions                                                       | View patient medication history                                                                                                | 
-| `*`        | User    | Check available medication stock                                                   | Determine when to order more medication                                                                                        | 
-| `*`        | User    | Clear all contacts                                                                 | Delete all patient records                                                                                                     | 
-| `*`        | User    | Clear contacts by tags                                                             | Delete patient records based on tags                                                                                           | 
-| `*`        | User    | Clear contacts by location                                                         | Delete patient records based on location                                                                                       | 
-| `***`      | User    | Delete medication                                                                  | Remove a medication from the system                                                                                            | 
-| `***`      | User    | Delete appointment                                                                 | Remove an appointment from the system                                                                                          | 
-| `***`      | User    | Delete a patient file                                                              | Remove outdated or wrongly updated file from the system                                                                        |
+| Priority   | As a …​ | I want to …​                                                               | So that I can…​                                                                                                                |
+|------------|---------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`    | User    | Record a person's age                                                      | Keep track of their basic profile                                                                                              |
+| `* * *`    | User    | Record a person's phone number                                             | Contact them conveniently                                                                                                      |
+| `* * *`    | User    | Record a person's email/address                                            | Efficiently manage the communication and consultation process with patients                                                    |
+| `* * *`    | User    | Give patients zero or more tags                                            | Easily classify different groups of patients by their illness, medication, and other information to serve their specific needs |
+| `* * *`    | User    | Add a certain medical condition to a patient                               | Keep track of patients' health conditions                                                                                      |
+| `* * *`    | User    | Add patient's nric number                                                  | Verify patients' identity                                                                                                      |
+| `* * *`    | User    | Generate Medical Certificate for a patient                                 | Quickly provide comprehensive PDF medical certificate during consultation                                                      |
+| `* * *`    | User    | Upload local medical document of a patient                                 | Efficiently manage each patient files in a centralized digital location                                                        |
+| `* * *`    | User    | View patient's medical documents                                           | Quickly find the specific information needed from the patient for further diagnosis and treatment                              |
+| `* * *`    | User    | List all current patients                                                  | View general information of all patients                                                                                       |
+| `* * *`    | User    | Rank patients by appointments and names                                    | Manage consultation time and content efficiently                                                                               | 
+| `* * *`    | User    | Edit patient information (phone number, name, location, medical condition) | Update patient records                                                                                                         | 
+| `* * *`    | User    | Edit a patient contact                                                     | Modify patient contact information                                                                                             | 
+| `* * *`    | User    | Schedule appointments                                                      | Book and manage appointments to reduce workload                                                                                | 
+| `* * *`    | User    | Update appointment timing                                                  | Modify appointment times                                                                                                       | 
+| `* * *`    | User    | Mark appointments as done                                                  | Indicate when appointments are completed                                                                                       | 
+| `* * *`    | User    | Search for patients by name                                                | Locate patient records by name                                                                                                 | 
+| `* * *`    | User    | Search for appointments by date                                            | View appointments on a specific date                                                                                           | 
+| `* * *`    | User    | Access help function                                                       | Get information on using the software                                                                                          | 
+| `*`        | User    | Clear all contacts                                                         | Delete all patient records                                                                                                     | 
+| `***`      | User    | Delete appointment                                                         | Remove an appointment from the system                                                                                          | 
+| `***`      | User    | Delete a patient file                                                      | Remove outdated or wrongly updated file from the system                                                                        |
+| `***`      | User    | Delete a patient or multiple patients                                      | Remove outdated patient from the system                                                                                        |
 
 ### Use cases
 
@@ -621,7 +611,7 @@ Use case ends.
 * **Appointment**: A scheduled meeting or consultation with a private doctor.
 * **Patient**: A person who is receiving medical treatment from a doctor or other healthcare professional.
 * **Medical certificate**: A legal document issued by a doctor that certifies a patient's medical condition or ability to perform certain tasks.
-
+* **NRIC**: National Registration Identity Card, an identification document issued to citizens and permanent residents of Singapore.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
