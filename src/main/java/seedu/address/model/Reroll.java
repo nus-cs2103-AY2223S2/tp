@@ -77,7 +77,7 @@ public class Reroll implements ReadOnlyReroll {
 
     // Misc ====================
 
-    public Character createFromTemplate(Name newEntity, Name templateName) throws NoSuchElementException {
+    public Character createFromTemplate(Name newEntity, String templateName) throws NoSuchElementException {
         return this.templates.generateCharacter(newEntity, templateName);
     }
 

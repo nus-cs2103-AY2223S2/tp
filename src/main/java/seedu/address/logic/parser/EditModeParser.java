@@ -28,6 +28,7 @@ import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Progression;
 import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
 
@@ -108,27 +109,27 @@ public class EditModeParser {
         case "s":
         case "str":
         case "strength":
-            outData.setStats(new Stats(Integer.valueOf(value),
+            outData.setStats(new Stats(Integer.parseInt(value),
                     toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
         case "d":
         case "dex":
         case "dexterity":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
-                    Integer.valueOf(value), toEdit.getStats().getIntelligence()));
+                    Integer.parseInt(value), toEdit.getStats().getIntelligence()));
             break;
         case "int":
         case "intelligence":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
-                    toEdit.getStats().getDexterity(), Integer.valueOf(value)));
+                    toEdit.getStats().getDexterity(), Integer.parseInt(value)));
             break;
         case "level":
         case "lvl":
-            outData.setLevel(Integer.valueOf(value));
+            outData.setProgression(new Progression(Integer.valueOf(value), toEdit.getXP()));
             break;
         case "xp":
         case "exp":
-            outData.setXp(Integer.valueOf(value));
+            outData.setProgression(new Progression(toEdit.getLevel(), Integer.valueOf(value)));
             break;
         case "inv":
         case "inventory":

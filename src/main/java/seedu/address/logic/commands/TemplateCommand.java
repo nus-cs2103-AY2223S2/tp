@@ -23,13 +23,13 @@ public class TemplateCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ENTITY = "This character name already exists in Reroll";
     public static final String MESSAGE_NO_TEMPLATE = "No such template was found in Reroll!";
 
-    private final Name templateName;
+    private final String templateName;
     private final Name newName;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public TemplateCommand(Name templateName, Name newName) {
+    public TemplateCommand(String templateName, Name newName) {
         requireAllNonNull(templateName, newName);
         this.templateName = templateName;
         this.newName = newName;

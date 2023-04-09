@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.entity.Character.CharacterBuilder;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,7 +48,7 @@ public class EntityBuilder {
     }
 
     public Character buildChar() {
-        return new Character(name);
+        return new CharacterBuilder(name).build();
     }
 
     public Item buildItem() {

@@ -162,7 +162,7 @@ public interface Model {
     /**
      * Get new character using template
      */
-    Character createFromTemplate(Name entityName, Name templateName) throws NoSuchElementException;
+    Character createFromTemplate(Name entityName, String templateName) throws NoSuchElementException;
 
     List<String> getTemplates();
 }

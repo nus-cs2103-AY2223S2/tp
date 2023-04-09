@@ -42,7 +42,7 @@ public class MakeCommandParser implements Parser<MakeCommand> {
 
         Entity newEntity = null;
         if (classification.isCharacter()) {
-            newEntity = new Character(name);
+            newEntity = new Character.CharacterBuilder(name).build();
         } else if (classification.isItem()) {
             newEntity = new Item(name);
         } else if (classification.isMob()) {

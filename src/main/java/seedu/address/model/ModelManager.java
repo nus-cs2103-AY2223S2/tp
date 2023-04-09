@@ -257,7 +257,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Character createFromTemplate(Name entityName, Name templateName) throws NoSuchElementException {
+    public Character createFromTemplate(Name entityName, String templateName) throws NoSuchElementException {
         return this.reroll.createFromTemplate(entityName, templateName);
     }
 

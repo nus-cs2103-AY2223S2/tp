@@ -1,7 +1,6 @@
 package seedu.address.model.entity;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,95 +11,35 @@ import seedu.address.model.tag.Tag;
  * Represents a Character, which is a child class of Entity
  */
 public class Character extends Entity {
-    private static final int BASE_LEVEL = 1;
-    private static final int BASE_XP = 0;
-
     private final Stats stats;
     private final Inventory inventory;
-    private final int level;
-    // Represents the amount of experience points (xp) needed for the next level-up
-    private final int xp;
+    private final Progression progression;
 
     /**
-     * Every field should be present and non-null. Dummy values used for character specific fields.
-     *
-     * @param name name of the character
+     * Create a new character using a builder pattern
+     * @param builder Builder to use
      */
-    public Character(Name name) {
-        super(name);
-        this.stats = new Stats(1, 1, 1);
-        this.level = BASE_LEVEL;
-        this.xp = BASE_XP;
-        this.inventory = Inventory.emptyInventory();
-    }
-
-    /**
-     * Every field should be present and non-null. Dummy values used for character specific fields.
-     *
-     * @param name name of the character
-     */
-    public Character(Name name, Set<Tag> tags) {
-        super(name, tags);
-        this.stats = new Stats(1, 1, 1);
-        this.level = BASE_LEVEL;
-        this.xp = BASE_XP;
-        this.inventory = Inventory.emptyInventory();
-    }
-
-    /**
-     * Every field should be present and non-null. Dummy values used for character specific fields.
-     *
-     * @param name name of the character
-     * @param stats stats of the character
-     */
-    public Character(Name name, Stats stats) {
-        super(name);
-        this.stats = stats;
-        this.level = BASE_LEVEL;
-        this.xp = BASE_XP;
-        this.inventory = Inventory.emptyInventory();
-    }
-
-    /**
-     * Every field should be present and non-null.
-     *
-     * @param name  name of the character
-     * @param stats stats of the character (e.g. Strength, Dexterity)
-     * @param level level of the character
-     * @param xp    experience points of the character
-     * @param tags  tags categorizing the character
-     */
-    public Character(Name name, Stats stats, int level, int xp, Set<Tag> tags) {
-        super(name, tags);
-        requireAllNonNull(stats, level, xp, tags);
-        this.stats = stats;
-        this.level = level;
-        this.xp = xp;
-        this.inventory = Inventory.emptyInventory();
-    }
-
-    /**
-     * Full constructor for character with inventory
-     */
-    public Character(Name name, Stats stats, int level, int xp, Inventory inventory, Set<Tag> tags) {
-        super(name, tags);
-        requireAllNonNull(stats, level, xp, tags, inventory);
-        this.stats = stats;
-        this.level = level;
-        this.xp = xp;
-        this.inventory = inventory;
+    public Character(CharacterBuilder builder) {
+        super(builder.name, builder.tags);
+        this.stats = builder.stats;
+        this.inventory = builder.inventory;
+        this.progression = builder.progression;
     }
 
     public int getLevel() {
-        return this.level;
+        return this.progression.getLevel();
     }
 
     public int getXP() {
-        return this.xp;
+        return this.progression.getXP();
     }
 
     public Stats getStats() {
         return this.stats;
+    }
+
+    public Progression getProgression() {
+        return this.progression;
     }
 
     public Inventory getInventory() {
@@ -116,8 +55,8 @@ public class Character extends Entity {
                 new Pair<>("Str", String.valueOf(stats.getStrength())),
                 new Pair<>("Dex", String.valueOf(stats.getDexterity())),
                 new Pair<>("Int", String.valueOf(stats.getIntelligence())),
-                new Pair<>("Level", String.valueOf(getLevel())),
-                new Pair<>("XP", String.valueOf(getXP())),
+                new Pair<>("Level", String.valueOf(progression.getLevel())),
+                new Pair<>("XP", String.valueOf(progression.getXP())),
                 new Pair<>("Tags", serializedTags.toString())
         );
     }
@@ -127,5 +66,74 @@ public class Character extends Entity {
         return otherEntity == this
                 || (otherEntity instanceof Character
                 && otherEntity.getName().equals(getName()));
+    }
+
+    /**
+     * Builder class for Character
+     */
+    public static class CharacterBuilder {
+        private final Name name;
+        private Stats stats = new Stats();
+        private Inventory inventory = Inventory.emptyInventory();
+        private Progression progression = new Progression();
+        private Set<Tag> tags = new HashSet<>();
+
+        public CharacterBuilder(Name name) {
+            this.name = name;
+        }
+
+        /**
+         * Set tags of the CharacterBuilder instance
+         * @param tags given tags to set
+         * @return this
+         */
+        public CharacterBuilder setTags(Set<Tag> tags) {
+            this.tags = tags;
+            return this;
+        }
+
+        /**
+         * Set stats of the CharacterBuilder instance
+         * @param stats given tags to set
+         * @return this
+         */
+        public CharacterBuilder setStats(Stats stats) {
+            this.stats = stats;
+            return this;
+        }
+
+        /**
+         * Set inventory of the CharacterBuilder instance
+         * @param inventory given tags to set
+         * @return this
+         */
+        public CharacterBuilder setInventory(Inventory inventory) {
+            this.inventory = inventory;
+            return this;
+        }
+
+        /**
+         * Set progression of the CharacterBuilder instance
+         * @param progression given tags to set
+         * @return this
+         */
+        public CharacterBuilder setProgression(Progression progression) {
+            this.progression = progression;
+            return this;
+        }
+
+        /**
+         * Create a copy of a given CharacterBuilder
+         * @param toCopy given CharacterBuilder to copy
+         */
+        public void copy(CharacterBuilder toCopy) {
+            this.stats = toCopy.stats;
+            this.inventory = toCopy.inventory;
+            this.progression = toCopy.progression;
+        }
+
+        public Character build() {
+            return new Character(this);
+        }
     }
 }

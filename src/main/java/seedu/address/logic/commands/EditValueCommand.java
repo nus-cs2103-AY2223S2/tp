@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.entity.Character.CharacterBuilder;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -16,6 +17,7 @@ import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Progression;
 import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
 
@@ -91,12 +93,17 @@ public class EditValueCommand extends Command {
 
         Name updatedName = editCharacterDescriptor.getName().orElse(charToEdit.getName());
         Stats updatedStats = editCharacterDescriptor.getStats().orElse(charToEdit.getStats());
-        Integer updatedLevel = editCharacterDescriptor.getLevel().orElse(charToEdit.getLevel());
-        Integer updatedXp = editCharacterDescriptor.getXp().orElse(charToEdit.getXP());
+        Progression updatedProgression = editCharacterDescriptor.getProgression().orElse(charToEdit.getProgression());
         Set<Tag> updatedTags = editCharacterDescriptor.getTags().orElse(charToEdit.getTags());
         Inventory updatedInventory = editCharacterDescriptor.getInventory().orElse(charToEdit.getInventory());
 
-        return new Character(updatedName, updatedStats, updatedLevel, updatedXp, updatedInventory, updatedTags);
+        CharacterBuilder builder = new CharacterBuilder(updatedName)
+                .setStats(updatedStats)
+                .setProgression(updatedProgression)
+                .setInventory(updatedInventory)
+                .setTags(updatedTags);
+
+        return builder.build();
     }
 
     /**
@@ -225,8 +232,7 @@ public class EditValueCommand extends Command {
     public static class EditCharacterDescriptor extends EditEntityDescriptor {
 
         private Stats stats;
-        private Integer level;
-        private Integer xp;
+        private Progression progression;
         private Inventory inventory;
 
         /**
@@ -241,8 +247,7 @@ public class EditValueCommand extends Command {
         public EditCharacterDescriptor(EditCharacterDescriptor toCopy) {
             super(toCopy);
             setStats(toCopy.stats);
-            setLevel(toCopy.level);
-            setXp(toCopy.xp);
+            setProgression(toCopy.progression);
             setInventory(toCopy.inventory);
         }
 
@@ -254,20 +259,20 @@ public class EditValueCommand extends Command {
             return Optional.ofNullable(stats);
         }
 
-        public void setLevel(int level) {
-            this.level = level;
+        public void setProgression(Progression progression) {
+            this.progression = progression;
+        }
+
+        public Optional<Progression> getProgression() {
+            return Optional.ofNullable(progression);
         }
 
         public Optional<Integer> getLevel() {
-            return Optional.ofNullable(level);
-        }
-
-        public void setXp(int xp) {
-            this.xp = xp;
+            return Optional.of(this.progression.getLevel());
         }
 
         public Optional<Integer> getXp() {
-            return Optional.ofNullable(xp);
+            return Optional.of(this.progression.getXP());
         }
 
         public Optional<Inventory> getInventory() {
