@@ -358,7 +358,7 @@ Step 8 till Step 11 are depicted in the *Sequence Diagram* below.
 
 <p align="center">
 
-<img src="images/CalendarSequenceDiagram.png" width="550" />
+<img src="images/CalendarSequenceDiagram.png" width="700" />
 
 </p>
 
