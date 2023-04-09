@@ -61,7 +61,7 @@ public class AddVideoCommandTest {
         /* Create expected results */
         // Create expected command result
         String expectedMessage = String.format(AddVideoCommand.MESSAGE_SUCCESS,
-                module.getCode(), lecture.getName(), video);
+                lecture.getName(), module.getCode(), video);
         VideoEditInfo expectedEditInfo = new VideoEditInfo(module.getCode(), lecture.getName(), null, video);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedEditInfo);
 
