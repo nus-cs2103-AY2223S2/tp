@@ -1194,7 +1194,7 @@ responds with the message "The date entered is invalid", and does not specify
 which one. This can be easily remedied by adding an overload for the method
 which parses dates. In brief, the new overload will
 
-1. Expect to receive the argument's name as a string
+1. Expect to receive the argument's name, e.g. "project deadline", as a string
 1. If it fails to parse the argument data, an exception explicitly referencing
    the argument's name is thrown
 1. This message is displayed to the user
