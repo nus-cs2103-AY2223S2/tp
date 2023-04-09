@@ -237,15 +237,16 @@ The following sequence diagram shows how the add operation works:
 #### Implementation
 The weight data graph will be displayed in a pop-up window in the Ui component. It contains a LineChart of `Date` date against `Number` weight, and is populated 
 with data from XYChart.Series. The data is obtained from the logic component, which provides only past 30 days of weight data in the WeightHistory class.
-.
+
+
 The following details explain how it works:
 
 * The `WeightHistory` class stores the list of weights and dateTime.
-* The GraphPopup class sets up the LineChart with x-axis as a `Date` representing date, and y-axis as a `Double` representing the weight measurement on that date.
+* The GraphPopup.Scene class sets up the LineChart with x-axis as a `Date` representing date, and y-axis as a `Double` representing the weight measurement on that date.
 * Ensure the XYChart.Series that populates the graph with data is always updated with the most recent data.
 * The `handleStatistics` is called by the MainWindow class to generate the weight data graph in a pop-up window.
 
-Weight over date and time pop-up windows will display the past 30 days graph automatically. It does so by hvaing the MainWindow class call handle statistics 
+Weight over date and time pop-up windows will display the past 30 days graph automatically. It does so by having the MainWindow class call handle statistics 
 on startup and after execution of commands.
 
 Sequence Diagram for Graph feature.
@@ -299,21 +300,22 @@ The following details explain how it works:
       * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
       Otherwise, an error message is returned.
 
+Sequence Diagram for Edit Appointment feature.
 
    * Example Usage Scenario
 
      Below is an example usage scenario of how the appointment list mechanism behaves at each step:
        * The user launches the application for the first time.
-       * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also
+       * The user executes the `Edit` command to edit an appointment. The execution of the `Edit` command also
        checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
 
 
   * Design Considerations
 
     One important design consideration is how to handle expired appointment dates and times. The current choice is to
-    automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
-      * pros: Users can easily distinguish between expired and non-expired appointment dates and times.
-      * cons: expired date time cannot be updated immediately unless the user reopen the application.
+    automatically remove them after switching tabs.
+      * pros: This allows users to focus only on upcoming appointment dates and times, which can help them stay organized and avoid confusion.
+      * cons: Expired date and time information cannot be removed immediately unless the user switches tabs within the application, which could potentially lead to confusion appointments.
 
 ### Find feature
 
