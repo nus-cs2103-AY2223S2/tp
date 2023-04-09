@@ -1412,7 +1412,7 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 ## 8. Appendix: Effort
 OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
-Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and shown in AB3.
+Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and shown in AB3. We have also strived to maintain good code coverage, applying what was taught in the later weeks, resulting in a **code coverage of near 70% in Codecov.**
 
 In the section, we will detail some of the hurdles that we faced through the iterations of our tP, both design and technical wise.
 ### 8.1 Design Challenges
