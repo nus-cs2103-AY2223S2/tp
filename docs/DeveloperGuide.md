@@ -819,7 +819,7 @@ specified otherwise)
 
 * 4a. The user has not undone any actions within Advis.io that can be redone.
   * 4a1. Advis.io displays a message indicating that there is no action to be redone.
-  
+ 
     Use case ends
 
 **Use case: Creating Appointment for Client**
