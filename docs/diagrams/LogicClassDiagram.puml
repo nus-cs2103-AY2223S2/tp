@@ -4,13 +4,12 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic {
+package "Logic" as LogicPackage {
 
 Class DengueHotspotTrackerParser
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
-
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
@@ -21,13 +20,14 @@ Class HiddenModel #FFFFFF
 }
 
 package Storage{
+Class HiddenModel #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
-LogicManager .left.|> Logic
-LogicManager -right->"1" DengueHotspotTrackerParser
+LogicManager .right.|> Logic
+LogicManager -down> "1" DengueHotspotTrackerParser
 DengueHotspotTrackerParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
