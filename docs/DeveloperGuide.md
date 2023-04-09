@@ -1044,7 +1044,7 @@ testers are expected to do more *exploratory* testing.
 
 Before each test scenario, ensure that your sprINT application is launched and opened on your device.
 
-1. Adding an application to sprINT while all applications are shown.
+1. Adding an application to sprINT
 
     1. Prerequisites: sprINT's main window is launched and opened.
 
