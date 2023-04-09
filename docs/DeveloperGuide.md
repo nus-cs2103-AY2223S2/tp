@@ -8,8 +8,8 @@ title: Developer Guide
 ## **Introduction**
 
 -------------------------------------------------------------------------------------------------------------------
-_Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
-Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
+_Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a CLI**
+while still providing an easy way to visualize all events through a GUI.
 
 _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
@@ -231,11 +231,13 @@ Activity Diagram for a typical `undo` command
 
 ## **Glossary**
 --------------------------------------------------------------------------------------------------------------------
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
+* **CLI**: Command Line Interface
 * **Event**: A task with a starting time and an ending time
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **GUI**: Graphical User Interface
 * **Ongoing Event**: An event that has started, but not ended
 * **Upcoming Event**: An event that has not started
-* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
 
 
 ## **Appendices**
