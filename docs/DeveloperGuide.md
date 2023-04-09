@@ -937,11 +937,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 * 1c. User request have all missing fields.
-  * 1c1. FitBook shows an error for missing fields.
+  * 1c1. FitBook shows an error message.
 
     Use case ends.
 
-> **Use case: UC16 - Edit routine or exercise in routine**
+> **Use case: UC16 - Add Exercise **
+
+**MSS**
+
+1. User request to add an Exercise to a specific Routine.
+2. FitBook adds the Exercise to the Routine in the routine list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User request have missing exercise name field.
+    * 1a1. FitBook shows an error for missing exercise name.
+
+      Use case ends.
+
+* 1b. User request have missing Routine Index.
+    * 1b1. FitBook shows an error for missing Routine Index.
+
+      Use case ends.
+
+* 1c. The given routine index is invalid.
+    * 1c1. FitBook shows an error for missing fields.
+
+      Use case ends.
+
+> **Use case: UC17 - Edit routine or exercise in routine**
 
 **MSS**
 
