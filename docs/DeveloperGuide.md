@@ -858,11 +858,11 @@ These commands should be tested on the Grades Page.
 1. Dealing with missing/corrupted data files
 
    1. Test case: Corrupted data file. This includes any invalid fields in `roster.json` located in `tp/data`. <br>
-      Expected: A new set of roster sample data from `sampleRoster.json` will be loaded into the original file. Do exit the app for the new
-      data from the uncorrupted sample file to overwrite `roster.java`.
+      Expected: A new set of roster sample data from `sampleRoster.json` will be loaded into the original file.
+      Do exit the app for the new data from the uncorrupted sample file to overwrite `roster.java`.
 
    1. Test case: Missing data file. This indicates that `roster.java` does not exist in `tp/data`. <br>
-      Expected: A set of roster sample data from `sampleRoster.json` will be copied and loaded into a newly created `roster.java` 
+      Expected: A set of roster sample data from `sampleRoster.json` will be copied and loaded into a newly created `roster.java`.
       Do exit the app for `roster.java` to be created.
 
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
