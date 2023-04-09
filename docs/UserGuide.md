@@ -26,6 +26,8 @@ bringing you one step closer to achieving your goals.
 So, what are you waiting for? Read on to find out more about how to use coNtactUs in this user guide! 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
+
 ## <a id="ug"></a>About this user guide
 
 If this is the first time you are using coNtactUS, this user guide provides an excellent starting point for you to
@@ -55,6 +57,8 @@ that you should pay attention to. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
+
 ## <a id="table"></a>Table of Contents
 
 * [**About coNtactUS**](#contactus)
@@ -92,6 +96,8 @@ that you should pay attention to. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="start"></a> Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer 
@@ -113,7 +119,7 @@ for your reference. </div>
 
 
 <p align="center">
-  <img src="images/Ui.png">
+  <img height="400" width="600" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
@@ -121,13 +127,15 @@ for your reference. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="ui"></a> Familiarising yourself with the user interface  
 
 In case you are unsure of what you see in front of you now, we have come up with annotations to
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
 
 <p align="center">
-  <img src="images/User_Interface.png">
+  <img height="300" width="600" src="images/User_Interface.png">
 </p>
 
 <div align="center">Figure 2: Annotations about the user interface</div>
@@ -135,6 +143,8 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="module"></a>Familiarising yourself with a module
 
 To start adding a module, we should first learn about what a module is. In coNtactUS, each module has 8 information 
@@ -150,8 +160,6 @@ fields.
 * RESOURCE: A link to a resource for the module, if any. 
 
 This is all you need to know for the time being. Now let's take a closer look at the commands.
-
-<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,9 +190,10 @@ command, refer to the next section.
 <div markdown="span" class="alert alert-primary"> :exclamation: The clear command removes all the modules in the 
 list. Only use it if you are sure! </div> 
 
-<br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="features"></a>Features  
 
 This section introduces you to detailed information about how to use each command.
@@ -211,6 +220,8 @@ This is a straightforward command. To use it, all you have to type is `list`
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="add"></a>Adding a module: `add`  
 
 By using the `add` command, you can add a new module to the module tracker. 
