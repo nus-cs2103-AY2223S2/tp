@@ -494,6 +494,10 @@ The format for the `add-t` command can be found [here](https://ay2223s2-cs2103t-
 4. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
 5. If step 5 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
 
+The following activity diagram shows the logic of the `add-t` command.
+
+![AddTagToPersonCommandActivityDiagram](images/AddTagToPersonCommandActivityDiagram.png)
+
 The sequence of the `add-t` command is as follows:
 
 1. The command `add-t INPUT` is entered by the user, where the `INPUT` is an integer index followed by a tag to add (e.g. `add-t 1 r/friend`).
@@ -532,8 +536,11 @@ The format for the `delete-t` command can be found [here](https://ay2223s2-cs210
 4. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
 5. If step 5 completes without exceptions, the tag of `Person` will be successfully deleted and this change will be stored inside the contact list.
 
+The following activity diagram shows the logic of the `delete-t` command.
+
+![DeleteTagFromPersonCommandActivityDiagram](images/DeleteTagFromPersonCommandActivityDiagram.png)
+
 The sequence of the `delete-t` command is as follows:
-![DeleteTagFromPersonCommandSequenceDiagram](images/DeleteTagFromPersonCommandSequenceDiagram.png)
 
 1. The command `delete-t INPUT` is entered by the user, where the `INPUT` is an integer index followed by a tag index to delete (e.g. `delete-t 1 r/1`).
 2. `Logic Manager` calls the `ConnectUsParser#parseCommand` with the given `INPUT`
@@ -542,6 +549,10 @@ The sequence of the `delete-t` command is as follows:
 5. `Logic Manager` executes `DeleteTagFromPersonCommand#execute`, creating a new `Person` with new tag lists from its parameters and replacing the original `Person` with this new `Person` in the model through `Model#setPerson`.
 6. `Model#updateFilteredPersonList` is called to update the list of `Person` objects.
 7. A `Command Result` is returned with the result of the execution.
+
+The following sequence diagram shows how `delete-t` works:
+
+![DeleteTagFromPersonCommandSequenceDiagram](images/DeleteTagFromPersonCommandSequenceDiagram.png)
 
 [↑ Back to top of section](#4-implementation)
 
