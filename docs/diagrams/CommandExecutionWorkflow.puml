@@ -1,19 +1,19 @@
 @startuml
 start
 :User opens sprINT and executes sort command to sort alphabetically;
-:ApplicationModelManager filters an internal list with predicate that shows all applications;
-:ApplicationModelManager then sorts list with AlphabeticalComparator;
+:ModelManager filters an internal list with predicate that shows all applications;
+:ModelManager then sorts list with AlphabeticalComparator;
 :List is shown to user on GUI;
 
 :User executes find command;
-:ApplicationModelManager filters internal list with predicate as dictated by the user-given
+:ModelManager filters internal list with predicate as dictated by the user-given
 keywords in the find command;
-:ApplicationModelManager then sorts list with AlphabeticalComparator;
+:ModelManager then sorts list with AlphabeticalComparator;
 :List is shown to user on GUI;
 
 :User executes list command;
-:ApplicationModelManager filters internal list with predicate that shows all applications;
-:ApplicationModelManager then sorts list with DefaultComparator;
+:ModelManager filters internal list with predicate that shows all applications;
+:ModelManager then sorts list with DefaultComparator;
 :List is shown to user on GUI;
 
 :User exits sprINT;
