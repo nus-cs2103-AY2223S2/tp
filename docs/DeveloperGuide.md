@@ -654,6 +654,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. MyLib shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: View a bookmark**
+
+**MSS**
+
+1.  User requests to list bookmarks
+2.  MyLib shows a list of bookmarks
+3.  User requests to view a specific bookmark in the list
+4.  MyLib views the bookmark in right panel of UI
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Goto bookmark's Url**
+
+**MSS**
+
+1.  User requests to list bookmarks
+2.  MyLib shows a list of bookmarks
+3.  User requests to goto a specific bookmark's Url in the list
+4.  MyLib opens url in user's default browser
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+
 <div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
