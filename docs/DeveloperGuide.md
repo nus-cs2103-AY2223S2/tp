@@ -167,6 +167,69 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Autocomplete feature
+
+#### Implementation
+
+The autocomplete feature is implemented through the `AutocompleteEngine` class, which is aggregated inside the `LogicManager` class. The `LogicManager` class implements the `Logic` interface, which exposes the `AutocompleteEngine` methods. The `LogicManager` initializes the `AutocompleteEngine` with a predefined `Model`, and the `AutocompleteEngine` utilizes methods from the `Model` interface to access existing tag, module, and education values.
+
+The `CommandBox` UI class then integrates the autocomplete feature. It listens for user input and queries the `Logic` interface for suggestions based on the current input.
+
+The public methods of the `AutocompleteEngine` class are:
+
+- `suggestCommand(String userInput)` - Suggests a command _(including it's arguments)_ based on the user input.
+- `autocompleteCommand(String userInput, String commandSuggestion)` - Returns the new user input when the user autocompletes the command.
+
+New methods in the `Model` interface for the autocomplete feature include:
+
+- `getExistingTagValues()`: Returns a list of all existing tag values contained in the person list.
+- `getExistingModuleValues()`: Returns a list of all existing module values contained in the person list.
+- `getExistingEducationValues()`: Returns a list of all existing education values contained in the person list.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The returned lists of the above 3 get-existing methods will contain no duplicate values.
+</div>
+
+Given below is an example usage scenario and how the autocomplete mechanism works at each step:
+
+- **Step 1.** The user launches the application for the first time. The `LogicManager` initializes the `AutocompleteEngine` with the predefined `Model`.
+
+- **Step 2.** As the user types a command _(such as `add`)_, the `CommandBox` listens for user input and calls the `Logic::suggestCommand` method to get suggestions based on the current input.
+
+- **Step 3.** The `LogicManager` in turn calls the `AutocompleteEngine#suggestCommand` method, which in turn queries the `Model` for existing tag, module, and education values.
+
+- **Step 4.** The `AutocompleteEngine` processes the user input and existing values to generate a suggestion string, and returns it to `CommandBox`.
+
+- **Step 5.** The `CommandBox` component then displays the suggestion to the user in a shadow-like autocomplete suggestions.
+
+- **Step 6.** If the user presses the `TAB` key, the `CommandBox` component calls the `Logic#autocompleteCommand` method to complete the user input, based on the current suggestion generated.
+
+- **Step 7.** The `LogicManager` in turn calls the `AutocompleteEngine#autocompleteCommand` method to generate said suggestion.
+
+- **Step 8.** The updated user input is set in the command box.
+
+- **Step 9.** If the user types an invalid command-word or index, `AutocompleteEngine#suggestCommand` will throw a `ParseException`, which causes the text to be displayed in red.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For **Step 9**, the autocomplete feature does not actually validate whether the argument values are valid or indexes exist. It's merely a simple heuristic check, to help users avoid making obvious syntax mistakes in the commands.
+</div>
+
+#### Design considerations
+
+**Aspect: Simple heuristic check vs. full validation of command arguments:**
+
+* **Alternative 1 (current choice):** Simple heuristic check
+  * Pros: Less computationally expensive, which avoids lagging the app and hindering fast typists. Easier to implement.
+  * Cons: Does not provide full validation of command arguments.
+* **Alternative 2:** Full validation of command arguments using each field's is-valid methods _(e.g., `Address::isValidAddress`, `Email::isValidEmail`)_
+  * Pros: Provides full validation of command arguments.
+  * Cons:
+    * More computationally expensive, especially when using regex for validation, which can lag the app and hinder fast typists.
+    * Harder to implement
+    * Might constantly highlight the text red, which can be annoying for users who haven't finished typing.
+
+We chose Alternative 1 because it aligns with the [project constraint][constraint-typing-preferred] of targeting users who can type fast. Furthermore, it is easier to implement and provides a smoother user experience without constantly highlighting the text red while typing.
+
+[constraint-typing-preferred]: https://nus-cs2103-ay2223s2.github.io/website/admin/tp-constraints.html#constraint-typing-preferred
+
 ### Add Feature
 
 #### Implementation Details
