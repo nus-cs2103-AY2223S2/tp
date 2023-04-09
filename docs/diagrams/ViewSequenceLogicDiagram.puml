@@ -11,7 +11,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":DegreeProgression" as DegreeProgression MODEL_COLOR
 end box
 
 [-> LogicManager : execute("view progress")
@@ -49,17 +48,11 @@ deactivate ModTrekParser
 LogicManager -> ViewCommand : execute()
 activate ViewCommand
 
-ViewCommand -> Model : getDegreeProgression()
+ViewCommand -> Model : generateData()
 activate Model
 
-Model --> ViewCommand
+Model --> ViewCommand : details
 deactivate Model
-
-ViewCommand -> DegreeProgression : getProgressionData()
-activate DegreeProgression
-
-DegreeProgression --> ViewCommand : details
-deactivate DegreeProgression
 
 create CommandResult
 ViewCommand -> CommandResult
