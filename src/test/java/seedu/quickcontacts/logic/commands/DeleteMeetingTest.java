@@ -1,20 +1,20 @@
-package seedu.address.logic.commands;
+package seedu.quickcontacts.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAddressBooks.getTypicalAddressBook;
+import static seedu.quickcontacts.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.quickcontacts.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.quickcontacts.testutil.TypicalQuickBooks.getTypicalQuickBook;
 
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.meeting.Meeting;
+import seedu.quickcontacts.commons.core.Messages;
+import seedu.quickcontacts.commons.core.index.Index;
+import seedu.quickcontacts.model.Model;
+import seedu.quickcontacts.model.ModelManager;
+import seedu.quickcontacts.model.UserPrefs;
+import seedu.quickcontacts.model.meeting.Meeting;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -22,7 +22,7 @@ import seedu.address.model.meeting.Meeting;
  */
 public class DeleteMeetingTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalQuickBook(), new UserPrefs());
     public static final Index INDEX_FIRST_MEETING = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_MEETING = Index.fromOneBased(2);
 
@@ -33,7 +33,7 @@ public class DeleteMeetingTest {
 
         String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_SUCCESS, meetingToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getQuickBook(), new UserPrefs());
         expectedModel.removeMeeting(meetingToDelete);
 
         assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
