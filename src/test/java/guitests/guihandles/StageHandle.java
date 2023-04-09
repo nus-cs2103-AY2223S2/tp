@@ -12,7 +12,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
-
+// @@author seanfirefox-reused
 /**
  * Provides access to a stage in a JavaFx application for GUI testing purposes. Referenced from AB4.
  */

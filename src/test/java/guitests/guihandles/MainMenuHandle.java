@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import javafx.scene.Node;
 
+// @@author seanfirefox-reused
 /**
  * Provides a handle to the main menu of the app. Referenced from AB4.
  */

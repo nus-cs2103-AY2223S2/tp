@@ -36,11 +36,6 @@ public class CommandBoxTest extends GuiUnitTest {
     private ArrayList<String> errorStyleOfCommandBox;
     private Model model = new ModelManager();
     private Logic logic;
-
-
-
-
-
     private CommandBoxHandle commandBoxHandle;
 
     @BeforeEach
@@ -69,12 +64,14 @@ public class CommandBoxTest extends GuiUnitTest {
         errorStyleOfCommandBox.add(CommandBox.ERROR_STYLE_CLASS);
     }
 
+    // @@author seanfirefox-reused
     @Test
     public void commandBox_startingWithSuccessfulCommand() {
         assertBehaviorForSuccessfulCommand();
         assertBehaviorForFailedCommand();
     }
 
+    // @@author seanfirefox-reused
     @Test
     public void commandBox_startingWithFailedCommand() {
         assertBehaviorForFailedCommand();
@@ -86,6 +83,7 @@ public class CommandBoxTest extends GuiUnitTest {
         assertBehaviorForFailedCommand();
     }
 
+    // @@author seanfirefox-reused
     @Test
     public void commandBox_handleKeyPress() {
         commandBoxHandle.run(COMMAND_THAT_FAILS);
@@ -123,6 +121,7 @@ public class CommandBoxTest extends GuiUnitTest {
         assertInputHistory(KeyCode.UP, secondCommand);
     }
 
+    // @@author seanfirefox-reused
     /**
      * Runs a command that fails, then verifies that <br>
      *      - the text remains <br>
@@ -134,6 +133,7 @@ public class CommandBoxTest extends GuiUnitTest {
         assertEquals(errorStyleOfCommandBox, commandBoxHandle.getStyleClass());
     }
 
+    // @@author seanfirefox-reused
     /**
      * Runs a command that succeeds, then verifies that <br>
      *      - the text is cleared <br>
@@ -145,6 +145,7 @@ public class CommandBoxTest extends GuiUnitTest {
         assertEquals(defaultStyleOfCommandBox, commandBoxHandle.getStyleClass());
     }
 
+    // @@author seanfirefox-reused
     /**
      * Pushes {@code keycode} and checks that the input in the {@code commandBox} equals to {@code expectedCommand}.
      */

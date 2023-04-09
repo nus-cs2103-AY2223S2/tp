@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import seedu.address.ui.UiPart;
 
+// @@author seanfirefox-reused
 /**
  * Provides an isolated stage to test an individual {@code UiPart}. Referenced from AB4.
  */

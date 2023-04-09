@@ -50,6 +50,7 @@ public class MainWindowCloseTest extends GuiUnitTest {
         FxToolkit.showStage();
     }
 
+    // @@author seanfirefox-reused
     @Test
     public void close_menuBarExitButton_allWindowsClosed() {
         mainWindowHandle.clickOnMenuExitButton();
@@ -57,6 +58,7 @@ public class MainWindowCloseTest extends GuiUnitTest {
         assertEquals(Collections.emptyList(), guiRobot.listWindows());
     }
 
+    // @@author seanfirefox-reused
     @Test
     public void close_externalRequest_exitAppRequestEventPosted() {
         mainWindowHandle.clickOnMenuHelpButton();
@@ -66,6 +68,7 @@ public class MainWindowCloseTest extends GuiUnitTest {
         assertEquals(Collections.emptyList(), guiRobot.listWindows());
     }
 
+    // @@author seanfirefox-reused
     /**
      * A handle for an empty {@code MainWindow}. The components in {@code MainWindow} are not initialized.
      */

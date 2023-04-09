@@ -8,10 +8,12 @@ import org.testfx.api.FxRobot;
 import guitests.guihandles.exceptions.StageNotFoundException;
 import javafx.stage.Stage;
 
+// @@author seanfirefox-reused
 /**
  * Robot used to simulate user actions on the GUI. Referenced from AB4.
  * Extends {@link FxRobot} by adding some customized functionality and workarounds.
  */
+// @@author seanfirefox-reused
 public class GuiRobot extends FxRobot {
 
     private static final int PAUSE_FOR_HUMAN_DELAY_MILLISECONDS = 250;
