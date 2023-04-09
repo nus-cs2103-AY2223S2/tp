@@ -32,22 +32,26 @@ public class LinkCrewToLocationCommand implements Command {
     /**
      * Creates a new link command.
      *
-     * @param crews the id of the crews.
+     * @param crews    the id of the crews.
      * @param location the id of the location.
      */
-    public LinkCrewToLocationCommand(Location location, Map<CrewLocationType, Crew> crews) {
+    public LinkCrewToLocationCommand(
+            Location location,
+            Map<CrewLocationType, Crew> crews
+    ) {
         this.location = location;
         this.crews = crews;
     }
 
     @Override
     public String toString() {
-        String result = crews.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(","));
+        String result = crews.values()
+                             .stream()
+                             .map(crew -> String.format(
+                                     "%s",
+                                     crew.toString()
+                             ))
+                             .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }
 
@@ -55,7 +59,9 @@ public class LinkCrewToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<CrewLocationType, Crew> entry : crews.entrySet()) {
-                location.getCrewLink().putRevolve(entry.getKey(), entry.getValue());
+                location
+                        .getCrewLink()
+                        .putRevolve(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

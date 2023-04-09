@@ -1,4 +1,4 @@
-package wingman.logic.flight.unlinklocation;
+package wingman.logic.flight.linklocation;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,12 +16,7 @@ import wingman.model.location.Location;
  * The command that unlinks locations from flights.
  */
 public class UnlinkFlightToLocationCommand implements Command {
-    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with ID %s can't be found.";
-    private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with ID %s can't be found.";
-    private static final String DISPLAY_MESSAGE =
-            "Unlinked %s from %s.";
+    private static final String DISPLAY_MESSAGE = "Unlinked %s from %s.";
 
     /**
      * The flight to be unlinked.
@@ -37,21 +32,25 @@ public class UnlinkFlightToLocationCommand implements Command {
      * Creates a new unlink command.
      *
      * @param locations the id of the locations.
-     * @param flight the id of the flight.
+     * @param flight    the id of the flight.
      */
-    public UnlinkFlightToLocationCommand(Map<FlightLocationType, Location> locations, Flight flight) {
+    public UnlinkFlightToLocationCommand(
+            Flight flight,
+            Map<FlightLocationType, Location> locations
+    ) {
         this.locations = locations;
         this.flight = flight;
     }
 
     @Override
     public String toString() {
-        String result = locations.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(", "));
+        String result = locations.values()
+                                 .stream()
+                                 .map(location -> String.format(
+                                         "%s",
+                                         location.toString()
+                                 ))
+                                 .collect(Collectors.joining(", "));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
 

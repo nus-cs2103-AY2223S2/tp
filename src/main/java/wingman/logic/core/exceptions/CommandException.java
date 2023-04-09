@@ -16,4 +16,15 @@ public class CommandException extends Exception {
     public CommandException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    /**
+     * Constructs a new {@code CommandException} that is formatted.
+     *
+     * @param message the message to be formatted.
+     * @param args    the arguments to be formatted.
+     * @return the formatted {@code CommandException}
+     */
+    public static CommandException formatted(String message, Object... args) {
+        return new CommandException(String.format(message, args));
+    }
 }

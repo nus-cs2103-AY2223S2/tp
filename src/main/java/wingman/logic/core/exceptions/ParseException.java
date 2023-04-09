@@ -16,11 +16,11 @@ public class ParseException extends IllegalValueException {
     }
 
     /**
-     * Formats a message with the given arguments.
+     * Constructs a new {@code ParseException} that is formatted.
      *
-     * @param message the message to format
-     * @param objects the arguments to format the message with
-     * @return the formatted message
+     * @param message the message to be formatted.
+     * @param objects the arguments to be formatted.
+     * @return the formatted {@code ParseException}.
      */
     public static ParseException formatted(String message, Object... objects) {
         return new ParseException(String.format(

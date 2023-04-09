@@ -1,4 +1,4 @@
-package wingman.logic.plane.unlinkflight;
+package wingman.logic.plane.linkflight;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,10 +16,6 @@ import wingman.model.plane.Plane;
  * The command that unlinks a plane from a flight.
  */
 public class UnlinkPlaneToFlightCommand implements Command {
-    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with ID %s can't be found.";
-    private static final String PLANE_NOT_FOUND_EXCEPTION =
-            "Plane with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
             "Unlinked %s from %s.";
 
@@ -39,19 +35,23 @@ public class UnlinkPlaneToFlightCommand implements Command {
      * @param flight the id of the flight.
      * @param planes the id of the planes.
      */
-    public UnlinkPlaneToFlightCommand(Flight flight, Map<FlightPlaneType, Plane> planes) {
+    public UnlinkPlaneToFlightCommand(
+            Flight flight,
+            Map<FlightPlaneType, Plane> planes
+    ) {
         this.flight = flight;
         this.planes = planes;
     }
 
     @Override
     public String toString() {
-        String result = planes.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(","));
+        String result = planes.values()
+                              .stream()
+                              .map(plane -> String.format(
+                                      "%s",
+                                      plane.toString()
+                              ))
+                              .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
 

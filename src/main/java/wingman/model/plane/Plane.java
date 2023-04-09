@@ -145,6 +145,6 @@ public class Plane implements Item {
 
         Plane other = (Plane) obj;
 
-        return other.getModel().equals(getModel());
+        return ((other.getModel().equals(this.getModel())) && (other.getAge() == this.getAge()));
     }
 }

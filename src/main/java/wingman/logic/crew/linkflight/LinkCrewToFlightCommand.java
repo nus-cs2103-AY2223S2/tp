@@ -17,10 +17,6 @@ import wingman.model.link.exceptions.LinkException;
  * The command that links a crew to a flight
  */
 public class LinkCrewToFlightCommand implements Command {
-    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with ID %s can't be found.";
-    private static final String CREW_NOT_FOUND_EXCEPTION =
-            "Crew with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
             "Linked %s to %s.";
 
@@ -37,10 +33,13 @@ public class LinkCrewToFlightCommand implements Command {
     /**
      * Creates a new link command.
      *
-     * @param crews the id of the crews.
+     * @param crews  the id of the crews.
      * @param flight the id of the flight.
      */
-    public LinkCrewToFlightCommand(Flight flight, Map<FlightCrewType, Crew> crews) {
+    public LinkCrewToFlightCommand(
+            Flight flight,
+            Map<FlightCrewType, Crew> crews
+    ) {
         this.flight = flight;
         this.crews = crews;
     }
@@ -48,12 +47,13 @@ public class LinkCrewToFlightCommand implements Command {
     @Override
     public String toString() {
         String result = crews.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s %s",
-                        entry.getKey(),
-                        entry.getValue().getName()))
-                .collect(Collectors.joining(","));
+                             .stream()
+                             .map((entry) -> String.format(
+                                     "%s %s",
+                                     entry.getKey(),
+                                     entry.getValue().getName()
+                             ))
+                             .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
 

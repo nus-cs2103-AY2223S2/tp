@@ -16,12 +16,7 @@ import wingman.model.location.Location;
  * The command that links locations to a flight.
  */
 public class LinkFlightToLocationCommand implements Command {
-    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with ID %s can't be found.";
-    private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with ID %s can't be found.";
-    private static final String DISPLAY_MESSAGE =
-            "Linked %s to %s.";
+    private static final String DISPLAY_MESSAGE = "Linked %s to %s.";
 
     /**
      * The flight to be linked.
@@ -37,21 +32,25 @@ public class LinkFlightToLocationCommand implements Command {
      * Creates a new link command.
      *
      * @param locations the id of the locations.
-     * @param flight the id of the flight.
+     * @param flight    the id of the flight.
      */
-    public LinkFlightToLocationCommand(Flight flight, Map<FlightLocationType, Location> locations) {
+    public LinkFlightToLocationCommand(
+            Flight flight,
+            Map<FlightLocationType, Location> locations
+    ) {
         this.flight = flight;
         this.locations = locations;
     }
 
     @Override
     public String toString() {
-        String result = locations.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(", "));
+        String result = locations.values()
+                                 .stream()
+                                 .map(location -> String.format(
+                                         "%s",
+                                         location.toString()
+                                 ))
+                                 .collect(Collectors.joining(", "));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
 
@@ -59,7 +58,10 @@ public class LinkFlightToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<FlightLocationType, Location> entry : locations.entrySet()) {
-                flight.locationLink.putRevolve(entry.getKey(), entry.getValue());
+                flight.locationLink.putRevolve(
+                        entry.getKey(),
+                        entry.getValue()
+                );
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

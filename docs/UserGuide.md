@@ -632,13 +632,15 @@ Output:
 Linked Cabin Service Director John Smith to SQ230.
 ```
 
-###### Pilot mode: `linkflight /fl flight-index /pf pilot-index /pm pilot-index`
+###### Pilot mode: `linkflight /fl flight-index /p[x] pilot-index`
+
+*Note that [x] is either `f` or `m`.*
 
 Required prefixes:
 
 - `/fl`: the flight to which the specified pilots are to be linked to.
 
-Optional prefixes:
+Optional prefixes (1 and 1 only must be given):
 
 - `/pf`: the index of the flying pilot to be linked to the flight.
 - `/pm`: the index of the monitoring pilot to be linked to the flight.

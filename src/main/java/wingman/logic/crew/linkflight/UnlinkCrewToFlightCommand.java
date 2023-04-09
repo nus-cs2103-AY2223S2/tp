@@ -1,4 +1,4 @@
-package wingman.logic.crew.unlinkflight;
+package wingman.logic.crew.linkflight;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,10 +16,6 @@ import wingman.model.link.exceptions.LinkException;
  * The command that unlinks a crew from a flight
  */
 public class UnlinkCrewToFlightCommand implements Command {
-    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with ID %s can't be found.";
-    private static final String CREW_NOT_FOUND_EXCEPTION =
-            "Crew with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
             "Unlinked %s from %s.";
 
@@ -36,22 +32,26 @@ public class UnlinkCrewToFlightCommand implements Command {
     /**
      * Creates a new unlink command.
      *
-     * @param crews the id of the crews.
+     * @param crews  the id of the crews.
      * @param flight the id of the flight.
      */
-    public UnlinkCrewToFlightCommand(Flight flight, Map<FlightCrewType, Crew> crews) {
+    public UnlinkCrewToFlightCommand(
+            Flight flight,
+            Map<FlightCrewType, Crew> crews
+    ) {
         this.flight = flight;
         this.crews = crews;
     }
 
     @Override
     public String toString() {
-        String result = crews.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(","));
+        String result = crews.values()
+                             .stream()
+                             .map(crew -> String.format(
+                                     "%s",
+                                     crew.toString()
+                             ))
+                             .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
 
