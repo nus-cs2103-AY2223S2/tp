@@ -106,7 +106,7 @@ Highlight tips which you might find useful. </div>
 Highlight dangers and things to look out for. </div>
 
 
-Other than the icons mentioned above, you maye also come across <a href> Phrases coloured in blue </a> are hyperlinks
+Other than the icons mentioned above, you may also come across <a href> Phrases coloured in blue </a> are hyperlinks
 that will bring you to another part of this documentation that is relevant to the phrase.
 
 [Back to Table of Contents](#table-of-contents)
@@ -257,7 +257,7 @@ Flags are delimiters that enable HMHero to distinguish different parameters with
 You could put in the corresponding [Placeholder](#placeholders) immediately after each flag.
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-You may find the following image taken from the subsequent <a href="#53-command-format"> Command Format </a> section helpful:
+You may find the following image taken from the subsequent <a href="#command-format"> Command Format </a> section helpful:
 <img src="./images/CommandExample.png">
 </div>
 
@@ -278,15 +278,15 @@ These placeholders follow immediately after a [Flag](#flags).
 Please refer to the subsequent [Command Format](#command-format) 
 section to see how Flags and Placeholders are used together.
 
-| Placeholder          | Corresponding Flag | Description                                                                                                        | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|----------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| INDEX                | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                       | The INDEX is restricted to the number of applicants in HMHero and cannot be negative.                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| NAME                 | n/                 | The NAME is the text we use to identify an Applicant.                                                              | The NAME of an applicant must be alphabetic characters and no numbers are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| PHONE                | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                       | The PHONE of an applicant must have at least 3 numbers and must be numeric characters.                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| EMAIL                | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                              | EMAIL must be in the format username@domain  <br><br>   `username`:    <li>Should only contain alphanumeric characters and these special characters (`+`, `_`, `.`, `-`) </li>     <li>Should not start or end with any special characters. </li>  <br> `domain`:   <li>Should be at least 2 characters long. </li>    <li>Each domain label should start and end with alphanumeric characters. </li>    <li>Each domain label consists of alphanumeric characters, separated only by hyphens, if any.</li> |
-| NOTE                 | note/              | The NOTE is the text we use to identify a skill of an Applicant.                                                   | NOTE cannot be longer than 45 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| APPLICATION DATETIME | applied/           | The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job. | Format of datetime is `DD-MM-YYYY HH:mm`                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm` <br><br> INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                                  |
+| Placeholder          | Corresponding Flag | Description                                                                                                        | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|----------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INDEX                | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                       | The INDEX is restricted to the number of applicants in HMHero and cannot be negative.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| NAME                 | n/                 | The NAME is the text we use to identify an Applicant.                                                              | The NAME of an applicant must be alphabetic characters and no numbers are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| PHONE                | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                       | The PHONE of an applicant must have at least 3 numbers and must be numeric characters.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| EMAIL                | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                              | EMAIL must be in the format username@domain  <br><br>   `username`:    <ul> <li>Should only contain alphanumeric characters and these special characters (`+`, `_`, `.`, `-`). </ul>      <li>Should not start or end with any special characters. </li>  <br> `domain`:   <li>Should be at least 2 characters long. </li>    <li>Each domain label should start and end with alphanumeric characters. </li>    <li>Each domain label consists of alphanumeric characters, separated only by hyphens, if any.</li> <ul> |
+| NOTE                 | note/              | The NOTE is the text we use to identify a skill of an Applicant.                                                   | NOTE cannot be longer than 45 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| APPLICATION DATETIME | applied/           | The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job. | Format of datetime is `DD-MM-YYYY HH:mm`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm` <br><br> INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                                              |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -299,7 +299,8 @@ Before you delve into the different commands in Commands, let’s learn what a c
 Here is an example:
 ![CommandExample.png](images%2FCommandExample.png)
 A command consists of:
-Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#commands).<br>
+Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#commands).
+<br>
 [Flags](#flags): Distinguishes between inputs. A flag is usually followed by a placeholder.<br>
 [Placeholders](#placeholders): Represents data that you wish to input. Replace this with valid data.<br>
 For example, `NAME` in `n/NAME` can be replaced with `n/John`.
@@ -405,9 +406,7 @@ This section shares with you on how to use each command in detail.
     <li><code>PHONE</code> does not require you to include the country code. Only include the numbers.</li>
     <li>The value of <code>APPLIED DATE TIME</code> will be the time you add a new applicant if it is not provided.</li>
     <li>The value of <code>NOTE</code> will be empty if it is not provided.</li>
-    <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-</li>
-    <li>However, if two or more <code>NOTE</code> are added, all the notes will be added to the applicant.
+    <li>If two or more <code>NOTE</code> are added, all the notes will be added to the applicant.
 </li>
 </ul> </div>
 
@@ -448,13 +447,11 @@ executing <code>Thomas Lee</code> will only find <code>Thomas Lee</code>. </li>
 executing <code>91918153</code> will only find <code>PHONE</code> <code>91918153</code>. </li>
     <li> If you try to find applicants using both <code>NAME</code> and <code>PHONE</code>,
 it will work the same as finding individually! </li>
-    <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-    </li>
 </ul> </div>
 
 <div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 <ul>
-    <li> You can use the <a href="#613-list-all-applicants-list">List Command</a> in the next section to display all applicants again!</li> 
+    <li> You can use the <a href="#list-all-applicants-list">List Command</a> in the next section to display all applicants again!</li> 
 </ul> </div>
 
 **Example:**
@@ -483,12 +480,8 @@ What you should see:
 <div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
     <li>This command is useful to view all applicants again after using the 
-[Find Command](#612-search-for-an-applicant-find).</li>
+[Find Command](#search-for-an-applicant-find).</li>
 </ul> </div>
-
-**Info**
-* This command is useful to view all applicants again after using the <a href="#612-search-for-an-applicant-find">
-Find Command</a>
 
 
 **Example:**
@@ -742,7 +735,7 @@ specified.
 
 <div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 <ul>
-    <li> You can use the <a href="#613-list-all-applicants-list">List Command</a> to display all applicants again!</li> 
+    <li> You can use the <a href="#list-all-applicants-list">List Command</a> to display all applicants again!</li> 
 </ul> </div>
 
 **Example:**
