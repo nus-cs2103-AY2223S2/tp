@@ -223,7 +223,24 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
     * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
 
     
-### Displaying detailed person view
+### Display feature
+
+The display feature is to allow the user to view all detailed particulars of a `Patient` or `Doctor`. Note that the `Person` has to exist in `MediConnect`.  This feature is intended to complement the `Edit`, `Appointment` and `Prescription` features, allowing users to access all of the `Person`'s information when updating records.
+
+Given below is an example usage scenario and how the display mechanism behaves at each step.
+
+Scenario: Mary Smith is a patient (already registered in the system) who has just arrived at the clinic for her appointment. She is required to register her visit before consulting the doctor.
+
+Step 1. The healthcare administrative staff wishes to verify that Mary has an appointment scheduled at this time. The staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X`. As seen from Mary's appointment list, an appointment is indeed scheduled for today, and the staff proceeds to register her visit.
+
+The sequence diagram below shows how the AppointmentCommand works:
+{add a sequence diagram}
+
+* When the user inputs `display ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the person's `Nric` through `ParserUtil`
+    * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates an `DisplayCommand`. The `LogicManager` then executes the `DisplayCommand`, upon which the `Person` is retrieved by `Nric` before calling `Model#updatePersonView()` to display the detailed view of the retrieved `Person` 
+    * `CommandException` is thrown
+        * if `Patient` or `Doctor` retrieved by `Nric` does not exist
 
 ### Appointment feature
 
@@ -242,7 +259,7 @@ Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` w
 
 {add a object diagram}
 
-The sequence diagram below shows the AppointmentCommand works:
+The sequence diagram below shows how the AppointmentCommand works:
 {add a sequence diagram}
 
 * When the user inputs `appointment ic/[NRIC] d/[DATE] dric/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the patient's `Nric`, `Booking`, and doctor's `Nric` inputs through `ParserUtil`
@@ -268,7 +285,7 @@ Step 2. The user executes `deleteAppointment 1 ic/S1234567X` command to delete t
 
 {add a object diagram}
 
-The sequence diagram below shows the DeleteAppointmentCommand works:
+The sequence diagram below shows how the DeleteAppointmentCommand works:
 {add a sequence diagram}
 
 * When the user inputs `deleteAppointment INDEX ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates a `DeleteAppointmentCommandParser` to parse the patient's `Nric`, and `INDEX` through `ParserUtil`
