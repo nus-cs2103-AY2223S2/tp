@@ -485,31 +485,31 @@ testers are expected to do more *exploratory* testing.
 ### General Commands
 These commands can be tested on any page. Specific pages are given for this section as a starting point.
 
-1. Displaying the home page while on the course page
+1. Displaying the home page while on the Course Page
 
     1. Test case: `home`<br>
-       Expected: Course page is displayed.
+       Expected: Course Page is displayed.
 
-1. Displaying the previous page while on the group page
-
-    1. Test case: `back`<br>
-       Expected: Course page is displayed.
-
-1. Displaying the previous page while on the course page
+1. Displaying the previous page while on the Group Page
 
     1. Test case: `back`<br>
-       Expected: Error message shows up on the log box as the course page is the home page.<br>
+       Expected: Course Page is displayed.
+
+1. Displaying the previous page while on the Course Page
+
+    1. Test case: `back`<br>
+       Expected: Error message shows up on the log box as the Course Page is the home page.<br>
        The application begins from the home page.
 
-1. Undoing a select command from the course page, indicating that the current page to run the test case is the group page.
+1. Undoing a select command from the Course Page, indicating that the current page to run the test case is the Group Page.
 
     1. Test case: `undo`<br>
-       Expected: Course page is displayed.
+       Expected: Course Page is displayed.
 
-1. Opening the help window from the course page.
+1. Opening the help window from the Course Page.
 
     1. Test case: `help`<br>
-       Expected: Help window for course page pops up.
+       Expected: Help window for Course Page pops up.
 
 ---
 
@@ -533,7 +533,7 @@ These commands should be tested on the Course Page.
 
 #### Deleting a course
 
-1. Deleting a course while all courses are being shown from the course page. At least 1 course exists in the list.
+1. Deleting a course while all courses are being shown from the Course Page. At least 1 course exists in the list.
 
     1. Test case: `delete course 1`<br>
        Expected: First course is deleted from the list. Details of the deleted course shown in the log box.
@@ -544,7 +544,7 @@ These commands should be tested on the Course Page.
     1. Other incorrect `delete course` commands to try: `delete`, `delete course x` (where x is larger than the list size)<br>
        Expected: Similar to previous step 1(ii) under `Deleting a course`.
 
-1. Deleting a course while the course list is empty in the course page.
+1. Deleting a course while the course list is empty in the Course Page.
 
     1. Incorrect `delete course` commands to try: `delete`, `delete course x` (where x is any number)<br>
        Expected: No course is deleted. Error details shown in the log box.
@@ -562,17 +562,17 @@ These commands should be tested on the Course Page.
     1. Other incorrect `edit course` commands to try: `edit`, `edit course x` (where x is any number), `edit course x CS4225` (where x is larger than the list size) <br>
        Expected: Similar to previous step 1(ii) under `Editing a course`.
 
-1. Editing a course while the course list is empty in the course page.
+1. Editing a course while the course list is empty in the Course Page.
 
     1. Refer to step 1(iii) above under `Editing a course`.
 
 #### Selecting a course
 
-1. Selecting a course while on the course page.
+1. Selecting a course while on the Course Page.
 
     1. Test case: `select 1`<br>
        Expected: First course is selected. Details of the selected course shown in the log box. Page redirected to the 
-       corresponding group page.
+       corresponding Group Page.
 
     1. Test case: `select x` (where x is larger than the list size)<br>
        Expected: No course is selected. Error details shown in the log box.
@@ -580,7 +580,7 @@ These commands should be tested on the Course Page.
 
 #### Finding a course
 
-1. Finding a course while on the course page, with the following courses - `CS3223`, `CS1101`, `PL1101` in the list.
+1. Finding a course while on the Course Page, with the following courses - `CS3223`, `CS1101`, `PL1101` in the list.
 
     1. Test case: `find course CS`<br>
        Expected: `CS3223` and `CS1101` is displayed. Details of the found courses shown in the log box.
@@ -618,7 +618,7 @@ These commands should be tested on the Group Page.
 
 #### Deleting a group
 
-1. Deleting a group while all groups are being shown from the group page. At least 1 group exists in the list.
+1. Deleting a group while all groups are being shown from the Group Page. At least 1 group exists in the list.
 
     1. Test case: `delete group 1`<br>
        Expected: First group is deleted from the list. Details of the deleted group shown in the log box.
@@ -629,7 +629,7 @@ These commands should be tested on the Group Page.
     1. Other incorrect `delete group` commands to try: `delete`, `delete group x` (where x is larger than the list size)<br>
        Expected: Similar to previous step 1(ii) under `Deleting a group`.
 
-1. Deleting a group while the group list is empty in the group page.
+1. Deleting a group while the group list is empty in the Group Page.
 
     1. Incorrect `delete group` commands to try: `delete`, `delete group x` (where x is any number)<br>
        Expected: No group is deleted. Error details shown in the log box.
@@ -647,24 +647,24 @@ These commands should be tested on the Group Page.
     1. Other incorrect `edit group` commands to try: `edit`, `edit group x` (where x is any number), `edit group x T02` (where x is larger than the list size) <br>
        Expected: Similar to previous step 1(ii) under `Editing a group`.
 
-1. Editing a group while the group list is empty in the group page.
+1. Editing a group while the group list is empty in the Group Page.
 
     1. Refer to step 1(iii) above under `Editing a group`.
 
 #### Selecting a group
 
-1. Selecting a group while on the group page.
+1. Selecting a group while on the Group Page.
 
     1. Test case: `select 1`<br>
        Expected: First group is selected. Details of the selected group shown in the log box. Page redirected to the
-       corresponding students page.
+       corresponding Students Page.
 
     1. Test case: `select x` (where x is larger than the list size)<br>
        Expected: No group is selected. Error details shown in the log box.
 
 #### Displaying sessions of a group
 
-1. Selecting a group to display its sessions while on the group page.
+1. Selecting a group to display its sessions while on the Group Page.
 
     1. Test case: `session 1`<br>
        Expected: First group is selected to view its sessions. Details of the selected group to view its
@@ -675,18 +675,18 @@ These commands should be tested on the Group Page.
 
 #### Displaying tasks of a group
 
-1. Selecting a group to display its tasks while on the group page.
+1. Selecting a group to display its tasks while on the Group Page.
 
     1. Test case: `task 1`<br>
        Expected: First group is selected to view its tasks. Details of the selected group to view its
-       tasks shown in the log box. Page redirected to the corresponding task page for the selected group.
+       tasks shown in the log box. Page redirected to the corresponding Task Page for the selected group.
 
     1. Test case: `task x` (where x is larger than the list size)<br>
        Expected: No group is selected to view its tasks. Error details shown in the log box.
 
 #### Finding a group
 
-1. Finding a group while on the group page, with the following groups - `T01`, `T02`, `L01` in the list.
+1. Finding a group while on the Group Page, with the following groups - `T01`, `T02`, `L01` in the list.
 
     1. Test case: `find group T`<br>
        Expected: `T01` and `T02` is displayed. Details of the found groups shown in the log box.
@@ -707,7 +707,7 @@ These commands should be tested on the Students Page.
 
 #### Deleting a student
 
-1. Deleting a student while all students are being shown from the Student Page.
+1. Deleting a student while all students are being shown from the Students Page.
 
     1. Test case: `delete student 1`<br>
        Expected: First student is deleted from the list. Details of the deleted student shown in the log box.
@@ -755,7 +755,7 @@ These commands should be tested on the Task Page.
 
 #### Deleting a task
 
-1. Deleting a task while all tasks are being shown from the task page. At least 1 task exists in the list.
+1. Deleting a task while all tasks are being shown from the Task Page. At least 1 task exists in the list.
 
     1. Test case: `delete task 1`<br>
        Expected: First task is deleted from the list. Details of the deleted task shown in the log box.
@@ -766,7 +766,7 @@ These commands should be tested on the Task Page.
     1. Other incorrect `delete task` commands to try: `delete`, `delete task x` (where x is larger than the list size)<br>
        Expected: Similar to previous step 1(ii) under `Deleting a task`.
 
-1. Deleting a task while the task list is empty in the task page.
+1. Deleting a task while the task list is empty in the Task Page.
 
     1. Incorrect `delete task` commands to try: `delete`, `delete task x` (where x is any number)<br>
        Expected: No task is deleted. Error details shown in the log box.
@@ -785,24 +785,24 @@ These commands should be tested on the Task Page.
        (where x is larger than the list size) <br>
        Expected: Similar to previous step 1(ii) under `Editing a task`.
 
-1. Editing a task while the task list is empty in the task page.
+1. Editing a task while the task list is empty in the Task Page.
 
     1. Refer to step 1(iii) above under `Editing a task`.
 
 #### Selecting a task
 
-1. Selecting a task while on the task page.
+1. Selecting a task while on the Task Page.
 
     1. Test case: `select 1`<br>
        Expected: First task is selected. Details of the selected task shown in the log box. Page redirected to the
-       corresponding grades page.
+       corresponding Grades Page.
 
     1. Test case: `select x` (where x is larger than the list size)<br>
        Expected: No task is selected. Error details shown in the log box.
 
 #### Finding a task
 
-1. Finding a task while on the task page, with the following tasks - `CA1`, `CA2`, `Critical Reflection 1` in the list.
+1. Finding a task while on the Task Page, with the following tasks - `CA1`, `CA2`, `Critical Reflection 1` in the list.
 
     1. Test case: `find task 1`<br>
        Expected: `CA1` and `Critical Reflection 1` is displayed. Details of the found tasks shown in the log box.
