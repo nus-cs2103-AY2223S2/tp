@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Changed default file storage format to be CSV
   * Justification: As we deal with tabular data, we would like users to be able to easily view the data entered into `DengueHotspotTracker` offline.
-  Additionally NEA personnel are more likely to be familiar with CSV than json!
+  Additionally, NEA personnel are more likely to be familiar with CSV files than json files!
   * Highlight: It was challenging to write to CSV as it required exploring a new package `OpenCSV`. Exploring a new codebase and adding it into our project was nonetheless a very fruitful experience.
   I had to add a new `CsvUtil` file to handle all the reading and writing from CSV.
 * **New Feature**: Added the ability to import and export data as a csv file
