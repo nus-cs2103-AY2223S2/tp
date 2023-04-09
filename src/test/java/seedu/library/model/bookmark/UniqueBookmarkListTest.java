@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.testutil.Assert.assertThrows;
-import static seedu.library.testutil.TypicalBookmarks.ALICE;
+import static seedu.library.testutil.TypicalBookmarks.AOT;
 import static seedu.library.testutil.TypicalBookmarks.BOB;
 
 import java.util.Arrays;
@@ -30,19 +30,19 @@ public class UniqueBookmarkListTest {
 
     @Test
     public void contains_bookmarkNotInList_returnsFalse() {
-        assertFalse(uniqueBookmarkList.contains(ALICE));
+        assertFalse(uniqueBookmarkList.contains(AOT));
     }
 
     @Test
     public void contains_bookmarkInList_returnsTrue() {
-        uniqueBookmarkList.add(ALICE);
-        assertTrue(uniqueBookmarkList.contains(ALICE));
+        uniqueBookmarkList.add(AOT);
+        assertTrue(uniqueBookmarkList.contains(AOT));
     }
 
     @Test
     public void contains_bookmarkWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueBookmarkList.add(ALICE);
-        Bookmark editedAlice = new BookmarkBuilder(ALICE).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueBookmarkList.add(AOT);
+        Bookmark editedAlice = new BookmarkBuilder(AOT).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueBookmarkList.contains(editedAlice));
     }
@@ -54,40 +54,40 @@ public class UniqueBookmarkListTest {
 
     @Test
     public void add_duplicateBookmark_throwsDuplicateBookmarkException() {
-        uniqueBookmarkList.add(ALICE);
-        assertThrows(DuplicateBookmarkException.class, () -> uniqueBookmarkList.add(ALICE));
+        uniqueBookmarkList.add(AOT);
+        assertThrows(DuplicateBookmarkException.class, () -> uniqueBookmarkList.add(AOT));
     }
 
     @Test
     public void setBookmark_nullTargetBookmark_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueBookmarkList.setBookmark(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueBookmarkList.setBookmark(null, AOT));
     }
 
     @Test
     public void setBookmark_nullEditedBookmark_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueBookmarkList.setBookmark(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueBookmarkList.setBookmark(AOT, null));
     }
 
     @Test
     public void setBookmark_targetBookmarkNotInList_throwsBookmarkNotFoundException() {
-        assertThrows(BookmarkNotFoundException.class, () -> uniqueBookmarkList.setBookmark(ALICE, ALICE));
+        assertThrows(BookmarkNotFoundException.class, () -> uniqueBookmarkList.setBookmark(AOT, AOT));
     }
 
     @Test
     public void setBookmark_editedBookmarkIsSameBookmark_success() {
-        uniqueBookmarkList.add(ALICE);
-        uniqueBookmarkList.setBookmark(ALICE, ALICE);
+        uniqueBookmarkList.add(AOT);
+        uniqueBookmarkList.setBookmark(AOT, AOT);
         UniqueBookmarkList expectedUniqueBookmarkList = new UniqueBookmarkList();
-        expectedUniqueBookmarkList.add(ALICE);
+        expectedUniqueBookmarkList.add(AOT);
         assertEquals(expectedUniqueBookmarkList, uniqueBookmarkList);
     }
 
     @Test
     public void setBookmark_editedBookmarkHasSameIdentity_success() {
-        uniqueBookmarkList.add(ALICE);
-        Bookmark editedAlice = new BookmarkBuilder(ALICE).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueBookmarkList.add(AOT);
+        Bookmark editedAlice = new BookmarkBuilder(AOT).withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueBookmarkList.setBookmark(ALICE, editedAlice);
+        uniqueBookmarkList.setBookmark(AOT, editedAlice);
         UniqueBookmarkList expectedUniqueBookmarkList = new UniqueBookmarkList();
         expectedUniqueBookmarkList.add(editedAlice);
         assertEquals(expectedUniqueBookmarkList, uniqueBookmarkList);
@@ -95,8 +95,8 @@ public class UniqueBookmarkListTest {
 
     @Test
     public void setBookmark_editedBookmarkHasDifferentIdentity_success() {
-        uniqueBookmarkList.add(ALICE);
-        uniqueBookmarkList.setBookmark(ALICE, BOB);
+        uniqueBookmarkList.add(AOT);
+        uniqueBookmarkList.setBookmark(AOT, BOB);
         UniqueBookmarkList expectedUniqueBookmarkList = new UniqueBookmarkList();
         expectedUniqueBookmarkList.add(BOB);
         assertEquals(expectedUniqueBookmarkList, uniqueBookmarkList);
@@ -104,9 +104,9 @@ public class UniqueBookmarkListTest {
 
     @Test
     public void setBookmark_editedBookmarkHasNonUniqueIdentity_throwsDuplicateBookmarkException() {
-        uniqueBookmarkList.add(ALICE);
+        uniqueBookmarkList.add(AOT);
         uniqueBookmarkList.add(BOB);
-        assertThrows(DuplicateBookmarkException.class, () -> uniqueBookmarkList.setBookmark(ALICE, BOB));
+        assertThrows(DuplicateBookmarkException.class, () -> uniqueBookmarkList.setBookmark(AOT, BOB));
     }
 
     @Test
@@ -116,13 +116,13 @@ public class UniqueBookmarkListTest {
 
     @Test
     public void remove_bookmarkDoesNotExist_throwsBookmarkNotFoundException() {
-        assertThrows(BookmarkNotFoundException.class, () -> uniqueBookmarkList.remove(ALICE));
+        assertThrows(BookmarkNotFoundException.class, () -> uniqueBookmarkList.remove(AOT));
     }
 
     @Test
     public void remove_existingBookmark_removesBookmark() {
-        uniqueBookmarkList.add(ALICE);
-        uniqueBookmarkList.remove(ALICE);
+        uniqueBookmarkList.add(AOT);
+        uniqueBookmarkList.remove(AOT);
         UniqueBookmarkList expectedUniqueBookmarkList = new UniqueBookmarkList();
         assertEquals(expectedUniqueBookmarkList, uniqueBookmarkList);
     }
@@ -134,7 +134,7 @@ public class UniqueBookmarkListTest {
 
     @Test
     public void setBookmarks_uniqueBookmarkList_replacesOwnListWithProvidedUniqueBookmarkList() {
-        uniqueBookmarkList.add(ALICE);
+        uniqueBookmarkList.add(AOT);
         UniqueBookmarkList expectedUniqueBookmarkList = new UniqueBookmarkList();
         expectedUniqueBookmarkList.add(BOB);
         uniqueBookmarkList.setBookmarks(expectedUniqueBookmarkList);
@@ -148,7 +148,7 @@ public class UniqueBookmarkListTest {
 
     @Test
     public void setBookmarks_list_replacesOwnListWithProvidedList() {
-        uniqueBookmarkList.add(ALICE);
+        uniqueBookmarkList.add(AOT);
         List<Bookmark> bookmarkList = Collections.singletonList(BOB);
         uniqueBookmarkList.setBookmarks(bookmarkList);
         UniqueBookmarkList expectedUniqueBookmarkList = new UniqueBookmarkList();
@@ -158,7 +158,7 @@ public class UniqueBookmarkListTest {
 
     @Test
     public void setBookmarks_listWithDuplicateBookmarks_throwsDuplicateBookmarkException() {
-        List<Bookmark> listWithDuplicateBookmarks = Arrays.asList(ALICE, ALICE);
+        List<Bookmark> listWithDuplicateBookmarks = Arrays.asList(AOT, AOT);
         assertThrows(DuplicateBookmarkException.class, () -> uniqueBookmarkList
                 .setBookmarks(listWithDuplicateBookmarks));
     }

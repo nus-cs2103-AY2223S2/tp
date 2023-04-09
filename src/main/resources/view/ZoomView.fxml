@@ -45,8 +45,8 @@
             </HBox>
             <HBox>
                <children>
-                  <Label fx:id="zoomTag" minHeight="-Infinity" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Tags:" translateX="17.0" translateY="5.0" wrapText="true" />
-                  <FlowPane fx:id="tagsView" prefHeight="10.0" prefWidth="600.0" translateX="17.0" translateY="2.0" />
+                  <Label fx:id="zoomTag" minHeight="-Infinity" maxWidth="47.0" minWidth="47.0" prefWidth="47.0" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Tags:" translateX="17.0" translateY="5.0" wrapText="true" />
+                  <FlowPane fx:id="tagsView" prefHeight="10.0" prefWidth="600.0" translateX="10.0" translateY="2.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="555.0">
