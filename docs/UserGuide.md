@@ -176,7 +176,7 @@ The `find` command will highlight the calendar boxes corresponding to the events
 <div markdown="span" class="alert alert-success">
 :bulb: **Tip:**
 Clicking on the `now` button will take you directly back to the current date.  
-Clicking on any calendar date box that has events will display those events in the event list.
+Clicking on any calendar date box that has events will display those events in the events panel.
 </div>
 
 [[Back to top](#table-of-contents)]
@@ -241,7 +241,7 @@ Parameters:
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
 If an event is added successfully, a message similar to the one above will be displayed in the `Response Box`.  
-The `Events List Panel` and `Calendar` will both be updated to include the new event.
+The `Events Panel` and `Calendar` will both be updated to include the new event.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -295,7 +295,7 @@ Parameters:
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
 If an event is edited successfully, a message similar to the one above will be displayed in the `Response Box`.  
-Any changes made to the event will be reflected in both the `Events List Panel` and `Calendar`.
+Any changes made to the event will be reflected in both the `Events Panel` and `Calendar`.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -319,7 +319,7 @@ Example: `delete 1` or `delete 1 4 5`
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
 If an event is deleted successfully, a message similar to the one above will be displayed in the `Response Box`.  
-Deleting the event will cause it to be removed from both the `Events List Panel` and `Calendar`.  
+Deleting the event will cause it to be removed from both the `Events Panel` and `Calendar`.  
 </div>
 
 <div markdown="span" class="alert alert-warning">

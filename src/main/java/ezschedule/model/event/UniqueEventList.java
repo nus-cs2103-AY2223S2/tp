@@ -36,11 +36,11 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Returns true if the list contains an event at the given date and time.
+     * Returns true if the list contains an event (excluding {@code current}) at the given date and time.
      */
-    public boolean existsAtTime(Event toCheck) {
+    public boolean existsAtTime(Event current, Event toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isEventOverlap);
+        return internalList.stream().filter(e -> !e.equals(current)).anyMatch(toCheck::isEventOverlap);
     }
 
     /**

@@ -1,0 +1,45 @@
+@startuml
+skinparam defaultTextAlignment center
+start
+:User executes add command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([missing
+arguments])
+    :Response Box shows
+    invalid command
+    format message;
+stop
+else if () then ([invalid
+arguments])
+    :Response Box
+    shows invalid
+    arguments message;
+stop
+else if () then ([identical
+event exists])
+    :Response Box
+    shows duplicate
+    event message;
+stop
+else if () then ([end time earlier
+than start time])
+    :Response Box shows
+    end time earlier than
+    start time message;
+stop
+else if () then (time slot is occupied
+by another event])
+    :Response Box
+    shows event exists
+    at chosen time;
+stop
+else ([else])
+endif
+    :Common modules and index are computed;
+    :Event is added to Ez-Schedule;
+    :Success message is returned;
+stop
+@enduml

@@ -14,7 +14,6 @@ public class EventBuilder {
     public static final String DEFAULT_DATE = "2023-05-01";
     public static final String DEFAULT_START_TIME = "08:00";
     public static final String DEFAULT_END_TIME = "10:00";
-
     private Name name;
     private Date date;
     private Time startTime;

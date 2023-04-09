@@ -18,6 +18,7 @@ public class UndoCommand extends Command {
             + ": Undo the most recent valid action. \n"
             + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_UNDONE_SUCCESS = "Action undone: %1$s";
+    public static final String MESSAGE_UNDO_ERROR = "Undo cannot be done at this moment.";
 
     @Override
     public String commandWord() {
@@ -29,7 +30,7 @@ public class UndoCommand extends Command {
         requireNonNull(model);
 
         if (model.recentCommands().isEmpty()) {
-            return new CommandResult("Undo cannot be done at this moment.");
+            throw new CommandException(MESSAGE_UNDO_ERROR);
         }
 
         Command prevCommand = model.recentCommands().get(0);

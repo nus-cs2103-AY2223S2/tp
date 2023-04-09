@@ -179,17 +179,38 @@ This section describes some noteworthy details on how certain features are imple
 
 ### **Add Command**
 
+![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)  
+Activity Diagram for a typical `add` command
+
 ### **Recur Command**
+
+![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
+Activity Diagram for a typical `recur` command
 
 ### **Edit Command**
 
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)  
+Activity Diagram for a typical `edit` command
+
 ### **Delete Command**
+
+![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
+Activity Diagram for a typical `delete` command
 
 ### **Find Command**
 
+![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
+Activity Diagram for a typical `find` command
+
 ### **Next Command**
 
+![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
+Activity Diagram for a typical `next` command
+
 ### **Undo Command**
+
+![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
+Activity Diagram for a typical `undo` command
 
 ### **List Command**
 
@@ -239,23 +260,25 @@ This section describes some noteworthy details on how certain features are imple
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …            | I want to …                               | So that I can…                                                        |
-|----------|-------------------|-------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | new user          | see usage instructions                    | refer to instructions when I forget how to use the App                |
-| `* * *`  | user              | easily save events after closing the app  | generate it again when I start the app                                |
-| `* * *`  | user              | add a event's schedule into the app       | see their schedules                                                   |
-| `* * *`  | user              | delete an event from the app              | remove events that are no longer scheduled                            |
-| `* *`    | forgetful user    | find my next event                        | see the upcoming event without having to check every events myself    |
-| `* *`    | user              | undo accidental deletions                 | easily restore accidents in scheduling                                |
-| `* *`    | teacher           | find a free timeslot in my schedule       | schedule a timeslot for student consultations                         |
-| `* *`    | user              | find an event by name                     | locate details of events without having to go through the entire list |
-| `* *`    | user              | edit my schedule                          | make last minute changes to events                                    |
-| `* *`    | user              | be able to schedule many events           | schedule as many events as I want                                     |
-| `* *`    | user              | be able to have more than one scheduler   | generate different schedules for differnt events                      |
-| `*`      | unmotivated user  | have motivational quotes                  | feel motivated in my day                                              |
-
-*{More to be added}*
-
+| Priority | As a …         | I want to …                                   | So that I can…                                                          |
+|----------|----------------|-----------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | new user       | see usage instructions                        | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user           | add a event's schedule into the app           | see their schedules                                                     |
+| `* * *`  | user           | delete an event from the app                  | remove events that are no longer scheduled                              |
+| `* * *`  | user           | list all events                               | have a high-level overview of all events that I currently have          |
+| `* * *`  | regular user   | save my scheduler on exit                     | reload them again next time                                             |
+| `* * *`  | regular user   | load my events in the scheduler on start      | use the scheduler immediately without having to reenter all events      |
+| `* *`    | clumsy user    | undo a command                                | reset the scheduler to the previous state before I made a mistake       |
+| `* *`    | forgetful user | see my next event clearly                     | readily see what is upcoming for me without having to type any commands |
+| `* *`    | user           | sort my events based on date and time         | readily see my upcoming events chronologically                          |
+| `* *`    | regular user   | repeat an event over a certain period of time | easily repeated events in my scheduler for the same type of events      |
+| `* *`    | long term user | see my monthly schedule easily                | readily see which days I am more available, or which are my busier days |
+| `* *`    | forgetful user | find my next event                            | check on the next event in the scheduler                                |
+| `* *`    | clumsy user    | undo accidental deletions                     | easily restore accidents in scheduling                                  |
+| `* *`    | user           | find an event by name                         | locate details of events without having to go through the entire list   |
+| `* *`    | user           | find an event by date                         | locate details of events without having to go through the entire list   |
+| `* *`    | user           | edit my schedule                              | make changes to events                                                  |
+| `* *`    | busy user      | be able to schedule many events               | schedule as many events as I want                                       |
 
 #### **Use Cases**
 
@@ -266,15 +289,70 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to add an event
-2. System adds the event  
-    Use case ends.
+2. System adds the event<br> 
+   Use case ends.
 
 **Extensions**
 * 1a. The event already exist.
-    * 1a1. System shows an error message.  
+    * 1a1. System shows an error message.<br>
       Use case ends.
-* 2a. The given event format invalid.
-    * 2a1. System shows an error message.  
+
+* 1b. The given event format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
+
+* 1c. The given end time of the event is before start time.
+    * 1c1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Recur an event**</summary>
+
+**MSS**
+
+1. User requests to recur an event over a period of time
+2. System repeatedly adds the event<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The length of time to recur is not appropriate.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+* 1b. The given event format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
+
+* 1c. The given end date of recur is in the past.
+    * 1c1. System shows an error message.<br>
+      Use case ends.
+
+* 1d. There is a clash of events in an upcoming day.
+    * 1d1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Edit an event**</summary>
+
+**MSS**
+
+1. User requests to edit an event
+2. System edits the event<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The event already exist.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+* 1b. The given format invalid.
+    * 1b1. System shows an error message.<br>
       Use case ends.
 
 </details>
@@ -283,18 +361,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <summary markdown="span">**Use case: Delete an event**</summary>
 
 **MSS**
-1.  User requests to list events
-2.  System shows a list of events
-3.  User requests to delete a specific event in the list
-4.  System deletes the event  
-    Use case ends.
+
+1. User requests to delete an event/ events
+2. System deletes the event(s)<br>
+   Use case ends.
 
 **Extensions**
-* 1a. The list is empty.
-  Use case ends.
-* 2a. The given index is invalid.
-    * 2a1. System shows an error message.  
-      Use case resumes at step 2.
+
+* 1a. The given index/ indices is invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+* 1b. The given format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Find an event by name**</summary>
+
+**MSS**
+
+1. User requests to find an event by name
+2. System finds events with matching name
+3. System displays events with matching name<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given event format invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Show next event(s) by name**</summary>
+
+**MSS**
+
+1. User requests to show next x number of event(s)
+2. System displays the next x number of events in chronological order<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given event format invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
 
 </details>
 
@@ -303,48 +418,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to undo the recent delete
-2. System restores the most recent delete  
-    Use case ends.
+2. System restores the most recent delete<br>
+   Use case ends.
 
 **Extensions**
-* 1a. New event added duplicate of recent deleted event.
-    * 1a1. System shows an error message.  
+
+* 1a. Undo is the first command given to the scheduler.
+    * 1a1. System shows an error message.<br>
       Use case ends.
-* 2a. The list is empty.  
-  Use case ends.
-
-</details>
-
-
-<details open markdown="block">
-<summary markdown="span">**Use case: Find event by name**</summary>
-
-**MSS**
-1. User requests to find an event by name
-2. System shows a list of events matching the name  
-   Use case ends.
-
-**Extensions**
-* 1a. The list is empty.  
-  Use case ends.
 
 </details>
 
 <details open markdown="block">
-<summary markdown="span">**Use case: Find next event**</summary>
+<summary markdown="span">**Use case: List all events**</summary>
 
 **MSS**
-1. User requests for next upcoming event
-2. System shows the next upcoming event  
-   Use case ends.
 
-**Extensions**
-* 1a. The list is empty.  
-  Use case ends.
+1. User requests to list all events
+2. System shows all events in the scheduler<br>
+   Use case ends.
 
 </details>
 
-*{More to be added}*
+<details open markdown="block">
+<summary markdown="span">**Use case: Get help instructions**</summary>
+
+**MSS**
+
+1. User requests for help instructions
+2. System shows help instructions<br>
+   Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Exit the application**</summary>
+
+**MSS**
+
+1. User requests to exit the application
+2. System saves all events
+3. System exits the application<br>
+   Use case ends.
+
+</details>
 
 #### **Non-Functional Requirements**
 
@@ -352,8 +469,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user with colour blindness may require a high-contrast setting for graphical outputs.
-
-*{More to be added}*
 
 ### **Appendix B: Planned Enhancements**
 
@@ -371,6 +486,55 @@ While the advanced user may be aware of the structure of the file,
 knowing if the event added has conflict with any existing events can be hard,
 especially if there are many existing events.
 
+**Increasing the minimum size of the windowed screen**
+
+Currently, if a user sets their windowed screen to the minimum size,
+it can potentially cut off access to the local storage path where all event data is stored.
+
+![windowedScreenCutOff.png](images/windowedScreenCutOff.png)
+
+We plan to increase the minimum size of the windowed screen to ensure that the path to the local storage is always visible.
+This will provide convenience to users who wish to modify the event data from the local storage
+
+**Reformatting the display in events panel and upcoming events panel**
+
+Currently, if the event names are too long, they may overflow onto the date portion,
+which can make it difficult to view both the full event name and date.
+
+![eventsPanelNotFullyDisplayingName.png](images/eventsPanelNotFullyDisplayingName.png)
+
+We plan to improve the display of event names by wrapping the text and continuing it on the next line.
+This will prevent the issue of long event names overflowing onto the date portion
+
+**Changing the display of events in calendar date boxes**
+
+Currently, if event names exceed 5 characters in length, 
+the characters beyond the fifth are replaced with "..." in the display.
+
+![calendarBoxesNotFullyDisplayingName.png](images/calendarBoxesNotFullyDisplayingName.png)
+
+The original purpose was to give users a quick overview and inform them of the presence of events on certain dates. 
+However, this truncated display does not provide much value to users as it fails to show the full event name.
+
+We plan to change the way calendar date boxes display events.
+Rather than showing event names, we will use dots to represent events. 
+Each dot will have a different color within the same day to represent different events. 
+This approach will allow users to quickly see an overview of the number of events on a given day.
+An example is given below.
+
+![calendarBoxesPlannedEnhancement.png](images/calendarBoxesPlannedEnhancement.png)
+
+If users are interested in knowing more about the events, 
+they can use the `find` command or click on the calendar date box to view the event details.
+
+**Increase flexibility in event names**
+
+Currently, event names only support alphanumeric characters and spaces. 
+This may cause inconvenience to users as we anticipate that event names may include 
+special characters such as brackets, colons, and dashes.
+
+We plan to increase the number of characters supported in event names. 
+However, certain characters such as `/` and `\` will not be supported as they may potentially cause conflicts
 
 ### **Appendix C: Instructions for Manual Testing**
 
@@ -425,7 +589,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * The `Event` has been successfully added to _Ez-Schedule_
-* Details of the `Event` is also added to the Events List Panel and the Calendar
+* Details of the `Event` is also added to the Events Panel and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -454,7 +618,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:**
 * The `Event` will be added repeatedly until the specified end date
-* Details of all the `Event` is also added to the Events List Panel and the Calendar
+* Details of all the `Event` is also added to the Events Panel and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -494,7 +658,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * The `Event` is removed from _Ez-Schedule_
-* Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
+* Details of the `Event` is also removed from the Events Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 2
 {: .no_toc}  
@@ -504,7 +668,7 @@ testers are expected to do more *exploratory* testing.
 
 **Result:** 
 * All the `Event` is removed from _Ez-Schedule_
-* Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
+* Details of the `Event` is also removed from the Events Panel, Upcoming Events Panel, and the Calendar
 
 #### Scenario 3
 {: .no_toc}  
@@ -526,7 +690,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Tennis`
 
 **Result:** 
-* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
+* The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
 #### Scenario 2
@@ -536,7 +700,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Ten`
 
 **Result:**
-* The Events List Panel will be updated to display only `Event` whose `Name` includes Ten, which may include `Name` such as Tennis
+* The Events Panel will be updated to display only `Event` whose `Name` includes Ten, which may include `Name` such as Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
 #### Scenario 3
@@ -546,7 +710,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find d/2023-05-01`
 
 **Result:**
-* The Events List Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
+* The Events Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 #### Scenario 4
@@ -556,7 +720,7 @@ testers are expected to do more *exploratory* testing.
 **Action:** Execute the command: `find n/Tennis d/2023-05-01`
 
 **Result:**
-* The Events List Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
+* The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
 * The date box for May 1, 2023 will be highlighted on the Calendar
 
 
