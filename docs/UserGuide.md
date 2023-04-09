@@ -27,7 +27,7 @@ such as flight scheduling and management of crew, pilot, plane and location.
   - **[Shared Commands](#shared-commands)**
     - **[Adding a resource: `add`](#1-adding-a-resource-add)**
     - **[Deleting a resource: `delete`](#2-deleting-a-resource-delete)**
-  - **[Mode-specific Commands](#mode-specific-commands)**
+  - **[Mode-Specific Commands](#mode-specific-commands)**
     - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location-linklocation)**
     - **[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)**
     - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight-linkflight)**
@@ -103,6 +103,9 @@ The following table describes the sections in detail:
 | `Item List Card`     | Displays information of a flight/crew/plane/pilot/location saved in Wingman.        |
 | `Item List Panel`    | Displays the list of flight/crew/plane/pilot/location saved in Wingman.             |
 | `Mode Indicator`     | Displays the current mode.                                                          |
+
+[Back to contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### Modal Editing
 
@@ -719,6 +722,10 @@ unlinkflight /fl 1 /pl 2
 Output: 
 Unlinked A380 from SQ230.
 ```
+
+[Back to contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## Prefix Summary
 
