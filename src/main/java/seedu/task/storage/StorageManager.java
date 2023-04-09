@@ -74,7 +74,6 @@ public class StorageManager implements Storage {
         saveTaskBook(taskBook, taskBookStorage.getTaskBookFilePath());
     }
 
-    //@@author joyngjr
     @Override
     public void saveTaskBook(ReadOnlyTaskBook taskBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to task data file: " + filePath);
@@ -83,6 +82,7 @@ public class StorageManager implements Storage {
 
     // ================ Planner methods ==============================
 
+    //@@author joyngjr
     @Override
     public Path getPlannerFilePath() {
         return plannerStorage.getPlannerFilePath();
