@@ -1009,22 +1009,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a contact by giving name and some contact information.
 2. ConnectUS adds a new contact with given information.
 3. ConnectUS displays confirmation message.
-4. The new contact is visible in the contacts list.
-
+4. The new contact is visible in the contacts list.<br>
    Use case ends.
 
 **Extensions**
 
 - 1a. There is an error in the given information.
-  - 1a1. ConnectUS shows an error message.
-
+  - 1a1. ConnectUS shows an error message.<br>
   Use case ends.
 
 - 4a. User requests to add more information to the contact.
   - 4a1. ConnectUS adds the given information to the contact.
-  - 4a2. ConnectUS displays confirmation message
-  - 4a3. Updated contact is visible in the contacts list
-
+  - 4a2. ConnectUS displays confirmation message.
+  - 4a3. Updated contact is visible in the contacts list.<br>
   Use case ends.
 
 <div style="page-break-after: always"></div>
@@ -1035,20 +1032,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons.
 2.  ConnectUS shows a list of persons.
-3.  User requests to delete a specific person in the list
-4.  ConnectUS deletes the person.
-
+3.  User requests to delete a specific person in the list.
+4.  ConnectUS deletes the person.<br>
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
-
+- 2a. The list is empty.<br>
   Use case ends.
 
 - 3a. The given index is invalid.
-  - 3a1. ConnectUS shows an error message.
-
+  - 3a1. ConnectUS shows an error message.<br>
     Use case resumes at step 2.
 
 **UC03: Edit a contact**
@@ -1058,24 +1052,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list persons.
 2. ConnectUS shows a list of persons.
 3. User requests to edit a specific person's information from the list by giving the type of information to be updated, and the updated information.
-4. ConnectUS edits the person's information.
-
+4. ConnectUS edits the person's information.<br>
    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
-
-  Use case ends
+- 2a. The list is empty.<br>
+  Use case ends.
 
 - 3a. The given index is invalid.
-  - 3a1. ConnectUS shows an error message.
-
+  - 3a1. ConnectUS shows an error message.<br>
     Use case resumes at step 2.
 
 - 3b. There is an error in the given information.
-  - 3b1. ConnectUS shows an error message.
-
+  - 3b1. ConnectUS shows an error message.<br>
     Use case resumes at step 2.
 
 <div style="page-break-after: always"></div>
@@ -1087,8 +1077,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list persons.
 2. ConnectUS shows a list of persons.
 3. User requests to add tags to a specific person's information from the list by giving the tag type to be added, and the tag information.
-4. ConnectUS edits the person's tags.
-
+4. ConnectUS adds tags to the person.<br>
    Use case ends.
 
 **Extensions**
@@ -1101,14 +1090,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list persons.
 2. ConnectUS shows a list of persons.
-3. User requests to add tags to a specific person's information from the list by giving the tag type to be added, and the tag information.
-4. ConnectUS edits the person's tags.
-
+3. User requests to delete tags from a specific person's information from the list by giving the tag type to be added, and the tag index.
+4. ConnectUS deletes a tag from the person.<br>
    Use case ends.
 
 **Extensions**
 
-- UC05's extensions are the same as UC03: Edit a contact.
+- UC05's extensions are similar to UC03: Edit a contact, excluding extension 3b.
+
+- 3b. The given tag index is invalid.
+  - 3b1. ConnectUS shows an error message.<br>
+    Use case resumes at step 2.
 
 <div style="page-break-after: always"></div>
 
@@ -1116,46 +1108,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to search for a contact by keywords
-2. ConnectUS displays confirmation message
-3. ConnectUS displays all contacts with keywords in name
-
-   Use case ends
+1. User requests to search for a contact by keywords.
+2. ConnectUS displays confirmation message.
+3. ConnectUS displays all contacts with keywords in name.<br>
+   Use case ends.
 
 **Extensions**
 
-- 1a. No keywords are provided
-  - 1a1. ConnectUS displays error message
-
+- 1a. No keywords are provided.
+  - 1a1. ConnectUS displays error message.<br>
   Use case ends
 
-- 1b. User requests to find a contact by specific tag type
-  - 1b1. ConnectUS displays confirmation message
-  - 1b2. ConnectUS displays all contacts with given tag type
-
-  Use case ends
-
-- 1c. User requests to find a contact by specific contact information fields
-  - 1c1. ConnectUS displays confirmation message
-  - 1c2. ConnectUS displays all contacts with given contact information fields
-
-  Use case ends
+- 1b. User requests to find a contact by specific tag type and information fields.
+  - 1b1. ConnectUS displays confirmation message.
+  - 1b2. ConnectUS displays all contacts with given tag type and information fields.<br>
+  Use case ends.
 
 **UC07: List all contacts**
 
 **MSS**
 
-1. User requests to list all contacts
-2. ConnectUS displays confirmation message
-3. ConnectUS displays all contacts
-
+1. User requests to list all contacts.
+2. ConnectUS displays confirmation message.
+3. ConnectUS displays all contacts.<br>
    Use case ends
 
 **Extensions**
 
-- 1a. There is an error in the request
-  - 1a1. ConnectUS displays error message
-
+- 1a. There is an error in the request.
+  - 1a1. ConnectUS displays error message.<br>
   Use case ends
 
 <div style="page-break-after: always"></div>
@@ -1164,35 +1145,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests for help regarding usage format of a specific command
-2. ConnectUS displays confirmation message
-3. ConnectUS displays usage format of the given command
-
+1. User requests for help regarding usage format of a specific command.
+2. ConnectUS displays confirmation message.
+3. ConnectUS displays usage format of the given command.<br>
    Use case ends
 
 **Extensions**
 
-- 1a. No keywords are provided
-  - 1a1. ConnectUS displays general help message
-
+- 1a. No keywords are provided.
+  - 1a1. ConnectUS displays general help message.<br>
     Use case ends
 
 **UC09: Open a contact's Social Media homepage**
 
 **MSS**
 
-1.  User requests to list persons
-2.  ConnectUS shows a list of persons
-3.  User requests to open a specified Social Media homepage of a specific person in the list
-4.  ConnectUS opens the desired Social Media homepage
-
+1.  User requests to list persons.
+2.  ConnectUS shows a list of persons.
+3.  User requests to open a specified Social Media homepage of a specific person in the list.
+4.  ConnectUS opens the desired Social Media homepage.<br>
     Use case ends
 
 **Extensions**
 
 - 3a. The person has no specified Social Media record.
-  - 3a1. ConnectUS displays error message.
-  
+  - 3a1. ConnectUS displays error message.<br>
     Use case ends.
 
 <div style="page-break-after: always"></div>
@@ -1201,22 +1178,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list persons
-2. ConnectUS shows a list of persons
-3. User requests to open the WhatsApp page of a specific person in the list with provided message
-4. ConnectUS launches desired WhatsApp with message prefilled
-
+1. User requests to list persons.
+2. ConnectUS shows a list of persons.
+3. User requests to open the WhatsApp page of a specific person in the list with provided message.
+4. ConnectUS launches desired WhatsApp with message prefilled.<br>
    Use case ends.
 
 **Extensions**
 
 - 3a. The person has no WhatsApp record.
-  - 3a1. ConnectUS displays error message.
-  
+  - 3a1. ConnectUS displays error message.<br>
     Use case ends.
 
-- 4a. WhatsApp is launched, but it does not fill the message.
-
+- 4a. WhatsApp is launched, but it does not fill the message.<br>
   Use case resumes from step 3.
 
 [↑ Back to top of section](#8-requirements)
