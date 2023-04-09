@@ -21,9 +21,6 @@ public class TemporaryMemory extends SpecialisedStackForMemory<ReadOnlyDengueHot
         super(latest.generateDeepCopy());
     }
 
-    public TemporaryMemory() {
-        super();
-    }
 
     /**
      * Pushes the latest updated {@link ReadOnlyDengueHotspotTracker} into the memory stack.
