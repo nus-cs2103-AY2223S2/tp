@@ -89,6 +89,7 @@ public class EditPolicyCommand extends Command {
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
+        assert clientIndex.getOneBased() > 0;
         Client clientToEditPolicy = lastShownList.get(clientIndex.getZeroBased());
         Client editedPolicyClient = clientToEditPolicy.cloneClient();
 
@@ -97,10 +98,12 @@ public class EditPolicyCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
 
+
+        assert policyIndex.getOneBased() > 0;
         Policy policyToEdit = lastShownPolicyList.get(policyIndex.getZeroBased());
         Policy editedPolicy = createEditedPolicy(policyToEdit, editPolicyDescriptor);
 
-        UniquePolicyList clientPolicyList = editedPolicyClient.getPolicyList();
+        UniquePolicyList clientPolicyList = clientToEditPolicy.getPolicyList();
         if (!policyToEdit.isSamePolicy(editedPolicy) && clientPolicyList.contains(editedPolicy)) {
             throw new CommandException(MESSAGE_DUPLICATE_POLICY);
         }
