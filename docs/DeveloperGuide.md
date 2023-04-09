@@ -191,8 +191,8 @@ that records - and can ultimately reconstruct - previous `Model` states.
 Externally, `StateHistory` listens to the `CommandResult` of each executing command.
 It also requires commands to declare two new fields in `CommandResult`:
 
-* `undoable`  —  Whether the `Command` should be reverted upon an `Undo`.
-This is to be `true` if the command modifies `Model` by modifying a person or its list of displayed people.
+* `affectsModel`  —  Whether the `Command` modifies `Model` by modifying a person or its list of displayed people.
+A command will be reverted upon an `Undo` if and only if this is `true`.
 * `deterministic`  —  Whether the modification to `Model` that was just made by `Command`
 was the sole possible outcome of its execution.
 
@@ -254,7 +254,7 @@ Below is the diagram showing the process [*To-be-add*]
 
 ### Design Consideration:
 1. Instead of saving the history of commands in the same `.json` file, I personally believe that it would be better in this case to have a seperate `.txt` file to store the commands, it would be much more convenient and less methods invoking among high-level components because:
-    * The expected behaviour is that it displays exactly the commands that user inputted before, so if we use `.txt` file, we only need to check the command is succesfully executed before write the whole `String` command into the `txt` file. 
+    * The expected behaviour is that it displays exactly the commands that user inputted before, so if we use `.txt` file, we only need to check the command is succesfully executed before write the whole `String` command into the `txt` file.
     * On the other hand, using `.json` file would require a lot of data conversion which is likely to be more error-prone and the `HistoryDisplay` from the `Ui` must trace through `Logic`, `Model`, `Storage` to read the `.json` file and vice versa since the data conversion happens in `Storage` or `Model`. Below is the code snippet in `LogicManager` where the history is read.
 ```
    historyStringOptional = storage.readHistoryString();
@@ -483,7 +483,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ELister shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use Case UC1: Tag a person**
 
 **MSS**
@@ -492,7 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  ELister adds the tag to the person.
 
     Use case ends.
- 
+
 **Extensions**
 
 * 1a. The tag already exists for the given person.
@@ -582,21 +582,18 @@ testers are expected to do more *exploratory* testing.
 ## **Appendix: Planned Enhancements**
 
 1. Currently, the default parse failure message is displayed when `delete`, `delete_tag`, `undo`, or `redo` is
-called with an index argument which is non-positive, or greater than `Integer.MAX_VALUE`, 2^31 - 1.  
+called with an index argument which is non-positive, or greater than `Integer.MAX_VALUE`, 2^31 - 1.<br>
 A common user complaint is that this leads to confusion,
-as it does not point out the index argument as a problem - in an often otherwise-correct command.  
+as it does not point out the index argument as a problem - in an often otherwise-correct command.<br>
 We plan to make these error messages mention this cause of failure: `The index entered must be a positive integer below 2^31`.
-3. The Input Log displays commands entered in previous sessions identically to those entered this session.  
+3. The Input Log displays commands entered in previous sessions identically to those entered this session.<br>
 This can cause confusion as the `undo` command is able to revert the latter, but not the former, leading to
-`undo` appearing to fail on commands without an obvious reason.  
+`undo` appearing to fail on commands without an obvious reason.<br>
 We plan to color the Input Log text of commands entered in previous sessions
 <span style="color:#3CDFFF">light blue</span> to distinguish them and indicate them as non-undoable.
 4. The Input Log cannot be cleared from within the program, causing it to grow cluttered over time and
 increasingly difficult to scroll. We plan to add a command `wipelog` to clear the Input Log of its contents.
-5. Command shortcuts can be created with the same name as each other or as existing commands, leading to ambiguous
-outcomes when these shortcuts are used. We plan to disable creating new command shortcuts with the same alias as existing
-commands or shortcuts; an error message shall be raised to notify the user.
-6. Command shortcuts cannot be deleted from within the program, making it difficult to remove an alias once
+5. Command shortcuts cannot be deleted from within the program, making it difficult to remove an alias once
 it is no longer required. We plan to add a command to delete such shortcuts: `delete_shortcut SHORTCUT`. To avoid making
 commands inaccessible, shortcuts will only be deletable when more than one alias exists for the
 command in question; an error message shall be raised otherwise.

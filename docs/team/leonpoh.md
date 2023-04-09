@@ -7,7 +7,7 @@ Given below are my contributions to the project.
 
 * **Feature I**: Added `tag`ing for persons by adding a tag to the person.
   * What it does: Allows for the user better organise their contact list by tagging certain attributes to the person.
-  * Justification: There needs to be a way for insurance agents to tag specific information to a person and later 
+  * Justification: There needs to be a way for insurance agents to tag specific information to a person and later
   * retrieving it.
   `tag` enables such searches, via the use of another command called filter.
 <!--  * Highlights: TBD -->
@@ -23,13 +23,13 @@ Given below are my contributions to the project.
   `mass` op enables them to delete a bunch of people or to tag them.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=T17-3&sort=groupTitle&sortWithin=totalCommits%20dsc&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
-    
+
 
 * **Project management**:
   * Advised implementation-level interaction between project features
   * Handled standard portion of PR review
   * Advised on peer-examination bug triage
-  
+
 **Documentation**:
  * User Guide:
     * Added documentation for own contributed features

@@ -101,7 +101,7 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
             commandToChange = CommandType.UNFREEZE;
         } else {
             throw new ParseException(
-                    String.format(ShortcutCommand.MESSAGE_INVALID_SHORTCUT, ShortcutCommand.MESSAGE_USAGE));
+                    String.format(ShortcutCommand.MESSAGE_INVALID_COMMAND, commandWord));
         }
 
         return new ShortcutCommand(commandToChange, shortForm);

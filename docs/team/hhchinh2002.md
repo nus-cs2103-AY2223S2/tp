@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 -   **Applying filters display**: Creates a new UI component displaying all applying filters on the application list from the filter command.
 
--   **Project management**: 
+-   **Project management**:
     - Set up tP organisation, team repo, team project notes and other shared documents
     - Handled standard portion of PR review
 -   **Enhancements to existing features**:

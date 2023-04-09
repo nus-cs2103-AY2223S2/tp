@@ -27,9 +27,9 @@ public class ShortcutCommand extends Command {
             + "Example: " + commandWords.get(0) + " edit e";
 
     public static final String MESSAGE_SUCCESS = "New shortcut added: Command: %1$s, Shortcut: %2$s";
-    public static final String MESSAGE_INVALID_SHORTCUT = "Shortcut does not exist.";
+    public static final String MESSAGE_INVALID_COMMAND = "Command \"%1$s\" does not exist.";
     public static final String MESSAGE_DEBUGGING_ERROR = "Contact an admin";
-    public static final String MESSAGE_SHORTCUT_EXISTS = "Shortcut already exists.";
+    public static final String MESSAGE_SHORTCUT_EXISTS = "Shortcut \"%1$s\" already exists.";
 
     private final ShortcutCommandParser.CommandType command;
     private final String shortForm;
@@ -50,7 +50,7 @@ public class ShortcutCommand extends Command {
         requireNonNull(model);
         boolean doesShortcutExist = ShortcutCommandUtil.checkIfShortcutExists(this.shortForm);
         if (doesShortcutExist) {
-            throw new CommandException(MESSAGE_SHORTCUT_EXISTS);
+            throw new CommandException(String.format(MESSAGE_SHORTCUT_EXISTS, shortForm));
         }
 
         if (command.equals(ShortcutCommandParser.CommandType.ADD)) {
