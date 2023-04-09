@@ -7,6 +7,7 @@ title: Jedidiah's Project Portfolio Page
 
 - [Project: Le Tracker](#project-le-tracker)
 - [Summary of Contributions](#summary-of-contributions)
+  - [Code Contribution](#code-contribution)
   - [User Interface](#user-interface)
   - [Navigation](#navigation)
   - [User Guide](#user-guide)
@@ -21,6 +22,9 @@ title: Jedidiah's Project Portfolio Page
 **More** than just a simple to-do list app, **Le Tracker** blends the **efficiency** of a command line interface with the **elegance** of modern graphical user interface.
 
 ### Summary of Contributions
+
+#### Code Contribution
+You can refer to my individual code contribution at this [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jedidiahc&breakdown=true).
 
 #### User Interface
 
