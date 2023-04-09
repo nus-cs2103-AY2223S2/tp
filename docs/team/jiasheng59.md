@@ -27,35 +27,29 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jiasheng59&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub
+  * Lead the discussion in weekly project meeting
+  * Encourage teammates to brainstorm for Unique Selling Point of InternEase at the end of v1.2 iteration
+  * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub
 
 * **Enhancements to existing features**: Enhanced the find command that allows the user to find internship application by the company name, job title, application status and interview date(s).
   * What it does: allows the user to find an internship application by matching keyword for the company name and job title, by a specified application status, and by specifying a range of dates where the interview date falls within.
   * Justification: This feature makes the product more user-friendly as the user is able to search through the list with huge number of applications efficiently and makes subsequent changes.
   * Highlights: This enhancement is challenging to implement as to make the command format as `defensive` as it could be, the checking in parser is somewhat exponential.
 
-*--------------below are to be updated-------------------*
-
-* **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Updated the help command link to
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+* **Enhancements to existing features: Others**:
+    * Updated the help command link to current UG
+    * Wrote additional tests for new and existing features to increase coverage from 36.91% to 39.83% (Pull requests [\#290](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/290))
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `list`, `help`, `sort` and `find`: [\#200](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/200), [\#210](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/210), [\#212](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/212)
+        * Did cosmetic tweaks to existing documentation of features: [\#291](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/291)
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `list`, `sort`, and `find` feature.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * PRs reviewed (with non-trivial review comments): [\#106](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/106), [\#129](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/129), 
+[\#130](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/130), [\#131](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/131), [\#132](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/132), 
+[\#133](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/133), [\#147](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/147), [\#155](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/155), [\#262](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/262)
+    * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/239#issuecomment-1454813105), [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/294#issuecomment-1489103419), [3](https://github.com/nus-cs2103-AY2223S2/forum/issues/294), [4](https://github.com/nus-cs2103-AY2223S2/forum/issues/247#issuecomment-1460008541))
+    * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/161#event-8953814014))
