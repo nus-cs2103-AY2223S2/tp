@@ -10,7 +10,9 @@ title: MediMate's Developer Guide
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-* To be added
+* External API: [`pdfbox-app-2.027`](https://pdfbox.apache.org/)
+* Reused code from [`AY2223S1-CS2103T-T17-1`](https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui) for UI design
+* Reused code from [`AY2223S1-CS2103T-W11-3`](https://github.com/AY2223S1-CS2103T-W11-3/tp) for UI design
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -345,28 +347,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
+  * 3a1. Medimate shows an error message.
 
-    * 3a1. Medimate shows an error message.
+    Use case resumes at step 2.
 
-      Use case resumes at step 2.
-
-*{More to be added}*
 
 **Use case: Edit a patient particulars**
 
 **MSS**
 
-1. User request to Edit a patient details.
-2. MediMate ask for type of details.
-3. User chose the type and enter the new details.
-4. MediMate record the details.
+1. User requests to Edit a patient details.
+2. MediMate asks for type of details.
+3. User chooses the type and enters the new details.
+4. MediMate records the details.
    
    Use case ends.
 
 **Extensions**
 
-* 1a. User enter wrong input format. 
-  * 1a1. Medimate give correct format and ask user to input again.
+* 1a. User enters wrong input format. 
+  * 1a1. Medimate gives correct format and asks user to input again.
   * 1a2. User enters the input with correct format.
     
     Use Case ends.
@@ -377,8 +377,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use Case ends.
       
-* 3a. User enter Invalid type.
-    * 3a1. Medimate give the available types and ask user to input again.
+* 3a. User enters Invalid type.
+    * 3a1. Medimate gives the available types and asks user to input again.
       
       Use Case ends.
 
@@ -386,17 +386,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User request to find a patient using her/his details.
-2. Medimate ask for the type of details.
-3. User chose the type of details.
-4. Medimate display the patient.
+1. User requests to find a patient using her/his details.
+2. Medimate asks for the type of details.
+3. User chooses the type of details.
+4. Medimate displays the patient.
    
    Use case ends.
 
 **Extensions**
 
-* 1a. User enter wrong input format.
-    * 1a1. Medimate give correct format and ask user to input again.
+* 1a. User enters wrong input format.
+    * 1a1. Medimate gives correct format and asks user to input again.
     * 1a2. User enters the input with correct format.
       
       Use Case ends.
@@ -404,13 +404,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. Patient does not exist.
     * 1b1. Medimate reminds user to check for patient name.
-    * 1b2. User enter the input with correct format. 
+    * 1b2. User enters the input with correct format. 
    
       Use Case ends.
 
 
-*  3a. User chose Invalid type
-   * 3a1. Medimate give the available types and ask user to input again
+*  3a. User chooses Invalid type
+   * 3a1. Medimate gives the available types and asks user to input again
      Use Case ends.
 
 
@@ -418,12 +418,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User request to add a new patient.
+1. User requests to add a new patient.
 2. user enters the required patient information, including name, phone number, email, and address.
 3. user submits the patient information.
 4. Medimate adds a patient and stores the information in the database.
 
-    Use Case ends.
+   Use Case ends.
 
 **Extensions**
 
@@ -443,13 +443,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User request to view patient's file.
+1. User requests to view patient's file.
 2. Medimate retrieves the correspondent PDF document.
 3. Medimate displays the PDF document to the user in a new window.
 
-Use case ends.
+   Use case ends.
 
-* 1a. User enter wrong input format.
+* 1a. User enters wrong input format.
     * 1a1. Medimate gives correct format and ask user to input again.
     * 1a2. User inputs a new line of correct format.
 
@@ -469,12 +469,12 @@ Use case ends.
      
       Use Case resumes at step 3.
 
-**Use case:  List patients by their booked schedules**
+**Use case:  List patients by name**
 
 **MSS**
 
-1. User requests to list all patients based on their scheduled time.
-2. Medimate displays a list of all patients sorted in order based on scheduled time.
+1. User requests to list all patients based on their names.
+2. Medimate displays a list of all patients sorted in order based on names.
    
    Use case ends.
 
@@ -490,10 +490,10 @@ Use case ends.
 
 1. User requests to upload reports for given patient.
 2. Medimate allows user to choose files.
-3. User upload those selected files.
-4. Medimate store the uploaded files at patient's directory.
+3. User uploads those selected files.
+4. Medimate stores the uploaded files at patient's directory.
 
-    Use Case ends.
+   Use Case ends.
 
 **Extensions**
 
@@ -503,17 +503,17 @@ Use case ends.
 
       Use Case resumes at step 2.
   
-* 3a. User upload unacceptable types of files
+* 3a. User uploads unacceptable types of files
     * 3a1. Medimate informs the user invalid file type can not be uploaded.
   
-    Use Case ends.
+      Use Case ends.
 
 **Use case:  Generate MCs for given patient**
 
 **MSS**
 
 1. User requests to generate MC for given patients.
-2. Medimate generated MC with user desired informations and stored at patient directory.
+2. Medimate generates MC with user desired information and stores at patient directory.
 
    Use case ends.
 
@@ -525,9 +525,9 @@ Use case ends.
 
 * 1b. User enters the wrong input format (eg: doctor name/medical condition exceeds length, invalid duration...)
     * 1a1. Medimate informs the user the use of incorrect format.
-    * 1a2. user inputs valid format.
+    * 1a2. User inputs valid format.
     
-    Use case resumes at stage 2.
+      Use case resumes at step 2.
 
 **Use case:  Display the detailed information of the patient**
 
@@ -541,28 +541,57 @@ Use case ends.
 **Extensions**
 
 * 1a. Index of the User input is out of bound of the current Person List.
-  * 1a1.  Medimate asks User for another correct input of the index.
+  * 1a1.  Medimate asks the user for another correct input of the index.
   * 1a2.  User inputs a new valid index.
 
     Use Case resumes at step 2.
 
 
-**Use case: Make appointment with specified patient**
+**Use case: Make an appointment for a patient**
 
 **MSS**
-1. User search for all appointments on a specified date
-2. Mediate displays all patients with appointment all that date with time sorted.
-3. User make appointment with specified patient using CommandLine
+1. User requests to make an appointment for the selected patient.
+2. Medimate asks for the date, starting time and ending time for the appointment.
+3. User inputs the date, starting time and ending time for the appointment.
+4. Medimate makes the appointment for the patient.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-* 2a.
-  * 2a1. User's input is invalid
-  * 2a2. wait to be modified
+* 3a. Starting time is before current time.
+  * 3a1. Medimate asks User for new valid appointment time.
+  * 3a2. User inputs valid appointment time.
+    Use Case resumes at step 4.
 
+* 3b. Starting time is after ending time.
+  * 3b1. Medimate asks User for new valid appointment time.
+  * 3b2. User inputs valid appointment time.
+    Use Case resumes at step 4.
+
+* 3c. User input appointment time has clash with the doctor's schedule.
+  * 3c1. Medimate asks User for new valid appointment time.
+  * 3c2. User inputs valid appointment time.
+    Use Case resumes at step 4.
+
+**Use case: Check the doctor's availability on the given date**
+
+**MSS**
+1. User requests to check the doctor's availability on the given date.
+2. Medimate lists all the doctor's current appointments on this day.
+
+   Use case ends.
+
+* 1a. There is no appointment on this date.
+  Use case ends.
+
+**Use case: Mark an appointment with a patient as done**
+
+**MSS**
+1. User requests to mark the appointment as done.
+2. Medimate marks the appointment as done and resets to no-appointment status.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
