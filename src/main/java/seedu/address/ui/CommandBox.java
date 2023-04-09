@@ -151,7 +151,10 @@ public class CommandBox extends UiPart<Region> {
         String commandSuggestion = commandSuggestionTextField.getText();
         String autocompletedCommand = commandAutocomplete.autocomplete(userInput, commandSuggestion);
         if (!autocompletedCommand.isEmpty()) {
-            commandTextField.setText(autocompletedCommand);
+            assert autocompletedCommand.startsWith(userInput)
+                    : "'autocompletedCommand' should start with 'userInput'";
+            String additionalText = autocompletedCommand.substring(userInput.length());
+            commandTextField.appendText(additionalText);
             commandTextField.end();
         }
         updateCommandSuggestion(commandTextField.getText());
