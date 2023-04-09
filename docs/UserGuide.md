@@ -206,8 +206,10 @@ Contacts can have multiple optional tags associated with them.
 Assigns the lead status of a contact. At the same time, saves the timestamp of when the lead status has changed. The
 user can use this information as a gauge of how long a client has stayed in a certain status.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the lead status specified is the same as the previous, nothing is changed and the timestamp is not refreshed. This is
 to mitigate the chances of accidental reassignment of the same lead status by the user.
+</div>
 
 The 4 types of lead statuses supported are:
 
@@ -217,6 +219,11 @@ The 4 types of lead statuses supported are:
 | WORKING     | `Working` or `W`         | The person has been contacted. The user is currently nurturing a relationship with the contact with the hopes of making them a qualified lead.               |
 | QUALIFIED   | `Qualified` or `Q`       | The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here.   |
 | UNQUALIFIED | `Unqualified` or `X`     | This status should only be used when it is certain that the customer's intents are not a match for the user's sales, and have no prospects of buying at all. |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Note that there might be other types of lead statuses definitions (<a href="https://www.varicent.com/blog/6-essential-salesforce-lead-status-options-that-align-sales-and-marketing">examples</a>)
+that you might want to use. For this application, we have implemented only 4 types of lead statuses for simplicity's sake.
+</div>
 
 Format:
 `status INDEX s/STATUS`
@@ -318,7 +325,6 @@ Adds a transaction record to the transaction list.
 
 Format: `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER`
 
-Format for ts/STATUS
 
 | Type   | Formats (Case-sensitive) | Meaning                |
 |--------|--------------------------|------------------------|
