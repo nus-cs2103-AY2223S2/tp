@@ -23,8 +23,8 @@ Salespeople managing client contacts who prefer a CLI
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person: `add`](#adding-a-person-add)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
-  - [Listing all persons : `list`](#listing-all-persons--list)
   - [Sorting all persons : `sort`](#sorting-all-persons--sort)
+  - [Listing all persons : `list`](#listing-all-persons--list)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Assigning lead status: `status`](#assigning-lead-status-status)
   - [Finding a contact name: `find`](#finding-a-contact-name-find)
@@ -157,12 +157,6 @@ Examples:
 
 Shows a list of all persons in the contact list.
 
-Format: `list`
-
-### Sorting all persons : `sort`
-
-Sorts all persons in the contact list based on an attribute.
-
 Format: `sort ATTRIBUTE`
 
 ATTRIBUTE: `name, gender, phone number, email, company, location, occupation, job title, address, status`
@@ -174,6 +168,12 @@ Examples:
 
 - `sort name` Sorts all persons alphabetically by name.
 - `sort occupation` Sorts all persons alphabetically by occupation.
+
+Format: `list`
+
+### Sorting all persons : `sort`
+
+Sorts all persons in the contact list based on an attribute.
 
 ### Editing a person : `edit`
 

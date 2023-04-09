@@ -451,21 +451,22 @@ Step 2. The user excutes `addtxn td/1 Venti Cold Brew  …​` to add a new tran
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                                                   | So that I can…​                                                          |
-|----------|--------------------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                                                                         | refer to instructions when I forget how to use the App                   |
-| `* * *`  | salesperson                                | access and update customer information                                                         |                                                                          |
-| `* * *`  | salesperson                                | add a new client                                                                               |                                                                          |
-| `* * *`  | salesperson                                | delete a client                                                                                | remove leads that have fallen cold, or are false entries                 |
-| `* * *`  | forgetful salesperson                      | filter my contacts by lead status                                                              | prioritise what to follow up on                                          |
-| `* *`    | forgetful salesperson                      | see the timestamp of the contact's lead status                                                 | prioritise customers who I have not followed up with                     |
-| `* *`    | salesperson                                | have a keyword search                                                                          | find lead based on a company or persons name                             |
-| `* *`    | forgetful salesperson                      | associate my contacts with the day of first creation                                           | determine the next time I should contact them                            |
-| `* *`    | frantic salesperson                        | be warned when I make certain actions in my application                                        | won’t jeopardise my work through carelessness                            |
-| `*`      | user with many persons in the address book | sort persons by name                                                                           | locate a person easily                                                   |
-| `*`      | new user                                   | import my current database                                                                     |                                                                          |
-| `*`      | salesperson                                | record down all transactions with clients                                                      |                                                                          |
-| `*`      | salesperson                                | search through transactions based on an existing contact's name, while also seeing the contact | conveniently refer to persons' and transactions' info on the same screen |
+| Priority | As a …​                   | I want to …​                                                                                   | So that I can…​                                                          |
+|----------|---------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | new user                  | see usage instructions                                                                         | refer to instructions when I forget how to use the App                   |
+| `* * *` | salesperson               | add a new client                                            | keep track of all my clients                             |
+| `* * *` | salesperson               | view all my clients                                         | have access to each and every client                     |
+| `* * *`  | salesperson               | delete a client                                                                                | remove leads that have fallen cold, or are false entries                 |
+| `* * *`  | forgetful salesperson     | filter my contacts by lead status                                                              | prioritise what to follow up on                                          |
+| `* *`  | salesperson               | update client information                                   | keep my clients' informations up to date                 |
+| `* *`    | forgetful salesperson     | see the timestamp of the contact's lead status                                                 | prioritise customers who I have not followed up with                     |
+| `* *`    | salesperson               | have a keyword search                                                                          | find lead based on a company or persons name                             |
+| `* *`    | forgetful salesperson     | associate my contacts with the day of first creation                                           | determine the next time I should contact them                            |
+| `* *`    | frantic salesperson       | be warned when I make certain actions in my application                                        | won’t jeopardise my work through carelessness                            |
+| `*`    | cross-product salesperson | sort persons by their attributes such as gender or industry | perform targeted sales strategy                          |
+| `*`      | new user                  | import my current database                                                                     |                                                                          |
+| `*`      | salesperson               | record down all transactions with clients                                                      |                                                                          |
+| `*`      | salesperson               | search through transactions based on an existing contact's name, while also seeing the contact | conveniently refer to persons' and transactions' info on the same screen |
 
 ### Use cases
 
@@ -514,6 +515,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 3a2. User enters new data.
   - Steps 3a1-3a2 are repeated until the data entered is correct.
   - Use case resumes from step 4.
+
+  Use case ends.
+
+**Use case: Sort a person**
+
+**MSS**
+
+1.  User requests to sort persons based on an attribute
+2.  SalesPunch shows a list of sorted persons
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 1a. SalesPunch detects an error in the entered data.
+
+    - 1a1. SalesPunch requests for the correct data.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+    - Use case resumes from step 2.
 
   Use case ends.
 
@@ -576,8 +601,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Client**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Client is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc. Also referred to as a Lead.
+- **Attribute**: A person's association. Examples include name, gender, phone number, email, company, location, occupation, job title, address, and status.
 - **Contact**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Contact is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc.
-- **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Contact. Lead Statuses are associated with a time they were last updated.  Refer to the Implementation > Lead Status for more information concerning Lead Statuses.
+- **Lead**: A potential person or entity with sales opportunities. Often used interchangeably with Client.
+- **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Contact. Lead Statuses are associated with a time they were last updated.  Refer to the Implementation > Lead Status for more information concerning Lead Statuses. 
 
 **Definitions of types of lead statuses**
 - **Uncontacted**: Represents a possible lead status. The user has not gotten in touch with (contacted) the saved person. By default, newly added contacts have this status                                        |
