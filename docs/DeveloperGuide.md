@@ -22,6 +22,7 @@ title: Developer Guide
     - [Info Panel](#info-panel)
     - [Theme](#theme)
   - [Logic](#logic-implementation)
+    - [Add Command](#add-command)
     - [Edit Command](#edit-command)
     - [Find Command](#find-command)
   - [Model](#model-implementation)
@@ -150,20 +151,9 @@ Developer Guide.
     <th><strong>Meaning / Purpose</strong></th>
   </tr>
   <tr>
-    <td><strong>Command Line Interface (CLI)</strong></td>
+    <td><strong>Activity Diagram</strong></td>
     <td>
-      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
-      allows a user to perform tasks by entering commands. <br>
-      Users enter the specific command, press “Enter”, and then wait for a response.
-      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Graphical User Interface (GUI)</strong></td>
-    <td>
-      A system of interactive visual components for computer software. A GUI displays objects that convey information,
-      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
-      interacts with them.
+      Models workflows, which define the flow in which a process or a set of tasks is executed.
     </td>
   </tr>
   <tr>
@@ -171,12 +161,6 @@ Developer Guide.
     <td>
       A set of definitions and protocols for building and integrating application software and simplifies how
       developers integrate new application components into an existing architecture.
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Mainstream OS</strong></td>
-    <td>
-      Windows, Linux, Unix, OS-X.
     </td>
   </tr>
   <tr>
@@ -195,6 +179,36 @@ Developer Guide.
     </td>
   </tr>
   <tr>
+    <td><strong>Command Line Interface (CLI)</strong></td>
+    <td>
+      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
+      allows a user to perform tasks by entering commands. <br>
+      Users enter the specific command, press “Enter”, and then wait for a response.
+      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>FX Markup Language (FXML)</strong></td>
+    <td>
+      File format JavaFX uses to create layouts on the screen. 
+It    It is a better alternative than creating user interfaces using procedural code. 
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Graphical User Interface (GUI)</strong></td>
+    <td>
+      A system of interactive visual components for computer software. A GUI displays objects that convey information,
+      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
+      interacts with them.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Mainstream OS</strong></td>
+    <td>
+      Windows, Linux, Unix, OS-X.
+    </td>
+  </tr>
+  <tr>
     <td><strong>Object-Oriented Programming (OOP)</strong></td>
     <td>
       A computer programming model that organizes software design around data, or objects, rather than functions and logic.
@@ -202,22 +216,22 @@ Developer Guide.
     </td>
   </tr>
   <tr>
-    <td><strong>Sequence Diagram</strong></td>
-    <td>
-      Captures the interactions between multiple objects for a given scenario.
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Activity Diagram</strong></td>
-    <td>
-      Models workflows, which define the flow in which a process or a set of tasks is executed.
-    </td>
-  </tr>
-  <tr>
     <td><strong>Object Diagram</strong></td>
     <td>
       Used to complement class diagrams. Object diagrams can be used to model different object
       structures that can result from a design represented by a given class diagram.
+    </td>
+  </tr>
+<tr>
+    <td><strong>PlantUML</strong></td>
+    <td>
+      Tool which uses plain text language to create Sequence, Object and Activty Diagrams.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Sequence Diagram</strong></td>
+    <td>
+      Captures the interactions between multiple objects for a given scenario.
     </td>
   </tr>
   <tr>
@@ -626,6 +640,49 @@ This section describes implementation of features within `logic` package. Refer 
 for more information about this package.
 
 <br>
+
+#### **Add Command**
+
+Adding a person is implemented such that the user must specify the person's `name`, `year`, `course` and `email`. 
+An error will be shown if the user failed to specify these compulsory parameters.
+The optional parameters are `GitHub`, `LinkedIn`, `Skills` and `Modules`. These will be instantiated as `null` if the user did not specify.
+
+`Add` has the prefixes as follows:
+* `n/` for name
+* `e/` for email
+* `y/` for year
+* `c/` for course
+* `g/` for GitHub
+* `l/` for LinkedIn
+* `m/` for updating the current module list
+* `s/` for updating the current skill list
+
+##### Implementation Flow
+
+Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to add a new
+person.
+
+![Add Command Sequence Diagram](images/AddSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
+Given below is an activity diagram to illustrate the behaviour of adding Person within `Logic`.
+
+![Add Activity Diagram](images/AddActivityDiagram.png)
+
+##### Design Considerations
+
+To add more skills and modules, the user will have to specify the prefix. E.g. to add python and java as a skill, the user will need to input `s/python` and `s/java` instead of `s/python java`.
+This is because some skills such as `Microsoft Office` or `React Native` have more than 1 word and will create a conflict with `s/React Native` and `s/python java`. Hence, separating 2 skills with spaces cannot work.
+
+Another consideration is the implementation of the `course` parameter. We wanted to prevent users from entering different interpretations of the same course.
+E.g. `Computer Science` could be represented by `comp sci` or `cs` etc. Hence, to standardize our `Storage` and `Ui` for every person, we implemented a `Courselist` that users can select the respective `course` using the `index`.
+More details about the `Course` class can be found [here](#course-and-courselist-class)
+
+Lastly, if the application has an empty contact list, the [Info Panel](#info-panel) will display the newly added person once the execution of the `add command` is completed. 
+However, when the person list is not empty, the [Info Panel](#info-panel) will not display the newly added person as we did not to change the state of other panels within the application with the execution of this `add command`.
+
+[Scroll back to top](#table-of-contents)
 
 #### **Edit Command**
 
@@ -1075,14 +1132,21 @@ to effectively sort/filter contacts to easily identify people of interest, such 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                                   | I want to …​                                         | So that I can…​                                                               |
-|---------|---------------------------------------------------------------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *` | user                                                                      | add/remove contacts of peers                         | save/manage them                                                              |
-| `* * *` | user                                                                      | edit the details of the contacts                     | update my contacts to be accurate and relevant                                |
-| `* * `  | student who is interested in joining various coding or programming events | search contacts by skill sets                        | identify potential team members for projects                                  |
-| `* * *` | user                                                                      | find a person by name                                | locate a particular person without scrolling the entire list of contacts      |
-| `*`     | student                                                                   | find people who have taken a specific module         | I can ask for help related to the module such as upcoming topics to study for |
-| `*`     | student                                                                   | find people who are currently taking the same module | work together (discuss questions, find project members, teach each other)     |
+| Priority | As a …​                                                                   | I want to …​                                               | So that I can…​                                                                  |
+|----------|---------------------------------------------------------------------------|------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | user                                                                      | add/remove contacts of peers                               | save/manage them                                                                 |
+| `* * *`  | user                                                                      | edit the details of the contacts                           | update my contacts to be accurate and relevant                                   |
+| `* * *`  | user                                                                      | find a person by name                                      | locate a particular person without scrolling the entire list of contacts         |
+| `* * *`  | user                                                                      | find a person by course                                    | locate contacts in a particular course                                           |
+| `* * *`  | student who is interested in joining various coding or programming events | search contacts by skill sets                              | identify potential team members for projects                                     |
+| `* * *`  | student                                                                   | find people who **have taken** a specific module           | I can ask for help related to the module such as upcoming topics to study for    |
+| `* * *`  | student                                                                   | find people who **are currently taking** the same module   | work together (discuss questions, find project members, teach each other)        |
+| `* * `   | student                                                                   | view the LinkedIn profile of my contacts                   | check out their past work experience, portfolio and any other additional details |
+| `* * `   | Computing student                                                         | view the GitHub username of my contacts                    | view and learn about the projects that other Computing students have undertaken  |
+| `* * `   | user                                                                      | view the history of my filters applied on the contact list | remember what parameters I use to filter my contact list                         |
+| `*   `   | user                                                                      | load the previous command into the text box                | enter the command again without retyping                                         |
+| `*   `   | user                                                                      | undo my previous command                                   | undo any new changes that might have been wrong                                  |
+
 
 *{More to be added}*
 
@@ -1092,8 +1156,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CoDoc` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new person**
-
+**Use case: UC00 - Add a new person**<br/>
 **MSS**
 
 1. User requests to add a specific person to the list
@@ -1104,48 +1167,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The compulsory prefixes are missing.
-    * 1a1. CoDoc shows an error message.
+  * 1a1. CoDoc shows an error message.
 
-      Use case ends.
+    Use case ends.
 
-**Use case: Edit a person's information**
-
+**Use case: UC01 - View all persons**<br/>
 **MSS**
-
 1. User requests to list persons
-2. CoDoc shows a list of all people
-3. User requests to view a specific person in the list
-4. CoDoc displays the information of that person in the right panel
-5. User requests to view a specific attribute of the person in the right panel
-6. CoDoc displays the information of that attribute in the right panel
-7. User requests to edit a specific attribute of the information
-8. CoDoc displays the changes and displays a success message
+2. CoDoc shows a list of persons
 
    Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC02 - View specific person**<br/>
+**MSS**
+1. User <u>View all persons (UC01)</u>
+2. User requests to view a specific person in the list by index
+3. CoDoc displays the information of that person
 
-    * 3a1. CoDoc shows an error message.
+   Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+  * 2a1. CoDoc shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC03 - Edit a person's information**<br/>
+**MSS**
+
+1. User <u>View specific person (UC02)</u>
+2. User requests to view a specific attribute of the person
+3. CoDoc displays the information of that attribute
+4. User requests to edit a specific attribute of the information
+5. CoDoc displays the changes and displays a success message
+
+   Use case ends.
+
+**Extensions**
+* 2a. The given prefix is invalid.
+    * 2a1. CoDoc shows an error message.
 
       Use case resumes at step 2.
 
-* 5a. The given prefix is invalid.
-    * 5a1. CoDoc shows an error message.
-
-      Use case resumes at step 4.
-
-* 7a. The given prefix is invalid.
-    * 7a1. CoDoc shows an error message.
+* 4a. The given prefix is invalid.
+    * 4a1. CoDoc shows an error message.
 
       Use case resumes at step 4.
   
-* 7b. Valid `prefixes/ATTRIBUTES` include:
+* 4b. Valid `prefixes/ATTRIBUTES` include:
   * `c/COURSE`
   * `n/NAME`
   * `e/EMAIL`
@@ -1158,43 +1232,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * `s+/SKILLSETS`
   * `s-/SKILLSETS`
 
-* 7c. The given prefix is `m+/`, indicating an addition to the list of modules.
+* 4c. The given prefix is `m+/`, indicating an addition to the list of modules.
 
-  Use case resumes at step 8.
-* 7d. The given prefix is `m-/`, indicating a deletion of a module from the list of modules.
+  Use case resumes at step 4.
+* 4d. The given prefix is `m-/`, indicating a deletion of a module from the list of modules.
 
-  Use case resumes at step 8.
-* 7e. The given prefix is `m/`, indicating updating the list of modules.
+  Use case resumes at step 4.
+* 4e. The given prefix is `m/`, indicating updating the list of modules.
 
-  Use case resumes at step 8.
-* 7f. The given prefix is `c/`, indicating an edit to the course.
+  Use case resumes at step 4.
+* 4f. The given prefix is `c/`, indicating an edit to the course.
 
-  Use case resumes at step 8.
-* 7g. Editing the skills follows the implementation of the modules.
+  Use case resumes at step 4.
+* 4g. Editing the skills follows the implementation of the modules.
 
-  Use case resumes at step 8.
-* 7h. Editing the name, year, email, github and linkedin follows the implementation of the course
+  Use case resumes at step 4.
+* 4h. Editing the name, year, email, github and linkedin follows the implementation of the course
 
-  Use case resumes at step 8.
+  Use case resumes at step 4.
 
-**Use case: Find a person by attribute**
-
+**Use case: UC04 - Find a person by attribute**<br/>
 **MSS**
-
-1. User requests to list persons
-2. CoDoc shows a list of persons
-3. User requests to find people in the list based on a given attribute
-4. CoDoc displays the list of filtered people
+1. User <u>View all persons (UC01)</u>
+2. User requests to find people in the list based on a given attribute
+3. CoDoc displays the list of filtered people
 
    Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. Valid `prefixes/ATTRIBUTES` include:
+* 2a. Valid `prefixes/ATTRIBUTES` include:
     * `c/COURSE`
     * `n/NAME`
     * `e/EMAIL`
@@ -1207,37 +1273,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * `s+/SKILLSETS`
     * `s-/SKILLSETS`
 
-* 3b. The given prefix is invalid.
+* 2b. The given prefix is invalid.
 
-    * 3b1. CoDoc shows an error message.
+    * 2b1. CoDoc shows an error message.
 
       Use case resumes at step 2.
-* 4a. There are no matches found based on the input
-    * 4a1. CoDoc shows an empty list.
+* 2a. There are no matches found based on the input
+    * 2a1. CoDoc shows an empty list.
 
       Use case ends.
 
 
-**Use case: Delete a person**
-
+**Use case: UC05 - Delete a person**<br/>
 **MSS**
 
-1. User requests to list persons
-2. CoDoc shows a list of persons
-3. User requests to delete a specific person in the list
-4. CoDoc deletes the person
+1. User <u>View all persons (UC01)</u>
+2. User requests to delete a specific person in the list
+3. CoDoc deletes the person
 
    Use case ends.
 
 **Extensions**
+* 2a. The given index is invalid.
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. CoDoc shows an error message.
+    * 2a1. CoDoc shows an error message.
 
     * Use case resumes at step 2.
 

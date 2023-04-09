@@ -42,6 +42,8 @@ I was able to set up the organisation, create the repository and gave my teammat
     * Developer Guide:
         * Explanation of Module Class
         * Tidied up table of content links and navigation and ensure their proper function
+        * Tidied up glossaries and added Java specific definitions
+        * Added use cases and neaten up use cases which can be inside other use cases
 
 * **Tools**:
     * JavaFX

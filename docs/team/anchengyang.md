@@ -62,9 +62,12 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Add new sections for the developer guide, particularly the Glossary, Target Audience and Navigating the Developer Guide: [#88](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/88)
         * Edited the non-functional requirements and use cases: [#29](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/29), [#134](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/134)
-        * Edited the developer guide pertaining to the features that I implemented with UML diagrams such as edit command, parser and person class as well as the UI and logic component: [#88](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/88), [#90](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/90), [#134](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/134)
+        * Edited the developer guide pertaining to the features that I implemented with UML diagrams such as add command, edit command, parser and person class as well as the UI and logic component: [#88](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/88), [#90](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/90), [#134](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/134), [#232](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/232)
         * Edited the table of contents and navigation of the developer guide with every new iteration
         * Add `scroll back to top` feature to help readers quickly navigate back to content page
+
+* **Community**:
+  * Reported bugs for other teams: [PE-D](https://github.com/anchengyang/ped)
 
 * **Tools**:
     * Java
