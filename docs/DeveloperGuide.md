@@ -3,6 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
+<img src="images/advisio.png" width="150px">
+
 ## Advisio
 
 Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently

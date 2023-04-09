@@ -3,6 +3,9 @@ layout: page
 title: User Guide
 ---
 
+<img src="images/advisio.png" width="150px">
+
+
 ## What is Advis.io?
 
 As a financial advisor, you know that managing your clients and their policies can be time-consuming and overwhelming. But what if there was a solution that made it easier for you to keep track of your clients' needs and provide the best possible service?
@@ -21,9 +24,9 @@ By students, for advisors
 
 ## Table of Contents
 
-* #### [How to Get Started](#how-to-get-started)
-    * #### [Features](#features)
-        * #### [General Management](#general-management)
+* [How to Get Started](#how-to-get-started)
+    * [Features](#features)
+        * [General Management](#general-management)
             * Viewing help : `help`
             * Undo previous operation : `undo`
             * Redo previous operation : `redo`
@@ -31,7 +34,7 @@ By students, for advisors
             * Exiting the program : `exit`
             * Saving the data
             * Editing the data file
-        * #### [Client Management](#client-management)
+        * [Client Management](#client-management)
             * Adding a client: `add`
             * Selecting a client: `select`
             * Listing all clients : `list`
@@ -41,11 +44,11 @@ By students, for advisors
             * Sorting Clients by Email address : `sortClientEmail`
             * Sorting Clients by Name : `sortClientName`
             * Sorting Clients by Phone Number : `sortClientPhone`
-        * #### [Policy Management](#policy-management)
+        * [Policy Management](#policy-management)
             * Adding a policy: `addPolicy`
             * Editing a policy : `editPolicy`
             * Deleting a policy : `deletePolicy`
-        * #### [Appointment Management](#appointment-management)
+        * [Appointment Management](#appointment-management)
             * Adding an appointment: `addApt`
             * Deleting an appointment: `deleteApt`
 * #### [FAQ](#faq)
@@ -116,10 +119,10 @@ Some example commands you can try:
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `edit INDEX n/[NAME] p/[PHONE]` can be used as `edit 1 n/John Doe p/1234578` or as `edit 1 n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `find KEYWORD [KEYWORD]...` can be used as `find alice`, `find alice ben` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -159,7 +162,7 @@ Undo one previous command and restore that version of clientele
 Format: `undo`
 
 * Restore the specific clientele before the command took place
-* `Undo Success` will be shown in the display
+* `Undo success` will be shown in the display
 * If current clientele is **already the newest**, `There is no more operations to undo!` will be shown in display to
   remind of undo failure
 
@@ -169,10 +172,11 @@ Undo/Redo Command will only work if previous command **modifies the data of Clie
 
 Thus following commands can't be called to Undo/Redo
 
-* Exit
-* Help
-* List
-* Select
+* `Exit`
+* `Help`
+* `List`
+* `Select`
+* `Find`
 
 ### Redo previous command : `redo`
 
@@ -181,7 +185,7 @@ Redo one previous command and restore that version of clientele.
 Format: `redo`
 
 * Restore the specific clientele before the undo command took place
-* `Redo Success` will be shown in the display
+* `Redo success` will be shown in the display
 * If current clientele is **already the latest**, `There is no more operations to redo!` will be shown in display to
   remind of redo failure
 
@@ -228,12 +232,12 @@ _Details coming soon ..._
 
 To add a client to your list of client profiles.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
 <div markdown="span" class="alert alert-warning">:book:
 <b>Note:</b>
@@ -262,21 +266,17 @@ Format: `list`
 
 To edit an existing client from your list of client profiles.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client
   list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-  specifying any tags after it.
 
 Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567
   and johndoe@example.com respectively.
-- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be Betsy Crower and clears all existing tags.
  
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
 If you accidentally edited a client's information, you can use the <code>undo</code>  command to retrieve the previous information.
@@ -308,6 +308,10 @@ Examples:
 - `find alex david` returns `Alex Yeoh, David Li`
 
 ![result for 'find alex david'](images/findalexdavid.png)
+
+<div markdown="span" class="alert alert-warning">:exclamation: <b>WARNING:</b>
+`find` gives you a temporary view of the filtered client list. Calling `clear` after `find` will clear the entire client list <b>NOT</b> the filtered client list. You can use `undo` if you accidentally cleared the entire client list. 
+</div>
 
 ### Deleting a client : `delete`
 
@@ -421,7 +425,7 @@ You will then be able to view the policies on the right side under 'Policies'
 
 ### Editing a policy : `editPolicy`
 
-To edit one of your specified policy from one of your client in your clientale. 
+To edit one of your specified policy from one of your client in your clientele. 
 
 Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/PREMIUM] [pf/FREQUENCY`]
 
@@ -437,10 +441,6 @@ Examples:
 - `editpolicy 1 pi/1 pn/Fire Insurance` edits the 1st client's 1st policy's name to `Fire Insurance`
 - `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd
   policy information`
-
-* `list` followed by `delete 2` deletes the 2nd client in the clientele.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
-
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
 If you accidentally edit a policy, you can use the <code>undo</code>  command to retrieve the previous policy's information.
@@ -566,7 +566,6 @@ those thresholds. However, the limit can be expanded in the future if necessary.
 | **Edit a Policy**         | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`                  |
 | **Add an appointment**    | `addApt INDEX an/APPOINTMENT_NAME ad/APPOINTMENT_MEETUP_DATE` <br> eg., `addApt 1 an/Review of goals ad/01.01.2024`                                                   |
 | **Delete an appointment** | `deleteApt INDEX`<br> eg., `deleteApt 1`                                                                                                                              |
-| **Select**                | `select INDEX`<br> e.g.,`select 1`                                                                                                                                    |
 | **Sort Client by Email**  | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`                                                                                                     |
 | **Sort Client by Name**   | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`                                                                                                       |
 | **Sort Client by Phone**  | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`                                                                                                     |
