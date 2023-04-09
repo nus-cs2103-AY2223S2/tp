@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0883966@u.nus.edu`
 
 ## Project Team
 
@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/igezt.md)]
 
 * Role: Team lead
-* Responsibilities: Model
+* Responsibilities: Model, Storage
 
 ### Stanley Han
 
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role:
   * Code Quality
   * Deliverables And Deadlines
-* Responsibilities: In Charge of Calendar
+* Responsibilities: In Charge of Events
 
 
 ### Tan Wei Xuan Rachel
@@ -66,4 +66,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/Shuggan.md)]
 
 * Role: Documentation
-* Responsibilities: Storage
+* Responsibilities: Events
