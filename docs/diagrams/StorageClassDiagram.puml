@@ -11,7 +11,7 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class CsvUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as Storager
 Class StorageManager
 
 package "DengueHotspotTracker Storage" #F4F6F6{
@@ -22,17 +22,30 @@ Class CsvAdaptedPerson
 Class CsvAdaptedVariant
 }
 
+package "temporary" #8980FE{
+Class SpecialisedStackForMemory #5960FE
+Class "<<interface>>\nStackWithStorage" as StackWithStorage #5960FE {
+
+}
+Class TemporaryMemory #5960FE
+
+SpecialisedStackForMemory .up.|> StackWithStorage #2900ff
+TemporaryMemory –-|> SpecialisedStackForMemory #2900ff
+}
+
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ..> Storager
+Class HiddenOutsidetwo #FFFFFF
+HiddenOutsidetwo ..> StackWithStorage
 
-StorageManager .up.|> Storage
+StorageManager .up.|> Storager
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" DengueHotspotTrackerStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> DengueHotspotTrackerStorage
+Storager -left-|> UserPrefsStorage
+Storager -right-|> DengueHotspotTrackerStorage
 
 CsvUserPrefsStorage .up.|> UserPrefsStorage
 CsvDengueHotspotTrackerStorage .up.|> DengueHotspotTrackerStorage
