@@ -413,19 +413,21 @@ Removes the athlete at index 1 of the contact list from the session `Hall`.
 <div style="page-break-after: always;"></div>
 
 ## **Calendar**
-The **Calendar** includes various functions that enable users to manage their schedules effectively. These features are designed to simplify the process of tracking Sessions.
+The **Calendar** includes various functions that enable you to manage your schedule effectively. These features are designed to simplify the process of tracking sessions.
 
 ## How to view
-Users can access the Calendar Features by interacting with the Calendar UI in the Calendar tab. 
-<br> The user can click on the "Prev" and "Next" buttons to navigate through the months. 
+You can access the Calendar Features by interacting with the Calendar tab. 
+<br> You can click on the `Prev` and `Next` buttons to navigate through the months. 
 
 ## Features
-The Calendar Features allow users to view their schedules on a monthly basis. Users can also click on a Session to view its details.
+The Calendar features allow you to view your schedule on a monthly basis.<br>You can also click on a session to view its details.
 
 <br>
 ![CalendarUI](images/calendar.png)
 <br>
 ![PopUpContent](images/popup.png)
+
+<div style="page-break-after: always;"></div>
 
 ## **Income Analytics**
 
