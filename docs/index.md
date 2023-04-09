@@ -12,8 +12,8 @@ and conveniently manage, coordinate and keep track of their numerous internship 
 for use via Command Line Interface (CLI), TinS also provides its user with a Graphical User Interface (GUI) to enable
 its users to navigate the application with ease.
 
-* If you are interested in using TinS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using TinS, head over to the [_Quick Start_ section of the **User Guide**](https://ay2223s2-cs2103t-w11-2.github.io/tp/UserGuide.html#quick-start).
+* If you are interested about developing AddressBook, the [**Developer Guide**](https://ay2223s2-cs2103t-w11-2.github.io/tp/DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
