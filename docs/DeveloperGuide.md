@@ -603,46 +603,53 @@ Here are some useful links on the following!
 
 ### User Interface
 
-#### Problem 1: Clearing selections on execution of commands that do not invoke select
+#### Problem 1: Selection of doctor or patient cards is not cleared upon certain commands
 
-- Scenario: User selected a patient, before using
-  the [`list-doc`](./UserGuide.md#listing-all-doctors), [`find-doc`](./UserGuide.md#finding-a-doctor), [`del-doc`](./UserGuide.md#deleting-a-doctor), [`list-ptn`](./UserGuide.md#listing-all-patients), [`find-ptn`](./UserGuide.md#finding-a-patient)
-  or [`del-ptn`](./UserGuide.md#deleting-a-patient) commands.
-- What you see: The user interface does not clear the selection on the previously selected card. However, all the
-  doctors are listed on the GUI.
-- Why did it happen: The above commands does not involve selection of patient cards.
-- Potential issue: Confusion on whether the listed doctors are assigned to the previously selected patient or not.
+- **Scenario**: User selected a patient on Docedex, before entering `list-doc`.
+- **What you see**: All the doctors in Docedex are listed on the GUI, as requested by the `list-doc` command.
+  However, the user interface does not clear the selection of the previously selected patient card.
+- **Potential issue**: Confusion may arise on whether the listed doctors are assigned
+  to the previously selected patient.
+- **Why did it happen**: `list-doc` did not clear the previous selection of patient cards.
 
-Note to users and developers: This problem exists if you select a doctor and then enter `list-ptn` too
+Note: This issue exists for the all commands that do not involve selection of doctor
+or patient cards (ie. [`list-doc`](./UserGuide.md#listing-all-doctors),
+[`find-doc`](./UserGuide.md#finding-a-doctor), [`del-doc`](./UserGuide.md#deleting-a-doctor),
+[`list-ptn`](./UserGuide.md#listing-all-patients), [`find-ptn`](./UserGuide.md#finding-a-patient)
+or [`del-ptn`](./UserGuide.md#deleting-a-patient)).
 
-**Solution:** The list commands will clear any selection of patient or doctor cards.
+**Solution:** Any commands that do not involve selection of doctor or patient cards will
+clear selection of all patient and doctor cards.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 2: Non-descriptive patient/doctor list titles
+#### Problem 2: Titles of patient/doctor lists do not well describe its contents
 
-- Scenario: User adds a doctor using the [`add-doc` command](./UserGuide.md#adding-a-doctor).
-- What you see: Docedex automatically selects the newly added doctor. The patients list disappears, as the newly added
-  doctor has no assigned patients.
-- Why did it happen: Detailed [here](./UserGuide.md#adding-a-doctor).
-- Potential issue: No visual feedback that the patients list is reflecting the newly added doctor's assigned
-  patients/confusion that all patient's have been deleted.
+- **Scenario**: User adds a doctor using the [`add-doc` command](./UserGuide.md#adding-a-doctor).
+- **What you see**: Docedex automatically selects the newly added doctor. Selection of a doctor
+  will result in an update to the patients list, as described [here](./UserGuide.md#selecting-doctors-or-patients-through-commands).
+  Since the newly added doctor has no assigned patients, the patients list is cleared.
+- **Potential issue**: Confusion may arise as no visual feedback is provided that the patients list is
+  reflecting the newly added doctor's assigned patients. Previously, some users have confused this
+  behaviour with all patients being deleted from Docedex.
+- **Why did it happen**: Titles of patient/doctor lists is not updated to describe the contents of
+  the list upon user input.
 
 Note to users and developers: This problem exists if you add a patient using `add-ptn` too.
 
-**Solution:** The title of the patients list will be updated to display "XXX's Patients" on affected doctor commands.
-The same fix will be done for the displayed doctors list on affected patient commands.
-Note: XXX is the name of the newly added doctor/patient
+**Solution:** The title of the patients list will be updated to display "XXX's Patients"
+when any doctor is selected, where XXX is the name of the doctor. The same fix will be done for the
+displayed doctors list upon selection of patients.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Problem 3: The command usage message is not consistent across the UserGuide and EditXYZCommands
 
-- Scenario: User enters an invalid variation of the `edit-doc` or `edit-ptn` commands
-- What you see: Error message that does not indicate that the entry of only one update parameter is compulsory while all
+- **Scenario**: User enters an invalid variation of the `edit-doc` or `edit-ptn` commands
+- **What you see**: Error message that does not indicate that the entry of only one update parameter is compulsory while all
   others are optional.
-- Why did it happen: Implementation of feature freeze prior to resolution
-- Potential issue: User assumes that all fields are compulsory
+- **Potential issue**: User assumes that all fields are compulsory
+- **Why did it happen**: Implementation of feature freeze prior to resolution
 
 **Solution:** Update the `MESSAGE_USAGE` field
 in [`EditDoctorCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/logic/commands/EditDoctorCommand.java), [`EditPatientCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditPatientCommand.java)
@@ -661,7 +668,7 @@ To be added
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 5: Extending duplicates validation to other parameters
+#### Problem 5: Adding input validation to find commands
 
 <div markdown="span" class="alert alert-danger">
 To be added
@@ -669,7 +676,7 @@ To be added
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 6: Adding input validation to find commands
+#### Problem 6: Improving regex validation
 
 <div markdown="span" class="alert alert-danger">
 To be added
@@ -677,15 +684,7 @@ To be added
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 7: Improving regex validation
-
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
-
-[Scroll back to Table of Contents](#table-of-contents)
-
-#### Problem 8: Use of enums as patient statuses
+#### Problem 7: Use of enums as patient statuses
 
 <div markdown="span" class="alert alert-danger">
 To be added
