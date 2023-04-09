@@ -114,6 +114,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Back to Table of Contents](#toc)
+
 ### UI component <a name="ui-component"></a>
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/Ui.java)
@@ -315,11 +317,11 @@ User may choose between the two formats for the FindCommand which function diffe
 
 The following sequence diagram shows how the `find` command works:
 
-<img src="images/FindSequenceDiagram.png" width="1750" height="598">
+![sequence diagram of find command](images/FindSequenceDiagram.png)
 
 The following activity diagram shows what happens when a user executes a `find` command:
 
-<img src="images/FindActivityDiagram.png" width="1375" height="504">
+![activity diagram of find command](images/FindActivityDiagram.png)
 
 [Back to Table of Contents](#toc)
 
