@@ -24,7 +24,7 @@ public class DeletePlatformCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a platform from a listing identified by "
             + "the index number used in the displayed listing book.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer within the range of the number of listings shown) "
             + PREFIX_PLATFORM + "PLATFORM\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PLATFORM + "LinkedIn\n";
 
