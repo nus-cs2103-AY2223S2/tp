@@ -24,8 +24,8 @@ import seedu.address.model.ReadOnlyAppointmentList;
  * Tuition Connect </a>.
  */
 public class CalendarCard extends UiPart<Region> {
-    private static CalendarSource source;
-    private static Calendar calendar;
+    private static CalendarSource source = new CalendarSource("Schedule");
+    private static Calendar calendar = new Calendar("Task");
     @FXML
     private static YearMonthView calendarView;
     private static final String FXML = "CalendarCard.fxml";
@@ -38,8 +38,6 @@ public class CalendarCard extends UiPart<Region> {
      */
     public CalendarCard() {
         super(FXML);
-        source = new CalendarSource("Schedule");
-        calendar = new Calendar("Task");
         isInstantiated = true;
         calendarView = new YearMonthView();
         calendarView.setRequestedTime(LocalTime.now());
