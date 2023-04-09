@@ -1,0 +1,37 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+
+abstract class Status
+class TxnStatus
+enum "<<enumeration>>\nTxnStatusName" as TxnStatusName
+
+Status <|-- TxnStatus
+TxnStatusName <-- TxnStatus
+TxnStatus <-- Transaction
+
+class Status {
+//-timestamp:Instant//
+//+getTimestamp()//
+//+getDurationSinceLastUpdate()//
++formatDuration()
++isValidTimestamp()
+}
+
+class TxnStatus {
+-timestamp:Instant
+}
+
+enum TxnStatusName {
+OPEN
+CLOSED
+
++SYMBOL_TXN_STATUS_MAP:HashMap
++STRING_TXN_STATUS_MAP:HashMap
+
++isValidStatusName(String)
++get(String)
+}
+
+@enduml
