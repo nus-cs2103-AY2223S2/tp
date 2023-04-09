@@ -235,7 +235,7 @@ The following activity diagram summarises what happens when a user executes a mu
 
 **Aspect: How multi-index delete indicates successful execution**
 
-* **Alternative 1 (chosen choice):** Display a message indicating that a number of cases were successfully deleted, the number of cases corresponding to the size of the list of indexes.
+* **Alternative 1 (current choice):** Display a message indicating that a number of cases were successfully deleted, the number of cases corresponding to the size of the list of indexes.
     * Pros: Short and succinct, without taking up too much space on the GUI.
     * Cons: Does not show exactly which cases were deleted.
 
@@ -256,7 +256,7 @@ Step 1. The user launches the application and uses the `find` command to filter 
 
 Step 2. The user executes the `delete d/2023-03-30` command to delete all cases from 30th March 2023 in the filtered list currently being shown. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `delete` command word, passes the argument `d/2023-03-30` to the `DeleteCommandParser`.
 
-Step 3. `DeleteCommandParser#parse()` is called. The `Date` `2023-03-30` is extracted, and a `DeleteCommand` is constructed, taking in this date as a Date object argument.
+Step 3. `DeleteCommandParser#parse()` is called. The date `2023-03-30` is extracted, and a `DeleteCommand` is constructed, taking in this date as a Date object argument.
 
 Step 4. `DeleteCommand#execute()` will get the most updated list of filtered cases and delete the cases from the given date. Users will be notified with a message upon successful deletion of all relevant cases stating the number of cases deleted and the date the cases were from.
 
@@ -270,7 +270,7 @@ The following activity diagram summarises what happens when a user executes a de
 
 **Aspect: What attributes the `delete` command can delete by**
 
-* **Alternative 1 (chosen choice):** Allow users to `delete` only by date.
+* **Alternative 1 (current choice):** Allow users to `delete` only by date.
     * Pros: Provides a convenient shortcut for the most probable use case out of all batch-delete use cases,
       rather than clogging up the app with features that will likely go unused.
     * Cons: The user may be confused at the difference in affordances between `delete` and the other commands
