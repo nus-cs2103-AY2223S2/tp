@@ -387,7 +387,7 @@ You can add a contact using the `add` command followed by the parameters (as sho
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**<br>
 
-* A contact can have any number of <a href="#59-tags" class="alert-link">tags</a>, i.e. <u>modules</u>, <u>CCAs</u>, and <u>remarks</u> (including 0)!
+* A contact can have any number of <u>module</u>, <u>CCA</u>, and <u>remark</u> <a href="#59-tags" class="alert-link">tags</a> (including 0)!
 
 * A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters!
 
