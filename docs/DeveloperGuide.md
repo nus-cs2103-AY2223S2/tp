@@ -222,7 +222,7 @@ This section describes some noteworthy details on how certain features are imple
 
 Notation: inputs placed in closed brackets [] are optional.
 
-### 3.1 Adding a task
+### 3.1 Adding a Task
 Syntax: `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]`  
 Purpose: Allows users to add tasks into OfficeConnect.
 
@@ -257,7 +257,7 @@ clarity when searching for tasks, as tasks with similar titles might clutter up 
 Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in
 both the short and long term.
 
-### 3.2 Deleting a task
+### 3.2 Deleting a Task
 Syntax: `deletet INDEX`  
 Purpose: Allows users to delete the task at the specified index in OfficeConnect.
 
@@ -588,7 +588,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </div>
 
 ---
-#### 6.3.1 Use case 1: Add a person
+#### 6.3.1 Use case 1: Add a Person
 
 **Main Success Scenario (MSS):**
 
@@ -609,7 +609,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 ---
-#### 6.3.2 Use case 2: Delete a person
+#### 6.3.2 Use case 2: Delete a Person
 
 **Main Success Scenario (MSS):**
 
@@ -636,7 +636,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 ---
-#### 6.3.3 Use case 3: Delete a task
+#### 6.3.3 Use case 3: Delete a Task
 
 **Main Success Scenario (MSS):**
 
@@ -663,7 +663,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 ---
-#### 6.3.4 Use case 4: Assign a task to a person
+#### 6.3.4 Use case 4: Assign a Task to a Person
 
 **Main Success Scenario (MSS):**
 
@@ -712,7 +712,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 ---
-#### 6.3.5 Use case 5: Remove assignment of task from a person
+#### 6.3.5 Use case 5: Remove assignment of Task from a Person
 
 **Main Success Scenario (MSS):**
 
@@ -776,7 +776,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 5.
 
 ---
-#### 6.3.7 Use case 7: Add a task
+#### 6.3.7 Use case 7: Add a Task
 
 **Main Success Scenario (MSS):**
 
@@ -797,7 +797,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 ---
-#### 6.3.8 Use case 8: List all tasks
+#### 6.3.8 Use case 8: List all Tasks
 
   **Main Success Scenario (MSS):**
 
@@ -814,7 +814,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 ---
-#### 6.3.9 Use case 9: Mark a task
+#### 6.3.9 Use case 9: Mark a Task
 
   **Main Success Scenario (MSS):**
 
@@ -851,7 +851,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 ---
-#### 6.3.10 Use case 10: Unmark a task
+#### 6.3.10 Use case 10: Unmark a Task
 
   **Main Success Scenario (MSS):**
 
@@ -884,7 +884,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 ---
-#### 6.3.11 Use case 11: Find tasks assigned to an individual
+#### 6.3.11 Use case 11: Find Tasks assigned to an individual
 
 **Main Success Scenario (MSS):**
 
@@ -901,7 +901,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 ---
-#### 6.3.12 Use case 12: Find the group of individuals assigned to a task
+#### 6.3.12 Use case 12: Find the group of individuals assigned to a Task
 
 **Main Success Scenario (MSS):**
 
@@ -918,7 +918,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 ---
-#### 6.3.13 Use case 13: Filter persons based on tag
+#### 6.3.13 Use case 13: Filter Persons based on tag
 
 **Main Success Scenario (MSS):**
 
@@ -937,7 +937,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
   
 ---
-#### 6.3.14 Use case 14: View all assigned persons and tasks
+#### 6.3.14 Use case 14: View all assigned Persons and Tasks
 
 **Main Success Scenario (MSS):**
 
@@ -948,7 +948,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
-#### 6.3.15 Use case 15: View assigned persons
+#### 6.3.15 Use case 15: View assigned Persons
 
 **Main Success Scenario (MSS):**
 
@@ -959,7 +959,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
-#### 6.3.16 Use case 16: View assigned tasks
+#### 6.3.16 Use case 16: View assigned Tasks
 
 **Main Success Scenario (MSS):**
 
@@ -970,7 +970,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
-#### 6.3.17 Use case 17: View a person's details
+#### 6.3.17 Use case 17: View a Person's details
 
 **Main Success Scenario (MSS):**
 
@@ -981,7 +981,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
-#### 6.3.18 Use case 18: View a task's details
+#### 6.3.18 Use case 18: View a Task's details
 
 **Main Success Scenario (MSS):**
 
@@ -992,7 +992,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
-#### 6.3.19 Use case 19: View all unassigned persons and tasks
+#### 6.3.19 Use case 19: View all unassigned Persons and Tasks
 
 **Main Success Scenario (MSS):**
 
@@ -1003,7 +1003,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
-#### 6.3.20 Use case 20: View unassigned persons
+#### 6.3.20 Use case 20: View unassigned Persons
 
 **Main Success Scenario (MSS):**
 
@@ -1014,7 +1014,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
-#### 6.3.21 Use case 21: View unassigned tasks
+#### 6.3.21 Use case 21: View unassigned Tasks
 
 **Main Success Scenario (MSS):**
 
@@ -1025,7 +1025,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
-#### 6.3.22 Use case 22: Edit a task
+#### 6.3.22 Use case 22: Edit a Task
 
 **Main Success Scenario (MSS):**
 
@@ -1143,7 +1143,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The most recent window size and location is retained.
 
 
-### 7.2 Deleting a person
+### 7.2 Deleting a Person
 
 1. Deleting a person while all persons are being shown
 
@@ -1156,9 +1156,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-
-
-### 7.3 Assigning a task to a person
+### 7.3 Assigning a Task to a Person
 
 1. Assigning a task to a person while all tasks and persons are being shown
 
@@ -1176,7 +1174,7 @@ testers are expected to do more *exploratory* testing.
       larger than the number of persons or tasks contained in the list displayed)<br>
       Expected: similar to previous.
       
-### 7.4 Unassigning a task from a person
+### 7.4 Unassigning a Task from a Person
 
 1. Unassigning a task from a person while all tasks and persons are being shown
 
@@ -1190,8 +1188,8 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect `unassign` commands to try: `unassign`, `unassign 1 1`, `unassign pi/x ti/y` (where `x` or `y` is larger than the number of persons or tasks contained in the list displayed).<br>
       Expected: Similar to previous.
 
-
-### 7.5 Marking a task as completed
+     
+### 7.5 Marking a Task as completed
 
 1. Marking a task that has not been assigned to any persons as completed
 
@@ -1215,7 +1213,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the task that is marked shown in the status message. A green tick will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
-### 7.6 Unmarking a task as not completed
+### 7.6 Unmarking a Task as not completed
 
 1. Unmarking a task that has not been assigned to any persons as not completed yet
 
@@ -1239,7 +1237,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the task that is unmarked shown in the status message. A red cross will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
-### 7.7 Adding a task
+
+### 7.7 Adding a Task
 
 1. Adding a task with no deadline
    1. Prerequisites: There are no tasks with the same title present. 
@@ -1260,8 +1259,8 @@ testers are expected to do more *exploratory* testing.
       Expected: No tasks are added. Error details shown in status message.
    5. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 005:0`<br>, or any input with incorrect datetime format (datetime format should be YYYY-MM-DD HH-MM-SS, where HH-MM-SS is optional).
       Expected: Similar to previous
-    
-### 7.8 Deleting a task
+
+### 7.8 Deleting a Task
 
 1. Deleting a task while all task are being shown
    1. Prerequisites: List all persons using the `listt` command. Multiple persons in the list.
@@ -1272,14 +1271,16 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 7.9 Listing all tasks 
+
+### 7.9 Listing all Tasks
 
 1. Listing all tasks
    1. Prerequisites: None
    2. Test case: `listt`
       Expected: All tasks stored in OfficeConnect are listed. "Listed all task" shown in status message.
 
-### 7.10 Filtering persons by tag
+
+### 7.10 Filtering Persons by tag
 
 1. There are persons in OfficeConnect with the specified tag.
    1. Prerequisites: Only one tag can be specified. 
@@ -1299,7 +1300,8 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect filter persons commands to try: `filterp tag/`)<br>
       Expected: Similar to previous.
 
-### 7.11 Viewing assigned and unassigned tasks and persons
+
+### 7.11 Viewing Assigned and Unassigned Tasks and Persons
 
   1. There are assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are tasks and persons with assignments.
@@ -1337,7 +1339,8 @@ testers are expected to do more *exploratory* testing.
      4. Test case: `viewunassignedt` <br>
         Expected: No tasks are displayed. "There are no unassigned tasks" shown in status message.
 
-### 7.12 Viewing task and person details
+
+### 7.12 Viewing Task and Person details
 
   1. Task and person details are available in OfficeConnect.
      1. Prerequisites: The specified task and person indices are valid.
