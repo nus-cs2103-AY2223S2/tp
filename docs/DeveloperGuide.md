@@ -477,7 +477,7 @@ in the `Bookmark` class.
 
 `Rating` is an optional field to be added to a bookmark. It was represented as an integer as that allows it to be
 easily displayed as stars on the user interface and thus easy to understand for the user. When no `Rating` is provided,
-no star logos would be displayed.
+no star logos would be displayed. The sort command also sorts the bookmarks based on the rating provided.
 
 #### Design considerations:
 
