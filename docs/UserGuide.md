@@ -107,6 +107,9 @@ _Ez-Schedule_ is composed of the following components, which are numbered for ea
 
 ![gui.png](images/gui.png)
 
+
+<div style="page-break-after: always;"></div>
+
 <h3 id="command-box">Command Box</h3>
 ![command-box.png](images/command-box.png)
 
@@ -124,6 +127,8 @@ This component displays the feedback of the command you entered into the command
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>
+
 <h3 id="events-panel">Events Panel</h3>
 ![events-panel.png](images/events-panel.png)
 
@@ -139,6 +144,8 @@ Events are displayed in chronological order.
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>
+
 <h3 id="upcoming-events-panel">Upcoming Events Panel</h3>
 ![upcoming-events-gui.png](images/upcoming-events-gui.png)
 
@@ -152,6 +159,8 @@ you can use the `next` command to change the number of upcoming events shown.
 
 [[Back to top](#table-of-contents)]
 
+
+<div style="page-break-after: always;"></div>
 
 <h3 id="calendar">Calendar</h3>
 ![calendar-gui.png](images/calendar-gui.png)
@@ -390,6 +399,7 @@ Example: `list`
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>   
 <h3 id="help">View Help</h3>
 
 Format: `help`  
