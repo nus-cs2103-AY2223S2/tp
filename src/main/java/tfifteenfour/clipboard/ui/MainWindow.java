@@ -346,25 +346,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.getModel().getCurrentSelection().emptySelectedStudent();
     }
 
-    @FXML
-    private void handleUndoCommand(CommandResult commandResult) {
-        UndoCommand command = (UndoCommand) commandResult.getCommand();
-        Command prevCommand = command.getPrevModel().getCommandExecuted();
 
-        if (prevCommand instanceof SelectCommand) {
-            handleBackCommand();
-        } else if (prevCommand instanceof ClearCommand
-                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
-            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
-        } else if (prevCommand instanceof ClearCommand
-                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.TASK_PAGE)) {
-            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
-        } else {
-            // handleSelectCommand acts like refreshing whatever page you're on
-            // undo needs to refresh the page after restoring previous state
-            handleSelectCommand();
-        }
-    }
 
     /**
      * Shows course pane.
@@ -513,7 +495,6 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles UI for back command.
-     * @param backCommand
      */
     private void handleBackCommand() {
         CurrentSelection currentSelection = logic.getModel().getCurrentSelection();
@@ -557,6 +538,43 @@ public class MainWindow extends UiPart<Stage> {
             break;
         default:
             break;
+        }
+    }
+
+    private void handleUndoCommand(CommandResult commandResult) {
+        UndoCommand command = (UndoCommand) commandResult.getCommand();
+        Command prevCommand = command.getPrevModel().getCommandExecuted();
+
+        if (prevCommand instanceof SelectCommand
+                && !rightPanelPlaceholder.getChildren().isEmpty()
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+
+            rightPanelPlaceholder.getChildren().clear();
+
+        } else if (prevCommand instanceof SelectCommand) {
+
+            handleBackCommand();
+
+        } else if (prevCommand instanceof ClearCommand
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
+
+            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+
+        } else if (prevCommand instanceof ClearCommand
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.TASK_PAGE)) {
+
+            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+
+        } else if (prevCommand instanceof MarkPresentCommand
+                || prevCommand instanceof  MarkAbsentCommand
+                || prevCommand instanceof AssignCommand) {
+
+            //Do nothing
+
+        } else {
+            // handleSelectCommand acts like refreshing whatever page you're on
+            // undo needs to refresh the page after restoring previous state
+            handleSelectCommand();
         }
     }
 
