@@ -727,9 +727,7 @@ Example:
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming 
-the user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) 
-(refer to [Navigation Injection](#navigation-injection) for more information).
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Tag a lecture
 
@@ -795,9 +793,7 @@ Example:
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming 
-the user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video) 
-(refer to [Navigation Injection](#navigation-injection) for more information).
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Untag a Lecture](#untag-a-lecture) or [Untag a Video](#untag-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Untag a lecture
 
@@ -936,12 +932,9 @@ Export all module data to a file.
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file
   - User must have writing permission to `file_path`
   - If `/overwrite` is not specified, the file specified in `file_path` must not exist
-  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is
-    `{JAR_file_location}/data`)
-  - Must not coincide with Le Tracker's current tracker file path. (:exclamation:The default tracker file path is
-    `{JAR_file_location}/data/letracker.json`)
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path`
-  if it exists
+  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR_file_location}/data`)
+  - Must not coincide with Le Tracker's current tracker file path. (:exclamation:The default tracker file path is `{JAR_file_location}/data/letracker.json`)
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path` if it exists
   - If the file specified in `file_path` doesn't exist, the flag `/overwrite` will be ignored
 
 Examples:
@@ -958,22 +951,16 @@ Import data from a specified file path to the current tracker.
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file
   - User must have read permission of the file in `file_path`
   - Must be a valid Le Tracker data file
-  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `
-    {JAR_file_location}/data`)
-  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must
-    exist in the default saving directory at `{JAR_file_location}/data`)
-- <span style="color:#e46c0a">`/mod`</span> : If specified, Le Tracker will only import progress from the modules 
-  specified in `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
+  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR_file_location}/data`)
+  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must exist in the default saving directory at `{JAR_file_location}/data`)
+- <span style="color:#e46c0a">`/mod`</span> : If specified, Le Tracker will only import progress from the modules specified in `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
   - If specified, `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]` must also be specified
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-- <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span> : The modules to import from 
-  `file_path`
-  - If `/overwrite` is not specified, `module_code_1, module_code_2, module_code_3, ...` must not exist in the current 
-    tracker
+- <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span> : The modules to import from `file_path`
+  - If `/overwrite` is not specified, `module_code_1, module_code_2, module_code_3, ...` must not exist in the current tracker
   - Must belong to existing modules in the file specified in `file_path`
   - Repeated modules (if any) will be ignored
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules
-  progress with the progress of the imported modules, provided they have the same code
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules progress with the progress of the imported modules, provided they have the same code
   - If the imported modules do not exist in the current tracker, the flag `/overwrite` will be ignored
 
 Examples:
