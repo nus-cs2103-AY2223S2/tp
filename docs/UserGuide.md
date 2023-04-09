@@ -555,6 +555,7 @@ Examples:
 
 ### Alarm
 ![Alarm Window](images/alarm_warning.PNG)
+
 For Alarm, you can call the following commands:
 - Schedule an alarm: `add_alarm`
 - Remove a scheduled alarm: `delete_alarm`
