@@ -200,8 +200,13 @@ An Internship can also store **zero or more** **Event**.
 
 #### Events
 
-In TinS, an **Event** can be used to represent a **Deadline** or an **Interview** associated to an Internship. An Event
-has the following fields:
+In TinS, an **Event** can be used to represent a **Deadline** or an **Interview** associated to an Internship. 
+
+* **Deadline**: An Event that only has an end timing (E.g. Internship Application Submission Deadline,
+  Offer Acceptance Deadline)
+* **Interview**: An Event that has both a start and end timing (E.g. Interview, Online Assessments)
+
+An Event has the following fields:
 
 * `EVENT_NAME`: The Name of the Event.
 
@@ -518,6 +523,15 @@ Edit details of the internship application selected by ID.
 * Choose one or more fields to edit.
 * After keying in the `edit` command, along with your new edited fields, TinS will update the corresponding fields of
   the internship application accordingly.
+  
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** Edits to `TAG` field in TinS would remove all existing `TAG` associated with the
+selected internship, and attach your newly indicated `TAG` fields to your selected internship.<br><br>
+    
+Example: If the 1st internship in the list panel has the `TAG` fields, `IMPORTANT` and `PRIORITY`, the command
+`edit 1 t/GOOD` will modify the `TAG` field of the internship to contain `GOOD` only.
+</div>
 
 **Example**:
 
@@ -561,8 +575,7 @@ Adds an Event along with its details to the selected internship.
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Add event does not allow you to add duplicate events. Two events are considered
-duplicates if they have the same `EVENT_NAME`, `START_DATETIME` and `END_DATETIME`. `EVENT_NAME` is
-case-sensitive.
+duplicates if they have the same `EVENT_NAME`, `START_DATETIME` and `END_DATETIME`. 
 </div>
 
 **Format**: `event add na/EVENT_NAME [st/START_DATETIME] en/END_DATETIME [de/EVENT_DESCRIPTION]`
@@ -606,7 +619,7 @@ Deletes selected Event along with its details from the selected internship.
 
 Finds events based on certain filters.
 
-**Format**: `event add [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]`
+**Format**: `event find [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]`
 
 * Choose the fields you would like to filter the events by. At least one field must be chosen, but more
   than one field can be chosen.
@@ -774,7 +787,7 @@ listed in the List Panel
 
 <tr>
 <td><b>Find Event</b></td>
-<td><code>event add [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]</code><br>
+<td><code>event find [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]</code><br>
 E.g. <code>event find na/Technical Interview st/20/03/2023 1400</code></td>
 </tr>
 
@@ -785,7 +798,7 @@ E.g. <code>event find na/Technical Interview st/20/03/2023 1400</code></td>
 
 <tr>
 <td><b>Delete All</b></td>
-<td><code>delete</code>, followed by <code>deleteall confirm</code></td>
+<td><code>deleteall</code>, followed by <code>deleteall confirm</code></td>
 </tr>
 
 <tr>
