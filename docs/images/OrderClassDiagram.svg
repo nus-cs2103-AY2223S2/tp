@@ -1,253 +1,174 @@
-<?xml version="1.0" encoding="us-ascii" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="327px" preserveAspectRatio="none"
-     style="width:656px;height:327px;background:#FFFFFF;" version="1.1" viewBox="0 0 656 327" width="656px"
-     zoomAndPan="magnify">
-    <defs/>
-    <g><!--class Item-->
-        <g id="elem_Item">
-            <rect codeLine="9" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="7"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
-                  textLength="61" x="346" y="24.6738">{abstract}
-            </text>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
-                  textLength="27" x="363" y="40.3145">Item
-            </text>
-        </g><!--class Deadline-->
-        <g id="elem_Deadline">
-            <rect codeLine="10" fill="#9D0012" height="41.2813" id="Deadline" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="67" x="566" y="280"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
-                  textLength="61" x="569" y="297.6738">{abstract}
-            </text>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
-                  textLength="56" x="571.5" y="313.3145">Deadline
-            </text>
-        </g><!--class Status-->
-        <g id="elem_Status">
-            <rect codeLine="11" fill="#9D0012" height="41.2813" id="Status" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="67" x="440" y="280"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
-                  textLength="61" x="443" y="297.6738">{abstract}
-            </text>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
-                  textLength="40" x="453.5" y="313.3145">Status
-            </text>
-        </g><!--class UniqueItemList-->
-        <g id="elem_UniqueItemList">
-            <rect codeLine="12" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="127" x="181" y="14.5"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="184"
-                  y="32.1738">UniqueItemList&lt;T&gt;
-            </text>
-        </g><!--class ItemList-->
-        <g id="elem_ItemList">
-            <rect codeLine="23" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="139" x="7" y="14.5"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10"
-                  y="32.1738">ItemList
-            </text>
-            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
-                  width="83" x="66" y="11.5"/>
-            <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
-                  textLength="81" x="67" y="25.4492">T extends Item
-            </text>
-        </g><!--class Order-->
-        <g id="elem_Order">
-            <rect codeLine="15" fill="#9D0012" height="25.6406" id="Order" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="50" x="342.5" y="108"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="37" x="349"
-                  y="125.6738">Order
-            </text>
-        </g><!--class MenuItem-->
-        <g id="elem_MenuItem">
-            <rect codeLine="16" fill="#9D0012" height="25.6406" id="MenuItem" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="67" x="134" y="194"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="137"
-                  y="211.6738">MenuItem
-            </text>
-        </g><!--class Customer-->
-        <g id="elem_Customer">
-            <rect codeLine="17" fill="#9D0012" height="25.6406" id="Customer" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="67" x="236" y="194"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="239"
-                  y="211.6738">Customer
-            </text>
-        </g><!--class Quantity-->
-        <g id="elem_Quantity">
-            <rect codeLine="18" fill="#9D0012" height="25.6406" id="Quantity" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="59" x="338" y="194"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="53" x="341"
-                  y="211.6738">Quantity
-            </text>
-        </g><!--class OrderStatus-->
-        <g id="elem_OrderStatus">
-            <rect codeLine="19" fill="#9D0012" height="25.6406" id="OrderStatus" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="83" x="432" y="194"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="77" x="435"
-                  y="211.6738">OrderStatus
-            </text>
-        </g><!--class OrderDeadline-->
-        <g id="elem_OrderDeadline">
-            <rect codeLine="20" fill="#9D0012" height="25.6406" id="OrderDeadline" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="99" x="550" y="194"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="553"
-                  y="211.6738">OrderDeadline
-            </text>
-        </g><!--class OrderList-->
-        <g id="elem_OrderList">
-            <rect codeLine="21" fill="#9D0012" height="25.6406" id="OrderList" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="65" x="67" y="108"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="59" x="70"
-                  y="125.6738">OrderList
-            </text>
-        </g><!--class UniqueOrderList-->
-        <g id="elem_UniqueOrderList">
-            <rect codeLine="22" fill="#9D0012" height="25.6406" id="UniqueOrderList" rx="2.5" ry="2.5"
-                  style="stroke:#181818;stroke-width:0.0;" width="109" x="190" y="108"/>
-            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="103" x="193"
-                  y="125.6738">UniqueOrderList
-            </text>
-        </g><!--reverse link ItemList to OrderList-->
-        <g id="link_ItemList_OrderList">
-            <path d="M84.83,61.64 C88.84,77.6 93.42,95.79 96.37,107.56 " fill="none" id="ItemList-backto-OrderList"
-                  style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="none" points="78.06,63.41,79.97,42.31,91.64,60,78.06,63.41"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-        </g><!--reverse link UniqueItemList to UniqueOrderList-->
-        <g id="link_UniqueItemList_UniqueOrderList">
-            <path d="M244.5,62.19 C244.5,78.03 244.5,95.93 244.5,107.56 " fill="none"
-                  id="UniqueItemList-backto-UniqueOrderList" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="none" points="237.5,62.35,244.5,42.35,251.5,62.35,237.5,62.35"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-        </g><!--link ItemList to UniqueItemList-->
-        <g id="link_ItemList_UniqueItemList">
-            <path codeLine="26" d="M160.67,27.5 C162.67,27.5 164.67,27.5 166.67,27.5 " fill="none"
-                  id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012" points="147.9,27.5,153.9,31.5,159.9,27.5,153.9,23.5,147.9,27.5"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012" points="179.37,27.5,170.37,23.5,174.37,27.5,170.37,31.5,179.37,27.5"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <line style="stroke:#9D0012;stroke-width:1.1;" x1="174.37" x2="166.37" y1="27.5" y2="27.5"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
-                  x="166.1193" y="23.5831">1
-            </text>
-        </g><!--link UniqueItemList to Item-->
-        <g id="link_UniqueItemList_Item">
-            <path codeLine="27" d="M308.44,27.5 C317.73,27.5 327.02,27.5 336.3,27.5 " fill="none"
-                  id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012" points="341.22,27.5,332.22,23.5,336.22,27.5,332.22,31.5,341.22,27.5"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
-                  x="329.7959" y="22.67">*
-            </text>
-        </g><!--link OrderList to UniqueOrderList-->
-        <g id="link_OrderList_UniqueOrderList">
-            <path codeLine="29" d="M146.7,121 C156.23,121 165.75,121 175.28,121 " fill="none"
-                  id="OrderList-UniqueOrderList" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012" points="133.87,121,139.87,125,145.87,121,139.87,117,133.87,121"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012" points="188.23,121,179.23,117,183.23,121,179.23,125,188.23,121"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <line style="stroke:#9D0012;stroke-width:1.1;" x1="183.23" x2="175.23" y1="121" y2="121"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
-                  x="171.0192" y="116.9809">1
-            </text>
-        </g><!--link UniqueOrderList to Order-->
-        <g id="link_UniqueOrderList_Order">
-            <path codeLine="30" d="M299.27,121 C311.45,121 323.63,121 335.81,121 " fill="none"
-                  id="UniqueOrderList-to-Order" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012" points="340.67,121,331.67,117,335.67,121,331.67,125,340.67,121"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
-                  x="329.3556" y="115.7292">*
-            </text>
-        </g><!--link Order to MenuItem-->
-        <g id="link_Order_MenuItem">
-            <path codeLine="31" d="M328.97,138.18 C295.01,152.45 245.58,173.21 210.37,187.99 " fill="none"
-                  id="Order-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012"
-                     points="340.77,133.22,333.6897,131.8527,329.7044,137.8625,336.7847,139.2298,340.77,133.22"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012"
-                     points="198.57,192.95,208.4169,193.1467,203.1787,191.0109,205.3144,185.7727,198.57,192.95"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <line style="stroke:#9D0012;stroke-width:1.1;" x1="203.1787" x2="210.555" y1="191.0109" y2="187.915"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
-                  x="199.4931" y="182.8609">1
-            </text>
-        </g><!--link Order to OrderDeadline-->
-        <g id="link_Order_OrderDeadline">
-            <path codeLine="32" d="M406.14,135.99 C446.14,150.47 508.68,173.12 551.74,188.71 " fill="none"
-                  id="Order-OrderDeadline" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012"
-                     points="394.19,131.66,398.4694,137.464,405.4729,135.7461,401.1935,129.9421,394.19,131.66"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012"
-                     points="563.84,193.09,556.7399,186.2645,559.1388,191.3875,554.0158,193.7864,563.84,193.09"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <line style="stroke:#9D0012;stroke-width:1.1;" x1="559.1388" x2="551.62" y1="191.3875" y2="188.66"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
-                  x="544.3434" y="182.6726">1
-            </text>
-        </g><!--link Order to OrderStatus-->
-        <g id="link_Order_OrderStatus">
-            <path codeLine="33" d="M394.33,143.26 C410.31,155.92 430.52,171.94 446.52,184.62 " fill="none"
-                  id="Order-OrderStatus" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012"
-                     points="384.33,135.33,386.5483,142.1914,393.7351,142.7828,391.5168,135.9214,384.33,135.33"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012"
-                     points="456.61,192.61,452.042,183.8845,452.6918,189.504,447.0724,190.1537,456.61,192.61"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <line style="stroke:#9D0012;stroke-width:1.1;" x1="452.6918" x2="446.42" y1="189.504" y2="184.54"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
-                  x="438.9825" y="182.6042">1
-            </text>
-        </g><!--link Order to Customer-->
-        <g id="link_Order_Customer">
-            <path codeLine="34" d="M342.17,143.71 C327.59,156.2 309.34,171.85 294.77,184.34 " fill="none"
-                  id="Order-Customer" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012"
-                     points="351.89,135.38,344.7317,136.2511,342.7826,143.1938,349.9409,142.3227,351.89,135.38"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012"
-                     points="285.17,192.57,294.6071,189.7522,288.9671,189.3169,289.4023,183.6769,285.17,192.57"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <line style="stroke:#9D0012;stroke-width:1.1;" x1="288.9671" x2="295.04" y1="189.3169" y2="184.105"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
-                  x="276.3461" y="182.6042">1
-            </text>
-        </g><!--link Order to Quantity-->
-        <g id="link_Order_Quantity">
-            <path codeLine="35" d="M367.5,148.58 C367.5,158.34 367.5,169.39 367.5,179.17 " fill="none"
-                  id="Order-Quantity" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012" points="367.5,135.91,363.5,141.91,367.5,147.91,371.5,141.91,367.5,135.91"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="#9D0012" points="367.5,192.04,371.5,183.04,367.5,187.04,363.5,183.04,367.5,192.04"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-            <line style="stroke:#9D0012;stroke-width:1.1;" x1="367.5" x2="367.5" y1="187.04" y2="179.04"/>
-            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
-                  x="354.4719" y="182.6042">1
-            </text>
-        </g><!--reverse link Item to Order-->
-        <g id="link_Item_Order">
-            <path codeLine="36" d="M372.46,69.58 C371.09,83.45 369.67,97.91 368.7,107.76 " fill="none"
-                  id="Item-backto-Order" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="none" points="365.47,69.08,374.4,49.86,379.41,70.45,365.47,69.08"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-        </g><!--link OrderDeadline to Deadline-->
-        <g id="link_OrderDeadline_Deadline">
-            <path codeLine="38" d="M599.5,220.34 C599.5,230.15 599.5,244.46 599.5,258.23 " fill="none"
-                  id="OrderDeadline-to-Deadline" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="none" points="606.5,258.15,599.5,278.15,592.5,258.15,606.5,258.15"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-        </g><!--link OrderStatus to Status-->
-        <g id="link_OrderStatus_Status">
-            <path codeLine="39" d="M473.5,220.34 C473.5,230.15 473.5,244.46 473.5,258.23 " fill="none"
-                  id="OrderStatus-to-Status" style="stroke:#9D0012;stroke-width:1.1;"/>
-            <polygon fill="none" points="480.5,258.15,473.5,278.15,466.5,258.15,480.5,258.15"
-                     style="stroke:#9D0012;stroke-width:1.1;"/>
-        </g><!--SRC=[bL5TIyCm57tFhxZcSL2XxpBGpeV1Hb7dco1P6bnOczJa1XtgVxTDsgw9CF0bt7lEkJdtuqegNhjAWCLJBQvRrzJ47gLgcM4DC6Fqn-uW-L49Qo6_pbEoqBKsi2rNzvlNejoKZpC1hvcrTumVtunsgheaxHNjMXs4aSWK5v0JWhe5rB3NYBg1IXh1KMf5oEtUec4SeUWDW7wn0VXvKMiK3GLceGykAbU2LRLKmgl7v6B54p9qrkj3I0RHivBlJlIE6sdnPhS4BuhXGNnMWVX4eQe0BSd0bwOIPeYtGZa_HqWBPxjDJEo3OmebdkQ5KLyUcIQRORr_v3xhBpJzL_RFOSX8mIBBJBUGdAPVn2bqAhgWuMxax3-M0qrR8schcVyWBD2_VN6mdZQPuF6A8X9ejDAKcuwH4jDP0f6vx-LygD4CigmZOkjW5PZ1zXS0]-->
-    </g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="329px" preserveAspectRatio="none" style="width:705px;height:329px;background:#FFFFFF;" version="1.1" viewBox="0 0 705 329" width="705px" zoomAndPan="magnify"><defs/><g><!--MD5=[44a1b4afaef76c16e6c9ec4990ad0c8d]
+class Item--><g id="elem_Item"><rect codeLine="9" fill="#9D0012" height="42.1973" id="Item" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="346" y="25.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="27" x="363" y="41.2305">Item</text></g><!--MD5=[007886e900a243ece686dc981ec5213f]
+class Deadline--><g id="elem_Deadline"><rect codeLine="10" fill="#9D0012" height="42.1973" id="Deadline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="615" y="281"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="618" y="299.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="56" x="620.5" y="315.2305">Deadline</text></g><!--MD5=[e3d83ec5fd90ea9f3f2bfe265cb53458]
+class Status--><g id="elem_Status"><rect codeLine="11" fill="#9D0012" height="42.1973" id="Status" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="489" y="281"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="492" y="299.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="40" x="502.5" y="315.2305">Status</text></g><!--MD5=[0413c2967cbcbb9b55cfe9d1f30bae3b]
+class UniqueItemList--><g id="elem_UniqueItemList"><rect codeLine="12" fill="#9D0012" height="26.0986" id="UniqueItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="127" x="181" y="15"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="184" y="33.1318">UniqueItemList&lt;T&gt;</text></g><!--MD5=[a7724e71618d3dacaca1ec2d24889dc2]
+class ItemList--><g id="elem_ItemList"><rect codeLine="24" fill="#9D0012" height="26.0986" id="ItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="139" x="7" y="15"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10" y="33.1318">ItemList</text><rect fill="#FFFFFF" height="17.0938" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" width="83" x="66" y="12"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="81" x="67" y="25.457">T extends Item</text></g><!--MD5=[38cbc5fc88b06498bbb77355b03ca902]
+class LocalDateTime--><g id="elem_LocalDateTime"><rect codeLine="15" fill="#9D0012" height="26.0986" id="LocalDateTime" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="101" x="47" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="95" x="50" y="213.1318">LocalDateTime</text></g><!--MD5=[cf4d6237fcae255cd2e1656cf84a30e2]
+class Order--><g id="elem_Order"><rect codeLine="16" fill="#9D0012" height="26.0986" id="Order" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="50" x="342.5" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="37" x="349" y="127.1318">Order</text></g><!--MD5=[27eb0c30e65d8b262e52e99e862b6c6e]
+class MenuItem--><g id="elem_MenuItem"><rect codeLine="17" fill="#9D0012" height="26.0986" id="MenuItem" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="183" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="186" y="213.1318">MenuItem</text></g><!--MD5=[2ce0c9fb7f55b1e256ab28a8ea6b25ec]
+class Customer--><g id="elem_Customer"><rect codeLine="18" fill="#9D0012" height="26.0986" id="Customer" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="285" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="288" y="213.1318">Customer</text></g><!--MD5=[c10c36ce2c02dedc3d02a76c5154070d]
+class Quantity--><g id="elem_Quantity"><rect codeLine="19" fill="#9D0012" height="26.0986" id="Quantity" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="59" x="387" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="53" x="390" y="213.1318">Quantity</text></g><!--MD5=[de626c0cb0f072ae90ffb25031374c19]
+class OrderStatus--><g id="elem_OrderStatus"><rect codeLine="20" fill="#9D0012" height="26.0986" id="OrderStatus" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="83" x="481" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="77" x="484" y="213.1318">OrderStatus</text></g><!--MD5=[d27b1d35a6111a034c522a62556c48ac]
+class OrderDeadline--><g id="elem_OrderDeadline"><rect codeLine="21" fill="#9D0012" height="26.0986" id="OrderDeadline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="99" x="599" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="602" y="213.1318">OrderDeadline</text></g><!--MD5=[641de0088b7653c4b5bc197ac36ace7f]
+class OrderList--><g id="elem_OrderList"><rect codeLine="22" fill="#9D0012" height="26.0986" id="OrderList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="65" x="67" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="59" x="70" y="127.1318">OrderList</text></g><!--MD5=[a5127b499828c09889c8715fca3202ad]
+class UniqueOrderList--><g id="elem_UniqueOrderList"><rect codeLine="23" fill="#9D0012" height="26.0986" id="UniqueOrderList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="109" x="190" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="103" x="193" y="127.1318">UniqueOrderList</text></g><!--MD5=[946853a062e13709c59583e6dd79092e]
+reverse link ItemList to OrderList--><g id="link_ItemList_OrderList"><path d="M84.37,60.48 C88.54,77.18 93.43,96.71 96.49,108.97 " fill="none" id="ItemList-backto-OrderList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="77.57,62.13,79.51,41.03,91.15,58.73,77.57,62.13" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[5841f03205553e74240bed55d1e4d784]
+reverse link UniqueItemList to UniqueOrderList--><g id="link_UniqueItemList_UniqueOrderList"><path d="M244.5,61.05 C244.5,77.61 244.5,96.85 244.5,108.97 " fill="none" id="UniqueItemList-backto-UniqueOrderList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="237.5,61.03,244.5,41.03,251.5,61.03,237.5,61.03" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[4e7777d310d747d2c1947315482d4a2c]
+link ItemList to UniqueItemList--><g id="link_ItemList_UniqueItemList"><path codeLine="27" d="M158.06,28 C158.06,28 164.87,28 167.65,28 " fill="none" id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="180.67,28,171.67,24,175.67,28,171.67,32,180.67,28" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="175.67" x2="167.67" y1="28" y2="28"/><polygon fill="#9D0012" points="146.06,28,152.06,32,158.06,28,152.06,24,146.06,28" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="165.885" y="24.5847">1</text></g><!--MD5=[be517f24292d6b5fd6945ff9c04a4f08]
+link UniqueItemList to Item--><g id="link_UniqueItemList_Item"><path codeLine="28" d="M308.18,28 C318.03,28 327.88,28 337.72,28 " fill="none" id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="342.87,28,333.87,24,337.87,28,333.87,32,342.87,28" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="329.9666" y="23.762">*</text></g><!--MD5=[1c0b72a97af6de6a22b0f5a92f97809e]
+link OrderList to UniqueOrderList--><g id="link_OrderList_UniqueOrderList"><path codeLine="30" d="M144.07,122 C144.07,122 165.96,122 176.39,122 " fill="none" id="OrderList-UniqueOrderList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="189.6,122,180.6,118,184.6,122,180.6,126,189.6,122" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="184.6" x2="176.6" y1="122" y2="122"/><polygon fill="#9D0012" points="132.07,122,138.07,126,144.07,122,138.07,118,132.07,122" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="170.8612" y="118.4863">1</text></g><!--MD5=[07a9a40e155cf7ba8fa563215030c51a]
+link UniqueOrderList to Order--><g id="link_UniqueOrderList_Order"><path codeLine="31" d="M299.27,122 C311.98,122 324.68,122 337.39,122 " fill="none" id="UniqueOrderList-to-Order" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="342.45,122,333.45,118,337.45,122,333.45,126,342.45,122" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="329.3572" y="117.1823">*</text></g><!--MD5=[abfcf310237b8a1e0f90f16bd70b775b]
+link Order to MenuItem--><g id="link_Order_MenuItem"><path codeLine="32" d="M335.3876,140.8811 C335.3876,140.8811 274.68,174.64 249.59,188.59 " fill="none" id="Order-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="238.09,194.99,247.8989,194.1033,242.4577,192.5562,244.0048,187.115,238.09,194.99" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="242.4577" x2="249.455" y1="192.5562" y2="188.665"/><polygon fill="#9D0012" points="345.87,135.04,338.6817,134.4664,335.3876,140.8811,342.5758,141.4547,345.87,135.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="238.2129" y="184.2622">1</text></g><!--MD5=[a66735e8c8f59b32294c5870e4d78d4b]
+link Order to OrderDeadline--><g id="link_Order_OrderDeadline"><path codeLine="33" d="M404.4261,134.0409 C404.4261,134.0409 539.98,174.56 595.42,191.13 " fill="none" id="Order-OrderDeadline" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="608.14,194.93,600.6649,188.5173,603.35,193.4963,598.371,196.1813,608.14,194.93" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="603.35" x2="595.685" y1="193.4963" y2="191.21"/><polygon fill="#9D0012" points="392.93,130.6,397.5311,136.1525,404.4261,134.0409,399.825,128.4884,392.93,130.6" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="583.8701" y="184.1786">1</text></g><!--MD5=[d7a12ed011a57068e70e07d9626e1fb6]
+link Order to OrderStatus--><g id="link_Order_OrderStatus"><path codeLine="34" d="M400.2578,140.7622 C400.2578,140.7622 462.92,174.71 488.83,188.75 " fill="none" id="Order-OrderStatus" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="500.33,194.99,494.319,187.1882,495.9328,192.61,490.511,194.2238,500.33,194.99" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="495.9328" x2="488.905" y1="192.61" y2="188.79"/><polygon fill="#9D0012" points="389.71,135.04,393.0765,141.417,400.2578,140.7622,396.8913,134.3852,389.71,135.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="478.4349" y="184.2622">1</text></g><!--MD5=[65622aaf8fcfd7b10df86db327daabc8]
+link Order to Customer--><g id="link_Order_Customer"><path codeLine="35" d="M354.4286,145.4025 C354.4286,145.4025 338.9,172.02 332.16,183.59 " fill="none" id="Order-Customer" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="325.51,194.99,333.4972,189.2277,328.0273,190.6699,326.5851,185.2,325.51,194.99" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="328.0273" x2="332.06" y1="190.6699" y2="183.76"/><polygon fill="#9D0012" points="360.48,135.04,354.0002,138.2041,354.4286,145.4025,360.9085,142.2384,360.48,135.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="315.1046" y="184.2622">1</text></g><!--MD5=[0c1b978bff753f7bd75d6d5b93ce7da7]
+link Order to Quantity--><g id="link_Order_Quantity"><path codeLine="36" d="M380.5714,145.4025 C380.5714,145.4025 396.1,172.02 402.84,183.59 " fill="none" id="Order-Quantity" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="409.49,194.99,408.4149,185.2,406.9727,190.6699,401.5028,189.2277,409.49,194.99" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="406.9727" x2="402.94" y1="190.6699" y2="183.76"/><polygon fill="#9D0012" points="374.52,135.04,374.0915,142.2384,380.5714,145.4025,380.9998,138.2041,374.52,135.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="393.5642" y="184.2622">1</text></g><!--MD5=[36ece76e2faf3301edebac8d2462a6cc]
+link Order to LocalDateTime--><g id="link_Order_LocalDateTime"><path codeLine="37" d="M330.6441,134.4725 C330.6441,134.4725 201.47,174.65 148.83,191.03 " fill="none" id="Order-LocalDateTime" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="136.41,194.89,146.1915,196.0395,141.1848,193.4064,143.8179,188.3997,136.41,194.89" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="141.1848" x2="148.82" y1="193.4064" y2="191.035"/><polygon fill="#9D0012" points="342.1,130.9,335.1812,128.8676,330.6441,134.4725,337.5629,136.5049,342.1,130.9" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="73" x="64.3589" y="184.1229">timeAdded 1</text></g><!--MD5=[4b7862dcaf576e5c0b7cfedfde91f52b]
+reverse link Item to Order--><g id="link_Item_Order"><path codeLine="38" d="M372.54,69.46 C371.15,83.73 369.68,98.71 368.69,108.82 " fill="none" id="Item-backto-Order" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="365.59,68.64,374.5,49.42,379.52,70,365.59,68.64" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[0a6e52d95c2fa1e03219cbfd7d4aada4]
+link OrderDeadline to Deadline--><g id="link_OrderDeadline_Deadline"><path codeLine="40" d="M648.5,221.03 C648.5,231.18 648.5,246.32 648.5,260.7 " fill="none" id="OrderDeadline-to-Deadline" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="655.5,260.88,648.5,280.88,641.5,260.88,655.5,260.88" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[1b6f69cf80af49263a9c150b9e050f8c]
+link OrderStatus to Status--><g id="link_OrderStatus_Status"><path codeLine="41" d="M522.5,221.03 C522.5,231.18 522.5,246.32 522.5,260.7 " fill="none" id="OrderStatus-to-Status" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="529.5,260.88,522.5,280.88,515.5,260.88,529.5,260.88" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[9ccc9c71157bf24e532562e46dc3ce50]
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam groupInheritance 1
+
+top to bottom direction
+
+Abstract Class "{abstract}\nItem" as Item
+Abstract Class "{abstract}\nDeadline" as Deadline
+Abstract Class "{abstract}\nStatus" as Status
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
+
+Class LocalDateTime
+Class Order
+Class MenuItem
+Class Customer
+Class Quantity
+Class OrderStatus
+Class OrderDeadline
+Class OrderList extends ItemList
+Class UniqueOrderList extends UniqueItemList
+Class ItemList<T extends Item>
+
+
+ItemList *- -r> "1" UniqueItemList
+UniqueItemList -r>"*" Item
+
+OrderList *- -r> "1 " UniqueOrderList
+UniqueOrderList ->"*" Order
+Order *- -> "1" MenuItem
+Order *- -> "1" OrderDeadline
+Order *- -> "1 " OrderStatus
+Order *- -> "1 " Customer
+Order *- -> "1 " Quantity
+Order *- -> "timeAdded 1" LocalDateTime
+Order -u|> Item
+
+OrderDeadline - -|> Deadline
+OrderStatus - -|> Status
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 0
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam arrowThickness 1.1
+skinparam arrowColor #9D0012
+skinparam classBackgroundColor #9D0012
+skinparam groupInheritance 1
+
+top to bottom direction
+
+Abstract Class "{abstract}\nItem" as Item
+Abstract Class "{abstract}\nDeadline" as Deadline
+Abstract Class "{abstract}\nStatus" as Status
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
+
+Class LocalDateTime
+Class Order
+Class MenuItem
+Class Customer
+Class Quantity
+Class OrderStatus
+Class OrderDeadline
+Class OrderList extends ItemList
+Class UniqueOrderList extends UniqueItemList
+Class ItemList<T extends Item>
+
+
+ItemList *- -r> "1" UniqueItemList
+UniqueItemList -r>"*" Item
+
+OrderList *- -r> "1 " UniqueOrderList
+UniqueOrderList ->"*" Order
+Order *- -> "1" MenuItem
+Order *- -> "1" OrderDeadline
+Order *- -> "1 " OrderStatus
+Order *- -> "1 " Customer
+Order *- -> "1 " Quantity
+Order *- -> "timeAdded 1" LocalDateTime
+Order -u|> Item
+
+OrderDeadline - -|> Deadline
+OrderStatus - -|> Status
+
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: SG
+--></g></svg>

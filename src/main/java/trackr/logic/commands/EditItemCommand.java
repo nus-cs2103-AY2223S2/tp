@@ -5,6 +5,7 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
+import java.util.Optional;
 
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
@@ -14,7 +15,7 @@ import trackr.model.ModelEnum;
 import trackr.model.item.Item;
 import trackr.model.item.ItemDescriptor;
 import trackr.model.menu.MenuItem;
-import trackr.model.order.Order;
+import trackr.model.order.OrderDescriptor;
 
 /**
  * Edits the details of an existing item in the item list.
@@ -43,25 +44,35 @@ public abstract class EditItemCommand<T extends Item> extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<? extends Item> lastShownTaskList = model.getFilteredItemList(modelEnum);
+        List<? extends Item> lastShownItemList = model.getFilteredItemList(modelEnum);
 
-        if (index.getZeroBased() >= lastShownTaskList.size()) {
+        if (index.getZeroBased() >= lastShownItemList.size()) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX,
                     modelEnum.toString().toLowerCase()));
         }
 
-        Item itemToEdit = lastShownTaskList.get(index.getZeroBased());
-        Item editedItem = createEditedItem((T) itemToEdit, editItemDescriptor);
+        Item itemToEdit = lastShownItemList.get(index.getZeroBased());
+        Item editedItem;
 
-        if (editedItem instanceof Order) {
-            Order editedOrder = (Order) editedItem;
-            List<MenuItem> currentMenuItems = model.getFilteredMenu();
-            MenuItem existingItem = currentMenuItems.stream()
-                .filter(item -> item.getItemName().getName()
-                .equals(editedOrder.getOrderName().getName()))
-                .findAny()
-                .orElseThrow(() ->
-                    new CommandException(MESSAGE_NO_MENU_ITEM));
+        if (editItemDescriptor instanceof OrderDescriptor) {
+            OrderDescriptor editOrderDescriptor = (OrderDescriptor) editItemDescriptor;
+            if (editOrderDescriptor.getOrderName().isPresent()) {
+                List<MenuItem> currentMenuItems = model.getFilteredMenu();
+                Optional<MenuItem> existingMenuItem =
+                        currentMenuItems.stream()
+                                .filter(menuItem -> menuItem.getItemName().getName()
+                                        .equals(editOrderDescriptor.getOrderName().get().getName()))
+                                .findAny();
+
+                if (existingMenuItem.isEmpty()) {
+                    throw new CommandException(MESSAGE_NO_MENU_ITEM);
+                }
+                //there should only be one menu item that matches if there is any
+                editOrderDescriptor.setOrderItem(existingMenuItem.get());
+            }
+            editedItem = createEditedItem((T) itemToEdit, (ItemDescriptor) editOrderDescriptor);
+        } else {
+            editedItem = createEditedItem((T) itemToEdit, editItemDescriptor);
         }
 
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem, modelEnum)) {

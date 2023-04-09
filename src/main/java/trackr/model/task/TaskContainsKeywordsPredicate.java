@@ -18,7 +18,9 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
     }
 
     /**
-     * Copy constructor.
+     * Constructs a new {@code TaskContainsKeywordsPredicate} object with the same keywords of task details as the
+     * {@code OrderContainsKeywordsPredicate} object specified.
+     * @param toCopy The {@code TaskContainsKeywordsPredicate} object to copy the task name keywords from.
      */
     public TaskContainsKeywordsPredicate(TaskContainsKeywordsPredicate toCopy) {
         setTaskNameKeywords(toCopy.taskNameKeywords);
@@ -34,6 +36,10 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
         return Optional.ofNullable(taskNameKeywords);
     }
 
+    /**
+     * Returns true if any of the fields in the {@code Task} object are present or not.
+     * @return true if any of the fields in the {@code Task} object are present or not.
+     */
     public boolean isAnyFieldPresent() {
         return isAnyFieldNonNull() || taskNameKeywords != null;
     }

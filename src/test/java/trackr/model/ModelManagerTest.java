@@ -80,32 +80,36 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setTrackrFilePath_validPath_setsAddressBookFilePath() {
+    public void setTrackrFilePath_validPath_setsTrackrFilePath() {
         Path path = Paths.get("trackr/file/path");
         modelManager.setTrackrFilePath(path);
         assertEquals(path, modelManager.getTrackrFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasSupplier_nullSupplier_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.SUPPLIER));
     }
 
+    // ------------------------- Supplier -------------------------
+
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasSupplier_supplierNotInSupplierList_returnsFalse() {
         assertFalse(modelManager.hasItem(ALICE, ModelEnum.SUPPLIER));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasSupplier_supplierInSupplierList_returnsTrue() {
         modelManager.addItem(ALICE, ModelEnum.SUPPLIER);
         assertTrue(modelManager.hasItem(ALICE, ModelEnum.SUPPLIER));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredSupplierList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredSupplierList().remove(0));
     }
+
+    // ------------------------- Task -------------------------
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
@@ -128,6 +132,8 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
 
+    // ------------------------- Menu -------------------------
+
     @Test
     public void hasMenuItem_nullMenuItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.MENUITEM));
@@ -148,6 +154,8 @@ public class ModelManagerTest {
     public void getFilteredMenu_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredMenu().remove(0));
     }
+
+    // ------------------------- Order -------------------------
 
     @Test
     public void hasOrder_nullOrder_throwsNullPointerException() {

@@ -10,7 +10,7 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 public abstract class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "%s names should only contain alphabetical characters and spaces, and it should not be blank";
+            "%s names should only contain alphanumerical characters and spaces, and it should not be blank";
 
     /*
      * The first character of the name must not be a whitespace, otherwise " " (a blank string) becomes a valid input.
@@ -50,7 +50,13 @@ public abstract class Name {
      *         0 if both names are lexicographically equal (ignoring case).
      */
     public int compare(Name other) {
-        return name.compareToIgnoreCase(other.name);
+        int compareVal = name.compareToIgnoreCase(other.name);
+
+        if (compareVal == 0) {
+            return 0;
+        } else {
+            return compareVal / Math.abs(compareVal);
+        }
     }
 
     @Override
@@ -62,7 +68,7 @@ public abstract class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && name.equalsIgnoreCase(((Name) other).name)); // state check
+                && name.equals(((Name) other).name)); // state check
     }
 
     @Override

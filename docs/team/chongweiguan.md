@@ -9,29 +9,26 @@ Trackr is a desktop application used to keep track of order, suppliers and tasks
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the `Add Order Command` Feature
-  * What it does: allows the user to add new orders into their order list
-  * Justification: This feature allows users to keep track of new orders by adding them into a list
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=chognweiguan&breakdown=true)
+  * Added `Order` and `Customer` Models including all field classes [\#100] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/100), [#107] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/107)
+  * Updated Storage related classes to allow for the storage of `Order` objects [\#114] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/114)
+  * Completed `add` and `delete` commands for `Order` objects [#120] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/120)
+  * Completed `upload csv` feature [\178] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/178)
+    * Justification: Allow users to transfer existing data from their excel sheet to trackr efficiently.
+  * Updated and fixed `Order` related bugs [#272] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/272)
 
-* **Project management**:
-  * Keep track of deliverables and deadlines
-
-* **Enhancements to existing features**:
-  * _To be updated_
+* **Review / Peer Help**:
+  * Helped teammates with debugging and implementation issues.
 
 * **Documentation**:
   * User Guide:
-    * _To be updated_
+    * Documented `upload csv` feature [#185] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/185)
   * Developer Guide:
-    * _To be updated_
+    * Updated UML Diagrams for `Logic` component [\#154] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/154)
+    * Added activity diagram for `ListCommand` [\#171] (https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/171)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Approved a number of PRs
 
 * **Tools**:
-  * _To be updated_
+  * Java 11, JavaFx

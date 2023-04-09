@@ -14,6 +14,8 @@ import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
 import trackr.model.item.Item;
 import trackr.model.item.ReadOnlyItemList;
+import trackr.model.menu.ItemProfit;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
@@ -383,6 +385,26 @@ public class ModelManager implements Model {
                 && filteredTasks.equals(other.filteredTasks)
                 && filteredMenuItems.equals(other.filteredMenuItems)
                 && filteredOrders.equals(other.filteredOrders);
+    }
+
+    //=========== Calculation =============================================================
+
+    @Override
+    public ItemProfit getTotalProfits() {
+        ObservableList<Order> allOrders = this.getFilteredOrderList();
+        Double total = allOrders.stream()
+                .map(x -> x.getTotalProfit().getValue())
+                .reduce(0.0, (subTotal, element) -> subTotal + element);
+        return new ItemProfit(total);
+    }
+
+    @Override
+    public ItemSellingPrice getTotalSales() {
+        ObservableList<Order> allOrders = this.getFilteredOrderList();
+        Double total = allOrders.stream()
+                .map(x -> x.getTotalRevenue().getValue())
+                .reduce(0.0, (subTotal, element) -> subTotal + element);
+        return new ItemSellingPrice(total);
     }
 
 }

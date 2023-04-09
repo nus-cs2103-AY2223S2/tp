@@ -11,13 +11,16 @@ import java.text.DecimalFormat;
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain positive numbers, and it should be at most 2 decimal place";
-    private static final String VALIDATION_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
+    private static final String VALIDATION_REGEX = "^[0-9]+(\\.[0-9]{0,2})?$";
     private static final DecimalFormat DF = new DecimalFormat("0.00");
     private final Double value;
     private final String formattedValue;
 
     /**
-     * Constructs a {@code ItemPrice} object with the given {@code value}
+     * Constructs an ItemPrice object with the given price value as a String.
+     * @param value the price value as a String
+     * @throws NullPointerException if value is null
+     * @throws IllegalArgumentException if value is not a valid price value
      */
     public ItemPrice(String value) {
         requireNonNull(value);
@@ -27,7 +30,9 @@ public class ItemPrice {
     }
 
     /**
-     * Constructs a {@code ItemProfit} with {@code itemProfit} of any numerical format.
+     * Constructs an ItemPrice object with the given price value as a Double.
+     * @param itemPrice the price value as a Double
+     * @throws NullPointerException if itemPrice is null
      */
     public ItemPrice(Double itemPrice) {
         requireNonNull(itemPrice);
@@ -36,20 +41,34 @@ public class ItemPrice {
     }
 
     /**
-     * Returns true if a given string is a valid price.
+     * Returns true if a given string matches the validation regex for price.
+     * @param test the string to test for validity as a price value
+     * @return true if test is a valid price value, false otherwise
      */
     public static boolean isValidPrice(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the price value as a Double.
+     * @return the price value as a Double
+     */
     public Double getValue() {
         return value;
     }
 
+    /**
+     * Returns the formatted price value as a String.
+     * @return the formatted price value as a String
+     */
     public String getFormattedValue() {
         return formattedValue;
     }
 
+    /**
+     * Returns the formatted price value of the item as a JSON string for storage purposes.
+     * @return The formatted price value as a JSON string.
+     */
     public String toJsonString() {
         return formattedValue;
     }

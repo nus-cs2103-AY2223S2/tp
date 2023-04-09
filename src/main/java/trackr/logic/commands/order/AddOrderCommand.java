@@ -67,7 +67,7 @@ public class AddOrderCommand extends Command {
         List<MenuItem> currentMenuItems = model.getFilteredMenu();
         MenuItem existingItem = currentMenuItems.stream()
                                 .filter(item -> item.getItemName().getName()
-                                            .equalsIgnoreCase(toAdd.getOrderName().getName()))
+                                            .equals(toAdd.getOrderName().getName()))
                                 .findAny()
                                 .orElseThrow(() ->
                                             new CommandException(MESSAGE_NO_MENU_ITEM));

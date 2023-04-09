@@ -1,12 +1,11 @@
-package trackr.model.supplier;
+package trackr.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import trackr.model.person.PersonEmail;
 
 public class PersonEmailTest {
 
@@ -80,4 +79,11 @@ public class PersonEmailTest {
         assertFalse(personEmail.equals(differentPersonEmail)); //different email
         assertFalse(personEmail.equals(1)); //different type
     }
+
+    @Test
+    public void hashCode_success() {
+        String email = "test@test";
+        assertEquals(email.hashCode(), new PersonEmail(email).hashCode());
+    }
+
 }

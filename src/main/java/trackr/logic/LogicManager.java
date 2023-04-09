@@ -53,6 +53,7 @@ public class LogicManager implements Logic {
         Command command = trackrParser.parseCommand(commandText);
         commandResult = command.execute(model);
         try {
+            logger.info("Should not reach here");
             storage.saveTrackr(model.getSupplierList(), model.getTaskList(), model.getMenu(), model.getOrderList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -103,20 +104,12 @@ public class LogicManager implements Logic {
 
     @Override
     public ItemProfit getTotalProfits() {
-        ObservableList<Order> allOrders = model.getFilteredOrderList();
-        Double total = allOrders.stream()
-                        .map(x -> x.getTotalProfit().getValue())
-                        .reduce(0.0, (subTotal, element) -> subTotal + element);
-        return new ItemProfit(total);
+        return model.getTotalProfits();
     }
 
     @Override
     public ItemSellingPrice getTotalSales() {
-        ObservableList<Order> allOrders = model.getFilteredOrderList();
-        Double total = allOrders.stream()
-                        .map(x -> x.getTotalRevenue().getValue())
-                        .reduce(0.0, (subTotal, element) -> subTotal + element);
-        return new ItemSellingPrice(total);
+        return model.getTotalSales();
     }
 
     @Override

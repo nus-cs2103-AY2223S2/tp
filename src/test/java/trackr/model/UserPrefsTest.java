@@ -1,11 +1,12 @@
 package trackr.model;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static trackr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,29 +30,36 @@ public class UserPrefsTest {
     public void equals() {
         // same object -> returns true
         UserPrefs userPrefs = new UserPrefs();
-        assertTrue(userPrefs.equals(userPrefs));
+        assertEquals(userPrefs, userPrefs);
 
         // null -> returns false
-        assertFalse(userPrefs.equals(null));
+        assertNotEquals(null, userPrefs);
 
         // different type -> returns false
-        assertFalse(userPrefs.equals(5));
+        assertNotEquals(5, userPrefs);
 
         // same values -> returns true
         UserPrefs userPrefsCopy = new UserPrefs(userPrefs);
-        assertTrue(userPrefs.equals(userPrefsCopy));
+        assertEquals(userPrefs, userPrefsCopy);
 
         // different file path -> returns false
-        Path diffPath = Paths.get("test" , "different", "path");
+        Path diffPath = Paths.get("test", "different", "path");
         UserPrefs userPrefsDiffPath = new UserPrefs();
         userPrefsDiffPath.setTrackrFilePath(diffPath);
-        assertFalse(userPrefs.equals(userPrefsDiffPath));
+        assertNotEquals(userPrefs, userPrefsDiffPath);
 
         // different gui settings -> returns false
         GuiSettings guiSettings = new GuiSettings(0, 0, 0, 0);
         UserPrefs userPrefsDiffGui = new UserPrefs();
         userPrefsDiffGui.setGuiSettings(guiSettings);
-        assertFalse(userPrefs.equals(userPrefsDiffGui));
+        assertNotEquals(userPrefs, userPrefsDiffGui);
+    }
+
+    @Test
+    public void hashCode_success() {
+        UserPrefs userPrefs = new UserPrefs();
+        int hashCode = Objects.hash(userPrefs.getGuiSettings(), userPrefs.getTrackrFilePath());
+        assertEquals(userPrefs.hashCode(), hashCode);
     }
 
 }
