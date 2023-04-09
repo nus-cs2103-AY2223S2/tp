@@ -46,7 +46,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/karen-lam.md)]
 
 * Role: Developer
-* Responsibilities: to be added soon
+* Responsibilities:
+  * Implementation of Features `list`, `clash` and saving of data
+  * Managing User Guide related edits
 
 ### Sarthak Saxena
 
