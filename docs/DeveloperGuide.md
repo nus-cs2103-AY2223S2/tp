@@ -74,7 +74,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI layer consist of multiple UIWindows from different components. All windows inherits the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI layer consist of multiple windows from different components. All windows inherits the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -120,14 +120,14 @@ Below is the structure of Timetable Window through class diagram:
 ![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
 
 
-#### Job System component
+#### Create Job Window
 
-The `Job System` component,  
-![Structure of the Create Job Component](images/UiClassDiagramCreateJob.png)
 * executes create/edit delivery job commands using the `Logic` component.
 * it can handle both create and edit mode for delivery jobs.
 * it returns the command execution result through a callback handler.
 * it opens a address book dialog for user to choose the sender and recipient for the job.
+
+![Structure of the Create Job Component](images/UiClassDiagramCreateJob.png)
 
 ### Logic component
 
@@ -571,7 +571,7 @@ _**Extensions**_
       Use case ends.
 
 
-#### [DE1] View delivery job detailsummary>
+#### [DE1] View delivery job detail
 _**MSS**_
 1. User opens the system.
 2. System list all pending jobs.
@@ -751,7 +751,7 @@ _**MSS**_
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;  
 testers are expected to do more *exploratory* testing.
 
 </div>

@@ -28,26 +28,18 @@ If you are a first-time user, you can begin by reading the [Quick Start](#quick-
 ## Quick start 
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
 2. Download the latest `dukeDriver.jar` in the latest release from [here](https://github.com/AY2223S2-CS2103-F11-2/tp/releases).
-
 3. Copy the file to the folder you want to use as the _home folder_ for your Duke Driver.
-
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dukeDriver.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app may contain some sample data.<br>
    ![Ui](images/Ui.png)
-
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
    * `list` : Lists all contacts.
-
    * `list_job` : Lists all jobs.
    * `stats` : Opens statistics window.
    * `timetable` : Shows timetable of current week.
-
    * `exit` : Exits the app.
-
 6. Refer to the [Windows and Features Overview](#windows-and-features-overview) and [Features](#features) below for details of each command.
 
 ## Windows and Features Overview
@@ -116,7 +108,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 2. System does not check for duplicate emails.
 </div>
 <div markdown="span" class="alert alert-primary">
-:bulb: **Future improvement:** Support special characters (e.g /, Æ) for name field.
+:bulb: **Future improvement:** Support for special characters (e.g /, Æ) for name field.
 </div>
 
 
@@ -126,8 +118,7 @@ Examples:
 
 ### 1.2. Listing all persons : `list`
 
-Shows a list of all persons in the address book in Customer Window.
-
+Shows a list of all persons in the address book in Customer Window.  
 Opens Customer Window.
 
 Format: `list`
@@ -209,10 +200,14 @@ Adds a delivery job to the delivery job system.
 * Delivery date and slot are optional, however, if specified, they need to be specified together for scheduling (i.e. users are not allowed to specify only delivery date and leave delivery slot empty - and vice versa).
 * Delivery date **must be in format YYYY-mm-DD** and **must be a valid date**.
 * Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5 (example: `slot/1`).
-* Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
+  - Slot 1: 10AM - 11AM
+  - Slot 2: 11AM - 12PM
+  - Slot 3: 1PM - 2PM
+  - Slot 4: 2PM - 3PM
+  - Slot 5: 3PM - 4PM
 * Delivery slots must start from 1 (i.e. `slot/1` - delivery slots only start from 10AM), however, could also be larger than 5 (i.e. `slot/6`).
 * Delivery slots larger than 5 (outside valid range, i.e. `slot/6`) will be classified as "Extra hours (4PM++)". These delivery slots are still considered invalid slots.
-* Earning **must be a double** and could contain more than 2 decimal inputs, Earning cannot be larger than 99999 (validation not configured as of v1.4). 
+* Earning **must be a double** and could contain more than 2 decimal inputs, Earning cannot be larger than 99999 (validation avaiable as of v1.4).
 
 Examples:
 * `add_job si/ALESAM ri/DAVSAM earn/1.1`
@@ -221,14 +216,11 @@ Examples:
 **Alternative**:   
 Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
 
-*Extra constraints with adding jobs with GUI mode:*
-* Only allows adding jobs with either **valid slots** or **no slot** (i.e. slots within range 1 - 5 or empty slot). Slots outside valid range is not allowed.
-* Delivery date and slot are optional, but must be specified together.
-
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:**   
-1. Description field is only available in GUI mode.  
-2. Earning field allows for more than 2 decimal inputs.
+1. Description field is only available in GUI mode.    
+2. Earning field allows for more than 2 decimal inputs.  
+3. Command constrains applies to GUI mode.  
 </div>
 
 ![Create Job](images/Addjob.png)
@@ -276,7 +268,6 @@ To hide/un-hide the contact details of the chosen job, simply click on the (Un)L
 
 Edit a selected job by Index or Job ID.
 
-
 Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
 
 or `edit_job ji/JOB_ID [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
@@ -287,7 +278,7 @@ or `edit_job ji/JOB_ID [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [s
 * Edits the delivery job at the specified `INDEX` or `JOB_ID` provided by user.
 * The index refers to the index number shown in the displayed job list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Editing a completed job will reset the job to pending status.
+* Editing a completed job will reset the job to pending state.
 * Refer to `add_job` for argument constrains.
 
 Examples:
@@ -536,7 +527,7 @@ Duke Driver data are saved as a JSON file `[JAR file location]/data/addressbook.
 More specifically, Customers' contacts and Reminder List is saved in `[JAR file location]/data/addressbook.json`, whereas delivery job list is saved in `[JAR file location]/data/deliveryjobsystem.json`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Delivery Job System and Address Book will discard all data and start with an empty data file at the next run. 
+If your changes to the data file makes its format invalid, Delivery Job System and Address Book will discard all data and start with an empty data file at the next run.   
 * Invalid sender, recipient ID, slot however will not clear the job system, user can use the edit function to correct the job detail.
 </div>
 
