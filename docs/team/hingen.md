@@ -45,7 +45,7 @@ Check out the code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp
   - Update "Design" section, "Storage" subsection class diagram and information
 - **UG Command Syntax**
   - Create a "Command Syntax" section which is adapted from AB3's UG's command format notes
-- UG Argument Formats
+- **UG Argument Formats**
   - Create an "Argument Formats" section that documents the required format of each argument's values
 - **Standardise UG Format**
   - Define the convention that all members are to follow for the "Command Manual" section of the UG
