@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+EventCatalogue *-right-> "1" UniqueEventList
+Class "{abstract}\n TimeParser" as TimeParser
+UniqueEventList -right-> Event
+
+Start .up.|> TimeParser
+End   .up.|> TimeParser
+
+Event *--> Start
+Event *--> End
+Event *--> Description
+Event *--> Name
+
+@enduml

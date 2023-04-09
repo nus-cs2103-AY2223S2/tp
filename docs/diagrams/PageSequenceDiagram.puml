@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR_T3
+participant "{abstract}\nPage" as Page UI_COLOR_T3
+participant ":HomePage" as HomePage UI_COLOR_T3
+
+end box
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("home")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("home")
+activate LogicManager
+
+create CommandResult
+LogicManager -> CommandResult
+activate CommandResult
+
+CommandResult --> LogicManager : commandResult
+deactivate CommandResult
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+MainWindow-> CommandResult : getResultType()
+activate CommandResult
+
+CommandResult --> MainWindow :  ResultType.HOME
+deactivate
+
+alt ResultType.HOME
+MainWindow -> Page : <<static>>\nPage.of(commandResult)
+activate Page
+
+create HomePage
+Page -> HomePage
+activate HomePage
+
+HomePage --> Page : HomePage
+deactivate HomePage
+
+Page --> MainWindow : HomePage
+deactivate Page
+|||
+else some other ResultType
+
+note over MainWindow, Page: Alternative paths not shown
+|||
+
+end
+
+[<--MainWindow
+deactivate MainWindow
+
+@enduml
