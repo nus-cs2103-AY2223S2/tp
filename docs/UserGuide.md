@@ -417,7 +417,7 @@ Format: `p`
 Displays the next card. After tagging the current card, you use this command to move on to the next card.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** 
-If the card you are currently reviewing is the last card, the result display will display `This is the last card.` to let you know that there are no more cards left to review.
+If the card you are currently reviewing is the last card, the result display will display `This is the last card.` when you use this command.
 </div>
 
 Format: `]`
@@ -427,7 +427,7 @@ Format: `]`
 Displays the previous card. Useful if you want to amend the tag of the previous card!
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** 
-If the card you are currently reviewing is the first card, the result display will display `This is the first card.` to let you know that there are no cards before this card to review.
+If the card you are currently reviewing is the first card, the result display will display `This is the first card.` when you use this command.
 </div>
 
 Format: `[`
