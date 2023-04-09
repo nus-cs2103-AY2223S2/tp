@@ -529,6 +529,10 @@ index and tag name.
 The second step necessitates the execution of `TagFoodCommand#execute()`. This then facilitates the insertion of `Tag`
 into the tag set associated with `Food` at specified index.
 
+The following sequence diagram shows how the `tag` command works.
+
+![TagFoodSequenceDiagram](images/TagFoodSequenceDiagram.png)
+
 **Usage Scenario**
 
 1. The user specifies the index of the food to be tagged and the name of the tag.
@@ -540,6 +544,10 @@ into the tag set associated with `Food` at specified index.
    before having access to the tag.
 5. Completion of step 4 without any exception will result in successful tagging of the food with the
    specified tag.
+
+The following activity diagram summarizes what happens when a user executes a new `createtag` command:
+
+![TagFoodActivityDiagram](images/TagFoodActivityDiagram.png)
 
 #### Untag a Food
 
