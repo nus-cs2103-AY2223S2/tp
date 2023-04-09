@@ -93,7 +93,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/Potential Earning c/COMPANY_NAME pr/PRIORITY tr/TRANSACTION_COUNT [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/POTENTIAL_SALES_VALUE c/COMPANY_NAME pr/PRIORITY tr/TRANSACTION_COUNT [t/TAG]`
 
 - Name `n/`: Refers to the name of the specified person. (Duplicates are not allowed)
 - Phone Number `p/`: The mobile phone number of the specified person (Must be a minimum of 3 digits)
@@ -124,7 +124,7 @@ Format: list
 
 Edits an existing person in the contact list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/POTENTIAL_EARNING] [c/COMPANY_NAME] [pr/PRIORITY] [tr/TRANSACTION_COUNT] [t/TAG]…`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/POTENTIAL_SALES_VALUE] [c/COMPANY_NAME] [pr/PRIORITY] [tr/TRANSACTION_COUNT] [t/TAG]…`
 
 - Edits the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -285,10 +285,10 @@ NextBigFish data are saved in the hard disk automatically after any command that
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/POTENTIAL_EARNING c/COMPANY_NAME pr/PRIORITY tr/TRANSACTION_COUNT [t/TAG]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/SoftwareEngineeringIsNotCS pr/HIGH tr/0`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/POTENTIAL_SALES_VALUE c/COMPANY_NAME pr/PRIORITY tr/TRANSACTION_COUNT [t/TAG]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/SoftwareEngineeringIsNotCS pr/HIGH tr/0`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/POTENTIAL_EARNING] [c/COMPANY_NAME] [pr/PRIORITY] [tr/TRANSACTION_COUNT] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/POTENTIAL_SALES_VALUE] [c/COMPANY_NAME] [pr/PRIORITY] [tr/TRANSACTION_COUNT] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter TAG [MORE_TAGS]`<br> e.g., `filter friends clients insurance`
 **Sort** | `sort FIELD DIRECTION` <br> e.g, `sort trans desc` FIELDS: `[trans, size, name, priority]` DIRECTION: `[asc, desc]`

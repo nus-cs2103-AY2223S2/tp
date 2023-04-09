@@ -27,7 +27,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `summary`, `mark` [\#12](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/12)
-        * Updated table of content [\#94](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/94)
+        * Updated table of content [\#163](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/163)
         * Did cosmetic tweaks to existing documentation of all features ([\#57](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/57), [\#79](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/79), [\#94](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/94)
     * Developer Guide:
         * Added implementation details of the `summary` feature.
