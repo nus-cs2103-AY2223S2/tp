@@ -170,7 +170,7 @@ Format: `delete INDEX`
 Examples:
 
 * `listPerson` followed by `delete 2` deletes the 2nd client in FAid.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `find Fariq` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Add meeting : `meetingAdd`
 
