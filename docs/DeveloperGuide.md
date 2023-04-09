@@ -301,8 +301,8 @@ This is done with the help of the `EditPersonDescriptor` class, which helps crea
 
 `edit` has similar fields to the [Add feature](#add-feature) and an additional `INDEX` parameter.
 
-> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
-> Unless stated as`[COMPULSORY]`, the field is optional.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** While all the fields are optional, at least 1 needs to be given.
+</div>
 
 * `INDEX` which represents the index number of the student to be edited in the list.
 * Prefix `n/` followed by the name of the student.
