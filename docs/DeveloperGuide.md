@@ -470,8 +470,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user with colour blindness may require a high-contrast setting for graphical outputs.
 
-*{More to be added}*
-
 ### **Appendix B: Planned Enhancements**
 
 To resolve certain known feature flaws, we have planned to add some enhancements in the near future:
@@ -488,6 +486,55 @@ While the advanced user may be aware of the structure of the file,
 knowing if the event added has conflict with any existing events can be hard,
 especially if there are many existing events.
 
+**Increasing the minimum size of the windowed screen**
+
+Currently, if a user sets their windowed screen to the minimum size,
+it can potentially cut off access to the local storage path where all event data is stored.
+
+![windowedScreenCutOff.png](images/windowedScreenCutOff.png)
+
+We plan to increase the minimum size of the windowed screen to ensure that the path to the local storage is always visible.
+This will provide convenience to users who wish to modify the event data from the local storage
+
+**Reformatting the display in events panel and upcoming events panel**
+
+Currently, if the event names are too long, they may overflow onto the date portion,
+which can make it difficult to view both the full event name and date.
+
+![eventsPanelNotFullyDisplayingName.png](images/eventsPanelNotFullyDisplayingName.png)
+
+We plan to improve the display of event names by wrapping the text and continuing it on the next line.
+This will prevent the issue of long event names overflowing onto the date portion
+
+**Changing the display of events in calendar date boxes**
+
+Currently, if event names exceed 5 characters in length, 
+the characters beyond the fifth are replaced with "..." in the display.
+
+![calendarBoxesNotFullyDisplayingName.png](images/calendarBoxesNotFullyDisplayingName.png)
+
+The original purpose was to give users a quick overview and inform them of the presence of events on certain dates. 
+However, this truncated display does not provide much value to users as it fails to show the full event name.
+
+We plan to change the way calendar date boxes display events.
+Rather than showing event names, we will use dots to represent events. 
+Each dot will have a different color within the same day to represent different events. 
+This approach will allow users to quickly see an overview of the number of events on a given day.
+An example is given below.
+
+![calendarBoxesPlannedEnhancement.png](images/calendarBoxesPlannedEnhancement.png)
+
+If users are interested in knowing more about the events, 
+they can use the `find` command or click on the calendar date box to view the event details.
+
+**Increase flexibility in event names**
+
+Currently, event names only support alphanumeric characters and spaces. 
+This may cause inconvenience to users as we anticipate that event names may include 
+special characters such as brackets, colons, and dashes.
+
+We plan to increase the number of characters supported in event names. 
+However, certain characters such as `/` and `\` will not be supported as they may potentially cause conflicts
 
 ### **Appendix C: Instructions for Manual Testing**
 
