@@ -177,7 +177,7 @@ Classes used by multiple components are in the `tfifteenfour.clipboard.commons` 
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### User Interface (UI)
+### User Interface Implementation
 
 This subsection describes implementation details related to `UI`, such as page navigation and design.
 
@@ -264,23 +264,23 @@ As such, we have implemented a separate `StudentViewCard` that will be shown on 
 
 Most of the CLIpboard style components can be found in the CSS file `BrownTheme.css`, found under `src/main/resources/view`.
 
-Here is the colour palette used for CLIpboard:
+Below is the colour palette used for CLIpboard. CLIpboard mainly adopts brown tones to reflect a wooden traditional clipboard.
 
 **Main colours:**
 
-![A1826D](images/colour-palette/A1826D.png) **#A1826D**
+![A1826D](images/colour-palette/A1826D.png) **#A1826D** : A chestnut-brown colour.
 
-![D8B4A4](images/colour-palette/D8B4A4.png) **#D8B4A4**
+![D8B4A4](images/colour-palette/D8B4A4.png) **#D8B4A4** : A light sandy brown used for the background.
 
 **Accent colours:**
 
-![574539](images/colour-palette/574539.png) **#574539**
+![574539](images/colour-palette/574539.png) **#574539** : A darker shade of brown, mainly used for lettering and page tabs.
 
-![B56D5E](images/colour-palette/B56D5E.png) **#B56D5E**
+![B56D5E](images/colour-palette/B56D5E.png) **#B56D5E** : A reddish-brown accent for `StudentId` in Student Page.
 
-![8B3A3A](images/colour-palette/8B3A3A.png) **#8B3A3A**
+![8B3A3A](images/colour-palette/8B3A3A.png) **#8B3A3A** : A deep red colour used for students marked as absent.
 
-![5EB56D](images/colour-palette/5EB56D.png) **#5EB56D** 
+![5EB56D](images/colour-palette/5EB56D.png) **#5EB56D** : A light green colour used for students marked as present.
 
 CLIpboard also utilises two primary fonts, namely the Open Sans font family and the Satoshi font family.
 Both are free to use, and can be downloaded from [Google Fonts](https://fonts.google.com/specimen/Open+Sans) and [FontShare](https://www.fontshare.com/fonts/satoshi) respectively.
