@@ -514,7 +514,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a remark
 
-    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. 
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
 
     2. Test case: `remark x r/3 rounds of interviews` (where x is the index of an opening without an existing remark) <br>
        Expected: Opening gets edited. Success message shown in the status message. Opening now has "3 rounds of interviews" in its remark field, visible after using the show command.
