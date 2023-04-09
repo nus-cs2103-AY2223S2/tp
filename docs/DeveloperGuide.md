@@ -199,6 +199,7 @@ The `UniqueList`'s in CLIpboard are:
 5. `UniqueTaskslist`
 
 #### Proposed Future Improvement
+
 The extra work of creating child classes of `UniqueList` can be tedious.
 
 A possible improvement would be allowing `UniqueList` to be an instantiable class, and at the same time create an interface `ListableItem` to represent objects to be contained in `UniqueList`.
@@ -209,13 +210,23 @@ The `ListableItem` interface would require that its classes also support the han
 Found in `src/main/storage/serializedclasses`, these classes are for serializing a `Roster` and its containing objects into `json` objects, or vice versa.
 This serves to store/load data to/from a plaintext json file.
 
-#### During loading of data
+##### During loading of data
 Loading in of data (if a data file exists) is done once during the initialization of the program. The sequence diagram below illustrates how `MainApp` creates a `Model` containing the saved data, through interactions with `Storage`.
 ![LoadingStorageSequenceDiagram](images/LoadingStorageSequenceDiagram.png)
 
-#### During saving of data
+##### During saving of data
 Saving of data is done every time a command is executed. The sequence diagram below illustrates how a `Roster` is saved into storage.
 ![SavingStorageSequenceDiagram](images/SavingStorageSequenceDiagram.png)
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Save the `Roster` every time a command is executed.
+  * Pros: Easy to implement.
+  * Cons: Redundant saving operations executed on commands that don't modify any data.
+
+* **Alternative 2:** Save the `Roster` only when data has been modified.
+  * Pros: Optimized performance as saving is only done when needed.
+  * Cons: Need to maintain an extra flag in `Command` or `CommandResult` on whether a command has modified data.
 
 
 --------------------------------------------------------------------------------------------------------------------
