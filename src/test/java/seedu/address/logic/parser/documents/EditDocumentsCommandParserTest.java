@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COVER_LETTER_LI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COVER_LETTER_LINK_NETFLIX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESUME_LINK_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESUME_LINK_NETFLIX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_APPLICATION;
@@ -26,8 +25,6 @@ import seedu.address.model.documents.ResumeLink;
 import seedu.address.testutil.EditDocumentsDescriptorBuilder;
 
 public class EditDocumentsCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDocumentsCommand.MESSAGE_USAGE);
