@@ -48,6 +48,7 @@ title: User Guide
 * [Glossary](#glossary)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## About HMHero
 
@@ -73,7 +74,6 @@ You can:
 3. Filter shortlisted applicants and sort them by interview date.
 4. Filter all applicants based on their skill-sets.
 5. View all applicants that have interviews coming up in three days.
-
 
 
 ### Hiring Process Analytics
@@ -112,6 +112,7 @@ that will bring you to another part of this documentation that is relevant to th
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### Purpose of User Guide
 
@@ -194,6 +195,8 @@ The following picture of the main window shows the three components, numbered ac
 HMHero also has the Help Window. It is not part of the main GUI and is only
 shown after a [Help Command](#631-receive-help-during-usage-help) is run.
 
+<div style="page-break-after: always;"></div>
+
 The Help Window looks like the following:
 
 ![help_window.png](images%2Fhelp_window.png)
@@ -266,6 +269,8 @@ These placeholders follow immediately after a [Flag](#523-flags).
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 #### Placeholders
 Placeholder refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
@@ -286,6 +291,7 @@ section to see how Flags and Placeholders are used together.
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### Command Format
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
@@ -365,6 +371,7 @@ Here is a checklist you can use before running a command:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Commands
 
