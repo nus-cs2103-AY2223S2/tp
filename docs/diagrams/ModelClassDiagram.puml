@@ -14,7 +14,6 @@ Package Model <<Rectangle>>{
 
     Class UniquePersonList
     Class Person
-    Class Address
     Class Email
     Class Name
     Class Phone
@@ -45,7 +44,6 @@ UniquePersonList --> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
 Person *--> "*" Tag
 
 ExpressLibrary *--> "1" UniqueBookList
@@ -60,8 +58,6 @@ Book *--> Isbn
 
 Person -[hidden]left---> Book
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
 ModelManager --> "~* filtered" Book

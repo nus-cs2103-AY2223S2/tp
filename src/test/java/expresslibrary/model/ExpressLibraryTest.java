@@ -1,6 +1,5 @@
 package expresslibrary.model;
 
-import static expresslibrary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_AUTHOR_ROWLING;
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_TITLE_HARRY;
@@ -51,7 +50,7 @@ public class ExpressLibraryTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Book> newBooks = Arrays.asList(BELOVED, BELOVED);
@@ -79,7 +78,7 @@ public class ExpressLibraryTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInExpressLibrary_returnsTrue() {
         expressLibrary.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(expressLibrary.hasPerson(editedAlice));
     }

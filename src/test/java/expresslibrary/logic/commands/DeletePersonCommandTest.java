@@ -4,8 +4,8 @@ import static expresslibrary.logic.commands.CommandTestUtil.assertCommandFailure
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static expresslibrary.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,8 +28,8 @@ public class DeletePersonCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_PERSON, false);
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST, false);
 
         String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -49,10 +49,10 @@ public class DeletePersonCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_PERSON, false);
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST, false);
 
         String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -65,9 +65,9 @@ public class DeletePersonCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of express library list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getExpressLibrary().getPersonList().size());
 
@@ -78,14 +78,14 @@ public class DeletePersonCommandTest {
 
     @Test
     public void equals() {
-        DeletePersonCommand deleteFirstCommand = new DeletePersonCommand(INDEX_FIRST_PERSON, false);
-        DeletePersonCommand deleteSecondCommand = new DeletePersonCommand(INDEX_SECOND_PERSON, false);
+        DeletePersonCommand deleteFirstCommand = new DeletePersonCommand(INDEX_FIRST, false);
+        DeletePersonCommand deleteSecondCommand = new DeletePersonCommand(INDEX_SECOND, false);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeletePersonCommand deleteFirstCommandCopy = new DeletePersonCommand(INDEX_FIRST_PERSON, false);
+        DeletePersonCommand deleteFirstCommandCopy = new DeletePersonCommand(INDEX_FIRST, false);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

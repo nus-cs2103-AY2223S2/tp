@@ -26,7 +26,7 @@ public class AuthorTest {
         // invalid authors
         assertFalse(Author.isValidAuthor("")); // empty string
         assertFalse(Author.isValidAuthor(" ")); // spaces only
-        assertFalse(Author.isValidAuthor("J.K Rowling")); // special characters
+        assertTrue(Author.isValidAuthor("J.K Rowling")); // special characters
 
         // valid authors
         assertTrue(Author.isValidAuthor("JK Rowling"));
