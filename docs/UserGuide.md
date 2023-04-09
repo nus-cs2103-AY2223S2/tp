@@ -65,7 +65,7 @@ that you should pay attention to. </div>
 * [**Familiarising yourself with a module**](#familiarising-yourself-with-a-module)
 * [**Familiarising yourself with the commands**](#familiarising-yourself-with-the-commands)
 * [**Main Features**](#features)
-    * [Listing all modules: `list`](#listing-all-modules--list)
+    * <a href="list">Listing all modules: `list`</a>
     * [Adding a module: `add`](#adding-a-module--add)
     * [Deleting a module: `delete`](#deleting-a-module--delete)
     * [Editing a module: `edit`](#editing-a-module--edit)
@@ -201,7 +201,7 @@ This section introduces you to detailed information about how to use each comman
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Listing all modules: `list`
+### <a id="list">Listing all modules: `list`</a>
 
 By using the `list` command, you can list all the modules that you have stored in the module tracker.
 
