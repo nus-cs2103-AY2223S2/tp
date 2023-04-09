@@ -26,7 +26,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user may want to keep track of the
     gender of his/her clients which makes it easier to keep track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-
+<div style="page-break-after: always;"></div>
 * **New Feature**: Added *export* and *exportRoutine* functionality.
   * What it does: allows the user to export the compulsory data fields of a client which are Name, Phone Number,Email, Address, Weight and Gender. Also allows the user to export Routine details into a csv file.
   * Justification: This feature improves the product significantly because user gets to save their data into a csv format locally on his computer. Which he/she is then able to open the csv file using applications like Microsoft Excel to do further analysis.
@@ -81,6 +81,7 @@ Given below are my contributions to the project.
     * Added use case for `listRoutines`, `export`, `exportRoutines`,`clearRoutines`, `deleteRoutine`, `deleteExercise`,`findRoutine`. [\#115](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/115/files)
     * Added Implementation for `export`, `addExercie`, `deleteRoutine`. [\#136](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/136/files)
     * Added manual testing for `delete`, `addRoutine`,`findRoutine`,`deleteExercise`[\#202](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/202/files)
+    * Added manual testing for `view`, `graph` [\#208](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/208/files)
 * **Community**:
    * PRs reviewed: [\#162](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/162), [\#117](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/117), [\#105](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/105), [\#99](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/99), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#84](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/84), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#82](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/82), [\#77](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/77), [\#74](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/74), [\#57](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/57)
    * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/dfordarius/ped))
