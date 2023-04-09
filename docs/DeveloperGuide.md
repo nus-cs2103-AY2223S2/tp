@@ -27,20 +27,11 @@ title: Developer Guide
 ---
 
 
-
-
-
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
-
-
-
-
-
 
 ## **Design**
 
@@ -50,13 +41,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 </div>
 
-
-
-
-
-
-
 ### Architecture
+
+<!-- change the architechture diagram a little bit -->
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -163,11 +150,11 @@ The `Model` component,
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Vimification`, which `Person` references. This allows `Vimification` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<!-- <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Vimification`, which `Person` references. This allows `Vimification` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="450" /> -->
 
-</div>
+<!-- </div> -->
 
 ### Storage component
 
@@ -254,7 +241,7 @@ The only way to create new `ApplicativeParser` instances is to use static factor
 
 
 
-### Command parsers
+### Command parser
 
 All command parsers implements a common interface:
 
@@ -275,7 +262,7 @@ A class implementing `CommandParser` must provide an implementation for `Command
 
 
 
-### Command implementations
+### Command implementation
 
 All command classes in the application inherit from a common interface.
 
@@ -317,7 +304,7 @@ This is a big modification compared to the original design in AB3. The reason be
 
 Concrete classes will implements the corresponding interfaces.
 
-#### Design considerations
+#### Design consideration
 
 The current downside of this design is that, in order to execute a certain command, we need to check the runtime type (using `instanceof`) operator and cast the instance to the appropriate type before calling its `execute` method (by providing the correct arguments).
 
@@ -354,7 +341,7 @@ Future versions of Java contain features that can handle the problems mentioned 
 
 Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all of the changes completed so far must be discarded. This ensures that the system is always left in a consistent state.
 
-#### Implementation details
+#### Implementation detail
 
 Currently, the only modification that can fail is modification to `Task`s.
 
@@ -377,7 +364,7 @@ The undo can undo the previous command (that modifies the internal data) by typi
 
 #### Motivation
 
-Users may make mistakes in their command, and command can be destructive. For example, the user may accidentally issue a delete command and delete _all_ information about a task. This is annoying and sometimes can be troublesome - because the lost information may be very important.
+Users may make mistakes in their command, and command can be destructive. For example, the user may accidentally issue a delete command and delete _all_ information about a task. This is annoying and sometimes is troublesome.
 
 Undo command is implemented to addresss this concern. Note that in our application, undo command only undoes modifications to the internal data.
 
@@ -413,10 +400,9 @@ Refer to the diagram below for a visualization of this workflow:
 
 Recall that, we modify the data by copying the old task and replacing it with a modified version. We can store this old task before replacing it, and restore it back when we undo the command. Simple!
 
-#### Design considerations
+#### Design consideration
 
 Currently, undo command does not support commands that modify the macros and GUI. We do not plan to implement a undo command that reverses changes to the GUI, it does not make sense (as the user can just refresh or retype the command to change the view again). However, undoing a command that modifies the macros may be beneficial. We can extend the behavior of undo command to support this behavior in future versions.
-
 
 ### Macro feature
 
@@ -424,11 +410,34 @@ Macro are just shortcuts for longer commands. This feature allows the user to de
 
 #### Motivation
 
-The motivation for this feature comes from **bash aliases**, where the user may define customized shortcut to invoke their command. Even for a fast typing user, this feature may still be benefical as it allows them to define custom format that they are more comfortable with.
+The motivation for this feature comes from **bash aliases**, where the user may define customized shortcut to invoke their command.
 
-#### Implementation details
+#### Implementation detail
 
+The macro mechanism is facilitated by 3 classes: `MacroMap`, `MacroCommand` and `VimificationParser`.
 
+Macro is expanded using the following workflow:
+
+- The parser try to parse the first "word" in the user input.
+- If there is a macro that matches the word, the entire word will be expanded into a command string.Otherwise, the word is kept unchangd.
+- The remaining input will be concatenated with the processed word and feed into the command parser.
+
+Consider the following scenario: the user already defined a macro `"cs2103t"`, and associated this macro with the command `"a 'weekly quiz' -d Fri 14:00"`. Now, if the users type `"cs2103t -l cs2103t"`, the following transformation will happen:
+
+- The parser identifies the first word occured in the input: `"cs2103t"`.
+- There is a macro that matches the word, the word will be expanded into `"a 'weekly quiz' -d Fri 14:00"`.
+- The remaining input is concatenated with the expanded macro, forming the string `"a 'weekly quiz' -d Fri 14:00 -l cs2103t"`.
+- This preprocessed string will be feed into the command parser, and returns an `AddCommand` object.
+
+Refer to the diagram below for a visualization of this workflow:
+
+<!-- insert diagram here -->
+
+#### Design consideration
+
+The current version, while useful, is still fairly minimal - the main mechanism is just simple string substitution. The problem with this mechanism is that, the macro engine cannot reject invalid macro when it was registered, and this can confuse the user when their commands are expanded.
+
+Currently, there is no proposal to improve this behavior - any idea is appreciated.
 
 ### Storage
 
@@ -439,23 +448,29 @@ We need to translate the inheritance relationship between `Task` and its subclas
 
 One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation. -->
 
-
-
 ### Syncing view with internal logic
 
+#### Reason
 
+After the user uses the `sort` or `filter` command, the displayed index may not reflect the actual index of the data in the internal list. Syncing the display index with internal logic is neccessary to ensure intuative and understandable behavior.
 
-### \[Proposed\] Data archiving
+#### Problem
 
-_{Explain here how the data archiving feature will be implemented}_
+We still want to separate the ui details from logic details, as we don't want to introduce high coupling into our system.
 
----
+#### Solution
 
+Two interfaces were created to handle this problem: `LogicTaskList` and `UiTaskList`. `LogicTaskList` declares methods that modifies the internal data, and a single method used to transform the display index into the actual index in the underlying data list, while `UiTaskList` declares methods that modifies the GUI by setting appropriate predicates and comparators to filter and/or sort tasks. `TaskList` (the main class that controls the data of the application) will implement both interfaces.
 
+The `TaskList` contains:
 
+- An `ObservableList` object that stores all tasks in the application.
+- A `FilteredList`, which stores the `ObservableList` as its source. We can set the predicate attached to this list to select the data to be displayed.
+- A `SortedList`, which stores the `FilteredList` as its source. We can set the comparator attached to this list to order the data to be displayed.
 
+<!-- insert diagram here -->
 
-
+Note that, the command classes do not interact directly with `TaskList`, but with the interfaces `LogicTaskList` and `UiTaskList`. This prevents the commands from interacting with unrelated code, while still ensures that they will act on a single source of information - syncing the display index with the internal logic.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
