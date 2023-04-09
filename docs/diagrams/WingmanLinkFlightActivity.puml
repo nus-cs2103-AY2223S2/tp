@@ -1,9 +1,8 @@
 @startuml
 start
 
-:switch to mode flight;
-
 if () then ([Flight does not exist yet])
+    :switch to mode flight;
     :Add flight;
 else ([Flight already exists])
 endif

@@ -389,9 +389,8 @@ Hence, in this description the general term XYZ is used instead.
 
 This feature is enabled by the following classes in particular:
 
-- `UnlinkXYZCommand` - The command that unlinks a crew from a flight
-- `UnlinkXYZCommandFactory` - The factory class that creates an {@code
-  UnlinkCrewCommand}
+- `UnlinkXYZtoFlightCommand` - The command that unlinks a crew from a flight
+- `XYZFlightLinkCommandFactory` - The factory class that creates an `UnlinkXYZtoFlightCommand`
 - `Link` - The class defining a link to a target
 - `Flight` - The class defining a flight object in Wingman
 
@@ -405,7 +404,7 @@ this command is passed from the UI layer to the logic layer similar to the way d
 'Adding XYZ' section.
 
 At the logic layer, while the sequence of method calls is similar to what is described in the 'Deleting XYZ' section,
-the `UnlinkXYZCommand.execute(model)` method is called instead of the `DeleteXYZCommand.execute(model)` method.
+the `UnlinkXYZtoFlightCommand.execute(model)` method is called instead of the `DeleteCommand.execute(model)` method.
 
 This method then calls the `flight.XYZLink.delete(entry.getKey(), entry.getValue())` method where `entry` refers to
 one key-value pairing in a mapping of FlightXYZType keys to XYZ values.
@@ -413,15 +412,18 @@ At this point, the process is at the model layer and continues with method calls
 'Linking XYZ to a flight' section until the control is passed back to the logic layer.
 
 Subsequently, the control is passed to the storage layer through the `logicManager.save()` method.
-This method calls `storage.saveXYZManager(model.getXYZManager())` and
-`storage.saveFlightManager(model.getFlightManager());`, to save the updated flight and XYZ objects in storage. Since
-these 2 method calls work in the same way, we shall focus on just the latter, to be succinct.
+This method calls `storage.saveXYZManager(model.getXYZManager())`,
+`storage.saveLocationManager(model.getLocationManager())` and
+`storage.saveFlightManager(model.getFlightManager());`, to save the updated XYZ, location and flight objects
+in storage. Since these 3 method calls work in the same way, we shall focus on just the latter to keep
+the diagram simple.
 
 <img src="images/WingmanUnlinkXYZSequenceDiagram.png" width="966" alt="Sequence diagram at Storage layer">
 
 After `model.getFlightManager()` returns the model, the `saveFlightManager` method calls the
-`saveFlightManager(flightManager, flightStorage.getPath())` method in the same class.
-`flightStorage` is an `ItemStorage<Flight>` object and flightManager is an `ReadOnlyItemManager<Flight>` object.
+`saveFlightManager(flightManager, flightStorage.getPath())` method in the same `StorageManager` class.
+For the parameters, flightManager is a `ReadOnlyItemManager<Flight>` object and `flightStorage` is
+a `ItemStorage<Flight>` object.
 This method call uses the imported json package to store 'JsonIdentifiableObject' versions of the flightManager
 which in turn contains the JsonAdaptedFlights, including the flight with the updated link represented as a
 `Map<FlightXYZType, Deque<String>>` object.
