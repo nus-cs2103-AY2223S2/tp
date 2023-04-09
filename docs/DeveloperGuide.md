@@ -303,7 +303,7 @@ Step 2a. The PetPal list does not have any pets, the pet at list position 1 does
 ```
 
 
-### Highlight Feature
+#### Highlight Feature
 
 #### Current Implementation
 The highlight mechanism is facilitated by the 'PetListPanel', 'Pet', and 'MarkCommand' classes.
@@ -397,8 +397,7 @@ to application readable json data.
     - Pros: Easier and more intuitive for users to use
     - Cons: Builds upon **Alternative 1**, requiring more work to implement
 
-<<<<<<< HEAD
-=======
+
 ### \[Proposed\] Add medical key information to pet (not shown in UI)
 #### Proposed Implementation
 The proposed function is an extension of the base `PetPal`, uses a `Medical` class to store medical information, and users will be able to input medical information.
@@ -413,8 +412,24 @@ The proposed function is an extension of the base `PetPal`, uses a `Medical` cla
 - **Alternative 2** : Show all the information in the UI
     - Pros: Easier and more intuitive for users to use
     - Cons: Not secure, anyone can see the information
-  
->>>>>>> 8f1240eb2bd098729da937fc276a402e9407cb2a
+
+### \[Proposed\] Importing data from excel (csv)
+
+#### Proposed Implementation
+The proposed importing function is an extension of the base `PetPal`, uses a `CsvToJsonParser` to convert csv data
+to application readable json data.
+
+#### Design considerations:
+- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
+  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
+  for PetPal to be able to read and modify the imported data
+    - Pros: Might be easier to implement
+    - Cons: Might be confusing for users to use (running external script)
+
+- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
+  the data into json format and refreshes the database.
+    - Pros: Easier and more intuitive for users to use
+    - Cons: Builds upon **Alternative 1**, requiring more work to implement
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -540,10 +555,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Edit a pet**
 
-[//]: # TODO()
+**Use case: View Cost of Pet**
+
+**MSS**
+1. Actor requests to change a pet's cost calculation rate and additional flat cost
+2. System updates cost based on calculation
+3. Update is done when user clicks on another PetCard
 
 
-**Use case: Change rate of Cost**
+**Use case: View Cost of Pet**
 
 **MSS**
 1. Actor requests to change a pet's cost calculation rate and additional flat cost
@@ -623,6 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
