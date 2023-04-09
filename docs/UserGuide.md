@@ -273,7 +273,7 @@ Examples:
 
 #### 3.3.2 Deleting a Task: `deletet`
 
-Deletes the specified task from OfficeConnect
+Deletes the specified task from OfficeConnect.
 
 Format: `deletet INDEX`
 
@@ -449,7 +449,7 @@ Format: `pi INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Example:
-- `pi 2` displays person 2 and all tasks assigned to that person
+- `pi 2` displays person 2 and all tasks assigned to that person.
 
 #### 3.5.10 Viewing a Task : `ti`
 
@@ -462,7 +462,7 @@ Format: `ti INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Example:
-- `ti 1` displays task 1 and all persons assigned to that task
+- `ti 1` displays task 1 and all persons assigned to that task.
 
 
 ### 3.6 Others
