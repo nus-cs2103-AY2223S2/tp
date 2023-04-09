@@ -5,7 +5,7 @@ title: Pei Wenqi's Project Portfolio Page
 
 ### Project: HospiSearch
 
-HospiSearch is a desktop app for healthcare administrators to manage hospital/clinic patients' particulars and optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
+HospiSearch is a desktop app for healthcare administrators to manage hospital/clinic patients' particulars and is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
@@ -16,19 +16,22 @@ Given below are my contributions to the project.
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
 
-* **New Feature**: Added the ability to switch between the dark ang light theme.
+
+* **New Feature**: Added the ability to switch between the dark and light theme.
     [\#61](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/61)
     * What it does: allows the user to choose the GUI theme he/she prefers at a specific time.
     * Justification: This feature increases the accessibility of the product because a user may not want to face strong screen light at night and don't want to look at a dark screen in the daytime.
-    * Highlights: The implementation of this feature requires the combined knowledge of JavaFX, CSS and fine arts. 
-    * Credits:
+    * Highlights: The implementation of this feature requires combined knowledge of JavaFX, CSS, and fine arts. 
+    * Credit: Adapted `Theme` class from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java).
 
 
-* **New Feature**: Added the ability to view a patient details.
+
+* **New Feature**: Added the ability to view patient details.
     [\#106](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/106)
-    * What it does: allows the user to see the detailed patient information other than the information on the small card.
+    * What it does: allows the user to see detailed patient information other than the information on the small card.
     * Justification: This feature is an indispensable part of the product because the patient card in the list panel cannot contain detailed patient particulars.
-    * Highlights: This enhancement is related to all commands which make modifications on the data. To implement the functionality, a view pane should also be built upon the original GUI.
+    * Highlights: This enhancement is related to all commands which make modifications to the data. A view pane should also be built upon the original GUI to implement the functionality.
+
 
 
 * **User Interface**:
@@ -40,11 +43,12 @@ Given below are my contributions to the project.
     * GUI Change ([\#34](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/34), [\#48](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/48), [\#50](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/50), [\#136](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/136), [\#209](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/209))
 
 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cedric&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
 
 * **Project management**:
-    * Set up team Google Drive folder.
+    * Set up the team Google Drive folder.
     * Organised and coordinated team meetings.
     * Published `v1.3` demo.
     * Reviewed and approved PRs for merging.

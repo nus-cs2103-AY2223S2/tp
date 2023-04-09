@@ -19,9 +19,10 @@ title: Developer Guide
     - [Undo/Redo feature](#undoredo-feature)
     - [Add patient feature](#add-patient-feature)
     - [Edit patient feature](#edit-patient-feature)
+    - [View patient particulars feature](#view-patient-particulars-feature)
     - [Delete patient feature](#delete-patient-record-by-nric-feature)
     - [Find patients feature](#filter-patient-record-by-attribute)
-    - [Light/dark theme](#light--dark-theme)
+    - [Light/dark theme](#lightdark-theme)
     - [Adding NRIC as unique identifier](#adding-nric-as-identifier)
     - [Adding health conditions](#adding-health-conditions)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -260,7 +261,7 @@ Steps of its execution are as follows:
 
 ### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
 history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
@@ -280,14 +281,14 @@ initial address book state, and the `currentStatePointer` pointing to that singl
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
+Step 2. The user executes `delete i/T1234567A` command to delete the person with NRIC T1234567A. The `delete` command
+calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete i/T1234567A` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
+Step 3. The user executes `add i/T1234567A …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
 , causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -330,7 +331,7 @@ Thus, the `addressBookStateList` remains unchanged.
 
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
 pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
+purged. Reason: It no longer makes sense to redo the `add i/T1234567A …​` command. This is the behavior that most modern
 desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -389,6 +390,26 @@ by `Model#updateFilteredPersonList()`
 which adds the record into the patient records system if the record does not already exist in the system.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
+
+
+### View patient particulars feature
+
+#### Implementation
+
+The logic mechanism of this feature is the same as finding a patient by NRIC, but it will show all information of the patient on the view pane
+including email, birthdate, drug allergies, and medicines. The view pane UI construction is similar to person card, which needs one `Person` as a parameter. 
+This operation could be activated by typing a command or double-clicking the patient card. 
+
+Given blow is an example usage scenario and how the view command works at each step
+
+Step 1. The clinical/hospital administrator wants to see the detailed information of a patient with NRIC `T1234567A` 
+in order to know what medicine he/she used.
+
+Step 2. The clinical/hospital administrator double-clicks the corresponding person card in the list panel or execute `view i/T1234567A`.
+Then personal particulars of that patient will appear on the view pane.
+
+<sub>[return to table of contents](#table-of-contents)</sub>
+
 
 ### Delete patient record by NRIC feature
 
@@ -478,9 +499,9 @@ The following sequence diagram shows how the delete command works:
 
 <sub>[return to table of contents](#table-of-contents)</sub>
 
-### Light / Dark Theme
+### Light/dark Theme
 
-#### Proposed Implementation
+#### Implementation
 
 The theme is facilitated by `Theme`. It contains two modes which are light mode and dark mode. The light mode is closely
 related to `LightModeCommand` and `LightTheme.css`. The dark mode is associated to `DarkModeCommand` and `DarkTheme.css`
@@ -493,8 +514,6 @@ Step 1. The user launches the application and the current theme is Dark.
 Step 2. The user executes `light` command and the theme changed to light mode.
 
 Step 3. The user clicks the `Theme` button above and select the `Dark` choice. The theme go back to the dark mode again.
-
-The following activity diagram summarizes what happens when a user executes these commands or clicks the `Theme` button:
 
 #### Design considerations:
 
@@ -629,17 +648,18 @@ appointment schedules, and billing information all in one place
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                | So that I can…​                                     |
-|----------| ------------------------------------------ |-----------------------------|-----------------------------------------------------|
-| `* * *`  | new user                                   | see the user guide          | know about all functions                            |
-| `* * *`  | new user                                   | access a help menu          | know about all commands                             |
-| `* * *`  | admin                                      | add patients’ records       | keep track of their information                     |
-| `* * *`  | admin                                      | edit patients’ records      | update their information                            |
-| `* * *`  | admin                                      | delete patients’ records    | free up space for other patient records                      |
-| `* *`    | admin                              | list all patients           | have an overview                                    |
-| `* *`    | admin                              | search for a patient record | find the needed information quickly                 |
-| `**`     | admin                              | backup data                  | recover data in the event of a primary data failure |
-| `*`      | admin                              | clear data                  | start the database from scratch                     |
+| Priority | As a …​  | I want to …​                | So that I can…​                                     |
+|----------|----------|-----------------------------|-----------------------------------------------------|
+| `* * *`  | new user | see the user guide          | know about all functions                            |
+| `* * *`  | new user | access a help menu          | know about all commands                             |
+| `* * *`  | admin    | add patients’ records       | keep track of their information                     |
+| `* * *`  | admin    | edit patients’ records      | update their information                            |
+| `* * *`  | admin    | view a patient particulars  | have an overall understanding of the patient        |
+| `* * *`  | admin    | delete patients’ records    | free up space for other patient records             |
+| `* *`    | admin    | list all patients           | have an overview                                    |
+| `* *`    | admin    | search for a patient record | find the needed information quickly                 |
+| `**`     | admin    | backup data                 | recover data in the event of a primary data failure |
+| `*`      | admin    | clear data                  | start the database from scratch                     |
 
 *{More to be added}*
 
