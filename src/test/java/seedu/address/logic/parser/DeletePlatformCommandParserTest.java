@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLATFORM_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_LINKEDIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_LINKEDIN_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeletePlatformCommand;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.platform.PlatformName;
 import seedu.address.testutil.ListingBuilder;
 
 public class DeletePlatformCommandParserTest {
@@ -27,6 +29,11 @@ public class DeletePlatformCommandParserTest {
 
         assertParseSuccess(parser, "1 " + VALID_PLATFORM_NAME_LINKEDIN_DESC,
                 new DeletePlatformCommand(INDEX_FIRST_LISTING, VALID_PLATFORM_NAME_LINKEDIN));
+    }
+
+    @Test
+    public void parse_invalidPlatform_failure() {
+        assertParseFailure(parser, "1 " + INVALID_PLATFORM_DESC, PlatformName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

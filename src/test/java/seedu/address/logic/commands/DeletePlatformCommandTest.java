@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_GLINTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_LINKEDIN;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -77,5 +79,37 @@ public class DeletePlatformCommandTest {
 
         assertCommandFailure(deletePlatformCommand, model, expectedErrorMessage);
     }
+
+    /*
+    @Test
+    public void test_getPlatformToDeleteObject_method() {
+        Listing newListing = new ListingBuilder().withPlatforms(new ArrayList<>(Arrays.asList(
+                new Platform[] {LINKEDIN, GLINTS}))).build();
+        model.addListing(newListing);
+
+        String targetPlatformName = VALID_PLATFORM_NAME_LINKEDIN;
+
+        Optional<Platform> result = getPlatformToDeleteObject(newListing, targetPlatformName);
+
+        assertEquals(LINKEDIN, result.get());
+    }
+
+     */
+
+    @Test
+    public void testEquals() {
+        DeletePlatformCommand command1 = new DeletePlatformCommand(
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), VALID_PLATFORM_NAME_LINKEDIN);
+
+        DeletePlatformCommand command2 = new DeletePlatformCommand(
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), VALID_PLATFORM_NAME_LINKEDIN);
+
+        DeletePlatformCommand command3 = new DeletePlatformCommand(
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), VALID_PLATFORM_NAME_GLINTS);
+
+        assertTrue(command1.equals(command2));
+        assertFalse(command1.equals(command3));
+    }
+
 
 }
