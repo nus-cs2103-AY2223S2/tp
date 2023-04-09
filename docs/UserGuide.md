@@ -4,9 +4,9 @@ title: User Guide
 ---
 
 <b style="font-size: 20px">_LoyaltyLift_</b> is a desktop application designed for small business owners to manage their customers and orders efficiently, allowing you to **improve customer relations** and **increase customer loyalty**.
-It is optimized for users who are fast typists while still having the benefits of a visual interface.
+It is optimised for users who are fast typists while still having the benefits of a visual interface.
 
-With LoyaltyLift, you can easily keep track of your customers' preferences, purchase history, and contact information, enabling you to provide personalized service that will keep them coming back. 
+With LoyaltyLift, you can easily keep track of your customers' preferences, purchase history, and contact information, enabling you to provide personalised service that will keep them coming back. 
 Our application makes it easy to manage orders and provide rewards, helping you grow your business while delivering an exceptional customer experience. 
 
 This user guide provides in-depth documentation on LoyaltyLift installation process, command features and common questions that you might have. 
@@ -35,7 +35,7 @@ Are you excited yet? Let's get started!
 3. Copy the file to an empty folder. The folder will be your _home folder_ for LoyaltyLift.
 
 4. Double-click on `loyaltylift.jar` to launch LoyaltyLift. <br>
-   A GUI similar as seen below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A similar GUI, as seen below, should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/FreshUi.png)
 
 5. Type the command in the command box (which says 'Enter command here...') and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
@@ -152,14 +152,14 @@ To do this manually, you can list all your orders and view the first order's inf
 #### Clear application data again
 {: .no_toc}
 
-Before ending this tutorial, let us clear our application data by removing both _Lyndon Edwards_ and his _Banana Cake_ order.
+Before ending this tutorial, let us clear our application data by removing _Lyndon Edwards_ and his _Banana Cake_ order.
 
-While the [`clear`](#clearing-all-entries--clear) command achieves this easily, we can also simply remove _Lyndon Edwards_ from LoyaltyLift with the [`deletec`](#deleting-a-customer--deletec) command.
+While the [`clear`](#clearing-all-entries--clear) command achieves this quickly, we can also simply remove _Lyndon Edwards_ from LoyaltyLift with the [`deletec`](#deleting-a-customer--deletec) command.
 
     deletec 1
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Note that in addition to removing `Lyndon Edwards` from the application, all of his orders are also removed!
+In addition to removing `Lyndon Edwards` from the application, all of his orders are also removed!
 </div>
 
 Hence, you will notice that the order list is now empty, and our application is back to a clean slate.
@@ -237,17 +237,24 @@ Looking at the order status, it is now reflected as 'Cancelled'. Once an order i
 If you accidentally cancel an order, you can still revert its status!
 </div>
 
+[🠕 Back To Top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Rewarding your customers
 
-This tutorial will teach you the rewards system in LoyaltyLift and how you can apply it to boost your business' customer loyalty.
+This tutorial will teach you the rewards system in LoyaltyLift and how you can apply it to boost your business's customer loyalty.
 
 #### The Tier System
 {: .no_toc}
 
 In LoyaltyLift, there are three tiers with their associated point threshold.
-* Bronze - 1000 points
-* Silver - 5000 points
-* Gold - 10000 points
+
+|   Tier | Point Threshold |
+|-------:|:----------------|
+| Bronze | 1000            |
+| Silver | 5000            |
+|   Gold | 10000           |
 
 <div markdown="block" class="alert alert-info">
 LoyaltyLift assumes that your tier system will follow a similar style of Bronze, Silver and Gold.
@@ -259,16 +266,16 @@ but below the Gold tier point threshold.
 </div>
 
 Before we start, head over to [_Add your first customer and order_](#add-your-first-customer-and-order) to include _Lyndon Edwards_ and the _Banana Cake_ order.
-However, do not clear the application data as we will be using the customer for this tutorial.
+However, do not clear the application data as we will use the customer for this tutorial.
 
-Rewarding your customers points is an effortless process on LoyaltyLift using 
+Rewarding your customers with points is an effortless process on LoyaltyLift using 
 [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or 
 [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints).
 
 In this scenario, we would like to add points to _Lyndon Edwards_ for his _Banana Cake_ order!
 Here, we assume that _Lyndon Edwards_ is at your first index.
 
-Enter the following command to add points to _Lyndon Edwards_ to reward him with some points.
+Enter the following command to add points to _Lyndon Edwards_ to reward him points.
 
     addpoints 1 pt/800
 
@@ -279,8 +286,7 @@ You should be able to see that _Lyndon Edwards_ has _800 points_.
 Now that _Lyndon Edwards_ has some points, let's claim a reward on his behalf for being a loyal customer.
 In this scenario, let's say that it costs _500 points_ for a water bottle. 
 Let's use _500 points_ from _Lyndon Edwards_ to reward him with a water bottle!
-You can then easily track his new points by again, 
-using the [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints) command!
+You can then easily track his new points again using the [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints) command.
 
 Enter the following command to subtract points from _Lyndon Edwards_ after claiming a reward for him.
 
@@ -291,7 +297,7 @@ Enter the following command to subtract points from _Lyndon Edwards_ after claim
 You should see that _Lyndon Edwards_ has _300 points_ remaining. However, do note that he still has 800 cumulative points,
 as cumulative points are not subtracted away while claiming rewards.
 
-Lastly, perhaps you feel that this was an error! _Lyndon Edwards_ should actually have _8000 points_ for being such a loyal customer.
+Lastly, perhaps you feel that this was an error. _Lyndon Edwards_ should have _8000 points_ for being such a loyal customer.
 You can overwrite his previous points, as well as his cumulative points, using the [`setpoints`](#setting-reward-points-for-a-customer--setpoints) command!
 
     setpoints 1 pt/8000
@@ -299,7 +305,7 @@ You can overwrite his previous points, as well as his cumulative points, using t
 ![result after setting points](images/setPointsResult.png)
 
 You should see that _Lyndon Edwards_ now has _8000 points_ and _8000 cumulative points_.
-Also, you should see that he is now part of the Silver tier as he has above 5000 cumulative points!
+Also, you should observe that he is now part of the **Silver** tier as he has above 5000 cumulative points!
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The difference between `setpoints` and `addpoints` is that setting points will also set cumulative points to the same amount, 
@@ -314,8 +320,8 @@ You should now be able to reward any of your customers with our point system!
 
 ### Extra remarks
 
-While these tutorials covers a simplified situation of adding a customer and order,
-you may find yourself in need of more complex control/tasks, and LoyaltyLift is ready for it!
+While these tutorials cover a simplified situation of adding a customer and order,
+you may need more complex control/tasks, and LoyaltyLift is ready for it!
 
 Here are some recommended features to explore after this tutorial.
 
@@ -550,9 +556,7 @@ deletec CINDEX
 
 #### Marking a customer : `markc`
 
-Bookmarks a customer from the list of customers.
-
-Do you have a customer you want to prioritise or stand out from other customers in the list? Use this command.
+You can use this command to prioritise a customer among the customer list. 
 
 **Format**
 
@@ -577,9 +581,7 @@ markc CINDEX
 
 #### Unmarking a customer : `unmarkc`
 
-Un-bookmarks a customer from the list of customers.
-
-This command allows you to remove any bookmark.
+`unmarkc` allows you to remove a bookmark of a customer.
 
 **Format**
 
@@ -714,8 +716,8 @@ Setting points will also set cumulative points to the same amount, if you wish t
 
 #### Adding/Subtracting points for a customer : `addpoints`
 
-With `addpoints`, you can add or subtract points from your customer as they place orders from you. 
-LoyaltyLift keeps track of their cumulated points and assigns them a tier to let you know who are your most loyal customers!
+With `addpoints`, you can add or subtract points from your customers as they place orders. 
+LoyaltyLift keeps track of their cumulated points and assigns them a tier to tell you who are your most loyal customers!
 
 **Format**
 
@@ -978,7 +980,7 @@ revo OINDEX
 
 #### Cancel an order: `cancelo`
 
-With `cancelo`, you can update an order's status as cancelled whenever an order is invalid, or the customer cancels an order.
+With `cancelo`, you can update an order's status as cancelled whenever an order is invalid or the customer cancels an order.
 
 **Format**
 
@@ -1141,7 +1143,7 @@ Customer and order data are saved in the hard disk automatically after any comma
 **A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name such as `senotec 1 nt/Jôse`.
 
 **Q**: Why are orders deleted or missing after deleting a customer with `deletec`? <br />
-**A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all the customer's orders needs to be cleared. If this is not ideal, we recommend to avoid deleting any customers.
+**A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all the customer's orders needs to be cleared. If this is not ideal, we recommend avoiding deleting any customers.
 
 **Q**: Can my orders have a different address than the customer's address? <br />
 **A**: Yes! When you create an order using `addo`, you can specify the new address with the parameter `a/`. If this is not specified, the customer's address is used instead for your convenience.
