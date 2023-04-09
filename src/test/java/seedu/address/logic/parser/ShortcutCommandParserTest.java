@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.commands.ShortcutCommand.MESSAGE_INVALID_SHORTCUT;
-import static seedu.address.logic.commands.ShortcutCommand.MESSAGE_USAGE;
+import static seedu.address.logic.commands.ShortcutCommand.MESSAGE_INVALID_COMMAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -96,6 +95,6 @@ public class ShortcutCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "eat e", String.format(MESSAGE_INVALID_SHORTCUT, MESSAGE_USAGE));
+        assertParseFailure(parser, "eat e", String.format(MESSAGE_INVALID_COMMAND, "eat"));
     }
 }

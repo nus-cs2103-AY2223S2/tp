@@ -191,8 +191,8 @@ that records - and can ultimately reconstruct - previous `Model` states.
 Externally, `StateHistory` listens to the `CommandResult` of each executing command.
 It also requires commands to declare two new fields in `CommandResult`:
 
-* `undoable`  —  Whether the `Command` should be reverted upon an `Undo`.
-This is to be `true` if the command modifies `Model` by modifying a person or its list of displayed people.
+* `affectsModel`  —  Whether the `Command` modifies `Model` by modifying a person or its list of displayed people.
+A command will be reverted upon an `Undo` if and only if this is `true`.
 * `deterministic`  —  Whether the modification to `Model` that was just made by `Command`
 was the sole possible outcome of its execution.
 
@@ -233,7 +233,7 @@ Seed states are captured
 
 These details are handled transparently by `StateHistory`.
 
-### Displaying history of executed commands feature.
+### Input Log
 
 This is a new nice-to-have feature, it helps the users to manage their workflow with E-Lister more efficiently by allowing them to see all the commands they keyed in that were successfully executed.
 
@@ -254,7 +254,7 @@ Below is the diagram showing the process [*To-be-add*]
 
 ### Design Consideration:
 1. Instead of saving the history of commands in the same `.json` file, I personally believe that it would be better in this case to have a seperate `.txt` file to store the commands, it would be much more convenient and less methods invoking among high-level components because:
-    * The expected behaviour is that it displays exactly the commands that user inputted before, so if we use `.txt` file, we only need to check the command is succesfully executed before write the whole `String` command into the `txt` file. 
+    * The expected behaviour is that it displays exactly the commands that user inputted before, so if we use `.txt` file, we only need to check the command is succesfully executed before write the whole `String` command into the `txt` file.
     * On the other hand, using `.json` file would require a lot of data conversion which is likely to be more error-prone and the `HistoryDisplay` from the `Ui` must trace through `Logic`, `Model`, `Storage` to read the `.json` file and vice versa since the data conversion happens in `Storage` or `Model`. Below is the code snippet in `LogicManager` where the history is read.
 ```
    historyStringOptional = storage.readHistoryString();
@@ -273,86 +273,6 @@ Below is the diagram showing the process [*To-be-add*]
      */
     Optional<String> readHistoryString() throws IOException;
 ```
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedELister`. It extends `ELister` with an undo/redo history, stored internally as an `eListerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedELister#commit()` — Saves the current address book state in its history.
-* `VersionedELister#undo()` — Restores the previous address book state from its history.
-* `VersionedEListerk#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitELister()`, `Model#undoELister()` and `Model#redoELister()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedELister` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitELister()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `eListerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitELister()`, causing another modified address book state to be saved into the `eListerStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitELister()`, so the address book state will not be saved into the `eListerStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoELister()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ELister state, then there are no previous ELister states to restore. The `undo` command uses `Model#canUndoELister()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoELister()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `eListerStateList.size() - 1`, pointing to the latest address book state, then there are no undone ELister states to restore. The `redo` command uses `Model#canRedoELister()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitELister()`, `Model#undoELister()` or `Model#redoELister()`. Thus, the `eListerStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitELister()`. Since the `currentStatePointer` is not pointing at the end of the `eListerStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### Creating shortcuts using the command `shortcut`
 
@@ -391,7 +311,6 @@ Given the complexity of the CSV file format, it was deemed impractical to suppor
 * If a field is wrapped in quotation marks `""` (such as due to the previous rule), any existing `"` within the field is converted to `""`.
 
 The `CsvUtil` class provides a method to handle these rules:
-=======
 ```java
 public static String toCsvField(String str) {
    if (str.contains(",")) {
@@ -416,6 +335,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 Step 1. The user launches the application for the first time. The `VersionedELister` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 Step 2. The user executes `Tag 5 good` command to Tag the 5th person in the address book with a new Tag `good`. The `Tag` command calls `Model#addTag()`, causing the modified state of the address book after the `Tag 5 good` command executes to be saved in the `eListerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -484,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ELister shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use Case UC1: Tag a person**
 
 **MSS**
@@ -493,7 +413,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  ELister adds the tag to the person.
 
     Use case ends.
- 
+
 **Extensions**
 
 * 1a. The tag already exists for the given person.
@@ -577,3 +497,24 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. Currently, the default parse failure message is displayed when `delete`, `delete_tag`, `undo`, or `redo` is
+called with an index argument which is non-positive, or greater than `Integer.MAX_VALUE`, 2^31 - 1.<br>
+A common user complaint is that this leads to confusion,
+as it does not point out the index argument as a problem - in an often otherwise-correct command.<br>
+We plan to make these error messages mention this cause of failure: `The index entered must be a positive integer below 2^31`.
+3. The Input Log displays commands entered in previous sessions identically to those entered this session.<br>
+This can cause confusion as the `undo` command is able to revert the latter, but not the former, leading to
+`undo` appearing to fail on commands without an obvious reason.<br>
+We plan to color the Input Log text of commands entered in previous sessions
+<span style="color:#3CDFFF">light blue</span> to distinguish them and indicate them as non-undoable.
+4. The Input Log cannot be cleared from within the program, causing it to grow cluttered over time and
+increasingly difficult to scroll. We plan to add a command `wipelog` to clear the Input Log of its contents.
+5. Command shortcuts cannot be deleted from within the program, making it difficult to remove an alias once
+it is no longer required. We plan to add a command to delete such shortcuts: `delete_shortcut SHORTCUT`. To avoid making
+commands inaccessible, shortcuts will only be deletable when more than one alias exists for the
+command in question; an error message shall be raised otherwise.
