@@ -4,6 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":ContactParser" as ContactParser LOGIC_COLOR
 participant ":AddContactCommandParser" as AddContactCommandParser LOGIC_COLOR
 participant "a:AddContactCommand" as AddContactCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
@@ -11,9 +12,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "internEase:InternEase" as InternEase MODEL_COLOR
-participant "applications:UniqueApplicationList" as UniqueApplicationList MODEL_COLOR
-participant "internshipWithContact:InternshipApplication" as InternshipApplicationWithContact MODEL_COLOR
 end box
 [-> LogicManager : execute(add_contact)
 activate LogicManager
@@ -21,27 +19,34 @@ activate LogicManager
 LogicManager -> InternEaseParser : parseCommand(add_contact)
 activate InternEaseParser
 
+create ContactParser
+InternEaseParser -> ContactParser : parseContactCommand(add_contact, arguments)
+activate ContactParser
+
 create AddContactCommandParser
-InternEaseParser -> AddContactCommandParser : parse(add_contact)
+ContactParser -> AddContactCommandParser
 activate AddContactCommandParser
 
-AddContactCommandParser --> InternEaseParser
+AddContactCommandParser --> ContactParser
 deactivate AddContactCommandParser
 
-InternEaseParser -> AddContactCommandParser : parse(arguments)
+ContactParser -> AddContactCommandParser : parse(arguments)
 activate AddContactCommandParser
 
 create AddContactCommand
 AddContactCommandParser -> AddContactCommand
 activate AddContactCommand
 
-AddContactCommand --> AddContactCommandParser
+AddContactCommand --> AddContactCommandParser : a
 deactivate AddContactCommand
 
-AddContactCommandParser --> InternEaseParser
+AddContactCommandParser --> ContactParser : a
 deactivate AddContactCommandParser
 AddContactCommandParser -[hidden]-> InternEaseParser : result
 destroy AddContactCommandParser
+
+ContactParser --> InternEaseParser : a
+deactivate ContactParser
 
 InternEaseParser --> LogicManager : a
 deactivate InternEaseParser
@@ -49,44 +54,7 @@ deactivate InternEaseParser
 LogicManager -> AddContactCommand : execute()
 activate AddContactCommand
 
-AddContactCommand -> Model : getFilteredInternshipList()
-activate Model
-
-Model -> InternEase : getInternshipList()
-activate InternEase
-
-InternEase -> UniqueApplicationList : asUnmodifiableObservableList()
-activate UniqueApplicationList
-
-UniqueApplicationList --> InternEase
-deactivate UniqueApplicationList
-
-InternEase --> Model
-deactivate InternEase
-
-Model --> AddContactCommand : lastShownList
-deactivate Model
-
-AddContactCommand -> UniqueApplicationList : get(targetIndex.getZeroBased())
-activate UniqueApplicationList
-
-UniqueApplicationList --> AddContactCommand : internshipToAddContact
-deactivate UniqueApplicationList
-
-create InternshipApplicationWithContact
-AddContactCommand -> InternshipApplicationWithContact
-activate InternshipApplicationWithContact
-
-InternshipApplicationWithContact --> AddContactCommand
-deactivate InternshipApplicationWithContact
-
 AddContactCommand -> Model : setApplication(internshipToAddContact, internshipWithContact)
-activate Model
-
-Model --> AddContactCommand
-deactivate Model
-
-AddContactCommand -> Model : updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS)
 activate Model
 
 Model --> AddContactCommand
@@ -96,12 +64,12 @@ create CommandResult
 AddContactCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddContactCommand
+CommandResult --> AddContactCommand : r
 deactivate CommandResult
 
 AddContactCommand --> LogicManager : r
 deactivate AddContactCommand
 
-[<--LogicManager
+[<--LogicManager : r
 deactivate LogicManager
 @enduml

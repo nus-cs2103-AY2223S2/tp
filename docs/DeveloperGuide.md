@@ -188,7 +188,7 @@ The updated model is then saved. A `CommandResult` object with a message contain
 #### How is the feature implemented
 
 The `add_contact` command allows users to add the contact of a company to an internship application. The implementation of the `add_contact` command is facilitated by the `AddContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method. 
-The parsing process meanwhile involves the `AddressBookParser#parse#` and the `AddContactCommandParser#parse` methods.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `ContactParser#parseContactCommand` and the `AddContactCommandParser#parse` methods.
 
 The activity diagram below shows the workflow of the `add_contact` command during its execution.
 
@@ -196,7 +196,7 @@ The activity diagram below shows the workflow of the `add_contact` command durin
 
 The constructor of the class `AddContactCommand` requires 2 arguments, a valid positive `Integer` index and a `Contact` object, both of which are obtained after the parsing process mentioned above.
 
-The relevant operations from the `Model` interface are `Model#getFilteredInternshipList`, `Model#setApplication` and `Model#updateFilteredInternshipList`.
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
 
 A sequence diagram is shown here to illustrate the execution process of the `add_contact` command.
 
@@ -206,19 +206,19 @@ Given below is an explanation on the `add_contact` command's behaviours.
 
 Step 1. Parsing
 
-The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parser`.
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand` and subsequently the method `ContactParser#parseContactCommand`.
 The method `AddContactCommandParser#parse` is invoked only if the command word matches `AddContactCommand.COMMAND_WORD`.
 
 Step 2. Execution
 
-The `AddContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getFilteredInternshipList`.
+The `AddContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
 The internship application where the contact is to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
 immutable, a new `InternshipApplication` object is created with the contact details. The `Model#setApplication` method is then invoked to update the specified application in the list.
 
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`. 
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 2.5 seconds. 
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds. 
 
 >**NOTE:**
 > Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
@@ -237,6 +237,158 @@ adding a new internship application. This prevents the `AddCommand` from getting
 * **Alternative 2:** Adding contact details as attributes in the `InternshipApplication` class.
     * Pros: Easier than implement.
     * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
+
+
+### Edit contact feature
+
+#### How is the feature implemented
+
+The `edit_contact` command allows users to edit the contact of a company added to an internship application. The implementation of the `edit_contact` command is facilitated by the `EditContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `ContactParser#parseContactCommand` and the `EditContactCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `edit_contact` command during its execution.
+
+![EditContactActivityDiagram](images/EditContactActivityDiagram.png)
+
+The constructor of the class `EditContactCommand` requires 2 arguments, a valid positive `Integer` index and a `EditContactDescriptor` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `edit_contact` command.
+
+![EditContactSequenceDiagram](images/EditContactSequenceDiagram.png)
+
+Given below is an explanation on the `edit_contact` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand` and subsequently the method `ContactParser#parseContactCommand`.
+The method `EditContactCommandParser#parse` is invoked only if the command word matches `EditContactCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `EditContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application where the contact is to be edited is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the edited contact details. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `EditContactCommand` follows the design intuition behind the `AddContactCommand` by separating the process of editing contact details of the company from the process of
+editing other attributes of an existing internship application.
+
+
+### Delete contact feature
+
+#### How is the feature implemented
+
+The `delete_contact` command allows users to delete the contact of a company added to an internship application. The implementation of the `delete_contact` command is facilitated by the `DeleteContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `ContactParser#parseContactCommand` and the `DeleteContactCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `delete_contact` command during its execution.
+
+![DeleteContactActivityDiagram](images/DeleteContactActivityDiagram.png)
+
+The constructor of the class `DeleteContactCommand` requires 1 argument, a valid positive `Integer` index, which is obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `delete_contact` command.
+
+![DeleteContactSequenceDiagram](images/DeleteContactSequenceDiagram.png)
+
+Given below is an explanation on the `delete_contact` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand` and subsequently the method `ContactParser#parseContactCommand`.
+The method `DeleteContactCommandParser#parse` is invoked only if the command word matches `DeleteContactCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `DeleteContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application where the contact is to be edited is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the contact details deleted. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `DeleteContactCommand` follows the design intuition behind the `AddContactCommand` by separating the process of deleting contact details of the company from the process of
+deleting other attributes of an existing internship application.
+
+
+### Add documents feature
+
+#### How is the feature implemented
+
+The `add_docs` command allows users to add links of the documents submitted to a company to an internship application. The implementation of the `add_docs` command is facilitated by the `AddDocumentsCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `DocumentsParser#parseDocumentsCommand` and the `AddDocumentsCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `add_docs` command during its execution.
+
+![AddDocumentsActivityDiagram](images/AddDocumentsActivityDiagram.png)
+
+The constructor of the class `AddDocumentsCommand` requires 2 arguments, a valid positive `Integer` index and a `Documents` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `add_docs` command.
+
+![AddDocumentsSequenceDiagram](images/AddDocumentsSequenceDiagram.png)
+
+Given below is an explanation on the `add_docs` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand` and subsequently the method `DocumentsParser#parseDocumentsCommand`.
+The method `AddDocumentsCommandParser#parse` is invoked only if the command word matches `AddDocumentsCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `AddDocumentsCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application where the document links are to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the document links. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `AddDocumentsCommand` provides enhancement to the existing `AddCommand`, in a similar fashion to the `AddContactCommand`.
+
+
+### Edit documents feature
+
+#### How is the feature implemented
+
+The `edit_docs` command allows users to edit links of the documents submitted to a company to an internship application. The implementation of the `edit_docs` command is facilitated by the `EditDocumentsCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `DocumentsParser#parseDocumentsCommand` and the `EditDocumentsCommandParser#parse` methods.
+
+The execution process of the `edit_docs` command can be demonstrated by the activity diagram of `edit_contact` by replacing `contact` related phrases or methods with `documents` related phrases or methods.
+
+> [Edit Contact Feature](#edit-contact-feature)
+
+
+### Delete documents feature
+
+#### How is the feature implemented
+
+The `delete_docs` command allows users to delete links of the documents added to an internship application. The implementation of the `edit_docs` command is facilitated by the `DeleteDocumentsCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `DocumentsParser#parseDocumentsCommand` and the `DeleteDocumentsCommandParser#parse` methods.
+
+The execution process of the `delete_docs` command can be demonstrated by the activity diagram of `delete_contact` by replacing `contact` related phrases or methods with `documents` related phrases or methods.
+
+> [Delete Contact Feature](#delete-contact-feature)
 
 
 ### Find feature

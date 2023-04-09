@@ -1,12 +1,12 @@
 @startuml
 start
-:User enters command add_contact;
-if () then ([PREFIX p/ and e/ are present])
+:User enters command edit_contact;
+if () then ([PREFIX p/ and/or e/ is present])
     :Parse command arguments;
-    if () then ([Phone number and email are valid])
-            :Generate new AddContactCommand;
+    if () then ([Provided argument(s) is/are valid])
+            :Generate new EditContactCommand;
             if () then ([Provided index is valid])
-                    :Add contact details to the specified application;
+                    :Edit contact details of the specified application;
                     :Generate success message;
                 else ([else])
                 :Generate error message;
