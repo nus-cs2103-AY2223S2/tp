@@ -12,6 +12,7 @@ import fasttrack.commons.exceptions.IllegalValueException;
 import fasttrack.model.ExpenseTracker;
 import fasttrack.model.ReadOnlyExpenseTracker;
 import fasttrack.model.category.Category;
+import fasttrack.model.category.MiscellaneousCategory;
 import fasttrack.model.expense.Expense;
 import fasttrack.model.expense.RecurringExpenseManager;
 
@@ -75,7 +76,9 @@ class JsonSerializableExpenseTracker {
             RecurringExpenseManager expenseGenerator = jsonAdaptedGenerator.toModelType();
             Category associatedCategory = getAssociatedCategoryForRecurring(expenseGenerator, expenseTracker);
             if (associatedCategory == null) {
-                expenseTracker.addCategory(expenseGenerator.getExpenseCategory());
+                if (!(expenseGenerator.getExpenseCategory() instanceof MiscellaneousCategory)) {
+                    expenseTracker.addCategory(expenseGenerator.getExpenseCategory());
+                }
             } else {
                 expenseGenerator.setExpenseCategory(associatedCategory);
             }
@@ -86,7 +89,9 @@ class JsonSerializableExpenseTracker {
             Expense expense = jsonAdaptedExpense.toModelType();
             Category associatedCategory = getAssociatedCategory(expense, expenseTracker);
             if (associatedCategory == null) {
-                expenseTracker.addCategory(expense.getCategory());
+                if (!(expense.getCategory() instanceof MiscellaneousCategory)) {
+                    expenseTracker.addCategory(expense.getCategory());
+                }
             } else {
                 expense.setCategory(associatedCategory);
             }

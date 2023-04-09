@@ -4,10 +4,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="placeHolder" maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" styleClass="pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="placeHolder" styleClass="pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display">
       <StackPane.margin>
-         <Insets left="11.0" right="5.0" top="8.0" />
+         <Insets left="11.0" right="5.0" top="5.0" />
       </StackPane.margin>
       <opaqueInsets>
          <Insets left="10.0" top="10.0" />

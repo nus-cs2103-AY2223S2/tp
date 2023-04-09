@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes "delrec" command;
+:"delrec" command is parsed;
+
+if () then ([index is present])
+    if () then ([index is within range])
+        :Get RecurringExpenseManager instance to edit;
+        :Delete RecurringExpenseManager from recurring expense list;
+        :Display success message;
+    else ([else])
+        :Error message displayed specifying index out of range;
+    endif;
+else ([else])
+    :Error message displayed specifying an error in the command format;
+endif
+stop
+@enduml

@@ -27,10 +27,10 @@ import fasttrack.logic.commands.list.ListExpensesCommand;
 import fasttrack.logic.commands.list.ListRecurringExpensesCommand;
 import fasttrack.logic.parser.add.AddCategoryCommandParser;
 import fasttrack.logic.parser.add.AddExpenseCommandParser;
-import fasttrack.logic.parser.add.AddRecurringExpenseParser;
+import fasttrack.logic.parser.add.AddRecurringExpenseCommandParser;
 import fasttrack.logic.parser.delete.DeleteCategoryCommandParser;
 import fasttrack.logic.parser.delete.DeleteExpenseCommandParser;
-import fasttrack.logic.parser.delete.DeleteRecurringExpenseParser;
+import fasttrack.logic.parser.delete.DeleteRecurringExpenseCommandParser;
 import fasttrack.logic.parser.edit.EditCategoryCommandParser;
 import fasttrack.logic.parser.edit.EditExpenseCommandParser;
 import fasttrack.logic.parser.edit.EditRecurringExpenseManagerCommandParser;
@@ -110,10 +110,10 @@ public class ExpenseTrackerParser {
             return new EditRecurringExpenseManagerCommandParser().parse(arguments);
 
         case AddRecurringExpenseCommand.COMMAND_WORD:
-            return new AddRecurringExpenseParser().parse(arguments);
+            return new AddRecurringExpenseCommandParser().parse(arguments);
 
         case DeleteRecurringExpenseCommand.COMMAND_WORD:
-            return new DeleteRecurringExpenseParser().parse(arguments);
+            return new DeleteRecurringExpenseCommandParser().parse(arguments);
 
         case ListRecurringExpensesCommand.COMMAND_WORD:
             return new ListRecurringExpensesCommand();

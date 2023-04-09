@@ -15,6 +15,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 
+
 /**
  * Wraps all data at the expense tracker level
  * Duplicate categories are not allowed (by .isSameCategory comparison)
@@ -139,6 +140,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     public void removeCategory(Category key) {
         categories.remove(key);
         expenses.replaceDeletedCategory(key);
+        recurringGenerators.replaceDeletedCategory(key);
     }
 
     @Override

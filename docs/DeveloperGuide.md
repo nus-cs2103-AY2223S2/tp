@@ -236,6 +236,358 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Add Expense feature
+
+#### **Command Format**
+
+`add n/EXPENSE_NAME c/CATEGORY_NAME p/PRICE [d/DATE]`, whereby the date is an optional field.
+
+#### **What is this feature for?**
+
+The `add` command enables users to add an `Expense` to the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `add` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `add n/Milk p/4.50 c/Groceries` as an example.
+1. The user inputs `add n/Milk p/4.50 c/Groceries` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `AddExpenseCommand` object is created using the given fields.
+
+
+3. `AddExpenseCommand#execute()` is called, which takes in the currently-running instance of `Model` and adds the `Expense` used to instantiate the `AddExpenseCommand` through the `Model#addExpense()` method, which adds the new `Expense` object to the list of current `Expense` objects. Note that if the newly instantiated `Expense` has a `Category` that does not match any existing `Category` objects, the `Expense` object's `Category` will be added to the `ExpenseTracker` as a new `Category`.
+
+
+4. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully logged.
+
+:information_source: **Note**:
+- For step 2, if the user does not have any arguments, the `AddExpenseCommand` object will NOT be created!
+
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#1
+
+### \[Implemented\] Delete Expense feature
+
+#### **Command Format**
+
+`delete INDEX`
+
+#### **What is this feature for?**
+
+The `delete` command enables users to delete an `Expense` from the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `delete` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `delete 1` as an example.
+1. The user inputs `delete 1` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `DeleteExpenseCommand` object is created using the given fields.
+
+
+3. `DeleteExpenseCommand#execute()` is called, which takes in the currently-running instance of `Model`, retrieves the `Expense` object at the specified `INDEX`, and deletes it from the underlying list of `Expense` objects of the `Model` instance using `Model#deleteExpense()`.
+
+
+4. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully deleted.
+
+
+:information_source: **Note**:
+- At step 2, if input is detected as invalid, an error will be shown on the screen and the sequence of action is terminated.
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#2
+
+### \[Implemented\] Edit Expense feature
+
+#### **Command Format**
+
+`edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [d/DATE]`, whereby all fields except the `INDEX` field are optional, BUT at least one of the optional fields
+must be used (Otherwise, there is no purpose for calling this command).
+
+#### **What is this feature for?**
+
+The `edexp` command enables users to edit an `Expense` in the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `edexp` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `edexp 1 n/Chicken` as an example, whereby the original `Expense` object has a `EXPENSE_NAME` of `Milk`.
+1. The user inputs `edexp 1 n/Chicken` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `EditExpenseCommand` object is created using the given fields.
+
+
+3. The `LogicManager#execute()` function causes `EditExpenseCommand#execute()` to be called, which takes in the currently-running instance of `Model`, retrieves the `Expense` object at the specified `INDEX` from the `FilteredList<Expense>` of the `Model` instance, and instantiates a new `Expense` object that has the same fields as the retrieved `Expense` object except for the `EXPENSE_NAME`. Note that if the newly instantiated `Expense` has a `Category` that does not match any existing `Category` objects, the `Expense` object's `Category` will NOT be added to the `ExpenseTracker` as a new `Category`, and an error indicating that no such `CATEGORY_NAME` exists will pop up.
+
+
+4. The newly-instantiated `Expense` object with the updated `EXPENSE_NAME`, namely `Chicken`, will then replace the retrieved `Expense` object at the specified `INDEX` in the `ExpenseList` using `Model#setExpense()`.
+
+
+5. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully edited.
+
+
+:information_source: **Note**:
+- At step 2, if the input is detected as invalid (either index is invalid or no arguments provided other than index), a matching error will be shown on the screen and the sequence of action is terminated.
+- At step 3, if the user provides a category to edit to, and it is found that there is no such category in FastTrack, an error will be shown and the sequence of action is terminated.
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#3
+
+### **Design Considerations**
+**Aspect: How the expense is edited**:
+
+* **Alternative 1 (Current choice):** Retrieve the specified `Expense`, instantiate a new `Expense` with specified edited fields, and replace the retrieved `Expense` in the `ExpenseList`.
+  * Pros: As the UI implementation requires listening in on the `ObservableList<Expense>`, replacing the previous `Expense` object with a new `Expense` object makes the live-refreshing of our UI much more intuitive.
+  * Cons: There is an additional `Expense` object being instantiated to replace the previous `Expense` object.
+
+* **Alternative 2:** Retrieve the specified `Expense` and use setter methods to set the specified fields to be edited.
+  * Pros: No additional `Expense` object needs to be instantiated, and it is easier to simply set the fields.
+  * Cons: The listeners for the `ObservableList<Expense>` only detect when there is an actual operation being done on the list, therefore setting fields will not cause the listeners to be updated, making our UI implementation much more complicated.
+
+### \[Implemented\] List feature
+
+#### **Command Format**
+
+`list [c/CATEGORY_NAME] [t/TIMEFRAME]`, whereby both `CATEGORY_NAME` and `TIMEFRAME` are optional.
+
+#### **What is this feature for?**
+
+The `list` command enables users to view all expenses within the expense tracker, and even allows them to view the expenses affiliated with a certain category or timeframe, or a combination of both.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `list` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `list c/Groceries t/week` as an example.
+1. The user inputs `list c/Groceries t/week` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `ListExpensesCommand` object is created using the given fields.
+
+
+3. The `LogicManager#execute()` function causes `ListExpensesCommand#execute()` to be called, which takes in the currently-running instance of `Model`, and applies the `ExpenseInCategoryPredicate` and `ExpenseInTimespanPredicate` sequentially onto the `Model` object's `FilteredList<Expense>` by `Model#updateFilteredExpensesList()`.
+
+
+4. A `CommandResult` instance is then returned, with feedback of how many `Expenses` are currently listed under the current filters.
+
+
+:information_source: **Note**:
+- At step 2, if an invalid input is detected after `list` (e.g. `list xxxxxx`), an error will be shown and the sequence of action is terminated.
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#4
+
+### **Design Considerations**
+**Aspect: Whether to make `ListExpensesCommand` have multiple constructors or to make it take in `ExpenseInCategoryPredicate` and `ExpenseInTimespanPredicate` as `Optional` objects.**
+
+* **Alternative 1 (Current choice):** `ListExpensesCommand` takes in `Optional<ExpenseInCategoryPredicate>` and `Optional<ExpenseInTimespanPredicate`
+  * Pros: Makes for cleaner code, and allows for less clutter in terms of using multiple constructors.
+  * Cons: Usage of multiple constructors could have been easier to understand in terms of what the idea is.
+
+* **Alternative 2:** `ListExpensesCommand` has multiple constructors to differentiate the different possible cases of user input for filters.
+  * Pros: Easier to understand, and all differentiation is done at the parsing stage.
+  * Cons: Much more cluttered and code will not be as clean.
+
+
+### \[Implemented\] Add RecurringExpenseManager feature
+
+#### **Command Format**
+
+`addrec n/EXPENSE_NAME c/CATEGORY_NAME p/PRICE sd/START_DATE t/FREQUENCY [ed/END_DATE]`, whereby only `END_DATE` is an optional field.
+
+#### **What is this feature for?**
+
+The `addrec` command enables users to add recurring expenses within the expense tracker, which will automatically generate expenses based on the provided `FREQUENCY`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `addrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `addrec n/Broth c/Groceries p/3 sd/06/04/23 t/week` as an example.
+1. The user inputs `addrec n/Broth c/Groceries p/3 sd/06/04/23 t/week` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `AddRecurringExpenseCommand` object is created using the given fields.
+
+
+3. `AddRecurringExpenseCommand#execute()` is called, which takes in the currently-running instance of `Model`, and adds the previously instantiated `RecurringExpenseManager` to the `Model` object's current list of `RecurringExpenseManager` objects. Note that if the newly instantiated `RecurringExpenseManager` has a `Category` that does not match any existing `Category` objects, the `RecurringExpenseManager` object's `Category` will be added to the `ExpenseTracker` as a new `Category`.
+
+
+4. A `CommandResult` instance is then returned, with feedback of the `RecurringExpenseManager` object being successfully added.
+
+
+:information_source: **Note**:
+- At step 2, if any input is detected as missing or invalid, an error will be shown and the sequence of action is terminated.
+- At the completion of step 3, due to the behavior of `RecurringExpenseManager`, expenses will be retroactively added if the start date up till current date (or end date if end date is earlier) sufficiently spans the timeframe frequency.
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#5
+
+
+### **Design Considerations**
+**Aspect: Whether `Expense` objects should be retroactively added for `RecurringExpenseManager` objects that have `START_DATE` in the past.**
+
+* **Alternative 1 (Current choice):** `Expense` objects are retroactively added.
+  * Pros: Allows users to easily add recurring expenses, even if they are in the past.
+  * Cons: If the user keys in the wrong `START_DATE`, they will need to take some time to manually remove all retroactively created `Expense` objects.
+
+* **Alternative 2:** `Expense` objects should not be retroactively added.
+  * Pros: Wrong input for the `START_DATE` will not cause a flood of retroactively created `Expense` objects to be added.
+  * Cons: Users might not want to take the time to accurately add the `Expense` objects in the past, which goes against our group's aim.
+
+
+### \[Implemented\] Delete RecurringExpenseManager feature
+
+#### **Command Format**
+
+`delrec INDEX`
+
+#### **What is this feature for?**
+
+The `delrec` command enables users to delete a `RecurringExpenseManager` from the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `delrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `delrec 1` as an example.
+1. The user inputs `delrec 1` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `AddRecurringExpenseCommand` object is created using the given fields.
+
+
+3. `DeleteRecurringExpenseCommand#execute()` is called, which takes in the currently-running instance of `Model`, retrieves the `RecurringExpenseManager` object at the specified `INDEX`, and deletes it from the underlying list of `RecurringExpenseManager` objects of the `Model` instance using `Model#deleteRecurringExpense()`.
+
+
+4. The `RecurringExpenseManager` object, after being added to the list of other current `RecurringExpenseManager` objects, will retroactively add in `Expense` objects if the `START_DATE` and `FREQUENCY` make sense to do so. (e.g. The `START_DATE` is 03/02/2023, and the `FREQUENCY` is weekly, then, however many `Expense` objects will be generated up-to-date to try and help the user track recurring expenses accurately.)
+
+
+5. A `CommandResult` instance is then returned, with feedback that the `RecurringExpenseManager` object was successfully deleted.
+
+
+:information_source: **Note**:
+- At step 2, if the index is detected as invalid or missing, an error will be shown and the sequence of action is terminated.
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#6
+
+### **Design Considerations**
+**Aspect: Whether expenses generated by the `RecurringExpenseManager` object should also be deleted.**
+
+* **Alternative 1 (Current choice):** `Expense` objects generated by the `RecurringExpenseManager` object are NOT deleted upon the deletion of the `RecurringExpenseManager` object itself.
+  * Pros: Makes more intuitive sense when a `RecurringExpenseManager` expires or is terminated by the user, past `Expense` objects should still remain as they have already been spent and allows for accurate tracking.
+  * Cons: If user unintentionally keys in wrong information for the `RecurringExpenseManager` that is irreversible in terms of generating `Expense` objects, it could end up taking a while for them to manually delete the `Expense` objects.
+
+* **Alternative 2:** `Expense` objects generated by the `RecurringExpenseManager` object are deleted upon the deletion of the `RecurringExpenseManager` object itself.
+  * Pros: If user unintentionally keys in wrong information for the `RecurringExpenseManager` that is generally irreversible in terms of generating `Expense` objects, it is easily undone by simply deleting the `RecurringExpenseManager` object.
+  * Cons: Users will not be able to accurately track past spendings as expired `RecurringExpenseManager` objects will delete affiliated `Expense` objects.
+
+
+### \[Implemented\] Edit RecurringExpenseManager feature
+
+#### **Command Format**
+
+`edrec INDEX [n/EXPENSE_NAME] [c/CATEGORY_NAME] [p/PRICE] [t/FREQUENCY] [ed/END_DATE]`, whereby all fields except for `INDEX` are optional, but at least one 
+of them must be specified (Otherwise, there is no point in editing).
+
+#### **What is this feature for?**
+
+The `edrec` command enables users to edit a `RecurringExpenseManager` in the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `edrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `edrec 1 n/Coconut Milk` as an example.
+1. The user inputs `edrec 1 n/Coconut Milk` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `AddRecurringExpenseCommand` object is created using the given fields.
+
+
+3. `EditRecurringExpenseManagerCommand#execute()` is called, which takes in the currently-running instance of `Model`, retrieves the `RecurringExpenseManager` object at the specified `INDEX` from the `FilteredList<RecurringExpenseManager>` of the `Model` instance, and sets the `EXPENSE_NAME` field of the `RecurringExpenseManager` object found at the given `INDEX` to be `Coconut Milk`.
+
+
+4. A `CommandResult` instance is then returned, with feedback that the `RecurringExpenseManager` object was successfully edited.
+
+
+:information_source: **Note**:
+- At step 2, if the index provided is detected as invalid or if no arguments other than index are provided, an error will be shown and the sequence of action is terminated.
+- At step 3, if the user provides a category to edit to, and it is found that there is no such category in FastTrack, an error will be shown and the sequence of action is terminated.
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#7
+
+### **Design Considerations**
+**Aspect: Whether the `RecurringExpenseManager` object should be replaced instead of having its fields set.**
+
+* **Alternative 1 (Current choice):** Retrieve the specified `RecurringExpenseManager` and use setter methods to set the specified fields to be edited.
+  * Pros: Easy to simply retrieve the `RecurringExpenseManager` object and use setter for the fields.
+  * Cons: If any future developments require close listening to the `ObservableList<RecurringExpenseManager>` to be displayed in the UI, some refactoring might need to be done.
+
+* **Alternative 2:** Retrieve the specified `RecurringExpenseManager`, instantiate a new `RecurringExpenseManager` with specified edited fields, and replace the retrieved `RecurringExpenseManager` in the underlying `RecurringExpenseList`.
+  * Pros: Future developments which rely on the `ObservableList<RecurringExpenseManager` will be able to be smoothly implemented, as there are list operations being carried out by replacing objects.
+  * Cons: Extra layers of code required to instantiate a new `RecurringExpenseManager` object to replace the original.
+
+### \[Implemented\] List RecurringExpenseManager feature
+
+#### **Command Format**
+
+`lrec`.
+
+#### **What is this feature for?**
+
+The `lrec` command enables users to view all `RecurringExpenseManager` objects within the expense tracker.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `lrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `lrec` as an example.
+1. The user inputs `lrec` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `ListRecurringExpensesCommand` object is created using the given fields.
+
+
+3. The `LogicManager#execute()` function causes `ListRecurringExpensesCommand#execute()` to be called, which takes in the currently-running instance of `Model`, and calls `Model#updateFilteredExpenseList()` with `PREDICATE_SHOW_ALL_EXPENSES`.
+
+
+4. A `CommandResult` instance is then returned, with feedback of how many `RecurringExpenseManager` objects are present in the expense tracker, as well as switching to a screen of the list of `RecurringExpenseManager` objects.
+
+
+As the flow of events are almost identical to that of the [`list` command](#implemented-list-feature) with the sole difference being the different method names and the lack of filters, there are no sequence diagrams provided for this feature.
+
+SEQ#4
+
+### **Design Considerations**
+**Aspect: Whether to make `ListExpensesCommand` have multiple constructors or to make it take in `ExpenseInCategoryPredicate` and `ExpenseInTimespanPredicate` as `Optional` objects.**
+
+* **Alternative 1 (Current choice):** `ListExpensesCommand` takes in `Optional<ExpenseInCategoryPredicate>` and `Optional<ExpenseInTimespanPredicate`
+  * Pros: Makes for cleaner code, and allows for less clutter in terms of using multiple constructors.
+  * Cons: Usage of multiple constructors could have been easier to understand in terms of what the idea is.
+
+* **Alternative 2:** `ListExpensesCommand` has multiple constructors to differentiate the different possible cases of user input for filters.
+  * Pros: Easier to understand, and all differentiation is done at the parsing stage.
+  * Cons: Much more cluttered and code will not be as clean.
+
 ### \[Implemented\] Add Category feature
 
 #### **Command format:**
@@ -309,6 +661,35 @@ This command allows user to edit a category of choice. We allow users to edit ei
 that uses the same name and summary before replacing the required name or summary depending on user's arguments.
   * Pros: Enforces immutability by replacing the previous `Category` object.
   * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
+  
+### \[Implemented\] List Category feature
+
+#### **Command Format**
+
+`lcat`.
+
+#### **What is this feature for?**
+
+The `lcat` command enables users to view all `Category` objects within the expense tracker.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `lcat` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `lcat` as an example.
+1. The user inputs `lcat` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `ListCategoryCommand` object is created using the given fields.
+
+
+3. The `LogicManager#execute()` function causes `ListCategoryCommand#execute()` to be called, which takes in the currently-running instance of `Model`, and calls `Model#updateFilteredExpenseList()` with `PREDICATE_SHOW_ALL_EXPENSES`.
+
+
+4. A `CommandResult` instance is then returned, with feedback of how many `Category` objects are present in the expense tracker, as well as switching the screen to that of a list of the `Category` objects.
+
+
+As the flow of events are almost identical to that of the [`list` command](#implemented-list-feature) with the sole difference being the different method names and the lack of filters, there are no sequence diagrams provided for this feature.
 
 ### **\[Implemented\] Recurring Expense feature:**
 
@@ -457,6 +838,47 @@ This method of implementation closely follows the _Observer Pattern_, which prom
     * Cons: Was more time-consuming to implement, due to the need to learn about mechanisms like bindings and change listeners in JavaFX.
 
 **Alternative 2** was chosen as it was neater to implement and performs statistic calculations only when absolutely necessary, this preventing unnecessary wastage of computational resources.
+
+### \[Implemented\] Category Autocomplete feature
+
+The category autocompletion feature in FastTrack is implemented using two `UI` classes, namely the `SuggestionListPanel` and the `CommandBox`. 
+
+The `SuggestionListPanel` is a JavaFX `UI` component responsible for displaying the suggestion list for the category autocomplete feature. It receives two parameters in its constructor, namely an `ObservableList<Category>` and a `CommandBox`. 
+The `ObservableList<Category>` contains all available categories in FastTrack, and the `CommandBox` is the `UI` component that contains a text field which allows users to enter commands, as well as for setting text to autofill.
+
+To filter the categories based on the user's input, the `SuggestionListPanel` makes use of a `FilteredList<Category>`. This filtered list is used as the data source for the `ListView` `UI` component of the `SuggestionListPanel`. 
+The `FilteredList<Category>` displays filtered categories based on whether the category name matches the user's input.
+
+Upon initialization, the `SuggestionListPanel` sets up autocomplete handlers for the suggestion list by calling the `SuggestionListPanel#initialiseAutocompleteHandlers()` method. This method registers listeners for focus changes, key presses, and autocomplete filters, which work together to ensure the autocomplete feature works responsively.
+
+When the user enters a command, they can trigger the autocomplete feature by typing `c/` followed by a few characters. These characters can then be used to filter the categories, and the most likely suggestions are displayed in the suggestion list. 
+To load the filter for autocompletion, the `SuggestionListPanel#loadAutocompleteFilter()` method within `SuggestionListPanel#initialiseAutocompleteHandlers()` sets up a listener for changes in the text field of the `CommandBox`. 
+If the user types `c/` to start entering a category name, the `SuggestionListPanel#getAutocompleteSuggestions()` method is called to retrieve the most likely suggestions based on the user's input so far.
+This method filters the categories based on the user's input and updates the filtered categories as the items in the `ListView` `UI` component of the `SuggestionListPanel`.
+
+When the suggestion list is visible, the user can navigate through the suggestions using the `UP` and `DOWN` arrow keys. 
+
+The `CommandBox#initialiseAutocompleteHandler()` method adds a key press event filter to the command text field that listens for the `UP` arrow key.
+
+When the user presses the `UP` arrow key, the focus is given to the `SuggestionListPanel` if it is visible (i.e. the user had typed in `c/`), and the `SuggestionListPanel#selectLastItemOnFocus()` method selects the last item in the suggestion list by default. When the user presses the `DOWN` arrow key, the `SuggestionListPanel#handleDownArrowKey()` method is called to check if the user is about to navigate out of the suggestion list and is responsible for returning the focus back to the `CommandBox`.
+
+To select a category from the suggestion list, the user can either navigate through the list using the arrow keys and press the `ENTER` key or press the `TAB` key to select the bottom-most suggestion in the list. 
+When the user makes a selection using the `ENTER` key, a callback function within the `SuggestionListPanel#addKeyPressListener()` method is called. This function updates the suggested text in the `CommandBox` by calling the `SuggestionListPanel#updateSuggestedText()` method, which sets the text in the `CommandBox` and subsequently hides the suggestion list.
+
+If the user makes the selection by pressing the `TAB` key, the `CommandBox#initialiseAutocompleteHandler()` method simulates a `UP` arrow key press followed by an `ENTER` key press, which also causes the first suggestion in the list to be selected.
+
+
+#### Design considerations:
+
+**Aspect: How the autocomplete feature should be implemented**:
+
+* **Alternative 1 (Current choice):** Add the autocomplete logic within the `SuggestionListPanel` and `CommandBox` classes itself
+    * Pros: This design is more convenient and allows the methods within each class to focus specifically on their own behaviors, without explicit knowledge of the autocomplete feature.
+    * Cons: Currently, the `SuggestionListPanel` is tightly coupled to the `CommandBox` through its constructor parameters. This means that more modifications would need to be made if a new text input component was introduced.
+
+* **Alternative 2 :** Create a new `AutocompleteLogic` class which uses the _Observer Pattern_ to listen to and propagate changes across the `SuggestionListPanel` and `CommandBox` components.
+    * Pros: Enforces loose coupling by the _Observer Pattern_
+    * Cons: Tedious to implement, and the added flexibility might be unnecessary since the autocomplete feature is not likely to be further extended upon.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -747,7 +1169,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample expenses and categories. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -763,6 +1185,32 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. In the case whereby your data files end up corrupted, FastTrack will wipe all data and allow you to start over
+   with a clean slate.
 
 1. _{ more test cases …​ }_
+
+
+### Effort
+
+The difficulty of FastTrack as a project was quite high, but one that allowed us to learn a lot. As our group lacked experience in working with
+a properly-structured team as well as a pre-existing codebase that had to be overhauled for our own purposes, we had to start from scratch to learn 
+how exactly commands and user inputs were handled by the pre-existing AB3 codebase.
+
+We faced numerous challenges in our journey to make FastTrack, not limited to:
+1. Learning how the codebase worked and how to restructure existing code.
+2. How to design the structure of FastTrack so that the `Category`, `Expense` and `RecurringExpenseManager` made sense.
+3. Abstracting out certain checks into proper methods in the correct classes so as to reduce violations of principles.
+4. Testing of code.
+
+Our group reused much of what AB3 had in place, with the main bulk of reusability coming from AB3's parsing set-up and
+the model as well as storage systems, which we found to be useful as they worked in quite an intuitive and robust manner after we took some
+time to understand them. 
+
+However, we faced major difficulties in attempting to modify AB3 to suit FastTrack, as we realized
+that AB3 primarily dealt with `Person` objects, which were only one type of entity, while we had to deal with 3 kinds of entities as 
+mentioned above. This led to multiple problems in our implementations and debugging stages, and we had to race against time
+on multiple occasions to thankfully, successfully resolve these issues.
+
+To sum it all up, our team did put in a significant amount of work to understand and mostly to successfully morph the existing AB3
+codebase into FastTrack, and there is no doubt that we have achieved what we set out to do, and more.

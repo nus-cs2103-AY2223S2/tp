@@ -1,0 +1,31 @@
+@startuml
+start
+:User executes "addrec" command;
+:"addrec" command is parsed;
+
+if () then ([arguments present & in valid format])
+    if () then ([end date later than start date])
+        :RecurringExpenseManager object created;
+        :AddRecurringExpenseCommand object created and executed;
+        if () then ([recurring expense is unique)
+            :Search category list for instance matching category name;
+            if () then ([matching instance found])
+                :Link matching category to RecurringExpenseManager;
+            else ([else])
+                :Add category to category list;
+            endif;
+            :Add RecurringExpenseManager object to recurring expense list;
+            :Generate new expenses from recurring expense;
+            :Display success message;
+        else ([else])
+            :Error message displayed specifying duplicate recurring expense;
+        endif
+    else ([else])
+        :Error message displayed specifying end date was earlier than start date;
+    endif
+
+else ([else])
+    :Error message displayed specifying an error in the command format;
+endif
+stop
+@enduml

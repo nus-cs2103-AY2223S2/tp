@@ -41,7 +41,7 @@ public class ParserUtil {
     }
 
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "The index provided is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
@@ -78,9 +78,7 @@ public class ParserUtil {
      */
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
-        // remove trailing zeroes, commas, dollar signs, and spaces
-        String trimmedPrice = price.trim().replaceAll("0*$", "").replaceAll(",", "").replaceAll("\\$", "")
-                .replaceAll(" ", "");
+        String trimmedPrice = price.trim();
         if (!Price.isValidPrice(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }

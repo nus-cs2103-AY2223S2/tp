@@ -2,6 +2,7 @@ package fasttrack.model.expense;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import fasttrack.model.category.Category;
 
@@ -178,9 +179,10 @@ public class RecurringExpenseManager {
 
     @Override
     public String toString() {
-        return "Recurring Expense: " + expenseName + " Amount: " + amount + " Category: "
-                + expenseCategory + " Start Date: " + startDate + " End Date: " + endDate
-                + " Recurring Expense Type: " + recurringExpenseType;
+        String endStatus = endDate == null ? "Ongoing" : String.valueOf(endDate);
+        return "Recurring Expense: " + expenseName + ", Amount: " + amount + ", Category: "
+                + expenseCategory + ", Start Date: " + startDate + ", End Date: " + endStatus
+                + ", Recurring Expense Type: " + recurringExpenseType;
     }
 
     @Override
@@ -191,7 +193,7 @@ public class RecurringExpenseManager {
                     && this.amount.equals(other.amount)
                     && this.expenseCategory.equals(other.expenseCategory)
                     && this.startDate.equals(other.startDate)
-                    && this.endDate == null ? other.endDate == null : this.endDate.equals(other.endDate)
+                    && Objects.equals(endDate, other.endDate)
                     && this.recurringExpenseType.equals(other.recurringExpenseType);
         }
         return false;
