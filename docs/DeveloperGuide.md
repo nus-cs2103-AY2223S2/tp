@@ -483,7 +483,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | novice user                                | list all my intership applications easily                                                               | can confirm that my internship listing has been created             
 | `* *`    | intermediate user                          | list all internship events that have deadlines on a particular date	                                    | avoid scheduling an interview on that day                           |
 | `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about                |
-| `* *`    | expert user                                | see all internships that have not received updates in a long time                                       | know which internships I need to follow up on                       |
 
 
 ### Use cases
@@ -533,7 +532,7 @@ Use Case ends.
 
 **Extensions**
 
-* 1a User inputs invalid Position.
+* 1a User inputs invalid Parameter.
 
     * 1a1. System shows an error message.
     
@@ -577,7 +576,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to list all internship events with an upcoming deadline on a particular date.
+1. User requests to find events that end on a particular date.
 2. System displays the list of events.
  
 Use case ends.
@@ -587,10 +586,10 @@ Use case ends.
 * 1a. The date given by user is invalid (i.e. not formatted correctly).
 
   * 1a1. System displays an error message to inform the user that the input date is not valid.
+  
+* 2a. There are no internship events on the particular date.
 
-* 2a. The list is empty.
-
-* 2b. There are no internship applications with the upcoming deadline.
+  Use case ends.
 
 
 **Use case: List internships by desired criteria**
