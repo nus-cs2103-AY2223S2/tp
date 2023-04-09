@@ -15,7 +15,7 @@ public class SaveCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": saves the current EduMate into memory.\n"
             + "Parameters:\n"
-            + "save FILENAME(as single string without spaces)"
+            + "save FILENAME (non-empty alphanumeric string)\n"
             + "Example:\n"
             + "save backup";
 
