@@ -8,7 +8,7 @@ title: DevOps guide
 * **[Continuous integration (CI)](#continuous-integration-ci)**
 * **[Code coverage](#code-coverage)**
 * **[Repository-wide checks](#repository-wide-checks)**
-* **[Making a release)](#making-a-release)**
+* **[Making a release](#making-a-release)**
 
 --------------------------------------------------------------------------------------------------------------------
 
