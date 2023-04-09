@@ -47,3 +47,4 @@ public class JsonAppointmentStorage implements AppointmentStorage {
         JsonUtil.serializeToFile(filePath, new JsonSerializableAppointmentManager(manager));
     }
 }
+
