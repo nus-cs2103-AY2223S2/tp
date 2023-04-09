@@ -34,25 +34,35 @@ Check out the code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp
 #### User and Developer Guide
 
 - Add Command documentation
+  - Update the UG "Command Manual" section, "Add" subsection to describe how the `add` command is to be used
+  - Updated the DG "Implementation" section, "Add module, lecture, and video feature" subsection to describe the implementation details of the `add` command
 - Edit Command documentation
+  - Update the UG "Command Manual" section, "Edit" subsection to describe how the `edit` command is to be used
+  - Updated the DG "Implementation" section, "Edit module, lecture, and video feature" subsection to describe the implementation details of the `edit` command
 - UG Design section
+  - Update "Design" section, "Architecture" subsection class diagram and information
+  - Update "Design" section, "Model" subsection class diagram
+  - Update "Design" section, "Storage" subsection class diagram and information
 - UG Command Syntax
+  - Create a "Command Syntax" section which is adapted from AB3's UG's command format notes
 - UG Argument Formats
-- UG Command Summary
+  - Create an "Argument Formats" section that documents the required format of each argument's values
 - Standardise UG Format
+  - Define the convention that all members are to follow for the "Command Manual" section of the UG
 
 #### Team-Based Tasks
 
 - Created GitHub Organisation
 - Created Team Repository
 - Created v1.1 Milestone and Issues
-- Bug Reported: #TODO: List out some bug reports
+- Define Agendas before each weekly meeting
+- Bugs Reported: [link](https://github.com/AY2223S2-CS2103-F10-2/tp/issues?q=is%3Aissue+author%3Ahingen+label%3Atype.Bug+)
 
 #### Review/Mentoring
 
-- PRs reviewed:
+- PRs reviewed: [#109](https://github.com/AY2223S2-CS2103-F10-2/tp/pull/109), [#370](https://github.com/AY2223S2-CS2103-F10-2/tp/pull/370)
 
 #### Misc
 
-- Forum Contributions:
-- Bugs Reported:
+- Forum Contributions: [link](https://github.com/nus-cs2103-AY2223S2/forum/issues?q=is%3Aissue+commenter%3Ahingen+)
+- Assisted team CS2103-W16-3, via email and [GitHub](https://github.com/nus-cs2103-AY2223S2/forum/issues/337), in resolving a Linux specific UI bug
