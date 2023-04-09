@@ -37,11 +37,6 @@ public class Homework extends Assignment {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public boolean isDue() {
-        return LocalDate.now().isAfter(super.deadline);
-    }
-
-
     @Override
     public String toString() {
         return super.assignmentName;

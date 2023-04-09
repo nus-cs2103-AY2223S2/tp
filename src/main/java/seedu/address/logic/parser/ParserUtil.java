@@ -273,8 +273,7 @@ public class ParserUtil {
             }
         }
         String trimmedWeightage = weightage.trim();
-        //check if weightage is less than 100
-        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$")
+        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$") //check if weightage is less than 100
                 && !trimmedWeightage.equals("Insert student weightage here!")) {
             throw new ParseException("Weightage(%) cannot be more than 100 and must contain numbers only");
         }
@@ -307,7 +306,6 @@ public class ParserUtil {
             } else {
                 throw new ParseException("Date must be in the format dd/mm/yyyy");
             }
-
         }
     }
 
@@ -325,8 +323,7 @@ public class ParserUtil {
             throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
         }
         String trimmedScore = score.trim();
-        //check if score is less than 100
-        if (!trimmedScore.matches("^([0-9]|[1-9][0-9]|100)$")
+        if (!trimmedScore.matches("^([0-9]|[1-9][0-9]|100)$") //check if score is less than 100
                 && !trimmedScore.equals("Insert student score here!")) {
             throw new ParseException("Score cannot be more than 100 and must contain numbers only");
         }
@@ -334,15 +331,13 @@ public class ParserUtil {
         if (deadline != "Insert student deadline here!") {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
                 localDate = LocalDate.parse(deadline, formatter);
             } catch (DateTimeParseException e) {
                 throw new ParseException("Date must be in the format dd/mm/yyyy");
             }
         }
         String trimmedWeightage = weightage.trim();
-        //check if weightage is less than 100
-        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$")
+        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$") //check if weightage is less than 100
                 && !trimmedWeightage.equals("Insert student weightage here!")) {
             throw new ParseException("Weightage(%) cannot be more than 100 and must contain numbers only");
         }

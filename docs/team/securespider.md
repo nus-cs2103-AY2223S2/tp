@@ -1,8 +1,9 @@
 ---
 layout: page
-title: [Vincent Pang's Project Portfolio Page](https://github.com/securespider)
+title: Vincent Pang's Project Portfolio Page
 ---
 
+[github](https://github.com/securespider)
 ### Project: PowerConnect
 
 PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. While it has limited features at this stage, plans for future PowerConnect releases to update features and usage capabilites have been made with detailed timeline.
@@ -51,7 +52,9 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=securespider&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17) <br><br>
 
 * **Project management**:
-  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub <br><br>
+  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub 
+  * Helped in creation of project board and milestones for the project 
+  * Managed issue tracking and assigning of issues to team members <br><br>
 
 * **Enhancements to existing features**:
   * Create templates for the grade command in [\#51](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/51)

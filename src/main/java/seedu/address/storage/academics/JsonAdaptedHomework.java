@@ -49,15 +49,6 @@ public class JsonAdaptedHomework extends JsonAdaptedAssignment {
         this.isDone = source.getIsDone();
     }
 
-
-    /**
-     * Returns the score of the assignment.
-     * @return score of the assignment.
-     */
-    public boolean getIsDone() {
-        return this.isDone;
-    }
-
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Assignment} object.
      *

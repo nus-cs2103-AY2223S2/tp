@@ -20,8 +20,6 @@ import seedu.address.model.person.ReadOnlyPcClass;
  */
 @JsonRootName(value = "addressbook")
 public class JsonSerializablePcClass {
-    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
-
     private final List<JsonAdaptedClass> jsonAdaptedClasses = new ArrayList<>();
 
     /**

@@ -233,67 +233,93 @@ public class StudentEditCommand extends StudentCommand {
      */
     public Student setParent(Student student, Model model, Student oldStudent)
             throws ParseException {
-
-        ObservableList<Parent> parents = model.getFilteredParentList();
         if (student.getParentNumber() == oldStudent.getParentNumber()) { // Parent phone number did not change
-            if (student.getParentName() != oldStudent.getParentName()) { // Parent changed his/her name
-                for (Parent p : parents) {
-                    if ((p.getPhone().equals(oldStudent.getParentNumber())) && (p.getName().equals(
-                            oldStudent.getParentName()))) {
-                        Parent newParent = new Parent(student.getParentName(), p.getAge(), p.getImage(), p.getEmail(),
-                                p.getPhone(), p.getAddress(), p.getTags());
-                        newParent = editParent(p, newParent, model);
-                        model.setParent(p, newParent);
-                        student.setParent(newParent);
-                        return student;
-                    }
-                }
-            }
-            Phone parentNumber = student.getParentNumber();
-            Name parentName = student.getParentName();
-            for (Parent p : parents) { // Parent did not change any particulars
-                if ((p.getPhone().equals(parentNumber)) && (p.getName().equals(parentName))) {
-                    student.setParent(p);
-                    Parent newParent = p;
-                    newParent.addStudent(student); //bind student to parent
-                    newParent.removeStudent(oldStudent);
-                    model.setParent(p, newParent); //update parent in parents
-                    return student;
-                }
-            }
+            return updateParent(student, model, oldStudent);
         } else { // Parent phone number changed (NEW PARENT)
+            return changeParent(student, model, oldStudent);
+        }
+    }
+
+    /**
+     * Helper method for setParent() that updates the Parent/NOK info instead of changing Parent/NOK.
+     *
+     * @param student    Student with edited particulars.
+     * @param model      {@code Model} which the command should operate on.
+     * @param oldStudent Student with original particulars before being edited.
+     * @return Edited Student that is bound to its Parent / NOK.
+     */
+    public Student updateParent(Student student, Model model, Student oldStudent) {
+        ObservableList<Parent> parents = model.getFilteredParentList();
+        if (student.getParentName() != oldStudent.getParentName()) { // Parent changed his/her name
             for (Parent p : parents) {
                 if ((p.getPhone().equals(oldStudent.getParentNumber())) && (p.getName().equals(
                         oldStudent.getParentName()))) {
-                    if (p.getStudents().size() == 1) { // Removes parent if this is the only student binded to him/her
-                        model.deleteParent(p);
-                    } else { // Remove student binding to original parent
-                        Parent originalParent = p;
-                        p.removeStudent(oldStudent);
-                        model.setParent(originalParent, p);
-                    }
-                    for (Parent np : parents) { // Locating new parent in existing parents
-                        if ((np.getPhone().equals(student.getParentNumber())) && (np.getName().equals(
-                                student.getParentName()))) {
-                            student.setParent(np);
-                            Parent newParent = np;
-                            np.addStudent(student);
-                            model.setParent(newParent, np);
-                            return student;
-                        }
-                    }
-                    Parent newParent = new Parent(student.getParentName(), new Age("Insert parent age here!"),
-                            new Image("Insert parent image here!"), new Email("Insert parent email here!"),
-                            student.getParentNumber(), new Address("Insert Address here!"), p.getTags());
-                    // Created new parent since it does not exist in existing parents
-                    newParent.addStudent(student);
+                    Parent newParent = new Parent(student.getParentName(), p.getAge(), p.getImage(), p.getEmail(),
+                            p.getPhone(), p.getAddress(), p.getTags());
+                    newParent = editParent(p, newParent, model);
+                    model.setParent(p, newParent);
                     student.setParent(newParent);
-                    model.addParent(newParent);
                     return student;
                 }
             }
         }
-        assert false : "The program should not ever reach this line!";
+        Phone parentNumber = student.getParentNumber();
+        Name parentName = student.getParentName();
+        for (Parent p : parents) { // Parent did not change any particulars
+            if ((p.getPhone().equals(parentNumber)) && (p.getName().equals(parentName))) {
+                student.setParent(p);
+                Parent newParent = p;
+                newParent.addStudent(student); //bind student to parent
+                newParent.removeStudent(oldStudent);
+                model.setParent(p, newParent); //update parent in parents
+                return student;
+            }
+        }
+        assert false : "The program should not reach this line!";
+        return student;
+    }
+
+    /**
+     * Helper method for setParent() that changes the Parent/NOK for the student.
+     *
+     * @param student    Student with edited particulars.
+     * @param model      {@code Model} which the command should operate on.
+     * @param oldStudent Student with original particulars before being edited.
+     * @return Edited Student that is bound to its Parent / NOK.
+     */
+    public Student changeParent(Student student, Model model, Student oldStudent) {
+        ObservableList<Parent> parents = model.getFilteredParentList();
+        for (Parent p : parents) {
+            if ((p.getPhone().equals(oldStudent.getParentNumber())) && (p.getName().equals(
+                    oldStudent.getParentName()))) {
+                if (p.getStudents().size() == 1) { // Removes parent if this is the only student binded to him/her
+                    model.deleteParent(p);
+                } else { // Remove student binding to original parent
+                    Parent originalParent = p;
+                    p.removeStudent(oldStudent);
+                    model.setParent(originalParent, p);
+                }
+                for (Parent np : parents) { // Locating new parent in existing parents
+                    if ((np.getPhone().equals(student.getParentNumber())) && (np.getName().equals(
+                            student.getParentName()))) {
+                        student.setParent(np);
+                        Parent newParent = np;
+                        np.addStudent(student);
+                        model.setParent(newParent, np);
+                        return student;
+                    }
+                }
+                Parent newParent = new Parent(student.getParentName(), new Age("Insert parent age here!"),
+                        new Image("Insert parent image here!"), new Email("Insert parent email here!"),
+                        student.getParentNumber(), new Address("Insert Address here!"), p.getTags());
+                // Created new parent since it does not exist in existing parents
+                newParent.addStudent(student);
+                student.setParent(newParent);
+                model.addParent(newParent);
+                return student;
+            }
+        }
+        assert false : "The program should not reach this line!";
         return student;
     }
 

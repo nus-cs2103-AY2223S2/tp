@@ -31,31 +31,35 @@ Given below are my contributions to the project.
   * Credits: *nil*
   <br><br>
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17) <br><br>
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=AY2223S2-CS2103T-T09-1&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=MrTwit99&zR=AY2223S2-CS2103T-T09-1%2Ftp%5Bmaster%5D&zACS=269.13953488372096&zS=2023-02-17&zFS=AY2223S2-CS2103T-T09-1&zU=2023-04-08&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false) <br><br>
 
 * **Project management**:
-  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub <br><br>
+  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub <br>
+  * Participated in the review of Bug Reports sent by testers in PE-D phase <br>
+  * Helped in resolving some of the issues from Bug Reports <br><br>
 
 * **Enhancements to existing features**:
-  * Improved implementation of Student Edit command (Pull request [\#150]())
+  * Improved implementation of Student Edit command (Pull request [\#150](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/150) [\#241](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/241))
   * Provided parser for Parent commands by creating ParentCommandParser during the creation of Parent Add Command
-  * Updated logging messages to PowerConnect's logging messages (Pull request [\#147]())
+  * Updated logging messages to PowerConnect's logging messages (Pull request [\#147](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/147))
   * Provided binding of Student and Parent/NOK internal feature for Student and Parent/NOK <br><br>
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `parent add` and `parent edit`
-    * Added documentation for `Prefix summary` [\#158]()
+    * Added documentation for `Prefix summary` [\#158](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/158)
     * Added hyperlinks to abbreviations
     * Added `Glossary`
     * Added jump links such as `Back To Table of Contents`
-    * Amended formatting of User Guide for PDF versions [\#141]() [\#142]() [\#153]() [\#154]()
-    * Amended errors in User Guide [\#129]() [\#155]() [\#158]() <br><br>
+    * Amended formatting of User Guide for PDF versions [\#141](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/141) [\#142](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/142) [\#153](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/153) [\#154](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/154)
+    * Amended errors in User Guide [\#129](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/129) [\#155](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/155) [\#158](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/158) <br><br>
   * Developer Guide:
     * Added implementation details for `parent add`,`parent edit` and `binding of student and parent/NOK` features.
     * Added UML diagrams for `parent add` and `parent edit` features.
     * Added Use Cases: UC07, UC08, UC09.
     * Added Table of Content section with working jump links.
+    * Added Planned Enhancements into Developer Guide.
+    * Amended Saving Data section in Developer Guide.
     * Amended formatting of Developer Guide for PDF versions
     * Transferred Glossary, Use Case and User Stories from Google Docs to Developer Guide. <br><br>
 

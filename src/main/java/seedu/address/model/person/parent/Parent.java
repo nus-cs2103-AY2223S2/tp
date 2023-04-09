@@ -18,7 +18,6 @@ import seedu.address.model.tag.Tag;
  * A Parent Class that creates a Parent / Next-of-kin who is also a Person
  */
 public class Parent extends Person {
-    public static final String MESSAGE_NUMBER_CONSTRAINTS = "Parent's phone should be a numeric value";
     public static final String VALIDATION_NUMBER_REGEX = "\\d{3,}";
     private final Age age;
     private final Image image;
