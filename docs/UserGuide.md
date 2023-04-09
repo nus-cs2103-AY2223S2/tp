@@ -211,7 +211,7 @@ Exits the program.
 
 > Format: `exit`
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
+<div markdown="span" class="alert alert-success">:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -292,7 +292,7 @@ Deletes the student(s) at the specified index(es) from the student list.
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, ...
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
+<div markdown="span" class="alert alert-success">:bulb: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
 none of the students will be deleted.
 </div>
 
@@ -362,7 +362,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>edit</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info"> :bulb: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
+<div markdown="block" class="alert alert-success"> :bulb: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
 edited student's details.
 </div>
 
@@ -505,7 +505,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>find</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
+<div markdown="block" class="alert alert-success">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
 </div>
 
 **Using the following input** `filter n/a m/CS2103T` :
@@ -519,7 +519,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>filter</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
+<div markdown="span" class="alert alert-success">:bulb: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
 are shown too.
 </div>
 
@@ -536,7 +536,7 @@ Did you make a mistake with a command? Don't worry, simply `undo` it!
 
 You can `undo` as many times as required, as long as any of your previous commmands were **undoable**. All **undoable** commands are given below!
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message
+<div markdown="span" class="alert alert-success">:bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message
 </div>
 
 > Format: `undo`
@@ -554,7 +554,7 @@ Example: `delete 1 4` followed by `undo`.
 
 Did you `undo` a command on accident? Fret not, you may use `redo` to reverse the changes done by `undo`!
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** You can only redo an `undo` command. Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
+<div markdown="span" class="alert alert-success">:bulb: **Note:** You can only redo an `undo` command. Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
 </div>
 
 >Format: `redo`
@@ -575,7 +575,7 @@ Need to clear all your entries? Simply use `clear` to help you delete all your e
 
 >Format: `clear`
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
+<div markdown="span" class="alert alert-success">:bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
 </div>
 
 ### Saving the data
