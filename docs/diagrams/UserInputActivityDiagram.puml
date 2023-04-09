@@ -12,7 +12,7 @@ start
 if () then ([is valid command] )
   :Argument passed to command\n parser for further parsing;
   if () then ([is valid arguments] )
-    :Command object is returned\n               & executed;
+    :Command object is returned\n  & executed;
   else ( [else])
     :Throws ParseException;
   endif
