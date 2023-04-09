@@ -153,8 +153,6 @@ The `Model` component,
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Mathutoring`, which `Student` references. This allows `Mathutoring` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-<img src="images/DG-images/BetterModelClassDiagram.png" width="450" />
-
 </div>
 
 #### Task model
