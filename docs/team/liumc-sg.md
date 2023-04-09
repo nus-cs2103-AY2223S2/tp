@@ -25,6 +25,8 @@ Given below are my contributions to the project.
     * Justification: There were a lot of repeated code for commands (such as `add`, `edit` and `delete`) for each model (such as `Supplier` and `Task`) and . Hence, this would reduce duplicate code for similar functionality just for different models.
   * Abstracted out common models (such as `Name` and `Deadline`). [\#138](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/138)
     * Justification: There are repeated use of similar classes with the same functionality. Hence, this reduces duplicate code.
+  * Add in missing test cases. [\#283](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/283)
+    * Justification: Improve test coverage 
 
 * **Contributions to the User Guide**:
   * Drafted initial documentation for `tab`, `delete_task`, `delete_supplier`, `find_task`, `find_supplier`, `edit_task`. [\#47](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/47)
