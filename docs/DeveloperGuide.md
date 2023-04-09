@@ -3,6 +3,12 @@ layout: page
 title: Developer Guide
 ---
 
+## **Overview**
+
+Vimification is a **desktop app for managing to-do and deadlines, optimized for use via a Command Line Interface** (CLI) **that uses vim-like command syntax** while still having the benefits of a Graphical User Interface (GUI).
+
+This Developer Guide will help you get familiar with the architecture of Vimification and understand the design choices and implementations of key features in Vimification, in case you are interested in contributing to this project. // TODO: Paraphrase
+
 ## **Table of Contents**
 
 - [Acknowledgements](#acknowledgements)
@@ -17,9 +23,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-<!-- - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well} -->
-
-<!-- Mentioned Jackson for serialization -->
+- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
+- Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
 
@@ -82,9 +88,26 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The `UI` consists of a `MainScreen` that is made up of parts e.g.`CommandInput`, `TaskDetailPanel`, `TaskListPanel`, `CommandInput` etc. All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+`UI` consists of a `MainScreen` that is made up of `TaskListPanel`,`TaskDetailPanel`,`CommandInput`,`CommandResultPanel`,`HelpManualPanel` and `WelcomePanel`.
 
-The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are first defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+
+`MainScreen` is the component that represents the `Window` and is divided into 3 main parts, as shown in the diagram below.
+
+1. `leftComponent`
+2. `rightComponent`
+3. `bottomComponent`
+
+`leftComponent` **always** and **only** loads the `TaskListPanel` upon initialization.
+
+`bottomComponent` loads the `CommandInput` when the user presses `:` key on their keyboard.
+After the user finishes typing their command in `CommandInput` and presses `Enter`, `bottomComponent` loads `CommandResultPanel` to show the command result at the bottom of the screen.
+
+`rightComponent` loads the `WelcomePanel` when Vimification first launches to show a breif guide to guide the user.
+`rightComponent` loads the `HelpManualPanel` when the user executes the `:help` command using `CommandInput`.
+`rightComponent` loads the `TaskDetailPanel` when the user presses `l` key on their keyboard when they hover over a `TaskCell`(a cell in `TaskListPanel` in `LeftComponent`).
+
+All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component,
 
@@ -781,15 +804,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a task
 
-1. Deleting a task while all tasks are being shown
+1. Deleting a task while all of the tasks are being shown and there are multiple tasks.
 
    1. Test case: `:d 1`<br>
       Expected: First task is deleted from the list.
 
-   1. Test case: `delete -1`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `d -1`<br>
+      Expected: No task is deleted. Error details shown at the bottom of the screen.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `:delete`, `:delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

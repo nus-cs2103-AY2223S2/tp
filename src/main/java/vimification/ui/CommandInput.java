@@ -1,7 +1,6 @@
 package vimification.ui;
 
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -68,9 +67,8 @@ public class CommandInput extends UiPart<HBox> {
     private String cleanCommandString(String commandString) {
         boolean isCommandHasColon = commandString.startsWith(":");
         if (!isCommandHasColon) {
-            System.out.println("[Your command] " + commandString + " is invalid");
+            return commandString;
         }
-
         String strippedCommandString = commandString.substring(1).strip();
         return strippedCommandString;
     }
@@ -83,8 +81,7 @@ public class CommandInput extends UiPart<HBox> {
     private void executeCommand(String input) {
 
         String commandString = cleanCommandString(input);
-        System.out.println("Your command is " + input);
-
+        // System.out.println("Your command is " + input);
         CommandResult result = logic.execute(commandString);
         mainScreen.loadCommandResultComponent(result);
         returnFocusToTaskListPanel();
@@ -107,19 +104,22 @@ public class CommandInput extends UiPart<HBox> {
 
     @FXML
     private void initialize() {
-        this.getRoot().setFocusTraversable(true); // Important
-        inputField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> arg0, Boolean wasFocused,
-                    Boolean isCommandInputFocused) {
-                // bottomComponent may be displaying CommandResult.
-                boolean isCommandInputLingering =
-                        mainScreen.bottomComponent.getChildren().contains(getRoot());
-                if (!isCommandInputFocused && isCommandInputLingering) {
-                    mainScreen.clearBottomComponent();
-                }
+        this.getRoot().setFocusTraversable(true);
+
+        // When CommandInput loses focus, clear CommandInput from mainScreen.bottomComponent and
+        // return the focus back to TaskListPanel
+        ChangeListener<Boolean> onLostFocusListener = (arg0, wasFocused, isCommandInputFocused) -> {
+            // bottomComponent may be displaying CommandResult, we do not want to clear
+            // CommandResult messages.
+            boolean isCommandInputLingering =
+                    mainScreen.getBottomComponent().getChildren().contains(this.getRoot());
+            if (!isCommandInputFocused && isCommandInputLingering) {
+                mainScreen.clearBottomComponent();
+                returnFocusToTaskListPanel();
             }
-        });
+        };
+
+        inputField.focusedProperty().addListener(onLostFocusListener);
     }
 
     private boolean isTextFieldEmpty() {
