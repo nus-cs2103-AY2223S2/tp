@@ -1044,7 +1044,7 @@ testers are expected to do more *exploratory* testing.
 
 Before each test scenario, ensure that your sprINT application is launched and opened on your device.
 
-1. Adding an application to sprINT
+1. Editing an application to sprINT while all applications are shown.
 
     1. Prerequisites: sprINT's main window is launched and opened.
 
@@ -1059,6 +1059,26 @@ Before each test scenario, ensure that your sprINT application is launched and o
         Expected: No application is added due to **Invalid Command Format**. The `Company Email` prefix and input is missing
    from the command. `Company Email` is a compulsory input parameter for the add application command.
 
+
+### Editing an application
+
+Before each test scenario, ensure that your sprINT application is launched and opened on your device.
+
+1. Editing an application while all applications are being shown
+
+    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+    2. Test case: `edit-app 1 c/NTU`<br>
+       Expected: First application is edited from the list. Details of the edited application shown in the status message. 
+
+    3. Test case: `edit-app 2 c/HelloCompany s/Rejected`<br>
+       Expected: Second application is edited from the list. Details of the edited application shown in the status message. Pie chart changes accordingly.
+   4. Test case: `edit-app 0 c/HelloCompany`<br>
+      Expected: No application is edited due to **Invalid Command Format**.`INDEX` parameter provided must be positive for edit-app commands. Error details shown in the status message.
+
+   5. Other incorrect delete commands to try: `edit-app`, `edit-app x`, `...` (where x is larger than the list size)<br>
+         Expected: Similar to the above test case for `delete-app 0`.
+   
 
 ### Finding an application
 
@@ -1255,6 +1275,30 @@ an existing task and the second application does not have an existing task.
 
    Expected: No task is deleted (invalid index). 
 
+
+### Undo
+
+Prerequisites for test cases: You must have made a command that is of type add/edit/delete app or tasks, or the clear command.
+
+1. Test case 1: `undo`
+
+   Expected: The previous command that you keyed in has been undone.
+
+2. Test case 2: `undo all`
+
+   Expected: The previous command that you keyed in has been undone. Note that this is because all inputs after undo is ignored.
+
+### Redo
+
+Prerequisites for test cases: You must have called undo as the previous command.
+
+1. Test case 1: `redo`
+
+   Expected: The previous command that you undo has been redone.
+
+2. Test case 2: `redo all`
+
+   Expected: The previous command that you undone has been redone. Note that this is because all inputs after the redo command is ignored.
 
 ### Exiting sprINT
 Before each test scenario, ensure that sprINT application is launched and opened on your device.
