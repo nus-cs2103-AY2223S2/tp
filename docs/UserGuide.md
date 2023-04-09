@@ -185,7 +185,7 @@ The email address and phone number must be in a valid format. E.g. `XXX@gmail.co
 
 Note:
 * each tag to be added needs a separate `tag/TAG` prefix.
-* Empty prefixes for optional fields will be ignored.
+* Empty prefixes for optional details will be ignored.
 
 Examples:
 * `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend tag/default`
@@ -208,7 +208,7 @@ Details that can be changed:
 Note:
 * Provided details will overwrite existing ones entirely. E.g. `ec <index> tag/Friend` will change the client displayed at `<index>` to only have the tag `Friend`.
 * Using an empty `tag/` prefix removes all tags of the client. This cannot be used with any non-empty `tag/` prefixes e.g. `edit-client 1 tag/ tag/friend` is not valid.
-* At least one field to edit must be provided.
+* At least one detail to edit must be provided.
 * If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only. 
 
 Examples:
@@ -321,17 +321,18 @@ Adds a project to the application with the supplied details. The details that ca
 
 Only the name of the project is compulsory.
 
-Deadlines can either be in natural language, such as `tomorrow` or in recognisable formats like `3pm 2023-03-03`.
+Deadline can either be in natural language, such as `tomorrow` or in recognisable formats like `3pm 2023-03-03`.
 
-Prices must be in a recognisable price format, such as `3.08` or `5`.
+Price must be a positive number given in 0 or 2 decimal places.
 
-Clients can be linked by entering individual keywords that are part of the clients name. For example, if you wish to link the project to the client with the name `Alice Wheeler`, you can input `alice` or `wheeler`. Further steps to link to a client can be found [here](#linking-a-project-to-a-client).
+Clients: Linking a project to a client means the project is for a certain client. You might do this if a specific client commissions a project. 
+The project can be linked to a client by specifying individual keywords that are part of the client's name in the command after the `client/` prefix. If any such details are mentioned, the app will enter link mode. Further steps can be found [here](#linking-a-project-to-a-client).
 
 Note:
 * Each tag to be added needs a separate `tag/TAG` prefix.
 * Client name keywords can be separated by either spaces or a prefix e.g. `client/alice client/wheeler` is the same as `client/alice wheeler`.
-* Invalid client name keywords will be ignored.
-* Empty prefixes for optional fields will be ignored.
+* Invalid client name keywords will be ignored. E.g. `client/alice client/!!! Client/` is treated the same as `client/Alice`.
+* Empty prefixes for optional details will be ignored.
 
 Examples:
 * `add-project name/Background Commission deadline/2023-05-05 price/500 tag/painting client/alice client/wheeler` Adds a project with the name Background Commision, a deadline of 5th May 2023, a price of $500, is tagged painting; and links this project to a client whose name contains any of the keywords `alice` or `wheeler`.
@@ -343,7 +344,7 @@ Examples:
 
 Short form: `ep <index> [n/NAME] [d/DEADLINE] [p/PRICE] [c/CLIENT]`
 
-Edits the project at the given index of the client list, changing only the given field(s). Any fields that are mentioned but left empty will be deleted (apart from the name).
+Edits the project at the given index of the **currently visible** client list, changing only the given details. Any prefixes that are provided but left empty will delete the corresponding detail of the project (apart from the name).
 
 Fields that can be changed:
 * Name
@@ -357,7 +358,9 @@ Note:
 * Using an empty `client/` prefix removes the linked client of the project. This cannot be used with any non-empty `client/` prefixes e.g. `edit-project 1 client/ client/alice` is not valid.
 * Client name keywords can be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid client name keywords will be ignored.
-* At least one field to edit must be provided.
+* At least one detail to edit must be provided.
+* If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
+* A project list must be shown for this command to be executed successfully.
 
 The steps to link to a client can be found [here](#linking-a-project-to-a-client).
 
@@ -371,11 +374,12 @@ Example:
 
 Short form: `dp <index>`
 
-Deletes the project at the specified index of the project list.
+Deletes the project at the specified index of the **currently visible** project list.
 
 Notes:
 * The index refers to the index number shown in the displayed project list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
 
 Example:
 *  `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
@@ -385,11 +389,12 @@ Example:
 
 Short form: `mp <index>`
 
-Marks the project at the specified index as done.
+Marks the project at the specified index of the **currently visible** project list as done.
 
 Notes:
 * The index refers to the index number shown in the displayed list of projects.
 * The index **must be a positive integer** 1, 2, 3, …​
+* If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
 
 Examples:
 * `list-project` followed by `mark 2` marks the 2nd project in the list of projects as done.
@@ -399,14 +404,15 @@ Examples:
 
 Short form: `up <index>`
 
-"Un-marks" the project at the specified index, indicating that it is not done.
+"Un-marks" the project at the specified index of the **currently visible** project list, indicating that it is not done.
 
 Notes:
 * The index refers to the index number shown in the displayed list of projects.
 * The index **must be a positive integer** 1, 2, 3, …​
+* If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
 
 Examples:
-* `list-project` followed by `unmark 2` indcates that the 2nd project in the list of projects is not done.
+* `list-project` followed by `unmark 2` indicates that the 2nd project in the list of projects is not done.
 
 ### Clearing the project list
 #### Format: `clear-project`
@@ -414,6 +420,9 @@ Examples:
 Short form: `cp`
 
 Deletes all projects in the project list.
+
+Note:
+* A project list needs to be shown for this command to be executed successfully.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command cannot be undone. All deleted projects cannot be restored.
@@ -429,8 +438,9 @@ Finds a project based on details provided. Details that can be supplied are the 
 Note:
 * The matching with supplied names and tags are case-insensitive.
 * Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
-* Invalid project names, tags and linked client names will be ignored
+* Invalid project names, tags and linked client names will be ignored. E.g. `name/alice name/!!! Name/` is treated the same as `name/Alice`.
 * Status must be specified as either `not done`/`nd` or `done`/`d`. Overdue projects are included in "not done".
+* At least one valid parameter must be provided.
 
 <div markdown="block" class="alert alert-info">
 
@@ -439,14 +449,16 @@ Note:
 </div>
 
 Examples:
-* `find-project name/sculpture client/alice tag/personal start/yesterday end/tomorrow price/500 status/done` will find any project whose name contains `sculpture`, is linked to a client whose name contains `alice`, is tagged `personal`, has a price of $500, is done and has a deadline that falls between yesterday and tomorrow.
+* `find-project name/sculpture client/alice` will find any project whose name contains `sculpture` and is linked to a client whose name contains `alice`.
+* `find-project tag/personal start/yesterday end/tomorrow` will find any project that is tagged `personal`, has a price of $500, and has a deadline that falls between yesterday and tomorrow.
+* `find-project status/not done` will find any project that is not done, including overdue ones.
 
 ### Sorting all projects
 #### Format: `sort-project <option/Option>`
 
 Short form: `sp <o/OPTION>`
 
-Sorts all projects that exist in the ArB. Projects can be sorted via the given options in ascending order:
+Sorts all **currently visible** projects in ascending order by the specified option. The below options are accepted:
 * Name
 * Deadline
 * Price
@@ -454,17 +466,20 @@ Sorts all projects that exist in the ArB. Projects can be sorted via the given o
 Note:
 * Option matching is case-insensitive
 
-Examples:
-* `sort-project option/name`
-* `sort-project option/n`
-* `sort-project option/deadline`
-* `sort-project option/d`
-* `sort-project option/price`
-* `sort-project option/pr`
+Example:
+
+Original List:
+![Original List](images/SortProject1.png)
+
+Run `find-project name/exercise`
+![Filtered List](images/SortProject2.png)
+
+Run `sort-project option/name`
+![Sorted List](images/SortProject3.png)
 
 ### Linking a Project to a Client
 
-This is only applicable if ArB has entered link mode, as instructed in the commands for [adding a project](#adding-a-project-add-project) or [editing a project](#editing-a-project--edit-project).
+This is only applicable if ArB has entered link mode, as instructed in the commands for [adding a project](#adding-a-project) or [editing a project](#editing-a-project).
 
 ArB will display a list of clients that match the
 keywords you provided in your command.<br>
