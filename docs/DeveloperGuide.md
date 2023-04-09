@@ -74,10 +74,10 @@ the command `delete_student 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="654" />
 
-Each of the four main components (also shown in the diagram above),
+Each of the four main components (also shown in the diagram above):
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
+* implements its functionality using a concrete `{Component Name}Manager` class, which follows the corresponding
   API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
@@ -128,7 +128,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
@@ -179,10 +179,25 @@ API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/maste
 The `Storage` component,
 
 * can save both student data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
-  the functionality of only one is needed).
+* inherits from both `JsonTaaStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the
+  functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
+
+### Common classes
+
+Classes used by multiple components are in the `taa.commons` package.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+## Data archiving
+
+TAA application data only contains a list of students and a list of assignments. It is automatically stored in JSON
+format at each successful command execution. It is handled by `JsonTaaStorage`.
 
 Reading data from JSON:
 
@@ -199,19 +214,10 @@ Saving data to JSON:
         * JsonUtil.saveJsonFile()
         * JsonSerializableTaaData.new()
 
-### Common classes
-
-Classes used by multiple components are in the `taa.commons` package.
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
-### Data archiving
-
-_{TODO Explain here how the data archiving feature will be implemented}_
+The TAA application data only contains a list of students and a list of assignments. The data conversion is implemented
+by
+`JsonSerializableTaaData` which supports [Jackson](https://github.com/FasterXML/jackson) data conversion between Java
+objects and JSON objects.
 
 ## **Add Assignment**
 
@@ -504,7 +510,7 @@ Below is the main success scenario of adding an Assignment.
 
 **Extensions**
 
-* 1a. There are no assignments with that particular name, .
+* 1a. There are no assignments with that particular name.
 
   Use case resumes from step 2.
 
@@ -531,7 +537,7 @@ Below is the main success scenario of deleting an Assignment
 
 **Extensions**
 
-* 1a. There is an assignment with that particular name, .
+* 1a. There is an assignment with that particular name.
 
     * Use case resumes from step 2.
 
@@ -665,7 +671,7 @@ Below is the main success scenarios of adding, deleting and listing alarms.
 
 Below is the sequence diagram for adding an alarm.
 
-<img src="images/AddAlarmSequeceDiagram.PNG" />
+<img src="images/AddAlarmSequenceDiagram.PNG" />
 
 **delete alarm**
 
@@ -762,16 +768,37 @@ testers are expected to do more *exploratory* testing.
 
 Our CSV files follow the following format:
 
-1. All CSV files are header-less. Student data has exactly 2 columns: name, tags.
-2. If a student has no tags, a comma representing the tags column is still required
-   because [if a column is defined as optional, it means that the column is required to exist, but the value can be blank.](https://www.ibm.com/docs/en/atlas-policy-suite/6.0.3?topic=files-rules-creating-populating-csv)
+1. All our CSV files are header-less.
+2. The student data must have exactly 5 columns separated by colons in order:
 
-Acceptable CSV format example:
+* Name: Non-blank alphanumeric words. Two students cannot have the same name.
+* (Optional) Attendance: Exactly 12 numbers separated by semicolons. Each number is either 0 (absent) or 1 (attended).
+    * If unspecified, the default value is all absent.
+* (Optional) Participation point: exactly 12 numbers separated by semicolons. Each number is either -1 (unmarked) or an
+  integer between 0-700 (inclusive).
+    * If unspecified, the default value is all unmarked.
+* (Optional) Submission: submission entries separated by semicolons.
+    * Each submission entry has exactly 4 fields separated by colons in order:
+        * Assignment name: must exist in the assignment list upon import. No student can have multiple submissions of
+          same assignment name.
+        * Graded: either 0 (ungraded) or 1 (graded).
+        * Late: either 0 (on time) or 1 (late).
+        * Mark: integer between 0 and the total marks of the assignment.
+    * If a student made no submission to an assignment, TAA creates a submission record that is ungraded, on time, and
+      marked 0 for this assignment for this student.
+* (Optional) Class: Non-blank alphanumeric words separated by semicolons.
+
+2. Optional fields still requires a colon to be represented in the CSV file
+   because ["if a column is defined as optional, it means that the column is required to exist, but the value can be blank."](https://www.ibm.com/docs/en/atlas-policy-suite/6.0.3?topic=files-rules-creating-populating-csv)
+
+Acceptable CSV format example: (suppose assignment x, y, and z is already added to the assignment list)
 
 ```
-Technoblade, Minecrafter Pig Anarchist
-Meggy Spletzer,Inkling
-John von Neumann,
+Technoblade,1;0;0;1;1;1;0;1;0;0;0;0,-1;0;-1;2;-1;-1;-1;-1;200;-1;-1;-1,"x,0,0,1;y,0,0,2;z,0,0,3;",Tut1;Tut2;
+ Dream Was Taken,    1  ;0;0 ; 1;1;1; 0;1  ;0;0;0;0,-1;0; -1;2;-1;-1;-1  ;-1;200;-1;-1;-1,"  x ,0, 0,2;y,0 ,0,100 ; z,0  ,  0,0 ;  ", Tut2   ;Tut3;
+Tommy In It,,-1;0;-1;2;-1;-1;-1;-1;2;-1;-1;-1,"x,0,0,15;z,0,0,0;",Lab
+Wilbur Soot,1;0;0;1;1;1;0;1;0;0;0;0, ,"y,0,0,0", ;Tut2;
+Philza Minercaft,,,,
 ```
 
 1. Dealing with file access denial:
@@ -841,7 +868,7 @@ undo this operation.".
 
 ### 2. Enhance input validation for the student name field
 
-Currently, students with the same name, but with different capitalisations and whitespace positions are treated as
+Currently, students with the same name, but with different capitalizations and whitespace positions are treated as
 different entities by TAA. However, in the real world, this is unlikely the case. Such entities are likely to represent
 the same student, which can lead to confusion when users accidentally create multiple student entities for the same
 student as a result of a typo.
