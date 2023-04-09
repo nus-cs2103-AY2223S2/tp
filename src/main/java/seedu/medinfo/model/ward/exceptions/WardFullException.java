@@ -1,7 +1,14 @@
 package seedu.medinfo.model.ward.exceptions;
 
-public class WardFullException extends RuntimeException{
+/**
+ * Signals that the ward is full.
+ */
+public class WardFullException extends RuntimeException {
     private String name;
+
+    /**
+     * Constructs a new {@code WardFullException} with the specified ward name {@code name}.
+     */
     public WardFullException(String name) {
         super(name + " is full!");
         this.name = name;

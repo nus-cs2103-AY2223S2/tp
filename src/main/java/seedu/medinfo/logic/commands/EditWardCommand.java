@@ -1,8 +1,8 @@
 package seedu.medinfo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.medinfo.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -35,7 +35,8 @@ public class EditWardCommand extends Command {
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Ward: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_WARD = "This ward already exists in MedInfo.";
-    public static final String MESSAGE_EDITED_WARD_INSUFFICIENT_CAPACITY = "The given capacity is insufficient for this ward.";
+    public static final String MESSAGE_EDITED_WARD_INSUFFICIENT_CAPACITY = "The given capacity is insufficient"
+            + " for this ward.";
     public static final String MESSAGE_WAITING_ROOM_NAME_EDIT = "Waiting Room name cannot be edited.";
     private final Index index;
     private final EditWardDescriptor editWardDescriptor;

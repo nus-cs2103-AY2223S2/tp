@@ -6,7 +6,7 @@ title: User Guide
 ## Introduction
 Welcome to the MedInfo User Guide!
 
-MedInfo is a desktop application for **private hospital administrative staff** to 
+MedInfo is a desktop application for **private hospital administrative staff** to
 help manage patients and wards.
 
 This User Guide will guide you through installing the app, getting familiarised with its features and using it.
@@ -19,13 +19,13 @@ on [how to use our User Guide](#how-to-use-the-user-guide)
 
 ---
 ## About MedInfo
-MedInfo is a simple application that will help you manage your patients' **statuses, wards, 
+MedInfo is a simple application that will help you manage your patients' **statuses, wards,
 discharge dates**, and ward **occupancies**. <br>
 <br>
 Considering the time-critical nature of hospital services, patient and ward management are
 of utmost priority, where the smallest delays or lapses in updating information can affect
 how your hospital attends to your patients. **MedInfo** was designed with this in mind.
-It has simplified and optimized patient and ward management, allowing you to in-process, update, and move patients 
+It has simplified and optimized patient and ward management, allowing you to in-process, update, and move patients
 around while still being able to view overall stats of the hospital at a glance.<br>
 <br>
 [Back to Table of Contents](#table-of-contents)
@@ -41,7 +41,7 @@ For the best possible experience, we recommend that you use MedInfo on one of th
 - macOS
 - Linux
 
-To run MedInfo, you will need to have Java 11 or above installed on your system. If you don't, you can find the 
+To run MedInfo, you will need to have Java 11 or above installed on your system. If you don't, you can find the
 appropriate version for your system [here](https://www.oracle.com/java/technologies/downloads/).
 
 ### Quick Start
@@ -50,13 +50,13 @@ appropriate version for your system [here](https://www.oracle.com/java/technolog
 2. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
 
 3. Run the application by
-   2. Double-clicking the `.jar` file or 
+   2. Double-clicking the `.jar` file or
    3. Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar`
 command to run the application.<br>
 4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
 
-5. Type the command in the command input box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing 
+5. Type the command in the command input box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing
 <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
@@ -92,12 +92,12 @@ The main GUI has 7 sections as highlighted above.
 ## How to use the User Guide
 
 ### Navigation
-This Guide contains detailed explanations on the **commmands** available and what they do. If you wish to navigate to 
+This Guide contains detailed explanations on the **commmands** available and what they do. If you wish to navigate to
 any section within this Guide, the [**Table of Contents**](#table-of-contents) above provides a quick way to do so.
-Each section in the User Guide comes with a [Back to Table of Contents](#table-of-contents) link in the footer to 
+Each section in the User Guide comes with a [Back to Table of Contents](#table-of-contents) link in the footer to
 take you back to the Table of Contents.
 
-If you know what you're looking for, press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search anywhere within this Guide 
+If you know what you're looking for, press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search anywhere within this Guide
 for a keyword.
 
 ### Symbols used
@@ -115,7 +115,7 @@ The section below describes the commands available in MedInfo. The commands fall
 - [Ward Features](#ward-features)
 - [Utility Features](#utility-features)
 
-Our commands follow a certain format for ease of use. If you are new to MedInfo, do take some time to familiarise 
+Our commands follow a certain format for ease of use. If you are new to MedInfo, do take some time to familiarise
 yourself with the command format from the notes below.
 
 <div markdown="block" class="alert alert-info">
@@ -366,7 +366,7 @@ MedInfo data are saved in the hard disk automatically after any command that cha
 MedInfo data are saved as a JSON file `[JAR file location]/data/medinfo.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Edit the data file at your own risk! Any changes that make the data invalid will lead to MedInfo clearing 
+Edit the data file at your own risk! Any changes that make the data invalid will lead to MedInfo clearing
 all data and starting anew.
 </div>
 
@@ -383,13 +383,13 @@ all data and starting anew.
 
 **Q**: Why can't I remove the waiting room?<br>
 
-**A**: As every hospital would have some pre-screening room for patients to wait in, and to make it easier 
+**A**: As every hospital would have some pre-screening room for patients to wait in, and to make it easier
 to start entering patients into the system, the waiting room is made un-deletable.<br>
 <br>
 
 **Q**: How do I transfer my data to another device/computer?<br>
 
-**A**: Install the app in the other device/ computer and overwrite the empty data file it creates with 
+**A**: Install the app in the other device/ computer and overwrite the empty data file it creates with
 the file that contains the data of your previous MedInfo home folder.<br>
 <br>
 

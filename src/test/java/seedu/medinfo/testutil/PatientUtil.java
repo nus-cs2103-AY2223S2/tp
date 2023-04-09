@@ -1,10 +1,8 @@
 package seedu.medinfo.testutil;
 
-import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_DISCHARGE;
 import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_WARD;
 
 import seedu.medinfo.logic.commands.AddCommand;
 import seedu.medinfo.logic.commands.EditCommand;
