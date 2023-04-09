@@ -233,7 +233,7 @@ Scenario: Mary Smith is a patient (already registered in the system) who has jus
 
 Step 1. The healthcare administrative staff wishes to verify that Mary has an appointment scheduled at this time. The staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X`. As seen from Mary's appointment list, an appointment is indeed scheduled for today, and the staff proceeds to register her visit.
 
-The sequence diagram below shows how the AppointmentCommand works:
+The sequence diagram below shows how the DisplayCommand works:
 {add a sequence diagram}
 
 * When the user inputs `display ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the person's `Nric` through `ParserUtil`
@@ -260,7 +260,7 @@ Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` w
 {add a object diagram}
 
 The sequence diagram below shows how the AppointmentCommand works:
-{add a sequence diagram}
+![AppointmentSequenceDiagram](images/AppointmentSequenceDiagram.png)
 
 * When the user inputs `appointment ic/[NRIC] d/[DATE] dric/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the patient's `Nric`, `Booking`, and doctor's `Nric` inputs through `ParserUtil`
   * Any invalid inputs will throw a `ParseException`
