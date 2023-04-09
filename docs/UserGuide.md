@@ -431,10 +431,6 @@ MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 
 span
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ---
 
 ## FAQ
