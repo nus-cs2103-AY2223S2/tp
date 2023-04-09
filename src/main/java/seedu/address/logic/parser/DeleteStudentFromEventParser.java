@@ -16,7 +16,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * and creates a new DeleteStudentFromEventCommand object.
  */
 public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEventCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteStudentFromEventCommand
      * and returns a DeleteStudentFromEventCommand object for execution.
