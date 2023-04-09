@@ -147,23 +147,19 @@ Format: `undo`
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 </div>
 
-![Undo](images/command_result/Undo.png)
-
-Above is the execution result of the input `undo` (the list has been cleared).
+For example, after deleting a patient, `undo` will make the patient appear in the records again.
 
 ### Redoing previous undo: `redo`
 
 Reverts the patient records to the state before the previous undo was executed.
 
 <div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
-has run.
+has been executed.
 </div>
 
 Format: `redo`
 
-![Redo](images/command_result/Redo.png)
-
-Above is the execution result of the input `redo` (the list is cleared again).
+Following the above example for `undo`, `redo` would subsequently delete the patient again.
 
 ### Adding a patient record: `add`
 
