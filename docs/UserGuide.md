@@ -275,7 +275,7 @@ only those that match any of your specified keywords straight away!
 
 Format:
 `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`
-:bulb: Tip: Supported properties: `name`, `tag`, `ingredient`
+:bulb: Tip: Supported properties: `name`, `tag` and `ingredient`
 
 i.e. `find name KEYWORD [ADDITIONAL KEYWORDS]...`, `find tag KEYWORD [ADDITIONAL KEYWORDS]...`, `find ingredient KEYWORD [ADDITIONAL KEYWORDS]...`
 
@@ -300,7 +300,7 @@ Example(s) of usage:
 
 * The order of the keywords does not matter. e.g. `ham sandwich` will match a recipe named `sandwich ham`
 
-* Only full words will be matched. e.g. `chick` will **not** match `chicken`
+* Only complete words will be matched. e.g. `chick` will **not** match `chicken`
 
 </div>
 
@@ -317,7 +317,7 @@ Example(s) of usage:
 
 <div markdown="block" class="alert alert-info">
 
-* Deletes the dish at the specified `INDEX` of the latest list that was displayed.
+* Deletes the dish at the specified `INDEX` of the current list that is displayed.
 
 * The index **must be a positive integer** 1, 2, 3, …
 
@@ -345,7 +345,7 @@ Example(s) of usage:
 
 <div markdown="block" class="alert alert-info">
 
-* `sub` searches across your stored recipes and within a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
+* `sub` searches across your stored recipes and a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
 
 * :bulb: Tip: Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
 
