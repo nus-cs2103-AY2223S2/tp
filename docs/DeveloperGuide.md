@@ -624,6 +624,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **SuperField**: A field that can store multiple values.
+* **Field**: A field for a contact.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -817,6 +819,49 @@ testers are expected to do more *exploratory* testing.
 2. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
+
+To give evaluators an estimate on the effort put into NeoBook, our team has put together a list of difficulties and challenges faced, effort required, and achievements that should be taken into account when evaluating NeoBook, especially when compared to AB3.
+
+For starters, below are the commands that we have added:
+1) `Light`/`Dark` Command
+2) `Favorite`/`Unfavorite` Command
+3) `Select` Command
+4) `EditUser` Command
+5) `Tab` Command
+6) `AddEvent` Command
+7) `EditEvent` Command
+8) `DeleteEvent` Command
+9) `TagEvent` Command
+
+All 8 commands have their own respectively complexities, of note are commands 4-8, which allow you to interact with an entirely new section of NeoBook added in, known as Events. We estimate that the effort required to add just commands 4-8 alone were equivalent to the effort required to design the initial commands for AB3 (i.e. add, find, delete, e.t.c.). The tag event command especially is extremely complex. It dynamically links a Person object to an Event such that any changes to the Person would also update the Person in the Event.
+
+Moving on, below are the commands that we enhanced with their enhancements abbreviated
+1) `Add` Command
+   1) Added compatibility with the new fields of our contacts
+2) `Edit` Command
+   1) Added compatibility with the new fields of our contacts
+   2) Changed behavior to deal with SuperFields (also known as FieldGroups in the User Guide)
+3) `Find` Command
+   1) Added ability to search based on multiple fields
+4) `Help` Command
+   1) Added a more comprehensive list of commands for users to refer to.
+
+All commands above had their behavior either enhanced or changed to suit the new behavior of NeoBook.
+
+Up next, we would like to speak about the Events system in NeoBook. There were many challenges dealing with Events. One such problem was the decision of the GUI. Initially, we used a much more visually appealing version with CalendarFX, a JavaFX library for calendars. However, after realizing how buggy it was, we moved to a more traditional events list rather than a calendar. The implementation of Events, as mentioned above, was in terms of effort, almost at the same level of the entire AB3 on its own. This is because we had to implement our own persistent storage for events, build a new GUI window for it and also create commands for them. 
+
+Next, we would like to speak about the changes we made to the addressbook in NeoBook. To put it simply, we researched and added in new fields that NUS students would love to have in their addressbook. Fields that were added are:
+- Gender
+- Race
+- Major
+- Faculty
+- And much more!
+
+Along with these new fields, we had to change all our contact-related commands (such as AddCommand and EditCommand) to account for these new fields. Moreover, we abstracted common logic between all these fields into a more generic `Fields` class for use of polymorphism. There is another class of fields that instead holds multiple values, known as `SuperField` (renamed to `FieldGroup` in UG for non-technical readers). These `SuperFields` have different behavior in that they store multiple values, so commands such as the `Edit` and `Add` commands will interact differently for these fields.
+
+We also created our own persistent storage for the Events and the User systems. The events are currently stored in the User object, but we believe we have made it trivial to expand the functionality such that events can also be stored for Contacts in the NeoBook.
+
+We believe that every decision we made was also to improve the maintainability of this project by following good software engineering principles so that this project can be easily built upon.
 
 
 ## **Appendix: Planned enhancements**
