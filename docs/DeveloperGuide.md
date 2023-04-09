@@ -657,6 +657,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Challenges faced
 
+We faced several challenges when we were working on this application, the following are some examples and not limited to:
+
+* As lacking experience in working with pre-existing codebase, and AB3 is a relatively large project that we did not encounter before,
+we had to take time to learn from scratch that how the AB3 works, such as how does user input handled by AB3.
+* Since we are relatively new to JavaFx, we had to spend a lot of time looking at the JavaFx library and learning how to use some
+specific structures when designing the GUI.
+* We also had to spend time searching CSS format in order to make the GUI meet our requirements.
+* Thinking how to design the structure of our application based on existing AB3 structure to make it follow Object-oriented programming.
+
 ### Effort required
 
 ### Achievements
