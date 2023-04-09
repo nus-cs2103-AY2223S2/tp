@@ -553,6 +553,31 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Effort**
+
+### Difficulty level
+
+Our project was more complex than AB3 due to enhanced input validation:
+* Postal codes had to begin with a valid two-digit postal sector
+* Both age and date ranges had to be valid
+* Multiple date formats could be accepted
+
+{To be added}
+
+### Challenges faced
+
+{To be added}
+
+### Effort required
+
+{To be added}
+
+### Achievements
+
+{To be added}
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Planned Enhancements**
 
 ### Standardising terminology
