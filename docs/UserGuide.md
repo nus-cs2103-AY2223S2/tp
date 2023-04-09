@@ -96,7 +96,7 @@ Let's get you _rizzed_ up in the fastest way possible!
 * The first word is the type of command you are running.<br>
   i.e. for the input `delete 5`, we are running the `delete` command.
 
-* We use [prefixes](#what-is-a-recipe) such as `/n` to label our arguments for the command. 
+* We use [prefixes](#what-is-a-recipe) such as `n/` to label our arguments for the command. 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   i.e. in `add n/RECIPE_NAME`, `RECIPE_NAME` is a parameter which can be used as `add Grilled Salmon`.
