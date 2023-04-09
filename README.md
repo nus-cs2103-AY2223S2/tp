@@ -5,19 +5,18 @@
 
 # The Intern's Ship
 
-**The Intern’s Ship** (TinS) is an **internship management application** built for Computing students to track and update the progress, status and information of all their internship applications in an organised and efficient manner.
+Designed with **internship-seeking university students** in mind, **The Intern’s Ship (TinS)** aims to make
+**managing your internship applications** fuss-free. Despite being optimised for use via the keyboard,
+you will still be able to enjoy the benefits of having a visual display.
 
-Optimized for quick inputs using a Command Line Interface (CLI) while still having the clarity of a Graphical User Interface (GUI), if you can type fast, TinS can help you manage your internship applications more effectively than traditional apps.
+With TinS, you can conveniently and efficiently manage, coordinate and keep track of your internship applications
+all in one place.
 
-### Features (v1.3)
-* Add and Delete Internship applications
-* List out key information of all applications
-* View detailed information of applications
-* Automatic saving of data
-* Calendar View
-* Finding all Clashing Events
-
-*Many More features to come!*
+### Notable Features
+* Finding a particular internship application in TinS using keywords: [`find`](#finding-internships-find)
+* Finding a particular event in TinS using keywords: [`event find`](#finding-a-particular-event--event-find)
+* Calendar View: [`calendar`](#opens-the-calendar-page--calendar)
+* Finding all clashing events: [`clash`](#finding-all-clashing-events--clash)
 
 # Links
 
@@ -27,7 +26,12 @@ Optimized for quick inputs using a Command Line Interface (CLI) while still havi
 
 # Acknowledgements
 
-- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
-- This project uses the [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX) library, an open source calendar framework for JavaFX 8. 
-
-
+* The Intern's Ship is written in Java 11.
+* The Intern's Ship uses the following libraries: [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5),
+  [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX)
+* The Intern's Ship is adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3)
+* The Intern's Ship - User Guide references the following projects:
+  [addressbook-level4](https://github.com/se-edu/addressbook-level4),
+  [InternBuddy](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/docs/UserGuide.md) (for Markdown Formatting of
+  the Information, Tip and Warning Box)
