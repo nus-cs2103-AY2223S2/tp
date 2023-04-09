@@ -588,68 +588,82 @@ However, if the need arises (as specified below), the algorithm allows the effor
 The algorithm allocates tasks as such:
 
 Step 1: Allocate all events to the day(s) it is supposed to be happening. Events will be allocated, even if the effort required exceeds the user preferred effort.
+<br>
 <details>
-
 <summary>More about scheduling for Events</summary>
-
-After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
-
+After getting a list of Events from all tasks within TaskBook, a scheduling algorithm for events is run. The following diagram shows its behaviour.
+<br>
 <img src="images/EventAllocation.png">
-
+<br>
 <b>Some Rules</b>
-* Events are allocated to the date they are scheduled to happen, regardless of time.
-* Effort for event is added every day the event is scheduled to happen
+<ul>
+  <li>Events are allocated to the date they are scheduled to happen, regardless of time.</li>
+  <li>Effort for event is added every day the event is scheduled.</li>
+</ul>
 <br>
 <b>Allocation Example</b>
-* Event A is allocated every day from 5 Mar 2023 to 2 June 2023, and its effort count of 10 is added to each of the 4 days.
-* Event B is allocated to 31 May 2023, and its effort count of 5 is added to the existing effort count of 10 (from event A).
-* Event C is allocated to 1 Jun 2023 and 2 Jun 2023 even though this means that the workload allocated to those days (28 units of effort) are greater than the workload user planned (20 units of effort).
-* No event is scheduled to occur on 3 Jun 2023. It is left empty
+<ul>
+  <li>Event A is allocated every day from 30 Mar 2023 to 2 June 2023, and its effort count of 10 is added to each of the 4 days.</li>
+  <li>Event B is allocated to 31 May 2023, and its effort count of 5 is added to the existing effort count of 10 (from event A).</li>
+  <li>Event C is allocated to 1 Jun 2023 and 2 Jun 2023 even though this means that the workload allocated to those days (28 units of effort) are greater than the workload user planned (20 units of effort).</li>
+  <li>No event is scheduled to occur on 3 Jun 2023. It is left empty.</li>
+</ul>
+<br>
 </details>
 <br>
 
 Step 2: Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
 <details>
-
+<br>
 <summary>More about scheduling for Deadlines</summary>
-
-After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
-
+<br>
+After getting a list of Deadlines from all tasks within Task Book, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
+<br>
 <img src="images/DeadlineAllocation.png">
-
+<br>
 <b>Some Rules</b>
-* Overdue deadlines still in the TaskBook is not considered in the algorithm
-* Deadlines are allocated to one of the days before the deadline
-* If there are multiple free days, Deadline will be added to the earliest free day
-* If there are no free days before the deadline, Deadline will be added to the least busy day (in terms of effort)
-
+<ul>
+  <li>Overdue deadlines still in the TaskBook is not considered in the algorithm.</li>
+  <li>Deadlines are allocated to one of the days before the deadline.</li>
+  <li>If there are multiple free days, Deadline will be added to the earliest free day.</li>
+  <li>If there are no free days before the deadline, Deadline will be added to the least busy day (in terms of effort).</li>
+</ul>
+<br>
 <b>Allocation Example</b>
-* Deadline D is due on 31 May 2023, so the only date it can be allocated to is 30 May 2023. Thus, it is allocated to 30 May 2023 even though this means that the workload for 30 May is greater than the desired workload.
-* Deadline E is allocated to 31 May 2023 because there are no free dates (30 May and 31 May) before 1 Jun 2023. Among the two possible dates, 31 May has a lower current workload. Thus, it is allocated to 31 May.
-* Deadline F is allocated to 30 May 2023 as adding task to any dates before the deadline will result in exceeding the desired workload, and it is the date with the lowest workload among all possible dates.
+<ul>
+  <li>Deadline D is due on 31 May 2023, so the only date it can be allocated to is 30 May 2023.</li>
+  <li>Deadline E is allocated to 31 May 2023 because there are no free dates (30 May and 31 May) before 1 Jun 2023. Among the two possible dates, 31 May has a lower current workload. Thus, it is allocated to 31 May.</li>
+  <li>Deadline F is allocated to 30 May 2023 as adding task to any date before the deadline will result in exceeding the desired workload, and 30 May has the lowest workload among all possible dates (before allocation, 20 effort on 30 May vs 25 effort on 31 May).</li>
+</ul>
+<br>
 </details>
 <br>
 
 Step 3: Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
 
 <details>
-
+<br>
 <summary>More about scheduling for Simple Tasks</summary>
-
-After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
-
+<br>
+After getting a list of Simple Tasks from all tasks within TaskBook, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
+<br>
 <img src="images/SimpleTaskAllocation.png">
-
+<br>
 <b>Some Rules</b>
-* SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.
-* If there are no such days, assigned workload will be allowed to exceed intended workload. Algorithm allocates simple task to a day with the lowest current workload.
-* SimpleTasks are allocated in descending order of effort.
-* SimpleTasks are assumed to be non-time-sensitive
-
+<ul>
+  <li>SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.</li>
+  <li>If there are no such days, assigned workload will be allowed to exceed intended workload. Algorithm allocates simple task to a day with the lowest current workload.</li>
+  <li>SimpleTasks are allocated in descending order of effort.</li>
+  <li>SimpleTasks are assumed to be non-time-sensitive</li>
+</ul>
+<br>
 <b>Allocation Example</b>
-* Task I is the first task to be allocated because it has the highest effort required. It will be allocated to 3 Jun 2023 because there are 2 free days (3 Jun and 4 Jun) with the same current workload, and 3 Jun is before 4 Jun.
-* Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.
-* Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.
+<ul>
+  <li>Task I is the first task to be allocated because it has the highest effort required. It will be allocated to 3 Jun 2023 because there are 2 free days (3 Jun and 4 Jun) with the same current workload, and 3 Jun is before 4 Jun.</li>
+  <li>Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.</li>
+  <li>Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.</li>
+</ul>
+<br>
 </details>
 <br>
 
@@ -664,6 +678,8 @@ Step 2. The user executes `schedule D/TODAY'S DATE` command to sort the list.
 Step 3. The sequence diagram below shows how the sort operation works:
 
 ![ScheduleCommandNoPlanSequenceDiagram](images/ScheduleCommandNoPlanSequenceDiagram.png)
+
+<br>
 
 Given below is an example usage scenario for generating and viewing a plan and how the schedule command behaves at each step:
 
@@ -681,7 +697,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![ScheduleCommandActivityDiagram](images/ScheduleCommandActivityDiagram.png)
 
-#### 3.11.3 Design Consideration
+<br>
+
+#### 3.11.3 Storing a Plan
+
+#### 3.11.4 Design Consideration
 
 #### Option 1: Combine Schedule and Plan into a Single Command
 Allow users to generate a new plan by adding a parameter to the schedule command.
