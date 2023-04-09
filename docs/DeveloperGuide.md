@@ -15,11 +15,21 @@ title: Developer Guide
 
 ---
 
+
+
+
 ## **Acknowledgements**
 
 <!-- - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well} -->
 
+<!-- Mentioned Jackson for serialization -->
+
 ---
+
+
+
+
+
 
 ## **Setting up, getting started**
 
@@ -27,13 +37,24 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
+
+
+
+
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T15-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+
+
+
+
+
 
 ### Architecture
 
@@ -50,7 +71,7 @@ Given below is a quick overview of main components and how they interact with ea
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Common`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
@@ -104,7 +125,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `VimificationParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
+1. The command can communicate with multiple model objects (`TaskList`, `MacroMap`, etc.) when it is executed (e.g. to add a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 <!-- The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call. -->
@@ -127,9 +148,13 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+Compared to the original design of AB3, we decided to split the model components into multiple classes and interfaces with different purposes.
 
-<img src="images/ModelClassDiagram.png" width="450" />
+We argue that the original `Model` component from AB3 handles too many responsibilities - which result in high coupling and low cohesion. Therefore, we decided to split the `Model` components into different classes and interfaces, following the (interface segregation principle)[https://en.wikipedia.org/wiki/Interface_segregation_principle].
+
+<!-- **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java) -->
+
+<!-- <img src="images/ModelClassDiagram.png" width="450" /> -->
 
 The `Model` component,
 
@@ -152,13 +177,13 @@ The `Model` component,
 
 The `Storage` component,
 
-- can save both task data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- can save both user preference data, task data and macro data in JSON format, and read them back into corresponding objects.
+- inherits from both `TaskListStorage`, `MacroMapStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
-Classes used by multiple components are in the `vimificationbook.commons` package.
+Classes used by multiple components are in the `vimificationbook.common` package.
 
 ---
 
@@ -166,56 +191,179 @@ Classes used by multiple components are in the `vimificationbook.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Parser
-
-#### ApplicativeParser
-
-The parser of Vimification is implemented with `ApplicativeParser` instead of `Regex`. `ApplicativeParser` is an idea from function programming language, where we have a set of **combinators**, and we can combine these combinators with the power of Applicative and/or Monad to form more powerful combinators.
-
-The main reason why we used `ApplicativeParser` is because it is easier to read and maintain.
-
-`ApplicativeParser` can be implemented as a wrapper around a function that accepts some input sequence, and returns an container that represents one of these possibilities:
-
-- The parser fails, and the container is empty.
-- The parser succeeds, and the container contains the remaining input sequence, togerther with the parsing result.
-
-In the current implementation, the container used is `Optional` from the Java standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` may create unpredictable control flow, and must be used with care.
-
-When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller. This prevents the parser from trying a different alternative, and is undesirable for some combinators, such as `ApplicativeParser#or()`, `ApplicativeParser#many()` and `ApplicativeParser#many1()`.
-
-The input sequence used (internally) by `ApplicativeParser` is `StringView`, a thin wrapper class representing a slice on a `String`. This choice is purely for performance reason - consuming input with `StringView` is much faster as we only need to change the offsets stored in the `StringView`, instead of having to copy the entire substring into a new `String`.
-
-Some basic combinators of `ApplicativeParser` is provided using static factory methods.
-
-#### CommandParser
-
-The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
-
-A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` combinator to be used inside `CommandParser#parse()`.
-
-Notice the signature of `CommandParser#getInternalParser()`: this method returns an `ApplicativeParser<ApplicativeParser<LogicCommand>>`. The nested `ApplicativeParser` is necessary in this case - the first level will parse the command prefix, and returns a combinator dedicated to parse the particular command identified by the prefix. The remaining input is then piped to the second level (the combinator returned before) to construct the command.
-
-This implementation allows us to fail early and report errors if the prefix does not represent any command, or quickly parse the command without having to try multiple alternatives.
-
-### Storage
-
-#### Represent inheritance relationship
-
-`Task` and its subclasses have can be converted from and to JSON format using `JsonAdoptedXYZ` (`XYZ` is a placeholder for the specific task name e.g., `Todo`).
-
-We need to translate the inheritance relationship between `Task` and its subclasses from and to JSON. The current implementation uses 2 annotations (from the Jackson library), `@JsonTypeInfo` and `@JsonSubTypes` to solve this.
-
-One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation.
-
-### \[Proposed\] Modification compared to Vimification
+<!-- ### Architechture modification to AB3
 
 Vimification uses the **Model–view–controller (MVC)** design pattern. One detail we observed is that the `Model` uses `ObservableList` to carry application data, however, we argued that this is not the optimal design, since `ObservableList` should be used for `view`. Vimification implementation makes the view and bussiness logic bundled together, hinder our development speed.
 
-Therefore, we wish to improve the current design of the application. \<The design will be finalized soon\>.
+Therefore, we wish to improve the current design of the application. \<The design will be finalized soon\>. -->
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### ApplicativeParser\<T\>
+
+`ApplicativeParser` is an idea from function programming language, where we have a set of **combinators**, and we can combine these combinators to form more powerful combinators.
+
+#### Motivation
+
+The parser of Vimification is implemented with `ApplicativeParser` instead of `Regex`. The main reason why we use `ApplicativeParser` becauses it allows a more declarative style to write the parser, which is (arguably) easier to read and maintain, compared to a long `Regex` expression.
+
+#### Implementation overview
+
+`ApplicativeParser` is implemented as a wrapper around a function that accepts some input sequence, and returns an container that:
+
+- Is empty, if the parser fails.
+- Contains the remaining input sequence, together with the parsing result, if the parser succeeds.
+
+For example, consider a parser that tries to parse the string `"foo"`:
+
+- If the input sequence is `"bar"`, the parser will fail (no `"foo"` to parse). The returned container after running the parser will be empty.
+- If the input sequence is `"foo bar"`, the parser will succeed. The returned container after running the parser will contain the remaining input sequence `" bar"`, and the parsing result `"foo"`.
+
+The parsing result can be further transformed into objects of the desired type, using some methods such as `ApplicativeParser#map()` or `ApplicativeParser#flatMap()`.
+
+<!-- insert sequence diagram -->
+
+#### Concrete implementation
+
+The current signature of the wrapped function is:
+
+```java
+private Function<StringView, Optional<Pair<StringView, T>>> runner;
+```
+
+Where `T` is the type of the parsing result.
+
+For example, consider an `ApplicativeParser<Integer>` that tries to parse an integer - given the input sequence `"10"`, the returned container will contain the remaining sequence `""` and the parsing result `10`.
+
+The input sequence used (internally) by `ApplicativeParser` is `StringView`, a thin wrapper class representing a slice on a `String`:
+
+```java
+public class StringView {
+
+    private String value;
+    private int offset;
+
+    // constructors and methods
+}
+```
+
+This choice is purely for performance reason - consuming input with `StringView` is much faster as we only need to change the offset stored in the `StringView` in `O(1)`, instead of having to copy the entire substring into a new `String` in `O(n)`.
+
+In the current implementation, the container used is `Optional` from the Java standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` may create unpredictable control flow, and must be used with care. When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller.
+
+The only way to create new `ApplicativeParser` instances is to use static factory methods. This is to ensure that the implementation of `ApplicativeParser` is hidden, and allows us to change the internal implementation of the parser to a more suitable one (in the future, if necessary) without breaking the exposed **API**.
+
+
+
+### Command parsers
+
+All command parsers implements a common interface:
+
+```java
+public interface CommandParser<T extends Command> { /* implementation details */ }
+```
+
+Where `T` is the type of the command returned by the parser.
+
+<!-- insert diagram here -->
+
+#### Implementation overview
+
+The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
+
+A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` to be used by `CommandParser#parse()`.
+
+
+
+
+### Command implementations
+
+All command classes in the application inherit from a common interface.
+
+```java
+public interface Command {}
+```
+
+#### Inheritance hierarchy
+
+Currently, there are 3 kinds of commands in the application:
+
+- `LogicCommand`: responsible for modifying the internal data.
+- `MacroCommand`: responsible for handing macro-related features.
+- `UiCommand`: responsible for chaging the GUI.
+
+<!-- insert diagram here -->
+
+Each kind has a single interface, with a single abtract method:
+
+```java
+public CommandResult execute(/* parameters */);
+```
+
+#### Motivation
+
+This desgin allows the parameters required by different kinds to be different. For example, the signature of `LogicCommand#execute()` is:
+
+```java
+public CommandResult execute(LogicTaskList taskList, CommandStack commandStack);
+```
+
+While the signature of `UiCommand#execute()` is:
+
+```java
+public CommandResult execute(MainScreen mainScreen);
+```
+
+This is a big modification compared to the original design in AB3. The reason behind this is because we want to reduce the coupling between different kinds of command - `LogicCommand` does not need to know about UI details to be executed.
+
+Concrete classes will implements the corresponding interfaces.
+
+#### Design considerations
+
+The current downside of this design is that, in order to execute a certain command, we need to check the runtime type (using `instanceof`) operator and cast the instance to the appropriate type before calling its `execute` method (by providing the correct arguments).
+
+This is very error prone, due to some reasons:
+
+- Mismatch between the type used with `instanceof` operator and the type used to cast instance:
+
+```java
+if (command instanceof LogicCommand) {
+    UiCommand castedCommand = (UiCommand) command; // ClassCastException
+}
+```
+
+- Missing a kind of commands:
+
+```java
+if (command instanceof LogicCommand) {
+    // statements
+} else if (command instanceof UiCommand) {
+    // statements
+} else {
+    // throw Exception
+}
+// missing MacroCommand, the compiler cannot catch this
+```
+
+Java 11 compiler cannot check for these problems, and we risk having serious bugs. However, we argue that the reduction of coupling is worth it, as it prevents other kind of bugs that are harder to catch (such as modification of logic in ui-related command).
+
+Future versions of Java contain features that can handle the problems mentioned above: sealed class and pattern matching. In the future, we may consider upgrading Java and refactor the current implementation with these new features to eliminates these problems.
+
+### Atomic data modification
+
+#### Reasons
+
+Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all of the changes completed so far must be discarded. This ensures that the system is always left in a consistent state.
+
+<!-- insert diagram here -->
+
+#### Implementation details
+
+
+### Undo feature
+
+#### Current implementation
+
+lol this section is sooooooo \*\*\*\*ing verbose
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `Vimification` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -278,27 +426,55 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
 
-**Aspect: How undo & redo executes:**
 
-- **Alternative 1 (current choice):** Saves the entire address book.
+### Macro feature
 
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
+#### Current implementation
 
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+
+
+
+
+### Storage
+
+<!--
+`Task` and its subclasses have can be converted from and to JSON format using `JsonAdoptedXYZ` (`XYZ` is a placeholder for the specific task name e.g., `Todo`).
+
+We need to translate the inheritance relationship between `Task` and its subclasses from and to JSON. The current implementation uses 2 annotations (from the Jackson library), `@JsonTypeInfo` and `@JsonSubTypes` to solve this.
+
+One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation. -->
+
+
+
+### Syncing view with internal logic
+
+
+
+
+
+
+
+### Using more unchecked exceptions
+
+
+
+
+
+
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
 ---
+
+
+
+
+
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
