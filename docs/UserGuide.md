@@ -11,13 +11,12 @@ title: User Guide
 
 Introducing, Clock-Work!
 
-Clock-Work is a **desktop application for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Clock-Work can get your assignment management tasks done faster than traditional GUI apps.
+Clock-Work is a **desktop application for managing tasks a student may have.** It is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Like most of us Computer Science students, if you can type fast, Clock-Work can get your assignment management tasks done faster than traditional GUI apps.
+This guide is meant for the average Computer Science student, who is interested in using Clock-Work.
 
 With basic commands like `add`, `delete`, `edit`, and special commands like `alert`, `find`, `schedule`, Clock-Work is your one-stop application to organise your busy Computing life :computer:.
 
 **Get started with Clock-Work with this guide!**
-
-This guide is meant for the average Computer Science student, who is interested in using Clock-Work.
 
 Table of Contents
 * [1. Quick start](#1-quick-start)
@@ -56,7 +55,7 @@ If you like our product and want to contribute to it, consider looking at the [D
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Clock-Work.
 
-4. Open a command terminal (e.g. Ubuntu)
+4. Open a command terminal. If you do not have a preferred command terminal, you can use the default terminal of your computer by searching for _Terminal_ in your computer.
 
 5. Navigate to the directory with `clockwork.jar` file downloaded in (Downloads folder in most cases).
 
@@ -68,13 +67,13 @@ If you like our product and want to contribute to it, consider looking at the [D
 8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all tasks.
 
-   * `add n/Meeting d/CSXXXX project meeting` : Adds a task named Meeting to task book.
+   * `add n/Meeting d/CS2103T project meeting` : Adds a task named Meeting to task book.
 
    * `delete 3` : Deletes the 3rd task shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all tasks.
 
    * `exit` : Exits the app.
 
@@ -83,14 +82,13 @@ If you like our product and want to contribute to it, consider looking at the [D
 --------------------------------------------------------------------------------------------------------------------
 ## 2. A Task in Clock-Work
 
-The life of student is busy, but also vibrant and filled with a variety of activities. Clock-Work helps students achieve their maximum potential by supporting 3 types of tasks to cater to their varying needs.
-They are: Simple Tasks, Deadlines, and Events. As their name suggests, a simple task is a time-insensitive task that can be done at any time, a deadline is a time-sensitive task which must be done before the specified deadline, and an event is a time-sensitive task that must be done during the specified period of time.
+The life of a student is busy, but also vibrant and filled with a variety of activities. Clock-Work helps students manage their diverse task-management needs by supporting 3 types of tasks.
 
 ### Basic Information about Tasks
 * A Task can be:
-    * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a Long Date?](#q4-what-is-a-valid-long-date))
-    * A <span style="color:#34A853">deadline</span>, which has a _long date_ known as `deadline`.
-    * An <span style="color:#FBBC05">event</span>, which has 2 _long dates_ known as a `from` and a `to`.
+    * A simpleTask, which does not have a [_long date_](#q4-what-is-a-valid-long-date) attached to it.
+    * A deadline, which has a _long date_ known as `deadline`.
+    * An event, which has 2 _long dates_ also known as `from` and `to`.
 
 * A task can have the following additional **Optional** fields attached to it:
     * Tags
@@ -107,9 +105,9 @@ This is what each component mean:
 
 | Component | Meaning | How to use it | Usage Specifications                                                                       |
 |--| --------- | ------------- |--------------------------------------------------------------------------------------------|
-| [Name](#q2-what-is-a-valid-name) | Name of task | Use it to identify task | Must be unique, Case-insensitive                                                           |
-| [Tag](#q3-what-is-a-valid-tag) | Labels / Folders | Use it to group related tasks | Must be a single word, Colour randomly generated, limit to 45 characters                   |
-| [Time](#q4-what-is-a-valid-long-date) | Type of task | Keep track of time-related information here | A simple task has no specified time, a deadline has 1 long date, an event has 2 long dates |
+| [Name](#q2-what-is-a-valid-name) | Name of task | Identify tasks | Must be unique, Case-insensitive  |
+| [Tag](#q3-what-is-a-valid-tag) | Labels / Folders | Group related tasks | Must be a single word, Case-sensitive, Tags of the same name are only added once, Colour randomly generated, Displayed lexicographically|
+| [Time](#q4-what-is-a-valid-long-date) | Type of task | Keep track of time-related information here | Simple tasks have no dates, Deadlines have 1 long date, Events have 2 long dates |
 | [Effort](#q7-what-is-an-effort-level) | Estimated amount of work to complete task | Set realistic effort estimates to help with scheduling | Default value of 24                                                                        |
 | [Description](#q8-what-is-a-valid-description) | Good-to-know | Useful things to remember | Text with at least 1 character                                                             |
 | [Subsection](#q9-what-is-a-valid-subsection) | Smaller tasks to complete | Split a larger task into more manageable pieces | Has its own name and description                                                           |
@@ -161,32 +159,21 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 ### 3.1 Adding a task : `add`
 
-:man_technologist: **Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task!** :tada:
+:man_technologist: **Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task!**
 
 You can create different types of tasks depending on the input parameters you enter.
 
 Format:
 
-* <span style="color:#4285F4">SimpleTask</span>: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
+* SimpleTask: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
-* <span style="color:#34A853">Deadline</span>: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
+* Deadline: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
-* <span style="color:#FBBC05">Event</span>: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
+* Event: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
-
-
-:warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, <span style="color:#34A853">Deadline</span>, <span style="color:#FBBC05">Event</span>) of the same name.
-
-:warning: Tags will be automatically sorted lexicographically!
-
-:warning: Adding multiple **Tags** of the same tag name will only result in one tag!
-
-e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
-
-:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed.
 
 :warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`. Input fields will have unexpected behaviour when it contains these characters.
 
@@ -200,9 +187,7 @@ e.g. `add n/Sample d/Why can't I add n/?`
 Add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
 
-:bulb: **PRO TIP**: You can add multiple <span style="color:#FBBC05">Events</span> and <span style="color:#34A853">Deadlines</span> as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
-
-:bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
+:bulb: **PRO TIP**: You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
 
 :bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q10-why-does-two-different-tags-have-the-same-tag-color)
 
@@ -268,18 +253,18 @@ Format: `list`
 
 Sorts the list using the following format:
 
-* <span style="color:#4285F4">SimpleTask</span> is listed above Deadline and Event.
-* <span style="color:#34A853">Deadline</span> is  listed below SimpleTask and above Event.
-* <span style="color:#FBBC05">Event</span> is  listed below SimpleTask and Event.
+* SimpleTask is listed above Deadline and Event.
+* Deadline is  listed below SimpleTask and above Event.
+* Event is  listed below SimpleTask and Event.
 * When comparing 2 tasks of the same class:
-    * <span style="color:#4285F4">SimpleTask</span>
+    * SimpleTask
         * The task with lesser tags is listed above the task with more tags.
         * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
-    * <span style="color:#34A853">Deadline</span>
+    * Deadline
         * The task with the earlier deadline is listed above the task with later deadline.
         * Else if both tasks have the same deadline, the task with lesser tags is listed above the task with more tags.
         * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
-    * <span style="color:#FBBC05">Event</span>
+    * Event
         * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
         * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
         * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
@@ -299,9 +284,9 @@ Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 
 * The search is **case-insensitive**. e.g `book` will match `Book`
 * **Substrings** will be matched e.g. `book` will match `Books`
-* For <span style="color:#34A853">Deadline</span>, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
+* For Deadline, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
     * e.g. `find D/2023-03-10` will give you all the deadlines on 2023-01-01.
-* For <span style="color:#FBBC05">Event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
+* For Event, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
     * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
     * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
 * :warning: Our application currently does not support find by subsections' names or descriptions, the functionality will be implemented in future versions.
@@ -535,7 +520,7 @@ _Details coming soon ..._
         </tr>
         <tr>
             <td>[d/DESCRIPTION]</td>
-            <td>edit 1 d/Read Newspaper</td>
+            <td>edit 1 d/Straits Times</td>
         </tr>
         <tr>
             <td>[t/TAGS]</td>
