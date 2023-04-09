@@ -28,6 +28,7 @@ public class SummaryCommand extends Command {
     /**
      * Returns the average 'time to interview' for applicants in HMHero.
      * @param model model of all applicants
+     * @return String success message of the SummaryCommand.
      */
     public String getSuccessMessage(Model model) {
         model.sortFilteredPersonList((p1, p2) -> 0); //revert back to original ordering
@@ -42,6 +43,7 @@ public class SummaryCommand extends Command {
     /**
      * Returns the mean `time-to-interview` and percentage of applicants that got an interview.
      * @param model model of all applicants.
+     * @return float[] containing the statistics of the hiring cycle.
      */
     public float[] getAverageTimeToInterview(Model model) {
         ObservableList<Person> applicants = model.getFilteredPersonList();

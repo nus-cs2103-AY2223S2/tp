@@ -54,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * @param primaryStage the primary stage of the application.
+     * @param logic the logic of the application.
+     * @param initialMessage the initial message to be displayed.
      */
     public MainWindow(Stage primaryStage, Logic logic, String initialMessage) {
         super(FXML, primaryStage);

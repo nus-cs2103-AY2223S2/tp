@@ -78,6 +78,8 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+<div style="page-break-after: always;"></div>
+
 ## **About HMHero**
 
 HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers,
@@ -91,6 +93,9 @@ feature implementation and considerations.
 This guide is intended to assist developers in maintaining, upgrading or evolving HMHero.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **How to use this Developer Guide**
 
 #### Person in place of Applicant
@@ -120,6 +125,9 @@ that will bring you to another part of this documentation that is relevant to th
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -131,6 +139,8 @@ that will bring you to another part of this documentation that is relevant to th
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -149,6 +159,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -176,6 +188,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 </div>
 <br>
 
+<div style="page-break-after: always;"></div>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -192,6 +205,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 </div>
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -220,6 +235,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -244,8 +261,10 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
     <b>Figure 1.3.2</b> Sequence Diagram for the command <code>delete n/Alex p/91234567</code>
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Info:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -257,6 +276,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `HMHero` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HMHeroParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -273,12 +294,12 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Info:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
 
+</div>
 
 ### Storage component
 
@@ -317,6 +338,8 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here is the activity diagram showing the process of the `add` command:
 
 ![AddCommand activity diagram](images/AddApplicantActivityDiagram.png)
@@ -344,6 +367,7 @@ When implementing this feature, we restricted users to only add applicants into 
 we wanted HMHero to adhere to the flow of the hiring process. Allowing users to add applicants into specific statuses
 could introduce confusion to how `add` command is used.
 
+<div style="page-break-after: always;"></div>
 
 #### Advancing an Applicant
 
@@ -381,6 +405,7 @@ When implementing this feature, we realised that we could model HMHero to track 
 more effectively by enforcing the rule that the user can only advance applicants one stage at a time. 
 We thus decided to provide a default behaviour when advancing an applicant's status.
 
+<div style="page-break-after: always;"></div>
 
 #### Rejecting an Applicant
 
@@ -419,6 +444,8 @@ Additionally, we realised that it is common for hiring managers to reject applic
 We also allowed the rejecting of applicants with the `ACCEPTED` status for the rare case where users might want to
 reject an accepted applicant due to an unforeseen circumstance.
 
+<div style="page-break-after: always;"></div>
+
 #### Finding an Applicant
 
 ##### Overview
@@ -440,10 +467,13 @@ Refer to [Glossary](#glossary) for more information on Command format.
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
+<div style="page-break-after: always;"></div>
 
 Here is the activity diagram showing the process of the `find` command:
 
 ![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The sequence diagram for `find n/John` in HMHero is as such:
 
@@ -451,7 +481,7 @@ The sequence diagram for `find n/John` in HMHero is as such:
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Note:</strong>
+:information_source: <strong>Info:</strong>
 The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of <strong>PlantUML</strong>, the lifeline reaches the end of the diagram.
 Additionally, take note that interactions with utility classes such as `ArgumentTokenizer`, `ArgumentMultimap`, and `Messages` are excluded as including them would cause the UML diagram to be cluttered and too small to read.
 </div>
@@ -468,6 +498,7 @@ the `FilteredList` sets its `Predicate` field to the created `Predicate`. The UI
 
 Applicant fields are required as an input as it is helpful to reduce user confusion and facilitate finding applicants based on multiple fields.
 
+<div style="page-break-after: always;"></div>
 
 #### Editing an Applicant
 
@@ -481,6 +512,8 @@ The `edit` feature edits the attached attributes of a specified `Person`,which i
 `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEWDATETIME] [note/NOTE]...` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here is the activity diagram showing the process of the `edit` command:
 
@@ -506,6 +539,7 @@ phone number `91823452`.
 When providing multiple arguments with the same delimiter,
 the last instance of the repeat delimiter is taken during the `parse` command.
 
+<div style="page-break-after: always;"></div>
 
 #### Displaying the list
 
@@ -527,6 +561,8 @@ The statistics of the number of applicants in each stage of the application cycl
 and they are a good starting point for users to help track the number of applicants. 
 For example, the user can obtain the total number of applicants, 
 and also provide the total numbers of applicants for each status.
+
+<div style="page-break-after: always;"></div>
 
 #### Showing all shortlisted applicants
 
@@ -557,6 +593,8 @@ has a length of 45 characters so there is no reason for the keyword to have a le
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -585,10 +623,11 @@ has a length of 45 characters so there is no reason for the keyword to have a le
 * Users can quickly search applicants with particular skill-sets.
 * Users can obtain insights on their hiring practices to look for areas for improvement.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
-**Note:** The following legend describes the symbols used in this section:
+**Info:** The following legend describes the symbols used in this section:
 
 | Priority | Symbol  | Meaning          | 
 |----------|---------|------------------|
@@ -614,6 +653,8 @@ has a length of 45 characters so there is no reason for the keyword to have a le
 | `* `     | Old Hiring Manager                    | Highlight and enlarge the keywords that I am looking for           | I can easily see the keywords that I am looking for.                                  |
 | `* `     | Careless Hiring Manager               | Undo recent actions or commands                                    | I can reverse commands that I have mistakenly carried out.                            |
 | `* `     | Hiring Manager for multiple positions | Create jobs with required skill sets for each job                  | I can keep track of skill-sets needed for each job to match applicants.               |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -951,6 +992,8 @@ Precondition: There are shortlisted applicants in HMHero.
 > #### Command Line
 > The typing interface that you use to interact with HMHero. It is represented as the box where you type in commands.
 
+<div style="page-break-after: always;"></div>
+
 ### E
 > #### EMAIL Placeholder
 > The EMAIL is a text representing the email address of the applicants.
@@ -965,6 +1008,8 @@ Precondition: There are shortlisted applicants in HMHero.
 > #### Graphical User Interface
 > A Graphical User Interface is a graphics-based interface that uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system. In HMHero, this presents as the window that appears when launching it.
 
+<div style="page-break-after: always;"></div>
+
 ### H
 > #### Help Window
 > A pop-up window containing help information, shown only after calling a <kbd>help</kbd> command.
@@ -978,6 +1023,8 @@ Precondition: There are shortlisted applicants in HMHero.
 > The INTERVIEW_DATE is the date indicating when the applicant is having his/her interview.
 > #### Interview Date
 > Date where applicants are going to have their interviews. Interview date is in the format "day-month-year hour:minute", represented in the "DD-MM-YYYY HH:MM" format.
+
+<div style="page-break-after: always;"></div>
 
 ### K
 > #### KEYWORD Placeholder
@@ -1031,11 +1078,13 @@ Precondition: There are shortlisted applicants in HMHero.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Info:** 
 These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
@@ -1056,7 +1105,9 @@ These instructions only provide a starting point for testers to work on; testers
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
+
 ### Adding an applicant
+<div style="page-break-after: always;"></div>
 
 Prerequisites: An applicant with the name Fred and phone number 999 does not exist in HMHero yet.
 
@@ -1073,6 +1124,7 @@ Application date is `01-01-2023 18:00`.
 Test case: `add n/Fred p/999`<br>
 Expected: No applicant is added. Error message for invalid command format.
 
+
 ### Deleting an applicant
 
 Prerequisites: An applicant with the name Fred and phone number 999 exists in HMHero.
@@ -1087,6 +1139,7 @@ Expected: No applicant is deleted. Error message for not finding any applicant.
 Test case: `delete n/Fred`<br>
 Expected: No applicant is deleted. Error message for invalid command format.
 
+<div style="page-break-after: always;"></div>
 
 ### Advancing an applicant
 
@@ -1123,6 +1176,8 @@ Expected: Applicant is not rejected. Error message for applicant is already reje
 
 Test case: `reject n/Fred`<br>
 Expected: Applicant is not rejected. Error message for invalid command format.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding applicants
 
@@ -1188,6 +1243,8 @@ Expected: All applicants in HMHero are deleted.
 Test case: `exit`<br>
 Expected: HMHero application closes.
 
+<div style="page-break-after: always;"></div>
+
 ## **Effort**
 
 It was not easy to develop HMHero. Our team struggled with ways to make our product unique and stand out from existing products in the market,
@@ -1207,6 +1264,7 @@ This makes it easier for the user to track the status of their applicants as the
 
 In terms of colour scheme, we thought that the dark theme of AB3 was uninspiring and made use of own blue and light colored theme to give this app a nice, warm and welcoming feel. 
 
+<div style="page-break-after: always;"></div>
 
 ### Extensive Testing
 

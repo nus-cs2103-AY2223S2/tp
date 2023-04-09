@@ -168,6 +168,7 @@ public class EditCommand extends Command {
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
+         * @param toCopy details to copy.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
@@ -179,7 +180,7 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * @return true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, dateTime, notes);
@@ -228,6 +229,7 @@ public class EditCommand extends Command {
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
+         * @param notes tags to set.
          */
         public void setNotes(Set<Note> notes) {
             this.notes = (notes != null) ? new HashSet<>(notes) : null;
@@ -237,6 +239,7 @@ public class EditCommand extends Command {
          * Returns an unmodifiable note set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
+         * @return an unmodifiable note set.
          */
         public Optional<Set<Note>> getNotes() {
             return (notes != null) ? Optional.of(Collections.unmodifiableSet(notes)) : Optional.empty();

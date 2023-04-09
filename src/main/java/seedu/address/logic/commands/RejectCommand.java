@@ -36,6 +36,7 @@ public class RejectCommand extends Command {
 
     /**
      * Creates an RejectCommand to reject the specified {@code Person}
+     * @param predicate Predicate to filter the person to be rejected.
      */
     public RejectCommand(NamePhoneNumberPredicate predicate) {
         this.predicate = predicate;

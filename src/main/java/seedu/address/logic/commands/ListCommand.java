@@ -27,6 +27,7 @@ public class ListCommand extends Command {
      * the number of applicants in each application stages.
      *
      * @param model model of all applicants
+     * @return String success message of the ListCommand.
      */
     public String getSuccessMessage(Model model) {
         model.sortFilteredPersonList(Comparator.comparing(p -> p.getName().toString().toLowerCase()));

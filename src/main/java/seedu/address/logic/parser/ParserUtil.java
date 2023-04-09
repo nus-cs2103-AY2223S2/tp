@@ -103,8 +103,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String note} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code note} is invalid.
      */
     public static Note parseTag(String tag) {
         requireNonNull(tag);

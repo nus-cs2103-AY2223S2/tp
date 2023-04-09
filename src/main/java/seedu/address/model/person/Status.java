@@ -14,6 +14,8 @@ public enum Status {
 
     /**
      * Returns if a given string is a valid status.
+     * @param value status string to be tested.
+     * @return boolean value of whether the string is a valid status.
      */
     public static boolean isValidStatus(String value) {
         for (Status status : Status.values()) {

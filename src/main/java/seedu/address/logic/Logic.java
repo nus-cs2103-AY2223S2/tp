@@ -25,26 +25,31 @@ public interface Logic {
 
     /**
      * Returns the AddressBook.
-     *
+     * @return the AddressBook.
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyHMHero getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /**
+     * @return an unmodifiable view of the filtered list of persons.
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.
+     * @return the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
+     * @return the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
 
     /**
      * Set the user prefs' GUI settings.
+     * @param guiSettings the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
 }

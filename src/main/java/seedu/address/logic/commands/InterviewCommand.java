@@ -22,6 +22,8 @@ public class InterviewCommand extends Command {
 
     /**
      * Returns a filtered list of applicants with SHORTLISTED status and sorts by earliest interview date
+     * @param model Model to be updated.
+     * @return String success message of the InterviewCommand.
      */
     public String getSuccessMessage(Model model) {
         model.updateFilteredPersonList(SHORTLISTED_PREDICATE);

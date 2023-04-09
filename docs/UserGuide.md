@@ -4,50 +4,53 @@ title: User Guide
 ---
 ## Table of Contents
 
-* [About HMHero](#1-about-hmhero)
-* [Features](#2-features)
-   * [Applicant Management System](#21-applicant-management-system)
-   * [Hiring Process Analytics](#22-hiring-process-analytics)
-* [How to use this User Guide](#3-how-to-use-this-user-guide)
-   * [Icons and Hyperlinks](#31-icons-and-hyperlinks)
-   * [Purpose of User Guide](#32-purpose-of-user-guide)
-* [Installation](#4-installation)
-* [Quick Start](#5-quick-start)
-   * [User Interface](#51-user-interface)
-   * [Key Definitions](#52-key-definitions)
-     * [Applicant](#521-applicant)
-     * [Notes](#522-notes)
-     * [Flags](#523-flags)
-     * [Placeholders](#524-placeholders)
-   * [Command Format](#53-command-format)
-   * [Trying your First Command](#54-trying-your-first-command)
-* [Commands](#6-commands)
-   * [Applicant Commands](#61-applicant-commands)
-     * [Create a new applicant `add`](#611-create-a-new-applicant-add)
-     * [Search for an applicant `find`](#612-search-for-an-applicant-find)
-     * [List all applicants `list`](#613-list-all-applicants-list)
-     * [Delete an applicant `delete`](#614-delete-an-applicant-delete)
-     * [Advance an applicant `advance`](#615-advance-an-applicant-advance)
-     * [Reject an applicant `reject`](#616-reject-an-applicant-reject)
-     * [List all interview dates of applicants `interview`](#617-list-all-interview-dates-of-applicants-interview)
-     * [Edit an existing applicant `edit`](#618-edit-an-existing-applicant-edit)
-     * [Remind upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
-   * [Statistic Commands](#62-statistics-commands)
-   * [General Commands](#63-general-commands)
-     * [Receive help during usage `help`](#631-receive-help-during-usage-help)
-     * [Exit HMHero `exit`](#632-exit-hmhero-exit)
-* [Command summary](#7-command-summary)
-   * [Applicant Commands](#71-applicant-commands)
-   * [Statistics Commands](#72-statistics-commands)
-   * [General Commands](#73-general-commands)
-* [Troubleshooting](#8-troubleshooting)
-* [FAQ](#9-faq)
-* [Acknowledgements](#10-acknowledgements)
-* [Glossary](#11-glossary)
+* [About HMHero](#about-hmhero)
+* [Overview of Key Features](#overview-of-key-features)
+   * [Applicant Management System](#applicant-management-system)
+   * [Hiring Process Analytics](#hiring-process-analytics)
+* [How to use this User Guide](#how-to-use-this-user-guide)
+   * [Icons and Hyperlinks](#icons-and-hyperlinks)
+   * [Purpose of User Guide](#purpose-of-user-guide)
+* [Installation](#installation)
+* [Quick Start](#quick-start)
+   * [User Interface](#user-interface)
+   * [Key Definitions](#key-definitions)
+     * [Applicant](#applicant)
+     * [Notes](#notes)
+     * [Flags](#flags)
+     * [Placeholders](#placeholders)
+   * [Command Format](#command-format)
+   * [Trying your First Command](#trying-your-first-command)
+* [Commands](#commands)
+   * [Applicant Commands](#applicant-commands)
+     * [Create a new applicant `add`](#create-a-new-applicant-add)
+     * [Search for an applicant `find`](#search-for-an-applicant-find)
+     * [List all applicants `list`](#list-all-applicants-list)
+     * [Delete an applicant `delete`](#delete-an-applicant-delete)
+     * [Advance an applicant `advance`](#advance-an-applicant-advance)
+     * [Reject an applicant `reject`](#reject-an-applicant-reject)
+     * [List all interview dates of applicants `interview`](#list-all-interview-dates-of-applicants-interview)
+     * [Edit an existing applicant `edit`](#edit-an-existing-applicant-edit)
+     * [Remind upcoming interviews `remind`](#get-reminders-for-upcoming-interviews-remind)
+     * [Filter applicants with specific skill(s) `skill`](#filter-applicants-with-specific-skill--s--skill)
+   * [Statistic Commands](#statistics-commands)
+     * [Summary Statistics `summary`](#summary-statistics-summary)
+   * [General Commands](#general-commands)
+     * [Receive help during usage `help`](#receive-help-during-usage-help)
+     * [Exit HMHero `exit`](#exit-hmhero-exit)
+* [Command summary](#command-summary)
+   * [Applicant Commands](#applicant-commands)
+   * [Statistics Commands](#statistics-commands)
+   * [General Commands](#general-commands)
+* [Troubleshooting](#troubleshooting)
+* [FAQ](#faq)
+* [Acknowledgements](#acknowledgements)
+* [Glossary](#glossary)
 
 ---
+<div style="page-break-after: always;"></div>
 
-# 1. About HMHero
+## About HMHero
 
 Have you ever found it difficult to manage the constant influx of applicants during each application cycle?
 Have you ever found it strenuous filtering through countless applicants to find those that fit specific job requirements?
@@ -73,7 +76,6 @@ You can:
 5. View all applicants that have interviews coming up in three days.
 
 
-
 ### Hiring Process Analytics
 
 HMHero provides analysis on your hiring process. <br>
@@ -86,9 +88,9 @@ You can:
 
 ---
 
-## 3. How to use this User Guide
+## How to use this User Guide
 
-### 3.1 Icons and Hyperlinks
+### Icons and Hyperlinks
 
 You may come across colored boxes containing text that will aid you in better understanding how to use each feature.
 
@@ -110,29 +112,30 @@ that will bring you to another part of this documentation that is relevant to th
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-### 3.2 Purpose of User Guide
+### Purpose of User Guide
 
-If you are a **new user**, head over to the [Installation](#4-installation) section to download the application.
+If you are a **new user**, head over to the [Installation](#installation) section to download the application.
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 We highly recommend that you read through this User Guide in **sequential order** to get a thorough understanding
 of how to use HMHero.
 </div>
 
 
-Next, you can find the necessary information to get started in the [Quick Start](#5-quick-start) section!
+Next, you can find the necessary information to get started in the [Quick Start](#quick-start) section!
 
-If you are an **experienced user**, you may head over to the [Command Summary](#7-command-summary) to get a quick overview
+If you are an **experienced user**, you may head over to the [Command Summary](#command-summary) to get a quick overview
 of all the commands available in HMHero!
 
-If you are stuck, please refer to the section on [Troubleshooting](#8-troubleshooting) or [FAQ](#9-faq).
+If you are stuck, please refer to the section on [Troubleshooting](#troubleshooting) or [FAQ](#faq).
 
-You can also refer to the [Glossary](#11-glossary) for definitions of commonly used terminologies in HMHero.
+You can also refer to the [Glossary](#glossary) for definitions of commonly used terminologies in HMHero.
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-To aid in your navigation, we have included the a <a href="#table-of-contents">Back to Table of Contents<a/> link in every
+To aid in your navigation, we have included the a <a href="#table-of-contents">Back to Table of Contents</a> link in every
 sub-section in this User Guide so that it is easy for you to jump across different sections!
 </div>
 
@@ -141,7 +144,7 @@ sub-section in this User Guide so that it is easy for you to jump across differe
 
 ---
 
-## 4. Installation
+## Installation
 
 1. Ensure you have downloaded `Java 11` or above installed in your computer. If you have not, you may download it [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
 2. Download the latest `HMHero` from [here](https://github.com/AY2223S2-CS2103T-W14-4/tp/releases).
@@ -163,21 +166,22 @@ You will notice that a folder called "data" would have been created in the same 
 Do not edit this file because doing so might result in a corruption of your data, causing the application to fail!
 </div>
 
-The following section on [Quick Start](#5-quick-start) is a tutorial on how to use HMHero
-after you have launched it for the first time. Feel free to skip to the next section on [Commands](#6-commands) if you
+The following section on [Quick Start](#quick-start) is a tutorial on how to use HMHero
+after you have launched it for the first time. Feel free to skip to the next section on [Commands](#commands) if you
 are already familiar with the application!
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-## 5. Quick Start
+## Quick Start
 This section covers everything you should know about HMHero, as well as a tutorial on 
-[trying your first command](#54-trying-your-first-command). Take note that  the
-[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections covers essential knowledge to using HMHero's features.
+[trying your first command](#trying-your-first-command). Take note that  the
+[Key Definitions](#key-definitions) and [Command Format](#command-format) sections covers essential knowledge to using HMHero's features.
 
 
-### 5.1 User Interface
+### User Interface
 When you launch HMHero, HMHero appears on your screen as a Graphical User Interface(GUI). Let's explore the
 layout of the different components of HMHero.
 
@@ -190,7 +194,7 @@ The following picture of the main window shows the three components, numbered ac
 ![components.png](images%2Fcomponents.png)
 
 HMHero also has the Help Window. It is not part of the main GUI and is only
-shown after a [Help Command](#631-receive-help-during-usage-help) is run.
+shown after a [Help Command](#receive-help-during-usage-help) is run.
 
 The Help Window looks like the following:
 
@@ -199,10 +203,11 @@ The Help Window looks like the following:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-### 5.2 Key Definitions
+### Key Definitions
 
-#### 5.2.1 Applicant
+#### Applicant
 
 An applicant in HMHero represents an individual that applied for a job at your company. HMHero tracks various
 attributes of an applicant. Compulsory attributes would include their name, phone number, address and email.
@@ -225,7 +230,7 @@ This means you cannot add two or more applicants of the same name and phone numb
 
 ---
 
-#### 5.2.2 Notes
+#### Notes
 
 A note in HMHero serves as a means of labelling the skills of an applicant. These tags
 are unique and case-sensitive.
@@ -246,62 +251,65 @@ the same name.
 
 ---
 
-#### 5.2.3 Flags
+#### Flags
 Flags are delimiters that enable HMHero to distinguish different parameters without ambiguity.
 
-You could put in the corresponding [Placeholder](#524-placeholders) immediately after each flag.
+You could put in the corresponding [Placeholder](#placeholders) immediately after each flag.
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 You may find the following image taken from the subsequent <a href="#53-command-format"> Command Format </a> section helpful:
 <img src="./images/CommandExample.png">
 </div>
 
-Placeholders refers to the UPPER_CASE words that can be replaced by valid user input supplied.
-These placeholders follow immediately after a [Flag](#523-flags).
+Placeholder refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+These placeholders follow immediately after a [Flag](#flags).
 
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
-#### 5.2.4 Placeholders
-Placeholders refers to the UPPER_CASE words that can be replaced by valid user input supplied.
-These placeholders follow immediately after a [Flag](#523-flags).
+<div style="page-break-after: always;"></div>
 
-Please refer to the subsequent [Command Format](#53-command-format) 
+#### Placeholders
+Placeholder refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+These placeholders follow immediately after a [Flag](#flags).
+
+Please refer to the subsequent [Command Format](#command-format) 
 section to see how Flags and Placeholders are used together.
 
-| Placeholder          | Corresponding Flag | Description                                                                                                        | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|----------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| INDEX                | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                       | The INDEX is restricted to the number of applicants in HMHero and cannot be negative.                                                                                                                                                                                                                                                                                                                                                                                                  |
-| NAME                 | n/                 | The NAME is the text we use to identify an Applicant.                                                              | The NAME of an applicant must be alphabetic characters and no numbers are allowed.                                                                                                                                                                                                                                                                                                                                                                                                     |
-| PHONE                | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                       | The PHONE of an applicant must have at least 3 numbers and must be numeric characters.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| EMAIL                | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                              | EMAIL must be in the format username@domain  <br><br>   `username`:    <li>Should only contain alphanumeric characters and these special characters (`+`, `_`, `.`, `-`) </li>     <li>Should not start or end with any special characters. </li>  <br> `domain`:   <li>Should be at least 2 characters long. </li>    <li>Each domain label should start and end with alphanumeric characters. </li>    <li>Each domain label consists of alphanumeric characters, separated only by hyphens, if any.</li>|
-| NOTE                 | note/              | The NOTE is the text we use to identify a skill of an Applicant.                                                   | NOTE cannot be longer than 45 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| APPLICATION DATETIME | applied/           | The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job. | Format of datetime is `DD-MM-YYYY HH:mm`                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm` <br><br> INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                |
+| Placeholder          | Corresponding Flag | Description                                                                                                        | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|----------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INDEX                | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                       | The INDEX is restricted to the number of applicants in HMHero and cannot be negative.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| NAME                 | n/                 | The NAME is the text we use to identify an Applicant.                                                              | The NAME of an applicant must be alphabetic characters and no numbers are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| PHONE                | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                       | The PHONE of an applicant must have at least 3 numbers and must be numeric characters.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| EMAIL                | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                              | EMAIL must be in the format username@domain  <br><br>   `username`:    <li>Should only contain alphanumeric characters and these special characters (`+`, `_`, `.`, `-`) </li>     <li>Should not start or end with any special characters. </li>  <br> `domain`:   <li>Should be at least 2 characters long. </li>    <li>Each domain label should start and end with alphanumeric characters. </li>    <li>Each domain label consists of alphanumeric characters, separated only by hyphens, if any.</li> |
+| NOTE                 | note/              | The NOTE is the text we use to identify a skill of an Applicant.                                                   | NOTE cannot be longer than 45 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| APPLICATION DATETIME | applied/           | The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job. | Format of datetime is `DD-MM-YYYY HH:mm`                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm` <br><br> INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                                  |
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-### 5.3 Command Format
+### Command Format
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
 
 Here is an example:
 ![CommandExample.png](images%2FCommandExample.png)
 A command consists of:
-Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#6-commands).<br>
-[Flags](#523-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.<br>
-[Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.<br>
+Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#commands).<br>
+[Flags](#flags): Distinguishes between inputs. A flag is usually followed by a placeholder.<br>
+[Placeholders](#placeholders): Represents data that you wish to input. Replace this with valid data.<br>
 For example, `NAME` in `n/NAME` can be replaced with `n/John`.
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-
-### 5.4 Trying your First Command
+### Trying your First Command
 
 To let you become more familiar with HMHero, let's practise executing some commands.
 
@@ -313,18 +321,18 @@ One of the available commands in HMHero is the command to create a new applicant
 
 **What does the format mean?**
 * `add` tells HMHero that this is the command to create a new applicant
-* [Flags](#523-flags) such as `n/` and `p/` are delimiters that enable HMHero to distinguish different
+* [Flags](#flags) such as `n/` and `p/` are delimiters that enable HMHero to distinguish different
 parameters supplied by you without ambiguity
-* [Placeholders](#524-placeholders) such as `NAME` and `PHONE` shows you what you should place in each portion of the 
+* [Placeholders](#placeholders) such as `NAME` and `PHONE` shows you what you should place in each portion of the 
 command
 
 Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE` and `applied/APPLICATION DATE TIME`
 in the format. This indicates that the parameter is **optional**. Each of these placeholders in the parameters 
-have a default value based on the commands. These are documented in the [Commands](#6-commands) section for each command.
+have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-The <a href="#524-placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
+The <a href="#placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
 the format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
 
@@ -347,8 +355,8 @@ The command you would like to enter into the command box would be:
 add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230
 ```
 
-Find out more about restrictions in the sections [Flags](#523-flags), [Placeholders](#524-placeholders) 
-and [Commands](#6-commands). 
+Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) 
+and [Commands](#commands). 
 
 ---
 
@@ -364,7 +372,8 @@ Here is a checklist you can use before running a command:
 
 ---
 
-## 6. Commands
+
+## Commands
 
 This section shares with you on how to use each command in detail.
 
@@ -378,11 +387,11 @@ This section shares with you on how to use each command in detail.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
+### Applicant Commands
 
-### 6.1 Applicant Commands
-
-#### 6.1.1 Create a new applicant `add`
+#### Create a new applicant `add`
 
 **Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIED DATE TIME] [note/NOTE]`
 
@@ -420,7 +429,7 @@ What you should see:
 ---
 
 
-#### 6.1.2 Search for an applicant `find`
+#### Search for an applicant `find`
 
 **Format**: `find n/[NAME] p/[PHONE]`
 
@@ -463,9 +472,9 @@ What you should see:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-
-#### 6.1.3. List all applicants `list`
+#### List all applicants `list`
 
 **Format**: `list`
 
@@ -499,7 +508,7 @@ What you should see:
 ---
 
 
-#### 6.1.4. Delete an applicant `delete`
+#### Delete an applicant `delete`
 
 **Format**: `delete n/NAME p/PHONE`
 
@@ -530,7 +539,7 @@ What you should see:
 ---
 
 
-#### 6.1.5. Advance an applicant `advance`
+#### Advance an applicant `advance`
 
 **Format**: `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]`
 
@@ -581,7 +590,7 @@ What you should see:
 ---
 
 
-#### 6.1.6. Reject an applicant `reject`
+#### Reject an applicant `reject`
 
 **Format**: `reject n/NAME p/PHONE`
 
@@ -617,7 +626,7 @@ Applicants with the status <code>REJECTED</code> cannot be rejected again!
 
 ---
 
-#### 6.1.7. List all interview dates of applicants `interview`
+#### List all interview dates of applicants `interview`
 
 **Format**: `interview`
 
@@ -644,7 +653,7 @@ What you should see:
 ---
 
 
-#### 6.1.8. Edit an existing applicant `edit`
+#### Edit an existing applicant `edit`
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/NOTE]`
 
@@ -683,9 +692,9 @@ What you should see:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-
-#### 6.1.9. Get reminders for upcoming interviews `remind`
+#### Get reminders for upcoming interviews `remind`
 
 **Format:** `remind`
 
@@ -713,7 +722,7 @@ What you should see:
 ---
 
 
-#### 6.1.10 Filter applicants with specific skill(s) `skill`
+#### Filter applicants with specific skill(s) `skill`
 
 **Format**: `skill KEYWORD(s)`
 
@@ -753,9 +762,9 @@ What you should see:
 ---
 
 
-### 6.2. Statistics Commands
+### Statistics Commands
 
-#### 6.2.1. Summary Statistics `summary`
+#### Summary Statistics `summary`
 
 **Format:** `summary`
 
@@ -778,9 +787,9 @@ What you should see:
 ---
 
 
-### 6.3. General Commands
+### General Commands
 
-#### 6.3.1. Receive help during usage `help`
+#### Receive help during usage `help`
 
 **Format**: `help`
 
@@ -795,7 +804,7 @@ What you should see:
 ---
 
 
-#### 6.3.2. Exit HMHero `exit`
+#### Exit HMHero `exit`
 
 **Format**: `exit`
 
@@ -815,9 +824,9 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 ---
 
 
-## 7. Command Summary
+## Command Summary
 
-### 7.1. Applicant Commands
+### Applicant Commands
 
 | Action                                   | Format                                                                                                                                                                        | Example                                                                     |
 |------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
@@ -837,7 +846,7 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ---
 
-### 7.2. Statistics Commands
+### Statistics Commands
 
 | Action                                  | Format    | Example   |
 |-----------------------------------------|-----------|-----------|
@@ -847,7 +856,7 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ---
 
-### 7.3. General Commands
+### General Commands
 
 | Action                                               | Format | Example |
 |------------------------------------------------------|--------|---------|
@@ -857,8 +866,9 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-## 8. Troubleshooting
+## Troubleshooting
 
 **Problem:**
 
@@ -881,7 +891,7 @@ The JAR file not launching even after double-clicking the file.
 
 The JAR file not launching in Windows Subsystem for Linux (WSL).
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info" role="alert">:information_source: **Info:** 
 WSL does not support GUI applications by default. 
 </div>
 
@@ -901,8 +911,9 @@ Unable to exit/save HMHero to data file
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-## 9. FAQ
+## FAQ
 
 ### Q: If I do not have Java 11, how do I install it on my computer? <br>
 **A:** You can navigate to this site [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) and download Java 11 according to your system’s specifications.
@@ -919,7 +930,9 @@ Unable to exit/save HMHero to data file
 [Back to Table of Contents](#table-of-contents)
 
 ---
-## 10. Acknowledgements
+<div style="page-break-after: always;"></div>
+
+## Acknowledgements
 
 
 HMHero is a brownfield software engineering project based off [AddressBook Level-3](https://nus-cs2103-ay2223s2.github.io/tp/), taken under the [CS2103T Software Engineering](https://nus-cs2103-ay2223s2.github.io/website/admin/index.html) held by School of Computing at National University of Singapore.
@@ -936,8 +949,9 @@ Documentation dependencies:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
-## 11. Glossary
+## Glossary
 
 ### Quick Reference
 - [ADDRESS (Placeholder)](#address-placeholder)
@@ -976,19 +990,19 @@ Documentation dependencies:
 - [URL](#url)
 
 ---
-
+<div style="page-break-after: always;"></div>
 
 ### A
 > #### ADDRESS Placeholder
 > The ADDRESS is a text representing the address of the applicants.
-> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#placeholders) table.
 > #### Address
 > The address of the applicant provided by the user.
 > #### Applicant
 > The person who apply to the company for the job.
 > #### Applicant List Box
 > The region located at the bottom left of the HMHero's main window.<br>
-> To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
+> To view more information, refer to the [User Interface](#user-interface) section of the User Guide
 > #### Application Cycle
 > All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage.
 ![Application Cycle](images/application_stage.png)
@@ -997,22 +1011,22 @@ Documentation dependencies:
 ### C
 > #### COMMAND_WORD Placeholder
 > The COMMAND_WORD is a text indicating a command word of a command
-> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#placeholders) table.
 > #### Command
 > A feature or function that HMHero can perform.
 > #### Command Input Box
 > The region located at the top left of the HMHero's main window.<br>
-> To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
+> To view more information, refer to the [User Interface](#user-interface) section of the User Guide
 > #### Command Line 
 > The typing interface that you use to interact with HMHero. It is represented as the box where you type in commands.
 > #### Command Output Box
 > The region located at the right half of the HMHero's main window. <br>
-> To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
+> To view more information, refer to the [User Interface](#user-interface) section of the User Guide
 
 ### E
 > #### EMAIL Placeholder
 > The EMAIL is a text representing the email address of the applicants.
-> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#placeholders) table.
 > #### Email
 > The email address of the applicant provided by the user. Emails should end with a valid domain name (e.g. gmail.com, hotmail.com, etc.)
 
@@ -1027,7 +1041,7 @@ Documentation dependencies:
 ### H
 > #### Help Window
 > A pop-up window containing help information, shown only after calling a <kbd>help</kbd> command.<br>
-> To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
+> To view more information, refer to the [User Interface](#user-interface) section of the User Guide
 > #### Hiring Manager
 > A person responsible for overseeing the recruitment process within an organization, from identifying staffing needs to making hiring decisions.
 
@@ -1036,7 +1050,7 @@ Documentation dependencies:
 > The text that a user would enter into HMHero
 > #### INTERVIEW_DATE Placeholder
 > The INTERVIEW_DATE is the date indicating when the applicant is having his/her interview.
-> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#placeholders) table.
 > #### Interview Date
 > Date where applicants are going to have their interviews. Interview date is in the format "day-month-year hour:minute", represented in the "DD-MM-YYYY HH:MM" format.
 
@@ -1048,12 +1062,12 @@ Documentation dependencies:
 ### N
 > #### NAME Placeholder
 > The NAME is a text representing the name of the applicants.
-> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#placeholders) table.
 > #### Name
 > The name of the applicant provided by the user.
 > #### NOTES Placeholder
 > The NOTES are some texts that use to represent the skill set of the applicants.
-> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#placeholders) table.
 > #### Notes
 > The skill set the applicant possesses provided by the user.
 
@@ -1068,7 +1082,7 @@ Documentation dependencies:
 > Values that are passed while calling the Commands. For instance, when calling `find n/NAME`, parameter here is `n/NAME`.
 > #### PHONE_NUMBER Placeholder
 > The PHONE_NUMBER is an integer representing the phone number of the applicant.
-> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#placeholders) table.
 > #### Phone Number
 > The phone number of the applicant provided by the user.
 > #### Placeholder
@@ -1077,7 +1091,7 @@ Documentation dependencies:
 ### S
 > #### STATUS Placeholder
 > The STATUS is a text that represent the current state of the applicant.
-> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#placeholders) table.
 > #### Status
 > Status has four stages, which are APPLIED, SHORTLISTED, ACCEPTED and REJECTED. Status can only be modified by using <kbd>advance</kbd> or <kbd>reject</kbd> command.
 > #### Syntax
