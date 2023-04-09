@@ -8,11 +8,11 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":Tank" as Tank LOGIC_COLOR
-participant ":AddressBook" as AddressBook LOGIC_COLOR
-participant ":UniqueFishList" as UFL LOGIC_COLOR
-participant ":Fish" as Fish LOGIC_COLOR
-participant ":LastFedDate" as LFD LOGIC_COLOR
+participant ":Tank" as Tank MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UniqueFishList" as UFL MODEL_COLOR
+participant ":Fish" as Fish MODEL_COLOR
+participant ":LastFedDateTime" as LFDT MODEL_COLOR
 end box
 
 [-> LogicManager : execute("tank feed 1")
@@ -21,28 +21,28 @@ activate LogicManager
 LogicManager -> TankFeedCommand : execute(model)
 activate TankFeedCommand
 
-TankFeedCommand -> Model : setLastFedDateTimeFishes(tank, now)
+TankFeedCommand -> Model : setLastFed(tank, now)
 activate Model
 
-Model -> Tank : setLastFedDateTimeFishes(newDateTime)
+Model -> Tank : setLastFed(date)
 activate Tank
 
-Tank -> AddressBook : setLastFedDateTimeFishes(newDateTime)
+Tank -> AddressBook : setLastFed(date)
 activate AddressBook
 
-AddressBook -> UFL : setLastFedDateTimeFishes(newDateTime)
+AddressBook -> UFL : setLastFed(date)
 activate UFL
 
 loop for each fish
-    UFL -> Fish : setLastFedDateTime(newDateTime)
+    UFL -> Fish : setLastFed(date)
     activate Fish
 
-    create LFD
-    Fish -> LFD : new LastFedDate(newDateTime)
-    activate LFD
+    create LFDT
+    Fish -> LFDT :
+    activate LFDT
 
-    LFD --> Fish :
-    deactivate LFD
+    LFDT --> Fish :
+    deactivate LFDT
 
     Fish --> UFL :
     deactivate Fish
@@ -65,6 +65,4 @@ TankFeedCommand --> LogicManager : commandResult
 deactivate TankFeedCommand
 
 [<-- LogicManager : commandResult
-
-
 @enduml
