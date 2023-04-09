@@ -381,41 +381,6 @@ Pairs saved only contains the NRIC of the elderly and volunteer in JSON format.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Planned Enhancements**
-
-### Editing a pair by index: `edit_pair`
-
-Proposed usage: Edits an existing pair based on their index in the pairs list.
-
-Currently, editing a pair by index has not been implemented. This feature can increase the efficiency of using FriendlyLink.
-This feature was originally deemed low priority, since a pair only has 2 fields: elderly and volunteer, and thus users can reasonably still achieve this by deleting a pair and adding a new pair. Through user feedback, we acknowledge that this is still a useful feature to have to improve efficiency and user experience.
-
-Proposed format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
-
-Proposed behaviour:
-* Edits the pair at the specified `INDEX` in the displayed pair list.
-* Any combination of the optional fields is possible but **at least one** optional field must be specified.
-* Existing values will be updated to the input values.
-
-Examples:
-* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
-
-### Deleting a pair by index: `delete_pair`
-
-Proposed usage: Deletes an existing pair based on their index in the pairs list.
-
-Currently, pairs are deleted by specifying NRIC of both elderly and volunteer. This feature can increase the efficiency of using FriendlyLink, if we allow users to simply specify the index of the pair.
-This feature is originally implemented as such to prevent accidental deletion of pairs, as it is easy to enter the wrong index but hard to accidentally enter a pair of incorrect NRICs and delete the wrong pair. Through user feedback, we acknowledge that we should implement it to delete by index and support this with an `undo` feature to minimise impact of accidental deletions.
-
-Proposed format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
-
-Proposed behaviour:
-* Edits the pair at the specified `INDEX` in the displayed pair list.
-* Any combination of the optional fields is possible but **at least one** optional field must be specified.
-* Existing values will be updated to the input values.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -808,30 +773,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. FriendlyLink does not require internet connection to work.
 1. FriendlyLink is meant for VWOs in Singapore to contain information of and pair elderly and volunteers.
 
-### Glossary
-
-| Term                  | Definition                                                                                                                                                  |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                                                                     |
-| Date                  | A date representing the timestamp of an event, in the format `YYYY-MM-DD`                                                                                   |
-| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink                                                            |
-| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink                                                                           |
-| Elderly               | Elderly are people under the care of your VWO                                                                                                               |
-| Email                 | The email of a person, in the `localPart@domain` format, containing the `@`                                                                                 |
-| FriendlyLink          | The name of our application                                                                                                                                 |
-| Field                 | A field is the information following the slash in a command.                                                                                                |
-| Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
-| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
-| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
-| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
-| Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
-| Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the field that they represent.                                         |
-| Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
-| Risk level            | The susceptibility level of an elderly to injury or sickness. Must be one of the following values: `LOW`, `MEDIUM` or `HIGH`                                |
-| Tag                   | A generic description for a group of people. Must contain only alphanumeric characters                                                                      |
-| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members                                                                                     |
-| VWO                   | Voluntary Welfare Organisations such as yourself                                                                                                            |
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -975,19 +916,90 @@ testers are expected to do more *exploratory* testing.
 
 ------------------------------------------------------------
 
-## Appendix: Feature Flaws
+## **Appendix: Planned Enhancements**
 
 When creating software, there are always areas that can be improved upon.
 In the interest of transparency and keeping our users informed, we have identified some aspects
 of our product that we recognise as feature flaws. We appreciate your patience as
 we are actively working to find the best solution to address these feature flaws.
 
-1. Depending on whether or not any record is present in the section, the width of the Elderly, Volunteer and Pair UI may vary slighly.
-2. When users provide a birth date for an Elderly or Volunteer profile, only the person's current age is displayed in the app. To view the specific birth date, users must refer to the respective JSON file. 
-3. In order to give users maximum flexibility in adding tags, we do not impose any limits on the number of tags or the character limit for each tag.
-   However, if tags with excessively long names are used, they could potentially affect the UI display and impact user experience.
-4. Our auto_pair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always 
-be the most optimal in terms of time efficiency or number of pairings.
-5. Allow users to enter hours into the available dates fields to provide greater flexibility in specifying availability period.
-6. A command to view pairing details, instead of hovering over the pair item, and reading from the popover card.
+### Editing a pair by index: `edit_pair`
 
+Currently, editing a pair by index has not been implemented. This feature can increase the efficiency of using FriendlyLink.
+This feature was originally deemed low priority, since a pair only has 2 fields: elderly and volunteer, and thus users can reasonably still achieve this by deleting a pair and adding a new pair. Through user feedback, we acknowledge that this is still a useful feature to have to improve efficiency and user experience.
+
+Proposed usage: Edits an existing pair based on their index in the pairs list.
+Proposed format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
+
+Proposed behaviour:
+* Edits the pair at the specified `INDEX` in the displayed pair list.
+* Any combination of the optional fields is possible but **at least one** optional field must be specified.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
+
+### Deleting a pair by index: `delete_pair`
+
+Currently, pairs are deleted by specifying NRIC of both elderly and volunteer. This feature can increase the efficiency of using FriendlyLink, if we allow users to simply specify the index of the pair.
+This feature is originally implemented as such to prevent accidental deletion of pairs, as it is easy to enter the wrong index but hard to accidentally enter a pair of incorrect NRICs and delete the wrong pair. Through user feedback, we acknowledge that we should implement it to delete by index and support this with an `undo` feature to minimise impact of accidental deletions.
+
+Proposed usage: Deletes an existing pair based on their index in the pairs list.
+Proposed format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
+
+Proposed behaviour:
+* Edits the pair at the specified `INDEX` in the displayed pair list.
+* Any combination of the optional fields is possible but **at least one** optional field must be specified.
+* Existing values will be updated to the input values.
+
+### Display birthdate in person cards
+
+When users provide a birthdate for an Elderly or Volunteer profile, only the person's current age is displayed in the app. To view the specific birthdate, users must refer to the respective JSON file.
+We should display the birthdate in FriendlyLink as well.
+
+### Enhance display of large number of tags
+
+There are no limits on the number of tags or the character limit for each tag. If large number of tags or tags with excessively long names are used, it affects the UI display and impact user experience.
+<Insert proposed solution>
+
+### Enhance display of pair information
+
+Currently, users need to mouse over the pair card to view information of each pair. This reduces the efficiency of FriendlyLink, which is intended to be optimised for typing. A command to view pairing details, instead of hovering over the pair item, and reading from the popover card would improve efficiency.
+<Insert proposed solution>
+
+### Enhance effectiveness of autoPair feature
+
+autoPair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always be the most optimal in terms of time efficiency or number of pairings we can automatically pair.
+<Insert proposed solution>
+
+### Enhance available dates feature
+
+Currently, available dates take in dates and not time of day.
+We should improve it to allow users to enter time into the availability fields to provide greater flexibility in specifying availability period.
+
+1. Depending on whether or not any record is present in the section, the width of the Elderly, Volunteer and Pair UI may vary slighly.
+
+--------------------------------------------------------------------------------------------------------------------
+## Glossary
+
+| Term                  | Definition                                                                                                                                                  |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                                                                     |
+| Date                  | A date representing the timestamp of an event, in the format `YYYY-MM-DD`                                                                                   |
+| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink                                                            |
+| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink                                                                           |
+| Elderly               | Elderly are people under the care of your VWO                                                                                                               |
+| Email                 | The email of a person, in the `localPart@domain` format, containing the `@`                                                                                 |
+| FriendlyLink          | The name of our application                                                                                                                                 |
+| Field                 | A field is the information following the slash in a command.                                                                                                |
+| Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
+| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
+| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
+| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
+| Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
+| Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the field that they represent.                                         |
+| Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
+| Risk level            | The susceptibility level of an elderly to injury or sickness. Must be one of the following values: `LOW`, `MEDIUM` or `HIGH`                                |
+| Tag                   | A generic description for a group of people. Must contain only alphanumeric characters                                                                      |
+| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members                                                                                     |
+| VWO                   | Voluntary Welfare Organisations such as yourself                                                                                                            |
