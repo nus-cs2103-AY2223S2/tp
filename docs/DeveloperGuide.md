@@ -640,7 +640,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### \[Proposed\] Aggregated data feature
 
-Various aggregated data such as total number of clients, total earnings for the user from all the clients, will be displayed and updated automatically. 
+Various aggregated data such as total number of clients, total earnings for the user from all the clients, will be displayed and updated automatically.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1021,10 +1021,7 @@ testers are expected to do more *exploratory* testing.
 7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered client list and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
 
 ## **Appendix: Efforts**                                                                                                       
-1. Overall, we thought the project's difficulty level was Moderate.                                                            
-We implemented a wide range of features with differing degrees of difficulty and complexity.                                   
-We needed a thorough understanding of the system architecture, as this was necessary in                                        
-order to extend AB-3 in a way that integrates well with the existing design and features of AB-3                               
+1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity.                                   We needed a thorough understanding of the system architecture, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3                               
 2. Challenges Faced: Because each member worked on many issues and features, the list below is not exhaustive.                 
    * Having to integrate the list of clients as well their respective policies into the UI, so that the                        
    application's main window can contain both the client list and their policy list.                                           
@@ -1040,4 +1037,4 @@ order to extend AB-3 in a way that integrates well with the existing design and 
 4. Achievements of the Project:                                                                                                
    * Our team created a software product that we believe meets our intended goals.                                             
    * All of the Must-have User Stories were met by our software application.                                                   
-   * Our team has met all set milestones and deadlines.                                                                        
+   * Our team has met all set milestones and deadlines.
