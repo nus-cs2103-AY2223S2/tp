@@ -137,6 +137,8 @@ The `Model` component,
 </div>
 The model for lab and consultation is the same as well, except that Tutorial is replaced with Lab and Consultation respectively.
 
+<img src="images/SortCommandClassDiagram.png" width="450" />
+The SortCommand creates a copy of the FilterList and sorts the respective list depending on the group specified, based on the metric provided. Depending on the metric, it calls the respective Comparator and sorts the entries in the list in the desired order.
 
 ### Storage component
 
