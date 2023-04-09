@@ -27,14 +27,14 @@ Given below are my contributions to the project.
   * Highlights: This implementation was challenging to design and understand as some of the other features were going to use this class. This implementation also made use of defensive coding for its implementation.
   * Credits: *nil*
 <br><br>
-  
+
 * **New Feature**: Added the ability to add attendance for the students created. Additionally, implemented the ability to add attendance during add, edit person that fits in with the expected behaviour.
   * What it does: Allows user to add attendance for the students created in PowerConnect via the Attendance Add Command. This attendance is stored as a date which will be automatically displayed as present or absent based on current date.
   * Justification: This feature contributes significantly to the product as it is crucial for users to be able to add attendance for students and have the attendance be added automatically by the product and not done manually by the user.
   * Highlights: The implementation was challenging as it required changes to Attendance Add Command as well as Student Add/Edit commands during its implementation to ensure the attendance of students are performed properly. There were multiple cases to consider during its implementation. This implementation also made use of defensive coding for its implementation.
   * Credits: *nil*
 <br><br>
-  
+
 * **New Feature**: Added abstraction of Person class to Student and Parent/NOK classes
   * What it does: Store the information of students and parents/NOKs in separate classes that extends from the Person class.
   * Justification: This feature contributes significantly to the product as it is crucial for users to be able to add students and parents/NOKs and have the information of students and parents/NOKs contains separate information of each other, but are all persons.
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     <br><br>
 
 * **New Feature**: Storage for Student and Parent/NOK classes (internal feature
-  * What it does: Allows user to store the information of students and parents/NOKs in the storage file. Abstraction for all attributes of Students and parents/NOKs and important information to keep about them. 
+  * What it does: Allows user to store the information of students and parents/NOKs in the storage file. Abstraction for all attributes of Students and parents/NOKs and important information to keep about them.
   * Justification: This feature contributes significantly to the product as it is crucial for users to be able to add students and parents/NOKs and have the information of students and parents/NOKs be stored in the storage file for offline retrieval.
   * Highlights: The implementation was challenging as it required changes to the storage file to store the information of students and parents/NOKs. Additionally, the implementation of the storage was done after a lot of the features was already created, meaning I had to change a lot of the implementation of the other features which were coupled together.
   * Credits: *AB3 Storage implementation*
@@ -52,8 +52,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=securespider&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17) <br><br>
 
 * **Project management**:
-  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub 
-  * Helped in creation of project board and milestones for the project 
+  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub
+  * Helped in creation of project board and milestones for the project
   * Managed issue tracking and assigning of issues to team members <br><br>
 
 * **Enhancements to existing features**:
