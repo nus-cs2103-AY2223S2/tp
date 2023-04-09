@@ -118,4 +118,31 @@ public class EditExpenseCommand implements EditCommand {
             String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, newExpense),
             ScreenType.EXPENSE_SCREEN);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        EditExpenseCommand otherTypeCasted = (EditExpenseCommand) other;
+        boolean checkName = (newExpenseName != null && otherTypeCasted.newExpenseName != null);
+        boolean checkEitherName = ((newExpenseName == null) && (otherTypeCasted.newExpenseName != null)
+                || (newExpenseName != null) && (otherTypeCasted.newExpenseName == null));
+        boolean checkAmt = (newExpenseAmount != null && otherTypeCasted.newExpenseAmount != null);
+        boolean checkEitherAmt = ((newExpenseAmount == null) && (otherTypeCasted.newExpenseAmount != null)
+                || (newExpenseAmount != null) && (otherTypeCasted.newExpenseAmount == null));
+        boolean checkDate = (newExpenseDate != null && otherTypeCasted.newExpenseDate != null);
+        boolean checkEitherDate = ((newExpenseDate == null) && (otherTypeCasted.newExpenseDate != null)
+                || (newExpenseDate != null) && (otherTypeCasted.newExpenseDate == null));
+        boolean checkCategory = (newExpenseCategoryInString != null
+                && otherTypeCasted.newExpenseCategoryInString != null);
+        boolean checkEitherCategory = ((newExpenseName == null) && (otherTypeCasted.newExpenseCategoryInString != null)
+                || (newExpenseName != null) && (otherTypeCasted.newExpenseCategoryInString == null));
+
+        return other == this // short circuit if same object
+                || (other instanceof EditExpenseCommand // instanceof handles nulls
+                && (targetIndex.equals(otherTypeCasted.targetIndex))
+                && (checkName ? newExpenseName.equals(otherTypeCasted.newExpenseName) : !checkEitherName)
+                && (checkAmt ? newExpenseAmount.equals(otherTypeCasted.newExpenseAmount) : !checkEitherAmt)
+                && (checkDate ? newExpenseDate.equals(otherTypeCasted.newExpenseDate) : !checkEitherDate)
+                && (checkCategory ? newExpenseCategoryInString.equals(otherTypeCasted.newExpenseCategoryInString)
+                : !checkEitherCategory));
+    }
 }
