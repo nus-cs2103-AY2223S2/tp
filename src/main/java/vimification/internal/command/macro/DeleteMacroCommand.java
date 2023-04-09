@@ -24,6 +24,9 @@ public class DeleteMacroCommand extends MacroCommand {
         this.macro = macro;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MacroMap macroMap) {
         macroMap.remove(macro);

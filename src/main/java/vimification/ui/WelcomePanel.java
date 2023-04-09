@@ -17,6 +17,9 @@ public class WelcomePanel extends UiPart<VBox> {
     @FXML
     private WebView webView;
 
+    /**
+     * Constructor for WelcomePanel.
+     */
     public WelcomePanel() {
         super(FXML);
         WebEngine webEngine = webView.getEngine();

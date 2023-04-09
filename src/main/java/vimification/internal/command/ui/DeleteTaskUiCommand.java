@@ -9,6 +9,9 @@ public class DeleteTaskUiCommand extends UiCommand {
 
     public DeleteTaskUiCommand() {}
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         mainScreen.getTaskListPanel().loadTaskDetailPanel();

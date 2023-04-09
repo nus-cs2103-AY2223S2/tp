@@ -9,6 +9,9 @@ public class EditTaskUiCommand extends UiCommand {
 
     public EditTaskUiCommand() {}
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         mainScreen.getTaskListPanel().loadTaskDetailPanel();

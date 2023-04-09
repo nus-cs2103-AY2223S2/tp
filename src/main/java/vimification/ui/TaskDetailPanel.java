@@ -52,6 +52,9 @@ public class TaskDetailPanel extends UiPart<VBox> {
         setup();
     }
 
+    /**
+     * Sets up the task details panel.
+     */
     private void setup() {
         title.setText(task.getTitle());
 
