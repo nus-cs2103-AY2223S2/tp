@@ -540,8 +540,6 @@ Examples:
   </p>
 
 
-<div style="page-break-after: always;"></div>
-
 #### Unassign a contact from a project: `unassign`
 
 Removes the specified contact from the specified project.
