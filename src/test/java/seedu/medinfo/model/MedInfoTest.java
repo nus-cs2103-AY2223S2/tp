@@ -69,6 +69,7 @@ public class MedInfoTest {
         try {
             medInfo.addPatient(ALEX);
         } catch (CommandException e) {
+            System.out.println("Caught CommandException error!!!");
         }
 
         assertTrue(medInfo.hasPatient(ALEX));
@@ -79,6 +80,7 @@ public class MedInfoTest {
         try {
             medInfo.addPatient(ALEX);
         } catch (CommandException e) {
+            System.out.println("Caught CommandException error!!!");
         }
         Patient editedAlice = new PatientBuilder(ALEX).withStatus("YELLOW")
                 .build();

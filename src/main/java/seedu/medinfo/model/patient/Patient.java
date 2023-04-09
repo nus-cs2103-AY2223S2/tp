@@ -3,7 +3,6 @@ package seedu.medinfo.model.patient;
 import static seedu.medinfo.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.medinfo.model.ward.Ward.wardWithName;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,6 +15,7 @@ import seedu.medinfo.model.ward.WardName;
  * immutable.
  */
 public class Patient {
+    private static final int INVERTER = -1;
 
     // Identity fields
     private final Nric nric;
@@ -25,7 +25,6 @@ public class Patient {
     private Status status = new Status("GRAY");
     private WardName ward = new WardName("Waiting Room");
     private Discharge discharge = new Discharge("To Be Confirmed");
-    private final int INVERTER = -1;
 
     /**
      * Constructor for Patient taking in nric and name.

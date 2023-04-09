@@ -13,7 +13,6 @@ import seedu.medinfo.model.patient.Name;
 import seedu.medinfo.model.patient.Nric;
 import seedu.medinfo.model.patient.Status;
 import seedu.medinfo.model.ward.Capacity;
-import seedu.medinfo.model.ward.Ward;
 import seedu.medinfo.model.ward.WardName;
 
 /**

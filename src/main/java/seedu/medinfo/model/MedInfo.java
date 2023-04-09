@@ -34,7 +34,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      * Note that non-static init blocks are not recommended to use. There are other
      * ways to avoid duplication
      * among constructors.
-     */ 
+     */
     {
         patients = new UniquePatientList();
         wards = new UniqueWardList();
@@ -130,7 +130,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      * The patient identity of {@code editedPatient} must not be the same as another
      * existing patient in the medinfo book.
      */
-    public void setPatient(Patient target, Patient editedPatient) throws CommandException{
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException {
         requireAllNonNull(target, editedPatient);
         patients.setPatient(target, editedPatient);
         try {
