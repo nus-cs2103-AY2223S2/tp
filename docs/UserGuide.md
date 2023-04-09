@@ -198,7 +198,7 @@ An Internship can also store **zero or more** **Event**.
 In TinS, an **Event** can be used to represent a **Deadline** or an **Interview** associated to an Internship. An Event
 has the following fields:
 
-* `EVENT_NAME`: The Name of the Event.
+* `EVENT_NAME`: The Name of the Event. The Name of an Event is case-sensitive.
 
 <div markdown="span" class="alert alert-success">
 
@@ -418,8 +418,8 @@ internship application to TinS, if there is a pre-existing internship in TinS wi
 Example: If TinS contains an Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`, the commands
 below will not be allowed. <br>
 
-    * `add p/Software Engineer c/Grab s/0 d/`
-    * `add p/SOFTWARE engineer c/Grab s/3 d/`
+  * `add p/Software Engineer c/Grab s/0 d/`
+  * `add p/SOFTWARE engineer c/Grab s/3 d/`
 
 </div>
 
@@ -464,11 +464,11 @@ Format: `find [p/POSITION] [c/COMPANY] [s/STATUS] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
 
-    :information_source: **Info:** If your command is `find t/` 
+    :information_source: **Info:** If your command is `find t/`, TinS will return all internships with no `TAG` field.
 </div>
 
-* After keying in your `find` command, TinS will find related internships based on your chosen fields and
-  provided keywords, displaying them in the List Panel.
+* After keying in your `find` command, TinS will find internships that fulfil all your requirements given,
+  displaying them in the List Panel.
 * To view all Internship in TinS again, simply enter the `list` command.
 
 Example: TinS has 7 internship listings. `find c/tech t/important` would return the list of internships with `COMPANY`
@@ -599,7 +599,8 @@ Format: `event add [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]`
   `EVENT_NAME` field. This search case-insensitive.
 * If your chosen field is `START_DATETIME` and `END_DATETIME`, enter a `DATETIME` in the format DD/MM/YYYY HHMM. 
   TinS will find events with the corresponding `START_DATETIME` or `END_DATETIME`.
-* The results of `event find` will be displayed in the Display Panel.
+* After keying in your `event find` command, TinS will find events that fulfil all your requirements given,
+  displaying them in the Display Panel.
 
 Example: `event find na/interview st/14/04/2023 1400` returns a list of events with `EVENT_NAME` containing the keyword
 "interview" and starting time 14 April 2023, 2pm.
