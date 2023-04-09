@@ -88,7 +88,7 @@ title: Developer Guide
    * [Testing Parsers](#testing-parsers)
    * [GUI Tests](#gui-tests)
      * [Setting up automated GUI Tests in Github Actions](#setting-up-automated-gui-tests-in-github-actions)
-   * [Understanding GUI Tests](#understanding-gui-tests)
+     * [Understanding GUI Tests](#understanding-gui-tests)
    * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
    * [Create Code Coverage Report](#create-code-coverage-report)
    * [Read Code Coverage Report](#read-code-coverage-report)
@@ -1310,7 +1310,7 @@ test {
 }
 ```
 
-## Understanding GUI Tests
+### **Understanding GUI Tests**
 We utilised GUI tests from [AB4](https://github.com/se-edu/addressbook-level4/tree/master/src/test/java) and here is a summary of it.
 
 <img src="images/UiTestClassDiagram.svg" style="width:70%;margin:0 15%">
