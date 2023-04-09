@@ -1216,7 +1216,7 @@ the time taken to test extensively manually.
 
 ### **Unit Tests**
 
-Our organisation primarily utilizes `JUnit5`for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
+Our organisation primarily utilizes `JUnit5` for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
 
 Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
