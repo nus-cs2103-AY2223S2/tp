@@ -209,7 +209,7 @@ public class Task {
      * @return true of the deadline of this task is before the specified date
      */
     public boolean deadlineIsBefore(LocalDateTime date) {
-        return deadline != null && !deadline.isBefore(date);
+        return deadline != null && deadline.isBefore(date);
     }
 
     /**
@@ -219,7 +219,7 @@ public class Task {
      * @return true of the deadline of this task is after the specified date
      */
     public boolean deadlineIsAfter(LocalDateTime date) {
-        return deadline != null && !deadline.isAfter(date);
+        return deadline != null && deadline.isAfter(date);
     }
 
     /**
