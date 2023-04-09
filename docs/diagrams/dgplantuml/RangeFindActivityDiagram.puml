@@ -5,7 +5,7 @@ start
 :User enters find persons by age range command;
 if () then ([age range and specific age is not mixed])
 if () then ([age range is valid])
-    :Finds dengue cases associates in the given age range;
+    :Finds dengue cases associated with the given age range;
     :Displays success message;
     stop
 else ([else])
