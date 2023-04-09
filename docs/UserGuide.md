@@ -130,8 +130,8 @@ There are two options to display a student's scores (__score list__ and __score 
 --------------------------------------------------------------------------------------------------------------------
 
 ## User input restrictions
-To achieve the best performance, we have set **restrictions** for your command input.<br><br>
-Here is the **summary** for input restrictions. You are advised to skim through all the restrictions to avoid command input mistakes.
+To achieve the best performance, we have set **restrictions** for the user command input.<br><br>
+Here is the **summary** for input restrictions. Users are advised to skim through all the restrictions to avoid command input mistakes.
 
 [Back to top](#table-of-contents)
 
@@ -203,18 +203,19 @@ The format of a **date** must be in **`yyyy-MM-DD`**, and must not be in the fut
 
 #### Index
 An index must be a **positive integer** 1, 2, 3, ... (one-based index).
+Note if the index given is too large and exceed the integer limit, the command will be deemed as invalid.
 
 [Back to top](#table-of-contents)
 
 #### File path for export
-* File path separator (e.g. backward/forward slash) should **follow your operating system**.
+* File path separator (e.g. backward/forward slash) should **follow user's operating system**.
   * e.g. Windows uses backward slash and Mac uses forward slash
 * Export path should be a **directory**, not a file!
 
 [Back to top](#table-of-contents)
 
 #### File path for import
-* File path separator (e.g. backward/forward slash) should **follow your operating system**.
+* File path separator (e.g. backward/forward slash) should **follow user's operating system**.
     * e.g. Windows uses backward slash and Mac uses forward slash
 * Export path should be a **file**, not a directory!
 
@@ -240,8 +241,8 @@ An index must be a **positive integer** 1, 2, 3, ... (one-based index).
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is expected only once in the command, but the user specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if the user specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * __Extraneous parameters for commands that do not take in parameters (including `help`, `list`, `exit`, `clear`, and `switch`) will be ignored.<br>__
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -273,7 +274,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 
 **:exclamation: Caution:**<br>
 * In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name).
-* If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
+* If the user wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -321,9 +322,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, all the existing tags of the student will be removed. i.e. adding of tags is not cumulative.
-* You can remove all the student’s tags by typing `t/` without specifying any tags after it.
-* We allow you to edit the `PHONE_NUMBER` and `CONTACT_PARENT` to be the same.
-* You are not allowed to change the name of a student to be the same as any existing student in the list.
+* The user can remove all the student’s tags by typing `t/` without specifying any tags after it.
+* We allow the user to edit the `PHONE_NUMBER` and `CONTACT_PARENT` to be the same.
+* The user are not allowed to change the name of a student to be the same as any existing student in the list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -428,7 +429,7 @@ Examples:
 
 * `list` followed by `addtask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
   student list.<br>
-    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     ![Add a task](images/Add%20a%20task.png)
 * `check 2` followed by `addtask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
   being checked.
@@ -449,7 +450,7 @@ Format: `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`
 Examples:
 
 * `list` followed by `deletetask 2 3` deletes the third task of the 2nd student in the student list.<br>
-    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
     ![Delete a task (before)](images/Delete%20a%20task%20(before).png)
     After command execution:
@@ -476,13 +477,13 @@ Format:
 Examples:
 
 * `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.<br>
-    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
     ![Mark a task (before)](images/Mark%20a%20task%20(before).png)
     After command execution:
     ![Mark a task complete (after)](images/Mark%20a%20task%20complete%20(after)png)
 * `list` followed by `marklate 2 3` marks the third task of the 2nd student in the student list as late.<br>
-    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
     ![Mark a task (before)](images/Mark%20a%20task%20(before).png)
     After command execution:
@@ -515,7 +516,7 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 
 **:information_source: Note about format of `DATE`:**<br>
 * The format of `DATE` must be `yyyy-MM-DD`. For example, `2022-02-20` represents 20 February 2022.
-* If the `DATE` entered by user is in the future will not be allowed.
+* If the `DATE` entered by the user is in the future, will not be allowed.
 
 </div>
 
@@ -531,7 +532,7 @@ Examples:
 
 * `list` followed by `addscore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a
   value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.<br>
-  The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+  The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
   * Current display for score tab is using score list.
     ![Add a score Score List](images/Add%20a%20score%20Score%20List.png)
   * Current display for score tab is using score chart.
@@ -555,7 +556,7 @@ Format: `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE `
 Examples:
 
 * `list` followed by `deletescore 2 1` deletes first score of the 2nd student in the student list.
-  The following results assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+  The following results assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
   * Current display for score tab is using score list.<br>
     Before command execution:
     ![Delete a score Score List (before)](images/Delete%20a%20score%20Score%20List%20(before).png)
@@ -742,7 +743,7 @@ command.
 MATHUTORING data are saved as a JSON file `[JAR file location]/data/mathutoring.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: Caution:
-If your changes to the data file make its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
+If the changes to the data file make its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
 </div>
 
 [Back to top](#table-of-contents)
