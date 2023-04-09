@@ -27,6 +27,9 @@ public class AddMacroCommand extends MacroCommand {
         this.commandString = commandString;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MacroMap macroMap) {
         macroMap.put(macro, commandString);

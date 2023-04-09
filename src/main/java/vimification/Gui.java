@@ -64,6 +64,10 @@ public class Gui extends Application {
         ui.start(primaryStage);
     }
 
+    /**
+     * Returns a {@code Config} using the file at {@code configFilePath}, or a new {@code Config}
+     * with default configuration if {@code configFilePath} is null.
+     */
     private Config initConfig(Path configFilePath) {
         Path configFilePathUsed;
         if (configFilePath != null) {
@@ -108,6 +112,10 @@ public class Gui extends Application {
         return userPrefs;
     }
 
+    /**
+     * Returns a {@code TaskList} using the file at {@code storage}'s task list file path, or a new
+     * {@code TaskList} with default configuration if errors occur when reading from the file.
+     */
     private TaskList initTaskList(Storage storage) {
         TaskList taskList;
         try {
@@ -127,6 +135,10 @@ public class Gui extends Application {
         return taskList;
     }
 
+    /**
+     * Returns a {@code MacroMap} using the file at {@code storage}'s macro map file path, or a new
+     * {@code MacroMap} with default configuration if errors occur when reading from the file.
+     */
     private MacroMap initMacroMap(Storage storage) {
         MacroMap macroMap;
         try {

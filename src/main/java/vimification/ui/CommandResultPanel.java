@@ -18,6 +18,11 @@ public class CommandResultPanel extends UiPart<HBox> {
     @FXML
     private Label resultField;
 
+    /**
+     * Constructor for CommandResultPanel.
+     *
+     * @param mainScreen the main screen of the application
+     */
     public CommandResultPanel(MainScreen mainScreen) {
         super(FXML);
         this.mainScreen = mainScreen;
@@ -25,6 +30,11 @@ public class CommandResultPanel extends UiPart<HBox> {
         resultField.prefHeightProperty().bind(this.getRoot().heightProperty());
     }
 
+    /**
+     * Displays the result of the command at the bottom of {@code MainScreen}.
+     *
+     * @param result the result of the command
+     */
     public void display(CommandResult result) {
         resultField.setText(result.getFeedbackToUser());
         System.out.println("CommandResultPanel.resultField: " + resultField.getText());
@@ -33,5 +43,4 @@ public class CommandResultPanel extends UiPart<HBox> {
         pause.play();
         mainScreen.loadBottomComponent(this);
     }
-
 }

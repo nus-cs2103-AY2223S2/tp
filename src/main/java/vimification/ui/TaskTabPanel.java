@@ -11,6 +11,9 @@ import vimification.model.UiTaskList;
 import vimification.model.task.Status;
 import vimification.model.task.Task;
 
+/**
+ * Panel containing the list of tasks.
+ */
 public class TaskTabPanel extends UiPart<VBox> {
     private static final String FXML = "TaskTabPanel.fxml";
 
@@ -33,6 +36,9 @@ public class TaskTabPanel extends UiPart<VBox> {
 
     int taskTabIndex = 0;
 
+    /**
+     * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
+     */
     public TaskTabPanel(MainScreen mainScreen, Logic logic) {
         super(FXML);
         this.mainScreen = mainScreen;
@@ -40,13 +46,9 @@ public class TaskTabPanel extends UiPart<VBox> {
 
         uiTaskList.setPredicate(task -> task.hasStatus(Status.NOT_DONE));
 
-        ongoingTaskListPanel = new TaskListPanel(uiTaskList);
-        completedTaskListPanel = new TaskListPanel(uiTaskList);
-        overdueTaskListPanel = new TaskListPanel(uiTaskList);
-
-        ongoingTaskListPanel.setMainScreen(mainScreen);
-        completedTaskListPanel.setMainScreen(mainScreen);
-        overdueTaskListPanel.setMainScreen(mainScreen);
+        ongoingTaskListPanel = new TaskListPanel(uiTaskList, mainScreen);
+        completedTaskListPanel = new TaskListPanel(uiTaskList, mainScreen);
+        overdueTaskListPanel = new TaskListPanel(uiTaskList, mainScreen);
 
         ongoingTaskListPanel.getRoot().prefHeightProperty()
                 .bind(this.getRoot().prefHeightProperty());
@@ -60,7 +62,9 @@ public class TaskTabPanel extends UiPart<VBox> {
         overdueTaskListComponent.getChildren().add(overdueTaskListPanel.getRoot());
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void requestFocus() {
         int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
@@ -77,6 +81,9 @@ public class TaskTabPanel extends UiPart<VBox> {
         }
     }
 
+    /**
+     * Scrolls to the {@code TaskCard} at the {@code index} and selects it.
+     */
     public void scrollToTaskIndex(int displayIndex) {
         int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
 
@@ -93,6 +100,13 @@ public class TaskTabPanel extends UiPart<VBox> {
         }
     }
 
+    /**
+     * Searches for a task based on the predicate and status
+     * 
+     * @param predicate the predicate to search for
+     * @param status the status of the task
+     * @return the index of the task
+     */
     public void searchForTask(Predicate<? super Task> predicate, Status status) {
         int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
 
@@ -121,6 +135,9 @@ public class TaskTabPanel extends UiPart<VBox> {
         return mainScreen;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @FXML
     private void initialize() {
         Platform.runLater(() -> {
@@ -130,7 +147,9 @@ public class TaskTabPanel extends UiPart<VBox> {
         initializeHandleTabChange();
     }
 
-
+    /**
+     * Initializes the tab change handler
+     */
     private void initializeHandleTabChange() {
         taskTabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
             int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
@@ -155,6 +174,9 @@ public class TaskTabPanel extends UiPart<VBox> {
         taskTabPane.requestFocus();
     }
 
+    /**
+     * Refreshes the task detail panel
+     */
     public void refreshTaskDetailPanel() {
         int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
 

@@ -28,6 +28,9 @@ public class FilterCommand extends UiCommand {
         this.request = request;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         List<Predicate<Task>> predicates = new ArrayList<>();
@@ -63,7 +66,8 @@ public class FilterCommand extends UiCommand {
         default:
             throw new CommandException("Should not reach here!");
         }
-        mainScreen.getTaskTabPanel().searchForTask(predicate, request.getSearchedStatus());
+        mainScreen.getTaskListPanel().searchForTask(predicate);
+        mainScreen.getTaskListPanel().loadTaskDetailPanel();
         return new CommandResult(SUCCESS_MESSAGE);
     }
 

@@ -14,6 +14,7 @@ title: User Guide
   - [Trying out the commands](#trying-out-the-commands)
 - [Navigating Vimification](#navigating-vimification)
 - [Using the commands](#using-the-commands)
+- [General information on a task's attributes](#general-information-on-a-tasks-attributes)
 - [Information on commands' parameters](#information-on-commands-parameters)
 - [Features and commands](#features-and-commands)
   - [Viewing help](#viewing-help)
@@ -24,14 +25,13 @@ title: User Guide
   - [Editing task](#editing-task)
   - [Filtering task](#filtering-task)
   - [Sorting task](#sorting-task)
-  - [Undo the previous command](#undo-the-previous-command)
   - [General information on MACRO commands](#general-information-on-macro-commands)
+  - [Undoing the previous command](#undoing-the-previous-command)
   - [Exiting the application](#exiting-the-application)
   - [Saving the task list data](#saving-the-task-list-data)
   - [Editing existing task list data](#editing-existing-task-list-data)
   - [Archiving data files (future feature)](#archiving-data-files-future-feature)
 - [FAQ](#faq)
-- [Flag summary](#flag-summary)
 - [Command summary](#command-summary)
 
 
@@ -39,25 +39,23 @@ title: User Guide
 
 <!-- Might want to make this introduction more concise -->
 
-Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With VimPlanner, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
+Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a computing student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With Vimification, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
 
-Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
+Vimification is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can track your to-dos faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, fret not as we also provide a Graphical User interface (GUI) to assist you.
 
-Vimification is designed to help you stay organized and productive by providing a simple and intuitive interface that allows you to keep track of all your tasks and deadlines in one place. Whether you are a seasoned Vim user or just starting out, you will find Vimification to be an easy and efficient way to manage your daily tasks.
+You can quickly create new tasks, set due dates, prioritize your work, and track your progress, all within Vimification. Whether you are working on a group project, studying for an exam, or just trying to stay on top of your assignments, Vimification has everything you need to stay organized and focused.
 
-With Vimification, you can quickly and easily create new tasks, set due dates, prioritize your work, and track your progress. Whether you are working on a group project, studying for an exam, or just trying to stay on top of your assignments, VimPlanner has everything you need to stay organized and focused.
-
-So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience the power of Vim-like productivity for yourself!
+So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience its power for yourself!
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ## Purpose of this User Guide
 
-The purpose of this user guide is to provide you with a comprehensive resource that will guide you through the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using VimPlanner's powerful and intuitive interface.
+The purpose of this user guide is to provide you with a comprehensive guide on using the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using Vimification's powerful and intuitive interface.
+The purpose of this user guide is to provide you with a comprehensive guide on using the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using Vimification's powerful and intuitive interface.
 
-The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast.
-
-Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using VimPlanner, and provide you with a comprehensive resource that will help you optimize your productivity and stay on top of your tasks and deadlines.
+The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will also provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast. Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using Vimification.
+The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will also provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast. Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using Vimification.
 
 Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
 
@@ -126,7 +124,45 @@ Similar to Vim, you can access command mode by **pressing the `:` key** on your 
 Example:
 <img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
+Note that beside the navigation commands (`h`,`j`,`k`,`l`), the rest of the commands always start with a colon (`:`).
+
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
+## General information on a task's attributes
+
+In Vimification, a task can has the following attributes:
+
+| Attribute | Its meaning & purpose                                    | Flag | The range of values it accepts                          |
+| --------- | -------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| Title^    | Name or general description of a task.                   | `-t` | Any phrase enclosed in quotation marks (" " or ' ')*.   |
+| Status    | Status of a task, indicating that is it done or not.     | `-s` | 0, 1, 2 or 3. See below for more details.               |
+| Deadline  | The date (and time) the task is due at.                  | `-d` | In the format of yyyy-MM-dd or yyyy-MM-dd HH:mm.        |
+| Labels    | The tags that the task has.                              | `-l` | Any phrase enclosed in quotation marks (" " or ' ')*.   |
+| Priority  | How important/urgent a task is.                          | `-p` | 0, 1, 2 or 3. See below for more details.               |
+
+^Title is the only compulsory attribute while creating a new task, the other attributes are all optional.
+
+*For a title or label, if the phrase is only one single word, the quotation marks are optional.
+Another 2 constraints on the quotation marks are:
+* There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
+* 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
+Another 2 constraints on the quotation marks are:
+* There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
+* 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
+
+| Priority | Meaning          |
+| -------- | ---------------- |
+| 0        | Unknown priority |
+| 1        | Very urgent      |
+| 2        | Urgent           |
+| 3        | Not urgent       |
+
+| Status   | Meaning          |
+| -------- | ---------------- |
+| 0        | Not done         |
+| 1        | In progress      |
+| 2        | Completed        |
+| 3        | Overdue          |
 
 ## Information on commands' parameters
 
@@ -139,7 +175,6 @@ _Take note of how the command format is being interpretted, to know what paramet
 Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes immediately after the flag.
 
 - e.g. `:a "<title>" [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
-- Refer to the [Flag summary](#flag-summary) below for details of each flag.
 
 Words in **angle brackets** are **compulsory** parameters to be supplied by the user.
 
@@ -151,7 +186,7 @@ Words in **square brackets** are **optional** parameters to be supplied by the u
 
 Bracketed items with `…`​ behind means that user can provide multiple parameters.
 
-- e.g. `:a <'title"> [-l <label>]…​`, for example, `:a "Do OP2 slides" -l cs2101`, `:a Do OP2 slides -l cs2101 -l presentation` are both acceptable.
+- e.g. `:a <'title"> [-l <label>]…​`, for example, `:a "Do OP2 slides" -l cs2101`, `:a "Do OP2 slides" -l cs2101 -l presentation` are both acceptable.
 
 Parameters identified by flags can be in any order.
 
@@ -375,17 +410,6 @@ _Details coming soon in v2.0 ..._
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
-
-## Flag summary
-
-| Flag                   | Meaning                    | Conditions                                                        |
-| ---------------------- | -------------------------- | ----------------------------------------------------------------- |
-|-t                      | title of description       | Cannot be empty, enclosed in open close quotation marks           |
-|-d                      | deadline of description    | In the format of YYYY-MM-dd or YYYY-MM-dd HH:mm                   |
-|-l                      | label of task              | cannot be empty                                                   |
-|-p                      | priority of task           | 1 for very urgent, 2 for urgent, 3 for not urgent, 4 for unknown  |
-|-s                      | status of task             | 0 for not done, 1 for in progress, 2 for completed, 3 for overdue |
-
 
 ## Command summary
 

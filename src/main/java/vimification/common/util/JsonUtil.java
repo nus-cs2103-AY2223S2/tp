@@ -33,11 +33,23 @@ public class JsonUtil {
                     .addSerializer(Level.class, new ToStringSerializer())
                     .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
+    /**
+     * Converts a given instance of a class into its JSON data string representation.
+     * @param <T> The generic type to create an instance of
+     * @return The JSON string representation of the instance
+     * @throws JsonProcessingException if the object cannot be converted to JSON
+     */
     static <T> void serializeObjectToJsonFile(Path filePath, T object) throws IOException {
         FileUtil.createIfMissing(filePath);
         FileUtil.writeToFile(filePath, toJsonString(object));
     }
 
+    /**
+     * Converts a given instance of a class into its JSON data string representation.
+     * @param <T> The generic type to create an instance of
+     * @return The JSON string representation of the instance
+     * @throws JsonProcessingException if the object cannot be converted to JSON
+     */
     static <T> T deserializeObjectFromJsonFile(Path filePath, Class<T> classOfObject)
             throws IOException {
         return fromJsonString(FileUtil.readFromFile(filePath), classOfObject);

@@ -11,7 +11,7 @@ import vimification.internal.Logic;
 import vimification.internal.command.CommandResult;
 
 /**
- *
+ * Panel containing the input of a command.
  */
 public class CommandInput extends UiPart<HBox> {
 
@@ -22,6 +22,12 @@ public class CommandInput extends UiPart<HBox> {
     @FXML
     private TextField inputField;
 
+    /**
+     * Constructor for CommandInput.
+     *
+     * @param mainScreen the main screen of the application
+     * @param logic the logic of the application
+     */
     public CommandInput(MainScreen mainScreen, Logic logic) {
         super(FXML);
         this.mainScreen = mainScreen;
@@ -43,7 +49,7 @@ public class CommandInput extends UiPart<HBox> {
 
         if (isEscEvent || isTextFieldEmpty()) {
             mainScreen.clearBottomComponent();
-            returnFocusToTaskTabPanel();
+            returnFocusToTaskListPanel();
         }
 
         if (isEnterEvent) {
@@ -53,6 +59,12 @@ public class CommandInput extends UiPart<HBox> {
 
     }
 
+    /**
+     * Cleans the command string by removing the colon and any leading or trailing whitespace.
+     *
+     * @param commandString the command string to be cleaned
+     * @return the cleaned command string
+     */
     private String cleanCommandString(String commandString) {
         boolean isCommandHasColon = commandString.startsWith(":");
         if (!isCommandHasColon) {
@@ -63,6 +75,11 @@ public class CommandInput extends UiPart<HBox> {
         return strippedCommandString;
     }
 
+    /**
+     * Executes the command string.
+     *
+     * @param input the command string to be executed
+     */
     private void executeCommand(String input) {
 
         String commandString = cleanCommandString(input);
@@ -70,10 +87,12 @@ public class CommandInput extends UiPart<HBox> {
 
         CommandResult result = logic.execute(commandString);
         mainScreen.loadCommandResultComponent(result);
-        returnFocusToTaskTabPanel();
+        returnFocusToTaskListPanel();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void requestFocus() {
         super.requestFocus();
@@ -82,8 +101,8 @@ public class CommandInput extends UiPart<HBox> {
         inputField.requestFocus();
     }
 
-    private void returnFocusToTaskTabPanel() {
-        mainScreen.getTaskTabPanel().requestFocus();
+    private void returnFocusToTaskListPanel() {
+        mainScreen.getTaskListPanel().requestFocus();
     }
 
     @FXML

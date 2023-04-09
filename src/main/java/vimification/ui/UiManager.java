@@ -29,6 +29,9 @@ public class UiManager implements Ui {
         this.logic = logic;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
@@ -57,6 +60,9 @@ public class UiManager implements Ui {
         }
     }
 
+    /**
+     * Returns an image from the given image path.
+     */
     private Image getImage(String imagePath) {
         return new Image(Gui.class.getResourceAsStream(imagePath));
     }

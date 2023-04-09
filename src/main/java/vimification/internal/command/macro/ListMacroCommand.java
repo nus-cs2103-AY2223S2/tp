@@ -13,6 +13,9 @@ public class ListMacroCommand extends MacroCommand {
      */
     public ListMacroCommand() {}
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MacroMap macroMap) {
         return new CommandResult(macroMap.getMapping().toString());

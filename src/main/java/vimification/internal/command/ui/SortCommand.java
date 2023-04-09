@@ -26,6 +26,9 @@ public class SortCommand extends UiCommand {
         this.request = request;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         Comparator<Task> comparator = null;
@@ -42,7 +45,7 @@ public class SortCommand extends UiCommand {
         default:
             throw new CommandException("Should not reach here!");
         }
-        mainScreen.getTaskTabPanel()
+        mainScreen.getTaskListPanel()
                 .getUiTaskList()
                 .setComparator(comparator);
         return new CommandResult(SUCCESS_MESSAGE);

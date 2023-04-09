@@ -36,6 +36,9 @@ public class InsertCommand extends UndoableLogicCommand {
         this.request = request;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         actualIndex = targetIndex.getZeroBased();
@@ -51,6 +54,9 @@ public class InsertCommand extends UndoableLogicCommand {
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult undo(LogicTaskList taskList) {
         taskList.set(actualIndex, oldTask);
