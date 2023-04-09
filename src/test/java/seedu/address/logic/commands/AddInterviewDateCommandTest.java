@@ -1,16 +1,12 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_BANK_OF_AMERICA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_CARL_KURZ;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_SOFTWARE_ENGINEER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_WEB_DEVELOPER;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
-import static seedu.address.model.application.InternshipStatus.DECLINED;
 import static seedu.address.model.application.InternshipStatus.PENDING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SEVENTH_APPLICATION;
