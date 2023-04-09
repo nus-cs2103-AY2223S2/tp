@@ -19,13 +19,13 @@ I worked on the backend and documentation. I was mainly in charge of implementat
     `YYYY-MM-DD`.
 
 * **New Feature**: Add new `salary` command to allow the sorting of roles based on salary.
-  * What it does: Allow user to see which roles are the most attractive or least attractive depending on the salary.
+  * What it does: Allow user to see the roles that are the most or least attractive.
   * Justification: This is an important feature from the user point of view as salary is tied closely to the
     importance of different roles.
   * Highlights: Makes it more friendly for the user to search through different roles.
 
 
-* **Implementation**: Add a new `OrderParser` class to allow order in asc/desc of sorting commands.
+* **Implementation**: Add new `OrderParser` class to allow order in asc/desc of sorting commands.
   * What it does: Allow developers to easily parse the `ORDER` for their sorting commands.
   * Justification: The order needs to be either ascending or descending and makes it more OOP by creating a Parser
     class.
@@ -42,7 +42,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 * **Enhancements to existing features**:
   * Refactoring: Refactored the `address` package to the `techtrack` package [#169](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/169)
     * What it does: The package is changed accordingly to the needs of the application
-    * Justification: `techtrack` instead of `address` as it will be clearer for future developments
+    * Justification: It will be clearer for future developments
     * Highlights: Refactored AB3 code and tests
   * Enhanced the salary restriction to make it more intuitive for the user [#255](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/255)
   * Add welcome message on startup to let the user know the available commands [#118](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/118)
@@ -54,7 +54,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
     * Added restrictions for the role table.
   * Developer Guide:
     * Added implementation, alternatives and limitations for `salary` and `deadline` sort.
-    * Constructed the sequence diagram of sorting for `salary` and `deadline`.
+    * Constructed the sequence diagram of sorting for `salary` and `deadline` sort.
     * Added documentation for `salary`, `deadline` and `view` for manual testing.
     * Added the first 7 of NFR section of requirement details.
     * Adjusted and ensure proper formatting of guide.
@@ -63,6 +63,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 * **Contributions to Team-based Tasks**:
   * Created priority and type tags in team repository.
   * Reviewed Pull Requests done by the team.
+  * Check for correctness of the code.
   * Bug Fixes:
     * Fixed DG bug for the sequence diagram of sorting, where the `SalaryCommand` and `DeadlineCommand` object is 
       created before `OrderParser`.
