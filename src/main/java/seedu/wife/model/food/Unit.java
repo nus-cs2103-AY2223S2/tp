@@ -25,14 +25,14 @@ public class Unit {
         requireNonNull(unit);
         checkArgument(isUnitPresent(unit), UNIT_NOT_PRESENT);
         checkArgument(isUnitNotLengthy(unit), UNIT_NAME_LENGTHY);
-        checkArgument(isValid(unit), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidUnit(unit), MESSAGE_CONSTRAINTS);
         this.unit = capitalizeString(unit.toLowerCase());
     }
 
     /**
      * Returns true if the unit representation keyed in by the user only contains letters.
      */
-    public static boolean isValid(String unit) {
+    public static boolean isValidUnit(String unit) {
         return unit.matches(VALIDATION_REGEX);
     }
 
@@ -44,7 +44,7 @@ public class Unit {
     }
 
     /**
-     * Returns true if the given name has length not more than 15.
+     * Returns true if the given name has length not more than 10.
      */
     public static Boolean isUnitNotLengthy(String unit) {
         return unit.length() <= UNIT_NAME_MAX_LENGTH;

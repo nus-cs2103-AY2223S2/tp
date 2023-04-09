@@ -16,7 +16,7 @@ public class ExpiryDate implements Comparable<ExpiryDate> {
     private final LocalDate expiryDate;
 
     /**
-     * Construct an {@code ExpiryDate} from String
+     * Constructs an {@code ExpiryDate} from String
      *
      * @param date Expiry date of the food item wish to add in the fridge.
      */
@@ -27,7 +27,7 @@ public class ExpiryDate implements Comparable<ExpiryDate> {
     }
 
     /**
-     * Construct an {@code ExpiryDate} from formatted date.
+     * Constructs an {@code ExpiryDate} from formatted date.
      * Only used for loading food item upon startup.
      *
      * @param date Expiry date of the food item wish to add in the fridge.

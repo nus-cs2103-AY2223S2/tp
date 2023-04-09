@@ -78,7 +78,7 @@ class JsonAdaptedFood {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValid(name)) {
+        if (!Name.isValidFoodName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
@@ -86,7 +86,7 @@ class JsonAdaptedFood {
         if (unit == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Unit.class.getSimpleName()));
         }
-        if (!Unit.isValid(unit)) {
+        if (!Unit.isValidUnit(unit)) {
             throw new IllegalValueException(Unit.MESSAGE_CONSTRAINTS);
         }
         final Unit modelUnit = new Unit(unit);
@@ -95,7 +95,7 @@ class JsonAdaptedFood {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Quantity.class.getSimpleName()));
         }
-        if (!Quantity.isValid(quantity)) {
+        if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);

@@ -20,8 +20,6 @@
 
 Well Informed Fridge Environment &lt;WIFE/&gt; - a cutting-edge fridge management system that helps you keep track of your food items, prevent them from going to waste, and optimise your refrigerator’s storage and organisation. With &lt;WIFE/&gt;, you can easily check expiration dates, set reminders for items that need to be replenished, and get nutritional tips and recipes based on your food inventory. &lt;WIFE/&gt; is the perfect solution to make sure you’re always one step ahead, saving you time and money while reducing food waste. So, let &lt;WIFE/&gt; take care of your fridge and enjoy the freedom of knowing your food is in good hands.
 
-When &lt;WIFE/&gt; says your product is going to expire, then its going to expire! Never question her!
-
 ## Features
 
 -   Help - Displays all available commands

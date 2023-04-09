@@ -22,20 +22,20 @@ public class QuantityTest {
     @Test
     public void isValid() {
         // null Quantity
-        assertThrows(NullPointerException.class, () -> Quantity.isValid(null));
+        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity(null));
 
         // blank Quantity
-        assertFalse(Quantity.isValid("")); // empty string
-        assertFalse(Quantity.isValid(" ")); // spaces only
+        assertFalse(Quantity.isValidQuantity("")); // empty string
+        assertFalse(Quantity.isValidQuantity(" ")); // spaces only
 
         // invalid parts
-        assertFalse(Quantity.isValid("0")); // 0 item should not be recorded
-        assertFalse(Quantity.isValid("-1")); // negative value
-        assertFalse(Quantity.isValid("-13")); // negative value
+        assertFalse(Quantity.isValidQuantity("0")); // 0 item should not be recorded
+        assertFalse(Quantity.isValidQuantity("-1")); // negative value
+        assertFalse(Quantity.isValidQuantity("-13")); // negative value
 
         // valid Quantity
-        assertTrue(Quantity.isValid("1"));
-        assertTrue(Quantity.isValid("3"));
-        assertTrue(Quantity.isValid("69"));
+        assertTrue(Quantity.isValidQuantity("1"));
+        assertTrue(Quantity.isValidQuantity("3"));
+        assertTrue(Quantity.isValidQuantity("69"));
     }
 }

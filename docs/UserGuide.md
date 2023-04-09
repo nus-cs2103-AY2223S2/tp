@@ -128,6 +128,7 @@ Add a new food into WIFE. (This is the command when you tried out your first com
 Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`
 Note:
 * All parameters must be present in the command. Date must be in the format of DD-MM-YYYY.
+* `UNIT` of the food item must have at most 10 characters.
 * `QUANTITY` of the food item **must be a positive integer** 1, 2, 3, …​
 * `QUANTITY` of the food item should be less than `1,000,000`.
 * `EXPIRY DATE` of the food item should be in the format `DD-MM-YYYY`. Examples of valid date format:
@@ -262,7 +263,7 @@ Examples:
 Food items are being sorted by their expiry dates.
 ```
 
-### View full name of food item : `view`
+### View the full name of a food item : `view`
 
 Displays the full name of the food item. This is useful when the food item name is too long to be displayed in the
 food list.
@@ -424,6 +425,7 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
   * add
   * list
   * edit
+  * view
   * find
   * inc
   * dec
@@ -512,6 +514,7 @@ There is no support for mobile devices yet.
 |---------------------|------------------------------------------|-------------------------------------------------------------|-------------------------------------------|
 | Add                 | Adds a food item to the food list        | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`                | `add n/Coca Cola u/Cans q/5 e/01-01-2099` |
 | List                | Lists all food items                     | `list`                                                      | `list`                                    |
+| View                | View a food item                         | `view INDEX`                                                | `view 1`                                  |
 | Edit                | Edits a food item                        | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]` | `edit 1 n/Cauliflower q/20`               |
 | Find                | Finds a food item                        | `find KEYWORD [KEYWORD]...`                                 | `find Broccoli`                           |
 | Increase            | Increases the quantity of a food item    | `inc INDEX [q/QUANTITY]`                                    | `inc 1 q/100`                             |
