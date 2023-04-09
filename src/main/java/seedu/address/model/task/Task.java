@@ -239,6 +239,11 @@ public class Task {
         return "This task has been marked as uncompleted:\n" + this + "\n";
     }
 
+    /**
+     * Marks the current task as unassigned.
+     *
+     * @param personIndex
+     */
     public void deletePersonFromTask(int personIndex) {
         if (this.personAssignedIndex == null) {
             return;

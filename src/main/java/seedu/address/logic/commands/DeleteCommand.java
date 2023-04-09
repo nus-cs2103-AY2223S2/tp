@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.TaskBookModel.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import static seedu.address.model.TaskBookModel.PREDICATE_SHOW_ALL_TASKS;
+
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -63,10 +64,11 @@ public class DeleteCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Task createUpdatedTask(Task task) throws CommandException {
-        assert task != null;
-        
+        requireNonNull(task);
+
         Task updatedTask = new Task(task.getDescription(), task.getDate(), task.getTaskType());
-        updatedTask.assignPerson(task.getPersonAssignedIndex(), task.getPersonAssignedName(), task.getPersonAssignedRole());
+        updatedTask.assignPerson(task.getPersonAssignedIndex(), task.getPersonAssignedName(),
+            task.getPersonAssignedRole());
         updatedTask.setScore(task.getScore());
         updatedTask.setTaskComment(task.getTaskComment());
         updatedTask.setStatus(task.isDone());
