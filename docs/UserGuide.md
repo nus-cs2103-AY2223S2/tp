@@ -3,11 +3,11 @@ layout: page
 title: User Guide
 ---
 
-FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command
-Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAid
-can get your client and meeting management tasks done quickly, so you won't ever worry about missing a meeting or
-forgetting about a client!
+FAid is a **client and schedule management** application made for financial advisors!
+Financial advisors can use FAid to easily **save their client information** and **organise meetings**. 
+With FAid, financial advisors will no longer have to worry about missing a meeting or forgetting a client!
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -15,34 +15,30 @@ forgetting about a client!
 
 ## Quick start
 
-1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
-   operating system.
+<!-- 1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
+   operating system. <br> See the [Troubleshooting section](#troubleshooting) if you run into any issues. -->
+FAid requires `Java 11` to function.
+If you do not have `Java 11` or are unsure if you have it, refer to the [Troubleshooting section](#troubleshooting) for help.
+Otherwise, refer to the following steps to get started.
 
-1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
-   command: `java --version`. <br>
-   If java is installed successfully, your output should be similar to the following (Note that it may look slightly
-   different depending on your exact version and operating system): <br>
-   `openjdk 11.0.17 2022-10-18 LTS` <br>
-   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
-   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
-   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
-   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
-   If you see an error message like this even after installing Java `11`, consider restarting your computer or
-   reinstalling Java.
+1. Download the application called `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
-1. Download the latest `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
+1. Double click the `faid.jar` file you downloaded and the app should launch automatically.<br>
+   If this is your first time using a .jar file, see the [Troubleshooting section](#troubleshooting) for help.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FAid application.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar faid.jar` command to
-   run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. An application similar to the below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
+1. Type the command in the command box and press Enter to execute it.
+   ![Ui](images/Ui.png)
 
+
+
+
+   <!-- Some example commands you can try: -->
+
+
+<!-- 
     * `list` : Lists all clients.
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe`
@@ -52,9 +48,11 @@ forgetting about a client!
 
     * `clear` : Deletes all clients.
 
-    * `exit` : Exits the app.
+    * `exit` : Exits the app. -->
 
 1. Refer to the [Features](#features) below for details of each command.
+
+[Back to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -95,6 +93,8 @@ forgetting about a client!
 
 * `ARG1|ARG2` in format means only one ARG1 or ARG2 must be a part of your input but not both
 
+* Refer to the [Prefix Masterlist](#prefix masterlist) for the list of prefixes used for the commands below.
+
 </div>
 
 ### Viewing help : `help`
@@ -121,23 +121,28 @@ Required Information:
 * `EMAIL`: A valid email of a client whose contact is to be stored in FAid
 * `TAGS`: Optional labels to put for clients, such as tagging which policy they bought or are interested in buying
 
+
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/Bishan, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Ang Mo Kio p/99999999 t/Insurance`
+* `add n/John Doe p/98765432 e/johnd@example.com a/Bishan, block 123, #01-01` adds a client named John Doe with 
+his phone number, email and address
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Ang Mo Kio p/99999999 t/Insurance` adds a client named 
+Betsy Crowe with her phone number, email and address, as well as the financial policy she is under, Insurance. 
 
 Note:
 * The tag used to add a person into the contact list will be used in the findPolicy method, e.g. using the above example, doing a findPolicy Insurance will show Betsy Crowe
 
 ### Listing all clients : `listPerson`
 
-Shows a list of all clients in the FAid.
+Shows a list of all clients in FAid.
+
 
 Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in the FAid.
+Edits an existing client in FAid.
+7
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -188,9 +193,10 @@ Examples:
 
 ### Add meeting : `meetingAdd`
 
-Adds a meeting to the FAid.
+Schedules a meeting with a client in FAid
 
-Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME [TAGS]`
+
+Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
 
 Required Information:
 * `CLIENT_INDEX`: Index of a client in FAid
@@ -201,7 +207,7 @@ Required Information:
 
 Example:
 
-* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020
+* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` sets up a meeting on 30th March 2020
   from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3), with the description "Meeting with Charlotte".
 
 Notes:
@@ -214,7 +220,8 @@ Notes:
 
 ### Remove meeting : `meetingRemove`
 
-Removes meeting from the FAid.
+Removes meeting from FAid.
+
 
 Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 
@@ -236,7 +243,8 @@ Note:
 
 ### Updating a meeting : `meetingUpdate`
 
-Updates an existing meeting belonging to a client in the FAid
+Updates an existing meeting belonging to a client in FAid
+
 
 Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
 
@@ -269,7 +277,8 @@ Format: `meetingFind DATE|CLIENT_INDEX `
 Required Information:
 
 * Date (dd/mm/yyyy)
-* Index of a client already in FAid
+* Index of a client that is already stored in FAid.
+
 
 Examples:
 * `meetingFind 11/05/2023` Lists out all meetings that start on 11th May 2023
@@ -290,8 +299,7 @@ Required information:
 * Region specified should be a valid region
 
 Examples:
-
-* `listRegion Central` lists all clients from the Central region in FAid
+* `listRegion Central` lists all clients from the Central region in FAid.
 
 ### Find clients by policy name : `findPolicy`
 
@@ -315,6 +323,10 @@ Clears all entries from FAid.
 
 Format: `clear`
 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+Executing clear will result in all of your client information and meetings to be cleared permanently! 
+</div>
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -331,10 +343,11 @@ manually.
 FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update
 data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, FAid will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -349,6 +362,40 @@ the data of your previous FAid home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Troubleshooting
+
+1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
+   operating system if you haven't installed it. <br>
+   To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
+   command: `java --version`. <br>
+   If java is installed successfully, your output should be similar to the following (Note that it may look slightly
+   different depending on your exact version and operating system): <br>
+   `openjdk 11.0.17 2022-10-18 LTS` <br>
+   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
+   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
+   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
+   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
+   If you see an error message like this even after installing Java `11`, consider restarting your computer or
+   reinstalling Java.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Prefix Masterlist
+
+Prefix | Field
+--------|------------------
+**n/** | Name
+**p/** | Phone number
+**e/** | Email address
+**a/** | Residential Address
+**t/** | Policy Tag Name
+**md/** | Description of meeting
+**ms/** | Start date and time of meeting
+**me/** | End date and Time of meeting
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
 Action | Format, Examples
@@ -360,8 +407,9 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Add Meeting** | `meetingAdd CLIENT_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`
+**Add Meeting** | `meetingAdd CLIENT_INDEX md/ DESC ms/ START DATE&TIME me/ END DATE&TIME`
 **Remove Meeting** | `meetingRemove CLIENT_INDEX MEETING_INDEX`
 **Find Meeting** | `meetingFind DATE[CLIENT_INDEX]`
 **List all meetings** | `meetingList`
 **List all in Region** | `listRegion REGION`
+**Find Policy** | `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`

@@ -13,18 +13,18 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("meetingAdd 1 \n 30-03-2020 23:30 23:40")
+[-> LogicManager : execute(meetingAdd 1 \n "md/Meeting with Alex ms/30-04-2023 23:30 \n me/30-04-2023 23:40")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("meetingAdd 1 \n 30-03-2020 23:30 23:40")
+LogicManager -> AddressBookParser : parseCommand(meetingAdd 1 \n"md/Meeting with Alex ms/30-04-2023 23:30 \n me/30-04-2023 23:40")
 activate AddressBookParser
 
 create AddMeetingCommandParser
-AddressBookParser -> AddMeetingCommandParser : parse("1 30-03-2020 23:30 23:40")
+AddressBookParser -> AddMeetingCommandParser : parse("md/Meeting with Alex \n ms/30-04-2023 23:30 \n me/30-04-2023 23:40")
 activate AddMeetingCommandParser
 
 create AddMeetingCommand
-AddMeetingCommandParser -> AddMeetingCommand : AddMeetingCommand(index, string)
+AddMeetingCommandParser -> AddMeetingCommand : AddMeetingCommand(desc, index, meeting)
 activate AddMeetingCommand
 
 AddMeetingCommand --> AddMeetingCommandParser
@@ -39,7 +39,19 @@ deactivate AddressBookParser
 LogicManager -> AddMeetingCommand : execute(model)
 activate AddMeetingCommand
 
-AddMeetingCommand -> Model : getMeetings()
+AddMeetingCommand -> Model : addMeeting(personToEdit, meeting)
+activate Model
+
+Model --> AddMeetingCommand
+deactivate Model
+
+AddMeetingCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> AddMeetingCommand
+deactivate Model
+
+AddMeetingCommand -> Model : updateFilteredMeetingList()
 activate Model
 
 Model --> AddMeetingCommand
