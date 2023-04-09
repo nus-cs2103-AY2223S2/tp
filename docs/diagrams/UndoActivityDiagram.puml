@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes undo n;
+if () then ([n is not an integer])
+    :throw ParseException;
+    stop
+else ([else])
+    if () then ([n is not an empty string or whitespace])
+        :argument is n;
+    else ([else])
+        :argument is 1;
+    endif
+    if () then ([can undo])
+        if () then ([enough undos available])
+        :undo argument number of times;
+        else ([else])
+        :undo as many times possible;
+        endif
+        stop
+    else ([else])
+        :throw CommandException;
+        stop
+
+
+@enduml
