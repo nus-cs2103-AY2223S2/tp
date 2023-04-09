@@ -1,0 +1,14 @@
+@startuml
+title Autocomplete Activity Diagram
+
+start
+:User inputs the undo command into the command box;
+:GoodMatch checks whether a previous state exists;
+if () then ([Previous state exists])
+  :GoodMatch reverts to the previous state;
+else ([else])
+  :GoodMatch remains at the current state;
+endif
+:GoodMatch informs user of the status;
+stop
+@enduml
