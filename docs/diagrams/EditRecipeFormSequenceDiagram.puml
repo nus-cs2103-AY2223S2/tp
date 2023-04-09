@@ -19,7 +19,8 @@ user -> cardPane : "F" key
 activate cardPane
 
 create EditRecipeForm
-cardPane -> EditRecipeForm : new EditRecipeForm(recipe, displayedIndex, data)
+'cardPane -> EditRecipeForm : new EditRecipeForm(recipe, displayedIndex, data)
+cardPane -> EditRecipeForm
 activate EditRecipeForm
 
 EditRecipeForm --> cardPane : form
@@ -60,6 +61,7 @@ else User performs a save
 
   EditRecipeForm -> TextInput : getText()
   activate TextInput
+  TextInput --> EditRecipeForm
   deactivate TextInput
 
   'getFormData
@@ -89,7 +91,8 @@ deactivate EditRecipeForm
 
 opt data is not empty
   create editEvent
-  cardPane -> editEvent : new EditRecipeEvent(commandText)
+'  cardPane -> editEvent : new EditRecipeEvent(commandText)
+  cardPane -> editEvent
   activate editEvent
 
   editEvent --> cardPane : editEvent
