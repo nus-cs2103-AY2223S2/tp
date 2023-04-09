@@ -2,8 +2,8 @@
 !include style.puml
 mainframe **ref** Parse Information Fields
 
-skinparam defaultFontSize 10
-skinparam titleFontSize 10
+skinparam defaultFontSize 15
+skinparam titleFontSize 15
 
 box Logic LOGIC_COLOR_T1
 participant ":SearchCommandParser" as SearchCommandParser LOGIC_COLOR
@@ -12,68 +12,13 @@ end box
 
 activate SearchCommandParser
 
-opt ifNamePrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setKeywords(name)
+opt ifPreamblePresent
+    SearchCommandParser->FieldsContainKeywordsPredicate:setKeywords(keywords)
     activate FieldsContainKeywordsPredicate
     return
 end
-opt ifNamePrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setName(name)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifPhonePrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setPhone(phone)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifEmailPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setEmail(email)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifSearchressPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setSearchress(address)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifBirthdayPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setBirthday(birthday)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifRemarkPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setRemark(remarkList)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifModulePrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setModules(moduleList)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifCcaPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setCcas(ccaList)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifMajorPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setMajor(majorList)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifInstagramPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setInstagram(instagram)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifWhatsappPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setWhatsapp(whatsapp)
-    activate FieldsContainKeywordsPredicate
-    return
-end
-opt ifTelegramPrefixPresent
-    SearchCommandParser->FieldsContainKeywordsPredicate:setTelegram(telegram)
+opt ifFieldPrefixPresent
+    SearchCommandParser->FieldsContainKeywordsPredicate:setField(fieldKeyword)
     activate FieldsContainKeywordsPredicate
     return
 end
