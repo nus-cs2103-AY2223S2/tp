@@ -101,9 +101,9 @@ public class EditMenuItemCommandParserTest {
 
         MenuItemDescriptor descriptor =
                 new MenuItemDescriptorBuilder()
-                        .withItemName(VALID_ITEM_NAME_NIKECAP)
-                        .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                        .withItemCostPrice(VALID_COST_PRICE_LARGE).build();
+                        .withName(VALID_ITEM_NAME_NIKECAP)
+                        .withPrice(VALID_SELLING_PRICE_LARGE)
+                        .withCost(VALID_COST_PRICE_LARGE).build();
         EditMenuItemCommand expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
 
 
@@ -119,16 +119,16 @@ public class EditMenuItemCommandParserTest {
 
         MenuItemDescriptor descriptor =
                 new MenuItemDescriptorBuilder()
-                        .withItemName(VALID_ITEM_NAME_NIKECAP)
-                        .withItemSellingPrice(VALID_SELLING_PRICE_LARGE).build();
+                        .withName(VALID_ITEM_NAME_NIKECAP)
+                        .withPrice(VALID_SELLING_PRICE_LARGE).build();
         EditMenuItemCommand expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         //name and cost price
         userInput = targetIndex.getOneBased() + ITEM_NAME_DESC_NIKECAP
                 + COST_PRICE_DESC_LARGE;
-        descriptor = new MenuItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_NIKECAP)
-                .withItemCostPrice(VALID_COST_PRICE_LARGE).build();
+        descriptor = new MenuItemDescriptorBuilder().withName(VALID_ITEM_NAME_NIKECAP)
+                .withCost(VALID_COST_PRICE_LARGE).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -139,21 +139,21 @@ public class EditMenuItemCommandParserTest {
         Index targetIndex = INDEX_THIRD_OBJECT;
         String userInput = targetIndex.getOneBased() + ITEM_NAME_DESC_NIKECAP;
         MenuItemDescriptor descriptor = new MenuItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_NIKECAP).build();
+                .withName(VALID_ITEM_NAME_NIKECAP).build();
         EditMenuItemCommand expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // menu item selling price
         userInput = targetIndex.getOneBased() + SELLING_PRICE_DESC_LARGE;
         descriptor = new MenuItemDescriptorBuilder()
-                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE).build();
+                .withPrice(VALID_SELLING_PRICE_LARGE).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // menu item cost price
         userInput = targetIndex.getOneBased() + COST_PRICE_DESC_LARGE;
         descriptor = new MenuItemDescriptorBuilder()
-                .withItemCostPrice(VALID_COST_PRICE_LARGE).build();
+                .withCost(VALID_COST_PRICE_LARGE).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -169,9 +169,9 @@ public class EditMenuItemCommandParserTest {
 
         MenuItemDescriptor descriptor =
                 new MenuItemDescriptorBuilder()
-                        .withItemName(VALID_ITEM_NAME_NIKECAP)
-                        .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                        .withItemCostPrice(VALID_COST_PRICE_LARGE).build();
+                        .withName(VALID_ITEM_NAME_NIKECAP)
+                        .withPrice(VALID_SELLING_PRICE_LARGE)
+                        .withCost(VALID_COST_PRICE_LARGE).build();
         EditMenuItemCommand expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -184,20 +184,20 @@ public class EditMenuItemCommandParserTest {
         Index targetIndex = INDEX_FIRST_OBJECT;
         String userInput = targetIndex.getOneBased() + INVALID_ITEM_NAME_DESC + ITEM_NAME_DESC_NIKECAP;
         MenuItemDescriptor descriptor =
-                new MenuItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_NIKECAP).build();
+                new MenuItemDescriptorBuilder().withName(VALID_ITEM_NAME_NIKECAP).build();
         EditMenuItemCommand expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // invalid menu item selling price followed by valid menu item selling price
         userInput = targetIndex.getOneBased() + INVALID_SELLING_PRICE_DESC + SELLING_PRICE_DESC_LARGE;
-        descriptor = new MenuItemDescriptorBuilder().withItemSellingPrice(VALID_SELLING_PRICE_LARGE).build();
+        descriptor = new MenuItemDescriptorBuilder().withPrice(VALID_SELLING_PRICE_LARGE).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // invalid menu item cost price
         //followed by valid menu item cost price
         userInput = targetIndex.getOneBased() + INVALID_COST_PRICE_DESC + COST_PRICE_DESC_LARGE;
-        descriptor = new MenuItemDescriptorBuilder().withItemCostPrice(VALID_COST_PRICE_LARGE).build();
+        descriptor = new MenuItemDescriptorBuilder().withCost(VALID_COST_PRICE_LARGE).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -207,9 +207,9 @@ public class EditMenuItemCommandParserTest {
                 + INVALID_ITEM_NAME_DESC + COST_PRICE_DESC_LARGE
                 + SELLING_PRICE_DESC_LARGE + ITEM_NAME_DESC_NIKECAP;
         descriptor = new MenuItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_NIKECAP)
-                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                .withItemCostPrice(VALID_COST_PRICE_LARGE).build();
+                .withName(VALID_ITEM_NAME_NIKECAP)
+                .withPrice(VALID_SELLING_PRICE_LARGE)
+                .withCost(VALID_COST_PRICE_LARGE).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -218,9 +218,9 @@ public class EditMenuItemCommandParserTest {
                 + ITEM_NAME_DESC_NIKECAP + INVALID_SELLING_PRICE_DESC
                 + COST_PRICE_DESC_LARGE + SELLING_PRICE_DESC_LARGE;
         descriptor = new MenuItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_NIKECAP)
-                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                .withItemCostPrice(VALID_COST_PRICE_LARGE).build();
+                .withName(VALID_ITEM_NAME_NIKECAP)
+                .withPrice(VALID_SELLING_PRICE_LARGE)
+                .withCost(VALID_COST_PRICE_LARGE).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -230,9 +230,9 @@ public class EditMenuItemCommandParserTest {
                 + INVALID_COST_PRICE_DESC + ITEM_NAME_DESC_NIKECAP
                 + COST_PRICE_DESC_LARGE + SELLING_PRICE_DESC_LARGE;
         descriptor = new MenuItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_NIKECAP)
-                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                .withItemCostPrice(VALID_COST_PRICE_LARGE).build();
+                .withName(VALID_ITEM_NAME_NIKECAP)
+                .withPrice(VALID_SELLING_PRICE_LARGE)
+                .withCost(VALID_COST_PRICE_LARGE).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -245,9 +245,9 @@ public class EditMenuItemCommandParserTest {
         String userInput = targetIndex.getOneBased() + COST_PRICE_DESC_LARGE
                 + SELLING_PRICE_DESC_LARGE + ITEM_NAME_DESC_NIKECAP;
         MenuItemDescriptor descriptor = new MenuItemDescriptorBuilder()
-                .withItemCostPrice(VALID_COST_PRICE_LARGE)
-                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                .withItemName(VALID_ITEM_NAME_NIKECAP).build();
+                .withCost(VALID_COST_PRICE_LARGE)
+                .withPrice(VALID_SELLING_PRICE_LARGE)
+                .withName(VALID_ITEM_NAME_NIKECAP).build();
         EditMenuItemCommand expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -256,9 +256,9 @@ public class EditMenuItemCommandParserTest {
         userInput = targetIndex.getOneBased() + SELLING_PRICE_DESC_LARGE
                 + COST_PRICE_DESC_LARGE + ITEM_NAME_DESC_NIKECAP;
         descriptor = new MenuItemDescriptorBuilder()
-                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                .withItemCostPrice(VALID_COST_PRICE_LARGE)
-                .withItemName(VALID_ITEM_NAME_NIKECAP).build();
+                .withPrice(VALID_SELLING_PRICE_LARGE)
+                .withCost(VALID_COST_PRICE_LARGE)
+                .withName(VALID_ITEM_NAME_NIKECAP).build();
         expectedCommand = new EditMenuItemCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

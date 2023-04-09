@@ -25,6 +25,8 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.SupplierList;
+import trackr.model.menu.ItemNameContainsKeywordsPredicate;
+import trackr.model.menu.MenuItem;
 import trackr.model.menu.MenuItemDescriptor;
 import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
@@ -195,6 +197,8 @@ public class CommandTestUtil {
     public static final String INVALID_CUSTOMER_ADDRESS_DESC =
             " " + PREFIX_PHONE + INVALID_CUSTOMER_ADDRESS;
 
+
+
     public static final OrderDescriptor DESC_CHOCO_COOKIE;
     public static final OrderDescriptor DESC_CUPCAKE;
 
@@ -216,6 +220,32 @@ public class CommandTestUtil {
                 .withCustomerName(VALID_CUSTOMER_NAME)
                 .withCustomerPhone(VALID_CUSTOMER_PHONE)
                 .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
+    }
+
+    public static final String VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES = "Chocolate Cookies";
+    public static final String VALID_MENU_ITEM_NAME_CUPCAKES = "Cupcakes";
+    public static final String VALID_MENU_ITEM_PRICE = "10.00";
+    public static final String VALID_MENU_ITEM_COST = "2.00";
+
+    public static final String INVALID_MENU_ITEM_NAME = "! invalid !";
+    public static final String INVALID_MENU_ITEM_PRICE = "NaN";
+    public static final String INVALID_MENU_ITEM_COST = "NaN";
+
+    public static final MenuItemDescriptor DESC_CHOCOLATE_COOKIE_M;
+    public static final MenuItemDescriptor DESC_CUPCAKES_M;
+
+    static {
+        DESC_CHOCOLATE_COOKIE_M = new MenuItemDescriptorBuilder()
+            .withName(VALID_MENU_ITEM_NAME_CHOCOLATE_COOKIES)
+            .withPrice(VALID_MENU_ITEM_PRICE)
+            .withCost(VALID_MENU_ITEM_COST)
+            .build();
+
+        DESC_CUPCAKES_M = new MenuItemDescriptorBuilder()
+            .withName(VALID_MENU_ITEM_NAME_CUPCAKES)
+            .withPrice(VALID_MENU_ITEM_PRICE)
+            .withCost(VALID_MENU_ITEM_COST)
+            .build();
     }
 
     //menu item fields
@@ -253,19 +283,18 @@ public class CommandTestUtil {
 
     static {
         DESC_NIKE_CAP = new MenuItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_NIKECAP)
-                .withItemSellingPrice(VALID_SELLING_PRICE_SMALL)
-                .withItemCostPrice(VALID_COST_PRICE_SMALL)
+                .withName(VALID_ITEM_NAME_NIKECAP)
+                .withPrice(VALID_SELLING_PRICE_SMALL)
+                .withCost(VALID_COST_PRICE_SMALL)
                 .build();
 
         DESC_CUPCAKE_I = new MenuItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_CUPCAKE)
-                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                .withItemCostPrice(VALID_COST_PRICE_LARGE)
+                .withName(VALID_ITEM_NAME_CUPCAKE)
+                .withPrice(VALID_SELLING_PRICE_LARGE)
+                .withCost(VALID_COST_PRICE_LARGE)
                 .build();
 
     }
-
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -325,6 +354,20 @@ public class CommandTestUtil {
                 ModelEnum.SUPPLIER);
 
         assertEquals(1, model.getFilteredSupplierList().size());
+    }
+
+    /**
+     * Updates {@code moedl}'s filtered task list to show only the task at the given {@code targetIndex}
+     * {@code model} menu.
+     */
+    public static void showMenuItemAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMenu().size());
+
+        MenuItem menuItem = model.getFilteredMenu().get(targetIndex.getZeroBased());
+        final String[] splitName = menuItem.getItemName().getName().split("\\s+");
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0])),
+                ModelEnum.MENUITEM);
+        assertEquals(1, model.getFilteredMenu().size());
     }
 
     /**

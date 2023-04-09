@@ -28,6 +28,7 @@ public class SortTasksComparator implements Comparator<Task> {
 
     /**
      * Compares two given tasks.
+     *
      * @param task1 the first task to be compared.
      * @param task2 the second task to be compared.
      * @return -1, 0 or 1 based on the sorting criteria.

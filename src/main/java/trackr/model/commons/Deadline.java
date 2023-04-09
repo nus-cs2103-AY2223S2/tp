@@ -14,7 +14,8 @@ import java.time.format.DateTimeParseException;
 public abstract class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "%s deadline should only contain numeric values in the format \"DD/MM/YYYY\" and it should not be blank.";
+            "%s deadline should only contain numeric values "
+                    + "in the format \"DD/MM/YYYY\" and it should not be blank.";
 
     private static final String VALIDATION_REGEX = "^[0-9]{2}/[0-9]{2}/[0-9]{4}$";
 
@@ -34,7 +35,11 @@ public abstract class Deadline {
     }
 
     /**
-     * Returns true if a given string is a valid deadline, meaning string is of the format "dd/MM/yyyy".
+     * Checks if a given deadline String conforms to the expected format.
+     *
+     * @param test The given string to check.
+     * @return True if a given string is of valid format, meaning string is of the format "dd/MM/yyyy".
+     *         Returns false otherwise.
      */
     public static boolean isValidDeadline(String test) {
         if (!test.matches(VALIDATION_REGEX)) {
@@ -51,6 +56,7 @@ public abstract class Deadline {
 
     /**
      * Compare this deadline to a given deadline.
+     *
      * @return 1 if this deadline is after the given deadline,
      *         -1 if this deadline is before the given status,
      *         0 if both deadlines are the same.
@@ -67,6 +73,7 @@ public abstract class Deadline {
 
     /**
      * Returns the deadline stored in "dd/MM/yyyy" format for json storage.
+     *
      * @return A string representation of the deadline.
      */
     public String toJsonString() {
@@ -75,6 +82,7 @@ public abstract class Deadline {
 
     /**
      * Returns the deadline stored in "01 JANUARY 2023" format.
+     *
      * @return A string representation of the deadline.
      */
     @Override

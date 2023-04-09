@@ -21,6 +21,7 @@ public class ItemProfit {
 
     /**
      * Constructs an ItemProfit object based on selling price and selling cost of an item.
+     *
      * @param itemSellingPrice The selling price of the item.
      * @param itemSellingCost The selling cost of the item.
      * @throws NullPointerException if any of the arguments are null.
@@ -35,6 +36,7 @@ public class ItemProfit {
 
     /**
      * Constructs an ItemProfit object with the given profit value.
+     *
      * @param itemProfit The profit value of the item of any numerical format
      * @throws NullPointerException if the argument is null.
      */
@@ -46,8 +48,9 @@ public class ItemProfit {
 
     /**
      * Returns true if a given string matches the validation regex for profit.
-     * @param test the string to test for validity as a profit value
-     * @return true if test is a valid profit value, false otherwise
+     *
+     * @param test The string to test for validity as a profit value
+     * @return True if test is a valid profit value, false otherwise
      */
     public static boolean isValidProfit(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -55,6 +58,7 @@ public class ItemProfit {
 
     /**
      * Returns the profit value of the item.
+     *
      * @return The profit value.
      */
     public Double getValue() {
@@ -63,6 +67,7 @@ public class ItemProfit {
 
     /**
      * Returns the formatted profit value of the item as a JSON string for storage purposes.
+     * .
      * @return The formatted profit value as a JSON string.
      */
     public String toJsonString() {
@@ -71,6 +76,7 @@ public class ItemProfit {
 
     /**
      * Returns a string representation of the ItemProfit object.
+     *
      * @return A string representation of the object.
      */
     @Override

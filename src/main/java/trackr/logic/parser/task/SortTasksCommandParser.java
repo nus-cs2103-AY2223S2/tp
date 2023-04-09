@@ -13,7 +13,7 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.task.SortTasksComparator;
 
 /**
- * Parses input arguments and creates a new SortTasksCommand object
+ * Parses input arguments and creates a new SortTasksCommand object.
  */
 public class SortTasksCommandParser implements Parser<SortTasksCommand> {
 
@@ -21,7 +21,7 @@ public class SortTasksCommandParser implements Parser<SortTasksCommand> {
      * Parses the given {@code String} of arguments in the context of the SortTasksCommand
      * and returns a SortTasksCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public SortTasksCommand parse(String args) throws ParseException {
         requireNonNull(args);

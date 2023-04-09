@@ -12,6 +12,9 @@ public class ClearTaskCommand extends ClearItemCommand<Task> {
     public static final String COMMAND_WORD = "clear_task";
     public static final String COMMAND_WORD_SHORTCUT = "clear_t";
 
+    /**
+     * Creates a ClearTaskCommand to clear the task list.
+     */
     public ClearTaskCommand() {
         super(ModelEnum.TASK);
     }

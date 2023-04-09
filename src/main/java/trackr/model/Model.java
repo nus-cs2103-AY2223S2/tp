@@ -99,6 +99,7 @@ public interface Model {
 
     /**
      * Updates the filtered list of items according to the given {@code predicate}.
+     *
      * @throws NullPointerException If {@code predicate} or {@code modelEnum} is {@code null}.
      */
     void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum);
@@ -107,34 +108,34 @@ public interface Model {
     // =================================================== Supplier ===================================================
 
     /**
-     * Returns the SupplierList
+     * Returns the SupplierList.
      */
     ReadOnlySupplierList getSupplierList();
 
     /**
-     * Returns an unmodifiable view of the filtered supplier list
+     * Returns an unmodifiable view of the filtered supplier list.
      */
     ObservableList<Supplier> getFilteredSupplierList();
 
     /**
-     * Sort the filtered order list
+     * Sorts the filtered order list.
      */
     void sortFilteredOrderList(Comparator<Order> comparator);
 
     // ===================================================== Task =====================================================
 
     /**
-     * Returns the TaskList
+     * Returns the TaskList.
      */
     ReadOnlyTaskList getTaskList();
 
     /**
-     * Returns an unmodifiable view of the filtered task list
+     * Returns an unmodifiable view of the filtered task list.
      */
     ObservableList<Task> getFilteredTaskList();
 
     /**
-     * Sort the filtered task list
+     * Sorts the filtered task list.
      */
     void sortFilteredTaskList(Comparator<Task> comparator);
 

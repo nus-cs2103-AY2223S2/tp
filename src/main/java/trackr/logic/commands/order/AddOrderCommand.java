@@ -24,15 +24,12 @@ import trackr.model.order.Order;
 
 /**
  * Adds an order to the order list.
- * May violate LSP. Does not extend AddItemCommand.
  */
 public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "add_order";
     public static final String COMMAND_WORD_SHORTCUT = "add_o";
 
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a order to the order list if order name matches an existing item in the menu.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a order to the order list. "
             + "Parameters: "
             + PREFIX_ORDERNAME + "ORDER NAME "
             + PREFIX_ORDERQUANTITY + "ORDER QUANTITY "
@@ -54,7 +51,9 @@ public class AddOrderCommand extends Command {
     private final Order toAdd;
 
     /**
-     * Creates an AddOrderCommand to add the specified {@code Order}
+     * Creates an AddOrderCommand to add the specified {@code Order}.
+     *
+     * @param order The order to be added.
      */
     public AddOrderCommand(Order order) {
         requireNonNull(order);
@@ -75,11 +74,11 @@ public class AddOrderCommand extends Command {
         Order validOrder = new Order(existingItem, toAdd.getOrderDeadline(), toAdd.getOrderStatus(),
                                      toAdd.getOrderQuantity(), toAdd.getCustomer());
         if (model.hasItem(validOrder, modelEnum)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_ITEM, modelEnum, validOrder));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_ITEM, modelEnum, modelEnum));
         }
 
         model.addItem(validOrder, modelEnum);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, modelEnum, validOrder));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, modelEnum, modelEnum));
     }
 
     @Override

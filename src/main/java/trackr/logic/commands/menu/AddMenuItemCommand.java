@@ -26,7 +26,7 @@ public class AddMenuItemCommand extends AddItemCommand<MenuItem> {
             + PREFIX_COST + "0.50 ";
 
     /**
-     * Creates an AddMenuItemCommand to add the specified {@code MenuItem}
+     * Creates an AddMenuItemCommand to add the specified {@code MenuItem}.
      */
     public AddMenuItemCommand(MenuItem menuItem) {
         super(menuItem, ModelEnum.MENUITEM);

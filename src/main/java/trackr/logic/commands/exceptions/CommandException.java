@@ -1,5 +1,7 @@
 package trackr.logic.commands.exceptions;
 
+import trackr.logic.commands.Command;
+
 /**
  * Represents an error which occurs during execution of a {@link Command}.
  */

@@ -32,7 +32,7 @@ public class OrderStatus extends Status {
     }
 
     /**
-     * Constructs a {@code OrderStatus}.
+     * Constructs a {@code OrderStatus} with a given status input.
      *
      * @param status A valid status.
      */
@@ -41,7 +41,7 @@ public class OrderStatus extends Status {
     }
 
     /**
-     * Constructs a {@code TaskStatus}.
+     * Constructs a {@code TaskStatus} (with no status input, default case).
      */
     public OrderStatus() {
         this("N");
@@ -49,6 +49,8 @@ public class OrderStatus extends Status {
 
     /**
      * Compares this status to a given status.
+     *
+     * @param other The other status to compare this status to.
      * @return -1, 1 or 0 according to the status sorting criteria.
      *         OrderStatus have descending sorting priority in the order: N > I > D.
      *         Returns -1 this order status has a higher sorting priority,

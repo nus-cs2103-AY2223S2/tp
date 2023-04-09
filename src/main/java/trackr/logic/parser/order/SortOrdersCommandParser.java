@@ -13,7 +13,7 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.order.SortOrdersComparator;
 
 /**
- * Parses input arguments and creates a new SortOrdersCommand object
+ * Parses input arguments and creates a new SortOrdersCommand object.
  */
 public class SortOrdersCommandParser implements Parser<SortOrdersCommand> {
 
@@ -21,7 +21,7 @@ public class SortOrdersCommandParser implements Parser<SortOrdersCommand> {
      * Parses the given {@code String} of arguments in the context of the SortOrdersCommand
      * and returns a SortOrdersCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public SortOrdersCommand parse(String args) throws ParseException {
         requireNonNull(args);

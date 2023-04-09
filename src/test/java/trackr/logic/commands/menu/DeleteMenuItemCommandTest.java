@@ -1,10 +1,10 @@
-package trackr.logic.commands;
+package trackr.logic.commands.menu;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
+import static trackr.logic.commands.CommandTestUtil.showMenuItemAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
@@ -16,89 +16,92 @@ import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
-import trackr.logic.commands.supplier.DeleteSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
-import trackr.model.person.Supplier;
+import trackr.model.menu.MenuItem;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteSupplierCommand}.
+ * {@code DeleteMenuItemCommand}.
  */
-public class DeleteSupplierCommandTest {
+public class DeleteMenuItemCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws ParseException {
-        Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
-        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
+        MenuItem menuItemToDelete = model.getFilteredMenu().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteMenuItemCommand deleteMenuItemCommand = new DeleteMenuItemCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_ITEM_SUCCESS,
-                ModelEnum.SUPPLIER,
-                supplierToDelete);
+        String expectedMessage = String.format(DeleteMenuItemCommand.MESSAGE_DELETE_ITEM_SUCCESS,
+                ModelEnum.MENUITEM,
+                menuItemToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getMenu(), model.getOrderList(), new UserPrefs());
-        expectedModel.deleteItem(supplierToDelete, ModelEnum.SUPPLIER);
+        expectedModel.deleteItem(menuItemToDelete, ModelEnum.MENUITEM);
 
-        assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteMenuItemCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredSupplierList().size() + 1);
-        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(outOfBoundIndex);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMenu().size() + 1);
+        DeleteMenuItemCommand deleteMenuItemCommand = new DeleteMenuItemCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteSupplierCommand, model, Messages.MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteMenuItemCommand, model,
+                            String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX,
+                                        ModelEnum.MENUITEM.toString().toLowerCase()));
     }
 
     @Test
     public void execute_validIndexFilteredList_success() throws ParseException {
-        showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
+        showMenuItemAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
-        DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
+        MenuItem menuItemToDelete = model.getFilteredMenu().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeleteMenuItemCommand deleteMenuItemCommand = new DeleteMenuItemCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_ITEM_SUCCESS,
-                ModelEnum.SUPPLIER,
-                supplierToDelete);
+        String expectedMessage = String.format(DeleteMenuItemCommand.MESSAGE_DELETE_ITEM_SUCCESS,
+                ModelEnum.MENUITEM,
+                menuItemToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getMenu(), model.getOrderList(), new UserPrefs());
-        expectedModel.deleteItem(supplierToDelete, ModelEnum.SUPPLIER);
+        expectedModel.deleteItem(menuItemToDelete, ModelEnum.MENUITEM);
         showNoSupplier(expectedModel);
 
-        assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteMenuItemCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
+        showMenuItemAtIndex(model, INDEX_FIRST_OBJECT);
 
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getSupplierList().getItemList().size());
 
-        DeleteSupplierCommand deleteCommand = new DeleteSupplierCommand(outOfBoundIndex);
+        DeleteMenuItemCommand deleteCommand = new DeleteMenuItemCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model,
+                            String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX,
+                                        ModelEnum.MENUITEM.toString().toLowerCase()));
     }
 
     @Test
     public void equals() {
-        DeleteSupplierCommand deleteFirstCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
-        DeleteSupplierCommand deleteSecondCommand = new DeleteSupplierCommand(INDEX_SECOND_OBJECT);
+        DeleteMenuItemCommand deleteFirstCommand = new DeleteMenuItemCommand(INDEX_FIRST_OBJECT);
+        DeleteMenuItemCommand deleteSecondCommand = new DeleteMenuItemCommand(INDEX_SECOND_OBJECT);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteSupplierCommand deleteFirstCommandCopy = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
+        DeleteMenuItemCommand deleteFirstCommandCopy = new DeleteMenuItemCommand(INDEX_FIRST_OBJECT);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -115,8 +118,8 @@ public class DeleteSupplierCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoSupplier(Model model) {
-        model.updateFilteredItemList(p -> false, ModelEnum.SUPPLIER);
+        model.updateFilteredItemList(p -> false, ModelEnum.MENUITEM);
 
-        assertTrue(model.getFilteredSupplierList().isEmpty());
+        assertTrue(model.getFilteredMenu().isEmpty());
     }
 }

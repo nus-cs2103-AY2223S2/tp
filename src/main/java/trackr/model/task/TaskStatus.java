@@ -31,7 +31,7 @@ public class TaskStatus extends Status {
     }
 
     /**
-     * Constructs a {@code TaskStatus}.
+     * Constructs a {@code TaskStatus} with a given status input.
      *
      * @param status A valid status.
      */
@@ -40,7 +40,7 @@ public class TaskStatus extends Status {
     }
 
     /**
-     * Constructs a {@code TaskStatus}.
+     * Constructs a {@code TaskStatus} with no status input given (default case).
      */
     public TaskStatus() {
         this("N");
@@ -48,6 +48,8 @@ public class TaskStatus extends Status {
 
     /**
      * Compare this status to a given status.
+     *
+     * @param other The other task status to compare this status with.
      * @return 1 if this status is done and the given status is not done,
      *         -1 if this status is not done and the given status is done
      *         0 if both statuses are the same.

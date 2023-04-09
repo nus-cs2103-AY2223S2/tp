@@ -9,14 +9,15 @@ import trackr.logic.parser.ParserUtil;
 import trackr.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteTaskCommand object
+ * Parses input arguments and creates a new DeleteTaskCommand object.
  */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
      * and returns a DeleteTaskCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
         try {

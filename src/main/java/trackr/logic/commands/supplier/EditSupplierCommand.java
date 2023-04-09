@@ -42,6 +42,7 @@ public class EditSupplierCommand extends EditItemCommand<Supplier> {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     /**
+     * Creates an EditSupplierCommand to edit the supplier at given index.
      * @param index              of the supplier in the filtered supplier list to edit
      * @param supplierDescriptor details to edit the supplier with
      */

@@ -29,7 +29,7 @@ public class ItemList<T extends Item> implements ReadOnlyItemList<T> {
     public ItemList() {}
 
     /**
-     * Creates an ItemList using the Items in the {@code toBeCopied}
+     * Creates an ItemList using the Items in the {@code toBeCopied}.
      */
     public ItemList(ReadOnlyItemList<T> toBeCopied) {
         this();
@@ -92,7 +92,12 @@ public class ItemList<T extends Item> implements ReadOnlyItemList<T> {
         items.remove(key);
     }
 
+    /**
+     * Sorts the items in this (@code ItemList}.
+     * @param comparator The comparator used to compare 2 Item objects.
+     */
     public void sortItems(Comparator<T> comparator) {
+        requireNonNull(comparator);
         items.sortItems(comparator);
     }
 

@@ -35,7 +35,7 @@ Order *--> "1" OrderDeadline
 Order *--> "1 " OrderStatus
 Order *--> "1 " Customer
 Order *--> "1 " OrderQuantity
-Order *--> "timeAdded 1" LocalDateTime
+Order *--> "1 " LocalDateTime
 Order -u|> Item
 
 OrderDeadline --|> Deadline

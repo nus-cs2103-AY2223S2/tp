@@ -19,11 +19,12 @@ import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
@@ -38,7 +39,9 @@ public interface Logic {
      */
     ReadOnlySupplierList getSupplierList();
 
-    /** Returns an unmodifiable view of the filtered list of suppliers */
+    /**
+     * Returns an unmodifiable view of the filtered list of suppliers.
+     */
     ObservableList<Supplier> getFilteredSupplierList();
 
     /**
@@ -48,13 +51,19 @@ public interface Logic {
      */
     ReadOnlyOrderList getOrderList();
 
-    /** Returns an unmodifiable view of the filtered list of orders */
+    /**
+     * Returns an unmodifiable view of the filtered list of orders.
+     */
     ObservableList<Order> getFilteredOrderList();
 
-    /** Returns cumulative profits */
+    /**
+     * Returns cumulative profits.
+     */
     ItemProfit getTotalProfits();
 
-    /** Returns cumulative sales/ revenue */
+    /**
+     * Returns cumulative sales/ revenue.
+     */
     ItemSellingPrice getTotalSales();
 
     /**
@@ -64,7 +73,9 @@ public interface Logic {
      */
     ReadOnlyTaskList getTaskList();
 
-    /** Returns an unmodifiable view of the filtered list of tasks */
+    /**
+     * Returns an unmodifiable view of the filtered list of tasks.
+     */
     ObservableList<Task> getFilteredTaskList();
 
     /**
@@ -74,7 +85,9 @@ public interface Logic {
      */
     ReadOnlyMenu getMenu();
 
-    /** Returns an unmodifiable view of the filtered list of menu items */
+    /**
+     * Returns an unmodifiable view of the filtered list of menu items.
+     */
     ObservableList<MenuItem> getFilteredMenu();
 
 

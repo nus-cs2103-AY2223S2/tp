@@ -30,12 +30,17 @@ UniqueItemList -r>"*" Item
 
 Menu *--r> "1 " UniqueMenuItemList
 UniqueMenuItemList -r>"*" MenuItem
+
+MenuItem *--> " 1" ItemSellingPrice
+MenuItem *--> "1  " ItemProfit
+MenuItem *--> "     1" ItemCost
 MenuItem *--> "1" ItemName
-MenuItem *--> "1 " ItemSellingPrice
-MenuItem *--> "1 " ItemCost
-MenuItem *--> "1 " ItemProfit
-ItemProfit --> "1 " ItemSellingPrice
-ItemProfit -left-> "1 " ItemCost
+
+ItemProfit ..> "            1 " ItemSellingPrice
+ItemProfit ..> "   1 " ItemCost
+
+ItemSellingPrice --|> ItemPrice
+ItemCost --|> ItemPrice
 
 
 MenuItem -u|> Item

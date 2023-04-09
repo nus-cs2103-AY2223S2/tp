@@ -1,4 +1,4 @@
-package trackr.logic.commands;
+package trackr.logic.commands.supplier;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -20,6 +20,9 @@ public abstract class FindItemCommand<T extends Item> extends Command {
 
     /**
      * Creates an FindItemCommand to find all {@code Item} that match the predicate.
+     *
+     * @param predicate The predicate to find the items with.
+     * @param modelEnum A representation of the name of the list to find the items in.
      */
     public FindItemCommand(Predicate<Item> predicate, ModelEnum modelEnum) {
         requireAllNonNull(predicate, modelEnum);
@@ -27,6 +30,12 @@ public abstract class FindItemCommand<T extends Item> extends Command {
         this.modelEnum = modelEnum;
     }
 
+    /**
+     * Finds the items that matches the given predicate and updates the filtered item list with the items found.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Success message of the find operation for display.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

@@ -51,13 +51,16 @@ public class EditOrderCommand extends EditItemCommand<Order> {
             + PREFIX_STATUS + "D";
 
     /**
-     * @param index               of the order in the filtered order list to edit
-     * @param editOrderDescriptor details to edit the order with
+     * Creates an EditOrderCommand to edit the order at the given index.
+     *
+     * @param index The index of the order to be edited.
+     * @param editOrderDescriptor The details to edit the order with.
      */
     public EditOrderCommand(Index index, OrderDescriptor editOrderDescriptor) {
         super(index, new OrderDescriptor(editOrderDescriptor), ModelEnum.ORDER);
     }
 
+    @Override
     protected Order createEditedItem(Order itemToEdit, ItemDescriptor<? super Order> itemDescriptor) {
         assert itemToEdit != null;
 

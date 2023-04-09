@@ -11,7 +11,7 @@ import trackr.model.ModelEnum;
 import trackr.model.person.Supplier;
 
 /**
- * Adds a supplier to Trackr.
+ * Adds a supplier to the supplier list.
  */
 public class AddSupplierCommand extends AddItemCommand<Supplier> {
 
@@ -34,7 +34,9 @@ public class AddSupplierCommand extends AddItemCommand<Supplier> {
             + PREFIX_TAG + "eggs";
 
     /**
-     * Creates an AddSupplierCommand to add the specified {@code supplier}
+     * Creates an AddSupplierCommand to add the specified {@code Supplier}.
+     *
+     * @param supplier The supplier to be added.
      */
     public AddSupplierCommand(Supplier supplier) {
         super(supplier, ModelEnum.SUPPLIER);

@@ -18,6 +18,11 @@ public class DeleteTaskCommand extends DeleteItemCommand<Task> {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    /**
+     * Creates a DeleteTaskCommand to delete the task at the given index.
+     *
+     * @param targetIndex The index of the task to be deleted.
+     */
     public DeleteTaskCommand(Index targetIndex) {
         super(targetIndex, ModelEnum.TASK);
     }

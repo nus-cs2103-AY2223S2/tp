@@ -20,7 +20,7 @@ import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
 
 /**
- * Parses input arguments and creates a new AddTaskCommand object
+ * Parses input arguments and creates a new AddTaskCommand object.
  */
 
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
@@ -29,7 +29,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
      * and returns an AddTaskCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
