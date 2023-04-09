@@ -369,10 +369,12 @@ public class ModelManager implements Model {
             assert args[0] != null;
 
             title = "Grade Distribution";
+            logger.info("Generating grade distribution for assignment " + args[0] + "...");
             chart = generateGradeDistribution(args[0]);
             break;
         case CLASS_ATTENDANCE:
             title = "Attendance Distribution";
+            logger.info("Generating attendance distribution..");
             chart = generateAttendanceDistribution();
             break;
         default:
@@ -430,6 +432,9 @@ public class ModelManager implements Model {
         IntStatistics statistics = getGradeStatistics(assignmentName);
         double mean = statistics.getMean();
         double std = statistics.getStdDev();
+
+        logger.info(String.format("Attempting to generate grade distribution for assignment %s"
+                + " with a mean of %f and a standard deviation of %f.", assignmentName, mean, std));
 
         if (std == 0) {
             // No variance, don't need bell curve
