@@ -494,8 +494,37 @@ The following activity diagram shows the logic of the `help` command.
 
 **Overview:**
 
+The `add-t` command is used to add additional tags to an existing `Person` in ConnectUS specified by the user.
+
+The format for the `add-t` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#46-adding-additional-tags-to-a-contact-add-t).
+
+<div style="page-break-after: always"></div>
+
 **Feature Details:**
 
+1. The user specifies a person index that represents a `Person` to be edited, followed by the tag to be added.
+2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
+3. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
+4. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
+5. If step 5 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
+
+The following activity diagram shows the logic of the `add-t` command.
+
+![AddTagToPersonCommandActivityDiagram](images/AddTagToPersonCommandActivityDiagram.png)
+
+The sequence of the `add-t` command is as follows:
+
+1. The command `add-t INPUT` is entered by the user, where the `INPUT` is an integer index followed by a tag to add (e.g. `add-t 1 r/friend`).
+2. `Logic Manager` calls the `ConnectUsParser#parseCommand` with the given `INPUT`
+3. `ConnectUsParser` parses the command word. creating an instance of `AddTagToPersonCommandParser` to `parse` the tags via the respective `ParserUtil` functions.
+4. `AddTagToPersonCommandParser` creates the corresponding `AddTagDescriptor` object. This `AddTagDescriptor` object is taken as the input of a new `AddTagToPersonCommand` object created by `AddTagToPersonCommandParser`.
+5. `Logic Manager` executes `AddTagToPersonCommand#execute`, creating a `Person` from the aforementioned`AddTagDescriptor` object and adding this `Person` to the model through `Model#setPerson`.
+6. `Model#updateFilteredPersonList` is called to update the list of `Person` objects.
+7. A `Command Result` is returned with the result of the execution.
+
+The following sequence diagram shows how `add-t` works:
+
+![AddTagToPersonCommandSequenceDiagram](images/AddTagToPersonCommandSequenceDiagram.png)
 
 [↑ Back to top of section](#4-implementation)
 
@@ -507,7 +536,37 @@ The following activity diagram shows the logic of the `help` command.
 
 **Overview:**
 
+The `delete-t` command is used to delete individual tags from an existing `Person` in ConnectUS specified by the user.
+
+The format for the `delete-t` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#47-deleting-tags-from-a-contact-delete-t).
+
+<div style="page-break-after: always"></div>
+
 **Feature Details:**
+
+1. The user specifies a person index that represents a `Person` to be edited, followed by the tag index to be deleted.
+2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
+3. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
+4. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
+5. If step 5 completes without exceptions, the tag of `Person` will be successfully deleted and this change will be stored inside the contact list.
+
+The following activity diagram shows the logic of the `delete-t` command.
+
+![DeleteTagFromPersonCommandActivityDiagram](images/DeleteTagFromPersonCommandActivityDiagram.png)
+
+The sequence of the `delete-t` command is as follows:
+
+1. The command `delete-t INPUT` is entered by the user, where the `INPUT` is an integer index followed by a tag index to delete (e.g. `delete-t 1 r/1`).
+2. `Logic Manager` calls the `ConnectUsParser#parseCommand` with the given `INPUT`
+3. `ConnectUsParser` parses the command word. creating an instance of `DeleteTagFromPersonCommandParser` to `parse` the tags via the respective `ParserUtil` functions.
+4. `DeleteTagFromPersonCommandParser` parses the corresponding tag indices. They are taken as the constructor arguments of a new `DeleteTagFromPersonCommand` object.
+5. `Logic Manager` executes `DeleteTagFromPersonCommand#execute`, creating a new `Person` with new tag lists from its parameters and replacing the original `Person` with this new `Person` in the model through `Model#setPerson`.
+6. `Model#updateFilteredPersonList` is called to update the list of `Person` objects.
+7. A `Command Result` is returned with the result of the execution.
+
+The following sequence diagram shows how `delete-t` works:
+
+![DeleteTagFromPersonCommandSequenceDiagram](images/DeleteTagFromPersonCommandSequenceDiagram.png)
 
 [↑ Back to top of section](#4-implementation)
 
