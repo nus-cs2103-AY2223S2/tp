@@ -237,11 +237,6 @@ Examples:
 
 * `delete i/S1234567A` deletes the patient with NRIC S1234567A from patient records system.
 
-![Delete](images/command_result/Delete.png)
-
-Above is the execution result of the input `delete i/S1234567A`.
-
-
 ### Listing all patients: `list`
 
 Shows a list of all patients in the patient records.
