@@ -1228,7 +1228,7 @@ the time taken to test extensively manually.
 
 ### **Unit Tests**
 
-Our organisation primarily utilises `JUnit5` for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
+Our organisation primarily utilised `JUnit5` for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
 
 Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
@@ -1284,7 +1284,7 @@ inputs creates and returns the correct command with correct parameters. This tes
 commands to be equal were well-defined.
 
 ## **GUI Tests**
-Our organisation utilises `TestFX` for conducting GUI tests. `TestFX` is a popular testing framework for `JavaFX` applications as it provides a set of tools and utilities for writing tests that interact with `JavaFX` UI components, simulate user interactions, and perform assertions on the state of the UI.
+Our organisation utilised `TestFX` for conducting GUI tests. `TestFX` is a popular testing framework for `JavaFX` applications as it provides a set of tools and utilities for writing tests that interact with `JavaFX` UI components, simulate user interactions, and perform assertions on the state of the UI.
 
 We referenced from [Addressbook Level 4 (AB4)](https://github.com/se-edu/addressbook-level4) on automated GUI testing. 
 * What's different from AB4:
@@ -1408,19 +1408,16 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 
 ## **Planned Enhancements**
 
-1. To handle cases where the module code provided is not a valid NUS module, we propose the use of the NUSMods API to check whether the module exists. In this way, we can also tag the lessons with a more specific venue to improve recommendation of locations within NUS. This is currently not implemented as EduMate is an offline application, and existing modules will change overtime. <br>
+1. Apart from lessons, people may have commitments outside of NUS. To handle these cases, we propose to modify the `tag` command to take in a time and location to indicate that a person will be at the location at that time. This is currently not implemented as it is considered a new feature.<br>
 
 
-2. Apart from lessons, people may have commitments outside of NUS. To handle these cases, we propose to modify the `tag` command to take in a time and location to indicate that a person will be at the location at that time. This is currently not implemented as it is considered a new feature.<br>
+2. To better create automated fields, we propose the use of `Optional` in our person fields. They would show "Unknown" if the field is not there, making it clearer that the fields have not been populated yet. This is currently not implemented as it would require major changes to the commands, as well as storage.<br>
 
 
-3. To better create automated fields, we propose the use of `Optional` in our person fields. They would show "Unknown" if the field is not there, making it clearer that the fields have not been populated yet. This is currently not implemented as it would require major changes to the commands, as well as storage.<br>
+3. The profile panel currently overspills when there are too many modules and groups. This can be solved in the future by converting the profile panel into a scroll pane, thereby allowing longer panels to be shown. This, however, requires us to refactor our UI components, which is not allowed at this phase.<br>
 
 
-4. The profile panel currently overspills when there are too many modules and groups. This can be solved in the future by converting the profile panel into a scroll pane, thereby allowing longer panels to be shown. This, however, requires us to refactor our UI components, which is not allowed at this phase.<br>
-
-
-5. Despite us not allowing it, the application still can enter full screen mode due to the settings on certain devices. This is unintended behaviour, as we intended EduMate to remain at a fixed size. One possible solution would be to re-enable the resizing of the application. However, this would require major changes to the UI, making it more responsive to such resizing events.
+4. Despite us not allowing it, the application still can enter full screen mode due to the settings on certain devices. This is unintended behaviour, as we intended EduMate to remain at a fixed size. One possible solution would be to re-enable the resizing of the application. However, this would require major changes to the UI, making it more responsive to such resizing events.
 
 ## **Project Requirements**
 
