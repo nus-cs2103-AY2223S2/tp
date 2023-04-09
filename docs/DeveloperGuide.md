@@ -93,7 +93,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <p align="center">
 
-<img src="images/UiClassDiagram.png" width="500" />
+<img src="images/UiClassDiagram.png" width="400" />
 
  </p>
  
@@ -116,7 +116,7 @@ The *Class Diagram* below outlines the different concrete subclasses of `Page` a
 
 <p align="center">
 
-<img src="images/PageClasses.png" width="400" />
+<img src="images/PageClasses.png" width="350" />
 
  </p>
 
@@ -126,7 +126,7 @@ When the user executes a command, `Page` factory method `of` will be called and 
 
 <p align="center">
 
- <img src="images/PageSequenceDiagram.png" width="600" />
+ <img src="images/PageSequenceDiagram.png" width="400" />
 
  </p>
  
