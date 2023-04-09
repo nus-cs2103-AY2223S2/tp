@@ -299,11 +299,11 @@ The default status for a Transaction is `OPEN`. This represents an incomplete tr
 ![](images/TxnStatusDiagram.png)
 
 
-### Tasks Feature
+### TaskList Feature
 
 #### About
 
-The Tasks feature aims to provide information about the tasks to be done for contacts.
+The TaskList feature aims to provide information about the tasks to be done for a contact.
 
 #### Implementation
 
@@ -311,8 +311,12 @@ Tasks are represented by a `Task` object that is stored as an attribute of `Pers
 the description of the task. In the future, it is possible to include various types of tasks such as events or
 deadlines.
 
-Under the `Model` for `Person`, created an attribute `Task` to store the description of the task.
-The updating of the `Task` is done by editing the `Person` (contact) to have the new `Task`.
+Under the `Model` for `Person`, created an attribute `TaskList` to store the various tasks of a person, where each 
+`Task` stores the description of each task. The adding of `Task` to `TaskList` is done by the `AddTaskCommand` and 
+clearing of all `Task` from the person is done by `ClearTaskCommand`. 
+
+![](images/TaskListDiagram.png)
+
 
 ### \[Proposed\] Undo/redo feature
 

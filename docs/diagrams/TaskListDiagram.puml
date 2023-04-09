@@ -7,27 +7,22 @@ class Person
 class TaskList
 class Task
 
-Task <|-- TaskList
+Task "*" <-- "1" TaskList
 TaskList "1" <-- Person
 
 class Task {
 value: String
-+toString(): String
-+equals(): Boolean
-+hashcode(): Integer
 }
 
 class TaskList {
--{static} EMPTY_TASKLIST_MESSAGE: String
++{static} EMPTY_TASKLIST_MESSAGE: String
 -tasks: List<Task>
 +getTaskList(): List<Task>
 +add(task: Task): TaskList
 +size(): Integer
 +clear(): TaskList
 +isEmpty(): Boolean
-+toString(): String
-+equals(): Boolean
-+hashcode(): Integer
+-get(index: Integer): Task
 }
 
 class Person {
