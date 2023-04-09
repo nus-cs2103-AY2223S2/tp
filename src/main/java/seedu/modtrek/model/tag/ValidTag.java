@@ -1,11 +1,8 @@
 package seedu.modtrek.model.tag;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Enum class that houses all valid tags and some useful methods for it.

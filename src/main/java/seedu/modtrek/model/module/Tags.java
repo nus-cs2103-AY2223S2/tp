@@ -63,8 +63,13 @@ public class Tags implements Comparable<Tags> {
         return this.tagStrings.equals(((Tags) o).tagStrings);
     }
 
+    /**
+     * Check whether another Tags object has any overlapping tag or both this and t have no tags
+     * @param t another Tags object
+     * @return boolean which is true when t has any overlapping tag or both this and t have no tags
+     */
     public boolean contains(Tags t) {
-        return (this.tagStrings.isEmpty() && t.tagStrings.isEmpty()) ||
-                !Collections.disjoint(t.tagStrings, this.tagStrings);
+        return (this.tagStrings.isEmpty() && t.tagStrings.isEmpty())
+                || !Collections.disjoint(t.tagStrings, this.tagStrings);
     }
 }

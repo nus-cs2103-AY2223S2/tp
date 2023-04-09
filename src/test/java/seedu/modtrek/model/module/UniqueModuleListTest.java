@@ -16,7 +16,6 @@ import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;

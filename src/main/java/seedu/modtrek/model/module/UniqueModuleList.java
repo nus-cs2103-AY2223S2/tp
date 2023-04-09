@@ -6,7 +6,6 @@ import static seedu.modtrek.logic.commands.SortCommand.DEFAULT_SORT;
 import static seedu.modtrek.logic.parser.ParserUtil.parseTagsForSort;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +16,6 @@ import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
-import seedu.modtrek.model.tag.Tag;
 
 /**
  * UniqueModuleList is a list of modules where each modules must be unique.
