@@ -124,14 +124,14 @@ This is used to display :exclamation: **warnings** for you to heed in order for 
 
 </div>
 
-## Attributes
+### Attributes
 
-### What is a recipe?
+#### What is a recipe?
 Recipes are the building blocks of ***RIZZ***ipe! Each recipe comprises multiple attributes, which are listed in the [recipe attributes table](#recipe-attributes-table).<br>
 
 Pay close attention to these attributes, for they are crucial inputs to some of our [features](#features) mentioned below!
 
-### Recipe attributes table
+#### Recipe attributes table
 
 | Field           | Prefix | Accepted Format                                                                                                                                             | Compulsory? | Example                                                                                                                                 |
 |-----------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------|
@@ -143,10 +143,10 @@ Pay close attention to these attributes, for they are crucial inputs to some of 
 | **Tags**        | `t/`   | **`TAG`** <br>  `TAG` can contain these characters: `A-Z a-z 0-9 and space`                                                                                 | No          | `Italian`, <br>`Comfort Food`, <br>`Gluten Free`                                                                                        |
 
 
-### What is an ingredient?
+#### What is an ingredient?
 Ingredients are at the heart of recipes, and also comprise multiple fields. The specification for recipe ingredients are listed in the table below:
 
-### Ingredient attributes table
+#### Ingredient attributes table
 
 | Field                | Prefix | Accepted Format                                                                                                                                              | Compulsory? | Example                                                                         |
 |----------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|---------------------------------------------------------------------------------|
