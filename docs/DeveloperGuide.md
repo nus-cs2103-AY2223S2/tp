@@ -46,26 +46,25 @@ You can click on the respective links below to read up on the relevant sections.
     * [2.4.5 Order](#245-order)
   * [2.5 Storage component](#25-storage-component)
   * [2.6 Common classes](#26-common-classes)
-  * [**Implementation**](#implementation)
-    * [AddXYZCommand](#addxyzcommand)
-      * [Why is it implemented this way](#why-is-it-implemented-this-way)
-    * [DeleteXYZCommand](#deletexyzcommand)
-      * [Why is it implemented this way](#why-is-it-implemented-this-way-1)
-    * [EditXYZCommand](#editxyzcommand)
-      * [Why is it implemented this way](#why-is-it-implemented-this-way-2)
-    * [FindXYZCommand](#findxyzcommand)
-      * [Why is it implemented this way](#why-is-it-implemented-this-way-3)
-    * [ListXYZCommand](#listxyzcommand)
-    * [SortXYZCommand](#sortxyzcommand)
-      * [Why is it implemented this way](#why-is-it-implemented-this-way-4)
-  * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
-  * [**Appendix: Requirements**](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-  * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+* [3 Implementation](#3-implementation)
+  * [3.1 AddXYZCommand](#31-addxyzcommand)
+  * [3.2 DeleteXYZCommand](#32-deletexyzcommand)
+  * [3.3 EditXYZCommand](#33-editxyzcommand)
+  * [3.4 FindXYZCommand](#34-findxyzcommand)
+  * [3.5 ListXYZCommand](#35-listxyzcommand)
+  * [3.6 SortXYZCommand](#36-sortxyzcommand)
+  * [3.7 ClearXYZCommand](#37-clearxyzcommand)
+  * [3.8 TabCommand](#38-tabcommand)
+  * [3.9 HelpCommand](#39-helpcommand)
+  * [3.10 ExitCommand](#310-exitcommand)
+* [4 Appendix](#4-appendix)
+  * [4.1 Documentation, logging, testing, configuration, dev-ops](#41-documentation-logging-testing-configuration-dev-ops)
+    * [4.2 Product scope](#42-product-scope)
+    * [4.3 User stories](#43-user-stories)
+    * [4.4 Use cases](#44-use-cases)
+    * [4.5 Non-Functional Requirements](#45-non-functional-requirements)
+  * [4.6 Glossary](#46-glossary)
+  * [4.7 Instructions for manual testing](#47-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a person](#deleting-a-person)
     * [Saving data](#saving-data)
@@ -85,7 +84,7 @@ For more information about our team, you can refer to this webpage [here](AboutU
 
 ## 1.3 Acknowledgements
 
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project is based on the AddressBook-Level3 (AB3) project created by the [SE-EDU initiative](https://se-education.org).
 * If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -344,15 +343,26 @@ Classes used by multiple components are in the `trackr.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# 3 Implementation
 
-This section describes the details on how the common commands are implemented.
+This section describes the details on how the commands are implemented. After every command, the new state of all of Trackr's data is saved into the data file.
 
-The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, orders, menu items and tasks while `action` represents the action of the command.<br><br>
+<div markdown="block" class="alert alert-info">
 
-### AddXYZCommand
+:information_source: **Notes about the command format**
 
-The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList`. It also saves into the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+* The commands below are in the format `<action><XYZ>Command`.
+* `<action>` represents the action the user can do.<br>
+  e.g. `add`, `edit`and `find`
+* `XYZ` represents the type of data the user can input.<br>
+  e.g. `Supplier`, `Order` and `Task`
+  * Note: If there are specific instances where `XYZ` represents a limited number of types, it would be stated within the description.
+
+</div>
+
+## 3.1 AddXYZCommand
+
+The `add` command creates a `XYZ` object and adds it into `XYZList` and `FilteredXYZList`. It also saves into the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
 
 The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
 For example, `n/` would be followed by a task name for `AddTaskCommand` and supplier name for `AddSupplierCommand`.
@@ -366,14 +376,23 @@ The following activity diagram summarizes what happens when the user executes th
   <br>Figure 15: Add Command Activity Diagram
 </p>
 
-#### Why is it implemented this way
+<div markdown="block" class="alert alert-info">
 
-The `AddXYZCommand` is an improved version of the original AB3 `AddCommand` by implementing into a abstract class - `AddItemCommand`.
+:information_source: **Information on parameters for add command**
+
+* You can see the specific parameters allowed for [Supplier](UserGuide.md#211-adding-a-supplier-add_supplier), [Order](UserGuide.md#212-adding-an-order-add_order), [Task](UserGuide.md#213-adding-a-task-add_task) and [Menu Item](UserGuide.md#214-adding-a-menu-item-add_item).
+* For more information on the specifications of the different attributes, you can look [here](UserGuide.md#61-prefix-summary).
+
+</div>
+
+**Why is it implemented this way**
+
+The `AddXYZCommand` is an improved version of the original AB3 `AddCommand` by implementing into an abstract class - `AddItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require adding an item to a list.
-<br><br>
-### DeleteXYZCommand
 
-The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
+## 3.2 DeleteXYZCommand
+
+The `delete` command removes a `XYZ` object from internal `FilteredXYZList` and `XYZList`.
 
 The command only accepts 1 argument without any prefixes. The argument corresponds to the index of `XYZ` in the `FilteredXYZList` that the user wishes to delete using a one-based index.
 
@@ -386,18 +405,29 @@ The following activity diagram summarizes what happens when the user executes th
   <br>Figure 16: Delete Command Activity Diagram
 </p>
 
-#### Why is it implemented this way
+**Why is it implemented this way**
 
-The `DeleteXYZCommand` is an improved version of the original AB3 `DeleteCommand` by implementing into a abstract class - `DeleteItemCommand`.
+The `DeleteXYZCommand` is an improved version of the original _AB3_ `DeleteCommand` by implementing into an abstract class - `DeleteItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require removing an item from a list.
-<br><br>
-### EditXYZCommand
 
-The `edit` command edits item `XYZ` from the internal `XYZList`.
+## 3.3 EditXYZCommand
 
-This command requires user to key in the index of XYZ in the FilteredXYZList that the user wishes to edit using a one-based index.
+The `edit` command edits a `XYZ` item from the internal `XYZList`.
 
-The keywords that can be provided are the attributes as seen in the corresponding XYZ's class diagram. For example, n/ would be followed by a task name for AddTaskCommand and order name for AddSupplierCommand.
+This command requires user to key in the index of `XYZ` in the `FilteredXYZList` that the user wishes to edit using a one-based index.
+
+The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
+For example, `n/` would be followed by a task name for `AddTaskCommand` and supplier name for `AddSupplierCommand`.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Information on parameters for edit command**
+
+* You can see the specific parameters allowed for [Supplier](UserGuide.md#221-editing-a-supplier-edit_supplier), [Order](UserGuide.md#222-editing-an-order-edit_order), [Task](UserGuide.md#223-editing-a-task-edit_task) and [Menu Item](UserGuide.md#224-editing-a-menu-item-edit_item).
+* For more information on the specifications of the different attributes, you can look [here](UserGuide.md#61-prefix-summary).
+
+</div>
+
 The user is required to key in at least one keyword to be edited.
 
 The parser for `edit` command parses and extracts out the arguments corresponding to each particular field.
@@ -414,16 +444,25 @@ The following activity diagram summarizes what happens when the user executes th
   <br>Figure 18: Edit Item XYZ Activity Diagram
 </p>
 
-#### Why is it implemented this way
+**Why is it implemented this way**
 
-The `EditXYZCommand` is an improved version of the original AB3 `EditCommand` by implementing into a abstract class - `EditItemCommand`.
+The `EditXYZCommand` is an improved version of the original _AB3_ `EditCommand` by implementing into an abstract class - `EditItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require editing an item in a list.
-<br><br>
-### FindXYZCommand
 
-The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+## 3.4 FindXYZCommand
 
-The keywords that can be provided varies for each command.
+The `find` command finds `XYZ` objects from the internal `XYZList` (which stores all the `XYZ` objects) that matches the provided keywords.
+
+The keywords that can be provided varies for each command and can be found in the user guide.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Information on parameters for add command**
+
+* You can see the specific parameters allowed for [Supplier](UserGuide.md#231-finding-a-supplier-find_supplier), [Order](UserGuide.md#232-finding-an-order-find_order), [Task](UserGuide.md#233-finding-a-task-find_task) and [Menu Item](UserGuide.md#234-finding-a-menu-item-find_item).
+* For more information on the specifications of the different attributes, you can look [here](UserGuide.md#61-prefix-summary).
+
+</div>
 
 The parser for the `find` command would extract out the arguments corresponding to each particular field.
 
@@ -436,34 +475,46 @@ The following activity diagram summarizes what happens when the user executes th
   <br>Figure 19: Find Command Activity Diagram
 </p>
 
-#### Why is it implemented this way
+**Why is it implemented this way**
 
-The `FindXYZCommand` is an improved version of the original AB3 `FindCommand` by implementing into a abstract class - `FindItemCommand`.
+The `FindXYZCommand` is an improved version of the original _AB3_ `FindCommand` by implementing into an abstract class - `FindItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require finding an item in a list.
+
 The abstract class `ItemDescriptor` stores the details of an item. It provides easier implementation for `XYZContainsKeywordPredicate` classes.
-<br><br>
-### ListXYZCommand
+
+## 3.5 ListXYZCommand
 
 The `list` command retrieves all the `XYZ` objects from the `XYZList` and lists them all in the internal `FilteredXYZList`.
 
-The `FilteredXYZList` is then updated to have all `XYZ` objects, afterwhich it will then to shown to the user.
+The `FilteredXYZList` is then updated to have all `XYZ` objects, after which it will then to shown to the user.
 
 The following activity diagram summarizes what happens when the user executes the `list` command.
 
 <p align="center">
   <img src="images/ListCommandActivityDiagram.svg">
   <br>Figure 20: List Command Activity Diagram
-</p><br>
+</p>
 
-### SortXYZCommand
+**Why is it implemented this way**
 
-The `sort` command is only available for sorting of orders and tasks.
+The `ListXYZCommand` is an improved version of the original _AB3_ `ListCommand` by implementing into an abstract class - `ListItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require listing all item of the same data type.
 
-The `sort` command sorts objects `XYZ` in the internal `FilteredXYZList` according to a selected criteria.
+## 3.6 SortXYZCommand
 
-The command only accepts 1 argument without the prefix `c/`. This argument is optional and it corresponds to the criteria the user wishes to sort the list by.
+<div markdown="block" class="alert alert-info">
 
-The parser for the `sort` command would extract out the criteria. If no criteria is given, it will be default `Status and Deadline`.
+:information_source: **Information on `XYZ`**
+
+* `XYZ` for `sort` only refers to tasks and orders.
+
+</div>
+
+The `sort` command sorts `XYZ` objects in the internal `FilteredXYZList` according to a selected criteria.
+
+The command only accepts 1 argument without the prefix `c/`. This argument is optional, and it corresponds to the criteria the user wishes to sort the list by.
+
+The parser for the `sort` command would extract out the criteria. If no criteria is given, it will be defaulted to `Status and Deadline`.
 
 A `SortXYZComparator` is used to define how two `XYZ` objects should be compared and sorted.
 
@@ -474,30 +525,65 @@ The following activity diagram summarizes what happens when the user executes th
   <br>Figure 21: Sort Command Activity Diagram
 </p>
 
-#### Why is it implemented this way
+**Why is it implemented this way**
 
 Unlike the other commands, the `SortXYZCommand` does not implement an abstract class like `SortItemCommand`.
 It simply extends Command as there are only two sort commands (one for orders and one for tasks).
-Although abstracting out an abstract class would ease implementation for future sort commands, it is currently makes implementation.
-Thus, it was implemented as mentioned.
-<br><br>
 
+Although abstracting out an abstract class would ease implementation for future sort commands, it is not currently planned.
+However, this might be changed in the future to follow the syntax of the other commands.
+
+## 3.7 ClearXYZCommand
+
+The `clear` command removes **all** `XYZ` object from internal `FilteredXYZList` and `XYZList`.
+
+The following activity diagram summarizes what happens when the user executes the `delete` command.
+
+<p align="center">
+  <img src="images/DeleteCommandActivityDiagram.svg">
+  <br>Figure 22: Clear Command Activity Diagram
+</p>
+
+**Why is it implemented this way**
+
+The `ClearXYZCommand` is an improved version of the original _AB3_ `ClearCommand` by implementing into an abstract class - `ClearItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require clearing all item from the list.
+
+## 3.8 TabCommand
+
+## 3.9 HelpCommand
+
+The `help` command brings up a [HelpWindow](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/HelpWindow.java), where there is a link to the User Guide of Trackr. The user can also press `F1` or click `Help` the menu bar to bring it up. 
+
+This will allow the users to be able to have a reference to all the commands and explanation within a single webpage.
+
+**Why is it implemented this way**
+
+The `HelpCommand` is the same original command as from _AB3_, just with the link updated to this project.
+
+## 3.10 ExitCommand
+
+The `exit` command allows the users to exit Trackr via the command line.
+
+**Why is it implemented this way**
+
+The `ExitCommand` is the same original command as from _AB3_.
 
 -------------------------------------------------------------------------------------------------------------------- 
 
-## **Documentation, logging, testing, configuration, dev-ops**
+# 4 Appendix
+
+## 4.1 Documentation, logging, testing, configuration, dev-ops
+
+Please refer to the respective guides below for other information.
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-<br><br>
---------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
-
-### Product scope
+### 4.2 Product scope
 
 **Target user profile**:
 
@@ -518,7 +604,7 @@ Our application:
 * serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (but no support for custom formatting of interface)
 * enables faster contact management compared to a typical mouse/GUI driven app<br><br>
 
-### User stories
+### 4.3 User stories
 
 **High Priority (Must Have)**
 
@@ -556,9 +642,7 @@ Our application:
 |-----------------|-----------------------------|-----------------------------------------------------------|
 | expert user     | be able to import past data | use the application easily when transferring data         |
 
-<br>
-
-### Use cases
+### 4.4 Use cases
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Home Business Owner`)
 
@@ -587,23 +671,19 @@ Our application:
 
       Use case resumes at step 1.
 
-**Use case: UC11 - Add a new customer**
+**Use case: UC11 - Add a new task**
 
-(Similar to UC01)
+(Similar to UC01 except it is for task)
 
-**Use case: UC21 - Add a new task**
+**Use case: UC21 - Add a new order**
 
-(Similar to UC01)
+(Similar to UC01 except it is for order)
 
-**Use case: UC31 - Add a new order**
+**Use case: UC31 - Add a new menu item**
 
-(Similar to UC01)
+(Similar to UC01 except it is for menu item)
 
-**Use case: UC41 - Add a new menu item**
-
-(Similar to UC01)
-
-**Use case: UC02 - Delete a contact**
+**Use case: UC02 - Delete a supplier**
 
 **MSS**
 
@@ -626,19 +706,19 @@ Our application:
 
       Use case resumes at step 3.
 
-**Use case: UC22 - Delete a task**
+**Use case: UC12 - Delete a task**
 
-(Similar to UC01)
+(Similar to UC02 except it is for task)
 
-**Use case: UC32 - Delete an order**
+**Use case: UC22 - Delete an order**
 
-(Similar to UC01)
+(Similar to UC02 except it is for order)
 
-**Use case: UC42 - Delete a menu item**
+**Use case: UC32 - Delete a menu item**
 
-(Similar to UC01)
+(Similar to UC02 except it is for menu item)
 
-**Use case: UC03 - Edit a contact**
+**Use case: UC03 - Edit a supplier**
 
 **MSS**
 
@@ -667,17 +747,17 @@ Our application:
 
       Use case resumes at step 3.
 
-**Use case: UC23 - Edit a task**
+**Use case: UC13 - Edit a task**
 
-(Similar to UC01)
+(Similar to UC03 except it is for task)
 
-**Use case: UC33 - Edit an order**
+**Use case: UC23 - Edit an order**
 
-(Similar to UC01)
+(Similar to UC03 except it is for order)
 
-**Use case: UC43 - Edit a menu item**
+**Use case: UC33 - Edit a menu item**
 
-(Similar to UC01)
+(Similar to UC03 except it is for menu item)
 
 **Use case: UC04 - Finding a supplier**
 
@@ -702,21 +782,40 @@ Our application:
 
   Use case ends.
 
-**Use case: UC14 - Find a customer**
+**Use case: UC14 - Find a task**
 
-(Similar to UC01)
+(Similar to UC04 except it is for task)
 
-**Use case: UC24 - Find a task**
+**Use case: UC24 - Find an order**
 
-(Similar to UC01)
+(Similar to UC04 except it is for order)
 
-**Use case: UC34 - Find an order**
+**Use case: UC34 - Find a menu item**
 
-(Similar to UC01)
+(Similar to UC04 except it is for menu item)
 
-**Use case: UC44 - Find a menu item**
+**Use case: UC15 - Sort tasks**
 
-(Similar to UC01)
+**MSS**
+
+1. Actor requests to sort tasks.
+2. Actor enters the command with the desired sorting criteria.
+3. Trackr sorts tasks according to the criteria.
+4. Trackr displays a list of tasks that are sorted.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The Actor does not enter any search criteria.
+
+  * 2a1. Trackr uses the default sorting criteria based on status and deadline.
+
+  * Use case resumes at step 3.
+
+**Use case: UC25 - Sort orders**
+
+(Similar to UC15 except it is for order)
 
 **Use case: UC50 - Switch to another tab**
 
@@ -726,24 +825,23 @@ Our application:
 2. Actor interacts with the tab menu.
 3. Trackr switches to the target tab.
 
-   Use case ends.<br><br>
+   Use case ends.
 
-### Non-Functional Requirements
+### 4.5 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1. Should be able to hold up to 200 supplier and customer contacts without a noticeable sluggishness in performance for
-   typical usage.
-1. Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
-1. Should be able to hold up to 200 tasks without a noticeable sluggishness in performance for typical usage.
-1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
-1. Should store data locally only.<br><br> 
+2. Should be able to hold up to 200 supplier and customer contacts without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 1000 order details without a noticeable sluggishness in performance for typical usage.
+4. Should be able to hold up to 200 tasks without a noticeable sluggishness in performance for typical usage.
+5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+6. Should store data locally only.
 
-### Glossary
+## 4.6 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command-Line Interface
 * **GUI**: Graphical User Interface
+* **AB3**: AddressBook-Level3 (The parent project this is based off on)
 * **Real-time automation**: Automatically update tasks or orders with deadlines that have passed as done or overdue.
 * **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
 * **Customer**: Customer refers to someone whom the user receives an order from
@@ -755,7 +853,7 @@ Our application:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 4.7 Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
