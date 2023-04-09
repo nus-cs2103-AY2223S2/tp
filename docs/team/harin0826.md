@@ -6,7 +6,7 @@ title: Nam Harin's Project Portfolio Page
 ### Project: CoDoc
 
 CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is mainly written in Java, and I have contributed about 1800 LoC.
+It is mainly written in Java, and I have contributed about 1800 LoC. It has 20.8k LoC.
 
 Given below are my contributions to the project.
 
