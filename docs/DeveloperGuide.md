@@ -512,32 +512,32 @@ testers are expected to do more *exploratory* testing.
 4. Other incorrect addevent commands to try: `addevent`, `...`<br>
    Expected: Similar to previous.
 
-### Deleting a person
+### Deleting an event
 
-1. Deleting a person while all persons are being shown
+1. Deleting an event while all events are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all events using the `listevent` command. Multiple events in the list.
    
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   2. Test case: `delevent 1`<br>
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
 
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message.
+   3. Test case: `delevent 0`<br>
+      Expected: No event is deleted. Error details shown in the status message.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. Deleting a person while persons with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
+2. Deleting an event while event with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
 
-    1. Prerequisites: List all persons using the `list` command, then find all persons with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple persons in the list.
+    1. Prerequisites: Find all events with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple events in the list.
 
-    2. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the displayed list. Details of the deleted contact shown in the status message.
+    2. Test case: `delevent 1`<br>
+       Expected: First event is deleted from the displayed list. Details of the deleted event shown in the status message.
 
-    3. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message.
+    3. Test case: `delevent 0`<br>
+       Expected: No event is deleted. Error details shown in the status message.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
+    4. Other incorrect delete commands to try: `delevent`, `delevent x`, `...` (where x is larger than the displayed list size)<br>
        Expected: Similar to previous.
 
 ### Sorting event list
