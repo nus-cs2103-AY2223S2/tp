@@ -16,7 +16,6 @@ if () then ([else])
   :Error: Employee not found in the department;
   stop
  else ([Employee found in the department])
-endif
   :refd command successfully executes.;
 stop
 

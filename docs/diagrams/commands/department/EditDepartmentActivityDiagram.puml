@@ -16,7 +16,6 @@ if () then ([else])
    :Error: Edited department already exists in SudoHr;
    stop
  else ([Edited department does not exist in SudoHr])
-endif
   :edep command successfully executes.;
 stop
 

@@ -10,7 +10,6 @@ if () then ([else])
   :Error: Department already exists in SudoHr;
    stop
  else ([Department does not exist in SudoHr])
-endif
   :adep command successfully executes.;
 stop
 

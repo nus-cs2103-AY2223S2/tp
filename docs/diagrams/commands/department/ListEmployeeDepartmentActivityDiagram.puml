@@ -10,7 +10,6 @@ if () then ([else])
   :Error: Employee does not exist in SudoHR;
    stop
  else ([Employee exists in SudoHR])
-endif
   :led command successfully executes.;
 stop
 
