@@ -5,7 +5,7 @@ title: Tan Li Thai Sean's Project Portfolio Page
 
 ### Project: EduMate
 
-EduMate is a desktop address book application used to help NUS students maintain both their social and academic life by lowering the barriers to meet up and also make new friends within modules and school. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+EduMate is a desktop address book application used to help NUS students maintain both their social and academic life by lowering the barriers to meet up and also make new friends within modules and school. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 30 kLoC.
 
 Given below are my contributions to the project.
 
