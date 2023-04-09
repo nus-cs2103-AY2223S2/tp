@@ -635,3 +635,4 @@ We will limit the length of such parameters in future enhancements to avoid this
    "Addressbook" to "Fish Ahoy", as well as fixing the fxml versions in fxml files. Furthermore, we can add more useful 
    logging messages related to Fish Ahoy commands such as information on newly added commands, so the user may gain more 
    information. For instance, Tank readings could display the current list of values, so the user can understand the graph.
+   
