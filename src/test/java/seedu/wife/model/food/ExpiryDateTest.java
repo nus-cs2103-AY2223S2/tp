@@ -19,22 +19,22 @@ public class ExpiryDateTest {
 
     @Test
     public void constructor_invalidExpiryDate_throwsIllegalArgumentException() {
-        String invalidExpiryDate = "";
+        String invalidExpiryDate = "1234123";
         assertThrows(IllegalArgumentException.class, () -> new ExpiryDate(invalidExpiryDate));
     }
 
     @Test
     public void isValid() {
-        String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-uuuu"));
 
         // null ExpiryDate
         assertThrows(NullPointerException.class, () -> isValidDateFormat(null));
 
-        // invalid ExpiryDatees
+        // invalid ExpiryDates
         assertFalse(isValidDateFormat("")); // empty string
-        assertFalse(isValidDateFormat(" ")); // spaces only
+        assertFalse(isValidDateFormat("1234123")); // numbers only
 
-        // valid ExpiryDatees
+        // valid ExpiryDates
         assertTrue(isValidDateFormat(currentDate));
         assertTrue(isValidDateFormat("13-11-2026")); // long ExpiryDate
     }
