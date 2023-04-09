@@ -7,23 +7,26 @@ title: ryanqiu1's Project Portfolio Page
 
 {{ site.data.techtrack.about.summary }}
 
-For me i worked on the backend component and fixing bugs. In addition, i worked on the various documentations, UG, DG
+For me, i worked on the backend component and fixing bugs. In addition, i worked on the various documentations, UG, DG
 and "About Us" page.
 
 ## Contributions
 * **New Feature**: Add field `Website` to `add` command
     * What it does: Allows the company website to be added by the user.
-    * Justification: Many Companies have their own website and the user might want to store the website somewhere.
+    * Justification: Many Companies have their own website and the user might want to store the website in the role. This will allow to user to refer to the role card and use the website to apply for the job.
     * Highlights: 
-      * Company of Google (www.google.com) `w/www.google.com`
-      * It was challenging at the start to find how the ab3 program works, as i needed to figure out which files to refactor and change.
+      * Example website: Company of Google (www.google.com) Command: `w/www.google.com`
+      * It was challenging at the start to find how the AB3 program works, as i needed to figure out which files to refactor and change.
+      * Needed to refactor and edit the command parser files, add command etc.
       
+
 * **New Feature**: Sort roles based on deadline 
     * What it does: Allows the user to sort the deadline of role application by ascending or descending order.
-    * Justification: Users might forget the deadline for the application of the job, hence can sort by the deadline.
+    * Justification: Users might forget the deadline for the application of the job, hence can sort by the deadline to show the most recent deadline or least recent dateline.
     * Highlights: 
       * Using the command `deadline asc`, shows the nearest application that the user should apply.
       * Role can be easily sorted for the user's convenience as applying jobs is a time-sensitive task.
+      * Check to make sure date is of the correct format and that it is not an invalid date (passed or does not exist).
 
 
 * **Enhancements to existing features**: 
@@ -53,7 +56,6 @@ and "About Us" page.
     * Set Goals and Deadlines for teammates.
     * Managed some releases on GitHub
     * Created and Managed Milestones for 1.2,1.3.
-    
     * Bug Fixes
         * Fixed deadline that does not allow for current date.
         * Fixed UG bugs, where commands is not stated clearly.
