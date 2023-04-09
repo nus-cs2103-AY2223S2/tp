@@ -110,7 +110,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      * Adds a patient to the medinfo book.
      * The patient must not already exist in the medinfo book.
      */
-    public void addPatient(Patient p) throws CommandException {
+    public void addPatient(Patient p) throws CommandException, WardNotFoundException {
         if (!wards.contains(p.getWardNameString())) { // If wardlist does not contain patient's ward, don't add it in.
             throw new WardNotFoundException(p.getWardNameString());
         }
