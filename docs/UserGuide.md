@@ -1652,6 +1652,7 @@ On top of the type restrictions of the parameters, if these restrictions are vio
    3. Changing the patients records while that patient still has upcoming appointments.
 4. Command to clear all marked appointments.
 5. Command to clear all appointments.
+6. Schedule multiple active appointments for the same patient.
 
 ## FAQ
 
