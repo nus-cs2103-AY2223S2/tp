@@ -28,7 +28,7 @@ easy-to-understand explanations and examples.
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undoing last modification : `undo`](#undoing-last-modification--undo)
   - [Viewing command history](#viewing-command-history)
-  - [Adding a person to favorites : `favorite`](#adding-a-person-to-favorites--favorite)
+  - [Toggling the favorite status of a person : `favorite`](#toggling-the-favorite-status-of-a-person--favorite)
   - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
@@ -333,7 +333,7 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
   from this point in the command history, the changes you've made to this current command in history will be lost.
 - The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
 
-## Adding a person to favorites : `favorite`
+### Toggling the favorite status of a person : `favorite`
 
 Favorites the specified person from AIMS.
 
