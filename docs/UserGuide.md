@@ -61,7 +61,7 @@ Artistic AddressBook (ArB) is a **desktop app for artists, meant to help with ef
 <br>Example:<br>
 ![CommandWordAdditionalDetails](images/CommandWordAdditionalDetails.png)
 
-* Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided.
+* Additional details come in the form of `prefix/detail`, where `detail` is in UPPER_CASE and is to be supplied by the user, and [`prefix`](#prefixes) indicates what detail is being provided.
 <br>Example:<br>
 ![PrefixDetails](images/PrefixDetails.png)
 
@@ -88,7 +88,7 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
       <br>
       Example: If you specify `phone/12341234 phone/56785678`, only `phone/56785678` will be taken.
 
-    * Extraneous details for commands that do not take in any (such as `help`, `list-client`, `list-project`, `list-tag`, `exit`, `clear-client`, `clear-project` and `sort-client`) will be ignored.
+    * Extraneous details for commands that do not take in any (such as `help`) will be ignored.
       <br>
       Example: If the command specifies `help 123`, it will be interpreted as `help`.
   
@@ -504,6 +504,8 @@ Following from the previous example, if `0` was entered, the project `oil painti
 Examples:
 * `1` links the 1st client in the shown list of clients
 * `0` cancels the linking operation and returns to the project list
+
+[<small>Back to top</small>](#table-of-contents)
 
 ## Tag commands
 

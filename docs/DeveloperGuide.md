@@ -9,8 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* This project utilises the [PrettyTime](https://www.ocpsoft.org/prettytime/nlp/) library.
+* This project is based on the [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org).
+* This project utilises the [PrettyTime](https://github.com/ocpsoft/prettytime) library.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -199,7 +199,7 @@ Internally, a project can be linked to one client while a client can have multip
 
 <img src="images/LinkedClassDiagram.png" width="400" />
 
-For example, the below is an object diagram representing the situation where we have two projects `P1` and `P2` that are both linked to the same `Client` object.
+For example, the below is an object diagram representing the situation where we have two projects `p1` and `p2` that are both linked to the same `Client` object.
 
 <img src="images/ExampleLinkedObjectDiagram.png" width="400" />
 
@@ -1037,7 +1037,7 @@ testers are expected to do more *exploratory* testing.
 * Getting started with PlantUML to create diagrams for the updated developer guide required a fair amount of troubleshooting.
 
 ### Effort Required
-* A lot of time to implement natural language processing for parsing deadlines was saved by using the [PrettyTime](https://www.ocpsoft.org/prettytime/nlp/) library, since it already implements natural language processing. Our work on this can be found in the class [Deadline.java](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/model/project/Deadline.java).
+* A lot of time to implement natural language processing for parsing deadlines was saved by using the [PrettyTime](https://github.com/ocpsoft/prettytime) library, since it already implements natural language processing. Our work on this can be found in the class [Deadline.java](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/model/project/Deadline.java).
 * Implementing the new Project-related classes took some deliberation and time but was overall not particularly difficult.
 * Some commands such as add, edit, delete had similar implementations for the projects as the initial person commands so could be adapted with ease. However, the new features such as find and sort took a bit more thought.
 
