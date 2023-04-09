@@ -234,7 +234,7 @@ Scenario: Mary Smith is a patient (already registered in the system) who has jus
 Step 1. The healthcare administrative staff wishes to verify that Mary has an appointment scheduled at this time. The staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X`. As seen from Mary's appointment list, an appointment is indeed scheduled for today, and the staff proceeds to register her visit.
 
 The sequence diagram below shows how the DisplayCommand works:
-{add a sequence diagram}
+![DisplaySequenceDiagram](images/DisplaySequenceDiagram.png)
 
 * When the user inputs `display ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the person's `Nric` through `ParserUtil`
     * Any invalid inputs will throw a `ParseException`
@@ -256,8 +256,6 @@ Given below is an example usage scenario and how the add appointment mechanism b
 Scenario: Mary Smith is an outpatient (already registered in the system) due for her medical check-up with Dr. Paul West (already registered in the system) in 2 weeks, on 01-02-2023 10:00. (Note: This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.)
 
 Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `appointment ic/S1234567X d/01-02-2023 10:00 dric/S7654321R` command to add an appointment for Mary Smith at the specified date, with Dr Paul West. This adds an `Appointment` to Mary, an`Appointment` to Dr. Paul, and an `Appointment` to the `HospitalAppointmentList`. The successful execution of the command confirms that both Mary Smith does not have any prior booking on this date and that Dr. Paul West is not scheduled to meet any other patients on the same date.
-
-{add a object diagram}
 
 The sequence diagram below shows how the AppointmentCommand works:
 ![AppointmentSequenceDiagram](images/AppointmentSequenceDiagram.png)
@@ -283,8 +281,6 @@ Scenario: Mary Smith already has a medical check-up scheduled with Dr. Paul West
 Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X` to view all her existing appointment bookings. This displays Mary's list of appointments, and the appointment that needs to be cancelled is located at index 1.
 
 Step 2. The user executes `deleteAppointment 1 ic/S1234567X` command to delete the appointment at index 1 of Mary's list of appointments. This removes the `Appointment` from Mary's and Dr. Paul's appointment list, and from `HospitalAppointmentList`.
-
-{add a object diagram}
 
 The sequence diagram below shows how the DeleteAppointmentCommand works:
 ![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
