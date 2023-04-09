@@ -58,7 +58,7 @@ The purpose of this user guide document is to provide staff with a clear underst
 3. Copy the file to the folder you want to use as the _home folder_ for  HospiSearch.
 
 
-4. Open a command terminal , `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar`command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar`command to run the application.<br>
 
 Note:
   - For Mac Users:
