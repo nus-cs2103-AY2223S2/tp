@@ -9,6 +9,9 @@ CookHub is a desktop application for student chefs to store and check their reci
 It is written in Java and uses JavaFX to create GUI.
 
 Given below are my contributions to the project.
+
+* **Code contributed**: [Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=kyueran&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
 * **Modified Components**: 
 
 * Change Model component to work for Recipes instead of Adresses. [\#75](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/75)
@@ -72,3 +75,4 @@ Given below are my contributions to the project.
     * Contributed to the user stories in the Developer Guide
     * Add the UML diagram for Model
     * Add Apendix: Planned Enhancements [\#216] (https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/216)
+    * Add activity diagram for SortCommand and sequence diagram for FilterPrice command and elaborate on their implementation. [\#258] (https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/258)
