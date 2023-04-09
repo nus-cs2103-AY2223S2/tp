@@ -64,8 +64,6 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
   - [7.8 Opening a Person's social media links in app](#78-opening-a-persons-social-media-links-in-app)
   - [7.9 Opening a social media platform with prefilled message](#79-opening-a-social-media-platform-with-prefilled-message)
   - [7.10 Viewing Upcoming Birthdays](#710-view-upcoming-birthdays)
-
-
 - [8. Requirements](#8-requirements)
   - [8.1 Product Scope](#81-product-scope)
   - [8.2 User Stories](#82-user-stories)
