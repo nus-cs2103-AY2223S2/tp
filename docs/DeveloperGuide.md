@@ -345,7 +345,7 @@ The following sequence diagram summarises what happens when a user executes a Pr
 #### Implementation
 
 This feature is largely similar to the find-by-prefix feature, except that the user can input up to two dates and up to 
-two ages, a start date `sd/` and an end date `ed/` instead of a specific date `d/` or a start age `sa/` and an end age
+two ages, a start date `sd/` and an end date `ed/` instead of a specific date `d/`, or a start age `sa/` and an end age
 `ea/` instead of a specific age `a/`. For instance, `find sd/2023-03-23 ed/2023-03-25` will find all cases from that
 occurred from 23rd March 2023 to 25th March 2023 inclusively.
 
