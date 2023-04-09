@@ -200,7 +200,7 @@ Step 5. The user again decides that adding the case was not a mistake, and decid
 
 Step 6. The user now wishes to perform an undo ten times. The user executes the `undo 10` command to undo ten steps. However, only 2 iterations of the tracker data are popped from the `TemporaryMemory` primary `Deque` and pushed into the auxiliary `Stack`. Because only three `DengueHotspotTracker` states exist, only two undos are possible.
 ![UndoRedoState6](images/UndoRedoState6.png)
-The following sequence diagram shows how the undo operation works:
+The following activity and sequence diagrams shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoActivityDiagram.png)
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
