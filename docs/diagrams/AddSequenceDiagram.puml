@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LibaryParser" as LibraryParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Bookmark" as Bookmark MODEL_COLOR
+end box
+
+note left of LogicManager
+Let {input} be
+"n/Solo Leveling
+a/Chugong
+p/~ 110 ~
+r/4
+g/Fantasy
+t/Hero"
+end note
+
+[-> LogicManager : execute("add {input}")
+activate LogicManager
+
+LogicManager -> LibraryParser : parseCommand("add {input}")
+activate LibraryParser
+
+create AddCommandParser
+LibraryParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> LibraryParser
+deactivate AddCommandParser
+
+LibraryParser -> AddCommandParser : parse("{input}")
+activate AddCommandParser
+
+create Bookmark
+AddCommandParser -> Bookmark
+activate Bookmark
+
+Bookmark --> AddCommandParser : newBookmark
+deactivate Bookmark
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> LibraryParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> LibraryParser
+destroy AddCommandParser
+
+LibraryParser --> LogicManager : a
+deactivate LibraryParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addBookmark(newBookmark)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
