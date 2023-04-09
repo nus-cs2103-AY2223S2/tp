@@ -165,8 +165,6 @@ Here are all the prefixes that can be used:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0).
 
-If the person identify himself as non-binary, you can save his gender as `nonbinary`.
-
 IMPT: If you want to add multiple tags or modules in one statement,
 every tag or module has to have its corresponding prefix.
 
@@ -178,6 +176,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
 
+**To Note**
+
+* If said contact identifies himself as non-binary, you can save his `Gender` as `nonbinary`.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -251,7 +252,6 @@ _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer** (must be greater than 0).
 * All the fields are optional. However, at least one field must be provided.
-* If the person identify himself as non-binary, you can save his gender as `nonbinary`.
 
 
 For the following fields, they are considered a `FieldGroup`.
@@ -289,6 +289,10 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+**To Note**
+
+* If said contact identifies himself as non-binary, you can save his `Gender` as `nonbinary`.
 
 [Back To Contents](#table-of-contents)
 
