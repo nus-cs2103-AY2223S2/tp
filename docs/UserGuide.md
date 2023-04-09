@@ -4,6 +4,7 @@ title: User Guide
 ---
 # Table of contents:
 
+{:toc}
 
 1. [Introduction](#1-introduction)
     1. [What is SudoHR?](#11-what-is-sudohr)
