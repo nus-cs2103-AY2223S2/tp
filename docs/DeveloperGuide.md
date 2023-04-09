@@ -325,6 +325,19 @@ The `DeleteContactCommand` follows the design intuition behind the `AddContactCo
 deleting other attributes of an existing internship application.
 
 
+### List feature
+
+#### How is the feature implemented
+
+The `list` command lists all ongoing internship applications, i.e. excluding archived applications. Once the list command is executed,
+it updates the `predicate` of `FilteredInternshipList` in `model` to show only currently ongoing applications. All commands to be executed following this command
+will follow the index of the latest list displayed in the internship application panel.
+
+The execution process of `list_archived` is demonstrated by the activity diagram below.
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+
 ### Add documents feature
 
 #### How is the feature implemented
@@ -513,7 +526,7 @@ The `find` command allows user to find all `InternshipApplication` whose
 
 #### How is the feature implemented
 
-The sequence diagram below describes the interaction between classes when find command entered.
+The sequence diagram below describes the interaction between classes when find command is entered.
 ![FindSequenceDiagram](./images/FindSequenceDiagram.png)
 
 Step 1. Parsing
@@ -540,7 +553,7 @@ Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command 
 is created and returned to `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` 
-displaying the returned message for 2.5 seconds.
+displaying the returned message for 5 seconds.
 
 
 #### Why is it implemented this way
@@ -565,6 +578,49 @@ by using its prefix, i.e. in this form `find s/PENDING`.
 * **Alternative 2:** We can also make it in such format find_<Attribute>, e.g. find_status. 
   * Pros: Easy parser to implement
   * Cons: Longer command which takes longer time to type
+
+
+### Sort feature
+
+The `sort` command allows user to sort all `InternshipApplication` by the order below:
+1. `CompanyName` (alphabetical order)
+2. `JobTitle` (alphabetical order)
+3. `Internship status` (the default order of status)
+4. `InterviewDate` (ascending order of the interview date, `InternshipApplication` having null values are placed at the end).
+
+>**NOTE:**
+> The alphabetical order for comparing `CompanyName` and `JobTitle` is case-insensitive. To illustrate, the 
+> `InternshipApplication` with `CompanyName` "amazon" should appear before that with `CompanyName` "Google".
+
+#### How is the feature implemented
+
+The sequence diagram below describes the interaction between classes when sort command is entered.
+![SortSequenceDiagram](./images/SortSequenceDiagram.png)
+
+Step 1. Parsing
+
+If the command word matches the word "sort", `SortCommandParser#parse()` will be called to parse
+the argument of sort. Depending on the argument of sort, the corresponding comparator will be created. The sort command
+is then created with appropriate comparator.
+
+Step 2. Execution
+
+The SortCommand#execute method is then invoked. The `Model#updateSortedFilteredInternshipList()` is invoked by passing in the comparator. 
+The underlying `SortedList` is the updated and sorted by using the Comparator being passed.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command
+is created and returned to `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog`
+displaying the returned message for 5 seconds.
+
+
+#### Why is it implemented this way
+
+It is designed and implemented in this way to make the sort command more extensible to further enhancement to be made.
+For example, developer may want to provide more sorting order using the sort command. By the
+use of inheritance, one can easily enhance the `sort` command by passing appropriate implementation of `Comparator` object
+to sort the underlying list of `InternshipApplication`'s by polymorphism.
 
 
 ### Clear feature
