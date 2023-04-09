@@ -194,11 +194,13 @@ The only way to modify the data is via the exposed `Shop` API calls (and other m
 
 #### Internal Logic
 
-Shown below are the activity diagrams of adding a `Vehicle` and removing a `Customer` from the `Shop`.
-
 ![Add Vehicle Activity Diagram](images/AddVehicleInternalActivityDiag.png)
 
-![Remove Customer Activity Diagram](images/RemoveCustomerInternalActivityDiag.png)
+Above is the activity diagram for adding a vehicle to the `Shop`. Adding other entities follow a similar process.
+Related entities are updated automatically.
+
+![Remove Customer Activity Diagram](images/RemoveCustomerInternalActivityDiag.png) 
+![Remove Vehicle Activity Diagram](images/RemoveVehicleInternalActivityDiag.png)
 
 ### Add Feature
 
