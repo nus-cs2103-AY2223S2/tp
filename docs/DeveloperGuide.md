@@ -214,7 +214,7 @@ without depending on other components)
 - Tasks are handled in a similar way in the `TaskBookModel` component.
 - It interacts with components like `UniqueTaskList` and is 'observed' as an unmodifiable `ObservableList<Task>`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in Pied Piper, which `Person` references. This allows `Pied Piper` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Role` list in Pied Piper, which `Person` references. This allows `Pied Piper` to only require one `Role` object per unique role, instead of each `Person` needing their own `Role` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -331,8 +331,7 @@ The following sequence diagram shows how the delete operation works:
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
+    
 [↑ Return to start of section](#4-implementation)
 
 [↑ Return to table of contents](#table-of-contents)
@@ -357,7 +356,7 @@ _{more aspects and alternatives to be added}_
 
 **Target user profile**:
 
-- NUS Computing Students
+- University Students
 - has a need to manage a project with significant complexity
 - prefer desktop apps over other types
 - can type fast

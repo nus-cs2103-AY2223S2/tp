@@ -1,12 +1,11 @@
 # Pawan Kishor Patil
 
-### Hi there👋 <br><br>
+### Hi there 👋 <br><br>
 I took part in developing Pied Piper, a task management and performace tracking app that helps current and future university student
 leaders take charge of their group projects. <br>
 I was responsible analyzing user requirements, and designing the user interface. I also collaborated with the development team to implement key features, such as assigning tasks, storing tasks, etc. In addition, I conducted user testing and collected feedback to refine the app's functionality and improve the user experience. It allows students to more easily manage their group project, and keep track of their teammates' progress while being able to rate their performances upon completion of their assigned tasks.
 
 
-<center><img src="../images/pawanpatil19.png" alt= “Pawan”   height="400"></center>
 
 Given below are my contributions to Pied Piper:
 
