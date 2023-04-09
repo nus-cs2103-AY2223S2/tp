@@ -3,7 +3,7 @@
 
 start
 :User executes undo n;
-if () then ([n is not an integer])
+if () then ([n is not an integer, " " \n or "")])
     :display an invalid message;
     stop
 else ([else])
