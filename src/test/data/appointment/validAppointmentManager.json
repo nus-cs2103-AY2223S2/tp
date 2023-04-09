@@ -1,0 +1,13 @@
+{
+  "datas" : [ {
+    "isActive" : true,
+    "id" : 0,
+    "appointment" : {
+      "patientId" : 1,
+      "startTime" : "2024-01-01T13:30:00",
+      "endTime" : "2024-01-01T14:00:00",
+      "vaccine" : "Dose 1 (Novavax)",
+      "isCompleted" : false
+    }
+  } ]
+}
