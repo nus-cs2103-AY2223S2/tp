@@ -109,6 +109,7 @@ public class SessionListPanel extends UiPart<Region> {
 
         sessionList.addListener((ListChangeListener<Session>) change -> {
             getStatistics(logic.getFilteredSessionList());
+            updateDisplay(null);
         });
     }
 
@@ -330,6 +331,7 @@ public class SessionListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new SessionCard(session, getIndex() + 1).getRoot());
+                updateDisplay(session);
             }
         }
     }
