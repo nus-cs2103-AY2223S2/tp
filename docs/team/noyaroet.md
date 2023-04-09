@@ -31,6 +31,8 @@ Given below are my contributions to the project.
   * Added documentation for Introduction section, which gives a brief overview of what to expect from MyLib.
   * Added documentation for Getting Started section, which gives a step-by-step guide on how to download and start using MyLib.
   * Added documentation for About User Guide section, which informs the reader on the objective of the user guide and how to use it.
+  * Added documentation for Key Definitions section to explain what a bookmark, genre and a tag is.
+  * Added documentation for Adding a Bookmark in Commands section.
 
 * **Contributions to DG**:
   * Added a detailed description of the implementation of the `Progress` class and its related classes.
@@ -40,4 +42,3 @@ Given below are my contributions to the project.
   * Arranged and lead the discussion for project meetings.
   * Lead the brainstorming and confirmation of features for each iteration.
   * Set up most of the Github issues that need to be addressed for each milestone.
-* to be added soon
