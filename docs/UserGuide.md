@@ -93,8 +93,8 @@ The information below specifies parameter description, constraints and usage thr
 
 | Parameter | Description                             | Constraints                                                                                                                                 | Valid Examples        | Invalid Examples   |
 |-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------|
-| h/        | Height of the patient in metres (m)     | Floating point number with 2 decimal places                                                                                                 | 1.63, 1.99            | 1, 1.2, 1.234      |
-| w/        | Weight of the patient in kilograms (kg) | Floating point number with 1 decimal place                                                                                                  | 85.0, 63.2            | 85, 63.20          |
+| h/        | Height of the patient in metres (m)     | 3-digit number with 2 decimal places representing patient's height in metres                                                                | 1.63, 1.99            | 1, 1.2, 1.234      |
+| w/        | Weight of the patient in kilograms (kg) | Number with an optional 1 decimal place representing patient's weight in kg                                                                 | 85.0, 63.2            | -85, 63.20         |
 | d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                 |
 | st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
 
@@ -124,7 +124,7 @@ Here is a quick summary of each GUI component within Docedex.
 | **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
 
 
-### Notes about the GUI
+### Notes about the GUI (Please Read!)
 
 #### Selecting doctors or patients through commands**
 
@@ -252,7 +252,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 
 ```edit-doc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YOE] [t/TAGS]…```
 - To view parameter information click [here](#parameter-information)
-- What it does: Edits the doctor at the specified `INDEX`.
+- What it does: Edits the doctor at the specified `INDEX` using any specified parameters as the new value.
 - Possible use cases: Updating contact information of a doctor.
 <div markdown="span" class="alert alert-warning">
 **WARNING**: This command overwrites existing data within Docedex, proceed with caution.
@@ -262,7 +262,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
     - The index refers to the index number shown in the displayed doctor list.
     - Users can edit specific doctors in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
     - At least one of the optional parameters must be provided.
-    - When editing tags, the existing tags of the person will be removed i.e., adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without any tag string.
+      - When editing tags, you have to include any previous tags that was already included in the doctor, or else these tags will be removed. This also means that you can use `t/` to remove all tags from a doctor using the `edit-doc` command.
 
 - Examples:
     - `edit-doc 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
@@ -285,8 +285,9 @@ For more information see: [Selecting doctors or patients through commands](#sele
 <div markdown="span" class="alert alert-warning">
 **WARNING**: This command is destructive. Doctor's removed will need to be added back.
 </div>
+
 - Note to user:
-    - The index refers to the index number shown in the displayed doctor list.
+    - The index refers to the index number shown in the displayed doctor list. If the doctor you wish to delete is not shown on the doctor's list, you can try using `list-doc` to list out all the doctors first.
 
 Examples:
 * `list-doc` followed by `del-doc 2` deletes the 2nd doctor in the address book.
@@ -306,11 +307,13 @@ Examples:
     - At least one of the parameters must be provided.
     - More than one tag can be provided.
     - Blank parameters will be ignored.
+    - Please follow the parameter constraints closely, or you will not retrieve any doctors.
 
 - Examples:
     - `find-doc n/Gabriel` matches any doctor with the name containing the string `Gabriel`.
     - `find-doc n/Gabriel t/friend t/expert` matches any doctor with the name containing the string `Gabriel` and has tags `friend` and `expert`.
     - `find-doc y/3` matches any doctor that has the number 3 in their years of experience, i.e. `3`,`30`,`23` will be matched but `5` and `10` will not be matched.
+    - `find-doc n/@#$!` will not return any doctors because the search query for name does not follow the constraints for the name parameter.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -411,8 +414,8 @@ For more information see: [Selecting doctors or patients through commands](#sele
     - The index refers to the index number shown in the displayed patient list.
     - Users can edit specific patients in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
     - At least one of the optional parameters must be provided.
-    - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
-      specifying any tags after it.
+    - When editing tags, you have to include any previous tags that was already included in the patient, or else these tags will be removed. This also means that you can use `t/` to remove all tags from a doctor using the `edit-doc` command.
+
 
 - Examples:
     - `edit-ptn 1 n/Daenerys Targaryen` Edits the name of the 1st patient to be `Daenerys Targaryen`.
@@ -454,6 +457,7 @@ Examples:
     - At least one of the parameters must be provided.
     - More than one tag can be provided.
     - Blank parameters will be ignored.
+    - Please follow the parameter constraints closely, or you will not retrieve any patients.
 
 - Examples:
   - `find-ptn n/Alice` matches any patient with the name containing the string `Alice`.
