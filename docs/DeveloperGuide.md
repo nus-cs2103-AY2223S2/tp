@@ -1043,11 +1043,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 * 1c. User request have all missing fields.
-  * 1c1. FitBook shows an error for missing fields.
+  * 1c1. FitBook shows an error message.
 
     Use case ends.
 
-> **Use case: UC16 - Edit routine or exercise in routine**
+> **Use case: UC16 - Add Exercise **
+
+**MSS**
+
+1. User request to add an Exercise to a specific Routine.
+2. FitBook adds the Exercise to the Routine in the routine list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User request have missing exercise name field.
+    * 1a1. FitBook shows an error for missing exercise name.
+
+      Use case ends.
+
+* 1b. User request have missing Routine Index.
+    * 1b1. FitBook shows an error for missing Routine Index.
+
+      Use case ends.
+
+* 1c. The given routine index is invalid.
+    * 1c1. FitBook shows an error for missing fields.
+
+      Use case ends.
+
+> **Use case: UC17 - Edit routine or exercise in routine**
 
 **MSS**
 
@@ -1079,7 +1105,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC17 - View selected client's summary information**
+> **Use case: UC18 - View selected client's summary information**
 
 **MSS**
 
@@ -1095,7 +1121,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC18 - Add weight**
+> **Use case: UC19 - Add weight**
 
 **MSS**
 
@@ -1121,7 +1147,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC19 - Plot weight history graph**
+> **Use case: UC20 - Plot weight history graph**
 
 **MSS**
 
@@ -1213,6 +1239,15 @@ testers are expected to do more *exploratory* testing.
    D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
 
+### Export/ExportRoutine
+1. Exports the client details/Routine details into a csv file.
+
+   A. Prerequisites: Ensure that previously exported csv file (if any) is not opened in the background.
+
+   B. Test case: `export` or `exportRoutine` <br>
+   Expected: FitBook displays successful export message.
+
+
 ### Adding a Routine
 1. Adding a Routine while all routines are being shown
 
@@ -1235,7 +1270,7 @@ testers are expected to do more *exploratory* testing.
    C. Test case: `addExercise 0 `<br>
    Expected: No exercise is added. Error details shown in the status message.
 
-   D. Other incorrect delete commands to try: `addExercise`, `addExercise x `, (where x is larger than the list size)<br>
+   D. Other incorrect addExercise commands to try: `addExercise`, `addExercise x `, (where x is larger than the list size)<br>
    Expected: Similar to previous.
 
 ### Finding a Routine
@@ -1248,6 +1283,34 @@ testers are expected to do more *exploratory* testing.
 
    C. Test case: `findRoutine`<br>
    Expected: Error details shown in the status message.
+
+### View Summary 
+1. View a Clients Summary Details
+
+   A. Prerequisites: List all clients using the `listClients` command. Multiple Clients with their respective details displayed in the list.
+
+   B. Test case: `view 2`<br>
+   Expected: Displays the summary of Client at index `2` in the Summary Panel of the UI.
+
+   C. Test case: `view`<br>
+   Expected: Error details shown in the status message
+
+   D. Other incorrect view commands to try:`view x `, (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Graph 
+1. Plot a graph of clients Weight History.
+
+   A. Prerequisites: List all clients using the `listClients` command. Multiple Clients with their respective details displayed in the list. 
+
+   B. Test case: `graph 2`<br>
+   Expected: Displays the graph pop up of the weight history of Client at index `2`.
+
+   C. Test case: `graph`<br>
+   Expected: Error details shown in the status message
+
+   D. Other incorrect view commands to try:`graph x `, (where x is larger than the list size)<br>
+   Expected: Similar to previous.
 
 ### Exit
 
