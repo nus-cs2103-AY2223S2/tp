@@ -15,13 +15,11 @@ import tfifteenfour.clipboard.testutil.TypicalModel;
 
 class CopyCommandTest {
     private Model model;
-    private Model expectedModel;
     private CurrentSelection actualSelection;
 
     @BeforeEach
     public void setUp() {
         this.model = new TypicalModel().getTypicalModel();
-        expectedModel = model.copy();
 
         actualSelection = this.model.getCurrentSelection();
         actualSelection.setCurrentPage(PageType.STUDENT_PAGE);

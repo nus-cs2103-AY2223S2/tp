@@ -20,13 +20,9 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.STUDENTID_DE
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.STUDENTID_DESC_BOB;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.STUDENT_COMMAND_PREFIX;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.TASK_COMMAND_PREFIX;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_AMY;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 import static tfifteenfour.clipboard.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tfifteenfour.clipboard.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -55,13 +51,6 @@ public class AddCommandParserTest {
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withStudentId(VALID_STUDENTID_BOB)
-            .build();
-
-    public static final Student AMY = new StudentBuilder()
-            .withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY)
-            .withStudentId(VALID_STUDENTID_AMY)
             .build();
 
     public static final String COURSE_NAME = "CS2103T";

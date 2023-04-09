@@ -11,14 +11,12 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.predicates.TaskNameContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
-import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
 class FindTaskCommandTest {
     private Model model;
     private Model expectedModel;
-    private Session selectedSession;
     private Task selectedTask;
     private CurrentSelection actualSelection;
     private TaskNameContainsPredicate predicate;
@@ -29,7 +27,6 @@ class FindTaskCommandTest {
     public void setUp() {
         this.model = new TypicalModel().getTypicalModel();
         expectedModel = model.copy();
-        selectedSession = model.getCurrentSelection().getSelectedSession();
         selectedTask = model.getCurrentSelection().getSelectedTask();
 
         actualSelection = this.model.getCurrentSelection();
