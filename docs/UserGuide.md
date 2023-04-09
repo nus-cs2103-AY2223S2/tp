@@ -222,6 +222,7 @@ This command clears all the existing decks and their associated cards from the a
 
 Format: `clear`
 - Upon executing the command, a pop-up alert will appear and request you to confirm your decision.
+  <br>
   ![clear confirm](./images/ClearConfirm.png)
 
 - Selecting `Yes` will clear all data.  
@@ -415,11 +416,19 @@ Format: `p`
 
 Displays the next card. After tagging the current card, you use this command to move on to the next card.
 
+<div markdown="block" class="alert alert-info">:information_source: **Note:** 
+If the card you are currently reviewing is the last card, the result display will display `This is the last card.` to let you know that there are no more cards left to review.
+</div>
+
 Format: `]`
 
 ### 3.6.6. Previous Card: `[`
 
 Displays the previous card. Useful if you want to amend the tag of the previous card!
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:** 
+If the card you are currently reviewing is the first card, the result display will display `This is the first card.` to let you know that there are no cards before this card to review.
+</div>
 
 Format: `[`
 
@@ -538,7 +547,6 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 | Show All Cards | `showCards`                                                                                                                                      |
 | Start Review   | `review INDEX`                                                                                                                                   |
 | Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30`                                                                                                  |
-| Clear          | `clear`                                                                                                                                          |
 | Help           | `help`                                                                                                                                           |
 | Exit           | `exit`                                                                                                                                           |
 
