@@ -435,7 +435,7 @@ It then returns a `CommandResult` to be displayed to the user to acknowledge whe
 
 The following sequence diagram shows how the mark/unmark operation works:
 
-<img src="images/DeleteCommandUML.png"/>
+<img src="images/MarkSequenceDiagram.png"/>
 
 [↑ Return to start of section](#4-implementation)
 
