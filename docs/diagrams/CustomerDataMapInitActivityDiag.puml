@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+title CustomerDataMap Initialisation Activity Diagram
+start
+skinparam conditionStyle diamond
+:initialise IdMappings of Customer, Vehicle and Appointments;
+repeat:foreach Customer in the Map<Integer, Customer> idToCustomer;
+    repeat:foreach vehicle id in the customer vehicleId array;
+    :add to customerVehicleList;
+    repeat while ([has next]);
+    repeat:foreach appointment id in the customer appointmentId array;
+    :add to customerAppointmentList;
+    repeat while ([has next]);
+:add customerVehicleList to global Map<Customer, UniqueVehicleList> customerToVehiclesMap;
+:add customerAppointmentList to global Map<Customer, UniqueAppointmentList> customerToAppointmentsMap;
+repeat while ([has next]);
+stop
+
+@enduml
