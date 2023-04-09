@@ -3,11 +3,11 @@ layout: page
 title: User Guide
 ---
 
-FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command
-Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAid
-can get your client and meeting management tasks done quickly, so you won't ever worry about missing a meeting or
-forgetting about a client!
+FAid is a **client and schedule management** application made for financial advisors!
+Financial advisors can use FAid to easily **save their client information** and **organise meetings**. 
+With FAid, financial advisors will no longer have to worry about missing a meeting or forgetting a client!
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -55,6 +55,8 @@ forgetting about a client!
     * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+[Back to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,6 +331,7 @@ data directly by editing that data file.
 If your changes to the data file makes its format invalid, FAid will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -340,6 +343,14 @@ the data of your previous AddressBook home folder.
 
 **Q**: How do I key in my client's region?<br>
 **A**: FAid automatically detects region based on address keyed in
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Troubleshooting
+
+**Q**
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
