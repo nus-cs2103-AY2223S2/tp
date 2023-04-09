@@ -5,7 +5,9 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at our following emails:
+
+1. Mandy Kaw: e0758899@u.nus.edu.sg
 
 ## Project team
 
@@ -16,8 +18,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/mandykqh)]
 [[portfolio](team/mandykqh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI, Documentation, Implementation
 
 ### Thennant Lim
 
