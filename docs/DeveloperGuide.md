@@ -260,6 +260,10 @@ We will be using the user input `add n/Milk p/4.50 c/Groceries` as an example.
 
 4. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully logged.
 
+:information_source: **Note**:
+- For step 2, if the user does not have any arguments, the `AddExpenseCommand` object will NOT be created!
+
+
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
@@ -290,6 +294,10 @@ We will be using the user input `delete 1` as an example.
 
 
 4. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully deleted.
+
+
+:information_source: **Note**:
+- At step 2, if input is detected as invalid, an error will be shown on the screen and the sequence of action is terminated.
 
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
@@ -326,6 +334,10 @@ We will be using the user input `edexp 1 n/Chicken` as an example, whereby the o
 
 5. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully edited.
 
+
+:information_source: **Note**:
+- At step 2, if the input is detected as invalid (either index is invalid or no arguments provided other than index), a matching error will be shown on the screen and the sequence of action is terminated.
+- At step 3, if the user provides a category to edit to, and it is found that there is no such category in FastTrack, an error will be shown and the sequence of action is terminated.
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
@@ -369,6 +381,9 @@ We will be using the user input `list c/Groceries t/week` as an example.
 4. A `CommandResult` instance is then returned, with feedback of how many `Expenses` are currently listed under the current filters.
 
 
+:information_source: **Note**:
+- At step 2, if an invalid input is detected after `list` (e.g. `list xxxxxx`), an error will be shown and the sequence of action is terminated.
+
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
 SEQ#4
@@ -411,6 +426,10 @@ We will be using the user input `addrec n/Broth c/Groceries p/3 sd/06/04/23 t/we
 
 4. A `CommandResult` instance is then returned, with feedback of the `RecurringExpenseManager` object being successfully added.
 
+
+:information_source: **Note**:
+- At step 2, if any input is detected as missing or invalid, an error will be shown and the sequence of action is terminated.
+- At the completion of step 3, due to the behavior of `RecurringExpenseManager`, expenses will be retroactively added if the start date up till current date (or end date if end date is earlier) sufficiently spans the timeframe frequency.
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
@@ -459,6 +478,9 @@ We will be using the user input `delrec 1` as an example.
 5. A `CommandResult` instance is then returned, with feedback that the `RecurringExpenseManager` object was successfully deleted.
 
 
+:information_source: **Note**:
+- At step 2, if the index is detected as invalid or missing, an error will be shown and the sequence of action is terminated.
+
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
 SEQ#6
@@ -502,6 +524,10 @@ We will be using the user input `edrec 1 n/Coconut Milk` as an example.
 
 4. A `CommandResult` instance is then returned, with feedback that the `RecurringExpenseManager` object was successfully edited.
 
+
+:information_source: **Note**:
+- At step 2, if the index provided is detected as invalid or if no arguments other than index are provided, an error will be shown and the sequence of action is terminated.
+- At step 3, if the user provides a category to edit to, and it is found that there is no such category in FastTrack, an error will be shown and the sequence of action is terminated.
 
 A sequence diagram is provided as follows, which matches the list of steps mentioned above:
 
@@ -1101,7 +1127,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample expenses and categories. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -1117,6 +1143,32 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. In the case whereby your data files end up corrupted, FastTrack will wipe all data and allow you to start over
+   with a clean slate.
 
 1. _{ more test cases …​ }_
+
+
+### Effort
+
+The difficulty of FastTrack as a project was quite high, but one that allowed us to learn a lot. As our group lacked experience in working with
+a properly-structured team as well as a pre-existing codebase that had to be overhauled for our own purposes, we had to start from scratch to learn 
+how exactly commands and user inputs were handled by the pre-existing AB3 codebase.
+
+We faced numerous challenges in our journey to make FastTrack, not limited to:
+1. Learning how the codebase worked and how to restructure existing code.
+2. How to design the structure of FastTrack so that the `Category`, `Expense` and `RecurringExpenseManager` made sense.
+3. Abstracting out certain checks into proper methods in the correct classes so as to reduce violations of principles.
+4. Testing of code.
+
+Our group reused much of what AB3 had in place, with the main bulk of reusability coming from AB3's parsing set-up and
+the model as well as storage systems, which we found to be useful as they worked in quite an intuitive and robust manner after we took some
+time to understand them. 
+
+However, we faced major difficulties in attempting to modify AB3 to suit FastTrack, as we realized
+that AB3 primarily dealt with `Person` objects, which were only one type of entity, while we had to deal with 3 kinds of entities as 
+mentioned above. This led to multiple problems in our implementations and debugging stages, and we had to race against time
+on multiple occasions to thankfully, successfully resolve these issues.
+
+To sum it all up, our team did put in a significant amount of work to understand and mostly to successfully morph the existing AB3
+codebase into FastTrack, and there is no doubt that we have achieved what we set out to do, and more.
