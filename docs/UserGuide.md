@@ -2,9 +2,9 @@
 layout: page
 title: User Guide
 ---
-#Pied Piper
+# Pied Piper
 
-Pied Piper is a user-friendly task management application tailored for current and future university student leaders. 
+Pied Piper is a user-friendly task management and performance tracker application tailored for current and future university student leaders. 
 The app helps them stay organised and prepare for real-world situations by helping them manage project groups, and 
 simulate the real world review system. Key features include creating tasks, assigning tasks to team members, setting 
 due dates, rating completed tasks out of 5, and providing feedback through comments. The ability to seamlessly toggle 
@@ -230,6 +230,8 @@ The task list can be viewed by using the `view` command.
 
 Format: `comment t/TASK_INDEX c/COMMENTS`
 
+<b>Note: The length of comment is limited to 50 characters.</b>
+
 Example:
 * `comment t/1 c/task was done well and on time`<br>
 ![commentExample](images/CommentExample.PNG)
@@ -290,6 +292,8 @@ Note:
 
 Format: `assign  t/TASK_INDEX i/MEMBER_INDEX`
 
+<b>Note: Assigning a task to a person requires the person to be assigned to a role. You will get an error in case you try to assign task to a person/member who does not have a role.</b>
+
 Examples:
 * `assign t/1 i/3`<br>
 ![assignExample](images/AssignExample.PNG)
@@ -328,6 +332,8 @@ Deletes an existing person at the given index.<br>
 The task list can be viewed using the `view` command.
 
 Format: `delete MEMBER_INDEX`
+
+<b>Note: In case the person to be deleted is assigned to task(s), those tasks would be unassigned immediately, no matter whether the task is completed or not.</b>
 
 Examples:
 * `delete 1`
@@ -376,7 +382,7 @@ Format: `review`
 
 Opens a window linking to this user guide
 
-![helpMessage](images/helpMessage.png)
+![helpMessage](images/help.png)
 
 [↑ Back to list of features](#2-features)
 
@@ -401,7 +407,7 @@ the data of your previous Pied Piper home folder.
 **Q**: How do I check my Java version?<br>
 **A**: Check [here](#4-how-do-i-check-my-java-versionbr).
 
-**Q**: Where do I download the correct Java version?
+**Q**: Where do I download the correct Java version?<br>
 **A**: Download from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
 [↑ Back to table of contents](#table-of-contents)
@@ -409,13 +415,13 @@ the data of your previous Pied Piper home folder.
 ---
 
 # 4. How do I check my Java version?<br>
-For windows:
+<b>For windows:</b>
 1. Open your system's command line by searching `cmd` in the windows search bar.
 2. Enter the command `java -version`.
 3. You should see the version of java installed here highlighted in yellow:<br>
 ![javaVersionExampleWindows](images/JavaVersionExampleWindows.PNG)
 
-For mac:
+<b>For mac:</b>
 1. Use the spotlight search bar and search using `terminal`.
 2. Enter the command `java -version`.
 3. You should see the version of java installed here highlighted in yellow:<br>

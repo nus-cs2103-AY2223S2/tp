@@ -1,0 +1,76 @@
+@startuml
+!include Style.puml
+
+package UI <<Rectangle>>{
+Interface Ui <<Interface>>
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+Class HelpWindow
+Class ResultDisplay
+Class TaskListPanel
+Class TaskCard
+Class StatusBarFooter
+Class CommandBox
+Class PersonStatsListPanel
+Class PersonStatsCard
+Class PersonCard
+Class PersonListPanel
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel  #FFFFFF
+}
+
+hide Model.HiddenModel
+
+
+package Logic <<Rectangle>> {
+Class HiddenLogic
+}
+
+hide Logic.HiddenLogin
+
+
+Class HiddenOutside #FFFFFF
+
+
+
+HiddenOutside ..> Ui
+
+UiManager .left.|> Ui
+UiManager -down-> MainWindow
+MainWindow -down-> HelpWindow
+MainWindow *-down-> CommandBox
+MainWindow *-down-> ResultDisplay
+MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> TaskListPanel
+MainWindow *-down-> PersonListPanel
+MainWindow *-down-> PersonStatsListPanel
+PersonListPanel -down-> PersonCard
+TaskListPanel -down-> TaskCard
+PersonStatsListPanel -down-> PersonStatsCard
+
+ResultDisplay -down-|> UiPart
+CommandBox -down-|> UiPart
+TaskCard -down-|> UiPart
+StatusBarFooter -down-|> UiPart
+HelpWindow -down-|> UiPart
+PersonCard -down-|> UiPart
+PersonListPanel -down-|> UiPart
+TaskListPanel -down-|> UiPart
+PersonStatsListPanel -down-|> UiPart
+PersonStatsCard -down-|> UiPart
+
+UiManager -right-> Logic
+MainWindow -left-> Logic
+
+TaskCard .down.> Model
+PersonCard .down.> Model
+PersonStatsCard ..> Model
+
+
+MainWindow -[hidden]-|> UiPart
+
+
+@enduml

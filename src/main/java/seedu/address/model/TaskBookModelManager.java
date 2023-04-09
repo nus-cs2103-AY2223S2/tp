@@ -30,7 +30,7 @@ public class TaskBookModelManager implements TaskBookModel {
     public TaskBookModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(taskBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + taskBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with task book: " + taskBook + " and user prefs " + userPrefs);
 
         this.taskBook = new TaskBook(taskBook);
         this.userPrefs = new UserPrefs(userPrefs);
