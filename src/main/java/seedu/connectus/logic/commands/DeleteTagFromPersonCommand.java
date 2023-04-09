@@ -25,7 +25,7 @@ import seedu.connectus.model.person.Person;
  */
 public class DeleteTagFromPersonCommand extends Command {
     public static final String COMMAND_WORD = "delete-t";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a tag from the person identified"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a tag from the person identified "
         + "by the index number used in the displayed person list. \n"
         + "Parameters: PERSON_INDEX (must be a positive integer) "
         + "[" + PREFIX_MODULE + "MODULE]... "

@@ -612,7 +612,7 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 * `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
 * `search may blk n\alex` returns all contacts whose name contains the keyword `alex` and which contain the keywords `may` and `blk` in any of the information fields.
 * `search n\lex y`returns all contacts whose name contains the keyword `lex y`
-* `search n\alex n\may` returns all contacts whose name contains the keyword `alex` and whose birthday contains the keyword `may`
+* `search n\alex b\may` returns all contacts whose name contains the keyword `alex` and whose birthday contains the keyword `may`
 * `search mod\cs mod\ma` returns all contacts who have at least one module which contains the keyword `cs` and at least one module which contain the keyword `ma`
 * `search ig\al cca\chess` returns all contacts whose instagram handle contains the keyword `al` and who has at least one cca with the word `chess` in it
 * `search cca\#president` returns all contacts who have a position that contains the keyword `president` in at least one cca
