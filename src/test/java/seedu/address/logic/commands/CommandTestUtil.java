@@ -47,8 +47,8 @@ public class CommandTestUtil {
     public static final String VALID_DATE_OF_BIRTH_BOB = "1998-02-09";
     public static final String VALID_DATE_OF_JOINING_AMY = "2022-01-01";
     public static final String VALID_DATE_OF_JOINING_BOB = "2023-01-01";
-    public static final String VALID_PICTURE_PATH_AMY = "data/employeepictures/default.png";
-    public static final String VALID_PICTURE_PATH_BOB = "data/employeepictures/default.png";
+    public static final String VALID_PICTURE_PATH_AMY = "";
+    public static final String VALID_PICTURE_PATH_BOB = "";
     public static final String VALID_TAG_SOFTWARE_ENGINEER = "software engineer";
     public static final String VALID_TAG_MANAGER = "manager";
 

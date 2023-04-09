@@ -130,7 +130,8 @@ public class EditCommand extends Command {
         if (updatedDateOfJoining.isEmpty()) {
             updatedDateOfJoining = employeeToEdit.getDateOfJoiningOptional();
         }
-        Optional<PicturePath> updatedPicturePath = Optional.of(employeeToEdit.getPicturePath());
+        PicturePath updatedPicturePath = editEmployeeDescriptor.getPicturePath()
+                .orElse(employeeToEdit.getPicturePath());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
         EmployeeId employeeId = employeeToEdit.getEmployeeId();
@@ -171,6 +172,7 @@ public class EditCommand extends Command {
         private LeaveCounter leaveCounter;
         private Optional<LocalDate> dateOfBirth;
         private Optional<LocalDate> dateOfJoining;
+        private PicturePath picturePath;
         private Set<Tag> tags;
 
         public EditEmployeeDescriptor() {}
@@ -189,6 +191,7 @@ public class EditCommand extends Command {
             setLeaveCounter(toCopy.leaveCounter);
             setDateOfBirth(toCopy.dateOfBirth);
             setDateOfJoining(toCopy.dateOfJoining);
+            setPicturePath(toCopy.picturePath);
             setTags(toCopy.tags);
         }
 
@@ -197,7 +200,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, department, payroll, leaveCounter,
-                    dateOfBirth, dateOfJoining, tags);
+                    dateOfBirth, dateOfJoining, picturePath, tags);
         }
 
         public void setName(Name name) {
@@ -272,6 +275,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(dateOfJoining).flatMap(s -> s);
         }
 
+        public void setPicturePath(PicturePath picturePath) {
+            this.picturePath = picturePath;
+        }
+
+        public Optional<PicturePath> getPicturePath() {
+            return Optional.ofNullable(picturePath);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -313,6 +324,7 @@ public class EditCommand extends Command {
                     && getLeaveCounter().equals(e.getLeaveCounter())
                     && getDateOfBirth().equals(e.getDateOfBirth())
                     && getDateOfJoining().equals(e.getDateOfJoining())
+                    && getPicturePath().equals(e.getPicturePath())
                     && getTags().equals(e.getTags());
         }
     }

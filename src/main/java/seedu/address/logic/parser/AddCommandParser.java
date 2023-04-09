@@ -28,6 +28,7 @@ import seedu.address.model.employee.LeaveCounter;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Payroll;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.PicturePath;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,6 +63,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         // Optional fields
         Address address = Address.getNullAddress();
         Email email = Email.getNullEmail();
+        // picturePath can NOT be set via AddCommand
+        PicturePath picturePath = PicturePath.getNullPicturePath();
 
         // Setting values for optional fields
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
@@ -76,9 +79,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<LocalDate> dateOfJoining = ParserUtil.parseDateOfJoining(argMultimap.getValue(PREFIX_DATE_OF_JOINING));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+
         EmployeeId employeeId = new EmployeeId();
         Employee employee = new Employee(name, employeeId, phone, email, address, department, payroll, leaveCount,
-                dateOfBirth, dateOfJoining, Optional.empty(), tagList);
+                dateOfBirth, dateOfJoining, picturePath, tagList);
 
         return new AddCommand(employee);
     }

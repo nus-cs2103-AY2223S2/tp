@@ -33,7 +33,7 @@ public class EmployeeBuilder {
     public static final int DEFAULT_LEAVE_COUNTER = 15;
     public static final String DEFAULT_DATE_OF_BIRTH = "2000-04-21";
     public static final String DEFAULT_DATE_OF_JOINING = "2022-01-01";
-    public static final String DEFAULT_PICTURE_PATH = "data/employeepictures/default.png";
+    public static final String DEFAULT_PICTURE_PATH = "";
 
     private Name name;
     private EmployeeId employeeId;
@@ -45,7 +45,7 @@ public class EmployeeBuilder {
     private LeaveCounter leaveCounter;
     private Optional<LocalDate> dateOfBirth;
     private Optional<LocalDate> dateOfJoining;
-    private Optional<PicturePath> picturePath;
+    private PicturePath picturePath;
     private Set<Tag> tags;
 
     /**
@@ -66,7 +66,7 @@ public class EmployeeBuilder {
         leaveCounter = new LeaveCounter(DEFAULT_LEAVE_COUNTER);
         dateOfBirth = Optional.ofNullable(LocalDate.parse(DEFAULT_DATE_OF_BIRTH));
         dateOfJoining = Optional.ofNullable(LocalDate.parse(DEFAULT_DATE_OF_JOINING));
-        picturePath = Optional.of(new PicturePath(DEFAULT_PICTURE_PATH));
+        picturePath = new PicturePath(DEFAULT_PICTURE_PATH);
         tags = new HashSet<>();
     }
 
@@ -84,7 +84,7 @@ public class EmployeeBuilder {
         leaveCounter = employeeToCopy.getLeaveCounter();
         dateOfBirth = employeeToCopy.getDateOfBirthOptional();
         dateOfJoining = employeeToCopy.getDateOfJoiningOptional();
-        picturePath = Optional.ofNullable(employeeToCopy.getPicturePath());
+        picturePath = employeeToCopy.getPicturePath();
         tags = new HashSet<>(employeeToCopy.getTags());
     }
 
@@ -189,7 +189,7 @@ public class EmployeeBuilder {
      * Sets the {@code PicturePath} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withPicturePath(String picturePath) {
-        this.picturePath = Optional.of(new PicturePath(picturePath));
+        this.picturePath = new PicturePath(picturePath);
         return this;
     }
 

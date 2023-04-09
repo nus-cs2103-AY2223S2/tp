@@ -41,7 +41,7 @@ class JsonAdaptedEmployee {
     private final JsonAdaptedLeaveCounter leaveCounter;
     private final String dateOfBirth;
     private final String dateOfJoining;
-    private String picturePath;
+    private final String picturePath;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     @JsonCreator
@@ -187,7 +187,7 @@ class JsonAdaptedEmployee {
         if (!PicturePath.isValidPicturePath(picturePath)) {
             throw new IllegalValueException(PicturePath.MESSAGE_CONSTRAINTS);
         }
-        final Optional<PicturePath> modelPicturePath = Optional.of(new PicturePath(picturePath));
+        final PicturePath modelPicturePath = new PicturePath(picturePath);
 
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
         return new Employee(modelName, modelEmployeeId, modelPhone, modelEmail, modelAddress, modelDepartment,
