@@ -648,17 +648,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-1. placeholder
-
-**Use case: Add a case**
-
-**MSS**
-
-1. placeholder
-
-**Extensions**
-
-1. placeholder
+* 1a. placeholder
+    * 1a1. placeholder
 
 #### Use case: Sort the case list
 
@@ -691,17 +682,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-1. placeholder
-
-**Use case: Add a case**
-
-**MSS**
-
-1. placeholder
-
-**Extensions**
-
-1. placeholder
+* 1a. placeholder
+    * 1a1. placeholder
 
 #### Use case: Import/export/checkout data
 
@@ -711,7 +693,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-1. placeholder
+* 1a. placeholder
+    * 1a1. placeholder
 
 ### Non-Functional Requirements
 
