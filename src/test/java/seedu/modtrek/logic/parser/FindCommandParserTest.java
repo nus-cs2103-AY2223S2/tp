@@ -21,7 +21,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.model.module.*;
+import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.CodePrefix;
+import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
+import seedu.modtrek.model.module.ModuleCodePredicate;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 public class FindCommandParserTest {
