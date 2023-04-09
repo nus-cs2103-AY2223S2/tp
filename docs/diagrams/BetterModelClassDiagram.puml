@@ -15,7 +15,7 @@ UniquePersonList -right-> Person
 Person -up-> "*" Variant
 
 Person *--> Name
+Person *--> Age
 Person *--> Postal
 Person *--> Date
-Person *--> Address
 @enduml

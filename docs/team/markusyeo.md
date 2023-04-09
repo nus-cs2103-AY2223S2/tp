@@ -17,7 +17,6 @@ Given below are my contributions to the project.
     * Justification: As we deal with tabular data, we would like users to be able to easily view the data entered into `DengueHotspotTracker` offline. Additionally NEA personnel are more likely to be familiar with CSV than json!
   * **New Feature**: Added the ability to import and export data as a csv file
     * Justification: This feature allows users to edit csv files to be able to import into `DengueHotspotTracker` and export out of. Additionally allowing users to export files, edit them offline, then import them back into the DHT, which may be more convenient for sharing information with those without direct access to the DengueHotspotTracker.
-    * We also 
 
 
 * **Contributions to the UG:**

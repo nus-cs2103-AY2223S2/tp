@@ -7,14 +7,15 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyDengueHotspotTracker" as ReadOnlyDengueHotspotTracker
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as ModelInterface
+Class "<<enumeration>>\nDengueVariant" as DengueVariant
 Class DengueHotspotTracker
 Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
+Class Age
 Class Date
 Class Name
 Class Postal
@@ -23,28 +24,29 @@ Class Variant
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> ModelInterface
 
 DengueHotspotTracker .up.|> ReadOnlyDengueHotspotTracker
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyDengueHotspotTracker
+ModelManager .up.|> ModelInterface
+ModelInterface .right.> ReadOnlyUserPrefs
+ModelInterface .left.> ReadOnlyDengueHotspotTracker
 ModelManager -left-> "1" DengueHotspotTracker
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
+Variant -up-> "1" DengueVariant
 
 DengueHotspotTracker *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList -> "~* all" Person
 Person *--> Name
 Person *--> Postal
 Person *--> Date
-Person *--> Address
+Person *--> Age
 Person *--> "*" Variant
 
-Name -[hidden]right-> Postal
-Postal -[hidden]right-> Address
-Address -[hidden]right-> Date
+Name -[hidden]right-> Age
+Age -[hidden]right-> Postal
+Age -[hidden]right-> Variant
 
 ModelManager -->"~* filtered" Person
 @enduml
