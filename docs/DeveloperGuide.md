@@ -2800,3 +2800,22 @@ Updated Timestamp: 01:04:20
 Updated Tags: [BigO] [Analysis]
 ```
 
+### Feature flaw #3: No length limit for module code, module name, lecture name, video name, and tag
+**Description**
+
+There is currently no limit on the length of a module code and module name that can be assigned to a module. This is the same for the name of a lecture and the name of a video. This allows users to assign ridiculously long values to these fields, causing the UI to be truncated, potentailly slowing down the application, and increasing the size of the data file.
+
+The following is an example of a lecture with a very long name:
+
+<img src="images/LongLectureName.png" width="702"/>
+
+**Proposed Solution**
+
+For the commands that allows a user to assign values to the mentioned fields (`add`, `edit`, `tag`, `untag`, etc.), the arguments should have their length limited to some value (e.g. 30).
+
+The checking and limiting of length can be done while parsing the arguments and will produce an output as such should the length be exceeded:
+```
+The following value exceeds the length limit of 30: {value}
+```
+
+### Feature flaw #4: Output message does not make full use of command box space
