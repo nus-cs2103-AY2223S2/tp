@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.vms.model.appointment.AppointmentManager;
-
 class JsonAppointmentStorageTest {
 
     private static final Path APPOINTMENT_FILEPATH = Paths.get("src", "test", "data", "appointment");
@@ -45,7 +43,8 @@ class JsonAppointmentStorageTest {
         JsonAppointmentStorage storage = new JsonAppointmentStorage(VALID_APPOINTMENT_FILE);
         assertDoesNotThrow(storage::loadAppointments);
 
-        JsonAppointmentStorage tempStorage = new JsonAppointmentStorage(testFolder.resolve("testSaveAppointmentManager.json"));
+        JsonAppointmentStorage tempStorage = new JsonAppointmentStorage(testFolder
+                .resolve("testSaveAppointmentManager.json"));
         assertDoesNotThrow(() -> tempStorage.saveAppointments(storage.loadAppointments()));
     }
 }
