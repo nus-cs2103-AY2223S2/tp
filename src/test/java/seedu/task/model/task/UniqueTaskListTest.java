@@ -19,6 +19,7 @@ import seedu.task.model.task.exceptions.DuplicateTaskException;
 import seedu.task.model.task.exceptions.TaskNotFoundException;
 import seedu.task.testutil.SimpleTaskBuilder;
 
+//@@author
 public class UniqueTaskListTest {
 
     private final UniqueTaskList uniqueTaskList = new UniqueTaskList();
@@ -39,6 +40,7 @@ public class UniqueTaskListTest {
         assertTrue(uniqueTaskList.contains(ALICE));
     }
 
+    //@@author Huggenguggen
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(ALICE);
@@ -48,6 +50,7 @@ public class UniqueTaskListTest {
         assertTrue(uniqueTaskList.contains(editedAlice));
     }
 
+    //@@author
     @Test
     public void add_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTaskList.add(null));
@@ -83,6 +86,7 @@ public class UniqueTaskListTest {
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
+    //@@author Huggenguggen
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         uniqueTaskList.add(ALICE);
@@ -95,6 +99,7 @@ public class UniqueTaskListTest {
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
+    //@@author
     @Test
     public void setTask_editedTaskHasDifferentIdentity_success() {
         uniqueTaskList.add(ALICE);
