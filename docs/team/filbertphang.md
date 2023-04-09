@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 * **Refactored regex parsing pipeline** ([\#245]())
   * What it does: Reworked parsing process so that regex validation for `RecipeDuration` and `RecipePortion` is only done once.
   * Justifcation: Previous implementation of the parsers repeated the same regex validation at multiple stages of the parsing process, which is redundant.
-* **Fixed non-trivial UI/logic bugs** ([\#189](), [\#245]())
+* **Fixed and assisted others in fixing non-trivial UI/logic bugs** ([\#189](), [\#245](), [\#257]()
   * What it does: Added fixes for window resizing, error message propagation, command parsing, and recipe card highlighting for selected recipes.
   * Justification: Bug fixes improve RIZZipe's user experience
 
@@ -41,16 +41,23 @@ Given below are my contributions to the project.
 * Created release for [v1.3](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases/tag/v1.3)
 
 **Documentation:**
+* User Guide:
+  * Tidied up and standardised formatting
+  * Added field summary for recipe and ingredients
+  * Added styling for `kbd` tags
 * Developer Guide:
-    * Added user profile
-    * Improved developer guide based on peer feedback ([\#259]())
-    * Added documentation for Storage component ([\#130](), [\#139]())
-    * Added documentation for "Find-by-property" feature ([\#139]())
+  * Added user profile
+  * Improved developer guide based on peer feedback ([\#259]())
+  * Added documentation for Storage component ([\#130](), [\#139]())
+  * Added documentation for "Find-by-property" feature ([\#139]())
+  * Tidied up and standardised formatting
+  * Added and formatted UAT section
 * Code Quality and Code Style:
-    * Cleaned up code quality and style for release `v1.2` ([\#80]())
+  * Cleaned up code quality and style for release `v1.2` ([\#80]())
+  * Refactored multiple components of the code to improve code quality (see above)
 
 **Community:**
-* PRs reviewed (with non-trivial review comments): [\#75](), [\#77](), [\#87](), [\#94](), [\#117](), [\#138](), [\#147]()
+* PRs reviewed (with non-trivial review comments): [\#75](), [\#77](), [\#87](), [\#94](), [\#117](), [\#138](), [\#147](), [\#257]()
 * Reported 11 bugs in the Practical Exam dry run: [Bug Report](https://github.com/filbertphang/ped/issues)
 
 **Tools:**

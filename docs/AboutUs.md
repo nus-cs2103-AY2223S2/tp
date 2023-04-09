@@ -26,8 +26,8 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[github](http://github.com/filbertphang)]
 [[portfolio](team/filbertphang.md)]
 
-- Role: Testing
-- Responsibilities: (to be confirmed)
+- Role: Testing, Scheduling and tracking
+- Responsibilities: UI, Bug fixes, Issue tracking
 
 ### James Liu Zixin
 
