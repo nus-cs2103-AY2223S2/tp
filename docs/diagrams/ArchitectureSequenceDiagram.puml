@@ -1,4 +1,4 @@
-@startuml
+@startuml ArchitectureSequenceDiagram
 !include style.puml
 
 Actor User as user USER_COLOR
@@ -7,19 +7,19 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "delete 1"
+user -[USER_COLOR]> ui : "patient delete 1"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("delete 1")
+ui -[UI_COLOR]> logic : processCommand("patient delete 1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePatient(p)
+logic -[LOGIC_COLOR]> model : deletePatient(1)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveVms(patientManager)
+logic -[LOGIC_COLOR]> storage : Save model state
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file

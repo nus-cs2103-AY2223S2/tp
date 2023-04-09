@@ -19,14 +19,14 @@ hide <<hidden>> stereotype
 
 Class HiddenOut <<hidden>>
 
-package Ui UI_COLOR_T1 {
+package Ui {
     Class "<<interface>>\nUi" as Ui UI_COLOR
     Class UiManager UI_COLOR
     Class MainWindow UI_COLOR {
         ~fillInnerParts()
     }
-    Class ListViewPanel<T extends Comparable<T>> UI_COLOR
-    Class DetailedView<T> UI_COLOR
+    Class ListViewPanel UI_COLOR
+    Class DetailedView UI_COLOR
     Class HelpWindow UI_COLOR
     Class CommandBox UI_COLOR
     Class ResultDisplay UI_COLOR
@@ -34,7 +34,7 @@ package Ui UI_COLOR_T1 {
 }
 show MainWindow members
 
-package Logic LOGIC_COLOR_T1 {
+package Logic {
     Class "<<interface>>\nLogic" as Logic LOGIC_COLOR
     Class CommandMessage LOGIC_COLOR
 }
