@@ -44,7 +44,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, add, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, clear, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, delete, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_deleteTag() {
@@ -76,7 +76,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, deleteTag, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_edit() {
@@ -86,7 +86,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, edit, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_export() {
@@ -96,7 +96,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, export, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, filter, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_find() {
@@ -117,7 +117,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, find, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_help() {
@@ -127,7 +127,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, help, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_import() {
@@ -137,7 +137,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, importType, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_list() {
@@ -147,7 +147,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, list, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_massOp() {
@@ -157,7 +157,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, massOp, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_redo() {
@@ -167,7 +167,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, redo, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_shortcut() {
@@ -177,7 +177,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, shortcut, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_tag() {
@@ -187,7 +187,7 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, tag, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
     @Test
     public void execute_correctExecution_undo() {
@@ -197,6 +197,6 @@ public class ShortcutCommandTest {
         purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, undo, shortForm),
-                        true, true), model);
+                        false, true), model);
     }
 }

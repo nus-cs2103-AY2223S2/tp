@@ -245,14 +245,14 @@ Format: `unfreeze`
 
 ### Creating a shortcut : `shortcut`
 
-Allows the user to create a shortcut for a command; this shortcut can be used in place of the command instead.
+Allows the user to create a shortcut for a command; this shortcut can be used in place of the command.
 
 The shortcut will be saved and can still be used when the user exits E-Lister and re-opens it.
 
 Format: `shortcut ORIGINAL_COMMAND SHORTCUT`
 
-* The shortcut cannot be the same as any of the words already existing in E-Lister.
-* The shortcut can only consist of uppercase and lowercase characters in the English alphabet.
+* The shortcut cannot be the same as any existing command or shortcut.
+* The shortcut should only consist of alphanumeric characters.
 
 Examples:
 * `shortcut list lst` will allow the user to input `lst` in place of `list`.
