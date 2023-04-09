@@ -8,7 +8,7 @@ if () then ([n contains non-digits \nother than whitespaes)])
     stop
 else ([else])
     if () then ([n is not an empty string or whitespace])
-        :argument is n;
+        :Argument is n;
     else ([else])
         :Argument is 1;
     endif
