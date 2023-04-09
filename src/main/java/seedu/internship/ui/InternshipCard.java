@@ -58,7 +58,7 @@ public class InternshipCard extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
      */
     public InternshipCard(Internship internship, int displayedIndex) {
         super(FXML);

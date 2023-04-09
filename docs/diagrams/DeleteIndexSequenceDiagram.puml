@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
+participant ":DeleteIndexCommandParser" as DeleteIndexCommandParser LOGIC_COLOR
+participant "c:DeleteIndexCommand" as DeleteIndexCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete-index 1 2")
+activate LogicManager
+
+LogicManager -> InternBuddyParser : parseCommand("delete-index 1 2")
+activate InternBuddyParser
+
+create DeleteIndexCommandParser
+InternBuddyParser -> DeleteIndexCommandParser
+activate DeleteIndexCommandParser
+
+DeleteIndexCommandParser --> InternBuddyParser
+deactivate DeleteIndexCommandParser
+
+InternBuddyParser -> DeleteIndexCommandParser : parse("1 2")
+activate DeleteIndexCommandParser
+
+create DeleteIndexCommand
+DeleteIndexCommandParser -> DeleteIndexCommand : DeleteIndexCommand(indexes)
+activate DeleteIndexCommand
+
+DeleteIndexCommand --> DeleteIndexCommandParser
+deactivate DeleteIndexCommand
+
+DeleteIndexCommandParser --> InternBuddyParser : c
+deactivate DeleteIndexCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteIndexCommandParser -[hidden]-> InternBuddyParser
+destroy DeleteIndexCommandParser
+
+InternBuddyParser --> LogicManager : c
+deactivate InternBuddyParser
+
+LogicManager -> DeleteIndexCommand : execute()
+activate DeleteIndexCommand
+
+DeleteIndexCommand -> Model : getFilteredInternshipList()
+activate Model
+
+Model --> DeleteIndexCommand
+deactivate Model
+
+loop internship in internshipsToDelete
+    DeleteIndexCommand -> Model: deleteInternship(internship)
+    activate Model
+    Model --> DeleteIndexCommand
+    deactivate Model
+opt internship is selected
+    DeleteIndexCommand -> Model: updateSelectedInternship(null)
+    activate Model
+    Model --> DeleteIndexCommand
+    deactivate Model
+end
+end
+
+create CommandResult
+DeleteIndexCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteIndexCommand : cr
+deactivate CommandResult
+
+DeleteIndexCommand --> LogicManager : cr
+deactivate DeleteIndexCommand
+DeleteIndexCommand -[hidden]-> LogicManager
+destroy DeleteIndexCommand
+
+
+[<--LogicManager : cr
+deactivate LogicManager
+@enduml

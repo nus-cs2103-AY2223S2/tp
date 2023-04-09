@@ -13,7 +13,7 @@ import seedu.internship.model.Model;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Adds a person to InternBuddy.
+ * Adds an internship to InternBuddy.
  */
 public class AddCommand extends Command {
 

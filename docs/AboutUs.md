@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/derricksaltfish.png" width="200px">
 
 [[github](http://github.com/DerrickSaltFish)]
-[[portfolio](team/DerrickSaltFish.md)]
+[[portfolio](team/derricksaltfish.md)]
 
 * Role: Developer
 * Responsibilities: Integration

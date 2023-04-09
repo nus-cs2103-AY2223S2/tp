@@ -51,12 +51,12 @@ public class JsonInternBuddyStorageTest {
     }
 
     @Test
-    public void readInternBuddy_invalidPersonInternBuddy_throwDataConversionException() {
+    public void readInternBuddy_invalidInternshipInternBuddy_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readInternBuddy("invalidInternshipInternBuddy.json"));
     }
 
     @Test
-    public void readInternBuddy_invalidAndValidPersonInternBuddy_throwDataConversionException() {
+    public void readInternBuddy_invalidAndValidInternshipInternBuddy_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readInternBuddy("invalidAndValidInternshipInternBuddy.json"));
     }
 

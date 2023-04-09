@@ -1,0 +1,100 @@
+'(@@author potty10)
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
+participant ":DeleteFieldCommandParser" as DeleteFieldCommandParser LOGIC_COLOR
+participant "p:InternshipContainsKeywordPredicate\n" as InternshipContainsKeywordPredicate LOGIC_COLOR
+participant "c:DeleteFieldCommand" as DeleteFieldCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete-field n/google")
+activate LogicManager
+
+LogicManager -> InternBuddyParser : parseCommand("delete-field n/google")
+activate InternBuddyParser
+
+create DeleteFieldCommandParser
+InternBuddyParser -> DeleteFieldCommandParser
+activate DeleteFieldCommandParser
+
+DeleteFieldCommandParser --> InternBuddyParser
+deactivate DeleteFieldCommandParser
+
+InternBuddyParser -> DeleteFieldCommandParser : parse("n/google")
+activate DeleteFieldCommandParser
+
+create InternshipContainsKeywordPredicate
+DeleteFieldCommandParser -> InternshipContainsKeywordPredicate : InternshipContainsKeywordPredicate(nameList,\n roleList, statusList, dateList, tagList)
+activate InternshipContainsKeywordPredicate
+
+InternshipContainsKeywordPredicate --> DeleteFieldCommandParser
+deactivate InternshipContainsKeywordPredicate
+
+create DeleteFieldCommand
+DeleteFieldCommandParser -> DeleteFieldCommand : DeleteFieldCommand(p)
+activate DeleteFieldCommand
+
+DeleteFieldCommand --> DeleteFieldCommandParser
+deactivate DeleteFieldCommand
+
+DeleteFieldCommandParser --> InternBuddyParser : c
+deactivate DeleteFieldCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteFieldCommandParser -[hidden]-> InternBuddyParser
+destroy DeleteFieldCommandParser
+
+InternBuddyParser --> LogicManager : c
+deactivate InternBuddyParser
+
+LogicManager -> DeleteFieldCommand : execute()
+activate DeleteFieldCommand
+
+DeleteFieldCommand -> Model : getFilteredInternshipList()
+activate Model
+
+Model --> DeleteFieldCommand
+deactivate Model
+
+
+
+loop internship in internshipsToDelete
+    DeleteFieldCommand -> Model: deleteInternship(internship)
+    activate Model
+    Model --> DeleteFieldCommand
+    deactivate Model
+
+opt internship is selected
+    DeleteFieldCommand -> Model: updateSelectedInternship(null)
+    activate Model
+    Model --> DeleteFieldCommand
+    deactivate Model
+end
+end
+
+deactivate Model
+
+create CommandResult
+DeleteFieldCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteFieldCommand : cr
+deactivate CommandResult
+
+DeleteFieldCommand --> LogicManager : cr
+deactivate DeleteFieldCommand
+DeleteFieldCommand -[hidden]-> LogicManager
+destroy DeleteFieldCommand
+destroy InternshipContainsKeywordPredicate
+
+
+[<--LogicManager : cr
+deactivate LogicManager
+@enduml

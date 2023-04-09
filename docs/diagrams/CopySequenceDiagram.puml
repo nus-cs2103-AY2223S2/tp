@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
+participant ":CopyCommandParser" as CopyCommandParser LOGIC_COLOR
+participant "c:CopyCommand" as CopyCommand LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("copy 1")
+activate LogicManager
+
+LogicManager -> InternBuddyParser : parseCommand("copy 1")
+activate InternBuddyParser
+
+create CopyCommandParser
+InternBuddyParser -> CopyCommandParser
+activate CopyCommandParser
+
+CopyCommandParser --> InternBuddyParser
+deactivate CopyCommandParser
+
+InternBuddyParser -> CopyCommandParser : parse("1")
+activate CopyCommandParser
+
+CopyCommandParser -> ParserUtil : parseIndex("1")
+activate ParserUtil
+
+ParserUtil --> CopyCommandParser : indexObject
+deactivate ParserUtil
+
+create CopyCommand
+CopyCommandParser -> CopyCommand : CopyCommand(indexObject)
+activate CopyCommand
+
+CopyCommand --> CopyCommandParser
+deactivate CopyCommand
+
+CopyCommandParser --> InternBuddyParser : c
+deactivate CopyCommandParser
+
+InternBuddyParser --> LogicManager : c
+destroy CopyCommandParser
+deactivate InternBuddyParser
+
+LogicManager -> CopyCommand : execute()
+activate CopyCommand
+
+CopyCommand -> Model : copyInternship(internshipToCopy)
+activate Model
+
+Model --> CopyCommand
+deactivate Model
+
+create CommandResult
+CopyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CopyCommand
+deactivate CommandResult
+
+CopyCommand --> LogicManager : cr
+deactivate CopyCommand
+
+[<--LogicManager : cr
+destroy CopyCommand
+deactivate LogicManager
+
+@enduml

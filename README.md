@@ -3,11 +3,11 @@
 
 ![Logo](docs/images/internbuddy-logo.png)
 ## About InternBuddy
-InternBuddy is a desktop application for Computing undergraduates to manage their internship applications. It is
-optimized for typing where it allows you to complete internship management tasks much more efficiently via
-the keyboard as compared to using traditional Graphical User Interface (GUI) applications. If you are a fast
-typist who is seeking for a one-stop platform to systematically organise your internship applications,
-then InternBuddy is the perfect buddy to accompany you during your internship hunt.
+InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+It is optimized for typing where it allows you to complete internship management tasks much more efficiently
+via the keyboard as compared to using traditional Graphical User Interface (GUI) applications.
+If you are a fast typist who is seeking a one-stop platform to systematically organise your internship
+applications, then InternBuddy is the perfect buddy to accompany you during your internship hunt.
 
 InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux operating systems.
 
@@ -20,12 +20,12 @@ InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux
 5. Copy an internship to clipboard
 6. Find internships
 7. Get upcoming events and deadlines
-8. Delete internships by index
+8. Delete internships by indices
 9. Delete internships by fields
 10. Clear all internships
 11. Get help
-12. Navigating through past commands
-13. Exit
+12. Exit 
+13. Navigating through past commands
 
 In InternBuddy, internship data is auto-saved whenever changes are made.
 
@@ -54,11 +54,17 @@ out the [InternBuddy Developer Guide](https://ay2223s2-cs2103t-t14-3.github.io/t
 
 
 ## Acknowledgements
+
 * InternBuddy is written in **Java 11**.
 * It is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by
   the [SE-EDU initiative](https://se-education.org).
 * Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
-* Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-  (primarily for the purposes of GUI testing and the feature of navigating through past commands).
+* GUI testing is implemented with references from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp). We utilised code from these projects to set
+  up GUI testing and added our own test cases to test the UI components that we created.
+* The feature of Navigating Through Past Commands is primarily adapted from  [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp),
+  but we added code modifications and test cases.
+* The sections on explaining the formatting standards and GUI interface in the User and Developer Guides are
+  inspired by [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
+

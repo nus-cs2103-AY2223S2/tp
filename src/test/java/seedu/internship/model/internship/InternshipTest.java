@@ -20,8 +20,8 @@ public class InternshipTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Internship person = new InternshipBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Internship internship = new InternshipBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> internship.getTags().remove(0));
     }
 
     @Test
