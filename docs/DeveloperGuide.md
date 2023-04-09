@@ -1,19 +1,23 @@
 ---
-layout: page
-title: Developer Guide
+layout: page title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Teaching Assistant Assistant**
-Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your teaching assistant tasks done faster than traditional GUI apps.
+
+Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a
+Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
+TAA can get your teaching assistant tasks done faster than traditional GUI apps.
 
 <img src="https://user-images.githubusercontent.com/59087730/222305199-8590f0f0-7e6d-4801-bcb9-cbb2a48fa28e.png" width="580"/>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
+
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -28,7 +32,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
+the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
+diagrams.
 </div>
 
 ### Architecture
@@ -41,7 +48,11 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/MainApp.java). It is responsible for,
+**`Main`** has two classes
+called [`Main`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/Main.java)
+and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/MainApp.java). It is
+responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -54,19 +65,23 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_student 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
+the command `delete_student 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="654" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
+  API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -74,13 +89,20 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/ui/Ui.java)
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified
+in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -98,12 +120,16 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it adds the command to the command history and uses the `TaaParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+
+1. When `Logic` is called upon to execute a command, it adds the command to the command history and uses the `TaaParser`
+   class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+   executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -115,10 +141,16 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `TaaParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+* When called upon to parse a user command, the `TaaParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder
+  for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user
+  command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+  interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -127,34 +159,43 @@ How the parsing works:
 The `Model` component,
 
 * stores the student data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
-* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list
+  which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be
+  bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
+  a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+  should make sense on their own without depending on other components)
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
+
 * can save both student data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+  the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+  that belong to the `Model`)
 
 Reading data from JSON:
+
 * MainApp.initModelManager()
-  * JsonTaaStorage.readTaaData()
-    * JsonUtil.readJsonFile()
-    * JsonSerializableTaaData.toModelType()
+    * JsonTaaStorage.readTaaData()
+        * JsonUtil.readJsonFile()
+        * JsonSerializableTaaData.toModelType()
 
 Saving data to JSON:
+
 * LogicManager.execute()
-  * ModelManager.getTaaData()
-  * JsonTaaStorage.saveTaaData())
-    * JsonUtil.saveJsonFile()
-    * JsonSerializableTaaData.new()
+    * ModelManager.getTaaData()
+    * JsonTaaStorage.saveTaaData())
+        * JsonUtil.saveJsonFile()
+        * JsonSerializableTaaData.new()
 
 ### Common classes
 
@@ -256,7 +297,6 @@ grade
 **Use case: Ungrade Student Submission of an Assignment**
 ungrade
 
-
 **Use case: Add Class List** classlist
 
 **User case: List Student** list
@@ -274,7 +314,7 @@ Below is the main success scenario of Mark
 
    Use case ends.
 
-    **Extensions**
+   **Extensions**
 
 * 1a. The given student index/week is invalid.
 
@@ -286,7 +326,6 @@ Below is the main success scenario of Mark
     * 3a1. TAA shows message that attendance for that week is already marked.
 
       Use case ends.
-
 
 Below is the sequence diagram for Marking attendance of a student
 
@@ -311,7 +350,6 @@ Below is the main success scenario of Unmark
 
       Use case ends.
 
-
 Below is the sequence diagram for Unmarking attendance of a student
 
 <img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
@@ -320,9 +358,7 @@ Below is the sequence diagram for Unmarking attendance of a student
 
 Below is the main success scenario of Insert Participation
 
-
 **MSS**
-
 
 1. User requests to insert participation points for a specific student for a specified week
 2. TAA inserts participation points
@@ -371,7 +407,6 @@ Below is the main success scenario of adding an Assignment
 
     * 1c1. TAA shows an error message
 
-
 AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
 
 * `AddAssignmentCommandParser`-- Parse the input of users
@@ -401,22 +436,23 @@ Below is the main success scenario of students-related commands.
       Use case resumes from step 1.
 
 * 1b. The given class(es) does not exist.
-  * 1b1. TAA creates a new class for each class that does not exist yet.
+    * 1b1. TAA creates a new class for each class that does not exist yet.
 
-    Use case resumes from step 2.
-
+      Use case resumes from step 2.
 
 **list student**
+
 1. User requests to list all students in a class.
 2. TAA shows a list of students and number of students listed.
 
-    Use case ends.
+   Use case ends.
 
 **search student**
-1.  User requests to search for a particular student
-2.  TAA shows the information of the student searched
 
-    Use case ends.
+1. User requests to search for a particular student
+2. TAA shows the information of the student searched
+
+   Use case ends.
 
 **Extensions**
 
@@ -425,60 +461,58 @@ Below is the main success scenario of students-related commands.
   Use case ends.
 
 **add classlist**
-1.  User requests to add a new class list with a specific name.
-2.  TAA adds the new class list with the name specified.
-    Use case ends.
+
+1. User requests to add a new class list with a specific name.
+2. TAA adds the new class list with the name specified. Use case ends.
 
 **Extensions**
 
 * 2a. Class list with the same name already exists.
-  * 2a1. TAA shows an error message.
-    Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 
 ## **Alarm-Related Commands**
 
 Below is the main success scenarios of adding, deleting and listing alarms.
 
 **add alarm**
-1.  User requests to add an alarm with specified time and comment.
-2.  TAA adds the new alarm with the time and comment specified.
-    Use case ends.
+
+1. User requests to add an alarm with specified time and comment.
+2. TAA adds the new alarm with the time and comment specified. Use case ends.
 
 **Extensions**
 
 * 2a. User does not provide sufficient arguments
-    * 2a1. TAA shows an error message.
-      Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 
 Below is the sequence diagram for adding an alarm.
 
 <img src="images/AddAlarmSequeceDiagram.PNG" />
 
 **delete alarm**
-1.  User requests to delete a scheduled alarm with specified index.
-2.  TAA deletes the alarm with the specified index, the alarm will no longer ring.
-    Use case ends.
+
+1. User requests to delete a scheduled alarm with specified index.
+2. TAA deletes the alarm with the specified index, the alarm will no longer ring. Use case ends.
 
 **Extensions**
+
 * 2a. User does not provide sufficient arguments
-    * 2a1. TAA shows an error message.
-      Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 * 2b. User does not provide a valid index
-    * 2a1. TAA shows an error message.
-      Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 
 Below is the sequence diagram for deleting an alarm.
 
 <img src="images/DeleteAlarmSequenceDiagram.PNG" />
 
 **list alarm**
-1.  User requests to list all scheduled alarms.
+
+1. User requests to list all scheduled alarms.
 2. TAA shows all scheduled alarms on the command window.
 
 **Extensions**
+
 * 2a. There is no alarms scheduled.
-    * 2a1. TAA shows an error message.
-      Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 
 Below is the sequence diagram for listing the alarms.
 
@@ -529,7 +563,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-    1. Prerequisites: List all students in the class using the `classlist Tutorial_T01` command. Multiple students in the list.
+    1. Prerequisites: List all students in the class using the `classlist Tutorial_T01` command. Multiple students in
+       the list.
 
     1. Test case: `delete_student 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
@@ -538,7 +573,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `delete_student 0`<br>
        Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete_student`, `delete_student x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete_student`, `delete_student x`, `...` (where x is larger than the
+       list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases … }_
@@ -606,22 +642,33 @@ John von Neumann,
       user.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix A: Planned Enhancements**
 
 ### 1. Allow multiple students with the same name to be added
-Currently, users are unable to add a student with the same name as another student that already exists in TAA.
-This could be troubling for tutors who have two students with the exact same name in the same class.
 
-However, the current state of TAA is unable to provide sufficient information about students to distinguish between two students with the same name.
-This should be doable only after TAA also has the ability to store student photos for each student (slated for future release), which would enable users to identify students using their names and portraits.
-Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the same name correctly.
+Currently, users are unable to add a student with the same name as another student that already exists in TAA. This
+could be troubling for tutors who have two students with the exact same name in the same class.
 
-This would be done by allowing the commands `add_student` and `edit_student` to succeed when using an existing student name, albeit with a warning "Note: A student with the same name already exists. If this is not what you intended, please undo this operation.".
+However, the current state of TAA is unable to provide sufficient information about students to distinguish between two
+students with the same name. This should be doable only after TAA also has the ability to store student photos for each
+student (slated for future release), which would enable users to identify students using their names and portraits.
+Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the
+same name correctly.
+
+This would be done by allowing the commands `add_student` and `edit_student` to succeed when using an existing student
+name, albeit with a warning "Note: A student with the same name already exists. If this is not what you intended, please
+undo this operation.".
 
 ### 2. Enhance input validation for the student name field
-Currently, students with the same name, but with different capitalisations and whitespace positions are treated as different entities by TAA.
-However, in the real world, this is unlikely the case. Such entities are likely to represent the same student, which can lead to confusion when users accidentally create multiple student entities for the same student as a result of a typo.
 
-Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student` and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to be the same student.
-Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
+Currently, students with the same name, but with different capitalisations and whitespace positions are treated as
+different entities by TAA. However, in the real world, this is unlikely the case. Such entities are likely to represent
+the same student, which can lead to confusion when users accidentally create multiple student entities for the same
+student as a result of a typo.
+
+Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student`
+and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to
+be the same student. Consequently, such operations will not be allowed to execute, and an error message "A student with
+a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
 
