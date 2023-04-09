@@ -15,7 +15,8 @@ title: Developer Guide
   - [Add remark feature](#add-remark-feature)
   - [Show opening details feature](#show-opening-details-feature)
   - [Upcoming keydates feature](#upcoming-keydates-feature)
-  - [Filter by status feature](#filter-by-status-feature)
+  - [Status filtering feature](#status-filtering-feature)
+    - [Design considerations:](#design-considerations)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
@@ -38,6 +39,10 @@ title: Developer Guide
   - [Difficulties faced](#difficulties-faced)
   - [Achievements](#achievements)
 - [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
+  - [**Enhancement 1: Optional Contact Field**](#enhancement-1-optional-contact-field)
+  - [**Enhancement 2: Keydates should accept time**](#enhancement-2-keydates-should-accept-time)
+  - [**Enhancement 3: Position should allow for special characters**](#enhancement-3-position-should-allow-for-special-characters)
+  - [**Enhancement 4: Addition of keydates should be accumulative**](#enhancement-4-addition-of-keydates-should-be-accumulative)
 
 --------------------------------------------------------------------------------------------------------------------
 
