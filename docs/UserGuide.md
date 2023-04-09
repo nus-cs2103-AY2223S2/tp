@@ -643,27 +643,6 @@ Format: `export [-force] FILE_PATH`
 * Nothing is changed if file access denied.
 
 
-
---------------------------------------------------------------------------------------------------------------------
-## **Appendix A: Planned Enhancements**
-
-### 1. Allow multiple students with the same name to be added
-Currently, users are unable to add a student with the same name as another student that already exists in TAA.
-This could be troubling for tutors who have two students with the exact same name in the same class.
-
-However, the current state of TAA is unable to provide sufficient information about students to distinguish between two students with the same name.
-This should be doable only after TAA also has the ability to store student photos for each student (slated for future release), which would enable users to identify students using their names and portraits.
-Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the same name correctly.
-
-This would be done by allowing the commands `add_student` and `edit_student` to succeed when using an existing student name, albeit with a warning "Note: A student with the same name already exists. If this is not what you intended, please undo this operation.".
-
-### 2. Enhance input validation for the student name field
-Currently, students with the same name, but with different capitalisations and whitespace positions are treated as different entities by TAA.
-However, in the real world, this is unlikely the case. Such entities are likely to represent the same student, which can lead to confusion when users accidentally create multiple student entities for the same student as a result of a typo.
-
-Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student` and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to be the same student.
-Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
-
 --------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
 
