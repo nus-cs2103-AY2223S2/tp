@@ -16,6 +16,7 @@ You can reach us at the github `https://github.com/AY2223S2-CS2103T-F12-2`
 [[portfolio](team/anchengyang.md)]
 
 * Role: Project Advisor
+* Responsibilities: Data
 
 ### Nam Harin
 
