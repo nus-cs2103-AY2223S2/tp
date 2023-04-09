@@ -1181,6 +1181,24 @@ uc -e 'foo@bar.com -n totoro'
 
 To which Mycelium would respond with an invalid email error message.
 
+**9. Error message not specific when multiple wrong dates are given**
+
+Consider the following command:
+
+```
+p -pn foo -ad qwerty -dd 14/03/2023
+```
+
+The *accepted date* is invalid while the deadline is valid. Mycelium currently
+responds with the message "The date entered is invalid", and does not specify
+which one. This can be easily remedied by adding an overload for the method
+which parses dates. In brief, the new overload will
+
+1. Expect to receive the argument's name as a string
+1. If it fails to parse the argument data, an exception explicitly referencing
+   the argument's name is thrown
+1. This message is displayed to the user
+
 ## Appendix: Effort
 
 AB3 was only able to support a single entity type, which was the `Person` class.
