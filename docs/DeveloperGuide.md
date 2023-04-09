@@ -467,14 +467,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Open terminal/command prompt and `cd` to the empty folder. Run the application with `java -jar clipboard.jar`. The window size may not be optimum.
 
-1. Saving window preferences.
+2. Saving window preferences.
 
    1. Resize the window to an optimum size. Move the window to a preferred location. Close the window by typing in `exit` in the command box.
 
    1. Re-launch the app by following step 1(ii).<br>
       Expected: The most recent window size and location is retained.
 
-1. Exit application.
+3. Exit application.
 
     1. Type in `exit` on any page in CLIpboard.
 
@@ -490,23 +490,23 @@ These commands can be tested on any page. Specific pages are given for this sect
     1. Test case: `home`<br>
        Expected: Course Page is displayed.
 
-1. Displaying the previous page while on the Group Page.
+2. Displaying the previous page while on the Group Page.
 
     1. Test case: `back`<br>
        Expected: Course Page is displayed.
 
-1. Displaying the previous page while on the Course Page.
+3. Displaying the previous page while on the Course Page.
 
     1. Test case: `back`<br>
        Expected: Error message shows up on the log box as the Course Page is the home page.<br>
        The application begins from the home page.
 
-1. Undoing a select command from the Course Page (the current page to run the test case is the Group Page).
+4. Undoing a select command from the Course Page (the current page to run the test case is the Group Page).
 
     1. Test case: `undo`<br>
        Expected: Course Page is displayed.
 
-1. Opening the help window from the Course Page.
+5. Opening the help window from the Course Page.
 
     1. Test case: `help`<br>
        Expected: Help window for Course Page pops up.
@@ -526,7 +526,7 @@ These commands should be tested on the Course Page.
     1. Other incorrect `add course` commands to try: `add`, `add course` (where the course code is empty)<br>
        Expected: No course is added. Error details shown in the log box.
 
-1. Adding a course which already exists in the list.
+2. Adding a course which already exists in the list.
 
     1. Test case: `add course CS3223`<br>
        Expected: No course is added. Error details shown in the log box.
@@ -544,7 +544,7 @@ These commands should be tested on the Course Page.
     1. Other incorrect `delete course` commands to try: `delete`, `delete course x` (where x is larger than the list size)<br>
        Expected: Similar to previous step 1(ii) under `Deleting a course`.
 
-1. Deleting a course while the course list is empty in the Course Page.
+2. Deleting a course while the course list is empty in the Course Page.
 
     1. Incorrect `delete course` commands to try: `delete`, `delete course x` (where x is any number)<br>
        Expected: No course is deleted. Error details shown in the log box.
@@ -562,7 +562,7 @@ These commands should be tested on the Course Page.
     1. Other incorrect `edit course` commands to try: `edit`, `edit course x` (where x is any number), `edit course x CS4225` (where x is larger than the list size) <br>
        Expected: Similar to previous step 1(ii) under `Editing a course`.
 
-1. Editing a course while the course list is empty in the Course Page.
+2. Editing a course while the course list is empty in the Course Page.
 
     1. Refer to step 1(iii) above under `Editing a course`.
 
@@ -593,6 +593,7 @@ These commands should be tested on the Course Page.
 
     1. Other incorrect `find course` commands to try: `find`, `find course`<br>
        Expected: The list is not filtered. Error details shown in the log box.
+
 ---
 
 ### Group Page Commands
@@ -608,7 +609,7 @@ These commands should be tested on the Group Page.
     1. Other incorrect `add group` commands to try: `add`, `add group` (where the group name is empty)<br>
        Expected: No group is added. Error details shown in the log box.
 
-1. Adding a group into the list containing the following groups - `T01`, `T02`, `L01`.
+2. Adding a group into the list containing the following groups - `T01`, `T02`, `L01`.
 
     1. Test case: `add group L02`<br>
        Expected: New group is added. Details of the added group shown in the log box.
@@ -627,9 +628,9 @@ These commands should be tested on the Group Page.
        Expected: No group is deleted. Error details shown in the log box.
 
     1. Other incorrect `delete group` commands to try: `delete`, `delete group x` (where x is larger than the list size)<br>
-       Expected: Similar to previous step 1(ii) under `Deleting a group`.
+       Expected: Similar to previous step 1.2 under `Deleting a group`.
 
-1. Deleting a group while the group list is empty in the Group Page.
+2. Deleting a group while the group list is empty in the Group Page.
 
     1. Incorrect `delete group` commands to try: `delete`, `delete group x` (where x is any number)<br>
        Expected: No group is deleted. Error details shown in the log box.
@@ -638,7 +639,7 @@ These commands should be tested on the Group Page.
 
 1. Editing a group which exists in the group list.
 
-    1. Test case: `edit group 1 T02`<br>
+    1. Test case: `edit group 1 T02`<br> 
        Expected: First group is edited to the new group name. Details of the edited group shown in the log box.
 
     1. Test case: `edit group 0 T02`<br>
@@ -647,7 +648,7 @@ These commands should be tested on the Group Page.
     1. Other incorrect `edit group` commands to try: `edit`, `edit group x` (where x is any number), `edit group x T02` (where x is larger than the list size) <br>
        Expected: Similar to previous step 1(ii) under `Editing a group`.
 
-1. Editing a group while the group list is empty in the Group Page.
+2. Editing a group while the group list is empty in the Group Page.
 
     1. Refer to step 1(iii) above under `Editing a group`.
 
@@ -718,7 +719,7 @@ These commands should be tested on the Students Page.
     1. Other incorrect `delete student` commands to try: `delete`, `delete student x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ---
 
@@ -745,7 +746,7 @@ These commands should be tested on the Task Page.
     1. Other incorrect `add task` commands to try: `add`, `add task` (where the task name is empty)<br>
        Expected: No task is added. Error details shown in the log box.
 
-1. Adding a task into the list containing the following tasks - `CA1`, `CA2`, `Critical Reflection 1`.
+2. Adding a task into the list containing the following tasks - `CA1`, `CA2`, `Critical Reflection 1`.
 
     1. Test case: `add task CA3`<br>
        Expected: New task is added. Details of the added task shown in the log box.
@@ -766,7 +767,7 @@ These commands should be tested on the Task Page.
     1. Other incorrect `delete task` commands to try: `delete`, `delete task x` (where x is larger than the list size)<br>
        Expected: Similar to previous step 1(ii) under `Deleting a task`.
 
-1. Deleting a task while the task list is empty in the Task Page.
+2. Deleting a task while the task list is empty in the Task Page.
 
     1. Incorrect `delete task` commands to try: `delete`, `delete task x` (where x is any number)<br>
        Expected: No task is deleted. Error details shown in the log box.
@@ -785,7 +786,7 @@ These commands should be tested on the Task Page.
        (where x is larger than the list size) <br>
        Expected: Similar to previous step 1(ii) under `Editing a task`.
 
-1. Editing a task while the task list is empty in the Task Page.
+2. Editing a task while the task list is empty in the Task Page.
 
     1. Refer to step 1(iii) above under `Editing a task`.
 
