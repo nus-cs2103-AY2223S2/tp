@@ -116,4 +116,17 @@ public class ClassStatisticsCommandTest {
 
         CommandTestUtil.assertCommandFailure(displayGradesChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
     }
+
+    @Test
+    public void equals() {
+        ClassStatisticsCommand attendanceCommand = new ClassStatisticsCommand(ChartType.CLASS_ATTENDANCE);
+        ClassStatisticsCommand test1GradesCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1");
+
+        Assertions.assertEquals(attendanceCommand, new ClassStatisticsCommand(ChartType.CLASS_ATTENDANCE));
+        Assertions.assertNotEquals(attendanceCommand, new ClassStatisticsCommand(ChartType.CLASS_GRADES));
+
+        Assertions.assertEquals(test1GradesCommand, new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1"));
+        Assertions.assertNotEquals(test1GradesCommand, new ClassStatisticsCommand(ChartType.CLASS_ATTENDANCE));
+        Assertions.assertNotEquals(test1GradesCommand, new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test2"));
+    }
 }

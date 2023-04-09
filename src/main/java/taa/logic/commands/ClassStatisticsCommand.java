@@ -128,7 +128,8 @@ public class ClassStatisticsCommand extends Command {
         if (other instanceof ClassStatisticsCommand) { // instanceof handles null values
             ClassStatisticsCommand otherCommand = (ClassStatisticsCommand) other;
             return this.field == otherCommand.field
-                    && this.assignmentName.equals(otherCommand.assignmentName);
+                    && (this.assignmentName == otherCommand.assignmentName
+                || this.assignmentName.equals(otherCommand.assignmentName));
         }
         return false;
     }
