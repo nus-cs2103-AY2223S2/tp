@@ -47,13 +47,13 @@ appropriate version for your system [here](https://www.oracle.com/java/technolog
 ### Quick Start
 1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp/releases).
 
-2. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
+2. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your MedInfo.
 
 3. Run the application by
-   2. Double-clicking the `.jar` file or
-   3. Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar`
+   2. Double-clicking the [`.jar`](#glossary) file or
+   3. Opening a [command terminal](#glossary), `cd` into the folder you put the `.jar` file in, and use the `java -jar medinfo.jar`
 command to run the application.<br>
-4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. A [GUI](#glossary) similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
 
 5. Type the command in the command input box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing
@@ -413,5 +413,25 @@ the file that contains the data of your previous MedInfo home folder.<br>
 | **Clear**       | `clear`                                                                                    |
 | **Help**        | `help`                                                                                     |
 | **Exit**        | `exit`                                                                                     |
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+
+## Glossary
+
+| Term                 | Definition                                                                                                                                                             |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`.jar`**           | A package file format that groups together Java program files and data files for ease of distribution.                                                                 |
+| **`cd`**             | A command used to change the current working directory in various operating systems. To use it, type `cd` followed by a space and the folder you wish to work in.      |
+| **Command terminal** | A program that allows the user to enter commands that the computer processes. Examples of popular terminals include Terminal (for macOS) and PowerShell (for Windows). |
+| **Discharge Date**   | The date on which a patient can be discharged from the hospital.                                                                                                       |
+| **GUI**              | Graphical User Interface. A form of user interface that allows users to interact primarily through graphics.                                                           |
+| **Home folder**      | The main folder you wish to run MedInfo in. On running MedInfo, this folder will become populated with data and preference files.                                      |
+| **In-process**       | The process of checking in patients with their identifying information before they consult a medical professional.                                                     |
+| **Occupancy**        | The number of patients in a given ward at a point in time.                                                                                                             |
+| **Status**           | A code indicating a patient's current condition. MedInfo works with 4 statuses: GRAY (unknown), GREEN (stable), YELLOW (serious), and RED (critical).                  |
+| **Ward**             | A separate room in a hospital, typically allocated to a particular type of patient.                                                                                    |
+
 
 [Back to Table of Contents](#table-of-contents)
