@@ -1,6 +1,6 @@
 ---
 layout: page
-title: MediMate
+title: MediMate's User Guide
 ---
 MediMate (MM) is a cross-platform desktop application designed to help medical professionals efficiently manage patient data.
 Whether you currently use paper records, electronic records, or other applications to store patient information,
