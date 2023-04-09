@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/huggenguggen.md)]
 
 * Role: Developer
-* Responsibilities: TBC
+* Responsibilities: Alert/Find Feature + UI
 
 ### Ong Chong Yang
 
