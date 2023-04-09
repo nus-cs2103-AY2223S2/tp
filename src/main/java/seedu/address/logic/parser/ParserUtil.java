@@ -160,8 +160,16 @@ public class ParserUtil {
         if (dueDate.getMinute() != 0) {
             throw new ParseException(Event.MESSAGE_EVENT_NOT_HOURLY);
         }
-
         return dueDate;
+    }
+
+    public static void checkValidDateTime(LocalDateTime date) throws ParseException {
+        requireNonNull(date);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (date.isBefore(now)) {
+            throw new ParseException(Messages.MESSAGE_EVENT_INVALID_DATE);
+        }
     }
 
     /**
