@@ -133,21 +133,21 @@ The `Model` component,
 
 </div>
 
-# Person
+#### Person
 {add diagram}
 
 * The `Person` object under the `Model` component, stores information of a generic person 
 * A `Person` object extends a `Patient` or a `Doctor`, which stores information specific to a patient and a doctor respectively
 * Note that only the `Nric` uniquely identifies each `Person`
 
-# Appointment
+#### Appointment
 {add diagram}
 
 * The `Appointment` object is stored within the `Appointment` package, under the `Model` component.
 * Stores the required information of an appointment, including patient's `Nric`, `Booking`, and doctor's `Nric`
   * Note that the patient's `Nric` and doctor's `Nric` has to exist in `MediConnect`
 
-# Prescription
+#### Prescription
 {add diagram}
 
 * The `Prescription` object is stored within the `Prescription` package, under the `Model` component.
@@ -249,7 +249,7 @@ The sequence diagram below shows how the AppointmentCommand works:
 * `Booking` consisting the date of the appointment
 * Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
   
-# Adding an appointment
+#### Adding an appointment
 
 Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
 
@@ -270,7 +270,8 @@ The sequence diagram below shows how the AppointmentCommand works:
     * if `Appointment` already exists in `Model`
 * Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
 
-# Deleting an appointment
+
+#### Deleting an appointment
 
 The sequence diagram below shows how the `DeleteAppointmentCommand` is parsed:
 {add a sequence diagram}
@@ -295,6 +296,19 @@ The sequence diagram below shows how the DeleteAppointmentCommand works:
         * if `Patient` or `Doctor` retrieved by `Nric` does not exist, or
         * if `INDEX` is invalid
 * Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
+
+#### Design considerations:
+
+**Aspect: Command format:**
+
+* **Alternative 1 (current choice):** Delete appointment specified by the `INDEX`.
+    * Pros: User can input a shorter command.
+    * Cons: Can be tedious to find the appointment to delete if the appointment list gets very long.
+
+* **Alternative 2:** Delete appointment specified by the `Booking` and doctor's `Nric`.
+    * Pros: User does not have to search through the patient's appointment list to identify which appointment to delete.
+    * Cons: More tedious to implement and less convenient for the user to input command.
+
 
 ### \[Proposed\] Undo/redo feature
 
