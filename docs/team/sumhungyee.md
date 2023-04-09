@@ -44,16 +44,20 @@ Summary of Contributions:
       For example, `Range<Integer>` cannot be created, as the constructor of Range is private, and the `.of` method takes in subclasses of `ContinuousData`.
     - Edit name inputs to remove excess whitespaces, and invalidate numerics. For example "22a" is not a valid name. Furthermore, "Michael          Scott   " is read in as "Michael Scott".
     - Edit FXML files in Main Window. Changed icon and title. (Pull Request #37).
+    - Refactor code for project.
 
 - Project management:
   - Assigned and created issues for possible future implementations.
   - Recorded Demo video for v1.3.
+  
 - **Documentation:**
   - User Guide
     - Added documentation for undo/redo.
     - Edited documentation for `Postal`, `Date` and `Name`.
   - Developer Guide
     - Added UML diagrams for creating `Date` objects.
+    - Added UML diagrams for `undo` and `redo`.
+    - Edited UML diagram for `Storage`.
 - **Community:**
   - PRs reviewed (with non-trivial review comments):
     - [#173](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/173), [#157](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/157), [#140](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/140), [#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104), [#156](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/156), [#159](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/159)
