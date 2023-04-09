@@ -52,6 +52,7 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Planned enhancements](#appendix-planned-enhancements)
 
 ---
 
@@ -2683,3 +2684,119 @@ Some incorrect commands to try from root context:
 | `clear`   | All modules deleted from LeTracker |
 | 1. `nav CS2040S` <br> 2. `clear` | Same as previous |
 | 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `clear` | Same as previous |
+
+## Appendix: Planned enhancements
+
+### Feature Flaw #1: Add command output on success is poorly formatted
+
+**Description:**
+
+Currently, upon a successful `add` command execution, the formatting of the output message is long, not user-friendly, and difficult to decipher.
+
+The following is a sample command for adding a module and it's output message upon success:\
+Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
+Output: `New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]`
+
+The following is a sample command for adding a lecture and it's output message upon success:\
+Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
+Output: `New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`
+
+The following is a sample command for adding a video and it's output message upon success:\
+Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
+Output: `New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
+
+**Proposed Solution:**
+
+We plan on changing the output message to be more user friendly. Given the above 3 examples, their respective redesigned output will be as such.
+
+The following is a sample command for adding a module and it's output message upon success:\
+Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
+Output:
+```
+New module added
+Code: CS2103T
+Name: Software Engineering
+Tags: [4MCs] [Coding]
+```
+
+The following is a sample command for adding a lecture and it's output message upon success:\
+Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
+Output:
+```
+New lecture added to module "CS2040S"
+Name: Week 7
+Tags: [Census] [AVLTree]
+```
+
+The following is a sample command for adding a video and it's output message upon success:\
+Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
+Output:
+```
+New video added to lecture "Week 1" of module "CS2040S"
+Name: Vid 3
+Status: Not Watched
+Timestamp: 01:04:20
+Tags: [BigO] [Analysis]
+```
+
+### Feature Flaw #2: Edit command output on success is poorly formatted
+
+**Description:**
+
+Currently, upon a successful `edit` command execution, the formatting of the output message is long, not user-friendly, and difficult to decipher.
+
+The following is a sample command for editing a module and it's output message upon success:\
+Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
+Output:
+```
+Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20
+```
+
+The following is a sample command for editing a lecture and it's output message upon success:\
+Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
+Output:
+```
+Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]
+```
+
+The following is a sample command for editing a video and it's output message upon success:\
+Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
+Output:
+```
+Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]
+```
+
+**Proposed Solution:**
+
+We plan on changing the output message to be more user friendly. Given the above 3 examples, their respective redesigned output will be as such.
+
+The following is a sample command for editing a module and it's output message upon success:\
+Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
+Output:
+```
+Edited module "CS2040S":
+Updated Code: CS2040
+Updated Name: DSAG
+Updated Tags: [4MCs] [Analytical]
+```
+
+The following is a sample command for editing a lecture and it's output message upon success:\
+Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
+Output:
+```
+Edited lecture "Week 1" of module "CS2040S":
+Updated Name: W1
+Updated Tags: [BigO] [Intro]
+```
+
+The following is a sample command for editing a video and it's output message upon success:\
+Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
+Output:
+```
+Edited video "Vid 1" of lecture "Week 1" of module "CS2040S":
+Updated Name: Vid 01
+Updated Watch Status: Not Watched
+Updated Timestamp: 01:04:20
+Updated Tags: [BigO] [Analysis]
+```
+
