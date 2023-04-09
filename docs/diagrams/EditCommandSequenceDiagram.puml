@@ -32,12 +32,12 @@ return
 
 create EditRoleDescriptor
 EditCommandParser -> EditRoleDescriptor++
-return e
+return
 
 create EditCommand
 EditCommandParser -> EditCommand++
-
 return
+
 return editCommand
 destroy EditCommandParser
 return editCommand
