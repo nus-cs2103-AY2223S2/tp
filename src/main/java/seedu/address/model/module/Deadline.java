@@ -15,9 +15,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE_FORMAT =
-            "Deadline should be of format 'ddMMyy HH:mm' (Example: 230223 18:00)";
+            "Deadline should be of format 'ddMMyy HH:mm' (Example: 230223 18:00). It cannot be blank.";
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
-            "Deadline is invalid, please enter a valid date/time.";
+            "Deadline is invalid, please ensure that the date or time is valid.";
     public static final String VALIDATION_REGEX = "^[0-9]{6}\\s[0-9]{2}[:][0-9]{2}$";
 
     public final LocalDateTime value;

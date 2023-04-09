@@ -11,7 +11,7 @@ public class Resource {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Resource can be the module website";
+            "Resource can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 

@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Module's remark.
  */
 public class Remark {
-    public static final String MESSAGE_CONSTRAINTS = "Remarks can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Remark can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;

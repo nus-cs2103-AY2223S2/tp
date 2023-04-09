@@ -19,7 +19,9 @@ and more....
 
 in a centralised location that is easily accessible by you, so you will not forget them ever again. 
 
-What is even better is that coNtactUS is optimised for use via typing instead of clicking, which allows you to store and retrieve information faster than ever before. Now, you can become the most productive version of yourself, bringing you one step closer to achieving your goals. 
+What is even better is that coNtactUS is optimised for use via typing instead of clicking, which allows you to store and
+retrieve information faster than ever before. Now, you can become the most productive version of yourself, 
+bringing you one step closer to achieving your goals. 
 
 So, what are you waiting for? Read on to find out more about how to use coNtactUs in this user guide! 
 
@@ -30,22 +32,23 @@ If this is the first time you are using coNtactUS, this user guide provides an e
 familiarise yourself with the features of coNtactUS. It also shows you how to set up coNtactUS effortlessly
 on your computer.
 
-Alternatively, you may refer to the user guide to quickly view information regarding a particular feature that you are unsure of
-how to use.
+Alternatively, you may refer to the user guide to quickly view information regarding a particular feature that you are
+unsure of how to use.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## How to use this user guide
 
 A [table of contents](#table-of-contents) is provided in this user guide, containing hyperlinks to each section of 
-the user guide. You can simply click on a hyperlink to quickly navigate to the relevant section that you are interested in. 
+the user guide. You can simply click on a hyperlink to quickly navigate to the relevant section that you are interested 
+in. 
 
 Symbols are used in the user guide to facilitate your understanding of the content.
 
-<div markdown="span" class="alert alert-primary"> :bulb: This indicates a useful tip that you may wish to take note of.
-take note of. </div>
+<div markdown="span" class="alert alert-primary"> :bulb: This indicates a useful tip that you may wish to take note of. 
+</div>
 
-<div markdown="span" class="alert alert-primary"> :exclamation-mark: This indicates an important piece of information 
+<div markdown="span" class="alert alert-primary"> :exclamation: This indicates an important piece of information 
 that you should pay attention to. </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -56,6 +59,7 @@ that you should pay attention to. </div>
 * [**How to use this User Guide**](#how-to-use-this-user-guide)
 * [**Getting started**](#getting-started)
 * [**Familiarising yourself with the user interface**](#familiarising-yourself-with-the-user-interface)
+* [**Familiarising yourself with a module**](#familiarising-yourself-with-a-module)
 * [**Familiarising yourself with the commands**](#familiarising-yourself-with-the-commands)
 * [**Main Features**](#features)
     * [Listing all modules: `list`](#listing-all-modules--list)
@@ -69,7 +73,9 @@ that you should pay attention to. </div>
     * [Exiting Contact nUS: `exit`](#exits-the-module-tracker--exit)
 * [**Additional Features**](#additional-features)
   * [Reminder for modules](#reminder-for-items)
-* [**Valid and invalid data**](#valid-and-invalid-data)
+* [**Format Restrictions**](#format-restrictions)
+* [**Further information about commands**](#further-information-about-commands)
+* [**Valid and invalid data**](#more-examples-of-valid-and-invalid-input-values)
 * [**Data storage**](#data-storage)
   * [**Saving the data**](#saving-the-data)
   * [**Editing the data file**](#editing-the-data-file)
@@ -80,21 +86,18 @@ that you should pay attention to. </div>
 --------------------------------------------------------------------------------------------------------------------
 ## Getting started
 
-1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer to
-[how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
-
+1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer 
+to [how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
 
 2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). Note 
 that the file is named `coNtactUs.jar`
 
+   <div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
+on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div>
 
-   <div markdown="span" class="alert alert-primary"> :exclamation-mark: Make sure to remember the destination folder
-on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div> 
+3. Run the `coNtactUs.jar` file. If you are unsure of how to do so, you may refer to [how to run a jar file]().
 
-4. Run the `coNtactUs.jar` file. If you are unsure of how to do so, you may refer to [how to run a jar file]().
-
-
-5. You should now see a window similar to the one shown below. 
+4. You should now see a window similar to the one shown below. 
 
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
 for your reference. </div>
@@ -114,12 +117,29 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 Figure 2: Annotations about the user interface
 
 --------------------------------------------------------------------------------------------------------------------
+## Familiarising yourself with a module
+
+To start adding a module, we should first learn about what a module is. In coNtactUS, each module has 8 information 
+fields. 
+
+* MODULE_NAME: The name of the module. 
+* DESCRIPTION: A short description of the module.
+* TIMESLOT: A recurring time event for the module, if any.
+* VENUE: The venue that the module is taught at, if any. 
+* TEACHER: The professor or teaching assistant for the module. 
+* DEADLINE: A deadline for the module, if any. 
+* REMARK: A remark for the module, if any.
+* RESOURCE: A link to a resource for the module, if any. 
+
+This is all you need to know for the time being. Now let's take a closer look at the commands.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Familiarising yourself with the commands
 
 
 Here is a brief introduction of the available commands for you to use. To see detailed information about each
-command, click [here](#features).
+command, refer to the next section. 
 
    * `list` : Shows all the modules.
 
@@ -139,7 +159,7 @@ command, click [here](#features).
 
    * `exit` : Exits the application.
 
-<div markdown="span" class="alert alert-primary"> :exclamation-mark: The clear command removes all the modules in the 
+<div markdown="span" class="alert alert-primary"> :exclamation: The clear command removes all the modules in the 
 list. Only use it if you are sure! </div> 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -169,10 +189,15 @@ This is a straightforward command. To use it, all you have to type is `list`
 
 By using the `add` command, you can add a new module to the module tracker. 
 
-Take note of the format: `add n/MODULE_NAME t/DESCRIPTION [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`
+Take note of the format: `add n/MODULE_NAME t/DESCRIPTION [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] 
+[c/RESOURCE]`
 
-<div markdown="span" class="alert alert-primary">:exclamation-mark: You must supply the module name and description when 
-adding a new module. The rest of the fields, such as timeslot, venue, and teacher etc. are optional.
+<div markdown="span" class="alert alert-primary">:exclamation: You must supply the module name and description when 
+adding a new module. The rest of the fields, such as timeslot, venue, and teacher etc. are optional. 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: The square brackets indicate that a particular field is optional.
+For example, `[a/VENUE]` indicates that the venue field is optional.
 </div>
 
 Examples of valid usages:
@@ -184,8 +209,9 @@ Examples of invalid usages:
 * `add n/CS2103T` - there is no description provided.
 * `add t/Tutorial` - there is no module name provided.
 
-Note that there are format restrictions for some fields like `e/TIMESLOT`, `d/DEADLINE`. Please refer to 
-[format restrictions]() to find out more.
+Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
+`d/DEADLINE`.
+Please refer to [format restrictions](#format-restrictions) to find out more.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting a module: `delete`
@@ -208,7 +234,8 @@ Examples:
 By using the `edit` command, you can edit the information for a module that is already listed in the 
 module tracker. 
 
-Take note of the format: `edit INDEX [n/MODULE_NAME] [t/DESCRIPTION] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`
+Take note of the format: `edit INDEX [n/MODULE_NAME] [t/DESCRIPTION] [e/TIMESLOT] [a/VENUE] [s/TEACHER] 
+[d/DEADLINE] [r/REMARK] [c/RESOURCE]`
 
 * This command edits the module at the specified index in the displayed module list. 
 * For example, if you wanted to edit a module placed first in the
@@ -232,8 +259,8 @@ Examples of invalid usages:
 
 * `edit 1` - There must be at least one field provided to edit.
 
-Note that there are format restrictions for some fields like `e/TIMESLOT`, `d/DEADLINE`. Please refer to
-[format restrictions]() to find out more.
+Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
+`d/DEADLINE`. Please refer to [format restrictions](#format-restrictions) to find out more.
 --------------------------------------------------------------------------------------------------------------------
 ### Finding a module: `find`
 
@@ -259,15 +286,14 @@ Format: `sort timeslot` or `sort deadline`
 
 * The `sort timeslot` command will automatically take into consideration the current time of your computer, 
 and then sort the modules based on their timeslot. 
-* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be
-be shown before a module with timeslot `Wednesday 06:00 - 08:00`. 
+* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be shown before a module with timeslot `Wednesday 06:00 - 08:00`. Similarly, if the current day on your computer is 
+Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown before a module with timeslot 
+`Thursday 06:00 - 08:00`.
 
 
 * The `sort deadline` command will sort the modules based on their deadline.
-* For example, a module with deadline `250623` will be
-  be shown before a module with deadline `260623`.
+* For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
-  
 --------------------------------------------------------------------------------------------------------------------
 ### Clearing all modules: `clear`
 
@@ -283,7 +309,11 @@ to use the commands.
 
 * This is a straight-forward command, and all you have to type is `help`
 
-![help message](images/helpMessage.png)
+<div style="text-align: center;"> <image src = 
+"images/helpMessage.png"></image>
+</div>
+
+<div style="text-align: center;"> Figure : An example of the help window  </div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### Exiting the module tracker: `exit`
@@ -298,109 +328,160 @@ By using the `exit` command, you can close and exit the application.
 
 ### Reminder for items
 
-This feature automatically shows you all the modules that have a deadline due today or have a timeslot
-that is occurring today. 
+Whenever you open coNtactUS, a pop-up window will appear showing you modules that have a deadline due today 
+or have a timeslot that is occurring today.
+* For example, if today is a Wednesday, this pop-up window will show all modules that have a timeslot that occurs every 
+Wednesday. This will be helpful for helping you keep up to date with your weekly lectures, tutorials, and labs.
 
-* For this feature, you don't have to type anything, whenever the application launches it will tell you this information.
 
-![image](https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png)
+* Likewise, if the date today is 23rd February 2023, and you have a module with a deadline on this day, this pop-up 
+window will show the module as well. 
 
+
+* The best thing about this feature is that it always works in the background and there is nothing you have to do 
+to enjoy its benefits! 
+
+
+* Note that as of now, this pop-up window only appears when you launch coNtactUS. There is currently no command for you 
+to display the pop-up window at any other point in time. However, this will be a future enhancement. Do take a look at 
+features [coming soon](#coming-soon) if you are interested. 
+
+<div style="text-align: center;"> <image src = 
+"https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png"></image>
+</div>
+
+<div style="text-align: center;"> Figure : An example of the reminder window  </div>
 
 --------------------------------------------------------------------------------------------------------------------
+## Format Restrictions
 
-## Important notes 
+When keying in input values for certain fields when you [add](#adding-a-module--add) or [edit](#editing-a-module--edit) 
+a module, there are certain format restrictions that you have to take note of. 
 
+To recap, there are a total of 8 information fields for each module that you can modify. Note that when you are adding
+a new module to the module tracker, only the `n/MODULENAME` and `t/DESCRIPTION` fields are compulsory. For fields that 
+are optional, the value for that field will be automatically displayed as `None.` after the module has been added.
+
+* `n/MODULENAME` - It must be alphanumeric (A-Z, 0-9) and can contain spaces. It cannot be blank.
+
+
+* `t/DESCRIPTION` - It must be alphanumeric (A-Z, 0-9) and can contain spaces. It cannot be blank.
+
+
+* `[e/TIMESLOT]` -  It must be of the format `DAY-OF-WEEK HH:MM HH:MM`, with the first time being the 
+starting time and the second time being the ending time. An example would be `Tuesday 12:00 15:00` for a timeslot that
+occurs every Tuesday, starting at 12 noon and ending at 3pm. It cannot be blank.
+
+
+* `[a/VENUE]` -  It cannot be blank. 
+
+
+* `[s/TEACHER]` -  It cannot be blank.
+
+
+* `[d/DEADLINE]` - It must be of the format `DDMMYY`. For example, for a deadline that falls on the 23rd February 2023, 
+key in `230223`. It cannot be blank.
+
+
+* `[r/REMARK]` - It cannot be blank. 
+
+
+* `[c/RESOURCE]` - It cannot be blank.
+
+
+
+If you are an advanced user who is concerned about further information regarding how you can use the commands of 
+coNtactUS, read on for the next section. 
+
+--------------------------------------------------------------------------------------------------------------------
+## Further information about commands
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+* You may supply more than one input value for the `t/DESCRIPTION` field, and both will be recorded. 
+An example would be : `edit 1 t/Difficult module t/Fun module`. The resulting module listing would have 2 
+descriptions, `Difficult module` and `Fun module`.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-    * e.g. in `add n/MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add n/CS1231S`.
 
-* Words in `UPPER_CASE` are usually in *string* format, except for `TIMESLOT` and `DEADLINE`, which are both in
-DateTime format, **ddMMyyyy HH:mm**.
+* Note that for all other fields, only one input value will be recorded. If you supply more than one input value, only
+the last occurrence of that input value will be recorded. For example, if you specify `edit 1 a/Home a/School`, 
+only `a/School` will be taken.
 
-* Items in square brackets are optional.<br>
-    * e.g `n/MODULE_NAME [t/TAG]` can be used as `n/CS1010S t/Can attend online :)` or as `n/CS1010S`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  * e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Lecture`, `t/Lecture t/Lab` etc.
+* Parameters can be in any order.
+For example, `edit 1 n/CS1231S t/Math heavy` and `edit 1 t/Math heavy n/CS1231S` are both accepted.
 
-* Parameters can be in any order.<br>
-* e.g. if the command specifies `n/MODULE_NAME t/TAG`, `t/TAG n/MODULE_NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
-of the parameter will be taken.<br>
-  * e.g. if you specify `e/280323 10:00 e/290323 12:00`, only `e/290323 12:00` will be taken.
+* If you provide an input value for commands that do not take in any input value (such as `help`, `list`, `exit` 
+and `clear`), the input value will be ignored. For example, `help 123` will simply be interpreted as `help` by the program.
 
-<!-- * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
-will be ignored.<br>
-  * e.g. if the command specifies `help 123`, it will be interpreted as `help`. -->
-
-* **MODULE_NAME** is the name of the module to be added into the module tracker.
-
-* **TAG** represents the type of event associated to the module you want to track.
-  * For example, it can be Lecture, Tutorial, Lab, Quiz, Oral Presentation, Exam, etc.
-
-* **TIMESLOT** represents when the event takes place.
-
-* **VENUE** is the location of the classroom or auditorium the class is held.
-
-* **TEACHER** is the name of the lecturer or TA conducting the class.
-
-* **DEADLINE** contain the details of a task with deadline.
-
-* **REMARK** are additional details about the class you want to add.
-
-* **RESOURCE** can be the module website on Canvas, or any other external links.
 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Valid and invalid data
+## More examples of valid and invalid input values
 
-You can refer to this section for some sample valid and invalid data.
+You can refer to this section for more examples of valid and invalid input values.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** the examples given here are **not exhaustive!** They serve as a **guideline** so that you
-know what information are considered valid and what not.<br>
+**:exclamation: Note:** the examples given here are **not exhaustive!** They serve as a **guideline** so that you
+know what information are considered valid and what are not.<br>
 
+:bulb: ` ` refers to a blank value.
 </div>
 
 | Attributes  | Valid                                                            | Invalid                                                            |
 |-------------|------------------------------------------------------------------|--------------------------------------------------------------------|
-| MODULE_NAME | `CS2103T` `CS 2101` `gea1000` `sT2334` `Programming Methodology` | `C$2103T` ` ` `CS2101!!`                                           |
-| TAG         | `Lecture` `Tutorial` `Assignment2` `lab` `PROJECT` ` `           | `Assignment 2` `l@b`                                               |
+| MODULE_NAME | `CS2103T` `CS 2101` `gea1000` `ST2334` `Programming Methodology` | ` ` `C$2103T` `CS2101!!` `CS21.01`                                 |
+| TAG         | `Lecture` `Tutorial` `Assignment2` `lab` `PROJECT` ` `           | ` ` `Assignment 2` `l@b`                                           |
 | TIMESLOT    | `Friday 12:00 14:00` `Tuesday 09:00 10:00`                       | ` ` `Mon 12:00 14:00` `Wednesday 7:00 8:00` `Thursday 11:00 10:00` |
-| VENUE       | `COM1` `COM 3` `com1-0117`                                       | ` `                                                                |
-| TEACHER     | `Damyth` `Prof John Lee` `Dr Ch'ng` `mr. anderson`               | ` `                                                                |
-| DEADLINE    | `100423 23:59` `120423 11:00` `280223 09:00` `290224 12:00`      | `10423 23:59` `320423 11:00` `290223 09:00` `290224 25:61` ` `     |
-| REMARK      | `Hard module` `Can S/U` `Rewatch` ` ` `PAY ATTENTION`            | _none_                                                             |
+| VENUE       | `COM1` `COM 3.` `com1-0117`                                      | ` `                                                                |
+| TEACHER     | `Damyth.` `Prof John Lee` `Dr Ch'ng` `mr. anderson`              | ` `                                                                |
+| DEADLINE    | `100423 23:59` `120423 11:00` `280223 09:00` `290224 12:00`      | ` ` `10423 23:59` `320423 11:00` `290223 09:00` `290224 25:61`     |
+| REMARK      | `Hard module.` `Can S/U.` `Rewatch` `PAY ATTENTION`              | ` `                                                                |
 | RESOURCE    | `www.google.com` `WWW.YOUTUBE.COM` `WwW.GmAiL.cOm`               | ` `                                                                |
 --------------------------------------------------------------------------------------------------------------------
 
 
 ## Data Storage
 
-This section describes [how the data in the module tracker is saved](#saving-the-data), as well as
-[how to edit the data from the data file itself](#editing-the-data-file).
+If you are interested to read about how coNtactUS stores data on your computer, read this section to find out more.
 
 ### Saving the data
 
-Contact nUS data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+CoNtactUS data is saved in the hard disk automatically. There is no need for you to save any data manually or use any
+command to do so.
 
-### Editing the data file
+### Editing the data file (For advanced users)
 
-ModuleTracker data are saved as a JSON file `[JAR file location]/data/moduletracker.json`. Advanced users are welcome to
-update data directly by editing that data file.
+CoNtactUS data is saved as a JSON file at the location `[JAR file location]/data/moduletracker.json`. If you are an
+advanced user, you are welcome to update data directly by editing that data file if you wish to do so.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Contact nUS will discard all data and start with an empty
+If your changes to the data file makes its format invalid, coNtactUS will discard all data and start with an empty
 data file at the next run.
 </div>
+
+ --------------------------------------------------------------------------------------------------------------------
+## Current product limitations (Important)
+
+Note that currently, coNtactUS does not enforce any additional checks for conflicting `s/teacher`, `e/timeslot`, 
+`a/venue` values. 
+
+* For example, you will be allowed to create two module listings as follows.
+
+<div style="text-align: center;"> <image src = 
+"images/noConflictChecks.png"></image>
+</div>
+
+<div style="text-align: center;"> Figure : An example of the help window  </div>
+
+* It might not make sense to have the same teacher `Bob`, teaching two different classes 
+that are located at different venues (`LT-19` and `COM1-B1`) at the same timing (`Monday 11:00 15:00`). However, we 
+felt that this allows you the flexibility to supply an input value that you desire without being subjected to unnecessary
+conflict checks. After all, `Bob` may be referring to two different persons. 
+
 
  --------------------------------------------------------------------------------------------------------------------
 ## Glossary
@@ -412,27 +493,39 @@ Some text here
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? <br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous Contact nUS home folder.
+**A**: Download `coNtactUS.jar` in the other computer and overwrite the empty data file it creates with the data file
+at the location `[JAR file location]/data/moduletracker.json` on your current computer. 
 
-**Q**: Must I exit the Contact nUS programme through the `exit` command? <br>
-**A**: Not at all! It is one of the ways you can exit the programme. You may also use the Windows/macOS/Linux's own
-exit function to close the programme. 
+**Q**: Can I only exit coNtactUS through the `exit` command? <br>
+**A**: Not at all! It is one of the ways you can exit the program. You may also simply close the browser window.
 
 --------------------------------------------------------------------------------------------------------------------
+## Coming soon
+coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
+Here are some new features that you can look forward to in the near future: 
 
+* Currently, the reminder pop-up window only appears when coNtactUS is launched. We understand that you may want to 
+view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
+for you to do so, so you can see the reminders at any time you wish. 
+
+* 
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                             |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**    | `n/MODULE_NAME t/TAG… [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]​` <br> e.g., `add n/CS2103T t/Lecture e/Friday 12:00 14:00 a/i3-AUD s/Professor Damith d/07042023 13:59 r/Can attend online! c/https://nus-cs2103-ay2223s2.github.io/website/` |
-| **delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                          |
-| **edit**   | `edit INDEX [n/MODULE_NAME] [t/TAG]… [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE] ​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`                                                                                                                  |
-| **sort**   | `sort timeslot` or `sort deadline​`                                                                                                                                                                                                                                          |
-| **list**   | `list`                                                                                                                                                                                                                                                                       |
-| **find**   | `find KEYWORD`<br> e.g., `find CS`                                                                                                                                                                                                                                           |
-| **clear**  | `clear`                                                                                                                                                                                                                                                                      |
-| **help**   | `help`                                                                                                                                                                                                                                                                       |
-| **exit**   | `exit`                                                                                                                                                                                                                                                                       |
+| Action     | Format                                                                                                                |
+|------------|-----------------------------------------------------------------------------------------------------------------------|
+| **list**   | `list`                                                                                                                |
+| **add**    | `add n/MODULE_NAME t/DESCRIPTION [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`             |
+| **delete** | `delete INDEX`                                                                                                        |
+| **edit**   | `edit INDEX [n/MODULE_NAME] [t/DESCRIPTION]… [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]` |
+| **find**   | `find KEYWORD`                                                                                                        |
+| **sort**   | `sort timeslot`  `sort deadline`                                                                                      |
+| **clear**  | `clear`                                                                                                               |
+| **help**   | `help`                                                                                                                |
+| **exit**   | `exit`                                                                                                                |
 
 
