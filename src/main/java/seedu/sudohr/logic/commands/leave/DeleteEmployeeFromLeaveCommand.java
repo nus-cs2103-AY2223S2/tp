@@ -39,7 +39,7 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
     private final Id employeeId;
 
     /**
-     * Creates an DeleteEmployeeFromLeaveCommand to delete the employee with 
+     * Creates an DeleteEmployeeFromLeaveCommand to delete the employee with
      * {@code employeeId} from the leave on the specified {@code dateToDelete}
      */
     public DeleteEmployeeFromLeaveCommand(Id employeeId, LeaveDate dateToDelete) {
