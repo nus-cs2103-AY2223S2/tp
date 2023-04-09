@@ -61,13 +61,16 @@ The following subsections detail the functionality of ***RIZZ***ipe and explain 
 Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
 
 ### Common colour codes in this guide
+<div markdown="block" class="alert alert-success">
+This is used to display :bulb: **tips** to enhance your experience using ***RIZZ***ipe!
+</div>
 
 <div markdown="block" class="alert alert-info">
-This is used to display :information_source: **additional information** and **tips** that you may find useful!
+This is used to display :information_source: **additional information** that you may find useful!
 </div>
 
 <div markdown="span" class="alert alert-warning">
-This is used to display :bulb: **keyboard shortcuts** that can help make your journey using ***RIZZ***ipe more smooth sailing!
+This is used to display :computer: **keyboard shortcuts** that can help make your journey using ***RIZZ***ipe more smooth sailing!
 </div>
 
 <div markdown="span" class="alert alert-danger">
@@ -114,7 +117,7 @@ This is used to display :exclamation: **warnings** for you to heed in order for 
 
 </div> 
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-success">
 
 * For increased readability, we have included an optional multi-line command format for commands
   that may require multiple inputs (add, edit). After each input,
@@ -144,7 +147,7 @@ Pay close attention to these attributes, for they are crucial inputs to some of 
 
 
 #### What is an ingredient?
-Ingredients are at the heart of recipes, and also comprise multiple fields. The specification for recipe ingredients are listed in the table below:
+Ingredients are at the heart of recipes, and also comprise multiple attributes. The specification for recipe ingredients are listed in the [table](#ingredient-attributes-table) below:
 
 #### Ingredient attributes table
 
@@ -180,8 +183,6 @@ butter s/Serve and enjoy.`
 
 * It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
 
-* When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
-
 * Although optional, we do however suggest adding in the other fields if possible for your own future reference.
 
 * If you have multiple inputs for tags, steps or ingredients, treat each input as a separate field (i.e. `s/Step1 s/step2`).
@@ -191,6 +192,13 @@ butter s/Serve and enjoy.`
 * However, for steps, please input the steps in the order that they are intended to be performed.
 
 </div>
+
+<div markdown="block" class="alert alert-success">
+
+* When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
+
+</div>
+
 
 ### Adding a recipe through form: `addf`
 Want to add a delicious new recipe but don't want to type the whole long string of inputs at one go? 
@@ -229,9 +237,13 @@ Format:
 
 * Depending on the size of the window, the user may add multiple columns to display more recipes.
 
-* The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
-
 * In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+* The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 
 </div>
 
@@ -265,6 +277,9 @@ Format:
  
 * You can remove the optional fields (all fields except for name) by simply typing the prefix without specifying any details after it (i.e. typing `i/` removes all ingredients)
  
+</div>
+
+<div markdown="block" class="alert alert-success">
 * Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
  
 * Note that the tags specified in the fields above still apply for ingredients, like `-n`.
@@ -363,8 +378,6 @@ Example(s) of usage:
 
 * `sub` searches across your stored recipes and a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
 
-* Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
-
 * The search is case-insensitive, i.e. `sub salt` will return all stored substitutions for `Salt` and `salt` across recipes.
 
 * Only full words will be matched i.e. `sub chick` will **not** return stored substitutes for `chicken`
@@ -372,6 +385,12 @@ Example(s) of usage:
 * For inputs with multiple words, it will only match stored ingredients with the same full multi-word input (case-insensitive) i.e. `sub golden syrup` does not return substitutes for `syrup`
 
 * The returned list of ingredients returned will not contain any duplicates.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+* Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
 
 </div>
 
@@ -387,7 +406,7 @@ Format:
 Running `clear` will clear your entire recipe book and there's no going back!
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 * If you wish to save your data elsewhere first and then start afresh, consider using the [Export](#export) feature first!
 </div>
 
