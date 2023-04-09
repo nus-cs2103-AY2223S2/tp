@@ -47,6 +47,8 @@ The following typographical conventions are used in this guide.
 * Table of Contents
 {:toc}
 
+---
+
 ## Quick Start
 
 Mycelium runs on Java 11, so you should first head over to [Oracle's
@@ -87,6 +89,8 @@ Corruption or tampering with it may lead to the data file becoming unreadable
 or containing invalid values. This will result in the file being ignored
 and Mycelium will start as an empty application with no projects and clients.
 </div>
+
+---
 
 ## Glossary
 
@@ -619,6 +623,8 @@ mode**.
 no searching can be done while in **command mode**.
 </div>
 
+---
+
 ## Fuzzy Search
 
 Fuzzy search allows us to find projects or clients which match *closely* to
@@ -734,6 +740,8 @@ might wish to note:
 * You might experience some input lag while in **search mode**. This is expected to
   improve as we refine the implementation.
 
+---
+
 ## Command summary
 
 The table below summarizes the layout of all the commands in Mycelium. You may
@@ -752,4 +760,34 @@ Action | Format | Example
 [**Create a project**](#creating-a-project-p)| `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
 [**Delete a project**](#deleting-a-project-dp) | `dp -pn project_name` | `dp -pn Mycelium Desktop`
 [**Update an existing project**](#updating-a-project-up) | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`
+
+
+---
+
+## Getting Help
+
+### FAQs
+
+**Q:** Does Mycelium require an internet connection to run?
+**A:** No, Mycelium is intended to work fully offline.
+
+**Q:** How can I sync my local data to the cloud?
+**A:** Mycelium does not provide such a feature, but you may look into using
+network-attached storage, Git, or other services to back up the `mycelium.json`
+file.
+
+**Q:** What operating systems can I run Mycelium on?
+**A:** Mycelium has been developed and tested on Windows, Mac, and Linux (X11)
+operating systems only.
+
+### Troubleshooting
+
+**1. Double-clicking the JAR file does not launch app**
+
+Please double check that you have Java 11 installed. If you need help with
+installing Java, please refer to this [guide by
+Oracle](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
+
+We also recommend that you launch Mycelium from a terminal instead of via
+double-clicking, as described in the [Quick Start](#quick-start).
 

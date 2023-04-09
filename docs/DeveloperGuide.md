@@ -1131,6 +1131,74 @@ The validation is currently done using this regexp string: `\\d{3,}` via
 `String#matches`. As long as there is a match, the number is considered valid.
 We can simply update the regexp to `\\d{3,35}` to enforce this upper bound.
 
+**8. Potentially confusing error messages when wrong flags are used**
+
+Consider the following (wrong) command:
+
+```
+uc -e foo@bar.com -n totoro
+```
+
+The intention of the command is to update the client whose email is
+*foo@bar.com* to have the name *totoro*. Unfortunately, the `-n` flag is wrong,
+and should instead be `-cn`. Mycelium reads `foo@bar.com -n totoro` as the
+email, and responds with an error message that the email is in the wrong
+format.
+
+Firstly, we would like to note that with regards to what we have specified in
+the user guide regarding the [command
+layout](https://ay2223s2-cs2103t-w14-1.github.io/tp/UserGuide.html#command-layout),
+this is working as intended. It is not Mycelium's responsibility to assume the
+user's intention in situations like the example above; suppose our email is
+`foo@bar-n.com`, but we accidentally inserted some spaces to become `foo@bar -n
+.com`. What is the right course of action for Mycelium's parser? We have three
+options:
+
+1. Throw an error about invalid email format (current behaviour)
+1. "Intelligently" suggest that the `-n` flag might have been intended as `-cn`
+1. "Intelligently" piece together the email
+
+It is not clear which is the best option. Thus, we have decided that the best
+solution is to *revamp the command layout* to match that used by the [Bash
+shell](https://www.gnu.org/software/bash/manual/bash.html#Shell-Syntax),
+requiring that arguments with whitespace be wrapped in quotation marks. The
+ambiguity here clearly arises from the existence of whitespace. Following
+Bash's command syntax thus solves the problem entirely. Since Mycelium is
+targeted at developers, this syntax should also feel right at home. 
+
+With the new syntax, the command above can be very clearly parsed:
+
+* *foo@bar.com* is the client's email
+* `-n` is an unknown flag, with argument *totoro*
+
+Thus we can respond with the correct error message: that `-n` is an unknown
+argument flag. If the user really wanted (for some reason) to enter a wrong
+email, they would need to do the following:
+
+```
+uc -e 'foo@bar.com -n totoro'
+```
+
+To which Mycelium would respond with an invalid email error message.
+
+**9. Error message not specific when multiple wrong dates are given**
+
+Consider the following command:
+
+```
+p -pn foo -ad qwerty -dd 14/03/2023
+```
+
+The *accepted date* is invalid while the deadline is valid. Mycelium currently
+responds with the message "The date entered is invalid", and does not specify
+which one. This can be easily remedied by adding an overload for the method
+which parses dates. In brief, the new overload will
+
+1. Expect to receive the argument's name as a string
+1. If it fails to parse the argument data, an exception explicitly referencing
+   the argument's name is thrown
+1. This message is displayed to the user
+
 ## Appendix: Effort
 
 AB3 was only able to support a single entity type, which was the `Person` class.
@@ -1197,3 +1265,4 @@ By splitting up the work and specialising in different parts of the codebase, ea
 gain a stake in the project and were more motivated constantly improve the project.
 We also reviewed each other's code, helped each other out when we encountered problems, and
 hold weekly meetings to discuss our progress and to plan out the next week's work.
+
