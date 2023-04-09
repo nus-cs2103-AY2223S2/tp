@@ -34,4 +34,15 @@ public class FilterByLeaveCountPredicate implements Predicate<Employee> {
             return employee.getLeaveCount() == comparisonAmount;
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+
+        return other == this
+                || (other instanceof FilterByLeaveCountPredicate
+                && (this.comparisonAmount == ((FilterByLeaveCountPredicate) other).comparisonAmount
+                && this.isEqualTo == ((FilterByLeaveCountPredicate) other).isEqualTo
+                && this.isGreaterThan == ((FilterByLeaveCountPredicate) other).isGreaterThan
+                && this.isLesserThan == ((FilterByLeaveCountPredicate) other).isLesserThan));
+    }
 }

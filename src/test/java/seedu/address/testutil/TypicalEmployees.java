@@ -14,35 +14,35 @@ import seedu.address.model.employee.Employee;
 public class TypicalEmployees {
     public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline").withPhone("94351253")
                     .withEmail("alice@example.com").withAddress("123, Jurong West Ave 6, #08-111")
-                    .withDepartment("Sales").withPayroll("1000 15").withDateOfBirth("2000-04-21")
+                    .withDepartment("Sales").withPayroll("1000 15").withLeaveCounter("17").withDateOfBirth("2000-04-21")
                     .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png")
                     .withTags("friends").build();
 
     public static final Employee BENSON = new EmployeeBuilder().withName("Benson Meier").withPhone("98765432")
             .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
-            .withDepartment("Sales").withPayroll("1000 15").withDateOfBirth("2000-04-21")
+            .withDepartment("Sales").withPayroll("1500 15").withLeaveCounter("11").withDateOfBirth("2000-04-21")
             .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png")
             .withTags("owesMoney", "friends").build();
     public static final Employee CARL = new EmployeeBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withDepartment("Sales").withPayroll("1000 15").withDateOfBirth("2000-04-21")
+            .withDepartment("Sales").withPayroll("500 15").withLeaveCounter("1").withDateOfBirth("2000-04-21")
             .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png").build();
     public static final Employee DANIEL = new EmployeeBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withDepartment("Marketing").withPayroll("1000 15").withDateOfBirth("2000-04-21")
+            .withDepartment("Marketing").withPayroll("999 15").withDateOfBirth("2000-04-21")
             .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png")
             .withTags("friends").build();
     public static final Employee ELLE = new EmployeeBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withDepartment("Marketing").withPayroll("1000 15").withDateOfBirth("2000-04-21")
+            .withDepartment("Marketing").withPayroll("1001 15").withLeaveCounter("21").withDateOfBirth("2000-04-21")
             .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png").build();
     public static final Employee FIONA = new EmployeeBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withDepartment("Marketing").withPayroll("1000 15").withDateOfBirth("2000-04-21")
+            .withDepartment("Marketing").withPayroll("1500 15").withLeaveCounter("17").withDateOfBirth("2000-04-21")
             .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png").build();
     public static final Employee GEORGE = new EmployeeBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withDepartment("Finance").withPayroll("1000 15").withDateOfBirth("2000-04-21")
+            .withDepartment("Finance").withPayroll("500 15").withDateOfBirth("2000-04-21")
             .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png").build();
 
     // Manually added
