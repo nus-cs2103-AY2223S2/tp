@@ -945,4 +945,4 @@ testers are expected to do more *exploratory* testing.
 5. We plan on implementing a log-in/sign-up feature where users can log into personal accounts. This will require the
    use of maintaining a cloud-based server such that users may retrieve their own data on the go.
 6. We plan on implementing an administrative user interface. This administrative control will allow management of the company to control the types of policies which users (financial advisors) my key into the application.
-7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered clientl ist and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
+7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered client list and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
