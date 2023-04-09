@@ -557,64 +557,44 @@ Examples:
       <td><code>touch Tutorial/NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
-         <ul>
             <li><code>touch Tutorial/makeUpTutorial</code>
             <li><code>touch Tutorial/examReview -date 01/01/2030 16:00</code>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Add Lab</strong>
       </td>
       <td><code>vim Lab/NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
-         <ul>
             <li><code>vim Lab/pancakeSort</code>
             <li><code>vim Lab/KosarajuAlgorithm -date 01/01/2031 16:00</code>
             </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Add Consultation</strong>
       </td>
       <td><code>mkdir Consultation/NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
-         <ul>
             <li><code>mkdir Consultation/reviewGraphs</code>
             <li><code>mkdir Consultation/reviewDijsktra -date 01/01/2032 16:00</code>
             </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Edit event</strong>
       </td>
       <td><code>editEvent EVENT_INDEX EVENT_TYPE/EVENT_NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
-         <ul>
             <li><code>editEvent 1 Lab/VisuAlgo</code>
             <li><code>editEvent 1 Tutorial/BellmanFord -date 10/10/2050 10:00</code>
             <li><code>editEvent 1 Consultation/ConsultEmily -date 10/10/2040 16:00</code>
             </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Delete Event</strong>
       </td>
       <td><code>delete EVENT_TYPE/EVENT_INDEX</code>
       </td>
       <td>
-         <ul>
             <li><code>delete Tutorial/1</code>
             </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Add Student</strong>
       </td>
@@ -623,11 +603,7 @@ Examples:
          </li>
       </td>
       <td>
-         <ul>
             <li><code>add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25</code></li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Delete Student</strong>
       </td>
@@ -636,11 +612,7 @@ Examples:
          </li>
       </td>
       <td>
-         <ul>
             <li><code>rm 1</code></li>
-         </ul>
-      </td>
-   </tr>
     <tr>
       <td><strong>Edit Student</strong>
       </td>
@@ -649,12 +621,8 @@ Examples:
          </li>
       </td>
       <td>
-         <ul>
             <li><code>edit 1 telegram/91234567 e/e0000000@u.nus.edu</code></li>
             <li><code>edit 2 score/100</code></li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Add Student To Event</strong>
       </td>
@@ -663,98 +631,69 @@ Examples:
          </li>
       </td>
       <td>
-         <ul>
             <li><code>addStudent 1 Tutorial/1</code>
             <li><code>addStudent 4 Lab/1</code></li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Delete Student From Event</strong>
       </td>
       <td><code>deleteStudent STUDENT_INDEX EVENT_TYPE/EVENT_INDEX</code>
       </td>
       <td>
-         <ul>
             <li><code>deleteStudent 1 Tutorial/1</code>
             <li><code>deleteStudent 1 Lab/1</code></li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Add Note To Event</strong>
       </td>
       <td><code>addNote content/CONTENT type/EVENT_TYPE name/EVENT_NAME</code>
       </td>
       <td>
-         <ul>
             <li><code>addNote content/Bring pen type/Tutorial name/examReview</code>
             <li><code>addNote content/Bring laptop type/Lab name/VisuAlgo</code></li>
             <li><code>addNote content/ Prepare questions type/Consultation name/consultEmily</code></li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Delete Note From Event</strong>
       </td>
       <td><code>deleteNote type/EVENT_TYPE name/EVENT_NAME index/NOTE_INDEX</code>
       </td>
       <td>
-         <ul>
             <li><code>deleteNote type/Tutorial name/Tut1 index/1</code>
             <li><code>deleteNote type/Lab name/Lab1 index/1</code></li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Edit Note In Event</strong>
       </td>
       <td><code>editNote content/NEW_CONTENT type/EVENT_TYPE name/EVENT_NAME index/NOTE_INDEX</code>
       </td>
       <td>
-         <ul>
             <li><code>editNote content/Bring apple pencil type/Tutorial name/Tut1 index/1</code>
             <li><code>editNote content/Bring goggles and lab coat type/Lab name/Lab1 index/1</code></li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Sort Students</strong>
       </td>
       <td><code>sort-student GROUP METRIC SORTING_ORDER</code>
       </td>
       <td>
-         <ul>
             <li><code>sort-student lab name reverse</code>
             <li><code>sort-student tutorial performance nonreverse</code>
             <li><code>sort-student consultation email nonreverse</code>
             <li><code>sort-student all remark nonreverse</code>
             </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Filter Students</strong>
       </td>
       <td><code>filter METRIC THRESHOLD</code>
       </td>
       <td>
-         <ul>
             <li><code>filter performance 60</code>
             <li><code>filter performance 50</code>
             <li><code>filter urgency 20</code>
             <li><code>filter urgency 90</code>
             </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Help</strong>
       </td>
       <td><code>help [TYPE] [EVENT_TYPE]</code>
       </td>
       <td>
-         <ul>
             <li><code>help</code>
             <li><code>help student</code>
             <li><code>help event</code>
@@ -763,9 +702,6 @@ Examples:
             <li><code>help event consultation</code>
             <li><code>help organisation</code>
             </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
    <tr>
       <td><strong>Navigate Tabs</strong>
@@ -773,24 +709,16 @@ Examples:
       <td><code>cd_TAB_TYPE</code>
       </td>
       <td>
-         <ul>
             <li><code>cd_event</code>
             </li>
             <li><code>cd_student</code>
             </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Exit application</strong>
       </td>
       <td><code>:wq</code>
       </td>
       <td>
-         <ul>
             <li><code>:wq</code>
             </li>
-         </ul>
-      </td>
-   </tr>
 </table>
