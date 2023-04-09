@@ -1,5 +1,7 @@
 package seedu.address.ui.exam;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -11,12 +13,11 @@ import seedu.address.ui.UiPart;
  * A UI component that displays information of a {@code Person}.
  */
 public class ExamCard extends UiPart<Region> {
+    private static final DateTimeFormatter PRINT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
     private static final String FXML = "ExamListCard.fxml";
 
     @FXML
     private HBox cardPane;
-    @FXML
-    private Label id;
     @FXML
     private Label title;
     @FXML
@@ -32,10 +33,9 @@ public class ExamCard extends UiPart<Region> {
      */
     public ExamCard(Exam exam, int id) {
         super(FXML);
-        this.id.setText(id + ". ");
         title.setText(exam.getDescription());
-        startTime.setText(exam.getStartTime().toString());
-        endTime.setText(exam.getEndTime().toString());
+        startTime.setText(exam.getStartTime().format(PRINT_FORMATTER));
+        endTime.setText(exam.getEndTime().format(PRINT_FORMATTER));
     }
 
     @Override
@@ -50,8 +50,7 @@ public class ExamCard extends UiPart<Region> {
         }
         // state check
         ExamCard card = (ExamCard) other;
-        return id.getText().equals(card.id.getText())
-                && title.getText().equals(card.title.getText())
+        return title.getText().equals(card.title.getText())
                 && startTime.getText().equals(card.startTime.getText())
                 && endTime.getText().equals(card.endTime.getText());
     }

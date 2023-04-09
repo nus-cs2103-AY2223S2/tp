@@ -79,15 +79,22 @@ public class UpdateHomeworkCommand extends Command {
         List<Student> studentList = model.getFilteredStudentList();
         Student student = studentList.get(0);
 
-        Homework homeworkToUpdate = student.getHomework(index);
-        String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
-        LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
-        Homework newHomework = new Homework(newHomeworkName, newDeadline);
-        updateHomework(student, homeworkToUpdate, newHomework);
+        try {
+            Homework homeworkToUpdate = student.getHomework(index);
+            String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
+            LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
+            Homework newHomework = new Homework(newHomeworkName, newDeadline);
+            if (homeworkToUpdate.isCompleted()) {
+                newHomework.markAsDone();
+            }
+            updateHomework(student, homeworkToUpdate, newHomework);
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_HOMEWORK_UPDATED_SUCCESS, index.getOneBased(),
-                        student.getName().getFirstName(), newHomeworkName, newDeadline.format(PRINT_FORMATTER)));
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_HOMEWORK_UPDATED_SUCCESS, index.getOneBased(),
+                            student.getName().getFirstName(), newHomeworkName, newDeadline.format(PRINT_FORMATTER)));
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
+        }
     }
 
     /**

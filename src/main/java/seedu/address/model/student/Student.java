@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.student.exceptions.ConflictingExamsException;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
@@ -266,11 +267,23 @@ public class Student {
      * @param lesson the lesson to be added
      */
     public void addLesson(Lesson lesson) throws ConflictingLessonsException {
+        if (hasExamAtSameTime(lesson)) {
+            throw new ConflictingLessonsException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
+        }
         try {
             this.lessonsList.add(lesson);
         } catch (Exception e) {
             throw new ConflictingLessonsException(e.getMessage());
         }
+    }
+
+    private boolean hasExamAtSameTime(Lesson lesson) {
+        for (Exam exam : examList) {
+            if (lesson.getStartTime().isBefore(exam.getEndTime()) && lesson.getEndTime().isAfter(exam.getStartTime())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -309,14 +322,14 @@ public class Student {
         lessonsList.setLesson(target, editedLesson);
     }
 
-    public void setExam(Integer target, Exam editedLesson) {
-        requireAllNonNull(target, editedLesson);
+    public void setExam(Integer target, Exam editedExam) {
+        requireAllNonNull(target, editedExam);
         //        UniqueExamList tempExamList = examList;
-        //        tempExamList.setExam(target, editedLesson);
+        //        tempExamList.setExam(target, editedExam);
         //        if (!(tempExamList.validExams())) {
         //            throw new ConflictingExamsException();
         //        }
-        examList.setExam(target, editedLesson);
+        examList.setExam(target, editedExam);
     }
 
     /**
@@ -405,6 +418,20 @@ public class Student {
             throw new DuplicateEntryException();
         }
         this.examList.add(exam);
+    }
+
+    /**
+     * Returns true if the exam's time clashes with any lesson's time.
+     * @param exam Exam to be checked
+     * @return boolean
+     */
+    public boolean hasLessonAtSameTime(Exam exam) {
+        for (Lesson lesson : lessonsList) {
+            if (exam.getStartTime().isBefore(lesson.getEndTime()) && exam.getEndTime().isAfter(lesson.getStartTime())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -521,5 +548,13 @@ public class Student {
      */
     public ObservableList<Exam> getUpcomingExamsList() {
         return examList.getUpcomingExams();
+    }
+
+    public boolean hasConflictingLessonTime(Lesson lesson) {
+        return this.lessonsList.hasConflictingLessonTime(lesson);
+    }
+
+    public boolean hasConflictingExamTime(Lesson lesson) {
+        return this.examList.hasConflictingExamTime(lesson);
     }
 }

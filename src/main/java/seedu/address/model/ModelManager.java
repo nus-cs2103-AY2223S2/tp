@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Student;
 
 /**
@@ -147,11 +148,14 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    /**
+     * Returns true if the model has a student whose name is part of the input name.
+     */
     @Override
     public boolean hasDuplicateName(String name) {
         int count = 0;
         for (Student s : filteredPersons) {
-            if (s.getName().toString().contains(name)) {
+            if (s.getName().toString().toLowerCase().contains(name.toLowerCase())) {
                 count++;
             }
         }
@@ -159,12 +163,79 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDuplicateNameAdd(String name) {
+        int count = 0;
+        for (Student s : filteredPersons) {
+            if (s.getName().toString().toLowerCase().contains(name.toLowerCase())) {
+                count++;
+            }
+        }
+        return count >= 1;
+    }
+
+    @Override
+    public boolean hasDuplicateNameEdit(String name, Integer index) {
+        int count = 0;
+        for (int i = 0; i < filteredPersons.size(); i++) {
+            if (filteredPersons.get(i).getName().toString().toLowerCase().contains(name.toLowerCase()) && i != index) {
+                count++;
+            }
+        }
+        return count >= 1;
+    }
+
+    /**
+     * Returns true if the model has a student whose name is part of the input name.
+     */
+    @Override
+    public boolean hasExtendedName(String name) {
+        int count = 0;
+        for (Student s : filteredPersons) {
+            if (name.toLowerCase().contains(s.getName().toString().toLowerCase())) {
+                count++;
+            }
+        }
+        return count >= 1;
+    }
+
+    @Override
+    public boolean hasExtendedNameEdit(String name, Integer index) {
+        int count = 0;
+        for (int i = 0; i < filteredPersons.size(); i++) {
+            if (name.toLowerCase().contains(filteredPersons.get(i).getName().toString().toLowerCase()) && i != index) {
+                count++;
+            }
+        }
+        return count >= 1;
+    }
+
+    @Override
     public boolean noSuchStudent(String name) {
         for (Student s : filteredPersons) {
-            if (s.getName().toString().contains(name)) {
+            if (s.getName().toString().toLowerCase().contains(name.toLowerCase())) {
                 return false;
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean hasConflictingLessonTime(Lesson lesson) {
+        for (Student s : filteredPersons) {
+            if (s.hasConflictingLessonTime(lesson)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasConflictingExamTime(Lesson lesson) {
+        for (Student s : filteredPersons) {
+            if (s.hasConflictingExamTime(lesson)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

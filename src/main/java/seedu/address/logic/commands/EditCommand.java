@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -31,18 +32,19 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "update-info";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
+            + PREFIX_INDEX + "INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " index/1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -76,6 +78,18 @@ public class EditCommand extends Command {
 
         Student personToEdit = lastShownList.get(index.getZeroBased());
         Student editedPerson = createEditedPerson(personToEdit, editStudentDescriptor);
+        String newName = editedPerson.getName().toString();
+        if (!newName.equals(personToEdit.getName().toString())) {
+            if (model.hasDuplicateNameEdit(newName, index.getZeroBased())) {
+                throw new CommandException(String.format(Messages.MESSAGE_CONTAIN_STUDENT_NAME,
+                    newName));
+            }
+
+            if (model.hasExtendedNameEdit(newName, index.getZeroBased())) {
+                throw new CommandException(String.format(Messages.MESSAGE_EXTENDED_STUDENT_NAME,
+                    newName));
+            }
+        }
 
         if (!personToEdit.isSameStudent(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

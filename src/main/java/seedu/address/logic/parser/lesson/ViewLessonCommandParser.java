@@ -86,6 +86,10 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
             String done = argMultimap.getValue(PREFIX_DONE).get();
+            if (!done.equals("done") && !done.equals("not done")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ViewLessonCommand.MESSAGE_USAGE));
+            }
             donePredicate = new LessonDonePredicate(done);
         }
 

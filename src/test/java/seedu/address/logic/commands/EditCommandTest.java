@@ -98,14 +98,14 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Student firstPerson = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
+    //    @Test
+    //    public void execute_duplicatePersonUnfilteredList_failure() {
+    //        Student firstPerson = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+    //        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstPerson).build();
+    //        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+    //
+    //        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    //    }
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {

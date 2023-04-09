@@ -9,7 +9,7 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Homework {
-    private static final DateTimeFormatter PRINT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+    private static final DateTimeFormatter PRINT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static final String TO_STRING_FORMAT = "Status: %s, Description: %s, Deadline: %s";
     private static final String COMPLETED_TAG = "[X]";
     private static final String PENDING_TAG = "[ ]";

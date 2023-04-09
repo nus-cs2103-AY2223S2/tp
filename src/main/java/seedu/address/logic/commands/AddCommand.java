@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
@@ -58,6 +59,16 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+
+        if (model.hasDuplicateNameAdd(toAdd.getName().toString())) {
+            throw new CommandException(String.format(Messages.MESSAGE_CONTAIN_STUDENT_NAME,
+                toAdd.getName().toString()));
+        }
+
+        if (model.hasExtendedName(toAdd.getName().toString())) {
+            throw new CommandException(String.format(Messages.MESSAGE_EXTENDED_STUDENT_NAME,
+                toAdd.getName().toString()));
         }
 
         model.addPerson(toAdd);

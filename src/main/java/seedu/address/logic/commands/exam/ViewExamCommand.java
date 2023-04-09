@@ -42,7 +42,7 @@ public class ViewExamCommand extends Command {
         + PREFIX_NAME + "John Doe "
         + PREFIX_DATE + "2023-05-21 "
         + PREFIX_EXAM + "Math MYE "
-        + PREFIX_DONE + "done";
+        + PREFIX_DONE + "done(or not done)";
     private static final Predicate<Exam> SHOW_ALL_EXAMS = exam -> true;
     private final Predicate<Student> namePredicate;
     private final Predicate<Exam> examDatePredicate;
@@ -129,15 +129,15 @@ public class ViewExamCommand extends Command {
 
         // Loop through each student and add their lesson to the string builder
         for (Student student : studentList) {
-            List<Exam> lessonList = student.getFilteredExamList(examDatePredicate, examNamePredicate,
+            List<Exam> examList = student.getFilteredExamList(examDatePredicate, examNamePredicate,
                 donePredicate);
-            if (!lessonList.isEmpty()) {
+            if (!examList.isEmpty()) {
                 sb.append(student.getName().fullName).append(":\n");
 
-                numOfLessons += lessonList.size();
+                numOfLessons += examList.size();
 
-                for (int i = 0; i < lessonList.size(); i++) {
-                    sb.append(i + 1).append(". ").append(lessonList.get(i)).append("\n");
+                for (int i = 0; i < examList.size(); i++) {
+                    sb.append(i + 1).append(". ").append(examList.get(i)).append("\n");
                 }
 
                 sb.append("--------------------------------------------------\n");

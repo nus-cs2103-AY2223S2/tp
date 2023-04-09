@@ -16,6 +16,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_HOMEWORK = new Prefix("homework/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("deadline/");
     public static final Prefix PREFIX_EXAM = new Prefix("exam/");
+    public static final Prefix PREFIX_WEIGHT = new Prefix("weightage/");
+    public static final Prefix PREFIX_GRADE = new Prefix("grade/");
 
     public static final Prefix PREFIX_STATUS = new Prefix("status/");
     public static final Prefix PREFIX_INDEX = new Prefix("index/");

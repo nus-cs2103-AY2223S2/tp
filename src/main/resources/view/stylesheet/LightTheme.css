@@ -98,7 +98,6 @@
 
 .list-cell:filled:selected {
     -fx-background-color: #b4c5d4;
-    -fx-effect: dropshadow(gaussian, grey, 5, 0.5, 2, 3);
 }
 
 .list-cell:filled:selected #cardPane {

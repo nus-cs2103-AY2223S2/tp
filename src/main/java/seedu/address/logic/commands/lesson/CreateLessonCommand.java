@@ -28,7 +28,7 @@ public class CreateLessonCommand extends Command {
 
     public static final String COMMAND_WORD = "new-lesson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to a student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to students.\n"
         + "Parameters: "
         + PREFIX_NAME + "STUDENT_NAME "
         + PREFIX_LESSON + "LESSON_NAME "
@@ -90,6 +90,17 @@ public class CreateLessonCommand extends Command {
             dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
             throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
         }
+
+        Lesson lesson = new Lesson(lessonName, startTime, endTime);
+
+        if (model.hasConflictingLessonTime(lesson)) {
+            throw new CommandException(Messages.MESSAGE_CONFLICTING_LESSON_TIME);
+        }
+
+        //        if (model.hasConflictingExamTime(lesson)) {
+        //            throw new CommandException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
+        //        }
+
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();
@@ -106,8 +117,6 @@ public class CreateLessonCommand extends Command {
             endTime).toHours() > 3) {
             throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DURATION);
         }
-
-        Lesson lesson = new Lesson(lessonName, startTime, endTime);
 
         try {
             for (Student student : studentList) {

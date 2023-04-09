@@ -26,7 +26,7 @@ import seedu.address.model.student.Student;
 public class ViewLessonCommand extends Command {
     public static final String COMMAND_WORD = "view-lesson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exams filtered by\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all lessons filtered by\n"
         + "* name of student (case-insensitive) and/or\n"
         + "* date and/or\n"
         + "* subject and/or\n"
@@ -41,7 +41,7 @@ public class ViewLessonCommand extends Command {
         + PREFIX_NAME + "John Doe "
         + PREFIX_DATE + "2023-05-21 "
         + PREFIX_SUBJECT + "Math "
-        + PREFIX_DONE + "done";
+        + PREFIX_DONE + "done(or not done)";
     private static final String SEPERATOR = "--------------------------------------------------\n";
     private static final Predicate<Lesson> SHOW_ALL_LESSONS = lesson -> true;
 

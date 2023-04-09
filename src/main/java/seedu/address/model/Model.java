@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Student;
 
 /**
@@ -86,6 +87,12 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     boolean hasDuplicateName(String name);
-
+    boolean hasDuplicateNameEdit(String name, Integer index);
+    boolean hasExtendedName(String name);
+    boolean hasExtendedNameEdit(String name, Integer index);
     boolean noSuchStudent(String name);
+    boolean hasDuplicateNameAdd(String toString);
+    boolean hasConflictingLessonTime(Lesson lesson);
+
+    boolean hasConflictingExamTime(Lesson lesson);
 }

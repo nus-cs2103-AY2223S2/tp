@@ -17,28 +17,8 @@ public class Exam {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final Double weightage;
-    private Grade grade;
+    private final Grade grade;
 
-    /**
-     * Creates a new Exam with the given description, start time, end time.
-     *
-     * @param description The description of the exam.
-     * @param startTime   The start time of the exam.
-     * @param endTime     The end time of the exam.
-     */
-    public Exam(String description, LocalDateTime startTime, LocalDateTime endTime) {
-        Objects.requireNonNull(description);
-        Objects.requireNonNull(startTime);
-        Objects.requireNonNull(endTime);
-        if (startTime.isAfter(endTime)) {
-            throw new IllegalArgumentException("Start time cannot be after end time.");
-        }
-        this.description = description;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.weightage = null;
-        this.grade = null;
-    }
 
     /**
      * Creates a new Exam with the given description, start time, end time, weightage, and grade.
@@ -60,8 +40,8 @@ public class Exam {
         }
 
         if (weightage != null) {
-            if (weightage < 0 || weightage > 1) {
-                throw new IllegalArgumentException("Weightage must be between 0 and 1.");
+            if (weightage < 0 || weightage > 100) {
+                throw new IllegalArgumentException("Weightage must be a percentage between 0 and 100.");
             }
         }
 
@@ -109,6 +89,13 @@ public class Exam {
         return weightage;
     }
 
+    public String getStringWeightage() {
+        if (weightage == null) {
+            return "Undefined";
+        }
+        return String.format("%.2f", weightage) + "%";
+    }
+
     /**
      * Returns the duration of the exam in minutes.
      *
@@ -125,10 +112,14 @@ public class Exam {
      * @throws UnsupportedOperationException If the exam is not finished.
      */
     public Grade getGrade() {
-        //        if (!status.equals(ExamStatus.Finished)) {
-        //            throw new UnsupportedOperationException("Exam is not finished and does not have a grade.");
-        //        }
         return grade;
+    }
+
+    public String getStringGrade() {
+        if (grade == null) {
+            return "Undefined";
+        }
+        return grade.toString();
     }
 
     /**
@@ -145,7 +136,34 @@ public class Exam {
 
         return otherExam != null
                 && otherExam.getDescription().equals(getDescription())
-                && otherExam.getStartTime().equals(getStartTime());
+                && otherExam.getStartTime().equals(getStartTime())
+                && otherExam.getEndTime().equals(getEndTime())
+                && compareWeightages(otherExam.getWeightage(), getWeightage())
+                && compareGrades(otherExam.getGrade(), getGrade());
+    }
+
+    private boolean compareWeightages(Double first, Double second) {
+        if (first == null && second == null) {
+            return true;
+        } else {
+            if (first == null || second == null) {
+                return false;
+            } else {
+                return Double.compare(first, second) == 0;
+            }
+        }
+    }
+
+    private boolean compareGrades(Grade first, Grade second) {
+        if (first == null && second == null) {
+            return true;
+        } else {
+            if (first == null || second == null) {
+                return false;
+            } else {
+                return first.equals(second);
+            }
+        }
     }
 
     /**
@@ -199,9 +217,19 @@ public class Exam {
                 .append(" End Time: ")
                 .append(getEndTime().format(formatter))
                 .append(" Weightage: ")
-                .append(getWeightage())
+                .append(getStringWeightage())
                 .append(" Grade: ")
-                .append(getGrade());
+                .append(getStringGrade());
         return builder.toString();
+    }
+
+    /**
+     * Returns true if the given lesson is the same as this one.
+     * @param lesson The other lesson to compare with.
+     * @return True if the given lesson has the same time slot as this one.
+     */
+    public boolean isSameTimeLesson(Lesson lesson) {
+        return lesson != null
+            && lesson.getStartTime().isBefore(getEndTime()) && lesson.getEndTime().isAfter(getStartTime());
     }
 }
