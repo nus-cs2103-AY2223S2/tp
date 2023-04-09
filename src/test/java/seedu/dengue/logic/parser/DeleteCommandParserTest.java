@@ -143,5 +143,4 @@ public class DeleteCommandParserTest {
         assertParseFailure(parser, "d/2023-03-23 sd/2023-03-25",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
-
 }
