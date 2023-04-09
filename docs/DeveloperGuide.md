@@ -231,23 +231,25 @@ This section describes some noteworthy details on how certain features are imple
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …            | I want to …                               | So that I can…                                                        |
-|----------|-------------------|-------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | new user          | see usage instructions                    | refer to instructions when I forget how to use the App                |
-| `* * *`  | user              | easily save events after closing the app  | generate it again when I start the app                                |
-| `* * *`  | user              | add a event's schedule into the app       | see their schedules                                                   |
-| `* * *`  | user              | delete an event from the app              | remove events that are no longer scheduled                            |
-| `* *`    | forgetful user    | find my next event                        | see the upcoming event without having to check every events myself    |
-| `* *`    | user              | undo accidental deletions                 | easily restore accidents in scheduling                                |
-| `* *`    | teacher           | find a free timeslot in my schedule       | schedule a timeslot for student consultations                         |
-| `* *`    | user              | find an event by name                     | locate details of events without having to go through the entire list |
-| `* *`    | user              | edit my schedule                          | make last minute changes to events                                    |
-| `* *`    | user              | be able to schedule many events           | schedule as many events as I want                                     |
-| `* *`    | user              | be able to have more than one scheduler   | generate different schedules for differnt events                      |
-| `*`      | unmotivated user  | have motivational quotes                  | feel motivated in my day                                              |
-
-*{More to be added}*
-
+| Priority | As a …         | I want to …                                   | So that I can…                                                          |
+|----------|----------------|-----------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | new user       | see usage instructions                        | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user           | add a event's schedule into the app           | see their schedules                                                     |
+| `* * *`  | user           | delete an event from the app                  | remove events that are no longer scheduled                              |
+| `* * *`  | user           | list all events                               | have a high-level overview of all events that I currently have          |
+| `* * *`  | regular user   | save my scheduler on exit                     | reload them again next time                                             |
+| `* * *`  | regular user   | load my events in the scheduler on start      | use the scheduler immediately without having to reenter all events      |
+| `* *`    | clumsy user    | undo a command                                | reset the scheduler to the previous state before I made a mistake       |
+| `* *`    | forgetful user | see my next event clearly                     | readily see what is upcoming for me without having to type any commands |
+| `* *`    | user           | sort my events based on date and time         | readily see my upcoming events chronologically                          |
+| `* *`    | regular user   | repeat an event over a certain period of time | easily repeated events in my scheduler for the same type of events      |
+| `* *`    | long term user | see my monthly schedule easily                | readily see which days I am more available, or which are my busier days |
+| `* *`    | forgetful user | find my next event                            | check on the next event in the scheduler                                |
+| `* *`    | clumsy user    | undo accidental deletions                     | easily restore accidents in scheduling                                  |
+| `* *`    | user           | find an event by name                         | locate details of events without having to go through the entire list   |
+| `* *`    | user           | find an event by date                         | locate details of events without having to go through the entire list   |
+| `* *`    | user           | edit my schedule                              | make changes to events                                                  |
+| `* *`    | busy user      | be able to schedule many events               | schedule as many events as I want                                       |
 
 #### **Use Cases**
 
@@ -258,15 +260,70 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to add an event
-2. System adds the event  
-    Use case ends.
+2. System adds the event<br> 
+   Use case ends.
 
 **Extensions**
 * 1a. The event already exist.
-    * 1a1. System shows an error message.  
+    * 1a1. System shows an error message.<br>
       Use case ends.
-* 2a. The given event format invalid.
-    * 2a1. System shows an error message.  
+
+* 1b. The given event format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
+
+* 1c. The given end time of the event is before start time.
+    * 1c1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Recur an event**</summary>
+
+**MSS**
+
+1. User requests to recur an event over a period of time
+2. System repeatedly adds the event<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The length of time to recur is not appropriate.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+* 1b. The given event format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
+
+* 1c. The given end date of recur is in the past.
+    * 1c1. System shows an error message.<br>
+      Use case ends.
+
+* 1d. There is a clash of events in an upcoming day.
+    * 1d1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Edit an event**</summary>
+
+**MSS**
+
+1. User requests to edit an event
+2. System edits the event<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The event already exist.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+* 1b. The given format invalid.
+    * 1b1. System shows an error message.<br>
       Use case ends.
 
 </details>
@@ -275,18 +332,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <summary markdown="span">**Use case: Delete an event**</summary>
 
 **MSS**
-1.  User requests to list events
-2.  System shows a list of events
-3.  User requests to delete a specific event in the list
-4.  System deletes the event  
-    Use case ends.
+
+1. User requests to delete an event/ events
+2. System deletes the event(s)<br>
+   Use case ends.
 
 **Extensions**
-* 1a. The list is empty.
-  Use case ends.
-* 2a. The given index is invalid.
-    * 2a1. System shows an error message.  
-      Use case resumes at step 2.
+
+* 1a. The given index/ indices is invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+* 1b. The given format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Find an event by name**</summary>
+
+**MSS**
+
+1. User requests to find an event by name
+2. System finds events with matching name
+3. System displays events with matching name<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given event format invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Show next event(s) by name**</summary>
+
+**MSS**
+
+1. User requests to show next x number of event(s)
+2. System displays the next x number of events in chronological order<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given event format invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
 
 </details>
 
@@ -295,48 +389,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to undo the recent delete
-2. System restores the most recent delete  
-    Use case ends.
+2. System restores the most recent delete<br>
+   Use case ends.
 
 **Extensions**
-* 1a. New event added duplicate of recent deleted event.
-    * 1a1. System shows an error message.  
+
+* 1a. Undo is the first command given to the scheduler.
+    * 1a1. System shows an error message.<br>
       Use case ends.
-* 2a. The list is empty.  
-  Use case ends.
-
-</details>
-
-
-<details open markdown="block">
-<summary markdown="span">**Use case: Find event by name**</summary>
-
-**MSS**
-1. User requests to find an event by name
-2. System shows a list of events matching the name  
-   Use case ends.
-
-**Extensions**
-* 1a. The list is empty.  
-  Use case ends.
 
 </details>
 
 <details open markdown="block">
-<summary markdown="span">**Use case: Find next event**</summary>
+<summary markdown="span">**Use case: List all events**</summary>
 
 **MSS**
-1. User requests for next upcoming event
-2. System shows the next upcoming event  
-   Use case ends.
 
-**Extensions**
-* 1a. The list is empty.  
-  Use case ends.
+1. User requests to list all events
+2. System shows all events in the scheduler<br>
+   Use case ends.
 
 </details>
 
-*{More to be added}*
+<details open markdown="block">
+<summary markdown="span">**Use case: Get help instructions**</summary>
+
+**MSS**
+
+1. User requests for help instructions
+2. System shows help instructions<br>
+   Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Exit the application**</summary>
+
+**MSS**
+
+1. User requests to exit the application
+2. System saves all events
+3. System exits the application<br>
+   Use case ends.
+
+</details>
 
 #### **Non-Functional Requirements**
 
