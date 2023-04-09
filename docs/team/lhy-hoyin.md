@@ -82,11 +82,3 @@ It is developed in Java, and uses JavaFX to create the GUI.
 [pr-reviewed-v1.4]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin+milestone%3Av1.4
 [pr-reviewed-others]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin+no%3Amilestone
 [pr-reviewed-total]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin
-
-
-<div style="page-break-after: always;"></div>
-
-
-### Contributions to the User Guide (Extracts)
-![UG Extracts Limitations.png](../images/team/lhy-hoyin_Extract-UG-Limitations.png)
-![UG Extracts FAQ.png](../images/team/lhy-hoyin_Extract-UG-FAQ.png)
