@@ -514,6 +514,8 @@ Examples:
 
 #### Assign a contact to a project: `assign`
 
+Assigns the specified contact to the specified project.
+
 Format: `assign CONTACT_INDEX PROJECT_INDEX`
 
 * `CONTACT_INDEX` refers to the index number shown in the displayed contact list.
