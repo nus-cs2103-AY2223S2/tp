@@ -15,7 +15,7 @@ import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
 import seedu.sudohr.model.leave.LeaveDate;
 
 /**
- * Lists all employees attending a leave identified using it's displayed index
+ * Lists all employees attending a leave identified using its date
  * in SudoHR.
  */
 
@@ -31,8 +31,8 @@ public class ListEmployeeInLeaveCommand extends Command {
     private final LeaveDate targetDate;
 
     /**
-     * Creates an ListEmployeeInLeaveCommand to list all employees attending the
-     * leave at the specified {@code leaveIndex}
+     * Creates an ListEmployeeInLeaveCommand to list all employees taking
+     * leave on the specified {@code date}
      */
     public ListEmployeeInLeaveCommand(LeaveDate date) {
         requireNonNull(date);
