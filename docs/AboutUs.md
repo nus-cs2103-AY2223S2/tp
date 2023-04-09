@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/noyaroet.md)]
 
 * Role: Developer
-* Responsibilities: All
+* Responsibilities: Backend & Features
 
 ### Zenith Yap
 
