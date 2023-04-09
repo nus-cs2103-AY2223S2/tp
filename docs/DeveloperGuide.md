@@ -83,7 +83,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/Ui/Logic.java)
+**API** : [`Ui.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a MainWindow that is made up of different parts.
 For instance, `CommandBox`, `ResultDisplay`, `StudentListPanel`, `ScoreListPanel`,
