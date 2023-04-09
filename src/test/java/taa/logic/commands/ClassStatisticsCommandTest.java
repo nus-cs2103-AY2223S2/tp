@@ -9,7 +9,6 @@ import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ModelManager;
 import taa.model.UserPrefs;
-import taa.model.student.Student;
 import taa.storage.TaaData;
 import taa.testutil.TypicalPersons;
 
