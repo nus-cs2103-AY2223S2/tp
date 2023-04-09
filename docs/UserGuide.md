@@ -16,7 +16,7 @@ title: User Guide
 - [Student Features](#student-features)
     - [Add Student](#adding-student)
     - [Delete Student](#deleting-student)
-    - [Edit Student](#edit-student--edit)
+    - [Edit Student](#edit-student-edit)
     - [Add Student to Event](#add-student-to-event)
     - [Delete Student from Event](#delete-student-from-event)
 - [Note Features](#note-features)
