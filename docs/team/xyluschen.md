@@ -59,7 +59,7 @@ that potentially changes the application statistics.
 * Please refer to PR [#109](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/109)
 * Updated the initial `ClearCommand` in AB3 to match sprINT's requirements.
 
-#### Existing sprINT
+#### Exiting sprINT
 * Please refer to PR [#104](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/104)
 * Update the initial `ExitCOmmand` in AB3 to match sprINT's requirements.
 

@@ -1,29 +1,29 @@
 @startuml
 !include style.puml
 
-box ApplicationLogic LOGIC_COLOR_T1
-participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":AddApplicationCommandParser" as AddApplicationCommandParser LOGIC_COLOR
 participant "d:AddApplicationCommand" as AddApplicationCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box ApplicationModel MODEL_COLOR_T1
-participant ":ApplicationModel" as ApplicationModel MODEL_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
 participant ":Application" as Application MODEL_COLOR
 end box
 
-note left of ApplicationLogicManager #aqua
+note left of LogicManager #aqua
 Let user input be <str>
 str = "r/SWE c/Google
 e/googlehires@gmail.com s/applied"
 end note
 
-[-> ApplicationLogicManager : execute("add {str}")
-activate ApplicationLogicManager
+[-> LogicManager : execute("add {str}")
+activate LogicManager
 
-ApplicationLogicManager -> InternshipBookParser : parseCommand("add {str}")
+LogicManager -> InternshipBookParser : parseCommand("add {str}")
 activate InternshipBookParser
 
 create AddApplicationCommandParser
@@ -56,17 +56,17 @@ deactivate AddApplicationCommandParser
 AddApplicationCommandParser -[hidden]-> InternshipBookParser
 destroy AddApplicationCommandParser
 
-InternshipBookParser --> ApplicationLogicManager : addCommand
+InternshipBookParser --> LogicManager : addCommand
 deactivate InternshipBookParser
 
-ApplicationLogicManager -> AddApplicationCommand : execute()
+LogicManager -> AddApplicationCommand : execute()
 activate AddApplicationCommand
 
-AddApplicationCommand -> ApplicationModel : addApplication(app)
+AddApplicationCommand -> Model : addApplication(app)
 activate ApplicationModel
 
-ApplicationModel --> AddApplicationCommand
-deactivate ApplicationModel
+Model --> AddApplicationCommand
+deactivate Model
 
 create CommandResult
 AddApplicationCommand -> CommandResult
@@ -75,11 +75,11 @@ activate CommandResult
 CommandResult --> AddApplicationCommand
 deactivate CommandResult
 
-AddApplicationCommand --> ApplicationLogicManager : result
+AddApplicationCommand --> LogicManager : result
 deactivate AddApplicationCommand
 
-[<--ApplicationLogicManager
-deactivate ApplicationLogicManager
+[<--LogicManager
+deactivate LogicManager
 
 @enduml
 
