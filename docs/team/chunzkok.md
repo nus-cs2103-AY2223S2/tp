@@ -53,9 +53,9 @@ Given below are my contributions to the project.
   - **Developer Guide**
     - Added value proposition and initial set of user stories ([PR #32](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/32), [PR #35](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/35))
     - Added use case for `add_student` command ([PR #119](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/119))
-    - Added Introduction section ([PR #233](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/233))
-    - Modified AB-3 UML diagrams to fit TAA context ([PR #233](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/233))
-    - Added implementation details and design considerations for `add_student` command ([PR #233](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/233))
+    - Added Introduction section ([PR #234](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/234))
+    - Modified AB-3 UML diagrams to fit TAA context ([PR #234](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/234))
+    - Added implementation details and design considerations for `add_student` command ([PR #234](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/234))
 
 - **Team-based Tasks**
   - Enabled assertions in project Gradle file ([PR #106](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/106))
