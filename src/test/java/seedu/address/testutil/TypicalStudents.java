@@ -91,7 +91,11 @@ public class TypicalStudents {
                 curr.addStudent(student);
                 classes.addClass(curr);
             } else {
-                curr.addStudent(student);
+                Class temp = curr;
+                if (!curr.getStudents().contains(student)) {
+                    curr.addStudent(student);
+                    classes.setClass(temp, curr);
+                }
             }
         }
         return classes;
