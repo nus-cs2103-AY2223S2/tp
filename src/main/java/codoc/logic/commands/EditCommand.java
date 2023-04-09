@@ -11,6 +11,7 @@ import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
 import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS_INPUT;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
@@ -111,7 +112,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.setProtagonist(editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS, "");
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS, PREDICATE_SHOW_ALL_PERSONS_INPUT);
 
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
