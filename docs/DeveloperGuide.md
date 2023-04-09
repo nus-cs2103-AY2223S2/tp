@@ -421,19 +421,22 @@ The feature utilises the following classes:
 - `DeleteModuleCommand`: Subclass of `DeleteCommand` which handles the deletion a module from the tracker
 - `DeleteLectureCommand`: Subclass of `DeleteCommand` which handles the deletion a lecture from a module in the tracker
 - `DeleteVideoCommand`: Subclass of `DeleteCommand` which handles the deletion a video from a lecture from a module in the tracker.
-- `DeleteMultipleCommand`: Abstract class extending from `DeleteCommand` for delete commands that delete multiple specified entities from the tracker
-- `DeleteMultipleModulesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple modules from the tracker
-- `DeleteMultipleLecturesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple lectures from the same module in the tracker
-- `DeleteMultipleVideosCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
+- `DeleteMultipleModulesCommand`: Subclass of `DeleteCommand` which handles the deletion of multiple modules from the tracker
+- `DeleteMultipleLecturesCommand`: Subclass of `DeleteCommand` which handles the deletion of multiple lectures from the same module in the tracker
+- `DeleteMultipleVideosCommand`: Subclass of `DeleteCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
 - `MultipleEventsParser`: Interface that parses string for commands that can be executed on multiple objects at once
 
 The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
 
 ![DeleteCommandClassDiagram](images/delete/deleteCommandClassDiagram.png)
 
-The following diagram shows the Sequence Diagram of executing a `DeleteMultipleModulesCommand`:
+The following diagram shows the Sequence Diagram of parsing a `delete` command into a `DeleteMultipleModulesCommand`:
 
-![DeleteMultpleModulesCommandSequential](images/delete/DeleteModuleSequenceDiagram.png)
+![DeleteMultipleModulesParseSequenceDiagram](images/delete/DeleteModuleParseSequenceDiagram.png)
+
+The following diagram shows the Sequence Diagram of the execution of a `DeleteMultipleModulesCommand`, which acts as a continuation of the above diagram:
+
+![DeleteMultipleModulesExecutionSequenceDiagram](images/delete/DeleteModuleExecutionSequenceDiagram.png)
 
 The following is a description of the code execution flow
 
@@ -448,15 +451,27 @@ The following is a description of the code execution flow
 
 2. The argument values are then checked on as such:
 
-   - ModuleCode: valid mod code that begins with capital letters, followed by numbers. could end with capital letters at the end
+   - ModuleCode: valid mod code that begins with capital letters, followed by numbers. could optionally end with capital letters at the end
    - LectureName: valid lecture name that does not contain symbols
-   - VideoName: valid lecture name that does not contain symbols
+   - VideoName: valid video name that does not contain symbols
 
-   Note: LectureName and VideoName should not contain commas (","). Rather than throwing as errors, Le Tracker will treat it as though the user intended to delete multiple entities
+   Note: ModuleCode, LectureName and VideoName should not contain commas (","). Rather than throwing as errors, Le Tracker will treat it as though the user intended to delete multiple entities
 
 3. The appropriate `DeleteCommand` subclass object is created then returned to its caller.
+  - `DeleteModuleCommand`: single module to be deleted
+  - `DeleteMultipleModulesCommand`: more than one module to be deleted
+  - `DeleteLectureCommand`: single lecture to be deleted
+  - `DeleteMultipleLecturesCommand`: more than one lecture to be deleted
+  - `DeleteVideoCommand`: single video to be deleted
+  - `DeleteMultipleVideosCommand`: more than one video to be deleted
 
-4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module/lecture/video from itself
+4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module(s)/lecture(s)/video(s) the respective context. <br>
+Possible exceptions that could be thrown are:
+    - Command contains duplicate entities to be deleted
+    - Invalid format for any entity
+    - Entity does not exist in respective context
+
+5. If `DeleteMultipleModulesCommand`, `DeleteMultipleLecturesCommand` or `DeleteMultipleVideosCommand` is parsed, on execution, the command calls `DeleteModuleCommand`, `DeleteLectureCommand` or `DeleteVideoCommand` respectively
 
 **Reasons for such implementation**
 
@@ -745,8 +760,8 @@ The `tag` command supports:
 - Adding multiple `Tag` objects to a `Lecture` object of a `Module` object contained in a `Tracker` object
 - Adding multiple `Tag` objects to a `Video` object of a `Lecture` object contained in a `Module` object in a `Tracker` object
 
-The `tag` behaviour is dependent on the arguments provided by the user. `Module` objects, `Lecture` objects, and 
-`Video` objects can have multiple, unique `Tag` objects. If a command contains new tags and tags that were already 
+The `tag` behaviour is dependent on the arguments provided by the user. `Module` objects, `Lecture` objects, and
+`Video` objects can have multiple, unique `Tag` objects. If a command contains new tags and tags that were already
 added to `Module` objects, `Lecture` objects, or `Video` objects, only the new tags will be added.
 
 **Notable Classes**
@@ -754,12 +769,12 @@ added to `Module` objects, `Lecture` objects, or `Video` objects, only the new t
 The feature utilises the following classes:
 
 - `TagCommandParser` – Creates the appropriate `TagCommand` object based on the user's input
-- `TagCommand` – Handles adding `Tag` objects to a `Module`/`Lecture`/`Video` object based on 
+- `TagCommand` – Handles adding `Tag` objects to a `Module`/`Lecture`/`Video` object based on
   the user's input
 
 **Execution**
 
-The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a 
+The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a
 `Tracker` object.
 
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
@@ -798,15 +813,15 @@ The following is a description of the code execution flow:
 
 The `untag` command supports:
 
-- Removing multiple `Tag` objects from a `Module` object in a `Tracker` object that is contained in a `ModelManager` 
+- Removing multiple `Tag` objects from a `Module` object in a `Tracker` object that is contained in a `ModelManager`
   object
 - Removing multiple `Tag` objects from a `Lecture` object of a `Module` object in a `Tracker` object
-- Removing multiple `Tag` objects from a `Video` object of a `Lecture` object which belongs to a `Module` object in a 
+- Removing multiple `Tag` objects from a `Video` object of a `Lecture` object which belongs to a `Module` object in a
   `Tracker` object
 
-The `untag` behaviour is dependent on the arguments provided by the user. Multiple `Tag` objects can be deleted in a 
+The `untag` behaviour is dependent on the arguments provided by the user. Multiple `Tag` objects can be deleted in a
 single command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
-videos, a `CommandException` will be thrown. Duplicated tags in the command, if any, will be ignored. 
+videos, a `CommandException` will be thrown. Duplicated tags in the command, if any, will be ignored.
 
 **Notable Classes**
 
@@ -818,14 +833,14 @@ The feature utilises the following classes:
 
 **Execution**
 
-The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object 
+The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object
 in a `Tracker` object.
 
 ![UntagSequenceDiagram](images/UntagSequenceDiagram.png)
 
 The following is a description of the code execution flow:
 
-1. `UntagCommandParser#parse()` takes in the user input and determine whether the user wants to remove `Tag` 
+1. `UntagCommandParser#parse()` takes in the user input and determine whether the user wants to remove `Tag`
    objects a `Module`, `Lecture`, or `Video` object based on the appropriate prefixes included in the user's input.
 2. The user input is then checked to determine whether it contains the required prefixes according to the table
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
@@ -840,16 +855,16 @@ The following is a description of the code execution flow:
 3. A set of `Tag` objects to remove is then determined from the user's input. Afterwards, the command creates an
    appropriate `UntagCommand` object and returns it to the caller.
 4. `LogicManager` calls the `Command#execute()` method of the `UntagCommand` object returned by
-   `UntagCommandParser#parse()`. 
-5. If no exceptions are thrown, the command succeeds in removing the `Tag` objects from the 
-   `Module`/`Lecture`/`Video` object. 
+   `UntagCommandParser#parse()`.
+5. If no exceptions are thrown, the command succeeds in removing the `Tag` objects from the
+   `Module`/`Lecture`/`Video` object.
 
 **Notes for `UntagCommandParser#parse()`**
-- A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included. 
+- A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included.
 
 **Notes for `UntagCommand#execute()`**
 - A `CommandException` will be thrown for the following scenarios:
-  - The user did not specify any tags to remove. 
+  - The user did not specify any tags to remove.
   - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
   - The specified tags do not correspond with existing `Tag` objects in the `Module`/`Lecture`/`Video` object.
 
@@ -858,7 +873,7 @@ The following is a description of the code execution flow:
 
 The `import` command supports:
 - Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object
-- Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting 
+- Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting
   current `Module` objects with imported `Module` objects if these modules exist in the current `Tracker` object
 - Importing specific `Module` objects from a valid Le Tracker data file into the current `Tracker` object
 - Importing specific `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting
@@ -870,13 +885,13 @@ The `import` behaviour is dependent on the arguments provided by the user.
 
 The feature utilises the following classes:
 - `ImportCommandParser` - Creates the appropriate `ImportCommand` object based on the user's input
-- `ImportCommand` - Creates the appropriate `CommandResult` object containing the file path for import and the set 
+- `ImportCommand` - Creates the appropriate `CommandResult` object containing the file path for import and the set
   of `ModuleCode` objects that references the `Module` objects to import
 - `Archive` - Handles importing `Module` objects from the file path in `CommandResult` to the current `Tracker` object
 
 **Execution**
 
-The following sequence diagram depicts a `import` command execution for importing a single module from a specified 
+The following sequence diagram depicts a `import` command execution for importing a single module from a specified
 file path to the current `Tracker` object
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
@@ -888,14 +903,14 @@ The following is a description of the code execution flow:
 
 1. `ImportCommandParser#parse()` takes in the user input and determine the file path that the user wants to
    import from, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the
-   `/overwrite` flag. 
+   `/overwrite` flag.
 2. The command creates an appropriate `ImportCommand` object and returns it to the caller.
 3. `LogicManager` calls `Command#execute()` method of the `ImportCommand` object. An appropriate `CommandResult` object containing a `Path` object with the
-   importing file path and a set of `ModuleCode` objects to reference the `Module` objects to import is then 
+   importing file path and a set of `ModuleCode` objects to reference the `Module` objects to import is then
    returned to the caller.
-4. `LogicManager` calls the `Archive#importFromArchive()` method. The `Archive` object then checks whether the 
+4. `LogicManager` calls the `Archive#importFromArchive()` method. The `Archive` object then checks whether the
    modules in user's input exist in the current Tracker, and in the specified file path.
-5. If no exceptions are thrown, the command succeeds in importing `Module` objects from the specified file path to the 
+5. If no exceptions are thrown, the command succeeds in importing `Module` objects from the specified file path to the
    current `Tracker` object.
 
 **Notes for `ImportCommandParser#parse()`**
@@ -917,9 +932,9 @@ The following is a description of the code execution flow:
 ### Exporting data feature
 
 The `export` command supports:
-- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to a new file path, in a JSON 
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to a new file path, in a JSON
   format file
-- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to an existing file path, in a 
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to an existing file path, in a
   JSON format file, overwriting its content
 
 The `export` behaviour is dependent on the arguments provided by the user.
@@ -934,21 +949,21 @@ The feature utilises the following classes:
 
 **Execution**
 
-The following sequence diagram depicts a `export` command execution for exporting a `Tracker` object to a specified 
+The following sequence diagram depicts a `export` command execution for exporting a `Tracker` object to a specified
 file path
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
 The following is a description of the code execution flow:
 
-1. `ExportCommandParser#parse()` takes in the user input and determine the file path that the user wants to 
-   export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the 
+1. `ExportCommandParser#parse()` takes in the user input and determine the file path that the user wants to
+   export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the
    `/overwrite` flag.
 2. The command creates an appropriate `ExportCommand` object and returns it to the caller.
-3. `LogicManager` calls the `Command#execute()` method of the `ExportCommand`. An appropriate `CommandResult` object containing a `Path` object with the 
-   saving file path is then returned to the caller. 
+3. `LogicManager` calls the `Command#execute()` method of the `ExportCommand`. An appropriate `CommandResult` object containing a `Path` object with the
+   saving file path is then returned to the caller.
 4. `LogicManager` calls the `Archive#exportToArchive()` method.
-5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and 
+5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and
    `Video` objects it contains to the specified file path.
 
 **Notes for `ExportCommandParser#parse()`**

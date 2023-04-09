@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+
+participant ":LogicManager" LOGIC_COLOR
+participant ":TrackerParser" LOGIC_COLOR
+participant ":DeleteCommandParser" LOGIC_COLOR
+participant "MultipleEventsParser" LOGIC_COLOR
+participant ":DeleteMultipleModulesCommand" LOGIC_COLOR
+
+-> ":LogicManager": execute("delete\nCS2103, CS2040S")
+activate ":LogicManager"
+
+":LogicManager" -> ":TrackerParser": parseCommand("delete\nCS2103, CS2040S")
+activate ":TrackerParser"
+
+create ":DeleteCommandParser"
+":TrackerParser" -> ":DeleteCommandParser"
+activate ":DeleteCommandParser"
+
+":DeleteCommandParser" -> "MultipleEventsParser": parseModuleCodes(\n"CS2103, CS2040S")
+activate "MultipleEventsParser"
+
+":DeleteCommandParser" <-- "MultipleEventsParser": ModuleCode[]
+deactivate "MultipleEventsParser"
+
+create ":DeleteMultipleModulesCommand"
+":DeleteCommandParser" -> ":DeleteMultipleModulesCommand"
+activate ":DeleteMultipleModulesCommand"
+
+":DeleteCommandParser" <-- ":DeleteMultipleModulesCommand"
+deactivate ":DeleteMultipleModulesCommand"
+
+":TrackerParser" <-- ":DeleteCommandParser"
+deactivate ":DeleteCommandParser"
+
+":LogicManager" <-- ":TrackerParser"
+deactivate ":TrackerParser"
+
+@enduml
