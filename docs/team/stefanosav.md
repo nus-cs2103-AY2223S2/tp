@@ -6,7 +6,7 @@ title: Stefanos Avraam's Project Portfolio Page
 ### Project: MediConnect
 
 Overview:
-MediConnect is a desktop application used for managing patients and doctors information.
+MediConnect is a desktop application used for managing patients and doctors' information.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 10 kLoC.
 
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 * **New features**:
     * Add `addPatient` and `addDoctor` commands [(Pull Request #24)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/24)
       * What it does: Allows users to add people with specific roles (i.e Patients or Doctors) to MediConnect.
-      * Justification: These features enables the distinction between patients treated and doctors working at the hospital.
+      * Justification: These features enable the distinction between patients treated and doctors working at the hospital.
       Therefore, other features can target one of the two groups and perform specific actions according to the person's role.
     * Add `listDoctors` and `listPatients` commands [(Pull Request #67)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/67)
       * What it does: Allows users to obtain a list of either only doctors or only patients.
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     * Add NRIC field to add commands [(Pull Request #24)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/24)
       * What was changed: Added an additional field to the existing features of each person.
       * Justification: Originally, each person could only be identified by their name. This was not practical for the 
-      nature of a medical information management application, so adding the NRIC field, we allow users to easily 
+      nature of a medical information management application, so by adding the NRIC field, we allow users to easily 
       identify the persons registered in MediConnect.
     * Update find command [(Pull Request #52)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/52)
       * What was changed: The find command was changed to find and display the person with the given NRIC number.
