@@ -1073,7 +1073,9 @@ These instructions only provide a starting point for testers to work on; testers
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-### Adding a person
+<div style="page-break-after: always;"></div>
+
+### Adding a applicant
 
 Prerequisites: An applicant with the name Fred and phone number 999 does not exist in HMHero yet.
 
@@ -1090,7 +1092,7 @@ Application date is `01-01-2023 18:00`.
 Test case: `add n/Fred p/999`<br>
 Expected: No applicant is added. Error message for invalid command format.
 
-### Deleting a person
+### Deleting a applicant
 
 Prerequisites: An applicant with the name Fred and phone number 999 exists in HMHero.
 
