@@ -78,10 +78,10 @@ public class ImportCommand extends CsvCommand {
             throwEntryFormatError(record, Name.MESSAGE_CONSTRAINTS);
         }
 
-        if (!record.isMapped(CsvUtil.KW_ATTENDANCE)) {
-            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
+        if (!record.isMapped(CsvUtil.KW_ATD)) {
+            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_ATD));
         }
-        final String atd = record.get(CsvUtil.KW_ATTENDANCE);
+        final String atd = record.get(CsvUtil.KW_ATD);
         final String atdStr;
         if (atd.isBlank()) {
             atdStr = Attendance.ORIGINAL_ATD;
@@ -107,10 +107,10 @@ public class ImportCommand extends CsvCommand {
         }
 
         final ArrayList<String> submissions = new ArrayList<>();
-        if (!record.isMapped(CsvUtil.KW_SUBMISSIONS)) {
-            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_SUBMISSIONS));
+        if (!record.isMapped(CsvUtil.KW_SUBMISSION)) {
+            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_SUBMISSION));
         }
-        final String submitStr = record.get(CsvUtil.KW_SUBMISSIONS);
+        final String submitStr = record.get(CsvUtil.KW_SUBMISSION);
         if (!submitStr.isBlank()) {
             Collections.addAll(submissions, submitStr.trim().split(";"));
         }
@@ -120,10 +120,10 @@ public class ImportCommand extends CsvCommand {
             throwEntryFormatError(record, e.getMessage());
         }
 
-        if (!record.isMapped(CsvUtil.KW_TAGS)) {
-            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_TAGS));
+        if (!record.isMapped(CsvUtil.KW_CLASS)) {
+            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_CLASS));
         }
-        final String tagStr = record.get(CsvUtil.KW_TAGS).trim();
+        final String tagStr = record.get(CsvUtil.KW_CLASS).trim();
         Set<Tag> parsedTags = null;
         try {
             // ignore all tokens that are empty strings.

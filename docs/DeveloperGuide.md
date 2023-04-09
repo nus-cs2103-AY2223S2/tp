@@ -1,8 +1,9 @@
 ---
-layout: page
+layout: page 
 title: Developer Guide
 ---
-* Table of Contents
+
+* Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -143,7 +144,11 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/MainApp.java). It is responsible for,
+**`Main`** has two classes
+called [`Main`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/Main.java)
+and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/MainApp.java). It is
+responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -156,10 +161,10 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_student 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
+the command `delete_student 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="654" />
 <figcaption style="text-align:center"><em><strong>
@@ -171,9 +176,13 @@ Architecture Sequence Diagram of TAA
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
+  API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 <figcaption style="text-align:center"><em><strong>
@@ -186,7 +195,8 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/ui/Ui.java)
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 <figcaption style="text-align:center"><em><strong>
@@ -195,9 +205,15 @@ Figure 5
 Structure of the UI component
 </em></figcaption>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified
+in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -220,12 +236,16 @@ Class Diagram of the Logic Component in TAA
 </em></figcaption>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `TaaParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+
+1. When `Logic` is called upon to execute a command, it adds the command to the command history and uses the `TaaParser`
+   class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+   executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 <figcaption style="text-align:center"><em><strong>
@@ -252,6 +272,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `DeleteStudentCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/model/Model.java)
 <img src="images/ModelClassDiagram.png" width="450" />
 <figcaption style="text-align:center"><em><strong>
@@ -265,14 +286,18 @@ Class Diagram of the Model Component in TAA
 The `Model` component,
 
 * stores the student data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
-* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list
+  which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be
+  bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
+  a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+  should make sense on their own without depending on other components)
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 <figcaption style="text-align:center"><em><strong>
@@ -282,22 +307,25 @@ Class Diagram of the Storage Component in TAA
 </em></figcaption>
 
 The `Storage` component,
+
 * can save both student data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TaaStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 Reading data from JSON:
+
 * MainApp.initModelManager()
-  * JsonTaaStorage.readTaaData()
-    * JsonUtil.readJsonFile()
-    * JsonSerializableTaaData.toModelType()
+    * JsonTaaStorage.readTaaData()
+        * JsonUtil.readJsonFile()
+        * JsonSerializableTaaData.toModelType()
 
 Saving data to JSON:
+
 * LogicManager.execute()
-  * ModelManager.getTaaData()
-  * JsonTaaStorage.saveTaaData())
-    * JsonUtil.saveJsonFile()
-    * JsonSerializableTaaData.new()
+    * ModelManager.getTaaData()
+    * JsonTaaStorage.saveTaaData())
+        * JsonUtil.saveJsonFile()
+        * JsonSerializableTaaData.new()
 
 ### Common classes
 
@@ -343,18 +371,229 @@ Activity Diagram for adding a Student
 <br />
 
 #### Design Considerations
-**Dealing with non-existent Class Lists**
+**Aspect: Dealing with non-existent Class Lists**
 
 One issue with the behaviour of this command stems from the undecided behaviour when a specified `CLASS_NAME` does not exist as a Class List yet.
 
 Among the two options described below, our team decided to choose the former as we felt that it would be pointlessly troublesome for a user to deliberately create a Class List just to add a new student.
 
-1. **Alternative 1 (current choice):** Create the Class List automatically
+1. **Alternative 1 (Chosen):** Create the Class List automatically
     - Pros: Convenient for users as they do not have to manually create the Class Lists before using this command.
     - Cons: Users may accidentally add a Student into a stray Class List as a result of a typo.
 2. **Alternative 2:** Reject the operation and prompt user to create the specified Class List before proceeding
     - Pros: Users will be assured that the Students they are adding will be added to a Class List that they have manually created before.
     - Cons: Can be tiring when the user has to manually create multiple class lists just to add Students.
+
+### Mark Attendance
+
+#### Implementation
+Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanceCommand` and `Model`
+
+* `MarkAttendanceParser`-- Parse the input of users
+* `MarkAttednanceCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for marking attendance of a student
+
+<img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
+<figcaption style="text-align:center"><em><strong>
+Figure 13
+</strong>:
+Sequence Diagram for Marking Attendance
+</em></figcaption>
+<br />
+
+#### Design Considerations
+
+**Aspect: How TAA execute the command**
+
+1. **Alternative 1 (Chosen):** MarkAttendanceCommand will edit the student's attendance.
+    * Pros: More efficient in terms of space and time, and easier to implement.
+    * Cons: No immutability for student
+
+2. **Alternative 2:** MarkAttendanceCommand create new student to replace student to be edited.
+    * Pros: Student is immutable
+    * Cons: Less efficient in terms of space and time.
+
+### Unmark Attendance
+
+#### Implementation
+Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand` and `Model`
+
+* `UnarkAttendanceParser`-- Parse the input of users
+* `UnarkAttednanceCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for unmarking attendance of a student
+
+<img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
+<figcaption style="text-align:center"><em><strong>
+Figure 14
+</strong>:
+Sequence Diagram for Unmarking Attendance
+</em></figcaption>
+<br />
+
+#### Design Considerations
+
+**Aspect: How TAA should search for users**
+
+1. **Alternative 1 (Chosen):** UnarkAttendanceCommand will take in student index.
+    * Pros: Easy to type, and index can be found easily by just looking.
+    * Cons: Might need some scrolling to find student's index if there is many students.
+
+2. **Alternative 2:** UnarkAttendanceCommand will take in student name.
+    * Pros: More typing for the user.
+    * Cons: No need to scroll and find student's index.
+
+### Insert Participation
+
+#### Implementation
+Insert Participation command is facilitated by `InsertParticipationParser`, `InsertParticipationCommand` and `Model`
+
+* `InsertParticipationParser`-- Parse the input of users
+* `InsertParticipationCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for inserting participation of a student
+
+<img src="images/InsertParticipationSequenceDiagram.png" width="574" />
+<figcaption style="text-align:center"><em><strong>
+Figure 15
+</strong>:
+Sequence Diagram for Inserting Participation
+</em></figcaption>
+
+#### Design Considerations
+**Aspect: How to handle case where user attempt to add participation points for week without attendance**
+
+1. **Alternative 1 (Chosen):** TAA will output error message telling user to mark attendance first.
+    * Pros: Reduce confusion and errors in case user accidentally add participation for wrong week when attendance is not marked
+    * Cons: Lesser flexibility (user cannot choose to insert participation points before marking attendance)
+
+2. **Alternative 2:** TAA allows participation points to be added regardless of the attendance for the week.
+    * Pros: More flexibility
+    * Cons: Might cause possible confusion for user as the user might add points for wrong week and not realise
+
+### Add Assignment
+
+#### Implementation
+AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
+
+* `AddAssignmentCommandParser`-- Parse the input of users
+* `AddAssignmentCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for adding an assignment.
+
+<img src="images/AddAssignmentSequenceDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 16
+</strong>:
+Sequence Diagram for Adding Assignment
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: How TAA adds an assignment to the classlist**
+
+1. **Alternative 1 (Chosen):** Assignment will be added for all students in the classlist.
+    * Pros: Easier to implement, less likely for bugs.
+    * Cons: Less robust
+
+2. **Alternative 2:** Assignment will be added for select students in the classlist.
+    * Pros: More extensive
+    * Cons: More likely for bugs, harder to implement.
+
+### Delete Assignment
+
+#### Implementation
+DeleteAssignment command is facilitated by `DeleteAssignmentCommandParser`, `DeleteAssignmentCommand` and `Model`
+
+* `DeleteAssignmentCommandParser`-- Parse the input of users
+* `DeleteAssignmentCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for deleting an assignment.
+
+<img src="images/DeleteAssignmentSequenceDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 17
+</strong>:
+Sequence Diagram for Deleting Assignment
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: How the DeleteAssignmentCommand is parsed**
+
+1. **Alternative 1 (Chosen):** Use the assignment name to refer to the assignment.
+* Pros: More intuitive.
+    * Cons: TA may have to keep track of many assignment names, or type more than usual as opposed to just typing the index.
+
+2. **Alternative 2:** Use assignment id to refer to an assignment.
+    * Pros: TA will have to type less, less assignment names to keep track
+    * Cons: Unintuitive and confusing.
+
+### Grade Assignment
+
+#### Implementation
+Grade command is facilitated by `GradeCommandParser`, `GradeCommand` and `Model`
+
+* `GradeCommandParser`-- Parse the input of users
+* `GradeCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for grading a student submission.
+
+<img src="images/GradeSequenceDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 18
+</strong>:
+Sequence Diagram for grading a student submission
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: How to indicate a late student submission**
+
+1. **Alternative 1 (Chosen):** Use an optional late/ prefix to indicate a late submission.
+    * Pros: More intuitive, shorter code, does not require a whole new command just to mark a submission as late.
+    * Cons: None
+
+2. **Alternative 2:** Create a new command to indicate a late submission.
+    * Pros: None
+    * Cons: More code, less intuitive and more commands to remember.
+
+### Ungrade Assignment
+
+#### Implementation
+Ungrade command is facilitated by `UngradeCommandParser`, `UngradeCommand` and `Model`
+
+* `UngradeCommandParser`-- Parse the input of users
+* `UngradeCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for ungrading a student submission.
+
+<img src="images/UngradeSequenceDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 19
+</strong>:
+Sequence Diagram for ungrading a student submission
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: How to handle ungrading a submission that was not graded / already ungraded**
+
+1. **Alternative 1 (Chosen):** Always set the marks to 0 and the late submission status to false.
+    * Pros: Less code, also makes sense as the overall effect will be the same.
+    * Cons: Less intuitive for the user.
+
+2. **Alternative 2:** Throw an error message saying that the assignment has not been graded before / was already ungraded.
+    * Pros: More intuitive for the user.
+    * Cons: More code.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -433,7 +672,7 @@ Below is the main success scenario of marking a student's attendance.
 
    Use case ends.
 
-**Extensions**
+   **Extensions**
 
 * 1a. The given student index/week is invalid.
 
@@ -447,11 +686,7 @@ Below is the main success scenario of marking a student's attendance.
       Use case ends.
 
 
-Below is the sequence diagram for Marking attendance of a student
-
-<img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
-
-##### Unmark Attendance
+## **Unmark Attendance**
 
 Below is the main success scenario of Unmark
 
@@ -474,14 +709,17 @@ Below is the main success scenario of Unmark
 Below is the sequence diagram for Unmarking attendance of a student
 
 <img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
+<figcaption style="text-align:center"><em><strong>
+Figure 21
+</strong>:
+Sequence Diagram for unmarking attendance of a student
+</em></figcaption>
 
 ##### Insert Participation
 
 Below is the main success scenario of Insert Participation
 
-
 **MSS**
-
 
 1. User requests to insert participation points for a specific student for a specified week
 2. TAA inserts participation points
@@ -501,15 +739,12 @@ Below is the main success scenario of Insert Participation
 
       Use case ends.
 
-Below is the sequence diagram for inserting participation points
-
-<img src="images/InsertParticipationSequenceDiagram.png" width="574" />
 
 #### Assignment-related Commands
 
 ##### Add Assignment
 
-Below is the main success scenario of adding an Assignment
+Below is the main success scenario of adding an Assignment.
 
 **MSS**
 
@@ -532,16 +767,85 @@ Below is the main success scenario of adding an Assignment
 
     * 1c1. TAA shows an error message
 
-
 AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
 
-* `AddAssignmentCommandParser`-- Parse the input of users
-* `AddAssignmentCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the assignment list.
+## **Delete Assignment**
 
-Below is the sequence diagram for adding an assignment.
+Below is the main success scenario of deleting an Assignment
 
-<img src="images/AddAssignmentSequenceDiagram.png" width="574" />
+**MSS**
+
+1. User requests to delete an assignment of a specific name.
+2. TAA deletes the assignment.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is an assignment with that particular name, .
+
+    * Use case resumes from step 2.
+
+* 1b. There is no assignment with that particular name.
+
+    * 1b1. TAA shows an error message
+
+## **Grade Assignment**
+
+Below is the main success scenario of grading a student submission.
+
+**MSS**
+
+1. User requests to grade a student submission for an assignment, with given marks, and optionally indicating the
+   submission as late.
+
+3. TAA grades the student submission.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is an assignment with that particular name, student index exists in the class list and marks given are
+  valid.
+
+    * Use case resumes from step 2.
+
+* 1b. There is no assignment with that particular name.
+
+    * 1b1. TAA shows an error message.
+
+* 1c. The student index does not exist in the class list.
+
+    * 1c1. TAA shows an error message.
+
+* 1d. The marks given are invalid, where the marks given lies outside the range of 0 to totalMarks for the assignment.
+
+    * 1d1. TAA shows an error message.
+
+## **Ungrade Assignment**
+
+Below is the main success scenario of ungrading a student submission.
+
+**MSS**
+
+1. User requests to ungrade a student submission for an assignment.
+2. TAA grades the student submission.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is an assignment with that particular name, student index exists in the class list.
+
+    * Use case resumes from step 2.
+
+* 1b. There is no assignment with that particular name.
+
+    * 1b1. TAA shows an error message.
+
+* 1c. The student index does not exist in the class list.
+
+    * 1c1. TAA shows an error message.
 
 #### Student-related Commands
 
@@ -562,22 +866,24 @@ Below is the main success scenario of student-related commands.
       Use case resumes from step 1.
 
 * 1b. The given class(es) does not exist.
-  * 1b1. TAA creates a new class for each class that does not exist yet.
+    * 1b1. TAA creates a new class for each class that does not exist yet.
 
-    Use case resumes from step 2.
-
+      Use case resumes from step 2.
 
 ##### List students
 1. User requests to list all students in a class.
 2. TAA shows a list of students and number of students listed.
 
-    Use case ends.
+   Use case ends.
 
 ##### Search student
 1.  User requests to search for a particular student
 2.  TAA shows the information of the student searched
 
-    Use case ends.
+1. User requests to search for a particular student
+2. TAA shows the information of the student searched
+
+   Use case ends.
 
 **Extensions**
 
@@ -593,8 +899,7 @@ Below is the main success scenario of student-related commands.
 **Extensions**
 
 * 2a. Class list with the same name already exists.
-  * 2a1. TAA shows an error message.
-    Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 
 #### Alarm-Related Commands
 
@@ -608,8 +913,7 @@ Below is the main success scenarios of adding, deleting and listing alarms.
 **Extensions**
 
 * 2a. User does not provide sufficient arguments
-    * 2a1. TAA shows an error message.
-      Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 
 Below is the sequence diagram for adding an alarm.
 
@@ -621,12 +925,11 @@ Below is the sequence diagram for adding an alarm.
     Use case ends.
 
 **Extensions**
+
 * 2a. User does not provide sufficient arguments
-    * 2a1. TAA shows an error message.
-      Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 * 2b. User does not provide a valid index
-    * 2a1. TAA shows an error message.
-      Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 
 Below is the sequence diagram for deleting an alarm.
 
@@ -637,9 +940,9 @@ Below is the sequence diagram for deleting an alarm.
 2. TAA shows all scheduled alarms on the command window.
 
 **Extensions**
+
 * 2a. There is no alarms scheduled.
-    * 2a1. TAA shows an error message.
-      Use case ends.
+    * 2a1. TAA shows an error message. Use case ends.
 
 Below is the sequence diagram for listing the alarms.
 
@@ -688,7 +991,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-    1. Prerequisites: List all students in the class using the `classlist Tutorial_T01` command. Multiple students in the list.
+    1. Prerequisites: List all students in the class using the `classlist Tutorial_T01` command. Multiple students in
+       the list.
 
     1. Test case: `delete_student 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
@@ -697,7 +1001,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `delete_student 0`<br>
        Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete_student`, `delete_student x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete_student`, `delete_student x`, `...` (where x is larger than the
+       list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases … }_
@@ -768,21 +1073,31 @@ John von Neumann,
 ## **Appendix C: Planned Enhancements**
 
 ### 1. Allow multiple students with the same name to be added
-Currently, users are unable to add a student with the same name as another student that already exists in TAA.
-This could be troubling for tutors who have two students with the exact same name in the same class.
 
-However, the current state of TAA is unable to provide sufficient information about students to distinguish between two students with the same name.
-This should be doable only after TAA also has the ability to store student photos for each student (slated for future release), which would enable users to identify students using their names and portraits.
-Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the same name correctly.
+Currently, users are unable to add a student with the same name as another student that already exists in TAA. This
+could be troubling for tutors who have two students with the exact same name in the same class.
 
-This would be done by allowing the commands `add_student` and `edit_student` to succeed when using an existing student name, albeit with a warning "Note: A student with the same name already exists. If this is not what you intended, please undo this operation.".
+However, the current state of TAA is unable to provide sufficient information about students to distinguish between two
+students with the same name. This should be doable only after TAA also has the ability to store student photos for each
+student (slated for future release), which would enable users to identify students using their names and portraits.
+Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the
+same name correctly.
+
+This would be done by allowing the commands `add_student` and `edit_student` to succeed when using an existing student
+name, albeit with a warning "Note: A student with the same name already exists. If this is not what you intended, please
+undo this operation.".
 
 ### 2. Enhance input validation for the student name field
-Currently, students with the same name, but with different capitalisations and whitespace positions are treated as different entities by TAA.
-However, in the real world, this is unlikely the case. Such entities are likely to represent the same student, which can lead to confusion when users accidentally create multiple student entities for the same student as a result of a typo.
 
-Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student` and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to be the same student.
-Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
+Currently, students with the same name, but with different capitalisations and whitespace positions are treated as
+different entities by TAA. However, in the real world, this is unlikely the case. Such entities are likely to represent
+the same student, which can lead to confusion when users accidentally create multiple student entities for the same
+student as a result of a typo.
+
+Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student`
+and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to
+be the same student. Consequently, such operations will not be allowed to execute, and an error message "A student with
+a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
 
 --------------------------------------------------------------------------------------------------------------------
 

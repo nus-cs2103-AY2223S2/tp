@@ -85,4 +85,16 @@ class AssignmentTest {
         assignment.deleteStudentSubmission(student);
         assertEquals(0, assignment.getSubmissions().size());
     }
+
+    @Test
+    void testIsValidAssignmentName() {
+        assertTrue(Assignment.isValidAssignmentName("Lab 1"));
+        assertFalse(Assignment.isValidAssignmentName("Lab_1"));
+    }
+
+    @Test
+    void testIsValidAssignmentMarks() {
+        assertTrue(Assignment.isValidAssignmentMarks(100));
+        assertFalse(Assignment.isValidAssignmentMarks(-1));
+    }
 }
