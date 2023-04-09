@@ -45,6 +45,8 @@ Given below are my contributions to the project.
     * Change test cases of storage component to reflect CoDoc's implementation
     * Minor Ui alignments [#124](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/124)
     * Found and resolved bug that crash the program upon clear command [#189](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/198)
+    * Clean up code residues 
+    * Remove magic variables
 
 * **Documentation**:
     * User Guide:
