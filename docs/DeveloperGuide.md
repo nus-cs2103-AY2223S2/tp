@@ -11,7 +11,7 @@ title: Developer Guide
 
 * [CS2103/T instructors](https://nus-cs2103-ay2223s2.github.io/website/admin/instructors.html) for helping us answer our queries.
 * [AB3](https://github.com/se-edu/addressbook-level3) for providing us with a brownfield project to work on.
-* [JavaFX](https://openjfx.io/), because this project is based on it.
+* [JavaFX](https://openjfx.io/) because this project is based on it.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -490,7 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-#### CRUD use cases
+#### Students / Events use cases
 
 System: Software System (TrAcker)
 <br>

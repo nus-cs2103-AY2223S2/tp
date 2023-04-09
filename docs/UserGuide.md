@@ -43,7 +43,8 @@ title: User Guide
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TrAcker.jar` command to run the application.<br>
    A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+
+  <img src="images/Ui.png" width="750" height="450" />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -66,7 +67,7 @@ Let's clear a little confusion that might arise:
 - Tutorial duration is fixed at 1 hour.
 - Lab duration is fixed at 2 hours.
 - Consultation duration is fixed at 1 hour.
-- Invalid date error will be shown if the start date is before 1900 or after 2099.
+- <b> Invalid date error will be shown if the start date is before 1900 or after 2099. </b>
 
 ----------------------------------------------------------------------
 
@@ -92,7 +93,7 @@ Let's clear a little confusion that might arise:
   * e.g. if you specify `:wq help`, the parser interprets it as `:wq`.
 * Extraneous parameters for commands that do not expect such parameters may be parsed incorrectly, especially for date field.
   * e.g. if you specify `touch Tutorial/firstTutorial -date 10/10/2025 10:00 2025`, the parser interprets it as adding a tutorial with date 10/10/2025 10:00 2025, which is not a valid date. Hence, TrAcker throws an error.
-* Visual images for successful commands have been shown for each feature. Not all commands have visual images to avoid clutter, and the visual images might not be the exact same as what you have.
+* Visual images for successful commands have been shown for each feature. Not all commands have visual images to avoid clutter, and the visual images might not be the exact same as what you have as commands have been executed beforehand for some visuals.
 </div>
 
 --------------------------------------------------------------------
@@ -124,10 +125,6 @@ TrAcker only accepts the following 24-hour date format.
 date format: dd/MM/yyyy HH:mm
 ```
 
-{% include note.html content="
-Maximum start year is 2099.
-" %}
-
 {% include important.html content="
 TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
 " %}
@@ -138,7 +135,7 @@ Examples:
 * `touch Tutorial/makeUpTutorial`
 * `touch Tutorial/examReview -date 01/01/2030 16:00`
 
-`touch Tutorial/makeUpTutorial` visual. The labs and consultation are populated before-hand for a better visual depiction.TrAcker will not display the exact same for you if this is your first time running it.
+`touch Tutorial/makeUpTutorial` visual:
 ![Ui](images/AddTutorialSuccess.png)
 
 <div id='add-lab'></div>
@@ -165,10 +162,6 @@ TrAcker only accepts the following 24-hour date format.
 ```
 date format: dd/MM/yyyy HH:mm
 ```
-
-{% include note.html content="
-Maximum start year is 2099.
-" %}
 
 {% include important.html content="
 TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
@@ -203,10 +196,6 @@ TrAcker only accepts the following 24-hour date format.
 ```
 date format: dd/MM/yyyy HH:mm
 ```
-
-{% include note.html content="
-Maximum start year is 2099.
-" %}
 
 {% include important.html content="
 TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
@@ -345,7 +334,7 @@ Examples:
 * `addStudent 1 Tutorial/1`
 * `addStudent 4 Lab/1`
 
-`addStudent 1 Tutorial/1` visual. The labs and consultation are populated before-hand for a better visual depiction.TrAcker will not display the exact same for you if this is your first time running it.
+`addStudent 1 Tutorial/1` visual:
 ![Ui](images/AddStudentSuccess.png)
 
 <div id='delete-student-from-event'></div>
@@ -399,7 +388,7 @@ Examples:
 * `addNote content/Bring laptop type/Lab name/VisuAlgo`
 * `addNote content/ Prepare questions type/Consultation name/consultEmily`
 
-`addNote content/remember to go through bellman ford type/Tutorial name/makeUpTutorial` visual. The labs and consultation are populated before-hand for a better visual depiction.TrAcker will not display the exact same for you if this is your first time running it.
+`addNote content/remember to go through bellman ford type/Tutorial name/makeUpTutorial` visual:
 ![Ui](images/AddNoteSuccess.png)
 
 <div id='delete-note-from-event'></div>
@@ -417,6 +406,7 @@ Examples:
 * `deleteNote type/Tutorial name/Tut1 index/1`
 * `deleteNote type/Lab name/Lab1 index/1`
 
+`deleteNote type/Tutorial name/makeUpTutorial index/1` visual:
 ![Ui](images/DeleteNoteSuccess.png)
 
 <div id='edit-note-in-event'></div>
@@ -435,6 +425,7 @@ Examples:
 * `editNote content/Bring apple pencil type/Tutorial name/Tut1 index/1`
 * `editNote content/Bring goggles and lab coat type/Lab name/Lab1 index/1`
 
+`editNote type/Tutorial name/makeUpTutorial content/this is my edited note index/1` visual:
 ![Ui](images/EditNoteSuccess.png)
 
 --------------------------------------------------------------------
@@ -462,10 +453,10 @@ Examples:
 * `sort-student all remark nonreverse`
 
 
-`sort-student all name reverse` visual.
+`sort-student all name reverse` visual:
 ![Ui](images/SortSuccess.png)
 
-`sort-student consulation name reverse` visual.
+`sort-student consulation name reverse` visual:
 ![Ui](images/SortConsultationSuccess.png)
 
 <div id='filter-students'></div>
@@ -509,13 +500,13 @@ Examples:
 * `help event consultation`
 * `help organisation`
 
-`help` visual.
+`help` visual:
 ![Ui](images/HelpSuccess.png)
 
 Should you want to take a look at the User Guide in the repository, you can click on the "help" menu.
 Then, you can click on "copy url" and paste it in your browser.
 
-help url visual.
+help url visual:
 ![Ui](images/helpUrl.png)
 
 --------------------------------------------------------------------
