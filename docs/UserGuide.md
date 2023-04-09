@@ -52,36 +52,32 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 
 1. Refer to the [Features](#features) below for details of each command.
 
-## **Detailed Setup**
-
-[To be added]
-
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
 
 ## **Command format**
 
-* All command formats given in this user guide come in the form of `command-word additional-details`.
+* All command formats given in this user guide come in the form of `command-word additional-details`. Example:
 
-Example: ![CommandWordAdditionalDetails](images/CommandWordAdditionalDetails.png)
+![CommandWordAdditionalDetails](images/CommandWordAdditionalDetails.png)
 
-* Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided.
+* Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided. Example:
 
-Example:  ![PrefixDetails](images/PrefixDetails.png)
+![PrefixDetails](images/PrefixDetails.png)
 
-* Additional details in square brackets are optional. Additional details in angle brackets are required and must be supplied by the user.
+* Additional details in square brackets are optional. Additional details in angle brackets are required and must be supplied by the user. Example:
 
-Example:  ![RequireOptional](images/RequireOptional.png)
+![RequireOptional](images/RequireOptional.png)
 
-* Additional details with * after them can be used multiple times, including zero times.
+* Additional details with * after them can be used multiple times, including zero times. Example:
 
-Example:  ![moreThanOneTag](images/moreThanOneTag.png)
+![moreThanOneTag](images/moreThanOneTag.png)
 
 In the example above, `[tag/TAG]*`  can be used as `  `(i.e. 0 times), `tag/friend`, `tag/friend`, `tag/family` etc.`
 
-* Some command formats require an index to be provided. This is the index of the object of interest in the currently displayed list. The index must be a positive integer 1, 2, 3, …
+* Some command formats require an index to be provided. This is the index of the object of interest in the currently displayed list. The index must be a positive integer 1, 2, 3, … Example:
 
-Example:    ![DeleteClientIndex](images/DeleteClientIndex.png)
+![DeleteClientIndex](images/DeleteClientIndex.png)
 
 * All command-words are case-insensitive.
 
@@ -174,6 +170,8 @@ Short form: `lc`
 
 Lists out all clients and shows the client list.
 
+![Client List](images/ClientList.png)
+
 ### Adding a client
 #### Format: `add-client <name/NAME> [email/EMAIL] [phone/PHONE] [tag/TAG]*`
 
@@ -186,7 +184,7 @@ Only the name of the client is compulsory.
 The email address and phone number must be in a valid format. E.g. `XXX@gmail.com` or ```XXX@yahoo.com``` for emails and `12345678` for phone numbers.
 
 Note:
-* each tag to be added needs a separate `tag/TAG` flag.
+* each tag to be added needs a separate `tag/TAG` prefix.
 * Empty prefixes for optional fields will be ignored.
 
 Examples:
@@ -199,32 +197,36 @@ Examples:
 
 Short form: `ec <index> [n/NAME] [e/EMAIL] [p/PHONE] [t/TAG]`
 
-Edits the client at the given index of the client list, changing only the given field(s). Any fields that are mentioned but left empty will be deleted (apart from the name).
+Edits the client at the given index of the **currently visible** client list, changing only the given details. Any prefixes that are provided but left empty will delete the corresponding detail of the client (apart from the name).
 
-Fields that can be changed:
+Details that can be changed:
 * Name
 * Email address
 * Phone number
 * Tags
 
 Note:
-* Using an empty `tag/` flag removes all tags of the client. This cannot be used with any non-empty `tag/` flags e.g. `edit-client 1 tag/ tag/friend` is not valid.
+* Provided details will overwrite existing ones entirely. E.g. `ec <index> tag/Friend` will change the client displayed at `<index>` to only have the tag `Friend`.
+* Using an empty `tag/` prefix removes all tags of the client. This cannot be used with any non-empty `tag/` prefixes e.g. `edit-client 1 tag/ tag/friend` is not valid.
 * At least one field to edit must be provided.
+* If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only. 
 
 Examples:
-*  `edit-client 1 email/new@email.com` Edits the email address of the 1st client to be `new@email.com`.
-*  `edit-client 3 name/Alice Risa phone/1234 tag/` Edits the name of the 3rd client to `Alice Risa` and phone number to `1234`. Removes any tags.
+*  `edit-client 1 email/new@email.com` Edits the email address of the 1st displayed client to be `new@email.com`.
+*  `edit-client 3 name/Alice Risa phone/1234 tag/` Edits the name of the 3rd displayed client to `Alice Risa` and phone number to `1234`. Removes any tags.
+*  `edit-client 1 phone/` Removes the phone number of the 1st displayed client.
 
 ### Deleting a client
 #### Format: `delete-client <index>`
 
 Short form: `dc <index>`
 
-Deletes the client at the specified index of the client list.
+Deletes the client at the specified index of the **currently visible** client list.
 
 Note:
-* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only.
+* A client list needs to be shown for this command to be executed successfully.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command cannot be undone. A deleted client cannot be restored.
@@ -240,6 +242,9 @@ Short form: `cc`
 
 Deletes all clients in the client list.
 
+Note:
+* A client list needs to be shown for this command to be executed successfully.
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command cannot be undone. All deleted clients cannot be restored.
 </div>
@@ -254,7 +259,7 @@ Finds a client based on the details provided. Details that can be supplied are t
 Note:
 * The matching with supplied names and tags are case-insensitive.
 * Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
-* Invalid names and tags will be ignored
+* Invalid names and tags will be ignored. E.g. `name/alice name/!!! Name/` is treated the same as `name/Alice`
 
 <div markdown="block" class="alert alert-info">
 
@@ -271,7 +276,18 @@ Examples:
 
 Short form: `sc`
 
-Sorts all clients that exist in the ArB by name in ascending order.
+Sorts the **currently visible** clients by name in ascending order.
+
+Example:
+
+Original List
+![Original Client List](images/SortClient1.png)
+
+Run `find-client name/bob`
+![Filtered List](images/SortClient2.png)
+
+Run `sort-client`
+![Sorted List](images/SortClient3.png)
 
 [<small>Back to top</small>](#table-of-contents)
 
@@ -312,7 +328,7 @@ Prices must be in a recognisable price format, such as `3.08` or `5`.
 Clients can be linked by entering individual keywords that are part of the clients name. For example, if you wish to link the project to the client with the name `Alice Wheeler`, you can input `alice` or `wheeler`. Further steps to link to a client can be found [here](#linking-a-project-to-a-client).
 
 Note:
-* Each tag to be added needs a separate `tag/TAG` flag.
+* Each tag to be added needs a separate `tag/TAG` prefix.
 * Client name keywords can be separated by either spaces or a prefix e.g. `client/alice client/wheeler` is the same as `client/alice wheeler`.
 * Invalid client name keywords will be ignored.
 * Empty prefixes for optional fields will be ignored.
@@ -337,8 +353,8 @@ Fields that can be changed:
 * Linked client
 
 Note:
-* Using an empty `tag/` flag removes all tags of the project. This cannot be used with any non-empty `tag/` flags e.g. `edit-project 1 tag/ tag/painting` is not valid.
-* Using an empty `client/` flag removes the linked client of the project. This cannot be used with any non-empty `client/` flags e.g. `edit-project 1 client/ client/alice` is not valid.
+* Using an empty `tag/` prefix removes all tags of the project. This cannot be used with any non-empty `tag/` prefixes e.g. `edit-project 1 tag/ tag/painting` is not valid.
+* Using an empty `client/` prefix removes the linked client of the project. This cannot be used with any non-empty `client/` prefixes e.g. `edit-project 1 client/ client/alice` is not valid.
 * Client name keywords can be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid client name keywords will be ignored.
 * At least one field to edit must be provided.
