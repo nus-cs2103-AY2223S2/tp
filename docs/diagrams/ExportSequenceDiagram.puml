@@ -22,9 +22,10 @@ LogicManager -> ExportCommand
 
 activate ExportCommand
 ExportCommand --> LogicManager : e
-
+deactivate ExportCommand
 
 LogicManager -> ExportCommand : execute()
+activate ExportCommand
 create ExportManager
 ExportCommand -> ExportManager : execute()
 
@@ -48,7 +49,10 @@ deactivate CommandResult
 ExportCommand --> LogicManager : result
 deactivate ExportCommand
 
-
+ExportCommand -[hidden]-> LogicManager
+LogicManager -[hidden]->]
+destroy ExportManager
+destroy ExportCommand
 
 
 

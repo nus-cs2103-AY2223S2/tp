@@ -22,7 +22,7 @@ create EditRecipeForm
 cardPane -> EditRecipeForm : new EditRecipeForm(recipe, displayedIndex, data)
 activate EditRecipeForm
 
-EditRecipeForm -> cardPane : form
+EditRecipeForm --> cardPane : form
 deactivate EditRecipeForm
 
 cardPane -> EditRecipeForm : display()
@@ -93,7 +93,7 @@ opt data is not empty
 
   activate editEvent
 
-  editEvent -> cardPane : editEvent
+  editEvent --> cardPane : editEvent
   deactivate editEvent
 
   [-> cardPane : fire(editEvent)
@@ -102,6 +102,5 @@ opt data is not empty
 
   deactivate cardPane
 end
-
 
 @enduml

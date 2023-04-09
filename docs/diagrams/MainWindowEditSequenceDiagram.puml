@@ -35,7 +35,7 @@ create editParser
 parser -> editParser : new EditParser()
 activate editParser
 
-editParser -> parser
+editParser --> parser
 deactivate editParser
 
 parser -> editParser : parse(arguments)
@@ -44,12 +44,12 @@ activate editParser
 create command
 editParser -> command : new EditCommand(index, recipeDescriptor)
 activate command
-command -> editParser
+command --> editParser
 deactivate command
-editParser -> parser
+editParser --> parser
 deactivate editParser
 
-parser -> logic : command
+parser --> logic : command
 deactivate parser
 destroy editParser
 
@@ -60,10 +60,10 @@ command -> model : setRecipe
 activate model
 deactivate model
 
-command -> logic : commandResult
+command --> logic : commandResult
 deactivate command
 
-logic -> MainWindow : commandResult
+logic --> MainWindow : commandResult
 deactivate logic
 destroy command
 

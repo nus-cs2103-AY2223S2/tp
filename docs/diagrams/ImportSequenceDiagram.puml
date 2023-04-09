@@ -23,9 +23,10 @@ LogicManager -> ImportCommand
 
 activate ImportCommand
 ImportCommand --> LogicManager : i
-
+deactivate ImportCommand
 
 LogicManager -> ImportCommand : execute()
+activate ImportCommand
 create ImportManager
 ImportCommand -> ImportManager : execute()
 
@@ -50,7 +51,10 @@ ImportCommand --> LogicManager : result
 deactivate ImportCommand
 
 
-
+ImportCommand -[hidden]-> LogicManager
+LogicManager -[hidden]->]
+destroy ImportManager
+destroy ImportCommand
 
 
 @enduml
