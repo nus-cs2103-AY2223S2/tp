@@ -8,13 +8,14 @@ personnel, optimized for use via a Command Line Interface** (**CLI**) while stil
 User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional
 GUI apps.
 
-This user guide shows you how to get started using AIMS and how to make use of the features by following the
-easy-to-understand explanations and examples.
+This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples.
 
 <!-- omit from toc -->
 ## Table of Contents
 
+- [Legend](#legend)
 - [Quick start](#quick-start)
+- [Overview of AIMS GUI](#overview-of-aims-gui)
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person : `add`](#adding-a-person--add)
@@ -37,15 +38,25 @@ easy-to-understand explanations and examples.
 
 ---
 
+## Legend
+
+Here are some symbols used throughout the user guide to inform you of additional details.
+
+:information_source: **Notes:** Notes aim to provide you with extra information.
+
+:bulb: **Tip:** Tips are useful suggestions that you can follow.
+
+:exclamation: **Caution:** Cautions are used as warnings for actions that may cause data loss.
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your computer.
 
-1. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
+2. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the *home folder* for AIMS.
+3. Copy the file to the folder you want to use as the *home folder* for AIMS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
@@ -55,35 +66,22 @@ easy-to-understand explanations and examples.
   <br>
 </div>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
-
-    - `list` : Lists all contacts.
-
-    - `add r/3SG n/Jaden Ng u/3 SIR c/Alpha pl/4 p/91297723 e/jadend@gmail.com a/Smith Street, Block 13, #07-04` adds
-      a new person `Jaden Ng` to AIMS with the following information:
-
-   | Field        | Value                          |
-   |--------------|--------------------------------|
-   | rank         | 3SG                            |
-   | name         | Jaden Ng                       |
-   | unit         | 3 SIR                          |
-   | company      | Alpha                          |
-   | platoon      | 4                              |
-   | phone number | 91297723                       |
-   | email        | jadend@gmail.com               |
-   | address      | Smith Street, Block 13, #07-04 |
-
-    - `delete 3` : Deletes the 3rd contact shown in the current list.
-
-    - `clear` : Deletes all contacts.
-
-    - `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
 
 ---
+
+## Overview of AIMS GUI
+
+![Overview of AIMS GUI](images/AIMS_GUI_Overview.png)
+
+| UI Component          | Description                                                                                                              |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Menu bar              | You can exit the app through File > Exit, or open the help window located under Help                                     |
+| Command box           | You can enter commands here to interact with AIMS                                                                        |
+| Message box           | You can view the result of your last command here (e.g., command ran successfully, syntax errors, etc.)                  |
+| Favorites list        | You can view all your favorite contacts here                                                                             |
+| Main list             | You can view a list of AIMS contacts here. If you perform a search, this list will update to show you the search results |
+| Location of data file | This shows you the location of the AIMS data file should you ever need to migrate to another device                      |
 
 ## Features
 
@@ -94,7 +92,7 @@ easy-to-understand explanations and examples.
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-- Items in square brackets are optional.<br>
+- Items in square brackets are **optional**.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 - Items with `…` after them can be used multiple times including zero times.<br>
@@ -125,15 +123,17 @@ Format: `help`
   <br>
 </div>
 
+[Return to Top](#table-of-contents)
+
 ### Adding a person : `add`
 
 Adds a person to AIMS.
 
 Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Tip:** A person can have any number of tags (including 0)
+:information_source: **Note:** You can have any number of tags for a person (including 0).
 
 </div>
 
@@ -147,6 +147,8 @@ Examples:
   <p style="font-style: italic;"><br>Success screen upon successful addition of Lawrence Tay</p>
   <br>
 </div>
+
+[Return to Top](#table-of-contents)
 
 ### Importing multiple persons from a CSV file : `importcsv`
 
@@ -190,11 +192,15 @@ Examples:
   <br>
 </div>
 
+[Return to Top](#table-of-contents)
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in AIMS.
 
 Format: `list`
+
+[Return to Top](#table-of-contents)
 
 ### Copying information to clipboard : `copy`
 
@@ -213,6 +219,12 @@ Format: `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/
 display box instead. You can then highlight the text using your mouse and copy it to your clipboard by using `Ctrl + C`
 on Windows/Linux or `Command + C` on Mac. The display window is extendable if you find that more space is required to
 see all the text.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `copy`!
 
 </div>
 
@@ -250,9 +262,9 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `copy`!
+  ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
 
-</div>
+[Return to Top](#table-of-contents)
 
 ### Editing a person : `edit`
 
@@ -302,6 +314,8 @@ Examples:
   <br>
 </div>
 
+[Return to Top](#table-of-contents)
+
 ### Locating persons using filters on fields : `filter`
 
 Filters all persons to only show those whose fields contain all the given keywords.
@@ -323,6 +337,8 @@ Examples:
 
   ![result for 'filter david lee'](images/filterDavidLeeResult.png)
 
+[Return to Top](#table-of-contents)
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from AIMS.
@@ -338,11 +354,15 @@ Examples:
 - `list` followed by `delete 2` deletes the 2nd person in AIMS.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+[Return to Top](#table-of-contents)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from AIMS.
 
 Format: `clear`
+
+[Return to Top](#table-of-contents)
 
 ### Undoing last modification : `undo`
 
@@ -356,6 +376,8 @@ AIMS are not recorded in the undo history.
 </div>
 
 Format: `undo`
+
+[Return to Top](#table-of-contents)
 
 ### Viewing command history
 
@@ -372,6 +394,8 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
 - At any point in the command history, you can simply edit the command and re-run it. Note that once you navigate away
   from this point in the command history, the changes you've made to this current command in history will be lost.
 - The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
+
+[Return to Top](#table-of-contents)
 
 ### Toggling the favorite status of a person : `favorite`
 
@@ -397,16 +421,22 @@ Example:
 
 :bulb: **Tip:** You can use `find`/`filter` to find a person first before using `favorite`!
 
+[Return to Top](#table-of-contents)
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+[Return to Top](#table-of-contents)
+
 ### Saving the data
 
 AIMS data is saved in the hard disk automatically after any command that changes the data. There is no need to save
 manually.
+
+[Return to Top](#table-of-contents)
 
 ### Editing the data file
 
@@ -419,6 +449,8 @@ directly by editing that data file.
 start with an empty data file at the next run.
 
 </div>
+
+[Return to Top](#table-of-contents)
 
 ---
 
@@ -445,3 +477,5 @@ the data of your previous AIMS home folder.
 | **Command history** | `↑` / `↓`                                                                                                                                                                                                                                  |
 | **List**            | `list`                                                                                                                                                                                                                                     |
 | **Help**            | `help`                                                                                                                                                                                                                                     |
+
+[Return to Top](#table-of-contents)
