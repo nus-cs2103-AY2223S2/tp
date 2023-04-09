@@ -115,8 +115,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITI
   e.g. `.abc@gmail.com` is not allowed
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
 * OPTIONAL: You can also add patient's age, medical condition, nric.
-* NRIC need to be in the correct format. The first letter must be either 'S', 'T' or 'G' (E.g. S9935010Y)
+* NRIC has restriction for first letter, where it must be either 'S', 'T' or 'G' (E.g. S9935010Y) and length must be 9. 
 * NRIC is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
+* NRIC has no restriction from second letter onwards, hence user need to be careful as alphabets can still be added.
 * NRIC is not unique. Hence, please be aware to check your NRIC input before adding to prevent duplicate.
 * Age need to be less than or equal to 120 and must be a positive integer.
 * To record a patient's other information, add them as additional tags to the patient's profile.
@@ -130,7 +131,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
-* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` will cause MediMate to assumes that `A/John street, block 123, #01-01` is a part of the email address, causing `add` to fail.
+* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` will cause MediMate to assumes that `A/John street, block 123, #01-01` is a part of the email address, causing `add` command to fail.
 
 <div markdown="span" class="alert alert-primary">
 :bulb:**Tip:** A patient can have any number of tags (including 0)
