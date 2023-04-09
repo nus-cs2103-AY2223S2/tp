@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Added shortcut words for new and existing commands (PR: [#73](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/73))
-    * Wrote additional tests for new commands (PR: [#36](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/36))
+    * Wrote additional tests for new commands (PR: [#36](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/36), [#150](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/150))
 
 
 * **Documentation**:
@@ -54,7 +54,7 @@ Given below are my contributions to the project.
         * General formatting and proofreading
     * Index:
         * Updated the index to introduce PetPal to potential users.
-        * Designed and created the logo for PetPal [(here)](https://ay2223s2-cs2103t-t14-2.github.io/tp/images/UI/logo2-alt.png) and [here](https://ay2223s2-cs2103t-t14-2.github.io/tp/images/UI/logo2.png) in Adobe Illustrator
+        * Designed and created the logo for PetPal [here](https://ay2223s2-cs2103t-t14-2.github.io/tp/images/UI/logo2-alt.png) and [here](https://ay2223s2-cs2103t-t14-2.github.io/tp/images/UI/logo2.png) in Adobe Illustrator
           * Credits: The logo used references the [Dog icons created by Flat Icons - Flaticon](https://www.flaticon.com/free-icons/dog)
 
 * **Team contribution**:
