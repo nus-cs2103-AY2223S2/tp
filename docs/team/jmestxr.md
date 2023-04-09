@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     * Updated UML diagram and description for UI Architecture.
     * Added explanation and diagrams for 'View progress/modules' feature
     * Added use cases
-    * Added instructions to manual testing
+    * Added instructions for manual testing
 
 * **Contributions to team-based tasks:**
   * Transferred documentation from team's collaborative doc to markdown file
