@@ -579,9 +579,9 @@ Parameters:
 > :bulb: Tip: See what happens to [invalid last fed dates!](#last-fed-date-lfdlast_fed_date)
 
 Example:
-* `fish add n/Nemo s/Clown Fish lfd/04/04/2023 11:30 fi/2d0h tk/1` adds a new fish with the following details:
-  * Name: Nemo
-  * Species: Clown Fish
+* `fish add n/Carl s/Lion Fish lfd/04/04/2023 11:30 fi/2d0h tk/1` adds a new fish with the following details:
+  * Name: Carl
+  * Species: Lion Fish
   * Last fed date: 4th April 2023, 1130 am
   * Feeding interval: 2 days 0 hours
   * Tank: Tank with index 1
