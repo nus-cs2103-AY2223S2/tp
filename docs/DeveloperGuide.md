@@ -39,7 +39,7 @@ Developers are free to propose changes under any of the following categories, pr
 
 <div markdown="block" class="alert alert-success">
 
-📝: To get started, you may **[fork](https://github.com/AY2223S2-CS2103T-T13-2/tp/fork)** this repository and create
+📝**Note**: To get started, you may **[fork](https://github.com/AY2223S2-CS2103T-T13-2/tp/fork)** this repository and create
 a feature [branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) within your fork. After which, submit a [pull request](https://github.com/AY2223S2-CS2103T-T13-2/tp/compare) to us!
 
 </div>
