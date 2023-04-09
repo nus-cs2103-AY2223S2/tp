@@ -18,7 +18,6 @@ public class SerializedStudent {
     private String email;
     private String studentId;
     private String remark;
-    // private List<Tag> tags;
 
     /**
      * Constructs a {@code SerializedStudent} with the given student.
@@ -29,7 +28,6 @@ public class SerializedStudent {
         this.email = student.getEmail().toString();
         this.studentId = student.getStudentId().toString();
         this.remark = student.getRemark().toString();
-        // this.tags = new ArrayList<Tag>(student.getTags());
     }
 
     public SerializedStudent() {}
