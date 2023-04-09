@@ -13,11 +13,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/tituswe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/tituswe)]
 [[portfolio](team/tituswe.md)]
 
-* Role: Project Advisor
+* Role: Developer (Co-team lead)
+* Responsibilities: Front-end, UI. In charge of `select` command. Assigns gitHub issues, took charge of handling milestones and managed merged requests.
 
 ### Ang Yuze
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/yzmunchmunch)]
 [[portfolio](team/yzmunchmunch.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: In charge of `Policy` class.
 
 ### Pang Rui Wei
 
@@ -36,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/pangrwa)]
 [[portfolio](team/pangrwa.md)]
 
-* Role: -To be Added soon-
-* Responsibilities: -To be Added soon-
+* Role: Developer (Co-team lead)
+* Responsibilities: Back-end, storage. In charge of `deletePolicy`, `editPolicy`, `addApt`, `deleteApt` commands. In charge of User Guide and Developer Guide. Handles gitHub releases and managed merged requests.
 
 ### Lu Chenyu
 
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/adam07018.md)]
 
 * Role: Developer
-* Responsibilities: Policy Management Features
+* Responsibilities: In charge of `undo`, `redo`, `sortClientEmail`, `sortClientName`, `sortClientPhone` commands.
 
 ### Anunaya Joshi
 
@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/anunayajoshi.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of `addPolicy` command and refactoring.
