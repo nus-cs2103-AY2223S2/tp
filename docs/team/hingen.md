@@ -20,9 +20,9 @@ title: Hingen's Project Portfolio Page
 
 Check out the code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=hingen&breakdown=true)
 
-- **Adapting Model component**\
+- **Adapting Model Component**\
   Le Tracker requires a hierarchical structure for it's model with `Module`s which each contains a list of `Lecture`s and `Lecture`s which each contains a list of `Video`s. This required major changes to be made to the AB3 **Model** component which is non-hierarchical, utilising `Person` objects to store person contact details.
-- **Adapting Storage component**\
+- **Adapting Storage Component**\
   The changes made to the **Model** component required that the **Storage** component be updated as well. As the one that adapted the **Model** component, I had to handle the updating of the **Storage** component as well.
 - **Adapting Add and Edit Command**\
   Due to the hierarchical structure of the **Model** component, we needed to redesign our commands to match the new structure. `add` and `edit` needed to be updated to be able to add and edit modules, lectures, or videos depending on what arguments are included in the user input.
@@ -31,21 +31,23 @@ Check out the code contributions [here](https://nus-cs2103-ay2223s2.github.io/tp
 
 #### User and Developer Guide
 
-- Add Command documentation
+- **Add Command Documentation**
   - Update the UG "Command Manual" section, "Add" subsection to describe how the `add` command is to be used
   - Updated the DG "Implementation" section, "Add module, lecture, and video feature" subsection to describe the implementation details of the `add` command
-- Edit Command documentation
+  - Update the DG user stories, use cases, and manual testing instructions for the `add` command
+- **Edit Command Documentation**
   - Update the UG "Command Manual" section, "Edit" subsection to describe how the `edit` command is to be used
   - Updated the DG "Implementation" section, "Edit module, lecture, and video feature" subsection to describe the implementation details of the `edit` command
-- UG Design section
+  - Update the DG user stories, use cases, and manual testing instructions for the `edit` command
+- **UG Design**
   - Update "Design" section, "Architecture" subsection class diagram and information
   - Update "Design" section, "Model" subsection class diagram
   - Update "Design" section, "Storage" subsection class diagram and information
-- UG Command Syntax
+- **UG Command Syntax**
   - Create a "Command Syntax" section which is adapted from AB3's UG's command format notes
 - UG Argument Formats
   - Create an "Argument Formats" section that documents the required format of each argument's values
-- Standardise UG Format
+- **Standardise UG Format**
   - Define the convention that all members are to follow for the "Command Manual" section of the UG
 
 #### Team-Based Tasks
