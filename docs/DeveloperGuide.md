@@ -9,6 +9,8 @@ Vimification is a **desktop app for managing to-do and deadlines, optimized for 
 
 This Developer Guide will help you get familiar with the architecture of Vimification and understand the design choices and implementations of key features in Vimification, in case you are interested in contributing to this project. // TODO: Paraphrase
 
+---
+
 ## **Table of Contents**
 
 - [Acknowledgements](#acknowledgements)
@@ -47,7 +49,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The **Architecture Diagram** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -71,14 +73,14 @@ The rest of the app consists of four components:
 
 Each of the main components (except the `Model` component):
 
-- Defines its _API_ in an interface with the same name as the component.
+- Defines its **API** in an interface with the same name as the component.
 - Implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding interface mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic` interface and implements its functionality using the `LogicManager` class. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside components from being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The _API_ of the `Model` component is defined in multiple interfaces, instead of a single interface. The detailed reason behind this design is discussed [here](#model-component).
+The **API** of the `Model` component is defined in multiple interfaces, instead of a single interface. The detailed reason behind this design is discussed [here](#model-component).
 
 The sections below give more details of each component.
 
@@ -98,7 +100,7 @@ The `UI` component uses the JavaFx UI framework but is modeled to mimic after th
 2. `rightComponent`
 3. `bottomComponent`
 
-`leftComponent` **always** and **only** loads the `TaskListPanel` upon initialization.
+`leftComponent` _always_ and _only_ loads the `TaskListPanel` upon initialization.
 
 `bottomComponent` loads the `CommandInput` when the user presses `:` key on their keyboard.
 After the user finishes typing their command in `CommandInput` and presses `Enter`, `bottomComponent` loads `CommandResultPanel` to show the command result at the bottom of the screen.
@@ -109,11 +111,11 @@ After the user finishes typing their command in `CommandInput` and presses `Ente
 
 All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component,
+The `UI` component:
 
-- communicates with back-end via a single-entry point `Logic` component to exectue user commands.
-- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands and to display the list of tasks.
-- updates the UI every time a command is executed.
+- Communicates with the back-end via a single-entry point `Logic` component to execute user commands.
+- Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands and to display the list of tasks.
+- Updates the UI every time a command is executed.
 
 ### Logic component
 
@@ -123,7 +125,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550" />
 
-How the `Logic` component works:
+**How the `Logic` component works:**
 
 - When `Logic` is called upon to execute a command, it uses the `VimificationParser` class to parse the user command.
 - This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
@@ -143,7 +145,7 @@ Here are the parser classes (omitted from the class diagram above) that are used
 
 <img src="images/ParserClasses.png" width="600"/>
 
-How the parsing works:
+**How the parsing works:**
 
 - Each command has a dedicated parser, `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) to parse it.
 - When called upon to parse a user command, the `VimificationParser` forwards the user input to different `XYZCommandParser` objects. If the `XYZCommandParser` recognizes the command, it will continue to parse the user input and create an `XYZCommand` object (e.g., `AddCommand`) which the `VimificationParser` returns back as a `Command` object. Otherwise, `VimificationParser` will move on and tries the next parser available.
@@ -195,11 +197,11 @@ This section describes some noteworthy details on how certain features are imple
 
 `Applicative Parser` is an idea from functional programming languages, where we have a set of **basic parsers** (also called **combinators**), and we can combine them to form more powerful parsers.
 
-#### Motivation
+**Motivation**
 
 The parser of Vimification is implemented with `ApplicativeParser` instead of `Regex`. The main reason why we use `ApplicativeParser` becauses it allows a more declarative style to write the parser, which is (arguably) easier to read and maintain, compared to a long `Regex` expression.
 
-#### Implementation overview
+**Implementation overview**
 
 `ApplicativeParser` is implemented as a wrapper around a function that accepts some input sequence, and returns a container that:
 
@@ -215,7 +217,7 @@ The parsing result can be further transformed into objects of the desired type, 
 
 <!-- insert sequence diagram -->
 
-#### Concrete implementation
+**Concrete implementation**
 
 The current signature of the wrapped function is:
 
@@ -257,7 +259,7 @@ Where `T` is the type of the command returned by the parser.
 
 <!-- insert diagram here -->
 
-#### Implementation overview
+**Implementation overview**
 
 The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
 
@@ -271,7 +273,7 @@ All command classes in the application inherit from a common interface:
 public interface Command { /* implementation details */ }
 ```
 
-#### Inheritance hierarchy
+**Inheritance hierarchy**
 
 Currently, there are 3 kinds of commands in the application:
 
@@ -287,7 +289,7 @@ Each kind has a single interface, with a single abstract method:
 public CommandResult execute(/* parameters */);
 ```
 
-#### Motivation
+**Motivation**
 
 This design allows the parameters required by different kinds to be different. For example, the signature of `LogicCommand#execute()` is:
 
@@ -305,7 +307,7 @@ This is a big modification compared to the original design in AB3. The reason is
 
 Concrete classes will implements the corresponding interfaces.
 
-#### Design consideration
+**Design considerations**
 
 The current downside of this design is that, in order to execute a certain command, we need to check the runtime type (using `instanceof`) operator and cast the instance to the appropriate type before calling its `execute` method (by providing the correct arguments).
 
@@ -338,11 +340,11 @@ Future versions of Java contain features that can handle the problems mentioned 
 
 ### Atomic data modification
 
-#### Motivation
+**Motivation**
 
 Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all of the changes completed so far must be discarded. This ensures that the system is always left in a consistent state.
 
-#### Implementation detail
+**Implementation details**
 
 Currently, the only modification that can fail is a modification to `Task` object(s).
 
@@ -363,13 +365,13 @@ Apart from ensuring atomic data operation, this implementation also greatly simp
 
 The undo can undo the previous command (that modifies the internal data) by typing `"undo"` in the command box.
 
-#### Motivation
+**Motivation**
 
 Users may make mistakes in their commands, and commands can be destructive. For example, the user may accidentally issue a delete command and delete _all_ information about a task. This is annoying and sometimes troublesome.
 
 Undo command is implemented to addresss this concern. Note that in our application, undo command only undoes modifications to the internal data.
 
-#### Current implementation
+**Implementation details**
 
 The undo mechanism is facilitated by 2 classes: `CommandStack` and `UndoableLogicCommand`.
 
@@ -401,7 +403,7 @@ Refer to the diagram below for a visualization of this workflow:
 
 Recall that, we modify the data by copying the old task and replacing it with a modified version. We can store this old task before replacing it, and restore it back when we undo the command.
 
-#### Design consideration
+**Design considerations**
 
 Currently, undo command does not support commands that modify the macros and GUI. We do not plan to implement a undo command that reverses changes to the GUI, it does not make sense (as the user can just refresh or retype the command to change the view again). However, undoing a command that modifies the macros may be beneficial. We can extend the behavior of undo command to support this behavior in future versions.
 
@@ -409,11 +411,11 @@ Currently, undo command does not support commands that modify the macros and GUI
 
 Macros are just shortcuts for longer commands. This feature allows the user to define, delete and view macro(s) in the application.
 
-#### Motivation
+**Motivation**
 
 The motivation for this feature comes from **bash aliases**, where the user may define customized shortcuts to invoke their commands.
 
-#### Implementation detail
+**Implementation details**
 
 The macro mechanism is facilitated by 3 classes: `MacroMap`, `MacroCommand` and `VimificationParser`.
 
@@ -434,7 +436,7 @@ Refer to the diagram below for a visualization of this workflow:
 
 <!-- insert diagram here -->
 
-#### Design consideration
+**Design considerations**
 
 The current version, while useful, is still fairly minimal - the main mechanism is just simple string substitution. The problem with this mechanism is that the macro engine cannot reject an invalid macro when it was registered, and this can confuse the user when their commands are expanded.
 
@@ -442,15 +444,15 @@ Currently, there is no proposal to improve this behavior - any idea is appreciat
 
 ### Syncing view with internal logic
 
-#### Reason
+**Motivation**
 
 After the user uses the `sort` or `filter` command, the displayed index may not reflect the actual index of the data in the internal list. Syncing the display index with internal logic is necessary to ensure intuative and understandable behavior.
 
-#### Problem
+**Problem**
 
-We still want to separate the ui details from logic details, as we don't want to introduce high coupling into our system.
+We still want to separate the UI details from logic details, as we don't want to introduce high coupling into our system.
 
-#### Solution
+**Implementation details**
 
 Two interfaces were created to handle this problem: `LogicTaskList` and `UiTaskList`. `LogicTaskList` declares methods that modify the internal data, and a single method used to transform the display index into the actual index in the underlying data list, while `UiTaskList` declares methods that modify the GUI by setting appropriate predicates and comparators to filter and/or sort tasks. `TaskList` (the main class that controls the data of the application) will implement both interfaces.
 
@@ -463,6 +465,8 @@ The `TaskList` contains:
 <!-- insert diagram here -->
 
 Note that, the command classes do not interact directly with `TaskList`, but with the interfaces `LogicTaskList` and `UiTaskList`.
+
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
