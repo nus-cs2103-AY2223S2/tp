@@ -271,6 +271,9 @@ Users have the ability to mark a certain project as DONE.
 
 #### Implementation
 
+The sequence diagram shows how the various components interact with each other when `mark 1` is entered by the user.
+
+<br>
 <img src="images/MarkProjectSequenceDiagram.png" width="600" />
 
 ### Unmarking projects
@@ -279,6 +282,8 @@ Users have the ability to mark a certain project as NOT DONE/OVERDUE.
 
 #### Implementation
 
+The sequence diagram shows how the various components interact with each other when `unmark 1` is entered by the user.
+<br>
 <img src="images/UnmarkProjectSequenceDiagram.png" width="600" />
 
 ### Listing Clients
@@ -287,6 +292,8 @@ Users have the ability to list all their clients.
 
 #### Implementation
 
+The sequence diagram shows how the various components interact with each other when `list-client` is entered by the user.
+<br>
 <img src="images/ListClientSequenceDiagram.png" width="600" />
 
 ### Listing Projects
@@ -295,6 +302,8 @@ Users have the ability to list all their projects. A summary of how many OVERDUE
 
 #### Implementation
 
+The sequence diagram shows how the various components interact with each other when `list-project` is entered by the user.
+<br>
 <img src="images/ListProjectSequenceDiagram.png" width="600" />
 
 ### Clearing clients
@@ -303,6 +312,8 @@ Users have the ability to clear all their clients.
 
 #### Implementation
 
+The sequence diagram shows how the various components interact with each other when `clear-client` is entered by the user.
+<br>
 <img src="images/ClearClientSequenceDiagram.png" width="600" />
 
 ### Clearing projects
@@ -311,6 +322,8 @@ Users have the ability to clear all their projects.
 
 #### Implementation
 
+The sequence diagram shows how the various components interact with each other when `clear-project` is entered by the user.
+<br>
 <img src="images/ClearProjectSequenceDiagram.png" width="600" />
 
 --------------------------------------------------------------------------------------------------------------------
