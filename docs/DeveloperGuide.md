@@ -374,6 +374,7 @@ If no argument is provided, an empty list will be shown.
 The following sequence diagram shows how the `find` operation works:
 <p align="center"><img src="images/FindSequenceDiagram.png" /></p>
 <p align="center"><img src="images/PersonPredicateSequenceDiagram.png" /></p>
+("Initializing Predicate for other fields" reference frame is omitted as it is just initialization of the other Predicate classes)
 
 <div style="page-break-after: always;"></div>
 
