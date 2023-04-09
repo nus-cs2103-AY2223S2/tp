@@ -272,6 +272,12 @@ public class EventCommandTest {
             throw new UnsupportedOperationException("Unimplemented method 'updateFilteredTaskList'");
         }
 
+        @Override
+        public void deletePersonFromTask(Index personIndex) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deletePersonFromTask'");
+        }
+
     }
 
     /**

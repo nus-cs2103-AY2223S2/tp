@@ -108,6 +108,12 @@ public interface TaskBookModel {
     void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex);
 
 
+    /**
+     * Replace all the tasks with assigned member deleted
+     * with the unassigned task.
+     * @param personIndex
+     */
+    void deletePersonFromTask(Index personIndex);
 
     /**
      * Gets the filtered task list

@@ -130,6 +130,14 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.assignTask(taskToAssign, assignedTask, taskIndex);
     }
 
+    /**
+     * Removes the given person {@code person} from the assigned tasks {@code task}.
+     * @param personIndex
+     */
+    public void deletePersonFromTask(Index personIndex) {
+        tasks.deletePersonFromTask(personIndex);
+    }
+
 
     /**
      * Removes {@code key} from this {@code AddressBook}.

@@ -139,6 +139,11 @@ public class TaskBookModelManager implements TaskBookModel {
         taskBook.assignTask(taskToAssign, assignedTask, taskIndex);
     }
 
+    @Override
+    public void deletePersonFromTask(Index personIndex) {
+        taskBook.deletePersonFromTask(personIndex);
+    }
+
 
     @Override
     public ObservableList<Task> getFilteredTaskList() {
