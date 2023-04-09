@@ -16,8 +16,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/shanhng)]
 [[portfolio](team/shanhng.md)]
 
-* Role: to be added soon...
-* Responsibilities: to be added soon...
+* Role: UI Developer
+* Responsibilities: 
+  * Implementation of Features `calendar`
+  * Created UI components
+  * Managing Developer Guide related edits
 
 ### Branson Lam
 
@@ -26,8 +29,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/bransonlj)]
 [[portfolio](team/bransonlj.md)]
 
-* Role: to be added soon
-* Responsibilities: to be added soon
+* Role: Developer 
+* Responsibilities:
+  * Implementation of Features `stats` and `edit`
+  * Fixing feature bugs and add test cases 
 
 ### Anshumaan Tyagi
 
@@ -35,8 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/anshumaantgi)] [[portfolio](team/anshumaantgi.md)]
 
-* Role: to be added soon
-* Responsibilities: to be added soon
+* Role: Developer
+* Responsibilities:
+  * Implementation of Features `event add` and `event delete`
+  * Fixing feature bugs and add test cases 
 
 ### Karen Lam
 
@@ -58,4 +65,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/sarthak181.md)]
 
 * Role: Developer
-* Responsibilities: to be added soon
+* Responsibilities: 
+  * Implementation of Features `find` and `event find`
+  * Managing Developer Guide related edits and add test cases 
