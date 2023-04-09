@@ -18,7 +18,6 @@ import seedu.address.model.person.TaskList;
 public class ClearTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "cleartask";
-    public static final TaskList EMPTY_TASKLIST = new TaskList();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears the tasks of the person identified "
@@ -54,7 +53,7 @@ public class ClearTaskCommand extends Command {
                 personToEdit.getCompany(), personToEdit.getLocation(),
                 personToEdit.getOccupation(), personToEdit.getJobTitle(),
                 personToEdit.getAddress(), personToEdit.getRemark(),
-                personToEdit.getTags(), EMPTY_TASKLIST, personToEdit.getStatus());
+                personToEdit.getTags(), personToEdit.getTasks().clear(), personToEdit.getStatus());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
