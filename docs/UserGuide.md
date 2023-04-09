@@ -30,13 +30,28 @@ Here is a short overview of the features and capabilities of **CookHub**:
 * Sorting or filtering by price.
 * Getting all the combined ingredients for a set of recipes. 
 
+
+* Table of Contents
+{:toc}
+
+<hr style="border:2px solid gray">
+
+## About the User Guide
+
+This section shares some details about the user guide, who its intended audience is and how to use it effectively.
+
+### Target Audience
+
+The user guide is for new and returning **CookHub** users alike. Whether its your first time using our application or
+you are a seasoned user, you will find something useful here to help you out in your culinary journey. 
+
+### How to use the guide
+
 |   If you are   |                                         You should                                         |
 |:--------------:|:------------------------------------------------------------------------------------------:|
 |   a new user   | proceed to our [quick start](#quick-start) section to set up CookHub and try its features |
 | returning user |       skip to our [command summary](#command-summary) for a summary of our features!       |
 
-* Table of Contents
-{:toc}
 
 <hr style="border:2px solid gray">
 
@@ -50,7 +65,7 @@ Here is a short overview of the features and capabilities of **CookHub**:
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar cookhub.jar` command to run the application.<br>
 
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   The application will appear shortly, as shown in the image below. Note how the app contains some sample data.<br>
    <p align="center" width="100%">
     <img src="images/UiInWindows.png" width=500 height=400>
    </p>
