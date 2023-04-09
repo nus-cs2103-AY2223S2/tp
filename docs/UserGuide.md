@@ -471,7 +471,7 @@ You can refer to this section for more examples of valid and invalid input value
 know what information are considered valid and what are not.<br>
 
 :bulb: ` ` refers to a blank value.
-</div>
+</div>  
 
 | Attributes  | Valid                                                            | Invalid                                                            |
 |-------------|------------------------------------------------------------------|--------------------------------------------------------------------|
@@ -539,7 +539,24 @@ for you to do so, so you can see the reminders at any time you wish.
  --------------------------------------------------------------------------------------------------------------------
 ## Glossary
 
-Some text here
+If you have any confusion about some of the technical terms used in this user guide, you may 
+refer to the glossary below.  
+
+#### Attribute  
+Refers to a specific input value from the user that provides details to execute a command. Attributes, except for
+are preceded by their prefixes. Example includes ```n/MODULE_NAME``` and ```d/DEADLINE```. 
+
+#### Command Word  
+Refers to the keyword in a valid user command. Examples include ```add```, ```edit``` and ```delete```.  
+
+#### Module Tracker  
+Refers to the application used to track the entries of different modules input by users.  
+
+#### Prefix  
+Refers to a character ending in a slash ("/") that precedes an attribute value. It indicates the type of
+information to follow. Example includes ```a/``` as prefix for ```VENUE``` attribute and ```s/```
+as prefix for ```TEACHER``` attribute.  
+
 
 --------------------------------------------------------------------------------------------------------------------
 
