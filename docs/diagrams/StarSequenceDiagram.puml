@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CookHubParser" as CookHubParser LOGIC_COLOR
+participant ":StarCommandParser" as StarCommandParser LOGIC_COLOR
+participant "s:StarCommand" as StarCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("star 1")
+activate LogicManager
+
+LogicManager -> CookHubParser : parseCommand("star 1")
+activate CookHubParser
+
+create StarCommandParser
+CookHubParser -> StarCommandParser
+activate StarCommandParser
+
+StarCommandParser --> CookHubParser
+deactivate StarCommandParser
+
+CookHubParser -> StarCommandParser : parse("1")
+activate StarCommandParser
+
+create StarCommand
+StarCommandParser -> StarCommand
+activate StarCommand
+
+StarCommand --> StarCommandParser : s
+deactivate StarCommand
+
+StarCommandParser --> CookHubParser : s
+deactivate StarCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StarCommandParser -[hidden]-> CookHubParser
+destroy StarCommandParser
+
+CookHubParser --> LogicManager : s
+deactivate CookHubParser
+
+LogicManager -> StarCommand : execute()
+activate StarCommand
+
+StarCommand -> StarCommand : createEditedRecipe(recipeToStar)
+
+StarCommand -> Model : setRecipe(recipeToStar, editedRecipe)
+activate Model
+
+Model --> StarCommand
+deactivate Model
+
+create CommandResult
+StarCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StarCommand
+deactivate CommandResult
+
+StarCommand --> LogicManager : result
+deactivate StarCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -336,7 +336,7 @@ The `fp` command format is as shown below:
 - `>` is used to represent "more than"
 - *PRICE* can take on any positive real number
 - The price of a recipe is determined by cost of all ingredients required.
-- 
+
 #### Implementation
 
 1. The Ui component receives the user command from the `CommandBox` of the GUI.
@@ -359,6 +359,65 @@ by passing the predicate into its constructor.
 
 The sequence diagram for the `find` command is as shown below:
 ![FilterPriceCommandSequenceDiagram](images/FilterPriceCommandSequenceDiagram.png)
+
+### Star feature
+
+#### What is it?
+The `star` command helps users add a certain recipe to the favorites.
+
+#### Usage
+The `star` command format is as shown below:
+
+`star INDEX`
+
+- *INDEX* is the index of the recipe in the current recipe list.
+- *INDEX* can be positive integers only
+
+#### Implementation
+
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `StarCommandParser`.
+5. The `CookHubParser` then passes the string input to the `StarCommandParser` via the `parse()` method.
+6. `StarCommandParser` will then call `parseIndex()` in `ParserUtil` responsible for parsing the index.
+7. `ParserUtil` returns an instance of `Index`.
+8. `StarCommandParser` will instantiate an instance of `StarCommand` with the previously obtained index as the parameter.
+9. The `LogicManager` then calls the `execute()` method of the `StarCommand`.
+10. A copy of the recipe with the index given by the user which is set to starred is created with calling `createEditedRecipe(recipeToStar)`.
+11. `StarCommand` then calls `setRecipe(recipeToStar, editedRecipe)` of `Model`.
+12. The current recipe book is updated by calling `updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES)` on `Model`.
+13. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+14. The Ui component displays the contents of the `CommandResult` to the User.
+
+The sequence diagram for the `star` command is as shown below:
+![StarCommandSequenceDiagram](images/StarSequenceDiagram.png)
+
+### Favorites feature
+
+#### What is it?
+The `favorites` command shows users their self-made favorites list.
+
+#### Usage
+The `favorites` command format is as shown below:
+
+`favorites`
+
+#### Implementation
+
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `FavoritesCommand`.
+5. `FavoritesCommand` will then create a `IsStarredPredicate` as the predicate.
+6. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
+7. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+8. The Ui component displays the contents of the `CommandResult` to the User.
+
+The sequence diagram for the `favorites` command is as shown below:
+![FavoritesCommandSequenceDiagram](images/FavoritesSequenceDiagram.png)
 
 
 ### \[Proposed\] Data archiving
