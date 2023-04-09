@@ -977,6 +977,11 @@ autoPair algorithm for pairing up volunteers and elderly users employs a greedy 
 Currently, available dates take in dates and not time of day.
 We should improve it to allow users to enter time into the availability fields to provide greater flexibility in specifying availability period.
 
+### Enhance name to accept special characters
+
+Currently, names do not accept `.` and `\\`. This may cause some problems where a person's legal name contains these special characters.
+We should modify the name to accept these special characters.
+
 1. Depending on whether or not any record is present in the section, the width of the Elderly, Volunteer and Pair UI may vary slighly.
 
 --------------------------------------------------------------------------------------------------------------------
