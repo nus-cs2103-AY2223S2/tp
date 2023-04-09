@@ -16,7 +16,7 @@ Given below are my contributions to the project.
   * Credits:
   * Mark function is inspired from the iP task.
 * **Highlight Feature**: Highlight pets that have a deadline within a day and have not been marked.
-  * Justification: 
+  * Justification:
     * Enhances user experience by drawing attention to the most urgent deadlines, helping users prioritize their tasks and prevent missed deadlines.
     * Reduces cognitive load by providing a visual cue for time-sensitive tasks, enabling users to easily identify which pets require immediate attention.
     * Promotes proactive pet care management, as users can quickly assess their daily responsibilities and ensure timely care for their pets.

@@ -25,6 +25,8 @@ public class ArchiveCommand extends Command {
 
     public static final String MESSAGE_ARCHIVE_PET_SUCCESS = "Archived Pet:\n%1$s";
 
+    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the archive!";
+
     private final Index targetIndex;
 
     public ArchiveCommand(Index targetIndex) {
@@ -41,7 +43,13 @@ public class ArchiveCommand extends Command {
         }
 
         Pet petToArchive = lastShownList.get(targetIndex.getZeroBased());
+
+        if (model.hasArchivePet(petToArchive)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PET);
+        }
+
         model.archivePet(petToArchive);
+
         return new CommandResult(String.format(MESSAGE_ARCHIVE_PET_SUCCESS, petToArchive));
     }
 

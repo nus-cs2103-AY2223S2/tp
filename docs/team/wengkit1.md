@@ -14,7 +14,7 @@ Given below are my contributions to the project.
   * Highlights: Cost indication is updated on click, and on runtime based on a rate, and flat charge my teammate implemented
   * PRs : [#43](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/43)
   * Credits:
-    
+
 * **Undo Feature**: Added undo feature
   * Justification: Adding and deleting pets off list take a lot of time, an undo feature lets users undo commands they may have done on accident, such that they do not lose progress.
   * Highlights: Undo works with archive command as well.
