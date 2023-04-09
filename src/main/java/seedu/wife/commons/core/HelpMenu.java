@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 /**
  * Menu of commands to be displayed in Help Window.
+ *
+ * Dynamic help functionality inspired by AY2223 S1 Team W16-2
+ * however, the idea of using Enums is my own as I had implemented
+ * this feature in my iP as well.
  */
 public enum HelpMenu {
     INVALID("invalid") {
@@ -175,6 +179,7 @@ public enum HelpMenu {
     /**
      * Checks if an input command is a valid command.
      *
+     * @author {https://github.com/AY2223S1-CS2103T-W16-2/tp} -reused
      * @param commandToParse the input command to check
      * @return the command as an enum if it is valid
      *      otherwise the INVALID command

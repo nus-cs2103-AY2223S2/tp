@@ -46,7 +46,7 @@ license, making it open source and available for anyone to use and modify.
     * [List Foods by tag(s)](#list-foods-by-tags)
     * [Delete Foods by tag(s)](#delete-foods-by-tags)
     * [Delete tag(s)](#delete-tags)
-  * [General features]
+  * [General Features](#general-features)
     * [help](#dynamic-help)
   * [Documentation and other guides](#documentation-logging-testing-configuration-dev-ops)
   * [Requirements](#appendix-requirements)
@@ -501,7 +501,7 @@ The following sequence diagram shows how the `createtag` command.
 
 The following activity diagram summarizes what happens when a user executes a new `createtag` command:
 
-<img src="images/CreateTagActivityDiagram.png" width="700" />
+<img src="images/CreateTagActivityDiagram.png" width="400"/>
 
 #### Tag a Food
 
@@ -542,9 +542,10 @@ The first stage of the implementation is parsing the user input to `UntagCommand
 2. If the food item does not have that tag, an error response is returned and users will be prompted to key in the command with a valid tag name.
 3. Completion of step 1 without any exceptions will result in successful removal of the specified `Tag` from the `Food` item.
 
-The sequence diagram of `untag` is similar to that of the `tag` command.
+The activity diagrams of the `untag` and `tag` commands are similar.
 
-*(Sequence diagram to be inserted)*
+<img src="images/UntagFoodActivityDiagram.png" width="400"/>
+
 
 #### List Foods by tag(s).
 
@@ -654,8 +655,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/DeleteTagActivityDiagram.png" width="700" />
 
-### Dynamic Help
+### General Features
 
+#### Dynamic Help
 ![HelpCommandActivityDiagram.png](images%2FHelpCommandActivityDiagram.png)
 
 The dynamic help mechanism allows the user to receive in-app help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only received general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
@@ -666,7 +668,7 @@ HelpMenu#parseCommand() — Parses the command input in `help COMMAND` to en
 
 These operations are invoked in `HelpCommandParser.java` which calls HelpMenu#getGeneralHelp() or HelpMenu#getCommandHelp() depending on the help command input after parsing the input with HelpMenu#parseCommand().
 
-#### Feature Details:
+**Implementation**
 
 Step 1. After successful retrieval of the help message, the message is passed to the `HelpCommand` object returned by `HelpCommandParser`.
 
@@ -687,6 +689,10 @@ Here are links to other documentation that you might find useful when developing
 * [DevOps guide](DevOps.md)
 
 ---
+## **Appendix: Planned Enhancements**
+
+#### User Interface
+1. The enter button text gets truncated on some devices. We suspect this to be an OS related issue and plan to fix this in the future.
 
 ## **Appendix: Requirements**
 

@@ -6,6 +6,8 @@ import seedu.wife.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new HelpCommand object
+ *
+ * Dynamic help functionality inspired by AY2223 S1 Team W16-2
  */
 public class HelpCommandParser implements Parser<HelpCommand> {
 
