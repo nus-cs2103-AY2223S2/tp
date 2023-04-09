@@ -310,6 +310,7 @@ Classes used by multiple components are in the `taa.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Add Student Feature
+#### Implementation
 The ability to add students is one of the core features of the application. 
 This feature allows users to add students to their defined classes/class lists, which will be essential for other features to work in tandem.
 
@@ -328,6 +329,7 @@ Figure 11
 </strong>:
 Sequence Diagram for adding a Student
 </em></figcaption>
+<br />
 
 Alternatively, you may wish to refer to the activity diagram in Figure 12 below which captures some subtleties regarding the note above which are missed by the sequence diagram above.
 
@@ -338,7 +340,21 @@ Figure 12
 </strong>:
 Activity Diagram for adding a Student
 </em></figcaption>
+<br />
 
+#### Design Considerations
+**Dealing with non-existent Class Lists**
+
+One issue with the behaviour of this command stems from the undecided behaviour when a specified `CLASS_NAME` does not exist as a Class List yet.
+
+Among the two options described below, our team decided to choose the former as we felt that it would be pointlessly troublesome for a user to deliberately create a Class List just to add a new student.
+
+1. **Alternative 1 (current choice):** Create the Class List automatically
+    - Pros: Convenient for users as they do not have to manually create the Class Lists before using this command.
+    - Cons: Users may accidentally add a Student into a stray Class List as a result of a typo.
+2. **Alternative 2:** Reject the operation and prompt user to create the specified Class List before proceeding
+    - Pros: Users will be assured that the Students they are adding will be added to a Class List that they have manually created before.
+    - Cons: Can be tiring when the user has to manually create multiple class lists just to add Students.
 
 --------------------------------------------------------------------------------------------------------------------
 
