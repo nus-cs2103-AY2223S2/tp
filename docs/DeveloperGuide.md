@@ -7,12 +7,6 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -153,86 +147,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 
 ### Data Summary feature
@@ -381,7 +295,7 @@ For the sake of convenience, explanation of the feature will be in terms of the 
 The increment/decrement command takes in an  `index` and an  `AMOUNT_TO_INCREMENTED`. This  `AMOUNT_TO_INCREMENTED` is demarcated with a prefix `tr/`.
 The activity diagram below describes how the increment feature works. 
 
-![IncrementActivityDiagram](images/IncrementCommandActivityDiagram.png) 
+<img src="images/IncrementCommandActivityDiagram.png" width="250" />
 
 Given below 
 The following sequence diagram shows how the increment operation works:
@@ -728,7 +642,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
 
 ### Adding  a person
 
@@ -783,26 +696,38 @@ testers are expected to do more *exploratory* testing.
        Expected: List of contacts will be sorted and displayed by their transaction count in descending order (lower transaction counts displayed lower on the list). Whitespace is ignored.
     3. Test case: `sort desc`<br>
        Expected: Error message is shown prompting the user to specify the field that they like the contacts to be sorted by. 
-    4. Other incorrect delete commands to try: `sort` (No specified field or ordering ), `sort company asc` (invalid field ) <br> 
+    4. Other incorrect sort commands to try: `sort` (No specified field or ordering ), `sort company asc` (invalid field ) <br> 
        Expected: Error messages corresponding to the error described is shown and list is not sorted. User is prompted to key in command correctly.
+
+### Filtering the list by various tags
+
+5. Filters the contact list according to specified tag.
+   1. Add contacts containing `friends` and `clients` as tags. Some contacts can contain one or both of these tags.
+
+       1. Test case: `filter friends`<br>
+          Expected: List of contacts will be filtered by those which contain the 'friends' tag
+       2. Test case: `filter friends clients` <br>
+          Expected: List of contacts will be filtered. Only the contacts with both 'friends' and 'clients' tag will be shown. Whitespace is ignored.
+       3. Test case: `filter `<br>
+          Expected: Error message is shown prompting the user to specify the tags that they like the contacts to be filtered by.
 
 ### Marking a contact as requiring follow-up
 
-5. Marks a contact as requiring follow-up action. 
+6. Marks a contact as requiring follow-up action. 
 
     1. Test case: `mark 1 m/yes`<br>
        Expected: Person at index 1 will be displayed as requiring follow-up action. 
-    2. Test case: `makr 1 m/no` <br>
+    2. Test case: `mark 1 m/no` <br>
        Expected: Person at index 1 will be displayed as not requiring follow-up action. 
     3. Test case: `mark `<br>
        Expected: Error message is shown prompting the user to specify the index of the individual that they would like to mark. 
-    4. Other incorrect delete commands to try: `mark x m/yes` (where x is longer than the current contact list length). 
+    4. Other incorrect mark commands to try: `mark x m/yes` (where x is longer than the current contact list length). 
        Expected: Error messages corresponding to the error described is shown and list is not updated. User is prompted to key in command correctly.
 
  
 ### Deleting a person
 
-6. Deleting a person while all persons are being shown
+7. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
@@ -815,12 +740,16 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-   5. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Summary
 
-1. _{ more test cases …​ }_
+1. Test case: summary 
+   1. Expected: Summary window pops up.
+2. Test case: click 'Summary' -> 'Summary'
+   1. Expected: Summary window pops up.
+
+
