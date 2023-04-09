@@ -29,10 +29,6 @@ deactivate ListCommandParser
 TrackerParser -> ListCommandParser : parse("CS2040S")
 activate ListCommandParser
 
-ref over ListCommandParser
-    List lectures of module CS2040S
-end ref
-
 create ListCommand
 ListCommandParser -> ListCommand : ListCommand(code)
 activate ListCommand
@@ -64,7 +60,7 @@ create CommandResult
 ListCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ListCommand : result
+CommandResult --> ListCommand
 deactivate CommandResult
 
 ListCommand --> LogicManager : result

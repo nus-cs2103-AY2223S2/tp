@@ -19,6 +19,6 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Navigation
 
 NavigationStack .left.|> Navigation
-NavigationStack -down-> "1" NavigationContext
-NavigationContext -right-> "1" ModuleCode
-NavigationContext -right-> "1" LectureName
+NavigationStack *-down-> "1..3" NavigationContext
+NavigationContext *-right-> "1" ModuleCode
+NavigationContext *-right-> "1" LectureName
