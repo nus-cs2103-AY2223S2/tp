@@ -170,7 +170,6 @@ For example. in the sections we refer to a `UnqiueList` object, In the code ther
 , and another that acts on person `UniquePersonList`. Depending on which object functionality you are exploring just substitute the general object with the
 specific object. We write in a general so that we cover breath first, and so that we may adhere to [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 
-To help, general objects are underlined to indicate that each object has its own implementation of the object.
 ### CRUD Operations
 #### Adding
 ##### Description
