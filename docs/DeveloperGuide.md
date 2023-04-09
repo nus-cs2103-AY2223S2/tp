@@ -76,10 +76,19 @@ title: Developer Guide
    * [Commons Classes](#common-classes)
      * [MathUtil](#mathutil)
 5. [Testing](#5-testing)
-   * [Unit Tests](#unit-tests)
-   * [Testing Models](#testing-models)
+   * [Testing Types](#testing-types)
+     * [Developer Testing](#developer-testing)
+     * [Regression Testing](#regression-testing)
+     * [Unit Tests](#unit-tests)
+     * [Stubs](#stubs)
+     * [Integration Testing](#integration-testing)
+     * [Dogfooding](#dogfooding)
+   * [Model](#model)
    * [Testing Commands](#testing-commands)
    * [Testing Parsers](#testing-parsers)
+   * [GUI Tests](#gui-tests)
+     * [Setting up automated GUI Tests in Github Actions](#setting-up-automated-gui-tests-in-github-actions)
+   * [Understanding GUI Tests](#understanding-gui-tests)
    * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
    * [Create Code Coverage Report](#create-code-coverage-report)
    * [Read Code Coverage Report](#read-code-coverage-report)
@@ -1192,7 +1201,7 @@ The `MathUtil` class contains generic functions for mathematical operations such
 Types of tests used:
 * Developer Testing
 * Regression Testing
-* Unit Testing
+* Unit Tests
 * Stubs
 * Integration testing
 * Dogfooding
@@ -1212,10 +1221,10 @@ discover possible bugs early, and avoid major reworks in future increments and i
 
 Our organisation continued with regression testing as increments came in, to ensure that previous features were not 
 broken with changes and modifications. This is due to the interconnectedness of certain features implemented, such as 
-commands and the model.
+commands and the model. We used a breadth-first iterative model to extensive test the wide scope of the project.
 
 Our organisation did this both with automated unit tests and manual testing, with more emphasis on unit tests, due to 
-the time taken to test extensively manually.
+the time taken to test extensively manually. 
 
 ### **Unit Tests**
 
@@ -1239,8 +1248,10 @@ We replaced the parser with stubs to test the commands and vice versa.
 
 ### **Integration Testing**
 
-Integration testing were used extensively in the testing of the GUI, as part of CI. Integration testing were also 
-included in unit tests to ensure that our features work well with each other. 
+Integration testing was used extensively in the testing of the GUI, as part of CI. Integration testing were also 
+included in unit tests to ensure that our features work well with each other. It was also covered manually via developer
+testing and dogfooding.
+
 
 ### **Dogfooding**
 
@@ -1248,13 +1259,13 @@ Towards the completion of our product, our developers used the product on a regu
 product how a normal user might use. This helped ensure that our product would be relatively bug-free for a regular use
 case.
 
-### **Model**
+## **Model**
 
 Our organisation created dummy values for a model of a simulated list of persons that our product might, and used that
 to carry out testing on. When changes were made to the model in the product, any changes required were reflected in 
 this testing model as well, to ensure that unit tests are testing on a correct simulation of the program.
 
-### **Testing Commands**
+## **Testing Commands**
 
 Our organisation tested commands by creating commands with the correct parameters, bypassing the parser, and executed 
 them. Assertions were used to ensure that commands created, when executed performed the correct operations, on the model
@@ -1263,7 +1274,7 @@ created specifically for tests.
 Our organisation made use of equivalence partitions to tests for the types of commands that can be executed, due to the
 number of variants we have for each command.
 
-### **Testing Parsers**
+## **Testing Parsers**
 
 Our organisation opted to use stubs in order to test the parsers, to isolate that the parser is firstly parsing the 
 correct text, and returning the correct corresponding command. 
@@ -1299,7 +1310,7 @@ test {
 }
 ```
 
-## Understanding GUI tests
+## Understanding GUI Tests
 We utilised GUI tests from [AB4](https://github.com/se-edu/addressbook-level4/tree/master/src/test/java) and here is a summary of it.
 
 <img src="images/UiTestClassDiagram.svg" style="width:70%;margin:0 15%">
@@ -1308,7 +1319,7 @@ We utilised GUI tests from [AB4](https://github.com/se-edu/addressbook-level4/tr
 </div>
 <br>
 
-Note that `AllUITests` above refer to all UI Tests in `seedu.address.ui` except for `TestFxmlObject`. The handles used in the corresponding test cases can be easily seen from their names. For example, `CommandBoxTest` contains `CommandBoxHandle`.
+Note that `AllUITests` above refers to all UI Tests in `seedu.address.ui` except for `TestFxmlObject`. The handles used in the corresponding test cases can be easily seen from their names. For example, `CommandBoxTest` contains `CommandBoxHandle`.
 <br>
 
 <img src="images/NodeHandleClassDiagram.svg" style="width:70%;margin:0 15%">
