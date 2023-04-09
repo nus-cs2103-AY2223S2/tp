@@ -24,12 +24,6 @@ public class NoDeadline extends Deadline {
     }
 
     @Override
-    public int hashCode() {
-        return 0;
-    }
-
-
-    @Override
     public String toString() {
         return description;
     }

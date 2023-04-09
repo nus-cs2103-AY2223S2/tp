@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  *  Deadline object with fields (String description, LocalDateTime time)
@@ -66,7 +67,7 @@ public class Deadline {
 
     @Override
     public int hashCode() {
-        return description.hashCode();
+        return Objects.hashCode(description);
     }
 
 }
