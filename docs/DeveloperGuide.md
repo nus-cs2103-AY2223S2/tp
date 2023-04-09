@@ -766,18 +766,18 @@ testers are expected to do more _exploratory_ testing.
 
 ## 7.1 Launch and shutdown
 
-1. Initial launch
+1. Initial launch:
 
    1. Download the `ConnectUS.jar` file and copy into an empty folder
 
    1. Double-click the `ConnectUS.jar` file Expected: Shows the <u>GUI</u> with a set of sample contacts. The window size may not be optimum.
 
-2. Saving window preferences
+2. Saving window preferences:
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+      **Expected:** The most recent window size and location is retained.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
@@ -787,15 +787,18 @@ testers are expected to do more _exploratory_ testing.
 
 ## 7.2 Adding a Person:
 
-1. Adding a `Person` with just name, email and phone
-   1. Test case: `add n/John Doe e/email@example.com p/88291322`<br>
-      Expected: a new `Person` named JohnDoe with given email and phone
-      number is created. Details of the new `Person` shown in the status message. `Person` is visible in contact list.
-   2. Test case: `add n/ e/email@example.com`<br>
-      Expected: No `Person` is created. Error details shown in status message.
+1. Adding a `Person` with just name, email and phone:
+
+   1. **Test case:** `add n/John Doe e/email@example.com p/88291322`<br>
+      **Expected:** a new `Person` named JohnDoe with given email and phone number is created. Details of the new `Person` shown in the status message. `Person` is visible in contact list.
+   
+   2. **Test case:** `add n/ e/email@example.com`<br>
+      **Expected:** No `Person` is created. Error details shown in status message.
+
 2. Adding a `Person` with additional fields such as address, birthday, social medias etc. (For a detailed list see [this](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#5-information-fields--prefixes))
-   1. Test case: `add n/Peter Davis e/peter@example.com p/92849132 b/11/09/1989 a/Road No. 12, Kent Ridge, Singapore ig/peterdavis cca/ICS mod/CS3230`. Expected a new `Person` named Peter Davis with given email, phone number, birthday, address and Instagram handle is created. It also
-   adds two tags showing that he is in the ICS cca and in the CS3230 module.  Details of the new `Person` shown in the status message. `Person` is visible in contact list.
+
+   1. **Test case:** `add n/Peter Davis e/peter@example.com p/92849132 b/11/09/1989 a/Road No. 12, Kent Ridge, Singapore ig/peterdavis cca/ICS mod/CS3230`.<br>
+   **Expected:** A new `Person` named Peter Davis with given email, phone number, birthday, address and Instagram handle is created. It also adds two tags showing that he is in the `ICS` CCA and in the `CS3230` module.  Details of the new `Person` shown in the status message. `Person` is visible in the contact list.
    
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
@@ -804,13 +807,17 @@ testers are expected to do more _exploratory_ testing.
 <div style="page-break-after: always"></div>
 
 ## 7.3 Editing a Person:
+
 1. Editing a `Person`'s details:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
-    2. Test case: `edit 1 b/12/10/2003 tg/example p/88923444`<br>
-        Expected: The first `Person` in the list is edited to have the birthday 12/10/2003, the phone number 88923444. Details of the edited `Person` shown in the status message. If any of these fields were 
-        previously empty, they will be filled with the new information. If any of these fields were previously filled, they will be overwritten with the new information. 
-  2. To see if the `Person`'s details are edited, use the `list` command to verify the details of the edited `Person`.
-  3. For a detailed list of fields that can be edited, see [this](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#5-information-fields--prefixes).
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list.
+   
+    2. **Test case:** `edit 1 b/12/10/2003 tg/example p/88923444`<br>
+        **Expected:** The first `Person` in the list is edited to have the birthday `12/10/2003`, the phone number `88923444`. Details of the edited `Person` shown in the status message. If any of these fields were previously empty, they will be filled with the new information. If any of these fields were previously filled, they will be overwritten with the new information. 
+   
+2. To see if the `Person`'s details are edited, use the `list` command to verify the details of the edited `Person`.
+
+3. For a detailed list of fields that can be edited, see [this](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#5-information-fields--prefixes).
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
@@ -818,64 +825,77 @@ testers are expected to do more _exploratory_ testing.
 
 ## 7.4 Deleting a Person:
 
-1. Deleting a `Person` while all persons are being shown
-   1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
-   1. Test case: `delete 1`<br>
-      Expected: First `Person` is deleted from the list. Details of the deleted `Person` shown in the status message. Timestamp in the status bar is updated.
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. Deleting a `Person` while all persons are being shown:
+
+   1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list.
+
+   2. **Test case:** `delete 1`<br>
+      **Expected:** First `Person` is deleted from the list. Details of the deleted `Person` shown in the status message. Timestamp in the status bar is updated.
+
+   3. **Test case:** `delete 0`<br>
+      **Expected:** No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size).<br>
+      **Expected:** Similar to previous.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
+
 <div style="page-break-after: always"></div>
 
 ## 7.5 Adding additional tags to a Person:
+
 1. Adding tags to a `Person`:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
-    2. Test case: `add-t 1 r/friends mod/CS2103T`<br>
-        Expected: The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T`. 
-        Trying the same command again on the same person will still show that
-        the tags have been added but only unique tags are shown.
-    3. Test case: `add-t 1029 r/friends`<br>
-        Expected: No `Person` is edited. Error showing invalid index shown
-        in the status bar. Assuming there are less than 1029 `Persons` in the list.
-    4. Test case `add-t`, `add-t 10`<br>
-        Expected: No `Person` is edited. Error showing invalid command format shown in the status bar.
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list.
+   
+    2. **Test case:** `add-t 1 r/friends mod/CS2103T`<br>
+        **Expected:** The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T`. Trying the same command again on the same person will still show that the tags have been added but only unique tags are shown.
+
+    3. **Test case:** `add-t 1029 r/friends`<br>
+        **Expected:** No `Person` is edited. Error showing invalid index shown in the status bar. Assuming there are less than 1029 `Persons` in the list.
+
+    4. **Test case:** `add-t`, `add-t 10`<br>
+        **Expected:** No `Person` is edited. Error showing invalid command format shown in the status bar.
     
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
 
 ## 7.6 Deleting tags from a Person:
+
 1. Deleting tags from a `Person`:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. Assuming the first
-        `Person` in the list has the remark tag `friends` and module tag `CS2103T`.
-    2. Test case: `delete-t 1 r/1`<br>
-        Expected: The first `Person` in the list is edited to have the remark tag `friends` removed. 
-    3. Test case: `delete-t 1 r/1 m/1`<br>
-        Expected: The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T` removed.
-    4. Test case: `delete-t 1 r/10`<br>
-        Expected: No `Person` is edited. Error showing invalid index shown
-        in the status bar. Assuming there are less than 10 remark tags in the first `Person`'s remark tag list.
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list. Assuming the first `Person` in the list has the remark tag `friends` and module tag `CS2103T`.
+   
+    2. **Test case:** `delete-t 1 r/1`<br>
+        **Expected:** The first `Person` in the list is edited to have the remark tag `friends` removed. 
+   
+    3. **Test case:** `delete-t 1 r/1 m/1`<br>
+        **Expected:** The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T` removed.
+   
+    4. **Test case:** `delete-t 1 r/10`<br>
+        **Expected:** No `Person` is edited. Error showing invalid index shown in the status bar. Assuming there are less than 10 remark tags in the first `Person`'s remark tag list.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
 
 ## 7.7 Searching for a Person:
+
 1. Searching for a `Person`:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
-    2. Test case: `search cs`<br>.
-        Expected: All `Persons` whose information contains `cs` in any of the fields (name, email, address, telegram etc.).
-        For instance, if a person with a cca tag `ICS` would be shown in the list.
-    3. Test case: `search alex may`<br>
-        Expected: All `Persons` whose information contains `alex` and `may` in any of the fields (name, email, address, telegram etc.).
-        For instance, if a person with a name `Alex May` would be shown in the list.
-    4. Test case: `search r/friends`<br>
-        Expected: All `Persons` whose information contains `friends` in any of the remark tags.
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+   
+    2. **Test case:** `search cs`<br>.
+        **Expected:** All `Persons` whose information contains `cs` in any of the fields (name, email, address, Telegram etc.). For instance, if a person with a cca tag `ICS` would be shown in the list.
+
+    3. **Test case:** `search alex may`<br>
+        **Expected:** All `Persons` whose information contains `alex` and `may` in any of the fields (name, email, address, Telegram etc.). For instance, if a person with a name `Alex May` would be shown in the list.
+
+    4. **Test case:** `search r/friends`<br>
+        **Expected:** All `Persons` whose information contains `friends` in any of the remark tags.
         For instance, if a person with a remark tag `friends` would be shown in the list.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
@@ -883,27 +903,33 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to table of contents](#table-of-contents)
 
 ## 7.8 Opening a Person's social media links in app:
+
 1. Opening a `Person`'s social media links:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
-    2. Test case: `open 1 tg/`<br>
-        Expected: The first `Person`'s telegram account is opened in the app. Assuming the first `Person` telegram field is not empty,
-        is a valid telegram username and the telegram app is installed on the user's computer.
-    3. Test case: `open 1 wa/`<br>
-        Expected: The first `Person`'s whatsapp account is opened in the app. Assuming the first `Person` whatsapp field is not empty,
-        is a valid whatsapp number and the whatsapp app is installed on the user's computer.
-    4. Test case: `open 1 ig/`<br>
-        Expected: Nothing happens. Error showing that the `Person`'s corresponding field is empty. Assuming the first `Person` instagram field is empty.
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+   
+    2. **Test case:** `open 1 tg/` for a `Person` with a valid Telegram account<br>
+        **Expected:** The first `Person`'s Telegram account is opened in the app, assuming the first `Person` telegram field is not empty, is a valid Telegram username and the Telegram app is installed on the user's computer.
+   
+    3. **Test case:** `open 1 wa/` for a `Person` with a valid WhatsApp number<br>
+        **Expected:** The first `Person`'s WhatsApp account is opened in the app, assuming the first `Person` WhatsApp field is not empty, is a valid WhatsApp number and the WhatsApp app is installed on the user's computer.
+   
+    4. **Test case:** `open 1 ig/` for a `Person` with no Instagram<br>
+        **Expected:** Nothing happens. Error showing that the `Person`'s corresponding field is empty, assuming the first `Person` Instagram field is empty.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
 
 ## 7.9 Opening a social media platform with prefilled message:
+
 1. Opening a social media platform with prefilled message:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
-    2. Test case: `open 1 wa/ m/Hello World`<br>
-        Expected: The first `Person`'s WhatsApp account is opened in the app with the message `Hello World`. Assuming the first `Person` WhatsApp field is not empty,
-        is a valid WhatsApp number and the WhatsApp app is installed on the user's computer.
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+   
+    2. **Test case:** `open 1 wa/ m/Hello World`<br>
+        Expected: The first `Person`'s WhatsApp account is opened in the app with the message `Hello World`. Assuming the first `Person` WhatsApp field is not empty, is a valid WhatsApp number and the WhatsApp app is installed on the user's computer.
+   
     3. **Note:** Only WhatsApp is supported right now due to platform limitations.
     
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
@@ -911,10 +937,13 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to table of contents](#table-of-contents)
 
 ## 7.10 View upcoming birthdays:
+
 1. View people whose birthday are in the next 60 days:
-  1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
-  2. Test case: `upcoming-b`<br>
-    Expected: All `Persons` whose birthday is in the next 60 days are shown in the list.
+
+   1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list.
+   
+   2. **Test case:** `upcoming-b`<br>
+       **Expected:** All `Persons` whose birthday is in the next 60 days are shown in the list.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
