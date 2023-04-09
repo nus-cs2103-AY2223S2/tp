@@ -1,7 +1,7 @@
 @startuml
 !pragma useVerticalIf on
 start
-:User enters new command;
+:User enters add command;
 if () then ( [else])
   :Error: Invalid command format;
   stop
