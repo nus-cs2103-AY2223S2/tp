@@ -765,7 +765,7 @@ Although both the `find` and `delete` commands can filter the case list by date 
 the `find` command merely states the number of cases found, while the `delete` command further clarifies the date or date range
 within which the cases were found:
 
-<img src="images/FindDateRangeSuccess.png" width="425"/> <img src="images/DeleteDateRangeSuccess.png" width="425"/> 
+<img src="images/FindDateRangeSuccess.png" width="425"/> <img src="images/DeleteDateRangeSuccess.png" width="425"/>
 
 While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.

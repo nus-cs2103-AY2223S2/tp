@@ -278,7 +278,7 @@ Adds a dengue patient to DengueHotspotTracker.
 Format: `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`
 
 Examples:
-* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1` 
+* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
   adds a case with the name `John Tan`, postal code `543299`, date `2023-02-13`,
   age `20`, and variant `DENV1` into DengueHotSpotTracker.
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
