@@ -16,8 +16,8 @@ title: Developer Guide
 OfficeConnect is a task management tool designed specifically for managerial role personnels based within Singapore.
 
 As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
-* work overload among subordinates
-* difficulties in coordinating tasks with a large number of employees
+* work overload among subordinates,
+* difficulties in coordinating tasks with a large number of employees,
 * inefficient, time-consuming administrative tasks like typing and sending emails.
 
 OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing
@@ -34,6 +34,7 @@ the [AB3 project template](https://github.com/se-edu/addressbook-level3)
 by [se-education.org](https://se-education.org).
 
 * Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
+* Images retrieved from freepik and ICON8.
 * [JUnit5](https://junit.org/junit5/)
 
 
@@ -92,7 +93,7 @@ Each of the other three main components (excluding OfficeConnectModel), defines 
 same name as the Component. The components implement their functionality using a concrete `{Component Name}Manager` class.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
-using the `LogicManager.java` class which follows the `Logic` interface. All 4 components work together as illustrated 
+using the `LogicManager.java` class which follows the `Logic` interface. The components work together as illustrated 
 in the (partial) class diagram below.
 
 <img src="images/OfficeComponentManagers.png" width="750" />
@@ -252,7 +253,7 @@ titles, we encourage users to be specific in the title (purpose) of the task (e.
 able to clearly distinguish the purpose of each task just by looking at the title.  
 
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
-to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
+to distinguish between the tasks unless they read each of the task content individually. It would also reduce the visual
 clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
 Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in
 both the short and long term.
@@ -283,7 +284,7 @@ Below is an activity diagram showcasing the 2 steps:
     obtaining the index needed for `deletet`.
 
 * **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can
-  use this index when deleting tasks
+  use this index when deleting tasks.
   * Pros: If the user remembers the index of each task, they will not need to call `listt`. Hence, it will be less
     troublesome for them to delete tasks as the number of steps required is reduced by one.
     Also reduces coupling, as `deletet` will not have to depend on `listt` to function properly.
@@ -323,12 +324,12 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
 
 **Aspect: Form of query**
 
-* **Alternative 1 (current choice):** Query using TASK_TITLE
+* **Alternative 1 (current choice):** Query using `TASK_TITLE`
     * Pros: More intuitive as users do not have to keep track of the list index of the tasks.
       Able to query for tasks that are already logged in OfficeConnect using the title of the task.
     * Cons: Length of commands are dependent on length of title. Users have to remember the name of the tasks.
 
-* **Alternative 2:** Query using INDEX
+* **Alternative 2:** Query using `INDEX`
     * Pros: Shorter command to type out.
     * Cons: Less intuitive and less user-friendly. Users would be forced to list all the tasks before being able
       to execute the findt command if the current display is empty.
@@ -559,23 +560,24 @@ in extra effort to learn and memorize the commands.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                        | So that I can…​                                                              |
-|----------|----------|-----------------------------------------------------|------------------------------------------------------------------------------|
-| `* * *`  | new user | see usage instructions                              | refer to instructions when I forget how to use the App                       |
-| `* * *`  | manager  | add tasks                                           |                                                                              |
-| `* * *`  | manager  | edit tasks                                          | keep the task updated with the most updated information                      |
-| `* * *`  | manager  | delete tasks                                        | remove tasks that I no longer need                                           |
-| `* * *`  | manager  | mark tasks as done and undone                       | keep track of tasks that are completed                                       |
-| `* * *`  | manager  | find tasks assigned to specific subordinate         | better manage my subordinates workload                                       |
-| `* * *`  | manager  | check all ongoing tasks available                   | better delegate my tasks                                                     |
-| `* * *`  | manager  | assign tasks to a subordinate                       | keep track of which subordinate is in charge of which task                   |
-| `* * *`  | manager  | unassign tasks from a subordinate                   | assign this task to other subordinates                                       |
-| `* * *`  | manager  | add a subordinate                                   |                                                                              |
-| `* * *`  | manager  | delete a subordinate                                | remove subordinates that I no longer need                                    |
-| `* * *`  | manager  | find a subordinate by name                          | locate details of a subordinate without having to go through the entire list |
-| `* * *`  | manager  | filter subordinates based on their department (tag) | locate subordinates based on their department (tag)                          |
-| `* * *`  | manager  | view assigned tasks and persons                     | have an overview of tasks and persons that are assigned                      |
-| `* * *`  | manager  | view unassigned tasks and persons                   | have an overview of tasks and persons that are not assigned                  |
+| Priority | As a …​        | I want to …​                                        | So that I can…​                                                             |
+|----------|----------------|-----------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | new user       | see a brief and simple guide                        | quick-start the application without reading long documentations             |
+| `* * *`  | forgetful user | see usage instructions                              | refer to instructions when I forget how to use the App                      |
+| `* * *`  | manager        | add tasks                                           |                                                                             |
+| `* * *`  | manager        | edit tasks                                          | keep the task updated with the most updated information                     |
+| `* * *`  | manager        | delete tasks                                        | remove tasks that I no longer need                                          |
+| `* * *`  | manager        | mark tasks as done and undone                       | keep track of tasks that are completed                                      |
+| `* * *`  | manager        | find tasks assigned to specific subordinate         | better manage my subordinates workload                                      |
+| `* * *`  | manager        | check all ongoing tasks available                   | better delegate my tasks                                                    |
+| `* * *`  | manager        | assign tasks to a subordinate                       | keep track of which subordinate is in charge of which task                  |
+| `* * *`  | manager        | unassign tasks from a subordinate                   | assign this task to other subordinates                                      |
+| `* * *`  | manager        | add a subordinate                                   |                                                                             |
+| `* * *`  | manager        | delete a subordinate                                | remove subordinates that I no longer need                                   |
+| `* * *`  | manager        | find a subordinate by name                          | locate details of a subordinate without having to go through the entire list |
+| `* * *`  | manager        | filter subordinates based on their department (tag) | locate subordinates based on their department (tag)                         |
+| `* * *`  | manager        | view assigned tasks and persons                     | have an overview of tasks and persons that are assigned                     |
+| `* * *`  | manager        | view unassigned tasks and persons                   | have an overview of tasks and persons that are not assigned                 |
 
 
 ### 6.3 Use cases
@@ -1131,7 +1133,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and sample tasks. The window size may not be
       optimum.
 
@@ -1248,7 +1250,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/INPUT`, where INPUT is anything that is not true/false.
       Expected: Similar to previous.
 
-2. Adding a task with deadline.
+2. Adding a task with deadline
    1. Prerequisites: There are no tasks with the same title present.
    2. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01`<br>
       Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
@@ -1409,10 +1411,10 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 8. Appendix: Effort
-OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group, F10-1, has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
-Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and in AB3.
+OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
+Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and shown in AB3. We have also strived to maintain good code coverage, applying what was taught in the later weeks, resulting in a **code coverage of near 70% in Codecov.**
 
-In this section, we will detail some of the hurdles that we faced through the iterations of our tP.
+In the section, we will detail some of the hurdles that we faced through the iterations of our tP, both design and technical wise.
 ### 8.1 Design Challenges
 Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some big design changes includes:
 * Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.

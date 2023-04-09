@@ -273,7 +273,7 @@ Examples:
 
 #### 3.3.2 Deleting a Task: `deletet`
 
-Deletes the specified task from OfficeConnect
+Deletes the specified task from OfficeConnect.
 
 Format: `deletet INDEX`
 
@@ -449,7 +449,7 @@ Format: `pi INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Example:
-- `pi 2` displays person 2 and all tasks assigned to that person
+- `pi 2` displays person 2 and all tasks assigned to that person.
 
 #### 3.5.10 Viewing a Task : `ti`
 
@@ -462,7 +462,7 @@ Format: `ti INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Example:
-- `ti 1` displays task 1 and all persons assigned to that task
+- `ti 1` displays task 1 and all persons assigned to that task.
 
 
 ### 3.6 Others
@@ -539,7 +539,7 @@ _Details coming soon ..._
 | [Delete Person](#322-deleting-a-person--deletep)                        | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
 | [Delete Task](#332-deleting-a-task-deletet)                             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
 | [Edit Person](#323-editing-a-person--editp)                             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
-| [Edit Tasks](#333-editing-a-task-editt)                                 | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]`<br> e.g.,`editt 2 t/Submit report st/true`                                                                       |
+| [Edit Tasks](#333-editing-a-task-editt)                                 | `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE]`<br> e.g.,`editt 2 t/Submit report st/true`                                                                     |
 | [Exit](#361-exiting-the-program--exit)                                  | `exit`                                                                                                                                                                       |
 | [Filter Person](#358-filter-persons-filterp)                            | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
 | [Find Person](#325-locating-persons-by-name-findp)                      | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |
