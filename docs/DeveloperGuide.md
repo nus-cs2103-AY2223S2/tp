@@ -529,6 +529,7 @@ The attributes of a leave are:
 The `aetd` command adds an employee's leave on a specific day:
 
 Activity Diagram:
+
 ![AddEmployeeToLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
 Sequence Diagram:
@@ -554,6 +555,7 @@ We decided to throw an exception when the employee has already taken leave on th
 The `defl` command delete an employee's leave on a specific day:
 
 Activity Diagram:
+
 ![RemoveEmployeeFromLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
 Sequence Diagram:
@@ -575,6 +577,7 @@ Sequence Diagram:
 The `aelr` command adds an employee's leave on all the days between the range of a start date to an end date inclusive.
 
 Activity Diagram:
+
 ![AddEmployeeLeaveFromTo Activity Diagram](./images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
 Sequence Diagram:
