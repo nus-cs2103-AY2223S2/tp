@@ -13,21 +13,13 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueEmployeeList
-Class Id
 Class Employee
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
 
 Class UniqueDepartmentList
 Class Department
-Class DepartmentName
 
 Class UniqueLeaveList
 Class Leave
-Class LeaveDate
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,37 +28,25 @@ HiddenOutside ..> Model
 SudoHr .up.|> ReadOnlySudoHr
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlySudoHr
+Model .down.> ReadOnlyUserPrefs
+Model .down.> ReadOnlySudoHr
 ModelManager -left-> "1" SudoHr
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-SudoHr *--> "1" UniqueEmployeeList
-SudoHr *--> "1" UniqueDepartmentList
-SudoHr *--> "1" UniqueLeaveList
+SudoHr o-down-> "1" UniqueEmployeeList
+SudoHr *-down-> "1" UniqueDepartmentList
+SudoHr *-down-> "1" UniqueLeaveList
 
-UniqueEmployeeList --> "~* all" Employee
-Employee *--> Id
-Employee *--> Name
-Employee *--> Phone
-Employee *--> Email
-Employee *--> Address
-Employee *--> "*" Tag
+UniqueEmployeeList .left--> "~* all" Employee
 
-UniqueDepartmentList --> "~* all" Department
-Department *--> DepartmentName
-Department *-->"1"UniqueEmployeeList
+UniqueDepartmentList .down--> "~* all" Department
+Department o-down->"1"UniqueEmployeeList
 
-UniqueLeaveList --> "~* all" Leave
-Leave *--> LeaveDate
-Leave *--> "1"UniqueEmployeeList
+UniqueLeaveList .down--> "~* all" Leave
+Leave o-down-> "1"UniqueEmployeeList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"~* filtered" Employee
-ModelManager -->"~* filtered" Department
-ModelManager -->"~* filtered" Leave
+ModelManager .down.-->"~* filtered" Employee
+ModelManager .down.-->"~* filtered" Department
+ModelManager .down.-->"~* filtered" Leave
 @enduml
