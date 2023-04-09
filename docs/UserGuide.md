@@ -988,7 +988,6 @@ Documentation dependencies:
 - [URL](#url)
 
 ---
-<div style="page-break-after: always;"></div>
 
 ### A
 > #### ADDRESS Placeholder
