@@ -16,11 +16,12 @@ Given below are my contributions to the project.
   * `Premium` : Represents the amount paid by the client for the policy.
   * `Frequency` : Represents the frequency of payment by the client for the policy
   * `UniquePolicyList` : Stores a list of policies for the particular client, similar to `UniqueClientList`
+    
+     [\#61](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/61)
 
 
 * **Enhancements to existing features**:
-  * Enhanced the `isSameClient` method in the `Client` class, such that it now checks if all client's `Name` AND (`Phone` OR `Email`) of both comparing clients are the same, instead of the original method where it only checks if the client names are the same. (examples : #168)
-
+  * Enhanced the `isSameClient` method in the `Client` class, such that it now checks if all client's `Name` AND (`Phone` OR `Email`) of both comparing clients are the same, instead of the original method where it only checks if the client names are the same. [\#168](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/168)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=yzmunchmunch&breakdown=true)
 * **Documentation**:
@@ -29,5 +30,6 @@ Given below are my contributions to the project.
     * Added screenshots to General Management and Client Management sections.
   * Developer Guide:
     * Added flow of implementation for model, `Client` and `Policy` classes with UML diagrams
+    * Added documentation for Instructions for manual testing [\#186](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/186)
 
 
