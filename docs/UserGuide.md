@@ -427,4 +427,5 @@ the data of your previous AIMS home folder.
 | **Command history** | `↑` / `↓`                                                                                                                                                                                                                                  |
 | **List**            | `list`                                                                                                                                                                                                                                     |
 | **Help**            | `help`                                                                                                                                                                                                                                     |
+
 [Return to Top](#table-of-contents)
