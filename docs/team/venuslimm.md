@@ -46,12 +46,13 @@ Given below are my contributions to the project.
   * Sort events feature section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
     * Added information on how `sortevent` command works.
     * Drew [sequence diagram for sortevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/SortEventSequenceDiagram.png).
-  * User stories
-    * Crafted user stories with the team.
-  * Use cases
-    * Crafted some use cases with the team.
-  * Appendix section ([#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85))
-    * Updated `Launch and shutdown`.
+  * Appendix section: Instructions for manual testing
+    * Updated `Launch and shutdown` ([#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85)).
+    * Updated `Saving data` ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
+    * Added `Adding an event` ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
+    * Added `Sorting event list` ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
+  * Appendix section: Planned Enhancements
+    * Added `Person name will not be case-sensitive` ([#122](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/122)).
 
 * **Contributions to the User Guide**
   * Quick start section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73), [#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85))
@@ -62,6 +63,8 @@ Given below are my contributions to the project.
 * **Contributions to team-based tasks**
   * Updated [README.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/README.md) and [index.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/index.md) badges.
   * Added some user stories onto GitHub.
+  * Crafted all the user stories with the team.
+  * Crafted some use cases with the team.
 
 * **Review/mentoring contributions**
   * Reviewed and commented non-trivial comments on the following PRs: [#4](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/4), [#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10), [#39](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/39), [#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48), [#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55), [#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56), [#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63), [#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68), [#112](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/112), [#119](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/119).
