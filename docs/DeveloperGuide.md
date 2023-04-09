@@ -120,7 +120,7 @@ When a command such as `select` is called, the left pane or the right pane, or b
 *Figure 4: Sequence Diagram for `select`*
 
 
-Figure 4's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` components interact when `select 1` is called on the Course Page. The user's selection path (`Course` -> `Group` -> `Student`) is tracked by the `CurrentSelection` class as they navigate through the application.
+Figure 4's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` components interact when `select 1` is called on the Course Page. The user's selection path (in this case `Course` -> `Group`) is tracked by the `CurrentSelection` class as they navigate through the application.
 
 To display the Group Page after a user selects a `Course` from the Course Page, the `UI` first obtains the `PageType` to be displayed in the GUI from the `Logic` component. Then, the `UI` retrieves the selected `Course` from `CurrentSelection` and subsequently invokes the `showGroupPane` method based on the selected `Course`.
 
@@ -138,6 +138,7 @@ This sequence of interactions is similar across each page navigation.
 
 *Figure 5: Screenshot of Attendance Page*
 
+
 In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectively.
 The navigation from Session Page to Attendance Page does not close the `SessionListPanel` in the Left Pane, instead the `SessionListPanel` remains and the `AttendanceListPanel` is displayed in the Right Pane.
 However, the current page shown in Figure 5 is still treated as the Attendance Page, hence only commands applicable to the Attendance Page is accepted.
@@ -150,7 +151,7 @@ Figure 6 shows the Sequence Diagram when a `mark` command is executed.
 
 ![Mark Sequence Diagram](images/MarkSequenceDiagram.png)
 
-*Figure 6: Sequence Diagram of mark command*
+*Figure 6: Sequence Diagram of mark command. Due to Plant UML limitations, the `alt` frame extends slightly beyond the `UI` frame.*
 
 As shown in Figure 6, when a new `AttendanceListPanel` is initialised, an `AttendanceListViewCell` will be created.
 Similar to the sequence described under Figure 4, the `AttendanceListPanel` takes in an `ObservableList<StudentWithAttendance>` and maps each `StudentWithAttendance` into an `AttendanceListViewCell`.
