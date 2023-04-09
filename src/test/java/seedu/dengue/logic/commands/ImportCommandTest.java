@@ -26,7 +26,7 @@ public class ImportCommandTest {
 
     private static final String TYPICAL_PERSONS_FILE = "typicalPersonsDengueHotspotTracker.csv";
 
-    private static final String EMPTY_PERSONS_FILE = "emptyDengueHotspotTracker.csv";
+    private static final String EMPTY_PERSONS_FILE = "emptyDengueHotspotTrackerOne.csv";
 
     private Model model = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
 
