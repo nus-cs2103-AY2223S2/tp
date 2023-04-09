@@ -923,3 +923,9 @@ testers are expected to do more *exploratory* testing.
 | **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
 | **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
 
+
+## Appendix: Planned Enhancements
+1. Currently, the UI shows a blank area when an attribute is undefined for contacts and meetings.
+    2. Proposed Fix: Have a placeholder `No ATTRIBUTE defined` for each attribute.
+3. Currently, once we define an attribute for a contact, we are unable to remove it.
+    4. Proposed Fix: Add a new command "deleteattribute" for this purpose.
