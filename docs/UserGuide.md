@@ -203,7 +203,6 @@ Required Information:
 * `DESC`: Description of the meeting to add
 * `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
-* `TAGS`: Optional labels to put for the meeting
 
 Example:
 
@@ -213,8 +212,9 @@ Example:
 Notes:
 * Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
 * Meeting must not conflict in timing with other meetings scheduled for the day.
+* Meetings must not be scheduled before the current date and time.
 
-* ![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
+![result for 'meetingAdd 3 md/ Meeting with Charlotte ms/ 14-04-2023 12:30 me/14-04-2023 13:30`](images/meetingAddCharlotte.PNG)
 
 
 
