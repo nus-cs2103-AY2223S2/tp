@@ -307,6 +307,8 @@ The task list can be viewed using the `view` command.
 
 Format: `mark t/TASK_INDEX s/PERFORMANCE_SCORE`
 
+<b>Note: A task cannot be marked if it is not assigned to anyone.</b>
+
 Examples:
 * `mark t/1 s/4`<br>
 ![markExample](images/MarkExample.PNG)
