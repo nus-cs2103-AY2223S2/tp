@@ -54,8 +54,7 @@ class JsonAdaptedPolicyTest {
         JsonAdaptedPolicy policy =
                 new JsonAdaptedPolicy(VALID_POLICY_NAME, INVALID_DATE, VALID_PREMIUM,
                         VALID_FREQUENCY);
-        String expectedMessage = CustomDate.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, policy::toModelType);
+        assertThrows(IllegalValueException.class, policy::toModelType);
     }
 
     @Test

@@ -190,7 +190,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    void parseCustomDate_invalidValue_throwsParseException() {
+    void parseCustomDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseCustomDate(INVALID_POLICY_DATE));
     }
 

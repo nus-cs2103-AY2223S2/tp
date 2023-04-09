@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -16,7 +15,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.Policy;
 
 /**
@@ -197,47 +195,6 @@ public class ModelManager implements Model {
         return selectedClient.getFilteredPolicyList();
     }
 
-    @Override
-    public int getNumberOfClients() {
-        return filteredClients.size();
-    }
-
-    @Override
-    public double getWeeklyEarnings() {
-        Client selectedClient = getSelectedClient();
-        double totalEarnings = 0;
-
-        for (int i = 0; i < filteredClients.size(); i++) {
-            selectedClient = filteredClients.get(i);
-            ObservableList<Policy> policyList = selectedClient.getFilteredPolicyList();
-            for (int j = 0; j < policyList.size(); j++) {
-                Policy policy = policyList.get(j);
-                Frequency freq = policy.getFrequency();
-                if (freq.toString() == "monthly") {
-                    double earnings = Double.valueOf(policy.getPremium().toString()) / 4.0;
-                    totalEarnings = totalEarnings + earnings;
-                } else if (freq.toString() == "yearly") {
-                    double earnings = Double.valueOf(policy.getPremium().toString()) / 36.0;
-                    totalEarnings = totalEarnings + earnings;
-                } else {
-                    double earnings = Double.valueOf(policy.getPremium().toString());
-                    totalEarnings = totalEarnings + earnings;
-                }
-            }
-        }
-        return totalEarnings;
-    }
-
-    @Override
-    public HashMap<String, Integer> getSummary() {
-        HashMap<String, Integer> summary = new HashMap<String, Integer>();
-
-        // Adding information to hashmap
-        summary.put("Clients: ", getNumberOfClients());
-        summary.put("Weekly Earnings: ", (int) getWeeklyEarnings());
-
-        return summary;
-    }
 
     /**
      * Returns the selected Client
