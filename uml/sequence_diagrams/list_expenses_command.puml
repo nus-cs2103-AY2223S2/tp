@@ -1,0 +1,75 @@
+@startuml  list_expense_command
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+participant ":ListExpenseCommand" as ListExpenseCommand  order 1
+participant "model:Model" as Model order 4
+participant "filterExpensesin\nTransomething" as filterModel order 3
+participant ":CommandResult" as CommandResult order 2
+[-> ListExpenseCommand : execute(model)
+activate ListExpenseCommand #LightBlue
+alt category predicate \nis present
+    ListExpenseCommand -> filterModel : filter.getCategory()
+    activate filterModel #Yellow
+    filterModel -> ListExpenseCommand : category
+    deactivate filterModel
+    ListExpenseCommand -> Model: updateCategoryFilter(category)
+    activate Model #Orange
+    deactivate Model
+else else
+    ListExpenseCommand -> Model: updateCategoryFilter(null)
+    activate Model #Orange
+    deactivate Model
+end
+
+alt timespan predicate \nis present
+    ListExpenseCommand -> filterModel : filter.getTimespan()
+    activate filterModel #Yellow
+    filterModel -> ListExpenseCommand : timespan
+    deactivate filterModel
+    ListExpenseCommand -> Model: updateTimespanFilter(timespan)
+    activate Model #Orange
+    deactivate Model
+else else
+    ListExpenseCommand -> Model: updateTimespanFilter(timespan)
+    activate Model #Orange
+    deactivate Model
+end
+
+opt category predicate \nis present
+    ListExpenseCommand -> ListExpenseCommand : combinedPredicate.and(categoryModel.get())
+    ListExpenseCommand -[hidden]-> Model
+end
+
+opt timespan \nis present
+    ListExpenseCommand -> ListExpenseCommand : combinedPredicate.and(timespanPredicate.get())
+    ListExpenseCommand -[hidden]-> Model
+end
+
+
+ListExpenseCommand -> Model : updateFilteredExpenseList(combinedPredicate) 
+activate Model #Orange
+deactivate Model
+create CommandResult
+ListExpenseCommand -> CommandResult 
+
+activate CommandResult #SpringGreen
+CommandResult -> ListExpenseCommand
+deactivate CommandResult
+[<--ListExpenseCommand : result
+deactivate ListExpenseCommand
+destroy ListExpenseCommand
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+
+@enduml

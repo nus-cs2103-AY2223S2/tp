@@ -1,0 +1,35 @@
+@startuml  list_recurring_expenses_command
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+participant ":ListRecurringExpenseCommand" as ListRecurringExpenseCommand  order 1
+participant "model:Model" as Model order 3
+participant ":CommandResult" as CommandResult order 2
+[-> ListRecurringExpenseCommand : execute(model)
+activate ListRecurringExpenseCommand #LightBlue
+ListRecurringExpenseCommand -> Model : updateFilteredExpenseList(predicate) 
+activate Model #Orange
+deactivate Model
+create CommandResult
+ListRecurringExpenseCommand -> CommandResult 
+
+activate CommandResult #SpringGreen
+CommandResult -> ListRecurringExpenseCommand
+deactivate CommandResult
+[<--ListRecurringExpenseCommand : result
+deactivate ListRecurringExpenseCommand
+destroy ListRecurringExpenseCommand
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+
+@enduml

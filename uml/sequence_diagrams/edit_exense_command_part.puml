@@ -1,0 +1,36 @@
+@startuml  edit_expense_command_find
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+participant ":EditExpenseCommand" as Command  order 1
+participant "category: Category" as Category order 2
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    ReferenceBackgroundColor #FFFFFF
+}
+
+loop until matching category is found 
+    create Category
+    Command -> Category
+    activate Category #Brown
+    Category -[hidden]> Command
+    deactivate Category
+
+    Command-[hidden]->Category
+     activate Category #Brown 
+    Category -> Category :equals(newExpenseCategoryInString)
+    opt if equals check is true
+       Category -[hidden]> Category
+       Category -> Command
+    end
+    deactivate Category 
+end
+@enduml

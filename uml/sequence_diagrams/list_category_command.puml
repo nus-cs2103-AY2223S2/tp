@@ -1,0 +1,35 @@
+@startuml  list_category_command
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+participant ":ListCategoryCommand" as ListCategoryCommand  order 1
+participant "model:Model" as Model order 3
+participant ":CommandResult" as CommandResult order 2
+[-> ListCategoryCommand : execute(model)
+activate ListCategoryCommand #LightBlue
+ListCategoryCommand -> Model : updateFilteredExpenseList(predicate) 
+activate Model #Orange
+deactivate Model
+create CommandResult
+ListCategoryCommand -> CommandResult 
+
+activate CommandResult #SpringGreen
+CommandResult -> ListCategoryCommand
+deactivate CommandResult
+[<--ListCategoryCommand : result
+deactivate ListCategoryCommand
+destroy ListCategoryCommand
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+
+@enduml

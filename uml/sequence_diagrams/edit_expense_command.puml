@@ -1,0 +1,73 @@
+@startuml  edit_expense_command
+
+hide footbox
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+box Model #F97181
+participant "dataModel: Model" as Model order 3
+participant "expenseTracker: ExpenseTracker" as ExpenseTracker order 4
+participant "expenses: ExpenseList" as ExpenseList order 5
+end box
+
+box Logic #C8C8FA
+participant ":EditExpenseCommand" as Command  order 1
+end box
+
+[->Command: execute(dataModel)
+activate Command
+Command -> Model: getFilteredExpenseList()
+activate Model
+Model --> Command: lastShownExpenseList
+deactivate Model
+Command -> Model: getFilteredCategoryList()
+activate Model
+Model --> Command: lastShownCategoryList
+deactivate Model
+
+Command -> Model
+ref over Model
+    : Look for matching category in
+    : lastShownCategoryList and
+    : retrieve the category list 
+end ref
+ref over Model 
+    : Obtain the expense from lastShownExpenseList
+    : using the parsed index
+    : Create new expense with the new values
+end ref
+Model --> Command
+
+Command -> Model: setExpense(target, editedExpense)
+activate Model
+Model -> ExpenseTracker: setExpense(target, editedExpense)
+activate ExpenseTracker
+ExpenseTracker -> ExpenseList: setExpense(target, editedExpense)
+activate ExpenseList
+ExpenseList -> ExpenseList: retrieve target's index from \nObservableList<Expense>, \nset editedExpense at index
+ExpenseList --> ExpenseTracker
+deactivate ExpenseList
+ExpenseTracker -> ExpenseList: sortList()
+activate ExpenseList
+ExpenseList -> ExpenseList: sort expenses in \nObservableList<Expense>\nby date
+ExpenseList --> ExpenseTracker
+deactivate ExpenseList
+ExpenseTracker --> Model
+deactivate ExpenseTracker
+Model -> Model: updateFilteredExpenseList\n(PREDICATE_SHOW_ALL_EXPENSES)
+activate Model
+deactivate Model
+Model --> Command
+deactivate Model
+create ":CommandResult" as CommandResult order 1
+Command -> CommandResult 
+activate CommandResult
+CommandResult --> Command
+deactivate CommandResult
+' [<-- Command: result
+destroy Command
+
+@enduml

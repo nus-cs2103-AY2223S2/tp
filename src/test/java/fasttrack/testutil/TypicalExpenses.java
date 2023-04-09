@@ -13,6 +13,8 @@ import java.util.List;
 import fasttrack.model.Budget;
 import fasttrack.model.ExpenseTracker;
 import fasttrack.model.expense.Expense;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 
@@ -55,4 +57,8 @@ public class TypicalExpenses {
     public static List<Expense> getTypicalExpenses() {
         return new ArrayList<>(Arrays.asList(APPLE, BANANA, CHERRY, DURIAN, ELDERBERRY, FIG, GRAPE));
     }
+
+    public static final ObservableList<Expense> TYPICAL_EXPENSES = FXCollections.observableArrayList(
+                APPLE, BANANA, CHERRY, DURIAN, ELDERBERRY, FIG, GRAPE
+    );
 }

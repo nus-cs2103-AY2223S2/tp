@@ -39,11 +39,30 @@ interface ListCommand extends Command {
 interface GeneralCommand extends Command {
 }
 
-' COMMAND_WORD, MESSAGE_USAGE< MESSSAGE_SUCCESS, MESSAGE_DUPLICATE_CATEGORY are not shown
-class AddCategoryCommand {
-    + AddCategoryCommand(category: Category)
-    - category: Category
+class SetBudgetCommand {
+    + SetBudgetCommand(budget: Budget)
+    - budget: Budget
 }
+
+Command <.. SetBudgetCommand
+Command "1" *-- "1" CommandResult
+
+@enduml
+
+@startuml add_commands
+
+skinparam defaultTextAlignment left
+' scale 0.6
+hide empty members
+hide circle
+skinparam classAttributeIconSize 0
+
+' COMMAND_WORD, MESSAGE_USAGE< MESSSAGE_SUCCESS, MESSAGE_DUPLICATE_CATEGORY are not shown
+interface AddCommand {
+    + abstract execute(dataModel: DataModel): CommandResult
+}
+
+class AddCategoryCommand {}
 
 class AddExpenseCommand {
     + AddExpenseCommand(expense: Expense)
@@ -60,8 +79,21 @@ class CategorySummaryCommand {
     - index: Index
 }
 
+AddCommand <|-- AddCategoryCommand
+AddCommand <|-- AddExpenseCommand
+AddCommand <|-- AddRecurringExpenseCommand
 
-class ClearCommand {}
+@enduml
+
+@startuml delete_commands
+
+skinparam defaultTextAlignment left
+' scale 0.6
+hide empty members
+hide circle
+skinparam classAttributeIconSize 0
+
+inteface DeleteCommand {}
 
 class DeleteCategoryCommand {
     + DeleteCategoryCommand(index: Index)
@@ -77,6 +109,22 @@ class DeleteRecurringExpenseCommand {
     + DeleteRecurringExpenseCommand(index: Index)
     - index: Index
 }
+
+DeleteCommand <.. DeleteCategoryCommand
+DeleteCommand <.. DeleteExpenseCommand
+DeleteCommand <.. DeleteRecurringExpenseCommand
+
+@enduml
+
+@startuml edit_commands
+
+skinparam defaultTextAlignment left
+' scale 0.6
+hide empty members
+hide circle
+skinparam classAttributeIconSize 0
+
+interface EditCommand {}
 
 class EditCategoryCommand {
     + EditCategoryCommand(index: Index, newCategoryName: String, newSummary: String)
@@ -107,6 +155,53 @@ class EditRecurringExpenseManagerCommand {
     - newFrequencyInString: String
 }
 
+
+EditCommand <.. EditCategoryCommand
+EditCommand <.. EditExpenseCommand
+EditCommand <.. EditRecurringExpenseManagerCommand
+
+@enduml
+
+@startuml list_commands
+
+skinparam defaultTextAlignment left
+' scale 0.6
+hide empty members
+hide circle
+skinparam classAttributeIconSize 0
+
+interface ListCommand {}
+
+class ListCategoryCommand {}
+
+class ListExpenseCommand {
+    ' + ListCategoriesCommand(categoryPredicate: Optional<ExpenseInCategoryPredicate>, \
+      timespanPredicate: Optional<ExpenseInTimespanPredicate>) '
+    - categoryPredicate: Optional<ExpenseInCategoryPredicate>
+    - timespanPredicate: Optional<ExpenseInTimespanPredicate>
+}
+
+class ListRecurringExpenseCommand {}
+
+
+ListCommand <.. ListCategoryCommand
+ListCommand <.. ListExpensesCommand
+ListCommand <.. ListRecurringExpenseCommand
+
+@enduml
+
+@startuml general_commands
+
+skinparam defaultTextAlignment left
+' scale 0.6
+hide empty members
+hide circle
+skinparam classAttributeIconSize 0
+
+interface GeneralCommand {}
+
+class ClearCommand {}
+
 class ExitCommand {}
 
 class FindCommand {
@@ -116,40 +211,11 @@ class FindCommand {
 
 class HelpCommand {}
 
-class ListCategoryCommand {}
-
-class ListCategoriesCommand {
-    ' + ListCategoriesCommand(categoryPredicate: Optional<ExpenseInCategoryPredicate>, \
-      timespanPredicate: Optional<ExpenseInTimespanPredicate>) '
-    - categoryPredicate: Optional<ExpenseInCategoryPredicate>
-    - timespanPredicate: Optional<ExpenseInTimespanPredicate>
-}
-
-class ListRecurringExpenseCommand {}
-
-class SetBudgetCommand {
-    + SetBudgetCommand(budget: Budget)
-    - budget: Budget
-}
-
-AddCommand <|-- AddCategoryCommand
-AddCommand <|-- AddExpenseCommand
-AddCommand <|-- AddRecurringExpenseCommand
 GeneralCommand <.. CategorySummaryCommand
 GeneralCommand <.. ClearCommand
 GeneralCommand <.. ExitCommand
 GeneralCommand <.. FindCommand
 GeneralCommand <.. HelpCommand
-DeleteCommand <.. DeleteCategoryCommand
-DeleteCommand <.. DeleteExpenseCommand
-DeleteCommand <.. DeleteRecurringExpenseCommand
-EditCommand <.. EditCategoryCommand
-EditCommand <.. EditExpenseCommand
-EditCommand <.. EditRecurringExpenseManagerCommand
-ListCommand <.. ListCategoryCommand
-ListCommand <.. ListExpensesCommand
-ListCommand <.. ListRecurringExpenseCommand
-Command <.. SetBudgetCommand
-Command "1" *-- "1" CommandResult
+
 @enduml
-' 5313
+
