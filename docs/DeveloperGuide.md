@@ -112,11 +112,11 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_job ABCDEF")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_job ABCDEF")` API call (accessed from Main Window):
 
 ![Interactions Inside the Logic Component for the `delete_job ABCDEF` Command](images/DeleteDeliveryJobSequenceDiagram.png)
 
-Another example would be `execute("delete 1")`
+Another example would be `execute("delete 1")` - accessed from Customers' Window:
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -449,22 +449,31 @@ Design considerations:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                         | I want to …​                                 | So that I can…​                                                       |
-|----------|-----------------------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                       | refer to instructions when I forget how to use the App                |
-| `* * *`  | delivery driver                                                 | add/delete jobs                              | keep track of my upcoming and old jobs                                |
-| `* * *`  | delivery driver                                                 | mark/unmark jobs                             | keep track of completed jobs                                          |
-| `* * *`  | delivery driver                                                 | add a new person                             | keep in touch with my clients                                         |
-| `* * *`  | delivery driver                                                 | delete a person                              | remove entries that I no longer need                                  |
-| `* * *`  | organised delivery driver                                       | find a person by name                        | locate details of persons without having to go through the entire list |
-| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines  | complete all my jobs on time and not forget a task                    |
-| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines | plan for my next schedule                                             |
-| `* * *`  | busy person                                                     | view timetable of my tasks in a week         | organise my timetable and complete everything on time                 |
-| `* * *`  | busy person                                                     | view list of completed and unscheduled jobs  | keep track of my work                                                 |
-| `* *`    | delivery driver                                                 | hide private contact details                 | minimize chance of someone else seeing them by accident               |
-| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information               | track my earnings and other statistics                                |
-| `*`      | delivery driver with many customers in the address book         | sort persons by name                         | locate a person/client easily and thus increase delivery efficiency   |
-| `*`      | user                                                            | adjust how my notifications are shown        | have a clutter free desktop                                           |
+| Priority | As a …​                                                         | I want to …​                                                       | So that I can…​                                                                      |
+|----------|-----------------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                                             | refer to instructions when I forget how to use the App                               |
+| `* * *`  | delivery driver                                                 | add/delete jobs                                                    | keep track of my upcoming and old jobs                                               |
+| `* * *`  | delivery driver                                                 | mark/unmark jobs                                                   | keep track of completed jobs                                                         |
+| `* * *`  | organised and busy delivery driver                              | search for jobs in my Duke Driver job list                         | easily find the information that I need without having to go through the entire list |
+| `* * *`  | busy delivery driver                                            | mass import job list from file to Duke Driver                      | easily move my data between devices or other apps.                                   |
+| `* * *`  | delivery driver                                                 | add a new person                                                   | keep in touch with my clients                                                        |
+| `* * *`  | delivery driver                                                 | delete a person                                                    | remove entries that I no longer need                                                 |
+| `* * *`  | organised delivery driver                                       | find a person by their information                                 | locate details of persons without having to go through the entire list               |
+| `* * *`  | busy Duke Driver user                                           | edit existing contacts in my address book                          | update their information if it changes                                               |
+| `* * *`  | busy Duke Driver user                                           | edit existing jobs in my Duke Driver job list                      | update their information if it changes                                               |
+| `* * *`  | forgetful person                                                | received notifications/be reminded of upcoming tasks and deadlines | complete all my jobs on time and not forget a task                                   |
+| `* * *`  | forgetful person                                                | add reminders to the app                                           | complete all my jobs on time and not forget a task                                   |
+| `* * *`  | organised person                                                | delete reminders from the app                                      | keep myself updated to my progress                                                   |
+| `* * *`  | busy person                                                     | snooze reminders                                                   | ignore/forget about jobs that I am not able to complete at the scheduled time        |
+| `* * *`  | busy person                                                     | view list of reminders                                             | keep track of my progress                                                            |
+| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines                       | plan for my next schedule                                                            |
+| `* * *`  | busy and organised person                                       | view schedule of my tasks in a week                                | organise my timetable/to-do list and keep track/complete everything on time          |
+| `* * *`  | busy  and organised person                                      | view list of completed and unscheduled jobs                        | keep track of my work                                                                |
+| `* * *`  | productive and motivated delivery driver                        | view statistics of my jobs and earnings                            | keep track of my work and get motivated to work harder                               |
+| `* *`    | delivery driver                                                 | hide private contact details                                       | minimize chance of someone else seeing them by accident                              |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information                                     | track my earnings and other statistics                                               |
+| `*`      | delivery driver with many jobs in Duke Driver                   | sort and filter jobs                                               | locate jobs easily and thus increase delivery efficiency                             |
+| `*`      | user                                                            | adjust how my notifications are shown                              | have a clutter free desktop                                                          |
 
 ### Use cases
 

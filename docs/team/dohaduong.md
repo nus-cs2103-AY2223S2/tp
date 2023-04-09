@@ -50,6 +50,7 @@ Given below are my contributions to the project.
       
     * Developer Guide:
         * Added implementation details for Timetable functions (PR #128)
+        * Added sequence diagram for `delete_job` command
         * Added user stories, use cases and glossary (PR #20, #23, #34)
 
 * **Community**:
