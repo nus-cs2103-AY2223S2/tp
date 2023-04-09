@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Lesson}'s title matches the given subject.
+ * Tests that a {@code Exam} is done or otherwise.
  */
 public class ExamDonePredicate implements Predicate<Exam> {
     private final String done;
 
     /**
-     * Creates a predicate to test if a Homework's title matches the specified subject
-     * @param done The String that represents date
+     * Creates a predicate to test if an Exam is done or otherwise
+     * @param done The String that represents done-ness (valid values are "done" or "not done")
      */
     public ExamDonePredicate(String done) {
         this.done = done;
@@ -35,6 +35,6 @@ public class ExamDonePredicate implements Predicate<Exam> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof ExamDonePredicate // instanceof handles nulls
-            && done.equals(((ExamDonePredicate) other).done)); // date check
+            && done.equals(((ExamDonePredicate) other).done)); 
     }
 }
