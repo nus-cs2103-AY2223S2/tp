@@ -12,7 +12,7 @@ Class CommandResult
 Class "{abstract}\nCommand" as Command
 
 
-Class "<<interface>>\nLogic" as Logic
+Class "<<interface>>\nLogic" as LogicI
 Class LogicManager
 }
 
@@ -24,9 +24,9 @@ package Storage{
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> LogicI
 
-LogicManager .right.|> Logic
+LogicManager .right.|> LogicI
 LogicManager -right->"1" AddressBookParser
 AddressBookParser ..> XYZCommand : creates >
 
@@ -40,7 +40,7 @@ Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
-Logic ..> CommandResult
+LogicI ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : produces >
 @enduml
