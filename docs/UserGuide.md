@@ -619,6 +619,8 @@ Applicants with the status <code>REJECTED</code> cannot be rejected again!
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 #### List all interview dates of applicants `interview`
 
 **Format**: `interview`
@@ -645,6 +647,7 @@ What you should see:
 
 ---
 
+<div style="page-break-after: always;"></div>
 
 #### Edit an existing applicant `edit`
 
@@ -685,7 +688,6 @@ What you should see:
 [Back to Table of Contents](#table-of-contents)
 
 ---
-<div style="page-break-after: always;"></div>
 
 #### Get reminders for upcoming interviews `remind`
 
@@ -986,7 +988,6 @@ Documentation dependencies:
 - [URL](#url)
 
 ---
-<div style="page-break-after: always;"></div>
 
 ### A
 > #### ADDRESS Placeholder
