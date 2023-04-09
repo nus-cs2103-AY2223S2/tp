@@ -819,7 +819,7 @@ specified otherwise)
 
 * 4a. The user has not undone any actions within Advis.io that can be redone.
   * 4a1. Advis.io displays a message indicating that there is no action to be redone.
-   
+  
     Use case ends
 
 **Use case: Creating Appointment for Client**
@@ -836,14 +836,14 @@ specified otherwise)
 * 1a. The user does not enter an appointment name or date.
   * 1a1. Advis.io displays a message indicating that the appointment name and date are required.
   * 1a2. The user enters a new appointment name and date.
- 
+
   Use case ends
 
 
 * 1b. Advis.io adds an invalid appointment date.
   * 1b1. Advis.io displays a message indicating that the appointment date is invalid.
   * 1b2. The user inputs a new appointment date.
- 
+
   Steps 1b1-1b2 are repeated until the date entered is valid.
 
   Use case ends.
@@ -944,6 +944,5 @@ testers are expected to do more *exploratory* testing.
    specific exception message in the message box.
 5. We plan on implementing a log-in/sign-up feature where users can log into personal accounts. This will require the
    use of maintaining a cloud-based server such that users may retrieve their own data on the go.
-6. We plan on implementing an administrative user interface. This administrative control will allow management of the
-   company to control the types of policies which users (financial advisors) my key into the application.
+6. We plan on implementing an administrative user interface. This administrative control will allow management of the company to control the types of policies which users (financial advisors) my key into the application.
 7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered clientl ist and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
