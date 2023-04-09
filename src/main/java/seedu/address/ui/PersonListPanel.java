@@ -107,8 +107,9 @@ public class PersonListPanel extends UiPart<Region> {
         dateOfBirth.setText("Date of Birth: " + employee.getDateOfBirth());
         dateOfJoining.setText("Date of Joining: " + employee.getDateOfJoining());
 
-        String val = employee.getPicturePath().value;
+
         InputStream isImage;
+        String val = employee.getPicturePath().value;
         if (val.equals("")) {
             isImage = getClass().getResourceAsStream("/images/default_employee.png");
             requireNonNull(isImage);

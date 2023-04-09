@@ -40,7 +40,7 @@ public class Employee {
     public Employee(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
                     Department department, Payroll payroll, LeaveCounter leaveCounter,
                     Optional<LocalDate> dateOfBirth, Optional<LocalDate> dateOfJoining,
-                    Optional<PicturePath> picturePath, Set<Tag> tags) {
+                    PicturePath picturePath, Set<Tag> tags) {
         requireAllNonNull(name, employeeId, phone, email, address, department, payroll, leaveCounter,
                 dateOfBirth, dateOfJoining, tags);
         this.name = name;
@@ -53,7 +53,7 @@ public class Employee {
         this.leaveCounter = leaveCounter;
         this.dateOfBirth = dateOfBirth;
         this.dateOfJoining = dateOfJoining;
-        this.picturePath = picturePath.orElseGet(() -> new PicturePath(""));
+        this.picturePath = picturePath;
         this.tags.addAll(tags);
     }
 
@@ -163,6 +163,7 @@ public class Employee {
                 && otherEmployee.getLeaveCounter().equals(getLeaveCounter())
                 && otherEmployee.getDateOfBirth().equals(getDateOfBirth())
                 && otherEmployee.getDateOfJoining().equals(getDateOfJoining())
+                && otherEmployee.getPicturePath().equals(getPicturePath())
                 && otherEmployee.getTags().equals(getTags());
     }
 
@@ -170,7 +171,7 @@ public class Employee {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, employeeId, phone, email, address, department, payroll, leaveCounter,
-                dateOfBirth, dateOfJoining, tags);
+                dateOfBirth, dateOfJoining, picturePath, tags);
     }
 
     @Override
