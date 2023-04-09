@@ -12,6 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/kyueran.png" width="200px">
 
 [[github](http://github.com/kyueran)]
+[[portfolio](team/kyueran.md)]
 
 * Role: Team Lead
 * Responsibilities: Model
