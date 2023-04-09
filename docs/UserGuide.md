@@ -866,6 +866,7 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Troubleshooting
 
@@ -910,6 +911,7 @@ Unable to exit/save HMHero to data file
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -928,6 +930,7 @@ Unable to exit/save HMHero to data file
 [Back to Table of Contents](#table-of-contents)
 
 ---
+
 ## Acknowledgements
 
 
