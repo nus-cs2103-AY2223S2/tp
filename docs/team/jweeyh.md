@@ -13,31 +13,29 @@ management tasks done faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Apply for different types of leaves.
-    * What it does: TBA
-    * Justification: TBA
-    * Highlights: TBA
-    * Credits: TBA
+* **New Feature**: Update new GUI.[[PR#168]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/168)
+    * What it does: New GUI incorporating information from leaves, employee, departments. Data shown now
+      automatically refreshes whenever a change is made in any of the sections.
+    * Justification: The new GUI has to be built robustly in order for all backend operations to display
+      the results clearly and without errors. New icon designed to give a new unique identity to the 
+      project
+    * Highlights: Leaves, employees and department data are shown side by side in a scrollable pane that 
+      allows for seamless transition between the different outputs from commands.
+    * Credits: AddressBook initial GUI which was a good foundation to structure out display on.
 
-* **New Feature**: TBA
-
-* **Code contributed**: [RepoSense link]()
-
-* **Project management**:
-    * Managed releases `...` (X releases) on GitHub
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jweeyh&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
-    * Sample - Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Added new colour scheme that was easier for users to view and analyse data displayed on the GUI
+      [[PR#202]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/202)
+    * Made modifications to GUI in order to cater to different users tastes, different windows sizes
+      [[PR#168]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/168)
 
 * **Documentation**:
     * User Guide:
-        * Sample - Added documentation for the features `delete` and `find` [\#72]()
+        * Added table of contents that displayed and linked to each individual sections and header 
+          [[#PR284]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/284)
+        * Added Ui screenshots for multiple commands, layout.
+          [[#PR#291]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/291)
 
-* **Community**:
-    * Sample - PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Sample - Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Sample - Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Sample - Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
-* **Tools**:
-    * TBA
