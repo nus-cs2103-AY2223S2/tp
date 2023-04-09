@@ -160,7 +160,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit patient (`edit`) command
+### Edit patient (`edit_patient`) command
 
 **Overview**
 
@@ -188,7 +188,7 @@ The edit appointment command edits an appointment in the appointment list by fin
 
 Similar to `edit`, storing the relevant changes for each edit command instead of storing every field of the appointment would make the edit appointment command more efficient. However, making any model mutable is undesirable as immutability allows us to easily ensure certain properties about the internal list of patients and appointments.
 
-### Find patient (`find`) and find patient by details (`find_details`) commands
+### Find patient (`find_patient`) and find patient by details (`find_patient_details`) commands
 
 **Overview**
 
