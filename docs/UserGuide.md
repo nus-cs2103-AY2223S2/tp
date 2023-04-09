@@ -31,7 +31,7 @@ Salespeople managing client contacts who prefer a CLI
   - [Finding a contact tag: `findtag`](#finding-a-contact-tag-findtag)
   - [Finding a contact based on lead status: `findlead`](#finding-a-contact-based-on-lead-status-findlead)
   - [Finding a contact based on keyword: `findall`](#finding-a-contact-based-on-keyword-findall)
-  - [Finding a contact and their transactions list: `findtxn`](#finding-a-contact-and-their-transactions-list-findtxn)
+  - [Finding a contact and their list of transactions: `findtxn`](#finding-a-contact-and-their-list-of-transactions-findtxn)
   - [Adding a transaction: `addtxn`](#adding-a-transaction-addtxn)
   - [Deleting a transaction record : `deletetxn`](#deleting-a-transaction-record--deletetxn)
   - [Listing all transaction records : `listtxn`](#listing-all-transaction-records--listtxn)
@@ -293,18 +293,18 @@ Search for a contact based on matching KEYWORD to any attribute of a Person reco
 Format: `findall KEYWORD`
 
 \*`KEYWORD` includes all attributes except `TAG` and `STATUS` because they have their own separate commands for searching.  
-\*Does not parse through tasklist and transactions (For future extensions).
+\*FindAll does not parse through data in tasklist & transactions (For future extensions).
 
-The user can search for any attribute and if it matches with any Person, that person will be listed.
+The user can search for any attribute(within the domain mentioned above) and if it matches with any Person, that person/s will be shown as a list of contacts.
 
 - The search is case-insensitive. e.g `u` will match `U`
-- The search will match with any attribute
+- The search will match with any attribute (within the domain)
 - Persons matching the search will be returned:
-  1. Example 1: `findall NAME`: `findall John` will return contacts with gender attributes that contains the keyword like `John Doe` and `John The Builder`  
+  1. Example 1: `findall NAME`: `findall John` will return contacts with any attributes that contains the keyword for contacts with the following attributes like `John Doe` contained in the NAME attribute and `John Street` contained in the ADDRESS attribute.
   2. Example 2: `findall ADDRESS`: `findall Blk 30` will return contacts with address attributes that contains the keyword like `Blk 16 Hello Drive` and `Blk Goodbye Drive`  
   3. Applicable for all the following attributes in a person's details: `NAME GENDER PHONE_NUMBER EMAIL COMPANY LOCATION OCCUPATION JOBTITLE ADDRESS`
 
-### Finding a contact and their transactions list: `findtxn`
+### Finding a contact and their list of transactions: `findtxn`
 
 Search for a single contact and all transactions related to this contact. The user must enter an existing user that is in the contact list and must match exactly the name in the contact list.
 
@@ -433,7 +433,7 @@ If your changes to the data file makes its format invalid, SalesPunch will disca
 | **Sort**   | `sort ATTRIBUTE`, where `ATTRIBUTE` is one of: <br> `name, gender, phone number, email, company, location, occupation, job title, address, status`<br> e.g., `sort name`                                                                                              |
 | **Edit**   | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                          |
 | **Status** | `status INDEX_NUMBER s/STATUS` <br> e.g., `status 1 s/Unqualified`                                                                                                                                                                                                    |
-| **AddTxn** | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` |
+| **AddTxn** | `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER ` <br> e.g., `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER` |
 | **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3` |
 | **ListTxn** | `listtxn` |
 | **EditTxn** | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed` |
