@@ -824,6 +824,8 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
+[//]: # (@@author Junyi00)
+
 ### Enabling Customers with Duplicate Names to be Created
 
 #### Current Situation / Problem
@@ -878,6 +880,8 @@ Using a phone number as the default unique identifier, most business owners may 
 However, future implementations can allow the business owner to configure LoyaltyLift to use an email address or a combination of phone number and email address as the unique identifier instead. 
 More experience users may wish for the freedom to configure this option or some users may require this feature to comply with regulations around sensitive customer data.
 
+[//]: # (@@author CloudHill)
+
 ### Allow Customers to have similar Orders
 
 Currently, a customer cannot have two orders with the same product name, quantity, and address on the same day.
@@ -897,3 +901,5 @@ For example, the customer may set the third tier to `Platinum` at 10,000 points 
 While each tier will have some default color, we can also consider including an option for the user to provide a hex code for their desired color, e.g. `settier 3 Platinum 10000 1affff`.
 
 To complement this new command, we also plan to include a `viewtiers` command to display the existing tiers and a `deletetier` command to remove an existing tier.
+
+[//]: # (@@author)
