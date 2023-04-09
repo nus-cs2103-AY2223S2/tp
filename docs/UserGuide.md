@@ -761,3 +761,33 @@ Action | Format | Example
 [**Delete a project**](#deleting-a-project-dp) | `dp -pn project_name` | `dp -pn Mycelium Desktop`
 [**Update an existing project**](#updating-a-project-up) | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`
 
+
+---
+
+## Getting Help
+
+### FAQs
+
+**Q:** Does Mycelium require an internet connection to run?
+**A:** No, Mycelium is intended to work fully offline.
+
+**Q:** How can I sync my local data to the cloud?
+**A:** Mycelium does not provide such a feature, but you may look into using
+network-attached storage, Git, or other services to back up the `mycelium.json`
+file.
+
+**Q:** What operating systems can I run Mycelium on?
+**A:** Mycelium has been developed and tested on Windows, Mac, and Linux (X11)
+operating systems only.
+
+### Troubleshooting
+
+**1. Double-clicking the JAR file does not launch app**
+
+Please double check that you have Java 11 installed. If you need help with
+installing Java, please refer to this [guide by
+Oracle](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
+
+We also recommend that you launch Mycelium from a terminal instead of via
+double-clicking, as described in the [Quick Start](#quick-start).
+
