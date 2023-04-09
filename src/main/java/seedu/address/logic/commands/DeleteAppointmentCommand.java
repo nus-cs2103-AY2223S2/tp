@@ -102,21 +102,7 @@ public class DeleteAppointmentCommand extends Command {
             }
         }
         appointmentToDeleteDr.deletePatientAppointment(toDeleteDrAppmt);
-        /*
-        return new CommandResult(String.valueOf(ind) + " "
-                + appointmentPatient.getPatientAppointments().get(ind).toString()
-        + "\n"
-        + "patientapptsize: " + String.valueOf(patientApptSize) +"\n"
-                + appointmentToDelete.toString());
 
-
-        if (patientApptSize <= 0 || ind > patientApptSize) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
-        }
-        Appointment appointmentToDelete = appointmentPatient.deletePatientAppointment(ind);
-        // appointmentDoctor.deletePatientAppointment(appointment);
-        model.deleteAppointment(appointmentToDelete);
-        */
         Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
                 appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
                 appointmentPatient.getPrescriptions(), appointmentPatient.getTags(),
@@ -138,7 +124,6 @@ public class DeleteAppointmentCommand extends Command {
 
     }
 
-    /*
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -154,7 +139,7 @@ public class DeleteAppointmentCommand extends Command {
         // state check
         DeleteAppointmentCommand e = (DeleteAppointmentCommand) other;
         return index.equals(e.index)
-                && appointment.equals(e.appointment);
+                && nric.equals(e.nric);
     }
-    */
+
 }
