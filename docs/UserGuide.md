@@ -26,14 +26,12 @@ The purpose of this user guide document is to provide staff with a clear underst
 - [GUI Information](#gui-information)
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
-  - [Undo](#undoing-previous-command-undo): `undo`
-  - [Redo](#redoing-previous-undo-redo): `redo`
   - [Add patient](#adding-a-patient-record-add): `add`
-  - [View patient particulars](#viewing-a-patient-detailed-particulars-view): `view`
   - [Edit patient](#editing-a-patient-record-edit): `edit`
+  - [View patient particulars](#viewing-a-patient-detailed-particulars-view): `view`
   - [Delete patient](#deleting-a-patient-record-delete): `delete`
-  - [List all patients](#listing-all-patients-list): `list`
   - [Filter patients](#filtering-patients-by-attribute-find): `find`
+  - [List all patients](#listing-all-patients-list): `list`
   - [Backup patient records](#backing-up-patient-records-backup): `backup`
   - [Load backups](#loading-data-load): `load`
   - [View backups](#viewing-backup-data-viewbackups): `viewbackups`
@@ -41,6 +39,8 @@ The purpose of this user guide document is to provide staff with a clear underst
   - [Clear all data](#clearing-all-data-clear): `clear`
   - [Light mode](#switching-to-light-mode-light): `light`
   - [Dark mode](#switching-to-dark-mode-dark): `dark`
+  - [Undo](#undoing-previous-command-undo): `undo`
+  - [Redo](#redoing-previous-undo-redo): `redo`
   - [Help](#viewing-help--help): `help`
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
@@ -139,33 +139,7 @@ executed in lower case. E.g., `find` is valid, but `FIND` or `FinD` is considere
 not need to be in lower case.
 </div>
 
-### Undoing previous command: `undo`
 
-In the event that your previous change was a mistake, you can use this feature to revert the patient records to the state before the previous command was executed.
-
-Format: `undo`
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
-launch of HospiSearch application. Undo can be executed up to the initial starting state.
-</div>
-
-![Undo](images/command_result/Undo.png)
-
-Above is the execution result of the input `undo` (the list has been cleared).
-
-### Redoing previous undo: `redo`
-
-In the event that you accidentally removed the changes you made, you can use this feature to revert the patient records to the state before the previous undo was executed.
-
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
-has run.
-</div>
-
-Format: `redo`
-
-![Redo](images/command_result/Redo.png)
-
-Above is the execution result of the input `redo` (the list is cleared again).
 
 ### Adding a patient record: `add`
 
@@ -243,26 +217,6 @@ Examples:
 
 * `delete i/S1234567A` deletes the patient with NRIC S1234567A from patient records system.
 
-![Delete](images/command_result/Delete.png)
-
-Above is the execution result of the input `delete i/S1234567A`.
-
-
-### Listing all patients: `list`
-
-You can use this feature to get a list of all patients in the records.
-
-Format: `list`
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** List returns the entire current database
-that you have loaded.
-</div>
-
-
-![List](images/command_result/List.png)
-
-Above is the execution result of the input `list`.
-
 ### Filtering patients by attribute: `find`
 
 You can search for patients based on their name, age, medical condition, or any other relevant criteria
@@ -299,6 +253,24 @@ Examples (The following results are based of the sample data provided):
 
 Above is the execution result of the input `find ad/Alex`.
 
+### Listing all patients: `list`
+
+You can use this feature to get a list of all patients in the records.
+
+Format: `list`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** List returns the entire current database
+that you have loaded.
+</div>
+
+💡**Tip**:
+<br/>After filtering for specific patients, you can view all patients by using the `list` command.
+
+![List](images/command_result/List.png)
+
+Above is the execution result of the input `list`.
+
+
 ### Backing up patient records: `backup`
 
 In order to prevent data loss, you can back up the patient records to a specified slot represented by an index and add a description for the backup.
@@ -316,7 +288,6 @@ Examples:
 
 
 * `backup 3 b/Test` backups the data to the 3rd slot with description 'Test'.
-
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**: INDEX_NO can only be an integer between 1 and 10
@@ -339,9 +310,6 @@ Example:
 
 * `load 3` loads the data from the 3rd slot.
 
-![Load](images/command_result/Load.png)
-
-Above is the execution result of the input `load 1`.
 
 ### Viewing backup data: `viewbackups`
 
@@ -352,7 +320,7 @@ Format: `viewbackups`
 💡**Tip**:
 <br/>You can exit the backups page by typing the command `list`.
 
-![Viewbackup](images/command_result/Viewbackup.png)
+![Viewbackups](images/command_result/Viewbackups.png)
 
 Above is the execution result of the input `viewbackups`.
 
@@ -370,10 +338,6 @@ Example:
 
 * `deletebackup 3` deletes the data from the 3rd slot.
 
-![DeleteBackUp](images/command_result/Deletebackup.png)
-
-Above is the execution result of the input `deletebackup 1`.
-
 ### Clearing all data: `clear`
 
 Purges all data from the database.
@@ -383,6 +347,37 @@ Use this command with caution.
 </div>
 
 Format: `clear`
+
+### Undoing previous command: `undo`
+
+In the event that your previous change was a mistake, you can use this feature to revert the patient records to the state before the previous command was executed.
+
+Format: `undo`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
+launch of HospiSearch application. Undo can be executed up to the initial starting state.
+</div>
+
+![Undo-1](images/command_result/Undo-1.png)
+
+Changing the name of a patient above `edit 6 n/John Balakrishnan` (Previously Roy Balakrishnan)
+
+![Undo-2](images/command_result/Undo-2.png)
+
+And above is the execution of `undo`
+
+### Redoing previous undo: `redo`
+
+In the event that you accidentally removed the changes you made, you can use this feature to revert the patient records to the state before the previous undo was executed.
+
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
+has been executed.
+</div>
+
+Format: `redo`
+
+![Redo](images/command_result/Redo.png)
+Following the above example for `undo`, `redo` would subsequently change the name of the patient again.
 
 ![Clear](images/command_result/Clear.png)
 
@@ -440,22 +435,23 @@ Above is the view of help window after the input `help`.
 ## Command summary
 
 | Action             | Format, Examples                                                                                                                                                                                                                                                         |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|   
-| **Undo**           | `undo`                                                                                                                                                                                                                                                                   |  
-| **Redo**           | `redo`                                                                                                                                                                                                                                                                   |  
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
 | **Add**            | `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus | 
 | **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                                  |  
-| **View**           | `view i/NRIC` <br/> e.g. view i/T0012345A                                                                                                                                                                                                                                | 
+| **View**           | `view i/NRIC` <br/> e.g. find i/S1234567H                                                                                                                                                                                                                                |  
 | **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                                                          |  
-| **List**           | `list`                                                                                                                                                                                                                                                                   |  
 | **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                                                              |  
-| **Backup**         | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                                                                                    |  
+| **List**           | `list`                                                                                                                                                                                                                                                                   |  
+| **Backup**         | `backup INDEX_NO [b/Description]` <br/> e.g. backup 3 b/Day shift                                                                                                                                                                                                        |  
 | **Load**           | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                                                                                        |  
 | **View backups**   | `viewbackups`                                                                                                                                                                                                                                                            |  
 | **Delete backups** | `deletebackup INDEX_NO` <br/> e.g. deletebackup 3                                                                                                                                                                                                                        |  
 | **Clear all**      | `clear`                                                                                                                                                                                                                                                                  |  
+| **Undo**           | `undo`                                                                                                                                                                                                                                                                   |  
+| **Redo**           | `redo`                                                                                                                                                                                                                                                                   |  
 | **Light**          | `light`                                                                                                                                                                                                                                                                  |  
 | **Dark**           | `dark`                                                                                                                                                                                                                                                                   |
-| **Help**           | `help`                                                                                                                                                                                                                                                                   | 
+| **Help**           | `help`                                                                                                                                                                                                                                                                   |  
+
 
 <sub>[return to table of contents](#table-of-contents)</sub>
