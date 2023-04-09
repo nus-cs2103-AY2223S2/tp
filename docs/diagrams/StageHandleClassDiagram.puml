@@ -11,6 +11,6 @@ Class HelpWindowHandle
 }
 HelpWindowHandle .|> StageHandle
 StageHandle -down->"1" GuiRobot
-GuiRobot .|> FxRobot
+
 
 @enduml

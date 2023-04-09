@@ -19,13 +19,11 @@ Class ResultDisplayHandle
 
 CommandBoxHandle -right.|> NodeHandle
 MainMenuHandle -left.|> NodeHandle
-MeetCardHandle -up.|> NodeHandle
+MeetCardHandle -down.|> NodeHandle
 MeetListPanelHandle -up.|> NodeHandle
 PersonCardHandle -up.|> NodeHandle
 PersonListPanelHandle -up.|> NodeHandle
-ResultDisplayHandle -up.|> NodeHandle
+ResultDisplayHandle -down.|> NodeHandle
 NodeHandle -up->"1" GuiRobot
-GuiRobot .|> FxRobot
-
 
 @enduml
