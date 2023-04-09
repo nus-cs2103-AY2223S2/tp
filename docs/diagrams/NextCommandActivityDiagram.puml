@@ -1,0 +1,28 @@
+@startuml
+skinparam defaultTextAlignment center
+start
+:User executes next command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([invalid arguments])
+    :Error: Invalid
+    command format;
+stop
+else ([else])
+switch ()
+case ( [index given])
+    :Create
+    UpcomingEventPredicate
+    with count = 1;
+case ( [else])
+    :Create
+    UpcomingEventPredicate
+    with count = index;
+endswitch
+:Update UpcomingEventsList
+(ObservableList) with predicate;
+:Success message is returned;
+stop
+@enduml

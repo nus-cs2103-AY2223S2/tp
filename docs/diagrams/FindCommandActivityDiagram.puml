@@ -25,7 +25,8 @@ case ( [else])
     :Create
     EventMatchesDatePredicate;
 endswitch
-:Update ObservableList with predicate;
+:Update FilteredEventList and FindEventList
+(both are ObservableList) with predicate;
 :Success message is returned;
 stop
 @enduml
