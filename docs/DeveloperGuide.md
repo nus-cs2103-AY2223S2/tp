@@ -1171,11 +1171,7 @@ of the selected parent task sorted. The sorting will sort subsections in the ord
   If input date is too far in the future, return an error message informing user that the date is an invalid date as it is too far into the future. (e.g. `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}`)
 
 ### 7.7 Empty planner file error handling
-- Currently, a new and empty `planner.json` file is created on starting the app for the first time, or when users modify the file such that it becomes invalid, or when users delete the `planner.json` file. However, data is not automatically populated and the user will need to generate a new plan to retrieve plans. 
+- Currently, a new and empty `planner.json` file is created on starting the app for the first time, or when users modify the file such that it becomes invalid, or when users delete the `planner.json` file. However, data is not automatically populated and the user will need to generate a new plan to retrieve plans.
 - Issue: When users run a `schedule D/VALID_DATE` command on an empty `planner.json` file, Task Book acknowledges the command as valid and does not display any tasks since the data file is empty.
   Expected behavior: Inform users about empty data file and prompt users to generate a new plan.
 - Proposed modification: Generate a new `planner.json` when the schedule command is run with an `E/EFFORT` tag and file is invalid or not found. In other situations, when `schedule D/VALID_DATE` encounters corrupted data or is unable to find the `planner.json` file, prompt users to generate another plan with `schedule D/VALID_DATE E/EFFORT`, which will then handle the problematic file.
-
-
-
-
