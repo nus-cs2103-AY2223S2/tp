@@ -365,7 +365,7 @@ If the project is added successfully, a message confirming the addition will be 
 **Optional Arguments**
 
 - `-s status`
-    - Here `status` should be set, to one of `not_started`, `in_progress`, or
+    - Here `status` should be set to one of `not_started`, `in_progress`, or
       `done`.
     - **Default:** `not_started`
 - `-src source`
