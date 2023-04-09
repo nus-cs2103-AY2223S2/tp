@@ -39,7 +39,7 @@ title: User Guide
 
 <!-- Might want to make this introduction more concise -->
 
-Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With Vimification, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
+Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a computing student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With Vimification, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
 
 Vimification is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can track your to-dos faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, fret not as we also provide a Graphical User interface (GUI) to assist you.
 
@@ -52,7 +52,9 @@ So why waste time fumbling around with a mouse and keyboard? Try Vimification to
 ## Purpose of this User Guide
 
 The purpose of this user guide is to provide you with a comprehensive guide on using the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using Vimification's powerful and intuitive interface.
+The purpose of this user guide is to provide you with a comprehensive guide on using the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using Vimification's powerful and intuitive interface.
 
+The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will also provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast. Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using Vimification.
 The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will also provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast. Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using Vimification.
 
 Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
@@ -138,9 +140,12 @@ In Vimification, a task can has the following attributes:
 | Labels    | The tags that the task has.                              | `-l` | Any phrase enclosed in quotation marks (" " or ' ')*.   |
 | Priority  | How important/urgent a task is.                          | `-p` | 0, 1, 2 or 3. See below for more details.               |
 
-^Title is the only compulsory field while creating a new task, the other fields are all optional.
+^Title is the only compulsory attribute while creating a new task, the other attributes are all optional.
 
 *For a title or label, if the phrase is only one single word, the quotation marks are optional.
+Another 2 constraints on the quotation marks are:
+* There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
+* 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
 Another 2 constraints on the quotation marks are:
 * There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
 * 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
