@@ -66,4 +66,10 @@ public class HeightTest {
         assertEquals(height.toString(), "1.75 m");
     }
 
+    @Test
+    public void getValue_validHeight_returnsHeight() {
+        Height height = new Height(VALID_HEIGHT);
+        assertEquals(height.getValue(), VALID_HEIGHT);
+    }
+
 }
