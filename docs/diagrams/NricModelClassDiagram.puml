@@ -18,10 +18,14 @@ Class Address
 Class Email
 Class Name
 Class Nric
+Class DateOfBirth
 Class Phone
 Class DrugAllergy
 Class Gender
+Class Doctor
 Class Tag
+Class Medicine
+
 
 }
 
@@ -41,15 +45,20 @@ AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Nric
 Person *--> Name
+Person *--> DateOfBirth
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> DrugAllergy
 Person *--> Gender
+Person *--> Doctor
 Person *--> "*" Tag
+Person *--> "*" Medicine
+
 
 Nric -[hidden]right-> Name
-Name -[hidden]right-> Phone
+Name -[hidden]right-> DateOfBirth
+DateOfBirth -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 

@@ -27,7 +27,7 @@ activate FindCommandParser
 FindCommandParser --> AddressBookParser
 deactivate FindCommandParser
 
-AddressBookParser -> FindCommandParser : parse("n/Alice")
+AddressBookParser -> FindCommandParser : parse("Alice")
 activate FindCommandParser
 
 create NameContainsKeywordPredicate
@@ -38,7 +38,7 @@ NameContainsKeywordPredicate --> FindCommandParser
 deactivate NameContainsKeywordPredicate
 
 create FindCommand
-FindCommandParser -> FindCommand
+FindCommandParser -> FindCommand : FindCommand(NP)
 activate FindCommand
 
 FindCommand --> FindCommandParser : FC
