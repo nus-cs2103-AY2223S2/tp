@@ -1257,7 +1257,7 @@ Output:
 [INFO] Edited Appointment: 5 has an appointment at 2024-03-05T07:00
 ```
 
-![Appointment Edit Appointment](images%2Fappointment%2Fug%2FappointmentExampleEdit.PNG)
+![Appointment Edit Appointment](images/appointment/ug/appointmentExampleEdit.PNG)
 
 ##### Restrictions
 
@@ -1293,7 +1293,7 @@ Output:
 [INFO] Marked Appointment: 5 has an appointment at 2024-03-05T07:00
 ```
 
-![Appointment Mark Appointment](images%2Fappointment%2Fug%2FappointmentExampleMark.PNG)
+![Appointment Mark Appointment](images/appointment/ug/appointmentExampleMark.PNG)
 
 ##### Restrictions
 
@@ -1328,7 +1328,7 @@ Output:
 [INFO] Unmarked Appointment: 5 has an appointment at 2024-03-05T07:00
 ```
 
-![Appointment Unmark Appointment](images%2Fappointment%2Fug%2FappointmentExampleUnmark.PNG)
+![Appointment Unmark Appointment](images/appointment/ug/appointmentExampleUnmark.PNG)
 
 ##### Restrictions
 

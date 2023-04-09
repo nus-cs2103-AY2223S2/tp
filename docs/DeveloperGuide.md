@@ -240,7 +240,7 @@ When the created `Thread` in `startNext()` is started, Java Virtual Machine will
 
 Here's a (partial) class diagram of the Model component:
 
-![Class Diagram for Model component](images%2FModelClassDiagram.png)
+![Class Diagram for Model component](images/ModelClassDiagram.png)
 
 `ModelManager` is a concrete implementation of `Model` which handles the model components of VMS.
 The responsibilities of `Model` component,
@@ -265,7 +265,7 @@ is a `String`).
 
 Here's a (partial) class diagram of the Patient component:
 
-![Class Diagram of Patient](images%2FModelPatientClassDiagram.png)
+![Class Diagram of Patient](images/ModelPatientClassDiagram.png)
 
 To represent a patient, `Patient` contains the Identity and Medical information using the following attributes:
 
@@ -296,7 +296,7 @@ Vaccinations are represented as `VaxType` objects and stored within `VaxTypeMana
 
 Here's a (partial) class diagram of the VaxType component:
 
-![Class Diagram of VaxType](images%2FModelVaxTypeClassDiagram.png)
+![Class Diagram of VaxType](images/ModelVaxTypeClassDiagram.png)
 
 To represent a vaccination, `VaxType` contains the following attributes:
 
@@ -319,7 +319,7 @@ On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of 
 
 Here's a (partial) class diagram of the Appointment component:
 
-![Class Diagram of Appointment](images%2FModelAppointmentClassDiagram.png)
+![Class Diagram of Appointment](images/ModelAppointmentClassDiagram.png)
 
 The `Appointment` component,
 
@@ -341,7 +341,7 @@ On top of storing `Appointment` objects, `AppointmentManager` ensures the unique
 
 Here's a (partial) class diagram of the Keyword component:
 
-![Class Diagram of Keyword](images%2FModelKeywordClassDiagram.png)
+![Class Diagram of Keyword](images/ModelKeywordClassDiagram.png)
 
 The `Keyword` component,
 
@@ -1720,7 +1720,7 @@ vaccination add Dose 1 (Moderna)
 
 ##### Expected
 
-![Valid Add Appointment](images%2Fappointment%2Fdg%2FAddAppointmentValid.PNG)
+![Valid Add Appointment](images/appointment/dg/AddAppointmentValid.PNG)
 
 #### Adding an invalid appointment
 Invalid appointments include:
@@ -1738,7 +1738,7 @@ Invalid appointments include:
 
 ##### Expected
 
-![Invalid Add Appointment Missing.PNG](images%2Fappointment%2Fdg%2FAddAppointmentInvalidMissing.PNG)
+![Invalid Add Appointment Missing.PNG](images/appointment/dg/AddAppointmentInvalidMissing.PNG)
 
 #### Adding a invalid appointment - Existing upcoming appointment
 
@@ -1748,7 +1748,7 @@ Invalid appointments include:
 
 ##### Expected
 
-![Invalid Add Appointment Existing](images%2Fappointment%2Fdg%2FAddAppointmentInvalidExisting.PNG)
+![Invalid Add Appointment Existing](images/appointment/dg/AddAppointmentInvalidExisting.PNG)
 
 ### Adding a keyword
 
