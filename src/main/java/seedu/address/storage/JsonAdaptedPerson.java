@@ -11,7 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -98,8 +101,10 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         final List<Group> personGroups = new ArrayList<>();
-        final List<IsolatedEvent> personIsolatedEvents = new ArrayList<>();
-        final List<RecurringEvent> personRecurringEvents = new ArrayList<>();
+
+        final IsolatedEventList modelIsolatedEventList = new IsolatedEventList();
+        final RecurringEventList modelRecurringEventList = new RecurringEventList();
+
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
@@ -108,10 +113,37 @@ class JsonAdaptedPerson {
             personGroups.add(group.toModelType());
         }
         for (JsonAdaptedIsolatedEvent isolatedEvent : isolatedEvents) {
-            personIsolatedEvents.add(isolatedEvent.toModelType());
+            IsolatedEvent modelIsolatedEvent = isolatedEvent.toModelType();
+
+            try {
+                modelIsolatedEvent.checkValidStartEnd();
+                modelIsolatedEventList.checkClashingIsolatedEvent(modelIsolatedEvent.getStartDate(),
+                        modelIsolatedEvent.getEndDate());
+                modelIsolatedEvent.checkConflictsRecurringEventList(modelRecurringEventList);
+            } catch (EventConflictException e) {
+                throw new IllegalValueException(e.getMessage());
+            }
+
+            try {
+                modelIsolatedEvent.checkNotEnded();
+            } catch (EventConflictException e) {
+                continue;
+            }
+
+            modelIsolatedEventList.insert(isolatedEvent.toModelType());
         }
         for (JsonAdaptedRecurringEvent recurringEvent : recurringEvents) {
-            personRecurringEvents.add(recurringEvent.toModelType());
+            RecurringEvent modelRecurringEvent = recurringEvent.toModelType();
+            try {
+                modelRecurringEvent.checkPeriod();
+                modelRecurringEvent.listConflictedEventWithIsolated(modelIsolatedEventList);
+            } catch (EventConflictException e) {
+                throw new IllegalValueException(e.getMessage());
+            }
+            if (modelRecurringEventList.checkClashingRecurringEvent(modelRecurringEvent) != null) {
+                throw new IllegalValueException(RecurringEvent.MESSAGE_CONSTRAINTS_CLASH);
+            }
+            modelRecurringEventList.insert(recurringEvent.toModelType());
         }
 
         if (name == null) {
@@ -148,10 +180,9 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Group> modelGroups = new HashSet<>(personGroups);
-        final Set<IsolatedEvent> modelIsolatedEvents = new HashSet<>(personIsolatedEvents);
-        final Set<RecurringEvent> modelRecurringEvents = new HashSet<>(personRecurringEvents);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelGroups,
-                modelIsolatedEvents, modelRecurringEvents);
+                modelIsolatedEventList, modelRecurringEventList);
     }
 
 }

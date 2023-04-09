@@ -160,8 +160,21 @@ public class ParserUtil {
         if (dueDate.getMinute() != 0) {
             throw new ParseException(Event.MESSAGE_EVENT_NOT_HOURLY);
         }
-
         return dueDate;
+    }
+
+    /**
+     * Check if the start date of the event if before the current date time.
+     * @param date in which the event starts
+     * @throws ParseException to be thrown if it is before the current date time.
+     */
+    public static void checkValidDateTime(LocalDateTime date) throws ParseException {
+        requireNonNull(date);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (date.isBefore(now)) {
+            throw new ParseException(Messages.MESSAGE_EVENT_INVALID_DATE);
+        }
     }
 
     /**

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.RecurringEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 /**
@@ -49,8 +50,6 @@ public class AddRecurringEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        eventToAdd.checkPeriod();
-
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -59,14 +58,19 @@ public class AddRecurringEventCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
+        try {
+            eventToAdd.checkPeriod();
+            eventToAdd.listConflictedEventWithIsolated(personToEdit.getIsolatedEventList());
+        } catch (EventConflictException e) {
+            throw new CommandException(e.getMessage());
+        }
+
         RecurringEventList recurringEventList = personToEdit.getRecurringEventList();
         RecurringEvent checkForEventClash = recurringEventList.checkClashingRecurringEvent(eventToAdd);
 
         if (checkForEventClash != null) {
             throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
         }
-
-        RecurringEventList.listConflictedEventWithIsolated(eventToAdd, personToEdit.getIsolatedEventList());
 
         model.addRecurringEvent(personToEdit, eventToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 
@@ -34,8 +35,8 @@ public class AddIsolatedEventCommand extends Command {
 
     /**
      * Constructor for AddIsolatedEventCommand Object.
-     * @param index
-     * @param eventToAdd
+     * @param index The index of the {@code Person} to which the {@code IsolatedEvent} will be added to.
+     * @param eventToAdd The {IsolatedEvent} to be added to the {@code Person}.
      */
     public AddIsolatedEventCommand(Index index, IsolatedEvent eventToAdd) {
         requireNonNull(index);
@@ -59,16 +60,15 @@ public class AddIsolatedEventCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         IsolatedEventList isolatedEventList = personToEdit.getIsolatedEventList();
-        IsolatedEvent checkForEventClash = isolatedEventList.checkClashingIsolatedEvent(eventToAdd.getStartDate(),
-                eventToAdd.getEndDate());
-
-        if (checkForEventClash != null) {
-            throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
+        try {
+            isolatedEventList.checkClashingIsolatedEvent(eventToAdd.getStartDate(),
+                    eventToAdd.getEndDate());
+            eventToAdd.checkConflictsRecurringEventList(personToEdit.getRecurringEventList());
+        } catch (EventConflictException e) {
+            throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, e.getMessage()));
         }
-
-        IsolatedEventList.listConflictedEventWithRecurring(eventToAdd, personToEdit.getRecurringEventList());
-
-        model.addIsolatedEvent(personToEdit, eventToAdd);
+        isolatedEventList.insert(eventToAdd);
+        model.setPerson(personToEdit, personToEdit);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd) + " to "

@@ -18,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.RecurringEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 /**
@@ -88,11 +89,15 @@ public class EditRecurringEventCommand extends Command {
         RecurringEvent editedRecurringEvent =
                 createEditedRecurringEvent(personToEdit, originalEvent, editEventDescriptor);
 
-        editedRecurringEvent.checkPeriod();
+        try {
+            editedRecurringEvent.checkPeriod();
+        } catch (EventConflictException e) {
+            throw new CommandException(e.getMessage());
+        }
 
-        RecurringEventList.checkForClashesInRecurringEvent(personToEdit, editedRecurringEvent, originalEvent);
+        personToEdit.getRecurringEventList().checkForClashesInRecurringEvent(editedRecurringEvent, originalEvent);
 
-        RecurringEventList.listConflictedEventWithIsolated(editedRecurringEvent, personToEdit.getIsolatedEventList());
+        editedRecurringEvent.listConflictedEventWithIsolated(personToEdit.getIsolatedEventList());
 
         model.setRecurringEvent(personToEdit, originalEvent, editedRecurringEvent);
 
@@ -196,7 +201,7 @@ public class EditRecurringEventCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+            if (!(other instanceof EditEventDescriptor)) {
                 return false;
             }
 
