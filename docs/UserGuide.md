@@ -335,7 +335,11 @@ Examples:
 - `filter n/Jo` returns `john`, `John Doe` and `joseph`
 - `filter a/street r/sg` returns `David Li`, `S Lee Chong Wei`
 
-  ![result for 'filter david lee'](images/filterDavidLeeResult.png)
+  <div style="text-align: center;">
+    <img src="images/filterDavidLeeResult.png">
+    <p style="font-style: italic;"><br>Screen showing the results of filtering by address and rank</p>
+    <br>
+  </div>
 
 [Return to Top](#table-of-contents)
 
