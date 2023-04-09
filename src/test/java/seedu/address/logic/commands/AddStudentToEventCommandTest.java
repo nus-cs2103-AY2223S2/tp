@@ -75,7 +75,7 @@ class AddStudentToEventCommandTest {
     @Test
     void execute_eventTypeNotRecognized_throwsCommandException() {
         assertCommandFailure(new AddStudentToEventCommand(first, first, WRONG_TYPE),
-                model, MESSAGE_EVENT_TYPE_NOT_RECOGNIZED  + MESSAGE_USAGE);
+                model, MESSAGE_EVENT_TYPE_NOT_RECOGNIZED + MESSAGE_USAGE);
     }
 
     @Test
@@ -87,22 +87,22 @@ class AddStudentToEventCommandTest {
 
     @Test
     void execute_tutorialIndexTooBig_throwsCommandException() {
-        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER)
-                        , TUTORIAL_STRING),
+        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER),
+                        TUTORIAL_STRING),
                 model, MESSAGE_EVENT_INDEX_TOO_BIG);
     }
 
     @Test
     void execute_labIndexTooBig_throwsCommandException() {
-        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER)
-                        , LAB_STRING),
+        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER),
+                        LAB_STRING),
                 model, MESSAGE_EVENT_INDEX_TOO_BIG);
     }
 
     @Test
     void execute_consultationIndexTooBig_throwsCommandException() {
-        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER)
-                        , CONSULTATION_STRING),
+        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER),
+                        CONSULTATION_STRING),
                 model, MESSAGE_EVENT_INDEX_TOO_BIG);
     }
 }
