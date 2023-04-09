@@ -151,10 +151,11 @@ public class ParserUtil {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             dueDate = LocalDateTime.parse(dateTime, formatter);
-            checkDateExist(dueDate, dateTime.substring(0, 2));
         } catch (DateTimeException e) {
             throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
         }
+
+        checkDateExist(dueDate, dateTime.substring(0, 2));
 
         if (dueDate.getMinute() != 0) {
             throw new ParseException(Event.MESSAGE_EVENT_NOT_HOURLY);
@@ -191,10 +192,32 @@ public class ParserUtil {
      * @throws ParseException to be thrown if there is error.
      */
     public static void checkDateExist(LocalDateTime date, String day) throws ParseException {
+        boolean isLeapYear = isLeapYear(date.getYear());
+        boolean isFeb = date.getMonth().getValue() == 2;
         int lastDay = date.getMonth().maxLength();
 
+        if (!isLeapYear && isFeb) {
+            lastDay--;
+        }
         if (Integer.parseInt(day) > lastDay) {
             throw new ParseException(Messages.MESSAGE_NONEXISTENT_DATE);
+        }
+    }
+
+    /**
+     * Check if a year is a leap year
+     * @param year to be checked
+     * @return true or false
+     */
+    public static boolean isLeapYear(int year) {
+        if (year % 4 != 0) {
+            return false;
+        } else if (year % 100 != 0) {
+            return true;
+        } else if (year % 400 != 0) {
+            return false;
+        } else {
+            return true;
         }
     }
 

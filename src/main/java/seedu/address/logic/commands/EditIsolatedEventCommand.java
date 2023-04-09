@@ -36,8 +36,8 @@ public class EditIsolatedEventCommand extends Command {
             + PREFIX_ISOEVENT + "EVENT_NAME "
             + PREFIX_STARTDATETIME + "START_DATE "
             + PREFIX_ENDDATETIME + "END_DATE"
-            + "\nExample: " + COMMAND_WORD + " 1" + " 1" + " ie/biking"
-            + "\nExample: " + COMMAND_WORD + " 1" + " 1" + " f/09/03/2023 14:00" + " t/09/03/2023 18:00";
+            + "Example: " + COMMAND_WORD + " 1" + " 1" + " ie/biking"
+            + "Example: " + COMMAND_WORD + " 1" + " 1" + " f/09/03/2025 14:00" + " t/09/03/2025 18:00";
 
     private final Index personIndex;
     private final Index eventIndex;
@@ -81,6 +81,7 @@ public class EditIsolatedEventCommand extends Command {
         editedIsolatedEvent.checkDateTime();
         personToEdit.getIsolatedEventList().checkOverlapping(editedIsolatedEvent, eventIndex.getZeroBased());
         IsolatedEventList.listConflictedEventWithRecurring(editedIsolatedEvent, personToEdit.getRecurringEventList());
+
 
         model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
