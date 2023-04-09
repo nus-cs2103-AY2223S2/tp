@@ -86,7 +86,7 @@ and 10,000 tags!
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Command](#4-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
