@@ -61,7 +61,11 @@ Now it's time to **CONQUER** the semester!
 
 Make sure you have Java `11` installed on your computer by typing `java --version` from your terminal. The output should be something similar to:
 
-![Java 11](images/java-11.png)
+```java
+openjdk 11.0.18 2023-01-17 LTS
+OpenJDK Runtime Environment Zulu11.62+17-CA (build 11.0.18+10-LTS)
+OpenJDK 64-Bit Server VM Zulu11.62+17-CA (build 11.0.18+10-LTS, mixed mode)
+```
 
 If not, please download it from the [Oracle website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
