@@ -1,11 +1,13 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPetDescriptor;
 import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Deadline;
 import seedu.address.model.pet.Email;
 import seedu.address.model.pet.Name;
 import seedu.address.model.pet.Pet;
@@ -78,6 +80,23 @@ public class EditPetDescriptorBuilder {
     public EditPetDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Timestamp} of the {@code EditPetDescriptor} that we are building.
+     */
+    public EditPetDescriptorBuilder withTimeStamp(LocalDateTime timestamp) {
+        descriptor.setTimeStamp(timestamp);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Deadline} of the {@code EditPetDescriptor} that we are building.
+     */
+    public EditPetDescriptorBuilder withDeadline(String description, LocalDateTime d) {
+        Deadline deadline = new Deadline(description, d);
+        descriptor.setDeadline(deadline);
         return this;
     }
 

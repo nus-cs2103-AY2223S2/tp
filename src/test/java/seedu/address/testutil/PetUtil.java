@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
@@ -31,12 +33,13 @@ public class PetUtil {
      */
     public static String getPetDetails(Pet pet) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + pet.getOwnerName().fullName + " ");
+        sb.append(PREFIX_OWNER_NAME + pet.getOwnerName().fullName + " ");
         sb.append(PREFIX_NAME + pet.getName().fullName + " ");
         sb.append(PREFIX_PHONE + pet.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + pet.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + pet.getAddress().value + " ");
         sb.append(PREFIX_TIMESTAMP + pet.getTimeStamp().toString() + " ");
+        sb.append(PREFIX_DEADLINE + pet.getDeadline().toString() + " ");
 
         pet.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
