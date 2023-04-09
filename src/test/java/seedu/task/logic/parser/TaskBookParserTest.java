@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_ALLMATCH;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_ALL_MATCH;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
@@ -92,7 +92,7 @@ public class TaskBookParserTest {
                 FindCommand.COMMAND_WORD + " " + PREFIX_NAME + nameKeyphrase);
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(nameKeyphrase)), command);
         FindCommand command1 = (FindCommand) parser.parseCommand(
-            FindCommand.COMMAND_WORD + " " + PREFIX_ALLMATCH + " " + PREFIX_NAME
+            FindCommand.COMMAND_WORD + " " + PREFIX_ALL_MATCH + " " + PREFIX_NAME
                 + nameKeyphrase + " " + PREFIX_NAME + nameKeyphrase1);
         List<String> nameList = new ArrayList<>();
         nameList.add("Bob");
@@ -105,7 +105,7 @@ public class TaskBookParserTest {
                 FindCommand.COMMAND_WORD + " " + PREFIX_DESCRIPTION + descriptionKeyphrase);
         assertEquals(new FindCommand(new DescContainsKeywordsPredicate(descriptionKeyphrase)), descriptionCommand);
         FindCommand descriptionCommand1 = (FindCommand) parser.parseCommand(
-            FindCommand.COMMAND_WORD + " " + PREFIX_ALLMATCH + " "
+            FindCommand.COMMAND_WORD + " " + PREFIX_ALL_MATCH + " "
                 + PREFIX_DESCRIPTION + descriptionKeyphrase
                 + " " + PREFIX_DESCRIPTION + descriptionKeyphrase1);
         List<String> descriptionList = new ArrayList<>();

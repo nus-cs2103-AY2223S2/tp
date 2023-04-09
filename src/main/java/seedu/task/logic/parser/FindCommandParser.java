@@ -2,7 +2,7 @@ package seedu.task.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_ALLMATCH;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_ALL_MATCH;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
@@ -47,7 +47,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_ALLMATCH,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_ALL_MATCH,
                     PREFIX_DEADLINE, PREFIX_FROM, PREFIX_TO, PREFIX_EFFORT);
 
         if (areTooManyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_DEADLINE,
@@ -106,7 +106,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (prefix.equals(PREFIX_NAME)) {
             Set<Name> names = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
+            if (argMultimap.getValue(PREFIX_ALL_MATCH).isPresent()) {
                 return new FindCommand(new NameContainsAllKeywordsPredicate(ParserUtil.parseNamesToList(names)));
             }
             return new FindCommand(new NameContainsKeywordsPredicate(name.toString()));
@@ -115,14 +115,14 @@ public class FindCommandParser implements Parser<FindCommand> {
                     argMultimap.getAllValues(PREFIX_DESCRIPTION));
             Description description = ParserUtil.parseDescription(
                     argMultimap.getValue(PREFIX_DESCRIPTION).get());
-            if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
+            if (argMultimap.getValue(PREFIX_ALL_MATCH).isPresent()) {
                 return new FindCommand(new DescContainsAllKeywordsPredicate(ParserUtil
                     .parseDescriptionsToList(descriptions)));
             }
             return new FindCommand(new DescContainsKeywordsPredicate(description.toString()));
         } else if (prefix.equals(PREFIX_TAG)) {
             Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            if (argMultimap.getValue(PREFIX_ALLMATCH).isPresent()) {
+            if (argMultimap.getValue(PREFIX_ALL_MATCH).isPresent()) {
                 return new FindCommand(new TagsContainsAllKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
             }
             return new FindCommand(new TagsContainsKeywordsPredicate(ParserUtil.parseTagsToList(tags)));
