@@ -563,8 +563,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 _**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to view overall statistics.
-3. System shows total earnings, monthly earnings,
-   weekly earnings, daily earnings and top customers visited.
+3. System shows total earnings, statistics on jobs completed/pending in total and in the previous week.
    Use case ends.
 
 _**Extensions**_
