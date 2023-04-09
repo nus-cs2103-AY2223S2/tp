@@ -778,6 +778,16 @@ Extensions:
     * 1b1. Show error message.
 
     Use case ends.
+
+**Use case: UC17 - View Pending Meetings**
+
+MSS:
+
+1. User requests to view pending meetings.
+2. QuickContacts displays meetings that are not marked as done and are in the future.
+
+   Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -922,3 +932,12 @@ testers are expected to do more *exploratory* testing.
 | **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
 | **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
 
+
+## Appendix: Planned Enhancements
+1. Currently, the UI shows a blank area when an attribute is undefined for contacts and meetings.
+
+    Proposed Fix: Have a placeholder `No ATTRIBUTE defined` for each undefined attribute.
+2. Currently, once we define an attribute for a contact, we are unable to remove it.
+    
+    Proposed Fix: Add a new command "deleteattribute" for this purpose. For example, `deleteattribute p/1 e/`
+    to remove email for a contact or `deleteattribute m/1 des/` to remove description for a meeting.
