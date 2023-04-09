@@ -1,0 +1,29 @@
+@startuml
+skinparam defaultTextAlignment center
+start
+:User executes undo command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+if () then ( [recent command used is empty])
+    :Nothing to undo;
+    stop;
+else ([else])
+endif
+switch ()
+case ( [recent is add])
+    :Delete the recently
+    added event;
+case ( [recent is recur])
+    :Delete the recently added
+    recurring events;
+case ( [recent is edit])
+    :Edit the event back
+    to its original state;
+case ( [recent is delete])
+    :Add back the recently
+    deleted event;
+endswitch
+:Success message is returned;
+stop
+@enduml
