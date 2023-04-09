@@ -465,6 +465,9 @@ file to be imported using the selector.
 <div markdown="block" class="alert alert-info">
 * Only files with recipes that pass our formatting checks, and files with no duplicate recipes will be imported
 * Any imported recipes will be added to your current recipe book!
+</div>
+
+<div markdown="block" class="alert alert-success">
 * Alternatively, you can access the import function from the <kbd>File</kbd> tab in the top left corner of the main window.
 </div>
 
@@ -478,7 +481,7 @@ JSON file to be exported and select the desired location for it to be saved!
 
 ![ExportDataWindow](images/ExportWindow.jpg)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 * Alternatively, like the import function, you can access the export function via the <kbd>File</kbd> tab in the top left corner of the main window.
 </div>
 
