@@ -71,7 +71,7 @@ public class HelpWindow extends UiPart<Stage> {
         commandColumn.setCellValueFactory(
                 new PropertyValueFactory<>("command"));
         formatColumn.setCellValueFactory(
-                new PropertyValueFasctory<>("format"));
+                new PropertyValueFactory<>("format"));
         helpTable.setItems(helpCommands);
         helpTable.getColumns().addAll(commandColumn, formatColumn);
     }
