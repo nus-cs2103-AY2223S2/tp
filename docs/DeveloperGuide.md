@@ -180,9 +180,9 @@ This consistency is crucial to avoid confusing the user, especially since severa
 
 #### 4.1.3. Leaves
 
-[//]: # (To be done by Jer En)
+Each leave can be uniquely identified by its LeaveDate which represent the date on which the leave is on and tracks all the employees that have taken leave on that specific day. We tracked all the leaves using the UniqueLeaveList which follows a similar implementation as UniqueEmployeeList except that it enforces the constraints that each Leave's LeaveDate must be unique. In the future it would be possible to modify SudoHR to track different types of leaves (eg.Medical) by adding a new type field to the Leave class.
 
-
+There was a major design decision, which is to use UniqueEmployeeList for the employee list inside a Leave. The idea is that a leave should not contain duplicate employees. Hence, we made use of the existing UniqueEmployeeList class in SudoHr, instead of creating a new employee list class for Leaves. This logic is reused in Departments as well.
 
 ### 4.2. Employee-related features
 
@@ -214,7 +214,7 @@ Sequence Diagram:
 
 #### Flow
 1. The user enters the command, eg. `add id/37 n/John p/9861 7251 e/John@nus.com a/nus t/Vegetarian`
-2. The parser will parse the argument and in several fields: Id, name, phone, email, address, and tags, respectively with the prefixes.
+2. The parser will parse the argument and instantiates several fields: Id, name, phone, email, address, and tags, respectively with the prefixes.
 3. An `Employee` object is constructed and handed over to the `AddCommand`.
 4. The command is executed. It first checks if there exists an employee with the same Id field as specified, followed by phone number, and lastly email address.
 5. If none of the fields are duplicated, the model adds the employee to SudoHR.
@@ -238,7 +238,7 @@ Sequence Diagram:
 
 #### Flow
 1. The user enters the command, eg. `edit eid/37 p/8461 4872 a/ntu`. The employee with Id 37 will be identified and will have its phone and address fields updated as specified, if it exists in SudoHR.
-2. The parser will instantiates a new `Phone` and `Address` object constructed from the arguments associated with `/p` and `/n`, which represents the new phone number and address fields respectively.
+2. The parser will instantiate a new `Phone` and `Address` object constructed from the arguments associated with `/p` and `/n`, which represents the new phone number and address fields respectively.
 3. A `EditEmployeeDescriptor` object is constructed with the updated fields and alongside the employee's Id, are handed over to `EditCommand`.
 4. The command is executed. It first verifies that there is an employee with Id 37. 
 5. If such an employee exists, the command will then check if any of the 3 identities fields - Id, phone number, and email - have duplicated instances between the proposed changes and employees in SudoHR.
@@ -266,7 +266,7 @@ Sequence Diagram:
 
 #### Flow
 1. The user enters the command, eg. `del eid/37` where employee with Id 37 is to be removed from SudoHR.
-2. The parser will instantiates the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
+2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
 3. The command is executed. It first verifies that an employee with the specified Id exists.
 4. If the employee exists, it is deleted from SudoHR.
 
@@ -448,7 +448,7 @@ Sequence Diagram:
 
 1. The user enters the command, eg. `aetd eid/100 n/Software Engineering`. It represents that the employee with ID 100
    is supposed to be added to the Software Engineering department.
-2. The parser instantiates a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
+2. The parser instantiate a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
 3. The command is executed. It first tries to find the employee with ID 100 and department called Software Engineering.
 4. If the employee and department exists, the command checks if the same employee exists in the department.
 5. If there is no duplicate employee in the department, the model adds the employee to the department.
@@ -656,26 +656,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​      | I want to …​                                                   | So that I can…​                                                            |
 | -------- | ------------ | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `* * *`  | new user     | see usage instructions                                         | refer to instructions when I forget how to use the App                     |
-| `* * *`  | HR personnel | add a new employee                                             | ensure consolidation of information when an employee is hired              |
-| `* * *`  | HR personnel | edit a new employee                                            | ensure consolidation of information when an employee has new details       |
-| `* * *`  | HR personnel | delete an employee                                             | ensure consolidation of information when an employee left the company      |
-| `* * *`  | HR personnel | find an employee by name                                       | locate details of employees without having to go through the entire list   |
+| `* * *`  | HR personnel | add a new employee                                             | keep track of the personal details of a newly hired employee             |
+| `* * *`  | HR personnel | edit a new employee                                            | update an employee's personal details when it has changed       |
+| `* * *`  | HR personnel | delete an employee                                             | stop tracking the personal details of an employee that has left the company      |
+| `* *`  | HR personnel | find an employee by name                                       | locate details of an employee without having to go through the entire list   |
 | `* `    | HR personnel | hide private contact details                                   | minimize chance of someone else seeing them by accident                    |
-| `* * *`  | HR personnel | add an employee’s leave to SudoHR                              | keep track of an employee on leave                                        |
-| `* * *`  | HR personnel | remove an employee’s leave for SudoHR                          | stop tracking the leave of an employee that is wrongly added                                        |
+| `* * *`  | HR personnel | add an employee’s leave to SudoHR                              | keep track of when an employee is on leave                                        |
+| `* * *`  | HR personnel | remove an employee’s leave from SudoHR                          | stop tracking the leave of an employee that is wrongly added                                        |
 | `* * *`  | HR personnel | view all leaves an employee has applied for                    | determine when an employee will no be present in the company                                   |
-| `* `  | HR personnel | view all employees on leave today                              | know today's headcount                                                     |
-| `* * *`  | HR personnel | view all employees on leave for a given day                        | keep track of employees that will be absent from the company on a specific day                                                 |
-| `* * `  | HR personnel | view all leaves applied for a given day for a given department | better plan depeartment events                                             |
-| `* * *`  | HR personnel | add a department                                               | ensure consolidation of information when a new department is formed        |
-| `* * *`  | HR personnel | edit a department                                              | ensure consolidation of information when a department's detail is changed  |
-| `* * *`  | HR personnel | delete a department                                            | ensure consolidation of information when a department is disbanded         |
+| `* `  | HR personnel | view all employees on leave today                              | know the number of employees absent today                                                     |
+| `* * *`  | HR personnel | view all employees on leave for a given day                        | know which employees that will be absent from the company on a specific day                                                 |
+| `* * `  | HR personnel | view all employees on leave for a given day for a given department | know which employees are absent from a department on a specific day                                              |
+| `* * *`  | HR personnel | add a department                                               | keep track of the details of a department and the employees inside        |
+| `* * *`  | HR personnel | edit a department                                              | update the details of a department if it is incorrect  |
+| `* * *`  | HR personnel | delete a department                                            | stop tracking the details of a department that is disbanded         |
 | `* * `  | HR personnel | find a department by name                                      | locate details of departments without having to go through the entire list |
-| `* * *`  | HR personnel | add an employee to a department                                | ensure consolidation of information when a department has a new employee   |
-| `* * *`  | HR personnel | remove an employee from a department                           | ensure consolidation of information when an employee leaves a department   |
+| `* * *`  | HR personnel | add an employee to a department                                | keep track of which employees are part of a department   |
+| `* * *`  | HR personnel | remove an employee from a department                           | keep track that an employee no longer belongs to a department   |
 | `* * *`  | HR personnel | list all departments an employee is in                         |                                                                            |
 | `* * *`  | HR personnel | list all employees in a department                             | view manpower size of a department
-| `* *`    | HR presonnel | list all employees that are present in the company on a specific day | know the manpower avaliability of a department on a specific
+| `* *`    | HR presonnel | list all employees that are present in the company for a department on a specific day | know who will be avaliable to contact in a department on a specific day  |
 
 _{More to be added}_
 
@@ -1475,3 +1475,4 @@ Under which, `JOHN@NUS.COM` and `john@nus.com` will be treated as one and the sa
 - **Mainstream OS** :Windows, Linux, Unix, OS-X
 - **Private contact detail** : A contact detail that is not meant to be shared with others
 - **Primary Key** : 
+- **Field** :
