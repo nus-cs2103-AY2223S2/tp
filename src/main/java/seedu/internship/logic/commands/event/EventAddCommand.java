@@ -75,7 +75,7 @@ public class EventAddCommand extends EventCommand {
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         boolean isClashing = false;
         for (Event e : model.getFilteredEventList()) {
-            if (eventToAdd.isClash(e)) {
+            if (!e.isDeadline() && eventToAdd.isClash(e)) {
                 isClashing = true;
                 break;
             }
@@ -84,7 +84,7 @@ public class EventAddCommand extends EventCommand {
         model.addEvent(eventToAdd);
         model.updateFilteredEventList(new EventByInternship(selectedIntern));
         ObservableList<Event> events = model.getFilteredEventList();
-        if (isClashing) {
+        if (isClashing && !eventToAdd.isDeadline()) {
             return new CommandResult(String.format(MESSAGE_EVENT_CLASH_WARNING, eventToAdd), ResultType.SHOW_INFO,
                     selectedIntern, events);
         }
