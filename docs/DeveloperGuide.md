@@ -129,7 +129,16 @@ that will bring you to another part of this documentation that is relevant to th
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+HMHero is a brownfield software engineering project based off [AddressBook Level-3](https://nus-cs2103-ay2223s2.github.io/tp/), taken under the [CS2103T Software Engineering](https://nus-cs2103-ay2223s2.github.io/website/admin/index.html) held by School of Computing at National University of Singapore.
+
+Java dependencies:
+* [JavaFX](https://openjfx.io/) for Graphical User Interface
+* [JUnit5](https://github.com/junit-team/junit5) for testing
+* [Jackson](https://github.com/FasterXML/jackson) for JSON-related operations
+
+Documentation dependencies:
+* [PlantUML](https://plantuml.com/) for creating UML diagrams
+* [Jekyll](https://jekyllrb.com/)  for rendering the website
 
 --------------------------------------------------------------------------------------------------------------------
 
