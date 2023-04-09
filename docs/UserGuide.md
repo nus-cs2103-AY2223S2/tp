@@ -67,7 +67,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
   E.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. 
+  E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command. E.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
 
@@ -120,8 +120,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]�
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing event tags, the event tags will be added to the existing event tags of the person i.e. adding of event tags is cumulative.
-* You can remove all the person’s event tags by typing `evt/` only without specifying any event index after it. 
-* Either the addition of event tags or the removal of event tags can be done at a time, i.e. removal and addition of event tags cannot be done in a single command. For example, `evt/ evt/2` cannot be recognised as removing all the event tags and adding event at event index 2 and `evt/2 evt/` cannot be recognised as adding event at event index 2 then removing all the event tags. 
+* You can remove all the person’s event tags by typing `evt/` only without specifying any event index after it.
+* Either the addition of event tags or the removal of event tags can be done at a time, i.e. removal and addition of event tags cannot be done in a single command. For example, `evt/ evt/2` cannot be recognised as removing all the event tags and adding event at event index 2 and `evt/2 evt/` cannot be recognised as adding event at event index 2 then removing all the event tags.
 
 Examples:
 *  `edit 2 n/Betsy Crower evt/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing event tags.

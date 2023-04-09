@@ -11,7 +11,7 @@ It provides a centralised platform for them to manage their work, contacts, and 
 Given below are my contributions to the project.
 
 * **New Feature**: Added an `addevent` command that adds an event. ([#33](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/33))
-  * What it does: 
+  * What it does:
     * Allows user to add an event with the given name, start date time, and end date time.
   * Justification:
     * With this feature, the user is able to manage their events on this application by simply adding the events they are involved in or the events they wish to keep track.
@@ -20,9 +20,9 @@ Given below are my contributions to the project.
 * **New Feature**: Added a `sortevent` command that sorts the current list of events displayed. ([#69](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/69))
   * What it does:
     * Allows user to sort the current list of events displayed on the application.
-  * Justification: 
+  * Justification:
     * With this feature, the user is able to handle their list of events efficiently in a logical, neater, and consistent order, by sorting the events by either their names or date times.
-  * Highlights: 
+  * Highlights:
     * The user is given the flexibility to sort the events based on the events' names (in ascending/descending order), or events' start date times (in ascending order), or events' end date times (in ascending order).
     * If the user forgets what command to enter to sort the events by a certain type, the user can enter `sortevent` to list all the possible valid inputs.
 
