@@ -3,12 +3,16 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -54,6 +58,34 @@ public class DeleteCommand extends Command {
             }
             if (personsToDelete.get(index).getNric().equals(this.nric)) {
                 Person deletedPerson = personsToDelete.get(index);
+
+                if (deletedPerson.isPatient()) {
+                    Patient deletedPatient = (Patient) deletedPerson;
+                    ArrayList<Appointment> patientAppmts = deletedPatient.getPatientAppointments();
+                    int patientAppmtsSize = patientAppmts.size();
+                    for (int i = 0; i < patientAppmtsSize; i++) {
+                        Appointment a = patientAppmts.get(i);
+                        model.deleteAppointment(a);
+                        deletedPatient.deletePatientAppointment(i);
+                        Nric drIc = a.getDrNric();
+                        Doctor d = (Doctor) model.retrievePersonByNric(drIc);
+                        d.deletePatientAppointment(a);
+                    }
+                }
+                if (deletedPerson.isDoctor()) {
+                    Doctor deletedDoctor = (Doctor) deletedPerson;
+                    ArrayList<Appointment> drAppmts = deletedDoctor.getPatientAppointments();
+                    int drAppmtsSize = drAppmts.size();
+                    for (int i = 0; i < drAppmtsSize; i++) {
+                        Appointment a = drAppmts.get(0);
+                        model.deleteAppointment(a);
+                        deletedDoctor.deletePatientAppointment(a);
+                        Nric drIc = a.getPatientNric();
+                        Patient p = (Patient) model.retrievePersonByNric(drIc);
+                        p.deletePatientAppointment(a);
+                    }
+                }
+
                 model.deletePerson(deletedPerson);
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPerson.getName()));
             } else {
