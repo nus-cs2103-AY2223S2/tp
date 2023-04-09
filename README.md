@@ -1,3 +1,4 @@
+# TrAcker
 [![Java CI](https://github.com/AY2223S2-CS2103-F11-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103-F11-1/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/UiOriginal.png)
