@@ -1,6 +1,7 @@
 package taa.logic.parser;
 
 import org.junit.jupiter.api.Test;
+
 import taa.commons.core.Messages;
 import taa.logic.commands.ClassStatisticsCommand;
 import taa.logic.commands.CommandTestUtil;
@@ -17,7 +18,7 @@ public class ClassStatisticsCommandParserTest {
     }
 
     @Test
-    public void parse_grades_withAssignmentName_success() {
+    public void parse_gradesWithAssignmentName_success() {
         CommandParserTestUtil.assertParseSuccess(commandParser,
             CommandTestUtil.PREAMBLE_WHITESPACE
                 + CommandTestUtil.CLASS_STAT_DESC_GRADES
@@ -46,9 +47,10 @@ public class ClassStatisticsCommandParserTest {
     }
 
     @Test
-    public void parse_statTypeGrades_missingAssignmentName_fails() {
+    public void parse_statTypeGradesWithMissingAssignmentName_fails() {
         CommandParserTestUtil.assertParseFailure(commandParser,
             CommandTestUtil.CLASS_STAT_DESC_GRADES,
-            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClassStatisticsCommand.MESSAGE_MISSING_ASSIGNMENT_NAME));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                ClassStatisticsCommand.MESSAGE_MISSING_ASSIGNMENT_NAME));
     }
 }

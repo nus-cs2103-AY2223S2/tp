@@ -34,9 +34,11 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + CliSyntax.PREFIX_NAME + VALID_NAME_BOB;
     public static final String TAG_DESC_FRIEND = " " + CliSyntax.PREFIX_CLASS_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + CliSyntax.PREFIX_CLASS_TAG + VALID_TAG_HUSBAND;
-    public static final String CLASS_STAT_DESC_ATTENDANCE = " " + CliSyntax.PREFIX_STAT_TYPE + VALID_CLASS_STAT_ATTENDANCE;
+    public static final String CLASS_STAT_DESC_ATTENDANCE = " "
+        + CliSyntax.PREFIX_STAT_TYPE + VALID_CLASS_STAT_ATTENDANCE;
     public static final String CLASS_STAT_DESC_GRADES = " " + CliSyntax.PREFIX_STAT_TYPE + VALID_CLASS_STAT_GRADES;
-    public static final String ASSIGNMENT_NAME_DESC_TEST1 = " " + CliSyntax.PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_TEST1;
+    public static final String ASSIGNMENT_NAME_DESC_TEST1 = " "
+        + CliSyntax.PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_NAME_TEST1;
 
     public static final String INVALID_NAME_DESC = " " + CliSyntax.PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " "

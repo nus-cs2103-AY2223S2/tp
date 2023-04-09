@@ -2,6 +2,7 @@ package taa.logic.commands;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.ClassList;
@@ -10,9 +11,6 @@ import taa.model.ModelManager;
 import taa.model.UserPrefs;
 import taa.model.student.Student;
 import taa.storage.TaaData;
-import taa.testutil.EditPersonDescriptorBuilder;
-import taa.testutil.PersonBuilder;
-import taa.testutil.TypicalIndexes;
 import taa.testutil.TypicalPersons;
 
 /**
@@ -23,7 +21,7 @@ public class ClassStatisticsCommandTest {
     private final Model emptyClassListModel = new ModelManager(new TaaData(new ClassList()), new UserPrefs());
 
     @Test
-    public void execute_nonEmptyClassList_displayAttendanceChart_success() {
+    public void execute_nonEmptyClassListAttendanceChart_success() {
         ClassStatisticsCommand displayAttendanceChartCommand = new ClassStatisticsCommand(ChartType.CLASS_ATTENDANCE);
 
         String expectedMessage = String.format(ClassStatisticsCommand.MESSAGE_SUCCESS, "attendance", "")
@@ -36,7 +34,7 @@ public class ClassStatisticsCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyClassList_withGradeVariance_displayGradesChart_success() {
+    public void execute_nonEmptyClassListWithGradeVarianceGradesChart_success() {
         ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1");
 
         String expectedMessage = String.format(ClassStatisticsCommand.MESSAGE_SUCCESS, "grades", "(test1)")
@@ -81,21 +79,25 @@ public class ClassStatisticsCommandTest {
     }
 
     @Test
-    public void execute_emptyClassList_displayAttendanceChart_failure() {
+    public void execute_emptyClassListAttendanceChart_failure() {
         ClassStatisticsCommand displayAttendanceChartCommand = new ClassStatisticsCommand(ChartType.CLASS_ATTENDANCE);
 
-        CommandTestUtil.assertCommandFailure(displayAttendanceChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
+        CommandTestUtil.assertCommandFailure(displayAttendanceChartCommand,
+            emptyClassListModel,
+            ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
     }
 
     @Test
-    public void execute_emptyClassList_displayGradesChart_failure() {
+    public void execute_emptyClassListGradesChart_failure() {
         ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1");
 
-        CommandTestUtil.assertCommandFailure(displayGradesChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
+        CommandTestUtil.assertCommandFailure(displayGradesChartCommand,
+            emptyClassListModel,
+            ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
     }
 
     @Test
-    public void execute_nonEmptyClassList_noGradeVariance_displayGradesChart_failure() {
+    public void execute_nonEmptyClassListWithNoGradeVarianceGradesChart_failure() {
         ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1");
 
         Model testModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
@@ -115,12 +117,15 @@ public class ClassStatisticsCommandTest {
             Assertions.fail("ModelManager::grade failed: " + e.getMessage());
         }
 
-        CommandTestUtil.assertCommandFailure(displayGradesChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
+        CommandTestUtil.assertCommandFailure(displayGradesChartCommand,
+            emptyClassListModel,
+            ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
     }
 
     @Test
-    public void execute_nonEmptyClassList_invalidAssignmentName_displayGradesChart_failure() {
-        ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "unknown");
+    public void execute_nonEmptyClassListWithInvalidAssignmentNameGradesChart_failure() {
+        ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(
+            ChartType.CLASS_GRADES, "unknown");
 
         Model testModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
 
