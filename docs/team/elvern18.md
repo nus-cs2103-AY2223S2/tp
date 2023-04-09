@@ -30,28 +30,41 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * DeleteSingleIndexCommand
-        * DeleteMultipleIndexCommand
-        * DeleteByNameCommand
-        * EditByIndexCommand
-        * EditByNameCommand
+        * Added documentation for DeleteSingleIndexCommand
+        * Added documentation for DeleteMultipleIndexCommand
+        * Added documentation for DeleteByNameCommand
+        * Added documentation for EditByIndexCommand
+        * Added documentation for EditByNameCommand
 
     * Developer Guide:
-        * DeleteSingleIndexCommand's use case
-        * DeleteMultipleIndexCommand's use case
-        * DeleteByNameCommand's use case
-        * EditByIndexCommand's use case
-        * EditByNameCommand's use case
-        * User stories
-        * Non-Functionality Requirements
-        * Glossary
+        * Added documentation for DeleteSingleIndexCommand
+        * Added documentation for DeleteMultipleIndexCommand
+        * Added documentation for DeleteByNameCommand
+        * Added documentation for EditByIndexCommand
+        * Added documentation for EditByNameCommand
+        * Added documentation to user stories
+        * Added non-functionality requirements
+        * Added terms to glossary
 
-* **Project management**:
-    * To be added soon
+* **Contributions to team-based tasks**:
+  * Submit PE-D bugs
 
-* **Community**:
-    * To be added soon
+* **Review/mentoring contributions**:
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/29
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/34
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/43
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/47
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/83
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/97
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/156
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/161
 
-* **Tools**:
-    * To be added soon
+* **Contributions beyond the project task**:
+    * Bugs reported in other team's products
+        * https://github.com/elvern18/ped/issues/1
+        * https://github.com/elvern18/ped/issues/2
+        * https://github.com/elvern18/ped/issues/3
+        * https://github.com/elvern18/ped/issues/4
+        * https://github.com/elvern18/ped/issues/5
+        * https://github.com/elvern18/ped/issues/6
 
