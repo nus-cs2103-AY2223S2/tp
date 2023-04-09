@@ -63,6 +63,36 @@ public class StudentTest {
     }
 
     @Test
+    public void markTaskAsComplete_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ALICE.markTaskAsComplete(null));
+    }
+
+    @Test
+    public void markTaskAsComplete_taskDoesNotExist_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> ALICE.markTaskAsComplete(VALID_TASK_1));
+    }
+
+    @Test
+    public void markTaskAsInProgress_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ALICE.markTaskAsInProgress(null));
+    }
+
+    @Test
+    public void markTaskAsInProgress_taskDoesNotExist_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> ALICE.markTaskAsInProgress(VALID_TASK_1));
+    }
+
+    @Test
+    public void markTaskAsLate_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ALICE.markTaskAsLate(null));
+    }
+
+    @Test
+    public void markTaskAsLate_taskDoesNotExist_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> ALICE.markTaskAsLate(VALID_TASK_1));
+    }
+
+    @Test
     public void isSameStudent() {
         // same object -> returns true
         assertTrue(ALICE.isSameStudent(ALICE));
