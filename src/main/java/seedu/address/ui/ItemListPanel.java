@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -21,6 +22,9 @@ public class ItemListPanel extends UiPart<Region> {
     @FXML
     private ListView<Item> itemListView;
 
+    @FXML
+    private Label inventoryValueLabel;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -35,17 +39,19 @@ public class ItemListPanel extends UiPart<Region> {
      */
     public void updateItems(ObservableList<Item> newItemList) {
         itemListView.setItems(newItemList);
+        updateInventoryValue(newItemList);
     }
 
     /**
      * Calculates total item value in inventoryList
      */
-    public int calculateInventoryValue(ObservableList<Item> itemList) {
+    public void updateInventoryValue(ObservableList<Item> itemList) {
+
         int totalCost = 0;
         for (Item item : itemList) {
             totalCost += item.getCost();
         }
-        return totalCost;
+        inventoryValueLabel.setText("Total Value: " + totalCost + "g");
     }
 
     /**
