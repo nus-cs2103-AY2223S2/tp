@@ -555,6 +555,11 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
+### Standardising terminology
+
+DengueHotspotTracker currently alternates between using "case" or "person" to refer to each entry in the app.
+Standardising terminology would clean up the app and reduce any potential confusion for users and developers.
+
 ### Sorting by descending order
 
 The sort command currently only allows users to sort in ascending order. Users might find it more useful in some cases to
@@ -579,6 +584,3 @@ within which the cases were found:
 
 While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
-
-In addition, the success messages differ in whether they use "case" or "person". Standardising terminology could also reduce
-confusion for the user.
