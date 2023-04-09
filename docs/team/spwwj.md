@@ -5,8 +5,6 @@ title: Wei Wenjie's Project Portfolio Page
 
 ### Project: OfficeConnect
 
-### Project: OfficeConnect
-
 OfficeConnect is a task management tool for managerial personnel, addressing challenges like work overload, task coordination, and time-consuming manual tasks.
 
 Contributions to the project:
