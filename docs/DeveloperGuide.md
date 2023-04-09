@@ -886,3 +886,14 @@ This is because the orders will be considered as duplicates, as defined by `Orde
 To improve this, we plan to assign a unique ID for each order such that two orders are considered duplicates if they have the same ID.
 
 This ID can initially be randomly generated, but we then allow the user to define their own format as required by their business (e.g. some users may want to incorporate the order's created date into the identifier).
+
+### Setting Tiers
+
+Currently, the number of tiers in LoyaltyLift are hardcoded at three tiers. The names and points required for each tier are also cannot be customized. However, this can be inconvenient as users may have different point schemes.
+
+To support this, we plan to add a `settier` command that allows the user to set each tier's name and required points by index.
+For example, the customer may set the third tier to `Platinum` at 10,000 points by entering `settier 3 Platinum 10000`.
+
+While each tier will have some default color, we can also consider including an option for the user to provide a hex code for their desired color, e.g. `settier 3 Platinum 10000 1affff`.
+
+To complement this new command, we also plan to include a `viewtiers` command to display the existing tiers and a `deletetier` command to remove an existing tier.
