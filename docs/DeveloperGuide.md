@@ -396,7 +396,7 @@ to application readable json data.
   the data into json format and refreshes the database.
     - Pros: Easier and more intuitive for users to use
     - Cons: Builds upon **Alternative 1**, requiring more work to implement
-  
+
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
