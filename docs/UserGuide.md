@@ -229,7 +229,6 @@ This means you cannot add two or more applicants of the same name and phone numb
 [Back to Table of Contents](#table-of-contents)
 
 ---
-<div style="page-break-after: always;"></div>
 
 #### Notes
 
