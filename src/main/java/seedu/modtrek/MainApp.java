@@ -36,7 +36,7 @@ import seedu.modtrek.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 3, 1, true);
+    public static final Version VERSION = new Version(1, 4, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -83,10 +83,10 @@ public class MainApp extends Application {
             }
             initialData = degreeProgressionOptional.orElseGet(SampleDataUtil::getSampleDegreeProgression);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty ModTrek");
+            logger.warning("Data file not in the correct format. Will be starting with an empty MODTrek");
             initialData = new DegreeProgression();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ModTrek");
+            logger.warning("Problem while reading from the file. Will be starting with an empty MODTrek");
             initialData = new DegreeProgression();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ModTrek");
+            logger.warning("Problem while reading from the file. Will be starting with an empty MODTrek");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ModTrek " + MainApp.VERSION);
+        logger.info("Starting MODTrek " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

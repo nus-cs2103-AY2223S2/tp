@@ -15,7 +15,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/Dangabit)]
 [[portfolio](team/dangabit.md)]
 
-* Role: Team Lead
+* Role: Team Lead / Developer
 * Responsibilities: Models & Storage
 
 ### Goh Jun How

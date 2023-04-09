@@ -1,7 +1,6 @@
 package seedu.modtrek.logic.commands;
 
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.modtrek.logic.commands.HelpCommand.SHOWING_ALL_MESSAGE_USAGE;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +13,10 @@ public class HelpCommandTest {
 
     @Test
     public void execute_helpNoArgs_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_ALL_MESSAGE_USAGE,
+        CommandResult expectedCommandResult = new CommandResult(HelpCommand.SHOWING_ALL_MESSAGE_USAGE,
                 false, false, false, false);
-        assertCommandSuccess(new HelpCommand(""), model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(new HelpCommand(HelpCommand.SHOWING_ALL_MESSAGE_USAGE), model,
+                expectedCommandResult, expectedModel);
     }
 
     @Test

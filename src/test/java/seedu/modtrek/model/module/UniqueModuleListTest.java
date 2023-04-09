@@ -12,6 +12,7 @@ import static seedu.modtrek.testutil.TypicalModules.MA2002;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -174,5 +175,12 @@ public class UniqueModuleListTest {
         assertEquals(uniqueModuleList.getSort(), "YEAR");
         uniqueModuleList.sortByObject(SortCommand.Sort.GRADE);
         assertEquals(uniqueModuleList.getSort(), "GRADE");
+        uniqueModuleList.sortByObject(SortCommand.Sort.TAG);
+        assertEquals(uniqueModuleList.getSort(), "TAG");
+    }
+
+    @Test
+    public void testSortReturnsTreeMap() {
+        assertTrue(uniqueModuleList.getModuleGroups() instanceof TreeMap);
     }
 }

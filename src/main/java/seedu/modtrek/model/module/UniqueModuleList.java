@@ -5,8 +5,10 @@ import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.modtrek.logic.commands.SortCommand.DEFAULT_SORT;
 import static seedu.modtrek.logic.parser.ParserUtil.parseTagsForSort;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javafx.collections.FXCollections;
@@ -127,13 +129,17 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Returns a sorted Map
+     * Returns a sorted TreeMap of module groups
      * @param sort
      * @return sorted Map
      */
     public TreeMap<Object, ObservableList<Module>> sortByObject(SortCommand.Sort sort) {
         TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
+        Comparator<Module> comparator = Comparator.comparing(Module::toString);
         this.sort = sort;
+        if (sort == SortCommand.Sort.TAG) {
+            return sortByTag();
+        }
         for (Module m : internalList) {
             Object obj;
             switch (sort) {
@@ -159,6 +165,28 @@ public class UniqueModuleList implements Iterable<Module> {
                 result.put(obj, newList);
             } else {
                 existingList.add(m);
+                FXCollections.sort(existingList, comparator);
+            }
+        }
+        moduleGroups = result;
+        return result;
+    }
+
+    /**
+     * Returns a sorted TreeMap of modules grouped by Tag
+     * @return sorted Map
+     */
+    private TreeMap<Object, ObservableList<Module>> sortByTag() {
+        TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
+        Comparator<Module> comparator = Comparator.comparing(Module::toString);
+        Set<Tags> OverallTags = Tags.getAllShortFormTags();
+
+        for (Tags t : OverallTags) {
+            ObservableList<Module> newList = FXCollections.observableArrayList();
+            internalList.stream().filter(x -> parseTagsForSort(x.getTags()).contains(t)).forEach(y -> newList.add(y));
+            if (!newList.isEmpty()) {
+                FXCollections.sort(newList, comparator);
+                result.put(t, newList);
             }
         }
         moduleGroups = result;
