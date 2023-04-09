@@ -571,19 +571,22 @@ The feature utilises the following classes:
 - `DeleteModuleCommand`: Subclass of `DeleteCommand` which handles the deletion a module from the tracker
 - `DeleteLectureCommand`: Subclass of `DeleteCommand` which handles the deletion a lecture from a module in the tracker
 - `DeleteVideoCommand`: Subclass of `DeleteCommand` which handles the deletion a video from a lecture from a module in the tracker.
-- `DeleteMultipleCommand`: Abstract class extending from `DeleteCommand` for delete commands that delete multiple specified entities from the tracker
-- `DeleteMultipleModulesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple modules from the tracker
-- `DeleteMultipleLecturesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple lectures from the same module in the tracker
-- `DeleteMultipleVideosCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
+- `DeleteMultipleModulesCommand`: Subclass of `DeleteCommand` which handles the deletion of multiple modules from the tracker
+- `DeleteMultipleLecturesCommand`: Subclass of `DeleteCommand` which handles the deletion of multiple lectures from the same module in the tracker
+- `DeleteMultipleVideosCommand`: Subclass of `DeleteCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
 - `MultipleEventsParser`: Interface that parses string for commands that can be executed on multiple objects at once
 
 The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
 
 ![DeleteCommandClassDiagram](images/delete/deleteCommandClassDiagram.png)
 
-The following diagram shows the Sequence Diagram of executing a `DeleteMultipleModulesCommand`:
+The following diagram shows the Sequence Diagram of parsing a `delete` command into a `DeleteMultipleModulesCommand`:
 
-![DeleteMultpleModulesCommandSequential](images/delete/DeleteModuleSequenceDiagram.png)
+![DeleteMultipleModulesParseSequenceDiagram](images/delete/DeleteModuleParseSequenceDiagram.png)
+
+The following diagram shows the Sequence Diagram of the execution of a `DeleteMultipleModulesCommand`, which acts as a continuation of the above diagram:
+
+![DeleteMultipleModulesExecutionSequenceDiagram](images/delete/DeleteModuleExecutionSequenceDiagram.png)
 
 The following is a description of the code execution flow
 
@@ -598,15 +601,27 @@ The following is a description of the code execution flow
 
 2. The argument values are then checked on as such:
 
-   - ModuleCode: valid mod code that begins with capital letters, followed by numbers. could end with capital letters at the end
+   - ModuleCode: valid mod code that begins with capital letters, followed by numbers. could optionally end with capital letters at the end
    - LectureName: valid lecture name that does not contain symbols
-   - VideoName: valid lecture name that does not contain symbols
+   - VideoName: valid video name that does not contain symbols
 
-   Note: LectureName and VideoName should not contain commas (","). Rather than throwing as errors, Le Tracker will treat it as though the user intended to delete multiple entities
+   Note: ModuleCode, LectureName and VideoName should not contain commas (","). Rather than throwing as errors, Le Tracker will treat it as though the user intended to delete multiple entities
 
 3. The appropriate `DeleteCommand` subclass object is created then returned to its caller.
+  - `DeleteModuleCommand`: single module to be deleted
+  - `DeleteMultipleModulesCommand`: more than one module to be deleted
+  - `DeleteLectureCommand`: single lecture to be deleted
+  - `DeleteMultipleLecturesCommand`: more than one lecture to be deleted
+  - `DeleteVideoCommand`: single video to be deleted
+  - `DeleteMultipleVideosCommand`: more than one video to be deleted
 
-4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module/lecture/video from itself
+4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module(s)/lecture(s)/video(s) the respective context. <br>
+Possible exceptions that could be thrown are:
+    - Command contains duplicate entities to be deleted
+    - Invalid format for any entity
+    - Entity does not exist in respective context
+
+5. If `DeleteMultipleModulesCommand`, `DeleteMultipleLecturesCommand` or `DeleteMultipleVideosCommand` is parsed, on execution, the command calls `DeleteModuleCommand`, `DeleteLectureCommand` or `DeleteVideoCommand` respectively
 
 **Reasons for such implementation**
 
@@ -671,11 +686,20 @@ The feature utilises the following classes:
 - `MarkMultipleAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking multiple videos as unwatched
 - `MultipleEventsParser`: Interface that parses string for commands that can be executed on multiple objects at once
 
-The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCommand`:
+The following diagram shows the Sequence Diagram of parsing a `mark` command into a `MarkAsWatchedCommand`:
 
-![MarkAsWatched](images/mark/MarkAsWatchedSequenceDiagram.png)
+![ParseMark](images/mark/MarkAsWatchedParserSequenceDiagram.png)
 
-The following is a description of the code execution flow
+The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCommand`, which adds on to the sequence diagram above:
+
+![MarkAsWatched](images/mark/MarkAsWatchedExecutionSequenceDiagram.png)
+
+As a comparison to the diagram above, the following diagram shows the Sequence Diagram of executing a `MarkMultipleAsUnwatchedCommand`:
+
+![MarkAsUnwatched](images/mark/MarkAsMultipleAsUnwatchedExecutionSequenceDiagram.png)
+
+
+The following is a description of the code execution flow:
 
 1. `MarkAsWatchedCommandParser#parse(String)` / `MarkAsUnwatchedCommandParser#parse(String` takes the user's input as a `String` argument and determines the target video to be marked. The following table below depicts the command returned against the user's intent
 
@@ -691,7 +715,7 @@ The following is a description of the code execution flow
    - LectureName: valid lecture name that does not containt symbols
    - VideoName: valid lecture name that does not contain symbols
 
-   Note: LectureName and VideoName should not contain commas (","). Rather than throwing errors, Le Tracker will treat it as though the user intended to delete multiple videos
+   Note: VideoName should not contain commas (","). Rather than throwing errors, Le Tracker will treat it as though the user intended to delete multiple videos
 
 3. The appropriate `MarkCommand` subclass object is created then returned to its caller
 
@@ -699,7 +723,10 @@ The following is a description of the code execution flow
 
    - ModuleCode: if module with ModuleCode exists in Le Tracker
    - LectureName: if lecture with LectureName exists in module ModuleCode
-   - VideoName: if video(s) with VideoName exists in lecture LectureName of module ModuleCode and whether the video(s) is/are marked or unmarked (differs according to whether `mark` or `unmark` is called)
+   - VideoName: if video(s) with VideoName exists in lecture LectureName of module ModuleCode and whether there are duplicates specified
+      - For `mark`, the videos of the specified VideoName(s) are checked on whether they are marked as watched
+      - For `unmark` and a **single** VideoName is specified, VideoName is checked on whether it is marked as unwatched
+      - For `unmark` and **multiple** VideoNames are specified, VideoNames are **not** checked on whether they are marked as unwatched (unlike its counterparts)
 
 5. If no exceptions are thrown, Le Tracker has successfully managed to mark/unmark the specified video(s)
 
@@ -2687,29 +2714,69 @@ Some incorrect commands to try from root context:
 
 ## Appendix: Planned enhancements
 
-### Feature Flaw #1: Add command output on success is poorly formatted
+### Feature Flaw #1: Some messages are poorly formatted
 
 **Description:**
 
-Currently, upon a successful `add` command execution, the formatting of the output message is long, not user-friendly, and difficult to decipher.
+Currently some messages which serve as command feedback are poorly formatted.
 
-The following is a sample command for adding a module and it's output message upon success:\
+![Poorly Formatted Message](images/dg/planned-enhancement-truncated-output.png)
+
+- The message is represented as a **single line**, requiring users to use the horizontal scroll bar when the message
+extends beyond the width of result display window.
+- The message may append excessive information to a single line without any line breaks, making it hard for the user to decipher the feedback of a command.
+
+Here are some examples of poorly formatted messages that the team has identified:
+
+1. The following is a sample command for adding a module and it's output message upon success:\
 Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
-Output: `New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]`
+Output:
+```
+New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]
+```
 
-The following is a sample command for adding a lecture and it's output message upon success:\
+2. The following is a sample command for adding a lecture and it's output message upon success:\
 Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
-Output: `New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`
+Output:
+```
+New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]
+```
 
-The following is a sample command for adding a video and it's output message upon success:\
+3. The following is a sample command for adding a video and it's output message upon success:\
 Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
-Output: `New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
+Output:
+```
+`New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
+```
+
+4. The following is a sample command for editing a module and it's output message upon success:\
+Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
+Output:
+```
+Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20
+```
+
+5. The following is a sample command for editing a lecture and it's output message upon success:\
+Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
+Output:
+```
+Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]
+```
+
+6. The following is a sample command for editing a video and it's output message upon success:\
+Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
+Output:
+```
+Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]
+```
 
 **Proposed Solution:**
 
-We plan on changing the output message to be more user friendly. Given the above 3 examples, their respective redesigned output will be as such.
+We plan on changing the output message to be more user friendly and to make better use of the vertical space of result display window.
 
-The following is a sample command for adding a module and it's output message upon success:\
+Given the above 6 examples, their respective redesigned output will be as such:
+
+1. The following is a sample command for adding a module and it's output message upon success:\
 Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
 Output:
 ```
@@ -2719,7 +2786,7 @@ Name: Software Engineering
 Tags: [4MCs] [Coding]
 ```
 
-The following is a sample command for adding a lecture and it's output message upon success:\
+2. The following is a sample command for adding a lecture and it's output message upon success:\
 Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
 Output:
 ```
@@ -2728,7 +2795,7 @@ Name: Week 7
 Tags: [Census] [AVLTree]
 ```
 
-The following is a sample command for adding a video and it's output message upon success:\
+3. The following is a sample command for adding a video and it's output message upon success:\
 Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
 Output:
 ```
@@ -2739,38 +2806,7 @@ Timestamp: 01:04:20
 Tags: [BigO] [Analysis]
 ```
 
-### Feature Flaw #2: Edit command output on success is poorly formatted
-
-**Description:**
-
-Currently, upon a successful `edit` command execution, the formatting of the output message is long, not user-friendly, and difficult to decipher.
-
-The following is a sample command for editing a module and it's output message upon success:\
-Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
-Output:
-```
-Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20
-```
-
-The following is a sample command for editing a lecture and it's output message upon success:\
-Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
-Output:
-```
-Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]
-```
-
-The following is a sample command for editing a video and it's output message upon success:\
-Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
-Output:
-```
-Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]
-```
-
-**Proposed Solution:**
-
-We plan on changing the output message to be more user friendly. Given the above 3 examples, their respective redesigned output will be as such.
-
-The following is a sample command for editing a module and it's output message upon success:\
+4. The following is a sample command for editing a module and it's output message upon success:\
 Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
 Output:
 ```
@@ -2780,7 +2816,7 @@ Updated Name: DSAG
 Updated Tags: [4MCs] [Analytical]
 ```
 
-The following is a sample command for editing a lecture and it's output message upon success:\
+5. The following is a sample command for editing a lecture and it's output message upon success:\
 Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
 Output:
 ```
@@ -2789,7 +2825,7 @@ Updated Name: W1
 Updated Tags: [BigO] [Intro]
 ```
 
-The following is a sample command for editing a video and it's output message upon success:\
+6. The following is a sample command for editing a video and it's output message upon success:\
 Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
 Output:
 ```
@@ -2800,22 +2836,22 @@ Updated Timestamp: 01:04:20
 Updated Tags: [BigO] [Analysis]
 ```
 
-### Feature flaw #3: No length limit for module code, module name, lecture name, video name, and tag
+### Feature flaw #2: No length limit for module code, module name, lecture name, video name, and tag
 **Description**
 
-There is currently no limit on the length of a module code and module name that can be assigned to a module. This is the same for the name of a lecture and the name of a video. This allows users to assign ridiculously long values to these fields, causing the UI to be truncated, potentailly slowing down the application, and increasing the size of the data file.
+There is currently **no limit** on the length of a module code and module name that can be assigned to a module. This is the same for the name of a lecture and the name of a video. This allows users to assign ridiculously long values to these fields, causing the UI to be truncated. This may also potentially slow down the application, and increase the size of the data file.
 
-The following is an example of a lecture with a very long name:
+The following is an example of a lecture with a very long name, causing the name to be truncated:
 
 <img src="images/LongLectureName.png" width="702"/>
 
 **Proposed Solution**
 
-For the commands that allows a user to assign values to the mentioned fields (`add`, `edit`, `tag`, `untag`, etc.), the arguments should have their length limited to some value (e.g. 30).
+For the commands that allow a user to assign values to the mentioned fields (`add`, `edit`, `tag`, `untag`, etc.), the arguments should have their length limited to some value (e.g. 30 characters).
 
-The checking and limiting of length can be done while parsing the arguments and will produce an output as such should the length be exceeded:
+The checking and limiting of length can be done while parsing the arguments and should produce an error message if the maximum length is exceeded:
 ```
-The following value exceeds the length limit of 30: {value}
+The following {field} should not exceed the length limit of 30 characters: {value}
 ```
 
-### Feature flaw #4: Output message does not make full use of command box space
+### Feature flaw #3:

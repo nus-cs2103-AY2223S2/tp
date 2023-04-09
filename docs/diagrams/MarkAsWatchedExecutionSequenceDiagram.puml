@@ -3,8 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ": LogicManager" LOGIC_COLOR
-participant ": TrackerParser" LOGIC_COLOR
-participant ": MarkAsWatchedCommandParser" LOGIC_COLOR
 participant "MultipleEventsParser" LOGIC_COLOR
 participant ": MarkAsWatchedCommand" LOGIC_COLOR
 participant "r: CommandResult" LOGIC_COLOR
@@ -16,43 +14,9 @@ participant "v: Video" MODEL_COLOR
 participant "w: Video" MODEL_COLOR
 end box
 
--> ": LogicManager": parseComamnd("mark Vid 1\n/mod CS2040S /lec Week 1")
-
-activate ": LogicManager"
-
-": LogicManager" -> ": TrackerParser": parse("Vid 1 /mod\nCS2040S /lec Week 1")
-
-activate ": TrackerParser"
-
-create ": MarkAsWatchedCommandParser"
-": TrackerParser" -> ": MarkAsWatchedCommandParser"
-
-": MarkAsWatchedCommandParser" -> "MultipleEventsParser": parseVideoNames("Vid 1")
-activate "MultipleEventsParser"
-
-": MarkAsWatchedCommandParser" <-- "MultipleEventsParser": VideoName[]
-deactivate "MultipleEventsParser"
-
-activate ": MarkAsWatchedCommandParser"
-
-create ": MarkAsWatchedCommand"
-": MarkAsWatchedCommandParser" -> ": MarkAsWatchedCommand"
-
-activate ": MarkAsWatchedCommand"
-
-": MarkAsWatchedCommandParser" <-- ": MarkAsWatchedCommand"
-
-deactivate ": MarkAsWatchedCommand"
-
-": TrackerParser" <-- ": MarkAsWatchedCommandParser"
-
-deactivate ": MarkAsWatchedCommandParser"
-
-": LogicManager" <-- ": TrackerParser"
-
-deactivate ": TrackerParser"
 
 ": LogicManager" -> ": MarkAsWatchedCommand": execute(Model m)
+activate ": LogicManager"
 
 activate ": MarkAsWatchedCommand"
 
@@ -106,7 +70,7 @@ deactivate "m: Model"
 
 end
 
-": MarkAsWatchedCommand" -> "MultipleEventsParser": convertArrayListToString(ArrayList)
+": MarkAsWatchedCommand" -> "MultipleEventsParser": convertArrayList\nToString(ArrayList)
 activate "MultipleEventsParser"
 
 ": MarkAsWatchedCommand" <-- "MultipleEventsParser"
@@ -114,11 +78,11 @@ deactivate "MultipleEventsParser"
 
 
 create "r: CommandResult"
-": MarkAsWatchedCommand" -> "r: CommandResult": CommandResult()
+": MarkAsWatchedCommand" -> "r: CommandResult"
 
 activate "r: CommandResult"
 
-": MarkAsWatchedCommand" <-- "r: CommandResult": r
+": MarkAsWatchedCommand" <-- "r: CommandResult"
 
 deactivate "r: CommandResult"
 
