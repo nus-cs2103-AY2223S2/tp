@@ -177,17 +177,14 @@ The `CommandBox` UI class then integrates the autocomplete feature. It listens f
 
 The public methods of the `AutocompleteEngine` class are:
 
-- `suggestCommand(String userInput)`: Suggests a command _(including it's arguments)_ based on the user input.
-- `autocompleteCommand(String userInput, String commandSuggestion)`: Returns the new user input when the user autocompletes the command.
+- `suggestCommand(String userInput)` — Suggests a command _(including it's arguments)_ based on the user input.
+- `autocompleteCommand(String userInput, String commandSuggestion)` — Returns the new user input when the user autocompletes the command.
 
 New methods in the `Model` interface for the autocomplete feature include:
 
-- `getExistingTagValues()`: Returns a list of all existing tag values contained in the person list.
-- `getExistingModuleValues()`: Returns a list of all existing module values contained in the person list.
-- `getExistingEducationValues()`: Returns a list of all existing education values contained in the person list.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The returned lists of the above 3 get-existing methods will contain no duplicate values.
-</div>
+- `getExistingTagValues()` — Returns a list of all existing tag values contained in the person list.
+- `getExistingModuleValues()` — Returns a list of all existing module values contained in the person list.
+- `getExistingEducationValues()` — Returns a list of all existing education values contained in the person list.
 
 Given below is an example usage scenario and how the autocomplete mechanism works at each step:
 
@@ -196,6 +193,7 @@ Given below is an example usage scenario and how the autocomplete mechanism work
 - **Step 2.** The user types the input `add t/`. `CommandBox` detects the change in user input, and calls the `Logic::suggestCommand` method to get suggestions based on the said input.
 
 - **Step 3.** The `LogicManager` in turn calls the `AutocompleteEngine#suggestCommand` method, which in turn queries the `Model` for existing tag, module, and education values. In this example, `Model::getExistingTagValues()` returns the list `["tag1", "tag2"]`.
+
   <div markdown="span" class="alert alert-info">:information_source: **Note:** For **Step 3**, since the existing module and education values aren't used, they're omitted in this example.
   </div>
 
@@ -219,7 +217,7 @@ Here's the autocompletion sequence diagram showing the above 2 steps:
 
 If the user types an invalid command-word or index, `AutocompleteEngine#suggestCommand` will throw a `ParseException`, which causes the text to be displayed in red.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** For **Step 9**, the autocomplete feature does not actually validate whether the argument values are valid or indexes exist. It's merely a simple heuristic check, to help users avoid making obvious syntax mistakes in the commands.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The autocomplete feature does not actually validate whether the argument values are valid or indexes exist. It's merely a simple heuristic check, to help users avoid making obvious syntax mistakes in the commands.
 </div>
 
 #### Design considerations
