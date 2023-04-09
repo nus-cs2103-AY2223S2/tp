@@ -188,7 +188,7 @@ The updated model is then saved. A `CommandResult` object with a message contain
 #### How is the feature implemented
 
 The `add_contact` command allows users to add the contact of a company to an internship application. The implementation of the `add_contact` command is facilitated by the `AddContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method. 
-The parsing process meanwhile involves the `AddressBookParser#parse#` and the `AddContactCommandParser#parse` methods.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `ContactParser#parseContactCommand` and the `AddContactCommandParser#parse` methods.
 
 The activity diagram below shows the workflow of the `add_contact` command during its execution.
 
@@ -196,7 +196,7 @@ The activity diagram below shows the workflow of the `add_contact` command durin
 
 The constructor of the class `AddContactCommand` requires 2 arguments, a valid positive `Integer` index and a `Contact` object, both of which are obtained after the parsing process mentioned above.
 
-The relevant operations from the `Model` interface are `Model#getFilteredInternshipList`, `Model#setApplication` and `Model#updateFilteredInternshipList`.
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
 
 A sequence diagram is shown here to illustrate the execution process of the `add_contact` command.
 
@@ -206,19 +206,19 @@ Given below is an explanation on the `add_contact` command's behaviours.
 
 Step 1. Parsing
 
-The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parser`.
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand` and subsequently the method `ContactParser#parseContactCommand`.
 The method `AddContactCommandParser#parse` is invoked only if the command word matches `AddContactCommand.COMMAND_WORD`.
 
 Step 2. Execution
 
-The `AddContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getFilteredInternshipList`.
+The `AddContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
 The internship application where the contact is to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
 immutable, a new `InternshipApplication` object is created with the contact details. The `Model#setApplication` method is then invoked to update the specified application in the list.
 
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`. 
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 2.5 seconds. 
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds. 
 
 >**NOTE:**
 > Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
@@ -237,6 +237,267 @@ adding a new internship application. This prevents the `AddCommand` from getting
 * **Alternative 2:** Adding contact details as attributes in the `InternshipApplication` class.
     * Pros: Easier than implement.
     * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
+
+
+### Edit contact feature
+
+#### How is the feature implemented
+
+The `edit_contact` command allows users to edit the contact of a company added to an internship application. The implementation of the `edit_contact` command is facilitated by the `EditContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `ContactParser#parseContactCommand` and the `EditContactCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `edit_contact` command during its execution.
+
+![EditContactActivityDiagram](images/EditContactActivityDiagram.png)
+
+The constructor of the class `EditContactCommand` requires 2 arguments, a valid positive `Integer` index and a `EditContactDescriptor` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `edit_contact` command.
+
+![EditContactSequenceDiagram](images/EditContactSequenceDiagram.png)
+
+Given below is an explanation on the `edit_contact` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand` and subsequently the method `ContactParser#parseContactCommand`.
+The method `EditContactCommandParser#parse` is invoked only if the command word matches `EditContactCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `EditContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application where the contact is to be edited is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the edited contact details. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `EditContactCommand` follows the design intuition behind the `AddContactCommand` by separating the process of editing contact details of the company from the process of
+editing other attributes of an existing internship application.
+
+
+### Delete contact feature
+
+#### How is the feature implemented
+
+The `delete_contact` command allows users to delete the contact of a company added to an internship application. The implementation of the `delete_contact` command is facilitated by the `DeleteContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `ContactParser#parseContactCommand` and the `DeleteContactCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `delete_contact` command during its execution.
+
+![DeleteContactActivityDiagram](images/DeleteContactActivityDiagram.png)
+
+The constructor of the class `DeleteContactCommand` requires 1 argument, a valid positive `Integer` index, which is obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `delete_contact` command.
+
+![DeleteContactSequenceDiagram](images/DeleteContactSequenceDiagram.png)
+
+Given below is an explanation on the `delete_contact` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand` and subsequently the method `ContactParser#parseContactCommand`.
+The method `DeleteContactCommandParser#parse` is invoked only if the command word matches `DeleteContactCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `DeleteContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application where the contact is to be edited is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the contact details deleted. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `DeleteContactCommand` follows the design intuition behind the `AddContactCommand` by separating the process of deleting contact details of the company from the process of
+deleting other attributes of an existing internship application.
+
+
+### Add documents feature
+
+#### How is the feature implemented
+
+The `add_docs` command allows users to add links of the documents submitted to a company to an internship application. The implementation of the `add_docs` command is facilitated by the `AddDocumentsCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `DocumentsParser#parseDocumentsCommand` and the `AddDocumentsCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `add_docs` command during its execution.
+
+![AddDocumentsActivityDiagram](images/AddDocumentsActivityDiagram.png)
+
+The constructor of the class `AddDocumentsCommand` requires 2 arguments, a valid positive `Integer` index and a `Documents` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `add_docs` command.
+
+![AddDocumentsSequenceDiagram](images/AddDocumentsSequenceDiagram.png)
+
+Given below is an explanation on the `add_docs` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand` and subsequently the method `DocumentsParser#parseDocumentsCommand`.
+The method `AddDocumentsCommandParser#parse` is invoked only if the command word matches `AddDocumentsCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `AddDocumentsCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application where the document links are to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the document links. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `AddDocumentsCommand` provides enhancement to the existing `AddCommand`, in a similar fashion to the `AddContactCommand`.
+
+
+### Edit documents feature
+
+#### How is the feature implemented
+
+The `edit_docs` command allows users to edit links of the documents submitted to a company to an internship application. The implementation of the `edit_docs` command is facilitated by the `EditDocumentsCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `DocumentsParser#parseDocumentsCommand` and the `EditDocumentsCommandParser#parse` methods.
+
+The execution process of the `edit_docs` command can be demonstrated by the activity diagram of `edit_contact` by replacing `contact` related phrases or methods with `documents` related phrases or methods.
+
+> [Edit Contact Feature](#edit-contact-feature)
+
+
+### Delete documents feature
+
+#### How is the feature implemented
+
+The `delete_docs` command allows users to delete links of the documents added to an internship application. The implementation of the `edit_docs` command is facilitated by the `DeleteDocumentsCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand`, `DocumentsParser#parseDocumentsCommand` and the `DeleteDocumentsCommandParser#parse` methods.
+
+The execution process of the `delete_docs` command can be demonstrated by the activity diagram of `delete_contact` by replacing `contact` related phrases or methods with `documents` related phrases or methods.
+
+> [Delete Contact Feature](#delete-contact-feature)
+
+
+### Edit status feature
+
+#### How is the feature implemented
+
+The `edit_status` command allows users to edit the status of an internship application. The implementation of the `edit_status` command is facilitated by the `EditStatusCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand` and the `EditStatusCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `edit_status` command during its execution.
+
+![EditStatusActivityDiagram](images/EditStatusActivityDiagram.png)
+
+The constructor of the class `EditStatusCommand` requires 2 arguments, a valid positive `Integer` index and a `InternshipStatus` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `edit_contact` command.
+
+![EditStatusSequenceDiagram](images/EditStatusSequenceDiagram.png)
+
+Given below is an explanation on the `edit_status` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand`.
+The method `EditStatusCommandParser#parse` is invoked only if the command word matches `EditStatusCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `EditContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application where the status is to be edited is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the new status. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `EditStatusCommand` follows the design intuition behind the `EditContactCommand` by separating the process of editing status of the internship application from the process of
+editing other attributes of an existing internship application.
+
+
+### Archive feature
+
+#### How is the feature implemented
+
+The `archive` command allows users to archive an internship application. The implementation of the `archive` command is facilitated by the `ArchiveCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand` and the `ArchiveCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `archive` command during its execution.
+
+![ArchiveActivityDiagram](images/ArchiveActivityDiagram.png)
+
+The constructor of the class `ArchiveCommand` requires 1 argument, a valid positive `Integer` index, which is obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getSortedFilteredInternshipList` and `Model#setApplication`.
+
+A sequence diagram is shown here to illustrate the execution process of the `archive` command.
+
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
+
+Given below is an explanation on the `archive` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parseCommand`.
+The method `ArchiveCommandParser#parse` is invoked only if the command word matches `ArchiveCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `ArchiveCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getSortedFilteredInternshipList`.
+The internship application to be archived is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new archived `InternshipApplication` object is created. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+
+#### Why is it implemented this way
+
+The `ArchiveCommand` allows an internship application to be archived in an easier way, as otherwise the user would have to remember a specific prefix
+if it is implemented as part of the `EditCommand`.
+
+
+### Unarchive feature
+
+#### How is the feature implemented
+
+The `unarchive` command allows users to unarchive an internship application. The implementation of the `unarchive` command is facilitated by the `UnarchiveCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `InternEaseParser#parseCommand` and the `UnarchiveCommandParser#parse` methods.
+
+The execution process of the `unarchive` command can be demonstrated by the activity diagram of `archive` by replacing `archive` related phrases or methods with `unarchive` related phrases or methods.
+
+> [Archive Feature](#archive-feature)
+
+
+### List archived applications feature
+#### How is the feature implemented
+
+The `list_archived` command lists all currently archived internship applications. The implementation of the `list_archived` command is facilitated by the `ListArchivedCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The execution of the `ListArchivedCommand` is similar to the `ListCommand`.
+
+The execution process of `list_archived` is demonstrated by the activity diagram below.
+
+![ListArchivedActivityDiagram](images/ListArchivedActivityDiagram.png)
 
 
 ### Find feature
@@ -775,15 +1036,17 @@ The execution process of `list_note` can be demonstrated by the activity diagram
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                  | So that I can…​                                                        |
-| -------- |--------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                                        | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new internship application entry                        |                                                                        |
-| `* * *`  | internship applicant                       | note down the contact details of the company I am applying to | conveninently contact the company for queries or setting up interviews |
-| `* * *`  | internship applicant                       | delete my submission                                          | remove wrong entries or application that I no longer need              |
-| `* * *`  | internship applicant                       | view a list of my internship applications submitted           | prevent repeated applications to the same company                      |
-| `* *`    | internship applicant                       | delete all my applications                                    | start fresh                                                            |
-| `* * *` | internship applicant                       | note down the status of my application                        | identify which stage of the application I am in                        |
+| Priority | As a …​                                    | I want to …​                                                                   | So that I can…​                                                                           |
+| -------- |--------------------------------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                                         | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | user                                       | add a new internship application entry                                         |                                                                                           |
+| `* * *`  | internship applicant                       | manage the contact details of the company I am applying to                     | conveninently contact the company for queries or setting up interviews                    |
+| `* * *`  | internship applicant                       | note down links to the the documents submmited to the company I am applying to | conveninently retrieve the version of the resume or cover letter submitted to the company |
+| `* * *`  | internship applicant                       | archive my internship application entry                                        | view a list of ongoing internship applications which do not get cluttered over time       |
+| `* * *`  | internship applicant                       | delete my submission                                                           | remove wrong entries or application that I no longer need                                 |
+| `* * *`  | internship applicant                       | view a list of my internship applications submitted                            | prevent repeated applications to the same company                                         |
+| `* *`    | internship applicant                       | delete all my applications                                                     | start fresh                                                                               |
+| `* * *` | internship applicant                       | update the status of my application as it progresses                           | identify which stage of the application I am in                                           |
 
 
 ### Use cases
@@ -806,15 +1069,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-
 **Use case: UC02 Add contact details of a company to an internship application**
 
 **MSS**
 
 1.  User requests to view the list of internship applications.
 2.  InternEase shows the internship application list with their indexes specified.
-3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index.
+3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index and details of the contact.
 4.  InternEase adds the contact details of the company to the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The provided contact is invalid.
+    * 3b1. InternEase shows an error message  and gives a specific suggestion on the format of a valid contact.
+    * 3b2. User enters a new contact.
+
+      Steps 3b1 to 3b2 are repeated until a valid contact is provided. Use case resumes at step 4.
+
+* 3c. The command format is invalid.
+    * 3c1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3c2. User enters a new command.
+
+      Steps 3c1 to 3c2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+**Use case: UC03 Edit contact details of the company for an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to edit the contact details of the company for the specific internship application in the list by specifying its respective index and details of the updated contact.
+4.  InternEase edits the contact details of the company for the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The provided contact is invalid.
+    * 3b1. InternEase shows an error message  and gives a specific suggestion on the format of a valid contact.
+    * 3b2. User enters a new contact.
+        
+      Steps 3b1 to 3b2 are repeated until a valid contact is provided. Use case resumes at step 4.
+  
+* 3c. The command format is invalid.
+    * 3c1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3c2. User enters a new command.
+
+      Steps 3c1 to 3c2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+**Use case: UC04 Delete contact details of the company for an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to delete the contact details of the company for the specific internship application in the list by specifying its respective index.
+4.  InternEase delete the contact details of the company for the internship application and displays a success message.
 
     Use case ends.
 
@@ -838,8 +1174,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
 
+**Use case: UC05 Add links for documents submitted to the company for an internship application**
 
-**Use case: UC03 Revert a recent deleted internship application entry**
+Similar to `UC02 Add contact details of a company to an internship application` except that the documents link submitted to a company for an internship application is added.
+
+**Use case: UC06 Edit links for documents submitted to the company for an internship application**
+
+Similar to `UC03 Edit contact details of the company for an internship application` except that the documents link submitted to a company for an internship application is edited.
+
+**Use case: UC07 Delete contact details of the company for an internship application**
+
+Similar to `UC04 Delete contact details of the company for an internship application` except that the documents link submitted to a company for an internship application is deleted.
+
+**Use case: UC08 Revert a recent deleted internship application entry**
 
 **MSS**
 
@@ -858,7 +1205,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: UC04 Revert all deleted internship application entries in current session**
+**Use case: UC09 Revert all deleted internship application entries in current session**
 
 **MSS**
 
@@ -877,7 +1224,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
   
 
-**Use case: UC05 Delete an internship application entry**
+**Use case: UC10 Delete an internship application entry**
 
 **MSS**
 
@@ -912,7 +1259,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 3b1 to 3b2 are repeated until a valid command is provided.
       Use case resumes at step 4.
 
-**Use case: UC06 Find an application by its field**
+**Use case: UC11 Find an application by its field**
 
 **MSS**
 
@@ -927,7 +1274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 Clear all internship application entries**
+**Use case: UC12 Clear all internship application entries**
 
 **MSS**
 
@@ -936,13 +1283,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC08 Edit the status of an internship application**
+**Use case: UC13 Edit the status of an internship application**
 
 **MSS**
 
 1.  User requests to view the list of internship applications.
 2.  InternEase shows the internship application list with their indexes specified.
-3.  User requests to edit the application status of a specific internship application in the list by specifying its respective index.
+3.  User requests to edit the application status of a specific internship application in the list by specifying its respective index and the updated status.
 4.  InternEase updates the application status of the internship application and displays a success message.
 
     Use case ends.
@@ -962,25 +1309,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
 
-* 3b. The command format is invalid.
-    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
-    * 3b2. User enters a new command.
+* 3b. The provided status is invalid.
 
-      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+    * 3b1. InternEase shows an error message and gives a specific suggestion on the possible statuses.
+    * 3b2. User enters a new internship application status.
+
+      Steps 3b1 to 3a2 are repeated until a valid status is provided. Use case resumes at step 4.
+
+* 3c. The command format is invalid.
+    * 3c1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3c2. User enters a new command.
+
+      Steps 3c1 to 3c2 are repeated until a valid command is entered. Use case resumes at step 4.
       
-**Use case: UC09 Help**
+**Use case: UC14 Help**
 
 **MSS**
 
 1. User requests for help.
 2. InternEase shows a list of available commands to the user.
 
-**Use case: UC10 List**
+**Use case: UC15 List**
 
 **MSS**
 
 1.  User requests to view the list of internship applications.
-2.  InternEase shows all the internship applications as a list with their indexes specified.
+2.  InternEase shows all the ongoing internship applications as a list with their indexes specified.
 
     Use case ends.
 
@@ -990,7 +1344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC11 Clear relevant internship application entries by keyword**
+**Use case: UC16 Clear relevant internship application entries by keyword**
 
 **MSS**
 
@@ -1014,55 +1368,101 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Steps 2a1 to 2a2 are repeated until a valid attribute is provided. Use case resumes at step 4.
 
-#### Side features
+**Use case: UC17 Archive an internship application**
 
-**Use case: UC12 Add a todo task entry**
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to archive a specific internship application in the list by specifying its respective index.
+4.  InternEase archives the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The command format is invalid.
+    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3b2. User enters a new command.
+
+      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+* 3c. The specified internship application is already archived.
+
+    * 3a1. InternEase shows an error message.
+
+      Use case ends.
+
+**Use case: UC18 Unarchive an internship application**
+
+Similar to `UC17 Archive an internship application` except that the internship application is unarchived.
+
+**Use case: UC19 List archived internship applications**
+
+Similar to `UC15 List` except that only archived internship applications are shown.
+
+### Side features
+
+**Use case: UC20 Add a todo task entry**
 
 Similar to `UC01 Add an internship application entry` except todo task is added instead of an internship application.
 
-**Use case: UC13 List todo**
+**Use case: UC21 List todo**
 
-Similar to `UC10 List`except todo tasks are listed instead of internship applications.
+Similar to `UC15 List` except todo tasks are listed instead of internship applications.
 
-**Use case: UC14 Edit the note content of a todo task**
+**Use case: UC22 Edit the note content of a todo task**
 
-Similar to `UC08 Edit the status of an internship application`except the note content of a todo task is edited.
+Similar to `UC13 Edit the status of an internship application` except the note content of a todo task is edited.
 
-**Use case: UC15 Edit the deadline of a todo task**
+**Use case: UC23 Edit the deadline of a todo task**
 
-Similar to `UC08 Edit the status of an internship application` except the deadline of a todo task is edited.
+Similar to `UC13 Edit the status of an internship application` except the deadline of a todo task is edited.
 
-**Use case: UC16 Delete a todo task entry**
+**Use case: UC24 Delete a todo task entry**
 
-Similar to `UC05 Delete an internship application entry` except the specified todo task is deleted.
+Similar to `UC10 Delete an internship application entry` except the specified todo task is deleted.
+ 
+**Use case: UC25 Clear all todo task entries**
 
-**Use case: UC17 Clear all todo task entries**
+Similar to `UC12 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
 
-Similar to `UC07 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
-
-**Use case: UC18 Add a note**
+**Use case: UC26 Add a note**
 
 Similar to `UC01 Add an internship application entry` except a note entry is added instead of an internship application.
 
-**Use case: UC19 List note**
+**Use case: UC27 List note**
 
-Similar to `UC10 List`except note entries are listed instead of internship applications.
+Similar to `UC15 List` except note entries are listed instead of internship applications.
 
-**Use case: UC20 Delete a note entry**
+**Use case: UC28 Delete a note entry**
 
-Similar to `UC05 Delete an internship application entry` except the specified note entry is deleted.
+Similar to `UC10 Delete an internship application entry` except the specified note entry is deleted.
 
-**Use case: UC21 Clear all note entries**
+**Use case: UC29 Clear all note entries**
 
-Similar to `UC07 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
+Similar to `UC12 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
 
-**Use case: UC22 List task**
+**Use case: UC30 List task**
 
-Similar to `UC10 List` except todo task entries and note entries are listed instead of internship applications.
+Similar to `UC15 List` except todo task entries and note entries are listed instead of internship applications.
 
-**Use case: UC23 Find a task by its field**
+**Use case: UC31 Find a task by its field**
 
-Similar to `UC06 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
+Similar to `UC11 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
 
 ### Non-Functional Requirements
 

@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":ContactParser" as ContactParser LOGIC_COLOR
+participant ":DeleteContactCommandParser" as DeleteContactCommandParser LOGIC_COLOR
+participant "a:DeleteContactCommand" as DeleteContactCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(delete_contact)
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand(delete_contact)
+activate InternEaseParser
+
+create ContactParser
+InternEaseParser -> ContactParser : parseContactCommand(delete_contact, args)
+activate ContactParser
+
+create DeleteContactCommandParser
+ContactParser -> DeleteContactCommandParser
+activate DeleteContactCommandParser
+
+DeleteContactCommandParser --> ContactParser
+deactivate DeleteContactCommandParser
+
+ContactParser -> DeleteContactCommandParser : parse(args)
+activate DeleteContactCommandParser
+
+create DeleteContactCommand
+DeleteContactCommandParser -> DeleteContactCommand
+activate DeleteContactCommand
+
+DeleteContactCommand --> DeleteContactCommandParser : d
+deactivate DeleteContactCommand
+
+DeleteContactCommandParser --> ContactParser : d
+deactivate DeleteContactCommandParser
+DeleteContactCommandParser -[hidden]-> InternEaseParser : result
+destroy DeleteContactCommandParser
+
+ContactParser --> InternEaseParser : d
+deactivate ContactParser
+
+InternEaseParser --> LogicManager : d
+deactivate InternEaseParser
+
+LogicManager -> DeleteContactCommand : execute()
+activate DeleteContactCommand
+
+DeleteContactCommand -> Model : setApplication(original, contactDeleted)
+activate Model
+
+Model --> DeleteContactCommand
+deactivate Model
+
+create CommandResult
+DeleteContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteContactCommand : r
+deactivate CommandResult
+
+DeleteContactCommand --> LogicManager : r
+deactivate DeleteContactCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

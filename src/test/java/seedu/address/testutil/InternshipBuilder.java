@@ -41,6 +41,7 @@ public class InternshipBuilder {
     // Interview fields
     private InterviewDate interviewDate;
     private InternshipStatus status;
+    private InterviewDate interviewDate;
     private boolean isArchived;
 
     // Data fields
@@ -56,6 +57,7 @@ public class InternshipBuilder {
         reviews = new HashSet<>();
         status = InternshipStatus.PENDING;
         isArchived = false;
+        interviewDate = null;
     }
 
     /**
