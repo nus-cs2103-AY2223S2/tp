@@ -105,6 +105,82 @@ The `MainWindow#fillInnerParts` method will populate the UI by:
 
 As shown in Figure 2, users will be shown the Course Page upon launching the application. The GUI will then refresh accordingly as the user navigates through the different pages in the application.
 
+
+### Logic component
+
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/logic/Logic.java)
+
+Here's a (partial) class diagram of the `Logic` component:
+
+<img src="images/LogicClassDiagram.png" width="550"/>
+
+How the `Logic` component works:
+1. When `Logic` is called upon to execute a command, it uses the `RosterParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete course 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete course 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+<img src="images/ParserClasses.png" width="600"/>
+
+How the parsing works:
+* When called upon to parse a user command, the `RosterParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `RosterParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+### Model component
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/model/Model.java)
+
+<img src="images/ModelClassDiagram.png" width="450" />
+
+
+The `Model` component,
+
+* stores the roster data i.e., all `Course` objects (which can subsequently be traversed to access all stored data)
+* stores a `CurrentSelection` object that is a container object for pointing to the various `Course`/`Group`/`Student`/`Session`/`Task` objects that the user has selected.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores the `Command` object that was last executed, as well as its corresponding command string input, for purposes of accessing previous states (i.e like in the case of `undo` command)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Course` list in the `CLIpboard`. This allows `CLIpboard` to only require one `Course` object.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
+</div>
+
+
+### Storage component
+
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/storage/Storage.java)
+
+<img src="images/StorageClassDiagram.png" width="550" />
+
+The `Storage` component,
+* can save both roster data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `RosterStorage` and `UserPrefsStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+### Common classes
+
+Classes used by multiple components are in the `tfifteenfour.clipboard.commons` package.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### User Interface (UI)
+
+This subsection describes implementation details related to `UI`, such as page navigation and design.
+
 #### Navigating through pages
 
 ![Navigation Guide](images/navigation.png)
@@ -184,77 +260,43 @@ Furthermore, since each `Student` is uniquely identified by their `StudentId` (i
 Another alternative we considered was displaying the full information of a `Student` in each `StudentListCard`, however doing so will quickly overwhelm the `StudentListPanel` if there were many students in the group.
 As such, we have implemented a separate `StudentViewCard` that will be shown on the Right Pane (as shown in Figure 7) when the user enters a `select` command on the Student Page.
 
+#### CLIpboard Theme
 
-### Logic component
+Most of the CLIpboard style components can be found in the CSS file `BrownTheme.css`, found under `src/main/resources/view`.
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/logic/Logic.java)
+Here is the colour palette used for CLIpboard:
 
-Here's a (partial) class diagram of the `Logic` component:
+**Main colours:**
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![A1826D](images/colour-palette/A1826D.png) **#A1826D**
 
-How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `RosterParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+![D8B4A4](images/colour-palette/D8B4A4.png) **#D8B4A4**
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete course 1")` API call.
+**Accent colours:**
 
-![Interactions Inside the Logic Component for the `delete course 1` Command](images/DeleteSequenceDiagram.png)
+![574539](images/colour-palette/574539.png) **#574539**
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![B56D5E](images/colour-palette/B56D5E.png) **#B56D5E**
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+![8B3A3A](images/colour-palette/8B3A3A.png) **#8B3A3A**
 
-<img src="images/ParserClasses.png" width="600"/>
+![5EB56D](images/colour-palette/5EB56D.png) **#5EB56D** 
 
-How the parsing works:
-* When called upon to parse a user command, the `RosterParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `RosterParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+CLIpboard also utilises two primary fonts, namely the Open Sans font family and the Satoshi font family.
+Both are free to use, and can be downloaded from [Google Fonts](https://fonts.google.com/specimen/Open+Sans) and [FontShare](https://www.fontshare.com/fonts/satoshi) respectively.
 
-### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/model/Model.java)
+**Open Sans:**
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![OpenSans](images/OpenSansFont.png)
 
+**Satoshi:**
 
-The `Model` component,
+![Satoshi](images/SatoshiFont.png)
 
-* stores the roster data i.e., all `Course` objects (which can subsequently be traversed to access all stored data)
-* stores a `CurrentSelection` object that is a container object for pointing to the various `Course`/`Group`/`Student`/`Session`/`Task` objects that the user has selected.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* stores the `Command` object that was last executed, as well as its corresponding command string input, for purposes of accessing previous states (i.e like in the case of `undo` command)
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Course` list in the `CLIpboard`. This allows `CLIpboard` to only require one `Course` object.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
-### Storage component
-
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/storage/Storage.java)
-
-<img src="images/StorageClassDiagram.png" width="550" />
-
-The `Storage` component,
-* can save both roster data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `RosterStorage` and `UserPrefsStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-
-### Common classes
-
-Classes used by multiple components are in the `tfifteenfour.clipboard.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
+### Logic Implementation
 
 ### Undo feature
 `undo` allows restoring up to 5 previous states, but can be modified to better suit performance needs. It is important to note that allowing more states to be saved, or adding more information to be tied to a state, will deteriorate CLIpboard's performance.
