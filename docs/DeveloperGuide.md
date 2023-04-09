@@ -134,21 +134,18 @@ The `Model` component,
 </div>
 
 #### Person
-{add diagram}
 
 * The `Person` object under the `Model` component, stores information of a generic person 
 * A `Person` object extends a `Patient` or a `Doctor`, which stores information specific to a patient and a doctor respectively
 * Note that only the `Nric` uniquely identifies each `Person`
 
 #### Appointment
-{add diagram}
 
 * The `Appointment` object is stored within the `Appointment` package, under the `Model` component.
 * Stores the required information of an appointment, including patient's `Nric`, `Booking`, and doctor's `Nric`
   * Note that the patient's `Nric` and doctor's `Nric` has to exist in `MediConnect`
 
 #### Prescription
-{add diagram}
 
 * The `Prescription` object is stored within the `Prescription` package, under the `Model` component.
 * Stores the required information of a prescription, including `Cost`, and `Medication`
