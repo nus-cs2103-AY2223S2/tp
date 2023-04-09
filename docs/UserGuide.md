@@ -86,7 +86,7 @@ If you need to switch to a new device, you can also export and import your previ
    <br>
    The initial GUI below should appear in a few seconds. Note how the app contains some sample data for your reference, you are free to delete the sample data after you get familiar with the MATHUTORING.<br>
    
-    ![InitialUi](images/InitialUi.png)
+    ![InitialUi](images/UG-images/InitialUi.png)
    
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -117,13 +117,13 @@ There are two options to display a student's scores (__score list__ and __score 
 
 ### Layout with score list
 
-![Layout with Score List](images/Layout.png)
+![Layout with Score List](images/UG-images/Layout.png)
 
 [Back to top](#table-of-contents)
 
 ### Layout with score chart
 
-![Layout with Score Chart](images/Layout2.png)
+![Layout with Score Chart](images/UG-images/Layout2.png)
 
 [Back to top](#table-of-contents)
 
@@ -287,7 +287,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
-    ![Add a student](images/Add%20a%20student.png)
+    ![Add a student](images/UG-images/Add%20a%20student.png)
 
 [Back to top](#table-of-contents)
 
@@ -304,9 +304,9 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student (if the student exists) in the student list.<br>
     Before `delete 2` is executed, the student `Bernice Yu` is shown in the Student List.
-    ![Delete a student (before)](images/Delete%20a%20student%20(before).png)
+    ![Delete a student (before)](images/UG-images/Delete%20a%20student%20(before).png)
     After `delete 2` is executed, the student `Bernice Yu` is deleted from the Student List.
-    ![Delete a student (after)](images/Delete%20a%20student%20(after).png)
+    ![Delete a student (after)](images/UG-images/Delete%20a%20student%20(after).png)
 * `find Betsy` followed by `delete 1` deletes the 1st student (if the student exists) in the results of the `find` command.
 * `filter female` followed by `delete 3` deletes the 3rd student (if the student exists) in the results of the `filter` command.
 
@@ -330,9 +330,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.<br>
     Before command execution:
-    ![Edit a student (before)](images/Edit%20a%20student%20(before).png)
+    ![Edit a student (before)](images/UG-images/Edit%20a%20student%20(before).png)
     After command execution:
-    ![Edit a student (after)](images/Edit%20a%20student%20(after).png)
+    ![Edit a student (after)](images/UG-images/Edit%20a%20student%20(after).png)
 
 [Back to top](#table-of-contents)
 
@@ -349,12 +349,12 @@ Format: `check INDEX`
 Examples:
 * `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.<br>
     Before command execution:
-    ![Check a student (before)](images/Check%20a%20student%20(before).png)
+    ![Check a student (before)](images/UG-images/Check%20a%20student%20(before).png)
     After command execution:<br>
     * Student has no tasks and scores:
-        ![Check a student with no tasks and scores](images/Check%20a%20student%20Empty%20Lists.png)
+        ![Check a student with no tasks and scores](images/UG-images/Check%20a%20student%20Empty%20Lists.png)
     * Student has tasks and scores:
-        ![Check a student with tasks and scores](images/Check%20a%20student.png)
+        ![Check a student with tasks and scores](images/UG-images/Check%20a%20student.png)
 
 [Back to top](#table-of-contents)
 
@@ -374,7 +374,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-    ![Find a student](images/Find%20a%20student.png)
+    ![Find a student](images/UG-images/Find%20a%20student.png)
 
 [Back to top](#table-of-contents)
 
@@ -394,7 +394,7 @@ Format: `filter KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `filter primary` returns tag `primary`, `Primary`.
 * `filter secondary secondary2` returns students with tags of either `secondary`, `secondary2`, or both.
-    ![Filter students](images/Filter%20students.png)
+    ![Filter students](images/UG-images/Filter%20students.png)
 
 [Back to top](#table-of-contents)
 
@@ -404,7 +404,7 @@ Lists all the students in the student list.
 
 Format: `list`
 
-![List all students](images/List%20all%20students.png)
+![List all students](images/UG-images/List%20all%20students.png)
 
 [Back to top](#table-of-contents)
 
@@ -430,7 +430,7 @@ Examples:
 * `list` followed by `addtask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
   student list.<br>
     The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
-    ![Add a task](images/Add%20a%20task.png)
+    ![Add a task](images/UG-images/Add%20a%20task.png)
 * `check 2` followed by `addtask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
   being checked.
 
@@ -452,9 +452,9 @@ Examples:
 * `list` followed by `deletetask 2 3` deletes the third task of the 2nd student in the student list.<br>
     The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
-    ![Delete a task (before)](images/Delete%20a%20task%20(before).png)
+    ![Delete a task (before)](images/UG-images/Delete%20a%20task%20(before).png)
     After command execution:
-    ![Delete a task (after)](images/Delete%20a%20task%20(after).png)
+    ![Delete a task (after)](images/UG-images/Delete%20a%20task%20(after).png)
 * `find Betsy` followed by `deletetask 1 6` deletes the sixth task of the 1st student in the results of the `find` command.
 
 [Back to top](#table-of-contents)
@@ -479,15 +479,15 @@ Examples:
 * `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.<br>
     The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
-    ![Mark a task (before)](images/Mark%20a%20task%20(before).png)
+    ![Mark a task (before)](images/UG-images/Mark%20a%20task%20(before).png)
     After command execution:
-    ![Mark a task complete (after)](images/Mark%20a%20task%20complete%20(after)png)
+    ![Mark a task complete (after)](images/UG-images/Mark%20a%20task%20complete%20(after)png)
 * `list` followed by `marklate 2 3` marks the third task of the 2nd student in the student list as late.<br>
     The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
-    ![Mark a task (before)](images/Mark%20a%20task%20(before).png)
+    ![Mark a task (before)](images/UG-images/Mark%20a%20task%20(before).png)
     After command execution:
-    ![Mark a task late (after)](images/Mark%20a%20task%20late%20(after).png)
+    ![Mark a task late (after)](images/UG-images/Mark%20a%20task%20late%20(after).png)
 * `find Betsy` followed by `marklate 1 6` marks the sixth task of the 1st student in the results of the
   `find` command as late.
 
@@ -534,9 +534,9 @@ Examples:
   value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.<br>
   The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
   * Current display for score tab is using score list.
-    ![Add a score Score List](images/Add%20a%20score%20Score%20List.png)
+    ![Add a score Score List](images/UG-images/Add%20a%20score%20Score%20List.png)
   * Current display for score tab is using score chart.
-    ![Add a score Score Chart](images/Add%20a%20score%20Score%20Chart.png)
+    ![Add a score Score Chart](images/UG-images/Add%20a%20score%20Score%20Chart.png)
 * `check 5` followed by `addscore 1 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
   value of `50` and dated `2021-09-09` to the student being checked.
 
@@ -559,14 +559,14 @@ Examples:
   The following results assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
   * Current display for score tab is using score list.<br>
     Before command execution:
-    ![Delete a score Score List (before)](images/Delete%20a%20score%20Score%20List%20(before).png)
+    ![Delete a score Score List (before)](images/UG-images/Delete%20a%20score%20Score%20List%20(before).png)
     After command execution:
-    ![Delete a score Score List (after)](images/Delete%20a%20score%20Score%20List%20(after).png)
+    ![Delete a score Score List (after)](images/UG-images/Delete%20a%20score%20Score%20List%20(after).png)
   * Current display for score tab is using score chart.<br>
     Before command execution:
-    ![Delete a score Score Chart (before)](images/Delete%20a%20score%20Score%20Chart%20(before).png)
+    ![Delete a score Score Chart (before)](images/UG-images/Delete%20a%20score%20Score%20Chart%20(before).png)
     After command execution:
-    ![Delete a score Score Chart (after)](images/Delete%20a%20score%20Score%20Chart%20(after).png)
+    ![Delete a score Score Chart (after)](images/UG-images/Delete%20a%20score%20Score%20Chart%20(after).png)
 * `find Betsy` followed by `deletescore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
 [Back to top](#table-of-contents)
@@ -580,7 +580,7 @@ Format: There we support using CLI or GUI.
 **CLI**<br> `switch`
 
 **GUI**<br> Click the **Text** or **Chart** button to switch to score list and score chart tabs respectively.
-![Switch between Score Tabs](images/Switch%20between%20Score%20Tabs.png)
+![Switch between Score Tabs](images/UG-images/Switch%20between%20Score%20Tabs.png)
 
 [Back to top](#table-of-contents)
 
@@ -603,7 +603,7 @@ Click the "File" on the top menu, then choose "Export" under the drop-down list.
 
 An export window will pop up, the user is required to specify which folder to store the exported file.
 
-![Export the data of the students.png](images/Export%20the%20data%20of%20the%20students.png)
+![Export the data of the students.png](images/UG-images/Export%20the%20data%20of%20the%20students.png)
 
 Examples:
 * `export` will export the file under the _home folder_ (the folder that contains the "mathutoring.jar" file).
@@ -633,7 +633,7 @@ Format:
 
 **GUI**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
 
-![Import the data of the students.png](images/Import%20the%20data%20of%20the%20students.png)
+![Import the data of the students.png](images/UG-images/Import%20the%20data%20of%20the%20students.png)
 
 Examples:
 * For Windows users
@@ -670,7 +670,7 @@ up, the user is required to specify which folder to store the exported file.
 * The exported file name is `[STUDENT_NAME]'s Progress Report.pdf`, e.g. `Alex Yeoh's Progress Report.pdf`
 * Sample PDF output file: [Alex Yeoh's Progress Report.pdf](pdfs/Alex Yeoh's Progress Report.pdf)
 
-![Exporting the progress of a student](images/Exporting%20the%20progress%20of%20a%20student.png)
+![Exporting the progress of a student](images/UG-images/Exporting%20the%20progress%20of%20a%20student.png)
 
 Examples:
 
@@ -706,7 +706,7 @@ Format:
 **GUI**<br>
 Click the "Help" on the top menu, then choose "Help" again under the drop-down list.
 
-![Viewing help](images/Viewing%20help.png)
+![Viewing help](images/UG-images/Viewing%20help.png)
 
 [Back to top](#table-of-contents)
 
@@ -716,7 +716,7 @@ Clears all entries from the MATHUTORING.
 
 Format: `clear`
 
-![Clear all entries](images/Clear%20all%20entries.png)
+![Clear all entries](images/UG-images/Clear%20all%20entries.png)
 
 [Back to top](#table-of-contents)
 
