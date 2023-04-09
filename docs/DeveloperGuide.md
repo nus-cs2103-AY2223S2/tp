@@ -71,26 +71,26 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 
 ### Architecture
 
-The above _**Architecture Diagram**_ explains the high-level design of the App.
-
 Given below is a quick overview of the main components of the app, and how they interact with each other.
+
+To better illustrate and explain the high-level design of the App, we have also included the _**Architecture Diagram**_ below.
 
 <img class="diagram" src="images/ArchitectureDiagram.png" width="400px">
 
 <div style="page-break-after: always;"></div>
 #### Main components of the architecture
 
-`Main` has 2 classes called `Main` and `MainApp`. Its responsibilities are:
+The `Main` part of the app has 2 classes called `Main` and `MainApp`. Its responsibilities are:
 
 * On startup: Initializes all components in the appropriate sequence (storage, model, logic, UI) 
   and connects them with each other.
 
 * On shutdown: Shuts down all the components and invokes cleanup methods wherever necessary.
 
-`Commons` represents a collection of classes used by multiple other components, and it stores information 
+The `commons` package represents a collection of classes used by multiple other components, and it stores information 
 like GUI settings and user-visible error messages.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components, each as their own package of related files:
 
 * `UI`: The user interface of the app.
 * `Logic`: The command executor.
