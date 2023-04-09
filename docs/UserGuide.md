@@ -769,14 +769,17 @@ Action | Format | Example
 ### FAQs
 
 **Q:** Does Mycelium require an internet connection to run?
+<br>
 **A:** No, Mycelium is intended to work fully offline.
 
 **Q:** How can I sync my local data to the cloud?
+<br>
 **A:** Mycelium does not provide such a feature, but you may look into using
 network-attached storage, Git, or other services to back up the `mycelium.json`
 file.
 
 **Q:** What operating systems can I run Mycelium on?
+<br>
 **A:** Mycelium has been developed and tested on Windows, Mac, and Linux (X11)
 operating systems only.
 
