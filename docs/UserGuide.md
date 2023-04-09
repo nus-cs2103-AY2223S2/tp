@@ -346,6 +346,16 @@ Format: `check INDEX`
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+* After the user checked a student, the respective student's task list and score list will continue to be displayed, unless:
+      * That respective student (the latest checked student) is being deleted.
+      * That respective student (the latest checked student) is being edited.
+      * The student list being cleared.
+  Any of the above actions will alter the status to no student being checked now.
+</div>
+
 Examples:
 * `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.<br>
     Before command execution:
