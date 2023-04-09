@@ -2,7 +2,6 @@
 layout: page
 title: Shenghan's Project Portfolio Page
 ---
-# Project: BookFace
 
 ## Overview
 BookFace is a NUS-centered contact management application that allows students to keep track of details of people they 
