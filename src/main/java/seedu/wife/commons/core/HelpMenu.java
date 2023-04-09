@@ -179,7 +179,10 @@ public enum HelpMenu {
     /**
      * Checks if an input command is a valid command.
      *
-     * @author {https://github.com/AY2223S1-CS2103T-W16-2/tp} -reused
+     * Reused from https://github.com/AY2223S1-CS2103T-W16-2/tp/blob/master/src/main
+     * /java/seedu/foodrem/commons/enums/CommandType.java
+     *
+     * @author rmj1405 -reused
      * @param commandToParse the input command to check
      * @return the command as an enum if it is valid
      *      otherwise the INVALID command
