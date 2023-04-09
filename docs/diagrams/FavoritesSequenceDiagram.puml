@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CookHubParser" as CookHubParser LOGIC_COLOR
+participant "f:FavoritesCommand" as FavoritesCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("favorites")
+activate LogicManager
+
+LogicManager -> CookHubParser : parseCommand("favorites")
+activate CookHubParser
+
+create FavoritesCommand
+CookHubParser -> FavoritesCommand
+activate FavoritesCommand
+
+FavoritesCommand --> CookHubParser : f
+deactivate FavoritesCommand
+
+CookHubParser --> LogicManager : f
+deactivate CookHubParser
+
+LogicManager -> FavoritesCommand : execute()
+activate FavoritesCommand
+
+create CommandResult
+FavoritesCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FavoritesCommand
+deactivate CommandResult
+
+FavoritesCommand --> LogicManager : result
+deactivate FavoritesCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
