@@ -14,7 +14,6 @@ import seedu.address.ui.UiUtil;
 public class ProfileContent extends DetailedContent {
     private static final Logger logger = LogsCenter.getLogger(ProfileContent.class);
     private static final String FXML = "ProfileContent.fxml";
-    private static final int MAX_LINE_LENGTH = 35;
     private static final String NAME_LABEL = "Full Name: %s";
     private static final String PHONE_LABEL = "Phone Number: %s";
     private static final String ADDRESS_LABEL = "Address: %s";
