@@ -779,6 +779,16 @@ Extensions:
     * 1b1. Show error message.
 
     Use case ends.
+
+**Use case: UC17 - View Pending Meetings**
+
+MSS:
+
+1. User requests to view pending meetings.
+2. QuickContacts displays meetings that are not marked as done and are in the future.
+
+   Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
