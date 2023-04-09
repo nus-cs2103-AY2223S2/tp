@@ -1,3 +1,8 @@
+---
+layout: page
+title: Gu Haiwei's Project Portfolio Page
+---
+
 #Overview:
 Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant
 activities, optimized for use via a Command Line Interface (CLI) while still having
