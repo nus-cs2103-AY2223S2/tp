@@ -768,8 +768,38 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a person
+### Address Book
 
+1. Open address book by command
+   1. Prerequisites: Access to main window.
+   1. Test case: `list`<br>
+      Expected: Customer address book window launched.
+1. Open address book by GUI
+   1. Prerequisites:  Access to main window.
+   1. Test case: `Customer` menu > `Address Book` <br>
+      Expected: Customer address book window launched.
+1. Add a person
+   1. Prerequisites: Access to Customers Window using the `list` command.  
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+      Expected: A new person with the name `John Doe` added to the list.  
+   1. Other incorrect format to try:   
+      - missing mandatory fields: `add n/John Doe e/johnd@example.com`  
+      - invalid phone number: `add n/John Doe p/8 e/johnd@example.com`  
+      Expected: Error message displayed in result box.
+1. Edit a person
+   1. Prerequisites: List all persons in Customers Window using the `list` command. person to edit in the list.
+   1. Test case: `edit 1 p/81234567 e/johndoe@example.com`<br>
+      Expected: The phone number and email address of person at index 1 is updated.
+   1. Other incorrect format to try:  
+      - invalid index: `edit 0 p/81234567`  
+      Expected: Error message displayed in result box.
+1. Find a person by name
+   1. Prerequisites: List all persons in Customers Window using the `list` command. target person in the list.
+   1. Test case: `find David`<br>
+      Expected: Matching person in the person list only.
+   1. Other incorrect format to try:  
+      - `not found query`:  `find abc`  
+      Expected: 0 persons listed.
 1. Deleting a person while all persons are being shown
    1. Prerequisites: List all persons in Customers Window using the `list` command. Multiple persons in the list.
    1. Test case: `delete 1`<br>
@@ -779,9 +809,9 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Adding a delivery job 
+### Delivery Job System
 
-1. Add a job through command
+1. Add a job by command
    1. Prerequisites: User is in the main window. Valid recipient and sender id. 
    1. Test case: `add_job si/DAVSAM ri/CHASAM earn/1`<br>
       Expected: A delivery job is created without delivery schedule.  
@@ -790,21 +820,57 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add_job si/DAVSAM ri/CHASAM earn/1 date/2024-05-01 slot/1`<br>
       Expected: A delivery job is created with delivery schedule.  
                 Similar to previous.
-   1. Other incorrect add job commands to try:  
+   1. Other incorrect format to try:  
       - `add_job si/invalid_id ri/invalid_id earn/empty` invalid argument supply.  
       - `add_job si/... ri/... earn/... [date/...] [slot/...]` with either date or slot given.  
-
-1. Add a job through GUI
+      Expected: Error message displayed in result box.
+1. Add a job by GUI
    1. Prerequisites: User have access to GUI. Select `menu` > `Delivery Job System` > `Create Job`.  
    1. Test case: fill in mandatory fields only (recipient/sender/earning)<br>
       Expected: Similar to `1.ii`
    1. Test case: fill in all fields<br>
       Expected: Similar to `1.iii`
    1. Other incorrect approach to try:  
-      - `sender/recipient`, invalid person id.
-      - `earning`, multiple decimal points.  
-      - `date`, invalid date.  
-
+      - sender/recipient: invalid person id.
+      - earning: multiple decimal points.  
+      - date: invalid date.  
+      Expected: Error message at the bottom of dialog.
+1. Edit a job by command
+   1. Prerequisites: Job to edit is valid.
+   1. Test case: `edit_job 1 slot/4`<br>
+      Expected: The slot of job at index 1 is updated.
+   1. Test case: `edit_job ji/BECHE8833A slot/4`<br>
+      Expected: The slot of job with id `BECHE8833A` is updated.
+   1. Other incorrect format to try:  
+      - Invalid index:  `edit_job 0 slot/4`  
+      - Invalid Job Id:  `edit_job ji/BA slot/4`  
+      Expected: Error message displayed in result box.
+1. Edit a job by GUI
+   1. Prerequisites: Access to edit job dialog.
+   1. Test case: `MainWindow` > `Job Detail` > `🖊️` button<br>
+      Expected: The changes made is reflected in the detail pane after submission.
+   1. Other incorrect approach to try:  
+      - Similar to create job GUI.
+1. Find a job by command
+   1. Prerequisites: Target job is valid.
+   1. Test case: `find_job ji/BECHE8833A`<br>
+      Expected: Job with id `BECHE8833A` displayed in the list.
+   1. Test case: `find_job date/2023-03-01 slot/4`<br>
+      Expected: Jobs that satisfies both date **and** slot conditions are displayed in the list.
+   1. Other incorrect format to try:  
+      - Invalid command: `find_job`  
+      Expected: Error message displayed in result box.
+1. Delete a job by command
+   1. Prerequisites: Job to delete is valid.
+   1. Test case: `delete_job DAIR765586`<br>
+      Expected: Job with id `DAIR765586` removed from the list.
+   1. Other incorrect format to try:  
+      - Invalid command: `delete_job`  
+      Expected: Error message displayed in result box.
+1. Delete a job by Hot Key
+   1. Prerequisites: Job to delete is in the list.
+   1. Test case: `select a job` > press `del` key<br>
+      Expected: Job selected is removed.
 ### Notifications
 
 1. Display a notification for a reminder
