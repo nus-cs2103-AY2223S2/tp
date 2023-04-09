@@ -315,6 +315,10 @@ Examples:
 - `add course CS2103T` will add a new course with module code `CS2103T`
 - `add course CS2105` will add a new course with module code `CS2105`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+Course code can have special characters! i.e. "AY2223S2-CS2103T" 
+</div>
+
 [Back to list of commands](#commands)
 
 
@@ -415,6 +419,10 @@ e.g. <code>T15</code> and <code>t15</code> are treated as different groups.
 Examples:
 - `add group T15` will add a new group with group name `T15`
 - `add group L08` will add a new group with group name `L08`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+Group names can have special characters! i.e. "AY2223S2-T15" 
+</div>
 
 [Back to list of commands](#commands)
 
@@ -760,6 +768,10 @@ Examples:
 - `add session Tutorial4`
 - `add session Lab3`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+Session names can have special characters! i.e. "AY2223S2-Tutorial15" 
+</div>
+
 [Back to list of commands](#commands)
 
 
@@ -908,6 +920,10 @@ add task <TASK NAME>
 Examples:
 - `add task OP3`
 - `add task Critical Reflection 3`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
+Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper" 
+</div>
 
 [Back to list of commands](#commands)
 
