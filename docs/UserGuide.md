@@ -86,16 +86,16 @@ In the example above, `[tag/TAG]*`  can be used as ` ` (i.e. 0 times), `tag/frie
 
       Example: If the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
 
-    * If some detail is expected only once in the command, however, it has been specified multiple times, only the last occurrence will be taken.
+    * If some detail is expected only once in the command, but it has been specified multiple times, only the last occurrence will be taken.
 
       Example: If you specify `phone/12341234 phone/56785678`, only `phone/56785678` will be taken.
 
-    * Extraneous details for commands that do not take in any (such as help, list-client, list-project, list-tag, exit, clear-client, clear-project and sort-client) will be ignored.
+    * Extraneous details for commands that do not take in any (such as `help`, `list-client`, `list-project`, `list-tag`, `exit`, `clear-client`, `clear-project` and `sort-client`) will be ignored.
 
       Example: If the command specifies `help 123`, it will be interpreted as `help`.
   
     * Extraneous details for commands that take in only one (such as `delete-client`) will be ignored.
-    
+        
       Example: If the command specifies `delete-client 1 abc` it will be interpreted as `delete-client 1`.
   
     * Most command words and prefixes have shorter short forms that can be used the same way, so that you can complete the same tasks faster once you’re used to the app. For example, `list-project` has the short form `lp` and `name/` has the short form `n/`.
@@ -104,19 +104,19 @@ In the example above, `[tag/TAG]*`  can be used as ` ` (i.e. 0 times), `tag/frie
 
 ### **Prefixes**
 
-| Prefix      | Short form | Description                                                              |
-|-------------|------------|--------------------------------------------------------------------------|
-| `name/`     | `n/`       | Name of client/project                                                   |
-| `email/`    | `e/`       | Email address                                                            |
-| `phone/`    | `p/`       | Phone number                                                             |
-| `deadline/` | `d/`       | Deadline for project ('DD-MM-YY' or natural language such as 'tomorrow') |
-| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                                       |
-| `tag/`      | `t/`       | Alphanumeric tag                                                         |
-| `client/`   | `c/`       | Keywords to search for client to link to a project                       |
-| `option/`   | `o/`       | Option to sort projects with                                             |
-| `start/`    | `s/`       | Start of timeframe for finding projects                                  |
-| `end/`      | `e/`       | End of timeframe for finding projects                                    |
-| `status/`   | `st/`      | Status for finding projects                                              |
+| Prefix      | Short form | Description                                                                                  |
+|-------------|------------|----------------------------------------------------------------------------------------------|
+| `name/`     | `n/`       | Name of client/project                                                                       |
+| `email/`    | `e/`       | Email address                                                                                |
+| `phone/`    | `p/`       | Phone number                                                                                 |
+| `deadline/` | `d/`       | Deadline for project ('DD-MM-YY' or natural language such as 'tomorrow' and '3pm next week') |
+| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                                                           |
+| `tag/`      | `t/`       | Alphanumeric tag                                                                             |
+| `client/`   | `c/`       | Keywords to search for client to link to a project                                           |
+| `option/`   | `o/`       | Option to sort projects with                                                                 |
+| `start/`    | `s/`       | Start of timeframe for finding projects                                                      |
+| `end/`      | `e/`       | End of timeframe for finding projects                                                        |
+| `status/`   | `st/`      | Status for finding projects                                                                  |
 
 <br>
 

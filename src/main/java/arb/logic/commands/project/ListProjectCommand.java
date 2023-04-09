@@ -28,8 +28,7 @@ public class ListProjectCommand extends Command {
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
+        model.resetFilteredAndSortedProjectList();
         String formattedMessage = getMessageProjectsContent(model);
 
         return new CommandResult(MESSAGE_SUCCESS + "\n" + formattedMessage, ListType.PROJECT);
