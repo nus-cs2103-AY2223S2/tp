@@ -295,6 +295,8 @@ Users have the ability to list all their projects. A summary of how many OVERDUE
 
 #### Implementation
 
+<img src="images/ListProjectSequenceDiagram.png" width="600" />
+
 ### Clearing clients
 
 Users have the ability to clear all their clients.
@@ -415,18 +417,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Delete a project**
 
-**MSS**:
-1. User enters command for deleting project of certain client.
-2. ArB deletes project for client.
+**MSS**
+
+1.  User requests to list project
+2.  ArB shows a list of projects
+3.  User requests to delete a specific project in the list
+4.  ArB deletes the project
 
     Use case ends.
 
-**Extension**:
-* 1a. User wants to remove a project of a client that is not found in the list.
+**Extensions**
 
-* 2a1. ARB tells user that the project of the client does not exist.
+* 2a. The list is empty.
 
-Use case ends.
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ArB shows an error message.
+
+      Use case resumes at step 2.
 
 **Use case: Mark a project**
 
