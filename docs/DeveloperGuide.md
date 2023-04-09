@@ -196,6 +196,11 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+**API** : [`TaskBookModel.java`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/model/TaskBookModel.java)
+
+<img src="images/TaskModelClassDiagram.png" width="500" />
+
+
 The `Model` component,
 
 * stores all `Person` objects (which are contained in a `UniquePersonList` object).

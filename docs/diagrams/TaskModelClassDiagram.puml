@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam groupInheritance 2
+
+Package TaskBookModel <<Rectangle>>{
+Class "<<interface>>\nReadOnlyTaskBook" as ReadOnlyTaskBook
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nTaskBookModel" as TaskBookModel
+Class TaskBook
+Class TaskBookModelManager
+Class UserPrefs
+
+Class UniqueTaskList
+Class Task
+Class Date
+Class TaskDescription
+Class Score
+Class Comment
+Class DeadlineTask extends Task
+Class EventTask extends Task
+
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> TaskBookModel
+
+TaskBook .up.|> ReadOnlyTaskBook
+
+TaskBookModelManager .up.|> TaskBookModel
+TaskBookModel .right.> ReadOnlyUserPrefs
+TaskBookModel .left.> ReadOnlyTaskBook
+TaskBookModelManager -left-> "1" TaskBook
+TaskBookModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+TaskBook *--> "1" UniqueTaskList
+UniqueTaskList --> "~* all" Task
+
+Task *-down-> TaskDescription
+Task *-down-> Date
+Task *-down-> Comment
+Task *-down-> Score
+
+
+
+TaskBookModelManager -->"~* filtered" Task
+@enduml
