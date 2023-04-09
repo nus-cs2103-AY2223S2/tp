@@ -2,7 +2,6 @@
 layout: page
 title: User Guide
 ---
-# CoDoc User Guide
 #### Welcome to CoDoc, a desktop app for students in NUS to connect with each other for the benefit of their course of study.
 CoDoc is **optimized for** use via your **Command Line Interface (CLI)** while still having the **benefits of** a **Graphical User Interface (GUI)**. 
 If you can type fast, CoDoc can get your **contact management** tasks **done faster** than traditional GUI apps.
@@ -15,10 +14,12 @@ connections_ and _accomplishing your goals_!
 
 <img src="images/Ui.png"/>
 
-**For first-time users, we heavily recommend going through the [Quick Start](#quick-start) to familiarize your self with
-CoDoc.** 
+<div markdown="span" class="alert alert-success">
+:bulb: <b>Tip:</b> For first-time users, we heavily recommend going through the [Quick Start](#quick-start) to familiarize yourself with CoDoc.
+</div>
 
---------------------------------------------------------------------------------------------------------------------
+---
+<div style="page-break-after: always;"></div>
 
 # Table of Contents
 - [Navigating the User Guide](#navigating-the-user-guide)
@@ -26,7 +27,7 @@ CoDoc.**
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
   - [Navigating CoDoc](#navigating-codoc)
-  - [Tutorial](#codoc-tutorial-your-first-steps)
+  - [CoDoc Tutorial: Your first steps](#codoc-tutorial-your-first-steps)
     - [Adding a person](#1-adding-a-person)
     - [Viewing a person's modules](#2-viewing-a-person)
     - [Editing a person's modules](#3-editing-a-persons-details)
@@ -47,11 +48,11 @@ CoDoc.**
 - [Upcoming Features](#upcoming-features)
 - [Command Summary](#command-summary)
 - [Additional Resources](#additional-resources)
-  - [How To Check Java Version](#how-to-check-java-version)
   - [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
   - [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Navigating the User Guide
 Before you start using CoDoc, you are recommended to read the
 [Glossary](#glossary), [Quick Start](#quick-start) and the [Notes about the command format](#notes-about-the-command-format) sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
@@ -87,6 +88,8 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ## Glossary
 <table>
   <tr>
@@ -96,41 +99,32 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
   <tr>
     <td><strong>Command Line Interface (CLI)</strong></td>
     <td>
-      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
-      allows a user to perform tasks by entering commands. <br>
-      Users enter the specific command, press “Enter”, and then wait for a response.
-      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
+      A way for users to interact with a piece of software via text in the form of commands where users enter a specific command, press "Enter" and wait for a response.
     </td>
   </tr>
   <tr>
     <td><strong>Graphical User Interface (GUI)</strong></td>
     <td>
-      A system of interactive visual components for computer software. A GUI displays objects that convey information,
-      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
-      interacts with them.
+      A way for users to interact with a piece of software via visual elements instead of entering commands
     </td>
   </tr>
   <tr>
     <td><strong>Index</strong></td>
     <td>
-      An identifier which is the number corresponding to order of which your contacts and courses are listed out, 
-      and used in conjunction with the commands to specify the contact with the given index. Each contact and course 
-      is identified with a unique index. Index must be a positive integer 1, 2, 3, ...
+      An identifier that corresponds to an option. For CoDoc, index are used when selecting courses and contacts—where the index must be a positive integer 1, 2, 3, ...—or navigation of tabs—where the index can be c, m, or s.
     </td>
   </tr>
   <tr>
     <td><strong>Prefix</strong></td>
     <td>
-      An identifier that indicates which field our input is meant for. It is denoted by a letter or symbol followed by a slash <code>/</code>. E.g. <code>n/</code> indicates name, <code>c/</code> indicates course, <code>m+/</code> indicates addition of a module, <code>s-/</code> indicates deletion of a skill ...
+      An identifier that indicates which field our input is meant for. It is denoted by a letter or symbol followed by a slash <code>/</code>. E.g. <code>n/</code> indicates name, <code>c/</code> indicates course, <code>m+/</code> indicates addition of a module, <code>s-/</code> indicates deletion of a skill.
     </td>
   </tr>
   <tr>
     <td><strong>Parameter</strong></td>
     <td>
-      An input that you as the user, will give to the command. These can be in the form of an integer, or a name, 
-      or an email.
-      Some commands take in a parameter after the prefix,
-      some commands take in a parameter without a prefix, and some commands don't take in parameters.
+      An input that you as the user, will give to the command. These can be in the form of numbers or text.
+      Some commands take in a parameter after the prefix while some don't require a prefix at all.
     </td>
   </tr>
   <tr>
@@ -143,23 +137,20 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     <td><div markdown="span" class="alert alert-success"><strong>:bulb: Tip</strong></div></td>
     <td>
       To provide you with relevant suggestions on how to use the commands as well as address potential confusions when using
-      these commands, so you will be able to better understand how the commands work.
+      these commands.
     </td>
   </tr>
   <tr>
     <td><div markdown="span" class="alert alert-danger"><strong>:exclamation: Caution</strong></div></td>
     <td>
-      To inform you of some unintended or unexpected consequences that may occur when you use the commands, so you will be
-      able to use them appropriately.
+      To inform you of some unintended or unexpected consequences that may occur when you use the commands.
     </td>
   </tr>
 </table>
 
-As recommended in the introduction, we would like to direct you to read the [Quick Start](#quick-start) section next.
-
 [Scroll back to *Table of Contents*](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
----
 
 ## Quick Start
 
@@ -170,7 +161,7 @@ First time using CoDoc? Welcome aboard! Follow the steps below to familiarize yo
 
 Before you can use CoDoc, you need to download it. To do this, follow these steps:
 
-1. Ensure you have `Java 11` or above installed in your Computer. -> [How To Check Java Version](#how-to-check-java-version)
+1. Ensure you have `Java 11` or above installed in your Computer.
    * If not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11)
    
    <br>
@@ -187,14 +178,8 @@ to our GitHub Releases page. Find the latest release and download the latest ver
    For example,
    1. Create a new folder where you want CoDoc to be (Desktop, My Documents...anywhere you wish)—this folder will then be the _home folder_.
    2. Place `codoc.jar` into the newly created folder.
-   
-    <br>
-   
-   Once you have completed these steps, it should look something like this:
 
-    ![install_home_folder](images/user-guide/install_home_folder.PNG)
-
-    <br>
+    <div style="page-break-after: always;"></div>
    
 4. Launch CoDoc.
 
@@ -207,10 +192,8 @@ to our GitHub Releases page. Find the latest release and download the latest ver
      1. Create a .bat file in the folder you put the jar file in (_home folder_).
      2. Write `java -jar codoc.jar` into the .bat file.
      3. Click on the .bat file and CoDoc should launch in a few seconds.
-     
-   <br>
    
-   For a more detailed guide with examples, refer to [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows) or [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac) and
+   For a more detailed guide with examples, refer to [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows) or [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
 
 If you have managed to complete all steps, congratulations! You should be seeing CoDoc application 
 launched in its factory state as shown below.
@@ -222,13 +205,10 @@ launched in its factory state as shown below.
 
 ---
 
+
 ### Navigating CoDoc
 
-If it's your first time using this program, the starting screen could seem a little overwhelming.
-
-Before we begin, let's familiarize ourselves with the different parts of the CoDoc interface.
-We recommend **maximizing** the program window to have a clearer view.
-This way you can see more content as well.
+If it's your first time using this program, the starting screen could seem a little overwhelming. Not to worry, let's familiarize ourselves with the different parts of the CoDoc interface together. We recommend **maximizing** the program window to have a clearer view. This way you can see more content as well.
 
 Below is the breakdown of the CoDoc screen:
 
@@ -250,7 +230,7 @@ Below is the breakdown of the CoDoc screen:
 Now that you know how to navigate CoDoc, we recommend you try the following steps to familiarize with 
 available features of CoDoc.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### 1. Adding a person
 
@@ -267,13 +247,13 @@ This will add a new person named Bob to our contact list.
 
 After executing the command, we see that Bob has been added below the list.
 
-**Important:** You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
+> <b>Understanding the Command:</b> As you can see, we first specified the <code>add</code> command, followed by the <em>prefix</em> <code>n/</code> and the <em>name</em> that we want to add i.e. <code>Bob</code>. The same goes for the <em>year</em>, <em>course</em> and <em>email</em>. This <code>n/</code> and <code>Bob</code> pair, is the <em>prefix</em> and <em>parameter</em> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
 
-<div markdown="span" class="alert alert-info">
-:information_source: <b>Note:</b> As you can see, we first specified the <code>add</code> command, followed by the <em>prefix</em> <code>n/</code> and the <em>name</em> that we want to add i.e. <code>Bob</code>. The same goes for the <em>year</em>, <em>course</em> and <em>email</em>. This <code>n/</code> and <code>Bob</code> pair, is the <em>prefix</em> and <em>parameter</em> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
+<div class="span" class="alert alert-danger">  
+:exclamation: <b>Caution:</b> You must specify minimally, the person's <i>name</i>, <i>email</i>, <i>year</i> and <i>course</i> when adding a person.
 </div>
 
-Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
+You may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
 
 To save time typing out the full course and also standardize formatting, we have coded the command so that you just
 have to type its _index_ as the parameter, which you can refer to the [**Course List Panel**](#navigating-codoc) to identify. 
@@ -294,10 +274,7 @@ Now that you have added Bob into CoDoc, you can view his details by using the [V
 This will load Bob's details into the [**Info Panel**](#navigating-codoc).
 
 To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigating-codoc), we can tell that Bob is
-numbered `8` in this example. This is his _index_.
-
-Now enter `view 8` into the command box.
-His _contact_ details will then be shown in the **Info Panel**.
+numbered `8` in this example. This is his _index_. Now enter `view 8` into the command box. His _contact_ details will then be shown in the **Info Panel**.
 
 ![viewing-bob](images/UG-tutorial/viewing-bob.png)
 
@@ -306,8 +283,6 @@ You may try loading another person's details by using different _index_ (e.g. `v
 <div class="span" class="alert alert-success">
 :bulb: <b>Tip:</b> CoDoc also supports GUI, so you can just click the person in the list to view his details.
 </div>
-
-<br>
 
 Remember that we said CoDoc offers more than just a traditional contact management app? So far, you have only viewed
 the _detailed contacts_ tab, showing basic contact details.
@@ -330,6 +305,8 @@ contact information.
 **Related:** [Viewing a person/Changing tabs: `view`](#2-viewing-a-person)
 
 <br>
+<div style="page-break-after: always;"></div>
+
 
 #### 3. Editing a person's details
 
@@ -386,22 +363,19 @@ list. On successful execution, you will see something like below.
 If you tried the examples for previous commands, Bob would be shown as well.
 
 Our `find` command is pretty powerful; it works for other attributes, like _year_, _skills_, etc. and you can find by
-multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#5-finding-a-person--find).
+multiple attributes. To learn more, look at [Finding a person: `find`](#5-finding-a-person--find).
 
 **Related docs:** [Finding a person: `find`](#5-finding-a-person--find), [Listing all persons/Resetting filters: `list`](#6-listing-all-personsresetting-filters--list)
 
-<br>
-
 ### **Congrats! You have completed the tutorial 🎉** 
 
-The pre-existing contacts that come when you first launch are just some examples that you can play around with. 
-Now, you may enter `clear` in the command box to clear all contacts and start off with a fresh database.
+The pre-existing contacts are just examples for you to mess with. When you are ready, enter `clear` in the command box to clear all contacts and start off with a fresh database.
 
 <div class="span" class="alert alert-danger"> 
-:exclamation: <b>Caution:</b> Be careful not to accidentally enter the <code>clear</code> command, it will not ask twice before wiping your database!
+:exclamation: <b>Caution:</b> Be careful when using the <code>clear</code> command, it will not ask twice before wiping your database!
 </div>
 
-If you need more info on the usage of each command, you can refer to the relevant sections below. 
+If you need more info on the usage of each command, refer to the relevant sections below. 
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -409,7 +383,7 @@ If you need more info on the usage of each command, you can refer to the relevan
 
 ---
 
-### Notes about the command format
+## Notes about the command format
 
 * Words in `UPPER_CASE` are the parameters to be **supplied by you**. \
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -427,6 +401,7 @@ If you need more info on the usage of each command, you can refer to the relevan
 [Scroll back to top](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Commands
 
@@ -434,11 +409,12 @@ Here is a list of available commands and its details.
 
 ### 1. Viewing help : `help`
 
-Forgotten the commands? Open the help menu! <br>
+Forgotten the commands? Open the help menu!
 
-Equivalent to clicking Help > Help F1 via the GUI <br>
-`help`<br>
-<img src="images/UiHelpMenu.png"/>
+`help`
+<div class="span" class="alert alert-info">
+:information_source: <b>Note:</b> Equivalent to clicking Help > Help F1 via the GUI.
+</div>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -455,29 +431,29 @@ Once the person has been created, the result display will show a confirmation me
 - n/NAME (eg. `n/John Doe`)
   - names are case-sensitive and allow duplicates
 - e/EMAIL (eg. `e/johndoe123@email.com`)
-  - emails are case-insensitive and does not allow duplicates
+  - emails are case-**in**sensitive and **does not allow duplicates**
 - y/YEAR (eg. `y/3`)
 - c/COURSE_INDEX (eg. `c/1`)
 
+<div style="page-break-after: always;"></div>
+
 **Optional parameters:**
 - g/GITHUB (eg.`g/johnny`)
-  - GitHub usernames are case-sensitive and allow duplicates
+  - GitHub's usernames are case-sensitive and allow duplicates
 - l/LINKEDIN (eg. `l/linkedin.com/in/john-doe`)
   - LinkedIn profile URLs are case-sensitive and allow duplicates
 - m/MODULE YEAR (eg. `m/AY2223S1 CS2103T`, `m/AY2122S2 CS2101`)
-  - modules are case-insensitive and allow duplicate module codes but does not allow duplicate module year
+  - modules are case-**in**sensitive and allow duplicate module codes but **does not allow duplicate module year**
 - s/SKILL (eg. `s/C++`, `s/Rust`)
-  - skills are case-sensitive and does not allow duplicates
+  - skills are case-sensitive and **does not allow duplicates**
 
 <div markdown="span" class="alert alert-success">
 :bulb: <b>Tip:</b> A person can have any number of [OPTIONAL/PARAMETER] (including 0)
 </div>
 
 **Examples:**
-- `add n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123`
-  ![Add Example](images/UiAddBetsy.png)
 - `add n/John Doe e/johnd@example.com y/2 c/3`
-   ![Add Example](images/UiAddContact.jpg)
+- `add n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123`
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -514,9 +490,11 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 4. Editing a person : `edit`
 
-Does one of your contacts have outdated information? Overwrite them in the view panel with the edit command!
+One of your contacts is outdated information? Overwrite them with the edit command!
 
 At least one of the optional fields must be provided.
 
@@ -526,8 +504,7 @@ At least one of the optional fields must be provided.
 - You can remove all the person’s skills by typing `s/` without specifying any skills after it
 
 <div class="span" class="alert alert-danger">
-:warning: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values during the use of <code>m/</code> or <code>s/</code> .<br/>
-  Use <code>m+/</code> or <code>s+/</code> to <b><u>append</u></b> information or <code>m-/</code> or <code>s-/</code>  to <b><u>delete</u></b> information instead.
+:exclamation: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values of <code>m/</code> or <code>s/</code>. Use <code>m+/</code> or <code>s+/</code> to <b><u>append</u></b> information or <code>m-/</code> or <code>s-/</code>  to <b><u>delete</u></b> information instead.
 </div>
 
 `edit [OPTIONAL/PARAMETER]...`<br>
@@ -557,46 +534,55 @@ At least one of the optional fields must be provided.
 </div>
 
 **Examples:**
-- `edit g/johndoeee e/johndoeee@example.com` will edit the GitHub username and email address of the person to be johndoeee and johndoeeee@example.com respectively.
-![View Example](images/UiEditFields.png)
-- `edit s/java s+/python` resets the skill list to contain only java and ignores the python skill addition.
-![View Example](images/UiEditSkills.png)
-- `edit m-/ay2223s2 cs3230` displays an error message as the module does not exist.
-![View Example](images/UiEditError.png)
+- `edit g/johndoeee e/johndoeee@example.com`: edit the _GitHub username_ and _email address_ of the person to be `johndoeee` and `johndoeeee@example.com` respectively.
+- `edit m-/ay2223s2 cs3230`: displays an error message as the module does not exist.
+- `edit s/java s+/python`: resets the skill list to contain only java—ignoring `s+/python`.
+![View Example](images/UiEditSkills_crop.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 5. Finding a person : `find`
 Want to find people with certain qualities? Use find command to find people that contain the given constraints! <br>
 - `find` supports continuous search by allowing constraints to stack, (refer to example below to find out more)
-- All constraints applied are shown in *Result Display*.
-- To remove all constraints, use `list`. 
-- At least one of the optional fields must be provided.
-- All constraints are case-insensitive.
+- All constraints applied are shown in *Result Display*
+- To remove all constraints, use `list`.
+- At least one of the optional fields must be provided
+- All constraints are case-**in**sensitive
 
-`find [OPTIONAL/PARAMETER]...`<br>
+<div style="page-break-after: always;"></div>
+
+`find [OPTIONAL/PARAMETER]...`
+
 **Acceptable Parameters used as Constraints**
-* n/NAME (e.g. `find n/Jo` will load all people whose names contain `Jo` such as `Jo`, `John`, `Joleen`.
-* y/YEAR (e.g. `find y/2` will load all persons who are in `year 2`)
-* c/COURSE (e.g. `find c/Computer` will load all people enrolled in `Computer Engineering` and `Computer Science`)
-    * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from <code>add</code> and <code>edit</code> which uses c/COURSE_INDEX. To find out why, refer to our <a href="#faq">faq</a></div>
-* m/MODULES (e.g. `find m/CS2103` will load all persons with `CS2103` including `CS2103T` and `CS2103R`)
-  * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all persons with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
-  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
-  * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all persons that have taken
-    * `CS1101`, `CS1231` regardless of academic year
-    * `CS2040` in `AY2223S1`
-    * `CS2090`, `CS3230` in `AY2223S2`
-* s/SKILLS (e.g. `find s/java` will load all persons that contains `java` in their skill list such as `java` and `javascript`)
-    * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
- 
+* n/NAME
+  * e.g. `find n/Jo`: load all person whose names contain `Jo` including `John` and `Joleen`
+* y/YEAR
+  * e.g. `find y/2`: load all person in `year 2`
+* c/COURSE
+  * e.g. `find c/Computer`: load all person enrolled in a course with `Computer` in the name such as `Computer Engineering` and `Computer Science` <br> <br>
+  * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from <code>add</code> and <code>edit</code> which uses c/COURSE_INDEX. To find out why, refer to our <a href="#faq">faq</a>.</div>
+* m/ACADEMIC_YEAR MODULES
+  * e.g. `find m/AY2223S1 CS2103`: load all person with `AY2223S1 CS2103` in their module list including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` <br> <br>
+  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can omit ACADEMIC_YEAR as a constraint. E.g. <code>find m/CS2103</code> will load all person with <code>CS2103</code>,<code>CS2103T</code> and <code>CS2103R</code> regardless of ACADEMIC_YEAR in their module list</div>
+  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space. E.g. <code>find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230</code> will load all persons that have taken <br>
+    > <code>CS1101</code>, <code>CS1231</code> regardless of academic year <br>
+    > <code>CS2040</code> in <code>AY2223S1</code> <br>
+    > <code>CS2090</code>, <code>CS3230</code> in <code>AY2223S2</code> </div>
+* s/SKILLS
+  * e.g. `find s/java` will load all persons that contains `java` in their skill list such as `java` and `javascript` <br> <br>
+  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/ACADEMIC_YEAR MODULES you can add as many skills as you want separated by a space.</div>
 
-**Examples:**
-- execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
-- execute `find n/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03.png)
-- Finally, execute `list` to get back every contact in Codoc
+<div style="page-break-after: always;"></div>
+
+
+**Example:**
+- Start by executing `find y/2` to find all person from year 2 <br> <br> ![UiFind_02](images/UiFind_02_2.png) <br> <br>
+- Next, execute `find m/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints** <br> <br> ![UiFind_03](images/UiFind_03_02.png) <br> <br>
+- Finally, use `list` to get back the unfiltered list
 
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 6. Listing all persons/Resetting filters : `list`
 
@@ -608,27 +594,26 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 :bulb: <b>Tip:</b> Use this command to revert back to the original list after performing the <code>find</code> command to shorten the list displayed.
 </div>
 
-* `list`
-![result for list](images/UiList.png)
-
 [Scroll back to *Table of Contents*](#table-of-contents)
+
 
 ### 7. Deleting a person : `delete`
 
-Want to remove a contact from Codoc? Delete them at the specified INDEX with the delete command! 
-
-INDEX refers to an index currently shown in the displayed person list. You may check out our [Glossary](#glossary) for more information.<br>
-
-E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
+Want to remove a contact? Delete it at the specified INDEX with the delete command! 
 
 `delete <INDEX>`<br>
 
-* `delete 6` deletes Betsy Crowe who was at index 6
-![Delete Betsy](images/UiDelete.png)
+**Example:** `delete 1` will delete the current person at index 1<br>
+
+<div markdown="span" class="alert alert-info">
+:information_source: <b>Note:</b> INDEX refers to an index currently shown in the displayed person list. You may check out our [Glossary](#glossary) for more information.
+</div>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 8. Clearing all entries : `clear`
+
+Want a fresh start? Use the clear command!
 
 `clear`
 
@@ -636,20 +621,20 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 :exclamation: <b>Caution:</b> Clears <b>all</b> entries from CoDoc.
 </div>
 
-![Clear](images/UiClear.png)
-
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 9. Exiting the program : `exit`
 
-Want to quit? Use exit command to exit the program! <br>
-Equivalent to clicking the close button via the GUI. <br>
+Want to quit? Use exit command to exit the program!
 
-`exit`<br>
+`exit`
+<div class="span" class="alert alert-info">
+:information_source: <b>Note:</b> Equivalent to clicking the close button via the GUI.
+</div>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
-
-<br>
 
 ---
 
@@ -674,11 +659,14 @@ Equivalent to clicking the close button via the GUI. <br>
 :exclamation: <b>Caution:</b> If your changes to the data file make its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
 </div>
 
-[Scroll back to *Table of Contents*](#table-of-contents)
-
 <br>
 
+[Scroll back to *Table of Contents*](#table-of-contents)
+
 ---
+
+<div style="page-break-after: always;"></div>
+
 
 ## FAQ
 
@@ -710,7 +698,7 @@ Also, this avoids clashing acronyms such as CS which could be interpreted as Chi
 
 <br>
 
-**Q: My find command is not showing the correct list of people**
+**Q: My find command is not showing the correct list of people.**
 
 **A:** This could be because there is an existing list of filters before you entered the [Find command](#5-finding-a-person--find).
 Try clearing all filters with [List command](#6-listing-all-personsresetting-filters--list) then re-enter the Find command.
@@ -719,17 +707,12 @@ Try clearing all filters with [List command](#6-listing-all-personsresetting-fil
 
 **Q: I cannot find the course I want to add in the Course List Panel.**
 
-**A:** We understand that the current list of courses available is limited. This is because this program is initially designed
-to be used mainly by _Computer Science_ students, hence it only lists courses of people which they may encounter during
-their studies. We are currently working to add as many courses as possible so that the program can be used by users
-outside _Computer Science_. Meanwhile, you would have to assign any other courses to the person and remember it.
-
+**A:** We are currently working to add as many courses as possible. Meanwhile, you would have to assign any other courses to the person and remember it.
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-<br>
-
 ---
+<div style="page-break-after: always;"></div>
 
 ## Upcoming Features
 
@@ -737,16 +720,21 @@ outside _Computer Science_. Meanwhile, you would have to assign any other course
 _Details coming soon ..._
 
 ### Archiving data files `[coming in v2.0]`
+_Details coming soon ..._
 
+### Support for staff `[coming in v2.0]`
+_Details coming soon ..._
+
+### Automated year updates `[coming in v2.0]`
 _Details coming soon ..._
 
 <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-<br>
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Command Summary 
 
@@ -766,13 +754,9 @@ _Details coming soon ..._
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Additional Resources
-### How To Check Java Version
-![mac_check_java](images/user-guide/mac_check_java.png)
-
-
-[Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc for Mac
 
 1. Create your *home folder* and place the jar file into it. In this example, <br>
@@ -786,7 +770,8 @@ _Details coming soon ..._
    * <kbd>CMD</kbd> + <kbd>Space</kbd> > type *textEdit.app* >  <kbd>Enter</kbd> (to open textEdit)
    * <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd> (to toggle textEdit to plain text)
    * Your window should look like the image below
-   ![mac_plain_text](images/user-guide/mac_plain_text.png)
+   ![mac_plain_text](images/user-guide/mac_plain_text_small.png)
+   <div style="page-break-after: always;"></div>
 3. Right-click on your home folder and navigate to `New Terminal at Folder`. This will open a terminal window.
    ![mac_open_home_holder](images/user-guide/mac_open_home_folder.png)
 4. Then, 
@@ -794,19 +779,22 @@ _Details coming soon ..._
     * copy the output which is yourHomeFolderPath
     * **leave this window open too**
    ![mac_pwd](images/user-guide/mac_pwd.png)
+   <div style="page-break-after: always;"></div>
 5. Next,
-   * paste `cd yourHomeFolderPath`
-   * as well as `java -jar codoc.jar` 
+   * paste `cd yourHomeFolderPath` as well as `java -jar codoc.jar` 
    * and save it as a `.command` file
    ![mac_command_file_save](images/user-guide/mac_command_file_save.png)
 6. Place the newly created `.command` file into your *home folder*.
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
+    <div style="page-break-after: always;"></div>
+
 7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
 
    <div class="span" class="alert alert-info">
    :information_source: <b>Note:</b> Replace <code>start</code> with whatever you name your <code>.command</code> file from step 5.
    </div>
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
+   
 8. You can now double-click on your `.command` file to open CoDoc.
 
    <div class="span" class="alert alert-success">
@@ -816,18 +804,24 @@ _Details coming soon ..._
    :exclamation: <b>Caution:</b> If you decide to change the location of <em>home folder</em>, repeat from step 2.
    </div>
 
+<br>
+
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 
-### How to Open CoDoc for Windows
+---
+<div style="page-break-after: always;"></div>
 
+### How to Open CoDoc for Windows
 Batch file method for Windows users:
+
 1. Right-click the empty space in the _home folder_ and create new _text file_.
 
     ![open_new_file](images/user-guide/open_new_file.png)
 
 2. Open the _text file_ with any text editor (notepad is fine) and write in `java -jar codoc.jar`. Save and close the file.
 
-    ![open_save_text](images/user-guide/open_save_text.PNG)
+    ![open_save_text](images/user-guide/open_save_text_tiny.png)
+    <div style="page-break-after: always;"></div>
 
 3. Rename the file to `start.bat`. Make sure that file extension gets changed too, if you do not know how to see the file 
 extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-windows-show-file-extensions/).
@@ -835,17 +829,14 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
     ![open_rename](images/user-guide/open_rename.png)
 
     <div class="span" class="alert alert-info">
-    :information_source: <b>Note:</b> You may see a warning message below. This is because you are converting a text file to a batch file.
+    :information_source: <b>Note:</b> You may see a warning message below. This is because you are converting a text file to a batch file. If so, in the prompt, press "Yes" to continue renaming the file.
     </div>
-
-    ![open_rename_warning](images/user-guide/open_rename_warning.PNG)
-   
-    Press "Yes" to continue renaming the file.
 
 4. If done correctly, you should now see a file with an icon similar to below. Double-click the renamed batch file `start.bat` to launch CoDoc.
 
     ![open_done](images/user-guide/open_done.PNG)
 
+<br>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 
