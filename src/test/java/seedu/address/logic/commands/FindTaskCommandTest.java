@@ -78,7 +78,7 @@ public class FindTaskCommandTest {
 
     @Test
     public void execute_validKeywords_noPersonAssigned() {
-        String expectedMessage = String.format(FindTaskCommand.MESSAGE_TASK_FOUND, "1");
+        String expectedMessage = String.format(FindTaskCommand.MESSAGE_TASK_FOUND_S, "1");
         TitleContainsKeywordsPredicate predicate = preparePredicate("Send email to client");
         FindTaskCommand command = new FindTaskCommand(predicate);
         Id tId = getAssignedTaskId(predicate);
