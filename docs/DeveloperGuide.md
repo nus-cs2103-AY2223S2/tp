@@ -556,6 +556,13 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
        Expected: Similar to previous.
 
+### Listing Events
+
+1. No prerequisite.
+
+2. Test case: `listevent`<br>
+   Expected: All events are displayed. Details of successful command execution shown in the status message.
+
 ### Sorting event list
 
 1. Prerequisite: Current list of events has at least 2 events.
@@ -568,6 +575,34 @@ testers are expected to do more *exploratory* testing.
 
 4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
    Expected: Similar to previous.
+
+### Editing an Event
+
+1. Editing an event while all events are being shown
+
+    1. Prerequisites: List all events using the `listevent` command. Multiple events in the list.
+
+    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+       Expected: First event is edited from the event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
+
+    3. Test case: `editevent 0`<br>
+       Expected: No event is edited. Error details shown in the status message.
+
+    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+       Expected: Similar to previous.
+
+2. Editing an event while events with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
+
+    1. Prerequisites: List all events using the `listevent` command, then find all events with `[KEYWORD]` using the `findevent [KEYWORD]` command. Multiple events in the list.
+
+    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+      Expected: First event is edited from the displayed event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
+
+    3. Test case: `editevent 0`<br>
+      Expected: No event is edited. Error details shown in the status message.
+
+    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the displayed list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
