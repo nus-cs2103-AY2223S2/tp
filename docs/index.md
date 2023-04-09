@@ -6,10 +6,8 @@ title: AddressBook Level-3
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
 
-![Ui](images/Ui.png)
-![Ui](images/Ui1.png)
+![Ui](images/UiOriginal.png)
 ![Ui](images/Ui2.png)
-![Ui](images/Ui3.png)
 
 **TrAcker is a desktop application for CS2040 TAs to manage their schedule and students.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
