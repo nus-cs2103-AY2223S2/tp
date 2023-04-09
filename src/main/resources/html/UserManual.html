@@ -248,7 +248,7 @@
     </ul>
     </li>
 </ul>
-<h2 id="parameters-br-">Parameters <br></h2>
+<h2 id="parameters-br">Parameters <br></h2>
 <ul>
     <li>Parameters are additional pieces of information a command needs to perform its action.<ul>
         <li>For example, in the <code>tank add</code> command, a description parameter <code>d/&lt;DESCRIPTION&gt;</code> is needed</li>
@@ -288,21 +288,21 @@
         Adjust the window size of <em>Fish Ahoy!</em> to better show such truncated fields. If it is still not fully showing,
         the name you picked might be too long! Consider adding the information of fish that cannot be displayed in tags!</p>
 </blockquote>
-<h4 id="description-d-description-">Description <code>d/&lt;DESCRIPTION&gt;</code></h4>
+<h4 id="description-d-description">Description <code>d/&lt;DESCRIPTION&gt;</code></h4>
 <ul>
     <li>Type: <code>Tank</code></li>
     <li><code>&lt;DESCRIPTION&gt;</code> should only contain alphanumeric characters and spaces</li>
     <li>Prefix: <code>d/</code></li>
     <li>Example: <code>d/Tank 1</code></li>
 </ul>
-<h4 id="name-n-name-">Name <code>n/&lt;NAME&gt;</code></h4>
+<h4 id="name-n-name">Name <code>n/&lt;NAME&gt;</code></h4>
 <ul>
     <li>Type: <code>Fish</code></li>
     <li><code>&lt;NAME&gt;</code> should only contain alphanumeric characters and spaces</li>
     <li>Prefix: <code>n/</code></li>
     <li>Example: <code>n/Nemo</code></li>
 </ul>
-<h4 id="last-fed-date-lfd-last_fed_date-">Last Fed Date <code>lfd/&lt;LAST_FED_DATE&gt;</code></h4>
+<h4 id="last-fed-date-lfd-last_fed_date">Last Fed Date <code>lfd/&lt;LAST_FED_DATE&gt;</code></h4>
 <ul>
     <li>Type: <code>Fish</code></li>
     <li><code>&lt;LAST_FED_DATE&gt;</code> should be in the format <code>DD/MM/YYYY HH:MM</code> where <code>DD</code> is the day of the month, <code>MM</code> is the month of the year and <code>YYYY</code> is the year. <code>HH</code> is the hour of the day and <code>MM</code> is the minute of the hour.</li>
@@ -317,7 +317,7 @@
     <p>:bulb: Tip: <em>Fish Ahoy!</em> automatically corrects invalid dates like 30th February to the closest
         lower valid date. For example, 30th Feb becomes 29th Feb on leap years and 28th Feb on non leap years</p>
 </blockquote>
-<h4 id="species-s-species-">Species <code>s/&lt;SPECIES&gt;</code></h4>
+<h4 id="species-s-species">Species <code>s/&lt;SPECIES&gt;</code></h4>
 <ul>
     <li>Type: <code>Fish</code></li>
     <li><code>&lt;SPECIES&gt;</code> should only contain alphanumeric characters and spaces</li>
@@ -327,14 +327,14 @@
     </blockquote>
     </li>
 </ul>
-<h4 id="feeding-interval-fi-feeding_interval-">Feeding interval <code>fi/&lt;FEEDING_INTERVAL&gt;</code></h4>
+<h4 id="feeding-interval-fi-feeding_interval">Feeding interval <code>fi/&lt;FEEDING_INTERVAL&gt;</code></h4>
 <ul>
     <li>Type: <code>Fish</code></li>
     <li><code>&lt;FEEDING_INTERVAL&gt;</code> should be in the format <code>&lt;DAYS&gt;d&lt;HOURS&gt;h</code> where <code>&lt;DAYS&gt;</code> and <code>&lt;HOURS&gt;</code> specifies the days and hours of the feeding interval respectively</li>
     <li>Prefix: <code>fi/</code></li>
     <li>Example: <code>fi/1d12h</code></li>
 </ul>
-<h4 id="tags-tg-tag-">Tags <code>[tg/&lt;TAG&gt;]</code></h4>
+<h4 id="tags-tg-tag">Tags <code>[tg/&lt;TAG&gt;]</code></h4>
 <ul>
     <li>Multiple tags allowed for one fish. A fish can also have no tags.</li>
     <li>Type: <code>Fish</code></li>
@@ -346,42 +346,42 @@
     <p>:information_source: Additional information: the syntax we use for tags are enclosed in square brackets <code>[tg/&lt;TAG&gt;]</code>, to show that it can contain
         0 or more tags.</p>
 </blockquote>
-<h4 id="sorting-by-prefix_parameter-">Sorting <code>by/&lt;PREFIX_PARAMETER&gt;</code></h4>
+<h4 id="sorting-by-prefix_parameter">Sorting <code>by/&lt;PREFIX_PARAMETER&gt;</code></h4>
 <ul>
     <li>Type: <code>Fish</code></li>
     <li><code>&lt;PREFIX_PARAMETER&gt;</code> <code>n</code>, <code>lfd</code>, <code>s</code>, <code>fi</code>, or <code>tk</code>. These correspond to the parameters in this section with the same prefix.</li>
     <li>Prefix: <code>by/</code></li>
     <li>Example: <code>by/lfd</code></li>
 </ul>
-<h4 id="tank-ammonia-level-reading-al-ammonia_level-">Tank ammonia level reading <code>al/&lt;AMMONIA_LEVEL&gt;</code></h4>
+<h4 id="tank-ammonia-level-reading-al-ammonia_level">Tank ammonia level reading <code>al/&lt;AMMONIA_LEVEL&gt;</code></h4>
 <ul>
     <li>Type: <code>Tank</code></li>
     <li><code>&lt;AMMONIA_LEVEL&gt;</code> A number, with or without decimal points.</li>
     <li>Prefix: <code>al/</code></li>
     <li>Example: <code>al/2</code></li>
 </ul>
-<h4 id="tank-ph-reading-ph-ph-">Tank pH reading <code>ph/&lt;PH&gt;</code></h4>
+<h4 id="tank-ph-reading-ph-ph">Tank pH reading <code>ph/&lt;PH&gt;</code></h4>
 <ul>
     <li>Type: <code>Tank</code></li>
     <li><code>&lt;PH&gt;</code> A number, with or without decimal points.</li>
     <li>Prefix: <code>ph/</code></li>
     <li>Example: <code>al/7.1</code></li>
 </ul>
-<h4 id="tank-temperature-reading-tp-temperature-">Tank temperature reading <code>tp/&lt;TEMPERATURE&gt;</code></h4>
+<h4 id="tank-temperature-reading-tp-temperature">Tank temperature reading <code>tp/&lt;TEMPERATURE&gt;</code></h4>
 <ul>
     <li>Type: <code>Tank</code></li>
     <li><code>&lt;TEMPERATURE&gt;</code> A number, with or without decimal points.</li>
     <li>Prefix: <code>tp/</code></li>
     <li>Example: <code>tp/28</code></li>
 </ul>
-<h4 id="tank-tk-tank_index-">Tank <code>tk/&lt;TANK_INDEX&gt;</code></h4>
+<h4 id="tank-tk-tank_index">Tank <code>tk/&lt;TANK_INDEX&gt;</code></h4>
 <ul>
     <li>Type: <code>Task</code>, <code>Fish</code></li>
     <li><code>&lt;TANK_INDEX&gt;</code> Positive integer (1, 2, 3...) and is one of the tank indexes of the listed tanks in the <a href="#about-the-interface">left tank panel</a></li>
     <li>Prefix: <code>tk/</code></li>
     <li>Example: <code>tk/1</code></li>
 </ul>
-<h4 id="priority-p-priority-">Priority <code>p/&lt;PRIORITY&gt;</code></h4>
+<h4 id="priority-p-priority">Priority <code>p/&lt;PRIORITY&gt;</code></h4>
 <ul>
     <li>Type: <code>Task</code></li>
     <li><code>&lt;PRIORITY&gt;</code> One of the following: low, medium, high</li>
@@ -411,7 +411,7 @@
     <li><a href="#adding-a-set-of-readings-tank-addreadings">Adding a set of readings to a tank <code>tank addReadings</code></a></li>
     <li><a href="#deleting-the-most-recent-set-of-readings-tank-dellastreadings">Deleting a most recent set of readings of a tank <code>tank delLastReadings</code></a></li>
 </ul>
-<h3 id="adding-a-tank-tank-add-">Adding a tank: <code>tank add</code></h3>
+<h3 id="adding-a-tank-tank-add">Adding a tank: <code>tank add</code></h3>
 <p>You can add a tank to <em>Fish Ahoy!</em> with the <code>tank add</code> command.</p>
 <p>Use this command to add your own tank with a customized name to <em>Fish Ahoy!</em> This will start your journey into managing
     your aquarium.</p>
@@ -436,7 +436,7 @@
     </ul>
     </li>
 </ul>
-<h3 id="deleting-a-tank-tank-delete-">Deleting a tank: <code>tank delete</code></h3>
+<h3 id="deleting-a-tank-tank-delete">Deleting a tank: <code>tank delete</code></h3>
 <p>You can delete a tank entry from <em>Fish Ahoy!</em> with the <code>tank delete</code> command.</p>
 <p>Use this command to remove tanks from the system, when you are retiring a tank.</p>
 <p>Format: <code>tank delete &lt;TANK_INDEX&gt;</code></p>
@@ -457,7 +457,7 @@
 <ul>
     <li><code>tank delete 2</code> deletes the second tank in the <a href="#about-the-interface">tanks panel</a></li>
 </ul>
-<h3 id="editing-a-tank-tank-edit-">Editing a tank: <code>tank edit</code></h3>
+<h3 id="editing-a-tank-tank-edit">Editing a tank: <code>tank edit</code></h3>
 <p>You can edit the details of an existing tank with the <code>tank edit</code> command.</p>
 <p>Use this command if you want to update the original sample tank names to match your tank names, or if you decide that you want to rename
     an existing tank.</p>
@@ -487,7 +487,7 @@
 <ul>
     <li><code>tank edit 2 d/My new tank</code> changes the name of the second tank in the <a href="#about-the-interface">tanks panel</a> to &#39;My new tank&#39;.</li>
 </ul>
-<h3 id="feeding-a-tank-tank-feed-">Feeding a tank: <code>tank feed</code></h3>
+<h3 id="feeding-a-tank-tank-feed">Feeding a tank: <code>tank feed</code></h3>
 <p>You can feed all the fish in a tank, updating all the fishes&#39; last fed date to the current date and time with the <code>tank feed</code> command.</p>
 <p>Use this command when you feed your fishes in real life, so you can keep track of when you last fed your fishes in <em>Fish Ahoy!</em></p>
 <p>Format: <code>tank feed &lt;TANK_INDEX&gt;</code></p>
@@ -512,7 +512,7 @@
     </ul>
     </li>
 </ul>
-<h3 id="viewing-a-tank-tank-view-">Viewing a tank: <code>tank view</code></h3>
+<h3 id="viewing-a-tank-tank-view">Viewing a tank: <code>tank view</code></h3>
 <p>You can view the specific tasks and fishes belonging to the specified tank with the <code>tank view</code> command.</p>
 <p>Use this command when you want to inspect a particular tank, to check on its fishes and tasks!</p>
 <p>Format: <code>tank view &lt;TANK_INDEX&gt;</code></p>
@@ -542,7 +542,7 @@
         </ul>
     </li>
 </ul>
-<h3 id="adding-a-set-of-readings-tank-addreadings-">Adding a set of readings: <code>tank addReadings</code></h3>
+<h3 id="adding-a-set-of-readings-tank-addreadings">Adding a set of readings: <code>tank addReadings</code></h3>
 <p>You can add a set of ammonia level, pH and temperature readings to the specified tank with the <code>tank addReadings</code> command.</p>
 <p>Use this command if you have the relevant equipment, and you want to log down the current readings!</p>
 <p>Format: <code>tank addReadings tk/&lt;TANK_INDEX&gt; al/&lt;AMMONIA_LEVEL&gt; ph/&lt;PH&gt; tp/&lt;TEMPERATURE&gt;</code></p>
@@ -593,7 +593,7 @@
     </ul>
     </li>
 </ul>
-<h3 id="deleting-the-most-recent-set-of-readings-tank-dellastreadings-">Deleting the most recent set of readings: <code>tank delLastReadings</code></h3>
+<h3 id="deleting-the-most-recent-set-of-readings-tank-dellastreadings">Deleting the most recent set of readings: <code>tank delLastReadings</code></h3>
 <p>You can delete the most recent set of readings from the specified tank with the <code>tank delLastReadings</code> command.</p>
 <p>Use this command if you accidentally keyed in the wrong set of readings. You can then add a new set of readings to correct the mistake!</p>
 <p>Format: <code>tank delLastReadings &lt;TANK_INDEX&gt;</code></p>
@@ -632,7 +632,7 @@
     <li><a href="#viewing-a-fish-fish-view">Viewing fishes <code>fish view</code></a></li>
     <li><a href="#listing-fishes-list-fishes">Listing fishes <code>list fishes</code></a></li>
 </ul>
-<h3 id="adding-a-fish-fish-add-">Adding a fish: <code>fish add</code></h3>
+<h3 id="adding-a-fish-fish-add">Adding a fish: <code>fish add</code></h3>
 <p>You can add a fish to a specified tank in <em>Fish Ahoy!</em> with the <code>fish add</code> command.</p>
 <p>Use this command to add your fishes to tanks. By adding fishes in tanks that you own, you can easily categorise them by tanks and store
     important information about them.</p>
@@ -685,7 +685,7 @@
     </ul>
     </li>
 </ul>
-<h3 id="deleting-a-fish-fish-delete-">Deleting a fish: <code>fish delete</code></h3>
+<h3 id="deleting-a-fish-fish-delete">Deleting a fish: <code>fish delete</code></h3>
 <p>You can delete a fish from <em>Fish Ahoy!</em> with the <code>fish delete</code> command.</p>
 <p>Use this command if you no longer want to keep track of this fish, if it has died or otherwise!</p>
 <p>Format: <code>fish delete &lt;FISH_INDEX&gt;</code></p>
@@ -706,7 +706,7 @@
 <ul>
     <li><code>fish delete 3</code> deletes the third fish <strong>currently displayed</strong> in the <a href="#about-the-interface">fishes panel</a></li>
 </ul>
-<h3 id="editing-a-fish-fish-edit-">Editing a fish: <code>fish edit</code></h3>
+<h3 id="editing-a-fish-fish-edit">Editing a fish: <code>fish edit</code></h3>
 <p>You can edit the details of an existing fish with the <code>fish edit</code> command.</p>
 <p>Use this command if you want to update the original sample fish names to match your fish names, or if you decide that you want to rename an existing fish.</p>
 <p>Format: <code>fish edit &lt;FISH_INDEX&gt; [n/&lt;FISH_NAME&gt;] [lfd/&lt;LAST_FED_DATE&gt;] [s/&lt;SPECIES&gt;] [fi/&lt;FEEDING_INTERVAL&gt;] [tk/&lt;TANK_INDEX&gt;] [tg/&lt;TAG&gt;]...</code></p>
@@ -769,7 +769,7 @@
         </ul>
     </li>
 </ul>
-<h3 id="sorting-fishes-fish-sort-">Sorting fishes: <code>fish sort</code></h3>
+<h3 id="sorting-fishes-fish-sort">Sorting fishes: <code>fish sort</code></h3>
 <p>You can sort the fishes in <em>Fish Ahoy!</em> by a specified parameter with the <code>fish sort</code> command.</p>
 <p>Use this command to view the fish at once by the attribute you want. This can be helpful if you need to see which fish
     has not been fed in a long time, or see which fish you need to attend to first. It can also be used to organize the
@@ -818,7 +818,7 @@
         </ul>
     </li>
 </ul>
-<h3 id="viewing-a-fish-fish-view-">Viewing a fish: <code>fish view</code></h3>
+<h3 id="viewing-a-fish-fish-view">Viewing a fish: <code>fish view</code></h3>
 <p>You can view a specific with in <em>Fish Ahoy!</em>, specified by the given fish index.</p>
 <p>Use this command to display a single fish, making it easier for you to see its information.</p>
 <p>Format: <code>fish view &lt;FISH_INDEX&gt;</code></p>
@@ -840,7 +840,7 @@
     <li>The fish panel is currently showing fish from &#39;freshwater tank&#39;. There are 2 fishes in the fish panel, &#39;guppy&#39; with index 1 and &#39;goldfish&#39; with index 2.
         <code>fish view 2</code> shows only &#39;goldfish&#39; in the fish panel. Other panels are unchanged</li>
 </ul>
-<h3 id="listing-fishes-list-fishes-">Listing fishes: <code>list fishes</code></h3>
+<h3 id="listing-fishes-list-fishes">Listing fishes: <code>list fishes</code></h3>
 <p>You can list all fishes you own with the <code>list fishes</code> command.</p>
 <p>Use this command to see all the fishes you own across all tanks, or to list all fishes again after a <code>tank view</code> or <code>fish view</code> command.</p>
 <p>Format: <code>list fishes</code></p>
@@ -866,7 +866,7 @@
     <li><a href="#editing-a-task-task-edit">Editing a task <code>task edit</code></a></li>
     <li><a href="#listing-tasks-list-tasks">Listing tasks <code>list tasks</code></a></li>
 </ul>
-<h3 id="adding-a-task-task-add-">Adding a task: <code>task add</code></h3>
+<h3 id="adding-a-task-task-add">Adding a task: <code>task add</code></h3>
 <p>You can add a task to <em>Fish Ahoy!</em> with the <code>task add</code> command.</p>
 <p>Use this command to add your weekly tasks into <em>Fish Ahoy!</em> such as tank cleaning and equipment maintenance.</p>
 <p>Format: <code>task add d/&lt;TASK_NAME&gt; [tk/&lt;TANK_INDEX&gt;] [p/&lt;PRIORITY_LEVEL&gt;]</code></p>
@@ -906,7 +906,7 @@
         </ul>
     </li>
 </ul>
-<h3 id="deleting-a-task-task-delete-">Deleting a task: <code>task delete</code></h3>
+<h3 id="deleting-a-task-task-delete">Deleting a task: <code>task delete</code></h3>
 <p>You can delete a task entry from <em>Fish Ahoy!</em> with the <code>task delete</code> command.</p>
 <p>Use this command to delete a task from <em>Fish Ahoy!</em>, when you have completed the task.</p>
 <p>Format: <code>task delete &lt;TASK_INDEX&gt;</code></p>
@@ -924,7 +924,7 @@
 <ul>
     <li><code>task delete 1</code> deletes the first task listed in the <a href="#about-the-interface">tasks panel</a></li>
 </ul>
-<h3 id="editing-a-task-task-edit-">Editing a task: <code>task edit</code></h3>
+<h3 id="editing-a-task-task-edit">Editing a task: <code>task edit</code></h3>
 <p>You can edit the details of an existing task with the <code>task edit</code> command.</p>
 <p>Use this command if you want to update the original sample task descriptions to match your task descriptions, or if you decide that you want to rename an existing task or update its priority or tank.</p>
 <p>Format: <code>task edit &lt;TASK_INDEX&gt; [d/&lt;TASK_DESCRIPTION&gt;] [tk/&lt;TANK_INDEX&gt;] [p/&lt;PRIORITY&gt;]</code></p>
@@ -971,7 +971,7 @@
     </ul>
     </li>
 </ul>
-<h3 id="listing-tasks-list-tasks-">Listing tasks: <code>list tasks</code></h3>
+<h3 id="listing-tasks-list-tasks">Listing tasks: <code>list tasks</code></h3>
 <p>You can list all tasks you have with the <code>list tasks</code> command.</p>
 <p>Use this command to list all tasks of all tanks, after filtering the tasks with the <code>tank view</code> command.</p>
 <p>Format: <code>list tasks</code></p>
@@ -1024,7 +1024,7 @@
         to revert back to the default <em>Fish Ahoy!</em></p>
 </blockquote>
 <h2 id="help">Help</h2>
-<h3 id="viewing-help-help-">Viewing help : <code>help</code></h3>
+<h3 id="viewing-help-help">Viewing help : <code>help</code></h3>
 <p>Opens up a web-viewer showing this user guide!</p>
 <blockquote>
     <p>:bulb: Tip: If you do not have internet connection, an offline version will still be loaded!</p>
