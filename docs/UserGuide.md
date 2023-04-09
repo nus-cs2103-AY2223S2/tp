@@ -671,6 +671,8 @@ all internship application and events in TinS immediately. Hence, you are advise
 
 **Format**: `deleteall`
 
+<div style="page-break-after: always;"></div>
+
 ### Getting Help : `help`
 
 Provides you with a link to helpful instructions on how to use TinS.
@@ -693,8 +695,6 @@ The Intern Ship’s data is saved in the hard disk automatically after any comma
 There is no need to save manually.
 
 <div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Command Summary**
 
