@@ -703,15 +703,17 @@ Vaccinations are uniquely identified by their names. The following is a list of 
   * Default value = `empty list`.
   * Requirements need not be unique, ie. a requirement of 2 `ANY :: grp1, grp2` is allowed. This would mean that to take this vaccination, the patient will have to have taken at least 2 vaccinations that satisfies that requirement.
 
-<div markdown="block" class="alert alert-info" id="vaccination-case-sensitive-name-info">
-:information_source: **Case sensitivity of names in vaccinations**
+<div markdown="block" class="alert alert-success" id="vaccination-case-sensitive-name-info">
+:bulb: **Vaccination related name are case sensitive**
 
-Vaccination **name** and the names of their **ingredients** are <u>case sensitive</u> to differentiate between simple chemical formulas, company names containing the same characters but in different case or certain serial numbers that are case sensitive.
+Vaccination related names (**name**, **groups** and **allergies**) are case sensitive. This allows you to differentiate case sensitive things within these names like simple chemical formulas.
 
-Therefore these vaccination names are different:
+Here is an example of how you can use this to differentiate vaccination names:
 
 * `VAX ABC (No CO)` - "CO" for carbon monoxide.
 * `VAX ABC (No Co)` - "Co" for cobalt.
+
+Similar things can be done for the other components.
 
 </div>
 
