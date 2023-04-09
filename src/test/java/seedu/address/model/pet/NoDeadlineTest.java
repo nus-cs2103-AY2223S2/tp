@@ -3,6 +3,8 @@ package seedu.address.model.pet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 public class NoDeadlineTest {
@@ -17,7 +19,7 @@ public class NoDeadlineTest {
     public void hashCodeTest_equals() {
         NoDeadline noDeadline = new NoDeadline();
 
-        assertEquals(noDeadline.hashCode(), 0);
+        assertEquals(noDeadline.hashCode(), Objects.hashCode("N/A"));
     }
     @Test
     public void equals() {
