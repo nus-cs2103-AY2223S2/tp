@@ -148,16 +148,47 @@ Classes used by multiple components are in the `seedu.SudoHR.commons` package.
 
 ---
 
-## 4. **Implementation**
+## 4. **Design & Implementation**
+This section describes some noteworthy details, alongside considerations and constraints, on how certain features or classes are implemented.
 
-This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1. Employee-related features
+### 4.1. Design considerations:
+
+#### 4.1.1. Employee
+An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity), such as an employee id, email address, and phone number.
+
+An employee is uniquely identified by his ID field. This field can be used by internal operations without any concern of duplicates and display of the unique employee with the given id.
+
+However, there are other fields to guard against duplication, specifically email and phone number fields.
+For instance, two employees should not share email field or phone number as those two fields are understood to be unique.
+
+Under this design, SudoHR supports having several employees with the same name fields, without running the risk of retrieving or using the wrong employee's details.
+
+##### Cascading employee updates and deletion to department and leave
+An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
+each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files
+where employee objects are separately created for department's and leave's employee lists.
+Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
+
+Further, we need to ensure the UI correctly refreshes for any changes made to an employee.
+For instance, if an employee has been deleted, he/she should be removed from their department and the department count should drop. The same can be said for leaves.
+This consistency is crucial to avoid confusing the user, especially since several of our commands are intertwined.
+
+#### 4.1.2. Departments
+
+[//]: # (To be done by Kenneth)
+
+#### 4.1.3. Leaves
+
+[//]: # (To be done by Jer En)
+
+
+
+### 4.2. Employee-related features
 
 The 'Employee' object represents an Employee in the company. They are all stored in a `UniqueEmployeeList`.
 
 The attributes of an Employee are:
-
 - `Id`: The employee id, which is their unique identifier in the company.
 - `Name`: The name of the employee.
 - `Email`: The email of the employee, which should be unique.
@@ -165,11 +196,135 @@ The attributes of an Employee are:
 - `Address`: The address of the employee.
 - `Tags`: The tags assigned to the employee.
 
-### 4.2. Department-related features
+**Note**:
+1. For the commands in this section, the order in which the prefixes (if any) are placed does not matter.
+   1. `edit eid/37 a/ntu p/8461 4872` will invoke the same result as `edit eid/37 p/8461 4872 a/ntu`
+2. If duplicated prefixes are provided, only the argument associated with last instance of the same prefix will be processed by the parser.
+3. We make a distinction between the prefixes `id/` and `eid/`. 
+The former is used when initializing or editing an Id field whereas the latter is used to reference an employee that exists in SudoHR.
+
+
+
+#### 4.2.1 Adding an employee
+
+The `add` command adds a new employee, with the specified fields, into SudoHR. Note that only the 'Tag' field is optional.
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+1. The user enters the command, eg. `add id/37 n/John p/9861 7251 e/John@nus.com a/nus t/Vegetarian`
+2. The parser will parse the argument and instantiate several fields: Id, name, phone, email, address, and tags, respective with the prefixes.
+3. An `Employee` object is constructed and handed over to the `AddCommand`.
+4. The command is executed. It first checks if there exists an employee with the same Id field as specified, followed by phone number, and lastly email address.
+5. If none of the fields are duplicated, the model adds the employee to SudoHR.
+
+After that, the command result is returned.
+
+#### Feature considerations
+When checking for duplicated fields across employees, the `Id`, `Phone`, and `Email` fields are checked.
+This is because `Id` is meant to be the unique identifier for an employee and `Phone` and `Email` fields are understood
+to be unique fields as well.
+
+
+#### 4.2.2 Editing an employee
+
+The `edit` command edits the fields of an existing employee in SudoHR. 
+Note that it is mandatory to specify the Id of the employee to be edited and at least one of the fields must be changed.
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+1. The user enters the command, eg. `edit eid/37 p/8461 4872 a/ntu`. The employee with Id 37 will be identified and will have its phone and address fields updated as specified, if it exists in SudoHR.
+2. The parser will instantiate a new `Phone` and `Address` object constructed from the arguments associated with `/p` and `/n`, which represent the new phone number and address fields respectively.
+3. A `EditEmployeeDescriptor` object is constructed with the updated fields and alongside the employee's Id, are handed over to `EditCommand`.
+4. The command is executed. It first verifies that there is an employee with Id 37. 
+5. If such an employee exists, the command will then check if any of the 3 identities fields - Id, phone number, and email - have duplicated instances between the proposed changes and employees in SudoHR.
+   The non-edited attributes of the employee will remain unaffected and inherited by the `EditEmployeeDescriptor`
+6. If uniqueness in the 3 identities fields can be maintained, the old employee instance will be replaced with the new employee instance created by `EditEmployeeDescriptor`.
+
+After that, the command result is returned.
+
+#### Feature considerations
+The `EditEmployeeDescriptor` is used to store the details to be edited. This abstraction is used as not all fields
+may be edited for the `EditCommand`. So, this class ensures that fields are not edited will be unaffected and correctly initialized for the new edited employee. 
+This modularity in design will prove useful in the future if more employee-level details are added, as per the open-closed principle.
+
+It is important to check and guard against duplication of Id, email, and phone fields during editing of an employee's fields.
+
+While Id is the unique identifier of an employee, there should also be the flexibility of editing Id field without causing any subsequent inconsistency when referencing an employee.
+
+
+#### 4.2.3 Deleting an employee
+The `del` command deletes an existing employee from SudoHR.
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+1. The user enters the command, eg. `del eid/37` where employee with Id 37 is to be removed from SudoHR.
+2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
+3. The command is executed. It first verifies that an employee with the specified Id exists.
+4. If the employee exists, it is deleted from SudoHR.
+
+After that, the command result is returned.
+
+#### Feature considerations
+We need to ensure that if an employee is deleted, it is also removed from being tracked by other entities such as `Department` and `Leave`.
+
+
+#### 4.2.4 Listing all employees
+The `list` command lists all the employees in SudoHR.
+
+Activity Diagram:
+
+Sequence Diagram:
+
+The call stack is the same as a typical command except that it has no specified parser. 
+Instead, `SudoHrParser` directly returns the command containing the predicate `PREDICATE_SHOW_ALL_EMPLOYEES` specified in the `Model` class.
+
+Upon execution, it updates the `filteredEmployeeList` in SudoHR.
+
+After that, the command result is returned.
+
+
+#### 4.2.5 Finding an employee by ID
+The `feid` command finds and displays an employee with the specified Id in SudoHR.
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+1. The user enters the command, eg. `feid eid/37` where employee with Id 37 is to be found.
+2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
+3. A predicate checking for the specified Id is initialized and the command is executed with the predicate.
+4. It first verifies that an employee with the specified Id exists.
+5. If the employee exists, the `filteredEmployeeList` is updated to only contain the employee with Id of 37 and the UI will display only the employee.
+
+
+#### 4.2.6 Finding an employee by keyword
+The `find` command finds and displays all employees in SudoHR with some part of their names matching the specified keyword.
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+1. The user enters the command, eg. `find alex` to look for employees whose name contains 'alex'.
+2. The parser will instantiate a predicate that looks for the specified keyword, constructed from the argument provided, in employee's name field.
+3. The command is executed with the predicate and the `filteredEmployeeList` is updated to contain all of such employees, with the UI displaying the employees to the user.
+
+
+### 4.3. Department-related features
 
 ![DepartmentModelClassDiagram](./images/commands/department/DepartmentModelClassDiagram.png)
 
-The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList` managed by SudoHr.
+The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList` managed by SudoHR.
 
 The attributes of a department are:
 
@@ -178,7 +333,7 @@ The attributes of a department are:
 
 The uniqueness of each department in `UniqueDepartmentList` is enforced by checking against the `DepartmentName`. This will be explained in the _Adding a department_ section.
 
-#### 4.2.1. Adding a department
+#### 4.3.1. Adding a department
 
 The `adep` command adds a new `Department` in SudoHr.
 
@@ -209,7 +364,7 @@ is meant for use by a single company.
 
 If duplicate arguments are present in the same command, the last instance of the duplicated argument is taken in by the parser.
 
-#### 4.2.2. Editing a department
+#### 4.3.2. Editing a department
 
 The `edep` command edits the department-level details of an existing `Department` in SudoHr. Currently, you can only
 edit the department name field as it is the only existing department-level detail.
@@ -245,7 +400,7 @@ when more department-level details are added (e.g. creation date, director, work
 It is also important to check if the name of the newly edited department clashes with any existing departments in
 SudoHR, as the name is the unique identifier for a department.
 
-#### 4.2.3. Deleting a department
+#### 4.3.3. Deleting a department
 
 The `deldep` command deletes an existing `Department` in SudoHR.
 
@@ -267,7 +422,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### 4.2.4. Listing all departments
+#### 4.3.4. Listing all departments
 
 The `listdep` command lists all the departments in SudoHR.
 
@@ -279,7 +434,7 @@ Upon execution, it updates the `filteredDepartmentList` in SudoHR.
 
 After that, the command result is returned.
 
-#### 4.2.5. Adding an employee to a department
+#### 4.3.5. Adding an employee to a department
 
 The `aetd` command adds an existing `Employee` to an existing `Department` in SudoHR.
 
@@ -312,7 +467,7 @@ reused in `Leaves` as well.
 It should be noted that we still used defensive checks such as `department.hasEmployee` despite the
 `UniqueEmployeeList` having such checks internally already.
 
-#### 4.2.6. Removing an employee from a department
+#### 4.3.6. Removing an employee from a department
 
 The `refd` command removes an `Employee` from an existing `Department` in SudoHR.
 
@@ -335,7 +490,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### 4.2.7. Listing an employee's departments
+#### 4.3.7. Listing an employee's departments
 
 The `led` command
 
@@ -360,8 +515,8 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-### 4.3. Leave-related features
 
+### 4.4. Leave-related features
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
 The attributes of a leave are:
@@ -369,8 +524,8 @@ The attributes of a leave are:
 - `date`: The date of the leave, which is also the unique identifier for a leave
 - `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
 
-#### 4.3.1. Adding an employee's leave
 
+#### 4.4.1. Adding an employee's leave
 The `aetd` command adds an employee's leave on a specific day:
 
 Activity Diagram:
@@ -394,8 +549,8 @@ Sequence Diagram:
 
 We decided to throw an exception when the employee has already taken leave on the same day as the input date, since the user may have accidently provided a wrong date and hence the exception would be more suitable as it would be more noticeable than the success message.
 
-#### 4.3.2. Deleting an employee's leave
 
+#### 4.4.2. Deleting an employee's leave
 The `defl` command delete an employee's leave on a specific day:
 
 Activity Diagram:
@@ -415,8 +570,8 @@ Sequence Diagram:
 6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
 7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
 
-#### 4.3.3. Adding an employee's leave in a range
 
+#### 4.4.3. Adding an employee's leave in a range
 The `aelr` command adds an employee's leave on all the days between the range of a start date to an end date inclusive.
 
 Activity Diagram:
@@ -438,45 +593,36 @@ Sequence Diagram:
 8. SudoHr will show all the days on which the employee has successfully taken leave.
 
 ##### Feature considerations
+We intentionally limited the range of days to be added to 1 week. This is to avoid excessively large ranges that are likely to be an error or typo rather than intended, such as taking leaves over multiple years. Hence, we decided that 1 week would be the most appropriate duration as it is the typical length of leave taken when people go on vacation.
 
-We intentionally decide to limit the range of days to be added to be 1 week. This is because we wanted to prevent excessively large ranges that are illogical such as taking leaves throughout multiple years. Hence we decided that 1 week would be the most appropriate number as it is the typical length of leave taken when people go on vacation.
+Should an employee indeed have more than 1 week of leave applied, the leave will be registered as different commands.
 
-We also decided to not add leaves on all of the days in the range if the employee has taken leave on any of the days. We decided to do this to keep the behavior consistant with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands so this would be of minimal inconvenience to the user.
+We also decided guarding against adding the range of leaves dates if even one of the days have already been indicated as leave. This is to be consistent with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands and hence, is likely of minimal inconvenience to the user.
 
-#### 4.3.4. Listing all employees taking leave on a specific day
+#### 4.4.4. Listing all employees taking leave on a specific day
 
 The `leol` command lists employees taking leave on a specific date.
 
+#### Flow 
 1. The user types and enters the command `leol 2022-04-02` where 2022-04-02 is the date input provided.
 2. The parser would initialise a `LeaveDate` object constructed from the input argument.
 3. The command is executed. It initializes a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
 4. The command uses the `LeaveContainsEmployeePredicate` to filter the employees and display the employees that have taken leave on the specified day.
 
-### 4.4. Design considerations:
 
-#### 4.4.1. Employee
+#### 4.4.5 Listing all leaves 
+The `llve` command lists all leaves taken by employees in SudoHR.
 
-An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity).
+The call stack is the same as a typical command except that it has no specified parser.
+Instead, `SudoHrParser` directly returns the command containing the predicate `PREDICATE_SHOW_ALL_NON_EMPTY_LEAVES` specified in the `Model` class.
 
-An employee is identified by his ID field, and this field is used to get an employee object.
+Upon execution, it updates the `filteredLeaveList` in SudoHR.
 
-However, there are other fields to guard against duplication, specifically email and phone number fields.
-For instance, two employees should not share email field or phone number as those two fields are known to be unique.
+After that, the command result is returned.
 
-##### Cascading employee updates and deletion to department and leave
+#### Feature considerations
+Only leaves that have at least 1 employee will be displayed.
 
-An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
-each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files
-where employee objects are separately created for department's and leave's employee lists.
-Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
-
-#### 4.4.2. Departments
-
-[//]: # "To be done by Kenneth"
-
-#### 4.4.3. Leaves
-
-[//]: # "To be done by Jer En"
 
 ---
 
@@ -1289,7 +1435,8 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
+   
+   
 1. _{ more test cases …​ }_
 
 ### Planned Enhancements
@@ -1303,3 +1450,14 @@ For example, 'Marketing' and 'marketing' are clearly the same department.
 
 * Department names will also allow special characters such as '(', ')' and ',' to account for department names with
 labels. For example, 'Sales, Singapore' can be a valid department name.
+
+#### 2. Employee name field constraints
+* `Employee` name field will also allow special characters such as '/', which are often used as an abbreviation in 's/o', in subsequent iterations.
+
+#### 3. Employee phone field constraints
+* Currently, the phone field is restrictive in that it only accepts 8-digit phone numbers for an employee's phone field. While registered local numbers will not face any issues, registered numbers outside of Singapore likely will if they do not adhere to 8-digits. 
+We understand this is far from ideal, since it is perfectly reasonable for businesses to hire foreign talents who may not have a locally registered number. Hence, subsequent iterations will improve the parsing of phone fields to account for foreign phone numbers that are not necessarily 8 digits.
+
+#### 4. Employee email field constraints
+* Currently, SudoHR treats email addresses as case-sensitive which we acknowledge shouldn't be as it fails to reflect real world behavior as well. We plan to ensure email addresses are case-insensitive in subsequent iterations.
+Under which, `JOHN@NUS.COM` and `john@nus.com` will be treated as one and the same.
