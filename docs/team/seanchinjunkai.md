@@ -30,6 +30,13 @@ Given below are my contributions to the project.
 * **Project management** :
     * Created tags for issue triaging.
     * Reviewed and approved PRs for merging.
+    * PRs reviewed (with non-trivial comments): [\#71](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/71)
+    * Created a total of [5](https://github.com/AY2223S2-CS2103T-T11-4/tp/issues?q=is%3Aissue+author%3ASeanChinJunKai+) issues for GitHub issue tracker.
+
+
+* **Enhancements to existing features**:
+    * Wrote test cases for `drugallergy` class [\#81](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/81), [\#96](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/96) 
+    * Wrote test cases for `nric` class [\#96](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/96)
 
 
 * **Documentation** :
@@ -41,3 +48,8 @@ Given below are my contributions to the project.
     * Developer Guide
         * Added implementation details for `delete` command with sequence diagrams [\#85](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/85), [\#88](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/88)
         * Added table of contents and improve navigability [\#108](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/108)
+
+
+* **Contributions beyond project team** :
+    * Reported a total of [6](https://github.com/SeanChinJunKai/ped/issues) bugs and issues for PE-D.
+    

@@ -12,6 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/creationsv2.png" width="200px">
 
 [[github](https://github.com/Creationsv2)]
+[[portfolio](team/creationsv2.md)]
 
 * Role: Developer
 * Responsibilities: Data Querying
@@ -21,6 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/ongweijie7.png" width="200px">
 
 [[github](http://github.com/ongweijie7)]
+[[portfolio](team/ongweijie7.md)]
 
 * Role: Developer
 * Responsibilities: Data Filtering
@@ -30,6 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/seanchinjunkai.png" width="200px">
 
 [[github](http://github.com/seanchinjunkai)]
+[[portfolio](team/seanchinjunkai.md)]
 
 * Role: Developer
 * Responsibilities: Help function
@@ -39,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/dawg420.png" width="200px">
 
 [[github](http://github.com/dawg420)]
-
+[[portfolio](team/dawg420.md)]
 * Role: Developer
 * Responsibilities: Data Management/Storage
 
@@ -48,6 +51,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/cedricpei.png" width="200px">
 
 [[github](http://github.com/cedricpei)]
+[[portfolio](team/cedricpei.md)]
 
 * Role: Developer
 * Responsibilities: GUI + Undo/redo + View
