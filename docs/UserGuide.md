@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 * Table of Contents
@@ -277,6 +278,8 @@ Examples
 * `markAtd 1 w/1` (marks attendance of student with index 1 for week 1)
 * `markAtd 2 w/1` (marks attendance of student with index 2 for week 1)
 
+<img src="images/markAtd.png">
+
 #### Unmark attendance: `unmarkAtd`
 
 Unmarks the attendance of a student for that week<br>
@@ -292,6 +295,8 @@ Examples
 
 * `unmarkAtd 1 w/1` (unmarks attendance of student with index 1 for week 1)
 * `unmarkAtd 2 w/1` (unmarks attendance of student with index 2 for week 1)
+
+<img src="images/unmarkAtd.png">
 
 #### List Attendance: `listAtd`
 
@@ -326,6 +331,8 @@ Week 10: []
 Week 11: []
 Week 12: []
 ```
+
+<img src="images/listAtd.png">
 
 The above example shows that the student is present for week 1,2,3 and absent for the rest of the weeks
 
@@ -368,6 +375,8 @@ Examples
 * `insertPP 1 w/1 pp/200` (inserts participation points of 200 for week 1 of student with index 1)
 * `insertPP 2 w/1 pp/300` (inserts participation points of 300 for week 1 of student with index 2)
 
+<img src="images/insetPP.png">
+
 #### List participation points: `listPP`
 
 Lists the participation points of a student from week 1 to week 12<br>
@@ -403,6 +412,8 @@ Week 12: [-1]
 
 The above example shows that the student have a participation point of 200 for week 1, 300 for week 2, 400 for week 3,
 and -1 for the rest of the weeks (attendance is not marked)
+
+<img src="images/listPP.png">
 
 ### Assignments & Submissions
 

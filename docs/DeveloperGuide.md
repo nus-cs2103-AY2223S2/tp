@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page 
+title: Developer Guide
 ---
 
 * Table of Contents {:toc}
@@ -209,6 +210,89 @@ Classes used by multiple components are in the `taa.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## **Mark Attendance**
+
+Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanceCommand` and `Model`
+
+* `MarkAttendanceParser`-- Parse the input of users
+* `MarkAttednanceCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for marking attendance of a student
+
+<img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
+
+**Design Considerations**
+
+Aspect: How TAA execute the command.
+
+1. Alternative 1 (Chosen): MarkAttendanceCommand will edit the student's attendance.
+
+* Pros: More efficient in terms of space and time, and easier to implement.
+
+* Cons: No immutability for student
+
+2. Alternative 2: MarkAttendanceCommand create new student to replace student to be edited.
+
+* Pros: Student is immutable
+
+* Cons: Less efficient in terms of space and time.
+
+## **Unmark Attendance**
+
+Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand` and `Model`
+
+* `UnarkAttendanceParser`-- Parse the input of users
+* `UnarkAttednanceCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for unmarking attendance of a student
+
+<img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
+
+**Design Considerations**
+
+Aspect: How TAA should search for users.
+
+1. Alternative 1 (Chosen): UnarkAttendanceCommand will take in student index.
+
+* Pros: Easy to type, and index can be found easily by just looking.
+
+* Cons: Might need some scrolling to find student's index if there is many students.
+
+2. Alternative 2: UnarkAttendanceCommand will take in student name.
+
+* Pros: More typing for the user.
+
+* Cons: No need to scroll and find student's index.
+
+## **Insert Participation**
+
+Insert Participation command is facilitated by `InsertParticipationParser`, `InsertParticipationCommand` and `Model`
+
+* `InsertParticipationParser`-- Parse the input of users
+* `InsertParticipationCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for inserting participation of a student
+
+<img src="images/InsertParticipationSequenceDiagram.png" width="574" />
+
+Aspect: How to handle case where user attempt to add participation points for week without attendance.
+
+1. Alternative 1 (Chosen): TAA will output error message telling user to mark attendance first.
+
+* Pros: Reduce confusion and errors in case user accidentally add participation for wrong week when attendance is not marked
+
+* Cons: Lesser flexibility (user cannot choose to insert participation points before marking attendance)
+
+2. Alternative 2: TAA allows participation points to be added regardless of the attendance for the week.
+
+* Pros: More flexibility
+
+* Cons: Might cause possible confusion for user as the user might add points for wrong week and not realise
+* 
+=======
 ### Data archiving
 
 _{TODO Explain here how the data archiving feature will be implemented}_
@@ -436,9 +520,6 @@ Below is the main success scenario of Mark
 
       Use case ends.
 
-Below is the sequence diagram for Marking attendance of a student
-
-<img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
 
 ## **Unmark Attendance**
 
@@ -459,9 +540,6 @@ Below is the main success scenario of Unmark
 
       Use case ends.
 
-Below is the sequence diagram for Unmarking attendance of a student
-
-<img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
 
 ## **Insert Participation**
 
@@ -487,9 +565,6 @@ Below is the main success scenario of Insert Participation
 
       Use case ends.
 
-Below is the sequence diagram for inserting participation points
-
-<img src="images/InsertParticipationSequenceDiagram.png" width="574" />
 
 ## **Add Assignment**
 
