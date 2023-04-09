@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -19,7 +18,6 @@ public interface MultipleEventsParser {
             + "\n" + "Command call contains duplicates!"
             + "\n\n" + "The following duplicate objects were noticed in the command: \n%1$s";
 
-    public Logger logger = Logger.getLogger(MultipleEventsParser.class.getName());
     /**
      * Parses an array list of objects into a comma delimiting string containing
      */
@@ -45,10 +43,6 @@ public interface MultipleEventsParser {
 
         String[] moduleCodeStrings = preamble.split(",", -1);
         int numOfModuleCodes = moduleCodeStrings.length;
-
-        // if (numOfModuleCodes == 0) {
-        //     throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
-        // }
 
         ModuleCode[] moduleCodes = new ModuleCode[numOfModuleCodes];
         ArrayList<ModuleCode> duplicates = new ArrayList<>();
@@ -82,10 +76,6 @@ public interface MultipleEventsParser {
         String[] lectureNameStrings = preamble.split(",", -1);
         int numOfLectureNames = lectureNameStrings.length;
 
-        // if (numOfLectureNames == 0) {
-        //     throw new ParseException(LectureName.MESSAGE_CONSTRAINTS);
-        // }
-
         LectureName[] lectureNames = new LectureName[numOfLectureNames];
         ArrayList<LectureName> duplicates = new ArrayList<>();
 
@@ -116,10 +106,6 @@ public interface MultipleEventsParser {
     public static VideoName[] parseVideoNames(String preamble) throws ParseException {
         String[] videoNameStrings = preamble.split(",", -1);
         int numOfVideoNames = videoNameStrings.length;
-
-        // if (numOfVideoNames == 0) {
-        //     throw new ParseException(VideoName.MESSAGE_CONSTRAINTS);
-        // }
 
         VideoName[] videoNames = new VideoName[numOfVideoNames];
         ArrayList<VideoName> duplicates = new ArrayList<>();
