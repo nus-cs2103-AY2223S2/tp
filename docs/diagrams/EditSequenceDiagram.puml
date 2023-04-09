@@ -10,13 +10,13 @@ participant ":EditPersonDescriptor" as Descriptor LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":ModelManager" as ModelManager MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
 end box
-[-> LogicManager : execute("edit 1 n/Bob edu/Primary 5")
+[-> LogicManager : execute("edit 1 n/Bob edu/Year 2")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("edit 1 n/Bob edu/Primary 5")
+LogicManager -> AddressBookParser : parseCommand("edit 1 n/Bob edu/Year 2")
 activate AddressBookParser
 
 create EditCommandParser
@@ -26,7 +26,7 @@ activate EditCommandParser
 EditCommandParser --> AddressBookParser
 deactivate EditCommandParser
 
-AddressBookParser -> EditCommandParser : parse("1 n/Bob edu/Primary 5")
+AddressBookParser -> EditCommandParser : parse("1 n/Bob edu/Year 2")
 activate EditCommandParser
 
 create EditCommand
@@ -54,21 +54,28 @@ activate EditCommand
 
 EditCommand -> Descriptor
 activate Descriptor
+
 Descriptor --> EditCommand : edited
 deactivate Descriptor
+
 Descriptor -[hidden]-> EditCommand
 destroy Descriptor
-EditCommand -> ModelManager : setPerson(target, editedPerson)
-activate ModelManager
 
-'ADD MORE HERE
-ModelManager -> AddressBook : setPerson(target, editedPerson)
-activate AddressBook
-AddressBook --> ModelManager
-deactivate AddressBook
+EditCommand -> Model : setPerson(target, editedPerson)
+activate Model
 
-ModelManager --> EditCommand
-deactivate ModelManager
+Model --> EditCommand
+
+EditCommand -> Model : commitAddressBook("edit")
+
+Model -> VersionedAddressBook : commit("edit")
+activate VersionedAddressBook
+
+VersionedAddressBook --> Model
+deactivate VersionedAddressBook
+
+Model --> EditCommand
+deactivate Model
 
 EditCommand --> LogicManager : result
 deactivate EditCommand

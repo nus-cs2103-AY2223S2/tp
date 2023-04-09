@@ -120,7 +120,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.address.logic.Logic#suggestCommand(String)
          */
-        String suggest(String userInput) throws CommandException;
+        String suggest(String userInput) throws ParseException;
     }
 
     /**
@@ -169,7 +169,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandSuggestionTextField.setText(commandSuggestor.suggest(commandText));
             commandSuggestionTextField.positionCaret(commandTextField.getText().length());
-        } catch (CommandException e) {
+        } catch (ParseException e) {
             commandSuggestionTextField.setText(commandText);
             setStyleToIndicateCommandFailure();
         }

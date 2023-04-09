@@ -29,8 +29,9 @@ public interface Logic {
      * (ie. user input "ad" returns the suggestion "add ..." which includes the input "ad")
      * @param userInput The current user input.
      * @return An autocomplete suggestion.
+     * @throws ParseException If {@code userInput} likely has syntax errors (based on heuristics).
      */
-    String suggestCommand(String userInput) throws CommandException;
+    String suggestCommand(String userInput) throws ParseException;
 
     /**
      * Autocomplete a user input based on the current command suggestion.

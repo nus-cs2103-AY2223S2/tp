@@ -9,13 +9,13 @@ participant ":AddCommand" as AddCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":ModelManager" as ModelManager MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
 end box
-[-> LogicManager : execute("add n/Alice edu/Primary 6")
+[-> LogicManager : execute("add n/Alice edu/Year 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add n/Alice edu/Primary 6")
+LogicManager -> AddressBookParser : parseCommand("add n/Alice edu/Year 1")
 activate AddressBookParser
 
 create AddCommandParser
@@ -25,7 +25,7 @@ activate AddCommandParser
 AddCommandParser --> AddressBookParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse("n/Alice edu/Primary 6")
+AddressBookParser -> AddCommandParser : parse("n/Alice edu/Year 1")
 activate AddCommandParser
 
 create AddCommand
@@ -46,16 +46,21 @@ deactivate AddressBookParser
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> ModelManager : addPerson(toAdd)
-activate ModelManager
+AddCommand -> Model : addPerson(toAdd)
+activate Model
 
-ModelManager -> AddressBook : addPerson(person)
-activate AddressBook
-AddressBook --> ModelManager
-deactivate AddressBook
+Model --> AddCommand
 
-ModelManager --> AddCommand
-deactivate ModelManager
+AddCommand -> Model : commitAddressBook("add")
+
+Model -> VersionedAddressBook : commit("add")
+activate VersionedAddressBook
+
+VersionedAddressBook --> Model
+deactivate VersionedAddressBook
+
+Model --> AddCommand
+deactivate Model
 
 AddCommand --> LogicManager: result
 deactivate AddCommand

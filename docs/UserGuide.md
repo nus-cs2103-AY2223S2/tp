@@ -19,15 +19,15 @@ for an explanation.
 
 ### Navigating the User Guide
 **Note Box**
-<div markdown="span" class="alert alert-success">**:bulb: Note:** Provides information that is useful to know.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Provides information that is useful to know.
 </div>
 
 **Tip Box**
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Provides information that can help enhance the user experience but is not necessary to know.
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** Provides information that can help enhance the user experience but is not necessary to know.
 </div>
 
 **Warning Box**
-<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** Important information to take note of to avoid any unintended effects!
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Important information to take note of to avoid any unintended effects!
 </div>
 
 **Hyperlinks**
@@ -62,6 +62,51 @@ TeachMeSenpai has been designed to work for all Operating Systems/computers!
 
 ---
 
+## Guide to TeachMeSenpai's GUI
+
+TeachMeSenpai has several important components as part of its display. Here is a quick walk-through each component.
+
+<p align=center>
+  <img alt="Main window components" src="images/user-guide/mainwindow-components.jpg" />
+</p>
+
+<h3 style="color:Gray"><b>Menu bar</b></h3>
+* Clicking `FILE` will give you the option to exit the app
+* Clicking `HELP` will show `HELP F1`, clicking it will provide you a link to this User Guide!
+
+<h3 style="color:MediumSeaGreen"><b>Command line</b></h3>
+* This is where you will be typing all the commands for TeachMeSenpai! To learn more about the commands TeachMeSenpai has, head over
+to [Features](#features).
+
+<h3 style="color:DodgerBlue"><b>Feedback Box</b></h3>
+* This is where TeachMeSenpai will provide you with feedback for your commands! Whether they were successfully done or not.
+You will see more examples of the feedback TeachMeSenpai provides in the [Features](#features) section.
+
+<h3 style="color:gold"><b>Result Box</b></h3>
+* This is where the results for commands like [`show`](#showing-a-students-remark-show) and [`edit`](#editing-a-student-edit) will show up!
+* This section is scrollable when necessary.
+
+<h3 style="color:red"><b>Student List</b></h3>
+* This is where you can view all your student entries and their details!
+* This section is scrollable as well.
+
+### Adjusting the size of TeachMeSenpai
+
+If the app is too small for your liking, you may resize it by dragging the sides of the window with your cursor! The red lines in the image below are moveable
+so feel free to adjust the app however you like!
+
+<p align=center>
+  <img alt="Resizing guide" src="images/user-guide/resize-window.jpg" />
+</p>
+
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** Hover your mouse over the red lines indicated by the image on your app under you see an arrow cursor, this will allow
+you to adjust the size of the window
+</div>
+
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Guide on using Features
 
 ## Parameter descriptions
@@ -73,20 +118,19 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 | Parameter         | Meaning                                                                               | Notes                                                                                                                                                                                                                                |
 |-------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ADDRESS`         | Address of the student.                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                              |
-| `EDUCATION_LEVEL` | Education level of the student.                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
+| `EDUCATION` | Education level of the student.                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
 | `EMAIL`           | Email address of the student.                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
 | `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list). | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                           |
-| `KEYWORD`         | The word you would like to [`find`](#findfilter-students-findfilter) by.              | Can only contain letters and/or numbers                                                                                                                                                                                              |
 | `MODULE`          | The module you're teaching the student.                                               | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the module given will be removed by the app                                                                                          |
 | `PHONE`           | Phone number of the student.                                                          | 1. Must only contain numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
 | `REMARK`          | Your notes or remarks on the student.                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                 |
-| `STUDENT_NAME`    | Name of the student.                                                                  | 1. Can only contain alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
+| `NAME`    | Name of the student.                                                                  | 1. Can only contain alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
 | `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add).    | Must be a single word containing alphanumeric characters only                                                                                                                                                                        |
 | `TELEGRAM`        | Telegram handle of the student.                                                       | 1. Must begin with "@"<br/> 2. Can only contain uppercase and lowercase alphabets, digits (0-9), and underscores<br/> 3. Minimum length is 5 characters                                                                              |
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** The description for a valid Telegram handle has been shortened for brevity and thus might not cover all cases.
+:information_source: **Note:** The description for a valid Telegram handle has been shortened for brevity and thus might not cover all cases.
 * For example, one might think that "@hello__world" is allowed but it isn't due to having consecutive underscores.
 * TeachMeSenpai does validate handles according to Telegram specifications, but do check on the Telegram application for whether a handle is valid!
 
@@ -98,9 +142,9 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 ## Features
 
-<div markdown="block" class="alert alert-success">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Notes about the command format:**
+:information_source: **Notes about the command format:**
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. \\
   _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
@@ -124,29 +168,33 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 ### Autocompletion
 
-TeachMeSenpai has a lot of features for you to experiment with, however we understand that it might take some getting used to. Hence, we've
-included an autocompletion feature!
+TeachMeSenpai has a lot of features for you to experiment with, and we understand that it might take some getting used to. Hence, we've included an autocompletion feature!
 
 Start typing the first letters of a command to get shadow-like autocomplete suggestions.
 The format of the suggested parameters are as described in the [**Guide on using Features**](#guide-on-using-features).
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** You can press your `TAB` key to fill in the next suggested word!
 </div>
 
 ![help popup gui](images/user-guide/autocomplete.jpg)
 
 <br>
 
-For the `module`, `tag`, `education` parameters, it will also suggest all the existing values to you.
+Additionally, for the module, tag and education parameters, it will also suggest all the existing values to you!
 
 ![help popup gui](images/user-guide/autocomplete_arg_values.jpg)
 
-<div markdown="block" class="alert alert-info">
-
-:bulb: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts! They simply indicate the existing
-modules/education/tags you have in the current student list.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts. They're simply there to separate the different existing modules/education/tags you have in the current student list.
 </div>
 
+<br>
+
+The autocompletion feature also hints to you if you've entered an invalid command-word or an invalid index!
+
+![autocomplete invalids](images/user-guide/autocomplete_heuristics.jpg)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The above invalid-input hints does not check if the parameters you gave are actually valid. Just because the words aren't red, does not imply that your input will execute when you press enter!
+</div>
 
 ### Viewing help: `help`
 
@@ -154,7 +202,7 @@ Shows a URL to the `User Guide` page.
 
 ![help popup gui](images/user-guide/help_popup.jpg)
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Click `F1` as a keyboard shortcut to view the help pop-up!.
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** Click `F1` as a keyboard shortcut to view the help pop-up!.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -167,7 +215,7 @@ Exits the program.
 
 > Format: `exit`
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** This is the same as closing the app via the top-right `x` button.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -193,13 +241,13 @@ Shows a list of all students. This is useful for displaying the full list after 
 
 Adds a student to the list, along with their education level and any student-specific notes.
 
-> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`
+> Format: `add n/NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`
 >
-> - STUDENT_NAME: [Alphanumeric](#glossary) word(s).
+> - NAME: [Alphanumeric](#glossary) word(s).
 > - ADDRESS: The student's address.
 > - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
 > - EMAIL: A valid email follows the `local@domain` format.
-> - EDUCATION LEVEL: [Alphanumeric](#glossary) word(s)
+> - EDUCATION: [Alphanumeric](#glossary) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - REMARK: Can be sentences or even paragraphs.
 > - TAG: A detail about a student (limited to one word long).
@@ -209,8 +257,8 @@ For more details and examples on the parameters, please refer to the [Parameter 
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:**
-* `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
+:information_source: **Note:**
+* `EDUCATION`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
 * Only the name ie. `n/` is compulsory. You can add/edit details for other parameters using the [`edit`](#editing-a-student-edit) command.
 * The current version of TeachMeSenpai allows you to add students with the same name (case-insensitive), phone number, and/or telegram handle! However, we have planned
 a future enhancement that will only allow unique names (case-sensitive), phone numbers, and telegram handles.
@@ -244,10 +292,9 @@ Deletes the student(s) at the specified index(es) from the student list.
 - More than 1 `INDEX` can be specified, and all of them will be deleted.
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, ...
-- Every index must be unique.
+- There **must not have any duplicate indexes**.
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
-none of the students will be deleted.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** As a failsafe, if there're duplicates of the same `INDEX` or if one of the `INDEX` specified are invalid _(do not correspond to a student in the list)_, the command won't execute.
 </div>
 
 Examples:
@@ -261,7 +308,7 @@ Examples:
     <br><i><b>Above:</b> Before and after entering <code>delete 1 4</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
 <br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
 </div>
 
@@ -273,15 +320,15 @@ Examples:
 
 Edits a student's information _(all information except remarks)_. To remove a student's parameter, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
 
-> Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
+> Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
 >
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
-> - STUDENT_NAME: [Alphanumeric](#glossary) word(s).
+> - NAME: [Alphanumeric](#glossary) word(s).
 > - ADDRESS: The student's address.
 > - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
 > - EMAIL: A valid email follows the `local@domain` format.
-> - EDUCATION LEVEL: [Alphanumeric](#glossary) word(s)
+> - EDUCATION: [Alphanumeric](#glossary) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - TAG: A detail about a student (limited to one word long).
 > - MODULE: The module code the student is taking (can be multiple words).
@@ -289,7 +336,7 @@ Edits a student's information _(all information except remarks)_. To remove a st
 For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
 <div markdown="block" class="alert alert-info">
-:bulb: **Note:**
+:information_source: **Note:**
 * `edit` command cannot edit the remark parameter of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 * `edit` command does not allow you to change the name of a student to an existing student's name in the student list!
 </div>
@@ -306,7 +353,7 @@ Examples:
     <br><i><b>Above:</b> Before and after entering <code>edit 1 edu/Year 1</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info"> :bulb: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
+<div markdown="block" class="alert alert-info">:information_source: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
 edited student's details.
 </div>
 
@@ -327,7 +374,7 @@ multiple sentences, paragraphs etc. When you are done, you can simply press `Ctr
 and your remarks will be saved once the text box closes.
 
 <div markdown="span" class="alert alert-info">
-:bulb: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
+:information_source: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
 The current version of TeachMeSenpai requires you to close the remark text box before you continue with other commands :)
 </div>
 
@@ -352,7 +399,7 @@ Examples:
 </p>
 
 <div markdown="span" class="alert alert-info">
-:bulb: **Note:** Notice that remarks in the [student list](#guide-to-teachmesenpais-gui) (right panel) are truncated to make your student list more succinct :)
+:information_source: **Note:** Notice that remarks in the [student list](#guide-to-teachmesenpais-gui) (right panel) are truncated to make your student list more succinct :)
 To view the remarks in detail, you may use the [`show`](#showing-a-students-remark-show) feature!
 </div>
 
@@ -377,7 +424,7 @@ Examples:
     <br><i><b>Above:</b> Before and after entering <code>show 1</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Tip:** After typing a long remark with `remark`, use `show` to view the full remark in the [result box](#guide-to-teachmesenpais-gui)
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** After typing a long remark with `remark`, use `show` to view the full remark in the [result box](#guide-to-teachmesenpais-gui)
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -420,7 +467,7 @@ The `find` command allows you to zoom in on an entry that matches **all** your `
 
 For more details and examples on prefixes, please refer to the [Prefix Summary](#prefix-summary)!
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** 
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** 
 
 * Using `find` without any `PREFIX`s has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
 * Using `filter` without any `PREFIX`s will result in an empty list!
@@ -429,9 +476,9 @@ For more details and examples on prefixes, please refer to the [Prefix Summary](
 Examples:
 
 - `find n/Sh` will display the students named "Shao Hong" & "Shaun"
-- `find a/ pas` will display students who stay at places which names that contain `pas` such as `Pasir Ris`
-- `find t/ URGENT` will display students who have the exact tag `URGENT`
-- `find m/ CS2101` will display students who have the exact module `CS2101`
+- `find a/pas` will display students who stay at places which names that contain `pas` such as `Pasir Ris`
+- `find t/URGENT` will display students who have the exact tag `URGENT`
+- `find m/CS2101` will display students who have the exact module `CS2101`
 
 **Using the following input** `find n/a m/CS2103T`:
 <p align=center>
@@ -439,7 +486,7 @@ Examples:
     <br><i><b>Above:</b> Before and after entering <code>find n/a m/CS2103T</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
+<div markdown="block" class="alert alert-info">:information_source: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
 </div>
 
 **Using the following input** `filter n/a m/CS2103T` :
@@ -448,11 +495,11 @@ Examples:
     <br><i><b>Above:</b> Before and after entering <code>filter n/a m/CS2103T</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
 are shown too.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Tip:** `find` followed by an `edit` will result in the full student list being shown! (similar to running a third command `list`)
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** `find` followed by an `edit` will result in the full student list being shown! (similar to running a third command `list`)
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -465,7 +512,7 @@ Did you make a mistake with a command? Don't worry, simply `undo` it!
 
 You can `undo` as many times as required, as long as any of your previous commmands were **undoable**. All **undoable** commands are given below!
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message
 </div>
 
 > Format: `undo`
@@ -488,7 +535,7 @@ Examples:
 
 Did you `undo` a command on accident? Fret not, you may use `redo` to reverse the changes done by `undo`!
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** You can only redo an `undo` command. Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You can only redo an `undo` command. Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
 </div>
 
 >Format: `redo`
@@ -509,7 +556,7 @@ Need to clear all your entries? Simply use `clear` to help you delete all your e
 
 >Format: `clear`
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
 </div>
 
 ### Saving the data
@@ -523,7 +570,7 @@ The file containing your data can be found in the same folder `teachmesenpai.jar
 
 ### Editing the data file
 
-<div markdown="block" class="alert alert-danger"> **:exclamation: Warning:** Do not attempt to edit the data file unless you are an advanced user and understand some basic computing terminlogies.
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:** Do not attempt to edit the data file unless you are an advanced user and understand some basic computing terminlogies.
 If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file the next time you launch it.
 If you'd still like to edit the data file directly, please proceed to [Appendix: Editing the data file](#appendix-editing-the-data-file).
 </div>
@@ -544,9 +591,9 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Integer                        | An integer is a whole number.                                                                                   | 1, 10, 100 are integers. 1.5, 0.00 are not integers!                                                                                                                                                                                                |
 | Keyword                        | The word you want to [find/filter](#findfilter-students-findfilter) by.                                         | A keyword for a student named "Shao Hong" could be "Shao Hong"                                                                                                                                                                                      |
 | Operating System               | Also known as (OS) of the computer, managers the software and hardware on the computer.                         | -                                                                                                                                                                                                                                                   |
-| Parameter                      | Parameters are information TeachMeSenpai requires you to fill in.                                               | `STUDENT_NAME`, `PHONE` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples. |
+| Parameter                      | Parameters are information TeachMeSenpai requires you to fill in.                                               | `NAME`, `PHONE` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples. |
 | Partial keyword                | Part of the word you want to [find/filter](#findfilter-students-findfilter) by.                                 | A partial keyword for a student named "Shao Hong" could be "Sh", or "on" etc.                                                                                                                                                                       |
-| Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `STUDENT_NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
+| Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
 | Remark                         | Notes or things to take note of for a student.                                                                  | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                                 |
 
 
@@ -554,15 +601,15 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 | Action | Format, Examples                                                                                                                                                                                                                                                  |
 |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
+| Add    | `add n/NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
 | Clear  | `clear`                                                                                                                                                                                                                                                           |
 | Delete | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                                   |
-| Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
+| Edit   | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
 | Exit   | `exit`                                                                                                                                                                                                                                                            |
 | Find   | `find PREFIX/KEYWORD1 [PREFIX/KEYWORD2]` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                               |                                                                                                                                                                                           |
 | List   | `list`                                                                                                                                                                                                                                                            |
 | Redo   | `redo`                                                                                                                                                                                                                                                            |
-| Remark | `remark INDEX [r/REMARK]` <br/>eg. `remark 2 r/Not good in Japanese`                                                                                                                                                                                              |
+| Remark | `remark INDEX [REMARK]` <br/>eg. `remark 2 Not good in Japanese`                                                                                                                                                                                              |
 | Undo   | `undo`                                                                                                                                                                                                                                                            |
 | Show   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                                    |
 
@@ -663,18 +710,18 @@ The code below is a direct quote from the default data file.
 
 `persons` is an array containing every student entry as an element. Each element is enclosed in curly braces `{}`
 
-<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** The values you input should adhere to the parameter requirements.
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** The values you input should adhere to the parameter requirements.
 </div>
 
 The parameters in the braces indicate which parameter in the [Parameter descriptions](#parameter-descriptions) the input should adhere to.
 
 
-- `name`: Represents the student's name. If empty, input`""`. (STUDENT_NAME)
+- `name`: Represents the student's name. If empty, input`""`. (NAME)
 - `phone`: Represents the student's phone number. If empty, input`""`. (PHONE)
 - `email`: Represents the student's email. If empty, input`""`. (EMAIL)
 - `address`: Represents the student's address. If empty, input`""`. (ADDRESS)
 - `remark`: Represents the remark or notes for a student and can contain the newline character `\n`. If empty, input`""`. (REMARK)
-- `education`: Represents the education level of a student. If empty, input`""`. (EDUCATION_LEVEL)
+- `education`: Represents the education level of a student. If empty, input`""`. (EDUCATION)
 - `telegram`: Represents the telegram handle of a student. If empty, input`""`. (TELEGRAM)
 - `modules`: Represents an array of modules the student takes. If empty, input`[ ]`. (MODULE)
 - `tagged`: Represents an array of tags the student is labelled with. If empty, input`[ ]`. (TAG)
