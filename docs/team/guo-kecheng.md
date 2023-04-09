@@ -32,11 +32,15 @@ Given below are my contributions to the project.
     * Highlights: Allows users to easily reset and carry out the next action even if the list had been filtered based on
     previously commands.
 - **New Feature**: Light and Dark Theme
+  ![Ui](../images/Ui.png)
+  ![Ui](../images/UiDark.png)
     * What it does: 
     * Justification: A quality of life improvement. Users would previously be required to delete and add a new task 
     which can now be achieved using the edittask function
     * Highlights: Users are not required to fill up all the fields to be able to edit a task.
+
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=guo-kecheng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
+
 - **Project management**:
 - **Enhancements to existing features**: Find a person and his/her assigned tasks
   * What it does: With this new feature, users can now find out what tasks are allocated to a person.
@@ -45,11 +49,19 @@ Given below are my contributions to the project.
     quickly locate the relevant information without the need for extensive searching.
   * Highlights: Find can filter out out individuals whose name contains the given input. From there, users can then
     specify the index to pinpoint the exact person to be reviewed.
+
 - **Documentation**:
   * User Guide:
+    * Responsible for the indexing and formatting of overall documentation
     * Added documentation for find, find task, list all and edit task features
   * Developer Guide:
+    * Responsible for the indexing and formatting of overall documentation
     * Added implementation details for find, find task, list all and edit task features
     * Added sequence and activity diagram for find task and find respectively.
+  * Others:
+    * Contributed to group's collaborative docs, where reflections and discussion notes were written down
+
 - **Community**:
+  * PRs reviewed: #64, #93, #94, #114, #120, #121, #129, #137, #146
+
 - **Tools**:

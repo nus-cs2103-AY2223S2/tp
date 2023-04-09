@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+<a id="top"></a>
 
 * Table of Contents 
 {:toc}
@@ -192,13 +193,9 @@ object.
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-Original AddressBook Storage Component
-
-<img src="images/StorageClassDiagram.png" width="550" />
-
 OfficeConnect Storage Component
 
-<img src="images/OfficeStorageClassDiagram.png" width="750" />
+<img src="images/StorageClassDiagram.png" width="750" />
 
 The initial storage component was specifically designed to accommodate the address book model. However, OfficeConnect
 necessitates the inclusion of two additional storage types, namely task storage and assignment storage.
@@ -311,15 +308,16 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 ![FindTaskActivityDiagram](images/FindActivityDiagram.png)
 
 ### 3.4 Finding a Task's Assignees
-Syntax: `findt TASKNAME` </br>
+Syntax: `findt TASKNAME` 
+
 Purpose: Allow users to search and review the group of individuals assigned to the specified task in OfficeConnect.
 
 #### 3.4.1 Implementation
 The implementation of this feature is supported by `FindTaskCommand` and `FindTaskCommandParser`.
 
-Below is an activity diagram that illustrates how a user finds who are assigned to a task. </br>
+Below is an activity diagram that illustrates how a user finds who are assigned to a task.
 
-![FindTaskSequenceDiagram.png](images/FindTaskSequenceDiagram.png)
+![FindTaskSequenceDiagram.png](images%2FFindTaskSequenceDiagram.png)
 
 #### 3.4.2 Design Considerations
 
@@ -336,7 +334,8 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
       to execute the findt command if the current display is empty.
 
 ### 3.5 Editing a Task
-Syntax: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]` </br>
+Syntax: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]`
+
 Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 
 #### 3.5.1 Implementation
@@ -350,7 +349,7 @@ Purpose: Allows users to assign a person to a task in OfficeConnect.
 #### 3.6.1 Implementation
 The implementation of this feature is supported by `AssignCommand`, `AssignCommandParser`, `ListCommand`,
 `ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`. Below are the steps required to assign a task
-to a person in OfficeConnect. </br>
+to a person in OfficeConnect.
 
 Step 1: User executes `listall` to list all the people and tasks in OfficeConnect.
 * Alternative steps to Step 1:
@@ -526,15 +525,6 @@ The initial commands were very short and consisted of abbreviations like "lu", "
 abbreviations can be confusing for new users as they do not provide any information about what the command does which 
 would result in a constant need to refer to the User Guide for assistance. Likewise, this requires the user to put 
 in extra effort to learn and memorize the commands.
-
-### 4.3
-### 4.4
-### 4.5
-### 4.6
-### 4.7
-### 4.8
-### 4.9
-### 4.10
 
 --------------------------------------------------------------------------------------------------------------------
 ## 5. Documentation, logging, testing, configuration, dev-ops
@@ -1070,6 +1060,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. OfficeConnect shows an error message.
 
     Use case ends.
+
+
 ---
 ### 6.4 Non-Functional Requirements
 
@@ -1083,53 +1075,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.5 Glossary
 
 #### *A*
-  - ##### **addt**: Add a new task to the list.
-  - ##### **assign**: Assign a task to a person.
-
-#### *D*
-  - ##### **deletep**: Delete a person from the list.
-  - ##### **deletet**: Delete a task from the list.
-
-#### *E*
-  - ##### **editp**: Edit the details of a person.
-  - ##### **editt**: Edit the details of a task.
-
-#### *F*
-  - ##### **filterp**: Filter persons by a specific tag.
-  - ##### **findp**: Search for a person by their name.
-  - ##### **findt**: Search for a task by its title.
-
-#### *H*
-  - ##### **help**: Display help information.
-
-#### *L*
-  - ##### **listall**: List all persons and tasks.
-  - ##### **listp**: List all persons.
-  - ##### **listt**: List all tasks.
+  - ##### All
+    - All task and person.
+  - ##### Assign
+    - Assign a task to a person.
 
 #### *M*
-  - ##### **mark**: Mark a task as completed.
-  - ##### **Mainstream OS**: Windows, Linux, Unix, OS-X
+  - ##### Mark
+    - Mark a task as completed.
+  - ##### Mainstream OS
+    - Windows, Linux, Unix, OS-X
 
 #### *P*
-  - ##### **pi**: View a person's details.
-  - ##### **Private contact detail**: A contact detail that is not meant to be shared with others
-  - ##### **quickstart**: Launch the application with sample data.
+  - ##### P
+    - A person.
+  - ##### PI
+    - View a person's details.
+  - ##### Private contact detail: 
+    - A contact detail that is not meant to be shared with others
+
+#### *P*
+  - ##### Quickstart: 
+    - Launch the application with sample data.
 
 #### *T*
-  - ##### **ti**: View a task's details.
+  - ##### T
+    - A Task.
+  - ##### TI
+    - View a task's details.
 
 #### *U*
-  - ##### **unassign**: Unassign a task from a person.
-  - ##### **unmark**: Unmark a completed task.
+  - ##### Unassign
+    - Unassign a task from a person.
+  - ##### Unmark
+    - Unmark a completed task.
 
 #### *V*
-  - ##### **viewassignedall**: View all assigned persons and tasks.
-  - ##### **viewassignedp**: View assigned persons.
-  - ##### **viewassignedt**: View assigned tasks.
-  - ##### **viewunassignedall**: View all unassigned persons and tasks.
-  - ##### **viewunassignedp**: View unassigned persons.
-  - ##### **viewunassignedt**: View unassigned tasks.
+  - ##### View
+    - A term used in the app to refer to the action of accessing and reviewing detailed information about records, such as person details or task details.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1313,7 +1296,7 @@ testers are expected to do more *exploratory* testing.
         Expected: All assigned tasks are displayed. "Displayed all assigned tasks" shown in status message.
 
 
-  1. There are no assigned tasks and persons in OfficeConnect.
+  2. There are no assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons with assignments.
      2. Test case: `viewassignedall` <br>
         Expected: No tasks or persons are displayed. "There are no assigned tasks or persons" shown in status message.
@@ -1322,16 +1305,16 @@ testers are expected to do more *exploratory* testing.
      4. Test case: `viewassignedt` <br>
         Expected: No tasks are displayed. "There are no assigned tasks" shown in status message.
 
-     5. There are unassigned tasks and persons in OfficeConnect.
-        1. Prerequisites: There are tasks and persons without assignments.
-        2. Test case: `viewunassignedall` <br>
-           Expected: All unassigned tasks and persons are displayed. "Displayed all unassigned tasks and persons" shown in status message.
-     6. Test case: `viewunassignedp` <br>
+  3. There are unassigned tasks and persons in OfficeConnect.
+     1. Prerequisites: There are tasks and persons without assignments.
+     2. Test case: `viewunassignedall` <br>
+        Expected: All unassigned tasks and persons are displayed. "Displayed all unassigned tasks and persons" shown in status message.
+     3. Test case: `viewunassignedp` <br>
         Expected: All unassigned persons are displayed. "Displayed all unassigned persons" shown in status message.
-     7. Test case: `viewunassignedt` <br>
+     4. Test case: `viewunassignedt` <br>
         Expected: All unassigned tasks are displayed. "Displayed all unassigned tasks" shown in status message.
 
-  2. There are no unassigned tasks and persons in OfficeConnect.
+  4. There are no unassigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons without assignments.
      2. Test case: `viewunassignedall` <br>
         Expected: No tasks or persons are displayed. "There are no unassigned tasks or persons" shown in status message.
@@ -1367,7 +1350,8 @@ Although OfficeConnect is a brownfield project building on the AB3, it was neces
 * Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.
 * Modifications for the help guide. Instead of just a URL link to the online UserGuide, we felt there was a need for a more "immediate" and quick reference guide that should be available, especially in settings where internet connection may not be available (which is also one of our NFRs.) By including a more detailed but sufficiently concise guide, we aim to ease the user into OfficeConnect more smoothly.
 * Integrating OfficeConnectModel with Model. We wanted to change AB3 to include tasks, but we did not want to modify the old Model component as it was specialised for persons. Hence, we decided to create a new OfficeConnectModel that helps us store tasks. Initially, they existed as two separate entities, which was easier to implement, but was of considerably poorer design as we realised that Model could be contained in OfficeConnectModel. Hence, we decided to include Model into OfficeConenctModel. However, this required changing a lot of test cases, which was very tedious and time consuming.
-* (Can talk more about UI for this point)
+
 ### 8.2 Technical Challenges
 * As AB3 is quite a big project, it was quite difficult for us to understand the structure and details behind the code initially. To overcome this, we decided to start project meetings on our project early to allow us more time to understand AB3's implementation, and also help each other clarify our doubts regarding AB3. This understanding helped reduce the learning curve when trying to implement OfficeConnect's new features, as some of the features had a similar concept and understanding how it was implemented in AB3 significantly lowered the difficulty level when implementing those methods.
-* Next pt
+
+<a href="#top">Back to top</a>

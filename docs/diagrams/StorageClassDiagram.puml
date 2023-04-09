@@ -7,67 +7,68 @@ skinparam classBackgroundColor STORAGE_COLOR
 allowmixing
 package Storage{
 
-package "UserPrefs Storage" #F4F6F6{
-Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
-Class JsonUserPrefsStorage
+    package "UserPrefs Storage" #F4F6F6{
+    Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+    Class JsonUserPrefsStorage
+    }
+
+    Class "<<interface>>\nStorage" as StorageI
+    Class StorageManager
+
+    package "AddressBook Storage" #F4F6F6{
+    Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
+    Class JsonAddressBookStorage
+    Class JsonSerializableAddressBook
+    Class JsonAdaptedPerson
+    Class JsonAdaptedTag
+    }
+
+    package "Repository Task Storage" #lightblue {
+      interface "RepositoryStorage<Task>" as RepositoryStorageTask #gray
+      class JsonTaskStorage #gray
+      class JsonSerializableTaskBook #gray
+      class JsonAdaptedTask #gray
+    }
+
+    package "Repository AssignTask Storage" #lightblue {
+      interface "RepositoryStorage<AssignTask>" as RepositoryStorageAssignTask #gray
+      class JsonAssignTaskStorage #gray
+      class JsonSerializableAssignTasks #gray
+      class JsonAdaptedAssignTask #gray
+    }
+
+
+
+    StorageManager .up.|> StorageI
+
+    StorageManager -up-> "1" UserPrefsStorage
+    StorageManager -up-> "1" AddressBookStorage
+    StorageManager -up-> "1" RepositoryStorageAssignTask
+    StorageManager -up-> "1" RepositoryStorageTask
+
+    StorageI ------left-|> UserPrefsStorage
+    StorageI -right-|> AddressBookStorage
+
+    JsonUserPrefsStorage .up.|> UserPrefsStorage
+    JsonAddressBookStorage .up.|> AddressBookStorage
+    JsonAddressBookStorage ..> JsonSerializableAddressBook
+    JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+    JsonAdaptedPerson --> "*" JsonAdaptedTag
+
+    JsonTaskStorage .up.|> RepositoryStorageTask
+    JsonTaskStorage ..> JsonSerializableTaskBook
+    JsonSerializableTaskBook --> "*" JsonAdaptedTask
+
+
+    JsonAssignTaskStorage .up.|> RepositoryStorageAssignTask
+    JsonAssignTaskStorage ..> JsonSerializableAssignTasks
+    JsonSerializableAssignTasks --> "*" JsonAdaptedAssignTask
+
+    interface "RepositoryStorage<T>" as RepositoryStorage
+
+    RepositoryStorageAssignTask ..up.|> "<<bind>>T::AssignTask" RepositoryStorage
+    RepositoryStorageTask ..up.|> "<<bind>>T::Task" RepositoryStorage
 }
-
-Class "<<interface>>\nStorage" as Storage
-Class StorageManager
-
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
-}
-
-package "Repository Task Storage" #lightblue {
-  interface "RepositoryStorage<Task>" as RepositoryStorageTask #gray
-  class JsonTaskStorage #gray
-  class JsonSerializableTaskBook #gray
-  class JsonAdaptedTask #gray
-}
-
-package "Repository AssignTask Storage" #lightblue {
-  interface "RepositoryStorage<AssignTask>" as RepositoryStorageAssignTask #gray
-  class JsonAssignTaskStorage #gray
-  class JsonSerializableAssignTasks #gray
-  class JsonAdaptedAssignTask #gray
-}
-
 Class HiddenOutside #FFFFFF
-HiddenOutside .....> Storage
-
-StorageManager .up.|> Storage
-
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
-StorageManager -up-> "1" RepositoryStorageAssignTask
-StorageManager -up-> "1" RepositoryStorageTask
-
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
-
-JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
-
-JsonTaskStorage .up.|> RepositoryStorageTask
-JsonTaskStorage ..> JsonSerializableTaskBook
-JsonSerializableTaskBook --> "*" JsonAdaptedTask
-
-
-JsonAssignTaskStorage .up.|> RepositoryStorageAssignTask
-JsonAssignTaskStorage ..> JsonSerializableAssignTasks
-JsonSerializableAssignTasks --> "*" JsonAdaptedAssignTask
-
-interface "RepositoryStorage<T>" as RepositoryStorage
-
-RepositoryStorageAssignTask ..up.|> "<<bind>>T::AssignTask" RepositoryStorage
-RepositoryStorageTask ..up.|> "<<bind>>T::Task" RepositoryStorage
-
+HiddenOutside .....> StorageI
 @enduml

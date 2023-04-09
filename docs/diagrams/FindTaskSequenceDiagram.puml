@@ -9,7 +9,7 @@ participant "f:FindTaskCommand" as FindTaskCommand LOGIC_COLOR
 end box
 
 box OfficeConnectModel MODEL_COLOR_T1
-participant ":OfficeConnectModel" as OfficeConnectModel MODEL_COLOR_T1
+participant ":OfficeConnectModel" as OfficeConnectModel MODEL_COLOR
 end box
 
 -> LogicManager: execute(commandText)
