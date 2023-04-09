@@ -51,8 +51,8 @@ public class ApplicativeParserTest {
                 .string("The Rabbit")
                 .dropNext(ApplicativeParser.skipWhitespaces());
         ApplicativeParser<String> rightParser = ApplicativeParser.string("Has Landed");
-        ApplicativeParser<String> parser = ApplicativeParser.lift(
-                (left, right) -> String.join(" ", left, right),
+        ApplicativeParser<String> parser = ApplicativeParser.lift((
+                left, right) -> String.join(" ", left, right),
                 leftParser,
                 rightParser);
         Pair<String, String> result = parser.parsePartOf(input);

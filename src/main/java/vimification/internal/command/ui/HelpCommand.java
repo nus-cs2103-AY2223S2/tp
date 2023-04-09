@@ -1,8 +1,8 @@
 package vimification.internal.command.ui;
 
 import vimification.internal.command.CommandResult;
-import vimification.ui.MainScreen;
 import vimification.ui.HelpManualPanel;
+import vimification.ui.MainScreen;
 
 /**
  * Displays the manual page.

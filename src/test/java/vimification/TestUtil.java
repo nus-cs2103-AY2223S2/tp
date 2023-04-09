@@ -8,6 +8,9 @@ import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
+/**
+ * Utility class for testing.
+ */
 public class TestUtil {
 
     private TestUtil() {}
@@ -16,6 +19,9 @@ public class TestUtil {
         return new Task("Touhou Project");
     }
 
+    /**
+     * Returns a stub {@code CommandStack} with the specified {@code tasks}.
+    */
     public static LogicTaskList newLogicTaskListStub(Task... tasks) {
         LogicTaskList taskList = new LogicTaskList() {
             private List<Task> tasks = new ArrayList<>();

@@ -2,10 +2,10 @@ package vimification.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Comparator;
 import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
 
 import vimification.model.task.Task;
 
@@ -27,8 +27,8 @@ public class UiTaskListTest {
     @Test
     public void testComparator() {
         UiTaskList utl = new TaskList();
-        Comparator<Task> expectedCmp =
-                (task1, task2) -> task2.getTitle().compareTo(task1.getTitle());
+        Comparator<Task> expectedCmp = (
+                task1, task2) -> task2.getTitle().compareTo(task1.getTitle());
 
         utl.setComparator(expectedCmp);
         Comparator<? super Task> actualCmp = utl.getComparator();
