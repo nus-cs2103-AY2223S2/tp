@@ -253,7 +253,8 @@ about the individual.
 Format: `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **TIP:**
-An employee can have any number of tags (including 0)
+An employee can have any number of unique tags (including 0). To add multiple tags, 
+just add more `[t/TAG]` to the end of the command, separated by a space.
 </div>
 
 Examples:
