@@ -42,7 +42,7 @@ public class TypicalEmployees {
             .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png").build();
     public static final Employee GEORGE = new EmployeeBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withDepartment("Marketing").withPayroll("1000 15").withDateOfBirth("2000-04-21")
+            .withDepartment("Finance").withPayroll("1000 15").withDateOfBirth("2000-04-21")
             .withDateOfJoining("2022-01-04").withPicturePath("data/employeepictures/default.png").build();
 
     // Manually added
