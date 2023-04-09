@@ -47,7 +47,7 @@ StudentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-Student ..> Model
+StudentCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
