@@ -203,6 +203,47 @@ and refresh the whole patient list with new appointment added.
 
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
+### 2. Uploading Medical file for a Patient
+This feature servers as one of the core features of Medimate, so how is it implemented?
+
+#### Note:
+* There are two ways to upload medical files for a patient within the application. 
+* Users can either utilize a command (similar to 1.Marking Appointment using UploadFileCommand) or click the `upload button` in the user interface.
+* Medical files should be in PDF, JPG, or PNG format, and can contain additional information about the patient, such as medical history, test results, or treatment plans.
+* This section will delve deeper into the implementation of the file uploading functionality when the user click `upload button` and calling the `FileManager` object.
+
+This feature is achieved by the following classes:
+* `FileManager` - offers an `addFile` method that is invoked by `UploadFileCommand` and the `upload button`
+* `FileStorage` - offers an `uploadFile` method that is invoked by `addFile` method in `FileManager`
+
+
+Initially when user click the `upload button`, FileManger is initialised with the given `Person` Object and `addFile` method is called invoking `uploadFile` method.
+* The uploadFile() method uses the `SwingUtilities.invokeLater()` method to ensure that it runs on the `Event Dispatch Thread (EDT)` for proper GUI interaction.
+* Within the `invokeLater()` method, a `JFileChooser` object is created and configured using the `configFileChooser()` method. The file chooser is set to allow multiple file selections and filter files based on their extensions: PDF, JPG, JPEG, and PNG.
+* The file chooser dialog is displayed, and the user can select multiple files. The method then checks if the user has approved the file selection.
+* If the user has approved the file selection, an array of selected files is obtained. The target directory path is created using the `"reports/{username}/"` format, where `{username}` is replaced with the username of the current user.
+* If the file meets the requirements, it is copied to the target directory. `Existing files with the same name in the target directory are replaced`. If a file has an `unsupported extension` or `exceeds the maximum file size`, an `IOException` is thrown with a relevant error message.
+* After successfully uploading all the allowed files, a `success message` is displayed to the user through a `JOptionPane`.
+
+<img src="images/uploadFile.png" width="600" />
+
+### 3. Create medical certificate PDF file
+
+#### Note:
+* There are two ways to create medical certificate for a patient within the application.
+  Users can either utilize a command (similar to 1.Marking Appointment using CreateCommand ) or click the `create button` in the user interface.
+* PDF file generated will be a copy of [`MC.pdf`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/resources/MC.pdf).
+* External API: [`pdfbox-app-2.027`](https://pdfbox.apache.org/) used to read and write [`MC.pdf`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/resources/MC.pdf).
+* This section will delve deeper into the implementation of the medical certificate creation functionality when the user click `create button` filling up with correct information and called the `FileManager` object.
+
+This feature is achieved by the following classes:
+* `FileManager` - offers an `generateMc` method that is invoked by `CreateCommand` and the `create button`
+* `PdfGenerator` - offers an `generate` method that is invoked by `generateMC` method in `FileManager`
+
+After the user click `create button` and filled up with the correct information (doctor name, medical condition, and days), FileManger is initialised with the given `Person` Object and `generateMc` method is called invoking `generate` method.
+* The generate method creates a customized Medical Certificate (MC) PDF for a patient by loading a template, filling in the form fields, saving the filled form with a unique filename, updating the patient's medical condition, and displaying a success message.
+
+<img src="images/createMc.png" width="600" />
 
 ### \[Proposed\] Undo/redo feature
 
