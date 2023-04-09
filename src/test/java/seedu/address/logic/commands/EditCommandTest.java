@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_EL
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_REGION;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
@@ -42,7 +43,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(selectedNric, descriptor);
 
         String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
-                resultantElderly);
+                resultantElderly) + MESSAGE_WARNING_REGION;
 
         Model expectedModel = new ModelManagerBuilder()
                 .withFriendlyLink(model.getFriendlyLink())
