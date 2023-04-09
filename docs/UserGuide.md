@@ -168,27 +168,23 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 ### Autocompletion
 
-TeachMeSenpai has a lot of features for you to experiment with, however we understand that it might take some getting used to. Hence, we've
-included an autocompletion feature!
+TeachMeSenpai has a lot of features for you to experiment with, and we understand that it might take some getting used to. Hence, we've included an autocompletion feature!
 
 Start typing the first letters of a command to get shadow-like autocomplete suggestions.
 The format of the suggested parameters are as described in the [**Guide on using Features**](#guide-on-using-features).
 
-<div markdown="span" class="alert alert-success">:bulb: **Tip:** You can press the `TAB` to fill in the next suggested word!
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** You can press your `TAB` key to fill in the next suggested word!
 </div>
 
 ![help popup gui](images/user-guide/autocomplete.jpg)
 
 <br>
 
-For the `module`, `tag`, `education` parameters, it will also suggest all the existing values to you.
+Additionally, for the module, tag and education parameters, it will also suggest all the existing values to you!
 
 ![help popup gui](images/user-guide/autocomplete_arg_values.jpg)
 
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts! They simply indicate the existing
-modules/education/tags you have in the current student list.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts. They're simply there to separate the different existing modules/education/tags you have in the current student list.
 </div>
 
 
