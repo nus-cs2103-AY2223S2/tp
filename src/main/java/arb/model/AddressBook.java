@@ -20,7 +20,8 @@ import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameClient comparison)
+ * Duplicates are not allowed (by .isSameClient, .isSameProject, .isSameTagMapping
+ * comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 

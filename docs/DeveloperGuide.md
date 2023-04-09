@@ -119,14 +119,11 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-The `Client` object stores a few pieces of data as separate objects, some of which are optional, as shown in the diagram below. (These details were omitted from the model class diagram.)
-<img src="images/ClientClassDiagram.png" width="450" />
+The above diagram shows a quick overview of the Model component, while the three diagrams below expand on the relationships between the `ModelManager`, `AddressBook` and the three entities it stores.
 
-The `Project` object stores a few pieces of data as separate objects, some of which are optional, as shown in the diagram below. (These details were omitted from the model class diagram.)
-<img src="images/ProjectClassDiagram.png" width="450" />
-
-The `TagMapping` objects stores a `Tag` object and how many `Client` and `Project` objects it belongs to, as shown in the diagram below. (These details were omitted from the model class diagram.)<br>
-<img src="images/TagMappingClassDiagram.png" width="120" height="150" />
+<img src="images/AddressBookClientDiagram.png" width="700" />
+<img src="images/AddressBookProjectDiagram.png" width="700" />
+<img src="images/AddressBookTagMappingDiagram.png" width="400" />
 
 The `Model` component,
 
@@ -140,7 +137,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="600" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -175,9 +172,9 @@ This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/
 
 There are a set of Comparators defined inside the `ModelManager` class, that are supplied to the sorted list depending on how the user wants to sort clients or projects. Example Comparators include comparing names of `Client` objects.
 
-Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator`. The below diagram shows what occurs when a user executes a `sort-client` command, which sorts the client list by name.
+Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator<T>`. The below diagram shows what occurs when a user executes a `sort-client` command, which sorts the client list by name.
 
-<img src="images/SortingSequenceDiagram.png" width="600" />
+<img src="images/SortingSequenceDiagram.png" width="700" />
 
 As the contents of the sorted list is the already filtered list, executing sorting will only sort clients/projects that are currently visible. Clients/projects that are hidden due to a previous `find command` will remain hidden.
 
@@ -192,32 +189,44 @@ Users have the ability to link projects to clients.
 
 When parsing the command to add or edit a project, the parser checks for the existence of client name keywords in the command. If it does, then ArB displays a client list filtered with the provided client name keywords, sets the project to be linked and enters link mode, as shown in the sequence diagram below.
 
-<img src="images/LinkingParsingSequenceDiagram.png" width="400" />
+<img src="images/LinkingParsingSequenceDiagram.png" width="600" />
 
 In link mode, the user can input an index to link the added/edited project to the specified client, as shown in the sequence diagram below. ArB will then exit link mode and return to normal operations.
 
-<img src="images/LinkingIndexParsingSequenceDiagram.png" width="400" />
+<img src="images/LinkingIndexParsingSequenceDiagram.png" width="600" />
 
 Internally, a project can be linked to one client while a client can have multiple linked projects. A client's linked projects are stored in a `UniqueProjectList` object that each `Client` object has. This implementation is shown in the class diagram below.
 
-<img src="images/LinkedClassDiagram.png" width="200" />
+<img src="images/LinkedClassDiagram.png" width="400" />
 
 For example, the below is an object diagram representing the situation where we have two projects `P1` and `P2` that are both linked to the same `Client` object.
 
-<img src="images/ExampleLinkedObjectDiagram.png" width="200" />
+<img src="images/ExampleLinkedObjectDiagram.png" width="400" />
 
 #### Future improvements
 Currently, projects are only allowed to be linked to a single client. This was done to avoid introducing too much complexity such that it was feasible to complete this feature before the deadline.
 
 In future, projects could be linked to multiple clients. This could be implemented by storing a list of `Client` objects, perhaps using a `UniqueClientList`. The below class diagram showcases this  implementation.
 
-<img src="images/LinkingAlternateClassDiagram.png" width="300" />
+<img src="images/LinkingAlternateClassDiagram.png" width="400" />
 
 ### Better filtering
 
 Users now have the ability to find clients and projects using a greater number of parameters, such as tags and deadlines.
 
 #### Implementation
+
+When parsing find commands, the parser parses each possible parameter one-by-one. For example, users can find clients by name or by tags, so the `FindClientCommandParser` parses provided names and tags individually into a `NameContainsKeywordsPredicate` and `ClientContainsTagsPredicate` that are then combined into a `CombinedPredicate` object, as shown in the sequence diagram below where the arguments `name/Alice tag/friends` is parsed.
+
+<img src="images/FindSequenceDiagram.png" width="800" height="300" />
+
+The `CombinedPredicate` object `c` is then used to update the filtered client list, as shown in the sequence diagram below.
+
+<img src="images/FindUpdateFilteredClientListSequenceDiagram.png" width="800" height="300" />
+
+`CombinedPredicate<T>` is a generic class that inherits from the generic class `Predicate<T>` and tests all predicates that were passed to it when it was initialised. The `FindClientCommand` and `FindProjectCommand` objects are unaware of what predicates it is specifically testing, since they only know that they are testing a `Predicate<T>` object, making use of the `Command` design pattern. This is shown by the class diagram below, where a `FindClientCommand` and `FindProjectCommand` stores a `Predicate<T>` object.
+
+<img src="images/CombinedPredicateClassDiagram.png" width="600" />
 
 ### Done Status
 
@@ -262,6 +271,7 @@ Users have the ability to mark a certain project as DONE.
 
 #### Implementation
 
+<img src="images/MarkProjectSequenceDiagram.png" width="600" />
 
 ### Unmarking projects
 
@@ -269,19 +279,37 @@ Users have the ability to mark a certain project as NOT DONE/OVERDUE.
 
 #### Implementation
 
+<img src="images/UnmarkProjectSequenceDiagram.png" width="600" />
+
 ### Listing Clients
 
 Users have the ability to list all their clients.
 
 #### Implementation
 
+<img src="images/ListClientSequenceDiagram.png" width="600" />
 
 ### Listing Projects
 
-Users have the ability to list all their projects. A summary of how many overdue, done, and not done projects is also displayed.
+Users have the ability to list all their projects. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed.
 
 #### Implementation
 
+### Clearing clients
+
+Users have the ability to clear all their clients.
+
+#### Implementation
+
+<img src="images/ClearClientSequenceDiagram.png" width="600" />
+
+### Clearing projects
+
+Users have the ability to clear all their projects.
+
+#### Implementation
+
+<img src="images/ClearProjectSequenceDiagram.png" width="600" />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -301,7 +329,7 @@ Users have the ability to list all their projects. A summary of how many overdue
 
 **Target user profile**:
 
-* has a need to manage a significant number of commision clients
+* has a need to manage a significant number of commission clients
 * has a need to manage a significant number of projects
 * prefer desktop apps over other types
 * can type fast
@@ -362,14 +390,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ArB` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list clients
+2.  ArB shows a list of clients
+3.  User requests to delete a specific client in the list
+4.  ArB deletes the client
 
     Use case ends.
 
@@ -381,11 +409,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ArB shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Delete Project**
+**Use case: Delete a project**
 
 **MSS**:
 1. User enters command for deleting project of certain client.
@@ -394,12 +422,121 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extension**:
-1a. User wants to remove a project of a client that is not found in the list.
+* 1a. User wants to remove a project of a client that is not found in the list.
 
-2a1. ARB tells user that the project of the client does not exist.
+* 2a1. ARB tells user that the project of the client does not exist.
 
 Use case ends.
 
+**Use case: Mark a project**
+
+**MSS**
+
+1.  User requests to list projects
+2.  ArB shows a list of projects
+3.  User requests to mark a specific project in the list
+4.  ArB marks the project
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+   * 3a1. ArB shows an error message.
+
+     Use case resumes at step 2.
+
+**Use case: Unmark a project**
+
+**MSS**
+
+1.  User requests to list projects
+2.  ArB shows a list of projects
+3.  User requests to unmark a specific project in the list
+4.  ArB unmarks the project
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+   * 3a1. ArB shows an error message.
+
+     Use case resumes at step 2.
+
+**Use case: List all projects**
+
+**MSS**
+
+1.  User requests to list projects
+2.  ArB shows a list of projects
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Clear all projects**
+
+**MSS**
+
+1. User requests to list projects
+2. ArB shows a list of projects
+3. User requests to clear all projects in the list
+4. ArB clears all projects in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: List all clients**
+
+**MSS**
+
+1.  User requests to list clients
+2.  ArB shows a list of clients
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Clear all clients**
+
+**MSS**
+
+1. User requests to list clients
+2. ArB shows a list of clients
+3. User requests to clear all clients in the list
+4. ArB clears all clients in the list
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 **Use case: Edit Project**
 
@@ -882,4 +1019,11 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-1. {_some feature flaw and how we plan to fix it in future_}
+1. Error messages for invalid indexes are vague, only stating `The provided index is invalid`. In future, we can display clearer error messages corresponding to each case:
+   1. Index provided is not a number: `The index you provided was not a number! Index must be a positive number, e.g. 1, 2, 3...`
+   1. Index provided is not a positive number: `The index you provided was not a positive number! Index must be a positive number, e.g. 1, 2, 3...`
+   1. Index provided is larger than the currently visible list: `The index you provided was larger than the currently visible list!`
+1. Client list and project list are not displayed together, which can inconvenience users as they have to constantly switch between the lists with an additional commands.
+   1. The client and project list could be displayed on one screen, with special care taken to ensure that the size of the information never becomes too small.
+1. Checking for duplicate client names is not case-sensitive. However, most people consider `alice` and `Alice` to be the same person and may input `alice` intending for the name to be `Alice`.
+   1. Parsing for client names should be made insensitive. User input for names should be parsed to title case, as should data in the JSON file.

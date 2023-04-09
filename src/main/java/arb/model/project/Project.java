@@ -153,6 +153,7 @@ public class Project {
     public Optional<Client> getLinkedClient() {
         return linkedClient;
     }
+
     /**
      * Returns true if both projects have the same title.
      * This defines a weaker notion of equality between two projects.
