@@ -2,28 +2,19 @@
 skinparam defaultTextAlignment center
 
 start
-:User requests to\ndelete cases from a given date;
-:Check that indexes and dates\nhave not been used together;
-if () then ([indexes and dates not mixed])
-    :Check that d/ has not\nbeen used with sd/ or ed/;
-
-    if () then ([date prefixes not mixed])
-        :Check that given\ndate is valid;
-        if () then ([date is valid])
-            :Delete cases associated\nwith the given date;
-            :Display\nsuccess message;
-            stop
-        else ([else])
-            :Display invalid\ndate message;
-            stop
-        endif
-    else ([else])
-        :Display invalid\ncommand message;
-        stop
-    endif
-else ([else])
-    :Display invalid\ncommand message;
+:User enters delete cases\nby date command;
+if () then ([indexes and dates\nnot mixed])
+if () then ([date and date range\nnot mixed])
+if () then ([date is valid])
+    :Deletes cases associated\nwith the given date;
+    :Displays\nsuccess message;
     stop
+else ([else])
 endif
-
+else ([else])
+endif
+else ([else])
+endif
+:Displays error message;
+stop
 @enduml
