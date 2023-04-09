@@ -373,7 +373,7 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Lists all lectures of a module.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to list the lectures from.
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module to list the lectures from.
   - Must belong to an existing module in Le Tracker
 
 <details open>
@@ -392,9 +392,10 @@ Lists all lectures of a module.
 
 Lists all videos of a lecture in a module.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) :
+The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must belong to an existing lecture in the specified `module_code`
 
 <details open>
@@ -850,7 +851,7 @@ When in a module or lecture context, the navigation system will inject the `/mod
 Find all lectures in a specified module whose name starts with any of the keyword(s).
 
 - <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
 
 <details open>
@@ -874,9 +875,9 @@ Find all lectures in a specified module whose name starts with any of the keywor
 Find all videos in a specified lecture in a specified module whose name starts with any of the keyword(s).
 
 - <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must belong to an existing lecture in the specified `module_code`
 
 <details open>
