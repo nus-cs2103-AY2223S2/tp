@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "personPredicate:FindCommandPersonPredicate" as FindCommandPersonPredicate LOGIC_COLOR
+participant ":FindCommandNamePredicate" as FindCommandNamePredicate LOGIC_COLOR
+participant ":FindCommandTagPredicate" as FindCommandTagPredicate LOGIC_COLOR
+end box
+
+skinparam sequenceReferenceBackgroundColor #FFC6C6
+
+group sd Inner working
+    create FindCommandNamePredicate
+    FindCommandPersonPredicate-> FindCommandNamePredicate : FindCommandNamePredicate("alex")
+    activate FindCommandNamePredicate
+
+    FindCommandNamePredicate --> FindCommandPersonPredicate
+    deactivate FindCommandNamePredicate
+
+    ref over FindCommandPersonPredicate
+    Initializing Predicate for other fields
+    end ref
+
+    create FindCommandTagPredicate
+    FindCommandPersonPredicate-> FindCommandTagPredicate : FindCommandTagPredicate("friend")
+    activate FindCommandTagPredicate
+
+    FindCommandTagPredicate --> FindCommandPersonPredicate
+    deactivate FindCommandTagPredicate
+end
+@enduml

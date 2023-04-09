@@ -4,41 +4,55 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
+<fx:root minHeight="500.0" minWidth="500.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">  <icons>
     <Image url="@/images/help_icon.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@HelpWindow.css" />
-      </stylesheets>
-
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
-        <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
-        </children>
-        <opaqueInsets>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </opaqueInsets>
-        <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </padding>
-      </HBox>
-    </Scene>
-  </scene>
+</icons>
+   <scene>
+      <Scene>
+         <ScrollPane fitToWidth="true">
+            <content>
+               <VBox fx:id="helpMessageContainer" spacing="5.0">
+                  <children>
+                     <Label fx:id="helpMessageHeader" text="Header" underline="true" />
+                     <Label fx:id="helpMessageGeneralSub" styleClass="label-sub-header" text="GENERAL COMMANDS" wrapText="true" />
+                     <Label fx:id="helpMessage" text="Label" wrapText="true">
+                        <VBox.margin>
+                           <Insets right="5.0" />
+                        </VBox.margin>
+                     </Label>
+                     <Label fx:id="helpMessageGeneralSub1" styleClass="label-sub-header" text="PERSON COMMANDS" wrapText="true" />
+                     <Label fx:id="helpMessage1" text="Label" wrapText="true" />
+                     <Label fx:id="helpMessageGeneralSub2" styleClass="label-sub-header" text="PROJECT COMMANDS" wrapText="true" />
+                     <Label fx:id="helpMessage2" text="Label" wrapText="true" />
+                     <Label fx:id="moreInfo" styleClass="label-sub-header" text="For more info:" wrapText="true" />
+                     <HBox spacing="5.0">
+                        <children>
+                           <Hyperlink fx:id="userGuideLink" onAction="#openUserGuide" />
+                           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
+                        </children>
+                     </HBox>
+                  </children>
+                  <opaqueInsets>
+                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                  </opaqueInsets>
+                  <padding>
+                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                  </padding>
+               </VBox>
+            </content>
+         </ScrollPane>
+         <stylesheets>
+            <URL value="@HelpWindow.css" />
+            <URL value="@DarkTheme.css" />
+         </stylesheets>
+      </Scene>
+   </scene>
 </fx:root>
