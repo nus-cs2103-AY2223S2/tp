@@ -982,7 +982,7 @@ vaccination edit <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>G
 
 ##### Example
 
-Following examples are independent of each other and follow after vaccination <a href="#vaccination-add-example">add</a> example.
+Following examples are independent of each other and follow after vaccination <a href="#vaccination-add-example">add</a> example and then an execution of [`list`](#list---list-all-vaccination).
 
 ###### Set example
 
