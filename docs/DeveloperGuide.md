@@ -38,13 +38,11 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 - [4. Implementation](#4-implementation)
   - [4.1 Add Command](#41-add-command)
   - [4.2 Edit Command](#42-edit-command)
-  - [4.3 Delete Command](#43-delete-command)
-  - [4.4 Help Command](#44-help-command)
-  - [4.5 Adding Additional Tags Command](#45-adding-additional-tags-command)
-  - [4.6 Deleting Individual Tags Command](#46-deleting-individual-tags-command)
-  - [4.7 Search Command](#47-search-command)
-  - [4.8 Upcoming Birthdays Command](#48-upcoming-birthdays-command)
-  - [4.9 Open Command](#49-open-command)
+  - [4.3 Help Command](#43-help-command)
+  - [4.4 Adding Additional Tags Command](#44-adding-additional-tags-command)
+  - [4.5 Deleting Individual Tags Command](#45-deleting-individual-tags-command)
+  - [4.6 Search Command](#46-search-command)
+  - [4.7 Upcoming Birthdays Command](#47-upcoming-birthdays-command)
 - [5. Planned Enhancements](#5-planned-enhancements)
   - [5.1 Improve Edit Command](#51-improve-edit-command)
   - [5.2 Better Information Field Validation](#52-better-information-field-validation)
@@ -455,19 +453,7 @@ The following sequence diagram provides details on how the `informationFields` a
 
 <div style="page-break-after: always"></div>
 
-## 4.3 Delete Command
-
-**Overview:**
-
-**Feature Details:**
-
-[↑ Back to top of section](#4-implementation)
-
-[↑ Back to table of contents](#table-of-contents)
-
-<div style="page-break-after: always"></div>
-
-## 4.4 Help Command
+## 4.3 Help Command
 
 **Overview:**
 
@@ -490,7 +476,7 @@ The following activity diagram shows the logic of the `help` command.
 
 <div style="page-break-after: always"></div>
 
-## 4.5 Adding Additional Tags Command
+## 4.4 Adding Additional Tags Command
 
 **Overview:**
 
@@ -532,7 +518,7 @@ The following sequence diagram shows how `add-t` works:
 
 <div style="page-break-after: always"></div>
 
-## 4.6 Deleting Individual Tags Command
+## 4.5 Deleting Individual Tags Command
 
 **Overview:**
 
@@ -574,7 +560,7 @@ The following sequence diagram shows how `delete-t` works:
 
 <div style="page-break-after: always"></div>
 
-## 4.7 Search Command
+## 4.6 Search Command
 
 **Overview:**
 
@@ -586,7 +572,7 @@ The following sequence diagram shows how `delete-t` works:
 
 <div style="page-break-after: always"></div>
 
-## 4.8 Upcoming Birthdays Command
+## 4.7 Upcoming Birthdays Command
 
 **Overview:**
 The `upcoming-b` command allows the user to view the birthdays of all contacts that are within the next 60 days.
@@ -600,24 +586,13 @@ The `upcoming-b` command allows the user to view the birthdays of all contacts t
 
 ![UpcomingBirthdaysCommandActivityDiagram](images/UpcomingBirthdayCommandActivityDiagram.png)
 
-
 [↑ Back to top of section](#4-implementation)
 
 [↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
-## 4.9 Open Command
-
-**Overview:**
-
-**Feature Details:**
-
-[↑ Back to top of section](#4-implementation)
-
-[↑ Back to table of contents](#table-of-contents)
-
-<div style="page-break-after: always"></div>
+---
 
 # 5. Planned Enhancements
 
