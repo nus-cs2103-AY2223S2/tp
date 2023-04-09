@@ -34,7 +34,14 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments): To be added soon
     * Contributed to forum discussions (examples: To be added soon)
-    * Reported bugs and suggestions for other teams in the class (examples: To be added soon)
+    * Reported bugs and suggestions for other teams in the class: [CS2103-W17-4](https://github.com/zm-l/ped/issues)
 
 * **Tools**:
     * Java 11 and Java FX
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+| <ul><li>item1</li><li>item2</li></ul>| See the list | from the first column|

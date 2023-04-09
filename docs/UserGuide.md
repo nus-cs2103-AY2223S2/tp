@@ -17,7 +17,9 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 - [Main Features](#main-features-tracking-applied-internships)
     - [View guide : `help`](#view-help--help)
-    - [Add an internship application : `add`](#add-an-internship-application--add)
+    - [Manage  an internship application](#add-an-internship-application--add)
+        - [Add an internship application : `add`](#add-an-internship-application--add)
+        - [Edit an internship application : `edit`](#edit-an-internship-application--edit)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
     - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
@@ -35,7 +37,6 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Archive an application : `archive`](#archive-an-internship-application--archive)
         - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
         - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
-    - [Edit an internship application : `edit`](#edit-an-internship-application--edit)
     - [Displaying reminders : `remind`](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
