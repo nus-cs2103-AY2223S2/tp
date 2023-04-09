@@ -40,7 +40,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified "
             + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: ID (must be a positive integer) "
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_STATUS + "STATUS] "

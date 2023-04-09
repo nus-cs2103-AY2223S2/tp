@@ -26,9 +26,9 @@ public class EventFindCommand extends EventCommand {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Finds events from the catalogue based on parameters given.\n"
-            + "Parameters: [" + PREFIX_EVENT_NAME + "NAME] "
-            + "[" + PREFIX_EVENT_START + "START] "
-            + "[" + PREFIX_EVENT_END + "END] "
+            + "Parameters: [" + PREFIX_EVENT_NAME + "EVENT_NAME] "
+            + "[" + PREFIX_EVENT_START + "START_DATETIME] "
+            + "[" + PREFIX_EVENT_END + "END_DATETIME] "
             + "Example: " + COMMAND_WORD + " na/Technical Interview " + "st/10/09/2023 1500 ";
 
     public static final String MESSAGE_SUCCESS = "Found events : %1$s";
