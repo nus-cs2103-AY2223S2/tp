@@ -65,6 +65,7 @@ Given below are my contributions to the project.
   * Added some user stories onto GitHub.
   * Crafted all the user stories with the team.
   * Crafted some use cases with the team.
+  * Worked on the demo video with the team.
 
 * **Review/mentoring contributions**
   * Reviewed and commented non-trivial comments on the following PRs: [#4](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/4), [#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10), [#39](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/39), [#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48), [#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55), [#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56), [#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63), [#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68), [#112](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/112), [#119](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/119).
