@@ -1076,6 +1076,14 @@ appointment add --p <var>PATIENT_ID</var> --s <var>STARTING_TIME</var> --e <var>
 appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Moderna)
 ```
 
+Output:
+
+```text
+[INFO] New appointment added: 5 has an appointment at 2023-05-01T07:00
+```
+
+![Appointment Add Appointment](images/appointment/ug/appointmentExampleAdd.PNG)
+
 ##### Restrictions
 
 * <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
@@ -1093,6 +1101,14 @@ Resets the view of the appointment pane to display all the appointments. Useful 
 <pre>
 appointment list
 </pre>
+
+Output:
+
+```text
+[INFO] Listed all appointments
+```
+
+![Appointment List Appointment](images/appointment/ug/appointmentExampleAdd.PNG)
 
 #### `find` - Locate appointments
 
@@ -1131,6 +1147,15 @@ appointment find --p 1
 appointment find --v Dose 1
 ```
 
+Output:
+
+```text
+[INFO] 0 appointments listed!
+[INFO] 1 appointments listed!
+```
+
+![Appointment Find Appointment Flag](images/appointment/ug/appointmentExampleAdd.PNG)
+
 ##### Find by keyword
 
 This feature searches for appointments where either
@@ -1146,6 +1171,14 @@ Finds all appointments that uses "Dose 1" vaccines
 ```text
 appointment find Dose 1
 ```
+
+Output:
+
+```text
+[INFO] 1 appointments listed!
+```
+
+![Appointment Find Appointment Keyword](images/appointment/ug/appointmentExampleAdd.PNG)
 
 ##### Remarks
 
@@ -1177,6 +1210,14 @@ appointment edit <var>APPOINTMENT_ID</var> [--p <var>PATIENT_ID</var>] \
 appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfizer)
 ```
 
+Output:
+
+```text
+[INFO] Edited Appointment: 5 has an appointment at 2024-03-05T07:00
+```
+
+![Appointment Edit Appointment](images%2Fappointment%2Fug%2FappointmentExampleEdit.PNG)
+
 ##### Restrictions
 
 * <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
@@ -1205,6 +1246,14 @@ appointment mark <var>APPOINTMENT_ID</var>
 appointment mark 1
 ```
 
+Output:
+
+```text
+[INFO] Marked Appointment: 5 has an appointment at 2024-03-05T07:00
+```
+
+![Appointment Mark Appointment](images%2Fappointment%2Fug%2FappointmentExampleMark.PNG)
+
 ##### Restrictions
 
 * The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
@@ -1232,6 +1281,14 @@ appointment unmark <var>APPOINTMENT_ID</var>
 appointment unmark 1
 ```
 
+Output:
+
+```text
+[INFO] Unmarked Appointment: 5 has an appointment at 2024-03-05T07:00
+```
+
+![Appointment Unmark Appointment](images%2Fappointment%2Fug%2FappointmentExampleUnmark.PNG)
+
 ##### Restrictions
 
 * The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
@@ -1252,7 +1309,13 @@ appointment delete <var>APPOINTMENT_ID</var>
 ##### Example
 
 ```text
-appointment delete 5
+appointment delete 1
+```
+
+Output:
+
+```text
+[INFO] Deleted Appointment: 5 has an appointment at 2024-03-05T07:00
 ```
 
 ##### Restrictions
