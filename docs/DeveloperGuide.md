@@ -3,7 +3,56 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+- [**Acknowledgements**](#--acknowledgements--)
+- [**Setting up, getting started**](#--setting-up--getting-started--)
+- [**Design**](#--design--)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+- [**Implementation**](#--implementation--)
+    * [Quick Access Buttons on Each Student Card](#quick-access-buttons-on-each-student-card)
+        + [Motivation for Quick Access Buttons](#motivation-for-quick-access-buttons)
+        + [Implementation of Quick Access Buttons](#implementation-of-quick-access-buttons)
+        + [Alternatives considered for Quick Access Buttons](#alternatives-considered-for-quick-access-buttons)
+    * [Create Lesson feature](#create-lesson-feature)
+    * [School and GradeLevel Fields](#school-and-gradelevel-fields)
+        + [v1.2 Implementation of School and GradeLevel Fields](#v12-implementation-of-school-and-gradelevel-fields)
+        + [New Implementation of School and GradeLevel Fields in v1.3](#new-implementation-of-school-and-gradelevel-fields-in-v13)
+    * [\[Proposed\] Undo/redo feature](#--proposed---undo-redo-feature)
+        + [Proposed Implementation](#proposed-implementation)
+        + [Design considerations:](#design-considerations-)
+    * [\[Proposed\] Data archiving](#--proposed---data-archiving)
+- [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
+- [**Appendix: Requirements**](#--appendix--requirements--)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+- [Use cases](#use-cases)
+    * [Add a new student](#add-a-new-student)
+    * [Delete a student](#delete-a-student)
+    * [Update a student's particulars](#update-a-student-s-particulars)
+    * [View a student's profile](#view-a-student-s-profile)
+    * [Assign homework for a student](#assign-homework-for-a-student)
+    * [View a Student's Homework](#view-a-student-s-homework)
+    * [Mark a Homework as DONE](#mark-a-homework-as-done)
+    * [Mark a Homework as NOT DONE](#mark-a-homework-as-not-done)
+    * [View a particular Student's Lessons](#view-a-particular-student-s-lessons)
+    * [View all Students' Lesson history](#view-all-students--lesson-history)
+    * [Add Lesson](#add-lesson)
+    * [Add Exam](#add-exam)
+    * [View a particular Student's Exams](#view-a-particular-student-s-exams)
+    * [View all Students' Exams](#view-all-students--exams)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#--appendix--instructions-for-manual-testing--)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a person](#deleting-a-person)
+    * [Saving data](#saving-data)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -766,7 +815,12 @@ Priorities:
 *{More to be added}*
 
 ### Glossary
-
+* **Student**: A person who is taking lessons from the Tutor.
+* **Tutor**: A person who is teaching the Student. Here, the Tutor is also the user of the application.
+* **Lesson**: A meeting between the Tutor and the Student.
+* **Exam**: A test taken by the Student.
+* **Homework**: A task given to the Student by the Tutor.
+* **TutorPro**: The name of the application.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
