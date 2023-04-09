@@ -6,7 +6,7 @@ start
 if () then ([age range and specific age is not mixed])
 if () then ([age range is valid])
     :Finds dengue cases associates in the given age range;
-    :Displays how many cases was found given age range;
+    :Displays success message;
     stop
 else ([else])
 endif
