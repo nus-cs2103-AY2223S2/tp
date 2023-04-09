@@ -5,31 +5,25 @@ skinparam RoundCorner 0
 
 skinparam arrowThickness 1.1
 
-Class "<u>vaxTypeListPanel:ListViewPanel</u><VaxType>" as ListViewPanel UI_COLOR {
-    -changeProperty: ObjectProperty<Change<Object, IdData<Appointment>>>
-    -comparatorProperty: ObjectProperty<Comparator<IdData<Appointment>>>
-}
-show ListViewPanel fields
+Class "<u>vaxTypeListPanel:ListViewPanel</u>" as ListViewPanel UI_COLOR
 
-Class "<u>changeProperty:ObjectProperty</u><Change<Object, VaxType>>" as ChangeProperty #000000
-class "<u>:ObservableList</u><VaxType>" as DisplayList #000000
+Class "<u>changeProperty:ObjectProperty</u>" as ChangeProperty UI_COLOR
+class "<u>:ObservableList</u>" as DisplayList UI_COLOR
 
-Class "<u>:MapChangeListener</u><Object, VaxType>" as MapChangeListener #000000
-Class "<u>:ObservableMap</u><Integer, VaxType>" as ObservableMap #000000
+Class "<u>:MapChangeListener</u>" as MapChangeListener UI_COLOR
+Class "<u>filteredAppointmentMap:FilteredIdDataMap</u>" as FilteredIdDataMap MODEL_COLOR
 
-Class "<u>:VaxTypeManager</u>" as VaxTypeManager LOGIC_COLOR
-Class "<u>:ModelManager</u>" as ModelManager LOGIC_COLOR
-Class "<u>vaxDisplayList:ObservableList</u><VaxType>" as ModelList #000000
+Class "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+Class "<u>vaxDisplayList:ObservableList</u>" as ModelList MODEL_COLOR
 
 ListViewPanel --> ChangeProperty
 ListViewPanel --> DisplayList
 
-MapChangeListener -> ChangeProperty : updates >
-ObservableMap --> MapChangeListener : updates >
-VaxTypeManager --> ObservableMap
+MapChangeListener --> ChangeProperty : updates >
+FilteredIdDataMap --> MapChangeListener : updates >
 
 ModelManager --> ModelList
-ModelManager --> VaxTypeManager
+ModelManager --> FilteredIdDataMap
 
 DisplayList --> ModelList : updates >
 

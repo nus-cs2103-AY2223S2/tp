@@ -11,6 +11,8 @@ title: Developer Guide
 
 * COVID-19 vaccination data - [MOH ｜ COVID-19 Vaccination](https://www.moh.gov.sg/covid-19/vaccination)
 * Chemical name synonyms - [PubChem](https://pubchem.ncbi.nlm.nih.gov/)
+* Code snippet in [`ResultMessageBox`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/bd171c0108f75ff1c61c6bca63f618fb758eacda/src/main/java/seedu/vms/ui/ResultMessageBox.java#L44-L54) to size `TextArea` adapted and modified from - [StackOverflow - Javafx textfield resize to text length?](https://stackoverflow.com/a/25643696)
+* CLI presentation format in UG adapted from - [Document command-line syntax](https://developers.google.com/style/code-syntax)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,9 +55,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `patient delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -96,7 +98,7 @@ As seen from the class diagram above, `MainWindow` has composition type relation
   * 1 each for patients, vaccinations and appointments
 * `ResultDisplay` - responsible for displaying messages to the user.
 
-The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state after `fillInnerParts()` has been called. Generics have been omitted for clarity.
+The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state after `fillInnerParts()` has been called.
 
 ![State of MainWindow](images/UiObjectDiagram.png)
 
@@ -134,7 +136,7 @@ Below shows the object diagram showing the state after `fillInnerParts()` of `Ma
 
 ![Object diagram of DetailedView](images/UiDetailedViewPatientObjectDiagram.png)
 
-The activity diagram below shows how `DetailedDisplay` checks for changes and update its display when `refresh()` is invoked.
+The activity diagram below shows the work flow of `DetailedDisplay` as it checks for changes and update its display when `refresh()` is invoked.
 
 ![Activity diagram of DetailedView](images/UiDetailedViewRefreshActivityDiagram.png)
 
@@ -990,7 +992,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
       Use case resumes at step 1.
 
-#### UC-APT-002 - View appointments
+#### UC-APT-002 - List appointments
 
 ##### MSS
 
@@ -1003,45 +1005,131 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ##### MSS
 
-1. User requests to list appointments.
-2. VMS shows a list of appointments.
-3. User requests to edit a specific appointment in the list using the ID with the args.
-4. VMS edit the appointment.
+1. User enters command to edit an appointment.
+2. VMS edits the appointment.
 
-    Use case ends.
+   Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
 
-  Use case ends.
+      Use case resumes from step 1.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+* 1b. User requested to edit an appointment that does not exist.
+    * 1a1. VMS shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 #### UC-APT-004 - Delete appointment
 
 ##### MSS
 
-1. User requests to list appointments.
-2. VMS shows a list of appointments.
-3. User requests to delete a specific appointment in the list.
-4. VMS deletes the appointment.
+1. User enters command to delete an appointment.
+2. VMS deletes the appointment.
 
-    Use case ends.
+   Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
 
-  Use case ends.
+      Use case resumes from step 1.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+* 1b. User requested to delete an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+#### UC-APT-005 - Find appointments
+
+##### MSS
+
+1. User requests to find appointments.
+2. VMS shows a list of appointments that matches search criteria.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. The list is empty.
+    * 1a1. VMS returns an empty list.
 
       Use case resumes at step 1.
+
+* 1b. Some appointments match the search criteria.
+    * 1b1. VMS returns the list of appointment that matches.
+
+      Use case resumes at step 1.
+
+* 1c. No appointment match the search criteria.
+    * 1c1. VMS returns an empty list.
+
+      Use case resumes at step 1.
+
+#### UC-APT-006 - Mark appointments
+
+##### MSS
+
+1. User requests to mark a specified appointment.
+2. VMS marks the appointment.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to mark an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+* 1b. User requested to mark an appointment that is already marked.
+    * 1a1. If assertion is enabled
+        * 1a11. VMS shows an error message.
+
+          Use case ends.
+
+    * 1b1. If assertion is disabled
+
+    Use case resumes from step 1.
+
+#### UC-APT-007 - Unmark appointments
+
+##### MSS
+
+1. User requests to unmark a specified appointment.
+2. VMS changes the status of the appointment to not completed.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to unmark an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+* 1b. User requested to unmark an appointment that is already unmarked.
+    * 1a1. If assertion is enabled
+        * 1a11. VMS shows an error message.
+
+          Use case ends.
+
+    * 1b1. If assertion is disabled
+
+      Use case resumes from step 1.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1458,20 +1546,20 @@ Before every test case, ensure that the there are no patients. This can be done 
 1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A+ --a catfur --a pollen --v covax`
 1. `patient add --n John Does --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 1. `patient add --n John Po --p 98765432 --d 2001-03-19 --b AB+ --a catfur --a pollen --v covax`
-1. Find patient with name "John Doe"
-  `patient find John Doe`
+1. Find patient with name "John Doe"<br>
+  `patient find John Doe`<br>
   **Expected**: 2 patients listed! (John Doe, John Does)
-1. Find patient with name "John Does"
-  `patient find John Does`
+1. Find patient with name "John Does"<br>
+  `patient find John Does`<br>
   **Expected**: 1 patients listed! (John Does)
-1. Find patient with name "John"
-  `patient find John`
+1. Find patient with name "John"<br>
+  `patient find John`<br>
   **Expected**: 3 patients listed! (John Doe, John Does, John Po)
-1. Find patient with "A+" Blood Type
-  `patient find --b A+`
+1. Find patient with "A+" Blood Type<br>
+  `patient find --b A+`<br>
   **Expected**: 1 patients listed! (John Doe)
-1. Find patient with "A+" Blood Type and named "John"
-  `patient find --b A+ --n John`
+1. Find patient with "A+" Blood Type and named "John"<br>
+  `patient find --b A+ --n John`<br>
   **Expected**: 1 patients listed! (John Doe)
 
 ### Adding a vaccination
@@ -1599,6 +1687,78 @@ Before every test case, ensure that the there are no patients and vaccinations.
   `appointment add --p 3 --v TAKING --s 9999-1-1 --e 9999-1-2`<br>
   **Expected**: Appointment added
 
+### Adding a appointment
+Adds an appointment to the VMS.
+
+#### Prerequisites
+
+Before every test case, ensure that the list of appointments is empty,
+and the list of patients and vaccinations contains the patient and vaccine to be added.
+
+Clears the list of patients and vaccines
+```
+patient clear --force true
+vaccination clear --force true
+```
+
+Adds the necessary patient and vaccine
+```
+patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur \
+    --a pollen --v Moderna
+
+vaccination add Dose 1 (Moderna)
+```
+
+#### Adding a valid appointment
+
+``` text
+appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 /
+    --v Dose 1 (Moderna)
+```
+
+#### Prerequisites
+
+* There must be a patient with an id of `<Index>` `#0001`.
+* There must be a vaccine `Dose 1 (Moderna)`.
+
+##### Expected
+
+![Expected display](images/appointment/dg/AddAppointmentValid.png)
+
+#### Adding an invalid appointment
+Invalid appointments include:
+* missing parameters
+* existing upcoming appointment
+
+#### Prerequisites
+
+* There must be a patient with an id of `<Index>` `#0001`.
+* There must be a vaccine `Dose 1 (Moderna)`.
+
+#### Adding a invalid appointment - Missing parameters
+
+``` text
+appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400
+```
+
+##### Expected
+
+![Expected display](images/appointment/dg/AddAppointmentInvalidMissing.png)
+
+#### Adding a invalid appointment - Existing upcoming appointment
+
+``` text
+appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 \
+    --v Dose 1 (Moderna)
+
+appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 \
+    --v Dose 1 (Moderna)
+```
+
+##### Expected
+
+![Expected display](images/appointment/dg/AddAppointmentInvalidExisting.png)
+
 ### Adding a keyword
 
 #### Prerequisites
@@ -1654,7 +1814,38 @@ This can be done by executing all of the following commands before every test ca
 * `keyword add --k help --n appo`
 * `keyword add --k blank --n vacci`
 
-
 ## Appendix: Planned enhancements
 
-1. We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
+#### Less strict patient name check
+
+We plan to update NAME to allow for other possible name formats, not limited to the ones listed above (see [invalid patient name](#invalid-patient-name)). The VALIDATION_REGEX currently does not restrict the length of Name to accommodate patients with long names
+
+#### Decrease the warning severity message of invalid appointment data file
+
+On start up, in same cases, the `DEATH` severity (the highest due to an uncaught exception) will show if the loaded appointment file is invalid (eg. start time of an appointment after end time). We plan to decrease this severity.
+
+#### ID count saving
+
+We plan to save the current ID count to hard disk as well on every auto save. This will resolve the issue where the ID counts is forgotten when the application is closed and defaulted to the highest ID. Here are some examples on what may happen if the ID count is forgotten:
+
+* User adds 100 patients and then deletes all of them. ID count is at 100. A restart of the application will cause the ID count to reset to 1.
+* User adds 1000 patients, deletes the patients with IDs 11 to 20, adds 5 additional patients and deletes the added 5. ID count will be 15. A restart of the application will cause the ID count to reset to 1000 and the addition of the next patient will have an ID of 11.
+
+#### Validation of requirements of type `NONE`
+
+The validation checks for history requirements specifically the `NONE` type is planned to be enhanced. The enhancement will disallow the addition or creation of a history requirement if there exist a requirement of `NONE` that causes the entire history requirement to become meaningless. These cases are as follows:
+
+* Duplicate requirements of `NONE` type (eg. 2 `NONE::G1`).
+* Conflicting requirements with a `NONE` type (eg. `NONE::G1` and `ANY::G1`).
+
+#### Ignore whitespace for name parsing
+
+We plan to improve teh parsing of names such that any additional whitespace characters between non-whitespace characters are taken only to be 1. For example, the following names `A NAME`, `A  NAME` or `A   NAME` will be parsed to be `A NAME`. Extra spaces are likely to be an error by the user and in the real world, these extra whitespace characters are taken to be a single space. This enhancement applies to **patient names**, **vaccination names**, **allergy names** and **vaccination group names**.
+
+#### Emptying vaccination history requirement
+
+Currently when a vaccination has been added, there is no way to update its history requirement to become empty if it is not. The `--set true` argument flag is only able to replace the entire history requirement list with another that is not empty.
+
+We plan to enhance this by adding an additional flag to vaccination's edit <code>--empty <var>SHOULD_EMPTY</var></code> where <code><var>SHOULD_EMPTY</var></code> is of `boolean` type with a default value of `false`. The presence of this argument in the vaccination `edit` command will cause the history requirement of the vaccination to be emptied.
+
+The enhancement will also be implemented such that if both `--h` and `--empty` argument were to appear in the same `edit` command, the command will not be processed and an error message will be shown. This is the protect the user's data from unintended changes.
