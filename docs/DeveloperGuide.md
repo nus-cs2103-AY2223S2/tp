@@ -155,6 +155,8 @@ The `Model` component,
 
 </div>
 
+<img src="images/DG-images/BetterModelClassDiagram.png" width="450" />
+
 #### Task model
 **API** : [`Task.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
 
@@ -169,7 +171,7 @@ The `Model` component,
 
 <img src="images/DG-images/ScoreClassDiagram.png" width="280" />
 
-* A `Student` has a `UniqueScoreList` object which holds all their `Score` objects.
+* A `Student` only has one `UniqueScoreList` object which holds all his/her `Score` objects.
 * `UniqueScoreList` is a separate filtered list with recent score at front which is exposed to outsiders as an unmodifiable ObservableList<Student> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 ### Storage component
