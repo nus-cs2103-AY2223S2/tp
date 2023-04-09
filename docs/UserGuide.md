@@ -102,9 +102,9 @@ open the help window.<br>
 
    * `exit`: Exits the app.
 
-   * `undo 5`: Undoes five actions.
+   * `undo 5`: Undoes up to five actions.
 
-   * `redo 5`: Redoes five actions.
+   * `redo 5`: Redoes up to five actions.
 
 6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command-summary).
 
@@ -153,24 +153,25 @@ Item | Description
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+Please refer to the list of [commands](#Commands) for a full explanation.
 
-| Action       | Format, Examples                                                                                                                                                                                                                                                                            |
-|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                                                                                             |
-| **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                                                                                                  |
-| **Delete**   | `delete INDEX...` or <code>delete { d/DATE &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                                                                                                                         |
-| **Clear**    | `clear`                                                                                                                                                                                                                                                                                     |
-| **List**     | `list`                                                                                                                                                                                                                                                                                      |
-| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \\</code><br><code>; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
-| **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                                                                                              |
-| **Undo**     | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                                                                                          |
-| **Redo**     | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                                                                                          |
-| **Overview** | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                                                                                     |
-| **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                                                                                      |
-| **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                                                                                        |
-| **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                                                                                        |
-| **Help**     | `help`                                                                                                                                                                                                                                                                                      |
-| **Exit**     | `exit`                                                                                                                                                                                                                                                                                      |
+| Action       | Format, Examples                                                                                                                                                                                                       |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                        |
+| **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                             |
+| **Delete**   | `delete INDEX...` or <code>delete d/DATE</code> or <code>delete [sd/START_DATE] [ed/END_DATE] (at least 1)</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                           |
+| **Clear**    | `clear`                                                                                                                                                                                                                |
+| **List**     | `list`                                                                                                                                                                                                                 |
+| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... [a/AGE] [d/DATE] (at least 1, a/ and d/ tags can be replaced by sa/,ea/ or sd/,ed/ tags)</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                         |
+| **Undo**     | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                     |
+| **Redo**     | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                     |
+| **Overview** | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                |
+| **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                 |
+| **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                   |
+| **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                   |
+| **Help**     | `help`                                                                                                                                                                                                                 |
+| **Exit**     | `exit`                                                                                                                                                                                                                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -278,7 +279,7 @@ Adds a dengue patient to DengueHotspotTracker.
 Format: `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`
 
 Examples:
-* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1` 
+* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
   adds a case with the name `John Tan`, postal code `543299`, date `2023-02-13`,
   age `20`, and variant `DENV1` into DengueHotSpotTracker.
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
@@ -493,7 +494,7 @@ Format: `import [FILENAME]`
 
 * The dengue case list imported must be valid. Some criteria are as follows:
     * No duplicates
-    * All data fields must be [valid](#Valid-data-field-inputs)
+    * All data fields must be [valid](#valid-data-field-inputs)
     * No missing fields
 * The CSV must begin with a header that includes the names of each column.
 
@@ -591,4 +592,5 @@ empty data file at the next run.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous DengueHotspotTracker home folder.
+the data of your previous DengueHotspotTracker home folder. Alternatively, transfer a suitable csv file to the other
+computer and read it in.

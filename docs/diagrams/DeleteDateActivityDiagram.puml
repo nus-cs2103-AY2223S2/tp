@@ -1,15 +1,16 @@
 @startuml
 skinparam defaultTextAlignment center
-@startuml
-skinparam defaultTextAlignment center
 
 start
-:User enters delete cases\nby multiple indexes command;
+:User enters delete cases\nby date command;
 if () then ([indexes and dates\nnot mixed])
-if () then ([all indexes valid])
-    :Deletes cases associated\nwith each index;
+if () then ([date and date range\nnot mixed])
+if () then ([date is valid])
+    :Deletes cases associated\nwith the given date;
     :Displays\nsuccess message;
     stop
+else ([else])
+endif
 else ([else])
 endif
 else ([else])

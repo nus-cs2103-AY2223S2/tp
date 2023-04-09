@@ -35,6 +35,12 @@ public class SpecialisedStackForMemory<T> implements StackWithStorage<T> {
         this.redoHistory = new ArrayDeque<T>(MAX_SIZE + 1);
     }
 
+    /**
+     * Pops an item from the {@code SpecialisedStackForMemory}.
+     * Stores it in another location at {@code this.undoHistory}.
+     * @return The popped item.
+     * @throws NoSuchElementException When the {@code SpecialisedStackForMemory} is empty.
+     */
     @Override
     public T temporaryPop() throws NoSuchElementException {
         T latest = this.redoHistory.pop();
