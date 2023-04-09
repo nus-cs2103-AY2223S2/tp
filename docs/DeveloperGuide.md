@@ -257,7 +257,7 @@ Here is a sequence diagram showing the interactions between components when `del
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Proposed Implementation
+#### Proposed Implementation
 
 The proposed `delete` implementation supports deleting multiple `Person` entries at once. For example, `delete 1 3 5` will delete the `Person` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100`, none of the `Person` entries will be deleted.
 
@@ -359,7 +359,7 @@ Here is a sequence diagram showing the interactions between components when `fin
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Feature details
+#### Feature details
 
 Our implementation extends from the `find` implementation in AB3 by enhancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
 
@@ -426,9 +426,9 @@ Here is a sequence diagram showing the interactions between components when `fil
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Feature details
+#### Feature details
 
-### General Design Considerations
+#### General Design Considerations
 
 
 [↑ Back to top](#table-of-contents)
