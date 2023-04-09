@@ -240,7 +240,7 @@ The following sequence diagram shows how the status operation works:
 
 ![UI Interaction for the `status applied` Command](images/StatusSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `StatusCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `StatusCommand` and `ContainsStatusPredicate` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Step 2. The `UltronParser` class parses the user input of `status applied` and returns a `StatusCommand` object with a `ContainsStatusPredicate` representing the `applied` portion of the input.
