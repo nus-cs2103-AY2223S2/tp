@@ -146,18 +146,18 @@ Finds clients whose names is any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `lim` will match `Lim`
+* The order of the keywords does not matter. e.g. `Jun Jie` will match `Jie Jun`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`
+* Only full words will be matched e.g. `Ro` will not match `Rohit`
+* clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Lim Qi` will return `Lim Jun Jie`
+  , `Tan Jia Qi`
 
 Examples:
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find lim jun jie ` returns `Lim Jun Jie`
+* `find Lim Qi` returns `Lim Jun Jie`, `Tan Jia Qi`<br>
+  ![result for 'find Lim Qi'](images/findPerson.png)
 
 ### Deleting a client : `delete`
 
@@ -170,7 +170,7 @@ Format: `delete INDEX`
 Examples:
 
 * `listPerson` followed by `delete 2` deletes the 2nd client in FAid.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `find Fariq` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Add meeting : `meetingAdd`
 
