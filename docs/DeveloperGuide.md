@@ -488,23 +488,23 @@ These commands can be tested on any page. Specific pages are given for this sect
 1. Displaying the home page while on the Course Page.
 
     1. Test case: `home`<br>
-       Expected: Course Page is displayed.
+       Expected: Course Page is displayed. <br>
 
 2. Displaying the previous page while on the Group Page.
 
     1. Test case: `back`<br>
-       Expected: Course Page is displayed.
+       Expected: Course Page is displayed. <br>
 
 3. Displaying the previous page while on the Course Page.
 
     1. Test case: `back`<br>
        Expected: Error message shows up on the log box as the Course Page is the home page.<br>
-       The application begins from the home page.
+       The application begins from the home page. <br>
 
 4. Undoing a select command from the Course Page (the current page to run the test case is the Group Page).
 
     1. Test case: `undo`<br>
-       Expected: Course Page is displayed.
+       Expected: Course Page is displayed. <br>
 
 5. Opening the help window from the Course Page.
 
