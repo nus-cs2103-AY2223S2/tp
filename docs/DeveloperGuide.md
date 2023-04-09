@@ -115,7 +115,7 @@ Before reading, it is recommended that developers read the [User Guide](https://
 ## Acknowledgements
 
 - Forked from: [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp)
-- Libraries utilised: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5/)
+- Libraries utilised: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [JUnit 5](https://github.com/junit-team/junit5/)
 
 ---
 
