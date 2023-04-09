@@ -356,13 +356,51 @@ To learn more about CalendarFX, you may visit its Developer Guide [here](https:/
 
 ### View all clashing `Event`: `clash` command
 
-The purpose of the `clash` command is for users to finding instances of `Event` with clashing timing, enabling them to reschedule
-clashing events.
+#### Purpose of `clash` Function
 
-The `clash` command feature is a standard command that extends `Command` and returns a `CommandResult` in the
-`execute()` method.
+The purpose of the `clash` command is for users to find events with clashing timings, enabling them to reschedule
+clashing events. 
 
-**Implementation**
+In TinS, there are two kinds of events: **Interviews** and **Deadlines**. Having multiple Deadlines with the same timing
+does not result in a clash. However, having multiple Interviews with overlapping timings would result in a clash in
+timing. Therefore, Interviews with overlapping timing would need to be picked up by the `clash` function.
+
+#### Design Considerations
+
+There were two possible ways of implementing the `clash` function:
+
+1. Organising clash timing by Events: For each Event, event, stored in TinS, TinS will compare that particular Event will
+   all other Events, otherEvents. If there is a clash found, the otherEvent will be placed in a list. After comparison
+   with all other Events, the event and its corresponding list will be added to a hash map. This is repeated for all
+   Events in TinS. 
+
+   Advantage:
+   - Implementation is easy.
+  
+   Disadvantage:
+   - Duplicated records of clashes. For example, if event 1 clashes in timing with event 2, event 2 will be recorded in
+     the list corresponding to event 1, and event 1 will be recorded in the list corresponding to event 2. This results
+     in two records of the same clash.
+
+2. Organising clash timings by Date: For each day, list out all the Events with clashes in timing on that day.
+
+   Advantage:
+   - No duplicated records of clashes.
+   - Neater display of clashes.
+
+   Disadvantage:
+   - User will not be able to see exactly which two events have clashing timings on a day, but rather a collated list of
+     all events that clash in timing.
+
+The team has decided to proceed with the second implementation. This is because the team rationalized that organising
+the clash events by date will make the application more easy to understand, as there will be no confusion caused by
+duplicated records.
+
+#### Implementation
+
+The `clash` command feature is standard command that extends `Command` and returns a `CommandResult` in the
+`execute()` method. The `CommandResult` returns a `HashMap`, which contains mapping from a `LocalDate` to `List<Event>`.
+The `List<Event>` is the list of event with clashes on that particular date.
 
 Given below is an example usage scenario and how the select command behaves at each step.
 
@@ -370,12 +408,21 @@ Step 1. The user enters the `clash` command into the CLI.
 
 Step 2. `InternshipCatalogueParser` parses the input and extracts the command `clash`, and creates a new `ClashCommand`.
 
-Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance,
-which invokes `getEventCatalogue()` on `Model` to get the current Event Catalogue of TinS.
+Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance, which invokes `getEventCatalogue()`
+on `Model` to get the current Event Catalogue of TinS.
 
-Step 4. The `findClashEvents` is then called on `eventCatalogue`, which invokes a series of methods to loop through
-all events in `eventCatalogue` and find events with clashing datetimes. This returns a hash map of an event to a list
-of events that it clashes with.
+Step 4. The `findClashEvents()` is then called on `eventCatalogue` field in `EventCatalogue`. To avoid breaking the
+abstraction barrier, `getEventClashHash()` is called on `events` field in `UniqueEventList`.
+
+Step 5. The `getEventClashHash()` methods creates a list of Interview events from the current list of events in 
+`internalList`, by filtering out Deadline events. 
+
+Step 6. For each event in the list of Interview events, `getEventClashHash()` compares the event with all other events
+in the list. If there is a clash in the two events, `clashingTimings(Event)` is invoked on the event to find all the
+dates on which the events clash. These dates are added to the `HashMap`, and the clashing events are appended to
+the list of events corresponding to those dates.
+
+![Clash](diagrams/ClashSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
