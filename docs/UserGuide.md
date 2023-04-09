@@ -94,7 +94,7 @@ forgetting about a client!
 
 * `ARG1|ARG2` in format means only one ARG1 or ARG2 must be a part of the user input but not both
 
-</div>
+* Refer to the [Prefix Masterlist](#prefix masterlist) for the list of prefixes used for the commands below.
 
 ### Viewing help : `help`
 
@@ -106,31 +106,29 @@ Format: `help`
 
 ### Adding a client : `add`
 
-Adds a client to the address book.
+Adds a client to the FAid.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
-</div>
-
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/Bishan, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Ang Mo Kio p/99999999 t/Insurance`
+* `add n/John Doe p/98765432 e/johnd@example.com a/Bishan, block 123, #01-01` adds a client named John Doe with 
+his phone number, email and address
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Ang Mo Kio p/99999999 t/Insurance` adds a client named 
+Betsy Crowe with her phone number, email and address, as well as the financial policy she is under, Insurance. 
 
 Note:
 * The tag used to add a person into the contact list will be used in the findPolicy method, e.g. using the above example, doing a findPolicy Insurance will show Betsy Crowe
 
 ### Listing all clients : `listPerson`
 
-Shows a list of all clients in the address book.
+Shows a list of all clients in FAid.
 
 Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in the address book.
+Edits an existing client in FAid.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -168,7 +166,7 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the address book.
+Deletes the specified client from FAid
 
 Format: `delete INDEX`
 
@@ -176,25 +174,25 @@ Format: `delete INDEX`
 
 Examples:
 
-* `listPerson` followed by `delete 2` deletes the 2nd client in the address book.
+* `listPerson` followed by `delete 2` deletes the 2nd client in FAid.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Add meeting : `meetingAdd`
 
-Adds a meeting to the address book.
+Schedules a meeting with a client in FAid
 
 Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
 
 Required Information:
 
-* `client_INDEX`: Index of a client in address book
+* `client_INDEX`: Index of a client in FAid
 * `DESC`: Description of the meeting to add
 * `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
 
 Example:
 
-* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020
+* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` sets up a meeting on 30th March 2020
   from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3), with the description "Meeting with Charlotte".
 
 Notes:
@@ -208,13 +206,13 @@ Notes:
 
 ### Remove meeting : `meetingRemove`
 
-Removes meeting from the address book.
+Removes meeting from FAid.
 
 Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 
 Required Information:
 
-* `CLIENT_INDEX`: Index of a client already in address book
+* `CLIENT_INDEX`: Index of a client already in FAid
 * `MEETING_INDEX`: Meeting index after searching for meetings for a specific client by doing a meetingFind CLIENT_INDEX to get the required meeting index
 
 Examples:
@@ -230,13 +228,13 @@ Note:
 
 ### Updating a meeting : `meetingUpdate`
 
-Updates an existing meeting belonging to a client in the address book
+Updates an existing meeting belonging to a client in FAid
 
 Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
 
 Required Information:
 
-* `CLIENT_INDEX`:Index of a client already in address book
+* `CLIENT_INDEX`:Index of a client already in FAid
 * `MEETING_INDEX`: Meeting index after searching for meetings for a specific client by doing a meetingFind CLIENT_INDEX to get the required meeting index
 
 Examples:
@@ -256,18 +254,18 @@ Notes:
 
 ### Find meeting : `meetingFind`
 
-Finds meetings from the address book based on the date of meeting or person index but not both
+Finds meetings from FAid based on the date of meeting or person index but not both
 
 Format: `meetingFind DATE|CLIENT_INDEX `
 
 Required Information:
 
 * Date (dd/mm/yyyy)
-* Index of a client already in address book
+* Index of a client that is already stored in FAid.
 
 Examples:
 * `meetingFind 11/05/2023` Lists out all meetings that start on 11th May 2023
-* `meetingFind 5` Lists out all meetings with client of index 5 in the address book
+* `meetingFind 5` Lists out all meetings with client of index 5 in FAid
 
 
 ### List meeting : `listMeeting`
@@ -285,7 +283,7 @@ Required information:
 
 Examples:
 
-* `listRegion Central` lists all clients from the Central region in the address book
+* `listRegion Central` lists all clients from the Central region in FAid.
 
 ### Find clients by policy name : `findPolicy`
 
@@ -309,6 +307,10 @@ Clears all entries from FAid.
 
 Format: `clear`
 
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
+Executing clear will result in all of your client information and meetings to be cleared permanently! 
+</div>
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -325,7 +327,7 @@ manually.
 FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, FAid will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -336,12 +338,26 @@ If your changes to the data file makes its format invalid, FAid will discard all
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous FAid home folder.
 
 **Q**: How do I key in my client's region?<br>
 **A**: FAid automatically detects region based on address keyed in
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Prefix Masterlist
+
+Prefix | Field
+--------|------------------
+**n/** | Name
+**p/** | Phone number
+**e/** | Email address
+**a/** | Residential Address
+**t/** | Policy Tag Name
+**md/** | Description of meeting
+**ms/** | Start date and time of meeting
+**me/** | End date and Time of meeting
+
 
 ## Command summary
 
