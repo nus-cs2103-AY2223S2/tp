@@ -102,9 +102,9 @@ open the help window.<br>
 
    * `exit`: Exits the app.
 
-   * `undo 5`: Undoes five actions.
+   * `undo 5`: Undoes up to five actions.
 
-   * `redo 5`: Redoes five actions.
+   * `redo 5`: Redoes up to five actions.
 
 6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command-summary).
 
@@ -154,23 +154,23 @@ Item | Description
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                                                                                                                                            |
-|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                                                                                             |
-| **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                                                                                                  |
-| **Delete**   | `delete INDEX...` or <code>delete { d/DATE &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                                                                                                                         |
-| **Clear**    | `clear`                                                                                                                                                                                                                                                                                     |
-| **List**     | `list`                                                                                                                                                                                                                                                                                      |
-| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \\</code><br><code>; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
-| **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                                                                                              |
-| **Undo**     | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                                                                                          |
-| **Redo**     | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                                                                                          |
-| **Overview** | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                                                                                     |
-| **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                                                                                      |
-| **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                                                                                        |
-| **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                                                                                        |
-| **Help**     | `help`                                                                                                                                                                                                                                                                                      |
-| **Exit**     | `exit`                                                                                                                                                                                                                                                                                      |
+| Action       | Format, Examples                                                                                                                                                                                                       |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                        |
+| **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                             |
+| **Delete**   | `delete INDEX...` or <code>delete d/DATE</code> or <code>delete [sd/START_DATE] [ed/END_DATE] (at least 1)</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                           |
+| **Clear**    | `clear`                                                                                                                                                                                                                |
+| **List**     | `list`                                                                                                                                                                                                                 |
+| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... [a/AGE] [d/DATE] (at least 1, a/ and d/ tags can be replaced by sa/,ea/ or sd/,ed/ tags)</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                         |
+| **Undo**     | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                     |
+| **Redo**     | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                     |
+| **Overview** | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                |
+| **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                 |
+| **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                   |
+| **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                   |
+| **Help**     | `help`                                                                                                                                                                                                                 |
+| **Exit**     | `exit`                                                                                                                                                                                                                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
