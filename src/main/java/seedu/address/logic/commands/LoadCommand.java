@@ -15,7 +15,7 @@ public class LoadCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": loads the current EduMate from memory."
             + "Parameters:\n"
-            + "load FILENAME(as single string without spaces)"
+            + "load FILENAME (non-empty alphanumeric string)\n"
             + "Example:\n"
             + "load backup";
 

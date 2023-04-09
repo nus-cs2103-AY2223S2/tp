@@ -35,3 +35,5 @@ EduMate is a desktop application designed for NUS students to manage their acade
 * **[PRs Authored](https://github.com/AY2223S2-CS2103T-W14-2/tp/pulls?q=is%3Apr+author%3Amynameizzhafeez+)**
 * **[PRs Reviewed](https://github.com/AY2223S2-CS2103T-W14-2/tp/pulls?page=1&q=is%3Apr+commenter%3Amynameizzhafeez+-author%3Amynameizzhafeez)**
 * **[Issues and Bugs Reported](https://github.com/AY2223S2-CS2103T-W14-2/tp/issues?q=is%3Aissue+author%3Amynameizzhafeez)**
+* **Tools**:
+  * Java 11 and JavaFX and Joda-Time

@@ -161,7 +161,7 @@ After a few seconds, a GUI resembling the one shown below will appear. Please ta
 <div markdown="span" class="alert alert-danger">
 
 :warning: **Warning!**<br>
-`EduMate` will create a `data` folder which contains the data saved by `EduMate`. It is essential that you do not modify the contents
+EduMate will create a `data` folder which contains the data saved by EduMate. It is essential that you do not modify the contents
 of the `data` folder so as not to corrupt your data and result in an empty application by default.
 
 </div>
@@ -179,7 +179,7 @@ before continuing.
 
 Before we dive into exploring the various features of EduMate, please choose whether you prefer a guided or unguided experience.
 
-1. For a guided experience, please enter `sample 100` in the command box located at the top left of the application. This will generate 100 sample contacts in your EduMate, which you can use to familiarize yourself with the application's functionalities.
+1. For a guided experience, please enter `sample 100` in the command box located at the top left of the application. This will generate 100 sample contacts in your EduMate, which you can use to familiarise yourself with the application's functionalities.
 2. If you would like to start with a fresh EduMate, simply type `clear` in the same [Command Box](#command-box) located at the bottom of the application.
 
 <div markdown="span" class="alert alert-danger">
@@ -210,14 +210,14 @@ A member of our core team will attend to you as soon as possible.
 
 Our UI components have been carefully crafted to fulfil specific functions, ensuring that your experience using our platform is as seamless and user-friendly as possible.
 
-We have chosen a light purple and white color scheme for the application, as these cool colors promote a sense of calm and clarity, making it easier for you to focus on your work.
+We have chosen a light purple and white colour scheme for the application, as these cool colours promote a sense of calm and clarity, making it easier for you to focus on your work.
 
 ![Ui](images/UG_ui_pictures/user_interface.png)
-<center>Diagram 2: <code>EduMate</code>'s UI</center>
+<center>Diagram 2: EduMate's UI</center>
 
 ### **Breakdown of EduMate's UI**
 
-`EduMate` consists of the following main UI components
+EduMate consists of the following main UI components
 1. [Person List](#person-list)
 2. [Meet Up Recommendation Panel](#meet-up-recommendation-panel)
 3. [Profile Panel](#profile-panel)
@@ -231,11 +231,11 @@ The following diagram shows the layout of components numbered exactly as above.
 
 <img src="images/UG_ui_pictures/ui_labelled.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 3: Labelled layout of <code>EduMate</code>'s UI components.</center>
+<center>Diagram 3: Labelled layout of EduMate's UI components.</center>
 
 ### Person List
 
-You may locate the Person List at the center-left of `EduMate`. This is where you will see all your saved contacts (or sample data if you are trying out for the first time).
+You may locate the Person List at the center-left of EduMate. This is where you will see all your saved contacts (or sample data if you are trying out for the first time).
 
 When viewing your contacts in EduMate, you will notice an index assigned to each contact. This index is located directly to the _left_ of the contact's display name, and serves as a unique identifier for each contact in your list.
 
@@ -256,7 +256,7 @@ Not all modules that are tagged to the contact are shown on the Person List. If 
 
 ### Meet Up Recommendation Panel
 
-The Meet Up Recommendation Panel (located at the top right of `EduMate`) suggests recommendations of optimal timings and locations
+The Meet Up Recommendation Panel (located at the top right of EduMate) suggests recommendations of optimal timings and locations
 where you can meet your friends.
 
 <img src="images/UG_ui_pictures/MeetUpRecommendationUnlabelled.svg" style="width:80%;margin:1% 1% 1% 10%">
@@ -312,9 +312,10 @@ The panel contains all the information of every scheduled meet up with your cont
 
 ### Command Response Box
 
-The Command Response box is where you will receive feedback for any command you execute. It will provide feedback on command execution status (e.g success, invalid format).
+The Command Response Box is where EduMate will provide some feedback on the outcome
+of each command you execute (e.g success, invalid format etc).
 
-The Command Response box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box).
+The Command Response Box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box).
 
 <br>
 
@@ -324,13 +325,13 @@ The Command Response box is located directly below the [Profile Panel](#profile-
 
 ### Command Box
 
-The Command Box is where you can input the [Commands](#commands) when using `EduMate`.
+The Command Box is where you can input the [Commands](#commands) when using EduMate.
 
 The Command Box is located at the bottom of the application. You may refer to the [User Interface](#user-interface) section to locate it.
 
 <img src="images/UG_ui_pictures/command_input_box.png" style="width:80%;margin:0 10%">
 
-<center>Diagram 12: Command input box in <code>EduMate</code> boxed in red</center>
+<center>Diagram 12: Command input box in EduMate boxed in red</center>
 
 <br>
 
@@ -341,34 +342,34 @@ Did you know that the **UP** and **DOWN** arrow keys can be used to quickly acce
 You can now **save time and increase your productivity!**<br>
 <br>
 
-<code>EduMate</code> saves up to 100 of your most recent commands to a file for your convenience when you relaunch the application as well!
+EduMate saves up to 100 of your most recent commands to a file for your convenience when you relaunch the application as well!
 That way, you can reuse commands from your previous session with ease!
 
 </div>
 
 ### Help Button
 
-Should you need help with command syntax whilst using `EduMate`, you may click the Help Button located at the bottom left of `EduMate` ([see
- Breakdown of `EduMate`'s UI](#breakdown-of-edumates-ui)).
+Should you need help with command syntax whilst using EduMate, you may click the Help Button located at the bottom left of EduMate ([see
+ Breakdown of EduMate's UI](#breakdown-of-edumates-ui)).
 
 Clicking the Help Button is an alternative to the `help` command.
 
-Both commands will result in a Help Window appearing which shows the various command syntax used by  `EduMate`.
+Both commands will result in a Help Window appearing which shows the various command syntax used by  EduMate.
 
 <img src="images/UG_ui_pictures/HelpWindow.svg" style="width:40%;margin:1% 1% 1% 30%">
 
-<center>Diagram 13: Help Window of <code>EduMate</code></center>
+<center>Diagram 13: Help Window of EduMate</center>
 
 ### Exit Button
 
-Clicking the Exit Button will allow users to quit `EduMate`.
+Clicking the Exit Button will allow users to quit EduMate.
 
 [Return to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Set Your Own Profile
 
-Once you have familiarized yourself with EduMate, you are now ready to begin customizing the application to suit your preferences and needs!
+Once you have familiarised yourself with EduMate, you are now ready to begin customising the application to suit your preferences and needs!
 
 **Step 1.** Run `java -jar edumate.jar`. The application window will open and show you where you have left off
 (if you have tried out `sample` from earlier) <br>
@@ -473,6 +474,9 @@ EduMate is a command-driven application, which means that its various functional
 * [Prefixes](#prefixes) must be preceded by a space.<br>
   e.g. `sort m/an/Tan` is not an accepted command for prefixes `m/` and `n/`.
 
+
+* Commands and prefixes are **CASE-SENSITIVE**.
+
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -497,7 +501,7 @@ Multi-valued attributes, on the other hand, can have multiple values associated 
 
 ### Basic Attributes
 
-Below, you can find the basic attributes we use to make up a person's profile in `EduMate`.
+Below, you can find the basic attributes we use to make up a person's profile in EduMate.
 
 #### **Basic Attributes Table**
 
@@ -572,7 +576,7 @@ Once all the basic information has been added, you can then assign them to group
 
 ##### Scenario:
 
-You want to create a new contact for a friend named Weixiang whose information does not exist in `EduMate` yet. 
+You want to create a new contact for a friend named Weixiang whose information does not exist in EduMate yet. 
 You run the `add` command with his details following the above format.
 
 Command entered: `add n/Weixiang p/89229358 s/Boon Lay e/heavenlywang@gmail.com t/@wangkong g/Groupmate m/CS2101 m/ES2660` 
@@ -580,11 +584,11 @@ Command entered: `add n/Weixiang p/89229358 s/Boon Lay e/heavenlywang@gmail.com 
 What you should see:
 1. Weixiang's contact is added towards the end of the Person List.
 2. Weixiang's profile appears on the Profile Panel as such (below).
-3. The Command Response Box shows that Weixiang is successfully added into `EduMate`.
+3. The Command Response Box shows that Weixiang is successfully added into EduMate.
 
 <img src="images/ug_cmds_pics/addcommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 14: A new contact: Weixiang is added to <code>EduMate</code>.</center>
+<center>Diagram 14: A new contact: Weixiang is added to EduMate.</center>
 
 ##### More Examples of Usage:
 
@@ -649,7 +653,7 @@ The `view` command retrieves and display the either your profile or the contact'
 
 ##### Scenario (Continuation from previous scenario):
 
-As Weixiang is a new friend, and you are not familiar with him yet. You want to chat with him on Telegram but
+Since Weixiang is a new friend, you want to reach out to him to get to know him better. You want to chat with him on Telegram but
 cannot remember his Telegram handle. You decided to use the `view` command to view his profile.
 
 Command entered: `view n/Weixiang` or `view 101` (if you know Weixiang's contact index)
@@ -689,7 +693,7 @@ With EduMate's `edit` command, you can easily update the profile of a contact. Y
 ##### Scenario (Continuation from previous scenario):
 
 Suppose now after talking to Weixiang, you realised that he has just moved to Little India. You then decide to edit the `Station` attribute of his contact from 
-`Boon Lay` to `Little India`. You also remembered that from the `view` command, Weixiang's index in `EduMate` is 101.
+`Boon Lay` to `Little India`. You also remembered that from the `view` command, Weixiang's index in EduMate is 101.
 
 Command entered: `edit 101 s/Little India`
 
@@ -697,7 +701,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/EditCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 16: MRT station nearest to Weixiang's home updated to Little India after execution of the <code>edit</code>command.</center>
+<center>Diagram 16: MRT station nearest to Weixiang's home updated to Little India after execution of the <code>edit</code> command.</center>
 
 <br>
 
@@ -725,8 +729,8 @@ If you no longer need a contact in EduMate, you can remove them using the `delet
 
 ##### Scenario :
 
-Suppose you do not need Astrid's contact anymore and you want to delete her contact from `EduMate`.
-From the `view n/Astrid Holland` command, her `EduMate` index is 8.
+Suppose you do not need Astrid's contact anymore and you want to delete her contact from EduMate.
+From the `view n/Astrid Holland` command, her EduMate index is 8.
 
 Command entered: `delete 8`
 
@@ -734,7 +738,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/DeleteCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 17: Astrid's contact deleted after execution of the <code>delete</code>command.</center>
+<center>Diagram 17: Astrid's contact deleted after execution of the <code>delete</code> command.</center>
 
 ##### More Examples of Usage:
 
@@ -772,9 +776,9 @@ You can tag your existing contacts with groups and modules using this command. Y
 ##### Scenario:
 
 Suppose you now have a senior, Amirul, taking MA2101. You are interested and might want to contact Amirul for some advice.
-You then `tag` Amirul's contact in `EduMate` with the following Monday 4pm - 6pm lesson slot and its corresponding module code.
+You then `tag` Amirul's contact in EduMate with the following Monday 4pm - 6pm lesson slot and its corresponding module code.
 
-Amirul has index 6 in `EduMate`.
+Amirul has index 6 in EduMate.
 
 Command entered: `tag 6 m/MA2101 Monday 16 18`
 
@@ -964,9 +968,9 @@ By simply typing `sort` followed by the relevant criteria, you can sort your con
 
 </div>
 
-<br>
 
-<div markdown="block" class="alert alert-primary">
+
+<div markdown="block" class="alert alert-success">
 
 :bulb: **Accepted versions for `sort` order**: <br>
 In short, in the command formats `z/a` and `z/d`, we only care about the **first letter** immediately after the slash. It can be either in upper case or lower case and can have anything behind it. For example, `z/ascending` and `z/Disco` would both work. However, if the first letter is not either `a`, `d`, `D` or `A`, then we use the **default ordering**.
@@ -1008,9 +1012,9 @@ What you should see:<br>
 
 ##### Extra Explanation:
 
-The command `sort m/d n/a` would mean that `EduMate` would first sort contacts by decreasing number of common modules with you, and tie-break by its lexicographical ordering.
+The command `sort m/d n/a` would mean that EduMate would first sort contacts by decreasing number of common modules with you, and tie-break by its lexicographical ordering.
 
-Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same common modules as you.
+Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same number of common modules as you.
 
 ##### More Examples of Usage:
 
@@ -1044,7 +1048,7 @@ Using the `save` command in EduMate, you can easily save your data into a file w
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`.
+* `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`. Note that the file name must be a non-empty, alphanumeric string.
 
 </div>
 
@@ -1063,7 +1067,7 @@ Using the `load` command in EduMate, you can easily load a previously saved data
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`.
+* `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`. Note that the file name must be a non-empty, alphanumeric string.
 
 </div>
 
@@ -1078,7 +1082,7 @@ Using the `load` command in EduMate, you can easily load a previously saved data
 
 #### Suggest places to meet with your contacts `meet`, `study`, `eat`
 
-The `meet` command in EduMate is used to suggest suitable meet-up locations and times for users and their contacts, based on various criteria such as availability and proximity. It is useful for finding a mutually convenient time and place to meet up with friends or study partners. EduMate also offers more specialized commands such as `eat` for suggesting places to eat and `study` for suggesting places to study.
+The `meet` command in EduMate is used to suggest suitable meet-up locations and times for users and their contacts, based on various criteria such as availability and proximity. It is useful for finding a mutually convenient time and place to meet up with friends or study partners. EduMate also offers more specialised commands such as `eat` for suggesting places to eat and `study` for suggesting places to study.
 
 <div markdown="block" class="alert alert-info">
 
@@ -1093,12 +1097,12 @@ The `meet` command in EduMate is used to suggest suitable meet-up locations and 
 
 After sorting your contacts, you decided to ask Tae Seong, Alex, Amirul and Kevin from your CCA to study for CS2100. 
 
-Problem is, you do not know when all of them are free! Luckily, you have `EduMate` to find out for you!
+Problem is, you do not know when all of them are free! Luckily, you have EduMate to find out for you!
 
 You can execute the `study` variant of the `meet` command
 whilst referring to their index on the Person List.
 
-From here, `EduMate` will recommend the most optimal places and the best possible time to meet and study for the final exam.
+From here, EduMate will recommend the most optimal places and the best possible time to meet and study for the final exam.
 
 Command entered: `study 35 29 10 23`
 
@@ -1127,13 +1131,13 @@ The `organise` command in EduMate is used to add meet ups with selected contacts
 
 In addition, EduMate offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
 
-Any organised meet ups will be displayed at `EduMate`'s [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
+Any organised meet ups will be displayed at EduMate's [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
 
 <div markdown="span" class="alert alert-danger">
 
 :warning:**Common Mistake**<br>
 
-The American spellings, `organize` and `unorganize` are not accepted by `EduMate`.
+The American spellings, `organize` and `unorganize` are not accepted by EduMate.
 
 </div>
 
@@ -1151,16 +1155,16 @@ The American spellings, `organize` and `unorganize` are not accepted by `EduMate
 ##### Scenario (Continuation from previous scenario):
 
 You have decided that Queenstown Public Library is the most conducive library and have confirmed with your friends 
-the meeting time recommended by `EduMate`. 
+the meeting time recommended by EduMate. 
 
-The recommendation given by `EduMate` for your preferred meet up is 2.
+The recommendation index given by EduMate for your preferred meet up is 2.
 
 Command entered: `organise 2`
 
 What you should see:<br>
 
 <img src="images/ug_cmds_pics/OrganiseCommand.svg" style="width:80%;margin:0 10%">
-<center>Diagram 23: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
+<center>Diagram 23: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to EduMate's Scheduled Meet Up Panel.</center>
 
 ##### More Examples of Usage:
 
@@ -1203,7 +1207,7 @@ What you should see: <br>
 
 <img src="images/ug_cmds_pics/UnorganiseCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 24: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
+<center>Diagram 24: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from EduMate's Scheduled Meet Up Panel.</center>
 
 
 ### Other Commands
@@ -1217,16 +1221,16 @@ What you should see: <br>
 
 </div>
 
-This command was built to help you and other new users get acquainted with `EduMate` functions. 
+This command was built to help you and other new users get acquainted with EduMate's functions. 
 
-`sample` helps to populate `EduMate` with fake profiles, so you can experiment with the commands without affecting your real contacts.
+`sample` helps to populate EduMate with fake profiles, so you can experiment with the commands without affecting your real contacts.
 
 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Limit of <code>sample</code>**<br>
 
-You can only sample at most 100 contacts into `EduMate`.
+You can only sample at most 100 contacts into EduMate.
 
 </div>
 
@@ -1235,7 +1239,7 @@ You can only sample at most 100 contacts into `EduMate`.
 
 :warning: **Warning**<br>
 
-Do not execute <code>sample</code> after you have started using <code>EduMate</code> properly yourself. Doing so will clear all your contacts!
+Do not execute <code>sample</code> after you have started using EduMate properly yourself. Doing so will clear all your contacts!
 
 </div>
 
@@ -1244,13 +1248,13 @@ Do not execute <code>sample</code> after you have started using <code>EduMate</c
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Examples**<br>
-* `sample 25`: Randomly sample 25 contacts from within `EduMate` and populate them into the application.
+* `sample 25`: Randomly sample 25 contacts from within EduMate and populate them into the application.
 
 </div>
 
 #### Clear the application `clear`
 
-If you want to delete all your contacts from `EduMate`, simply type `clear`.
+If you want to delete all your contacts from EduMate, simply type `clear`.
 
 <div markdown="span" class="alert alert-danger">
 
@@ -1263,13 +1267,13 @@ After the <code>clear</code> command is executed, the data that has been deleted
 
 #### Exit the application `exit`
 
-If you want to end the application, simply type `exit`, or click on the `Exit` button located on the left of the interface.
+If you want to quit the application, simply type `exit`, or click on the `Exit` button located on the left of the interface.
 
 ---
 
 ## FAQ
 
-**Q**: Can I add multiple module tags to a user
+**Q**: Can I add multiple module tags to a user?
 
 **A**: Yes, you can add multiple tags to a single user by using the "Module Tagging" feature multiple times.
 
@@ -1278,7 +1282,7 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 
 **A**: Yes you may! Refer to [Editing a Contact's Details](#edit-a-contacts-details-edit)
 
-**Q**: How is `EduMate` better than Microsoft Outlook or uWave?
+**Q**: How is EduMate better than Microsoft Outlook or uWave?
 
 **A**: We have features that Microsoft Outlook or uWave don't have but we think should be integrated into these platforms, like the [meet up recommenders](#meet-commands)
 and several search functions like [sort](#arrange-contacts-based-on-criteria-sort) and [find](#filter-contacts-by-keywords-find). It is also open-source so student developers can 

@@ -116,7 +116,7 @@ title: Developer Guide
 ---
 
 ## **Software Overview**
-EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimized for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If you type quickly, eduMate can complete contact and module management tasks faster than traditional GUI apps.
+EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimised for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If you type quickly, EduMate can complete contact and module management tasks faster than traditional GUI apps.
 
 ---
 
@@ -177,6 +177,7 @@ A member of our core team will attend to you as soon as possible.
 ## **Acknowledgements**
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
 * This project utilised GUI tests from the [AddressBook Level 4 (AB4)](https://github.com/se-edu/addressbook-level4) project created by the [SE-EDU initiative](https://se-education.org) as well.
+* Some icons and graphics used were sourced from [upklyak](https://www.freepik.com/free-vector/pensive-people-think-about-question-problem-vector-flat-set-curious-doubt-confused-puzzled-women-men-with-hand-head-chin-expression-people-making-decision-choice_23639641.htm) and [flaticon](https://www.flaticon.com/).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html), [TestFX](https://github.com/TestFX/TestFX).
 
 
@@ -302,7 +303,7 @@ Given below is a quick overview of main components and how they interact with ea
 ### **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At app launch: Initialises the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
@@ -360,12 +361,12 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `UserProfilePanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework.
+The `UI` component uses the JavaFX UI framework.
 
 To start making changes to the UI:
 
 - The layout of these UI parts can be found in matching `.fxml` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder.
-- The controller classes of these UI parts can be found in matching `.java` files in the [`src/main/java/seedu/address/ui`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui)folder.
+- The controller classes of these UI parts can be found in matching `.java` files in the [`src/main/java/seedu/address/ui`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui) folder.
 - The stylesheets for these UI parts can be found in `Extensions.css` and `MainWindow.css`, except `UserProfilePanel` and `HelpWindow` with separate CSS files in matching `.css` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder.
 - For example, the layout of `UserProfilePanel` is specified in [`UserProfilePanel.fxml`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/UserProfilePanel.fxml), with controller class at [`UserProfilePanel.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/UserProfilePanel.java) and stylesheet at [`UserProfilePanel.css`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/UserProfilePanel.css).
 
@@ -376,12 +377,13 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 
+---
 
 ## **Key Mapping**
 
 <img src="images/KeyMapActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 2.2</b> Activity Diagram for UP and DOWN keys
+    <b>Figure 3.1</b> Activity Diagram for UP and DOWN keys
 </div>
 
 <br>
@@ -396,7 +398,7 @@ The above activity diagram does not include the mapping of the UP and DOWN keys 
 
 <img src="images/ModelClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 3.1</b> Class Diagram for Model Components
+    <b>Figure 4.1</b> Class Diagram for Model Components
 </div>
 <br>
 
@@ -414,12 +416,12 @@ The `Model` component,
 
 <img src="images/PersonClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 3.2</b> Class Diagram for Person Components
+    <b>Figure 4.2</b> Class Diagram for Person Components
 </div>
 
 #### **Name**
 
-Represents the name of the user or the contact in `EduMate`.
+Represents the name of the user or the contact in EduMate.
 
 #### **Station**
 
@@ -467,7 +469,7 @@ objects which is then used elsewhere in the codebase.
 
 <img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 3.3</b> Class Diagram for classes in Time Package.
+    <b>Figure 4.3</b> Class Diagram for classes in Time Package.
 </div>
 
 #### **Day**
@@ -546,7 +548,7 @@ A `Commitment` is something that a person needs to do at a certain time and plac
 
 <img src="images/CommitmentClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 3.4</b> Class Diagram for Commitment Components
+    <b>Figure 4.4</b> Class Diagram for Commitment Components
 </div>
 <br>
 
@@ -576,7 +578,7 @@ The `Timetable` represents the daily schedule of the user or contact.
 
 <img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 3.5</b> Class Diagram for Timetable and related classes.
+    <b>Figure 4.5</b> Class Diagram for Timetable and related classes.
 </div>
 
 <br>
@@ -608,7 +610,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.1</b> Class Diagram for Logic Components
+    <b>Figure 5.1</b> Class Diagram for Logic Components
 </div>
 <br>
 
@@ -661,7 +663,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/AddActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.2</b> Activity Diagram for a typical <code>add</code> command
+    <b>Figure 5.2</b> Activity Diagram for a typical <code>add</code> command
 </div>
 
 #### **Edit Command**
@@ -712,7 +714,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/EditActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.3</b> Activity Diagram for a typical <code>edit</code> command
+    <b>Figure 5.3</b> Activity Diagram for a typical <code>edit</code> command
 </div>
 
 #### **Delete Command**
@@ -721,7 +723,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/DeleteSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4</b> Sequence Diagram for a typical <code>delete</code> command
+    <b>Figure 5.4</b> Sequence Diagram for a typical <code>delete</code> command
 </div>
 <br>
 
@@ -759,7 +761,7 @@ The `tag` command allows user to add `ModuleTag`s or `GroupTag`s to an existing 
 
 <img src="images/TagActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution
+    <b>Figure 5.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution
 </div>
 <br>
 
@@ -789,7 +791,7 @@ Similar to the `tag` command, the `untag` command allows user to remove `ModuleT
 
 <img src="images/UntagActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution
+    <b>Figure 5.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution
 </div>
 <br>
 
@@ -828,13 +830,13 @@ Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser
 
 <img src="images/ViewParserSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.7</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
+    <b>Figure 5.7</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
 <img src="images/ViewActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution
+    <b>Figure 5.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution
 </div>
 
 #### **Find Command**
@@ -872,7 +874,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/FindActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.9</b> Activity Diagram for a typical <code>find</code> command
+    <b>Figure 5.9</b> Activity Diagram for a typical <code>find</code> command
 </div>
 
 
@@ -918,7 +920,7 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
 
-The `list` command will allow users to view all the contacts saved in `EduMate`.
+The `list` command will allow users to view all the contacts saved in EduMate.
 
 <div markdown="block" class="alert alert-info">
 
@@ -962,7 +964,7 @@ We cannot save the json file directly from the command, because the command only
 
 <img src="images/SaveSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.10</b> Sequence Diagram for a typical <code>save</code> command.
+    <b>Figure 5.10</b> Sequence Diagram for a typical <code>save</code> command.
 </div>
 
 #### **Load Command**
@@ -979,7 +981,7 @@ Similar to the Save Command, we pass the file path through a `LoadCommandResult`
 
 <img src="images/LoadSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.11</b> Sequence Diagram for a typical <code>load</code> command.
+    <b>Figure 5.11</b> Sequence Diagram for a typical <code>load</code> command.
 </div>
 
 #### **Meet Command**
@@ -1060,7 +1062,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.12</b> Class Diagram for Parser Components
+    <b>Figure 5.12</b> Class Diagram for Parser Components
 </div>
 <br>
 
@@ -1082,7 +1084,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 <img src="images/RecommenderClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.13</b> Class Diagram for Recommender Module
+    <b>Figure 5.13</b> Class Diagram for Recommender Module
 </div>
 <br>
 
@@ -1102,18 +1104,18 @@ How the `Recommender` Component works:
 
 <img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.14</b> Sequence Diagram for Recommender Module
+    <b>Figure 5.14</b> Sequence Diagram for Recommender Module
 </div>
 <br>
 
 #### Timing Recommender
 The `TimingRecommender`'s role is to recommend timings in which the user and all participants are available.
-The `TimingRecommedner` uses the participants' schedule to find common time periods that everyone
+The `TimingRecommender` uses the participants' schedule to find common time periods that everyone
 will be free so that a meetup could be scheduled.
 
 <img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.15</b> Activity Diagram for <code>TimingRecommender</code>
+    <b>Figure 5.15</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
 <br>
 
@@ -1162,7 +1164,7 @@ The process of getting a recommendation is as follows:
 
 <img src="images/StorageClassDiagram.svg" style="width:100%;margin:0 0%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.16</b> Class Diagram for Storage Components
+    <b>Figure 6.1</b> Class Diagram for Storage Components
 </div>
 <br>
 
@@ -1187,7 +1189,7 @@ The `MathUtil` class contains generic functions for mathematical operations such
 
 ## **Unit Tests**
 
-Our organisation primarily utilizes `JUnit5`for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
+Our organisation primarily utilises `JUnit5` for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
 
 Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
@@ -1393,7 +1395,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 ### **Use Cases**
 
-(For all use cases below, the **System** is the `EduMate` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is EduMate and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - View the list of all contacts**
 
@@ -2088,15 +2090,15 @@ testers are expected to do more *exploratory* testing.
 
 #### **_Scenario 1_**
 
-Context: There is no contact named "Thomas" in `EduMate`.
+Context: There is no contact named "Thomas" in EduMate.
 
 Command executed: `add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
-Expected Output in the Person List: New person added to `EduMate`.
+Expected Output in the Person List: New person added to EduMate.
 
 #### **_Scenario 2_**
 
-Context: There is a contact named "Edward" in `EduMate`
+Context: There is a contact named "Edward" in EduMate
 
 Command executed: `add n/Edward`
 
@@ -2114,7 +2116,7 @@ Expected Output in the Profile Panel: The user's profile is shown.
 
 #### **_Scenario 2_**
 
-Context: There exists a `Person` with `ContactIndex 5` in `EduMate`.
+Context: There exists a `Person` with `ContactIndex 5` in EduMate.
 
 Command executed: `view 5`
 
@@ -2122,7 +2124,7 @@ Expected Output in the Profile Panel: The `Person` with `ContactIndex 5` is show
 
 #### **_Scenario 3_**
 
-Context: Thomas' profile is present in `EduMate`.
+Context: Thomas' profile is present in EduMate.
 
 Command executed: `view n/Thomas`
 
@@ -2132,7 +2134,7 @@ Expected Output in the Profile Panel: Thomas' profile is shown.
 
 #### **_Scenario 1_**
 
-Context: There exists a `Person` with `ContactIndex 3` in `EduMate`.
+Context: There exists a `Person` with `ContactIndex 3` in EduMate.
 
 Command executed: `edit 3 n/Henry`
 
@@ -2150,7 +2152,7 @@ Expected Output in Profile Panel: The user's name is changed to Gordon.
 
 #### **_Scenario 1_**
 
-Context: There exists a `Person` with `ContactIndex 4` in `EduMate`.
+Context: There exists a `Person` with `ContactIndex 4` in EduMate.
 
 Command executed: `delete 4`
 
@@ -2158,7 +2160,7 @@ Expected Output in the Person List: Person Card containing profile of `Person` w
 
 #### **_Scenario 2_**
 
-Context: There exists a `Person` with `ContactIndex 1, 2, 3` and `4` in `EduMate` and there is no other contact with the name "James".
+Context: There exists a `Person` with `ContactIndex 1, 2, 3` and `4` in EduMate and there is no other contact with the name "James".
 
 Command executed: `delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
 
@@ -2327,7 +2329,7 @@ Expected Output in Command Response Box: Error message for Invalid Size.
 
 #### **_Scenario 1_**
 
-Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in EduMate.
 
 Command executed: `meet 1 4 5`
 
@@ -2335,7 +2337,7 @@ Expected Output in Command Response Box: Suggestions on where and when to meet.
 
 #### **_Scenario 2_**
 
-Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in EduMate.
 
 Command executed: `eat 1 4 5`
 
@@ -2343,7 +2345,7 @@ Expected Output in Command Response Box: Suggestions on where and when to eat.
 
 #### **_Scenario 3_**
 
-Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in EduMate.
 
 Command executed: `study 1 4 5`
 
@@ -2361,7 +2363,7 @@ Expected Output in Scheduled Meet Up Panel: `Location`, `TimePeriod` and names o
 
 #### **_Scenario 2_**
 
-Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate` and they do not have any `Commitment` from 4PM - 6PM on Thursday.
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in EduMate and they do not have any `Commitment` from 4PM - 6PM on Thursday.
 
 Command executed: `organise 1 4 5 d/THURSDAY T/16 18 l/Starbucks`
 
