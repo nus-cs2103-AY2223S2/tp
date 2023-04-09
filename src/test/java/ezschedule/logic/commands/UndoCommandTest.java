@@ -67,6 +67,21 @@ public class UndoCommandTest {
                 expectedModel);
     }
     @Test
+    public void execute_undoMultipleDeletedEvents_successful() {
+        List<Event> lastShownList = model.getFilteredEventList();
+        List<Index> targetIndexes = new ArrayList<>(Arrays.asList(Index.initIndex(0), Index.initIndex(1)));
+        for (Index index: targetIndexes) {
+            Event eventToDelete = lastShownList.get(index.getZeroBased());
+            model.addRecentEvent(eventToDelete);
+            model.deleteEvent(eventToDelete);
+        }
+        Command deleteCommand = new DeleteCommand(targetIndexes);
+        model.addRecentCommand(deleteCommand);
+        assertCommandSuccess(new UndoCommand(), model, String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS,
+                        deleteCommand.commandWord()),
+                expectedModel);
+    }
+    @Test
     public void execute_undoRecurCommand_successful() throws CommandException {
         List<Event> lastShownList = model.getFilteredEventList();
         Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
