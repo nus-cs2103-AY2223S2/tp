@@ -53,7 +53,7 @@ public class AddCommand extends Command {
             + PREFIX_MODULE + "CS2103T " + PREFIX_MODULE + "CS2101 "
             + PREFIX_CCA + "NES " + PREFIX_CCA + "ICS#DIRECTOR "
             + PREFIX_MAJOR + "Computer Science " + PREFIX_MAJOR + "BBA "
-            + PREFIX_REMARK + "Year 2 " + PREFIX_REMARK + "Classmates ";
+            + PREFIX_REMARK + "Year 2 " + PREFIX_REMARK + "Classmates";
 
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
