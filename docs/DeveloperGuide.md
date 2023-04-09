@@ -326,7 +326,7 @@ The following sequence diagram summarises what happens when a user executes a Pr
 
 #### Design Considerations
 
-**Aspect: How Prefix find handle input that does not make sense (Numerics in names, non-existent postal codes)**
+**Aspect: How find-by-prefix handles inputs that do not make sense (e.g. numerics in names, non-existent postal codes)**
 
 * **Alternative 1:** Accepts the user input and executes the find command as per usual.
     * Pros: Allows for user freedom in cases that there may be people with Numerics in names, and the underlying code
