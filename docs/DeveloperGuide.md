@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* ControlsFX (https://github.com/controlsfx/controlsfx)
+* ControlsFX [https://github.com/controlsfx/controlsfx](https://github.com/controlsfx/controlsfx)
+* AddressBook 3
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +74,11 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI layer consist of multiple UIWindows from different components. All windows inherits the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+On start, the `UIManager` will display the `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DeliveryJobListPanel`, `StatusBarFooter` etc. The `MainWindow` serve as a main interaction and entry point to other windows for users.
+
+![Structure of the Main Window](images/UiClassDiagramMainWindow.png)
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,9 +86,17 @@ The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* calls predefined event handlers when an action, `button`, `mouse` or `keyboard` etc, is perform by the user.
+* some window keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `DeliveryJob` or `Person` object residing in the `Model`.
 * Although not represented in the diagram, the UI component starts the Notification function as soon as the app runs.
+
+The `Job System` component,  
+![Structure of the Create Job Component](images/UiClassDiagramCreateJob.png)
+* executes create/edit delivery job commands using the `Logic` component.
+* it can handle both create and edit mode for delivery jobs.
+* it returns the command execution result through a callback handler.
+* it opens a address book dialog for user to choose the sender and recipient for the job.
 
 ### Logic component
 
@@ -147,7 +160,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save delivery job system, address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from `DeliveryJobSystemStroage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `DeliveryJobSystemStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -333,7 +346,7 @@ _{more aspects and alternatives to be added}_
 ### Delivery Job System
 #### Implementation
 
-Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar excution pattern with their own command logics.
+Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar execution pattern with their own command logics.
 
 GUI Mode: 
 Step 1. The user launches the application for the first time. 
@@ -362,7 +375,7 @@ following operations:
 
 * `NotificationManager#checkReminderList()` — Check against the `reminderList` found in `Model` and display a reminder notification with `NotificationManager#show()`.
 * `NotificationManager#checkNowSchedule()` — Check against the timetable to create a notification of scheduled jobs to be carried out at in the present scheduled slot. Displays notification with `NotificationManager#show()`.
-* `NotificationManager#checkNextSchedule()` — Check against the timetable to create a notification of upcoming scheduled jobs to be carried out in the next scheduled slot. Displays notificaiton with `NotificationManager#show()`.
+* `NotificationManager#checkNextSchedule()` — Check against the timetable to create a notification of upcoming scheduled jobs to be carried out in the next scheduled slot. Displays notification with `NotificationManager#show()`.
 * `NotificationManager#show()` — Creates the actual notification with details picked up by the other methods, and displays it on the screen.
 
 Additionally, to allow notifications to display even when the app is running in the background, `TimerTask` and `Timer` from `java.util` is utilised. This mechanism is started by
@@ -425,7 +438,7 @@ Design considerations:
 * prefers typing over mouse interactions
 * is reasonably comfortable using CLI apps
 * delivery man with >50 deliveries in a day
-* drives constanly with a laptop in the van
+* drives constantly with a laptop in the van
 * lazy, doesn't like to micromanage
 * forgetful
 
@@ -624,7 +637,7 @@ specified in a reminder, System will count it as an active reminder.
    Use case ends.
 <b>Extensions:</b>
 * 2a. date and time of reminder is not provide.
-    * 2a1. System will promopt user again.
+    * 2a1. System will prompt user again.
            Use case resumes from step 1.
 </pre>
 </details>
@@ -653,17 +666,12 @@ specified in a reminder, System will count it as an active reminder.
 </pre>
 </details>
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be used for a single user only i.e. (not a multi-user product).
 3.  The system should respond within two seconds (after receiving input from user).
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-
-*{More to be added}*
 
 ### Glossary
 
@@ -686,62 +694,46 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
-
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
-
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
-
    1. Prerequisites: List all persons in Customers Window using the `list` command. Multiple persons in the list.
-
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
-
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Adding a delivery job 
 
 1. Add a job through command
-
    1. Prerequisites: User is in the main window. Valid recipient and sender id. 
-
    1. Test case: `add_job si/DAVSAM ri/CHASAM earn/1`<br>
       Expected: A delivery job is created without delivery schedule.  
                 The sender should be DAVSAM and recipient should be CHASAM.  
                 With earning value of $1.
-
    1. Test case: `add_job si/DAVSAM ri/CHASAM earn/1 date/2024-05-01 slot/1`<br>
       Expected: A delivery job is created with delivery schedule.  
                 Similar to previous.
-
    1. Other incorrect add job commands to try:  
       - `add_job si/invalid_id ri/invalid_id earn/empty` invalid argument supply.  
       - `add_job si/... ri/... earn/... [date/...] [slot/...]` with either date or slot given.  
 
 1. Add a job through GUI
-
-   1. Prerequisites: User have access to GUI. Access `menu` > `Delivery Job System` > `Create Job`.  
-
+   1. Prerequisites: User have access to GUI. Select `menu` > `Delivery Job System` > `Create Job`.  
    1. Test case: fill in mandatory fields only (recipient/sender/earning)<br>
       Expected: Similar to `1.ii`
-
    1. Test case: fill in all fields<br>
       Expected: Similar to `1.iii`
-
    1. Other incorrect approach to try:  
       - `sender/recipient`, invalid person id.
       - `earning`, multiple decimal points.  

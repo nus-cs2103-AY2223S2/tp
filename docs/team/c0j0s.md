@@ -5,7 +5,7 @@ title: c0j0s's Project Portfolio Page
 
 ### Project: Duke Driver
 
-Duke Driver - a delivery tasking and planning application used by delivery personnel from DUKE pte ltd. Duke Driver provides bulk management and personalised job listing for drivers. Moreover, Duke Driver generates the most optimal delivery routes to save time and cost. The user can interact with it using both CLI and GUI. The GUI is created with JavaFX. It is written in Java and has about 10 kLoC.
+Duke Driver - a delivery tasking and planning application used by delivery personnel from DUKE pte ltd. Duke Driver provides bulk management and personalised job listing for drivers. 
 
 Given below are my contributions to the project.
 
@@ -59,8 +59,10 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=c0j0s&breakdown=true)
 
 * **Project management**:
-  * Setup team repo and project dashboard.
+  * Setting up the GitHub team org/repo
+  * Setup project dashboard.
   * Setup project milestones.
+  * Add cache support for github actions.
 
 * **Enhancements to existing features**:
   * Expandable result display box in contact and main window.
@@ -70,9 +72,10 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the delivery tasking management system features `list`, `add job`, `edit job`, `delete job` and `find job`.
   * Developer Guide:
-    * Update diagram for `Model` and `Storage`.
+    * Update diagram for `UI Componets`, `Model` and `Storage`.
     * Added use case for `list delivery job detail`, `delete job`, `edit job` and `find job`.
     * Added implementation details foe delivery job system in developer guide.
+    * Added manual test cases for delivery jobs.
 
 * **Community**:
   * Review PRs.

@@ -74,7 +74,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     @FXML
     private VBox outputErrorPlaceholder;
 
-    // adapted from:
+    // Solution below adapted from:
     // https://stackoverflow.com/questions/26831978/javafx-datepicker-getvalue-in-a-specific-format
     private StringConverter<LocalDate> deliveryDateConverter = new StringConverter<LocalDate>() {
         private String pattern = "yyyy-MM-dd";
@@ -103,7 +103,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         }
     };
 
-    // Adapted from
+    // Solution below adapted from:
     // https://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
     private UnaryOperator<Change> earningValidator = change -> {
         String text = change.getText();

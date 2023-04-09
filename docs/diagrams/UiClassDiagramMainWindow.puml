@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+
+package MainWindow <<Rectangle>> {
+Class StatusBarFooter
+Class CommandBox
+Class ResultDisplay
+Class DeliveryJobListPane
+Class DeliveryJobDetailPane
+Class HelpWindow
+Class JobListCard
+Class PersonCard
+}
+
+package JobSystem <<Rectangle>> {
+Class AddDeliveryJobDialog
+}
+
+package AddressBook <<Rectangle>> {
+Class AddressBookDialog
+}
+
+package Statistics <<Rectangle>> {
+Class StatisticsWindow
+}
+
+package TimeTable <<Rectangle>> {
+Class TimeTableWindow
+Class CompleteWindow
+Class UnscheduleWindow
+}
+
+package Reminder <<Rectangle>> {
+Class ReminderListWindow
+}
+
+}
+
+Class UiManager
+UiManager ..> MainWindow
+
+DeliveryJobDetailPane -[hidden]left- DeliveryJobListPane
+DeliveryJobListPane -[hidden]left- HelpWindow
+HelpWindow -[hidden]down- CommandBox
+CommandBox -[hidden]down- ResultDisplay
+ResultDisplay -[hidden]down- StatusBarFooter
+
+DeliveryJobListPane -down-> "*" JobListCard
+DeliveryJobDetailPane -down-> "2" PersonCard
+
+MainWindow *-down-> "1" JobSystem
+MainWindow *-down-> "1" TimeTable
+MainWindow *--> "1" AddressBook
+MainWindow *--> "1" Reminder
+MainWindow *-down-> "1" Statistics
+
+TimeTableWindow -[hidden]- CompleteWindow
+CompleteWindow -[hidden]- UnscheduleWindow
+
+JobSystem *-down-> "1" AddressBook
+Statistics -[hidden]down- Reminder
+
+@enduml
