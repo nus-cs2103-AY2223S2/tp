@@ -13,8 +13,8 @@ This user guide shows you how to get started using AIMS and how to make use of t
 <!-- omit from toc -->
 ## Table of Contents
 
-- [Quick start](#quick-start)
 - [Legend](#legend)
+- [Quick start](#quick-start)
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person : `add`](#adding-a-person--add)
@@ -45,7 +45,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 :bulb: **Tip:** Tips are useful suggestions that you can follow.
 
-:exclamation: **Caution:** Cautions are used as warnings for certain actions that may cause errors.
+:exclamation: **Caution:** Cautions are used as warnings for actions that may cause data loss.
 
 ## Quick start
 
