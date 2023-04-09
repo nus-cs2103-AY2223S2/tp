@@ -289,8 +289,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -994,11 +992,11 @@ Precondition: There are shortlisted applicants in HMHero.
 > #### Interview Date
 > Date where applicants are going to have their interviews. Interview date is in the format "day-month-year hour:minute", represented in the "DD-MM-YYYY HH:MM" format.
 
+<div style="page-break-after: always;"></div>
+
 ### K
 > #### KEYWORD Placeholder
 > The KEYWORD is the text we use search for an item. It can be `NAME` or `PHONE_NUMBER` of the applicant.
-
-<div style="page-break-after: always;"></div>
 
 ### M
 > #### Mainstream OS
@@ -1019,8 +1017,6 @@ Precondition: There are shortlisted applicants in HMHero.
 ### O
 > #### Output
 > The result after calling a Command. Results are displayed in the GUI.
-
-<div style="page-break-after: always;"></div>
 
 ### P
 > #### Parameter
@@ -1207,6 +1203,8 @@ Expected: All applicants in HMHero are deleted.
 Test case: `exit`<br>
 Expected: HMHero application closes.
 
+<div style="page-break-after: always;"></div>
+
 ## **Effort**
 
 It was not easy to develop HMHero. Our team struggled with ways to make our product unique and stand out from existing products in the market,
@@ -1234,6 +1232,8 @@ The increased number of classes, along with all the commands, means that code co
 Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests for our commands, 
 parsers and model objects. We redesigned how testing is done for commands and manage to cover all commands successfully. 
 We achieved a ~86% code coverage from the original ~72% in AB3, and increased the number of test cases from 248 (in AB3) to 301 (in HMHero).
+
+<div style="page-break-after: always;"></div>
 
 ## **Planned Enhancements**
 
