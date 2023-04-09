@@ -521,6 +521,7 @@ The [DevOps guide](DevOps.md) covers build automation and steps to create releas
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app, store information relevant to NUS Computing students (GitHub profile, repository, programming language proficiencies, modules taken), quickly find contacts that satisfy certain criteria (taken a particular module, in a group)
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
