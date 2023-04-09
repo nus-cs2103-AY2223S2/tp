@@ -253,36 +253,15 @@ public class ParserUtil {
     public static Test parseTest(String test, String score, String deadline, String weightage) throws ParseException {
         requireNonNull(test);
         String trimmedTest = test.trim();
+        String trimmedWeightage;
+        String trimmedScore;
+        LocalDate localDate;
         if (!Test.isValidTest(trimmedTest)) {
             throw new ParseException(Test.MESSAGE_CONSTRAINTS);
         }
-        String trimmedScore = score.trim();
-        //check if score is less than 100
-        if (!trimmedScore.matches("^([0-9]|[1-9][0-9]|100)$")
-                && !trimmedScore.equals("Insert student score here!")) {
-            throw new ParseException("Score cannot be more than 100 and must contain numbers only");
-        }
-        LocalDate localDate = null;
-        if (deadline != "Insert student deadline here!") {
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-                localDate = LocalDate.parse(deadline, formatter);
-            } catch (DateTimeParseException e) {
-                throw new ParseException("Date must be in the format dd/mm/yyyy");
-            }
-        }
-        String trimmedWeightage = weightage.trim();
-        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$") //check if weightage is less than 100
-                && !trimmedWeightage.equals("Insert student weightage here!")) {
-            throw new ParseException("Weightage(%) cannot be more than 100 and must contain numbers only");
-        }
-        if (trimmedWeightage.equals("Insert student weightage here!")) {
-            trimmedWeightage = "-100";
-        }
-        if (trimmedScore.equals("Insert student score here!")) {
-            trimmedScore = "-100";
-        }
+        trimmedWeightage = Test.getTrimmedWeightage(weightage);
+        trimmedScore = Test.getTrimmedScore(score);
+        localDate = Test.getTrimmedDeadline(deadline);
         return new Test(trimmedTest, localDate, Integer.parseInt(trimmedWeightage), Integer.parseInt(trimmedScore));
     }
 
@@ -319,42 +298,17 @@ public class ParserUtil {
                                          String weightage, String homeworkDone) throws ParseException {
         requireNonNull(homework);
         String trimmedHomework = homework.trim();
+        String trimmedScore;
+        LocalDate localDate;
+        String trimmedWeightage;
+        String homeworkDoneTrimmed;
         if (!Homework.isValidHomework(trimmedHomework)) {
             throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
         }
-        String trimmedScore = score.trim();
-        if (!trimmedScore.matches("^([0-9]|[1-9][0-9]|100)$") //check if score is less than 100
-                && !trimmedScore.equals("Insert student score here!")) {
-            throw new ParseException("Score cannot be more than 100 and must contain numbers only");
-        }
-        LocalDate localDate = null;
-        if (deadline != "Insert student deadline here!") {
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                localDate = LocalDate.parse(deadline, formatter);
-            } catch (DateTimeParseException e) {
-                throw new ParseException("Date must be in the format dd/mm/yyyy");
-            }
-        }
-        String trimmedWeightage = weightage.trim();
-        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$") //check if weightage is less than 100
-                && !trimmedWeightage.equals("Insert student weightage here!")) {
-            throw new ParseException("Weightage(%) cannot be more than 100 and must contain numbers only");
-        }
-        String homeworkDoneTrimmed = homeworkDone.trim();
-        if (!homeworkDoneTrimmed.matches("^(true|false)$")
-                && !homeworkDoneTrimmed.equals("Insert student homework done here!")) {
-            throw new ParseException("Homework done must be 'true' or 'false'");
-        }
-        if (trimmedHomework.equals("Insert student homework done here!")) {
-            homeworkDoneTrimmed = "false";
-        }
-        if (trimmedWeightage.equals("Insert student weightage here!")) {
-            trimmedWeightage = "-100";
-        }
-        if (trimmedScore.equals("Insert student score here!")) {
-            trimmedScore = "-100";
-        }
+        trimmedScore = Homework.getTrimmedScore(score);
+        localDate = Homework.getTrimmedDeadline(deadline);
+        trimmedWeightage = Homework.getTrimmedWeightage(weightage);
+        homeworkDoneTrimmed = Homework.getTrimmedHomeworkDone(homeworkDone, trimmedHomework);
         return new Homework(homework, localDate, Integer.parseInt(trimmedWeightage),
                 Integer.parseInt(trimmedScore), Boolean.parseBoolean(homeworkDoneTrimmed));
     }
@@ -365,7 +319,7 @@ public class ParserUtil {
      * @return A Comment
      * @throws ParseException
      */
-    public static Comment parseComment(String comment) throws ParseException {
+    public static Comment parseComment(String comment) {
         requireNonNull(comment);
         String trimmedComment = comment.trim();
         return new Comment(trimmedComment);

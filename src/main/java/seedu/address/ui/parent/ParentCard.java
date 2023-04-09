@@ -58,10 +58,6 @@ public class ParentCard extends UiPart<Region> {
         email.setText(parent.getEmail().value);
         address.setText(parent.getAddress().value);
         age.setText(parent.getAge().value);
-        //image.setText(student.getImage().value);
-        parent.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         AtomicInteger rowCounter = new AtomicInteger();
         parent.getStudents().stream()
                 .sorted(Comparator.comparing(Student -> Student.getName().fullName))
@@ -76,6 +72,13 @@ public class ParentCard extends UiPart<Region> {
                     students.add(new Label(Student.getIndexNumber().value), 7, rowCounter.get());
                     rowCounter.getAndIncrement();
                 });
+        updateImage();
+    }
+
+    /**
+     * Updates the image of the parent.
+     */
+    public void updateImage() {
         String strImage = parent.getImage().value;
         if (!strImage.equals("Insert parent image here!")) {
             File file = new File(strImage);
@@ -94,6 +97,7 @@ public class ParentCard extends UiPart<Region> {
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));
         }
+
     }
 
     @Override
