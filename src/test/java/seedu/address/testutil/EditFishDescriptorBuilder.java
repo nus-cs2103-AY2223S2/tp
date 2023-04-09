@@ -4,17 +4,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
+import seedu.address.model.Model;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tank.Tank;
-import seedu.address.model.tank.TankName;
-import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * A utility class to help with building EditFishDescriptor objects.
@@ -34,13 +32,13 @@ public class EditFishDescriptorBuilder {
     /**
      * Returns an {@code EditFishDescriptor} with fields containing {@code fish}'s details
      */
-    public EditFishDescriptorBuilder(Fish fish) {
+    public EditFishDescriptorBuilder(Fish fish, Model model) {
         descriptor = new EditFishDescriptor();
         descriptor.setName(fish.getName());
         descriptor.setLastFedDate(fish.getLastFedDateTime());
         descriptor.setSpecies(fish.getSpecies());
         descriptor.setFeedingInterval(fish.getFeedingInterval());
-        descriptor.setTank(fish.getTank());
+        descriptor.setTankIndex(model.getTankIndex(fish.getTank()));
         descriptor.setTags(fish.getTags());
     }
 
@@ -80,7 +78,7 @@ public class EditFishDescriptorBuilder {
      * Sets the {@code Tank} of the {@code EditFishDescriptor} that we are building.
      */
     public EditFishDescriptorBuilder withTank(String tank) {
-        descriptor.setTank(new Tank(new TankName(tank), new AddressBook(), new UniqueIndividualReadingLevels()));
+        descriptor.setTankIndex(Index.fromOneBased(Integer.parseInt(tank)));
         return this;
     }
 

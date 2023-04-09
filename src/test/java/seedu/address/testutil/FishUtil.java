@@ -10,8 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
+import seedu.address.logic.commands.fish.FishAddCommand;
+import seedu.address.logic.commands.fish.FishCommand;
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tag.Tag;
 
@@ -24,7 +25,7 @@ public class FishUtil {
      * Returns an add command string for adding the {@code fish}.
      */
     public static String getAddCommand(Fish fish) {
-        return AddCommand.COMMAND_WORD + " " + getFishDetails(fish);
+        return FishCommand.COMMAND_WORD + " " + FishAddCommand.FISH_COMMAND_WORD + " " + getFishDetails(fish);
     }
 
     /**
@@ -55,7 +56,7 @@ public class FishUtil {
         descriptor.getSpecies().ifPresent(species -> sb.append(PREFIX_SPECIES).append(species.species).append(" "));
         descriptor.getFeedingInterval().ifPresent(feedingInterval -> sb.append(PREFIX_FEEDING_INTERVAL)
                 .append(feedingInterval.value).append(" "));
-        descriptor.getTank().ifPresent(tank -> sb.append(PREFIX_TANK).append(tank.getTankName().fullTankName)
+        descriptor.getTankIndex().ifPresent(tankInd -> sb.append(PREFIX_TANK).append(tankInd)
                 .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

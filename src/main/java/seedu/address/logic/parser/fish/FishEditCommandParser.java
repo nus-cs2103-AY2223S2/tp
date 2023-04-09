@@ -25,13 +25,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new FishEditCommand object
  */
 public class FishEditCommandParser implements Parser<FishEditCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FishEditCommand
+     * and returns an FishEditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FishEditCommand parse(String args) throws ParseException {

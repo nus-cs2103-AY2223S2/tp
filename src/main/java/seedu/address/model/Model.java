@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.readings.AmmoniaLevel;
@@ -182,6 +183,8 @@ public interface Model {
 
     void setLastFedDateTimeFishes(Tank tankToFeed, String formattedDate);
 
+    Tank getTankFromIndex(Index index);
+
     /**
      * Executes the auto feeding reminder feature for Model
      */
@@ -208,4 +211,6 @@ public interface Model {
     ObservableList<UniqueIndividualReadingLevels> getFilteredReadingLevels();
 
     void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate);
+
+    Index getTankIndex(Tank tank);
 }
