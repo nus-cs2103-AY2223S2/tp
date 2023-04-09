@@ -26,6 +26,8 @@ Contributions to the project:
 * Toggle between light and dark themes using F2 and F3 keyboard shortcuts.
 * Improves user experience and reduces eye strain.
 
+---
+
 * **Feature Enhancement**: Local Storage
   * Save and restore OfficeConnect data to a local file.
   * Provides a convenient, reliable way to store and access data.
