@@ -36,7 +36,7 @@ Are you excited yet? Let's get started!
 
 4. Double-click on `loyaltylift.jar` to launch LoyaltyLift. <br>
    A GUI similar as seen below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/FreshUi.png)
 
 5. Type the command in the command box (which says 'Enter command here...') and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -187,6 +187,8 @@ In LoyaltyLift, an order can have the following status.
 * Cancelled
 
 <div markdown="block" class="alert alert-info">
+**:information_source: Notes about the order status:**<br>
+
 LoyaltyLift assumes that your order will follow a process similar to the order of status stated above (excluding 'cancelled').
 </div>
 
@@ -636,6 +638,7 @@ You can remove a customer's note by setting an empty note.
 
 * `findc Betsy` followed by `setnotec 1 nt/Vegetarian`<br>
   Sets the 1st customer's note as "Vegetarian" in the results of the `findc` command.
+  ![result for 'setnotec 1 nt/Vegetarian'](images/setnotecBetsyResult.png)
 
 </div>
 
@@ -937,6 +940,7 @@ If the order is completed, the status cannot be advanced further
 
 * `advo 1`<br>
   Advances the status of the 1st order
+  ![result for 'advo 1'](images/advoBananaCakeResult.png)
 
 </div>
 
