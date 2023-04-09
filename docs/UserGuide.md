@@ -54,8 +54,8 @@ Welcome to the *Fish Ahoy! User Guide*! <br>
 *Fish Ahoy!* Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command
 Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
 
-*Fish Ahoy!* **streamlines** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and 
-**weekly tasks**, such as feeding and cleaning. 
+*Fish Ahoy!* **streamlines** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and
+**weekly tasks**, such as feeding and cleaning.
 
 *Fish Ahoy!* **simplifies** commands to revolve around **fish**, **tank** and **task**. When you want to, for example,
 perform an action on **tanks**, the commands all begin with `tank`.
@@ -86,7 +86,7 @@ These are the symbols employed in this user guide:
 
 > :information_source: Additional information: These symbols will be housed in blockquotes like this
 
-These are the special text formatting employed in this user guide: 
+These are the special text formatting employed in this user guide:
 
 | Font                 | Meaning                                                                                                                                                                                                                                                   |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -100,7 +100,7 @@ These are the special text formatting employed in this user guide:
 
 # Glossary
 
-These are the definitions to some technical terms: 
+These are the definitions to some technical terms:
 
 | Word           | Meaning                                                                                                                                                                                                 |
 |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -125,13 +125,13 @@ These are the definitions to some technical terms:
 
 > :information_source: Additional information: Data files of *Fish Ahoy!* will be also stored in the folder you keep it in.
 
-4. Double-click the file to open *Fish Ahoy!* 
+4. Double-click the file to open *Fish Ahoy!*
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 ![Ui](images/Ui.png)
 
-> :bulb: Tip: There is sample data present when you first open *Fish Ahoy!*. Use `edit` or `delete` commands to show your own tanks! 
+> :bulb: Tip: There is sample data present when you first open *Fish Ahoy!*. Use `edit` or `delete` commands to show your own tanks!
 
 5. Type a command in the command box and press Enter to execute it.
    Some examples:
@@ -147,12 +147,12 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 # About the Interface
 
-The *Fish Ahoy!* interface consists of three main components, the **Command Line**, **Alerts**, and **Panels**, 
+The *Fish Ahoy!* interface consists of three main components, the **Command Line**, **Alerts**, and **Panels**,
 and two buttons, **File** and **Help**.
 
 ![Ui](images/UiIntro.png)
 
-The **Command Line** is where you can enter various commands to enter information into *Fish Ahoy!*. 
+The **Command Line** is where you can enter various commands to enter information into *Fish Ahoy!*.
 Refer to the [Features](#features) below for details of each command!
 
 The **Alerts** will display the results of each command, and display additional help specific to the command.
@@ -160,10 +160,10 @@ The **Alerts** will display the results of each command, and display additional 
 > :bulb: Tip: If you are unsure of the command format, simply enter the command type you want to use, e.g. `fish`, followed by the command action
 you would like to use, e.g. `add`. Information on prefixes will be displayed in the Alerts!<br>
 
-The **Panels** will display all the information on your Tanks, Fishes and Tasks. The leftmost panel displays tanks, centre panel display fishes and the right panel displays tasks These panels will automatically update 
+The **Panels** will display all the information on your Tanks, Fishes and Tasks. The leftmost panel displays tanks, centre panel display fishes and the right panel displays tasks These panels will automatically update
 whenever you enter a command. Try it out!
 
-The **File** button will present a menu where you can exit the application. Exiting from the application using 
+The **File** button will present a menu where you can exit the application. Exiting from the application using
 Windows/Mac OS native close buttons are also fine.
 
 The **Help** button will present a menu where you can display the *Fish Ahoy! User Guide*. If you require extra information,
@@ -171,21 +171,21 @@ do use this to redirect you to our user guide!
 
 ## Tank Interface
 
-A sample Tank item is shown below. For each Tank you add in *Fish Ahoy!*, you have to add a 
-[Description]((#description)). A [Tank Index](#index-parameters) is then automatically assigned to the tank. 
-The **Number of fish** will be automatically updated whenever you add/delete a fish from this tank in *Fish Ahoy!* 
+A sample Tank item is shown below. For each Tank you add in *Fish Ahoy!*, you have to add a
+[Description]((#description)). A [Tank Index](#index-parameters) is then automatically assigned to the tank.
+The **Number of fish** will be automatically updated whenever you add/delete a fish from this tank in *Fish Ahoy!*
 The [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-temperature-reading-tptemperature)and
 [pH](#tank-ph-reading-phph) are generated from [readings](#tank-readings) that you add to *Fish Ahoy!*
 
-![Ui](images/UiTank.png) 
+![Ui](images/UiTank.png)
 
 
 ## Fish Interface
 
-A sample Fish item is shown below. Each Fish you add in *Fish Ahoy!* has multiple [parameters](#parameters-br), such as 
-[Name](#name-nname), [Species](#species-sspecies), [Last Fed Date](#last-fed-date-lfdlast_fed_date), 
-[Feeding Interval](#feeding-interval-fifeeding_interval), which [Tank](#tank-tktank_index) it is in and what 
-[Tags](#tags-tgtag) it has. There is also a [Fish Index](#index-parameters) which is automatically assigned to the fish. 
+A sample Fish item is shown below. Each Fish you add in *Fish Ahoy!* has multiple [parameters](#parameters-br), such as
+[Name](#name-nname), [Species](#species-sspecies), [Last Fed Date](#last-fed-date-lfdlast_fed_date),
+[Feeding Interval](#feeding-interval-fifeeding_interval), which [Tank](#tank-tktank_index) it is in and what
+[Tags](#tags-tgtag) it has. There is also a [Fish Index](#index-parameters) which is automatically assigned to the fish.
 The **Fish Icon** is matched to the [Species](#species-sspecies) of the fish!
 
 ![Ui](images/UiFish.png)
@@ -208,7 +208,7 @@ In general, the command format is as follows:<br>
 
 ## Parameters <br>
 
-* Parameters are additional pieces of information a command needs to perform its action. 
+* Parameters are additional pieces of information a command needs to perform its action.
   * For example, in the `tank add` command, a description parameter `d/<DESCRIPTION>` is needed
 
 ### Index parameters
@@ -216,7 +216,7 @@ In general, the command format is as follows:<br>
 * Index parameters are **positive integers** (1, 2, 3...)
 * Index parameters do not require a prefix. For example, the command is as follows: `tank delete 1`
 * In the features section, index parameters will be as such: `<XXX_INDEX>`, and `XXX` can be `TANK`, `FISH` or `TASK`
-> :exclamation: Warning: Ensure that the index you input corresponds to an existing item. 
+> :exclamation: Warning: Ensure that the index you input corresponds to an existing item.
 > <br> Look at the [respective panels](#about-the-interface) for the index of the type of object you want to refer to.
 
 ![Ui](images/UiIndex.png)
@@ -225,7 +225,7 @@ In general, the command format is as follows:<br>
 * Used as parameters for commands with `add`, `edit` and `addReadings` actions
 * Prefix parameters require a prefix. For example, the command is as follows: `tank add d/<TANK_NAME>`
 * In the features section, prefix parameters will be as such: `X/<CONTENT>` where `X` is a valid prefix and `<CONTENT>` is the content of this parameter, subject to its constraints
-* You can only have multiple values for tag prefixes `tg/<TAG>`. All other prefixes can only have 1 value. 
+* You can only have multiple values for tag prefixes `tg/<TAG>`. All other prefixes can only have 1 value.
 > :information_source: Additional information: You can have multiple prefix parameters for the same prefix, but only the last one will be used.
 > <br>For example: `tank add d/Tank 1 d/Tank 2` will create a tank called 'Tank 2'.
 
@@ -259,7 +259,7 @@ In general, the command format is as follows:<br>
 * `<LAST_FED_DATE>` should be in the format `DD/MM/YYYY HH:MM` where `DD` is the day of the month, `MM` is the month of the year and `YYYY` is the year. `HH` is the hour of the day and `MM` is the minute of the hour.
 * Prefix: `lfd/`
 * Example: `lfd/01/04/2023 12:00`
-> :exclamation: Warning: Remember to input 2 digits for `DD` and `MM`. 
+> :exclamation: Warning: Remember to input 2 digits for `DD` and `MM`.
 > <br> For example, `DD` and `MM` for the 9th of April should be `09` and `04` respectively.
 
 #### Species `s/<SPECIES>`
@@ -327,9 +327,9 @@ In general, the command format is as follows:<br>
 
 ## Tanks
 
-Tanks form the basis of *Fish Ahoy!*, as most, if not all our activities revolve around them. Aquarium tanks are the 
+Tanks form the basis of *Fish Ahoy!*, as most, if not all our activities revolve around them. Aquarium tanks are the
 first requirement of fish keeping. (Can't have a fish without a tank!) Similarly, *Fish Ahoy!* also requires you to add
-a tank first, before allowing you to add in any fishes. These tanks directly represent your tanks in real life, so 
+a tank first, before allowing you to add in any fishes. These tanks directly represent your tanks in real life, so
 customize them with their own names and add in their respective fishes!
 In the list, each tank has an [index](#index-parameters). Use these indexes to perform certain operations on them.
 <br>
@@ -352,7 +352,7 @@ Currently, there are seven command actions of type tank:
 
 You can add a tank to *Fish Ahoy!* with the `tank add` command.
 
-Use this command to add your own tank with a customized name to *Fish Ahoy!* This will start your journey into managing 
+Use this command to add your own tank with a customized name to *Fish Ahoy!* This will start your journey into managing
 your aquarium.
 
 Format: `tank add d/<TANK_NAME>`
@@ -380,7 +380,7 @@ Parameters:
 * Index parameters:
   * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
     * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
-  
+
 > :exclamation: Warning: You can't delete a tank that has fishes and tasks attached to it. Remove those first before deleting the tank.
 
 Example:
@@ -408,7 +408,7 @@ Parameters:
 
 Example:
 * `tank edit 2 d/My new tank` changes the name of the second tank in the [tanks panel](#about-the-interface) to 'My new tank'.
-    
+
 ### Feeding a tank: `tank feed`
 
 You can feed all the fish in a tank, updating all the fishes' last fed date to the current date and time with the `tank feed` command.
@@ -524,15 +524,15 @@ Parameters:
 Example:
 * Scenario 1: You have one tank, 'Freshwater tank' of index 1, with 2 sets of readings. One set made at 12pm and one set made at 3pm. `tank delLastReadings 1`
 deletes the most recent readings, the set made at 3pm.
-* Scenario 2 (Screenshot below) : You mistakenly add a set of readings to 'Freshwater tank' of index 1. 
+* Scenario 2 (Screenshot below) : You mistakenly add a set of readings to 'Freshwater tank' of index 1.
   `tank delLastReadings 1` deletes the most recent set of readings.
 
 ![AddReadingDemo](images/UiDelLastReadingsDemo.png)
 
 ## Fishes
 
-Fishes are yet another core aspect of *Fish Ahoy!* This app is built around helping you keep these little guys healthy, 
-so many important details such as species, last fed date, feeding intervals are being recorded. *Fish Ahoy!* features 
+Fishes are yet another core aspect of *Fish Ahoy!* This app is built around helping you keep these little guys healthy,
+so many important details such as species, last fed date, feeding intervals are being recorded. *Fish Ahoy!* features
 images for common species of fish currently, and aims to expand to include more fishes in the future!
 In the list, each fish has an [index](#index-parameters). Use these indexes to perform certain operations on them.
 <br>
@@ -569,7 +569,7 @@ Parameters:
   * `[tg/<TAG>]...` - [Tags prefix.](#tags-tgtag) Specifies the additional tags of this fish
     * `<TAG>` should only contain alphanumeric characters, with **no** spaces
     * Optional, or can have multiple
-    
+
 > :information_source: Additional information: A fish **must** belong in a tank.
 
 > :information_source: Additional information: syntax we use for tags are enclosed in square brackets followed by '...' `[tg/<TAG>]...`, to show that a fish can contain 0 or more tags.
@@ -583,7 +583,7 @@ Example:
   * Last fed date: 4th April 2023, 1130 am
   * Feeding interval: 2 days 0 hours
   * Tank: Tank with index 1
-  
+
 ### Deleting a fish: `fish delete`
 
 You can delete a fish from *Fish Ahoy!* with the `fish delete` command.
@@ -645,7 +645,7 @@ Parameters:
 > at least 1 parameter!
 
 Example:
-* You have a fish named 'Nemo' with index 1. Using `fish edit 1 n/Found nemo` will result the fish to have the 
+* You have a fish named 'Nemo' with index 1. Using `fish edit 1 n/Found nemo` will result the fish to have the
 following details:
   * Name: 'Found nemo'
   * Other details: same as before
@@ -656,24 +656,24 @@ You can sort the fishes in *Fish Ahoy!* by a specified parameter with the `fish 
 
 Use this command to view the fish at once by the attribute you want. This can be helpful if you need to see which fish
 has not been fed in a long time, or see which fish you need to attend to first. It can also be used to organize the
-results to your liking.  
+results to your liking.
 
 Format: `fish sort by/<PREFIX_PARAMETER> [tk/<TANK_INDEX>]`
 
 Parameters:
 * Prefix parameters:
   * `by/<PREFIX_PARAMETER>` - [Sorting prefix.](#sorting-byprefix_parameter) Specifies how you want to sort your fishes by
-    * `<PREFIX_PARAMETER>` is one of the following: 
+    * `<PREFIX_PARAMETER>` is one of the following:
       * `n` - Fish name, sorted lexicographically
       * `lfd` - Fish last fed date, sorted from earliest to latest
-      * `s` - Fish species, sorted lexicographically 
+      * `s` - Fish species, sorted lexicographically
       * `fi` - Feeding interval, sorted by days first, then by hours
       * `tk` - Tank name, sorted lexicographically
   * `[tk/<TANK_INDEX>]` - [Tank prefix.](#tank-tktank_index) Specifies which tank's fishes you want to sort and display
     * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank
     * Optional. Include this to sort and display fishes from the specified tank. Don't include this to sort all fishes
 
-> :information_source: Additional information: After sorting, a new set of indexes will appear for each fish. Refer to 
+> :information_source: Additional information: After sorting, a new set of indexes will appear for each fish. Refer to
 > these updated indexes for future fish indexes use!
 
 > :information_source: Additional information: Note that `fish sort` only sorts the fishes that are present in the fish panel!
@@ -731,8 +731,8 @@ Only 'fish 1' is displayed in the fish panel. Using `list fishes` will display a
 
 
 ## Tasks
-These are the routine tasks that all fish keepers have to undertake to keep their fish bright and healthy. Create tasks 
-to remind you and help you in your fish keeping. *Fish Ahoy!* will automatically generate feeding reminders for you 
+These are the routine tasks that all fish keepers have to undertake to keep their fish bright and healthy. Create tasks
+to remind you and help you in your fish keeping. *Fish Ahoy!* will automatically generate feeding reminders for you
 based off your fishes' last fed date. These will have a **high** priority to remind you to feed them!
 In the list, each task has an [index](#index-parameters). Use these indexes to perform certain operations on them.
 
@@ -816,7 +816,7 @@ Parameters:
   * `[p/<PRIORITY_LEVEL>]` - [Priority prefix.](#priority-ppriority) Specifies the priority of this task
     * `<PRIORITY>` is one of the following: low, medium, high
     * Optional. Include this to edit the priority of a task
-    
+
 > :exclamation: Warning: Even though all parameters are listed as optional, you still need to edit at least 1 parameter!
 
 > :exclamation: Warning: Feeding reminders are automated and managed by *Fish Ahoy!* so you cannot
