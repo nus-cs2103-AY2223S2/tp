@@ -9,7 +9,7 @@ import trackr.model.Model;
 import trackr.model.order.SortOrdersComparator;
 
 /**
- * Sorts all task in task list using a criteria given.
+ * Sorts all orders in the order list using a criteria given.
  */
 public class SortOrdersCommand extends Command {
     public static final String COMMAND_WORD = "sort_order";
@@ -24,10 +24,22 @@ public class SortOrdersCommand extends Command {
 
     private SortOrdersComparator sortOrdersComparator;
 
+    /**
+     * Creates a SortOrdersCommand to sort the order list.
+     *
+     * @param sortOrdersComparator The comparator used to compare 2 orders according to a given criteria.
+     */
     public SortOrdersCommand(SortOrdersComparator sortOrdersComparator) {
+        requireNonNull(sortOrdersComparator);
         this.sortOrdersComparator = sortOrdersComparator;
     }
 
+    /**
+     * Sorts the filtered order list using the sortOrdersComparator.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Success message of the sort operation for display.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

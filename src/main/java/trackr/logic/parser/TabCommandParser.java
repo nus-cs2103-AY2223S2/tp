@@ -8,14 +8,14 @@ import trackr.logic.commands.TabCommand;
 import trackr.logic.parser.exceptions.ParseException;
 
 /**
- * Parser for TabCommand
+ * Parses input arguments and creates a new TabCommand object.
  */
 public class TabCommandParser implements Parser<TabCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of TabCommand
      * and returns a TabCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform to the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public TabCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -29,6 +29,10 @@ public class TabCommandParser implements Parser<TabCommand> {
         return new TabCommand(targetTab);
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getValue(prefix).isPresent();
     }

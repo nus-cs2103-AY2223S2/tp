@@ -293,7 +293,8 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Update the sorted task list.
+     * Sorts and updates the sorted task list.
+     *
      * @param comparator The comparator used to sort the tasks.
      */
     @Override
@@ -351,8 +352,8 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Update the sorted order list.
-     * @param comparator The comparator used to sort the orders.
+     * Sort the filtered order list.
+     * @param comparator The comparator used to compare 2 order objects.
      */
     @Override
     public void sortFilteredOrderList(Comparator<Order> comparator) {

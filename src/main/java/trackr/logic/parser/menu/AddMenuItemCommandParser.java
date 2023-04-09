@@ -20,7 +20,7 @@ import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 
 /**
- * Parses input arguments and creates a new AddMenuItemCommand object
+ * Parses input arguments and creates a new AddMenuItemCommand object.
  */
 
 public class AddMenuItemCommandParser implements Parser<AddMenuItemCommand> {
@@ -29,7 +29,7 @@ public class AddMenuItemCommandParser implements Parser<AddMenuItemCommand> {
      * Parses the given {@code String} of arguments in the context of the AddMenuItemCommand
      * and returns an AddMenuItemCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddMenuItemCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

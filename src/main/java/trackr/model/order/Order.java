@@ -131,6 +131,7 @@ public class Order extends Item {
 
     /**
      * Compares 2 tasks using their time added.
+     *
      * @param otherOrder The order to compare with.
      * @return -1 if this order was added earlier than the other order.
      *         Returns 1 if this order was added later than the other order
@@ -142,6 +143,7 @@ public class Order extends Item {
 
     /**
      * Compares 2 orders using their names (ignoring case).
+     *
      * @param otherOrder The order to compare with.
      * @return 1 if this name is lexicographically larger (ignoring case) than the other name,
      *        -1 if this name is lexicographically smaller (ignoring case) than the other name,
@@ -153,6 +155,7 @@ public class Order extends Item {
 
     /**
      * Compares 2 orders using their deadlines.
+     *
      * @param otherOrder The order to compare with.
      * @return -1 if this order has an earlier deadline than the other order.
      *         Returns 1 if this order has a later deadline than the other order
@@ -164,6 +167,7 @@ public class Order extends Item {
 
     /**
      * Compares 2 orders using their statuses.
+     *
      * @param otherOrder The order to compare with.
      * @return 1 if this order's status has lower a sorting priority than the other order's status,
      *         returns -1 if this order's status has higher a sorting priority than the other order's status,
@@ -176,6 +180,7 @@ public class Order extends Item {
 
     /**
      * Compares 2 orders using their statuses and deadlines.
+     *
      * @param otherOrder The order to compare with.
      * @return -1 if this order's status has higher a sorting priority than the other order's status,
      *         or if both have the same status but this order has an earlier deadline.

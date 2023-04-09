@@ -62,6 +62,7 @@ public class Task extends Item {
 
     /**
      * Compares 2 tasks using their time added.
+     *
      * @param otherTask The task to compare with.
      * @return -1 if this task was added earlier than the other task.
      *         Returns 1 if this task was added later than the other task
@@ -73,6 +74,7 @@ public class Task extends Item {
 
     /**
      * Compares 2 tasks using their names (ignoring case).
+     *
      * @param otherTask The task to compare with.
      * @return 1 if this name is lexicographically larger (ignoring case) than the other name,
      *        -1 if this name is lexicographically smaller (ignoring case) than the other name,
@@ -84,6 +86,7 @@ public class Task extends Item {
 
     /**
      * Compares 2 tasks using their deadlines.
+     *
      * @param otherTask The task to compare with.
      * @return -1 if this task has an earlier deadline than the other task.
      *         Returns 1 if this task has a later deadline than the other task
@@ -95,6 +98,7 @@ public class Task extends Item {
 
     /**
      * Compares 2 tasks using their statuses.
+     *
      * @param otherTask The task to compare with.
      * @return -1 if this task is not done while the other task is done,
      *         Returns 1 if this task is done while the other task is not done,
@@ -106,6 +110,7 @@ public class Task extends Item {
 
     /**
      * Compares 2 tasks using their statuses and deadlines.
+     *
      * @param otherTask The task to compare with.
      * @return -1 if this task is not done while the other task is done,
      *         or if both have the same status but this task has an earlier deadline.

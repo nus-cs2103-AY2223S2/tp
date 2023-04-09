@@ -18,12 +18,20 @@ public abstract class ListItemCommand<T extends Item> extends Command {
 
     /**
      * Creates an ListItemCommand to list all the items.
+     *
+     * @param modelEnum A representation of the name of the list to list out.
      */
     public ListItemCommand(ModelEnum modelEnum) {
         requireNonNull(modelEnum);
         this.modelEnum = modelEnum;
     }
 
+    /**
+     * Updates the filtered item list with all the existing items.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Success message of the list operation for display.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

@@ -13,7 +13,8 @@ public abstract class Name {
             "%s names should only contain alphanumerical characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the name must not be a whitespace, otherwise " " (a blank string) becomes a valid input.
+     * The first character of the name must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
      */
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
@@ -32,7 +33,10 @@ public abstract class Name {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Checks if a given name String conforms to the expected format.
+     *
+     * @param test The given string to check.
+     * @return True if a given string is a of valid format false otherwise.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -44,6 +48,7 @@ public abstract class Name {
 
     /**
      * Compare two names lexicographically (ignoring case).
+     *
      * @param other The name to compare this name with.
      * @return 1 if this name is lexicographically larger (ignoring case) than the other name,
      *         -1 if this name is lexicographically smaller (ignoring case) than the other name,

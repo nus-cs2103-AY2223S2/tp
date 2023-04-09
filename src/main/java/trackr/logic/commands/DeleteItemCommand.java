@@ -24,6 +24,9 @@ public abstract class DeleteItemCommand<T extends Item> extends Command {
 
     /**
      * Creates an DeleteItemCommand to delete the specified {@code Item} at the target index.
+     *
+     * @param targetIndex The index of the target item to be deleted.
+     * @param modelEnum A representation of the name of the list where item is deleted.
      */
     public DeleteItemCommand(Index targetIndex, ModelEnum modelEnum) {
         requireAllNonNull(targetIndex, modelEnum);

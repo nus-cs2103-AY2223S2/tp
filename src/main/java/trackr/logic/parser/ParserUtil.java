@@ -38,8 +38,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_CRITERIA = "Criteria given must be one of the types: "
             + "`Time_added`, `Deadline`, `Status`, `Name`, `Status_and_Deadline` or blank";
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
@@ -139,7 +139,11 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code Optional<String> criteria} into a {@code CriteriaEnum}.
      *
+     * @param criteria The {@code Optional<String>} representation of sorting criteria.
+     * @throws ParseException If given {@code criteria} is empty
+     *                        or cannot be parsed into a valid CriteriaEnum.
      */
     public static CriteriaEnum parseSortingCriteria(Optional<String> criteria) throws ParseException {
         requireNonNull(criteria);
@@ -226,7 +230,7 @@ public class ParserUtil {
      * Parses a {@code String itemPrice} into a {@code ItemPrice}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code itemName} is invalid.
+     * @throws ParseException if the given {@code itemPrice} is invalid.
      */
     public static ItemSellingPrice parseItemPrice(String itemPrice) throws ParseException {
         requireNonNull(itemPrice);
@@ -238,10 +242,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String itemPrice} into a {@code ItemPrice}.
+     * Parses a {@code String itemCost} into a {@code ItemCost}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code itemName} is invalid.
+     * @throws ParseException if the given {@code itemCost} is invalid.
      */
     public static ItemCost parseItemCost(String itemCost) throws ParseException {
         requireNonNull(itemCost);
@@ -273,7 +277,7 @@ public class ParserUtil {
      * Parses a {@code String OrderDeadline} into a {@code OrderDeadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code OrderDeadline} is invalid.
+     * @throws ParseException if the given {@code orderDeadline} is invalid.
      */
     public static OrderDeadline parseOrderDeadline(String orderDeadline) throws ParseException {
         requireNonNull(orderDeadline);
@@ -285,10 +289,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String OrderStatus} into a {@code OrderStatus}.
+     * Parses a {@code Optional<String> OrderStatus} into a {@code OrderStatus}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code OrderStatus} is invalid.
+     * @throws ParseException if the given {@code orderStatus} is invalid.
      */
     public static OrderStatus parseOrderStatus(Optional<String> orderStatus) throws ParseException {
         requireNonNull(orderStatus);
@@ -307,7 +311,7 @@ public class ParserUtil {
      * Parses a {@code String OrderQuantity} into a {@code OrderQuantity}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code OrderQuantity} is invalid.
+     * @throws ParseException if the given {@code orderQuantity} is invalid.
      */
     public static OrderQuantity parseOrderQuantity(String orderQuantity) throws ParseException {
         requireNonNull(orderQuantity);
@@ -322,7 +326,7 @@ public class ParserUtil {
      * Parses a {@code String CustomerName} into a {@code CustomerName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code CustomerName} is invalid.
+     * @throws ParseException if the given {@code customerName} is invalid.
      */
     public static PersonName parseCustomerName(String customerName) throws ParseException {
         requireNonNull(customerName);
@@ -337,7 +341,7 @@ public class ParserUtil {
      * Parses a {@code String CustomerPhone} into a {@code CustomerPhone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code CustomerPhone} is invalid.
+     * @throws ParseException if the given {@code customerPhone} is invalid.
      */
     public static PersonPhone parseCustomerPhone(String customerPhone) throws ParseException {
         requireNonNull(customerPhone);
@@ -352,7 +356,7 @@ public class ParserUtil {
      * Parses a {@code String CustomerAddress} into a {@code CustomerAddress}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code CustomerAddress} is invalid.
+     * @throws ParseException if the given {@code customerAddress} is invalid.
      */
     public static PersonAddress parseCustomerAddress(String customerAddress) throws ParseException {
         requireNonNull(customerAddress);
@@ -365,10 +369,10 @@ public class ParserUtil {
 
     //========================Parse those related to tab==================================
     /**
-     * Parses {@code targetTabName} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code targetTabName} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the specified TabName is invalid (not a recognised Tab).
+     * @throws ParseException if the specified {@code targetTabName} is invalid (not a recognised Tab).
      */
     public static Index parseTab(String targetTabName) throws ParseException {
         String trimmedTab = targetTabName.trim();

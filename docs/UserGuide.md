@@ -854,12 +854,22 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
     * e.g. `find_o s/D` will return orders marked as `Delivered`.<br>
 
 * For `CUSTOMER_NAME` and `CUSTOMER_ADDRESS`:
+<<<<<<< HEAD
+  * Search is case-insensitive for `CUSTOMER_NAME` but case-sensitive for `CUSTOMER_ADDRESS` 
+  (e.g. The search for orders with customer address `smith` will match with `smith` but not with `Smith`).
+=======
   * Search is case-insensitive (e.g. The search for orders with customer name `amy` will match with `Amy` and with `amy`).
+>>>>>>> master
   * Order of the keywords matter (e.g. `Amy Lee` will not match with `Lee Amy`).
   * Only full words will match.
   * Order's respective parameter must fully match with the given parameter.<br>
     (e.g. `Amy Lee` will only match with `Amy Lee` and not with `Amy Lee Tan`).
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> master
 </div>
 
 <div markdown="block" class="alert alert-example">

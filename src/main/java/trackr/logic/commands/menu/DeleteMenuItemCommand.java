@@ -6,7 +6,7 @@ import trackr.model.ModelEnum;
 import trackr.model.menu.MenuItem;
 
 /**
- * Deletes a task identified using it's displayed index from the task list.
+ * Deletes the menu item identified using it's displayed index from the filtered menu.
  */
 public class DeleteMenuItemCommand extends DeleteItemCommand<MenuItem> {
 
@@ -18,6 +18,11 @@ public class DeleteMenuItemCommand extends DeleteItemCommand<MenuItem> {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    /**
+     * Creates a DeleteMenuItemCommand to delete the menu item at the given index.
+     *
+     * @param targetIndex The index of the menu item to be deleted.
+     */
     public DeleteMenuItemCommand(Index targetIndex) {
         super(targetIndex, ModelEnum.MENUITEM);
     }

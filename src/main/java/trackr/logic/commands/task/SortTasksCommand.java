@@ -25,13 +25,21 @@ public class SortTasksCommand extends Command {
     private SortTasksComparator sortTasksComparator;
 
     /**
-     * Creates a {@code SortTasksCommand} based on the given {@code sortTasksComparator}
+     * Creates a SortTasksCommand to sort the task list.
+     *
+     * @param sortTasksComparator The comparator used to compare 2 tasks according to a given criteria.
      */
     public SortTasksCommand(SortTasksComparator sortTasksComparator) {
         requireNonNull(sortTasksComparator);
         this.sortTasksComparator = sortTasksComparator;
     }
 
+    /**
+     * Sorts the filtered task list using the sortTasksComparator.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Success message of the sort operation for display.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

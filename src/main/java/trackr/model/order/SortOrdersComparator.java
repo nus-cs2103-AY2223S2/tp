@@ -28,6 +28,7 @@ public class SortOrdersComparator implements Comparator<Order> {
 
     /**
      * Compares two given orders.
+     *
      * @param order1 the first order to be compared.
      * @param order2 the second order to be compared.
      * @return -1, 0 or 1 based on the sorting criteria.

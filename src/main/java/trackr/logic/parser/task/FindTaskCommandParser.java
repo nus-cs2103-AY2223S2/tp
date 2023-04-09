@@ -17,7 +17,7 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindTaskCommand object
+ * Parses input arguments and creates a new FindTaskCommand object.
  */
 public class FindTaskCommandParser implements Parser<FindTaskCommand> {
 
@@ -25,7 +25,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
      * Parses the given {@code String} of arguments in the context of the FindTaskCommand
      * and returns a FindTaskCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public FindTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
