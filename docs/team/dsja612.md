@@ -32,8 +32,8 @@ I worked on the entire stack, both frontend and backend. I was mainly in charge 
 * **New Feature & Refactoring**: Add a new `View` command to display more details of a role in a better format.
   * What it does: Edited the `Role Card` to only display important details. The user can view more lengthy/less significant details
   using the `view {index}` command, which replaces the `ResultDisplay` of the UI with a `RoleDisplay`.
-  * Justification: Displaying all 10 fields of a `Role` would not look aesthetically pleasing, especially with longer fields
-  like `JobDescription`. We decided to refactor the UI to support multiple displays. As of now, we only need 2 types
+  * Justification: Displaying all 10 fields of a `Role` in each `Role Card` would not look aesthetically pleasing, 
+  especially with longer fields like `JobDescription`. We decided to refactor the UI to support multiple displays. As of now, we only need 2 types
   of displays from output of commands: one for `String`, another for `Role`. The type of display can be easily made extendable 
   in the future, if needed.
   
