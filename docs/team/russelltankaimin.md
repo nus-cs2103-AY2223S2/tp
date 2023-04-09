@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tan Kai Min, Russell's Project Portfolio Page
+title: Russell Tan's Project Portfolio Page
 ---
 
 ### Project: EduMate
