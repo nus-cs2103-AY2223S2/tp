@@ -49,16 +49,6 @@ public class HelpEventCommand extends HelpCommand {
             assert false : "Incorrect Category";
             return new HelpEventCommand();
         }
-        /*
-        if (args.equals(" tutorial")) {
-            return new HelpTutorialCommand();
-        } else if (args.equals(" lab")) {
-            return new HelpLabCommand();
-        } else if (args.equals(" consultation")) {
-            return new HelpConsultationCommand();
-        } else {
-            return new HelpEventCommand();
-        }*/
     }
     @Override
     public CommandResult execute(Model model) {
