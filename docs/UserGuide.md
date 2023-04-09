@@ -26,8 +26,7 @@ ExpressLibrary is a **desktop app created for librarians to better manage librar
    Some example commands you can try:
 
    * `listPerson` : Lists all contacts.
-   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com`:
-   Adds a contact named `Bob Tan` to records
+   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com`: Adds a contact named `Bob Tan` to records
    * `deletePerson 3` : Deletes the 3rd user shown in the current list.
    * `clear` : Clears all persons and books in the ExpressLibrary.
    * `exit` : Exits the app.
@@ -46,6 +45,9 @@ ExpressLibrary is a **desktop app created for librarians to better manage librar
   e.g. in `addPerson n/NAME`, `NAME` is a parameter which can be used as `addPerson n/John Doe`.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Optional items in curly braces means that at least
+  one optional item must be used.<br>
+  e.g `{[n/NAME] [t/TAG]}` can be used as `n/John Doe t/friend` or `n/John Doe` but cannot be empty.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be in any order.<br>
@@ -54,8 +56,7 @@ ExpressLibrary is a **desktop app created for librarians to better manage librar
   e.g. if you specify `p/98102341 p/81234134`, only `p/98102341` will be taken.
 * Only Singapore phone numbers are valid. (Must be 8 digits long and start with 6, 8 or 9.)
 * Emails must abide by RFC5322 standard. For more details, refer to section 3.4.1 of the RFC5322 protocol found here 
-https://www.rfc-editor.org/rfc/rfc5322.
-* You can also refer to the error message which will appear if you key in an invalid email.
+(https://www.rfc-editor.org/rfc/rfc5322)[https://www.rfc-editor.org/rfc/rfc5322]. You can also refer to the error message which will appear if you key in an invalid email.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listPerson`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -86,7 +87,7 @@ Format: `deletePerson PERSON_INDEX [-f]`
 
 * Deletes the person at the specified PERSON_INDEX.
 * The index refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 * The `-f` flag is optional and should be included in the case where the person to delete has borrowed books and you would like to return all books while deleting the person. Else, a warning message will appear when you try to delete the person without the flag.
 
 Examples:
@@ -98,15 +99,13 @@ Examples:
 
 Edits an existing person in the ExpressLibrary.
 
-Format: `editPerson PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `editPerson PERSON_INDEX {[n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…}​`
 
 * Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You will not be able to edit a person's email or phone number to be the same as an existing person.
-* You can remove all the person’s tags by typing `t/` without
- specifying any tags after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 
@@ -172,7 +171,7 @@ Examples:
 
 Edits an existing book in the book records.
 
-Format: `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]​`
+Format: `editBook BOOK_INDEX {[t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]}​`
 
 * Edits the book at the specified `BOOK_INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -181,7 +180,7 @@ Format: `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/
 
 Examples:
 
-* `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title and author and ISBN of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
+* `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title, author and ISBN of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136` respectively.
 * `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
 
 #### Listing all books : `listBook`
@@ -221,7 +220,7 @@ Format: `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE`
 * Lends a book specified by the BOOK_INDEX to the person at the specified PERSON_INDEX.
 * The PERSON_INDEX refers to the index number shown in the displayed person list.
 * The BOOK_INDEX refers to the index number shown in the displayed book list.
-* The indexes must be positive integers 1, 2, 3, …​
+* The indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 
@@ -241,7 +240,7 @@ Format: `return PERSON_INDEX b/BOOK_INDEX`
 * Returns a person's borrowed book specified by the PERSON_INDEX and specified BOOK_INDEX.
 * The PERSON_INDEX refers to the index number shown in the displayed person list.
 * The BOOK_INDEX refers to the index number shown in the displayed book list.
-* The indexes must be positive integers 1, 2, 3, …​
+* The indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 
@@ -278,14 +277,47 @@ As clearly seen in the image above, if the due date is within 3 days of the curr
 ### Saving the data
 
 ExpressLibrary data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 ### Editing the data file
 
 ExpressLibrary data is saved as a JSON file `[JAR file location]/data/expresslibrary-{version_num}.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** When editing book fields when it is borrowed, make sure to update **both** the `books` array in the person object and the **main** `books` array separate from `persons` in the json file. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/DeveloperGuide.html#how-data-is-saved) for more details.
+:information_source: **Note:** When editing book fields when it is borrowed, make sure to update **both** the `books` array in the person object and the **main** `books` array separate from `persons` in the json file. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/UserGuide.html#how-data-is-saved) for more details.
 
+### How data is saved
+
+:information_source: **_For advanced users only!_**
+
+Data in ExpressLibrary is saved in `[JAR file location]/data/expresslibrary.json`, consisting of an array of `persons` and `books`.
+
+Each person in the `persons` array will contain these fields:
+
+* `name`: Represents the name of the person.
+* `phone`: Represents the phone number of the person.
+* `email`: Represents the email of the person.
+* `books`: Represents the set of books that the person has borrowed, will be an empty set if the person has not borrowed any.
+* `tagged`: Represents the tags assigned to the person, will be an empty set if the person has no tags assigned.
+
+<div markdown="span" class="alert alert-warning">
+
+ :warning: **Note:** If editing the file manually, note that `books` in **each person** must be present in the main `books` array. Otherwise, the data file will be invalid.
+</div>
+
+Each book in the `books` array will contain these fields:
+
+* `title`: Represents the title of the book.
+* `author`: Represents the author of the book.
+* `isbn`: Represents the ISBN of the book.
+* `borrowDate`: Represents the date in the form `dd/mm/yyyy` when the book was borrowed by a person, will be an empty string if not borrowed.
+* `dueDate`: Represents the date in the form `dd/mm/yyyy` when the book has to be returned by a person, will be an empty string if not borrowed.
+* `isBorrowed`: Represents whether the book is borrowed. True if borrowed and false if not.
+
+<div markdown="span" class="alert alert-warning">
+
+ :warning: **Note:** If editing the file manually, note that `borrowDate` and `dueDate` must be included if `isBorrowed` is true and vice versa. Otherwise, the data file will be invalid.
+</div>
 
 </div>
 
@@ -303,6 +335,9 @@ If your changes to the data file makes its format invalid, ExpressLibrary will d
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ExpressLibrary home folder.
 
+**Q**: Why can't I set due date to be in the past using the `borrow` command? What if the book was not borrowed today?<br>
+**A**: Please use the `editBook` command after `borrow` if you would like to edit dates without the current date checks. `borrow` is intended to be used as if the person was borrowing the book on that day.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -311,9 +346,9 @@ If your changes to the data file makes its format invalid, ExpressLibrary will d
 
 Action | Format, Examples
 --------|------------------
-**AddPerson** | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `addPerson n/James Ho p/22224444 e/jamesho@example.com`
+**AddPerson** | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `addPerson n/James Ho p/92340121 e/jamesho@example.com t/manager t/hr`
 **DeletePerson** | `deletePerson PERSON_INDEX`<br> e.g., `deletePerson 3`
-**EditPerson** | `editPerson INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
+**EditPerson** | `editPerson INDEX {[n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…}​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
 **FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
 **ListPerson** | `listPerson`
 
@@ -321,10 +356,10 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**AddBook** | `addBook t/TITLE a/AUTHOR i/ISBN…​` <br> e.g., `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
+**AddBook** | `addBook t/TITLE a/AUTHOR i/ISBN​` <br> e.g., `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
 **DeleteBook** | `deleteBook BOOK_INDEX`<br> e.g., `deleteBook 3`
-**EditBook** | `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]…​`<br> e.g.,`editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
-**FindBook** | `findBook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findBook dune Cat`
+**EditBook** | `editBook BOOK_INDEX {[t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]}`<br> e.g.,`editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
+**FindBook** | `findBook KEYWORD [MORE_KEYWORDS]...`<br> e.g., `findBook dune Cat`
 **ListBook** | `listBook`
 
 ### Common
@@ -334,4 +369,5 @@ Action | Format, Examples
 **Borrow** | `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE` <br> e.g., `borrow 1 b/2 d/23/09/2024`
 **Return** | `return PERSON_INDEX b/BOOK_INDEX` <br> e.g., `return 3 b/1`
 **Clear** | `clear`
+**Exit** | `exit`
 **Help** | `help`

@@ -141,7 +141,7 @@ public class CommandTestUtil {
 
         Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
         final String[] splitName = book.getTitle().title.split("\\s+");
-        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[3])));
 
         assertEquals(1, model.getFilteredBookList().size());
     }
