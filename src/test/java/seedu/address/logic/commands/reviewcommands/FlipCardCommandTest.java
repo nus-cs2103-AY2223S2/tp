@@ -1,19 +1,20 @@
 package seedu.address.logic.commands.reviewcommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH;
+
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tag.Tag;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH;
 
 public class FlipCardCommandTest {
 

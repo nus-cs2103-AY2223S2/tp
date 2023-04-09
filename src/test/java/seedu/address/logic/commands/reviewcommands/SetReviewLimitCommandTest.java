@@ -3,9 +3,10 @@ package seedu.address.logic.commands.reviewcommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tag.Tag;
-
-import java.util.List;
 
 public class SetReviewLimitCommandTest {
 
