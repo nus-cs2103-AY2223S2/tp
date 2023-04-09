@@ -132,6 +132,7 @@ Recipes are the building blocks of ***RIZZ***ipe! Each recipe comprises multiple
 Pay close attention to these attributes, for they are crucial inputs to some of our [features](#features) mentioned below!
 
 ### Recipe attributes table
+
 | Field           | Prefix | Accepted Format                                                                                                                                             | Compulsory? | Example                                                                                                                                 |
 |-----------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | **Name**        | `n/`   | **`NAME`** <br> `NAME` can contain these characters: `A-Z a-z 0-9 - \ ' " and space`.                                                                       | Yes         | `Chicken Rice`, <br>`Broccoli Stir-Fry`                                                                                                 |
@@ -146,6 +147,7 @@ Pay close attention to these attributes, for they are crucial inputs to some of 
 Ingredients are at the heart of recipes, and also comprise multiple fields. The specification for recipe ingredients are listed in the table below:
 
 ### Ingredient attributes table
+
 | Field                | Prefix | Accepted Format                                                                                                                                              | Compulsory? | Example                                                                         |
 |----------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|---------------------------------------------------------------------------------|
 | **Name**             | `-n`   | **`INGREDIENT_NAME`** <br> `INGREDIENT_NAME` can contain these characters: `A-Z a-z - and space`                                                             | Yes         | `Salt`, <br> `Soy Sauce`, <br> `Barley-Wheat Bread`                             |
