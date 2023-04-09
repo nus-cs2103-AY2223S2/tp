@@ -20,6 +20,7 @@ Before reading, it is recommended that developers read the [User Guide](https://
 ---
 
 ## Table of Contents
+
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
@@ -597,8 +598,6 @@ The following sequence diagram depicts a `list` command execution for listing le
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-![ListSequenceDiagramRefListLectures](images/ListSequenceDiagramRefListLectures.png)
-
 The following is a description of the code execution flow:
 
 1. `ListCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `ListCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
@@ -747,8 +746,8 @@ The `tag` command supports:
 - Adding multiple `Tag` objects to a `Lecture` object of a `Module` object contained in a `Tracker` object
 - Adding multiple `Tag` objects to a `Video` object of a `Lecture` object contained in a `Module` object in a `Tracker` object
 
-The `tag` behaviour is dependent on the arguments provided by the user. `Module` objects, `Lecture` objects, and 
-`Video` objects can have multiple, unique `Tag` objects. If a command contains new tags and tags that were already 
+The `tag` behaviour is dependent on the arguments provided by the user. `Module` objects, `Lecture` objects, and
+`Video` objects can have multiple, unique `Tag` objects. If a command contains new tags and tags that were already
 added to `Module` objects, `Lecture` objects, or `Video` objects, only the new tags will be added.
 
 **Notable Classes**
@@ -756,12 +755,12 @@ added to `Module` objects, `Lecture` objects, or `Video` objects, only the new t
 The feature utilises the following classes:
 
 - `TagCommandParser` – Creates the appropriate `TagCommand` object based on the user's input
-- `TagCommand` – Handles adding `Tag` objects to a `Module`/`Lecture`/`Video` object based on 
+- `TagCommand` – Handles adding `Tag` objects to a `Module`/`Lecture`/`Video` object based on
   the user's input
 
 **Execution**
 
-The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a 
+The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a
 `Tracker` object.
 
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
@@ -789,26 +788,28 @@ The following is a description of the code execution flow:
    or `Video` object.
 
 **Notes for `TagCommandParser#parse()`**
+
 - A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included.
 
 **Notes for `TagCommand#execute()`**
+
 - A `CommandException` will be thrown for the following scenarios:
-    - The user did not specify any tags to add.
-    - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
+  - The user did not specify any tags to add.
+  - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
 
 ### Untag module, lecture, and video feature
 
 The `untag` command supports:
 
-- Removing multiple `Tag` objects from a `Module` object in a `Tracker` object that is contained in a `ModelManager` 
+- Removing multiple `Tag` objects from a `Module` object in a `Tracker` object that is contained in a `ModelManager`
   object
 - Removing multiple `Tag` objects from a `Lecture` object of a `Module` object in a `Tracker` object
-- Removing multiple `Tag` objects from a `Video` object of a `Lecture` object which belongs to a `Module` object in a 
+- Removing multiple `Tag` objects from a `Video` object of a `Lecture` object which belongs to a `Module` object in a
   `Tracker` object
 
-The `untag` behaviour is dependent on the arguments provided by the user. Multiple `Tag` objects can be deleted in a 
+The `untag` behaviour is dependent on the arguments provided by the user. Multiple `Tag` objects can be deleted in a
 single command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
-videos, a `CommandException` will be thrown. Duplicated tags in the command, if any, will be ignored. 
+videos, a `CommandException` will be thrown. Duplicated tags in the command, if any, will be ignored.
 
 **Notable Classes**
 
@@ -820,18 +821,17 @@ The feature utilises the following classes:
 
 **Execution**
 
-The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object 
+The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object
 in a `Tracker` object.
 
 ![UntagSequenceDiagram](images/UntagSequenceDiagram.png)
 
 The following is a description of the code execution flow:
 
-1. `UntagCommandParser#parse()` takes in the user input and determine whether the user wants to remove `Tag` 
+1. `UntagCommandParser#parse()` takes in the user input and determine whether the user wants to remove `Tag`
    objects a `Module`, `Lecture`, or `Video` object based on the appropriate prefixes included in the user's input.
 2. The user input is then checked to determine whether it contains the required prefixes according to the table
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
-
 
    | Intent        | has `/mod` prefix | has `/lec` prefix | has `/tags` prefix |
    |:-------------:|:-----------------:|:-----------------:|:------------------:|
@@ -842,25 +842,27 @@ The following is a description of the code execution flow:
 3. A set of `Tag` objects to remove is then determined from the user's input. Afterwards, the command creates an
    appropriate `UntagCommand` object and returns it to the caller.
 4. `LogicManager` calls the `Command#execute()` method of the `UntagCommand` object returned by
-   `UntagCommandParser#parse()`. 
-5. If no exceptions are thrown, the command succeeds in removing the `Tag` objects from the 
-   `Module`/`Lecture`/`Video` object. 
+   `UntagCommandParser#parse()`.
+5. If no exceptions are thrown, the command succeeds in removing the `Tag` objects from the
+   `Module`/`Lecture`/`Video` object.
 
 **Notes for `UntagCommandParser#parse()`**
-- A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included. 
+
+- A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included.
 
 **Notes for `UntagCommand#execute()`**
+
 - A `CommandException` will be thrown for the following scenarios:
-  - The user did not specify any tags to remove. 
+  - The user did not specify any tags to remove.
   - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
   - The specified tags do not correspond with existing `Tag` objects in the `Module`/`Lecture`/`Video` object.
-
 
 ### Import archived data feature
 
 The `import` command supports:
+
 - Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object
-- Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting 
+- Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting
   current `Module` objects with imported `Module` objects if these modules exist in the current `Tracker` object
 - Importing specific `Module` objects from a valid Le Tracker data file into the current `Tracker` object
 - Importing specific `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting
@@ -871,44 +873,47 @@ The `import` behaviour is dependent on the arguments provided by the user.
 **Notable Classes**
 
 The feature utilises the following classes:
+
 - `ImportCommandParser` - Creates the appropriate `ImportCommand` object based on the user's input
-- `ImportCommand` - Creates the appropriate `CommandResult` object containing the file path for import and the set 
+- `ImportCommand` - Creates the appropriate `CommandResult` object containing the file path for import and the set
   of `ModuleCode` objects that references the `Module` objects to import
 - `Archive` - Handles importing `Module` objects from the file path in `CommandResult` to the current `Tracker` object
 
 **Execution**
 
-The following sequence diagram depicts a `import` command execution for importing a single module from a specified 
+The following sequence diagram depicts a `import` command execution for importing a single module from a specified
 file path to the current `Tracker` object
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
 ![ImportSequenceDiagramRef](images/ImportSequenceDiagramRef.png)
 
-
 The following is a description of the code execution flow:
 
 1. `ImportCommandParser#parse()` takes in the user input and determine the file path that the user wants to
    import from, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the
-   `/overwrite` flag. 
+   `/overwrite` flag.
 2. The command creates an appropriate `ImportCommand` object and returns it to the caller.
 3. `LogicManager` calls `Command#execute()` method of the `ImportCommand` object. An appropriate `CommandResult` object containing a `Path` object with the
-   importing file path and a set of `ModuleCode` objects to reference the `Module` objects to import is then 
+   importing file path and a set of `ModuleCode` objects to reference the `Module` objects to import is then
    returned to the caller.
-4. `LogicManager` calls the `Archive#importFromArchive()` method. The `Archive` object then checks whether the 
+4. `LogicManager` calls the `Archive#importFromArchive()` method. The `Archive` object then checks whether the
    modules in user's input exist in the current Tracker, and in the specified file path.
-5. If no exceptions are thrown, the command succeeds in importing `Module` objects from the specified file path to the 
+5. If no exceptions are thrown, the command succeeds in importing `Module` objects from the specified file path to the
    current `Tracker` object.
 
 **Notes for `ImportCommandParser#parse()`**
+
 - A `ParseException` will be thrown for the following scenarios:
   - The user specified `/mod` without providing any module code
   - The importing file path is not specified in user's input
 
 **Notes for `ImportCommand#execute()`**
+
 - A `CommandException` will be thrown if the specified file path is invalid.
 
 **Notes for `Archive#importFromArchive()`**
+
 - A `CommandException` will be thrown for the following scenarios:
   - The file doesn't exist in the specified file path.
   - The file doesn't have read permission
@@ -919,9 +924,10 @@ The following is a description of the code execution flow:
 ### Exporting data feature
 
 The `export` command supports:
-- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to a new file path, in a JSON 
+
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to a new file path, in a JSON
   format file
-- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to an existing file path, in a 
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to an existing file path, in a
   JSON format file, overwriting its content
 
 The `export` behaviour is dependent on the arguments provided by the user.
@@ -929,6 +935,7 @@ The `export` behaviour is dependent on the arguments provided by the user.
 **Notable Classes**
 
 The feature utilises the following classes:
+
 - `ExportCommandParser` – Creates the appropriate `ExportCommand` object based on the user's input
 - `ExportCommand` – Creates the appropriate `CommandResult` object containing the file path for export
 - `Archive` – Handles saving the `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to
@@ -936,44 +943,48 @@ The feature utilises the following classes:
 
 **Execution**
 
-The following sequence diagram depicts a `export` command execution for exporting a `Tracker` object to a specified 
+The following sequence diagram depicts a `export` command execution for exporting a `Tracker` object to a specified
 file path
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
 The following is a description of the code execution flow:
 
-1. `ExportCommandParser#parse()` takes in the user input and determine the file path that the user wants to 
-   export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the 
+1. `ExportCommandParser#parse()` takes in the user input and determine the file path that the user wants to
+   export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the
    `/overwrite` flag.
 2. The command creates an appropriate `ExportCommand` object and returns it to the caller.
-3. `LogicManager` calls the `Command#execute()` method of the `ExportCommand`. An appropriate `CommandResult` object containing a `Path` object with the 
-   saving file path is then returned to the caller. 
+3. `LogicManager` calls the `Command#execute()` method of the `ExportCommand`. An appropriate `CommandResult` object containing a `Path` object with the
+   saving file path is then returned to the caller.
 4. `LogicManager` calls the `Archive#exportToArchive()` method.
-5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and 
+5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and
    `Video` objects it contains to the specified file path.
 
 **Notes for `ExportCommandParser#parse()`**
+
 - A `ParseException` will be thrown if the saving file path is not specified in user's input.
 
 **Notes for `ExportCommand#execute()`**
+
 - A `CommandException` will be thrown if the specified file path is invalid.
 
 **Notes for `Archive#exportToArchive()`**
+
 - A `CommandException` will be thrown for the following scenarios:
   - The file at the specified file path does not have write permission.
   - The user is trying to export to the current working tracker path.
   - The user is trying to export to an existing file without the `/overwrite` flag.
-
 
 ### Clear feature
 
 The `clear` feature supports clearing the entire tracker of all modules, lectures and videos
 
 The feature utilises the following classes:
+
 - `ClearCommand` - executable command to clear modules, lectures and videos in the tracker
 
 The following is a description of the code execution flow:
+
 1. `TrackerParser#parseCommand` parses based on the command word `clear` to identify that the Clear feature is being called.
 2. `ClearCommand#execute(Model)` calls `Model#clearTracker` to clear the tracker
 
@@ -1098,160 +1109,154 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-
-**Use case: List modules**
+#### Use case: List modules
 
 **MSS**
 
-1. User wants to see all modules.
-2. User executes list modules command.
-3. A list of module is populated.
+1. User wants to see all modules and executes list modules command.
+1. A list of module is populated.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The list command is invalid.
+- 1a. The list command is invalid.
 
-  - 2a1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: List module's lectures**
+#### Use case: List module's lectures
 
 **MSS**
 
-1. User wants to see all lectures of a module.
-2. User supplies a module and executes list lectures command.
-3. A list of lectures of specified module is populated.
+1. User wants to see all lectures of a module and executes list lectures command with module supplied.
+1. A list of lectures of specified module is populated.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The module does not exists.
+- 1a. The module does not exists.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The list command is invalid.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: List lecture's videos**
+- 1b. The list command is invalid.
+
+  - 1b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: List lecture's videos
 
 **MSS**
 
-1. User wants to see all videos of a lecture in a module.
-2. User supplies a module and a lecture and executes list videos command.
-3. A list of videos of the specified lecture in the specified module is populated.
+1. User wants to see all videos of a lecture in a module and executes list videos command with a module and a lecture supplied.
+1. A list of videos of the specified lecture in the specified module is populated.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The module does not exists.
+- 1a. The module does not exists.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The lecture does not exists.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The list command is invalid.
+- 1b. The lecture does not exists.
 
-  - 2c1. LeTracker shows an error message.
+  - 1b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: Find module**
+- 1c. The list command is invalid.
+
+  - 1c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Find module
 
 **MSS**
 
-1. User wants to find modules that starts with a keyword.
-2. User supplies the keyword and executes find modules command.
-3. A list of modules relevant to the keyword is populated.
+1. User wants to find modules that starts with a keyword and executes find modules command with keyword supplied.
+1. A list of modules relevant to the keyword is populated.
 
    Use case ends.
 
-- 2a. The keyword is in wrong format.
+- 1a. The keyword is in wrong format.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The find command is invalid.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: Find lecture**
+- 1b. The find command is invalid.
+
+  - 1b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Find lecture
 
 **MSS**
 
-1. User wants to find lectures in a module that starts with a keyword.
-2. User supplies the keyword and a module and executes find lecture command.
-3. A list of lectures in the specified module which are relevant to the keyword is populated.
+1. User wants to find lectures in a module that starts with a keyword and executes find lecture command with module and keyword supplied.
+1. A list of lectures in the specified module which are relevant to the keyword is populated.
 
    Use case ends.
 
-- 2a. The keyword is in wrong format.
+- 1a. The keyword is in wrong format.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The module does not exists.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The find command is invalid.
+- 1b. The module does not exists.
 
-  - 2c1. LeTracker shows an error message.
+  - 1b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: Find video**
+- 1c. The find command is invalid.
+
+  - 1c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Find video
 
 **MSS**
 
-1. User wants to find videos in a lecture belonging in a module that starts with a keyword.
-2. User supplies the keyword and a lecture and a module and executes find video command.
-3. A list of videos in the specified lecture in the specified module which are relevant to the keyword is populated.
+1. User wants to find videos in a lecture belonging in a module that starts with a keyword and executes find video command
+with module, lecture and keyword supplied.
+1. A list of videos in the specified lecture in the specified module which are relevant to the keyword is populated.
 
    Use case ends.
 
-- 2a. The keyword is in wrong format.
+- 1a. The keyword is in wrong format.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The module does not exists.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The lecture does not exists.
+- 1b. The module does not exists.
 
-  - 2c1. LeTracker shows an error message.
+  - 1b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2d. The find command is invalid.
+- 1c. The lecture does not exists.
 
-  - 2d1. LeTracker shows an error message.
+  - 1c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 1d. The find command is invalid.
+
+  - 1d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2297,6 +2302,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use Case: Clear all Modules**
 **MSS**
+
 1. User requests to clear all modules
 2. Le Tracker clears all modules
 
@@ -2402,24 +2408,6 @@ TODO: to be removed
 
 1. _{ more test cases …​ }_ -->
 
-### Current working context affected by deletion
-
-1. `nav CS2040S`
-1. `delete /r CS2040S`
-
-Expected:
-
-- Current working context should be "/r".
-
-### Current working context affected by edit
-
-1. `nav CS2040S`
-1. `edit CS2040S /r /code CS2040`
-
-Expected:
-
-- Current working context should be "/r/CS2040".
-
 ### List Modules
 
 | Test Case  | Expected Result                                          |
@@ -2432,16 +2420,16 @@ Expected:
 
 | Test Case                     | Expected Result                                                          |
 | ----------------------------- | ------------------------------------------------------------------------ |
-| 1.`nav CS2040S`<br/> 2.`list` | List should show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
+| `nav CS2040S`<br/>`list` | List should show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
 | `list /mod CS2040S`           | Same as previous                                                         |
 
 ### List Videos of a Lecture
 
 | Test Case                                        | Expected Result                             |
 | ------------------------------------------------ | ------------------------------------------- |
-| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`list` | List should show videos with name [`Vid 3`] |
-| 1.`nav CS2040S`<br/> 2.`list /lec Week 1`        | Same as previous                            |
-| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`list`    | Same as previous                            |
+| `nav CS2040S`<br/> `nav Week 1`<br/>`list` | List should show videos with name [`Vid 3`] |
+| `nav CS2040S`<br/> `list /lec Week 1`        | Same as previous                            |
+| `nav /mod CS2040S /lec Week 1`<br/>`list`    | Same as previous                            |
 | `list /mod CS2040S /lec Week 1`                  | Same as previous                            |
 
 ### Find Modules
@@ -2464,7 +2452,7 @@ Expected:
 
 | Test Case                            | Expected Result                                |
 | ------------------------------------ | ---------------------------------------------- |
-| 1.`nav CS2040S`<br/> 2.`find week 1` | List should show lectures with name [`Week 1`] |
+| `nav CS2040S`<br/> `find week 1` | List should show lectures with name [`Week 1`] |
 | `find week 1 /mod CS2040S`           | Same as previous                               |
 | `find wk /mod CS2040S`               | An empty list is shown                         |
 
@@ -2472,7 +2460,7 @@ Expected:
 
 | Test Case                                | Expected Result                                          |
 | ---------------------------------------- | -------------------------------------------------------- |
-| 1.`nav CS2040S`<br/> 2.`find arr /byTag` | List should show lectures with name [`Week 2`, `Week 4`] |
+| `nav CS2040S`<br/> `find arr /byTag` | List should show lectures with name [`Week 2`, `Week 4`] |
 | `find arr /mod CS2040S /byTag`           | Same as previous                                         |
 | `find arry /mod CS2040S /byTag`          | An empty list is shown                                   |
 
@@ -2480,21 +2468,21 @@ Expected:
 
 | Test Case                                              | Expected Result                             |
 | ------------------------------------------------------ | ------------------------------------------- |
-| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`find vid 3` | List should show videos with name [`Vid 3`] |
-| 1.`nav CS2040S`<br/> 2.`find vid 3 /lec Week 1`        | Same as previous                            |
-| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find vid 3`    | Same as previous                            |
+| `nav CS2040S`<br/> `nav Week 1`<br/>`find vid 3` | List should show videos with name [`Vid 3`] |
+| `nav CS2040S`<br/> `find vid 3 /lec Week 1`        | Same as previous                            |
+| `nav /mod CS2040S /lec Week 1`<br/>`find vid 3`    | Same as previous                            |
 | `find vid 3 /mod CS2040S /lec Week 1`                  | Same as previous                            |
-| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find`          | Invalid command                             |
+| `nav /mod CS2040S /lec Week 1`<br/>`find`          | Invalid command                             |
 
 ### Find Videos of a Lecture by Tag
 
 | Test Case                                                    | Expected Result                             |
 | ------------------------------------------------------------ | ------------------------------------------- |
-| 1.`nav CS2040S`<br/> 2.`nav Week 2`<br/>3.`find math /byTag` | List should show videos with name [`Vid 2`] |
-| 1.`nav CS2040S`<br/> 2.`find math /lec Week 2 /byTag`        | Same as previous                            |
-| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find math /byTag`    | Same as previous                            |
+| `nav CS2040S`<br/> `nav Week 2`<br/>`find math /byTag` | List should show videos with name [`Vid 2`] |
+| `nav CS2040S`<br/> `find math /lec Week 2 /byTag`        | Same as previous                            |
+| `nav /mod CS2040S /lec Week 2`<br/>`find math /byTag`    | Same as previous                            |
 | `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
-| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |
+| `nav /mod CS2040S /lec Week 2`<br/>`find`                | Invalid command                             |
 
 ### Mark a Video
 
