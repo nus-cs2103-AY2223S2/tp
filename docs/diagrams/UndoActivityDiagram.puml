@@ -15,7 +15,7 @@ else ([else])
     if () then ([can undo])
         :Undo once;
         if () then ([enough undos available])
-        :undo argument number of times;
+        :Undo argument n - 1 number of times;
         else ([else])
         :undo as many times possible (0 inclusive);
         endif
