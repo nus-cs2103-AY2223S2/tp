@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="The Intern's Ship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="700.0" onCloseRequest="#handleExit" title="The Intern's Ship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <!-- edit this if we want to change main icon image -->
         <Image url="@/images/ship.png" />
@@ -49,10 +49,10 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" />
                             </padding>
                         </StackPane>
-                  <SplitPane dividerPositions="0.0" minWidth="450.0" VBox.vgrow="ALWAYS">
+                  <SplitPane dividerPositions="1.0" minWidth="450.0" VBox.vgrow="ALWAYS">
                      <items>
-                        <StackPane fx:id="internshipListPanelPlaceholder" alignment="TOP_LEFT" />
-                        <StackPane fx:id="pagePlaceholder" alignment="TOP_LEFT" />
+                        <StackPane fx:id="internshipListPanelPlaceholder" alignment="TOP_LEFT" maxWidth="-Infinity" minWidth="250.0" prefWidth="450.0" />
+                        <StackPane fx:id="pagePlaceholder" alignment="TOP_LEFT" minWidth="400.0" />
                      </items>
                   </SplitPane>
                        <StackPane fx:id="statusbarPlaceholder" />

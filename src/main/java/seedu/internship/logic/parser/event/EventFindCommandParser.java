@@ -1,11 +1,11 @@
 package seedu.internship.logic.parser.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
 
-import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.logic.commands.event.EventFindCommand.FilterEventDescriptor;
 import seedu.internship.logic.parser.ArgumentMultimap;
@@ -43,7 +43,7 @@ public class EventFindCommandParser implements Parser<EventFindCommand> {
                     EventParserUtil.parseEventEnd(argMultimap.getValue(PREFIX_EVENT_END).get()));
         }
         if (!filterEventDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(FindCommand.MESSAGE_NOT_FILTERED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventFindCommand.MESSAGE_USAGE));
         }
         return new EventFindCommand(filterEventDescriptor);
     }

@@ -7,9 +7,11 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Our in-app calendar display makes use JavaFX controls from the [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX) library, an open source calendar framework for JavaFX 8. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,24 +21,32 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
- **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+ :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+ 
 </div>
+
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p align="center">
 
+<img src="images/ArchitectureDiagram.png" width="200" />
+
+ </p> 
+ 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+At the highest level, the App has two classes called [`Main`](https://github.com/ShanHng/tp/blob/master/src/main/java/seedu/internship/Main.java) and [`MainApp`](https://github.com/ShanHng/tp/blob/master/src/main/java/seedu/internship/MainApp.java). They are responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -54,28 +64,42 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram-0.png" width="574" />
+<p align="center">
 
+<img src="images/ArchitectureSequenceDiagram-0.png" width="400" />
+
+ </p> 
+ 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point (`{Component Name}` is a placeholder for the four main components).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the partial *Class Diagram* below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center">
 
-The sections below give more details of each component.
+<img src="images/ComponentManagers.png" width="180" />
+
+</p> 
+ 
+The following sections give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java). The partial *Class Diagram* below showcases the main classes that reside in UI.
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
 
+<img src="images/UiClassDiagram.png" width="400" />
+
+ </p>
+ 
 The UI consists of a `MainWindow` that is made up of parts, e.g. the `CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter`, `InfoPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,75 +110,115 @@ The `UI` component,
 
 The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user.
 
-Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc.
+Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. 
 
-![Subclasses of Page abstract class](images/PageClasses.png)
+The *Class Diagram* below outlines the different concrete subclasses of `Page` and the subcomponents they depend on. 
 
-When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The sequence diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
+<p align="center">
 
-![Subclasses of Page abstract class](images/PageSequenceDiagram.png)
+<img src="images/PageClasses.png" width="350" />
 
+ </p>
 
+**How a `Page` is generated** 
+
+When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The *Sequence Diagram* below illustrates the chain of method calls whenever a new `Page` is constructed to be displayed in the UI.
+
+<p align="center">
+
+ <img src="images/PageSequenceDiagram.png" width="400" />
+
+ </p>
+ 
+<div style="page-break-after: always;"></div>
 
 
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Here's a (partial) *Class Diagram* of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center">
 
+<img src="images/LogicClassDiagram.png" width="350"/>
+
+ </p>
+ 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InternshipCatalogueParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an Internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The *Sequence Diagram* below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center">
+
+<img src="images/DeleteSequenceDiagram.png" width="550"/>
+
+ </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+The *Class Diagram* below outlines classes in `Logic` used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center">
 
+<img src="images/ParserClasses.png" width="300"/>
+
+ </p>
+ 
 How the parsing works:
 * When called upon to parse a user command, the `InternshipCatalogueParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `InternshipCatalogueParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+ 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/model/Model.java)
 
+<p align="center">
+
 <img src="images/ModelClassDiagram.png" width="450" />
 
+ </p>
 
 The `Model` component,
 
-* Model Stores Independent Entities(`Internship` and `Events`) which interact with each other to give the features of intern's ship
-* For each entity :
-  * model stores the entity catalogue data i.e., all `entity` objects (which are contained in a `UniqueEntityList` object).
-  * model stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* model also stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* Stores independent instances of `Internship` and `Event` which represents data stored by TinS.
+  * The `Model` contains a catalogue for each of the two `{Entity}`  (`{Entity}` is a placeholder for `Internship` and `Event`). An `{Entity}Catalogue` stores the instances of `{Entity}` in a `Unique{Entity}List` object.
+* Stores currently 'selected' `Internship` that results from a `select` command 
+* Stores (e.g. results of a find query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList{Entity}` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 
 
-#### Relationship Between `Internship` and `Event` entities
-Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two.
+**Relationship Between `Internship` and `Event` entities**
+Events cannot exist without its corresponding internship, thus there exists a composite relationship between the two.
 Also, to make insertions and deletions of events easier, each event instance stores the internship instance it is
 associated with. Due to this, extra precautions are taken during internship deletions, making sure the corresponding
 events are deleted as well.
 
+<p align="center">
 
 <img src="images/InternshipEventModelClassDiagram.png" width="250" />
 
+ </p>
+ 
+  
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+<p align="center">
 
 <img src="images/StorageClassDiagram.png" width="550" />
+
+</p>
 
 The `Storage` component,
 * can save internship catalogue data, event catalogue data and user preference data in json format, and read them back
@@ -166,77 +230,21 @@ that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.internship.commons` package.
+Classes used by multiple components are in the [`seedu.internship.commons`](https://github.com/AY2223S2-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/internship/commons) package.
 
 --------------------------------------------------------------------------------------------------------------------
+ 
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
-
+ 
 This section describes some noteworthy details on how certain features are implemented.
 
-### View Calendar feature
-The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
-It is accessible by the command `calendar`.
+### Selecting an `Internship`: `select` command
 
-#### Implementation
-Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
+**Implementation**
 
-Step 1. The user enters `calendar` command into the CommandBox.
-
-Step 2. `MainWindow` receives the input and calls `execute('calendar')`. `execute(String)` is a method declared in LogicManager.
-
-Step 3. `InternshipCatalogueParser` parses the input and extracts the command String `calendar`. A `CalendarCommand` is then created.
-
-Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.
-
-Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains a list of all added `Events`.
-
-Step 6. The `execute` method then obtains the list of all `Event`s generated in `Model` instance, and creates a `CommandResult` that encapsulates it. The `CommandResult` is returned to `LogicManager`.
-
-Step 7. `LogicManager` returns the `CommandResult` to `MainWindow`.
-
-Step 8. In `MainWindow`'s `executeCommand` method, the `ResultType` of the `CommandResult` is recognized as `CALENDAR`, and `Page.of(CommandResult)` is called.
-
-Step 9. `Page.of(CommandResult)` again detects that `ResultType` of the `CommandResult` is `CALENDAR`, and calls `new CalendarPage(commandResult.getEvents())`.
-
-Step 10. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
-Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all events it receives, whereas `MonthPage` is a composite CalendarFX control that showcases all events by month in grids.
-
-Step 11. Then, the list of `Event`s received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`, a CalendarFX class that represents an event. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
-
-Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI.
-
-To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
-
-### Add Event feature
-The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship.
-
-#### Implementation
- 1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`.
-
- 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an Event to their selected internship.
-
-    2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship.
-
-The Activity Diagram for Add event is
-
-![EventAddActivityDiagram](images/EventAddActivityDiagram.png)
-
-3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
-4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
-5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
-6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
-7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
-8. `Event` object is then added to the `UniqueEventsList` using the `addEvent` method of `model`.
-
-The Sequence Diagram for the adding the event is
-![EventAddSequenceDiagram](images/EventAddSequenceDiagram.png)
-
-### Select command feature
-
-#### Implementation
-
-The `select` command feature is standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
+The `select` command is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
 
 * Update `currentInternship` field in `InternshipCatalogue` which stores the current selected `Internship` for use in other commands.
 * Obtains a list of all the `Event` belonging to that `Internship`.
@@ -258,21 +266,141 @@ Step 6. `SelectCommand` also invokes `updateFilteredEventList()` and `getFiltere
 
 Step 7. Finally, a `CommandResult` is created containing that `Internship` and its `ObservableList<Event>` and it is returned to `LogicManager` for use in the UI.
 
-The following sequence diagram shows how the select command works:
+The following *Sequence Diagram* shows how the `select` command works:
 
-![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+<p align="center">
 
+<img src="images/SelectSequenceDiagram.png" width="550" />
+
+</p>
+ 
 Note: The lifeline for `SelectCommand` should end at the destroy marker(X) but due to a limitation of PlantUML, the
 lifeline reaches the end of diagram.
 
-### Clash Command feature
+### Adding `Event` to an `Internship`: `event add` command
+
+The `event add` command allows users to add instances of `Event` to a selected `Internship`.
+
+**Implementation**
+
+Below is an example usage. 
+
+Step 1. User selects the `Internship` they want to add the event to by executing `select <id>`, where `<id>` refers to the index of the `Internship` on the list.
+
+Step 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an `Event` to the selected `Internship`.
+
+  * User executes ` event add na/<event name> en/<event end datetime> de/<event description>` instead if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
+
+The *Activity Diagram* for the above logic flow is below: 
+
+  <p align="center">
+
+  <img src="images/EventAddActivityDiagram.png" width="300" />
+
+  </p>
+
+Step 3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
+
+Step 4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
+
+Step 5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
+
+Step 6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
+
+Step 7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
+
+Step 8. `Event` object is then added to the `UniqueEventList` using the `addEvent` method of `model`.
+
+The *Sequence Diagram* for the adding the `Event` is below: 
+
+<p align="center">
+ 
+<img src="images/EventAddSequenceDiagram.png" width="550" />
+
+</p>
+
+### Viewing all `Event` on a calendar: `calendar` command
+
+The `calendar` command displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
+
+**Implementation**
+
+Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
+
+Step 1. The user enters `calendar` command into the CommandBox.
+
+Step 2. `MainWindow` receives the input and calls `execute('calendar')`. `execute(String)` is a method declared in LogicManager.
+
+Step 3. `InternshipCatalogueParser` parses the input and extracts the command String `calendar`. A `CalendarCommand` is then created.
+
+Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.
+
+Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains an `ObservableList` of all `Event` instances from all existing `Internship`.
+
+Step 6. The `execute` method creates a `CommandResult` that encapsulates the `ObservableList` of all `Event`s. The `CommandResult` is passed to `LogicManager` and subsequently back to `MainWindow` for the GUI to display. 
+
+Step 7. In `MainWindow`'s `executeCommand` method, `Page.of(CommandResult)` is called to create a `Page` to show on the UI.
+
+Step 8. `Page.of(CommandResult)` recognizes that `ResultType` of the `CommandResult` is `CALENDAR`, and creates a `CalendarPage` to be shown by calling `new CalendarPage(commandResult.getEvents())`.
+
+Step 9. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
+* Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all `Event` (in the form of `Entry`), whereas `MonthPage` is a composite CalendarFX control that showcases all `Event` in a month in grids.
+
+Step 10. The `ObservableList` of `Event` received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`. 
+* `Entry` is a CalendarFX class that represents an event in the `Calendar`. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
+
+Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI.
+
+To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
+
+
+### View all clashing `Event`: `clash` command
+
+#### Purpose of `clash` Function
+
+The purpose of the `clash` command is for users to find events with clashing timings, enabling them to reschedule
+clashing events. 
+
+In TinS, there are two kinds of events: **Interviews** and **Deadlines**. Having multiple Deadlines with the same timing
+does not result in a clash. However, having multiple Interviews with overlapping timings would result in a clash in
+timing. Therefore, Interviews with overlapping timing would need to be picked up by the `clash` function.
+
+#### Design Considerations
+
+There were two possible ways of implementing the `clash` function:
+
+1. Organising clash timing by Events: For each Event, event, stored in TinS, TinS will compare that particular Event will
+   all other Events, otherEvents. If there is a clash found, the otherEvent will be placed in a list. After comparison
+   with all other Events, the event and its corresponding list will be added to a hash map. This is repeated for all
+   Events in TinS. 
+
+   Advantage:
+   - Implementation is easy.
+  
+   Disadvantage:
+   - Duplicated records of clashes. For example, if event 1 clashes in timing with event 2, event 2 will be recorded in
+     the list corresponding to event 1, and event 1 will be recorded in the list corresponding to event 2. This results
+     in two records of the same clash.
+
+2. Organising clash timings by Date: For each day, list out all the Events with clashes in timing on that day.
+
+   Advantage:
+   - No duplicated records of clashes.
+   - Neater display of clashes.
+
+   Disadvantage:
+   - User will not be able to see exactly which two events have clashing timings on a day, but rather a collated list of
+     all events that clash in timing.
+
+The team has decided to proceed with the second implementation. This is because the team rationalized that organising
+the clash events by date will make the application more easy to understand, as there will be no confusion caused by
+duplicated records.
 
 #### Implementation
-The purpose of the `clash` command is for users to finding events with clashing timing, enabling them to reschedule
-clashing events.
 
 The `clash` command feature is standard command that extends `Command` and returns a `CommandResult` in the
-`execute()` method.
+`execute()` method. The `CommandResult` returns a `HashMap`, which contains mapping from a `LocalDate` to `List<Event>`.
+The `List<Event>` is the list of event with clashes on that particular date.
 
 Given below is an example usage scenario and how the select command behaves at each step.
 
@@ -280,15 +408,25 @@ Step 1. The user enters the `clash` command into the CLI.
 
 Step 2. `InternshipCatalogueParser` parses the input and extracts the command `clash`, and creates a new `ClashCommand`.
 
-Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance,
-which invokes `getEventCatalogue()` on `Model` to get the current Event Catalogue of TinS.
+Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance, which invokes `getEventCatalogue()`
+on `Model` to get the current Event Catalogue of TinS.
 
-Step 4. The `findClashEvents` is then called on `eventCatalogue`, which invokes a series of methods to loop through
-all events in `eventCatalogue` and find events with clashing datetimes. This returns a hash map of an event to a list
-of events that it clashes with.
+Step 4. The `findClashEvents()` is then called on `eventCatalogue` field in `EventCatalogue`. To avoid breaking the
+abstraction barrier, `getEventClashHash()` is called on `events` field in `UniqueEventList`.
 
+Step 5. The `getEventClashHash()` methods creates a list of Interview events from the current list of events in 
+`internalList`, by filtering out Deadline events. 
+
+Step 6. For each event in the list of Interview events, `getEventClashHash()` compares the event with all other events
+in the list. If there is a clash in the two events, `clashingTimings(Event)` is invoked on the event to find all the
+dates on which the events clash. These dates are added to the `HashMap`, and the clashing events are appended to
+the list of events corresponding to those dates.
+
+![Clash](diagrams/ClashSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -299,6 +437,8 @@ of events that it clashes with.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+ 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -342,8 +482,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about |
 | `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on |
 
-
-*{More to be added}*
 
 ### Use cases
 
@@ -520,6 +658,8 @@ Use Case Ends.
 
 *{More to be added}*
 
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 
 * **CLI**: A command-line interface (CLI) is a text based user interface to run programs.
@@ -528,6 +668,8 @@ Use Case Ends.
 * **Position**: The name of the internship position/role.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 

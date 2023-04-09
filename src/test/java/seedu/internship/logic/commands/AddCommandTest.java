@@ -12,8 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.internship.commons.core.GuiSettings;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.InternshipCatalogue;
@@ -25,6 +26,7 @@ import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.testutil.InternshipBuilder;
 import seedu.internship.testutil.TypicalInternships;
+
 
 public class AddCommandTest {
 

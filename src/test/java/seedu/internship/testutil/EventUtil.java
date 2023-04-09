@@ -1,6 +1,7 @@
 package seedu.internship.testutil;
 
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
 
@@ -27,7 +28,7 @@ public class EventUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_EVENT_NAME + event.getName().name + " ");
         sb.append(PREFIX_EVENT_START + event.getStart().getNumericDateTimeString() + " ");
-        sb.append(PREFIX_EVENT_START + event.getEnd().getNumericDateTimeString() + " ");
+        sb.append(PREFIX_EVENT_END + event.getEnd().getNumericDateTimeString() + " ");
         sb.append(PREFIX_EVENT_DESCRIPTION + event.getDescription().descriptionMessage + " ");
 
         return sb.toString();

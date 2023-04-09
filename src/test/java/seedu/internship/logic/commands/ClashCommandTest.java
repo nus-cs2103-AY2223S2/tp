@@ -9,8 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.internship.logic.commands.exceptions.CommandException;
-import seedu.internship.model.*;
+import seedu.internship.model.EventCatalogue;
+import seedu.internship.model.InternshipCatalogue;
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
+import seedu.internship.model.UserPrefs;
 import seedu.internship.model.event.Event;
 import seedu.internship.testutil.EventBuilder;
 import seedu.internship.testutil.EventCatalogueBuilder;
@@ -99,7 +104,7 @@ public class ClashCommandTest {
     }
 
     @Test
-    public void execute_clashingInterviewOnSingleDay_Clash() throws CommandException {
+    public void execute_clashingInterviewOnSingleDay_clash() throws CommandException {
         EventCatalogue eventCatalogue = new EventCatalogueBuilder().withEvent(new Event[] {
                 new EventBuilder().withName("e1").withStart("14/04/2023 0200").withEnd("14/04/2023 0400")
                         .withDescription("").build(),
@@ -131,7 +136,7 @@ public class ClashCommandTest {
     }
 
     @Test
-    public void execute_clashingOverMultipleDays_Clash() throws CommandException {
+    public void execute_clashingOverMultipleDays_clash() throws CommandException {
         // If interview clashes over multiple days, all the days which the event clashes on should be displayed.
         // Only days with events of clashing timings should be listed.
         EventCatalogue eventCatalogue = new EventCatalogueBuilder().withEvent(new Event[] {

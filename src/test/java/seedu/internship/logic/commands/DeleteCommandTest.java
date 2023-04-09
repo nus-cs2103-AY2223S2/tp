@@ -2,7 +2,9 @@ package seedu.internship.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.internship.logic.commands.CommandTestUtil.*;
+import static seedu.internship.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.internship.logic.commands.CommandTestUtil.showInternshipAtIndex;
 import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
@@ -11,6 +13,7 @@ import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipC
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.model.Model;
@@ -26,7 +29,8 @@ import seedu.internship.model.internship.Internship;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalInternshipCatalogue(),getTypicalEventCatalogue(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInternshipCatalogue(),
+            getTypicalEventCatalogue(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -36,7 +40,7 @@ public class DeleteCommandTest {
         CommandResult expectedCommandResult = new CommandResult(
                 String.format(DeleteCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
 
-        ModelManager expectedModel = new ModelManager(model.getInternshipCatalogue(),model.getEventCatalogue(),
+        ModelManager expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),
                 new UserPrefs());
         expectedModel.deleteInternship(internshipToDelete);
         // After Deleting Internship , it is important to delete all the events associated.
@@ -45,8 +49,8 @@ public class DeleteCommandTest {
         // Necessary to create an unmodifiable array , as eventListToDelete() is getting updated with deletion
         Event[] eventListToDeleteArray = eventListToDelete.toArray(new Event[eventListToDelete.size()]);
 
-        for (int i = 0; i < eventListToDeleteArray.length ; i++) {
-            Event e  = eventListToDeleteArray[i];
+        for (int i = 0; i < eventListToDeleteArray.length; i++) {
+            Event e = eventListToDeleteArray[i];
             // Delete the Events associated with that internship
             expectedModel.deleteEvent(e);
         }
@@ -73,7 +77,7 @@ public class DeleteCommandTest {
                 DeleteCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
 
 
-        Model expectedModel = new ModelManager(model.getInternshipCatalogue(),model.getEventCatalogue(),
+        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),
                 new UserPrefs());
         expectedModel.deleteInternship(internshipToDelete);
         // After Deleting Internship , it is important to delete all the events associated.
@@ -82,7 +86,7 @@ public class DeleteCommandTest {
         // Necessary to create an unmodifiable array , as eventListToDelete() is getting updated with deletion
         Event[] eventListToDeleteArray = eventListToDelete.toArray(new Event[eventListToDelete.size()]);
 
-        for (int i = 0; i < eventListToDeleteArray.length ; i++) {
+        for (int i = 0; i < eventListToDeleteArray.length; i++) {
             Event e = eventListToDeleteArray[i];
             // Delete the Events associated with that internship
             expectedModel.deleteEvent(e);

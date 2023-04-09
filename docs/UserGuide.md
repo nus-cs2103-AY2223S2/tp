@@ -732,7 +732,7 @@ E.g. <code>event find na/Technical Interview st/20/03/2023 1400</code></td>
 ## Acknowledgements
 * The Intern's Ship is written in Java 11.
 * The Intern's Ship uses the following libraries: [JavaFX](https://openjfx.io/),
-  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5)
+  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5), [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX)
 * The Intern's Ship is adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3)
 * The Intern's Ship - User Guide references the following projects:
   [addressbook-level4](https://github.com/se-edu/addressbook-level4),

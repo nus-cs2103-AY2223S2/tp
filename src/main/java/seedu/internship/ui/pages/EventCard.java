@@ -74,14 +74,14 @@ public class EventCard extends UiPart<Region> {
             eventCard.cardContent.setPadding(new Insets(10, 0, 10, 0));
             eventCard.separator2.setManaged(false);
             eventCard.companyAndPosition.setManaged(false);
+            eventCard.eventCard.setPrefWidth(500);
+            eventCard.title.setPrefWidth(450);
         } else {
             eventCard.circle.setManaged(false);
             eventCard.circle.setVisible(false);
             eventCard.separator.setManaged(false);
             eventCard.timelineContainer.setManaged(false);
             eventCard.eventCard.setStyle("-fx-padding: 10 10 10 10;");
-            eventCard.eventCard.setPrefWidth(300);
-            eventCard.eventCard.setPrefHeight(200);
             String companyAndPositionString = String.format("[%s, %s] ",
                     event.getInternship().getCompany(),
                     event.getInternship().getPosition());

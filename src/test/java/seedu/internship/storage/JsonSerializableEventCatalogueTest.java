@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.commons.util.JsonUtil;
 import seedu.internship.model.EventCatalogue;

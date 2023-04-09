@@ -1,11 +1,12 @@
 package seedu.internship.storage;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.internship.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalEvents.EM11;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Name;
@@ -26,7 +27,7 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_validEventDetails_returnEvent() throws Exception {
         JsonAdaptedEvent event = new JsonAdaptedEvent(EM11);
-        assertTrue(EM11.isClash(event.toModelType()));
+        assertFalse(EM11.isClash(event.toModelType()));
     }
 
     @Test

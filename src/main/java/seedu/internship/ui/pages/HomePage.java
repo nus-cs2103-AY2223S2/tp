@@ -100,8 +100,11 @@ public class HomePage extends Page {
         if (!reminderEvents.isEmpty()) {
             noReminderText.setManaged(false);
             reminderBox.getChildren().addAll(reminderEvents.stream()
-                    .map(event -> EventCard.of(event, false)
-                            .getRoot())
+                    .map(event -> {
+                        EventCard eventCard = EventCard.of(event, false);
+                        eventCard.setEventCardContent();
+                        return eventCard.getRoot();
+                    })
                     .collect(Collectors.toList()));
         } else {
             noReminderText.setManaged(true);
