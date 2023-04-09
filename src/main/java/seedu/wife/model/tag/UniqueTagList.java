@@ -23,7 +23,7 @@ import seedu.wife.model.tag.exceptions.TagStorageFullException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Tag#equals(Object) 
+ * @see Tag#equals(Object)
  */
 public class UniqueTagList implements Iterable<Tag> {
 
