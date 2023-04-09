@@ -18,7 +18,7 @@ as its framework.
 ------------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-Some text here.
+No external sources or libraries were used.
 
 ------------------------------------------------------------------------------------------------------------------------
  ## **Setting up, getting started**
@@ -686,4 +686,29 @@ Expected: The modules will not be sorted.
 
 ## Appendix: Effort
 
-v hard.
+### **Overall Difficulty level: 7 / 10**
+
+### **Overall effort required: 8 / 10**
+
+#### Challenges faced:
+
+1. Refactoring the models of `AB3` to fit the functional requirements of `coNtactUS` (Difficulty: 6 / 10, Effort
+required: 9 / 10)
+   * Bla bla 
+
+2. Implementation of `add`, `edit`, `delete` command for `Module`. (Difficulty: 6 / 10, Effort required: 9 / 10)
+   * Bla bla
+
+3. Enhancements of `find` command. (Difficulty: 7 / 10, Effort required: 7 / 10)
+   * Bla bla
+
+4. Enhancement of `timeslot` and `deadline` attributes from `String` to `DateTime` format. (Difficulty: 8 / 10,
+Effort required: 8 / 10)
+   * Bla bla
+
+5. Addition of `sort` command. (Difficulty: 9 / 10, Effort required: 8 / 10)
+   * Bla bla
+
+6. Addition of a Reminder window (Difficulty: 7 / 10, Effort required: 7 / 10)
+   * Bla bla
+
