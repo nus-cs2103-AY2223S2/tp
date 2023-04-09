@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-An increasing number of vaccinations now have more complicated prerequisites to take them, and Vaccination Management System (VMS) aims to make this validation easier. VMS is a **desktop application for validating and keeping track of vaccination appointments**; its operations are **optimized for fast typists who prefer using a Command Line Interface (CLI)** while maintaining the benefits of a Graphical User Interface (GUI). If you type fast, VMS can efficiently validate your vaccination appointment!vaccination appointment validated with great efficiency!
+Are you a **receptionist** in charge of **managing vaccination appointments** in your clinic?
+
+Vaccinations now have more complicated prerequisites to take them, and Vaccination Management System (VMS) aims to make this validation easier. VMS is a **desktop application for validating and keeping track of vaccination appointments**; its operations are **optimized for fast typists who prefer using a Command Line Interface (CLI)** while maintaining the benefits of a Graphical User Interface (GUI). If you type fast, VMS can efficiently validate your vaccination appointment!
 
 * Table of Contents
 {:toc}
@@ -65,9 +67,9 @@ After initializing the vaccination data of your clinic, you are ready to go! All
 
 1. Wait for a patient to call in to book an appointment for a vaccination.
 2. If they do not exist in the system yet, add them into the system using patient's [`add`](#add---add-a-patient) command.
-3. Schedule an appointment for them by running appointment's ['add'](#add---add-an-appointment) command.
+3. Schedule an appointment for them by running appointment's [`add`](#add---add-an-appointment) command.
 4. If the patient is eligible to take the vaccination that they want, the appointment will be added into VMS. Otherwise, an error message will show and you can inform them about their ineligibility to take the vaccination.
-5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's ['detail'](#detail---view-details-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
+5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's [`detail`](#detail---view-details-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
 
 ##### Example scenario
 
@@ -985,7 +987,7 @@ vaccination edit <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>G
 
 ##### Example
 
-Following examples are independent of each other and follow after vaccination <a href="#vaccination-add-example">add</a> example.
+Following examples are independent of each other and follow after vaccination <a href="#vaccination-add-example">add</a> example and then an execution of [`list`](#list---list-all-vaccination).
 
 ###### Set example
 
@@ -1037,7 +1039,7 @@ vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 
 ##### Example
 
-Examples follow after vaccination [`clear`](#clear---clear-all-vaccination-data) and then [`add`](#add---add-a-vaccination) command examples.
+Examples follow after vaccination [`clear`](#clear---clear-all-vaccination-data) and then [`add`](#add---add-a-vaccination) command examples and then [`list`](#list---list-all-vaccination). The are also independent of one another.
 
 ```text
 vaccination delete 1
@@ -1416,7 +1418,7 @@ Keyword data are stored in `[JAR file location]/data/keyword.json`.
 
 ###### Restrictions
 
-On top of the type restrictions of the parameters, if these restrictions are violated, it will render the keyword 
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the keyword
 invalid. In all cases, VMS will ignore the entire keyword data file if an invalid keyword is present.
 * <code><var>keyword</var></code> must not contain any newline characters, e.g. `\n`.
 
@@ -1655,6 +1657,7 @@ On top of the type restrictions of the parameters, if these restrictions are vio
    3. Changing the patients records while that patient still has upcoming appointments.
 4. Command to clear all marked appointments.
 5. Command to clear all appointments.
+6. Schedule multiple active appointments for the same patient.
 
 ## FAQ
 
