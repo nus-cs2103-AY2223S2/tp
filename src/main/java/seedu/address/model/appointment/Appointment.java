@@ -50,19 +50,50 @@ public class Appointment {
 
         String thisAppointmentDate = getBooking().toString();
         String otherAppointmentDate = otherAppointment.getBooking().toString();
+        String thisAppointmentPatient = getPatientNric().toString();
+        String otherAppointmentPatient = otherAppointment.getPatientNric().toString();
+        String thisAppointmentDr = getDrNric().toString();
+        String otherAppointmentDr = otherAppointment.getDrNric().toString();
 
-        return thisAppointmentDate.equals(otherAppointmentDate);
+        return thisAppointmentDate.equals(otherAppointmentDate)
+                && thisAppointmentPatient.equals(otherAppointmentPatient)
+                && thisAppointmentDr.equals(otherAppointmentDr);
     }
 
+    /**
+     * Checks if this appointment slot and the patient is the same as another appointment.
+     * @param otherAppointment
+     * @return true if is the same, false otherwise
+     */
+    public boolean isSamePatientAppointmentTime(Appointment otherAppointment) {
+        String thisAppointmentDate = getBooking().toString();
+        String otherAppointmentDate = otherAppointment.getBooking().toString();
+        String thisAppointmentPatient = getPatientNric().toString();
+        String otherAppointmentPatient = otherAppointment.getPatientNric().toString();
+
+        return thisAppointmentDate.equals(otherAppointmentDate)
+                && thisAppointmentPatient.equals(otherAppointmentPatient);
+    }
+
+    /**
+     * if this appointment slot and the Doctor is the same as another appointment.
+     * @param otherAppointment
+     * @return true if is the same, false otherwise
+     */
+    public boolean isSameDrAppointmentTime(Appointment otherAppointment) {
+        String thisAppointmentDate = getBooking().toString();
+        String otherAppointmentDate = otherAppointment.getBooking().toString();
+        String thisAppointmentDoctor = getDrNric().toString();
+        String otherAppointmentDoctor = otherAppointment.getDrNric().toString();
+
+        return thisAppointmentDate.equals(otherAppointmentDate)
+                && thisAppointmentDoctor.equals(otherAppointmentDoctor);
+    }
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("NRIC: ")
-                .append(getPatientNric())
-                .append("; Appointment: ")
-                .append(getBooking())
-                .append("; Doctor: ")
-                .append(getDrNric());
-        return builder.toString();
+        String builder = "NRIC: " + getPatientNric()
+                + "; Appointment: " + getBooking()
+                + "; Doctor: " + getDrNric();
+        return builder;
     }
 }

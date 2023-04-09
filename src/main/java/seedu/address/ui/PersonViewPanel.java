@@ -119,7 +119,7 @@ public class PersonViewPanel extends UiPart<Region> {
             this.patient = pt;
             prescriptionBox.setVisible(true);
             //medication.setText(patient.getMedication().toString());
-            StringBuilder prescriptionText = new StringBuilder("");
+            StringBuilder prescriptionText = new StringBuilder();
 
             int i = 1;
             for (Prescription prescription: patient.getPrescriptions()) {
