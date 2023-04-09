@@ -182,30 +182,30 @@ This command links the location at index 1 to the plane at index 10. The indices
 
 The commands in this section are available across ALL 5 modes.
 
-#### **1. Adding a resource: `add`**
+#### **1. Adding a resource**
 
 Use this command when you wish to add a new resource entity (e.g. a new plane that has been added to your fleet)
 to Wingman, for you to manage the resource.
 
 ```
-add /prefix_A value_A /prefix_B value_B
+add /{prefix_A} {value_A} /{prefix_B} {value_B}
 ```
 
 This commands adds an entity of the current resource mode to Wingman's database. For example,
 if you are currently in the `plane` mode, then this command will add a new `plane` to the database.
-Each `/prefix` is an attribute of the resource entity, and you can specify the values
+Each prefix is an attribute of the resource entity, and you can specify the values
 for each attribute as shown in the following examples.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
-<strong>Note:</strong> The prefixes vary across different modes. Refer to the examples below for more clarity.
+<strong>Note:</strong> The prefixes vary across different modes. We will let you know below. 
 </div>
 
 If the command is valid, upon pressing enter, your application window will be updated as shown below.
-The result display box describes the addition that was made and the new entity should be displayed in the list.
+The response box describes the addition that was made and the new entity should be displayed in the left list.
 
 <img src="images/ug/UG-add.jpg" width="2032">
 
-###### Crew mode: `add /n name /r rank`
+###### Crew mode: `add /n {name} /r {rank}`
 
 Required prefixes:
 
@@ -230,7 +230,7 @@ Output:
 Added Senior Crew Member John Smith.
 ```
 
-###### Flight mode: `add /c code`
+###### Flight mode: `add /c {code}`
 
 Required prefixes:
 
@@ -246,7 +246,7 @@ Output:
 Added SQ230.
 ```
 
-###### Location mode: `add /n name`
+###### Location mode: `add /n {name}`
 
 Required prefixes:
 
@@ -262,23 +262,23 @@ Output:
 Added Tokyo.
 ```
 
-###### Pilot mode: `add /n name /r rank /a age /g gender /fh flight-hours`
+###### Pilot mode: `add /n {name} /r {rank} /a {age} /g {gender} /fh {flight-hours}`
 
 Required prefixes:
 
 - `/n`: the name of the pilot.
 - `/r`: the rank of the pilot. The accepted values for this required input value are as follows
-    - `0`: Training Captain,
-    - `1`: Captain,
-    - `2`: Senior First Officer,
-    - `3`: First Officer,
-    - `4`: Second Officer,
-    - `5`: Cadet.
+  - `0`: Training Captain,
+  - `1`: Captain,
+  - `2`: Senior First Officer,
+  - `3`: First Officer,
+  - `4`: Second Officer,
+  - `5`: Cadet.
 - `/a`: the age of the captain.
 - `/g`: the gender of the pilot. The accepted values for this required input value are as follows
-    - `0`: male
-    - `1`: female
-    - `2`: other
+  - `0`: male
+  - `1`: female
+  - `2`: other
 - `/fh`: the flight hours of the pilot.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
@@ -295,7 +295,7 @@ Output:
 Added Cadet Amelia Earhart.
 ```
 
-###### Plane mode: `add /m model /a age`
+###### Plane mode: `add /m {model} /a {age}`
 
 Required prefixes:
 
