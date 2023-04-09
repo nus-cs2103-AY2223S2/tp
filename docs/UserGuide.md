@@ -319,6 +319,12 @@ Shows all athletes who have the tag `Hockey`, the tag `Tennis`, or both.
 
 ## **Session Management**
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about session-related commands:**<br>
+* When editing a session, the changes may not get reflected in the side panel in real time.<br> Manually update the panel by clicking on the session again.
+</div>
+
 ### Creating a new session : `create-session`
 
 Creates a new session and adds it to the session list.
@@ -332,6 +338,7 @@ Examples:<br>
 * `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`<br>
 Creates a session with name `Hall` from `10 March 2022, 10:00 a.m.` to `10 March 2022, 11:00 a.m.` at `MPSH2`.
 
+<div style="page-break-after: always;"></div>
 
 ### Deleting an existing session : `delete-session`
 
@@ -346,8 +353,6 @@ Format: `delete-session INDEX`
 Examples:<br>
 * `delete-session 3`<br>
 Deletes the 3rd session in the session list.
-
-<div style="page-break-after: always;"></div>
 
 ### Marking an athlete as present : `mark`
 
@@ -415,11 +420,11 @@ Removes the athlete at index 1 of the contact list from the session `Hall`.
 ## **Calendar**
 The **Calendar** includes various functions that enable you to manage your schedule effectively. These features are designed to simplify the process of tracking sessions.
 
-## How to view
+### How to view
 You can access the Calendar Features by interacting with the Calendar tab. 
 <br> You can click on the `Prev` and `Next` buttons to navigate through the months. 
 
-## Features
+### Features
 The Calendar features allow you to view your schedule on a monthly basis.<br>You can also click on a session to view its details.
 
 <br>
