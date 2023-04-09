@@ -12,7 +12,7 @@ import seedu.address.model.mapping.AppointmentDataMap;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
- * Panel containing the list of services.
+ * Panel containing the list of appointments.
  */
 public class AppointmentListPanel extends UiPart<Region> {
     private static final String FXML = "AppointmentListPanel.fxml";

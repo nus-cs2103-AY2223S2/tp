@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 
 
 /**
- * Redo the previously undone command.
+ * Redo the previously executed command.
  */
 public class RedoCommand extends Command {
 

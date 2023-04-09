@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Lists all customers in the AutoM8 system to the user.
+ * Lists all parts in the shop to the user.
  */
 public class ListPartsCommand extends Command {
 

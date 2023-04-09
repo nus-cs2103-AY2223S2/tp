@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Manages adding of parts to services
+ * Removes a specific part from a specific service
  */
 public class RemovePartFromServiceCommand extends Command {
     public static final String COMMAND_WORD = "removeservicepart";

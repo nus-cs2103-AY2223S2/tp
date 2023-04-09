@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Manages the adding of a technician to a specific service
+ * Removes a specific technician from a specific service
  */
 public class RemoveTechnicianFromServiceCommand extends Command {
     public static final String COMMAND_WORD = "removeservicetech";

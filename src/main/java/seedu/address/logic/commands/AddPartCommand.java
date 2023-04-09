@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Command that manages adding parts
+ * Adds a part to the shop
  */
 public class AddPartCommand extends Command {
 
@@ -48,6 +48,7 @@ public class AddPartCommand extends Command {
         requireNonNull(model);
         try {
             model.getShop().addPart(partName, quantity);
+            model.updateFilteredPartMap(Model.PREDICATE_SHOW_ALL_PARTS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, partName, quantity), Tab.PARTS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

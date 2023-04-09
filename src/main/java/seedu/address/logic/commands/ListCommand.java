@@ -11,7 +11,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VEHICLES;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all entities in shop the user.
  */
 public class ListCommand extends Command {
 

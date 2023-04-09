@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.entity.shop.exception.CustomerNotFoundException;
 
 /**
- * Manages adding appointments
+ * Adds appointments to the shop
  */
 public class AddAppointmentCommand extends Command {
 
@@ -32,6 +32,7 @@ public class AddAppointmentCommand extends Command {
 
     /**
      * Constructs command that adds appointment to the model
+     *
      * @param customerId ID of customer
      * @param dateTime Date and time of appointment
      */
@@ -51,6 +52,7 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             model.getShop().addAppointment(customerId, dateTime);
+            model.updateFilteredAppointmentList(Model.PREDICATE_SHOW_ALL_APPOINTMENTS);
             model.selectAppointment(lst -> lst.get(lst.size() - 1));
             return new CommandResult(MESSAGE_SUCCESS, Tab.APPOINTMENTS);
         } catch (CustomerNotFoundException e) {

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.UiUtil;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.appointment.Appointment;
 
@@ -44,7 +45,7 @@ public class AppointmentCard extends UiPart<Region> {
     private Label numberOfStaffAssigned;
 
     /**
-     * Creates a {@code AppointmentCode} with the given {@code Appointment} and number of staff assigned
+     * Creates a {@code AppointmentCode} with the given {@code Appointment}, customer and number of staff assigned
      */
     public AppointmentCard(Appointment appointment, Customer customer, int numberOfStaff) {
         super(FXML);
@@ -55,24 +56,8 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(appointment.getId() + ". ");
         customerName.setText(customer.getName().fullName);
         datetime.setText("Appointment DateTime: " + appointment.getTimeDate().format(dtf));
-        setDateStatus(appointment.getDateStatus());
+        UiUtil.setDateStatus(dateStatus, appointment.getDateStatus());
         numberOfStaffAssigned.setText(numberOfStaff + " Staff Assigned");
-    }
-
-    private void setDateStatus(Appointment.DateStatus status) {
-        switch (status) {
-        case PASSED:
-            dateStatus.setText(status.name());
-            dateStatus.getStyleClass().add("passed-tag");
-            break;
-        case UPCOMING:
-            dateStatus.setText(status.name());
-            dateStatus.getStyleClass().add("upcoming-tag");
-            break;
-        default:
-            dateStatus.setText(status.name());
-            dateStatus.getStyleClass().add("today-tag");
-        }
     }
 
     @Override

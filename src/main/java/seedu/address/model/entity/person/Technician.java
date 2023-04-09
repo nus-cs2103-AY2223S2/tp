@@ -11,7 +11,8 @@ import seedu.address.model.DeepCopy;
 import seedu.address.model.tag.Tag;
 
 /**
- * A technician is a special type of staff, in which they handle the works on the vehicle.
+ * A technician is a special type of staff, in which they handle the tasks related to the vehicle,
+ * such tasks include services and appointments
  */
 public class Technician extends Staff implements DeepCopy<Technician> {
     private final Set<Integer> serviceIds = new HashSet<>();

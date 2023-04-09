@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes a vehicle identified using it's displayed index from viewvehicle or listvehicles.
+ * Deletes a vehicle identified using its id.
  */
 public class DeleteVehicleCommand extends Command {
 
