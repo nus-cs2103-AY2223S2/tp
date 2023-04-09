@@ -19,22 +19,18 @@ aspect of sending emails, as mass emails can be automated and sent with just a s
 Given below are my contributions to the project.
 
 - **New Feature**: Add task for OfficeConnect.
-  ![AddTask](../images/AddTaskPPP.png) 
   * What it does: With this new feature, users can add tasks to OfficeConnect
   * Justification: This feature is instrumental, as it allows users to create tasks that are stored into the storage of OfficeConnect. This creates the foundation for subsequent task commands, such as delete task or assign task
   * Highlights: Users who are quick at typing will be able to add tasks quickly following the syntax specified in the UserGuide
 - **New Feature**: List tasks for OfficeConnect
-  ![ListTask](../images/ListTaskPPP.png)
   * What it does: With this new feature, users can see all tasks stored in OfficeConnect
   * Justification: This feature is vital, as it allows users to keep track of current tasks stored in OfficeConnect. This helps users better visualise their workload and efficiently delegate the tasks.
   * Highlights: This feature is necessary as it keeps track of the index of all tasks and can be called to retrieve the index of the task, which will be used when deleting tasks.
 - **New Feature**: Delete tasks for OfficeConnect
-  ![DeleteTask](../images/DeleteTaskPPP.png)
   * What it does: With this new feature, users can remove tasks stored in OfficeConnect
   * Justification: This feature is vital, as it allows users to remove unnecessary tasks, such as tasks that are completed or cancelled.
   * Highlights: This feature also ensures that storage size is kept to a minimum, as unnecessary tasks can be removed
 - **New Feature**: Filter persons for tag in OfficeConnect.
-  ![FilterPerson](../images/FilterPersonPPP.png)
   * What it does: With this new feature, users can search for users with the specified tag.
   * Justification: This feature is very handy, when considering the purpose of OfficeConnect in the office setting. In an office setting, there are many different departments (e.g Logistics, Marketing etc). Employees can be tagged with their department and this command allows users to quickly and easily view all employees of a specific department through filtering their tag, which improves convenience and accessibility for users. 
 
