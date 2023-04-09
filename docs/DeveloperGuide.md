@@ -492,7 +492,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder.
 
    2. Double-click the jar file.
-   
+
       1. Expected: Shows the GUI with a set of sample contacts and events. The window size may not be optimum.
 
 2. Shutting down
@@ -517,7 +517,7 @@ testers are expected to do more *exploratory* testing.
 1. Deleting an event while all events are being shown
 
    1. Prerequisites: List all events using the `listevent` command. Multiple events in the list.
-   
+
    2. Test case: `delevent 1`<br>
       Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
 
@@ -558,13 +558,13 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing data files
 
    1. Missing `/data/addressbook.json` file before running the app
-   
+
       1. Expected: App will create this file after the user enters a valid input.
 
 2. Dealing with corrupted data files
 
    1. Corrupted `/data/addressbook.json` file (file is not in valid json format) before running the app
-   
+
       1. Expected: App will not list any contacts and events.
          It will clear all the contacts and events in the `/data/addressbook.json` file when a valid input is entered by the user.
          Format of `/data/addressbook.json` file becomes valid.
