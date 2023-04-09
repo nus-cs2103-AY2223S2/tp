@@ -204,7 +204,31 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 
 The `add` command creates a new bookmark in the library. This allows users to keep easily keep track of their readings.
-A bookmark contains the following fields
+
+A bookmark in MyLib contains:
+* Title - the title of the content that is being tracked by this bookmark
+* Author - the author of the content that is being tracked by this bookmark
+* Progress - consists of volume, chapter and page, and is used to track your progress with the content being tracked by this bookmark.
+* Genre - the genre your content falls under.
+* Rating - to indicate how much you enjoyed the content being tracked by this bookmark.
+* Tags - a custom labels attached to a bookmark for custom categorization purposes.
+* URL - to hold the URL of the website that the content being tracked by this bookmark is hosted at.
+
+For a bookmark in MyLib, everything except for title and genre is optional.
+
+Steps involved and interactions between components when a valid add bookmark command is received
+1. Upon receiving a valid `add` command from the UI component, the `execute()` command for the `LogicManager` is called with the command inputs.
+2. `LibraryParser` parses the input to determine the command type, in this case it is a `add` command, thus an `AddCommandParser` is created.
+3. The `AddCommandParser` then parses the input and constructs a new `Bookmark` with the input fields based on their tags.
+4. The newBookmark is then used to create an `AddCommand` to be returned to the `LogicManager`.
+5. `execute()` method of `AddCommand` is then called by the `LogicManager` 
+   1. This adds the newBookmark to the library
+   2. And returns a `CommandResult` object to the `LogidManager`.
+
+The following sequence diagram shows the interaction between the objects when a user executes the Add command.
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
 
 ### GoTo Feature
 
