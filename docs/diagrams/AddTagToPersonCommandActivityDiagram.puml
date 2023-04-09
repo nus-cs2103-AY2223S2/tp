@@ -1,0 +1,16 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters add-t command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Person index is provided and valid]) elseif () then ([else])
+  :Error: Invalid command format;
+  stop
+ else ([At least one tag is provided])
+endif
+  :add-t command successfully executes.;
+stop
+
+@enduml

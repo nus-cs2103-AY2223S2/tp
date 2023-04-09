@@ -101,6 +101,26 @@ public class SocialMedia {
     public boolean isBlank() {
         return !(instagram != null || telegram != null || whatsapp != null);
     }
+    /**
+     * Get just the handles without the type of handle
+     * @return a string of social media handles separated by space
+     */
+    public String getHandles() {
+        final StringBuilder builder = new StringBuilder();
+        if (instagram != null) {
+            builder.append(instagram).append(" ");
+        }
+
+        if (telegram != null) {
+            builder.append(telegram).append(" ");
+        }
+
+        if (whatsapp != null) {
+            builder.append(whatsapp).append(" ");
+        }
+
+        return builder.toString();
+    }
 
     @Override
     public String toString() {

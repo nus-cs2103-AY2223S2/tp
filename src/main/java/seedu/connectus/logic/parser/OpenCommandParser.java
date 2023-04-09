@@ -30,9 +30,16 @@ public class OpenCommandParser implements Parser<OpenCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE), pe);
         }
 
-        return new OpenCommand(personIndex,
+        var command = new OpenCommand(personIndex,
             argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).isPresent() ? Instagram::getUserLink : null,
             argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).isPresent() ? Telegram::getUserLink : null,
             argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).isPresent() ? WhatsApp::getUserLink : null);
+
+        if (command.isBlank()) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
+        }
+
+        return command;
     }
 }

@@ -1,0 +1,19 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters delete-t command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Person index is provided]) elseif () then ([else])
+  :Error: Invalid command format;
+  stop
+([All tag indices provided are valid]) elseif () then ([else])
+  :Error: Invalid command format;
+  stop
+else ([At least one tag index is provided])
+endif
+  :delete-t command successfully executes.;
+stop
+
+@enduml
