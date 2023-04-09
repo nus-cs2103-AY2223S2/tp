@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class AddressBook
+Class ModelManager
+
+Class UniqueTagMappingList
+Class TagMapping
+Class Tag
+
+AddressBook *--> "1" UniqueTagMappingList
+UniqueTagMappingList --> "*" TagMapping : all
+
+ModelManager -->"*" TagMapping : all
+
+TagMapping : numberOfClientsTagged : int
+TagMapping : numberOfProjectsTagged : int
+TagMapping *--> "1" Tag
+
+@enduml
