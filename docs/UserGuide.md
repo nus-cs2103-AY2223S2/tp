@@ -286,13 +286,13 @@ Format: `sort timeslot` or `sort deadline`
 
 * The `sort timeslot` command will automatically take into consideration the current time of your computer, 
 and then sort the modules based on their timeslot. 
-* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be
-be shown before a module with timeslot `Wednesday 06:00 - 08:00`. 
+* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be shown before a module with timeslot `Wednesday 06:00 - 08:00`. Similarly, if the current day on your computer is 
+Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown before a module with timeslot 
+`Thursday 06:00 - 08:00`.
 
 
 * The `sort deadline` command will sort the modules based on their deadline.
-* For example, a module with deadline `250623` will be
-  be shown before a module with deadline `260623`.
+* For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Clearing all modules: `clear`
@@ -341,6 +341,10 @@ window will show the module as well.
 * The best thing about this feature is that it always works in the background and there is nothing you have to do 
 to enjoy its benefits! 
 
+
+* Note that as of now, this pop-up window only appears when you launch coNtactUS. There is currently no command for you 
+to display the pop-up window at any other point in time. However, this will be a future enhancement. Do take a look at 
+features [coming soon](#coming-soon) if you are interested. 
 
 <div style="text-align: center;"> <image src = 
 "https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png"></image>
@@ -460,6 +464,26 @@ data file at the next run.
 </div>
 
  --------------------------------------------------------------------------------------------------------------------
+## Current product limitations (Important)
+
+Note that currently, coNtactUS does not enforce any additional checks for conflicting `s/teacher`, `e/timeslot`, 
+`a/venue` values. 
+
+* For example, you will be allowed to create two module listings as follows.
+
+<div style="text-align: center;"> <image src = 
+"images/noConflictChecks.png"></image>
+</div>
+
+<div style="text-align: center;"> Figure : An example of the help window  </div>
+
+* It might not make sense to have the same teacher `Bob`, teaching two different classes 
+that are located at different venues (`LT-19` and `COM1-B1`) at the same timing (`Monday 11:00 15:00`). However, we 
+felt that this allows you the flexibility to supply an input value that you desire without being subjected to unnecessary
+conflict checks. After all, `Bob` may be referring to two different persons. 
+
+
+ --------------------------------------------------------------------------------------------------------------------
 ## Glossary
 
 Some text here
@@ -476,7 +500,20 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 **A**: Not at all! It is one of the ways you can exit the program. You may also simply close the browser window.
 
 --------------------------------------------------------------------------------------------------------------------
+## Coming soon
+coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
+Here are some new features that you can look forward to in the near future: 
 
+* Currently, the reminder pop-up window only appears when coNtactUS is launched. We understand that you may want to 
+view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
+for you to do so, so you can see the reminders at any time you wish. 
+
+* 
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
 | Action     | Format                                                                                                                |
