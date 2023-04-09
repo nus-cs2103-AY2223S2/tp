@@ -85,18 +85,18 @@ If you need to switch to a new device, you can also export and import your previ
 
 1. Ensure you have `Java 11` or above installed in your Computer.
 
-2. Download the latest `mathutoring.jar`. 
+2. Download the latest `mathutoring.jar`.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your MATHUTORING app.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar mathutoring.jar` command to run the application.<br>
    <br>
    The initial GUI below should appear in a few seconds. Note how the app contains some sample data for your reference, you are free to delete the sample data after you get familiar with the MATHUTORING.<br>
-   
+
     ![InitialUi](images/UG-images/InitialUi.png)
 
     <div style="page-break-after: always;"></div>
-   
+
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
@@ -375,20 +375,20 @@ Format: `check INDEX`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source:  Note:**<br> 
+**:information_source:  Note:**<br>
 After the user checked a student, the respective student's task list and score list will continue to be displayed, unless:
   * That respective student (the latest checked student) is being deleted.
   * That respective student (the latest checked student) is being edited.
   * The student list being cleared.
-  
+
 **Any of the above actions will alter the status to no student being checked now.**
 </div>
 
 Examples:
 * `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.<br>
-    
+
     <div style="page-break-after: always;"></div>
-    
+ 
     Before command execution:
     ![Check a student (before)](images/UG-images/Check%20a%20student%20(before).png)
     After command execution:<br>
@@ -530,9 +530,9 @@ Format:
 Examples:
 
 * `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.<br>
-    
+
     <div style="page-break-after: always;"></div>
-    
+
     The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
     ![Mark a task (before)](images/UG-images/Mark%20a%20task%20(before).png)
@@ -583,7 +583,7 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 **:exclamation: Caution:**<br>
 * In order to avoid potential confusion, we only allow one score per day and the full mark of each score is 100.
 * If there are two exams in one day, e.g. `Midterm Math Paper 1` and `Midterm Math Paper 2`, user can either combine these two exams to one score with label `Midterm Math` or add them in separate dates.
-* If the full score of a test is not 100, please convert the score value with a full score of 100 before entering. 
+* If the full score of a test is not 100, please convert the score value with a full score of 100 before entering.
 </div>
 
 Examples:
@@ -657,8 +657,8 @@ Format:
 
 **CLI**<br> `export [FILE_PATH]`
 
-**GUI**<br> 
-Click the "File" on the top menu, then choose "Export" under the drop-down list. 
+**GUI**<br>
+Click the "File" on the top menu, then choose "Export" under the drop-down list.
 
 An export window will pop up, the user is required to specify which folder to store the exported file.
 

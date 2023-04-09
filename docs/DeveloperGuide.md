@@ -548,7 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. Export progress window closed by Tutor by mistake.
-    
+
   Use case ends.
 
 * 2b. Export progress window closed by Tutor by mistake.
@@ -566,13 +566,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. File name specified is invalid.
 
   * 4a1. File explorer informs the tutor that the file name is invalid.
-      
+
     Use case resumes at step 2.
 
 * 4b. A file with the exact same name and type exists in the selected directory and is currently being opened.
-  
-  * 4b1. MATHUTORING informs the tutor that the file cannot be saved due to a file with the same name and type in the same directory is being opened. 
-  
+
+  * 4b1. MATHUTORING informs the tutor that the file cannot be saved due to a file with the same name and type in the same directory is being opened.
+
     Use case ends.
 
 ### Non-Functional Requirements
@@ -607,15 +607,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch 
+1. Initial launch
 
-   1. Download the jar file and copy into an empty folder 
+   1. Download the jar file and copy into an empty folder
    2. Double-click the jar file <br>
    Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
-2. Saving window preferences 
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    2. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
@@ -630,7 +630,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
     1. Test case: `delete 1`<br>
-    Expected: First student is deleted from the list. Details of the deleted student shown in the status message. If the deleted student was being checked 
+    Expected: First student is deleted from the list. Details of the deleted student shown in the status message. If the deleted student was being checked
     using the `check` command, the task list and score list of the student will be cleared.
 
     1. Test case: `delete 0`<br>
@@ -652,11 +652,11 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
-   
+
 ### Difficulty level
-   
+
 ### Challenges faced
-  
+
 ### Effort required
 
 ### Achievements
@@ -695,19 +695,19 @@ Currently, student names can be numeric. i.e. student name can be "1". After som
 
 #### 3. Window does not reopen after it is minimized
 
-After help/export/import window is minimized, clicking help/export/import on the top menu will not automatically show 
+After help/export/import window is minimized, clicking help/export/import on the top menu will not automatically show
 the window again.
 
 **Solution proposed:**
 
-* Similarly to how ```getRoot().isShowing()``` is used to check if the window is shown, there is also a function called 
-```getRoot().isIconified()``` to check whether the window is minimised (returns ```true``` if minimised). 
+* Similarly to how ```getRoot().isShowing()``` is used to check if the window is shown, there is also a function called
+```getRoot().isIconified()``` to check whether the window is minimised (returns ```true``` if minimised).
 We can then return ```getRoot().setIconified(false)``` to restore the window to its previous state.
 
 
 #### 4. Exams are not allowed to be on the same date
 
-The aim of the score list is to keep track of a student's recent performance trend (especially the chart). 
+The aim of the score list is to keep track of a student's recent performance trend (especially the chart).
 If the majority of the exams are conducted on the same date, it defeats our purpose of having the score records.<br>
 However, it is a reasonable assumption that more than one exam is conducted on the same date.
 
@@ -733,7 +733,7 @@ part of the displayed score table.<br>
 
 * Currently, if the user wants to add tags to students in the list, they can only use `edit` command and will need to input all existing tags along with the new tag.
 * Also, if the user wants to edit a specific tag, they will also be required to input all existing tags along with the one they want to edit.
-* There are currently no delete operations for tags. 
+* There are currently no delete operations for tags.
 * Without these operations, it is very hard to manage tags since the only way to do it is by using the `edit` command which is deteriorates the user experience.
 
 **Solution proposed:**
