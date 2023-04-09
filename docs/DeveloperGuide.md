@@ -199,8 +199,9 @@ The only way to modify the data is via the exposed `Shop` API calls (and other m
 Above is the activity diagram for adding a vehicle to the `Shop`. Adding other entities follow a similar process.
 Related entities are updated automatically.
 
-![Remove Customer Activity Diagram](images/RemoveCustomerInternalActivityDiag.png) 
-![Remove Vehicle Activity Diagram](images/RemoveVehicleInternalActivityDiag.png)
+<img src="images/RemoveCustomerInternalActivityDiag.png" height="800">
+<img src="images/RemoveVehicleInternalActivityDiag.png" height="700"> 
+<img src="images/RemoveAppointmentInternalActivityDiag.png" height="700">
 
 ### Add Feature
 
