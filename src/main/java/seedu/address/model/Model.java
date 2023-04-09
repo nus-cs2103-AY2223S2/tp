@@ -131,7 +131,7 @@ public interface Model {
     void addStudentToTutorial(Index toAdd, Index tutIndex) throws CommandException;
 
     /**
-     * Deletes a student from an event
+     * Deletes a student from an event.
      *
      * @param toDel the index of the student within the AddressBook's internal UniquePersonList to be deleted.
      * @param eventIndex the index of the event that the student will be deleted from.
