@@ -798,9 +798,9 @@ Marks video(s) as **unwatched** in a lecture of its specified module.
   - Must not contain duplicates
   - For `mark`, must not already be marked
   - For `unmark` for 1 video, must not already be unmarked
-- [<span style="color:#e46c0a">`module_code`</span>](#module-code): The code of the module
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of the module
   - Must belong to an existing module in Le Tracker
-- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name): The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format): The name of the lecture
   - Must belong to an existing lecture in the module specified in `module_code`
 
 <details open>
