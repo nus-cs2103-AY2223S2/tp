@@ -115,7 +115,8 @@ on your computer that you download the coNtactUS.jar file onto. This is relevant
 
 3. Run the `coNtactUs.jar` file. If you are unsure of how to do so, you may refer to [how to run a jar file]().
 
-4. You should now see a window similar to the one shown below. 
+4. You should now see a window similar to the one shown below. There will be a reminder pop-up window upon 
+launching the application. The [reminder window](#reminder) will be further discussed later.
 
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
 for your reference. </div>
@@ -514,6 +515,11 @@ coNtactUS, read on for the next section.
 
 ## <a id="further-info"></a> Further information about commands 
 <div markdown="block" class="alert alert-info">
+
+* You can have multiple values for ```t/DESCRIPTION``` field, but other fields will
+only take a single value.  
+
+* When you edit, it removes the current values (i.e. the values do not stack)  
 
 * You may supply more than one input value for the `t/DESCRIPTION` field, and both will be recorded. 
 An example would be : `edit 1 t/Difficult module t/Fun module`. The resulting module listing would have 2 
