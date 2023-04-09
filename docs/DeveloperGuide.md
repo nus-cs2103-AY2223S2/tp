@@ -1069,5 +1069,9 @@ changing from icons to fetching from a simulated database that ensures a unique 
 3. The current noting-take function does not support editing notes directly on old notes. For example, user can click
 on an old note and edit its content to update the notes. This would be especially useful for super long notes. 
 
+4. As of now, the help messages are displayed in the result box and the result box may be too small to view large chunks of help messages.
+
 We plan to update the GUI to include an expandable panel that holds the existing note once clicked, and users may edit
-the texts as they like. After finishing editing, there is a yes button to click and exit. 
+the texts as they like. After finishing editing, there is a yes button to click and exit. Display box will also be slightly enlarged to
+allow users to view the help messages more comfortably. An external help display window may be a feasible feature as well if enlarging the main window 
+is deemed undesirable.
