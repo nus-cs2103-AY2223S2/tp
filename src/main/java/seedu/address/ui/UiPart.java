@@ -30,8 +30,8 @@ public abstract class UiPart<T> {
 
     /**
      * Constructs a UiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
-     * @see #UiPart(URL)
      * @param fxmlFileName Name of the FXML file within {@link #FXML_FILE_FOLDER}.
+     * @see #UiPart(URL)
      */
     public UiPart(String fxmlFileName) {
         this(getFxmlFileUrl(fxmlFileName));
@@ -49,9 +49,9 @@ public abstract class UiPart<T> {
 
     /**
      * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
-     * @see seedu.address.ui.UiPart#UiPart(java.net.URL, java.lang.Object)
      * @param fxmlFileName Name of the FXML file within {@link #FXML_FILE_FOLDER}.
      * @param root Specifies the root of the object hierarchy.
+     * @see seedu.address.ui.UiPart#UiPart(java.net.URL, java.lang.Object)
      */
     public UiPart(String fxmlFileName, T root) {
         this(getFxmlFileUrl(fxmlFileName), root);

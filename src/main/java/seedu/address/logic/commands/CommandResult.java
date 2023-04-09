@@ -20,7 +20,6 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      * @param feedbackToUser feedback displayed to the user. Cannot be null.
-     * Use {@code ""} if there is no feedback to be displayed.
      * @param showHelp indicates whether the help information should be shown to the user.
      * @param exit indicates whether the application should exit.
      */

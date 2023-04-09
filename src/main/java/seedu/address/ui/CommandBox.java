@@ -78,10 +78,10 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see seedu.address.logic.Logic#execute(String)
          * @return the result of the command execution.
          * @throws CommandException If an error occurs during command execution.
          * @throws ParseException If an error occurs during parsing.
+         * @see seedu.address.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
