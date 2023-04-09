@@ -747,7 +747,10 @@ testers are expected to do more *exploratory* testing.
   1. Re-launch the app by double-clicking the jar file.<br>
      Expected: The most recent window size and location is retained.
 
-1. { more test cases …​ }<br><br>
+1. Shutdown
+
+   1. Execute the command `exit` or close the window using GUI by clicking the cross on the top-right hand corner.
+      Expected: The window will close and all the data will be saved.<br><br>
 
 ### Deleting a person
 
@@ -770,6 +773,27 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-  1. {explain how to simulate a missing/corrupted file, and the expected behavior}
+   1. (If this is your first time using the product) Run the application and close it so that the data file is generated with sample data.<br>
 
-1. { more test cases …​ }
+   2. Navigate to `data/trackr.json` and remove a line of data / make one of the data invalid (check our [User Guide](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/docs/UserGuide.md) for how we check for valid inputs)
+       <br>Example: Change one of the orderDeadline to an invalid date like `00/13/2024`.
+
+    <p align="center">
+      <img src="images/CorruptedData.png">
+      <br>Figure 21: Corrupted data file
+    </p><br>
+
+   3. Run Trackr.
+      <br>Expected: Blank `Order List` is displayed.
+
+    <p align="center">
+      <img src="images/CorruptedOrderList.png">
+      <br>Figure 22: Corrupted Order List
+    </p><br>
+
+   4. To resolve this issue, either
+   
+      1. Locate your corrupted `trackr.json`, delete this file and re-run Trackr. 
+      This will allow you to restart with a new data file filled with sample data.
+
+      2. Navigate to your `trackr.json` file and find the missing/corrupted part of the data and change it accordingly.
