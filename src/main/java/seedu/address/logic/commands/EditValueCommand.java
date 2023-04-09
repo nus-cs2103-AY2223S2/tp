@@ -24,17 +24,16 @@ import seedu.address.model.tag.Tag;
  */
 public class EditValueCommand extends Command {
 
-    public static final String MESSAGE_USAGE = "Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = "Edits the details of the entity identified "
+            + "by classification and name. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[NAME] "
-            + "[TAG]...\n"
-            + "Example: " + " 1 ";
+            + "Parameters: [FIELD] (must be an existing field) "
+            + "[NEW_VALUE] "
+            + "Example: name gilded staff";
 
     public static final String MESSAGE_EDIT_ENTITY_SUCCESS = "Edited Entity: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ENTITY = "This entity already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ENTITY = "This entity already exists in Reroll.";
     public static final String MESSAGE_INVALID_ENTITY_TYPE = "This entity type is invalid.";
 
     private final Entity entityToEdit;

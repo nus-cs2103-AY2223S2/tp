@@ -18,9 +18,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Entered Edit Mode";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Edits the entity identified by classification and name.\n"
             + "Parameters: CLASSIFICATION (char, mob or item) NAME (name of entity)\n"
-            + "Example: " + COMMAND_WORD + " item short dagger";
+            + "Example: " + "edit item short dagger";
 
     private final String toEditName;
     private final String toEditClassification;

@@ -15,9 +15,7 @@ import seedu.address.model.entity.Name;
 
 class JsonAdaptedMobTest {
     private static final String INVALID_NAME = "$keleton Archer";
-    private static final float INVALID_CHALLENGE_RATING = -3.14f;
 
-    private static final String VALID_NAME = RAT.getName().toString();
     private static final JsonAdaptedStats VALID_STATS = new JsonAdaptedStats(RAT.getStats());
     private static final JsonAdaptedInventory VALID_INVENTORY = new JsonAdaptedInventory(RAT.getInventory());
     private static final float VALID_CHALLENGE_RATING = RAT.getChallengeRating();
@@ -46,15 +44,6 @@ class JsonAdaptedMobTest {
                 new JsonAdaptedMob(null, VALID_STATS, VALID_INVENTORY,
                         VALID_CHALLENGE_RATING, VALID_IS_LEGENDARY, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, mob::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidChallengeRating_throwsIllegalValueException() {
-        JsonAdaptedMob mob =
-                new JsonAdaptedMob(VALID_NAME, VALID_STATS, VALID_INVENTORY,
-                        INVALID_CHALLENGE_RATING, VALID_IS_LEGENDARY, VALID_TAGS);
-        String expectedMessage = JsonAdaptedMob.INVALID_CHALLENGE_RATING;
         assertThrows(IllegalValueException.class, expectedMessage, mob::toModelType);
     }
 

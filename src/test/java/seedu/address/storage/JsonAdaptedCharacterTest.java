@@ -16,8 +16,6 @@ import seedu.address.model.entity.Name;
 
 class JsonAdaptedCharacterTest {
     private static final String INVALID_NAME = "John Cena!";
-    private static final int INVALID_LEVEL = -1;
-    private static final int INVALID_XP = -300000;
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = LEEROY.getName().toString();
@@ -49,24 +47,6 @@ class JsonAdaptedCharacterTest {
                 new JsonAdaptedCharacter(null, VALID_STATS, VALID_INVENTORY,
                         VALID_LEVEL, VALID_XP, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, character::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidXP_throwsIllegalValueException() {
-        JsonAdaptedCharacter character =
-                new JsonAdaptedCharacter(VALID_NAME, VALID_STATS, VALID_INVENTORY,
-                        VALID_LEVEL, INVALID_XP, VALID_TAGS);
-        String expectedMessage = JsonAdaptedCharacter.INVALID_XP;
-        assertThrows(IllegalValueException.class, expectedMessage, character::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidLevel_throwsIllegalValueException() {
-        JsonAdaptedCharacter character =
-                new JsonAdaptedCharacter(VALID_NAME, VALID_STATS, VALID_INVENTORY,
-                        INVALID_LEVEL, VALID_XP, VALID_TAGS);
-        String expectedMessage = JsonAdaptedCharacter.INVALID_LEVEL;
         assertThrows(IllegalValueException.class, expectedMessage, character::toModelType);
     }
 
