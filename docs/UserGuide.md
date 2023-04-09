@@ -23,29 +23,6 @@ for a summarised table of all the commands and keyboard shortcuts available.
 {:toc}
 
 ---
-<div style="page-break-after: always;"></div>
-
-## Quick Start
-
-Let's get you _rizzed_ up in the fastest way possible!
-
-
-1. Ensure you have [Java](https://www.oracle.com/sg/java/technologies/downloads/) `11` or above installed in your computer.
-2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
-3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
-4. Open a [command terminal](#glossary), [`cd`](#glossary) into the folder you put the jar file in, and input the `java -jar
-   rizzipe.jar` command to run the application.
-5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have already crafted
-some sample recipes for you!<br/><br/>
-![UI QuickStart](images/UiQuickStart.png)<br/><br/>
-6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using 
-   the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd>  arrow keys!
-7. Type commands within the [command line interface (CLI)](#glossary) and press <kbd>Enter</kbd> to execute it. For a list of executable commands, refer to the [Features](#features) Section.
-8. Some of the previously mentioned executable commands may have keyboard shortcuts to make your life easier! Refer to each command within
-the [Features](#features) Section, or take a look at the [Keyboard Shortcuts summary](#keyboard-shortcuts-summary) to learn more about how to use them!
-
-<div style="page-break-after: always;"></div>
----
 ## Overview
 The following subsections detail the functionality of ***RIZZ***ipe and explain the various terminology and colour coding we will be using in this guide.
 
@@ -87,6 +64,27 @@ This is used to display :exclamation: **warnings** for you to heed in order for 
 
 <div style="page-break-after: always;"></div>
 --- 
+## Quick Start
+
+Let's get you _rizzed_ up in the fastest way possible!
+
+
+1. Ensure you have [Java](https://www.oracle.com/sg/java/technologies/downloads/) `11` or above installed in your computer.
+2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
+3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
+4. Open a [command terminal](#glossary), [`cd`](#glossary) into the folder you put the jar file in, and input the `java -jar
+   rizzipe.jar` command to run the application.
+5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have already crafted
+   some sample recipes for you!<br/><br/>
+   ![UI QuickStart](images/UiQuickStart.png)<br/><br/>
+6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using
+   the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd>  arrow keys!
+7. Type commands within the [command line interface (CLI)](#glossary) and press <kbd>Enter</kbd> to execute it. For a list of executable commands, refer to the [Features](#features) Section.
+8. Some of the previously mentioned executable commands may have keyboard shortcuts to make your life easier! Refer to each command within
+   the [Features](#features) Section, or take a look at the [Keyboard Shortcuts summary](#keyboard-shortcuts-summary) to learn more about how to use them!
+
+---
+
 ## Commands
 ***RIZZ***ipe is a command-driven application, which means its various features and functionalities can be accessed by executing various commands.
 
