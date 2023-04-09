@@ -859,19 +859,19 @@ The rest of roles in the list remains unchanged.
 **Prerequisites:** There are at least 2 roles in the Role List Box - one must have its name as `Software Developer`, 
 and the other must have its name as `Data Analyst`.
 
-2. Test case: `name analyst software`<br>
+1. Test case: `name analyst software`<br>
 
     Expected Output in the Result Display Box: Display the number of roles found.
 
     Expected Output in the Role List Box: Only display roles that has either `analyst` or `software` in its name.
 
-3. Test case: `name software`<br>
+2. Test case: `name software`<br>
 
     Expected Output in the Result Display Box: Display the number of roles found.
 
     Expected Output in the Role List Box: Only display roles that has `software` in its name.
 
-5. Test case: `name`<br>
+3. Test case: `name`<br>
 
     Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `name` command is included.
 
@@ -882,19 +882,19 @@ and the other must have its name as `Data Analyst`.
 **Prerequisites:** There are at least 2 roles in the Role List Box - one must have its company as `Tampines Street`,
 and the other must have its company as `Mega Soft`.
 
-2. Test case: `company tampines soft`<br>
+1. Test case: `company tampines soft`<br>
 
     Expected Output in the Result Display Box: Display the number of roles found.
 
     Expected Output in the Role List Box: Only display roles that has either `tampines` or `soft` in its company.
 
-3. Test case: `company tampines`<br>
+2. Test case: `company tampines`<br>
 
     Expected Output in the Result Display Box: Display the number of roles found.
 
     Expected Output in the Role List Box: Only display roles that has `tampines` in its company.
 
-5. Test case: `company`<br>
+3. Test case: `company`<br>
 
     Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `company` command is included.
 
@@ -905,19 +905,19 @@ and the other must have its company as `Mega Soft`.
 **Prerequisites:** There are at least 2 roles in the Role List Box - one must have one of its tags as `Applied`,
 and the other must have one of its tags as `Offered`.
 
-2. Test case: `tag applied offered`<br>
+1. Test case: `tag applied offered`<br>
 
     Expected Output in the Result Display Box: Display the number of roles found.
 
     Expected Output in the Role List Box: Only display roles that has either `applied` or `offered` in its company.
 
-3. Test case: `tag applied`<br>
+2. Test case: `tag applied`<br>
 
     Expected Output in the Result Display Box: Display the number of roles found.
 
     Expected Output in the Role List Box: Only display roles that has `applied` in its company.
 
-5. Test case: `tag`<br>
+3. Test case: `tag`<br>
 
     Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `tag` command is included.
 
