@@ -62,6 +62,7 @@ I worked on the entire stack, both frontend and backend. I was mainly in charge 
 * **Review/mentoring contributions**
   * Reviewed [PRs from other members](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+reviewed-by%3Adsja612)
   * Commented on [PRs from other members](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+commenter%3Adsja612)
+
 ## **Links to Contributions**
 [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=dsja612&breakdown=true) 
 | [Commit History](https://github.com/AY2223S2-CS2103-W16-2/tp/commits?author=dsja612) 
