@@ -52,7 +52,7 @@ Here is a short overview of the features and capabilities of **CookHub**:
 
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <p align="center" width="100%">
-    <img src="images/UiInWindows.png" width=500 height=400>
+    <img src="images/UiInWindows.png" width="100%">
    </p>
 
     Learn more about CookHub's GUI [here](#understanding-the-graphical-user-interface-gui).
@@ -255,7 +255,7 @@ Examples:
 
 Our initial recipe book:
 <p align="center" width="100%">
-    <img src="images/UiInWindows.png" width=400 height=300>
+    <img src="images/DeleteInitial.png" width="100%">
 </p>
 
 - `delete 1` will result in a recipe book as shown below:
@@ -459,7 +459,7 @@ Example:
 
 Our initial recipe book:
 <p align="center" width="100%">
-    <img src="images/GroceriesStart.png" width=400 height=300>
+    <img src="images/GroceriesInitial.png" width="100%">
 </p>
 
 Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the result 
@@ -565,7 +565,7 @@ Examples:
 
 Our initial recipe book:
 <p align="center" width="100%">
-    <img src="images/AllRecipesStarred.png" width=400>
+    <img src="images/UnstarredInitial.png" width="100%">
 </p>
 
 - `unstar 2` will remove the star of the second recipe, as shown in the image below:
@@ -589,7 +589,7 @@ Example:
 Our initial recipe book:
 
 <p align="center" width="100%">
-    <img src="images/StarResult1.png" width=400 height=300>
+    <img src="images/FavouritesInitial.png" width="100%">
 </p>
 
 - `favorites` will display all your starred recipes, as shown in the image below:
