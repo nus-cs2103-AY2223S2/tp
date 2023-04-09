@@ -72,23 +72,22 @@ Before starting your journey with LoyaltyLift, let's take a quick look at the la
 
 ![Layout of LoyaltyLift](images/loyaltyLiftLayout.png)
 
-It comprises 3 panels, the Information Panel, Command Panel and Table Panel. 
-The table panel displays either the **customers** or **orders**. 
-This can be configured by selecting the corresponding tab in the Table Tabs area.
-
+It comprises 3 panels, the _Information Panel_, _Command Panel_ and _List Panel_. 
+The _List Panel_ displays either **customers** or **orders**, which is controlled by _List Tabs_.
+  
 The components are summarised below.
 
-|         Component | Purpose                                                           |
-|------------------:|:------------------------------------------------------------------|
-|     Command Panel | Input area to submit your command to LoyaltyLift                  |
-| Information Panel | Displays details of a specific customer or order                  |
-|       Table Panel | Displays list of customers or orders                              |
-|        Table Tabs | Switch between displaying customers and orders in the Table Panel |
+|         Component | Purpose                                                            |
+|------------------:|:-------------------------------------------------------------------|
+|     Command Panel | Input area to submit your command to LoyaltyLift                   |
+| Information Panel | Displays details of a specific customer or order                   |
+|        List Panel | Displays list of customers or orders                               |
+|         List Tabs | Switch between displaying customers and orders in the _List Panel_ |
 
 #### Using the CLI
 {: .no_toc}
 
-The Command Panel is where you type your commands and submit them.
+The _Command Panel_ is where you type your commands and submit them.
 LoyaltyLift then processes your request and performs them if it is successful.
 
 If LoyaltyLift understands your request, it will perform it and display feedback that it has succeeded, as seen below.
@@ -200,7 +199,7 @@ Let's take a look at our current list of orders, which should only consist of th
     listo
 
 Notice that the order's status is now 'Pending'.
-To advance an order's status, the [`advo`]() command will come in handy, which takes the order index as its only parameter.
+To advance an order's status, the [`advo`](#advancing-an-order-status-advo) command will come in handy, which takes the order index as its only parameter.
 
     advo 1
 
@@ -212,7 +211,7 @@ Further attempts to advance the order status will return an error!
 #### Reverting an order's status
 {: .no_toc}
 
-To revert an order's status, the [`revo`]() command is similar to `advo` but has the inverse effect. 
+To revert an order's status, the [`revo`](#reverting-an-order-status-revo) command is similar to [`advo`](#advancing-an-order-status-advo) but has the inverse effect. 
 
     revo 1
 
@@ -222,7 +221,7 @@ As expected, trying to revert the status when it is already 'Pending', will be m
 #### Cancelling an order
 {: .no_toc}
 
-An order can be cancelled at any stage of the order. This can be performed with the [`cancelo`]() command.
+An order can be cancelled at any stage of the order. This can be performed with the [`cancelo`](#cancel-an-order-cancelo) command.
 
     cancelo 1
 
@@ -318,7 +317,6 @@ Here are some recommended features to explore after this tutorial.
 
 * Editing a customer or order's information with [`editc`](#editing-a-customer--editc) or [`edito`](#editing-an-order--edito)
 * Assigning a customer as an individual or enterprise with [`addc`](#adding-a-customer--addc) or [`editc`](#editing-a-customer--editc)
-* Set or adding rewards points for the customer with [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or [`addpoints`](#adding-points-for-a-customer--removing-points-from-a-customer--addpoints)
 
 [🠕 Back To Top](#table-of-contents)
 
@@ -340,7 +338,7 @@ Here are some recommended features to explore after this tutorial.
   e.g. `ct/{ind|ent}` is a parameter that should be used as `ct/ind` or `ct/ent` exactly.
 
 * You can enter parameters in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is specified multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -356,7 +354,7 @@ Here are some recommended features to explore after this tutorial.
 
 * The index **must be a positive integer** 1, 2, 3, …​ 
 
-* The index refers to the index number of a customer or order as shown in the **Table Panel**.
+* The index refers to the index number of a customer or order as shown in the **List Panel**.
   * `CINDEX` refers to a customer's index
   * `OINDEX` refers to an order's index
 
@@ -371,7 +369,7 @@ Adds a customer to the current list.
 **Format**
 
 ```
-addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/{ind|ent}]
+addc n/NAME p/PHONE e/EMAIL a/ADDRESS [ct/{ind|ent}]
 ```
 
 | Prefix  | Parameter     | Optional | Description                              |
@@ -400,7 +398,7 @@ addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/{ind|ent}]
 
 #### Listing customers : `listc`
 
-Shows a list of customers in the **Table Panel**.
+Shows a list of customers in the **List Panel**.
 
 **Format**
 
@@ -440,7 +438,7 @@ Finds customers whose names contain any of the given keywords.
 findc KEYWORD [MORE_KEYWORDS]
 ```
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -493,7 +491,7 @@ Edits an existing customer in LoyaltyLift.
 **Format**
 
 ```
-editc CINDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ct/{ind|env}]
+editc CINDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/{ind|env}]
 ```
 
 * Edits the customer at the specified `CINDEX`. 
@@ -604,9 +602,7 @@ unmarkc CINDEX
 
 #### Setting a customer's note : `setnotec`
 
-Sets a customer's note.
-
-Note that information about your customer down with the `setnotec` command!
+By creating a note, you can keep track of essential details of your customers, such as their preferences or previous feedbacks.
 
 **Format**
 
@@ -643,7 +639,7 @@ You can remove a customer's note by setting an empty note.
 
 #### Appending a customer's note : `appendnotec`
 
-Adds more text to a customer's note.
+In the event that you have more information to add for a customer, `appendnotec` comes in handy to add details to an existing note without replacing it. 
 
 **Format**
 
@@ -679,7 +675,7 @@ appendnotec CINDEX nt/NOTE
 
 #### Setting reward points for a customer : `setpoints`
 
-Sets a customer's reward points.
+`setpoints` allows you to directly set both the current and cumulated points of a customer.
 
 **Format**
 
@@ -713,7 +709,8 @@ Setting points will also set cumulative points to the same amount, if you wish t
 
 #### Adding/Subtracting points for a customer : `addpoints`
 
-Edits a customer's reward points by adding or subtracting from it.
+With `addpoints`, you can add or subtract points from your customer as they place orders from you. 
+LoyaltyLift keeps track of their cumulated points and assigns them a tier to let you know who are your most loyal customers!
 
 **Format**
 
@@ -786,7 +783,7 @@ addo CINDEX n/NAME [q/QUANTITY] [a/ADDRESS]
 
 #### Listing all orders : `listo`
 
-Shows a list of orders in the **Table Panel**.
+Shows a list of orders in the **List Panel**.
 
 **Format**
 
@@ -915,7 +912,7 @@ edito OINDEX [n/NAME] [q/QUANTITY] [a/ADDRESS]
 
 #### Advancing an order status: `advo`
 
-Advances an order's status.
+As you process the order for your customer, you can update the order's status easily with `advo`. 
 
 **Format**
 
@@ -943,7 +940,7 @@ If the order is completed, the status cannot be advanced further
 
 #### Reverting an order status: `revo`
 
-Reverts an order's status to its previous status. 
+In the event that an order's progress has to reset backwards, `revo` helps you revert the order to the previous status.
 
 **Format**
 
@@ -975,7 +972,7 @@ revo OINDEX
 
 #### Cancel an order: `cancelo`
 
-Changes an order's status to "Cancelled"
+With `cancelo`, you can update an order's status as cancelled whenever an order is invalid, or the customer cancels an order.
 
 **Format**
 
@@ -1022,7 +1019,7 @@ deleteo OINDEX
 
 #### Setting an order's note : `setnoteo`
 
-Sets an order's note.
+By creating notes for your orders, you can save crucial details of orders, such as customer requests or preferred delivery timings. 
 
 **Format**
 
@@ -1048,7 +1045,7 @@ You can remove an order's note by setting an empty note.
 * `listo` followed by `setnoteo 2 nt/Keep cool`<br>
   Sets the 2nd order's note as "Keep cool".
 
-* `listc` followed by `setnoteo 2 nt/`<br>
+* `listo` followed by `setnoteo 2 nt/`<br>
   Removes the 2nd order's note.
 
 * `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly`<br>
@@ -1058,7 +1055,7 @@ You can remove an order's note by setting an empty note.
 
 #### Appending an order's note : `appendnoteo`
 
-Adds more text to an order's note.
+In the event that an additional customer request for an order comes in, you can use `appendnoteo` to add to the existing note of an order.
 
 **Format**
 
@@ -1160,18 +1157,18 @@ Customer and order data are saved in the hard disk automatically after any comma
 
 ### Customer
 
-|                       Action | Format, Examples                                                                                                                                                                             |
-|-----------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|             **Add Customer** | <code>addc [ct/{ind&#124;ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code> |
-|            **List Customer** | `listc` <br>                                                                                                                                                                                 |
-|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                                                   |
-|            **View Customer** | `viewc CINDEX` <br> e.g. `viewc 2`                                                                                                                                                           |
-|            **Edit Customer** | <code>editc CINDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]` <br> e.g. `editc 1 p/91234567 e/johndoe@example.com</code>                                           |
-|          **Delete Customer** | `deletec CINDEX`<br> e.g., `deletec 3`                                                                                                                                                       |
-|            **Mark Customer** | `markc CINDEX` <br> e.g., `markc 1`                                                                                                                                                          |
-|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g., `unmarkc 1`                                                                                                                                                      |                                                                                                                                      |
-|    **Set Note for Customer** | `setnotec CINDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                                                          |
-| **Append Note for Customer** | `appendnotec CINDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                                    |
+|                       Action | Format, Examples                                                                                                                                                                      |
+|-----------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|             **Add Customer** | <code>addc [ct/{ind&#124;ent}] n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code> |
+|            **List Customer** | `listc` <br>                                                                                                                                                                          |
+|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                                            |
+|            **View Customer** | `viewc CINDEX` <br> e.g. `viewc 2`                                                                                                                                                    |
+|            **Edit Customer** | <code>editc CINDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]` <br> e.g. `editc 1 p/91234567 e/johndoe@example.com</code>                                           |
+|          **Delete Customer** | `deletec CINDEX`<br> e.g., `deletec 3`                                                                                                                                                |
+|            **Mark Customer** | `markc CINDEX` <br> e.g., `markc 1`                                                                                                                                                   |
+|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g., `unmarkc 1`                                                                                                                                               |                                                                                                                                      |
+|    **Set Note for Customer** | `setnotec CINDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                                                   |
+| **Append Note for Customer** | `appendnotec CINDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                             |
 
 ### Rewards
 
