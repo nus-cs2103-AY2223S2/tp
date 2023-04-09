@@ -558,133 +558,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Duke Driver` and the **Actor** is the `user`, unless specified otherwise)
 
-<details>
-<summary><b>[ST1] View statistics</b></summary>
-<pre>
-<b>MSS</b>
+#### [ST1] View statistics
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to view overall statistics.
 3. System shows total earnings, monthly earnings,
    weekly earnings, daily earnings and top customers visited.
    Use case ends.
-<b>Extensions</b>
+
+_**Extensions**_
 * 2a. The list is empty.
       Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE1] View delivery job details</b></summary>
-<pre>
-<b>MSS</b>
+
+#### [DE1] View delivery job detailsummary>
+_**MSS**_
 1. User opens the system.
 2. System list all pending jobs.
 3. User selects the job for details.
 4. System displays the full detail of the delivery job.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE2] Add a delivery job</b></summary>
-<pre>
-<b>MSS</b>
+
+#### [DE2] Add a delivery job
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to add a job in the list.
 3. System adds job and job appears in list of jobs.
    Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE3] Delete a delivery job</b></summary>
-<pre>
-<b>MSS</b>
+#### [DE3] Delete a delivery job
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests to delete a specific job in the list.
 4. System deletes the job.
    Use case ends.
-<b>Extensions</b>
+
+_**Extensions**_
 * 2a. The list is empty.
   Use case ends.
 * 3a. The given index is invalid.
     * 3a1. System shows an error message.
       Use case resumes at step 2.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE4] Edit a delivery job</b></summary>
-<pre>
-<b>MSS</b>
+#### [DE4] Edit a delivery job
+
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests to edit a specific job in the list.
 4. User fill in and submit the changes.
 4. System update the job and list the new information.
    Use case ends.
-<b>Extensions</b>
+
+_**Extensions**_
 * 2a. The list is empty.
   Use case ends.
 * 3a. The given index is invalid.
     * 3a1. System shows an error message.
       Use case resumes at step 2.
-</pre>
-</details>
 
-<details>
-<summary><b>[DE5] Find a delivery job</b></summary>
-<pre>
-<b>MSS</b>
+#### [DE5] Find a delivery job
+_**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests search for a job with options.
 4. System displays search results that matches the query.
    Use case ends.
-<b>Extensions</b>
+
+_**Extensions**_
 * 3a. Invalid search option given.
     * 3a1. System shows an error message.
       Use case resumes at step 2.
 * 4a. No item matches the query options.
     * 4a. System shows empty list.
       Use case resumes at step 2.
-</pre>
-</details>
 
-<details>
-<summary><b>[TT1] Display timetable of scheduling tasks of current week</b></summary>
-<pre>
-<b>MSS</b>
+#### [TT1] Display timetable of scheduling tasks of current week
+
+_**MSS**_
 1. User requests to display timetable by selecting Timetable option on homepage.
 2. System displays timetable of uncompleted/upcoming jobs in current week in Timetable Window.
    Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[TT2] Display timetable of scheduling tasks of week containing a specific date</b></summary>
-<pre>
-<b>MSS</b>
+#### [TT2] Display timetable of scheduling tasks of week containing a specific date
+_**MSS**_
 1. User requests to display timetable of specific week containing a specific date.
 2. System displays timetable of uncompleted/upcoming jobs in the week in Timetable Window.
    Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[TT3] Display list of unscheduled/completed jobs</b></summary>
-<pre>
-<b>MSS</b>
+#### [TT3] Display list of unscheduled/completed jobs
+
+_**MSS**_
 1. User requests to display list of unscheduled/completed jobs.
 2. System displays list of unscheduled/completed jobs in Unscheduled/Completed Window.
    Use case ends.
-</pre>
-</details>
 
-<details>
-<summary><b>[RE1] Alert scheduled jobs</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE1] Alert scheduled jobs
+
+_**MSS**_
+
 1. User starts up System.
 2. System checks the time. 
 3. If the current timing falls more than 20 mins before a timetable slot, System will check if there is any current job. 
@@ -692,7 +665,8 @@ If yes, it will count and alert the user through the notification feature.
 4. System runs in the background to only check the timetable for upcoming jobs.
    System will repeat step 2 every hour, 20 mins before the next timetable slot.
    Use case ends.
-<b>Extensions:</b>
+
+_**Extensions**_
 * 3a. If the current time is within 20 mins before the next timetable slot
     * 3a1. System will check the next timetable slot and count number of upcoming jobs.
     * 3a2. Alert the user through the notification feature.
@@ -702,13 +676,9 @@ If yes, it will count and alert the user through the notification feature.
 * 3c. If the current time is after the last timetable slot
     * 3c1. System will not check for any or upcoming scheduled jobs.
       Use case resumes from step 4.
-</pre>
-</details>
 
-<details>
-<summary><b>[RE2] Alert reminders</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE2] Alert reminders
+_**MSS**_
 1. User starts up System.
 2. System loads address book from memory.
 3. System checks from address book, list of reminders. If the current date and time has pass or is equal to the date 
@@ -717,52 +687,47 @@ specified in a reminder, System will count it as an active reminder.
 5. System runs in the background to check against the list of reminders after every minute.
    System will repeat the check at step 3.
    Use case ends.
-<b>Extensions:</b>
+
+_**Extensions**_
 * 4a. User can dismiss the reminder. Doing will prevent the app from showing anymore notifications.
     * 4a1. A new reminder is activated.
       Use case resumes from step 4.
     * 4a2. No new reminder is activated.
       Use case resumes from step 5
-</pre>
-</details>
 
-<details>
-<summary><b>[RE3] Add reminders</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE3] Add reminders
+_**MSS**_
+
 1. User details the description, date and time of a reminder to the System.
 2. System adds the reminder into the reminder list.
    Use case ends.
-<b>Extensions:</b>
+
+_**Extensions**_
 * 2a. date and time of reminder is not provide.
     * 2a1. System will prompt user again.
            Use case resumes from step 1.
-</pre>
-</details>
 
-<details>
-<summary><b>[RE4] Delete reminders</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE4] Delete reminders
+
+_**MSS**_
+
 1. User specifies a reminder to be deleted based on its index number.
 2. System finds the corresponding reminder, and deletes it from the reminder list.
    Use case ends.
-<b>Extensions:</b>
+
+_**Extensions**_
 * 2a. Index provided by user is not found in reminder list.
     * 2a1. System will prompt user again.
       Use case resumes from step 1.
-</pre>
-</details>
 
-<details>
-<summary><b>[RE5] List reminders</b></summary>
-<pre>
-<b>MSS</b>
+#### [RE5] List reminders
+
+_**MSS**_
+
 1. User request System to show all reminders in reminder list.
 2. System displays all reminders.
    Use case ends.
-</pre>
-</details>
+
 
 ### Non-Functional Requirements
 
@@ -775,7 +740,9 @@ specified in a reminder, System will count it as an active reminder.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Customer/Client**: Those who placed orders and created work for delivery men.
 * **GUI**: Graphical User Interface
+* **PlantUML**: An open-source tool allowing users to create diagrams from a plain text language.
 * **CLI**: Command Line Interface
 
 --------------------------------------------------------------------------------------------------------------------
