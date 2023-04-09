@@ -412,7 +412,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to find an event based on a given keyword.
-2.  PlanEase  shows the list of sorted events based on the user’s choice of keyword.
+2.  PlanEase shows the list of sorted events based on the user’s choice of keyword.
 
 Use case ends.
 
@@ -528,12 +528,12 @@ testers are expected to do more *exploratory* testing.
 3. Test case: `addevent ev/Wedding Dinner from/17-07-2023 12:00 to/13-07-2023 22:00`<br>
    Expected: No event is added. Error details shown in the status message.
 
-4. Other incorrect addevent commands to try: `addevent`, `...`<br>
+4. Other incorrect addevent commands to try: `addevent`, `...`.<br>
    Expected: Similar to previous.
 
 ### Finding an event
 
-1. Prerequisite: Current list of events has only one event with the word `Carnival` and no event with the word `Magic`.
+1. Prerequisites: Current list of events has only one event with the word `Carnival` and no event with the word `Magic`.
 
 2. Test case: `findevent Carnival`<br>
    Expected: 1 event with the word `Carnival` is found.
@@ -541,7 +541,7 @@ testers are expected to do more *exploratory* testing.
 3. Test case: `findevent Magic`<br>
    Expected: No matching event is found.
 
-4. Other incorrect findevent commands to try: `findevent`, `...`<br>
+4. Other incorrect findevent commands to try: `findevent`, `...`.<br>
    Expected: Error details shown in the status message.
 
 ### Deleting an event
@@ -556,7 +556,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `delevent 0`<br>
       Expected: No event is deleted. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delevent`, `delevent x`, `...` (where x is larger than the list size).<br>
       Expected: Similar to previous.
 
 2. Deleting an event while events with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
