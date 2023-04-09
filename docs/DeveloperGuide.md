@@ -11,7 +11,19 @@ title: Developer Guide
 
 ## 1. **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+SudoHR is a brownfield software project based off AddressBook Level-3, created under the module CS2103 for the School
+of Computing in the National University of Singapore
+
+Java dependencies:
+
+* Jackson for JSON data storage
+* JavaFX for our GUI
+* JUnit5 for testing
+
+Documentation dependencies:
+
+* Jekyll
+* PlantUML for creating UML diagrams
 
 ---
 
@@ -177,9 +189,18 @@ This consistency is crucial to avoid confusing the user, especially since severa
 
 #### 4.1.2. Departments
 
-[//]: # (To be done by Kenneth)
+An important design consideration for Department is that it must not contain duplicate employees. This is to ensure simplicity and
+clarity when adding and removing employees from a department, as well as for the cascading process.
+
+A department is uniquely identified by its name, as a department should not share the same name with another department.
 
 #### 4.1.3. Leaves
+
+An important design consideration for Leave is that it must not contain duplicate employees. This is to ensure simplicity and
+clarity when adding and removing employees from a Leave object, as well as for the cascading process.
+
+A leave is uniquely identified by its date, to ensure a clear one-to-many relationship between a single date and employees
+taking leave on that date.
 
 [//]: # (To be done by Jer En)
 
@@ -423,19 +444,24 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### 4.3.4. Listing all departments
+[//]: # (#### 4.3.4. Listing all departments)
 
-The `listdep` command lists all the departments in SudoHR.
+[//]: # ()
+[//]: # (The `listdep` command lists all the departments in SudoHR.)
 
-![ListDepartmentCommand](./images/commands/department/ListDepartmentSequenceDiagram.png)
+[//]: # ()
+[//]: # (![ListDepartmentCommand]&#40;./images/commands/department/ListDepartmentSequenceDiagram.png&#41;)
 
-The call stack is the same as a typical command except that it has no specified parser. Instead, `SudoHrParser` directly returns the command containing the required predicate.
+[//]: # ()
+[//]: # (The call stack is the same as a typical command except that it has no specified parser. Instead, `SudoHrParser` directly returns the command containing the required predicate.)
 
-Upon execution, it updates the `filteredDepartmentList` in SudoHR.
+[//]: # ()
+[//]: # (Upon execution, it updates the `filteredDepartmentList` in SudoHR.)
 
-After that, the command result is returned.
+[//]: # ()
+[//]: # (After that, the command result is returned.)
 
-#### 4.3.5. Adding an employee to a department
+#### 4.3.4. Adding an employee to a department
 
 The `aetd` command adds an existing `Employee` to an existing `Department` in SudoHR.
 
@@ -468,7 +494,7 @@ reused in `Leaves` as well.
 It should be noted that we still used defensive checks such as `department.hasEmployee` despite the
 `UniqueEmployeeList` having such checks internally already.
 
-#### 4.3.6. Removing an employee from a department
+#### 4.3.5. Removing an employee from a department
 
 The `refd` command removes an `Employee` from an existing `Department` in SudoHR.
 
@@ -491,7 +517,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### 4.3.7. Listing an employee's departments
+#### 4.3.6. Listing an employee's departments
 
 The `led` command
 
@@ -1431,20 +1457,18 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `exit x` (where x is any string) <br>
    Expected: Should exit SudoHR.
 
-#### Saving data
+### 7.6. Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-   
-   
-1. _{ more test cases …​ }_
+When there are violation of constraints in the data files, SudoHR will not start. The specific error will be logged
+in the system output.
 
-### Planned Enhancements
+## 8. Planned Enhancements
 
 Here are a list of fixes we plan to add in the near future to counter known feature flaws.
 
-#### 1. Department name constraints
+### 8.1. Department name constraints
 
 * Department name will be case insensitive as case sensitivity does not create ambiguity between department names.
 For example, 'Marketing' and 'marketing' are clearly the same department.
@@ -1452,13 +1476,31 @@ For example, 'Marketing' and 'marketing' are clearly the same department.
 * Department names will also allow special characters such as '(', ')' and ',' to account for department names with
 labels. For example, 'Sales, Singapore' can be a valid department name.
 
-#### 2. Employee name field constraints
+### 8.2. Employee name field constraints
 * `Employee` name field will also allow special characters such as '/', which are often used as an abbreviation in 's/o', in subsequent iterations.
 
-#### 3. Employee phone field constraints
+### 8.3. Employee phone field constraints
 * Currently, the phone field is restrictive in that it only accepts 8-digit phone numbers for an employee's phone field. While registered local numbers will not face any issues, registered numbers outside of Singapore likely will if they do not adhere to 8-digits. 
 We understand this is far from ideal, since it is perfectly reasonable for businesses to hire foreign talents who may not have a locally registered number. Hence, subsequent iterations will improve the parsing of phone fields to account for foreign phone numbers that are not necessarily 8 digits.
 
-#### 4. Employee email field constraints
+### 8.4. Employee email field constraints
 * Currently, SudoHR treats email addresses as case-sensitive which we acknowledge shouldn't be as it fails to reflect real world behavior as well. We plan to ensure email addresses are case-insensitive in subsequent iterations.
 Under which, `JOHN@NUS.COM` and `john@nus.com` will be treated as one and the same.
+
+### 8.5. Filtering of employee window when searching details for a specific employee
+* Employee window should be filtered to a specific employee when viewing that employee's details. For example, the `led` lists
+all the departments the employee is in. It would also be more intuitive to display that single employee in the employee window
+as well after invoking the command, so that the user will know which employee's departments is being displayed in the department
+window if he forgets.
+
+### 8.6. Filtering of department window when searching details for a specific department
+* Department window should be filtered to a specific department when viewing that department's details. For example, the `leid` lists
+all the employees in the specific department. It would also be more intuitive to display that single department in the department window
+as well after invoking the command, so that the user will know which department's employees is being displayed in the employee
+window if he forgets.
+
+### 8.7. Filtering of leave window when searching details for a specific leave date
+* Leave window should be filtered to a specific leaved ate when viewing that leave date's details. For example, the `leol` lists
+all the employees taking leave on a specific day. It would also be more intuitive to display that single leave date in the leave window
+as well after invoking the command, so that the user will know for which date the employees filtered in the employee list are taking
+leave on.
