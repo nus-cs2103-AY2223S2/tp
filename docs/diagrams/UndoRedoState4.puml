@@ -5,7 +5,7 @@ skinparam ClassBorderColor #000000
 
 title After command "list"
 
-package States <<rectangle>> {
+package TemporaryMemory <<rectangle>> {
     class State1 as "__ab0:DengueHotspotTracker__"
     class State2 as "__ab1:DengueHotspotTracker__"
     class State3 as "__ab2:DengueHotspotTracker__"
