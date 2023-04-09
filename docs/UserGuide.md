@@ -210,7 +210,8 @@ The format for the `addtag` command is as follows:
 
 `addtag [t/TAG]…`
 
-`TAG` must be alphanumeric (must only contain english letters and numbers).
+* `TAG` must be alphanumeric (must only contain english letters and numbers).
+* Each `TAG` must be a single word with no spaces in between.
 
 Examples:
 * `addtag t/Novel t/MaleProtagonist`
