@@ -130,7 +130,7 @@ Nonetheless, you can always type the following commands to list all customers an
 {: .no_toc}
 
 Now that _Lyndon Edwards_ is in LoyaltyLift, we can add an order for him.
-This can be with the [`addo`](#adding-an-order--addo) command like the following.
+This can be done with the [`addo`](#adding-an-order--addo) command like the following.
 
     addo 1 n/Banana Cake q/2 
 
@@ -147,7 +147,7 @@ To do this manually, you can list all your orders and view the first order's inf
 
 Before ending this tutorial, let us clear our application data by removing both _Lyndon Edwards_ and his _Banana Cake_ order.
 
-While [`clear`](#clearing-all-entries--clear) command achieves this easily, we can also simply remove _Lyndon Edwards_ from LoyaltyLift with the [`deletec`](#deleting-a-customer--deletec) command.
+While the [`clear`](#clearing-all-entries--clear) command achieves this easily, we can also simply remove _Lyndon Edwards_ from LoyaltyLift with the [`deletec`](#deleting-a-customer--deletec) command.
 
     deletec 1
 
@@ -743,20 +743,11 @@ addo CINDEX n/NAME [q/QUANTITY] [a/ADDRESS]
 
 * Adds an order for the customer at the specified `CINDEX`.
 
-
-* Adds an order, tagged to INDEX.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* ADDRESS is optional and will be set to the customer's address by default
-* QUANTITY is optional and will be set to 1 by default. 
-* QUANTITY must be a positive integer (e.g. 1, 2, 3...999) and be less than or equal to 1 million (1000000)
-
 | Prefix  | Parameter    | Optional | Description                                     |
 |---------|--------------|:--------:|-------------------------------------------------|
 | `n/`    | Product Name |          | Alphanumeric characters and spaces              |
 | `q/`    | Quantity     | ✅       | A positive integer up to 999<br>Defaults to 1   |
 | `a/`    | Address      | ✅       | Any value<br>Defaults to the customer's address |
-
 
 <div markdown="block" class="alert alert-secondary">
 

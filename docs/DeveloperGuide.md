@@ -400,65 +400,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design Tweaks**
-
-### Enabling Customers with Duplicate Names to be Created
-
-#### Current Situation / Problem
-
-It is a common occurrence for 2 customers to have the same full name. 
-However, an attempt to create a 2nd customer with the same name will fail as the user will face an error.
-
-The error occurs because LoyaltyLift does not allow 2 customers with the same name to exist. 
-In [`Customer.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/model/customer/Customer.java), `Customer::isSameCustomer` is responsible for determining if 2 customers have the same identity, and it returns true if they have the same name.
-
-
-#### Possible Tweaks
-
-Ideally, a customer can be uniquely identified by a government-issued identification number (e.g. NRIC for Singaporeans). 
-However, this information is most likely unavailable to the small business owner; hence is not a feasible solution.
-
-Therefore, we propose 3 possible tweaks or solutions.
-
-1. **Use phone number to uniquely identify a customer**
-
-   Instead of using the customer's name, their phone number is a better unique identifier. 
-   With this solution, `Customer::isSameCustomer` will return true if 2 customers' phone numbers are equal. 
-   
-   **Pros**: There is a much lower probability of conflicts in the customer's phone number. One of the few possible occurrences is when a customer changes phone number, and another customer obtains that customer's previous phone number.
-
-   **Cons**: However, a customer may not want to be contacted through phone but through email instead. Hence, the business owner will not be able to create a customer in this situation.
-
-2. **Combining multiple attributes to uniquely identify a customer**
-
-   Building upon the idea of using phone number as a unique identifier, we can instead use a combination of attributes as a unique identifier.
-   Combining the customer's name, phone number and home address is possible. 
-   With this combination, `Customer::isSameCustomer` will return true if 2 customers' names, phone numbers and home addresses are all equal.
-
-   **Pros**: More robustly uniquely identify a customer in the absence of government-issued identification number.
-
-   **Cons**: It is more error-prone as a customer's information, such as his phone number and address can change over time. More attributes must be updated compared to just using a single attribute as a unique identifier.
-
-3. **Use a hidden identification number**
-
-   Instead of using the customer's name, a customer can be uniquely identified with a hidden, randomly generated unique identifier.
-   On creating every customer object, LoyaltyLift will allocate a new unique identifier number to the customer.
-   `Customer::isSameCustomer` will return true if 2 customers' hidden unique identifier are the same.
-
-   **Pros**: This tweak removes the dependency on the customer's personal information. Randomly generated unique identifier are quick to generate and have a very low chance of generating the same unique identifier.
-
-   **Cons**: Duplicated customers may be created in the application. Without any dependency, this increases the possibility for a single real customer to exist as 2 customers in LoyaltyLift. If the business owner is not careful or is unaware that the customer already exists in LoyaltyLift, he may accidentally create the same customer again. With a unique identifier such as the phone number or customer's name, the user will face an error when adding a 2nd customer with the same personal information. This indicates that the business owner may be making a mistake because the customer already exists in LoyaltyLift. 
-
-#### Extra Remarks
-
-While the above solutions are mostly feasible, we can also explore the idea of giving the flexibility to the business owner to decide the unique identifier.
-Using a phone number as the default unique identifier, most business owners may be satisfied and only face a few issues. This is because business owners can request that all customers share their phone numbers.
-
-However, future implementations can allow the business owner to configure LoyaltyLift to use an email address or a combination of phone number and email address as the unique identifier instead. 
-More experience users may wish for the freedom to configure this option or some users may require this feature to comply with regulations around sensitive customer data.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -883,6 +824,64 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
+[//]: # (@@author Junyi00)
+
+### Enabling Customers with Duplicate Names to be Created
+
+#### Current Situation / Problem
+
+It is a common occurrence for 2 customers to have the same full name. 
+However, an attempt to create a 2nd customer with the same name will fail as the user will face an error.
+
+The error occurs because LoyaltyLift does not allow 2 customers with the same name to exist. 
+In [`Customer.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/model/customer/Customer.java), `Customer::isSameCustomer` is responsible for determining if 2 customers have the same identity, and it returns true if they have the same name.
+
+#### Possible Enhancements
+
+Ideally, a customer can be uniquely identified by a government-issued identification number (e.g. NRIC for Singaporeans). 
+However, this information is most likely unavailable to the small business owner; hence is not a feasible solution.
+
+Therefore, we propose 3 possible tweaks or solutions.
+
+1. **Use phone number to uniquely identify a customer**
+
+   Instead of using the customer's name, their phone number is a better unique identifier. 
+   With this solution, `Customer::isSameCustomer` will return true if 2 customers' phone numbers are equal. 
+   
+   **Pros**: There is a much lower probability of conflicts in the customer's phone number. One of the few possible occurrences is when a customer changes phone number, and another customer obtains that customer's previous phone number.
+
+   **Cons**: However, a customer may not want to be contacted through phone but through email instead. Hence, the business owner will not be able to create a customer in this situation.
+
+2. **Combining multiple attributes to uniquely identify a customer**
+
+   Building upon the idea of using phone number as a unique identifier, we can instead use a combination of attributes as a unique identifier.
+   Combining the customer's name, phone number and home address is possible. 
+   With this combination, `Customer::isSameCustomer` will return true if 2 customers' names, phone numbers and home addresses are all equal.
+
+   **Pros**: More robustly uniquely identify a customer in the absence of government-issued identification number.
+
+   **Cons**: It is more error-prone as a customer's information, such as his phone number and address can change over time. More attributes must be updated compared to just using a single attribute as a unique identifier.
+
+3. **Use a hidden identification number**
+
+   Instead of using the customer's name, a customer can be uniquely identified with a hidden, randomly generated unique identifier.
+   On creating every customer object, LoyaltyLift will allocate a new unique identifier number to the customer.
+   `Customer::isSameCustomer` will return true if 2 customers' hidden unique identifier are the same.
+
+   **Pros**: This tweak removes the dependency on the customer's personal information. Randomly generated unique identifier are quick to generate and have a very low chance of generating the same unique identifier.
+
+   **Cons**: Duplicated customers may be created in the application. Without any dependency, this increases the possibility for a single real customer to exist as 2 customers in LoyaltyLift. If the business owner is not careful or is unaware that the customer already exists in LoyaltyLift, he may accidentally create the same customer again. With a unique identifier such as the phone number or customer's name, the user will face an error when adding a 2nd customer with the same personal information. This indicates that the business owner may be making a mistake because the customer already exists in LoyaltyLift. 
+
+#### Extra Remarks
+
+While the above solutions are mostly feasible, we can also explore the idea of giving the flexibility to the business owner to decide the unique identifier.
+Using a phone number as the default unique identifier, most business owners may be satisfied and only face a few issues. This is because business owners can request that all customers share their phone numbers.
+
+However, future implementations can allow the business owner to configure LoyaltyLift to use an email address or a combination of phone number and email address as the unique identifier instead. 
+More experience users may wish for the freedom to configure this option or some users may require this feature to comply with regulations around sensitive customer data.
+
+[//]: # (@@author CloudHill)
+
 ### Allow Customers to have similar Orders
 
 Currently, a customer cannot have two orders with the same product name, quantity, and address on the same day.
@@ -891,3 +890,16 @@ This is because the orders will be considered as duplicates, as defined by `Orde
 To improve this, we plan to assign a unique ID for each order such that two orders are considered duplicates if they have the same ID.
 
 This ID can initially be randomly generated, but we then allow the user to define their own format as required by their business (e.g. some users may want to incorporate the order's created date into the identifier).
+
+### Setting Tiers
+
+Currently, the number of tiers in LoyaltyLift are hardcoded at three tiers. The names and points required for each tier are also cannot be customized. However, this can be inconvenient as users may have different point schemes.
+
+To support this, we plan to add a `settier` command that allows the user to set each tier's name and required points by index.
+For example, the customer may set the third tier to `Platinum` at 10,000 points by entering `settier 3 Platinum 10000`.
+
+While each tier will have some default color, we can also consider including an option for the user to provide a hex code for their desired color, e.g. `settier 3 Platinum 10000 1affff`.
+
+To complement this new command, we also plan to include a `viewtiers` command to display the existing tiers and a `deletetier` command to remove an existing tier.
+
+[//]: # (@@author)
