@@ -22,6 +22,10 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 - If you are an experienced user, you may find the [Command Summary](#command-summary) helpful as it provides a summarized table of all
   the available commands.
 
+
+<div style="page-break-after: always;"></div>
+
+
 <h2 id="table-of-contents">Table of Contents</h2>
 -------------------------------------
 - [Using This Guide](#using-this-guide)
@@ -51,6 +55,10 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 - [Limitations](#limitations)
 - [FAQ](#faq)
 
+
+<div style="page-break-after: always;"></div>
+
+
 <h2 id="icons-used">Icons Used</h2>
 -------------------------------------
 This section serves to introduce the icons used throughout this guide.
@@ -71,7 +79,6 @@ This section serves to introduce the icons used throughout this guide.
 :exclamation: **Danger:** Necessary cautions to heed to ensure that _Ez-Schedule_ operates as intended.
 </div>
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -83,8 +90,10 @@ This section serves to introduce the icons used throughout this guide.
 4. Open a command line terminal, `cd` into the folder you put the jar file in
 5. Use the `java -jar Ez-Schedule.jar` command to run the application.
 
-
 [[Back to top](#table-of-contents)]
+
+
+<div style="page-break-after: always;"></div>
 
 
 <h2 id="gui">Graphical User Interface</h2>
@@ -107,7 +116,6 @@ _Ez-Schedule_ is composed of the following components, which are numbered for ea
 This component enables you to type the command in the command box and execute it by pressing Enter.  
 For example, typing `help` and pressing Enter will open the help window.
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -115,7 +123,6 @@ For example, typing `help` and pressing Enter will open the help window.
 ![response-box-gui.png](images/response-box-gui.png)
 
 This component displays the feedback of the command you entered into the command box.
-
 
 [[Back to top](#table-of-contents)]
 
@@ -132,7 +139,6 @@ Events that have past is marked with a completed label and check mark.
 Events are displayed in chronological order.  
 </div>
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -146,7 +152,6 @@ This component displays both ongoing (if you have not started on them yet) and u
 While the default is one upcoming event, 
 you can use the `next` command to change the number of upcoming events shown.
 </div>
-
 
 [[Back to top](#table-of-contents)]
 
@@ -168,8 +173,10 @@ Clicking on the `now` button will take you directly back to the current date.
 Clicking on any calendar date box that has events will display those events in the event list.
 </div>
 
-
 [[Back to top](#table-of-contents)]
+
+
+<div style="page-break-after: always;"></div>
 
 
 <h2 id="summary">Summary</h2>
@@ -183,7 +190,6 @@ Clicking on any calendar date box that has events will display those events in t
 | s/     | Start time     | Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required. |
 | e/     | End time       | Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required. |
 | every/ | Every          | Recurring factor is given by day/week/month.                                                          | 
-
 
 [[Back to top](#table-of-contents)]
 
@@ -203,8 +209,10 @@ Clicking on any calendar date box that has events will display those events in t
 | Help   | `help`                                                       |
 | Exit   | `exit`                                                       |
 
-
 [[Back to top](#table-of-contents)]
+
+
+<div style="page-break-after: always;"></div>
 
 
 <h2 id="commands">Commands</h2>
@@ -258,7 +266,6 @@ End date should come after current event date.
 Recurring of events not existing in scheduler is not allowed.
 </div>
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -288,7 +295,6 @@ Any changes made to the event will be reflected in both the `Events List Panel` 
 :warning: **Warning:** At least one field must be provided.
 </div>
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -311,7 +317,6 @@ Deleting the event will cause it to be removed from both the `Events List Panel`
 <div markdown="span" class="alert alert-warning">
 :warning: **Warning:** Index must be a positive integer and exist in the scheduler.
 </div>
-
 
 [[Back to top](#table-of-contents)]
 
@@ -336,7 +341,6 @@ Parameters:
 :warning: **Warning:** At least one field must be provided.
 </div>
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -356,7 +360,6 @@ Parameter:
 :information_source: **Note:** If count is larger than the number of existing events, then all events are shown.
 </div>
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -372,7 +375,6 @@ Example: `undo`
 :warning: **Warning:** `undo` is only applicable for `add`, `delete`, `edit` and `recur` commands.
 </div>
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -383,7 +385,6 @@ Format: `list`
 Displays all events currently saved in the scheduler.
 
 Example: `list`
-
 
 [[Back to top](#table-of-contents)]
 
@@ -396,7 +397,6 @@ Provide a link to access this website.
 
 Example: `help`
 
-
 [[Back to top](#table-of-contents)]
 
 
@@ -408,8 +408,10 @@ Exits the application.
 
 Example: `exit`
 
-
 [[Back to top](#table-of-contents)]
+
+
+<div style="page-break-after: always;"></div>
 
 
 <h2 id="limitations">Limitations</h2>
@@ -419,7 +421,6 @@ Example: `exit`
 - `undo` can only undo the most recent valid command.
 - Data files are not allowed to be modified directly.
   Integrity of data files are not verified, hence modified data files might introduce bugs into the program.
-
 
 [[Back to top](#table-of-contents)]
 
@@ -451,6 +452,5 @@ Example: `exit`
 **Q:** You say this is optimised for CLI use, but there is no command to transverse the calendar?  
 **A:** The calendar UI is a value-added feature and is not meant to totally replace the `find` feature,
        which allows the user to focus directly to a specific day.
-
 
 [[Back to top](#table-of-contents)]
