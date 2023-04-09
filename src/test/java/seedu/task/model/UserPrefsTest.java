@@ -12,6 +12,7 @@ public class UserPrefsTest {
         assertThrows(NullPointerException.class, () -> userPref.setGuiSettings(null));
     }
 
+    //@@author
     @Test
     public void setTaskBookFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();

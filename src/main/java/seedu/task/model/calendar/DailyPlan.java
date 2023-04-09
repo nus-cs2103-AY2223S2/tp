@@ -30,7 +30,7 @@ public class DailyPlan {
     }
 
     /**
-     * Constructor used when reading values from JSON
+     * Constructor used when reading values from JSON.
      */
     public DailyPlan(ArrayList<Task> taskList, long desiredWorkload, long currentWorkload, LocalDate date) {
         this.taskList = taskList;
@@ -46,9 +46,9 @@ public class DailyPlan {
      */
     public void allocateEvent(EventList l) {
         for (int i = 0; i < l.size(); i++) {
-            Event e = l.get(i);
+            Event e = l.getEventFromIndex(i);
             if (isWithinRange(e)) {
-                currentWorkload += e.getEffort().getEffort();
+                currentWorkload += e.getEffortValue();
                 taskList.add(e);
             }
         }
@@ -122,7 +122,7 @@ public class DailyPlan {
     /**
      * Checks if plan's date fall within event date
      * @param e event to be checked
-     * @return whether or not task should be added to day's workload
+     * @return whether task should be added to day's workload
      */
     public boolean isWithinRange(Event e) {
         LocalDate eventStart = e.getFrom().getDate();

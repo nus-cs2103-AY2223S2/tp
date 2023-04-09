@@ -18,7 +18,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/huggenguggen.md)]
 
 * Role: Developer
-* Responsibilities: TBC
+* Responsibilities: Alert/Find Feature + UI
 
 ### Ong Chong Yang
 
@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/lywich.md)]
 
 * Role: Developer
-* Responsibilities: tbc
+* Responsibilities: Refactoring + Scheduling + Integration
 
 ### Hao Zeyu
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/PROGRAMMERHAO)] [[portfolio](team/programmerhao.md)]
 
 * Role: Developer
-* Responsibilities: tbc
+* Responsibilities: Subsection/Remove-subsection feature, Find/Add features enhancements
 
 ### Joy Ng Jing Ru
 
@@ -46,5 +46,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/joyngjr)]
 [[portfolio](team/joyngjr.md)]
 
-* Role: tbc
-* Responsibilities: tbc
+* Role: Developer
+* Responsibilities: Delete/Stats/Schedule Feature

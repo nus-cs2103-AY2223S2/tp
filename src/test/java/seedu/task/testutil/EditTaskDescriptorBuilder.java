@@ -14,6 +14,7 @@ import seedu.task.model.task.Event;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.Task;
 
+//@@author lywich-reused
 /**
  * A utility class to help with building EditTaskDescriptor objects.
  */
@@ -73,6 +74,7 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
 
+    //@@author joyngjr
     /**
      * Sets the {@code Effort} of the {@code EditTaskDescriptor} that we are building.
      */
@@ -81,6 +83,7 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
 
+    //@@author PROGRAMMERHAO
     /**
      * Sets the {@code from} of the {@code EditTaskDescriptor} that we are building.
      */
@@ -105,8 +108,7 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
 
-
-
+    //@@author
     public EditTaskDescriptor build() {
         return descriptor;
     }

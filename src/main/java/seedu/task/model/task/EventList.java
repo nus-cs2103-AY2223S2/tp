@@ -29,10 +29,18 @@ public class EventList extends CategoricalTaskList {
      */
     public EventList() {}
 
-    public Event get(int index) {
+    /**
+     * Retrieves an Event stored at indicated index.
+     * @param index location to retrieve from
+     * @return Event stored at location
+     */
+    public Event getEventFromIndex(int index) {
         return taskList.get(index);
     }
 
+    /**
+     * Returns the number of tasks to be allocated in the planning algorithm.
+     */
     public int size() {
         return taskList.size();
     }

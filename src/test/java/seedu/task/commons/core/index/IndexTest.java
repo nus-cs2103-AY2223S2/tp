@@ -46,6 +46,7 @@ public class IndexTest {
         assertEquals(6, Index.fromZeroBased(5).getOneBased());
     }
 
+    //@@author lywich-reused
     @Test
     public void equals() {
         final Index fifthTaskIndex = Index.fromOneBased(5);

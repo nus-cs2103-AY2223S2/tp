@@ -1,5 +1,6 @@
 package seedu.task.model.task;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -42,8 +43,18 @@ public class Deadline extends Task {
         return this.deadline;
     }
 
+    /**
+     * Checks if deadline can be allocated to entered date.
+     */
     public boolean isValidDate(LocalDate date) {
         return date.isBefore(deadline.getDate());
+    }
+
+    /**
+     * Finds the number of days between deadline and entered date.
+     */
+    public long getDaysBetween(LocalDate date) {
+        return DAYS.between(date, this.deadline.getDate());
     }
 
     @Override

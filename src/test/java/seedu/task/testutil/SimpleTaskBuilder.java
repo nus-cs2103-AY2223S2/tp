@@ -50,6 +50,7 @@ public class SimpleTaskBuilder {
         subtasks = taskToCopy.getSubtasksAsOriginal();
     }
 
+    //@@author lywich-reused
     /**
      * Sets the {@code Name} of the {@code Task} that we are building.
      */
@@ -82,6 +83,7 @@ public class SimpleTaskBuilder {
         return this;
     }
 
+    //@@author joyngjr
     /**
      * Sets the {@code Effort} of the {@code Task} that we are building.
      */
@@ -90,6 +92,7 @@ public class SimpleTaskBuilder {
         return this;
     }
 
+    //@@author PROGRAMMERHAO
     /**
      * Sets the {@code UniqueSubtaskList}of the {@code Task} that we are building.
      * @param subtask A pre-built subtask
@@ -100,6 +103,7 @@ public class SimpleTaskBuilder {
         return this;
     }
 
+    //@@author HUGGENGUGGEN
     /**
      * Sets the {@code alertWindow} of the {@code Task} that we are building.
      */
@@ -108,10 +112,12 @@ public class SimpleTaskBuilder {
         return this;
     }
 
+    //@@author lywich-reused
     public Task build() {
         return new SimpleTask(name, description, tags, effort, subtasks.asInternalList());
     }
 
+    //@@author joyngjr
     public Task buildDefault() {
         return new SimpleTask(name, description, tags, null);
     }

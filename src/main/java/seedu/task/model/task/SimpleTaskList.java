@@ -16,7 +16,7 @@ public class SimpleTaskList extends CategoricalTaskList {
 
     /**
      * Regular constructor that filters and retains SimpleTasks.
-     * @param internalList all entries in the taskbook
+     * @param internalList all entries in the TaskBook.
      * @param today date command is ran
      */
     public SimpleTaskList(ObservableList<Task> internalList, LocalDate today) {
@@ -33,21 +33,24 @@ public class SimpleTaskList extends CategoricalTaskList {
      */
     public SimpleTaskList() {}
 
+    /**
+     * Returns the number of tasks to be allocated in the planning algorithm.
+     */
     public int size() {
         return this.taskList.size();
     }
 
     /**
-     * Retrieves a SimpleTask stored at indicated index
+     * Retrieves a SimpleTask stored at indicated index.
      * @param index location to retrieve from
      * @return SimpleTask stored at location
      */
-    public SimpleTask get(int index) {
+    public SimpleTask getSimpleTaskFromIndex(int index) {
         return taskList.get(index);
     }
 
     /**
-     * Checks if Task from records is a SimpleTask
+     * Checks if Task from records is a SimpleTask.
      * @param t Current task to check
      * @param d Date command is ran
      * @return boolean value indicating if it is a simpleTask

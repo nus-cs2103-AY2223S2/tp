@@ -23,7 +23,8 @@ public class StorageManager implements Storage {
     private PlannerStorage plannerStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code TaskBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TaskBookStorage}, {@code PlannerStorage}
+     * and {@code UserPrefStorage}.
      */
     public StorageManager(TaskBookStorage taskBookStorage, UserPrefsStorage userPrefsStorage,
                           PlannerStorage plannerStorage) {
@@ -33,7 +34,7 @@ public class StorageManager implements Storage {
     }
 
     // ================ UserPrefs methods ==============================
-
+    //@@author
     @Override
     public Path getUserPrefsFilePath() {
         return userPrefsStorage.getUserPrefsFilePath();
@@ -81,6 +82,7 @@ public class StorageManager implements Storage {
 
     // ================ Planner methods ==============================
 
+    //@@author joyngjr
     @Override
     public Path getPlannerFilePath() {
         return plannerStorage.getPlannerFilePath();
