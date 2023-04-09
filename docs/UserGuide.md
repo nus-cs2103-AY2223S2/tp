@@ -180,18 +180,18 @@ Examples:
 shown below will be added to the recipe book:
 
 <p align="center" width="100%">
-    <img src="images/AddResult1.png" width=500 height=400>
+    <img src="images/AddResult1.png" width=100%>
 </p>
 
 
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid as 
 multiple `i/` command flags are allowed. A recipe similar to the image shown below will be added to the recipe book:
 <p align="center" width="100%">
-    <img src="images/AddResult2.png" width=500 height=400>
+    <img src="images/AddResult2.png" width="100%">
 </p>
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because the command flag `s/` is compulsory. An error message will appear, similar to the one shown below:
 <p align="center" width="100%">
-    <img src="images/AddError.png" width=500 height=400>
+    <img src="images/AddError.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -219,18 +219,18 @@ Example:
 - `edit 1 t/Corndog` is valid and the recipe will be edited like the image shown below:
 
 <p align="center" width="100%">
-    <img src="images/EditResult1.png" width=500 height=400>
+    <img src="images/EditResult1.png" width="100%">
 </p>
 
 - `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted. The recipe will be edited as shown below:
 
 <p align="center" width="100%">
-    <img src="images/EditResult2.png" width=500 height=400>
+    <img src="images/EditResult2.png" width="100%">
 </p>
 
 - `edit 1` is not valid as at least one flag is required and you will see an error message similar to that of the one shown below:
 <p align="center" width="100%">
-    <img src="images/EditError.png" width=500 height=400>
+    <img src="images/EditError.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -262,13 +262,13 @@ Our initial recipe book:
 
 
 <p align="center" width="100%">
-<img src="images/DeleteResult.png" width=500 height=400>
+<img src="images/DeleteResult.png" width="100%">
 </p>
 
 - `delete 2` is invalid. When there is currently only one recipe in the recipe book, you will see an error message as shown below:
 
 <p align="center" width="100%">
-<img src="images/DeleteError.png" width=500 height=400>
+<img src="images/DeleteError.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -282,7 +282,7 @@ Format: `list`
 
 Example: `list` will list all the recipes similar to the image shown below:
 <p align="center" width="100%">
-    <img src="images/ListResult.png" width=500 height=400>
+    <img src="images/ListResult.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -297,7 +297,7 @@ Format: `clear`
 Example: `clear` will clear all recipes similar to the image shown below:
 
 <p align="center" width="100%">
-    <img src="images/ClearResult.png" width=500 height=400>
+    <img src="images/ClearResult.png" width="100%">
 </p>
 
 
@@ -337,27 +337,27 @@ Examples:
 Our initial recipe book:
 
 <p align="center" width="100%">
-    <img src="images/AddResult2.png" width=500 height=400>
+    <img src="images/AddResult2.png" width="100%">
 </p>
 
 - `find r/eggs` is valid and the result of the recipe book is as shown below:
 
 <p align="center" width="100%">
-    <img src="images/FindResult.png" width=500 height=400>
+    <img src="images/FindResult.png" width="100%">
 </p>
 
 - `find r/eggs s/fry the egg` is not valid as only one command flag is allowed. You should see an error message similar to
   the one in the image shown below:
 
 <p align="center" width="100%">
-    <img src="images/FindError1.png" width=500 height=400>
+    <img src="images/FindError1.png" width="100%">
 </p>
 
 - `find` is not valid as at least one flag is required. You should see an error message like the one in the image
 shown below:
 
 <p align="center" width="100%">
-    <img src="images/FindError2.png" width=500 height=400>
+    <img src="images/FindError2.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -384,21 +384,21 @@ Our initial recipe book:
 - e.g. `only eggs` is valid, and will search for recipes that have ingredients that at most contain eggs, and nothing more. The result of the command is as shown below:
 
 <p align="center" width="100%">
-    <img src="images/OnlyResult1.png" width=500 height=400>
+    <img src="images/OnlyResult1.png" width="100%">
 </p>
 
 - e.g. `only eggs flour` will search for recipes that have ingredients that at most contains eggs and flour.
 A recipe that only needs eggs will also be valid. The result of the command is shown below:
 
 <p align="center" width="100%">
-    <img src="images/OnlyResult2.png" width=500 height=400>
+    <img src="images/OnlyResult2.png" width="100%">
 </p>
 
 - e.g. `only` is not valid as at least one parameter is needed. You should see an error message similar to the one in the image shown
   below:
 
 <p align="center" width="100%">
-<img src="images/OnlyError.png" width=500 height=400>
+<img src="images/OnlyError.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -432,7 +432,7 @@ Our initial recipe book:
 - `sort desc` will display your sorted recipe book similar to the image shown below:
 
 <p align="center" width="100%">
-    <img src="images/SortResult.png" width=500 height=400>
+    <img src="images/SortResult.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -465,7 +465,7 @@ Our initial recipe book:
 Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the result 
 display along with their quantities.
 <p align="center" width="100%">
-    <img src="images/GroceriesResult.png" width=500 height=400>
+    <img src="images/GroceriesResult.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -502,7 +502,7 @@ Our initial recipe book:
 
 - `fp < 4.50` will display all recipes that have a lower price than $4.50, as shown in the image below:
 <p align="center" width="100%">
-<img src="images/FpResult.png" width=500 height=400>
+<img src="images/FpResult.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -537,7 +537,7 @@ Our initial recipe book:
 - `star 2` will star the second recipe, as shown in the image below:
 
 <p align="center" width="100%">
-<img src="images/StarResult2.png" width=500 height=400>
+<img src="images/StarResult2.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -571,7 +571,7 @@ Our initial recipe book:
 - `unstar 2` will remove the star of the second recipe, as shown in the image below:
 
 <p align="center" width="100%">
-    <img src="images/UnstarResult2.png" width=500 height=400>
+    <img src="images/UnstarResult2.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -595,7 +595,7 @@ Our initial recipe book:
 - `favorites` will display all your starred recipes, as shown in the image below:
 
 <p align="center" width="100%">
-    <img src="images/FavoritesResult.png" width=500 height=400>
+    <img src="images/FavoritesResult.png" width="100%">
 </p>
 
 [Back to top](#top)
@@ -659,7 +659,6 @@ Format meanings:
 - Words in [Square brackets] are optional parameters (Note:ls can stack filters)
 - Words that are followed by * are parameters that can be used multiple times
 
-### Beginner Commands
 
 | Action                         | Format                  | Examples  |
 |--------------------------------|-------------------------|-----------|
@@ -668,13 +667,6 @@ Format meanings:
 | Delete Recipe                  | `delete RECIPE_NUMBER`   | `delete 1`  |
 | List Recipe                    | `list`   | `list`  |
 | Clear Recipe                   | `clear`   | `clear`  |
-
-
-
-### Advanced Commands
-
-| Action                         | Format                  | Examples  |
-|--------------------------------|-------------------------|-----------|
 | Find Recipe                    | `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`   | `find r/eggs`  |
 | Search Recipe with limited ingredients | `only INGREDIENT...`   | `only eggs flour`  |
 | Sort Recipes by price          | `sort ORDER`             | `sort asc`  |
