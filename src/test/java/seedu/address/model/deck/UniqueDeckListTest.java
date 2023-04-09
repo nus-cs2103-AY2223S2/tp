@@ -7,13 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalDecks.VALID_DECK_HISTORY;
 import static seedu.address.testutil.TypicalDecks.VALID_DECK_SCIENCE;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.deck.exceptions.DeckNotFoundException;
 import seedu.address.model.deck.exceptions.DuplicateDeckException;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class UniqueDeckListTest {
 
