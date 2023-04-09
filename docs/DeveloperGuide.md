@@ -706,4 +706,3 @@ testers are expected to do more *exploratory* testing.
    1. Delete the file addressbook.json in the data directory where Medimate is located at.
    2. Relaunch Medimate.jar.
    3. Expected: Data file is missing. Medimate starts with an initial data file.
-   
