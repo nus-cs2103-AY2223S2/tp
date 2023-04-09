@@ -243,7 +243,7 @@ The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand`
 
 **Target user profile**:
 
-- has a need to manage a significant number of contacts and events
+- has a need to manage a significant number of persons and events
 - prefers desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
@@ -261,14 +261,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | event planner           | add my own event                                           | refer to instructions when I forget how to use the App                   |
 | `* * *`  | event planner           | view all my events                                         | track all the upcoming events I have                                     |
 | `* * *`  | event planner           | delete an existing event                                   | delete event that have ended                                             |
-| `* * *`  | event planner           | add an existing event to a new contact                     | -                                                                        |
+| `* * *`  | event planner           | add an existing event to a new person                     | -                                                                        |
 | `* *`    | event planner           | search for events via names                                | locate events easily                                                     |
 | `* *`    | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name                                         |
 | `* *`    | new event planner       | sort events according to dates                             | prioritize events when I am planning                                     |
 | `* *`    | event planner           | sort events according to their names                       | browse through a large list of events in a logical and consistent order  |
-| `* *`    | event planner           | list all contacts from a particular event                  | know the people associated to this event                                 |
+| `* *`    | event planner           | list all persons from a particular event                  | know the people associated to this event                                 |
 | `* *`    | event planner           | edit events                                                | change details                                                           |
-| `* *`    | event planner           | list all events and contacts                               | conveniently view everything                                             |
+| `* *`    | event planner           | list all events and persons                               | conveniently view everything                                             |
 | `*`      | event planner           | add overall-in-charge for every event                      | know who to approach for issues related to the event                     |
 | `*`      | event planner           | set up a checklist of customer’s requirements              | account for every need                                                   |
 | `*`      | forgetful event planner | set reminders conveniently                                 | be on track with things                                                  |
@@ -445,12 +445,12 @@ Use case ends.
 
 <br>
 
-**Use case: Add an existing event to a new contact**
+**Use case: Add an existing event to a new person**
 
 **MSS**
 
-1.  User requests to add a new contact.
-2.  PlanEase shows a prompt to indicate that the contact has been added successfully.
+1.  User requests to add a new person.
+2.  PlanEase shows a prompt to indicate that the person has been added successfully.
 
 Use case ends.
 
@@ -462,7 +462,7 @@ Use case ends.
 
   Use case ends.
 
-- 1b. The given contact name exists in the address book.
+- 1b. The given person name exists in the address book.
 
   - 1b1. PlanEase shows an error message.
 
@@ -512,7 +512,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Double-click the jar file.
 
-      1. Expected: Shows the GUI with a set of sample contacts and events. The window size may not be optimum.
+      1. Expected: Shows the GUI with a set of sample persons and events. The window size may not be optimum.
 
 2. Shutting down
 
@@ -572,12 +572,12 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delevent`, `delevent x`, `...` (where x is larger than the displayed list size).<br>
        Expected: Similar to previous.
 
-### Listing all contacts from an event
+### Listing all persons from an event
 
 1. No prerequisite.
 
 2. Test case: `listevcontact 1`<br>
-   Expected: App will display the list of all contacts from first event if any. 
+   Expected: App will display the list of all persons from first event if any. 
 
 3. Other incorrect listevcontact commands to try: `listevcontact x`, `...` (where x is not a valid event index).<br>
    Expected: Error details shown in the status message.
@@ -595,12 +595,12 @@ testers are expected to do more *exploratory* testing.
 4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
    Expected: Similar to previous.
 
-### Listing all contacts and events
+### Listing all persons and events
 
 1. No prerequisite.
 
 2. Test case: `listall`<br>
-   Expected: App will display the list of all contacts if any.
+   Expected: App will display the list of all persons if any.
 
 ### Saving data
 
@@ -614,8 +614,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Corrupted `/data/addressbook.json` file (file is not in valid json format) before running the app
 
-      1. Expected: App will not list any contacts and events.
-         It will clear all the contacts and events in the `/data/addressbook.json` file when a valid input is entered by the user.
+      1. Expected: App will not list any persons and events.
+         It will clear all the persons and events in the `/data/addressbook.json` file when a valid input is entered by the user.
          Format of `/data/addressbook.json` file becomes valid.
 
 ## **Appendix:** Planned Enhancements
@@ -624,7 +624,7 @@ testers are expected to do more *exploratory* testing.
 
 Currently, the name of a Person is not case-sensitive.
 Anyone with the same name but in different casing are considered different Persons.
-For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of Contacts:
+For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of Persons:
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
 * `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
 
