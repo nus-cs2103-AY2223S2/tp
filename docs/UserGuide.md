@@ -5,19 +5,19 @@ title: User Guide
 
 ## What is MediMeet?
 
-**MediMeet** is a patient appointment management system for individual medical practitioners and small clinics. 
-With MediMeet, you can efficiently manage patient and appointment information in one place, 
+**MediMeet** is a patient appointment management system for individual medical practitioners and small clinics.
+With MediMeet, you can efficiently manage patient and appointment information in one place,
 saving you both time and the hassle of maintaining records across multiple systems. <br>
 
 MediMeet is a command-line interface (CLI) application with fast, easy-to-use commands which make it ideal for the
-fast typist. 
+fast typist.
 With MediMeet, we make it easy to add and edit patient information, appointments and so much more, making it
 a one-stop solution to manage your individual medical practice or small clinic! <br>
 
 --------------------------------------------------------------------------------------------------------------------
 ## How to (best) use this guide
 
-This user guide is designed to be used by all of first-time, novice and advanced users of MediMeet. 
+This user guide is designed to be used by all of first-time, novice and advanced users of MediMeet.
 If you are an experienced user, you can jump straight to the [Command summary](#command-summary) section to see a list of all MediMeet’s commands.
 The following table shows the different sections and what they contain. To jump to a particular section, click on the link in the table of contents above.
 
@@ -193,7 +193,7 @@ Format: `find_patient_details KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find_patient_details 87438807` returns the patient with a phone number `87438807`
-    
+
     ![](images/findPatientDetails.png)
     ![result for 'find patient details 87438807'](images/findPatientDetailsResult.png)
 
@@ -213,7 +213,7 @@ Examples:
 
 ### Adding patient notes: `remark_patient`
 
-Adds a note to a patient in MediMeet so that the doctor can store and access notes 
+Adds a note to a patient in MediMeet so that the doctor can store and access notes
 about a given patient.
 
 Format: `remark_patient INDEX [r/REMARK]`

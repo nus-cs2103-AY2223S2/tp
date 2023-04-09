@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zxisatree&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**: 
+* **Project management**:
 	* Helped coordinate the team and split the work amongst them
 
 * **Enhancements implemented**: to be added soon
