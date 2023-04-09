@@ -103,7 +103,7 @@ public class EditPolicyCommand extends Command {
         Policy policyToEdit = lastShownPolicyList.get(policyIndex.getZeroBased());
         Policy editedPolicy = createEditedPolicy(policyToEdit, editPolicyDescriptor);
 
-        UniquePolicyList clientPolicyList = clientToEditPolicy.getPolicyList();
+        UniquePolicyList clientPolicyList = editedPolicyClient.getPolicyList();
         if (!policyToEdit.isSamePolicy(editedPolicy) && clientPolicyList.contains(editedPolicy)) {
             throw new CommandException(MESSAGE_DUPLICATE_POLICY);
         }

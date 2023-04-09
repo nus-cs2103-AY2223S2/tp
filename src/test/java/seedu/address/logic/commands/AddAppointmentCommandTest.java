@@ -58,10 +58,17 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void equals_differentIndex_returnsFalse() {
-        AddAppointmentCommand addAppointmentCommand1 = new AddAppointmentCommand(validIndex, validAppointment);
-        AddAppointmentCommand addAppointmentCommand2 = new AddAppointmentCommand(Index.fromOneBased(2),
+        AddAppointmentCommand addAppointmentCommandOne = new AddAppointmentCommand(validIndex, validAppointment);
+        AddAppointmentCommand addAppointmentCommandTwo = new AddAppointmentCommand(Index.fromOneBased(2),
             validAppointment);
-        assertNotEquals(addAppointmentCommand1, addAppointmentCommand2);
+        assertNotEquals(addAppointmentCommandOne, addAppointmentCommandTwo);
+    }
+
+    @Test
+    public void equals_sameValue_returnsTrue() {
+        AddAppointmentCommand addAppointmentCommandOne = new AddAppointmentCommand(validIndex, validAppointment);
+        AddAppointmentCommand addAppointmentCommandTwo = new AddAppointmentCommand(validIndex, validAppointment);
+        assertEquals(addAppointmentCommandTwo, addAppointmentCommandTwo);
     }
 
 }
