@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-## About coNtactUS <a id="contactus"></a>
+## <a id="contactus"></a>About coNtactUS
 
 Are you a NUS computing student who is struggling to keep track of your school modules? Are you feeling overwhelmed by the constant influx of weekly lectures, tutorials, deadlines and assignments? Are you finding it hard to keep your module resources and notes well-organised? Fret not! With coNtactUS, you can take the first step towards solving all of your problems. 
 
@@ -26,7 +26,7 @@ bringing you one step closer to achieving your goals.
 So, what are you waiting for? Read on to find out more about how to use coNtactUs in this user guide! 
 
 --------------------------------------------------------------------------------------------------------------------
-## About this user guide <a id="ug></a>
+## <a id="ug"></a>About this user guide
 
 If this is the first time you are using coNtactUS, this user guide provides an excellent starting point for you to
 familiarise yourself with the features of coNtactUS. It also shows you how to set up coNtactUS effortlessly
@@ -38,7 +38,7 @@ unsure of how to use.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## How to use this user guide <a id="how"></a>
+## <a id="how"></a>How to use this user guide
 
 A [table of contents](#table) is provided in this user guide, containing hyperlinks to each section of 
 the user guide. You can simply click on a hyperlink to quickly navigate to the relevant section that you are interested 
@@ -55,7 +55,7 @@ that you should pay attention to. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Table of Contents <a id="table"></a>
+## <a id="table"></a>Table of Contents
 
 * [**About coNtactUS**](#contactus)
 * [**About this User Guide**](#ug)
@@ -92,7 +92,7 @@ that you should pay attention to. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Getting started <a id="start"></a>
+## <a id="start"></a> Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer 
 to [how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
@@ -121,7 +121,7 @@ for your reference. </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Familiarising yourself with the user interface <a id="ui"></a>
+## <a id="ui"></a> Familiarising yourself with the user interface  
 
 In case you are unsure of what you see in front of you now, we have come up with annotations to
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
@@ -135,7 +135,7 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Familiarising yourself with a module <a id="module"></a>
+## <a id="module"></a>Familiarising yourself with a module
 
 To start adding a module, we should first learn about what a module is. In coNtactUS, each module has 8 information 
 fields. 
@@ -155,7 +155,7 @@ This is all you need to know for the time being. Now let's take a closer look at
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Familiarising yourself with the commands <a id="commands"></a>
+## <a id="commands"></a>Familiarising yourself with the commands  
 
 
 Here is a brief introduction of the available commands for you to use. To see detailed information about each
@@ -185,7 +185,7 @@ list. Only use it if you are sure! </div>
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Features <a id="features"></a>
+## <a id="features"></a>Features  
 
 This section introduces you to detailed information about how to use each command.
 
@@ -202,7 +202,7 @@ This section introduces you to detailed information about how to use each comman
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Listing all modules: `list`<a id="list"></a>
+### <a id="list"></a>Listing all modules: `list`
 
 By using the `list` command, you can list all the modules that you have stored in the module tracker.
 
@@ -211,7 +211,7 @@ This is a straightforward command. To use it, all you have to type is `list`
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Adding a module: `add`<a id="add"></a>
+### <a id="add"></a>Adding a module: `add`  
 
 By using the `add` command, you can add a new module to the module tracker. 
 
@@ -249,7 +249,7 @@ Please refer to [format restrictions](#format) to find out more.
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Deleting a module: `delete`<a id="delete"></a>
+### <a id="delete"></a>Deleting a module: `delete`
 
 By using the `delete` command, you can delete a module from the module tracker.
 
@@ -272,7 +272,7 @@ Examples:
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Editing a module: `edit`<a id="edit"></a>
+### <a id="edit"></a>Editing a module: `edit`
 
 By using the `edit` command, you can edit the information for a module that is already listed in the 
 module tracker. 
@@ -315,7 +315,7 @@ Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Finding a module: `find`<a id="find"></a>
+### <a id="find"></a>Finding a module: `find`
 
 By using the `find` command, you can find a module based on its name or description. 
 
@@ -338,7 +338,7 @@ Examples:
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Sorting the modules: `sort`<a id="sort"></a>
+### <a id="sort"></a>Sorting the modules: `sort`
 
 By using the `sort` command, you can display the modules in a sorted order by either their `timeslot` 
 or `deadline`.
@@ -364,7 +364,7 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Clearing all modules: `clear`<a id="clear"></a>
+### <a id="clear"></a>Clearing all modules: `clear`
 
 By using the `clear` command, you can remove all the modules from the module tracker. 
 
@@ -373,7 +373,7 @@ By using the `clear` command, you can remove all the modules from the module tra
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Viewing help : `help`<a id="help"></a>
+### <a id="help"></a>Viewing help : `help`
 
 By using the `help` command, you can open a help window showing additional information about how
 to use the commands. 
@@ -389,7 +389,7 @@ to use the commands.
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-### Exiting the module tracker: `exit`<a id="exit"></a>
+### <a id="exit"></a>Exiting the module tracker: `exit`
 
 By using the `exit` command, you can close and exit the application.
 
@@ -399,9 +399,9 @@ By using the `exit` command, you can close and exit the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Additional Features <a id="addfeat"></a>
+## <a id="addfeat"></a>Additional Features 
 
-### Reminder for modules <a id="reminder"></a>
+### <a id="reminder"></a>Reminder for modules 
 
 Whenever you open coNtactUS, a pop-up window will appear showing you modules that have a deadline due today 
 or have a timeslot that is occurring today.
@@ -430,9 +430,9 @@ features [coming soon](#coming-soon) if you are interested.
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Format Restrictions <a id="format"></a>
+## <a id="format"></a>Format Restrictions 
 
-When keying in input values for certain fields when you [add](#adding-a-module--add) or [edit](#editing-a-module--edit) 
+When keying in input values for certain fields when you [add](#add) or [edit](#edit) 
 a module, there are certain format restrictions that you have to take note of. 
 
 To recap, there are a total of 8 information fields for each module that you can modify. Note that when you are adding
@@ -473,7 +473,7 @@ coNtactUS, read on for the next section.
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Further information about commands <a id="further-info"></a>
+## <a id="further-info"></a> Further information about commands 
 <div markdown="block" class="alert alert-info">
 
 * You may supply more than one input value for the `t/DESCRIPTION` field, and both will be recorded. 
@@ -501,7 +501,7 @@ and `clear`), the input value will be ignored. For example, `help 123` will simp
 
 --------------------------------------------------------------------------------------------------------------------
 
-## More examples of valid and invalid input values <a id="input"></a>
+## <a id="input"></a> More examples of valid and invalid input values 
 
 You can refer to this section for more examples of valid and invalid input values.
 
@@ -631,16 +631,16 @@ know what information are considered valid and what are not.<br>
 
 --------------------------------------------------------------------------------------------------------------------  
 
-## Data Storage <a id="data"></a>
+## <a id="data"></a>Data Storage 
 
 If you are interested to read about how coNtactUS stores data on your computer, read this section to find out more.
 
-### Saving the data <a id="saving"></a>
+### <a id="saving"></a>Saving the data 
 
 CoNtactUS data is saved in the hard disk automatically. There is no need for you to save any data manually or use any
 command to do so.
 
-### Editing the data file (For advanced users) <a id="edit-data"></a>
+### <a id="edit-data"></a>Editing the data file (For advanced users) 
 
 CoNtactUS data is saved as a JSON file at the location `[JAR file location]/data/moduletracker.json`. If you are an
 advanced user, you are welcome to update data directly by editing that data file if you wish to do so.
@@ -653,7 +653,7 @@ data file at the next run.
 <br>  
 
  --------------------------------------------------------------------------------------------------------------------
-## Current product limitations (Important) <a id="limitation"></a>
+## <a id="limitation"></a>Current product limitations (Important) 
 
 Note that currently, coNtactUS does not enforce any additional checks for conflicting `s/teacher`, `e/timeslot`, 
 `a/venue` values. 
@@ -675,7 +675,7 @@ conflict checks. After all, `Bob` may be referring to two different persons.
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Coming soon <a id="coming"></a>
+## <a id="coming"></a>Coming soon 
 
 coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
 Here are some new features that you can look forward to in the near future: 
@@ -687,7 +687,7 @@ for you to do so, so you can see the reminders at any time you wish.
 <br>  
 
  --------------------------------------------------------------------------------------------------------------------
-## Glossary <a id="glossary"></a>
+## <a id="glossary"></a>Glossary 
 
 If you have any confusion about some of the technical terms used in this user guide, you may 
 refer to the glossary below.  
@@ -712,7 +712,7 @@ as prefix for ```TEACHER``` attribute.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ <a id="faq"></a>
+## <a id="faq"></a>FAQ 
 
 **Q**: How do I transfer my data to another computer? <br>
 **A**: Download `coNtactUS.jar` in the other computer and overwrite the empty data file it creates with the data file
@@ -723,7 +723,7 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary <a id="command-summary"></a>
+## <a id="command-summary"></a>Command summary 
 
 | Action     | Format                                                                                                                |
 |------------|-----------------------------------------------------------------------------------------------------------------------|
