@@ -36,14 +36,14 @@ create Id
 AddEmployeeToDepartmentCommandParser -> Id
 activate Id
 
-Id -> AddEmployeeToDepartmentCommandParser
+Id --> AddEmployeeToDepartmentCommandParser
 deactivate
 
 create DepartmentName
 AddEmployeeToDepartmentCommandParser -> DepartmentName
 activate DepartmentName
 
-DepartmentName -> AddEmployeeToDepartmentCommandParser
+DepartmentName --> AddEmployeeToDepartmentCommandParser
 deactivate
 
 create AddEmployeeToDepartmentCommand

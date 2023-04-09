@@ -34,7 +34,7 @@ create DepartmentName
 DeleteDepartmentCommandParser -> DepartmentName
 activate DepartmentName
 
-DepartmentName -> DeleteDepartmentCommandParser
+DepartmentName --> DeleteDepartmentCommandParser
 deactivate
 
 create DeleteDepartmentCommand

@@ -35,13 +35,13 @@ create DepartmentName
 AddDepartmentCommandParser -> DepartmentName
 activate DepartmentName
 
-DepartmentName -> AddDepartmentCommandParser
+DepartmentName --> AddDepartmentCommandParser
 deactivate
 
 create Department
 AddDepartmentCommandParser -> Department
 activate Department
-Department -> AddDepartmentCommandParser
+Department --> AddDepartmentCommandParser
 deactivate
 
 create AddDepartmentCommand

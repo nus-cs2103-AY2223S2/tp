@@ -25,7 +25,7 @@ create ListEmployeeDepartmentCommandParser
 SudoHrParser -> ListEmployeeDepartmentCommandParser
 activate ListEmployeeDepartmentCommandParser
 
-ListEmployeeDepartmentCommandParser -> SudoHrParser
+ListEmployeeDepartmentCommandParser --> SudoHrParser
 deactivate ListEmployeeDepartmentCommandParser
 
 SudoHrParser -> ListEmployeeDepartmentCommandParser: parse("eid/100")
@@ -67,7 +67,7 @@ activate ListEmployeeDepartmentCommand
 ListEmployeeDepartmentCommand -> DepartmentContainsEmployeePredicate : getId()
 activate DepartmentContainsEmployeePredicate
 
-DepartmentContainsEmployeePredicate -> ListEmployeeDepartmentCommand
+DepartmentContainsEmployeePredicate --> ListEmployeeDepartmentCommand
 deactivate DepartmentContainsEmployeePredicate
 
 ListEmployeeDepartmentCommand -> Model : getEmployee(id)

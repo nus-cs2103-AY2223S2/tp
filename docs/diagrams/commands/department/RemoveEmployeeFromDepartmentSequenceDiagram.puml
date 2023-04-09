@@ -36,14 +36,14 @@ create Id
 RemoveEmployeeFromDepartmentCommandParser -> Id
 activate Id
 
-Id -> RemoveEmployeeFromDepartmentCommandParser
+Id --> RemoveEmployeeFromDepartmentCommandParser
 deactivate
 
 create DepartmentName
 RemoveEmployeeFromDepartmentCommandParser -> DepartmentName
 activate DepartmentName
 
-DepartmentName -> RemoveEmployeeFromDepartmentCommandParser
+DepartmentName --> RemoveEmployeeFromDepartmentCommandParser
 deactivate
 
 create RemoveEmployeeFromDepartmentCommand
