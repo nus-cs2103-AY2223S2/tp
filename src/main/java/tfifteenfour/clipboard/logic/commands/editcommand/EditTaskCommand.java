@@ -66,4 +66,15 @@ public class EditTaskCommand extends EditCommand {
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, taskToEdit, newTask), willModifyState);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof EditTaskCommand)) {
+            return false;
+        }
+        EditTaskCommand other = (EditTaskCommand) obj;
+        return index.equals(other.index) && newTask.equals(other.newTask);
+    }
 }

@@ -27,6 +27,13 @@ public class SelectCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_SUCCESS_COURSE = "[GROUP PAGE]\nViewing: groups for course %s";
+    public static final String MESSAGE_SUCCESS_GROUP = "[STUDENT PAGE]\nViewing: students in group %s of %s";
+    public static final String MESSAGE_SUCCESS_SESSION = "[ATTENDANCE PAGE]\nViewing: session attendance for %s";
+    public static final String MESSAGE_SUCCESS_TASK = "[GRADES PAGE]\nViewing: grades for %s";
+    public static final String MESSAGE_SUCCESS_STUDENT = "Viewing: %s";
+
+
     private final Index targetIndex;
 
     /**
@@ -48,33 +55,30 @@ public class SelectCommand extends Command {
             Course selectedCourse = handleSelectCourse(model, currentSelection);
             ShowAllListedPredicate.resetCoursesFilter(model);
             return new CommandResult(this,
-                    String.format("[GROUP PAGE]\nViewing: groups for course %s", selectedCourse), willModifyState);
-
+                    String.format(MESSAGE_SUCCESS_COURSE, selectedCourse), willModifyState);
         case GROUP_PAGE:
             // if you are on group page now, means you can only select a group
             Group selectedGroup = handleSelectGroup(model, currentSelection);
             ShowAllListedPredicate.resetGroupsFilter(currentSelection);
             return new CommandResult(this,
-                    String.format("[STUDENT PAGE]\nViewing: students in group %s of %s", selectedGroup,
+                    String.format(MESSAGE_SUCCESS_GROUP, selectedGroup,
                     currentSelection.getSelectedCourse()), willModifyState);
-
         case STUDENT_PAGE:
             Student selectedStudent = handleSelectStudent(model, currentSelection);
             ShowAllListedPredicate.resetStudentsFilter(currentSelection);
-            return new CommandResult(this, String.format("Viewing: %s", selectedStudent), willModifyState);
+            return new CommandResult(this, String.format(MESSAGE_SUCCESS_STUDENT, selectedStudent), willModifyState);
 
         case SESSION_PAGE:
             Session selectedSession = handleSelectSession(model, currentSelection);
             ShowAllListedPredicate.resetSessionsFilter(currentSelection);
             return new CommandResult(this,
-                    String.format("[ATTENDANCE PAGE]\nViewing: session attendance for %s", selectedSession),
+                    String.format(MESSAGE_SUCCESS_SESSION, selectedSession),
                     willModifyState);
-
         case TASK_PAGE:
             Task selectedTask = handleSelectTask(model, currentSelection);
             ShowAllListedPredicate.resetTasksFilter(currentSelection);
             return new CommandResult(this,
-                    String.format("[GRADES PAGE]\nViewing: grades for %s", selectedTask),
+                    String.format(MESSAGE_SUCCESS_TASK, selectedTask),
                     willModifyState);
 
         default:

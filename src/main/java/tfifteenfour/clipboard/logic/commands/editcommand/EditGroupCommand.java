@@ -74,4 +74,15 @@ public class EditGroupCommand extends EditCommand {
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, groupToEdit, newGroup), willModifyState);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof EditGroupCommand)) {
+            return false;
+        }
+        EditGroupCommand other = (EditGroupCommand) obj;
+        return index.equals(other.index) && newGroup.equals(other.newGroup);
+    }
 }
