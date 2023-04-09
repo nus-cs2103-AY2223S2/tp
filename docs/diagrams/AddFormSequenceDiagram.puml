@@ -23,7 +23,7 @@ LogicManager -> RecipeBookParser : parseCommand("addf")
 activate RecipeBookParser
 
 create AddFormCommand
-RecipeBookParser -> AddFormCommand : new AddFormCommand()
+RecipeBookParser -> AddFormCommand
 activate AddFormCommand
 
 AddFormCommand --> RecipeBookParser : a
@@ -46,7 +46,7 @@ AddRecipeForm --> AddFormCommand : data
 deactivate AddRecipeForm
 destroy AddRecipeForm
 
-AddFormCommand --> AddCommandParser : parseToRecipeDescriptor(commandString)
+AddFormCommand --> AddCommandParser : parseTo\nRecipeDescriptor\n(commandString)
 activate AddCommandParser
 
 AddCommandParser -> AddFormCommand : recipeToAdd

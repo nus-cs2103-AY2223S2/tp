@@ -236,11 +236,15 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Feature: "Add" Form UI
 
-#### Implementation
+#### Overview
 
-The `AddRecipeForm` allows users to input the recipe they wish to add over a Graphical User Interface form instead of the command box. The following sequence diagram illustrates how the different components interact with one another in the execution of an add form command.  
+The `AddRecipeForm` allows users to input the recipe they wish to add over a Graphical User Interface form 
+instead of the command box. The following sequence diagram illustrates how the different components interact 
+with one another in the execution of an `addf` command.  
 
 <img class="diagram" src="images/AddFormSequenceDiagram.png" width="1128"/>  
+
+#### Implementation
 
 The `AddRecipeForm` class inherits from the `RecipeForm` base class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details and `Buttons` for saving and closing the form.  
 
@@ -248,29 +252,28 @@ The class has a constructor that takes a null `Recipe` object, a `StringBuilder`
 The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.  
 
 In addition, it implements the following operations:
-* `RecipeForm#display` —  Displays the form with corresponding UI components such as `Save Changes` button and `TextField` and `TextArea` rows.
-* `RecipeForm#getFormData` —  Stores all the changed values in the form fields into a HashMap.
-* `RecipeForm#collectFields` —  Stores changed recipe fields in the HashMap into the data StringBuilder.
+* `RecipeForm#display` —  Displays the form with corresponding UI components such as the <kbd>Save</kbd> button and `TextField` and `TextArea` rows.
+* `RecipeForm#getFormData` —  Stores all the changed values in the form fields into a `HashMap`.
+* `RecipeForm#collectFields` —  Stores changed recipe fields in the `HashMap` into the data `StringBuilder`.
 * `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by passing the `StringBuilder` instance containing the command string back to `AddFormCommand` to be executed.
 * `RecipeForm#closeForm()` —  Closes the form without saving any changes.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
 #### Example Usage Scenario
 
-Step 1. The user types 'addf' in the command box and presses 'ENTER', triggering the `AddRecipeForm` to appear with empty form fields.
+1. The user types `addf` in the command box and presses <kbd>Enter</kbd>, triggering the `AddRecipeForm` to appear with empty form fields.
 
-Step 2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
+2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
 
-Step 3. The user clicks on the "Save" button, causing the `RecipeForm#saveRecipe()` method to be called. Changed values are stored in a new `changedValues` HashMap.
+3. The user clicks on the <kbd>Save</kbd> button, causing the `RecipeForm#saveRecipe()` method to be called. Changed values are stored in a new `HashMap` called `changedValues` .
 
-Step 4. The `changedValues` HashMap is passed to `AddRecipeForm#handle`, which calls `RecipeForm#collectFields` to update the StringBuilder instance value. 
+4. `changedValues` is passed to `AddRecipeForm#handle`, which calls `RecipeForm#collectFields` to update the `StringBuilder` instance value. 
 
-Step 5. The form is closed and the updated StringBuilder instance containing the command string is passed back to `AddFormCommand`.
+5. The form is closed and the updated `StringBuilder` instance containing the command string is passed back to `AddFormCommand`.
 
-Step 6. If the StringBuilder instance is empty, then a `CommandException()` is thrown to indicate that the form was empty. Otherwise, `AddFormCommand` calls `AddCommandParser#parseToRecipeDescriptor(commandString)` to convert the commandString into a `RecipeDescriptor` instance. 
+6. If the StringBuilder instance is empty, then a `CommandException()` is thrown to indicate that the form was empty. 
+ Otherwise, `AddFormCommand` calls `AddCommandParser#parseToRecipeDescriptor(commandString)` to convert the command string into a `RecipeDescriptor` instance. 
 
-Step 7. The `RecipeDesriptor` instance is converted to a new `Recipe` instance through `RecipeDesriptor#toRecipe()`  and is added to the model through `Model#addRecipe(recipeToAdd)`. 
+7. The `RecipeDesriptor` instance is converted to a new `Recipe` instance through `RecipeDesriptor#toRecipe()`  and is added to the model through `Model#addRecipe(recipeToAdd)`. 
 
 ### Feature: "Edit" Form UI
 
@@ -280,34 +283,30 @@ The `EditRecipeForm` allows users to make changes to a recipe details directly o
 
 #### Implementation
 
-The `EditRecipeForm` class inherits from the `RecipeForm` base class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details and `Buttons` for saving and closing the form.  
+Likewise, the `EditRecipeForm` also inherits from the `RecipeForm` base class and hence supports a similar set of operations
+as the `AddRecipeForm`. The key difference between the add and edit recipe forms is that the fields of the edit form are 
+pre-populated with the existing recipe's data if a non-null recipe is provided.
 
-The class has a constructor that takes the currect selected `Recipe` object, a `StringBuilder` object to be returned to the caller in `RecipeCard`, and the `title` of the form.
-The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.  
-
-The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
-
-In addition, it implements the following operations:
-* `RecipeForm#display` —  Displays the pre-populated form with corresponding UI components such as the <kbd>Save</kbd> button and `TextField` rows.
+Pre-filling of recipe data into the text fields is implemented through the following additional operations:
 * `RecipeForm#saveInitialValues()` —  Stores the initial values of the form fields in a HashMap.
 * `RecipeForm#populateFields()` —  Prepopulates the form fields with values of current recipe.
-* `RecipeForm#collectFields` —  Stores changed recipe fields in the HashMap into the data StringBuilder.
-* `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by passing the `StringBuilder` instance containing the command string back to `EditRecipeEvent` to be executed.
-* `RecipeForm#closeForm()` —  Closes the form without saving any changes.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 #### Example Usage Scenario
 
-Step 1. The user selects a recipe and presses the <kbd>F</kbd> key, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
+1. The user selects a recipe and presses the <kbd>F</kbd> key, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
+   The initial values of that recipe is stored in a `HashMap` named `initialValues`.
 
-Step 2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
+2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
 
-Step 3. The user clicks on the <kbd>Save</kbd> button, causing the `RecipeForm#saveRecipe()` method to be called. This method checks which fields have been changed by comparing their current values with the initial values stored in the `initialValues` HashMap. Changed values are stored in a new `changedValues` HashMap. The `changedValues` HashMap is then collected into the `StringBuilder` instance through `RecipeForm#collectFields`
+3. The user clicks on the <kbd>Save</kbd> button, causing the `RecipeForm#saveRecipe()` method to be called. 
+   This method checks which fields have been changed by comparing their current values with the data stored in `initialValues`. 
+ 
+   Changed values are stored in a new `HashMap` called `changedValues`, which is then collected into 
+   the `StringBuilder` instance through `RecipeForm#collectFields`.
 
-Step 4. The form is closed and the new `StringBuilder` instance is returned to `RecipeCard` for execution.
+4. The form is closed and the new `StringBuilder` instance is returned to `RecipeCard` for execution.
 
-Step 5. The final command text is generated from the `StringBuilder` instance, and along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
+5. The final command text is generated from the `StringBuilder` instance, and along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
 
 #### Activity Diagram
 
@@ -668,9 +667,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <div style="page-break-after: always;"></div>
 
-## **Appendix: Instructions for Manual/User Acceptance Testing**
+## **Appendix: Instructions for User Acceptance Testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. The list below is not comprehensive, so do feel free to come up 
+with your own test cases!
 
 <div markdown="span" class="alert alert-info">
 
