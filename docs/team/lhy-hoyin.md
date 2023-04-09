@@ -87,12 +87,6 @@ It is developed in Java, and uses JavaFX to create the GUI.
 <div style="page-break-after: always;"></div>
 
 
-### Contributions to the Developer Guide (Extracts)
-Reproduce the parts in the Developer Guide that you wrote. 
-Alternatively, you can show the various diagrams you contributed.
-
-
-<div style="page-break-after: always;"></div>
-
-
 ### Contributions to the User Guide (Extracts)
+![UG Extracts Limitations.png](../images/team/lhy-hoyin_Extract-UG-Limitations.png)
+![UG Extracts FAQ.png](../images/team/lhy-hoyin_Extract-UG-FAQ.png)
