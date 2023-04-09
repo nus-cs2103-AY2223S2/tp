@@ -41,6 +41,10 @@ public class ReviewCommandTest {
                 model.getReviewDeckName(), "MEDIUM difficulty");
         assertEquals(expectedMessage, result.getFeedbackToUser());
 
+        reviewCommand = new ReviewCommand(INDEX_SECOND, Arrays.asList());
+        assertEquals(String.format(ReviewCommand.MESSAGE_SUCCESS,
+                model.getReviewDeckName(), "ALL difficulties"),
+                reviewCommand.execute(model).getFeedbackToUser());
     }
 
     @Test
