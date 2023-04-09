@@ -226,33 +226,39 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial address book state, and the `currentStatePointer` will point to that single address book state.
 
-   <figure style="text-align: center;">
+   <div style="text-align: center;">
 
-   ![UndoState0](images/UndoState0.png)
+      <img src="images/UndoState0.png">
 
-   <figcaption>Figure 1: Initial state of the address book history upon startup</figcaption>
+      <p style="font-style: italic;"><br>Initial state of the address book history upon startup</p>
 
-   </figure>
+      <br>
+
+   </div>
 
 1. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commit()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-   <figure style="text-align: center;">
+   <div style="text-align: center;">
 
-   ![UndoState1](images/UndoState1.png)
+      <img src="images/UndoState1.png">
 
-   <figcaption>Figure 2: State of the address book history after calling <code>delete 5</code></figcaption>
+      <p style="font-style: italic;"><br>State of the address book history after calling <code>delete 5</code></p>
 
-   </figure>
+      <br>
+
+   </div>
 
 1. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commit()`, causing another modified address book state to be saved into the `addressBookStateList` as shown below.
 
-   <figure style="text-align: center;">
+   <div style="text-align: center;">
 
-   ![UndoState2](images/UndoState2.png)
+      <img src="images/UndoState2.png">
 
-   <figcaption>Figure 3: State of the address book history after calling <code>add n/David …​</code></figcaption>
+      <p style="font-style: italic;"><br>State of the address book history after calling <code>add n/David …​</code></p>
 
-   </figure>
+      <br>
+
+   </div>
 
    <div markdown="span" class="alert alert-info">
 
@@ -262,33 +268,39 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 1. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-   <figure style="text-align: center;">
+   <div style="text-align: center;">
 
-   ![UndoState3](images/UndoState3.png)
+      <img src="images/UndoState3.png">
 
-   <figcaption>Figure 4: State of the address book history after calling <code>undo</code></figcaption>
+      <p style="font-style: italic;"><br>State of the address book history after calling <code>undo</code></p>
 
-   </figure>
+      <br>
+
+   </div>
 
 1. The user then decides to execute the command `list`. Commands that do not modify the address book (such as `list`) will usually not call `Model#commit()` or `Model#undo()`. Thus, the `addressBookStateList` remains unchanged.
 
-   <figure style="text-align: center;">
+   <div style="text-align: center;">
 
-   ![UndoState4](images/UndoState4.png)
+      <img src="images/UndoState4.png">
 
-   <figcaption>Figure 5: State of the address book history after calling <code>list</code>. Note that it hasn't changed from Figure 4</figcaption>
+      <p style="font-style: italic;"><br>State of the address book history after calling <code>list</code>. Note that it hasn't changed from the previous figure above</p>
 
-   </figure>
+      <br>
+
+   </div>
 
 1. The user decides to call the `undo` command again.
 
-   <figure style="text-align: center;">
+   <div style="text-align: center;">
 
-   ![UndoState5](images/UndoState5.png)
+      <img src="images/UndoState5.png">
 
-   <figcaption>Figure 6: State of the address book history after calling <code>undo</code> again</figcaption>
+      <p style="font-style: italic;"><br>State of the address book history after calling <code>undo</code> again</p>
 
-   </figure>
+      <br>
+
+   </div>
 
    <div markdown="span" class="alert alert-info">
 
@@ -298,15 +310,15 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 1. The user executes `clear`, which calls `Model#commit()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-   <figure style="text-align: center;">
+   <div style="text-align: center;">
 
-   ![UndoState6](images/UndoState6.png)
+      <img src="images/UndoState6.png">
 
-   <figcaption>Figure 7: State of the address book history after having "overwritten" old states</figcaption>
+      <p style="font-style: italic;"><br>State of the address book history after having "overwritten" old states</p>
 
-   </figure>
+      <br>
 
-<br>
+   </div>
 
 #### Undo: Design considerations
 
@@ -353,7 +365,8 @@ The following sequence diagram shows an example of how the filter feature runs w
 
 #### Copy: Current implementation
 
-The copy feature is implemented by extracting information of the specified `Person` and then setting it as the content of the user's system's clipboard. The copy mechanism is facilitated by `CopyCommand` which extends `Command`.
+The copy feature is facilitated by `CopyCommand` which extends `Command`. It is implemented by extracting information of the specified `Person` and then copied into the user's clipboard. The clipboard is first accessed by making use of the Java Abstract Window Toolkit (AWT), followed by setting the extracted information as the contents of the clipboard by invoking the `Clipboard#setContents()` method.
+
 Since the information of a `Person` is required, the `Model#getFilteredPersonList()` operation is invoked to retrieve the specified `Person` and the information is extracted and copied into the user's system's clipboard.
 
 The following sequence diagram shows how the copy operation works:
