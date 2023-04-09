@@ -43,6 +43,7 @@ title: Developer Guide
 10. [Glossary](#11-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## **About HMHero**
@@ -58,6 +59,7 @@ feature implementation and considerations.
 This guide is intended to assist developers in maintaining, upgrading or evolving HMHero.
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## **How to use this Developer Guide**
@@ -89,6 +91,7 @@ that will bring you to another part of this documentation that is relevant to th
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
