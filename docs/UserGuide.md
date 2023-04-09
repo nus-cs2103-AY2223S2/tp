@@ -147,8 +147,6 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
 
 ## **Features**
 
-[<small>Back to top</small>](#table-of-contents)
-
 ## Client commands
 
 The available client-related commands are:
