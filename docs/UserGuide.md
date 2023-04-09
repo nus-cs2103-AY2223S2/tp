@@ -14,6 +14,7 @@ title: User Guide
   - [Trying out the commands](#trying-out-the-commands)
 - [Navigating Vimification](#navigating-vimification)
 - [Using the commands](#using-the-commands)
+- [General information on a task's attributes](#general-information-on-a-tasks-attributes)
 - [Information on commands' parameters](#information-on-commands-parameters)
 - [Features and commands](#features-and-commands)
   - [Viewing help](#viewing-help)
@@ -31,7 +32,6 @@ title: User Guide
   - [Editing existing task list data](#editing-existing-task-list-data)
   - [Archiving data files (future feature)](#archiving-data-files-future-feature)
 - [FAQ](#faq)
-- [Flag summary](#flag-summary)
 - [Command summary](#command-summary)
 
 
@@ -124,7 +124,38 @@ Similar to Vim, you can access command mode by **pressing the `:` key** on your 
 Example:
 <img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
+Note that beside the navigation commands (`h`,`j`,`k`,`l`), the rest of the commands always start with a colon (`:`).
+
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
+## General information on a task's attributes
+
+In Vimification, a task can has the following attributes:
+
+| Attribute | Its meaning & purpose                                    | Flag | The range of values it accepts                   |
+| --------- | -------------------------------------------------------- | ---- | ------------------------------------------------ |
+| Title^    | Name or general description of a task.                   | `-t` | Any phrase enclosed in quotation marks (" ")*.   |
+| Status    | Status of a task, indicating that is it done or not.     | `-s` | 0, 1, 2 or 3. See below for more details.        |
+| Deadline  | The date (and time) the task is due at.                  | `-d` | In the format of yyyy-MM-dd or yyyy-MM-dd HH:mm. |
+| Labels    | The tags that the task has.                              | `-l` | Any phrase enclosed in quotation marks (" ")*.   |
+| Priority  | How important/urgent a task is.                          | `-p` | 0, 1, 2 or 3. See below for more details.        |
+
+^Title is the only compulsory field while creating a new task, the other fields are all optional.
+*For a title or label, if the phrase is only one single word, the quotation marks are optional.
+
+| Priority | Meaning          |
+| -------- | ---------------- |
+| 0        | Unknown priority |
+| 1        | Very urgent      |
+| 2        | Urgent           |
+| 3        | Not urgent       |
+
+| Status   | Meaning          |
+| -------- | ---------------- |
+| 0        | Not done         |
+| 1        | In progress      |
+| 2        | Completed        |
+| 3        | Overdue          |
 
 ## Information on commands' parameters
 
@@ -149,7 +180,7 @@ Words in **square brackets** are **optional** parameters to be supplied by the u
 
 Bracketed items with `…`​ behind means that user can provide multiple parameters.
 
-- e.g. `:a <'title"> [-l <label>]…​`, for example, `:a "Do OP2 slides" -l cs2101`, `:a Do OP2 slides -l cs2101 -l presentation` are both acceptable.
+- e.g. `:a <'title"> [-l <label>]…​`, for example, `:a "Do OP2 slides" -l cs2101`, `:a "Do OP2 slides" -l cs2101 -l presentation` are both acceptable.
 
 Parameters identified by flags can be in any order.
 
@@ -371,17 +402,6 @@ _Details coming soon in v2.0 ..._
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
-
-## Flag summary
-
-| Flag                   | Meaning                    | Conditions                                                        |
-| ---------------------- | -------------------------- | ----------------------------------------------------------------- |
-|-t                      | title of description       | Cannot be empty, enclosed in open close quotation marks           |
-|-d                      | deadline of description    | In the format of YYYY-MM-dd or YYYY-MM-dd HH:mm                   |
-|-l                      | label of task              | cannot be empty                                                   |
-|-p                      | priority of task           | 1 for very urgent, 2 for urgent, 3 for not urgent, 4 for unknown  |
-|-s                      | status of task             | 0 for not done, 1 for in progress, 2 for completed, 3 for overdue |
-
 
 ## Command summary
 
