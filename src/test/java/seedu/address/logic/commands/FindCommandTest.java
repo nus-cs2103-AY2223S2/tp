@@ -137,6 +137,16 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredEmployeeList());
     }
+    @Test
+    public void execute_multipleKeywordsNameAndDepartmentAsterisk_multipleEmployeesFound() {
+        String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 2);
+        NameContainsAllKeywordsPredicate predicate = prepareAllKeywordsPredicate("er marketing");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredEmployeeList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(DANIEL, ELLE), model.getFilteredEmployeeList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
