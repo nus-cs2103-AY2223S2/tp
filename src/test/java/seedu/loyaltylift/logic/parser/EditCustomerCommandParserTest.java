@@ -149,11 +149,6 @@ public class EditCustomerCommandParserTest {
         expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
-        descriptor = new EditCustomerDescriptorBuilder().build();
-        expectedCommand = new EditCustomerCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
         // customer type
         userInput = targetIndex.getOneBased() + CUSTOMER_TYPE_DESC_ENTERPRISE;
         descriptor = new EditCustomerDescriptorBuilder().withCustomerType(CustomerType.ENTERPRISE).build();
