@@ -9,16 +9,28 @@ FastTrack is a desktop application to help you keep track of daily expenses, opt
 
 ### Summary of Contributions
 
-**New Feature:** to be added soon
+**Code contributed:** 
 
-**Enhancements implemented:** to be added soon
+The following [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=randallnhr&breakdown=true&sort=groupTitle+dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs%7Efunctional-code%7Etest-code%7Eother) is my code contribution.
 
-**Contributions to the UG:** to be added soon
+#### **Enhancements implemented:**
+* Implemented `addcat` command and parser. (PR)
+  * What it does: This feature allows users of FastTrack to add a new `Category` into FastTrack.
+  * Justification: This allows users to group their expenses and use commands such as `list` to view all expenses under a category. 
+* Implement `delcat` command and parser. (PR)
+  * What it does: This feature allows users to delete an existing `Category` in FastTrack. Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`.
+  * Justification: This allows users to delete unnecessary categories. 
+* Implement `lcat` command and parser. (PR)
+  * What it does: This feature allows users to list all added `Category`.
+  * Justification: Gives users the ability to see all `Category` added in a glance, it is also used in conjuction to `delcat` and `edcat` commands as index of the `Category` is needed.
+* Implement
 
-**Contributions to the DG:** to be added soon
+#### **Contributions to the UG:** to be added soon
 
-**Contributions to team-based tasks:** to be added soon
+#### **Contributions to the DG:** to be added soon
 
-**Review/Mentoring Contributions:** to be added soon
+#### **Contributions to team-based tasks:** to be added soon
 
-**Contributions beyond team project:** to be added soon
+#### **Review/Mentoring Contributions:** to be added soon
+
+#### **Contributions beyond team project:** to be added soon

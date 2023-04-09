@@ -4,6 +4,7 @@ import static fasttrack.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static fasttrack.logic.parser.CliSyntax.PREFIX_DATE;
 import static fasttrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static fasttrack.logic.parser.CliSyntax.PREFIX_PRICE;
+import static fasttrack.logic.parser.CliSyntax.PREFIX_SUMMARY;
 import static fasttrack.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -40,6 +41,7 @@ public class CommandTestUtil {
     public static final double VALID_PRICE_GRAPE = 10.0;
 
     public static final String VALID_CATEGORY_FOOD = "food";
+    public static final String VALID_SUMMARY_FOOD = "For consumable expenses";
     public static final String VALID_CATEGORY_TECH = "tech";
     public static final String VALID_CATEGORY_SCHOOL = "school";
 
@@ -56,6 +58,7 @@ public class CommandTestUtil {
     public static final String AMT_APPLE = " " + PREFIX_PRICE + VALID_PRICE_APPLE;
     public static final String DATE_APPLE = " " + PREFIX_DATE + VALID_DATE_APPLE;
     public static final String CAT_APPLE = " " + PREFIX_CATEGORY + VALID_CATEGORY_FOOD;
+    public  static final String SUM_APPLE = " " + PREFIX_SUMMARY + VALID_SUMMARY_FOOD;
 
     public static final String DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
     public static final String AMT_BANANA = " " + PREFIX_PRICE + VALID_PRICE_BANANA;
@@ -69,7 +72,7 @@ public class CommandTestUtil {
     // invalid date format
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "food@";
     // symbols in category not allowed
-
+    public static final String INVALID_CATEGORY_SUM = " " + PREFIX_SUMMARY + "For consumable expenses@";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

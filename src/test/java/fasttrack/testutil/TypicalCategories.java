@@ -11,6 +11,7 @@ import fasttrack.model.category.UserDefinedCategory;
 public class TypicalCategories {
 
     public static final Category MISCCAT = new MiscellaneousCategory();
+    public static final Category FOOD_NO_SUMMARY =new UserDefinedCategory("food", "");
     public static final Category FOOD = new UserDefinedCategory("food", "For consumable expenses");
     public static final Category TECH = new UserDefinedCategory("tech", "For electronics");
     public static final Category SCHOOL = new UserDefinedCategory("school", "School expenses");
