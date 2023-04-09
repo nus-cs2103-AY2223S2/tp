@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a new event.
-2.  PlanEase shows a prompt to indicate that the event has been added successfully.
+2.  PlanEase indicates that the event has been added successfully.
 
 Use case ends.
 
@@ -302,7 +302,7 @@ Use case ends.
 
   Use case ends.
 
-- 1c. PlanEase detects that the User of entered less than or more than 2 datetime inputs.
+- 1c. PlanEase detects that the User entered less than or more than 2 datetime inputs.
 
   - 1c1. PlanEase shows an error message.
 
@@ -314,7 +314,7 @@ Use case ends.
 
   Use case ends.
 
-- 1e. PlanEase detects that event already exists.
+- 1e. PlanEase detects that the event already exists.
 
   - 1e1. PlanEase shows an error message.
 
@@ -337,7 +337,7 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to sort all events that are currently displayed based on a given sorting key.
+1.  User requests to sort all events based on a sorting key.
 2.  PlanEase shows the list of sorted events based on the user's choice of sorting key.
 
 Use case ends.
@@ -350,7 +350,7 @@ Use case ends.
 
   Use case ends.
 
-- 1b. The current list of events displayed has less than 2 events.
+- 1b. There are less than 2 events in the list.
 
     - 1b1. PlanEase shows an error message.
 
@@ -363,7 +363,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to edit an event.
-2.  PlanEase shows a prompt to indicate that the event has been edited successfully.
+2.  PlanEase indicates that the event has been edited successfully.
 
 Use case ends.
 
@@ -399,7 +399,7 @@ Use case ends.
 
   Use case ends.
 
-- 1f. PlanEase detects that event already exists.
+- 1f. PlanEase detects that the event already exists.
 
     - 1f1. PlanEase shows an error message.
 
@@ -431,7 +431,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to add a new contact.
-2.  PlanEase shows a prompt to indicate that the contact has been added successfully.
+2.  PlanEase indicates that the contact has been added successfully.
 
 Use case ends.
 
@@ -465,7 +465,7 @@ Use case ends.
 6.  Should minimally support ASCII characters.
 7.  Must perform without failure in 95 percent of use cases during a month.
 8.  GUI color scheme should have high contrast and font size must not be too small, to aid those with vision impairments.
-9.  Application file size should not exceed (.jar/.zip) 100MB.
+9.  Application file size (.jar) should not exceed 100MB.
 10. Should only allow for 1 instance of the application running each time to ensure that data saved is consistent.
 
 ### Glossary
