@@ -13,7 +13,9 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 
 * [Contributions](#contributions)
 * [Enhancements](#enhancements)
-* [Bug Fixes](#bug-fixes)
+* [Documentation](#documentation)
+* [Contributions to Team-based Tasks](#contributions-to-team-based-tasks)
+* [Review/Mentoring/Community Contributions](#review/mentoring/community-contributions)
 * [Links to Contributions](#links-to-contributions)
 
 ## Contributions
@@ -68,7 +70,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
   * Adjusted and ensure proper formatting of guide.
 
 
-## Contributions to team-based tasks
+## Contributions to Team-based Tasks
 * Created priority and type tags in team repository.
 * Managed Milestones for 1.2, 1.3, 1.4.
 * Bug Fixes:
@@ -79,7 +81,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
   * Fixed UG bug to specify that add command will take the latter details if multiple similar parameters is given.
 
 
-## Review/Mentoring/Community contributions
+## Review/Mentoring/Community Contributions
 
 * Offered useful and feedback with issues and reviewing PRs
   (examples: [1](https://github.com/AY2223S2-CS2103-W16-2/tp/issues/138), 
