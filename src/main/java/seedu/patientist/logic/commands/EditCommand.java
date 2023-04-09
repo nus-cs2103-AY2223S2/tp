@@ -19,6 +19,7 @@ import seedu.patientist.commons.core.index.Index;
 import seedu.patientist.commons.util.CollectionUtil;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
+import seedu.patientist.model.Patientist;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.Name;
@@ -52,6 +53,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the patientist book.";
+    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "Edit Command does not work with wards.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -71,6 +73,12 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Patientist patientist = (Patientist) model.getPatientist();
+        if (!patientist.isShowingPersonList()) {
+            throw new CommandException(MESSAGE_NOT_SHOWING_PERSON_LIST);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

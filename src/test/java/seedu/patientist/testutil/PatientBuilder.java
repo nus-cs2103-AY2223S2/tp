@@ -23,7 +23,7 @@ public class PatientBuilder extends PersonBuilder {
 
     public static final List<PatientStatusDetails> DEFAULT_STATUS = List.of(new PatientStatusDetails("Doing good"));
     public static final List<PatientToDo> DEFAULT_TODO = List.of(new PatientToDo("Take medicine"));
-    public static final HashSet<Tag> DEFAULT_TAGS = new HashSet<>(List.of(new Tag("Patient")));
+    public static final HashSet<Tag> DEFAULT_TAGS = new HashSet<>();
 
     private PriorityTag priority;
     private List<PatientStatusDetails> status;
@@ -37,6 +37,7 @@ public class PatientBuilder extends PersonBuilder {
         this.status = DEFAULT_STATUS;
         this.todo = DEFAULT_TODO;
         this.tags = DEFAULT_TAGS;
+        this.priority = new PriorityTag("LOW");
     }
 
     /**
@@ -112,6 +113,14 @@ public class PatientBuilder extends PersonBuilder {
     @Override
     public PatientBuilder withIdNumber(String id) {
         this.idNumber = new IdNumber(id);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Priority} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withPriority(String priority) {
+        this.priority = new PriorityTag(priority);
         return this;
     }
 

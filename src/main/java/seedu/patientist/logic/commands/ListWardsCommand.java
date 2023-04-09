@@ -18,7 +18,7 @@ public class ListWardsCommand extends Command {
         requireNonNull(model);
         return new CommandResult(
                 String.format(MESSAGE_WARDS_LISTED_OVERVIEW, model.getPatientist().getWardList().size()),
-                -1, true, false, false);
+                -1, 1, false, false);
     }
 
     @Override

@@ -25,21 +25,21 @@ import seedu.patientist.model.person.patient.Patient;
 public class TypicalPatients {
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withStatus(VALID_STATUS_AMY).withIdNumber(VALID_PID_AMY).build();
+            .withStatus(VALID_STATUS_AMY).withIdNumber(VALID_PID_AMY).withPriority("LOW").build();
 
     public static final Patient ADAM = new PatientBuilder().withName("Adam Sandler")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("adam@example.com")
-            .withPhone("94351253").withIdNumber("G73829173B")
+            .withPhone("94351253").withIdNumber("G73829173B").withPriority("LOW")
             .withStatus("Doing fine").build();
 
     public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
+            .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB).withPriority("LOW")
             .withPhone(VALID_PHONE_BOB).withIdNumber(VALID_PID_BOB).withStatus(VALID_STATUS_BOB)
             .build(); //Default status
 
     public static final Patient CHARLIE = new PatientBuilder().withName("Charlie Sandler")
             .withAddress("123, abc, #08-111").withEmail("charlie@example.com")
-            .withPhone("2136784").withIdNumber("G487659645D")
+            .withPhone("2136784").withIdNumber("G487659645D").withPriority("LOW")
             .withStatus("Doing good").build();
 
     public static List<Patient> getTypicalPatients() {

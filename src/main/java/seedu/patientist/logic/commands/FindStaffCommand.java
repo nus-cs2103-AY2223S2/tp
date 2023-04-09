@@ -52,7 +52,8 @@ public class FindStaffCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(staffIdPredicate == null ? staffNamePredicate : staffIdPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                -1, -1, false, false);
     }
 
     @Override

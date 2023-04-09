@@ -8,6 +8,7 @@ import seedu.patientist.commons.core.Messages;
 import seedu.patientist.commons.core.index.Index;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
+import seedu.patientist.model.Patientist;
 import seedu.patientist.model.person.Person;
 
 /**
@@ -23,6 +24,7 @@ public class ViewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewed Person: %1$s";
+    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "View Command does not work with wards.";
 
     private final Index targetIndex;
 
@@ -33,6 +35,12 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Patientist patientist = (Patientist) model.getPatientist();
+        if (!patientist.isShowingPersonList()) {
+            throw new CommandException(MESSAGE_NOT_SHOWING_PERSON_LIST);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -41,7 +49,7 @@ public class ViewCommand extends Command {
 
         return new CommandResult(
                 String.format(MESSAGE_VIEW_PERSON_SUCCESS, lastShownList.get(targetIndex.getZeroBased())),
-                targetIndex.getZeroBased(), false, false, false);
+                targetIndex.getZeroBased(), 0, false, false);
     }
 
     @Override

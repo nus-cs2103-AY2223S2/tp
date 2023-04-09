@@ -26,14 +26,15 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true"/>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
+            <Label fx:id="priority" minHeight="-Infinity" minWidth="-Infinity" styleClass="priority" text="\$priority" wrapText="true" />
       </HBox>
       <FlowPane fx:id="tags" />
-         <Label fx:id="ward" styleClass="cell_small_label" text="\$ward" wrapText="true"/>
-      <Label fx:id="idNumber" styleClass="cell_small_label" text="\$idNumber" wrapText="true"/>
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true"/>
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true"/>
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true"/>
+     <Label fx:id="ward" styleClass="cell_small_label" text="\$ward" wrapText="true" />
+      <Label fx:id="idNumber" styleClass="cell_small_label" text="\$idNumber" wrapText="true" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

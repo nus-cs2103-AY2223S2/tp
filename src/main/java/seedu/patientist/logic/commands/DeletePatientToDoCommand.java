@@ -32,6 +32,7 @@ public class DeletePatientToDoCommand extends Command {
 
     public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted Todo %1$s from %2$s.";
     public static final String MESSAGE_NOT_PATIENT = "Person selected is not a Patient.";
+    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "Delete Patient ToDo Command does not work on wards.";
 
     private final Index targetIndex;
     private final Index targetToDoIndex;
@@ -47,6 +48,12 @@ public class DeletePatientToDoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Patientist patientist = (Patientist) model.getPatientist();
+        if (!patientist.isShowingPersonList()) {
+            throw new CommandException(MESSAGE_NOT_SHOWING_PERSON_LIST);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -74,7 +81,6 @@ public class DeletePatientToDoCommand extends Command {
         Patient patientToAdd = (Patient) personToAdd;
         patientToAdd.deletePatientToDo(targetToDoIndex);
 
-        Patientist patientist = (Patientist) model.getPatientist();
         patientist.removePerson(personToAdd);
         model.addPatient(patientToAdd, ward);
 

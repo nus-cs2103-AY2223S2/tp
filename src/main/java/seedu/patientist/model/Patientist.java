@@ -23,6 +23,7 @@ public class Patientist implements ReadOnlyPatientist {
 
     private final WardList wards;
     private final ObservableList<Person> personsInPatientist;
+    private boolean isShowingPersonList = true;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -301,5 +302,13 @@ public class Patientist implements ReadOnlyPatientist {
     @Override
     public int hashCode() {
         return wards.hashCode();
+    }
+
+    public void setShowingPersonList(boolean bool) {
+        this.isShowingPersonList = bool;
+    }
+
+    public boolean isShowingPersonList() {
+        return isShowingPersonList;
     }
 }

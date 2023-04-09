@@ -19,6 +19,7 @@ import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.person.patient.PatientToDo;
+import seedu.patientist.model.tag.PriorityTag;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -33,6 +34,7 @@ class JsonAdaptedPatient {
     private final String phone;
     private final String email;
     private final String address;
+    private final String priority;
     private final List<JsonAdaptedStatus> details = new ArrayList<>();
     private final List<JsonAdaptedToDo> toDos = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -43,7 +45,7 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("id") String id,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                              @JsonProperty("address") String address,
+                              @JsonProperty("address") String address, @JsonProperty("priority") String priority,
                               @JsonProperty("status") List<JsonAdaptedStatus> details,
                               @JsonProperty("todo") List<JsonAdaptedToDo> toDos,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -52,6 +54,7 @@ class JsonAdaptedPatient {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.priority = priority;
         if (details != null) {
             this.details.addAll(details);
         }
@@ -73,6 +76,7 @@ class JsonAdaptedPatient {
         email = patient.getEmail().value;
         id = patient.getIdNumber().toString();
         address = patient.getAddress().value;
+        priority = patient.getPriority().tagName;
         details.addAll(((Patient) source).getPatientStatusDetails().stream()
                 .map(JsonAdaptedStatus::new)
                 .collect(Collectors.toList()));
@@ -142,6 +146,15 @@ class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PriorityTag.class.getSimpleName()));
+        }
+        if (!PriorityTag.isValidTagName(priority)) {
+            throw new IllegalValueException(PriorityTag.MESSAGE_CONSTRAINTS);
+        }
+        final PriorityTag modelPriority = new PriorityTag(priority);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final List<PatientStatusDetails> modelDetails = new ArrayList<>(personDetails);
@@ -149,7 +162,7 @@ class JsonAdaptedPatient {
         final List<PatientToDo> modelToDos = new ArrayList<>(personToDos);
 
         return new Patient(modelId, modelName, modelPhone, modelEmail,
-                modelAddress, modelDetails, modelToDos, modelTags);
+                modelAddress, modelPriority, modelDetails, modelToDos, modelTags);
 
     }
 

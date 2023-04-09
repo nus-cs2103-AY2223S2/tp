@@ -18,7 +18,8 @@ public class ListStaffCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(new IsStaffPredicate());
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                -1, -1, false, false);
     }
 
     @Override

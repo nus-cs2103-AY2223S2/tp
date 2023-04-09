@@ -7,7 +7,8 @@
       "phone" : "87438807",
       "email" : "alex@example.com",
       "address" : "Blk 30 Geylang Street 29, #06-40",
-      "tagged" : [ "Patient" ],
+      "priority" : "LOW",
+      "tagged" : [ ],
       "details" : [ ]
     }, {
       "name" : "Alex Yeoh",
@@ -15,7 +16,8 @@
       "phone" : "87438807",
       "email" : "alex@example.com",
       "address" : "Blk 30 Geylang Street 29, #06-40",
-      "tagged" : [ "Patient" ],
+      "priority" : "LOW",
+      "tagged" : [ ],
       "details" : [ ]
     }],
     "staffs" : []

@@ -16,6 +16,7 @@ import seedu.patientist.logic.Logic;
 import seedu.patientist.logic.commands.CommandResult;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.logic.parser.exceptions.ParseException;
+import seedu.patientist.model.Patientist;
 import seedu.patientist.model.person.Person;
 
 /**
@@ -34,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
 
-    private DetailsPopup detailsPopup;
+    private DetailsPopup detailsPopup = null;
     private Person personToView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -77,7 +78,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        detailsPopup = new DetailsPopup(null);
     }
 
     public Stage getPrimaryStage() {
@@ -122,13 +122,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic, logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         wardListPanel = new WardListPanel(logic.getPatientist().getWardList());
-
-        detailsPopup = new DetailsPopup(personToView);
-        detailsPopupPlaceholder.getChildren().add(detailsPopup.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -158,18 +155,21 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleDetails(int index) {
         personToView = logic.getFilteredPersonList().get(index);
-        detailsPopup = new DetailsPopup(personToView);
+        detailsPopup = new DetailsPopup(logic, personToView);
         detailsPopupPlaceholder.getChildren().setAll(detailsPopup.getRoot());
     }
 
     /**
      * Opens the details window.
      */
-    public void handleWards(boolean showWards) {
-        if (showWards) {
+    public void handleWards(CommandResult commandResult) {
+        Patientist patientist = (Patientist) this.logic.getPatientist();
+        if (commandResult.isShowWards()) {
             personListPanelPlaceholder.getChildren().setAll(wardListPanel.getRoot());
-        } else {
+            patientist.setShowingPersonList(false);
+        } else if (commandResult.isShowPersons()) {
             personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
+            patientist.setShowingPersonList(true);
         }
     }
 
@@ -220,7 +220,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleDetails(commandResult.getShowDetailsIndex());
             }
 
-            handleWards(commandResult.isShowWards());
+            handleWards(commandResult);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

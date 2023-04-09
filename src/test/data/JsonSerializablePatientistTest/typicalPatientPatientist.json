@@ -8,7 +8,8 @@
       "phone" : "11111111",
       "email" : "amy@example.com",
       "address" : "Block 312, Amy Street 1",
-      "tagged" : [ "Patient" ],
+      "priority" : "LOW",
+      "tagged" : [ ],
       "details" : [ ]
     }, {
       "name" : "Charlie Sandler",
@@ -16,7 +17,8 @@
       "phone" : "2136784",
       "email" : "charlie@example.com",
       "address" : "123, abc, #08-111",
-      "tagged" : [ "Patient" ],
+      "priority" : "LOW",
+      "tagged" : [ ],
       "details" : [ "Doing good" ]
     }],
     "staffs" : [ {
@@ -25,7 +27,7 @@
       "phone" : "2136784",
       "email" : "leecharles@example.com",
       "address" : "123, abc, #08-111",
-      "tagged" : [ "Staff" ]
+      "tagged" : [ ]
     } ]
   }, {
     "name" : "Block A Ward 2",
@@ -35,7 +37,8 @@
       "phone" : "94351253",
       "email" : "adam@example.com",
       "address" : "123, Jurong West Ave 6, #08-111",
-      "tagged" : [ "Patient" ],
+      "priority" : "LOW",
+      "tagged" : [ ],
       "details" : [ "Doing fine" ]
     }, {
       "name" : "Bob Choo",
@@ -43,7 +46,8 @@
       "phone" : "222222222",
       "email" : "bob@example.com",
       "address" : "Block 123, Bobby Street 3",
-      "tagged" : [ "Patient" ],
+      "priority" : "LOW",
+      "tagged" : [ ],
       "details" : [ ]
     }],
     "staffs" : [  {
@@ -52,7 +56,7 @@
       "phone" : "96128393",
       "email" : "daciachin@example.com",
       "address" : "970, Hindhede St, #07-27",
-      "tagged" : [ "Staff" ]
+      "tagged" : [ ]
     } ]
   } ]
 }

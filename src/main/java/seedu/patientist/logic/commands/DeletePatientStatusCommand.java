@@ -32,6 +32,8 @@ public class DeletePatientStatusCommand extends Command {
 
     public static final String MESSAGE_DELETE_STATUS_SUCCESS = "Deleted Status %1$s from %2$s.";
     public static final String MESSAGE_NOT_PATIENT = "Person selected is not a Patient.";
+    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST =
+            "Delete Patient Status Command does not work with wards.";
 
     private final Index targetIndex;
     private final Index targetStatusIndex;
@@ -47,6 +49,12 @@ public class DeletePatientStatusCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Patientist patientist = (Patientist) model.getPatientist();
+        if (!patientist.isShowingPersonList()) {
+            throw new CommandException(MESSAGE_NOT_SHOWING_PERSON_LIST);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -74,7 +82,6 @@ public class DeletePatientStatusCommand extends Command {
         Patient patientToAdd = (Patient) personToAdd;
         patientToAdd.deletePatientStatusDetails(targetStatusIndex);
 
-        Patientist patientist = (Patientist) model.getPatientist();
         patientist.removePerson(personToAdd);
         model.addPatient(patientToAdd, ward);
 
