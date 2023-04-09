@@ -14,7 +14,7 @@ Written in Java, this application boasts of over 9 kLoC
 (check it out [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=w17-3&breakdown=true))
 making it a reliable and efficient tool for organizing events.
 
-<h3 id="summary-of-contributions">Summary of Contributions</h2>
+<h3 id="summary-of-contributions">Summary of Contributions</h3>
 
 * [Code contributed](#code-contributed)
 * [New features](#new-features)
@@ -22,12 +22,12 @@ making it a reliable and efficient tool for organizing events.
 * [Documentations](#documentations)
 * [Reviews / Mentoring](#reviews-mentoring)
 
-<h3 id="code-contributed">Code Contributed</h2>
+<h3 id="code-contributed">Code Contributed</h3>
 
 * Contributed to approximately 6 kLoC. Check it
   out [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jrmckh&breakdown=true).
 
-<h3 id="new-features">New Features</h2>
+<h3 id="new-features">New Features</h3>
   
 **1. Delete Multiple Events**  
 - What it does:
@@ -59,7 +59,7 @@ making it a reliable and efficient tool for organizing events.
     - Any actions related to events, such as adding, deleting, or editing an event, will impact the events that appear
       in the calendar.
 
-<h3 id="enhancements-to-existing-features">Enhancements to existing features</h2>
+<h3 id="enhancements-to-existing-features">Enhancements to existing features</h3>
 
 - Updated the GUI's components and color scheme:
   [#94](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/94),
@@ -77,7 +77,7 @@ making it a reliable and efficient tool for organizing events.
   [#194](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/194),
   [#201](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/201)
 
-<h3 id="documentations">Documentations</h2>
+<h3 id="documentations">Documentations</h3>>
 
 - #### User Guide:
     - Added documentation for the features `edit`, `delete`, `find`, and `GUI`
@@ -92,8 +92,8 @@ making it a reliable and efficient tool for organizing events.
       [#221](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/221)
     - Added Instructions for Manual Testing
       [#212](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/212)
-  
-### <span style="color:lightblue">Reviews / Mentoring</span>
+
+<h3 id="reviews-mentoring">Reviews / Mentoring</h3>>
 
 [pr-reviewed-no-milestone]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajrmckh+no%3Amilestone
 [pr-reviewed-v1.1]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajrmckh+milestone%3Av1.1
