@@ -63,15 +63,15 @@ Give it a try and make use of ***RIZZ***ipe's many features to achieve your **cu
 ### Common colour codes in this guide
 
 <div markdown="block" class="alert alert-info">
-This is used to display **tips** that you may find useful!
+This is used to display :information_source: **additional information** and **tips** that you may find useful!
 </div>
 
 <div markdown="span" class="alert alert-warning">
-This is used to display **keyboard shortcuts** that can help make your journey using ***RIZZ***ipe more smooth sailing!
+This is used to display :bulb: **keyboard shortcuts** that can help make your journey using ***RIZZ***ipe more smooth sailing!
 </div>
 
 <div markdown="span" class="alert alert-danger">
-This is used to display **warnings** for you to heed in order for ***RIZZ***ipe to work as intended!
+This is used to display :exclamation: **warnings** for you to heed in order for ***RIZZ***ipe to work as intended!
 </div>
 
 ### Glossary
@@ -160,11 +160,11 @@ butter s/Serve and enjoy.`
 
 <div markdown="block" class="alert alert-info">
 
-* :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
+* A recipe can have any number of steps, tags and ingredients (including 0)!
 
-* :bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
+* It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
 
-* :bulb: Tip: When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
+* When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
 
 * Although optional, we do however suggest adding in the other fields if possible for your own future reference.
 
@@ -213,7 +213,7 @@ Format:
 
 * Depending on the size of the window, the user may add multiple columns to display more recipes.
 
-* :bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
+* The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 
 * In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe.
 
@@ -249,7 +249,7 @@ Format:
  
 * You can remove the optional fields (all fields except for name) by simply typing the prefix without specifying any details after it (i.e. typing `i/` removes all ingredients)
  
-* :bulb: Important tip: Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
+* Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
  
 * Note that the tags specified in the fields above still apply for ingredients, like `-n`.
  
@@ -275,7 +275,7 @@ only those that match any of your specified keywords straight away!
 
 Format:
 `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`
-:bulb: Tip: Supported properties: `name`, `tag` and `ingredient`
+Tip: Supported properties: `name`, `tag` and `ingredient`
 
 i.e. `find name KEYWORD [ADDITIONAL KEYWORDS]...`, `find tag KEYWORD [ADDITIONAL KEYWORDS]...`, `find ingredient KEYWORD [ADDITIONAL KEYWORDS]...`
 
@@ -347,7 +347,7 @@ Example(s) of usage:
 
 * `sub` searches across your stored recipes and a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
 
-* :bulb: Tip: Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
+* Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
 
 * The search is case-insensitive, i.e. `sub salt` will return all stored substitutions for `Salt` and `salt` across recipes.
 
@@ -367,6 +367,14 @@ and start afresh!
 Format:
 `clear`
 
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+Running `clear` will clear your entire recipe book and there's no going back!
+</div>
+
+<div markdown="block" class="alert alert-info">
+If you wish to save your data elsewhere first and then start afresh, consider using the [Export](#export) feature first!
+</div>
+
 ### Asking for assistance: `help`
 
 Unsure or unable to remember our list of commands and how to format your inputs? Fret not, as simply inputting
@@ -377,7 +385,7 @@ Format:
 
 <div markdown="block" class="alert alert-info">
 
-* :bulb: Tip: `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!<br/><br/>
+*  `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!<br/><br/>
 ![HelpCommandUI](images/HelpCommandUI.png)
 
 </div>
@@ -408,7 +416,7 @@ For advanced users, you can change the default location which the recipebook dat
 
 Advanced users are welcome to update data directly by editing that data file located at the address above. 
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
 </div>
 
