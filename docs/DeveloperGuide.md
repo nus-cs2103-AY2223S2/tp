@@ -1646,7 +1646,7 @@ appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 /
 
 ##### Expected
 
-![Expected display](images/appointment/dg/AddAppointmentValid.png)
+![Valid Add Appointment](images%2Fappointment%2Fdg%2FAddAppointmentValid.PNG)
 
 #### Adding an invalid appointment
 Invalid appointments include:
@@ -1666,7 +1666,7 @@ appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400
 
 ##### Expected
 
-![Expected display](images/appointment/dg/AddAppointmentInvalidMissing.png)
+![Invalid Add Appointment Missing.PNG](images%2Fappointment%2Fdg%2FAddAppointmentInvalidMissing.PNG)
 
 #### Adding a invalid appointment - Existing upcoming appointment
 
@@ -1680,7 +1680,7 @@ appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 \
 
 ##### Expected
 
-![Expected display](images/appointment/dg/AddAppointmentInvalidExisting.png)
+![Invalid Add Appointment Existing](images%2Fappointment%2Fdg%2FAddAppointmentInvalidExisting.PNG)
 
 ## Appendix: Planned enhancements
 
