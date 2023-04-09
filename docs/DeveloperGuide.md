@@ -235,7 +235,7 @@ The following activity diagram summarises what happens when a user executes a mu
 
 **Aspect: How multi-index delete indicates successful execution**
 
-* **Alternative 1 (current choice):** Display a message indicating that a number of cases were successfully deleted, the number of cases corresponding to the size of the list of indexes.
+* **Alternative 1 (chosen choice):** Display a message indicating that a number of cases were successfully deleted, the number of cases corresponding to the size of the list of indexes.
     * Pros: Short and succinct, without taking up too much space on the GUI.
     * Cons: Does not show exactly which cases were deleted.
 
@@ -256,7 +256,7 @@ Step 1. The user launches the application and uses the `find` command to filter 
 
 Step 2. The user executes the `delete d/2023-03-30` command to delete all cases from 30th March 2023 in the filtered list currently being shown. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `delete` command word, passes the argument `d/2023-03-30` to the `DeleteCommandParser`.
 
-Step 3. `DeleteCommandParser#parse()` is called. The date `2023-03-30` is extracted, and a `DeleteCommand` is constructed, taking in this date as a Date object argument.
+Step 3. `DeleteCommandParser#parse()` is called. The `Date` `2023-03-30` is extracted, and a `DeleteCommand` is constructed, taking in this date as a Date object argument.
 
 Step 4. `DeleteCommand#execute()` will get the most updated list of filtered cases and delete the cases from the given date. Users will be notified with a message upon successful deletion of all relevant cases stating the number of cases deleted and the date the cases were from.
 
@@ -270,7 +270,7 @@ The following activity diagram summarises what happens when a user executes a de
 
 **Aspect: What attributes the `delete` command can delete by**
 
-* **Alternative 1 (current choice):** Allow users to `delete` only by date.
+* **Alternative 1 (chosen choice):** Allow users to `delete` only by date.
     * Pros: Provides a convenient shortcut for the most probable use case out of all batch-delete use cases,
       rather than clogging up the app with features that will likely go unused.
     * Cons: The user may be confused at the difference in affordances between `delete` and the other commands
@@ -293,15 +293,14 @@ This feature is largely similar to the delete-by-date feature, except that the u
 a start date `sd/` and an end date `ed/`. For instance, `delete sd/2023-03-23 ed/2023-03-25` will
 delete all cases from 23rd March 2023 to 25th March 2023 inclusively.
 
-### Prefix find Feature
+### Find-by-prefix feature
 
 #### Implementation
 
-The proposed Prefix find feature mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
-`FindCommandParser#parse()`, `ArgumentTokenizer#Tokenize()`, `ArgumentMultimap#getValue()`, and `FindCommand#execute()`
-methods.
+The proposed find-by-feature feature mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
+`FindCommandParser#parse()`, `FindPredicate#test()`, and `FindCommand#execute()`methods.
 
-Given below is an example usage scenario and how the Prefix find mechanism behaves at each step.
+Given below is an example usage scenario and how the find-by-prefix mechanism behaves at each step.
 
 Step 1. The user launches the application.
 
@@ -311,35 +310,80 @@ case associated with the name Thomas, who is of the age 13 and has a postal code
 Step 3. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `find` command word,
 passes the argument `a/ 13 n/ Thomas p/ 612` to the `FindCommandParser`.
 
-Step 4. `FindCommandParser#parse()` will call on `ArgumentTokenizer#Tokenize()` and subsequently gets the values of
-each individual Prefix using `ArgumentMultimap#getValue()`.
+Step 4. `FindCommandParser#parse()` is called. The `Age` `13`, `Name` `Thomas` and `SubPostal` (a substring of a
+postal) `612` are validated then extracted, and a `FindPredicate` is constructed which is the predicate used to test
+whether the person in the Dengue Case List matches all the given arguments.
 
-Step 5. `FindCommand#execute()` will get the most updated list of filtered cases based on the values given from
-`ArgumentMultimap#getValue()` and shows it on the User Interface.
+Step 5. `FindPredicate` is passed back into `FindCommandParser#parse()` and a new `FindCommand` is constructed, taking
+in this `FindPredicate`.
+
+Step 6. `FindCommand#execute()` will get the most updated list of filtered cases based on the `FindPredicate#test()`
+and displays it on the User Interface along with a success message.
 
 The following sequence diagram summarises what happens when a user executes a Prefix find operation:
 
 ![PrefixFindSequenceDiagram](images/PrefixFindSequenceDiagram.png)
 
-The following activity diagram summarises what happens when a user executes a Prefix find operation:
-
-![PrefixFindActivityDiagram](images/PrefixFindActivityDiagram.png)
-
 #### Design Considerations
 
-**Aspect: How Prefix find handle input that does not make sense (Numerics in names, non-existent postal codes
-or age past 200)**
+**Aspect: How Prefix find handle input that does not make sense (Numerics in names, non-existent postal codes)**
 
-* **Alternative 1 (current choice):** Accepts the user input and executes the find command as per usual.
+* **Alternative 1:** Accepts the user input and executes the find command as per usual.
     * Pros: Allows for user freedom in cases that there may be people with Numerics in names, and the underlying code
       would not have to change if new postal codes were to be implemented.
     * Cons: In the case of the input being erroneous, there is no indication that the for the user that it may be due to
       what they keyed in.
 
-* **Alternative 2:** Displays a message indicating that the input may be erroneous for each of the available prefix.
-    * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their input
-      may be unintended.
+* **Alternative 2 (current choice):** Displays a message indicating that the input is erroneous for the first erroneous
+  prefix detected.
+    * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their
+      input may be unintended.
     * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
+
+### Find-by-range feature
+
+#### Implementation
+
+This feature is largely similar to the find-by-prefix feature, except that the user can input up to two dates and up to 
+two ages, a start date `sd/` and an end date `ed/` instead of a specific date `d/` or a start age `sa/` and an end age
+`ea/` instead of a specific age `a/`. For instance, `find sd/2023-03-23 ed/2023-03-25` will find all cases from that
+occurred from 23rd March 2023 to 25th March 2023 inclusively.
+
+The following activity diagram summarises what happens when a user enters a find-by-range command.
+![RangeFindActivityDiagram](images/RangeFindActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How find-by-range handles invalid ranges (start of a range is after the end of a range)**
+
+* **Alternative 1:** Accepts the user input and executes the find command as per usual, showing success message of zero
+cases found.
+    * Pros: It is a straightforward approach that requires minimal development effort.
+    * Cons: It may confuse users who are not familiar with the range syntax and are unaware that their input is
+  invalid and will always show zero cases found. 
+
+* **Alternative 2 (current choice):** Displays a message indicating that the input range is erroneous.
+    * Pros: In the case of the user unknowingly making an erroneous input, there would be an indication to the user
+  that their input may be unintended.
+    * Cons: It is no longer as straightforward in development due to requiring validation checkers for the separate
+  date ranges and age ranges.
+
+**Aspect: How find-by-range handles only one of the range prefix of the two are present**
+
+* **Alternative 1 (current choice):** Accepts the user input and executes the find command, finding all cases that
+matches after the start of a range if only the start range prefixes are used, or any cases that matches before the end
+of a range if only the end range prefixes are used.
+    * Pros: It provides more functionality and convenience to the user if they only want to find cases that matches
+      after a certain start of a range, or before a certain end of a range.
+    * Cons: It may confuse users who are not familiar with the range syntax as it is more difficult to understand that
+  the prefixes could be either used simultaneously or individually.
+
+* **Alternative 2:** The range prefixes must come in a pair, displaying a message indicating that the user input is
+erroneous otherwise.
+    * Pros: It requires minimal development effort, and it is less confusing to the user as fixing range as a pair is
+  a simple-to-understand implementation.
+    * Cons: The range prefixes are less flexible, and less convenient if the user only wants to find cases that matches
+  after a certain start of a range, or before a certain end of a range.
 
 ### Sort feature
 
