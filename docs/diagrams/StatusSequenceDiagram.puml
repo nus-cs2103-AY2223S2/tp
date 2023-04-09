@@ -58,6 +58,9 @@ deactivate StatusCommand
 StatusCommand -[hidden]-> LogicManager : commandResult
 destroy StatusCommand
 
+ContainsStatusPredicate -[hidden]-> LogicManager : commandResult
+destroy ContainsStatusPredicate
+
 LogicManager --> MainWindow : commandResult
 deactivate LogicManager
 
