@@ -286,7 +286,7 @@ section to see how Flags and Placeholders are used together.
 | EMAIL                | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                              | EMAIL must be in the format `username@domain`  <br><br>   `username`:    <li>Should only contain alphanumeric characters and these special characters (`+`, `_`, `.`, `-`)</li>     <li>Should not start or end with any special characters. </li> <br>  `domain`:   <li>Should be at least 2 characters long. </li>    <li>Each domain label should start and end with alphanumeric characters. </li>    <li>Each domain label consists of alphanumeric characters, separated only by hyphens, if any.</li> |
 | NOTE                 | note/              | The NOTE is the text we use to represent the skill of an Applicant.                                                | NOTE cannot be longer than 45 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | APPLICATION DATETIME | applied/           | The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job. | Format of datetime is `DD-MM-YYYY HH:mm`                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm` <br><br> INTERVIEW DATETIME can only scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                                      |
+| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm` <br><br> INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                                   |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -714,6 +714,7 @@ What you should see:
 
 ---
 
+<div style="page-break-after: always;"></div>
 
 #### Filter applicants with specific skill(s) `skill`
 
@@ -816,6 +817,7 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ---
 
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
@@ -849,6 +851,7 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ---
 
+<div style="page-break-after: always;"></div>
 ### General Commands
 
 | Action                                               | Format | Example |
