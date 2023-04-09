@@ -289,12 +289,12 @@ public class InternshipApplication implements Comparable<InternshipApplication> 
             qualifications.forEach(builder::append);
         }
 
-        if (location.value != null && !location.value.isBlank()) {
+        if (location !=null && location.value != null && !location.value.isBlank()) {
             builder.append("; Location: ")
                     .append(getLocation());
         }
 
-        if (salary.value != null && !salary.value.isBlank()) {
+        if (salary != null && salary.value != null && !salary.value.isBlank()) {
             builder.append("; Salary: ")
                     .append(getSalary());
         }
@@ -304,7 +304,7 @@ public class InternshipApplication implements Comparable<InternshipApplication> 
             notes.forEach(builder::append);
         }
 
-        if (rating.value != null && !rating.value.isBlank()) {
+        if (rating != null && rating.value != null && !rating.value.isBlank()) {
             builder.append("; Rating: ")
                     .append(getRating());
         }
