@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.INVALID_TIMESTAMP_FORMAT;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +10,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pet.Address;
 import seedu.address.model.pet.Deadline;
@@ -137,14 +135,9 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String timestamp} into an {@code LocalDateTime}.
-     *
-     * @throws ParseException if the given {@code timestamp} is invalid.
      */
-    public static LocalDateTime parseTimeStamp(String timestamp) throws ParseException {
+    public static LocalDateTime parseTimeStamp(String timestamp) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        if (!Deadline.isValidDeadline(LocalDateTime.parse(timestamp, formatter))) {
-            throw new ParseException(String.format(INVALID_TIMESTAMP_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
         return LocalDateTime.parse(timestamp, formatter);
     }
 
