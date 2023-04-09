@@ -9,7 +9,7 @@ Trackr is a desktop tracking application used to keep track of order, suppliers 
 
 Given below are my contributions to the project.
 
-* Added the ability to add item to a menu and list tasks.
+* Added the ability to edit  to a menu and list tasks.
   * What it does:
     * Allows users to add menu items with name, price, and cost. A profit for the item is calculated.
   * Justification: This feature is made to cater to the needs of home business owners as they usually have a lot of tasks (such as ordering supplies, making deliveries) to deal with
@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
 
 
-* **New Feature**: Added the ability to get profit from item cost and item price .
+* **New Feature**: Implemented a feature to get profit from item cost and item selling price .
   * What it does:
     * Allows users to see the profit of their item after adding their menu item to the menu.
   * Justification: This feature allows home business owners to see their profit for each menu item at one glance.It also allows the total profit seen on the homepage to work.
@@ -29,8 +29,8 @@ Given below are my contributions to the project.
   * Managed project documentation (UG & DG)
     * Checked and updated UG to match with actual product []()
   * Maintain code quality
-    * Refactor methods to obey OOP principles
-    
+    * Refactor methods to obey OOP principles 
+  * Assisted in assigning Issues [](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/146)[](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/143)[]()
 
 * **Documentation**:
   * User Guide (UG):
@@ -43,10 +43,11 @@ Given below are my contributions to the project.
     * Added use cases
     * Added UML Class Diagram and updated documentation for Order and Menu
     * Added documentation and activity diagram for Add feature
+  * Javadocs
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 
-  * Reported Issues 
+  * PRs reviewed (with non-trivial review comments):  [\#193](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/193) [\#267](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/267)
+  * Contribute by raising and adding Issues 
 
 * **Tools**:
   * Java 11, JavaFx, Jekyll
