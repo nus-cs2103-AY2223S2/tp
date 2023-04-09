@@ -2714,29 +2714,69 @@ Some incorrect commands to try from root context:
 
 ## Appendix: Planned enhancements
 
-### Feature Flaw #1: Add command output on success is poorly formatted
+### Feature Flaw #1: Some messages are poorly formatted
 
 **Description:**
 
-Currently, upon a successful `add` command execution, the formatting of the output message is long, not user-friendly, and difficult to decipher.
+Currently some messages which serve as command feedback are poorly formatted.
 
-The following is a sample command for adding a module and it's output message upon success:\
+![Poorly Formatted Message](images/dg/planned-enhancement-truncated-output.png)
+
+- The message is represented as a **single line**, requiring users to use the horizontal scroll bar when the message
+extends beyond the width of result display window.
+- The message may append excessive information to a single line without any line breaks, making it hard for the user to decipher the feedback of a command.
+
+Here are some examples of poorly formatted messages that the team has identified:
+
+1. The following is a sample command for adding a module and it's output message upon success:\
 Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
-Output: `New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]`
+Output:
+```
+New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]
+```
 
-The following is a sample command for adding a lecture and it's output message upon success:\
+2. The following is a sample command for adding a lecture and it's output message upon success:\
 Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
-Output: `New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`
+Output:
+```
+New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]
+```
 
-The following is a sample command for adding a video and it's output message upon success:\
+3. The following is a sample command for adding a video and it's output message upon success:\
 Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
-Output: `New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
+Output:
+```
+`New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
+```
+
+4. The following is a sample command for editing a module and it's output message upon success:\
+Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
+Output:
+```
+Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20
+```
+
+5. The following is a sample command for editing a lecture and it's output message upon success:\
+Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
+Output:
+```
+Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]
+```
+
+6. The following is a sample command for editing a video and it's output message upon success:\
+Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
+Output:
+```
+Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]
+```
 
 **Proposed Solution:**
 
-We plan on changing the output message to be more user friendly. Given the above 3 examples, their respective redesigned output will be as such.
+We plan on changing the output message to be more user friendly and to make better use of the vertical space of result display window.
 
-The following is a sample command for adding a module and it's output message upon success:\
+Given the above 6 examples, their respective redesigned output will be as such:
+
+1. The following is a sample command for adding a module and it's output message upon success:\
 Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
 Output:
 ```
@@ -2746,7 +2786,7 @@ Name: Software Engineering
 Tags: [4MCs] [Coding]
 ```
 
-The following is a sample command for adding a lecture and it's output message upon success:\
+2. The following is a sample command for adding a lecture and it's output message upon success:\
 Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
 Output:
 ```
@@ -2755,7 +2795,7 @@ Name: Week 7
 Tags: [Census] [AVLTree]
 ```
 
-The following is a sample command for adding a video and it's output message upon success:\
+3. The following is a sample command for adding a video and it's output message upon success:\
 Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
 Output:
 ```
@@ -2766,38 +2806,7 @@ Timestamp: 01:04:20
 Tags: [BigO] [Analysis]
 ```
 
-### Feature Flaw #2: Edit command output on success is poorly formatted
-
-**Description:**
-
-Currently, upon a successful `edit` command execution, the formatting of the output message is long, not user-friendly, and difficult to decipher.
-
-The following is a sample command for editing a module and it's output message upon success:\
-Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
-Output:
-```
-Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20
-```
-
-The following is a sample command for editing a lecture and it's output message upon success:\
-Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
-Output:
-```
-Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]
-```
-
-The following is a sample command for editing a video and it's output message upon success:\
-Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
-Output:
-```
-Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]
-```
-
-**Proposed Solution:**
-
-We plan on changing the output message to be more user friendly. Given the above 3 examples, their respective redesigned output will be as such.
-
-The following is a sample command for editing a module and it's output message upon success:\
+4. The following is a sample command for editing a module and it's output message upon success:\
 Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
 Output:
 ```
@@ -2807,7 +2816,7 @@ Updated Name: DSAG
 Updated Tags: [4MCs] [Analytical]
 ```
 
-The following is a sample command for editing a lecture and it's output message upon success:\
+5. The following is a sample command for editing a lecture and it's output message upon success:\
 Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
 Output:
 ```
@@ -2816,7 +2825,7 @@ Updated Name: W1
 Updated Tags: [BigO] [Intro]
 ```
 
-The following is a sample command for editing a video and it's output message upon success:\
+6. The following is a sample command for editing a video and it's output message upon success:\
 Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
 Output:
 ```
@@ -2827,22 +2836,22 @@ Updated Timestamp: 01:04:20
 Updated Tags: [BigO] [Analysis]
 ```
 
-### Feature flaw #3: No length limit for module code, module name, lecture name, video name, and tag
+### Feature flaw #2: No length limit for module code, module name, lecture name, video name, and tag
 **Description**
 
-There is currently no limit on the length of a module code and module name that can be assigned to a module. This is the same for the name of a lecture and the name of a video. This allows users to assign ridiculously long values to these fields, causing the UI to be truncated, potentailly slowing down the application, and increasing the size of the data file.
+There is currently **no limit** on the length of a module code and module name that can be assigned to a module. This is the same for the name of a lecture and the name of a video. This allows users to assign ridiculously long values to these fields, causing the UI to be truncated. This may also potentially slow down the application, and increase the size of the data file.
 
-The following is an example of a lecture with a very long name:
+The following is an example of a lecture with a very long name, causing the name to be truncated:
 
 <img src="images/LongLectureName.png" width="702"/>
 
 **Proposed Solution**
 
-For the commands that allows a user to assign values to the mentioned fields (`add`, `edit`, `tag`, `untag`, etc.), the arguments should have their length limited to some value (e.g. 30).
+For the commands that allow a user to assign values to the mentioned fields (`add`, `edit`, `tag`, `untag`, etc.), the arguments should have their length limited to some value (e.g. 30 characters).
 
-The checking and limiting of length can be done while parsing the arguments and will produce an output as such should the length be exceeded:
+The checking and limiting of length can be done while parsing the arguments and should produce an error message if the maximum length is exceeded:
 ```
-The following value exceeds the length limit of 30: {value}
+The following {field} should not exceed the length limit of 30 characters: {value}
 ```
 
-### Feature flaw #4: Output message does not make full use of command box space
+### Feature flaw #3:
