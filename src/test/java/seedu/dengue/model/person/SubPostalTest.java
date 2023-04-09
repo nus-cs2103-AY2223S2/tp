@@ -6,28 +6,27 @@ import static seedu.dengue.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class PostalTest {
+public class SubPostalTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Postal(null));
+        assertThrows(NullPointerException.class, () -> new SubPostal(null));
     }
 
     @Test
     public void constructor_invalidPostal_throwsIllegalArgumentException() {
         String invalidPostal = "";
-        assertThrows(IllegalArgumentException.class, () -> new Postal(invalidPostal));
+        assertThrows(IllegalArgumentException.class, () -> new SubPostal(invalidPostal));
     }
 
     @Test
-    public void isValidPostal() {
+    public void isValidSubPostal() {
         // null postal number
-        assertThrows(NullPointerException.class, () -> Postal.isValidPostal(null));
+        assertThrows(NullPointerException.class, () -> SubPostal.isValidSubPostal(null));
 
         // invalid postal numbers
         assertFalse(Postal.isValidPostal("")); // empty string
         assertFalse(Postal.isValidPostal(" ")); // spaces only
-        assertFalse(Postal.isValidPostal("91")); // less than 6 numbers
         assertFalse(Postal.isValidPostal("postal")); // non-numeric
         assertFalse(Postal.isValidPostal("9011p041")); // alphabets within digits
         assertFalse(Postal.isValidPostal("9312 1534")); // spaces within digits
