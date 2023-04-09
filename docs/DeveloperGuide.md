@@ -580,5 +580,5 @@ within which the cases were found:
 While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
 
-In addition, the success messages differ in whether they use "case" or "person". Standardising this could also reduce
+In addition, the success messages differ in whether they use "case" or "person". Standardising terminology could also reduce
 confusion for the user.
