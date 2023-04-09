@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "d:ViewCommand" as viewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box MainWindow MODEL_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("view 1")
+activate AddressBookParser
+
+create viewCommand
+AddressBookParser -> viewCommand
+activate viewCommand
+
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> viewCommand : execute()
+activate viewCommand
+
+create CommandResult
+viewCommand -> CommandResult
+activate CommandResult
+
+CommandResult -> MainWindow :
+activate MainWindow
+
+MainWindow --> CommandResult
+deactivate MainWindow
+
+
+CommandResult --> viewCommand
+deactivate CommandResult
+
+viewCommand --> LogicManager : result
+deactivate viewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
