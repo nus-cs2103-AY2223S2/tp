@@ -11,8 +11,8 @@ _EZ-Schedule_ has about 13kLoC and 2.5k lines of documentation.
 It is developed in Java, and uses JavaFX to create the GUI.
 
 ### Summary of Contributions
-- **Code Contributed** - Check it out RepoSense link 
-  [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=lhy-hoyin&breakdown=true)
+- **Code Contributed** - Check it out
+  [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=lhy-hoyin&breakdown=true)
 
 - **Enhancements Implemented**
   - ~~Create parallel package and copied starting base code from AB3~~
@@ -48,6 +48,32 @@ It is developed in Java, and uses JavaFX to create the GUI.
   - Release `v1.3` and `v1.3.1` on [GitHub](https://github.com/AY2223S2-CS2103-W17-3/tp/releases)
 
 - **Review/mentoring Contributions**
+  - Milestone v1.1: [4] [pr-reviewed-v1.1] PRs reviewed
+  - Milestone v1.2: [1] [pr-reviewed-v1.2] PRs reviewed
+  - Milestone v1.3/b: [4] [pr-reviewed-v1.3] + [6] [pr-reviewed-v1.3b] PRs reviewed
+  - Milestone v1.4: [30] [pr-reviewed-v1.4] PRs reviewed
+  - Others: [3] [pr-reviewed-others] PRs reviewed
+  - Total: [48] [pr-reviewed-total] PRs reviewed
+
+- _PR Highlights_
+  - Milestone 1: [Updated AboutUs and UserGuide](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/9)
+  - Milestone 1: [Branch user story Developer Guide](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/31)
+  - Milestone 2: [Update AboutUs](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/39)
+  - Milestone 3/b: [Remove redundant class branch](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/59)
+  - Milestone 3/b: [Refactor test cases](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/64)
+  - Milestone 4: [Tests for ShowNextCommand, chronological sort](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/177)
+  - Milestone 4: [Fix end time earlier than start time bug](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/167)
+  - Milestone 4: [Add Instructions for Manual Testing in DG](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/212)
+
+- _Mentoring Highlights_
+  - Help resolve [Add InvalidDateException to CommandBox](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/189)
+   through [Exception handling for DateTimeParseException](https://github.com/AY2223S2-CS2103-W17-3/tp/issues/175)
+
+- **Contributions beyond the project team**
+  - Opened questions/issues on the forum
+    [3 times](https://github.com/nus-cs2103-AY2223S2/forum/issues?q=is%3Aissue+author%3Alhy-hoyin)
+  - Participate in the forum in 12 posts
+    ([Ranked 19](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/forum-activities.html#19-lo-h-yin-lhy-hoyin-12-posts))
 
 [pr-reviewed-v1.1]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin+milestone%3Av1.1
 [pr-reviewed-v1.2]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin+milestone%3Av1.2
@@ -57,37 +83,6 @@ It is developed in Java, and uses JavaFX to create the GUI.
 [pr-reviewed-others]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin+no%3Amilestone
 [pr-reviewed-total]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin
 
-  - Milestone v1.1: [4] [pr-reviewed-v1.1]
-  - Milestone v1.2: [1] [pr-reviewed-v1.2]
-  - Milestone v1.3/b: [4] [pr-reviewed-v1.3] + [6] [pr-reviewed-v1.3b]
-  - Milestone v1.4: [30] [pr-reviewed-v1.4]
-  - Others: [3] [pr-reviewed-others]
-  - Total: [48] [pr-reviewed-total]
-
-- _PR Highlights_
-  - Milestone 1
-    - [Updated AboutUs and UserGuide](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/9)
-      - [Branch user story Developer Guide](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/31)
-  - Milestone 2
-    - [Update AboutUs](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/39)
-  - Milestone 3/b
-    - [Remove redundant class branch](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/59)
-      - [Refactor test cases](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/64)
-  - Milestone 4
-    - [Tests for ShowNextCommand, chronological sort](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/177)
-      - [Fix end time earlier than start time bug](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/167)
-      - [Add Instructions for Manual Testing in DG](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/212)
-
-- _Mentoring Highlights_
-  - Help resolve [Add InvalidDateException to CommandBox](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/189)
-   through [Exception handling for DateTimeParseException](https://github.com/AY2223S2-CS2103-W17-3/tp/issues/175)
-
-
-- **Contributions beyond the project team**
-  - Opened questions/issues on the forum
-    [3 times](https://github.com/nus-cs2103-AY2223S2/forum/issues?q=is%3Aissue+author%3Alhy-hoyin)
-  - Participate in the forum in 12 posts
-    ([Ranked 19](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/forum-activities.html#19-lo-h-yin-lhy-hoyin-12-posts))
 
 <div style="page-break-after: always;"></div>
 
