@@ -12,7 +12,7 @@ import seedu.address.model.tank.Tank;
 public class Temperature extends Reading {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Temperature should be a number, and it should not be blank";
+            "Temperature should be a number between 10 and 40, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -45,8 +45,11 @@ public class Temperature extends Reading {
      * @return true if valid
      */
     public static boolean isValidTemperature(String value, String date) {
-        return value.matches(VALIDATION_REGEX_VALUE)
-                && date.matches(VALIDATION_REGEX_DATE);
+        if (value.matches(VALIDATION_REGEX_VALUE) && date.matches(VALIDATION_REGEX_DATE)) {
+            double valueDouble = Double.parseDouble(value);
+            return (valueDouble >= 10 && valueDouble <= 40);
+        }
+        return false;
     }
 
     public double getValue() {
