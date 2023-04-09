@@ -267,10 +267,12 @@ The `add` command adds a new `Food` in WIFE.
 
 **Implementation**
 
-The first stage of the implementation is parsing the user input to `AddCommand`. `AddCommandParser` is used
-to parse and check whether the user input for each attribute `Food` is valid. After which an `AddCommand` object is
-created with the new `Food` object.
-The second stage requires AddCommand#execute() to be called.
+The first stage of the implementation is parsing the user input to a new `AddCommand` object. `AddCommandParser` is used
+to parse and validate the user input for each attributes of `Food`. After which an `AddCommand` object is created with 
+the new `Food` object with validated attributes.
+
+The second step necessitates the execution of `AddCommand#execute()` to facilitate the insertion of `Food` into 
+`UniqueFoodList`.
 
 **Usage Scenario**
 
@@ -290,15 +292,18 @@ _(Sequence diagram to be inserted)_
 
 #### Edit a Food
 
+**Overview**
+
 The `edit` command edits the attribute of selected `Food` in WIFE. The selected `Food` is specified
 by retrieving from the one-indexed food list.
 
 **Implementation**
 
-The first stage of the implementation is parsing the user input to `EditCommand`. `EditCommandParser` is used
-to parse and check whether the user input for the new attribute of `Food` is valid. After which an `EditCommand` object is
-created with new `Food` with updated attributes.
-The second stage requires EditCommand#execute() to be called.
+The first stage of the implementation is parsing the user input to a new `EditCommand` object. `EditCommandParser` is 
+used to parse and check whether the user input for the new attribute of `Food` is valid. After which an `EditCommand` 
+object is created with new `Food` with updated attributes. 
+
+The second step necessitates the execution of `EditCommand#execute()` to facilitate the updating of `Food` in WIFE.
 
 **Usage Scenario**
 
@@ -360,10 +365,10 @@ new quantity (Addition/Subtraction) The described implementation is for the `inc
 ![IncreaseQuantitySequenceDiagram](images/IncreaseQuantitySequenceDiagram.png)
 
 The first stage of the implementation is parsing the user input to `IncreaseCommand`. `IncreaseCommandParser` is used
-to parse and check whether the user input is valid. After which a `IncreaseCommand` object is created along with a
+to parse and check whether the user input  is valid. After which a `IncreaseCommand` object is created along with a
 `IncreaseFoodDescriptor` instance to increase the quantity of the current food item.
 
-The second stage requires IncreaseCommand#execute() to be called.
+The second step necessitates the execution of `IncreaseCommand#execute()`.
 
 **Usage Scenario**
 
@@ -410,9 +415,10 @@ The following UML diagram shows `view` and its associated class.
 _(UML diagram to be inserted)_
 
 **Implementation**
-The first stage of the implementation is checking that the command is `view` and that the index is valid. `ViewCommandParser` is used
-to parse and check whether the user input is valid. After which a `ViewCommand` object is created which will be used to switch the
-view from the list view to the details view.
+
+The first stage of the implementation is checking that the command is `view` and that the index is valid. 
+`ViewCommandParser` is used to parse and check whether the user input is valid. After which a `ViewCommand` object is 
+created which will be used to switch the view from the list view to the details view.
 
 **Usage Scenario**
 
@@ -433,15 +439,18 @@ _(Actvity diagram to be inserted)_
 
 #### Overview
 
-The tagging functionality is facilitated by the `UniqueTagList` stored in `WIFE`. Creating and deleting tags will
-modify the tags within the `UniqueTagList` which contains all existing `Tag` objects. Additionally, every food item
-within WIFE has its own collection of associated `Tag` objects stored in an internal Set<Tag>. Tagging/untagging a `Tag` to a `Food` will
-add/remove the corresponding `Tag` object to/from the `Set<Tag>` stored within `Food` This allows for efficient tagging
-and organization of items across multiple lists.
+The tagging functionality is facilitated by the `UniqueTagList` stored in `WIFE`. Creating or deleting tags will result 
+in changes being made to the tags that exist within the `UniqueTagList`, which is home to all current `Tag` objects. 
+Furthermore, each food item within WIFE has its own assortment of associated `Tag` objects, which are stored in an 
+internal `Set<Tag>`.
+
+When a `Tag` is tagged or untagged from a `Food`, the corresponding `Tag` object is added to or removed from the 
+`Set<Tag>` that is stored within the `Food`. This approach allows for effective tagging and organization of items across 
+multiple lists.
 
 The following UML diagram shows `Tag` and its associated class.
 
-<img src="images/BetterModelClassDiagram.png" width="574" />
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 #### Design considerations:
 
@@ -450,16 +459,16 @@ The following UML diagram shows `Tag` and its associated class.
 * **Alternative 1 (current choice):** Store `Tag` in `UniqueTagList` and each `Food` stores its own set of associated
   `Tag` objects.
     * Pros:
-        * Easy to implement.
+        * Easy to implement. Tagging a `Food` simply just adds a `Tag` to the tags set associated to `Food`.
         * Users are able to create and reuse the same `Tag` that may be extensible for editing to suit their own use
-          case instead of providing a preset list of tags that cannot be extended for other food items in the list.
+          case.
     * Cons:
         * May have performance issues in terms of memory usage as additional storage is used.
 
-* **Alternative 2:** Instantiates `Tag` with a specified name and stores all food classified by the tag in the
-  instantiated class.
+* **Alternative 2:** Instantiates `Tag` with a specified name and stores all food classified by the tag as a parameter
+  of the associated food list in the instantiated `Tag` class.
     * Pros:
-        * Saves space. There is no need to store the set of associated `Tag`, `Set<Tag>` in `Food`. The association
+        * Low space requirement. There is no need to store the set of associated `Tag`, `Set<Tag>` in `Food`. The association
           of `Food` to `Tag` is represented by `List<Food>` in `Tag` object.
         * Easily extensible. Creating a new `Tag` can be done by simply instantiating a new `Tag` object.
     * Cons:
@@ -471,19 +480,21 @@ The following UML diagram shows `Tag` and its associated class.
 **Overview**
 
 User can create a new pre-defined `Tag` in WIFE with the `createtag` command. The `createtag` command creates a new tag
-in WIFE which can be used to create a new tag that can be used to classify food items in food lists. Once the tag is
+in WIFE which can be used to classify food items in food lists. Once the tag is
 created using this command, the tag can be applied to food items using the `tag` command.
 
 **Implementation**
 
-The first stage of the implementation is parsing the user input to `CreateTagCommand`. `CreateTagCommandParser` is used
-to parse and check whether the user input is valid. After which a `CreateTagCommand` object is created with the specified
-tag name.
-The second stage requires CreateTagCommand#execute() to be called.
+The first stage of the implementation is parsing the user input (tag name) to `CreateTagCommand`. `CreateTagCommandParser` 
+is used to parse and check whether the user input command is valid. After which a `CreateTagCommand` object is created 
+with the specified tag name.
 
-The following sequence diagram shows how the `createtag` command.
+The second step necessitates the execution of `CreateTagCommand#execute()`. This then facilitates the creation of new `Tag`
+and add the new `Tag` into `UniqueTagList`.
 
-<img src="images/CreateTagSequenceDiagram.png" width="700" />
+The following sequence diagram shows how the `createtag` command works.
+
+![CreateTagSequenceDiagram](images/CreateTagSequenceDiagram.png)
 
 **Usage Scenario**
 
@@ -501,7 +512,7 @@ The following sequence diagram shows how the `createtag` command.
 
 The following activity diagram summarizes what happens when a user executes a new `createtag` command:
 
-<img src="images/CreateTagActivityDiagram.png" width="400"/>
+![CreateTagActivityDiagram](images/CreateTagActivityDiagram.png)
 
 #### Tag a Food
 
@@ -514,7 +525,13 @@ the fridge.
 The first stage of the implementation is parsing the user input to `TagFoodCommand`. `TagFoodCommandParser` is used
 to parse and check whether the user input is valid. After which a `TagFoodCommand` object is created with the specified
 index and tag name.
-The second stage requires TagFoodCommand#execute() to be called.
+
+The second step necessitates the execution of `TagFoodCommand#execute()`. This then facilitates the insertion of `Tag`
+into the tag set associated with `Food` at specified index.
+
+The following sequence diagram shows how the `tag` command works.
+
+![TagFoodSequenceDiagram](images/TagFoodSequenceDiagram.png)
 
 **Usage Scenario**
 
@@ -528,13 +545,21 @@ The second stage requires TagFoodCommand#execute() to be called.
 5. Completion of step 4 without any exception will result in successful tagging of the food with the
    specified tag.
 
+The following activity diagram summarizes what happens when a user executes a new `createtag` command:
+
+![TagFoodActivityDiagram](images/TagFoodActivityDiagram.png)
+
 #### Untag a Food
 
 The `untag` feature removes a specified tag from a food item.
 
 **Implementation**
 
-The first stage of the implementation is parsing the user input to `UntagCommand`. `UntagCommandParser` is used to parse and check whether the user input is valid - if the tag exists or does not exist in the food item's internal tag set. After which, an `UntagCommand` object is created with the specified tag name to be removed. The second stage requires UntagCommand#execute() to be called which then removes the tag from the food item.
+The first stage of the implementation is parsing the user input to `UntagCommand`. `UntagCommandParser` is used to 
+parse and check whether the user input is valid - if the tag exists or does not exist in the food item's internal tag 
+set. After which, an `UntagCommand` object is created with the specified tag name to be removed. 
+
+The second stage requires `UntagCommand#execute()` to be called which then removes the tag from the `Food` at specified index.
 
 **Usage Scenario**
 
@@ -544,8 +569,7 @@ The first stage of the implementation is parsing the user input to `UntagCommand
 
 The activity diagrams of the `untag` and `tag` commands are similar.
 
-<img src="images/UntagFoodActivityDiagram.png" width="400"/>
-
+![UntagFoodActivityDiagram](images/UntagFoodActivityDiagram.png)
 
 #### List Foods by tag(s).
 
@@ -554,7 +578,7 @@ The List by tag feature is meant to be a list all the food by the specified tags
 
 The following sequence diagram shows `listbytag`.
 
-<img src="images/ListByTagSequenceDiagram.png" width="574" />
+![ListByTagSequenceDiagram](images/ListByTagSequenceDiagram.png)
 
 **Design considerations**
 
@@ -577,7 +601,8 @@ The first stage of the implementation is parsing the user input to `ListByTagCom
 to parse and check whether the user input is valid. After which a `ListByTagCommand` object is created with the specified
 tag name.
 
-The second stage requires ListByTagCommand#execute() to be called.
+The second step necessitates the execution of `ListByTagCommand#execute()`. This then returns a `FilteredFoodList` with
+`Food` associated with specified `Tag`.
 
 **Usage Scenario**
 
@@ -588,7 +613,7 @@ The second stage requires ListByTagCommand#execute() to be called.
 
 The following activity diagram shows the usage of the `listbytag` command.
 
-<img src="images/ListByTagActivityDiagram.png" width="574" />
+![ListByTagActivityDiagram](images/ListByTagActivityDiagram.png)
 
 #### Delete Foods by tag(s).
 
@@ -597,7 +622,7 @@ The Delete by tag feature is meant to be delete all the food by the specified ta
 
 The following sequence diagram shows `delbytag`.
 
-<img src="images/DeleteByTagSequenceDiagram.png" width="574" />
+![DeleteByTagSequenceDiagram](images/DeleteByTagSequenceDiagram.png)
 
 **Design considerations**
 
@@ -616,10 +641,12 @@ The following sequence diagram shows `delbytag`.
         -   Users will have to use separate commands by `n/` which maybe a hassle
 
 **Implementation**
+
 The first stage of the implementation is parsing the user input to `DeleteByTagCommand`. `DeleteByTagCommandParser` is used
 to parse and check whether the user input is valid. After which a `DeleteByTagCommand` object is created with the specified tag name.
 
-The second stage requires DeleteByTagCommand#execute() to be called.
+The second step necessitates the execution of `DeleteByTagCommand#execute()`. This then facilitates the deletion of all
+`Food` associated with specified `Tag`.
 
 **Usage Scenario**
 
@@ -630,7 +657,7 @@ The second stage requires DeleteByTagCommand#execute() to be called.
 
 The following activity diagram shows the usage of the `delbytag` command.
 
-<img src="images/DeleteByTagActivityDiagram.png" width="574" />
+![DeleteByTagActivityDiagram](images/DeleteByTagActivityDiagram.png)
 
 #### Delete tag(s)
 
@@ -638,10 +665,16 @@ The `deltag` command deletes existing tag(s) in WIFE. This means food that are i
 
 **Implementation**
 
-The first stage of the implementation is parsing the user input to `DeleteTagCommand`. `DeleteTagCommandParser` is used to parse and check whether the user input is valid. After which a `DeleteTagCommand` object is created with the specified tag name. The second stage requires DeleteTagCommand#execute() to be called.
+The first stage of the implementation is parsing the user input to `DeleteTagCommand`. `DeleteTagCommandParser` is used 
+to parse and check whether the user input is valid. After which a `DeleteTagCommand` object is created with the 
+specified tag name. 
+
+The second stage requires `DeleteTagCommand#execute()` to be called which then removes the tag from the `UniqueTagList`
+and all its appearance in `Food`.
 
 The following sequence diagram shows how the `deltag` command.
-<img src="images/DeleteTagSequenceDiagram.png" width="700" />
+
+![DeleteTagSequenceDiagram](images/DeleteTagSequenceDiagram.png)
 
 **Usage Scenario**
 
@@ -653,11 +686,12 @@ The following sequence diagram shows how the `deltag` command.
 
 The following activity diagram summarizes what happens when a user executes a new `deltag` command:
 
-<img src="images/DeleteTagActivityDiagram.png" width="700" />
+![DeleteTagActivityDiagram](images/DeleteTagActivityDiagram.png)
 
 ### General Features
 
 #### Dynamic Help
+
 ![HelpCommandActivityDiagram.png](images%2FHelpCommandActivityDiagram.png)
 
 The dynamic help mechanism allows the user to receive in-app help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only received general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
@@ -693,6 +727,11 @@ Here are links to other documentation that you might find useful when developing
 
 #### User Interface
 1. The enter button text gets truncated on some devices. We suspect this to be an OS related issue and plan to fix this in the future.
+
+#### Food's Unit Representation
+It has been recognized that some users prefer to utilize specific unit representations for certain types of food, 
+such as using 1L or 2L to indicate the volume of milk. To accommodate this, future iterations of the system will 
+incorporate alphanumeric representations of `Unit`, enabling users to include such unit specifications.
 
 ## **Appendix: Requirements**
 

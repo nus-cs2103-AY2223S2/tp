@@ -46,7 +46,7 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValid(trimmedName)) {
+        if (!Name.isValidFoodName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
@@ -80,7 +80,7 @@ public class ParserUtil {
         if (!Quantity.isNotChar(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CHAR_CONSTRAINTS);
         }
-        if (!Quantity.isValid(trimmedQuantity)) {
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
         return new Quantity(trimmedQuantity);
