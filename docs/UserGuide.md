@@ -530,6 +530,8 @@ Examples:
   </p>
 
 
+<div style="page-break-after: always;"></div>
+
 * After Assigning:<br/><br/>
   <p align="center"><img src="images/AssignAfter.png" width="450"/></p>
   <p align="center">
@@ -550,6 +552,8 @@ Format: `unassign INDEX n/NAME`
 * `INDEX` refers to the index number shown in the displayed project list.
 * `NAME` is case-insensitive.
 * `NAME` must match in full.
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * Before Unassigning:<br/><br/>
