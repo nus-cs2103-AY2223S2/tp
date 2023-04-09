@@ -182,6 +182,26 @@ Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
 
+### Edit feature
+
+### How edit feature is implemented
+
+The `edit` command allows users to edit an internship application of the tracker. The edit mechanism is facilitated by `EditCommand` class. It extends `Command`but overrides the `Command#execute` to edit an internship application of the tracker.
+
+The sequence diagram below shows how the `EditCommand` object is created:
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+Step 1. Parsing
+
+The `EditCommandParser` checks that the user input is in the expected format, if not an exception will be thrown.
+
+Step 2. Execution
+
+The `EditCommand#execute` calls `Model#setApplication`, causing an update to the internship list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
 
 ### Add contact feature
 
@@ -1543,6 +1563,43 @@ Similar to `UC15 List` except todo task entries and note entries are listed inst
 **Use case: UC34 Find a task by its field**
 
 Similar to `UC20 Find an application by its company name and job title` except todo task entries and note entries which match the specified keyword are filtered out and listed.
+
+**Use case: UC35 Edit an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to edit the details of specific internship application in the list by specifying its index.
+4.  InternEase edits the details of the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The provided details is invalid.
+    * 3b1. InternEase shows an error message  and gives a specific suggestion on the format of valid details.
+    * 3b2. User enters new details.
+        
+      Steps 3b1 to 3b2 are repeated until valid details is provided. Use case resumes at step 4.
+  
+* 3c. The command format is invalid.
+    * 3c1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3c2. User enters a new command.
+
+      Steps 3c1 to 3c2 are repeated until a valid command is entered. Use case resumes at step 4.
 
 ### Non-Functional Requirements
 
