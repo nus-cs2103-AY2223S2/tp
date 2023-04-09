@@ -28,7 +28,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
 
 4. Double-click the file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui_updated.png)
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -101,7 +101,7 @@ Examples:
 * `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` adds the patient `Ben Smith` to the list.
 * `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician` adds the doctor `Sarah Tan` to the list.
 
-![AddPatient](images/AddPatient_updated.png)
+![AddPatient](images/AddPatient.png)
 
 ![AddDoctor](images/AddDoctor.png)
 
@@ -115,6 +115,9 @@ Format: `delete ic/NRIC`
 
 Examples:
 * `delete ic/S9876543K` deletes the person with the NRIC number S9876543K in MediConnect.
+
+![DeleteBefore](images/Delete_before.png)
+![DeleteAfter](images/Delete_after.png)
 
 ### Editing a person : `edit`
 
@@ -159,6 +162,8 @@ Format: `find ic/NRIC`
 Examples:
 * `find ic/S1234567A` returns the details for the person with NRIC number S1234567A.
 
+![Find](images/Find.png)
+
 ### Book appointment : `appointment`
 
 Schedules an appointment with a specific doctor for the specified person.
@@ -187,6 +192,8 @@ Format: `deleteAppointment INDEX ic/NRIC`
 Examples:
 * `deleteAppointment 2 ic/S1234567A` deletes the 2nd appointment as displayed the list for person with NRIC number S1234567A.
 
+![DeleteAppointment](images/DeleteAppointment.png)
+
 ### Prescribing patient’s medication : `prescribe`
 
 * Prescribes medication to a patient, noting the medication's name and cost.
@@ -210,6 +217,8 @@ Examples:
 *  `unprescribe ic/S1234567X m/paracetamol` Remove patient of IC S1234567X's paracetamol prescription
 *  `unprescribe m/Cough Syrup ic/S1234567X` Remove patient of IC S1234567X's cough syrup prescription
 
+![Unprescribe](images/Unprescribe.png)
+
 ### Bill : `bill`
 
 Calculates the cost of all medication given a Patient's prescription.
@@ -227,17 +236,23 @@ Shows a list of all persons in MediConnect.
 
 Format: `list`
 
+![List](images/List.png)
+
 ### Retrieve doctors information : `listDoctors`
 
 Shows a list of all doctors in MediConnect.
 
 Format: `listDoctors`
 
+![ListDoctors](images/ListDoctors.png)
+
 ### Retrieve patients information : `listPatients`
 
 Shows a list of all patients in MediConnect.
 
 Format: `listPatients`
+
+![ListPatients](images/ListPatients.png)
 
 ### Clearing all entries : `clear`
 
@@ -249,6 +264,8 @@ Format: `clear`
 
 Example:
 * `clear` permanently deletes all data stored in the system.
+
+![Clear](images/Clear.png)
 
 ### Requesting help : `help`
 
