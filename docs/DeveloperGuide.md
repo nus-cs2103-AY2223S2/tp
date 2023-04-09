@@ -224,11 +224,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves 10 previous iterations of the entire dengue case list temporarily while the app is running.
+* **Alternative 1 (current choice):** Saves up to 10 previous iterations of the entire dengue case list temporarily while the app is running.
     * Pros: Saves memory as all tracker iterations are deleted when the app closes. Deleting older tracker iterations also helps to improve performance.
     * Cons: User may not have access to older data.
 
-* **Alternative 2:** Saves 10 previous iterations of the entire dengue case list in a JSON file.
+* **Alternative 2:** Saves up to 10 previous iterations of the entire dengue case list in a JSON file.
     * Pros: User can have direct access to older data.
     * Cons: Can be very messy to implement.
 
