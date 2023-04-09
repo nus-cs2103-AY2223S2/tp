@@ -1,3 +1,4 @@
+/* Modified from original file DarkTheme.css */
 .background {
     -fx-background-color: derive(#313338, 20%);
     background-color: #313338; /* Used in the default.html file */

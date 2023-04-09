@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 - **Enhancements implemented**:
     - Added new fields to the application: Rank, Unit, Platoon, and Company. This was done to enable the app to
       be used in an army context where such information is relevant.
-    - Added a favorites feature to the app, enabling users to "pin" favorited contacts to a favorite sidebar.
+    - Added a favorites feature to the app, enabling users to "pin" favorited contacts to a favorites sidebar.
 
 - **Contributions to the UG**:
     - Contributed addition of the new fields: Rank, Unit, Platoon, and Company to places where all the fields are
@@ -26,6 +26,7 @@ Given below are my contributions to the project.
 - **Contributions to the DG**:
     - Contributed addition of the new fields: Rank, Unit, Platoon, and Company to places where all the fields are
       listed.
+    - Contributed explanation of how the favorites feature is implemented technically.
 
 - **Testing contributed**:
     - Conducted some light testing to ensure my features worked correctly.
