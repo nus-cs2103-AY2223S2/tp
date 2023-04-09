@@ -155,17 +155,44 @@ Classes used by multiple components are in the `tfifteenfour.clipboard.commons` 
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Student Roster Object Types
+In our implementation, we have defined several object types that accurately represent the student roster, including 
+`Course`, `Group`, `Session`, `Task`, and `Student`. These object types are interdependent and have been designed to 
+work together seamlessly to provide a comprehensive solution for managing the student roster.
+
+#### Object Dependencies
+To simplify the management of the student roster and improve the user experience, we have established dependencies 
+between these objects. For example, when a student is added or edited in a `Group`, any changes will cascade to the 
+list of students in the `Session` object as well. This ensures consistency across the different object types and 
+reduces the risk of inconsistencies between related objects.
+
+#### Implementation Details
+The dependencies between these objects have been implemented using a combination of object-oriented design principles 
+and programming techniques. The specific implementation details are beyond the scope of this document, but the 
+following high-level overview may be useful:
+
+Each object type has been defined as a separate class with its own set of properties and methods.
+The relationships between these object types have been established using object references.
+Changes to one object type will trigger an update to the related object types by means of cascading method calls.
+Overall, the implementation of these object types and their dependencies has been designed to provide a robust, 
+scalable, and user-friendly solution for managing the student roster.
+
 ### Undo feature
-`undo` allows restoring up to 5 previous states, but can be modified to better suit performance needs. It is important to note that allowing more states to be saved, or adding more information to be tied to a state, will deteriorate CLIpboard's performance.
+`undo` allows restoring up to 5 previous states, but can be modified to better suit performance needs. It is important 
+to note that allowing more states to be saved, or adding more information to be tied to a state, will deteriorate 
+CLIpboard's performance.
 
 If new commands are to be added, it's interaction with `undo` must be kept in mind.
 For typical commands that do CRUD operations on roster data, `undo` can handle them.
 
-For navigating and UI related commands, some extra handling may be needed to also restore and refresh the UI to the previous state (e.g `back` command).
+For navigating and UI related commands, some extra handling may be needed to also restore and refresh the UI to the 
+previous state (e.g `back` command).
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo 
+history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the 
+following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
