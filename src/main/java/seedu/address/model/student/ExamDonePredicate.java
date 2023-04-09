@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Exam} is done or otherwise.
+ * Tests that an {@code Exam} is done or otherwise.
  */
 public class ExamDonePredicate implements Predicate<Exam> {
     private final String done;
@@ -18,10 +18,10 @@ public class ExamDonePredicate implements Predicate<Exam> {
     }
 
     /**
-     * Tests if a {@code Homework}'s {@code isCompleted} matches the given boolean.
+     * Tests if an {@code Exam}'s {@code isCompleted} matches the given boolean.
      *
      * @param exam The Exam to test.
-     * @return True if the lesson's title matches the given subject.
+     * @return True if the exam has been completed.
      */
     @Override
     public boolean test(Exam exam) {
@@ -35,6 +35,6 @@ public class ExamDonePredicate implements Predicate<Exam> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof ExamDonePredicate // instanceof handles nulls
-            && done.equals(((ExamDonePredicate) other).done)); 
+            && done.equals(((ExamDonePredicate) other).done));
     }
 }
