@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExecutiveProParser" as ExecutiveProParser LOGIC_COLOR
+participant ":LeaveCommandParser" as LeaveCommandParser LOGIC_COLOR
+participant "d:LeaveCommand" as LeaveCommand LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("leave 1 l/3")
+activate LogicManager
+
+LogicManager -> ExecutiveProParser : parseCommand("leave 1 l/3")
+activate ExecutiveProParser
+
+create LeaveCommandParser
+ExecutiveProParser -> LeaveCommandParser
+activate LeaveCommandParser
+
+LeaveCommandParser --> ExecutiveProParser
+deactivate LeaveCommandParser
+
+ExecutiveProParser -> LeaveCommandParser : parse("leave 1 l/3")
+activate LeaveCommandParser
+
+create LeaveCommand
+LeaveCommandParser -> LeaveCommand
+activate LeaveCommand
+
+LeaveCommand --> LeaveCommandParser : d
+deactivate LeaveCommand
+
+LeaveCommandParser --> ExecutiveProParser : d
+deactivate LeaveCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LeaveCommandParser -[hidden]-> ExecutiveProParser
+destroy LeaveCommandParser
+
+ExecutiveProParser --> LogicManager : d
+deactivate ExecutiveProParser
+
+LogicManager -> LeaveCommand : execute()
+activate LeaveCommand
+
+LeaveCommand -> EditCommand :
+activate EditCommand
+deactivate EditCommand
+
+EditCommand --> LeaveCommand : e
+
+LeaveCommand -> EditCommand : execute()
+activate EditCommand
+deactivate EditCommand
+EditCommand --> LeaveCommand
+
+create CommandResult
+LeaveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LeaveCommand
+deactivate CommandResult
+
+LeaveCommand --> LogicManager : result
+deactivate LeaveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

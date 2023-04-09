@@ -146,6 +146,7 @@ However, this function could fail (and ExecutivePro simply does not add any empl
 3. The new employee added is a duplicate, i.e. there is someone in the database who already shares the same name, phone number
 and email
 
+
 Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE COUNT] [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
@@ -222,8 +223,9 @@ The command could be unsuccessful, and there are a few potential causes of this:
 1. There could be a *duplicate* entry in the file, i.e. two employees sharing the same identity in the file.
 2. If any of the particulars in the wrong format, ExecutivePro will not be able to read the file properly
    and the command will not run.
-3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format,
-   please refer to the instructions [here](#u-opening-csv-files-in-excel--u) to rectify this problem.
+3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format, 
+please refer to the instructions [here](#u-opening-csv-files-in-excel--u) to rectify this problem.
+
 
 
 In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
@@ -236,6 +238,7 @@ In the upcoming versions, we will expand `batchadd` feature to:
 
 #### <u> Opening `.csv` files in `Excel`: </u>
 
+
 When using the `batchadd` feature, it is crucial to ensure that the dates in the CSV file are in the [correct format](#field-formats).
 ExecutivePro expects dates to be in the following format: YYYY-MM-DD. If the dates in your CSV file are in a different format, you'll need to convert them before uploading the file to prevent errors and unsuccessful imports.
 
@@ -243,6 +246,7 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
 
 1. Firstly, you can select the two columns involving dates, `Date of Birth` and `Date of Joining`, just like the image below.
    ![](images/UserGuide/batchadd/selectingcolumns.png)
+
 
 2. Next, right-click on the selected columns so that the following shows up:
 
@@ -259,6 +263,7 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
 
 6. Click `OK` and the date in the file will be updated to the correct format:
    ![](images/UserGuide/batchadd/successCSV.png)
+
 
 Once the dates in your CSV file are in the correct format (YYYY-MM-DD),
 you can proceed with the batchadd command in ExecutivePro.
@@ -280,6 +285,7 @@ Below are the steps to use this command:
 
 1. Run `batchexport FILENAME` in the command panel. The result should look like the image below.
    ![](images/UserGuide/batchexport/exportedFile.png)
+
 
 2. Go to the folder where you stored the `jar` file.
 3. Locate the CSV file in the `data` folder.
@@ -417,6 +423,7 @@ Format: `theme THEME_NAME`
 
 Examples:
 `theme light` applies the `light` theme to ExecutivePro.
+--------------------------------------------------------------------------------------------------------------------
 
 <div markdown="span" class="alert alert-warning">
 

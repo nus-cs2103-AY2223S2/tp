@@ -1,9 +1,13 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_JOINING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEAVE_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYROLL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -37,6 +41,14 @@ public class EmployeeUtil {
         sb.append(PREFIX_EMAIL + employee.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + employee.getAddress().value + " ");
         sb.append(PREFIX_DEPARTMENT + employee.getDepartment().value + " ");
+        sb.append(PREFIX_PAYROLL + employee.getPayroll().toString() + " ");
+        sb.append(PREFIX_LEAVE_COUNT + String.valueOf(employee.getLeaveCount()) + " ");
+        if (!employee.getDateOfBirthOptional().isEmpty()) {
+            sb.append(PREFIX_DATE_OF_BIRTH + employee.getDateOfBirth() + " ");
+        }
+        if (!employee.getDateOfJoiningOptional().isEmpty()) {
+            sb.append(PREFIX_DATE_OF_JOINING + employee.getDateOfJoining() + " ");
+        }
         employee.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -54,6 +66,14 @@ public class EmployeeUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getDepartment()
                 .ifPresent(department -> sb.append(PREFIX_DEPARTMENT).append(department.value).append(" "));
+        descriptor.getPayroll()
+                .ifPresent(payroll -> sb.append(PREFIX_PAYROLL).append(payroll.toString()).append(" "));
+        descriptor.getLeaveCounter()
+                .ifPresent(leaveCounter -> sb.append(PREFIX_LEAVE_COUNT).append(leaveCounter.toString()).append(" "));
+        descriptor.getDateOfBirth()
+                .ifPresent(date -> sb.append(PREFIX_DATE_OF_BIRTH).append(date).append(" "));
+        descriptor.getDateOfJoining()
+                .ifPresent(date -> sb.append(PREFIX_DATE_OF_JOINING).append(date).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

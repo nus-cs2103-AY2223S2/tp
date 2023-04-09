@@ -6,7 +6,8 @@
     "email": "hans@example.com",
     "address": "4th street",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png"
+    "payroll" : "1000 15",
+    "picturePath" : "data/employeepictures/default.png"
   }, {
     "name": "Person With Invalid Phone Field",
     "employeeId": "bbb",
@@ -14,6 +15,6 @@
     "email": "hans@example.com",
     "address": "4th street",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png"
-  } ]
+    "payroll" : "1000 15",
+    "picturePath" : "data/employeepictures/default.png"  } ]
 }

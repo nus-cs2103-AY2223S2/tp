@@ -9,12 +9,14 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Class represents an employee's payroll details in the database.
  */
 public class Payroll {
-    public static final String MESSAGE_NEGATIVE_SALARY =
-            "Salary has to be a non negative integer, please try again.";
+    public static final int MAX_SALARY = 100000;
+    public static final String MESSAGE_INVALID_SALARY =
+            "Salary has to be an integer between 1 and " + MAX_SALARY + " (inclusive).";
     public static final String MESSAGE_INVALID_DATE_OF_PAYMENT =
-            "Date of payment has to be an integer between 1 and 28 (inclusive), please try again.";
+            "Day of payment has to be an integer between 1 and 28 (inclusive).";
     public static final String MESSAGE_CONSTRAINTS =
-            "Payroll should contain two integers separated by a space";
+            "Payroll should contain two integers (salary and day of payment) separated by a space.\n"
+                    + MESSAGE_INVALID_SALARY + "\n" + MESSAGE_INVALID_DATE_OF_PAYMENT;
     public static final String FILTER_PARAMETER = "pr";
     public final int salary;
     public final int dayOfPayment;
@@ -24,7 +26,7 @@ public class Payroll {
      */
     public Payroll(int salary, int dayOfPayment) {
         requireAllNonNull(salary, dayOfPayment);
-        checkArgument(salary >= 0, MESSAGE_NEGATIVE_SALARY);
+        checkArgument((0 <= salary) && (salary <= MAX_SALARY), MESSAGE_INVALID_SALARY);
         checkArgument((1 <= dayOfPayment) && (dayOfPayment <= 28), MESSAGE_INVALID_DATE_OF_PAYMENT);
         this.salary = salary;
         this.dayOfPayment = dayOfPayment;
@@ -50,12 +52,16 @@ public class Payroll {
      * Returns true if a given payroll is valid .
      */
     public static boolean isValidPayroll(String test) {
+        if (test == null) {
+            return false;
+        }
         String[] parts = test.split(" ");
         if (parts.length == 2) {
             try {
-                int salary = Integer.parseInt(parts[0]);
-                int dateOfPayment = Integer.parseInt(parts[1]);
-                return true;
+                long salary = Long.parseLong(parts[0]);
+                long dateOfPayment = Long.parseLong(parts[1]);
+                return (dateOfPayment >= 1 && dateOfPayment <= 28)
+                        && (salary >= 0 && salary <= MAX_SALARY);
             } catch (NumberFormatException nfe) {
                 return false;
             }

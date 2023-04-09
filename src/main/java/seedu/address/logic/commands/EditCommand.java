@@ -122,6 +122,9 @@ public class EditCommand extends Command {
                 .orElse(employeeToEdit.getLeaveCounter());
         Optional<LocalDate> updatedDateOfBirth = Optional.ofNullable(editEmployeeDescriptor.getDateOfBirth())
                 .flatMap(s -> s).or(employeeToEdit::getDateOfBirthOptional);
+        if (updatedDateOfBirth.isEmpty()) {
+            updatedDateOfBirth = employeeToEdit.getDateOfBirthOptional();
+        }
         Optional<LocalDate> updatedDateOfJoining = Optional.ofNullable(editEmployeeDescriptor.getDateOfJoining())
                 .flatMap(s -> s).or(employeeToEdit::getDateOfJoiningOptional);
         if (updatedDateOfJoining.isEmpty()) {
@@ -258,7 +261,7 @@ public class EditCommand extends Command {
         }
 
         public Optional<LocalDate> getDateOfBirth() {
-            return dateOfBirth;
+            return Optional.ofNullable(dateOfBirth).flatMap(s -> s);
         }
 
         public void setDateOfJoining(Optional<LocalDate> dateOfJoining) {
@@ -266,7 +269,7 @@ public class EditCommand extends Command {
         }
 
         public Optional<LocalDate> getDateOfJoining() {
-            return dateOfJoining;
+            return Optional.ofNullable(dateOfJoining).flatMap(s -> s);
         }
 
         /**

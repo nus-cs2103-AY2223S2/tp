@@ -1,3 +1,3 @@
-Name,Phone,Email,Address,Department,Tags
-Jane Doe,8482424,stefan@example.com,little india,Frontend Engineer,
-Jane Doe,8482424,stefan@example.com,little india,Frontend Engineer,
+Name,Phone,Email,Address,Department,Payroll,Leave Count,Date of Birth,Date of Joining,Tags
+Jane Doe,84824242,,,Frontend Engineer,1000 15,21,,,
+Jane Doe,84824242,,,Frontend Engineer,1000 15,21,,,

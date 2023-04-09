@@ -64,8 +64,7 @@ public class LeaveCommand extends Command {
         EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
         editEmployeeDescriptor.setLeaveCounter(updatedLeaveCounter);
         EditCommand editCommand = new EditCommand(employeeId, editEmployeeDescriptor);
-
-        CommandResult commandResult = editCommand.execute(model);
+        editCommand.execute(model);
 
         return new CommandResult(String.format(String.format(MESSAGE_LEAVE_SUCCESS, employeeToTakeLeave.getName(),
                 numberOfDaysLeave)));

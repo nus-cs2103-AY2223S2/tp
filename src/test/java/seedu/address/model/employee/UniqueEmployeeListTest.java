@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SOFTWARE_ENGINEER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BOB;
@@ -42,9 +42,9 @@ public class UniqueEmployeeListTest {
     @Test
     public void contains_employeeWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEmployeeList.add(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertFalse(uniqueEmployeeList.contains(editedAlice));
+        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_SOFTWARE_ENGINEER).build();
+        assertTrue(uniqueEmployeeList.contains(editedAlice));
     }
 
     @Test
@@ -85,8 +85,8 @@ public class UniqueEmployeeListTest {
     @Test
     public void setEmployee_editedEmployeeHasSameIdentity_success() {
         uniqueEmployeeList.add(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_SOFTWARE_ENGINEER).build();
         uniqueEmployeeList.setEmployee(ALICE, editedAlice);
         UniqueEmployeeList expectedUniqueEmployeeList = new UniqueEmployeeList();
         expectedUniqueEmployeeList.add(editedAlice);

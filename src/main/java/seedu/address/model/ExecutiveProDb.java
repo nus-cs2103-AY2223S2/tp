@@ -124,7 +124,6 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
     @Override
     public String toString() {
         return employees.asUnmodifiableObservableList().size() + " employees";
-        // TODO: refine later
     }
 
     @Override
