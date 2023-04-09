@@ -7,6 +7,7 @@ import static seedu.medinfo.testutil.TypicalPatients.getTypicalMedInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ModelManager;
 import seedu.medinfo.model.UserPrefs;
@@ -30,7 +31,11 @@ public class AddCommandIntegrationTest {
         Patient validPatient = new PatientBuilder().build();
 
         Model expectedModel = new ModelManager(model.getMedInfo(), new UserPrefs());
-        expectedModel.addPatient(validPatient);
+        try {
+            expectedModel.addPatient(validPatient);
+        } catch (CommandException e) {
+
+        }
 
         assertCommandSuccess(new AddCommand(validPatient), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validPatient), expectedModel);

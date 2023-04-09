@@ -13,6 +13,7 @@ import seedu.medinfo.model.patient.Name;
 import seedu.medinfo.model.patient.Nric;
 import seedu.medinfo.model.patient.Status;
 import seedu.medinfo.model.ward.Ward;
+import seedu.medinfo.model.ward.WardName;
 
 public class JsonAdaptedPatientTest {
     private static final String INVALID_NAME = "R@chel";
@@ -85,7 +86,7 @@ public class JsonAdaptedPatientTest {
     public void toModelType_invalidWard_throwsIllegalValueException() {
         JsonAdaptedPatient patient = new JsonAdaptedPatient(VALID_NAME, VALID_NRIC, VALID_STATUS,
                 INVALID_WARD, VALID_DISCHARGE);
-        String expectedMessage = Ward.MESSAGE_CONSTRAINTS;
+        String expectedMessage = WardName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, patient::toModelType);
     }
 

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.medinfo.commons.core.Messages;
 import seedu.medinfo.commons.core.index.Index;
 import seedu.medinfo.logic.commands.EditCommand.EditPatientDescriptor;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ModelManager;
@@ -35,7 +36,7 @@ public class EditCommandTest {
 
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException{
         Patient editedPatient = new PatientBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
@@ -49,7 +50,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException{
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPatientList().size());
         Patient lastPatient = model.getFilteredPatientList().get(indexLastPerson.getZeroBased());
 
@@ -80,7 +81,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());

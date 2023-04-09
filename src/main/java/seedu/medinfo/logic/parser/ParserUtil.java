@@ -94,8 +94,8 @@ public class ParserUtil {
     public static WardName parseWardName(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
-        if (!Ward.isValidWard(trimmedWard)) {
-            throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
+        if (!WardName.isValidWardName(trimmedWard)) {
+            throw new ParseException(WardName.MESSAGE_CONSTRAINTS);
         }
         return new WardName(trimmedWard);
     }
