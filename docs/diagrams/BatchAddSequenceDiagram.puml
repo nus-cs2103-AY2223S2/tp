@@ -6,7 +6,7 @@ title BatchAddCommand
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":DatabaseParser" as DatabaseParser LOGIC_COLOR
+participant ":ExecutiveProParser" as ExecutiveProParser LOGIC_COLOR
 participant ":BatchAddCommandParser" as BatchAddCommandParser LOGIC_COLOR
 participant "b:BatchAddCommand" as BatchAddCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -15,17 +15,17 @@ end box
 [-> LogicManager: execute("batchadd executivepro.csv")
 activate LogicManager
 
-LogicManager -> DatabaseParser : parseCommand("batchadd executivepro.csv")
-activate DatabaseParser
+LogicManager -> ExecutiveProParser: parseCommand("batchadd executivepro.csv")
+activate ExecutiveProParser
 
 create BatchAddCommandParser
-DatabaseParser->BatchAddCommandParser
+ExecutiveProParser->BatchAddCommandParser
 activate BatchAddCommandParser
 
-BatchAddCommandParser --> DatabaseParser
+BatchAddCommandParser --> ExecutiveProParser
 deactivate BatchAddCommandParser
 
-DatabaseParser -> BatchAddCommandParser : parse("executivepro.csv")
+ExecutiveProParser -> BatchAddCommandParser : parse("executivepro.csv")
 activate BatchAddCommandParser
 
 create BatchAddCommand
@@ -36,11 +36,11 @@ activate BatchAddCommand
 BatchAddCommand --> BatchAddCommandParser : b
 deactivate BatchAddCommand
 
-BatchAddCommandParser --> DatabaseParser : b
+BatchAddCommandParser --> ExecutiveProParser : b
 deactivate BatchAddCommandParser
 
-DatabaseParser --> LogicManager : b
-deactivate DatabaseParser
+ExecutiveProParser --> LogicManager : b
+deactivate ExecutiveProParser
 
 LogicManager -> BatchAddCommand : execute(model)
 activate BatchAddCommand
