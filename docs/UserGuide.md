@@ -42,6 +42,7 @@ than current GUI apps in the industry.
 - Move the downloaded jar file to this folder as shown below.
   - For Mac Users:
     ![DownloadDocedexMac](images/DownloadDocedexMac.png)
+  <br><br><br>
   - For Windows Users:
   ![DownloadDocedexWindows](images/DocedexInFileWin.png)
 4. Launch Docedex
