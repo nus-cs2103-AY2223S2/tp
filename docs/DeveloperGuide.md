@@ -536,6 +536,7 @@ For all use cases below, the **System** is the `Powercard` and the **Actor** is 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Deck**: A group of PowerCards (flashcards) of a specific topic
 *{More to be added}*
+   
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -564,6 +565,105 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 3. _{ more test cases …​ }_
+
+### Selecting a deck
+
+1. Selecting a deck on the deck list
+
+    1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
+    2. Test case: `selectDeck 1` <br>
+       Expected: First deck on the list is selected and cards in the deck are displayed.
+    3. Test case: `selectDeck 0` <br>
+       Expected: No deck is selected. Error details shown in the status message.
+    4. Other incorrect `selectDeck` commands to try: `selectDeck`, `selectDeck x`, `...` (where x is larger than the list size) <br>
+       Expected: Similar to previous.
+
+### Adding a deck
+
+1. Adding a new deck of unique name to the MasterDeck
+
+   1. Prerequisites : User is in the Main Mode and a deck is not selected. 
+   2. Test case: `addDeck Math`<br>
+      Expected: A new deck `Math` is created and displayed on the list of decks. If there is already a deck called `Math` in the MasterDeck, (case-insensitive)
+                it throws an error message and does not add the deck into the list.
+   3. Test case: `addDeck `<br>
+      Expected: No new deck is added to MasterDeck. Error details shown in the status message that deck name cannot be blank.
+   
+### Editing a deck
+
+1. Editing the name of an existing deck
+    1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
+    2. Test case: `editDeck 1 Chemistry`<br>
+       Expected: Edits the name of a deck at the index of 1 on the deck list to be `Chemistry`.
+    3. Test case: `editDeck 0 Chemistry`<br>
+       Expected: No deck name is edited. Error details shown in the status message.
+    4. Other incorrect `editDeck` commands to try: `editDeck`, `editDeck x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Deleting a deck
+
+1. Deleting a deck on MasterDeck
+    1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
+    2. Test case: `deleteDeck 1` <br>
+       Expected: First deck is deleted from the list. Details of the deleted deck shown in the status message.
+   3. Test case: `deleteDeck 0` <br>
+      Expected: No deck is deleted. Error details shown in the status message.
+   4. Other incorrect delete commands to try: `deleteDeck`, `deleteDeck x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Finding a deck
+
+1. Finding a deck in MasterDeck
+    1. Prerequisites: User is in the Main Mode and a deck is not selected.
+    2. Test case: `findDecks science` <br>
+       Expected: Decks that include keywords of `science` will be shown (case-insensitive).
+    3. Test case: `findDecks science programming` <br>
+       Expected: Decks that include keywords of `science` or `programming` will be shown (case-insenstive).
+    4. Test case: `findDecks ` <br>
+       Expected: Does not show any specific decks. Error details shown in the status message.
+
+### Showing all decks
+
+1. Showing all decks in MasterDeck
+    1. Prerequisites: User is in the Main Mode and a deck is not selected.
+    2. Test case: `showDecks` <br>
+       Expected: All existing decks in MasterDeck will be shown. 
+
+### Starting review
+
+1. Starting review on a deck
+   1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
+   2. Test case: `review 1` <br>
+      Expected: Starts reviewing the first deck. Shows a card in the deck without its answer.
+   3. Test case: `review 0` <br>
+      Expected: Review Mode is not started. Error details shown in the status message.
+   4. Other incorrect `review` commands to try: `review`, `review x`, `...` (where x is larger than the list size) <br>
+      Expected: Similar to previous.
+
+### Setting the limit of cards
+
+1. Setting the limit of cards per review
+   1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
+   2. Test case: `setLimit 10` <br>
+      Expected: Sets the limit per review of 10 cards. 
+   3. Test case: `setLimit none` <br>
+      Expected: Resets the limit per review.
+   4. Test case: `setLimit 0` <br>
+      Expected: Does not set up the limit per review. Error details shown in the status message.
+   5. Other incorrect `setLimit` commands to try: `setLimit`, `setLimit x`, `...` (where x is larger than 2147483647) <br>
+      Expected: Similar to previous.
+
+### Opening help window
+
+1. Opening the help window to display the UG link
+   1. Test case: `help` <br>
+      Expected: A pop-up window is shown containing a link to UG with a copy button.
+
+### Exiting the program
+
+1. Exiting the program
+   1. Test case: `exit` <br>
+      Expected: Exists the program. Window is closed.
 
 ### Deleting a card
 
