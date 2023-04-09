@@ -372,6 +372,40 @@ The sort feature allows them to quickly view their contacts by business size acc
 
 #### Why this implementation
 
+### Increment/Decrement  feature
+
+#### Implementation
+The proposed feature will allow users to increment the transaction counts of existing contacts, without the need for manual calculation. 
+For the sake of convenience, explanation of the feature will be in terms of the increment variant. However, the decrement variant works similarly, and differences will be highlighted in the succeeding discussion.
+
+The increment/decrement command takes in an  `index` and an  `AMOUNT_TO_INCREMENTED`. This  `AMOUNT_TO_INCREMENTED` is demarcated with a prefix `tr/`.
+The activity diagram below describes how the increment feature works. 
+
+![IncrementActivityDiagram](images/IncrementCommandActivityDiagram.png) 
+
+Given below 
+The following sequence diagram shows how the filter operation works:
+![IncrementSequenceDiagram](images/IncrementCommandSequenceDiagram.png) 
+
+_Notes:_
+_For the decrement function, the activity and sequence diagram works similarly, however, what constitues a valid amount to increment and decrement might differ. We must check in the case of decrement that fianl amount <= current and for increment final amount >= current._
+
+#### Design considerations
+
+1. If users use the edit feature to modify transaction counts, which could be very large values, they are required to calculate the final values themselves, which diminishes the utility from using such an app. 
+Therefore, the increment command was created so that user will be exempt from making such calculation errors.
+2. Furthermore, if users prematurely increment the transaction count, and subsequent transactions are cancelled /merged, they would require a decrement command to change the transaction count back in an error-free way. 
+3. The syntax should be relatively similar to the edit command, since user should already be used to the prefix names. Hence, the command was designed to have minimal deviation from the edit command. 
+
+
+#### Why this implementation
+
+A main modify transaction count was considered in the case of implementing this feature. However, because of the edit, no additional functionality to the user is provided with such an implementation. 
+An abstract class or interface was considered for this implementation. However, for the sake of making the code more extensible in the future, it seems that implementing them as two distinct commands will work better.
+This is because most of the commonalities are already captured in the command class, and the edit command. Hence, letting despite the fact that letting these commands use the edit commands functions might increase coupling, it is better since the edit commands are already well tested.
+If new functions would be made just for these commands, they would not be as well tested and moreover contain very similar logic. 
+
+
 
 
 
