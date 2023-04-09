@@ -4,11 +4,11 @@
 src/main/resources/docs/
 
 # VSCode files
-/.idea/
 /.vscode/
 /bin/
 
 # IDEA files
+/.idea/
 */.idea/
 /out/
 /*.iml

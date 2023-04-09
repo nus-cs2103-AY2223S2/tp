@@ -27,21 +27,22 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Architecture](#architecture)
   - [UI component](#ui-component)
   - [Logic component](#logic-component)
+  - [Navigation component](#navigation-component)
   - [Model component](#model-component)
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [Implementation](#implementation)
+  - [Navigation feature](#navigation-feature)
+  - [List module, lecture and video feature](#list-module-lecture-and-video-feature)
+  - [Find module, lecture and video feature](#find-module-lecture-and-video-feature)
   - [Add module, lecture, and video feature](#add-module-lecture-and-video-feature)
   - [Edit module, lecture, and video feature](#edit-module-lecture-and-video-feature)
   - [Delete module, lecture, and video feature](#delete-module-lecture-and-video-feature)
   - [Mark / UnMark video feature](#mark--unmark-video-feature)
-  - [List module, lecture and video feature](#list-module-lecture-and-video-feature)
-  - [Find module, lecture and video feature](#find-module-lecture-and-video-feature)
-  - [Navigation feature](#navigation-feature)
   - [Tag module, lecture, and video feature](#tag-module-lecture-and-video-feature)
   - [Untag module, lecture, and video feature](#untag-module-lecture-and-video-feature)
-  - [Import archived data feature](#import-archived-data-feature)
   - [Exporting data feature](#exporting-data-feature)
+  - [Import archived data feature](#import-archived-data-feature)
   - [Clear feature](#clear-feature)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
@@ -51,31 +52,14 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-  - [Launch and shutdown](#launch-and-shutdown)
-  - [List Modules](#list-modules)
-  - [List Lectures of a Module](#list-lectures-of-a-module)
-  - [List Videos of a Lecture](#list-videos-of-a-lecture)
-  - [Find Modules](#find-modules)
-  - [Find Modules by Tag](#find-modules-by-tag)
-  - [Find Lectures of a Module](#find-lectures-of-a-module)
-  - [Find Lectures of a Module by Tag](#find-lectures-of-a-module-by-tag)
-  - [Find Videos of a Lecture](#find-videos-of-a-lecture)
-  - [Find Videos of a Lecture by Tag](#find-videos-of-a-lecture-by-tag)
-  - [Tag a Module](#tag-a-module)
-  - [Tag a Lecture](#tag-a-lecture)
-  - [Tag a Video](#tag-a-video)
-  - [Untag a Module](#untag-a-module)
-  - [Untag a Lecture](#untag-a-lecture)
-  - [Untag a Video](#untag-a-video)
-  - [Export All Modules to a File](#export-all-modules-to-a-file)
-  - [Import Modules from a File](#import-modules-from-a-file)
 
 ---
 
 ## Acknowledgements
 
 - Forked from: [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp)
-- Libraries utilised: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5/)
+- Libraries utilised: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [JUnit 5](https://junit.org/junit5/)
+- Tools utilised: [Gradle](https://gradle.org/)
 
 ---
 
@@ -310,6 +294,168 @@ Implementing your context-sensitive command based on this format will ensure sea
 
 For concrete examples on how to implement a context-sensitive command, you can refer to the
 [add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
+
+### List module, lecture and video feature
+
+The `list` command supports:
+
+- Listing modules in the tracker
+- Listing lectures in a module in the tracker
+- Listing videos in a lecture which belongs to a module in the tracker
+
+It's behaviour is dependent on the arguments provided by the user.
+
+The feature utilises the following classes/variable:
+
+- `ListCommandParser` – Creates the appropriate `ListCommand` subclass object base on the user's input
+- `ListCommand` – Base class of any `Command` subclass that list some entity in the tracker
+- `PREDICATE_SHOW_ALL_MODULES` – Constant `Predicate` with type `ReadOnlyModule` that list all modules
+- `LecturePredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
+- `VideoPredicate` – Class that implements `Predicate` interface with type `Video`
+
+The following sequence diagram depicts a `list` command execution for listing lectures in a module in the tracker.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+The following is a description of the code execution flow:
+
+1. `ListCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `ListCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
+
+   In Root Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested           |
+   | ------------------- | ------------------- | ------------- | ---------------------------- |
+   | No                  | No                  | List modules  | `PREDICATE_SHOW_ALL_MODULES` |
+   | Yes                 | No                  | List lectures | `LecturePredicate`           |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`             |
+
+   In Module Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested |
+   | ------------------- | ------------------- | ------------- | ------------------ |
+   | No                  | No                  | List lectures | `LecturePredicate` |
+   | Yes                 | No                  | List lectures | `LecturePredicate` |
+   | No                  | Yes                 | List videos   | `VideoPredicate`   |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`   |
+
+   In Lecture Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested |
+   | ------------------- | ------------------- | ------------- | ------------------ |
+   | Yes                 | No                  | List lectures | `LecturePredicate` |
+   | No                  | Yes/No              | List videos   | `VideoPredicate`   |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`   |
+
+   In All Context:
+
+   | Has `/r` argument | Intent      | `Predicate` tested           |
+   | ----------------- | ----------- | ---------------------------- |
+   | Yes               | List module | `PREDICATE_SHOW_ALL_MODULES` |
+
+2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
+
+3. The appropriate `ListCommand` subclass object is created and then returned to the caller.
+
+4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `ListCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
+
+   - The `Module` which `Lectures` are to be listed does not exist
+   - The `Lecture` which `Videos` are to be listed does not exist
+
+5. Note that extra arguments are ignored.\
+   Examples:
+
+   - `list /r foo` or `list bar /r` :arrow_right: `list /r`
+   - `list bar /mod CS2040S` :arrow_right: `list /mod CS2040S`
+
+6. If no errors occur (no exceptions are thrown), the command succeeds in listing the modules/lectures/videos.
+
+### Find module, lecture and video feature
+
+The `find` command supports:
+
+- Finding a module in the tracker
+  1. By module code and name
+  2. By module tags
+- Finding a lecture in a module in the tracker
+  1. By lecture name
+  2. By lecture tags
+- Finding a video in a lecture which belongs to a module in the tracker
+  1. By video name
+  2. By video tags
+
+It's behaviour is dependent on the arguments provided by the user.
+
+The feature utilises the following classes:
+
+- `FindCommandParser` – Creates the appropriate `FindCommand` subclass object base on the user's input
+- `FindCommand` – Base class of any `Command` subclass that finds some entity in the tracker
+- `ModuleContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyModule`
+- `ModuleTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyModule`
+- `LectureNameContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
+- `LectureTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
+- `VideoNameContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `Video`
+- `VideoTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `Video`
+
+The following sequence diagram depicts a `find` command execution for finding a module in the tracker.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+Below is an activity diagram that showcase the event that occurs when find command is executed.
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+The following is a description of the code execution flow:
+
+1. `FindCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `FindCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
+
+   In Root Context:
+
+   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
+   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
+   | Yes          | No                  | No                  | No                    | Find module  | `ModuleContainsKeywordsPredicate`      |
+   | Yes          | No                  | No                  | Yes                   | Find module  | `ModuleTagContainsKeywordsPredicate`   |
+   | Yes          | Yes                 | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
+   | Yes          | Yes                 | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
+   | Yes          | Yes                 | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
+   | Yes          | Yes                 | No                  | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
+
+   In Module Context:
+
+   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
+   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
+   | Yes          | Yes/No              | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
+   | Yes          | Yes/No              | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
+   | Yes          | Yes/No              | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
+   | Yes          | Yes/No              | Yes                 | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
+
+   In Lecture Context:
+
+   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
+   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
+   | Yes          | Yes                 | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
+   | Yes          | Yes                 | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
+   | Yes          | No                  | No                  | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
+   | Yes          | Yes                 | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
+   | Yes          | No                  | No                  | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
+   | Yes          | Yes                 | Yes                 | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
+
+   In All Context:
+
+   | Has preamble | Has `/r` argument | Has `/byTag` argument | Intent      | `Predicate` tested                   |
+   | ------------ | ----------------- | --------------------- | ----------- | ------------------------------------ |
+   | Yes          | Yes               | No                    | Find module | `ModuleContainsKeywordsPredicate`    |
+   | Yes          | Yes               | Yes                   | Find module | `ModuleTagContainsKeywordsPredicate` |
+
+2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
+
+3. The appropriate `FindCommand` subclass object is created and then returned to the caller.
+
+4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `FindCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
+
+   - The `Module` specified by user does not exist when listing `Lectures`
+   - The `Lecture` of a `Module` or the `Module` specified by user does not exist when listing `Videos`
+
+5. If no errors occur (no exceptions are thrown), the command succeeds in finding the module/lecture/video associated to the keyword.
 
 ### Add module, lecture, and video feature
 
@@ -576,168 +722,6 @@ The following is a description of the code execution flow
 - Update command result of `MarkMultipleAsUnwatchedCommand` to catch when this command is called when the videos are already marked as unwatched, similar to `MarkAsUnwatchedCommand` and `MarkAsWatchedCommand`
 - Collate `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` into one class, similar to `MarkAsWatchedCommand`
 
-### List module, lecture and video feature
-
-The `list` command supports:
-
-- Listing modules in the tracker
-- Listing lectures in a module in the tracker
-- Listing videos in a lecture which belongs to a module in the tracker
-
-It's behaviour is dependent on the arguments provided by the user.
-
-The feature utilises the following classes/variable:
-
-- `ListCommandParser` – Creates the appropriate `ListCommand` subclass object base on the user's input
-- `ListCommand` – Base class of any `Command` subclass that list some entity in the tracker
-- `PREDICATE_SHOW_ALL_MODULES` – Constant `Predicate` with type `ReadOnlyModule` that list all modules
-- `LecturePredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
-- `VideoPredicate` – Class that implements `Predicate` interface with type `Video`
-
-The following sequence diagram depicts a `list` command execution for listing lectures in a module in the tracker.
-
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
-
-The following is a description of the code execution flow:
-
-1. `ListCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `ListCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
-
-   In Root Context:
-
-   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested           |
-   | ------------------- | ------------------- | ------------- | ---------------------------- |
-   | No                  | No                  | List modules  | `PREDICATE_SHOW_ALL_MODULES` |
-   | Yes                 | No                  | List lectures | `LecturePredicate`           |
-   | Yes                 | Yes                 | List videos   | `VideoPredicate`             |
-
-   In Module Context:
-
-   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested |
-   | ------------------- | ------------------- | ------------- | ------------------ |
-   | No                  | No                  | List lectures | `LecturePredicate` |
-   | Yes                 | No                  | List lectures | `LecturePredicate` |
-   | No                  | Yes                 | List videos   | `VideoPredicate`   |
-   | Yes                 | Yes                 | List videos   | `VideoPredicate`   |
-
-   In Lecture Context:
-
-   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested |
-   | ------------------- | ------------------- | ------------- | ------------------ |
-   | Yes                 | No                  | List lectures | `LecturePredicate` |
-   | No                  | Yes/No              | List videos   | `VideoPredicate`   |
-   | Yes                 | Yes                 | List videos   | `VideoPredicate`   |
-
-   In All Context:
-
-   | Has `/r` argument | Intent      | `Predicate` tested           |
-   | ----------------- | ----------- | ---------------------------- |
-   | Yes               | List module | `PREDICATE_SHOW_ALL_MODULES` |
-
-2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
-
-3. The appropriate `ListCommand` subclass object is created and then returned to the caller.
-
-4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `ListCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
-
-   - The `Module` which `Lectures` are to be listed does not exist
-   - The `Lecture` which `Videos` are to be listed does not exist
-
-5. Note that extra arguments are ignored.\
-   Examples:
-
-   - `list /r foo` or `list bar /r` :arrow_right: `list /r`
-   - `list bar /mod CS2040S` :arrow_right: `list /mod CS2040S`
-
-6. If no errors occur (no exceptions are thrown), the command succeeds in listing the modules/lectures/videos.
-
-### Find module, lecture and video feature
-
-The `find` command supports:
-
-- Finding a module in the tracker
-  1. By module code and name
-  2. By module tags
-- Finding a lecture in a module in the tracker
-  1. By lecture name
-  2. By lecture tags
-- Finding a video in a lecture which belongs to a module in the tracker
-  1. By video name
-  2. By video tags
-
-It's behaviour is dependent on the arguments provided by the user.
-
-The feature utilises the following classes:
-
-- `FindCommandParser` – Creates the appropriate `FindCommand` subclass object base on the user's input
-- `FindCommand` – Base class of any `Command` subclass that finds some entity in the tracker
-- `ModuleContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyModule`
-- `ModuleTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyModule`
-- `LectureNameContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
-- `LectureTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
-- `VideoNameContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `Video`
-- `VideoTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `Video`
-
-The following sequence diagram depicts a `find` command execution for finding a module in the tracker.
-
-![FindSequenceDiagram](images/FindSequenceDiagram.png)
-
-Below is an activity diagram that showcase the event that occurs when find command is executed.
-
-![FindActivityDiagram](images/FindActivityDiagram.png)
-
-The following is a description of the code execution flow:
-
-1. `FindCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `FindCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
-
-   In Root Context:
-
-   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
-   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
-   | Yes          | No                  | No                  | No                    | Find module  | `ModuleContainsKeywordsPredicate`      |
-   | Yes          | No                  | No                  | Yes                   | Find module  | `ModuleTagContainsKeywordsPredicate`   |
-   | Yes          | Yes                 | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
-   | Yes          | Yes                 | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
-   | Yes          | Yes                 | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
-   | Yes          | Yes                 | No                  | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
-
-   In Module Context:
-
-   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
-   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
-   | Yes          | Yes/No              | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
-   | Yes          | Yes/No              | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
-   | Yes          | Yes/No              | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
-   | Yes          | Yes/No              | Yes                 | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
-
-   In Lecture Context:
-
-   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
-   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
-   | Yes          | Yes                 | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
-   | Yes          | Yes                 | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
-   | Yes          | No                  | No                  | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
-   | Yes          | Yes                 | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
-   | Yes          | No                  | No                  | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
-   | Yes          | Yes                 | Yes                 | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
-
-   In All Context:
-
-   | Has preamble | Has `/r` argument | Has `/byTag` argument | Intent      | `Predicate` tested                   |
-   | ------------ | ----------------- | --------------------- | ----------- | ------------------------------------ |
-   | Yes          | Yes               | No                    | Find module | `ModuleContainsKeywordsPredicate`    |
-   | Yes          | Yes               | Yes                   | Find module | `ModuleTagContainsKeywordsPredicate` |
-
-2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
-
-3. The appropriate `FindCommand` subclass object is created and then returned to the caller.
-
-4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `FindCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
-
-   - The `Module` specified by user does not exist when listing `Lectures`
-   - The `Lecture` of a `Module` or the `Module` specified by user does not exist when listing `Videos`
-
-5. If no errors occur (no exceptions are thrown), the command succeeds in finding the module/lecture/video associated to the keyword.
-
 ### Tag module, lecture, and video feature
 
 The `tag` command supports:
@@ -857,6 +841,60 @@ The following is a description of the code execution flow:
   - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
   - The specified tags do not correspond with existing `Tag` objects in the `Module`/`Lecture`/`Video` object.
 
+### Exporting data feature
+
+The `export` command supports:
+
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to a new file path, in a JSON
+  format file
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to an existing file path, in a
+  JSON format file, overwriting its content
+
+The `export` behaviour is dependent on the arguments provided by the user.
+
+**Notable Classes**
+
+The feature utilises the following classes:
+
+- `ExportCommandParser` – Creates the appropriate `ExportCommand` object based on the user's input
+- `ExportCommand` – Creates the appropriate `CommandResult` object containing the file path for export
+- `Archive` – Handles saving the `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to
+  the specified file path in `CommandResult`
+
+**Execution**
+
+The following sequence diagram depicts a `export` command execution for exporting a `Tracker` object to a specified
+file path
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+The following is a description of the code execution flow:
+
+1. `ExportCommandParser#parse()` takes in the user input and determine the file path that the user wants to
+   export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the
+   `/overwrite` flag.
+2. The command creates an appropriate `ExportCommand` object and returns it to the caller.
+3. `LogicManager` calls the `Command#execute()` method of the `ExportCommand`. An appropriate `CommandResult` object containing a `Path` object with the
+   saving file path is then returned to the caller.
+4. `LogicManager` calls the `Archive#exportToArchive()` method.
+5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and
+   `Video` objects it contains to the specified file path.
+
+**Notes for `ExportCommandParser#parse()`**
+
+- A `ParseException` will be thrown if the saving file path is not specified in user's input.
+
+**Notes for `ExportCommand#execute()`**
+
+- A `CommandException` will be thrown if the specified file path is invalid.
+
+**Notes for `Archive#exportToArchive()`**
+
+- A `CommandException` will be thrown for the following scenarios:
+  - The file at the specified file path does not have write permission.
+  - The user is trying to export to the current working tracker path.
+  - The user is trying to export to an existing file without the `/overwrite` flag.
+
 ### Import archived data feature
 
 The `import` command supports:
@@ -920,60 +958,6 @@ The following is a description of the code execution flow:
   - The file isn't a valid Le Tracker data file
   - The user is importing modules that doesn't exist in the saving file
   - The user is importing modules that exists in the current `Tracker` object without the `/overwrite` flag
-
-### Exporting data feature
-
-The `export` command supports:
-
-- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to a new file path, in a JSON
-  format file
-- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to an existing file path, in a
-  JSON format file, overwriting its content
-
-The `export` behaviour is dependent on the arguments provided by the user.
-
-**Notable Classes**
-
-The feature utilises the following classes:
-
-- `ExportCommandParser` – Creates the appropriate `ExportCommand` object based on the user's input
-- `ExportCommand` – Creates the appropriate `CommandResult` object containing the file path for export
-- `Archive` – Handles saving the `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to
-  the specified file path in `CommandResult`
-
-**Execution**
-
-The following sequence diagram depicts a `export` command execution for exporting a `Tracker` object to a specified
-file path
-
-![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
-
-The following is a description of the code execution flow:
-
-1. `ExportCommandParser#parse()` takes in the user input and determine the file path that the user wants to
-   export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the
-   `/overwrite` flag.
-2. The command creates an appropriate `ExportCommand` object and returns it to the caller.
-3. `LogicManager` calls the `Command#execute()` method of the `ExportCommand`. An appropriate `CommandResult` object containing a `Path` object with the
-   saving file path is then returned to the caller.
-4. `LogicManager` calls the `Archive#exportToArchive()` method.
-5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and
-   `Video` objects it contains to the specified file path.
-
-**Notes for `ExportCommandParser#parse()`**
-
-- A `ParseException` will be thrown if the saving file path is not specified in user's input.
-
-**Notes for `ExportCommand#execute()`**
-
-- A `CommandException` will be thrown if the specified file path is invalid.
-
-**Notes for `Archive#exportToArchive()`**
-
-- A `CommandException` will be thrown for the following scenarios:
-  - The file at the specified file path does not have write permission.
-  - The user is trying to export to the current working tracker path.
-  - The user is trying to export to an existing file without the `/overwrite` flag.
 
 ### Clear feature
 
@@ -1086,7 +1070,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Navigate to a lecture context**
+#### Navigate to a lecture context
 
 **MSS**
 
@@ -1109,7 +1093,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: List modules
+#### List modules
 
 **MSS**
 
@@ -1126,7 +1110,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: List module's lectures
+#### List module's lectures
 
 **MSS**
 
@@ -1149,7 +1133,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: List lecture's videos
+#### List lecture's videos
 
 **MSS**
 
@@ -1178,7 +1162,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Find module
+#### Find module
 
 **MSS**
 
@@ -1199,7 +1183,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Find lecture
+#### Find lecture
 
 **MSS**
 
@@ -1226,7 +1210,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Find video
+#### Find video
 
 **MSS**
 
@@ -1260,7 +1244,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Add a module**
+#### Add a module
 
 **MSS**
 
@@ -1289,7 +1273,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Add a lecture**
+#### Add a lecture
 
 **MSS**
 
@@ -1324,7 +1308,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Add a video**
+#### Add a video
 
 **MSS**
 
@@ -1365,7 +1349,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Edit a module**
+#### Edit a module
 
 **MSS**
 
@@ -1400,7 +1384,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Edit a lecture**
+#### Edit a lecture
 
 **MSS**
 
@@ -1441,7 +1425,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Edit a video**
+#### Edit a video
 
 **MSS**
 
@@ -1488,7 +1472,247 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-**Use case: Mark/Unmark a video**
+#### Delete a Module
+
+**Preconditions**: User has added a module
+
+**MSS**
+
+1. User wants to delete a module
+2. User requests to delete the specific module by specifying the module code
+3. LeTracker deletes the module
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The given module code does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+  2b. Module of module code does not exist in LeTracker.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Delete multiple Modules
+
+**Preconditions**: User has added a few modules
+
+**MSS**
+
+1. User wants to delete multiple modules
+2. User requests to delete specific modules by specifying their respective module codes
+3. LeTracker deletes the specified modules
+
+**Extensions**
+
+- 2a. At least one of module codes supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Module codes supplied contains duplicates.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one Module of module codes do not exist in LeTracker.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Delete a Lecture
+
+**Preconditions**: User has added a module and a lecture
+
+**MSS**
+
+1. User wants to delete a lecture
+2. User requests to delete a specific lecture by specifying a module code and lecture name
+3. LeTracker deletes the lecture
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The supplied module code does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The supplied lecture name does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. The Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The lecture of lecture name does not exist in module of module code.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Delete multiple Lectures
+
+**Preconditions**: User has added a module and a few lectures
+
+**MSS**
+
+1. User wants to delete multiple lectures under the same module
+2. User specifies multiple lecture names to be deleted and a module code
+3. LeTracker deletes the specified lectures of lecture names from the specified module of module code.
+
+**Extensions**
+
+- 2a. The module code specified does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. At least one of the lecture names supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. Lecture names supplied contains duplicates.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case ends.
+
+- 2d. The Module of module code does not exist in LeTracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. At least one Lecture of the supplied lecture names does not exist in the Module of module code.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Delete a Video
+
+**Preconditions**: User has added a module, a lecture and a video
+
+**MSS**
+
+1. User wants to delete a specific video in a lecture of a module
+2. User requests to delete a specific video by citing its video name, lecture name of the lecture that contains it, and the module code of the module that contains the lecture.
+3. Le Tracker deletes the video from the lecture of the module
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Module code supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Lecture name supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. Video name supplied does not follow the video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. There is no such module of module code in LeTracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. There is no such lecture in the module.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. There is no such video in the lecture.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Delete multiple Videos
+
+**Precondition**: User has added a module, a lecture and a few videos
+
+**MSS**
+
+1. User wants to delete multiple videos under the same lecture of the same module
+2. User requests to delte the specific videos by supplying their video names, the lecture name of the lecture containing them and the module code of the module containing the lecture.
+3. LeTracker deletes the specified videos from the lecture of the module.
+
+**Extensions**
+
+- 2a. Module code supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Lecture name supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one of the video names supplied does not follow the video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The video names supplied contains duplicates.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. There is no such module of module code in LeTracker.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. There is no such lecture in the module.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2g. At least one of the videos do not exist in the lecture.
+
+  - 2g1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Mark/Unmark a video
 
 **Preconditions**: User has added a module, a lecture and a video
 
@@ -1550,7 +1774,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Mark/Unmark multiple videos**
+#### Mark/Unmark multiple videos
 
 **Preconditions**: User has added a module, a lecture and a few videos
 
@@ -1610,247 +1834,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Delete a Module**
-
-**Preconditions**: User has added a module
-
-**MSS**
-
-1. User wants to delete a module
-2. User requests to delete the specific module by specifying the module code
-3. LeTracker deletes the module
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. The given module code does not follow the module code format.
-
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-  2b. Module of module code does not exist in LeTracker.
-
-  - 2b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Delete multiple Modules**
-
-**Preconditions**: User has added a few modules
-
-**MSS**
-
-1. User wants to delete multiple modules
-2. User requests to delete specific modules by specifying their respective module codes
-3. LeTracker deletes the specified modules
-
-**Extensions**
-
-- 2a. At least one of module codes supplied does not follow the module code format.
-
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. Module codes supplied contains duplicates.
-
-  - 2b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. At least one Module of module codes do not exist in LeTracker.
-
-  - 2c1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Delete a Lecture**
-
-**Preconditions**: User has added a module and a lecture
-
-**MSS**
-
-1. User wants to delete a lecture
-2. User requests to delete a specific lecture by specifying a module code and lecture name
-3. LeTracker deletes the lecture
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. The supplied module code does not follow the module code format.
-
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The supplied lecture name does not follow the lecture name format.
-
-  - 2b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. The Module of module code that is supposed to contain the lecture of lecture name does not exist.
-
-  - 2c1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2d. The lecture of lecture name does not exist in module of module code.
-
-  - 2d1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Delete multiple Lectures**
-
-**Preconditions**: User has added a module and a few lectures
-
-**MSS**
-
-1. User wants to delete multiple lectures under the same module
-2. User specifies multiple lecture names to be deleted and a module code
-3. LeTracker deletes the specified lectures of lecture names from the specified module of module code.
-
-**Extensions**
-
-- 2a. The module code specified does not follow the module code format.
-
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. At least one of the lecture names supplied does not follow the lecture name format.
-
-  - 2b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. Lecture names supplied contains duplicates.
-
-  - 2c1. LeTracker shows an error message.
-
-    Use case ends.
-
-- 2d. The Module of module code does not exist in LeTracker.
-
-  - 2d1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2e. At least one Lecture of the supplied lecture names does not exist in the Module of module code.
-
-  - 2e1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Delete a Video**
-
-**Preconditions**: User has added a module, a lecture and a video
-
-**MSS**
-
-1. User wants to delete a specific video in a lecture of a module
-2. User requests to delete a specific video by citing its video name, lecture name of the lecture that contains it, and the module code of the module that contains the lecture.
-3. Le Tracker deletes the video from the lecture of the module
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. Module code supplied does not follow the module code format.
-
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. Lecture name supplied does not follow the lecture name format.
-
-  - 2b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. Video name supplied does not follow the video name format.
-
-  - 2c1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2d. There is no such module of module code in LeTracker.
-
-  - 2d1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2e. There is no such lecture in the module.
-
-  - 2e1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2f. There is no such video in the lecture.
-
-  - 2f1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Delete multiple Videos**
-
-**Precondition**: User has added a module, a lecture and a few videos
-
-**MSS**
-
-1. User wants to delete multiple videos under the same lecture of the same module
-2. User requests to delte the specific videos by supplying their video names, the lecture name of the lecture containing them and the module code of the module containing the lecture.
-3. LeTracker deletes the specified videos from the lecture of the module.
-
-**Extensions**
-
-- 2a. Module code supplied does not follow the module code format.
-
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. Lecture name supplied does not follow the lecture name format.
-
-  - 2b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. At least one of the video names supplied does not follow the video name format.
-
-  - 2c1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2d. The video names supplied contains duplicates.
-
-  - 2d1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2e. There is no such module of module code in LeTracker.
-
-  - 2e1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2f. There is no such lecture in the module.
-
-  - 2f1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2g. At least one of the videos do not exist in the lecture.
-
-  - 2g1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-**Use case: Tag a module**
+#### Tag a module
 
 **MSS**
 
@@ -1880,7 +1864,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Tag a lecture**
+#### Tag a lecture
 
 **Precondition: User has added a module and a lecture**
 
@@ -1924,7 +1908,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Tag a video**
+#### Tag a video
 
 **Precondition: User has added a module, a lecture, and a video**
 
@@ -1981,7 +1965,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Untag a module**
+#### Untag a module
 
 **Precondition: User has added a module, and has tagged that module**
 
@@ -2019,7 +2003,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Untag a lecture**
+#### Untag a lecture
 
 **Precondition: User has added a module and a lecture, and has tagged the lecture**
 
@@ -2069,7 +2053,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Tag a video**
+#### Untag a video
 
 **Precondition: User has added a module, a lecture, and a video, and has tagged the video**
 
@@ -2132,7 +2116,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Export all modules to a new file**
+#### Export all modules to a new file
 
 **MSS**
 
@@ -2156,7 +2140,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Export all modules to an existing file**
+#### Export all modules to an existing file
 
 **MSS**
 
@@ -2186,7 +2170,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Import all modules from a file**
+#### Import all modules from a file
 
 **MSS**
 
@@ -2222,7 +2206,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Import all modules from a file**
+#### Import all modules from a file
 
 **MSS**
 
@@ -2258,7 +2242,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use case: Import some modules from a file**
+#### Import some modules from a file
 
 **MSS**
 
@@ -2300,7 +2284,7 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-**Use Case: Clear all Modules**
+#### Clear all Modules
 **MSS**
 
 1. User requests to clear all modules
@@ -2484,32 +2468,6 @@ TODO: to be removed
 | `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
 | `nav /mod CS2040S /lec Week 2`<br/>`find`                | Invalid command                             |
 
-### Mark a Video
-
-| Test Case                                    | Expected Result |
-| -------------------------------------------- | --------------- |
-| `mark Vid 1 /mod CS2040S /lec Week 1`        | Vid 1 of CS2040S Week 1 marked as watched |
-| 1. `nav CS2040S` <br> 2. `mark Vid 1 /lec Week 1` | Same as previous | <!--TODO: do we need this?-->
-| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `mark Vid 1` | Same as previous |
-| `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as watched |
-| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as watched |
-| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| 1. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of CS2040S were already marked as watched |
-| `mark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
-| `mark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
-
-### Unmark a Video
-
-| Test Case                                    | Expected Result |
-| -------------------------------------------- | --------------- |
-| `unmark Vid 1 /mod CS2040S /lec Week 1`      | Vid 1 of CS2040S Week 1 marked as unwatched |
-| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as unwatched |
-| `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as unwatched |
-| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| 1. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
-| `unmark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
-| `unmark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
-
 ### Delete Module(s)
 
 | Test Case                                   | Expected Result |
@@ -2552,6 +2510,32 @@ TODO: to be removed
 | 1. `delete CS2040S` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
 | 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Vid 1 /mod CS2040S /lec Week 1` | Alert user that Week 1 of CS2040S does not exist |
 | 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+
+### Mark a Video
+
+| Test Case                                    | Expected Result |
+| -------------------------------------------- | --------------- |
+| `mark Vid 1 /mod CS2040S /lec Week 1`        | Vid 1 of CS2040S Week 1 marked as watched |
+| 1. `nav CS2040S` <br> 2. `mark Vid 1 /lec Week 1` | Same as previous | <!--TODO: do we need this?-->
+| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `mark Vid 1` | Same as previous |
+| `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as watched |
+| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as watched |
+| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of CS2040S were already marked as watched |
+| `mark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
+| `mark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+
+### Unmark a Video
+
+| Test Case                                    | Expected Result |
+| -------------------------------------------- | --------------- |
+| `unmark Vid 1 /mod CS2040S /lec Week 1`      | Vid 1 of CS2040S Week 1 marked as unwatched |
+| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as unwatched |
+| `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as unwatched |
+| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| `unmark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
+| `unmark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
 
 ### Tag a Module
 
