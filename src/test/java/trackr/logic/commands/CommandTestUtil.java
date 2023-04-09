@@ -283,15 +283,15 @@ public class CommandTestUtil {
 
     static {
         DESC_NIKE_CAP = new MenuItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_NIKECAP)
-                .withItemSellingPrice(VALID_SELLING_PRICE_SMALL)
-                .withItemCostPrice(VALID_COST_PRICE_SMALL)
+                .withName(VALID_ITEM_NAME_NIKECAP)
+                .withPrice(VALID_SELLING_PRICE_SMALL)
+                .withCost(VALID_COST_PRICE_SMALL)
                 .build();
 
         DESC_CUPCAKE_I = new MenuItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_CUPCAKE)
-                .withItemSellingPrice(VALID_SELLING_PRICE_LARGE)
-                .withItemCostPrice(VALID_COST_PRICE_LARGE)
+                .withName(VALID_ITEM_NAME_CUPCAKE)
+                .withPrice(VALID_SELLING_PRICE_LARGE)
+                .withCost(VALID_COST_PRICE_LARGE)
                 .build();
 
     }
