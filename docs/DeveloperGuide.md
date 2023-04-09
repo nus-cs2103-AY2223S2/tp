@@ -735,23 +735,32 @@ the list. <br>
 Expected: Module(s) with the name or tag `CS` is (are) found. Details of the found module(s) are shown in the list.
 <br>
 
-5. Test case: `find`
+5. Test case: `find` <br>
 Expected: No modules are found, because the keyword is not specified.
    
-6. Test case: `find x`(where x is the keyword that none of the existing modules have)
+6. Test case: `find x`(where x is the keyword that none of the existing modules have) <br>
 Expected: No modules are found, because the keyword does not exist in the existing module list.
    
 7. Note: Make sure to list the modules again when you want to find another module.
    
 ### Sorting a module by `timeslot` or `deadline`
 
+1. Test case: `sort timeslot` <br>
+Expected: If there are modules with different `timeslot`, the modules will be sorted by earliest first and latest last.
+The modules without `timeslot` will be unsorted at the very end of the list.
+
+2. Test case: `sort deadline` <br>
+Expected: If there are modules with different `deadline`, the modules will be sorted by earliest first and latest last.
+The modules without `deadline` will be unsorted at the very end of the list.
+
+3. Test case: `sort x` (where x is empty, or anything other than `timeslot` or `deadline`) <br>
+Expected: The modules will not be sorted.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
+    1. If the data file is _missing_, coNtactUS will create a new data file, with sample data.
+    2. Similar outcome for _corrupted_ data files.
 
 
