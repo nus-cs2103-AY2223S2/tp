@@ -818,7 +818,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   **Main Success Scenario (MSS):**
 
-1. User requests for a [list of all tasks](#638-use-case-8--list-all-tasks).
+1. User requests for a [list of all tasks](#638-use-case-8-list-all-tasks).
 
 2. OfficeConnect displays all tasks stored.
 
@@ -855,7 +855,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   **Main Success Scenario (MSS):**
 
-1. User requests for a [list of all tasks](#638-use-case-8--list-all-tasks).
+1. User requests for a [list of all tasks](#638-use-case-8-list-all-tasks).
 
 2. OfficeConnect displays all tasks stored.
 
@@ -1029,7 +1029,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Main Success Scenario (MSS):**
 
-1. User requests to [list all tasks](#638-use-case-8--list-all-tasks).
+1. User requests to [list all tasks](#638-use-case-8-list-all-tasks).
 
 2. OfficeConnect displays all tasks stored.
 
@@ -1294,7 +1294,6 @@ testers are expected to do more *exploratory* testing.
         Expected: All assigned persons are displayed. "Displayed all assigned persons" shown in status message.
      4. Test case: `viewassignedt` <br>
         Expected: All assigned tasks are displayed. "Displayed all assigned tasks" shown in status message.
-
 
   2. There are no assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons with assignments.
