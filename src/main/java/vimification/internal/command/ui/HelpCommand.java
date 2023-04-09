@@ -2,7 +2,7 @@ package vimification.internal.command.ui;
 
 import vimification.internal.command.CommandResult;
 import vimification.ui.MainScreen;
-import vimification.ui.ManualPanel;
+import vimification.ui.HelpManualPanel;
 
 /**
  * Displays the manual page.
@@ -18,8 +18,8 @@ public class HelpCommand extends UiCommand {
 
     @Override
     public CommandResult execute(MainScreen mainScreen) {
-        ManualPanel manualPanel = new ManualPanel();
-        mainScreen.loadRightComponent(manualPanel);
+        HelpManualPanel helpManualPanel = new HelpManualPanel();
+        mainScreen.loadRightComponent(helpManualPanel);
         return new CommandResult(SUCCESS_MESSAGE);
     }
 
