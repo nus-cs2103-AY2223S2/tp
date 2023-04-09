@@ -102,7 +102,9 @@ on your computer that you download the coNtactUS.jar file onto. This is relevant
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
 for your reference. </div>
 
+
 ![Ui](images/Ui.png)
+
 Figure 1 : The starting window for the coNtactUS application.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -203,7 +205,9 @@ For example, `[a/VENUE]` indicates that the venue field is optional.
 Examples of valid usages:
 * `add n/CS2103T t/Lecture`
 * `add n/CS1101S t/Tutorial e/Monday 10:00 12:00 a/COM1-0217 s/Sam Wan`
-* `add n/CS2030S t/Lab a/COM1-B112 d/04042023 23:59 r/Attendance not compulsory :)`
+* `add n/CS2030S t/Lab a/COM1-B112 d/040423 23:59 r/Attendance not compulsory :)`
+
+![image](https://user-images.githubusercontent.com/82088609/230762259-5f9f5b2c-18d2-4e9b-9d27-6a07c99c6bcb.png)
 
 Examples of invalid usages: 
 * `add n/CS2103T` - there is no description provided.
@@ -228,6 +232,8 @@ Format: `delete INDEX`
 
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
+![image](https://user-images.githubusercontent.com/82088609/230761749-73b7be3f-117d-42f5-bcc2-a1bbbe63fe6b.png)
+
 --------------------------------------------------------------------------------------------------------------------
 ### Editing a module: `edit`
 
@@ -249,9 +255,10 @@ Examples of valid usages:
 * `edit 1 n/CS2101 t/Tutorial` Edits the name and description of the first module in the list to be `CS2101` and 
 `Tutorial` respectively.
 
-
 * `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd
   module to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
+
+![image](https://user-images.githubusercontent.com/82088609/230762280-a40ed804-c8a7-40cd-87ac-a921654ec1bd.png)
 
   
 Examples of invalid usages:
@@ -278,6 +285,7 @@ Format: `find KEYWORD`
 
 Examples:
 * `find CS2103T` finds all modules with name and/or description including the word `CS2103T`. 
+![image](https://user-images.githubusercontent.com/82088609/230762292-af7a1943-277f-499e-835f-0f4fec87f16d.png)
 
 --------------------------------------------------------------------------------------------------------------------
 ### Sorting the modules: `sort`
@@ -296,6 +304,8 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 
 * The `sort deadline` command will sort the modules based on their deadline.
 * For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
+
+![image](https://user-images.githubusercontent.com/82088609/230762314-1a02a759-57a6-45e1-84cc-fad35ef77804.png)
 
 --------------------------------------------------------------------------------------------------------------------
 ### Clearing all modules: `clear`
