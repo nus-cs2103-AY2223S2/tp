@@ -343,23 +343,20 @@ ungrade
 
 **User case: SearchStudent** search
 
-## **Mark/Unmark Attendance**
+## **Mark Attendance**
 
-Mark and Unmark is very similar in nature and their implementation. <br>
-
-Below is the main success scenario of Mark (Unmark is not given but very similar to Mark)
-
+Below is the main success scenario of Mark
 
 **MSS**
 
-1. User requests to mark attendance of a specific student in the list for a specified week
+1. User requests to mark attendance of a specific student for a specified week
 2. TAA marks attendance
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index/week is invalid.
+* 1a. The given student index/week is invalid.
 
     * 1a1. TAA shows an error message.
 
@@ -370,11 +367,34 @@ Below is the main success scenario of Mark (Unmark is not given but very similar
 
       Use case ends.
 
-The Mark/Unmark commands are similar, and explanation will be done for Mark command
 
-Below is the sequence diagram for Marking attendane of a student
+Below is the sequence diagram for Marking attendance of a student
 
 <img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
+
+## **Unmark Attendance**
+
+Below is the main success scenario of Unmark
+
+**MSS**
+
+1. User requests to unmark attendance of a specific student for a specified week
+2. TAA unmarks attendance
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given student index/week is invalid.
+
+    * 1a1. TAA shows an error message.
+
+      Use case ends.
+
+
+Below is the sequence diagram for Unmarking attendance of a student
+
+<img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
 
 ## **Insert Participation**
 
