@@ -12,7 +12,7 @@ if () then ([ProfileButton])
 :Detailed Info Section sets the Profile Content;
 
 else() then ([HomeworkButton, LessonsButton, ExamsButton])
-if () then ([Student has no homework, lessons or exams])
+if () then ([no homework, lessons or exams])
 :Detailed Info Section creates Empty Content;
 :Detailed Info Section sets the Empty Content;
 else ([Student has homework])

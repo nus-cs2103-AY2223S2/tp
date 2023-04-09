@@ -32,7 +32,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
@@ -124,7 +124,7 @@ The `Model` component,
 * stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* doesn't depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 
 ### Storage component
@@ -161,13 +161,13 @@ The inclusion of these Quick Access Buttons will not only improve the user exper
 
 Given below is the partial class diagram of `Ui` component related to Quick Access Buttons on the Student Card.
 
-<img src="images/UiQuickAccessButton.png" width="600" height="600"/>
+<img src="images/UiQuickAccessButton.png" width="1000" height="400"/>
 
 Each `Student Card` contains exactly four buttons `Profile`, `Homework`, `Lessons`, and `Exams`. Each of the buttons can generate a Special `DetailedContent`, which will be displayed in the `DetialedInfoSection` on the `MainWindow`
 
 Given below is the partial class diagram of `Ui` component related to Detailed Information Section on the Student Card.
 
-<img src="images/UiDetailedInfoSectionDiagram.png" width="1000" height="600"/>
+<img src="images/UiDetailedInfoSectionDiagram.png" width="1000" height="400"/>
 
 The `DetailedInfoSection` is made up of a `HeaderBar`, displaying the type of the current `DetailedInfoSection` and the name of the `Student` to which the information belongs. `DetailedContent`component has five subclasses extending it, namely `WelcomeContent`, `ProfileContent`,  `GeneralHomeworkContent`,  `GeneralLessonsContent`, `GeneralExamsContent`. 
 
@@ -177,9 +177,9 @@ Given below is the partial class diagram of `Ui` component related to Profile Co
 
 Given below is the sequence diagram showing how the action of clicking the `ProfileButton` of a `Student` creates a new `ProfileContent` for that particular student
 
-<img src="images/ProfileClickSequenceDiagram.png" width="1200" height="600" />
+<img src="images/ProfileClickSequenceDiagram.png" width="1200" height="500" />
 
-**How the Profile Section is created when Profile Button is Clicked**
+**How the Profile Section is created when the Profile Button is Clicked**
 
 1. Based on the graph above, after the user clicks the view profile button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
 2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
@@ -201,9 +201,9 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   Given below is the sequence diagram showing how the action of clicking the `HomeworkButton` of a `Student` creates a new `HomeworkContent` for that particular student
 
-  <img src="images/HomeworkClickSequenceDiagram.png" width="1200" height="600" />
+  <img src="images/HomeworkClickSequenceDiagram.png" width="1300" height="500" />
 
-  **How the Filled Homework Section is created when Homework Button is Clicked**
+  **How the Filled Homework Section is created when the Homework Button is Clicked**
 
   1. Based on the graph above, after the user clicks the view homework button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
   2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
@@ -224,9 +224,9 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   Given below is the sequence diagram showing how the action of clicking the `LessonsButton` of a `Student` creates a new `LessonsContent` for that particular student
 
-  <img src="images/LessonsClickSequenceDiagram.png" width="1200" height="600" />
+  <img src="images/LessonsClickSequenceDiagram.png" width="1300" height="500" />
 
-  **How the Filled Lessons Section is created when Lessons Button is Clicked**
+  **How the Filled Lessons Section is created when the Lesson Button is Clicked**
 
   1. Based on the graph above, after the user clicks the view lessons button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
   2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
@@ -247,22 +247,22 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
   Given below is the sequence diagram showing how the action of clicking the `ExamsButton` of a `Student` creates a new `ExamsContent` for that particular student
 
-  <img src="images/ExamsClickSequenceDiagram.png" width="1200" height="600" />
+  <img src="images/ExamsClickSequenceDiagram.png" width="1300" height="500" />
 
-  **How the Filled Exams Section is created when Exams Button is Clicked**
+  **How the Filled Exams Section is created when the Exam Button is Clicked**
 
   1. Based on the graph above, after the user clicks the view exams button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
   2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
   3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
   4. If `Student` does not have `Exams`, `StudentCard` will create a new `EmptyExamsContent` with the `Student`. 
   5. If `Student` have `Exams`, `StudentCard` will create a new `FilledExamsContent` with the `Student`. 
-  6. The `FilledExamssContent` constructor calls `Student#getName()`, `Student#ExamsList()`, `Student#UpcomingExamsList()`, which returns the name, All Exams List, Upcoming Exams List.
+  6. The `FilledExamssContent` constructor calls `Student#getName()`, `Student#ExamsList()`, `Student#UpcomingExamsList()`, which returns the name, All Exam List, Upcoming Exams List.
   7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyExamsContent`  or `FilledExamsContent`created from the previous calls. 
   8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
 
-The following activity diagram summarises how the UI responds to an click button command.
+The following activity diagram summarises how the UI responds to a click button command.
 
-<img src="images/ClickButtonActivityDiagram.png" height="600" width="1000"/>
+<img src="images/ClickButtonActivityDiagram.png" height="500" width="1300"/>
 
 ####  Alternatives considered for Quick Access Buttons
 
@@ -271,14 +271,14 @@ While designing the Quick Access Buttons on the Student Card, several alternativ
 * **Alternative 1 :** One alternative that was considered was to have a pop-up window for each button click event. However, this alternative was ultimately rejected due to its potential drawbacks.
   * Pros: 
     * Provides a clear and separate window to display the detailed information for each button.
-    * Can be designed to provide a consistent layout and structure for displaying the detailed information.
-    * Can be a good choice if there is a need to provide a lot of detailed information for each button click.
-    * Can be helpful in providing a larger viewing area for the detailed information.
+    * It Can be designed to provide a consistent layout and structure for displaying the detailed information.
+    * It Can be a good choice if there is a need to provide a lot of detailed information for each button click.
+    * It Can be helpful in providing a larger viewing area for the detailed information.
   * Cons: 
-    * Requires additional user interaction to close the pop-up window, which can be cumbersome and time-consuming.
-    * Can be less optimized for a command-line interface (CLI), where users prefer quick and direct access to information.
-    * Can lead to a cluttered user interface if multiple pop-up windows are open at the same time.
-    * Can require additional resources and time to design and implement compared to other alternatives.
+    * It Requires additional user interaction to close the pop-up window, which can be cumbersome and time-consuming.
+    * It Can be less optimized for a command-line interface (CLI), where users prefer quick and direct access to information.
+    * It Can lead to a cluttered user interface if multiple pop-up windows are open at the same time.
+    * It Can require additional resources and time to design and implement compared to other alternatives.
 
 
 ### Create Lesson feature
@@ -296,7 +296,7 @@ Step5. The Student calls the `addLesson` method in the UniqueLessonList, adding 
 
 Step6. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the Logic component for the execute("new-lesson name/John lesson/Math lesson start/2023-05-01 1200 end/2023-05-01 1400") API call.
+The Sequence Diagram below illustrates the interactions within the Logic component for to execute("new-lesson name/John lesson/Math lesson start/2023-05-01 1200 end/2023-05-01 1400") API call.
 
 <img src="images/CreateLessonSequenceDiagram.png" width="1000" />
 
@@ -318,7 +318,7 @@ in the Students list view, without having to open up the student's profile.
 
 #### New Implementation of School and GradeLevel Fields in v1.3
 
-In v1.3, we are adding School and GradeLevel as separate fields in the Student's profile, instead of `Tags`. These will 
+In v1.3, we're adding School and GradeLevel as separate fields in the Student's profile, instead of `Tags`. These will 
 show up in the Student Profile view.
 
 This is to reduce the number of Tags placed under each Student's name in the Students list view, making it look less 
@@ -378,7 +378,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that don't modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -401,7 +401,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Cons: We must ensure that the implementation of each command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -568,7 +568,7 @@ Priorities:
 
   Use case ends.
 
-* 3a. The given name does not exist in the list.
+* 3a. The given name doesn't exist in the list.
 * 3b. The user used invalid command format.
 
     * 3*1. TutorPro shows an error message.
@@ -679,7 +679,7 @@ Priorities:
 
 **Extensions**
 
-* 1a. The named student does not exist
+* 1a. The named student doesn't exist
   * 1a1. TutorPro returns an error message.
   
     Use case resumes at 1.
@@ -705,7 +705,7 @@ Priorities:
 
 **Extensions**
 
-* 1a. The named student does not exist
+* 1a. The named student doesn't exist
     * 1a1. TutorPro returns an error message.
 
       Use case resumes at 1.
@@ -760,8 +760,8 @@ Priorities:
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Commands should be easy to remember(close to English words) and not cryptic for non-tech users to remember.
-5.  Commands should not be verbose.
-6.  Results should be easy to read for non-tech users (e.g. should not look like long, cluttered log files).
+5.  Commands shouldn't be verbose.
+6.  Results should be easy to read for non-tech users (e.g. shouldn't look like long, cluttered log files).
 
 *{More to be added}*
 

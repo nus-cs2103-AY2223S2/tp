@@ -4,28 +4,14 @@
 box Ui UI_COLOR_T1
 participant ":StudentLisCard" as StudentListCard UI_COLOR
 participant ":MainWindow" as MainWindow UI_COLOR
-participant ":HeaderBar" as HeaderBar UI_COLOR
 participant ":DetailedInfoSection" as DetailedInfoSection UI_COLOR
 participant ":FilledHomeworkContent" as FilledHomeworkContent UI_COLOR
 participant ":EmptyHomeworkContent" as EmptyHomeworkContent UI_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Student" as Student MODEL_COLOR
-participant ":Name" as Name MODEL_COLOR
-end box
 
 [-> StudentListCard : handleViewHomeworkButtonClick()
 activate StudentListCard
-
-StudentListCard -> Student : getFullName()
-activate Student
-
-Student --> Name : getFirstName()
-activate Name
-return firstName
-
-return firstName
 
 StudentListCard -> MainWindow : setDetailedHeaderBar(firstName)
 activate MainWindow
@@ -35,13 +21,6 @@ activate DetailedInfoSection
 
 DetailedInfoSection -> DetailedInfoSection : setHeaderBar(firstName)
 activate DetailedInfoSection
-
-create HeaderBar
-DetailedInfoSection -> HeaderBar
-activate HeaderBar
-
-HeaderBar --> DetailedInfoSection
-deactivate HeaderBar
 
 DetailedInfoSection --> DetailedInfoSection
 deactivate DetailedInfoSection
@@ -56,44 +35,14 @@ alt student has homework
     create FilledHomeworkContent
     StudentListCard -> FilledHomeworkContent : new FilledHomeworkContent(student)
     activate FilledHomeworkContent
-
-    FilledHomeworkContent -> Student : getName()
-    activate Student
-
-    Student --> Name : getFirstName()
-    activate Name
-    return firstName
-
-    return firstName
-
-    FilledHomeworkContent -> Student : getHomeworkPieChatData()
-    activate Student
-    return homeworkPieChatData
-
-    FilledHomeworkContent -> Student : getHomeworkList()
-    activate Student
-    return homeworkList
-
-    FilledHomeworkContent --> StudentListCard
-    deactivate FilledHomeworkContent
+    return FilledHomeworkContent
 
 else student has no homework
     create EmptyHomeworkContent
     StudentListCard -> EmptyHomeworkContent : new EmptyHomeworkContent(student)
     activate EmptyHomeworkContent
 
-    EmptyHomeworkContent -> Student : getName()
-    activate Student
-
-    Student --> Name : getFirstName()
-    activate Name
-    return firstName
-
-    return firstName
-
-    EmptyHomeworkContent --> StudentListCard
-    deactivate EmptyHomeworkContent
-
+    return EmptyHomeworkContent
 end
 
 StudentListCard -> MainWindow : setDetailedContent()
