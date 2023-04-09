@@ -116,7 +116,7 @@ Let's get you _rizzed_ up in the fastest way possible!
 </div> 
 
 <div markdown="block" class="alert alert-success">
-:bulb: Tip:
+:bulb: **Tip**:
 
 * For increased readability, we have included an optional multi-line command format for commands
   that may require multiple inputs (add, edit). After each input,
@@ -297,7 +297,8 @@ Format:
 
 <div markdown="span" class="alert alert-warning">
 
-:computer: **Keyboard shortcut**:
+:computer: **Keyboard shortcut**:<br>
+
 As an alternate means to typing the full command, we provide a popup form to edit a recipe!
 While the recipe to that you want to edit is being selected, simply type <kbd>f</kbd> to display the popup form for that particular recipe!
 
@@ -365,7 +366,7 @@ Example(s) of usage:
 
 <div markdown="span" class="alert alert-warning">
 
-:computer: **Keyboard shortcut**:
+:computer: **Keyboard shortcut**:<br>
 While the recipe you want to delete is being selected, simply hit the <kbd>Delete</kbd> or 
 <kbd>Backspace</kbd> key and click on confirm to delete that particular recipe!
 
