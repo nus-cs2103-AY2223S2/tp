@@ -47,9 +47,9 @@ ensuring that the value to decrease by was not greater than the current `Quantit
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `inc` and `dec` [[PR#175]]
-        * Added table of contents and command summary [[PR#186]]
-        * Fixed UG issues from PE-D [[PR#280]]
+        * Added documentation for the features `inc` and `dec` [[PR#175]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/175)
+        * Added table of contents and command summary [[PR#186]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/186)
+        * Fixed UG issues from PE-D [[PR#280]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/280)
         * 
         * Finalised formatting issues and structure of UG
 
@@ -57,23 +57,36 @@ ensuring that the value to decrease by was not greater than the current `Quantit
         * Added documentation for non-functional requirements (NFR)
         * Added use case when user wants to view help
         * Added documentation for user stories
-        * Added implementation details and diagrams for features `inc` and `dec` [[PR#171]]
-        * Added documentation for manual testing [PR#297] 
+        * Added implementation details and diagrams for features `inc` and `dec` [[PR#171]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/171)
+        * Added documentation for manual testing [[PR#297]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/297)
         * Finalised formatting issues and structure of DG
 
 <br/>
 
 -   **Testing**:
 
-    -   Added tests for `IncreaseCommand` and `IncreaseCommandParser` [[PR#160]] [[PR#290]]
-    -   Added tests for `DecreaseCommand` and `DecreaseCommandParser` [[PR#290]]  
-    -   Edited tests for `Find` [[PR#278]]
+    -   Added tests for `IncreaseCommand` and `IncreaseCommandParser` [[PR#160]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/160) [[PR#290]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/290)
+    -   Added tests for `DecreaseCommand` and `DecreaseCommandParser` [[PR#290]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/290)
+    -   Edited tests for `Find` [[PR#278]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/278)
 
 <br/>
 
 * **Community**:
-    * PRs reviewed: [[PR#38]] [[PR#43]] [[PR#56]] [[PR#61]] [[PR#62]] [[PR#63]] [[PR#64]] [[PR#160]] [[PR#161]] [[PR#163]]
-      [[PR#164]] [[PR#166]] [[PR#168]] [[PR#171]] [[PR#172]] [[PR#174]] [[PR#180]] [[PR#188]] [[PR#279]] [[PR#282]] [[PR#283]]
-      [[PR#284]] [[PR#285]] [[PR#38]] [[PR#286]] [[PR#292]] [[PR#294]] [PR#295] [PR#296] [PR#298] [PR#301] [PR#302] [PR#303]
-      [PR#304]
+    * PRs reviewed: [[PR#38]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/38) [[PR#43]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/43)
+[[PR#56]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/56) [[PR#61]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/61)
+[[PR#62]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/62) [[PR#63]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/63)
+[[PR#64]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/64) [[PR#160]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/160)
+[[PR#161]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/161) [[PR#163]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/163)
+[[PR#164]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/164) [[PR#166]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/166)
+[[PR#168]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/168) [[PR#171]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/171)
+[[PR#172]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/172) [[PR#174]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/174)
+[[PR#180]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/180) [[PR#188]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/188) 
+[[PR#279]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/279) [[PR#282]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/282) 
+[[PR#283]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/283) [[PR#284]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/284)
+[[PR#285]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/285) [[PR#286]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/286)
+[[PR#292]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/292) [[PR#294]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/294)
+[[PR#295]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/295) [[PR#296]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/296)
+[[PR#298]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/298) [[PR#301]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/301)
+[[PR#302]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/302) [[PR#303]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/303) 
+[[PR#304]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/304)
 

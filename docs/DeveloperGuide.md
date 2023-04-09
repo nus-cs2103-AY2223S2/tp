@@ -2,10 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-## DEVELOPER GUIDE FOR WIFE
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Introduction
 
 WIFE is a food inventory management system that aims to aid busy users in managing food items in their fridge. With its
@@ -17,6 +13,7 @@ architecture, design choices as well outlines for all features of the software. 
 license, making it open source and available for anyone to use and modify.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -93,6 +90,7 @@ license, making it open source and available for anyone to use and modify.
     - [Exit](#test-to-exit)
   - [Glossary](#glossary)
 
+--------------------------------------------------------------------------------------------------------------------
 ## Acknowledgements
 
 WIFE is a brownfield software project developed at the School of Computing at National University of Singapore.
@@ -111,7 +109,6 @@ Documentation dependencies:
 -   [PlantUML](https://plantuml.com/) for UML diagrams
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -721,8 +718,7 @@ Step 2. The `LogicManager` executes the `HelpCommand` object which generates a `
 
 Step 3. MainWindow#executeCommand() extracts the help message from the `CommandResult` and sends it to `HelpWindow` as the text to be set in the FXML `label`.
 
----
-
+--------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 Here are links to other documentation that you might find useful when developing WIFE:
@@ -733,7 +729,7 @@ Here are links to other documentation that you might find useful when developing
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
----
+--------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
 
 #### User Interface
@@ -744,6 +740,7 @@ It has been recognized that some users prefer to utilize specific unit represent
 such as using 1L or 2L to indicate the volume of milk. To accommodate this, future iterations of the system will 
 incorporate alphanumeric representations of `Unit`, enabling users to include such unit specifications.
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
 
 ### Product scope

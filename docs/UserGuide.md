@@ -2,9 +2,6 @@
 layout: page
 title: User Guide
 ---
-USER GUIDE FOR WIFE
----
-
 ## Introduction 
 
 Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage their
