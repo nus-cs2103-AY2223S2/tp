@@ -1,11 +1,13 @@
 @startuml
 !include style.puml
 
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" LOGIC_COLOR
 participant ":TrackerParser" LOGIC_COLOR
 participant ":DeleteCommandParser" LOGIC_COLOR
 participant "MultipleEventsParser" LOGIC_COLOR
 participant ":DeleteMultipleModulesCommand" LOGIC_COLOR
+end box
 
 -> ":LogicManager": execute("delete\nCS2103, CS2040S")
 activate ":LogicManager"
