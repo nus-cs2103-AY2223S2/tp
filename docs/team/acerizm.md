@@ -31,9 +31,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * To be added soon
+        * Added documentation for filter command
+        * Added documentation for Login feature
     * Developer Guide:
-        * To be added soon
+        * Added further documentation for Ui Class Diagram, Model Class Diagram and Storage Class Diagram
+        * Added documentation for filter command 
 
 * **Contributions to team-based tasks**:
     * Created the [MODCheck repo](https://github.com/AY2223S2-CS2103-F10-3/tp)
