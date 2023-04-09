@@ -5,14 +5,20 @@ title: User Guide
 
 <img src="images/advisio.png" width="150px">
 
-
 ## What is Advis.io?
 
-As a financial advisor, you know that managing your clients and their policies can be time-consuming and overwhelming. But what if there was a solution that made it easier for you to keep track of your clients' needs and provide the best possible service?
+As a financial advisor, you know that managing your clients and their policies can be time-consuming and overwhelming.
+But what if there was a solution that made it easier for you to keep track of your clients' needs and provide the best
+possible service?
 
-That's where Advis.io (AIO) comes in. AIO is an all-in-one solution designed to help you manage your clients more efficiently and effectively than ever before. With AIO, you'll be able to keep track of your clients' policies and appointment dates, giving you more time to focus on what you do best - providing expert financial advice.
+That's where Advis.io (AIO) comes in. AIO is an all-in-one solution designed to help you manage your clients more
+efficiently and effectively than ever before. With AIO, you'll be able to keep track of your clients' policies and
+appointment dates, giving you more time to focus on what you do best - providing expert financial advice.
 
-Whether you're a seasoned financial advisor or just starting out, AIO is the tool you need to stay organized, increase productivity, and take your business to the next level. With an intuitive command line interface and a user-friendly graphical interface, AIO is the perfect solution for anyone looking to streamline their workflow and build a larger, more satisfied client base.
+Whether you're a seasoned financial advisor or just starting out, AIO is the tool you need to stay organized, increase
+productivity, and take your business to the next level. With an intuitive command line interface and a user-friendly
+graphical interface, AIO is the perfect solution for anyone looking to streamline their workflow and build a larger,
+more satisfied client base.
 
 So why wait? Try AIO today and see how it can transform your business! :credit_card:
 
@@ -55,19 +61,22 @@ By students, for advisors
 * [**Command Summary**](#command-summary)
 
 ---
+
 ## How to Get Started
 
 #### 1. Ensure you have Java `11` or above installed in your Computer.
+
 * To check if you have Java `11` installed, follow these steps
 * `java -version` <br>
 * You should have the following output:
-![Java-version](images/java-version.png)
+  ![Java-version](images/java-version.png)
 
 #### 2. Download the latest `advisio.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-4/tp/releases).
 
 #### 3. Copy the file to the folder you want to use as the _home folder_ for Advisio.
 
 #### 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the command to run the application. <br>
+
 * To open up the command terminal, follow these steps
 * **Mac**: `Cmd + space` to open up spotlight, now search terminal and press `Enter`.
 * **Windows**: `Windows + R` top open 'Run' box. Type `cmd` and then click 'ok'.
@@ -143,7 +152,6 @@ Some example commands you can try:
 <br>
 
 ---
-
 
 ## General Management
 
@@ -246,7 +254,8 @@ To add a policy to the client, please refer to <a href="#policy-management">Poli
 
 ### Selecting a client: `select`
 
-To select a particular client from your clientele to display on your client dashboard, as well as their corresponding policies on your policy dashboard.
+To select a particular client from your clientele to display on your client dashboard, as well as their corresponding
+policies on your policy dashboard.
 
 Format: `select INDEX`
 
@@ -286,7 +295,6 @@ If you accidentally edited a client's information, you can use the <code>undo</c
 <b>Note:</b>
 To edit a policy, please refer to <a href="#policy-management">Policy Management</a>
 </div>
-
 
 ### Filtering clients by name: `find`
 
@@ -417,7 +425,7 @@ Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
 
 * The Policy Frequency should be one of the following: `weekly`, `monthly`,`yearly`
 
-Examples: `addPolicy 1 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
+Examples: `addPolicy 2 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
 You will then be able to view the policies on the right side under 'Policies'
 

@@ -20,11 +20,11 @@ public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteApt";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes an appointment to the client identified "
-            + "by the index number used in the displayed client list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " "
-            + "1 ";
+        + ": Deletes an appointment to the client identified "
+        + "by the index number used in the displayed client list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " "
+        + "1 ";
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment";
     private final Index index;
@@ -50,10 +50,10 @@ public class DeleteAppointmentCommand extends Command {
         assert index.getOneBased() > 0;
         Client clientToDeleteAppointment = lastShownList.get(index.getZeroBased());
         Client editedClient = new Client(clientToDeleteAppointment.getName(), clientToDeleteAppointment.getPhone(),
-                clientToDeleteAppointment.getEmail(), clientToDeleteAppointment.getAddress(),
-                clientToDeleteAppointment.getPolicyList(),
-                new Appointment(new AppointmentName(), new MeetupDate()));
-        Client deleteAppointmentClient = editedClient.cloneClient();
+            clientToDeleteAppointment.getEmail(), clientToDeleteAppointment.getAddress(),
+            clientToDeleteAppointment.getPolicyList(),
+            new Appointment(new AppointmentName(), new MeetupDate()));
+
         model.setClient(clientToDeleteAppointment, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 

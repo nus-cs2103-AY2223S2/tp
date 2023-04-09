@@ -3,9 +3,9 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are team Advis.io based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0725448@comp.nus.edu.sg`
 
 ## Project team
 
@@ -16,8 +16,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/tituswe)]
 [[portfolio](team/tituswe.md)]
 
+* Role: Developer (Co-Team Lead)
+* Responsibilities: Front-end, UI. In charge of `select` command. Assigns GitHub issues, took charge of handling
+  milestones and managed merged requests.
+
+### Pang Rui Wei
+
+<img src="images/pangrwa.png" width="200px">
+
+[[github](https://github.com/pangrwa)]
+[[portfolio](team/pangrwa.md)]
+
 * Role: Developer (Co-team lead)
-* Responsibilities: Front-end, UI. In charge of `select` command. Assigns gitHub issues, took charge of handling milestones and managed merged requests.
+* Responsibilities: Back-end, storage. In charge of `deletePolicy`, `editPolicy`, `addApt`, `deleteApt` commands. In
+  charge of User Guide and Developer Guide. Handles GitHub releases and managed merged requests.
 
 ### Ang Yuze
 
@@ -28,16 +40,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: In charge of `Policy` class.
-
-### Pang Rui Wei
-
-<img src="images/pangrwa.png" width="200px">
-
-[[github](https://github.com/pangrwa)]
-[[portfolio](team/pangrwa.md)]
-
-* Role: Developer (Co-team lead)
-* Responsibilities: Back-end, storage. In charge of `deletePolicy`, `editPolicy`, `addApt`, `deleteApt` commands. In charge of User Guide and Developer Guide. Handles gitHub releases and managed merged requests.
 
 ### Lu Chenyu
 

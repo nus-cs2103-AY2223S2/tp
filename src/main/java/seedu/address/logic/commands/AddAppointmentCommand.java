@@ -21,16 +21,16 @@ public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "addApt";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an appointment to the client identified "
-            + "by the index number used in the displayed client list. "
-            + "Existing appointment will be overwritten.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_APPOINTMENT_NAME + "APPOINTMENT_NAME "
-            + PREFIX_APPOINTMENT_DATE + "MEETUP_DATE " + "\n"
-            + "Example: " + COMMAND_WORD + " "
-            + "1 "
-            + PREFIX_APPOINTMENT_NAME + "Travel insurance discussion "
-            + PREFIX_APPOINTMENT_DATE + "01.01.2026 ";
+        + ": Adds an appointment to the client identified "
+        + "by the index number used in the displayed client list. "
+        + "Existing appointment will be overwritten.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + PREFIX_APPOINTMENT_NAME + "APPOINTMENT_NAME "
+        + PREFIX_APPOINTMENT_DATE + "MEETUP_DATE " + "\n"
+        + "Example: " + COMMAND_WORD + " "
+        + "1 "
+        + PREFIX_APPOINTMENT_NAME + "Travel insurance discussion "
+        + PREFIX_APPOINTMENT_DATE + "01.01.2026 ";
 
     private final Index index;
     private final Appointment appointment;
@@ -55,13 +55,13 @@ public class AddAppointmentCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
-        Client clientToAddAppointment = lastShownList.get(index.getZeroBased());
 
+        Client clientToAddAppointment = lastShownList.get(index.getZeroBased());
         Client editedClient = new Client(clientToAddAppointment.getName(), clientToAddAppointment.getPhone(),
-                clientToAddAppointment.getEmail(), clientToAddAppointment.getAddress(),
-                clientToAddAppointment.getPolicyList(),
-                appointment);
-        Client addedAppointmentClient = editedClient.cloneClient();
+            clientToAddAppointment.getEmail(), clientToAddAppointment.getAddress(),
+            clientToAddAppointment.getPolicyList(),
+            appointment);
+
         model.setClient(clientToAddAppointment, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 
@@ -75,7 +75,7 @@ public class AddAppointmentCommand extends Command {
      */
     private String generateSuccessMessage(Client client) {
         return String.format("Added Appointment: %1$s to Client: %2$s", appointment.getAppointmentName(),
-                client);
+            client);
     }
 
     @Override
@@ -90,6 +90,6 @@ public class AddAppointmentCommand extends Command {
 
         AddAppointmentCommand otherAppointment = (AddAppointmentCommand) other;
         return index.equals(otherAppointment.index)
-                && appointment.equals(otherAppointment.appointment);
+            && appointment.equals(otherAppointment.appointment);
     }
 }
