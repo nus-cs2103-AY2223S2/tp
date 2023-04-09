@@ -25,7 +25,6 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 
 <div style="page-break-after: always;"></div>
 
-
 <h2 id="table-of-contents">Table of Contents</h2>
 -------------------------------------
 - [Using This Guide](#using-this-guide)
@@ -57,7 +56,6 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 
 
 <div style="page-break-after: always;"></div>
-
 
 <h2 id="icons-used">Icons Used</h2>
 -------------------------------------
@@ -94,7 +92,6 @@ This section serves to introduce the icons used throughout this guide.
 
 
 <div style="page-break-after: always;"></div>
-
 
 <h2 id="gui">Graphical User Interface</h2>
 -------------------------------
@@ -178,7 +175,6 @@ Clicking on any calendar date box that has events will display those events in t
 
 <div style="page-break-after: always;"></div>
 
-
 <h2 id="summary">Summary</h2>
 -------------------------------
 <h3 id="prefix-summary">Prefix Summary</h3>
@@ -194,6 +190,7 @@ Clicking on any calendar date box that has events will display those events in t
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>
 <h3 id="command-summary">Command Summary</h3>
 
 | Action | Command Format                                               |
@@ -213,7 +210,6 @@ Clicking on any calendar date box that has events will display those events in t
 
 
 <div style="page-break-after: always;"></div>
-
 
 <h2 id="commands">Commands</h2>
 -------------------------------
@@ -247,6 +243,7 @@ The `Events List Panel` and `Calendar` will both be updated to include the new e
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>
 <h3 id="recur">Repeat an Existing Event</h3>
 
 Format: `recur <index> d/<end date> every/<recur factor>`   
@@ -269,6 +266,7 @@ Recurring of events not existing in scheduler is not allowed.
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>
 <h3 id="edit">Edit an Event</h3>
 
 Format: `edit <index> n/<event> d/<date> s/<start time> e/<end time>`  
@@ -298,6 +296,7 @@ Any changes made to the event will be reflected in both the `Events List Panel` 
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>
 <h3 id="delete">Delete Events</h3>
 
 Format: `delete <index>` or `delete <index index ... index>`  
@@ -321,6 +320,7 @@ Deleting the event will cause it to be removed from both the `Events List Panel`
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>
 <h3 id="find">Locate Events</h3>
 
 Format:`find n/<name> d/<date>`  
@@ -363,6 +363,7 @@ Parameter:
 [[Back to top](#table-of-contents)]
 
 
+<div style="page-break-after: always;"></div>
 <h3 id="undo">Undo Previous Command</h3>
 
 Format: `undo`  
