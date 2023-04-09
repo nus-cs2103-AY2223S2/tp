@@ -48,7 +48,14 @@ deactivate AddressBookParser
 LogicManager -> SortByClientNameCommand : execute()
 activate SortByClientNameCommand
 
-SortByClientNameCommand -> Model : sortByClientName (1)
+
+SortByClientNameCommand --> Model : getFilteredClientList()
+activate Model
+
+Model --> SortByClientNameCommand
+deactivate Model
+
+SortByClientNameCommand --> Model : sort(List<Client>)
 activate Model
 
 Model --> SortByClientNameCommand

@@ -14,7 +14,7 @@ That's where Advis.io (AIO) comes in. AIO is an all-in-one solution designed to 
 
 Whether you're a seasoned financial advisor or just starting out, AIO is the tool you need to stay organized, increase productivity, and take your business to the next level. With an intuitive command line interface and a user-friendly graphical interface, AIO is the perfect solution for anyone looking to streamline their workflow and build a larger, more satisfied client base.
 
-So why wait? Try AIO today and see how it can transform your business!
+So why wait? Try AIO today and see how it can transform your business! :credit_card:
 
 ---
 <img src="images/advisio.png" width="15px">**Advis.io**<br>
@@ -24,9 +24,9 @@ By students, for advisors
 
 ## Table of Contents
 
-* [How to Get Started](#how-to-get-started)
-    * [Features](#features)
-        * [General Management](#general-management)
+* [**How to Get Started**](#how-to-get-started)
+    * [**Features**](#features)
+        * [**General Management**](#general-management)
             * Viewing help : `help`
             * Undo previous operation : `undo`
             * Redo previous operation : `redo`
@@ -34,7 +34,7 @@ By students, for advisors
             * Exiting the program : `exit`
             * Saving the data
             * Editing the data file
-        * [Client Management](#client-management)
+        * [**Client Management**](#client-management)
             * Adding a client: `add`
             * Selecting a client: `select`
             * Listing all clients : `list`
@@ -44,15 +44,15 @@ By students, for advisors
             * Sorting Clients by Email address : `sortClientEmail`
             * Sorting Clients by Name : `sortClientName`
             * Sorting Clients by Phone Number : `sortClientPhone`
-        * [Policy Management](#policy-management)
+        * [**Policy Management**](#policy-management)
             * Adding a policy: `addPolicy`
             * Editing a policy : `editPolicy`
             * Deleting a policy : `deletePolicy`
-        * [Appointment Management](#appointment-management)
+        * [**Appointment Management**](#appointment-management)
             * Adding an appointment: `addApt`
             * Deleting an appointment: `deleteApt`
-* #### [FAQ](#faq)
-* #### [Command Summary](#command-summary)
+* [**FAQ**](#faq)
+* [**Command Summary**](#command-summary)
 
 ---
 ## How to Get Started

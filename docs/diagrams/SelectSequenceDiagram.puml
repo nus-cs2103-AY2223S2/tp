@@ -48,10 +48,13 @@ deactivate AddressBookParser
 LogicManager -> SelectCommand : execute()
 activate SelectCommand
 
-SelectCommand -> Model : selectPerson(1)
+SelectCommand -> Model : getFilteredClientList()
 activate Model
-
 Model --> SelectCommand
+
+SelectCommand -> Model : getSelectedClientIndex(Index)
+Model --> SelectCommand
+
 deactivate Model
 
 create CommandResult
