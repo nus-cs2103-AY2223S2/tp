@@ -72,7 +72,8 @@ Whether you are an experienced developer looking to expand your skillset or a ne
 
 ## Acknowledgements
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- Forked from: [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp)
+- Libraries utilised: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5/)
 
 ---
 
