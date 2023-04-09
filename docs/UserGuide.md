@@ -755,6 +755,8 @@ information to follow. Example includes ```a/``` as prefix for the ```VENUE``` a
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## <a id="faq"></a>FAQ 
 
 **Q**: How do I transfer my data to another computer? <br>
