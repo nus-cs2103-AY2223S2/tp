@@ -42,13 +42,11 @@ This Developer Guide provides in-depth documentation on how MyLib is designed an
 
 You can use this guide to maintain and evolve MyLib.
 
-This Developer Guide is accurate as of 30 March 2023.
-
 <div style="page-break-after: always;"></div>
 
 ## **Design**
 
-This section gives you a high-level overview of how the application is structured and what the key components of FoodRem are.
+This section gives you a high-level overview of how the application is structured and what the key components of MyLib are.
 
 
 <div markdown="span" class="alert alert-primary">
@@ -904,8 +902,8 @@ Currently there is a discrepancy where `edit 0` with missing prefix causes an er
 while `edit` with any positive index and missing prefix causes an error message of at least 1 field must be present.
 
 **Potential Enhancement and Suggested Implementation:**
-It would be great to streamline this error message by perhaps having a separate error message of "index cannot be <= 0"
-for index <=0 since the bookmarklist index starts from 1. And keep the current error message for indexes > 0
+It would be great to streamline this error message by perhaps having a separate error message of "index cannot be less 
+than 1 0" since the bookmarklist index starts from 1. And keep the current error message for indexes more than 0
 
-In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be <= 0" when 
+In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be less than 1" when 
 ParseException is thrown.
