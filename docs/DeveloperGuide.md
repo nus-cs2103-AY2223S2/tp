@@ -88,7 +88,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+Here's a (partial) class diagram of the `UI` component:
+
+<img src="images/UiClassDiagram.png" width="800" />
 
 `UI` consists of a `MainScreen` that is made up of `TaskListPanel`,`TaskDetailPanel`,`CommandInput`,`CommandResultPanel`,`HelpManualPanel` and `WelcomePanel`.
 
@@ -123,7 +125,7 @@ The **API** of this component is specified in [`Logic.java`](https://github.com/
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="600" />
+<img src="images/LogicClassDiagram.png" width="800" />
 
 **How the `Logic` component works:**
 
