@@ -32,8 +32,8 @@ Given below are my contributions to the project.
       [[PR#168]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/168)
 
 * **Documentation**:
-    * User Guide:
-        * Added table of contents that displayed and linked to each individual sections and header 
+    * User Guide: 
+        * Proof-read, added table of contents that displayed and linked to each individual sections and header 
           [[#PR284]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/284)
         * Added Ui screenshots for multiple commands, layout.
           [[#PR#291]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/291)
