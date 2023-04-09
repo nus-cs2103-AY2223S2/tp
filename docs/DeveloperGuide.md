@@ -21,10 +21,21 @@ This developer guide aims to detail the architecture and software design decisio
 developers, designers, and software testers of RIZZipe. As RIZZipe is built on Java 8 and JavaFX 11, some 
 technical knowledge of Java and JavaFX is recommended when reading this developer guide. 
 
+You may peruse the libraries we used, and their documentation, at these links:
+* **[Java 8](https://docs.oracle.com/javase/8/docs/)** - Java Language
+* **[JavaFX 11](https://openjfx.io/openjfx-docs/)** - Framework for developing Graphical User Interfaces (GUI) in Java
+* **[Jackson](https://github.com/FasterXML/jackson-docs)** - Library to provide serialization and deserialization of data from JavaScript Object Notation (JSON) format files
+* **[JUnit 5](https://junit.org/junit5/docs/current/user-guide/)** - Library for adding unit tests for new features to validate their behavior against a set of developer-defined behaviors
+
 ### Who this is for
 
 This guide is intended for software developers who wish to work on ***RIZZ***ipe, be it to add new features or to patch
 existing bugs. The source code may be found **[here](https://github.com/AY2223S2-CS2103T-T13-2/tp)**.
+
+Developers are free to propose changes under any of the following categories, provided the justification is stated within your Pull Request **description**:
+- Bug Fixes
+- New Features
+- Adding of new Libraries/Dependencies as well as new Features
 
 <div markdown="block" class="alert alert-success">
 
