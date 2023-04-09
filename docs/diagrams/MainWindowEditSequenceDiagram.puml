@@ -51,6 +51,7 @@ deactivate editParser
 
 parser -> logic : command
 deactivate parser
+destroy editParser
 
 logic -> command : execute(model)
 activate command
@@ -64,6 +65,7 @@ deactivate command
 
 logic -> MainWindow : commandResult
 deactivate logic
+destroy command
 
 deactivate MainWindow
 

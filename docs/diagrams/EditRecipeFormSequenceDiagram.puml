@@ -5,10 +5,10 @@ Actor User as user ARCHI_USER_COLOR
 
 box Ui UI_COLOR_T1
 participant "cardPane:Hbox" as cardPane UI_COLOR_T3
+participant "editEvent:EditRecipeEvent" as editEvent UI_COLOR_T3
 participant "form:EditRecipeForm" as EditRecipeForm UI_COLOR_T3
 participant "window:Stage" as window UI_COLOR_T3
 participant ":TextInput" as TextInput UI_COLOR_T3
-participant "editEvent:EditRecipeEvent" as editEvent UI_COLOR_T3
 end box
 
 [-> cardPane : setOnKeyPressed(eventHandler)
