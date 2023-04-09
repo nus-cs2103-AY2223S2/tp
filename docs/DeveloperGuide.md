@@ -15,6 +15,12 @@ as its framework.
 
 <!-- -------------------------------------------------------------------------------------------------------------- -->
 
+------------------------------------------------------------------------------------------------------------------------
+## **Acknowledgements**
+
+No external sources or libraries were used.
+
+------------------------------------------------------------------------------------------------------------------------
  ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md) to start developing your own coNtactUS.
@@ -245,95 +251,7 @@ Below is an example usage scenario of the reminder feature:
 **Step 3:** The user can now close the alert and continue using the application.
 
 
-<!-- ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedModuleTracker`. It extends `ModuleTracker` with an
-undo/redo history, stored internally as an `moduleTrackerStateList` and `currentStatePointer`. Additionally, it
-implements the following operations:
-
-* `VersionedModuleTracker#commit()` — Saves the current module tracker state in its history.
-* `VersionedModuleTracker#undo()` — Restores the previous module tracker state from its history.
-* `VersionedModuleTracker#redo()` — Restores a previously undone module tracker state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitModuleTracker()`, `Model#undoModuleTracker()`
-and `Model#redoModuleTracker()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedModuleTracker` will be initialized with the
-initial module tracker state, and the `currentStatePointer` pointing to that single module tracker state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th module in the module tracker. The `delete` command calls
-`Model#commitModuleTracker()`, causing the modified state of the module tracker after the `delete 5` command executes to
-be saved in the `moduleTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted module tracker
-state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new module. The `add` command also calls
-`Model#commitModuleTracker()`, causing another modified module tracker state to be saved into the
-`moduleTrackerStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will
-not call `Model#commitModuleTracker()`, so the module tracker state will not be saved into the `moduleTrackerStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the
-`undo` command. The `undo` command will call `Model#undoModuleTracker()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous module tracker state, and restores the module tracker to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0,
-pointing to the initial ModuleTracker state, then there are no previous ModuleTracker states to restore. The `undo`
-command uses `Model#canUndoModuleTracker()` to check if this is the case. If so, it will return an error to the user
-rather than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end
-at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoModuleTracker()`, which shifts the
-`currentStatePointer` once to the right, pointing to the previously undone state, and restores the module tracker
-to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index
-`ModuleTrackerStateList.size() - 1`, pointing to the latest module tracker state, then there are no undone ModuleTracker
-states to restore. The `redo` command uses `Model#canRedoModuleTracker()` to check if this is the case. If so, it will
-return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the module tracker, such as
-`list`, will usually not call `Model#commitModuleTracker()`, `Model#undoModuleTracker()` or `Model#redoModuleTracker()`.
-Thus, the `moduleTrackerStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitModuleTracker()`. Since the `currentStatePointer` is not
-pointing at the end of the `moduleTrackerStateList`, all module tracker states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
-desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" /> -->
 
 #### Design considerations:
 
@@ -350,9 +268,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Planned Enhancements
 
-_{Explain here how the data archiving feature will be implemented}_
+1. Reminder function.
+2. More checks to teacher, remarks and one more i forgot.
 
 
 
@@ -631,7 +550,7 @@ be able to accomplish most of the tasks faster using commands than using the mou
 * **Name**: Name of a module
 * **Remark**: Additional information regarding a certain module
 * **Resource**: External website or links for a module
-* **Tag**: The type of the module (Lecture, Tutorial, Lab, etc.)
+* **Description**: The type of the module (Lecture, Tutorial, Lab, etc.)
 * **Teacher**: The name of the teacher conducting the module
 * **TimeSlot**: The time of the class of a module
 * **XYZCommand**:
@@ -741,14 +660,14 @@ Timestamp in the status bar is updated.
    <br>
 
 2. Test case: `find tutorial`
-Expected: Module(s) with the tag `tutorial` Details of the found tutorial(s) are shown in the list. <br>
+Expected: Module(s) with the description `tutorial` Details of the found tutorial(s) are shown in the list. <br>
 
 3. Test case: `find tutorial lab` <br>
 Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in
 the list. <br>
    
 4. Test case: `find CS` <br>
-Expected: Module(s) with the name or tag `CS` is (are) found. Details of the found module(s) are shown in the list.
+Expected: Module(s) with the name or description `CS` is (are) found. Details of the found module(s) are shown in the list.
 <br>
 
 5. Test case: `find` <br>
@@ -779,4 +698,33 @@ Expected: The modules will not be sorted.
     1. If the data file is _missing_, coNtactUS will create a new data file, with sample data.
     2. Similar outcome for _corrupted_ data files.
 
+------------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Effort
+
+### **Overall Difficulty level: 7 / 10**
+
+### **Overall effort required: 8 / 10**
+
+#### Challenges faced:
+
+1. Refactoring the models of `AB3` to fit the functional requirements of `coNtactUS` (Difficulty: 6 / 10, Effort
+required: 9 / 10)
+   * Bla bla 
+
+2. Implementation of `add`, `edit`, `delete` command for `Module`. (Difficulty: 6 / 10, Effort required: 9 / 10)
+   * Bla bla
+
+3. Enhancements of `find` command. (Difficulty: 7 / 10, Effort required: 7 / 10)
+   * Bla bla
+
+4. Enhancement of `timeslot` and `deadline` attributes from `String` to `DateTime` format. (Difficulty: 8 / 10,
+Effort required: 8 / 10)
+   * Bla bla
+
+5. Addition of `sort` command. (Difficulty: 9 / 10, Effort required: 8 / 10)
+   * Bla bla
+
+6. Addition of a Reminder window (Difficulty: 7 / 10, Effort required: 7 / 10)
+   * Bla bla
 
