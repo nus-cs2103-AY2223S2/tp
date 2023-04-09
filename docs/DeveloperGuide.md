@@ -351,7 +351,7 @@ The following sequence diagram shows an example of how the filter feature runs w
 
 #### Copy: Current implementation
 
-The copy feature is implemented by extracting information of the specified `Person` and then setting it as the content of the user's system's clipboard. The copy mechanism is facilitated by `CopyCommand` which extends `Command`. 
+The copy feature is facilitated by `CopyCommand` which extends `Command`. It is implemented by extracting information of the specified `Person` and then copied into the user's clipboard. The clipboard is first accessed by making use of the Java Abstract Window Toolkit (AWT), followed by setting the extracted information as the contents of the clipboard by invoking the `Clipboard#setContents()` method.
 
 Since the information of a `Person` is required, the `Model#getFilteredPersonList()` operation is invoked to retrieve the specified `Person` and the information is extracted and copied into the user's system's clipboard.
 
