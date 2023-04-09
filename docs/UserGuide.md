@@ -204,9 +204,12 @@ Format: `remind`
 
 ![remind](images/UG/remind_new.png)
 
+<div markdown="block" class="alert alert-block alert-success">
+
 :bulb: **Note:**
 The pets highlighted in bright orange are reminders that are due within a day!<br>
 
+</div>
 
 
 
@@ -234,9 +237,12 @@ Other examples:
 * `find Max` returns `max` and `Max Leo`
 * `find Super Wolf` returns `Super Wolf`, `Super Dog`, `Wolf Hunter`<br>
 
+<div markdown="block" class="alert alert-block alert-success">
+
 :bulb: **Note:**<br>
 `find` command returns a new list. Any commands performed after `find` is based on the new list. You can use the `list` command to return to the original list.
 
+</div>
 <div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
