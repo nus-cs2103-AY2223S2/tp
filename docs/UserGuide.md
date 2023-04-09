@@ -354,13 +354,13 @@ and [Commands](#6-commands).
 
 ---
 
-Here is a checklist you can use before running a command:
+Here are some pointers to look out for before running a command:
 
-* [ ] I know the restrictions of the command
-* [ ] I know what parameters are supplied to the command
-* [ ] I know the flags for each parameter to be supplied
-* [ ] I know the restrictions of each parameter
-* [ ] I know the effects of not specifying each optional flag.
+* I know the restrictions of the command
+* I know what parameters are supplied to the command
+* I know the flags for each parameter to be supplied
+* I know the restrictions of each parameter
+* I know the effects of not specifying each optional flag.
 
 [Back to Table of Contents](#table-of-contents)
 
