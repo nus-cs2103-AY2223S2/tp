@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.function.Executable;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.GroupName;
