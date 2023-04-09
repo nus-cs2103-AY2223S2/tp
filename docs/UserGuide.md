@@ -334,7 +334,7 @@ have a default value based on the commands. These are documented in the [Command
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 The <a href="#placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
-the format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
+for the format of Phone, only numeric characters can be used and there is a mimimal length of at least 3 numbers to be provided. 
 </div>
 
 **Let's try an example!**
