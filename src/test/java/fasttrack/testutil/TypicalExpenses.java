@@ -15,7 +15,6 @@ import fasttrack.model.ExpenseTracker;
 import fasttrack.model.expense.Expense;
 
 
-
 /**
  * A utility class containing a list of {@code Expense} objects to be used in tests.
  */
@@ -36,6 +35,7 @@ public class TypicalExpenses {
             new Expense("Fig", 1000, LocalDate.of(2023, 2, 15), MISCCAT);
     public static final Expense GRAPE =
             new Expense("Grape", 10, LocalDate.of(2023, 3, 17), MISCCAT);
+
 
 
     private TypicalExpenses() {} // prevents instantiation

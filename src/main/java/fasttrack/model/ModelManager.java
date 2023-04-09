@@ -120,7 +120,8 @@ public class ModelManager implements Model {
         return expenseTracker.equals(other.expenseTracker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredExpenses.equals(other.filteredExpenses)
-                && filteredCategories.equals(other.filteredCategories);
+                && filteredCategories.equals(other.filteredCategories)
+                && filteredRecurringExpense.equals(other.filteredRecurringExpense);
     }
 
     @Override

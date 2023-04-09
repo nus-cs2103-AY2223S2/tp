@@ -2,9 +2,12 @@ package fasttrack.logic.commands;
 
 import static fasttrack.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static fasttrack.logic.parser.CliSyntax.PREFIX_DATE;
+import static fasttrack.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static fasttrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static fasttrack.logic.parser.CliSyntax.PREFIX_PRICE;
+import static fasttrack.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static fasttrack.logic.parser.CliSyntax.PREFIX_SUMMARY;
+import static fasttrack.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 import static fasttrack.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -54,11 +57,28 @@ public class CommandTestUtil {
     public static final String VALID_DATE_FIG = "15/2/2023";
     public static final String VALID_DATE_GRAPE = "17/3/2023";
 
+
+    public static final String VALID_INTERVAL_DAY = " " + PREFIX_TIMESPAN + "day";
+    public static final String VALID_INTERVAL_WEEK = " " + PREFIX_TIMESPAN + "week";
+    public static final String VALID_INTERVAL_MONTH = " " + PREFIX_TIMESPAN + "month";
+    public static final String VALID_INTERVAL_YEAR = " " + PREFIX_TIMESPAN + "year";
+    public static final String INVALID_INTERVAL = " " + PREFIX_TIMESPAN + "biweekly";
+
+
+    public static final String VALID_START_DATE = " " + PREFIX_START_DATE + "1/3/2023";
+    public static final String VALID_END_DATE = " " + PREFIX_END_DATE + "2/3/2024";
+    public static final String INVALID_DATE = " " + PREFIX_START_DATE + "50/13/2023";
+    public static final String INVALID_START_DATE = " " + PREFIX_END_DATE + "1/3/2023";
+    public static final String INVALID_END_DATE = " " + PREFIX_START_DATE + "2/3/2024";
+
+
+
     public static final String DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String AMT_APPLE = " " + PREFIX_PRICE + VALID_PRICE_APPLE;
     public static final String DATE_APPLE = " " + PREFIX_DATE + VALID_DATE_APPLE;
     public static final String CAT_APPLE = " " + PREFIX_CATEGORY + VALID_CATEGORY_FOOD;
-    public  static final String SUM_APPLE = " " + PREFIX_SUMMARY + VALID_SUMMARY_FOOD;
+    public static final String SUM_APPLE = " " + PREFIX_SUMMARY + VALID_SUMMARY_FOOD;
+
 
     public static final String DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
     public static final String AMT_BANANA = " " + PREFIX_PRICE + VALID_PRICE_BANANA;

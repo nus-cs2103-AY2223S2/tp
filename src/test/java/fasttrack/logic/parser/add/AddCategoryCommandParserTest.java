@@ -7,7 +7,6 @@ import static fasttrack.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static fasttrack.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static fasttrack.testutil.TypicalCategories.FOOD;
 import static fasttrack.testutil.TypicalCategories.FOOD_NO_SUMMARY;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
