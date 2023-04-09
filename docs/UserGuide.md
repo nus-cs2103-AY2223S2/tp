@@ -2,10 +2,10 @@
 layout: page
 title: User Guide
 ---
-# 1. Table of contents:
+# Table of contents:
 
 
-1. [Introduction](#introduction)
+1. [Introduction](#1-introduction)
     1. [What is SudoHR?](#11-what-is-sudohr)
     1. [Features](#13-features)
 2. [Quick start](#2-quick-start)
@@ -24,7 +24,7 @@ title: User Guide
 ---
 
 
-# Introduction
+# 1. Introduction
 
 ## 1.1 What is SudoHR?
 
@@ -300,13 +300,13 @@ Examples:
 
 ### 4.1.4. Find employees by name: `find`
 
-Finds employees whose names contain any of the given keywords.
+Finds and displays employees whose name fields contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Search is applied only on the name field
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Employees matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -322,7 +322,7 @@ Examples:
 
 ### 4.1.5. Find employees by ID: `feid`
 
-Finds the employee who has the given ID.
+Finds and displays the employee with the given ID.
 
 Format: `feid eid/EMPLOYEE_ID`
 
