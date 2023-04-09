@@ -29,6 +29,7 @@ public class TaskBuilder {
     private Content content;
     private Status status;
     private Datetime deadline;
+
     private Datetime createTime;
     private List<Person> persons = new ArrayList<>();
 
