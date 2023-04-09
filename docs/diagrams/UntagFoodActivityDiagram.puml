@@ -1,0 +1,21 @@
+@startuml
+!pragma useVerticalIf on
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes untag command;
+if () then ([Invalid Format])
+    :Error: Invalid Command Format;
+    stop;
+([Index and TagName Provided]) elseif () then ([Invalid Index])
+    :Error: Invalid Index;
+    stop;
+([Valid Index]) elseif () then ([Nonexistent Tag Name])
+    :Error: Tag does not exist in WIFE;
+    stop;
+endif
+    :Untag command executes successfully
+and specified Tag is removed from food;
+stop
+
+@enduml

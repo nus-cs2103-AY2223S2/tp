@@ -5,7 +5,7 @@ title: Teo Yu Xiang Wesley's Project Portfolio Page
 
 ### Project: Well Informed Fridge Environment (WIFE)
 Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage their 
-items in the fridge. With this, one never has to worry about optimizing storage and organization of food items in their
+items in the fridge. With this, one never has to worry about optimizing storage and organisation of food items in their
 refrigerator!
 
 Given below are my contributions to the project.

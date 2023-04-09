@@ -10,38 +10,42 @@ refrigerator!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
-  * [Quick Start](#quick-start)
-  * [Trying out your first command](#trying-out-your-first-command)
-  * [Features](#features)
-    * [Food-related features](#food-related-features)
-      * [Add a food](#add-a-food-add)
-      * [List all food](#list-all-food-items-list)
-      * [Edit a food](#edit-a-food-edit)
-      * [Find a food](#find-a-food-find)
-      * [Increase the quantity of a food](#increasing-the-quantity-of-a-food-inc)
-      * [Decrease the quantity of a food](#decreasing-the-quantity-of-a-food-dec)
-      * [Delete a food](#delete-a-food-delete)
-      * [Sort food by expiry date](#checking-expiry-of-food-items--expiry)
-    * [Tag-related features](#tag-related-features)
-      * [Create a tag](#create-a-new-tag-createtag)
-      * [Tag a food](#tag-a-food-tag)
-      * [Untag a food](#untag-a-food-untag)
-      * [List all tags](#list-all-tags-listtag)
-      * [Listing all foods by their tags](#listing-all-foods-by-their-tags--listbytag)
-      * [Delete foods by their tags](#delete-foods-by-their-tags--delbytag)
-      * [Delete tags](#delete-tags--deltag)
-    * [General features](#general-features)
-      * [Getting Help](#getting-help-help)
-      * [Clearing WIFE](#clearing-wife--clear)
-      * [Exit the program](#exit-the-program--exit)
-  * [Saving the data](#saving-the-data)
-  * [Editing the data file](#editing-the-data-file)
-  * [FAQ](#faq)
-  * [Command Summary](#command-summary)
-    * [Food Commands](#food-commands)
-    * [Tag Commands](#tag-commands)
-    * [General Commands](#general-commands)
-  * [Glossary](#glossary)
+- [USER GUIDE FOR WIFE](#user-guide-for-wife)
+- [Table of Contents](#table-of-contents)
+- [Quick start](#quick-start)
+- [Trying out your first command!](#trying-out-your-first-command)
+- [Features](#features)
+- [Food-related Features](#food-related-features)
+  - [Add a food: `add`](#add-a-food-add)
+  - [List all food items: `list`](#list-all-food-items-list)
+  - [Edit a food: `edit`](#edit-a-food-edit)
+  - [Find a food: `find`](#find-a-food-find)
+  - [Increasing the quantity of a food: `inc`](#increasing-the-quantity-of-a-food-inc)
+  - [Decreasing the quantity of a food: `dec`](#decreasing-the-quantity-of-a-food-dec)
+  - [Delete a food: `delete`](#delete-a-food-delete)
+  - [Checking expiry of food items : `expiry`](#checking-expiry-of-food-items--expiry)
+  - [View full name of food item : `view`](#view-full-name-of-food-item--view)
+- [Tag-related Features](#tag-related-features)
+  - [Create a new tag: `createtag`](#create-a-new-tag-createtag)
+  - [Tag a food: `tag`](#tag-a-food-tag)
+  - [Untag a food: `untag`](#untag-a-food-untag)
+  - [List all tags: `listtag`](#list-all-tags-listtag)
+  - [Listing all foods by their tag(s) : `listbytag`](#listing-all-foods-by-their-tags--listbytag)
+  - [Delete foods by their tag(s) : `delbytag`](#delete-foods-by-their-tags--delbytag)
+  - [Delete tag(s) : `deltag`](#delete-tags--deltag)
+- [General Features](#general-features)
+  - [Getting help: `help`](#getting-help-help)
+      - [List of COMMAND\_NAME](#list-of-command_name)
+  - [Clearing WIFE : `clear`](#clearing-wife--clear)
+  - [Exit the program : `exit`](#exit-the-program--exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
+  - [Food Commands](#food-commands)
+  - [Tag Commands](#tag-commands)
+  - [General Commands](#general-commands)
+- [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -259,6 +263,20 @@ Examples:
 Food items are being sorted by their expiry dates.
 ```
 
+### View the full name of a food item : `view`
+
+Displays the full name of the food item. This is useful when the food item name is too long to be displayed in the
+food list.
+
+Format: `view INDEX`
+
+Examples:
+
+`view 1` returns
+```shell
+Viewed Food: Broccoli (expires on: 03-03-2033)
+```
+
 ## Tag-related Features
 
 ### Create a new tag: `createtag`
@@ -407,6 +425,7 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
   * add
   * list
   * edit
+  * view
   * find
   * inc
   * dec
@@ -495,6 +514,7 @@ There is no support for mobile devices yet.
 |---------------------|------------------------------------------|-------------------------------------------------------------|-------------------------------------------|
 | Add                 | Adds a food item to the food list        | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`                | `add n/Coca Cola u/Cans q/5 e/01-01-2099` |
 | List                | Lists all food items                     | `list`                                                      | `list`                                    |
+| View                | View a food item                         | `view INDEX`                                                | `view 1`                                  |
 | Edit                | Edits a food item                        | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]` | `edit 1 n/Cauliflower q/20`               |
 | Find                | Finds a food item                        | `find KEYWORD [KEYWORD]...`                                 | `find Broccoli`                           |
 | Increase            | Increases the quantity of a food item    | `inc INDEX [q/QUANTITY]`                                    | `inc 1 q/100`                             |
