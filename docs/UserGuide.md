@@ -189,6 +189,7 @@ e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unn
    - There is a whitespace before `/{argument_name}`
    - `/{argument_name}` is followed by a whitespace or it is the end of the command
 
+   <br/>
    <details>
    <summary>Example</summary>
    For the command <code>find Intro /mod CS2040S /byTag</code>, <code>/mod</code> and <code>/byTag</code> are both recognised as named arguments.
@@ -361,7 +362,7 @@ Navigates backwards to a higher context unless already at root context.
 
 #### List Modules
 
-> `list`
+> `list` List all modules in root context.
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
