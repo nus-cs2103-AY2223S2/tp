@@ -112,21 +112,28 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         currentSelection.setCurrentPage(PageType.STUDENT_PAGE);
-        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_STUDENTID_DESC, StudentId.MESSAGE_CONSTRAINTS); // invalid sid
+        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_NAME_DESC,
+                Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_PHONE_DESC,
+                Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_EMAIL_DESC,
+                Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_STUDENTID_DESC,
+                StudentId.MESSAGE_CONSTRAINTS); // invalid sid
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC,
+                Phone.MESSAGE_CONSTRAINTS);
 
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_STUDENTID_AMY
+        assertParseFailure(parser, STUDENT_COMMAND_PREFIX + "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                + VALID_STUDENTID_AMY
                 + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -267,8 +274,5 @@ public class EditCommandParserTest {
                 String.format(WRONG_PAGE_MESSAGE, "group"));
         assertParseFailure(parser, SESSION_COMMAND_PREFIX + "1 CS1101S",
                 String.format(WRONG_PAGE_MESSAGE, "session"));
-
-
-
     }
 }
