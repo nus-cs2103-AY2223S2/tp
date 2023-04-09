@@ -157,6 +157,12 @@ public class ModelManager implements Model {
         updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
     }
 
+    @Override
+    public boolean hasArchivePet(Pet p) {
+        requireNonNull(p);
+        return archiveStorage.hasPet(p);
+    }
+
     //=========== Filtered Pet List Accessors =============================================================
 
     /**

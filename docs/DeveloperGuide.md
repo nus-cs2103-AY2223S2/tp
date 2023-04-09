@@ -16,10 +16,9 @@ Use of PetPal can be scaled to include pet shelters, groomers or trainers.
 
 PetPal uses Java 11, and can be run on most operating systems that supports Java (e.g. Windows, macOS, Linux)
 
---------------------------------------------------------------------------------------------------------------------
+
 
 ## About the Developer Guide
-
 ### Objectives
 This guide is targeted towards potential developers that would want to contribute to the open-source project - PetPal.
 
@@ -28,50 +27,38 @@ the current and proposed features, detailing the design considerations and how i
 
 The Design section makes use of various UML diagrams which were created using [PlantUML](https://plantuml.com/)
 
-### Instructions for use
 
+<br>
+
+### Instructions for use
 #### General formatting conventions
-* Text in [blue](#How-to-use-the-user-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
+* Text in [blue](#about-the-developer-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
 * Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text.
 * Text in `code snippets such as this` are used to show inputs and their format.
 
-<div markdown="block" class="alert alert-block alert-info">
-
-* :white_check_mark: **Input Shortcut:**
-  Shortened forms of commands which can help increase your efficiency in using PetPal
-</div>
 
 <div markdown="block" class="alert alert-block alert-success">
 
 * :bulb: **Note:**
-  Information that might be useful to know to enhance your PetPal experience, might not be compulsory to know
+  Information that is useful to note.
 </div>
 
 <div markdown="block" class="alert alert-block alert-danger">
 
 * :heavy_exclamation_mark: **Caution:**
-  Important information to note which might negatively impact your experience in using PetPal as it might cause fatal
-  errors
-</div>
-
-<div markdown="block" class="alert alert-warning">
-
-* :information_source: **Information**
-
-Information that you need to know
-
+  Important information to note.
 </div>
 
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up**
+## **Setting up & Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-## **Getting started**
-After [setting up](#setting-up), double-click the jar file to launch PetPal.
+After setting up, double-click the jar file to launch PetPal.
+
 
 ### Getting Familiar With Your User Interface
 
@@ -301,7 +288,7 @@ The calculator feature is not an additional command, and does not have an activi
 #### Current Implementation
 The archive mechanism is facilitated by the `ArchiveCommand` class.
 The `ArchiveCommand#execute()` adds the provided `Pet` into an archive list and deletes the `Pet` from the pet list,
-the `Pet` must exist in the pet list.
+the `Pet` must exist in the pet list, and the index provided must be a valid index of a pet in the current viewable pet list
 
 ##### Given below is an example usage scenario and how the set file mechanism behaves at each step:
 ```text
@@ -355,8 +342,6 @@ The following activity diagram summarizes what happens during the process:
     * Use less memory since it will be executed only when needed.
 * Cons:
     * User might forget to refresh to the updated state and shows the outdated instead.
-
-
 
 ### Undo Feature
 #### Current Implementation
@@ -455,12 +440,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | staff               | find a pet by name                     | locate details of pets without having to go through the entire list        |
 | `* * *`  | staff               | tag pets                               | take note of pet personalities or special requirements to know their needs |
 | `* *`    | forgetful pet owner | get a reminder for my pet              | remember to fetch my pets from the daycare                                 |
-| `* *`    | pet owner           | keep track of my own pets              | know that my pets are taken care of well                                   | 
-| `* *`    | staff               | keep track of pet locations            | account for missing pets                                                   | 
+| `* *`    | pet owner           | keep track of my own pets              | know that my pets are taken care of well                                   |
+| `* *`    | staff               | keep track of pet locations            | account for missing pets                                                   |
 | `* *`    | forgetful staff     | get a reminder for pets                | track pets that have overstayed their duration                             |
 | `* *`    | staff               | input pet attendance                   | track pet attendance in the daycare                                        |
-| `* *`    | staff               | view pet appointment dates             | bring pets to vet if necessary                                             | 
-| `* *`    | staff               | search for a pet via tags              | cater different services to different pets                                 | 
+| `* *`    | staff               | view pet appointment dates             | bring pets to vet if necessary                                             |
+| `* *`    | staff               | search for a pet via tags              | cater different services to different pets                                 |
 | `* *`    | staff               | schedule appointment dates             | remember when pet owners are coming to pick up or drop off their pets      |
 | `* *`    | staff               | look at vaccination status of pets     | know what vaccinations required are missing                                |
 | `* *`    | staff               | archive pet information                | keep a record of older pet clients                                         |
@@ -468,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | general staff       | write and save notes for pets          | track additional information if needed                                     |
 | `* *`    | staff               | export pet data                        | backup pet data                                                            |
 | `* *`    | new staff           | import pet data                        |                                                                            |
-| `*`      | staff               | input feedback for pet owners          | let the pet owners know how to better care for their pets behaviours       | 
+| `*`      | staff               | input feedback for pet owners          | let the pet owners know how to better care for their pets behaviours       |
 | `*`      | pet owner           | give staff feedback                    | let the staff know how to improve their services                           |
 | `*`      | pet owner           | check pet attendance                   | track how long my pet has been in daycare                                  |
 | `*`      | pet owner           | look at staff comments on the feedback | acknowledge staff feedback and give clarification                          |
@@ -486,62 +471,127 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `PetPal` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a pet**
+**Use case: View help**
 
-**MSS**
+1. Actor requests to view help
+2. System shows help message<br>
+   Use case ends.
 
-1.  Staff requests to list pets
-2.  PetPal shows a list of pets
-3.  Staff requests to delete a specific pet in the list
-4.  PetPal deletes the pet
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. PetPal shows an error message.
-
-      Use case resumes at step 2.
-
-(For all use cases below, the **System** is the `PetPal` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Add a pet**
-
-**MSS**
-
-1.  Staff requests to add pet
-2. PetPal deletes the pet
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The details are missing
-    * 2a1. PetPal prompts owner/staff to add missing petname.
-
-  Use case ends.
 
 **Use case:List the list of pets**
 
 **MSS**
 
-1. Staff requests to list pets
-2. PetPal displays list
-
+1. Actor requests to list pets
+2. System displays list<br>
    Use case ends.
 
 **Extensions**
-
-* 2a. There are no pet details.
-
+* 2a. There are no pet details.<br>
   Use case ends.
 
+
+**Use case: Add a pet**
+
+**MSS**
+1. Actor requests to add pet
+2. System deletes the pet<br>
+   Use case ends.
+
+**Extensions**
+* 2a. Any required detail(s) are missing
+    * 2a1. System shows an error message.<br>
+      Use case ends.
+
+
+**Use case: View reminders**
+
+[//]: # TODO()
+
+
+**Use case: Find pet by name**
+
+[//]: # TODO()
+
+
+**Use case: Edit a pet**
+
+[//]: # TODO()
+
+
+**Use case: Change rate of Cost**
+
+[//]: # TODO()
+
+
+**Use case: Mark deadline**
+
+[//]: # TODO()
+
+
+**Use case: Delete a pet**
+
+**MSS**
+1.  Actor requests to list pets
+2.  System shows a list of pets
+3.  Actor requests to delete a specific pet in the list
+4.  System deletes the pet<br>
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.<br>
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.<br>
+      Use case resumes at step 2.
+
+
+**Use case: Archive a pet**
+
+**MSS**
+1. Actor requests to lists all pets
+2. System shows the list of all pets
+3. Actor requests to archive a specific pet in the list
+4. System archives the pet<br>
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.<br>
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.<br>
+      Use case resumes at step 2.
+
+* 3b. The given pet exists in the archive
+    * 3b1. System shows an error message.<br>
+      Use case resumes at step 2.
+
+**Use case: Clear the pet list**
+
+**MSS**
+1. Actor requests to lists all pets
+2. System shows the list of all pets
+3. Actor requests to clear the list
+4. System clears the list
+
+
+**Use case: Undo a command**
+
+[//]: # TODO()
+
+
+**Use case: Exit the System**
+
+**MSS**
+1. Actor requests to exit
+2. System exits<br>
+    Use case ends.
+
+
+[Return to Table of Contents](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 
@@ -549,13 +599,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 pets without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
+
+
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+| Term          | Definition                            |
+|---------------|---------------------------------------|
+| Mainstream OS | Refers to Windows, Linux, Unix, MacOS |
 
 [Return to Table of Contents](#table-of-contents)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -606,14 +660,29 @@ testers are expected to do more *exploratory* testing.
 1. Viewing the save files
 
     1. Exit the app by typing `exit` or `e`.<br>Expected: A new folder called `data` is created in the folder where your jar file is at
-
     2. Double-click the `data` folder.<br>Expected: 2 files, `petpal.json` (which includes sample data) and `archive.json` is present in the `data` folder
 
-2. Dealing with missing/corrupted data files
+2. Dealing with missing data files
 
-   1. To simulate a missing data file, go to the `data` folder and delete `petpal.json` and/or `archive.json`
+    1. To simulate a missing data file, go to the `data` folder and delete `petpal.json` and/or `archive.json`
+    2. Restart PetPal and type `exit`
+    3. The missing files are re-created in the `data` folder with the sample data populated.
 
-3. _{ more test cases … }_
+    <div markdown="block" class="alert alert-block alert-success">
+
+    * :bulb: **Note:**
+    `archive.json` does not contain any pet entries by default
+    </div>
+
+3. Dealing with corrupted data files
+    1. To simulate a corrupted data file, go to the `data` folder and edit the `petpal.json` and/or `archive.json` with random strings not of json format
+    2. Start PetPal, the corrupted data file is replaced with the sample data
+    3. The corrupted files are re-created in the `data` folder with sample data
+    <div markdown="block" class="alert alert-block alert-success">
+
+     * :bulb: **Note:**
+       `archive.json` does not contain any pet entries by default
+     </div>
 
 [Return to Table of Contents](#table-of-contents)
 
