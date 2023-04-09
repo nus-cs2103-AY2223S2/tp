@@ -25,14 +25,13 @@ such as flight scheduling and management of crew, pilot, plane and location.
 - **[Command Formatting](#command-formatting)**
 - **[Features](#features)**
   - **[Shared Commands](#shared-commands)**
-    - **[Adding a resource: `add`](#1-adding-a-resource)**
-    - **[Deleting a resource: `delete`](#2-deleting-a-resource)**
+    - **[Adding a resource: `add`](#1-adding-a-resource-add)**
+    - **[Deleting a resource: `delete`](#2-deleting-a-resource-delete)**
   - **[Mode-specific Commands](#mode-specific-commands)**
-    - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location)**
-    - **[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location)**
-    - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight)**
-    - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight)**
-    - **[Checking a resource's availability: `check`](#5-checking-a-resources-availability)**
+    - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location-linklocation)**
+    - **[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)**
+    - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight-linkflight)**
+    - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight-unlinkflight)**
 - **[Prefix Summary](#prefix-summary)**
 - **[Command Summary](#command-summary)**
 - **[FAQ](#faq)**
