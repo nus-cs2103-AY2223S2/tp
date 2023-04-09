@@ -142,9 +142,9 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 ## Features
 
-<div markdown="block" class="alert alert-success">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Notes about the command format:**
+:information_source: **Notes about the command format:**
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. \\
   _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
