@@ -31,23 +31,26 @@ public class NavigationInjectorTest {
 
     @Test
     public void inject_blankInput_noChange() {
-        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
-        String injectedInput = injector.inject("", model);
-        assertEquals("", injectedInput);
+        assertNoChange("");
+    }
+
+    @Test
+    public void inject_inputOnlyRootPrefix_noChange() {
+        assertNoChange(PREFIX_ROOT.toString());
     }
 
     @Test
     public void inject_inputWithWhitelistCommandWord_noChange() {
-        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
-        String input = NavigationInjector.WHITELIST[0];
-        String injectedInput = injector.inject(input, model);
-        assertEquals(input, injectedInput);
+        assertNoChange(NavigationInjector.WHITELIST[0]);
     }
 
     @Test
     public void inject_inputWithWhitelistCommandWordAndArg_noChange() {
+        assertNoChange(NavigationInjector.WHITELIST[0] + LECTURE_NAME_DESC_L1);
+    }
+
+    private void assertNoChange(String input) {
         final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
-        String input = NavigationInjector.WHITELIST[0] + LECTURE_NAME_DESC_L1;
         String injectedInput = injector.inject(input, model);
         assertEquals(input, injectedInput);
     }
@@ -160,7 +163,6 @@ public class NavigationInjectorTest {
             assertFalse(argumentMultimap.getValue(prefix).isPresent());
         }
     }
-
 
     private class ModelStubWithNavContext extends ModelStub {
 
