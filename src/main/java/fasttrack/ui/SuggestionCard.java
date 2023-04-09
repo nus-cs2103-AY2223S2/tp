@@ -1,7 +1,6 @@
 package fasttrack.ui;
 
 import fasttrack.model.category.Category;
-import fasttrack.model.util.UserInterfaceUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
