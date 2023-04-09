@@ -34,27 +34,28 @@ managers to efficiently delegate tasks in an organised manner.
    ![startup_whitebackground.jpg](images/product-screenshots/startup_whitebackground.jpg)
     <p align="center">
     <em>Landing Page</em>
-    </p><br/>
+    </p><br>
 
 6. If you're a new user, we recommend checking out our [Tutorial](#2-tutorial) section to get yourself familiar with the
    commands. Otherwise, refer to the [Features](#3-features) below to learn more about each command in detail.
 
-#### 1.2 Prefixes used in commands
-Below are the prefixes we use in commands.
+#### 1.2 Prefixes and parameters used in commands
+Below are the prefixes and parameters we use in commands.
 
 | Prefix   | Parameter    | Parameter Meaning         | Example Usage              | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |----------|--------------|---------------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **n/**   | NAME         | Name of person            | n/Peter                    | NAME given to persons must be unique, should only contain alphanumeric characters and spaces and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **n/**   | NAME         | Name of person            | n/Peter                    | NAME given to persons must be unique, should only contain alphanumeric characters and spaces, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **p/**   | PHONE_NUMBER | Phone number of person    | p/94738484                 | PHONE_NUMBER should only contain numbers, should begin with 6, 8 or 9, should be 8 digits long (without spaces) and should not be blank. It is also assumed the country code (e.g +65) is not necessary.                                                                                                                                                                                                                                                                                                                                                                                            |
 | **e/**   | EMAIL        | Email of person           | e/nancy@gmail.com          | EMAIL should be of the format local-part@domain and should not be blank. The local-part should only contain alphanumeric characters and at most one of these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. The domain name is made up of domain labels separated by periods. The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters and have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| **a/**   | ADDRESS      | Address of person         | a/Sims Avenue 6            | ADDRESS can take on any value, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **a/**   | ADDRESS      | Address of person         | a/Sims Avenue 6            | ADDRESS can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **tag/** | TAG          | Tags given to person      | tag/Logistics              | TAG should be alphanumeric and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | **t/**   | TITLE        | Title of task             | t/Work on Project X        | TITLE given to tasks must be unique, should only contain alphanumeric characters and spaces, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                         
-| **c/**   | CONTENT      | Content of task           | c/Complete slides for Mr Y | CONTENT can take on any value, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **c/**   | CONTENT      | Content of task           | c/Complete slides for Mr Y | CONTENT can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **st/**  | STATUS       | Completion status of task | st/true                    | STATUS only takes true or false values, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **dl/**  | DEADLINE     | Deadline set for task     | dl/2023-05-23 20:00:00     | DEADLINE format is given by yyyy-mm-dd HH:MM:SS, time (HH:MM:SS) is optional but cannot be incomplete (i.e if time is included, it must follow HH:MM:SS format). There must be trailing zeros for digits lesser than 10. It should not be blank.                                                                                                                                                                                                                                                                                                                                                    |
-| **ti/**  | INDEX        | Index of task             | ti/2                       | INDEX should be a valid integer, should be greater than 0 and should follow the index displayed in displayed task list. It should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **pi/**  | INDEX        | Index of person           | pi/4                       | INDEX should be a valid integer, should be greater than 0 and should follow the index displayed in displayed person list. It should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **ti/**  | INDEX        | Index of task             | ti/2                       | INDEX should be a valid integer, should be more than 0 and should follow the index displayed in displayed task list. It should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **pi/**  | INDEX        | Index of person           | pi/4                       | INDEX should be a valid integer, should be more than 0 and should follow the index displayed in displayed person list. It should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
 
 - After entering a prefix and its parameter, there should be a space before the next prefix and its parameter.  
   (e.g `addp n/Peterp/95748483e/pter@gmail.coma/Sims Drive 6` is an invalid command format. The valid command format should be `addp n/Peter p/95748483 e/pter@gmail.com a/Sims Drive 6`)
@@ -77,8 +78,8 @@ OfficeConnect comes with preloaded data that aims to help you get familiar with 
 </div>
 
 Let's first look at how you can add a new employee's contact to OfficeConnect. Enter this into the command line: <br> 
-`addp n/Johnny Ackles p/95967755 e/jensona@example.com a/Mary Streeth #01-01`. <br>
-This command adds a person named `Johnny Ackles` who lives at `Mary Streeth #01-01` whose phone number is `95967755`
+`addp n/Johnny Ackles p/95967755 e/jensona@example.com a/512, Mary Streeth #01-01`. <br>
+This command adds a person named `Johnny Ackles` who lives at `512, Mary Streeth #01-01` whose phone number is `95967755`
 and email address is`jensona@example.com`. If you scroll down on the contact list, you will see that the new contact is
 added.
 ![add_whitebackground.jpg](images%2Fproduct-screenshots%2Fadd_whitebackground.jpg)
@@ -91,7 +92,7 @@ With OfficeConnect, you can experience a real-time search functionality where th
 as you type into the input field.
 </div>
 
-Suppose now you want to find Alice's details and her assigned task. Simply type `find Alice` and you
+Suppose now you want to find Alice's details and her assigned task. Simply type `findp Alice` and you
 should be able to see the list being updated as such:
 ![find_whitebackground.jpg](images%2Fproduct-screenshots%2Ffind_whitebackground.jpg)
 <p align="center">
@@ -124,14 +125,14 @@ learn more about new features.
 
 **:information_source: Notes about the command format:** <br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. Refer to the [[Prefix](#12-prefixes-used-in-commands)] section to recap the meaning of these parameters and how they should be used!<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. Refer to the [[Prefix and parameters](#12-prefixes-used-in-commands)] section to recap the meaning of these parameters and how they should be used!<br>
   e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
 
 * Parameters in square brackets are optional, while those not in square brackets are compulsory.<br>
   e.g. `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
 
 * For any command, all prefixes of **optional AND compulsory** parameters cannot be used as an input in **ANY** parameter of the **same** command.<br>
-  e.g In `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]`, `CONTENT` cannot be `c/complete presentation t/by today` as **t/** is a prefix of a parameter.
+  e.g In `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]`, `CONTENT` cannot be `c/complete presentation t/by today` as `t/` is a prefix of a compulsory parameter.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…` can be used as (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
@@ -145,7 +146,7 @@ learn more about new features.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For specific constraints of each parameter, refer back to the [[Prefix]((#12-prefixes-used-in-commands))] section.
+* For specific constraints of each parameter, refer back to the [[Prefix and parameters]((#12-prefixes-used-in-commands))] section.
 
 * To differentiate between commands intended for a specific person or task, a tag (-t or -p) is added to the end of the keyword.
 </div>
@@ -200,7 +201,7 @@ Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…`
 
 Examples:
 * `addp n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addp n/Betsy Crowe tag/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `addp n/Betsy Crowe tag/friend e/betsycrowe@example.com a/Newgate Prison p/98776544 tag/criminal`
 
 #### 3.2.2 Deleting a Person : `deletep`
 
@@ -254,7 +255,7 @@ Format: `findp KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `findp John` returns `john` and `John Doe`.
-* `findp alice` returns `alice pauline`.<br>
+* `findp alice` returns `Alice Pauline`.<br>
 ![find_whitebackground.jpg](images%2Fproduct-screenshots%2Ffind_whitebackground.jpg)
 <p align="center">
 <em>Find Alice's assigned tasks</em>
@@ -269,6 +270,9 @@ Adds a task to OfficeConnect.
 
 Format: `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]`
 
+* Each task contains a creation date, which is the date and time the task is added into OfficeConnect.
+* The DEADLINE set for tasks must not be before the creation date of the task (i.e you cannot set deadlines in the past).
+
 Examples:
 - `addt t/Complete slides c/Finish slides for meeting st/false dl/2024-03-15 20:02:01` 
 
@@ -280,7 +284,7 @@ Format: `deletet INDEX`
 
 * Deletes the task at the specified INDEX.
 * The INDEX refers to the INDEX shown in the displayed task list.
-* The INDEX must be a positive integer 1, 2, 3...
+* The INDEX must be a positive integer 1, 2, 3, ...
 
 Examples:
 - `listt` followed by `deletet 2` deletes the 2nd task in the task list.
@@ -294,7 +298,7 @@ Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE]`
 
 * Edits the task at the specified `INDEX`. 
 * The index refers to the index shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -325,7 +329,7 @@ Format: `mark INDEX`
 
 * Changes the status of the task at the specified `INDEX` to completed.
 * The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 - `mark 2` marks task 2 as completed.
@@ -338,7 +342,7 @@ Format: `unmark INDEX`
 
 * Changes the status of the task at the specified `INDEX` to uncompleted.
 * The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 
 ### 3.4 Assignment Commands
 
@@ -350,7 +354,7 @@ Format: `assign ti/INDEX pi/INDEX`
 
 * Assigns the task at specified `INDEX` to the person at specified `INDEX`.
 * The index refers to the index number shown in the displayed person/task list.
-* The index **must be a positive integer** 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 - `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
@@ -363,7 +367,7 @@ Format: `unassign ti/INDEX pi/INDEX`
 
 * Remove assignment of the task at specified `INDEX` from the person at specified `INDEX`.
 * The index refers to the index number shown in the displayed person/task list.
-* The index **must be a positive integer** 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 - `unassign ti/ 2 pi/ 3` unassigns task 2 from person 3.
@@ -432,7 +436,7 @@ Format: `pi INDEX`
 
 * Views the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3…
+* The index **must be a positive integer** 1, 2, 3, …
 
 Example:
 - `pi 2` displays person 2 and all tasks assigned to that person.
@@ -445,7 +449,7 @@ Format: `ti INDEX`
 
 * Views the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3…
+* The index **must be a positive integer** 1, 2, 3, …
 
 Example:
 - `ti 1` displays task 1 and all persons assigned to that task.

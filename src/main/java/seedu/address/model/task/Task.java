@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -195,11 +196,13 @@ public class Task implements Relationship<Task> {
     @Override
     public String toString() {
 
-        return getTitle()
-            + "; Status: "
-            + getStatus()
-            + "; Content: "
-            + getContent();
+        String string = getTitle() + "; Status: " + getStatus()
+                + "; Content: " + getContent() + "; Created Date: " + Datetime.convertToLocalTime(getCreateDateTime())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        if (getDeadline().getTimestamp().isPresent()) {
+            string += "; Deadline: " + Datetime.convertToLocalTime(getDeadline())
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        }
+        return string;
     }
-
 }

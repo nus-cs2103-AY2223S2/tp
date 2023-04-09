@@ -29,6 +29,8 @@ public class EditTaskDescriptorBuilder {
         descriptor.setContent(task.getContent());
         descriptor.setStatus(task.getStatus());
         descriptor.setId(task.getId());
+        descriptor.setCreateDate(task.getCreateDateTime());
+        descriptor.setDeadline(task.getDeadline());
     }
     /**
      * Sets the {@code Title} of the {@code EditTaskDescriptor} that we are building.
