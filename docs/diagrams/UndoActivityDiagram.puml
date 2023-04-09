@@ -15,13 +15,13 @@ else ([else])
     if () then ([can undo])
         :Undo once;
         if () then ([enough undos available])
-        :Undo argument n - 1 number of times;
+        :Undo argument - 1 number of times;
         else ([else])
-        :undo as many times possible (0 inclusive);
+        :Undo as many times possible (0 inclusive);
         endif
         stop
     else ([else])
-        :displays error message;
+        :Displays error message;
         stop
 
 
