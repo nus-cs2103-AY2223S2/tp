@@ -34,7 +34,7 @@ _Note that ExpressLibrary is only compatible with Linux, Windows and Mac OS._
 
   <div style="page-break-after: always;"></div>
   
-<ol start="10"> <li> In a few seconds, a graphical user interface (GUI) similar to the one shown below should appear. Please note that ExpressLibrary initially includes sample data that demonstrates how it can be used in a corporate library.
+<ol start="10" > <li> In a few seconds, a graphical user interface (GUI) similar to the one shown below should appear. Please note that ExpressLibrary initially includes sample data that demonstrates how it can be used in a corporate library.
 </li> </ol>
 
    ![Ui](images/Ui.png)
@@ -42,21 +42,22 @@ _Note that ExpressLibrary is only compatible with Linux, Windows and Mac OS._
 <ol start="11"> <li> <div markdown="block">
 Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
-   Some example commands you can try:
+Some example commands you can try:
 
-   * `listPerson` : Lists all persons in ExpressLibrary.
-   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com`: Adds a person named `Bob Tan` to ExpressLibrary.
-   * `deletePerson 3` : Deletes the 3rd person shown in the current person list.
-   * `clear` : Clears all persons and books in the ExpressLibrary.
-   * `exit` : Exits the app.
+* `listPerson` : Lists all persons in ExpressLibrary.
+* `addPerson n/Bob Tan p/97450597 e/btan@mail.com`: Adds a person named `Bob Tan` to ExpressLibrary.
+* `deletePerson 3` : Deletes the 3rd person shown in the current person list.
+* `clear` : Clears all persons and books in the ExpressLibrary.
+* `exit` : Exits the app.
 
 </div> </li> </ol>
 
-<ol start="12"> <li> <div markdown="block"> 
+<ol start="12">  <li> <div markdown="block">
   Refer to the [Features](#features) below for details of each command.
 </div> </li> </ol>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -128,6 +129,8 @@ Examples:
 * `listPerson` followed by `deletePerson 2` deletes the 2nd person in the person list.
 * `listPerson` followed by `deletePerson 3 -f` deletes the 3rd person in the person list and returns all books the person has borrowed, if any.
 
+<div style="page-break-after: always;"></div>
+
 #### Editing a person : `editPerson`
 
 Edits an existing person in the ExpressLibrary.
@@ -151,6 +154,8 @@ Shows a list of all users in the person list. Mainly to be used after `findPerso
 
 Format: `listPerson`
 
+<div style="page-break-after: always;"></div>
+
 #### Locating persons by name: `findPerson`
 
 Finds persons whose names contain any of the given keywords.
@@ -170,6 +175,8 @@ Examples:
 * `findPerson Alex Bernice` returns `Alex Yeoh`, `Bernice Yu`.<br>
 
 ![result for 'findPerson Alex Bernice'](images/findAlexBernice.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Book Commands
 
@@ -201,6 +208,8 @@ Examples:
 * `listBook` followed by `deleteBook 2` deletes the 2nd book in the book list.
 * `listBook` followed by `deleteBook 3 -f` deletes the 3rd book in the book list and returns it if it is borrowed.
 
+<div style="page-break-after: always;"></div>
+
 #### Editing a book : `editBook`
 
 Edits an existing book in the book list.
@@ -223,6 +232,8 @@ Shows a list of all books in the book list. Mainly to be used after `findBook` c
 
 Format: `listBook`
 
+<div style="page-break-after: always;"></div>
+
 #### Locate book by title: `findBook`
 
 Find books whose titles contain any of the given keywords.
@@ -242,6 +253,8 @@ Examples:
 * `findBook 1984 kill` returns `1984`, `To Kill a Mockingbird`.<br>
 
 ![result for 'findBook 1984 kill'](images/find1984kill.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Common Commands
 
@@ -300,6 +313,8 @@ Shows a message explaining how to access the user guide.
 
 Format: `help`
 
+<div style="page-break-after: always;"></div>
+
 ### Colour coded due dates
 
 ExpressLibrary automatically changes the color of due dates to alert the librarian when a book’s due date is within 3 days of the current date or has passed.
@@ -307,6 +322,8 @@ ExpressLibrary automatically changes the color of due dates to alert the librari
 ![colourDates](images/colourDates.png)
 
 As clearly seen in the image above, if the due date is within 3 days of the current date, the color of the due date will turn yellow. If the due date has passed, the color of the due date will turn orange.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving the data
 
@@ -321,6 +338,8 @@ ExpressLibrary data is saved as a JSON file `[JAR file location]/data/expresslib
 :information_source: **Note:** When editing book fields when it is borrowed, make sure to update **both** the `books` array in the person object and the **main** `books` array separate from `persons` in the json file. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/UserGuide.html#how-data-is-saved) for more details.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### How data is saved
 
@@ -380,6 +399,8 @@ Linux: Press `Ctrl + Alt + T`.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 ### Person
@@ -391,6 +412,8 @@ Action | Format, Examples
 **EditPerson** | `editPerson INDEX {[n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…}​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
 **FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
 **ListPerson** | `listPerson`
+
+<div style="page-break-after: always;"></div>
 
 ### Book
 
