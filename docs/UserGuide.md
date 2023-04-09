@@ -47,6 +47,8 @@ title: User Guide
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 # 1. About HMHero
 
 Have you ever found it difficult to manage the constant influx of applicants during each application cycle?
