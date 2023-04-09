@@ -140,7 +140,7 @@ no patients, and thus the Patient List will be empty.
 
 This behaviour will also exist if the user adds a patient instead too.
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="block" class="alert alert-error">
 Some users have mentioned being alarmed by sudden disappearances of
 their Doctor Cards and Patient Cards within their respective lists
 after entering certain commands. The explainer above details why this happens.
@@ -240,7 +240,7 @@ This is a tutorial for **first-time** Docedex users.
 
 <div markdown="span" class="alert alert-info">
 Adding doctor command, also calls select doctor to display the recently added information in the Enlarged Contact Card.
-If no patients appear in the patients list, it is because none have been assigned to the doctor.
+**If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
 For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
 </div>
@@ -269,7 +269,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 
 <div markdown="span" class="alert alert-info">
 Edit doctor command, also calls select doctor to display the recently updated information in the Enlarged Contact Card.
-If no patients appear in the patients list, it is because none have been assigned to the doctor.
+**If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
 For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
 </div>
@@ -324,7 +324,7 @@ Examples:
 
 <div markdown="span" class="alert alert-info">
 Selecting doctor command displays only the recently queried doctor's information in the Enlarged Contact Card.
-If no patients appear in the patients list, it is because none have been assigned to the doctor.
+**If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
 For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
 </div>
@@ -354,7 +354,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 
 <div markdown="span" class="alert alert-info">
 Adding patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
-If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
+**If no doctors appear in the doctors list**, it is because the patient has not been assigned to any doctor.
 
 For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
 </div>
@@ -472,7 +472,7 @@ Examples:
 
 <div markdown="span" class="alert alert-info">
 Selecting patient command only displays the recently queried patients' information in the Enlarged Contact Card.
-If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
+**If no doctors appear in the doctors list**, it is because the patient has not been assigned to any doctor.
 
 For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
 </div>
