@@ -31,9 +31,9 @@ By students, for advisors
 
 ## Table of Contents
 
-* #### [How to Get Started](#how-to-get-started)
-    * #### [Features](#features)
-        * #### [General Management](#general-management)
+* [**How to Get Started**](#how-to-get-started)
+    * [**Features**](#features)
+        * [**General Management**](#general-management)
             * Viewing help : `help`
             * Undo previous operation : `undo`
             * Redo previous operation : `redo`
@@ -41,7 +41,7 @@ By students, for advisors
             * Exiting the program : `exit`
             * Saving the data
             * Editing the data file
-        * #### [Client Management](#client-management)
+        * [**Client Management**](#client-management)
             * Adding a client: `add`
             * Selecting a client: `select`
             * Listing all clients : `list`
@@ -51,15 +51,15 @@ By students, for advisors
             * Sorting Clients by Email address : `sortClientEmail`
             * Sorting Clients by Name : `sortClientName`
             * Sorting Clients by Phone Number : `sortClientPhone`
-        * #### [Policy Management](#policy-management)
+        * [**Policy Management**](#policy-management)
             * Adding a policy: `addPolicy`
             * Editing a policy : `editPolicy`
             * Deleting a policy : `deletePolicy`
-        * #### [Appointment Management](#appointment-management)
+        * [**Appointment Management**](#appointment-management)
             * Adding an appointment: `addApt`
             * Deleting an appointment: `deleteApt`
-* #### [FAQ](#faq)
-* #### [Command Summary](#command-summary)
+* [**FAQ**](#faq)
+* [**Command Summary**](#command-summary)
 
 ---
 ## How to Get Started
@@ -576,7 +576,6 @@ those thresholds. However, the limit can be expanded in the future if necessary.
 | **Edit a Policy**         | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`                  |
 | **Add an appointment**    | `addApt INDEX an/APPOINTMENT_NAME ad/APPOINTMENT_MEETUP_DATE` <br> eg., `addApt 1 an/Review of goals ad/01.01.2024`                                                   |
 | **Delete an appointment** | `deleteApt INDEX`<br> eg., `deleteApt 1`                                                                                                                              |
-| **Select**                | `select INDEX`<br> e.g.,`select 1`                                                                                                                                    |
 | **Sort Client by Email**  | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`                                                                                                     |
 | **Sort Client by Name**   | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`                                                                                                       |
 | **Sort Client by Phone**  | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`                                                                                                     |

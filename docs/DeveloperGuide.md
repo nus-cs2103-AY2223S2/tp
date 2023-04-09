@@ -124,8 +124,8 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+**API**
+: [`Ui.java`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -302,7 +302,7 @@ The `Model` component,
 
 The `Client` component,
 
-* Contains 7 classes : `Name`, `Phone`, `Address`, `Email`, `Tag`, `UniquePolicyList`, `Appointment`
+* Contains 6 classes : `Name`, `Phone`, `Address`, `Email`, `UniquePolicyList`, `Appointment`
 * All `Policy` objects are stored in a `UniquePolicyList` object, similar to `UniqueClientList` object.
 * Stores the currently 'selected' `Policy` objects as a separate filtered list which is exposed to outsiders as an
   unmodifiable `ObservableList<Policy>` that can be 'observed' e.g. the UI can be bound to this list so that the UI
@@ -329,8 +329,8 @@ The `Client` component,
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API**
+: [`Storage.java`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -758,7 +758,7 @@ specified otherwise)
   * 1a2. User inputs correct data
 
     Steps 1a1-1b are repeated until the data entered are correct.
-  
+
     Use case resumes from step 2.
 
 **Use case: Manage client’s policy information**
@@ -815,12 +815,12 @@ specified otherwise)
 
 * 2a. The user has not performed any actions within Advis.io that can be undone.
   * 2a1. Advis.io displays a message indicating that there is no action to be undone.
-  
+
     Use case ends
 
 * 4a. The user has not undone any actions within Advis.io that can be redone.
   * 4a1. Advis.io displays a message indicating that there is no action to be redone.
-    
+ 
     Use case ends
 
 **Use case: Creating Appointment for Client**
@@ -837,16 +837,16 @@ specified otherwise)
 * 1a. The user does not enter an appointment name or date.
   * 1a1. Advis.io displays a message indicating that the appointment name and date are required.
   * 1a2. The user enters a new appointment name and date.
-    
+
   Use case ends
 
 
 * 1b. Advis.io adds an invalid appointment date.
   * 1b1. Advis.io displays a message indicating that the appointment date is invalid.
   * 1b2. The user inputs a new appointment date.
-  
+
   Steps 1b1-1b2 are repeated until the date entered is valid.
-  
+
   Use case ends.
 
 
@@ -945,5 +945,5 @@ testers are expected to do more *exploratory* testing.
    specific exception message in the message box.
 5. We plan on implementing a log-in/sign-up feature where users can log into personal accounts. This will require the
    use of maintaining a cloud-based server such that users may retrieve their own data on the go.
-6. We plan on implementing an administrative user interface. This administrative control will allow management of the
-   company to control the types of policies which users (financial advisors) my key into the application.
+6. We plan on implementing an administrative user interface. This administrative control will allow management of the company to control the types of policies which users (financial advisors) my key into the application.
+7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered client list and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
