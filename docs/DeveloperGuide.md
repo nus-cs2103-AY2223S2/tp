@@ -912,13 +912,35 @@ Assumptions: The default tags provided by MyLib is used.
 
    **Expected**: A new tag "Hero" is successfully added to the tag list. A success message is displayed in the Result Display.
 
+
 2. `addtag t/HighSchool t/Security`
 
    **Expected**: Two new tags "HighSchool" and "Security" are successfully added to the tag list. A success message is displayed in the Result Display.
 
+
 3. `addtag t/Novel`
 
-**Expected**: No new tag added to the tag list. An error message is displayed in the Result Display. This is because the tag "Novel" already exists in the tag list.
+    **Expected**: No new tag added to the tag list. An error message is displayed in the Result Display. This is because the tag "Novel" already exists in the tag list.
+
+### Deleting tags from the tag list
+Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries. The default tags provided by MyLib is used.
+
+1. `dtag Novel`
+
+    **Expected**: The tag "Novel" is successfully deleted from the tag list. A success message is displayed in the Result Display.
+
+
+
+2. `dtag Korean`
+
+   **Expected**: No tag is deleted from the tag list. An error message is displayed in the Result Display. This is because there is no "Korean" tag in the tag list.
+
+
+3. `dtag MaleProtagonist FemaleProtagonist`
+
+   **Expected**: No tag is deleted from the tag list. An error message is displayed in the Result Display. This is because tags can only be deleted one at a time and each tag can only be one word long with no spaces in between.
+
+
 ### Get Help
 
 1. `help`
