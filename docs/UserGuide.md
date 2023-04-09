@@ -542,6 +542,8 @@ Format: `help`
 
 Undoes the previous command that you have typed in.
 
+Note that you can append extra characters after undo, but all these characters will be ignored, and the basic undo command will be executed.
+
 <div markdown="span" class="alert alert-primary">:information_source: **Info:**
 Only `add-app`, `edit-app`, `delete-app`, `add-task`, `edit-task`, `delete-task`, `undo` and `clear` can be undone.  
 </div>
@@ -553,6 +555,8 @@ Format: `undo`
 #### 4.4.3 Redoing a command : `redo`
 
 Redoes the previous command that you have undo-ed.
+
+Note that you can append extra characters after redo, but all these characters will be ignored, and the basic redo command will be executed.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
 If you executed another command immediately after undo, you will no longer be able to redo the undo-ed command.
