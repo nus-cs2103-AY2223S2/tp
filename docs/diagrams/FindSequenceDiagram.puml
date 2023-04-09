@@ -13,7 +13,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add n/Bob")
+[-> LogicManager : execute("find n/Bob")
 activate LogicManager
 
 LogicManager -> QuickBookParser : parseCommand("find n/bob")
@@ -32,6 +32,12 @@ activate FindCommandParser
 create FindCommand
 FindCommandParser -> FindCommand
 activate FindCommand
+create ContainsNamesPredicate
+
+FindCommand -> ContainsNamesPredicate
+activate ContainsNamesPredicate
+ContainsNamesPredicate --> FindCommand
+deactivate ContainsNamesPredicate
 
 FindCommand --> FindCommandParser : d
 deactivate FindCommand
@@ -47,12 +53,14 @@ deactivate QuickBookParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand
-
-create ContainsNamesPredicate
-FindCommand -> ContainsNamesPredicate
+FindCommand -> Model : find()
+Model -> ContainsNamesPredicate: FilteredList()
 activate ContainsNamesPredicate
+ContainsNamesPredicate --> Model: return FilteredList
+deactivate ContainsNamesPredicate
 
-ContainsNamesPredicate -> Model
+Model --> FindCommand: returns filteredList
+
 
 FindCommand --> LogicManager : return
 deactivate FindCommand
