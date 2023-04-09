@@ -600,42 +600,412 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+---
 
-1. Initial launch
+### Launch and Shutdown
 
-   1. Download the jar file and copy into an empty folder
+1. Initial launch.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Download the latest jar file from our [releases](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases) and copy into an empty folder.
 
-1. Saving window preferences
+   1. Open terminal/command prompt and `cd` to the empty folder. Run the application with `java -jar clipboard.jar`. The window size may not be optimum.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+2. Saving window preferences.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Resize the window to an optimum size. Move the window to a preferred location. Close the window by typing in `exit` in the command box.
 
-1. _{ more test cases …​ }_
+   1. Re-launch the app by following step 1.2<br>
+      Expected: The most recent window size and location is retained.
 
-### Deleting a student
+3. Exit application.
 
-1. Deleting a student while all students are being shown from the Student Page.
+    1. Type in `exit` on any page in CLIpboard.
 
-   1. Test case: `delete student 1`<br>
-      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
+    1. Clicking on the `File` tab at the navigation bar above and then clicking `Exit` also exits the app.
 
-   1. Test case: `delete student 0`<br>
-      Expected: No student is deleted. Error details shown in the status message.
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
-   1. Other incorrect delete commands to try: `delete`, `delete student x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+---
 
-1. _{ more test cases …​ }_
+### General Commands
+These commands can be tested on any page. Specific pages are given for this section as a starting point.
+
+1. Displaying the home page while on the Course Page.
+
+    1. Test case: `home`<br>
+       Expected: Course Page is displayed. <br>
+
+2. Displaying the previous page while on the Group Page.
+
+    1. Test case: `back`<br>
+       Expected: Course Page is displayed. <br>
+
+3. Displaying the previous page while on the Course Page.
+
+    1. Test case: `back`<br>
+       Expected: Error message shows up on the log box as the Course Page is the home page.<br>
+       The application begins from the home page. <br>
+
+4. Undoing a select command from the Course Page (the current page to run the test case is the Group Page).
+
+    1. Test case: `undo`<br>
+       Expected: Course Page is displayed. <br>
+
+5. Opening the help window from the Course Page.
+
+    1. Test case: `help`<br>
+       Expected: Help window for Course Page pops up.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+
+### Course Page Commands
+These commands should be tested on the Course Page.
+
+#### Adding a course
+
+1. Adding a course while the course list is empty or the course does not exist in the course list.
+
+    1. Test case: `add course CS3223`<br>
+       Expected: New course is added into the list. Details of the added course shown in the log box.
+
+    1. Other incorrect `add course` commands to try: `add`, `add course` (where the course code is empty)<br>
+       Expected: No course is added. Error details shown in the log box.
+
+2. Adding a course which already exists in the list.
+
+    1. Test case: `add course CS3223`<br>
+       Expected: No course is added. Error details shown in the log box.
+
+#### Deleting a course
+
+1. Deleting a course while all courses are being shown from the Course Page. At least 1 course exists in the list.
+
+    1. Test case: `delete course 1`<br>
+       Expected: First course is deleted from the list. Details of the deleted course shown in the log box.
+
+    1. Test case: `delete course 0`<br>
+       Expected: No course is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete course` commands to try: `delete`, `delete course x` (where x is larger than the list size)<br>
+       Expected: Similar to previous step 1.2 under `Deleting a course`.
+
+2. Deleting a course while the course list is empty in the Course Page.
+
+    1. Incorrect `delete course` commands to try: `delete`, `delete course x` (where x is any number)<br>
+       Expected: No course is deleted. Error details shown in the log box.
+
+#### Editing a course
+
+1. Editing a course which exists in the course list.
+
+    1. Test case: `edit course 1 CS4225`<br>
+       Expected: First course is edited to the new course code. Details of the edited course shown in the log box.
+
+    1. Test case: `edit course 0 CS4225`<br>
+       Expected: No course is edited. Error details shown in the log box.
+
+    1. Other incorrect `edit course` commands to try: `edit`, `edit course x` (where x is any number), `edit course x CS4225` (where x is larger than the list size) <br>
+       Expected: Similar to previous step 1.2 under `Editing a course`.
+
+2. Editing a course while the course list is empty in the Course Page.
+
+    1. Refer to step 1.3 above under `Editing a course`.
+
+#### Selecting a course
+
+1. Selecting a course while on the Course Page.
+
+    1. Test case: `select 1`<br>
+       Expected: First course is selected. Details of the selected course shown in the log box. Page redirected to the 
+       corresponding Group Page.
+
+    1. Test case: `select x` (where x is larger than the list size)<br>
+       Expected: No course is selected. Error details shown in the log box.
+
+
+#### Finding a course
+
+1. Finding a course while on the Course Page, with the following courses - `CS3223`, `CS1101`, `PL1101` in the list.
+
+    1. Test case: `find course CS`<br>
+       Expected: `CS3223` and `CS1101` is displayed. Details of the found courses shown in the log box.
+
+    1. Test case: `find course 1101`<br>
+       Expected: `CS1101` and `PL1101` is displayed. Details of the found courses shown in the log box.
+
+    1. Test case: `find course CS4225` (this course does not exist in the list)<br>
+       Expected: The list is not filtered. Details of no found courses shown in the log box.
+
+    1. Other incorrect `find course` commands to try: `find`, `find course`<br>
+       Expected: The list is not filtered. Error details shown in the log box.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+
+### Group Page Commands
+These commands should be tested on the Group Page.
+
+#### Adding a group
+
+1. Adding a group while the group list is empty, or the group does not exist in the group list.
+
+    1. Test case: `add group T10`<br>
+       Expected: New group is added into the list. Details of the added group shown in the log box.
+
+    1. Other incorrect `add group` commands to try: `add`, `add group` (where the group name is empty)<br>
+       Expected: No group is added. Error details shown in the log box.
+
+2. Adding a group into the list containing the following groups - `T01`, `T02`, `L01`.
+
+    1. Test case: `add group L02`<br>
+       Expected: New group is added. Details of the added group shown in the log box.
+
+    1. Test case: `add group T01`<br>
+       Expected: No group is added. Error details shown in the log box.
+
+#### Deleting a group
+
+1. Deleting a group while all groups are being shown from the Group Page. At least 1 group exists in the list.
+
+    1. Test case: `delete group 1`<br>
+       Expected: First group is deleted from the list. Details of the deleted group shown in the log box.
+
+    1. Test case: `delete group 0`<br>
+       Expected: No group is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete group` commands to try: `delete`, `delete group x` (where x is larger than the list size)<br>
+       Expected: Similar to previous step 1.2 under `Deleting a group`.
+
+2. Deleting a group while the group list is empty in the Group Page.
+
+    1. Incorrect `delete group` commands to try: `delete`, `delete group x` (where x is any number)<br>
+       Expected: No group is deleted. Error details shown in the log box.
+
+#### Editing a group
+
+1. Editing a group which exists in the group list.
+
+    1. Test case: `edit group 1 T02`<br> 
+       Expected: First group is edited to the new group name. Details of the edited group shown in the log box.
+
+    1. Test case: `edit group 0 T02`<br>
+       Expected: No group is edited. Error details shown in the log box.
+
+    1. Other incorrect `edit group` commands to try: `edit`, `edit group x` (where x is any number), `edit group x T02` (where x is larger than the list size) <br>
+       Expected: Similar to previous step 1.2 under `Editing a group`.
+
+2. Editing a group while the group list is empty in the Group Page.
+
+    1. Refer to step 1.3 above under `Editing a group`.
+
+#### Selecting a group
+
+1. Selecting a group while on the Group Page.
+
+    1. Test case: `select 1`<br>
+       Expected: First group is selected. Details of the selected group shown in the log box. Page redirected to the
+       corresponding Students Page.
+
+    1. Test case: `select x` (where x is larger than the list size)<br>
+       Expected: No group is selected. Error details shown in the log box.
+
+#### Displaying sessions of a group
+
+1. Selecting a group to display its sessions while on the Group Page.
+
+    1. Test case: `session 1`<br>
+       Expected: First group is selected to view its sessions. Details of the selected group to view its
+       sessions shown in the log box. Page redirected to the corresponding session page for the selected group.
+
+    1. Test case: `session x` (where x is larger than the list size)<br>
+       Expected: No group is selected to view its sessions. Error details shown in the log box.
+
+#### Displaying tasks of a group
+
+1. Selecting a group to display its tasks while on the Group Page.
+
+    1. Test case: `task 1`<br>
+       Expected: First group is selected to view its tasks. Details of the selected group to view its
+       tasks shown in the log box. Page redirected to the corresponding Task Page for the selected group.
+
+    1. Test case: `task x` (where x is larger than the list size)<br>
+       Expected: No group is selected to view its tasks. Error details shown in the log box.
+
+#### Finding a group
+
+1. Finding a group while on the Group Page, with the following groups - `T01`, `T02`, `L01` in the list.
+
+    1. Test case: `find group T`<br>
+       Expected: `T01` and `T02` is displayed. Details of the found groups shown in the log box.
+
+    1. Test case: `find group 01`<br>
+       Expected: `T01` and `L01` is displayed. Details of the found groups shown in the log box.
+
+    1. Test case: `find group T03` (this group does not exist in the list)<br>
+       Expected: The list is not filtered. Details of no found groups shown in the log box.
+
+    1. Other incorrect `find group` commands to try: `find`, `find group`<br>
+       Expected: The list is not filtered. Error details shown in the log box.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+
+### Students Page Commands
+These commands should be tested on the Students Page.
+
+#### Deleting a student
+
+1. Deleting a student while all students are being shown from the Students Page.
+
+    1. Test case: `delete student 1`<br>
+       Expected: First student is deleted from the list. Details of the deleted student shown in the log box.
+
+    1. Test case: `delete student 0`<br>
+       Expected: No student is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete student` commands to try: `delete`, `delete student x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+
+### Session Page Commands
+These commands should be tested on the Session Page.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+
+### Attendance Page Commands
+These commands should be tested on the Attendance Page.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+
+### Task Page Commands
+These commands should be tested on the Task Page.
+
+#### Adding a task
+
+1. Adding a task while the task list is empty, or the task does not exist in the task list.
+
+    1. Test case: `add task PE1`<br>
+       Expected: New task is added into the list. Details of the added task shown in the log box.
+
+    1. Other incorrect `add task` commands to try: `add`, `add task` (where the task name is empty)<br>
+       Expected: No task is added. Error details shown in the log box.
+
+2. Adding a task into the list containing the following tasks - `CA1`, `CA2`, `Critical Reflection 1`.
+
+    1. Test case: `add task CA3`<br>
+       Expected: New task is added. Details of the added task shown in the log box.
+
+    1. Test case: `add task CA1`<br>
+       Expected: No task is added. Error details shown in the log box.
+
+#### Deleting a task
+
+1. Deleting a task while all tasks are being shown from the Task Page. At least 1 task exists in the list.
+
+    1. Test case: `delete task 1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the log box.
+
+    1. Test case: `delete task 0`<br>
+       Expected: No task is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete task` commands to try: `delete`, `delete task x` (where x is larger than the list size)<br>
+       Expected: Similar to previous step 1.2 under `Deleting a task`.
+
+2. Deleting a task while the task list is empty in the Task Page.
+
+    1. Incorrect `delete task` commands to try: `delete`, `delete task x` (where x is any number)<br>
+       Expected: No task is deleted. Error details shown in the log box.
+
+#### Editing a task
+
+1. Editing a task which exists in the task list.
+
+    1. Test case: `edit task 1 CA4`<br>
+       Expected: First task is edited to the new task name. Details of the edited task shown in the log box.
+
+    1. Test case: `edit task 0 CA4`<br>
+       Expected: No task is edited. Error details shown in the log box.
+
+    1. Other incorrect `edit task` commands to try: `edit`, `edit task x` (where x is any number), `edit task x CA4` 
+       (where x is larger than the list size) <br>
+       Expected: Similar to previous step 1.2 under `Editing a task`.
+
+2. Editing a task while the task list is empty in the Task Page.
+
+    1. Refer to step 1.3 above under `Editing a task`.
+
+#### Selecting a task
+
+1. Selecting a task while on the Task Page.
+
+    1. Test case: `select 1`<br>
+       Expected: First task is selected. Details of the selected task shown in the log box. Page redirected to the
+       corresponding Grades Page.
+
+    1. Test case: `select x` (where x is larger than the list size)<br>
+       Expected: No task is selected. Error details shown in the log box.
+
+#### Finding a task
+
+1. Finding a task while on the Task Page, with the following tasks - `CA1`, `CA2`, `Critical Reflection 1` in the list.
+
+    1. Test case: `find task 1`<br>
+       Expected: `CA1` and `Critical Reflection 1` is displayed. Details of the found tasks shown in the log box.
+
+    1. Test case: `find task CA`<br>
+       Expected: `CA1` and `CA2` is displayed. Details of the found tasks shown in the log box.
+
+    1. Test case: `find task CA3` (this task does not exist in the list)<br>
+       Expected: The list is not filtered. Details of no found task(s) shown in the log box.
+
+    1. Other incorrect `find task` commands to try: `find`, `find task`<br>
+       Expected: The list is not filtered. Error details shown in the log box.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+
+### Grades Page Commands
+These commands should be tested on the Grades Page.
+
+#### Assigning a grade to a student
+
+1. Assigning a grade to a student, with at least one student in the list.
+
+    1. Test case: `assign 1 80`<br>
+       Expected: First student is assigned the grade. Details of the student assigned a grade shown in the log box.
+
+    1. Other incorrect `assign` commands to try: `assign`, `assign x` (where x is larger than the student list size)
+       , `assign x -1` or `assign x 101` (where x is a valid index from the student list) <br>
+       Expected: No student is assigned a mark. Error details shown in the log box.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: Corrupted data file. This includes any invalid fields in `roster.json` located in `tp/data`. <br>
+      Expected: A new set of roster sample data from `sampleRoster.json` will be loaded into the original file.
+      Do exit the app for the new data from the uncorrupted sample file to overwrite `roster.java`.
 
-1. _{ more test cases …​ }_
+   1. Test case: Missing data file. This indicates that `roster.java` does not exist in `tp/data`. <br>
+      Expected: A set of roster sample data from `sampleRoster.json` will be copied and loaded into a newly created `roster.java`.
+      Do exit the app for `roster.java` to be created.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)

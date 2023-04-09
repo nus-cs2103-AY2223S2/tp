@@ -1,156 +1,84 @@
-// package tfifteenfour.clipboard.logic.commands;
+package tfifteenfour.clipboard.logic.commands;
 
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
-// import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandFailure;
-// import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
-// import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.showStudentAtIndex;
-// import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-// import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-// import static tfifteenfour.clipboard.testutil.TypicalStudents.getTypicalRoster;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_OUT_OF_BOUND;
+import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 
-// import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-// import tfifteenfour.clipboard.commons.core.Messages;
-// import tfifteenfour.clipboard.commons.core.index.Index;
-// import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
-// import tfifteenfour.clipboard.model.Model;
-// import tfifteenfour.clipboard.model.ModelManager;
-// import tfifteenfour.clipboard.model.Roster;
-// import tfifteenfour.clipboard.model.UserPrefs;
-// import tfifteenfour.clipboard.model.student.Remark;
-// import tfifteenfour.clipboard.model.student.Student;
-// import tfifteenfour.clipboard.testutil.StudentBuilder;
+import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.student.Remark;
+import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.testutil.StudentBuilder;
+import tfifteenfour.clipboard.testutil.TypicalModel;
 
-// /**
-//  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
-//  */
-// class RemarkCommandTest {
-//     private static final String REMARK_STUB = "Some remark";
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
+ */
+class RemarkCommandTest {
+    private static final Remark REMARK_STUB = new Remark("Some remark");
+    private Model model;
+    private Student selectedStudent;
 
-//     private Model model = new ModelManager(getTypicalRoster(), new UserPrefs());
+    @BeforeEach
+    public void setUp() {
+        this.model = new TypicalModel().getTypicalModel();
+        this.model.getCurrentSelection().setCurrentPage(PageType.TASK_STUDENT_PAGE);
+        selectedStudent = model.getCurrentSelection().getSelectedStudent();
+    }
 
-//     @Test
-//     void execute_addRemarkUnfilteredList_success() {
-//         Student firstStudent = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-//         Student editedStudent = new StudentBuilder(firstStudent).withRemark(REMARK_STUB).build();
 
-//         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-//                 new Remark(editedStudent.getRemark().value));
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
 
-//         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-//                 editedStudent.getName(), editedStudent.getRemark());
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
 
-//         Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
-//         expectedModel.setStudent(firstStudent, editedStudent);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
+                selectedStudent.getName().fullName, REMARK_STUB.value);
 
-//         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-//     }
+        Model expectedModel = model.copy();
 
-//     @Test
-//     public void execute_addRemarkFilteredList_success() {
-//         showStudentAtIndex(model, INDEX_FIRST_PERSON);
+        Group expectedSelectedGroup = expectedModel.getCurrentSelection().getSelectedGroup();
+        expectedSelectedGroup.setStudent(selectedStudent,
+                new StudentBuilder(selectedStudent).withRemark(REMARK_STUB.value).build());
 
-//         Student firstStudent = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-//         Student editedStudent = new StudentBuilder(model.getUnmodifiableFilteredStudentList()
-//                 .get(INDEX_FIRST_PERSON.getZeroBased())).withRemark(REMARK_STUB).build();
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
 
-//         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-//                 new Remark(editedStudent.getRemark().value));
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_OUT_OF_BOUND, REMARK_STUB);
+        assertThrows(CommandException.class, () -> remarkCommand.execute(model));
+    }
 
-//         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
-//                 editedStudent.getName(), editedStudent.getRemark());
+    @Test
+    void equals() {
+        RemarkCommand remarkCommand1 = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
+        RemarkCommand remarkCommand2 = new RemarkCommand(INDEX_FIRST, REMARK_STUB);
+        RemarkCommand remarkCommand3 = new RemarkCommand(INDEX_SECOND, REMARK_STUB);
+        SelectCommand selectCommand = new SelectCommand(INDEX_SECOND);
 
-//         Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
-//         showStudentAtIndex(expectedModel, INDEX_FIRST_PERSON);
-//         expectedModel.setStudent(firstStudent, editedStudent);
+        // Same object -> returns true
+        assertEquals(remarkCommand1, remarkCommand1);
 
-//         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-//     }
+        // Same values -> returns true
+        assertEquals(remarkCommand1, remarkCommand2);
 
-//     @Test
-//     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-//         Index outOfBoundIndex = Index.fromOneBased(model.getUnmodifiableFilteredStudentList().size() + 1);
-//         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(REMARK_STUB));
+        // Different types -> returns false
+        assertNotEquals(1, remarkCommand1);
 
-//         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//     }
+        // Different index -> returns false
+        assertNotEquals(remarkCommand1, remarkCommand3);
 
-//     @Test
-//     public void execute_invalidIndexFilteredList_throwsCommandException() {
-//         showStudentAtIndex(model, INDEX_FIRST_PERSON);
+        assertNotEquals(remarkCommand1, selectCommand);
+    }
 
-//         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-//         // ensures that outOfBoundIndex is still in bounds of address book list
-//         assertTrue(outOfBoundIndex.getZeroBased() < model.getRoster().getUnmodifiableStudentList().size());
-
-//         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(REMARK_STUB));
-
-//         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//     }
-
-//     @Test
-//     public void execute_deleteRemarkUnfilteredList_success() {
-//         Student firstStudent = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-//         Student editedStudent = new StudentBuilder(firstStudent).withRemark("").build();
-
-//         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-//                 new Remark(editedStudent.getRemark().value));
-
-//         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedStudent.getName());
-
-//         Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
-//         expectedModel.setStudent(firstStudent, editedStudent);
-
-//         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-//     }
-
-//     @Test
-//     public void execute_deleteRemarkFilteredList_success() {
-//         showStudentAtIndex(model, INDEX_FIRST_PERSON);
-
-//         Student firstStudent = model.getUnmodifiableFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-//         Student editedStudent = new StudentBuilder(model.getUnmodifiableFilteredStudentList()
-//                 .get(INDEX_FIRST_PERSON.getZeroBased())).withRemark("").build();
-
-//         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-//                 new Remark(editedStudent.getRemark().value));
-
-//         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedStudent.getName());
-
-//         Model expectedModel = new ModelManager(new Roster(model.getRoster()), new UserPrefs());
-//         showStudentAtIndex(expectedModel, INDEX_FIRST_PERSON);
-//         expectedModel.setStudent(firstStudent, editedStudent);
-
-//         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-//     }
-
-//     @Test
-//     public void equals() {
-//         Remark remark = new Remark(REMARK_STUB);
-//         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, remark);
-
-//         // same object -> returns true
-//         assertTrue(remarkCommand.equals(remarkCommand));
-
-//         // same index and remark -> returns true
-//         RemarkCommand remarkCommandCopy = new RemarkCommand(INDEX_FIRST_PERSON, remark);
-//         assertTrue(remarkCommand.equals(remarkCommandCopy));
-
-//         // same index but different remark -> returns false
-//         assertFalse(remarkCommand.equals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark("Different remark"))));
-
-//         // different index but same remark -> returns false
-//         assertFalse(remarkCommand.equals(new RemarkCommand(INDEX_SECOND_PERSON, remark)));
-
-//         // different types -> returns false
-//         assertFalse(remarkCommand.equals(1));
-
-//         // null -> returns false
-//         assertFalse(remarkCommand.equals(null));
-
-//         // different index -> returns false
-//         RemarkCommand differentIndexRemarkCommand = new RemarkCommand(INDEX_SECOND_PERSON, remark);
-//         assertFalse(remarkCommand.equals(differentIndexRemarkCommand));
-//     }
-// }
+}

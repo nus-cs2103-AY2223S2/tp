@@ -26,4 +26,5 @@ public class HomeCommand extends Command {
 
         return new CommandResult(this, MESSAGE_SUCCESS, willModifyState);
     }
+
 }

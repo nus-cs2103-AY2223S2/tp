@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
@@ -29,7 +30,6 @@ public class AttendanceCommandTest {
     @BeforeEach
     public void setUp() {
         this.model = new TypicalModel().getTypicalModel();
-        this.model.getCurrentSelection().setCurrentPage(PageType.SESSION_STUDENT_PAGE);
         selectedCourse = model.getCurrentSelection().getSelectedCourse();
         selectedGroup = model.getCurrentSelection().getSelectedGroup();
         selectedSession = model.getCurrentSelection().getSelectedSession();

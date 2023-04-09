@@ -28,6 +28,7 @@ import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
+import tfifteenfour.clipboard.logic.commands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
@@ -37,7 +38,6 @@ import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentComman
 import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.TaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
@@ -158,6 +158,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -328,7 +329,7 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Student> viewedStudent =
                 logic.getModel().getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
                         .filtered(student -> student.isSameStudent(logic.getModel()
-                        .getCurrentSelection().getSelectedStudent()));
+                                .getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
                 logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
         if (viewedStudent.size() != 0) {
@@ -346,26 +347,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.getModel().getCurrentSelection().emptySelectedStudent();
     }
 
-    @FXML
-    private void handleUndoCommand(CommandResult commandResult) {
-        UndoCommand command = (UndoCommand) commandResult.getCommand();
-        Command prevCommand = command.getPrevModel().getCommandExecuted();
-
-        if (prevCommand instanceof SelectCommand) {
-            handleBackCommand();
-        } else if (prevCommand instanceof ClearCommand
-                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
-            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
-        } else if (prevCommand instanceof ClearCommand
-                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.TASK_PAGE)) {
-            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
-        } else {
-            // handleSelectCommand acts like refreshing whatever page you're on
-            // undo needs to refresh the page after restoring previous state
-            handleSelectCommand();
-        }
-    }
-
     /**
      * Shows course pane.
      */
@@ -375,7 +356,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Show group pane.
+     * Shows group pane.
+     *
      * @param course that groups belong to.
      */
     private void showGroupPane(Course course) {
@@ -384,7 +366,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Show student pane.
+     * Shows student pane.
+     *
      * @param group that students belong to.
      */
     private void showStudentPane(Group group) {
@@ -392,21 +375,37 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
+    /**
+     * Shows session pane.
+     * @param group that sessions belong to.
+     */
     private void showSessionPane(Group group) {
         SessionListPanel sessionListPanel = new SessionListPanel(group.getUnmodifiableFilteredSessionList());
         leftPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
     }
 
+    /**
+     * Shows task pane.
+     * @param group that tasks belong to.
+     */
     private void showTaskPane(Group group) {
         TaskListPanel taskListPanel = new TaskListPanel(group.getUnmodifiableFilteredTaskList());
         leftPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
 
+    /**
+     * Shows attendance pane.
+     * @param session for which attendance is being marked.
+     */
     private void showAttendancePane(Session session) {
         AttendanceListPanel attendanceListPanel = new AttendanceListPanel(session.getUnmodifiableStudentList());
         rightPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
     }
 
+    /**
+     * Shows grade pane.
+     * @param task for which grade is being assigned.
+     */
     private void showGradePane(Task task) {
         GradeListPanel gradeListPanel = new GradeListPanel(task.getUnmodifiableStudentList());
         rightPanelPlaceholder.getChildren().add(gradeListPanel.getRoot());
@@ -513,7 +512,6 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles UI for back command.
-     * @param backCommand
      */
     private void handleBackCommand() {
         CurrentSelection currentSelection = logic.getModel().getCurrentSelection();
@@ -560,37 +558,94 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Handles UI for undo command.
+     */
+    private void handleUndoCommand(CommandResult commandResult) throws CommandException {
+        UndoCommand command = (UndoCommand) commandResult.getCommand();
+        Command prevCommand = command.getPrevModel().getCommandExecuted();
+
+        if (prevCommand instanceof SelectCommand
+                && !rightPanelPlaceholder.getChildren().isEmpty()
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+            rightPanelPlaceholder.getChildren().clear();
+
+        } else if (prevCommand instanceof SelectCommand) {
+            handleBackCommand();
+
+        } else if (prevCommand instanceof ClearCommand
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
+            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+
+        } else if (prevCommand instanceof ClearCommand
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.TASK_PAGE)) {
+            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+
+        } else if (prevCommand instanceof MarkPresentCommand
+                || prevCommand instanceof MarkAbsentCommand) {
+            throw new CommandException("Use the mark or unmark command instead to undo previous action.");
+
+        } else if (prevCommand instanceof AssignCommand) {
+            throw new CommandException("Use the assign command instead to assign a new grade to a student."
+                    + "\nTip: You can assign a grade of '0' to a student.");
+
+        } else if (prevCommand instanceof AttendanceCommand
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.SESSION_STUDENT_PAGE)) {
+            //Do nothing
+
+        } else {
+            // handleSelectCommand acts like refreshing whatever page you're on
+            // undo needs to refresh the page after restoring previous state
+            handleSelectCommand();
+        }
+    }
+
+    /**
+     * Handles UI for session command.
+     */
     private void handleSessionCommand() {
         showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
         showSessionTab();
         refreshNavigationBar();
     }
 
+    /**
+     * Handles UI for task command.
+     */
     private void handleTaskCommand() {
         showTaskPane(logic.getModel().getCurrentSelection().getSelectedGroup());
         showTaskTab();
         refreshNavigationBar();
     }
 
+    /**
+     * Handles UI for attendance command.
+     */
     private void handleAttendanceCommand() {
         if (logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
             showStudentAttendance();
         }
     }
 
+    /**
+     * Shows a student's attendance for the entire course in the StudentViewCard.
+     */
     private void showStudentAttendance() {
         rightPanelPlaceholder.getChildren().clear();
         ObservableList<Student> viewedStudent =
                 logic.getModel().getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
                         .filtered(student ->
-                        student.isSameStudent(logic.getModel().getCurrentSelection().getSelectedStudent()));
+                                student.isSameStudent(logic.getModel().getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
                 logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
         rightPanelPlaceholder.getChildren()
                 .add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList, 1).getRoot());
     }
 
-    private void handleSpecialCommandConsiderations(CommandResult commandResult) {
+    /**
+     * Handles UI for special commands.
+     */
+    private void handleSpecialCommandConsiderations(CommandResult commandResult) throws CommandException {
 
         if (commandResult.getCommand() instanceof SelectCommand) {
             handleSelectCommand();

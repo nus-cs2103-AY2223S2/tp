@@ -8,7 +8,7 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tfifteenfour.clipboard.commons.core.index.Index;
+
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
@@ -18,9 +18,7 @@ import tfifteenfour.clipboard.testutil.TypicalModel;
 
 public class EditGroupCommandTest {
     private Model model;
-    private Group originalGroup;
-    private Group newGroup;
-    private Index index;
+
 
     @BeforeEach
     public void setUp() {
@@ -63,8 +61,10 @@ public class EditGroupCommandTest {
 
     @Test
     public void execute_wrongPage_throwsCommandException() {
+        Group editedGroup = new Group("NewGroup");
+
         model.getCurrentSelection().setCurrentPage(PageType.STUDENT_PAGE);
-        EditGroupCommand editGroupCommand = new EditGroupCommand(index, newGroup);
+        EditGroupCommand editGroupCommand = new EditGroupCommand(INDEX_FIRST, editedGroup);
 
         assertThrows(CommandException.class, () -> editGroupCommand.execute(model));
     }
