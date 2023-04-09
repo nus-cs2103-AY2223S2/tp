@@ -7,13 +7,12 @@ NeoBook is a **desktop app for managing contacts, optimized for use via a Comman
 
 Apart from being your all-encompassing address book, NeoBook also has a Events function for you to keep track of your daily schedule.
 
-## Table Of Contents
+# Table Of Contents
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
-
-## Getting started
+<hr style="border:2px solid gray">
+# Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -43,59 +42,59 @@ Apart from being your all-encompassing address book, NeoBook also has a Events f
 6. Refer to the [NeoBook Features](#neobook-features) below for details of each command.
 
 [Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 --------------------------------------------------------------------------------------------------------------------
-## User Interface
+# User Interface
 
-1. Use these tabs to toggle between the NeoBook, Events and your own information!
+## UI Breakdown For `Tabs`
+Use these tabs to toggle between the NeoBook, Events and your own information!
 
 ![uitabs](images/userguide/uitabs.png)
 
-### UI Breakdown For `NeoBook`
+## UI Breakdown For `NeoBook`
 
 ![neobook](images/userguide/neobook.png)
 
 1. Current Displayed List
-   * show contacts based on command parameters
-   * contains the `index` you should use to refer to each contact
+   * Show contacts based on command parameters
+   * Contains the `index` you should use to refer to each contact
    * A : Contains favorite contacts for easy access
    * B : Contains all contacts
 2. Information Of Specific Contact
-   * displays all the saved information related to contact
-   * toggle between different contacts by _clicking on them in the displayed list_ or using the [select command](#select-contact-to-expand-details--select)
+   * Displays all the saved information related to contact
+   * Toggle between different contacts by _clicking on them in the displayed list_ or using the [select command](#select-contact-to-expand-details--select)
 3. Command Results:
-   * displays the result of input command
+   * Displays the result of input command
 4. Command Line:
-   * type command and press enter to execute it
-   * refer to the [NeoBook Features](#neobook-features) below for possible commands to execute
+   * Type command and press enter to execute it
+   * Refer to the [NeoBook Features](#neobook-features) below for possible commands to execute
 
-### UI Breakdown For `Events`
+## UI Breakdown For `Events`
 
 ![events](images/userguide/events.png)
-
 1. Events Display
-   * displays all events you have saved and their respective details
+   * Displays all events you have saved and their respective details
 2. Command Results:
-   * displays the result of input command
+   * Displays the result of input command
 3. Command Line
-   * type command and press enter to execute it
-   * refer to the [Events Features](#events-features) below for possible commands to execute
+   * Type a command and press enter to execute it
+   * Refer to the [Events Features](#events-features) below for possible commands to execute
 
-### UI Breakdown For `Me`
+## UI Breakdown For `Me`
 
 ![me](images/userguide/me.png)
-
 1. Display
-    * contains your personal details
+    * Contains your personal details
 
 [Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
-____________________________________________________________________________________________________________________
-## NeoBook Features
+# NeoBook Features
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+### :information_source: Notes about the command format:<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -118,8 +117,8 @@ ________________________________________________________________________________
 
 
 </div>
+____________________________________________________________________________________________________________________
 
-<hr style="border:2px solid gray">
 
 ### Viewing Help : `help`
 
