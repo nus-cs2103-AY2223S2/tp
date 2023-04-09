@@ -6,12 +6,12 @@ title: User Guide
 ![Logo](images/UI/AlternateLogo.png)
 
 PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI!
-You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
+You can now focus on spending quality time with your furry friends without having to worry about things accidentally slipping your mind.
 
-**PetPal is optimized for a Pet DayCare owners to use via the Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
-PetPal can help get your pet administrative tasks done without needing to be tech-savvy.
+**PetPal is optimized for Pet DayCare owners to use via the Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+PetPal can help get your pet's administrative tasks done without needing to be tech-savvy.
 
-This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet caring duties**.
+This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet-caring duties**.
 
 # Table of Contents
 
