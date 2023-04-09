@@ -1,5 +1,6 @@
 package fasttrack.logic.parser;
 
+import static fasttrack.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
@@ -126,7 +127,7 @@ public class ParserUtil {
         try {
             parsedDate = CommandUtility.parseDateFromUserInput(trimmedDate);
         } catch (IllegalArgumentException e) {
-            throw new ParseException("Date should be of the form D/M/YY");
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
         return parsedDate;
     }
