@@ -54,13 +54,14 @@ deactivate QuickBookParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 FindCommand -> Model : find()
+activate Model
 Model -> ContainsNamesPredicate: FilteredList()
 activate ContainsNamesPredicate
 ContainsNamesPredicate --> Model: return FilteredList
 deactivate ContainsNamesPredicate
 
 Model --> FindCommand: returns filteredList
-
+deactivate Model
 
 FindCommand --> LogicManager : return
 deactivate FindCommand
