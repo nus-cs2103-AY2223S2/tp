@@ -170,7 +170,6 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
 * stores the task book data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
@@ -1141,7 +1140,9 @@ However, a more specific error would be `The index provided is invalid`. In the 
 - Moreover, there is another minor bug about index inputs when the user enters the index `0` in all sorts of commands, such as `delete`, `edit`, `subsection`, and `remove-subsection`. The error message will show each command's expected usage, such as the one shown in the example above. However, a more
 specific usage will still be `The index provided is invalid`, which will be the standard behaviour for index errors in the future.
 - Perhaps we can add an `IndexOutOfBoundsException` for all the above errors, such that when the catcher catches the exception, error message will always be `The index provided is invalid`.
-
+- A similar flaw in error messages occur when the user enters tag name as `t/1 1` with a blank space. The error message is shown below:
+  ![text-wrap0](images/tag-error-message.png)
+However, a more specific error message in the future will be "Tags should not contain blank spaces".
 
 
 

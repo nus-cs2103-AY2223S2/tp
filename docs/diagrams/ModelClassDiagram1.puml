@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class "<<interface>>\nReadOnlyTaskBook" as ReadOnlyTaskBook
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nReadOnlyPlanner" as ReadOnlyPlanner
+Class TaskBook
+Class ModelManager
+Class UserPrefs
+Class Planner
+
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyTaskBook
+ReadOnlyPlanner .up[hidden].> ReadOnlyUserPrefs
+Model .down.> ReadOnlyPlanner
+ModelManager -left-> "1" TaskBook
+ModelManager -right-> "1" UserPrefs
+UserPrefs .right.|> ReadOnlyUserPrefs
+Planner .up.|> ReadOnlyPlanner
+ModelManager -up-> "1" Planner
+TaskBook .up.|> ReadOnlyTaskBook
+
+
+
+@enduml

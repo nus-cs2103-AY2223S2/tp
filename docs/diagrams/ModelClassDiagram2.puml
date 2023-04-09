@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+
+Class "{abstract}\nTask" as Task
+Class TaskBook
+Class ModelManager
+
+Class UniqueTaskList
+Class UniqueSubtaskList
+Class Subtask
+Class SimpleTask
+Class Deadline
+Class Event
+Class Name
+Class Description
+Class Effort
+Class Tag
+Class Date
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> ModelManager
+
+
+
+
+
+
+ModelManager -left-> "1" TaskBook
+UniqueTaskList -[hidden]up-> ModelManager
+
+
+TaskBook *--> "1" UniqueTaskList
+UniqueTaskList --> "~* all" Task
+Task *--> "1" UniqueSubtaskList
+
+
+Deadline -up|> Task
+Deadline -left[hidden]-> Subtask
+Deadline -left[hidden]-> Name
+Deadline -left[hidden]-> Description
+Deadline *-left-> "1" Date
+Event *--> "2" Date
+Event -up|> Task
+Event -[hidden]up-> SimpleTask
+SimpleTask -left-|> Task
+Task *-down-> "1" Name
+Task *-down-> "0..1" Description
+Task *-down-> "0..1" Effort
+Task *-down-> Tag
+
+
+
+
+UniqueSubtaskList --> "~* all" Subtask
+
+
+ModelManager -->"~* filtered" Task
+@enduml
