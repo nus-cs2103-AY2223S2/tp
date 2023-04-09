@@ -2343,55 +2343,21 @@ Maintainability:
 
 Given below are instructions to test the app manually.
 
-:exclamation:**Note**: These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
+:exclamation:**Note**: These instructions may not be comprehensive and serve only as a starting point for manual testing; Testers are encouraged to conduct further *exploratory* testing to find unexpected behaviour.
 
-Prerequisites:
+Please ensure that you begin with the original sample data set before testing!
 
-- Ensure your [data](../data/leTracker.json) is up-to-date with the [original test data](../src/test/data/JsonSerializableTrackerTest/typicalTracker.json)
-- Each test case assumes that you start from the root context
+- Delete the `{leTracker_directory}/data` folder to regenerate the sample data.
 
-### Launch and shutdown
+To make things easier for testing
 
-1. Initial launch
+- Before testing, execute `export test.json` to make a copy of the sample data.
+  - You can then execute `import test.json /overwrite` to revert any changes and restore the original sample data set.
 
-   1. Download the jar file and copy into an empty folder
+Before beginning each test case, ensure that
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.
-      Expected: The most recent window size and location is retained.
-
-<!--
-TODO: to be removed
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_ -->
+1. You are at the root context <img src="images/RootContext.png" height="20" />.
+2. You are using the unmodified original sample data set.
 
 ### List Modules
 
