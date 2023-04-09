@@ -143,6 +143,8 @@ Scenario 2 - Not using [Navigation](#navigation)
 
 :clap: That covers all the main commands. Refer to the [Command Manual](#command-manual) section for details of each command. Feel free to play around with the sample data to familiarise yourself with the commands. Once you are comfortable, execute `clear` to delete all data and start from scratch.
 
+[Back to TOC :clipboard:](#table-of-contents)
+
 ---
 
 ## Command Syntax
@@ -189,13 +191,14 @@ e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unn
    - There is a whitespace before `/{argument_name}`
    - `/{argument_name}` is followed by a whitespace or it is the end of the command
 
-   <br/>
    <details>
    <summary>Example</summary>
    For the command <code>find Intro /mod CS2040S /byTag</code>, <code>/mod</code> and <code>/byTag</code> are both recognised as named arguments.
 
    For the command <code>find Intro /modCS2040S /byTag</code>, only <code>/byTag</code> is recognised as a named argument while <code>Intro /modCS2040S</code> is treated as the value of the unnamed argument.
    </details>
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ---
 
@@ -230,6 +233,8 @@ e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unn
 
   Video names should only contain alphanumeric characters and spaces, and it should not be blank.\
   e.g. Video 1
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ---
 
@@ -306,6 +311,8 @@ To make it easier to specify a lecture context which shares the same module code
 
 - Note that the lecture week is different from the current working context and that only the `/mod` prefix has been injected into the command input.
 
+[Back to TOC :clipboard:](#table-of-contents)
+
 ---
 
 ## Command Manual
@@ -355,6 +362,8 @@ Navigates directly to the specified module or lecture context.
 > `navb`
 
 Navigates backwards to a higher context unless already at root context.
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ### List
 
@@ -408,6 +417,8 @@ The code of the module that contains the lecture specified in `lecture_name`
     </li>
 </ul>
 </details>
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ### Find
 
@@ -494,6 +505,8 @@ Find all videos in a specified lecture in a specified module whose name starts w
 </ul>
 </details>
 
+[Back to TOC :clipboard:](#table-of-contents)
+
 ### Add
 
 #### Add a Module
@@ -576,6 +589,8 @@ Add a video to a lecture.
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ### Edit
 
@@ -668,6 +683,8 @@ Edit the details of a video.
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
+[Back to TOC :clipboard:](#table-of-contents)
+
 ### Delete
 
 #### Delete Module
@@ -756,6 +773,8 @@ Deletes the specified video(s) and all its embodied content from the same specif
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
+[Back to TOC :clipboard:](#table-of-contents)
+
 ### Mark or Unmark Video
 
 > `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
@@ -791,6 +810,8 @@ Marks video(s) as **unwatched** in a lecture of its specified module.
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ### Tag
 
@@ -859,6 +880,8 @@ Examples:
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
+[Back to TOC :clipboard:](#table-of-contents)
+
 ### Untag
 
 #### Untag a module
@@ -919,10 +942,11 @@ Examples:
 
 - `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
 
-
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ### Export Data
 
@@ -942,6 +966,8 @@ Examples:
 
 - `export hello.json`
 - `export /../../haha.json /overwrite`
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ### Import Data
 
@@ -970,6 +996,8 @@ Examples:
 - `import /../../haha.json /overwrite`
 - `import hehe.json /mod CS2040, MA2401`
 - `import hihi.json /mod EG2310 /overwrite`
+
+[Back to TOC :clipboard:](#table-of-contents)
 
 ### Clear
 
