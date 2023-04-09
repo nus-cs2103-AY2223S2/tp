@@ -278,90 +278,16 @@ These placeholders follow immediately after a [Flag](#flags).
 Please refer to the subsequent [Command Format](#command-format) 
 section to see how Flags and Placeholders are used together.
 
-<table>
-  <tr>
-    <th>Placeholder</th>
-    <th>Corresponding Flag</th>
-    <th>Description</th>
-    <th>Restrictions</th>
-  </tr>
-  <tr>
-    <td>INDEX</td>
-    <td>(Not Applicable)</td>
-    <td>The INDEX of an item is the number to the left of the applicant's name in the Item List Box.</td>
-    <td>
-      <ul>
-        <li>The INDEX is restricted to the number of applicants in HMHero and cannot be negative.</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>NAME</td>
-    <td>n/</td>
-    <td>The NAME is the text we use to identify an Applicant.</td>
-    <td>
-      <ul>
-        <li>The NAME of an applicant must be alphabetic characters and no numbers are allowed.</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>PHONE</td>
-    <td>p/</td>
-    <td>The PHONE is the text we use to represent the phone number of the Applicant.</td>
-    <td>
-      <ul>
-        <li>The PHONE of an applicant must have at least 3 numbers and must be numeric characters.</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>EMAIL</td>
-    <td>e/</td>
-    <td>The EMAIL is the text we use to represent the email of the Applicant.</td>
-    <td>
-        EMAIL must be in the format <code>username@domain</code>
-        <li>
-          <code>username</code>:
-          <ul>
-            <li>Should only contain alphanumeric characters and these special characters (<code>+</code>, <code>_</code>, <code>.</code>, <code>-</code>)</li>
-            <li>Should not start or end with any special characters.</li>
-          </ul>
-        </li>
-        <code>domain</code>:
-          <ul>
-            <li>Should be at least 2 characters long.</li>
-            <li>Each domain label should start and end with alphanumeric characters.</li>
-            <li>Each domain label consists of alphanumeric characters, separated only by hyphens, if any.</li>
-          </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>NOTE</td>
-    <td>note/</td>
-    <td>The NOTE is the text we use to represent the skill of an Applicant.</td>
-    <td>
-        NOTE cannot be longer than 45 characters long.
-    </td>
-  </tr>
-  <tr>
-    <td>APPLICATION DATETIME</td>
-    <td>applied/</td>
-    <td>The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job.</td>
-    <td>
-        Format of datetime is <code>DD-MM-YYYY HH:mm</code>
-    </td>
-  </tr>
-  <tr>
-    <td>INTERVIEW DATETIME</td>
-    <td>d/</td>
-    <td>The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.</td>
-    <td>
-        Format of datetime is <code>DD-MM-YYYY HH:mm</code>
-        <br><br>
-        INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.
-    </td>
-</table>
+| Placeholder          | Corresponding Flag | Description                                                                                                        | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|----------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INDEX                | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                       | The INDEX is restricted to the number of applicants in HMHero and cannot be negative.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| NAME                 | n/                 | The NAME is the text we use to identify an Applicant.                                                              | The NAME of an applicant must be alphabetic characters and no numbers are allowed.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| PHONE                | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                       | The PHONE of an applicant must have at least 3 numbers and must be numeric characters.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| EMAIL                | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                              | EMAIL must be in the format `username@domain` <br/></br> `username`:  </br> ● Should only contain alphanumeric characters and these special characters (`+`, `_`, `.`, `-`)  </br> ● Should not start or end with any special characters.  </br></br> `domain`:  </br> ● Should be at least 2 characters long.  </br> ● Each domain label should start and end with alphanumeric characters.  </br> ● Each domain label consists of alphanumeric characters, separated only by hyphens, if any. |
+| NOTE                 | note/              | The NOTE is the text we use to represent the skill of an Applicant.                                                | NOTE cannot be longer than 45 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| APPLICATION DATETIME | applied/           | The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job. | Format of datetime is `DD-MM-YYYY HH:mm`                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm`  \n\n INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                         |
+
 
 
 [Back to Table of Contents](#table-of-contents)
