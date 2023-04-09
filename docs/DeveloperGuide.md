@@ -714,6 +714,93 @@ These commands should be tested on the Group Page.
 ### Students Page Commands
 These commands should be tested on the Students Page.
 
+#### Adding a student
+
+1. Adding a student while the student list is empty or the student does not exist in the course list.
+
+   1. Test case: ` add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`<br>
+      Expected: New student is added into the list. Details of the added student shown in the log box.
+
+   2. Other incorrect `add student` commands to try: `add`, `add student` (where the name, phone number, email or student ID is empty)<br>
+      Expected: No student is added. Error details shown in the log box.
+
+2. Adding a student whose student ID already exists in the list.
+
+    1. Test case: `add student n/John p/98765432 e/johnd@example.com sid/A1234567X`, where another student with student ID A1234567X already exists in the student list<br>
+       Expected: No course is added. Error details shown in the log box.
+   
+3. Adding a student whose name already exists in the list.
+   1. Test case: `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`, where John Doe with a different student ID exists in the student list.
+   Expected: New student is added into the list. Duplicate names are allowed as long as the student ID is different. Details of the added student shown in the log box.
+
+#### Deleting a student
+
+1. Deleting a student while all students are being shown from the Student Page. At least 1 student exists in the list.
+
+   1. Test case: `delete student 1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the log box.
+
+   2. Test case: `delete student 0`<br>
+          Expected: No student is deleted. Error details shown in the log box.
+
+   3. Other incorrect `delete student` commands to try: `delete`, `delete student x` (where x is larger than the list size)<br>
+          Expected: Similar to previous step 1.2 under `Deleting a student`.
+
+2. Deleting a student while the student list is empty in the Course Page.
+
+    1. Incorrect `delete student` commands to try: `delete`, `delete student x` (where x is any number)<br>
+       Expected: No student is deleted. Error details shown in the log box.
+
+#### Editing a student
+
+1. Editing a student which exists in the course list.
+
+    1. Test case: `edit student 1 n/John p/98765432 e/John@gmail.com sid/A2345678X` where at least one of the fields 
+   `n/<NAME>`, `p/<PHONE_NUMBER>`, `e/<EMAIL>` or `sid/<STUDENT_NUMBER>` must be provided<br>
+       Expected: First student is edited to have the new field details provided. Details of the edited student shown in the log box.
+
+    1. Test case: `edit student 0 n/John`<br>
+       Expected: No student is edited. Error details shown in the log box.
+
+    1. Other incorrect `edit student` commands to try: `edit`, `edit student`, `edit student x` (where x is any number), `edit student x n/John` (where x is larger than the list size) <br>
+       Expected: Similar to previous step 1.2 under `Editing a student`.
+
+2. Editing a student while the student list is empty in the Student Page.
+
+    1. Refer to step 1.3 above under `Editing a student`.
+
+#### Selecting a student
+
+1. Selecting a student while on the Student Page.
+
+    1. Test case: `select 1`<br>
+       Expected: First student is selected. Details of the selected student shown in the log box. Displays the student's information on the view panel on the right.
+
+    1. Test case: `select x` (where x is larger than the list size)<br>
+       Expected: No student is selected. Error details shown in the log box.
+
+
+#### Finding a student
+
+1. Finding a student while on the Student Page, with the following students - `John Doe`, `Johnny Yu`, `Alice Yeoh` in the list,
+with respective student IDs `A1234567X`, `A123`, `A98765432X`.
+
+   1. Test case: `find student John`<br>
+         Expected: `John Doe` and `Johnny Yu` is displayed. Details of the found students shown in the log box.
+
+   1. Test case: `find student A123`<br>
+      Expected: students with student ID `A1234567X` and `A123` are displayed. Details of the found students shown in the log box.
+
+   1. Test case: `find student Alice Yu`<br>
+      Expected: `Alice Yeoh` and `Johnny Yu` are displayed. Details of the found students shown in the log box.
+   
+   1. Test case: `find student Alex Tan` (this student does not exist in the list)<br>
+      Expected: The list is not filtered. Details of no found students shown in the log box.
+
+   1. Other incorrect `find student` commands to try: `find`, `find student`<br>
+      Expected: The list is not filtered. Error details shown in the log box.
+
+
 #### Deleting a student
 
 1. Deleting a student while all students are being shown from the Students Page.
@@ -724,10 +811,61 @@ These commands should be tested on the Students Page.
     1. Test case: `delete student 0`<br>
        Expected: No student is deleted. Error details shown in the log box.
 
-    1. Other incorrect `delete student` commands to try: `delete`, `delete student x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Other incorrect `delete student` commands to try: `delete`, `delete student x`, (where x is larger than the list size)<br>
+       Expected: No student is deleted. Error details shown in the log box.
 
-2. _{ more test cases …​ }_
+2. Deleting a student while the student list is empty on the Students Page.
+    1. Test case: `delete student 1`<br>
+    Expected: No student is deleted. Error details shown in the log box.
+
+#### Copying a student's email
+1. Copying a student's email to your clipboard, while there is more than one student on the Students Page.
+    1. Test case: `copy 1`<br>
+    Expected: First student's email is copied to your clipboard. Successful command message shown in the log box.
+   2. Test case: `copy 0`<br>
+   Expected: No student email is copied. Error details shown in the log box.
+   3. Other incorrect `copy` commands to try: `copy`, `copy x`, (where x is larger than the student list)
+   Expected: No student email is copied. Error details shown in the log box.
+3. Copying a student's email while the student list is empty on the Students Page.
+    1. Test case: `copy 1`<br>
+    Expected: Nothing is copied to your clipboard. Error details shown in the log box.
+
+#### Sorting students by their name or student ID
+1. Sorting student list by their name
+    1. Test case: `sort name`
+   Expected: Student list sorted by name in alphabetical order.
+2. Sorting student list by their student IDs
+    1. Test case: `sort id`
+   Expected: Student list sorted by student ID.
+
+#### Adding or deleting a remark
+1. Adding a remark to a student that does not have an existing remark.
+    1. Test case: `remark 1 Loves photography`
+   Expected: Adds a remark `Loves photography` to the first student on the student list. Details of the new remark displayed in the log box.
+   2. Test case: `remark 0 Loves sci-fi movies`
+   Expected: Displays error message on the log box.
+   3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student lit)
+   Expected: Displays error message on the log box.
+2. Adding a remark to a student that already has a remark.
+   1. Test case: `remark 1 Plays football` 
+      Expected: Replaces the previous remark that the first student has with `Plays football`. Details of the new remark displayed in the log box.
+   2. Test case: `remark 0 Loves sci-fi movies`
+     Expected: Displays error message on the log box.
+   3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student lit)
+      Expected: Displays error message on the log box.
+   
+#### Uploading a student's photo
+1. Uploads a student's photo to be displayed in the student roster.
+    1. Test case: `upload <LOCAL_FILE_PATH>`, where file path can be either relative or absolute file path <br>
+    Example: `upload C:/Users/AlexYeoh/Desktop/A0123456X.png` <br>
+    Expected: Image `A0123456X.png` will be uploaded to the CLIpboard data folder and the photo will be displayed in the profile of student with student ID `A0123456X`.
+    2. Test case: `upload <INVALID_FILE_PATH>`, where file path does not exist. <br>
+    Expected: Error message displayed on the log box.
+
+#### Viewing a student's attendance throughout the course after selecting him/her
+1. View a student's attendance throughout the course after using `select` command on the Students Page.
+    1. Test case: `attendance` <br>
+    Expected: Displays the student's attendance throughout the course on the log box and the view panel on the right.
 
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
@@ -736,12 +874,138 @@ These commands should be tested on the Students Page.
 ### Session Page Commands
 These commands should be tested on the Session Page.
 
+#### Adding a session
+1. Adding a session while the session list is empty, or the session does not exist in the session list.
+
+    1. Test case: `add session Tutorial1`<br>
+       Expected: New session is added into the list. Details of the added task shown in the log box.
+
+    1. Other incorrect `add session` commands to try: `add`, `add session` (where the session name is empty)<br>
+       Expected: No session is added. Error details shown in the log box.
+
+2. Adding a session into the list containing the following sessions - `Tutorial1`, `Tutorial2`, `Lab1`.
+
+    1. Test case: `add session Tutorial3`<br>
+       Expected: New session is added. Details of the added session shown in the log box.
+
+    1. Test case: `add session Tutorial1`<br>
+       Expected: No session is added. Error details shown in the log box.
+   
+#### Deleting a session
+
+1. Deleting a session while all sessions are being shown from the Session Page. At least 1 session exists in the list.
+
+    1. Test case: `delete session 1`<br>
+       Expected: First session is deleted from the list. Details of the deleted session shown in the log box.
+
+    1. Test case: `delete session 0`<br>
+       Expected: No session is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete session` commands to try: `delete`, `delete session x` (where x is larger than the list size)<br>
+       Expected: Similar to previous step 1.2 under `Deleting a session`.
+
+2. Deleting a session while the session list is empty in the Session Page.
+
+    1. Incorrect `delete session` commands to try: `delete`, `delete session x` (where x is any number)<br>
+       Expected: No session is deleted. Error details shown in the log box.
+
+#### Editing a session
+
+1. Editing a session which exists in the Session list.
+
+   1. Test case: `edit session 1 Tutorial4`<br>
+      Expected: First session is edited to the new task name. Details of the edited session shown in the log box.
+
+   2. Test case: `edit session 0 Tutorial4`<br>
+      Expected: No session is edited. Error details shown in the log box.
+
+   3. Other incorrect `edit session` commands to try: `edit`, `edit session x` (where x is any number), `edit session x Tutorial4`
+      (where x is larger than the list size) <br>
+      Expected: Similar to previous step 1.2 under `Editing a session`.
+
+2. Editing a session while the session list is empty in the Session Page.
+
+    1. Refer to step 1.3 above under `Editing a session`.
+
+#### Selecting a session
+
+1. Selecting a session while on the Session Page.
+
+   1. Test case: `select 1`<br>
+      Expected: First session is selected. Details of the selected session shown in the log box. Page redirected to the
+      corresponding Attendance Page.
+
+   2. Test case: `select x` (where x is larger than the list size)<br>
+      Expected: No session is selected. Error details shown in the log box.
+   
+2. Selecting a session while the session list is empty in the Session Page.
+    1. Refer to step 1.2 above under `Selecting a session`
+
+#### Finding a session
+
+1. Finding a session while on the Session Page, with the following sessions - `Tutorial1`, `Tutorial2`, `Lab1` in the list.
+
+    1. Test case: `find session 1`<br>
+       Expected: `Tutorial1` and `Lab1` is displayed. Details of the found sessions shown in the log box.
+
+    1. Test case: `find session tutorial`<br>
+       Expected: `Tutorial1` and `Tutorial2` is displayed. Details of the found sessions shown in the log box.
+
+    1. Test case: `find session Tutorial3` (this session does not exist in the list)<br>
+       Expected: The list is not filtered. Details of no found session(s) shown in the log box.
+
+    1. Other incorrect `find session` commands to try: `find`, `find session`<br>
+       Expected: The list is not filtered. Error details shown in the log box.
+
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 ---
 
 ### Attendance Page Commands
 These commands should be tested on the Attendance Page.
+
+#### Marking selected student(s) as present
+
+1. Marking selected student as present, with at least one student in the list.
+
+   1. Test case: `mark 1`<br>
+      Expected: First student is marked as present. Details of the student marked as present shown in the log box.
+
+   2. Other incorrect `mark` commands to try: `mark`, `mark x` (where x is larger than the student list size)
+      , `mark -1` or `mark 101` (where x is a valid index from the student list) <br>
+      Expected: No student is marked as present. Error details shown in the log box.
+   
+2. Marking selected students as present, with 6 students in the list.
+    1. Test case: `mark 1, 4, 6`<br> 
+        Expected: First, fourth and sixth students are marked as present. Details of the students marked as present shown in the log box.
+    2. Test case: `mark 2, 3, 5, 7` (where there is no student in the seventh index) <br>
+        Expected: No student is marked as present. Error details shown in the log box.
+    3. Other incorrect `mark` commands to try: `mark`, `mark 0` <br>
+       Expected: No student is marked as present. Error details shown in the log box.
+   
+#### Marking selected student(s) as absent
+1. Marking selected student as absent, with at least one student in the list.
+
+    1. Test case: `unmark 1`<br>
+       Expected: First student is marked as absent. Details of the student marked as absent shown in the log box.
+
+    2. Other incorrect `unmark` commands to try: `unmark`, `unmark x` (where x is larger than the student list size)
+       , `unmark -1` or `unmark 101` (where x is a valid index from the student list) <br>
+       Expected: No student is marked as absent. Error details shown in the log box.
+
+2. Marking selected students as absent, with 6 students in the list.
+    1. Test case: `unmark 1, 4, 6`<br>
+       Expected: First, fourth and sixth students are marked as absent. Details of the students marked as absent shown in the log box.
+    2. Test case: `unmark 2, 3, 5, 7` (where there is no student in the seventh index) <br>
+       Expected: No student is marked as absent. Error details shown in the log box.
+    3. Other incorrect `unmark` commands to try: `unmark`, `unmark 0` <br>
+       Expected: No student is marked as absent. Error details shown in the log box.
+
+
+#### Viewing the overall attendance of the session
+1. Viewing the overall attendance of the session.
+    1. Test case: `attendance`<br>
+    Expected: Overall attendance of the session is displayed in the log box.
 
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
