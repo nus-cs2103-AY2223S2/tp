@@ -647,8 +647,6 @@ What you should see:
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 #### Edit an existing applicant `edit`
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/NOTE]`
