@@ -53,9 +53,12 @@ Main has two classes called Main and MainApp. It is responsible for,
 
 The rest of the App consists of four components.
 
-* UI: The UI of the App.
-* Logic: The command executor.
-* Model: Holds the data of the App in memory and defines the different entities.
+* UI: The UI of the App. The UI of Wingman is built using JavaFX with FXML.
+* Logic: The command executor. This layer is responsible for parsing user
+  input into executable commands, and executing them. It adopts the command
+  pattern, the facade pattern, and the factory pattern.
+* Model: Holds the data of the App in memory and defines the different
+  entities.
 * Storage: Reads data from, and writes data to, the hard disk.
 
 <div style="page-break-after: always;"></div>
@@ -101,7 +104,105 @@ The `UI` component,
 <img src="images/WingmanLogicClassDiagram.png" width="608" alt="UI Class diagram">
 </p>
 
-Description coming soon - to be updated after adjusting for code duplication
+The `Logic` component does 3 very important things:
+
+1. It parses the user input and returns the corresponding `Command` object.
+2. It executes the command.
+3. It persists the state to local persistent storage.
+
+We shall be looking at the 3 parts one by one.
+
+#### Command Parser
+
+Wingman abandoned the use of the parser design in AB3. The main motivation
+behind this is that we feel that AB3's parser design is too complicated.
+Also, AB3's parser does not have the `mode` component, which is very
+important to the design of Wingman.
+
+![Wingman's parser design](images/ParserLogicSequenceDiagram.png)
+
+> Just to give a brief explanation of Wingman's modal design. Essentially,
+> just like vim, Wingman operates under different modes. When the user is in
+> the `Flight` mode, then the user would be able to conduct flight-related
+> operations. This design is inspired by the "spacial locality" idea in many
+> computer science topics.
+
+##### 2-level parsing
+
+To make the parser more catered to Wingman's needs, we designed a 2-level
+parsing scheme.
+
+The outside parser is called
+[`WingmanParser`](../src/main/java/wingman/logic/core/WingmanParser.java).
+It can do two things:
+
+- Pass a given command to a `CommandFactory` based on the command word
+  that's stored to that `CommandFactory`.
+- If no matching command words were to be found in the `CommandFactory`s
+  stored at the `WingmanParser`, then the `WingmanParser` will pass the
+  input to one `CommandGroup` to be parsed.
+
+The inside parser is called a
+[`CommandGroup`](../src/main/java/wingman/logic/core/CommandGroup.java).
+What a `CommandGroup`. By design, only 1 `CommandGroup` can be active at any
+time, and the active `CommandGroup` will take in a list of
+[`CommandFactory`](../src/main/java/wingman/logic/core/CommandFactory.java)s,
+which will be used to create a new `Command` object from the user input.
+
+#### `FactoryParser` and `CommandParam`
+
+Both `CommandGroup` and `WingmanParser` extends the
+[`FactoryParser`](../src/main/java/wingman/logic/core/FactoryParser.java)
+class, which is responsible for taking the user input as a `Deque<String>`
+and converting it into a
+[`CommandParam`](../src/main/java/wingman/logic/core/CommandParam.java).
+
+A `CommandParam` essentially is a multi-map from `String` to `String` with an
+optional
+positional `String` value. The optional positional value will allow the user
+to input something right after the command's first keyword. For example:
+
+``` 
+keyword something /someparam somevalue /someotherparam someothervalue
+        ^^^^^^^^^ <- this is the positional value
+```
+
+One such use could be found in the
+[`delete`](../src/main/java/wingman/logic/toplevel/delete/DeleteCommandFactory.java)
+command:
+
+```java
+@Override
+public DeleteCommand<T> createCommand(CommandParam param) throws ParseException{
+    int index = param.getUnnamedIntOrThrow(); // Look at here
+    return new DeleteCommand<>(index, getManagerFunction, deleteFunction);
+}
+```
+
+The `param.getUnnamedIntOrThrow()` will return the positional value as an
+integer, and throws a `ParseException` if the positional value is not an
+integer. Note that unnamed and positional values are used interchangeably here.
+
+##### Patterns used
+
+From this, we can see that the parser design uses two design patterns:
+
+- factory pattern;
+- command pattern.
+
+The factory pattern is used to create a new `Command` object from the user
+input.
+
+The benefit of having different instances of Commands rather than one
+single instance that takes different parameters on each activation is that
+by doing things this way, we would be able to store what actions are done if
+needed. This part has not been implemented, but in the future, should we
+implement a feature that allows the user to undo their actions, we could
+just push command objects onto a stack and pop them off when the user wants
+to undo.
+
+The command pattern is used to execute the command. It is quite ordinary as
+it does not differ significantly from the command pattern in AB3.
 
 <div style="page-break-after: always;"></div>
 
@@ -115,20 +216,24 @@ Description coming soon - to be updated after adjusting for code duplication
 
 The `Model` component,
 
-* stores Wingman data i.e., all `Item` objects (which are contained in
+* stores in memory Wingman data i.e., all `Item` objects (which are contained in
   a `UniquePersonList` object).
     * `Item` here refers to `Flight`, `Pilot`, `Plane`, `Location` and `Crew`
-* stores the currently 'selected' `Item` objects (e.g., results of a search
-  query) as a separate _filtered_ list
+* stores in memory the currently 'selected' `Item` objects (e.g., results of a
+  search query) as a separate _filtered_ list
   which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that
   can be 'observed'
   e.g. the UI can be bound to this list so that the UI automatically updates
   when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences.
+* stores in memory a `UserPref` object that represents the user’s preferences.
   This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components
   (as the `Model` represents data entities of the domain,
   they should make sense on their own without depending on other components)
+
+Essentially, the `Model` component could be considered as the **domain**
+layer of the application. It contains core application logic that should not
+be altered even if we completely swap out the UI or storage components.
 
 <div style="page-break-after: always;"></div>
 
@@ -190,9 +295,9 @@ into the database via `add` command.
 
 This feature is enabled by the following classes:
 
-* `LinkXYZCommand` - the command that can be executed and adds a new entity
+* `AddCommand` - the command that can be executed and adds a new entity
   into the system
-* `LinkXYZCommandFactory` - The factory class that creates `LinkXYZCommand`
+* `AddCommandFactory` - The factory class that creates `AddCommand`
   object, which can be executed to complete the task
 
 When a user enters the command
