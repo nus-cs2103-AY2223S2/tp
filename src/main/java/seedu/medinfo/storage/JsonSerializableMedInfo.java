@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.medinfo.commons.exceptions.IllegalValueException;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.patient.Patient;
@@ -51,7 +52,7 @@ class JsonSerializableMedInfo {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public MedInfo toModelType() throws IllegalValueException {
+    public MedInfo toModelType() throws IllegalValueException, CommandException {
         MedInfo medInfo = new MedInfo();
         for (JsonAdaptedWard jsonAdaptedWard : wards) {
             Ward ward = jsonAdaptedWard.toModelType();

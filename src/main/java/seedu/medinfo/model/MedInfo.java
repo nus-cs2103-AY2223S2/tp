@@ -8,10 +8,12 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.patient.UniquePatientList;
 import seedu.medinfo.model.ward.UniqueWardList;
 import seedu.medinfo.model.ward.Ward;
+import seedu.medinfo.model.ward.exceptions.WardFullException;
 import seedu.medinfo.model.ward.exceptions.WardNotFoundException;
 
 /**
@@ -108,12 +110,17 @@ public class MedInfo implements ReadOnlyMedInfo {
      * Adds a patient to the medinfo book.
      * The patient must not already exist in the medinfo book.
      */
-    public void addPatient(Patient p) {
+    public void addPatient(Patient p) throws CommandException {
         if (!wards.contains(p.getWardNameString())) { // If wardlist does not contain patient's ward, don't add it in.
-            throw new WardNotFoundException();
+            throw new WardNotFoundException(p.getWardNameString());
         }
         patients.add(p);
-        wards.addPatient(p);
+        try {
+            wards.addPatient(p);
+        } catch (WardFullException e) {
+            patients.remove(p);
+            throw new CommandException(e.toString(), e);
+        }
     }
 
     /**
@@ -123,10 +130,15 @@ public class MedInfo implements ReadOnlyMedInfo {
      * The patient identity of {@code editedPatient} must not be the same as another
      * existing patient in the medinfo book.
      */
-    public void setPatient(Patient target, Patient editedPatient) {
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException{
         requireAllNonNull(target, editedPatient);
         patients.setPatient(target, editedPatient);
-        wards.setPatient(target, editedPatient);
+        try {
+            wards.setPatient(target, editedPatient);
+        } catch (WardFullException e) {
+            patients.setPatient(target, target);
+            throw new CommandException(e.toString(), e);
+        }
     }
 
     /**
