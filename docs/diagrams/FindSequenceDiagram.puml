@@ -14,6 +14,8 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
+skinparam sequenceReferenceBackgroundColor #FFC6C6
+
 [-> LogicManager : execute("find n/alex t/friend")
 activate LogicManager
 
@@ -35,7 +37,7 @@ FindCommandParser-> FindCommandPersonPredicate
 activate FindCommandPersonPredicate
 
 ref over FindCommandPersonPredicate
-FindCommandPersonPredicate inner working
+Inner working
 end ref
 
 FindCommandPersonPredicate --> FindCommandParser : personPredicate
