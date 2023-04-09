@@ -4,7 +4,7 @@
 &nbsp;[![CI Status](https://github.com/AY2223S2-CS2103T-T17-2/tp/workflows/Build/badge.svg)](https://github.com/AY2223S2-CS2103T-T17-2/tp/actions)
 &nbsp;[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T17-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103T-T17-2/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/UiLayout.png)
 
 * This is **a tool for HR to consolidate data about employees**.<br>
   Example usages:
