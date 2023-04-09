@@ -35,7 +35,7 @@ Given below are my contributions to the project.
     * Contributed to forum discussions (examples: 
     [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/343), 
     [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/276), 
-    [3](https://github.com/nus-cs2103-AY2223S2/forum/issues/194),
+    [3](https://github.com/nus-cs2103-AY2223S2/forum/issues/194))
     * Reported bugs and suggestions for other teams in the class 
       (examples: 
     [1](https://github.com/glyfy/ped/issues/7), 
