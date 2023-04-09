@@ -37,6 +37,8 @@ Given below are my contributions to the project.
 
 * **Contributions to team-based tasks**
   * Updated Project Notes with `v1.3` Feature Demo
+  * Crafted the user stories with the team
+  * Worked on the demo video with the team
 
 
 * **Review/mentoring contributions**
