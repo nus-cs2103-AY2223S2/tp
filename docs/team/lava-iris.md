@@ -39,10 +39,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * added user stories related to social media and open and chat commands
-    * added use cases for Adding a contact and Searching for a contact
+    * added relevant user stories to user guide regarding social media and open and chat commands and optional fields
   * Developer Guide:
-    * Added implementation of Search command
+    * added implementation of Search command
+    * added user stories related to social media and open and chat commands
+    * added use cases for adding a contact and searching for a contact
 
 * **Community**:
   * PRs reviewed: As of 10th April, I have reviewed 24 PRs. Refer to [this](https://github.com/AY2223S2-CS2103T-W15-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me) for most recent statistics.
