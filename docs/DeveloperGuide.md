@@ -154,7 +154,7 @@ The `Storage` component,
 
 * can save both express library data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `ExpressLibraryStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -180,37 +180,37 @@ It implements the following commands:
 
 Given below is an example usage scenario of the borrow command:
 
-The user executes `borrow 1 b/2 d/23/11/2023` command to lend the 2nd Book in the Book list to the 1st Person in the Person list.
+The user executes `borrow 1 b/2 d/23/11/2023` command to lend the 2nd book in the book list to the 1st person in the Person list.
 
-The `BorrowCommand` class will first retrieve the Person object and Book object from the given indexes and create a copy of them (since they are immutable) called `editedPerson` and `bookToBorrow`.
+The `BorrowCommand` class will first retrieve the `Person` object and `Book` object from the given indexes and create a copy of them (since they are immutable) called `editedPerson` and `bookToBorrow`.
 
-Then, it calls `borrowBook` on `editedPerson` and passes in the Book object `bookToBorrow`. This will add the Book to the Person's `Set` of books field. Similarly, the class also calls `loanBookTo` on `bookToBorrow` to update the Book's fields with the borrower, the borrow date (current date) and the due date details.
+Then, it calls `borrowBook` on `editedPerson` and passes in the `Book` object `bookToBorrow`. This will add the book to the person's `Set` of `books` field. Similarly, the class also calls `loanBookTo` on `bookToBorrow` to update the book's fields with the borrower, the borrow date (current date) and the due date details.
 
 Given below is an example usage scenario of the return command:
 
-The user executes `return 2 b/1` command to return the 1st book in the Book list from the 2nd person in the Person list.
+The user executes `return 2 b/1` command to return the 1st book in the book list from the 2nd person in the person list.
 
-The `ReturnCommand` class will first retrieve the Person object and Book object from the given indexes and create a copy of them (since they are immutable) called `editedPerson` and `bookToReturn`.
+The `ReturnCommand` class will first retrieve the `Person` object and `Book` object from the given indexes and create a copy of them (since they are immutable) called `editedPerson` and `bookToReturn`.
 
-Then, it calls `returnBook` on `editedPerson` and passes in the Book object `bookToReturn`. This will remove the Book from the Person's `Set` of books field. Similarly, the class also calls `returnBook` on `bookToReturn` to update and remove the Person from the Book's borrower field as well as clear the borrow and due dates.
+Then, it calls `returnBook` on `editedPerson` and passes in the `Book` object `bookToReturn`. This will remove the book from the Person's `Set` of books field. Similarly, the class also calls `returnBook` on `bookToReturn` to update and remove the person from the book's borrower field as well as clear the borrow and due dates.
 
 ### Find book feature
 
 #### Implementation
 
-Given below is an example usage scenario and how the findBook command progresses from step to step.
+Given below is an example usage scenario and how the `findBook` command progresses from step to step.
 
 Step 1. The user launches the app and enters `findBook The` command to look for any books with the keyword `The` in its title (non case-sensitive). `MainWindow#executeCommand()` is called, which passes the control over to the Logic component by calling `LogicManager#execute()`.
 
-Step 2. `ExpressLibraryParser#parseCommand` is called to parse the given findBook command text, which calls `FindBookCommandParser#parse` to further parse findBook command text. This ultimately produces a `FindBookCommand` object. The logic manager then calls `FindBookCommand#execute` on the new object which passes control to the Model component.
+Step 2. `ExpressLibraryParser#parseCommand` is called to parse the given `findBook` command text, which calls `FindBookCommandParser#parse` to further parse `findBook` command text. This ultimately produces a `FindBookCommand` object. The logic manager then calls `FindBookCommand#execute` on the new object which passes control to the `Model` component.
 
-Step 3. `FindBookCommand#execute` will call `Model#updateFilteredBookList` to update the `FilteredList` of books which is then reflected in the UI because `BookListPanel#BookListPanel()` constructor sets `BookListPanel.fxml` to be constantly viewing the book list. The Model component then passes control back to the Logic component.
+Step 3. `FindBookCommand#execute` will call `Model#updateFilteredBookList` to update the `FilteredList` of books which is then reflected in the UI because `BookListPanel#BookListPanel()` constructor sets `BookListPanel.fxml` to be constantly viewing the book list. The `Model` component then passes control back to the Logic component.
 
 Step 4. `FindBookCommand#execute` returns a `CommandResult` object to the `LogicManager#execute`, which then passes control back to the UI component.
 
 Step 5. `MainWindow#executeCommand` then uses the `CommandResult` to display feedback to the user on the UI which states: “{Number of books that match keyword} books found!”
 
-The following sequence diagram shows how the findBook operation works:
+The following sequence diagram shows how the `findBook` operation works:
 ![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -231,14 +231,14 @@ The following sequence diagram shows how the findBook operation works:
 
 **Target user profile**:
 
-* has a need to manage a significant number of books and library users
-* has a need to quickly access a particular book or person
-* has a need to track if due dates of books borrowed are approaching/expired
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of books and library users.
+* Has a need to quickly access a particular book or person.
+* Has a need to track if due dates of books borrowed are approaching/expired.
+* Can type fast.
+* Prefers typing to mouse interactions.
+* Is reasonably comfortable using CLI apps.
 
-**Value proposition**: manage users and books faster, quickly find users or books faster than a typical mouse/GUI driven app
+**Value proposition**: Manage users and books faster, quickly find users or books faster than a typical mouse/GUI driven app.
 
 ### User stories
 
@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 persons and books without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be able to load the application within 2 seconds.
 
@@ -389,21 +389,21 @@ testers are expected to do more _exploratory_ testing.
    1. Test case: `deletePerson 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `deletePerson`, `deletePerson x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deletePerson`, `deletePerson x`, `...` (where `x` is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing data files.
-   1. Delete `[JAR file location]/data/expresslibrary.json` if it exists.
+   1. Delete `[JAR file location]/data/expresslibrary-{version_num}.json` if it exists.
 
    Expected: Launch ExpressLibrary and you should be able to see sample data with people and books.
 
 2. Dealing with corrupted data files.
 
-   1. Prerequisites: `expresslibrary.json` should exist in `[JAR file location]/data`. If it does not exist, launch ExpressLibrary and use any command that will change the data of the ExpressLibrary (e.g. `addBook`, `borrow`, etc.) and the `expresslibrary.json` file will be automatically generated.
+   1. Prerequisites: `expresslibrary-{version_num}.json` should exist in `[JAR file location]/data`. If it does not exist, launch ExpressLibrary and use any command that will change the data of the ExpressLibrary (e.g. `addBook`, `borrow`, etc.) and the `expresslibrary-{version_num}.json` file will be automatically generated.
 
-   1. To simulate a corrupted file, go to `[JAR file location]/data/expresslibrary.json` and make changes so that the file would be invalid (e.g. remove a comma/bracket).
+   1. To simulate a corrupted file, go to `[JAR file location]/data/expresslibrary-{version_num}.json` and make changes so that the file would be invalid (e.g. remove a comma/bracket).
 
    Expected: Launch ExpressLibrary and you should see that ExpressLibrary will be empty.
 
