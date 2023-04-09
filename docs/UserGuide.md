@@ -4,9 +4,13 @@ title: User Guide
 ---
 ## <a id="contactus"></a>About coNtactUS
 
-Are you a NUS computing student who is struggling to keep track of your school modules? Are you feeling overwhelmed by the constant influx of weekly lectures, tutorials, deadlines and assignments? Are you finding it hard to keep your module resources and notes well-organised? Fret not! With coNtactUS, you can take the first step towards solving all of your problems. 
+Are you a NUS computing student who is struggling to keep track of your school modules? Are you feeling overwhelmed by 
+the constant influx of weekly lectures, tutorials, deadlines and assignments? Are you finding it hard to keep your 
+module resources and notes well-organised? Fret not! With coNtactUS, you can take the first step towards solving all of 
+your problems. 
 
-coNtactUS is a desktop application created by NUS computing students, specially for NUS computing students, just like you. It is a module tracker that lets you store information related to your modules like: 
+coNtactUS is a desktop application created by NUS computing students, specially for NUS computing students, just like 
+you. It is a module tracker that lets you store information related to your modules like: 
 
 1) Lecture and tutorial timeslots  
 2) Lecture and tutorial venues  
@@ -110,12 +114,13 @@ to [how to check the version of Java on my computer](https://blog.hubspot.com/we
 2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). Note 
 that the file is named `coNtactUs.jar`
 
-   <div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
+<div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
 on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div>
 
 3. Run the `coNtactUs.jar` file. If you are unsure of how to do so, you may refer to [how to run a jar file]().
 
-4. You should now see a window similar to the one shown below. 
+4. You should now see a window similar to the one shown below. There will be a reminder pop-up window upon 
+launching the application. The [reminder window](#reminder) will be further discussed later.
 
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
 for your reference. </div>
@@ -240,7 +245,8 @@ Take note of the format: `add n/MODULE_NAME t/DESCRIPTION [e/TIMESLOT] [a/VENUE]
 adding a new module. The rest of the fields, such as timeslot, venue, and teacher etc. are optional. 
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: The square brackets indicate that a particular field is optional.
+<div markdown="span" class="alert alert-primary">:bulb: The square brackets indicate that a particular field is 
+optional.
 For example, `[a/VENUE]` indicates that the venue field is optional.
 </div>
 
@@ -377,7 +383,8 @@ Format: `sort timeslot` or `sort deadline`
 
 * The `sort timeslot` command will automatically take into consideration the current time of your computer, 
 and then sort the modules based on their timeslot. 
-* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be shown before a module with timeslot `Wednesday 06:00 - 08:00`. Similarly, if the current day on your computer is 
+* For example, if the current day on your computer is Monday, a module with timeslot `Tuesday 05:00 - 07:00` will be 
+shown before a module with timeslot `Wednesday 06:00 - 08:00`. Similarly, if the current day on your computer is 
 Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown before a module with timeslot 
 `Thursday 06:00 - 08:00`.
 
@@ -515,6 +522,11 @@ coNtactUS, read on for the next section.
 ## <a id="further-info"></a> Further information about commands 
 <div markdown="block" class="alert alert-info">
 
+* You can have multiple values for ```t/DESCRIPTION``` field, but other fields will
+only take a single value.  
+
+* When you edit, it removes the current values (i.e. the values do not stack)  
+
 * You may supply more than one input value for the `t/DESCRIPTION` field, and both will be recorded. 
 An example would be : `edit 1 t/Difficult module t/Fun module`. The resulting module listing would have 2 
 descriptions, `Difficult module` and `Fun module`.
@@ -530,7 +542,8 @@ For example, `edit 1 n/CS1231S t/Math heavy` and `edit 1 t/Math heavy n/CS1231S`
 
 
 * If you provide an input value for commands that do not take in any input value (such as `help`, `list`, `exit` 
-and `clear`), the input value will be ignored. For example, `help 123` will simply be interpreted as `help` by the program.
+and `clear`), the input value will be ignored. For example, `help 123` will simply be interpreted as `help` by the 
+program.
 
 
 </div>
@@ -712,7 +725,8 @@ Note that currently, coNtactUS does not enforce any additional checks for confli
 
 * It might not make sense to have the same teacher `Bob`, teaching two different classes 
 that are located at different venues (`LT-19` and `COM1-B1`) at the same timing (`Monday 11:00 15:00`). However, we 
-felt that this allows you the flexibility to supply an input value that you desire without being subjected to unnecessary
+felt that this allows you the flexibility to supply an input value that you desire without being subjected to 
+unnecessary
 conflict checks. After all, `Bob` may be referring to two different persons.  
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
