@@ -220,7 +220,7 @@ Note:
 * Doing a meetingFind `CLIENT_INDEX` is necessary to get the meeting index required. Using the meeting index in the initially displayed page or the page after listMeeting may result in an incorrect meeting update.
 
 
-![result for meetingRemove 3 1](images/RemoveMeeting.png)
+![result for meetingRemove 3 1](images/Removemeeting.png)
 
 ### Updating a meeting : `meetingUpdate`
 
