@@ -10,6 +10,30 @@ With FAid, financial advisors will no longer have to worry about missing a meeti
 ## Table of Contents
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
+## About this User Guide
+
+### How to use this guide?
+
+If you are new to FAid, don't worry! This guide will walk you through the [basic setup](#quick-start) necessary to get you ready to use FAid.
+
+Additionally, this guide provides you with in-depth information on the functionality FAid provides, which will turn you into a FAid pro in the [features](#features) section.
+
+For experienced users of FAid, this guide also provides a [command summary](#command-summary) for your reference, so you can quickly look up all of FAid's core commands at one glance.
+
+### Reading the document
+
+This guide utilizes symbols and syntax to highlight certain points made throughout the guide and enhance your overall reading experience. The section below provides meaning of the symbols used for your reference.
+
+### General symbols used
+
+This table describes the main symbols used in this user guide and their meanings.
+
+Symbol | Meaning
+--------|------------------
+:exclamation: | Indicates warnings (take caution when you see this symbol)
+:grey_question: | Frequently asked questions
+:information_source: | Important information to take note
 
 --------------------------------------------------------------------------------------------------------------------
 
