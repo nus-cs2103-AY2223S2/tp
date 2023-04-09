@@ -13,7 +13,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.3).
+2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases).
 
 3. Copy the file to a local folder you want to use as the _home folder_ for your PlanEase application.
 
