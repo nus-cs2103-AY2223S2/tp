@@ -4,8 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Package "Overview" as OverviewPackage <<Rectangle>>{
+Package Model{
+Package "Overview" as OverviewPackage #F4F6F6{
 Class "{abstract}\nOverview" as Overview
 Class XYZOverview
 }
