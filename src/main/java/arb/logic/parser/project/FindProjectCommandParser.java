@@ -1,6 +1,7 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.commons.core.Messages.MESSAGE_NO_VALID_PARAMETERS;
 import static arb.commons.util.StringUtil.splitKeywords;
 import static arb.logic.parser.ArgumentMultimap.areAnyPrefixesPresent;
 import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
@@ -40,10 +41,6 @@ import arb.model.tag.Tag;
  * Parses input arguments and creates a new FindProjectCommand object
  */
 public class FindProjectCommandParser implements Parser<FindProjectCommand> {
-
-    public static final String EMPTY_NAME_ERROR = "Name cannot be empty!";
-    public static final String EMPTY_TAG_ERROR = "Tag cannot be empty!";
-    public static final String EMPTY_CLIENT_NAME_ERROR = "Client name cannot be empty!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindProjectCommand
@@ -119,7 +116,7 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         }
 
         if (predicates.isEmpty()) {
-            throw new ParseException("At least one valid parameter must be provided");
+            throw new ParseException(MESSAGE_NO_VALID_PARAMETERS);
         }
 
         return new FindProjectCommand(new CombinedPredicate<>(predicates));

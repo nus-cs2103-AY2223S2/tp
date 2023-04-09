@@ -9,9 +9,9 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 {:toc}
 * [Quick Start](#quick-start)
 * [Detailed Setup Guide](#detailed-setup)
-* [Command Summary](#command-summary)
-* [Command Syntax](#syntax)
+* [Command Format](#command-format)
 * [Prefixes](#prefixes)
+* [Command Summary](#command-summary)
 * [Features](#features)
   * [Client Commands](#client-commands)
   * [Project Commands](#project-commands)

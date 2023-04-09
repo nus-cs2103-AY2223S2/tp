@@ -1,6 +1,7 @@
 package arb.logic.parser.client;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.commons.core.Messages.MESSAGE_NO_VALID_PARAMETERS;
 import static arb.commons.util.StringUtil.splitKeywords;
 import static arb.logic.parser.ArgumentMultimap.areAnyPrefixesPresent;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
@@ -63,7 +64,7 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
         }
 
         if (predicates.isEmpty()) {
-            throw new ParseException("At least one valid parameter must be provided");
+            throw new ParseException(MESSAGE_NO_VALID_PARAMETERS);
         }
 
         return new FindClientCommand(new CombinedPredicate<>(predicates));
