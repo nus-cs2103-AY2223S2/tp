@@ -592,4 +592,5 @@ empty data file at the next run.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous DengueHotspotTracker home folder.
+the data of your previous DengueHotspotTracker home folder. Alternatively, transfer a suitable csv file to the other
+computer and read it in.
