@@ -47,9 +47,11 @@ Given below are my contributions to the project.
       * Contributed in the sections related to the appointment commands and update the Ui screenshots for v1.3 [(Pull Request #65)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/65)
       * Add description for `listDoctors` and `listPatients` commands [(Pull Request #67)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/67)
       * Overall corrections and enhancements of the User Guide [(Pull Request #55)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/55)
-    * Developer Guide contributions:
+  
+    * Developer Guide contributions: [(Pull Request #152)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/152)
       * Add implementation details for `addPatient` and `addDoctor` features
-      * Update diagrams for `addPatient` and `addDoctor` features
+      * Add diagrams for `addDoctor` features
+      * Overall corrections and enhancements of the Developer Guide
 
 * **Community**:
     * **Contributions to team-based tasks:** 
@@ -57,3 +59,7 @@ Given below are my contributions to the project.
     * **Contributions beyond the team:**
       * Reported bugs and suggestions for other teams in class [(Issues Reported)](https://github.com/AY2223S2-CS2103T-T11-1/tp/issues?q=is%3Aissue+%22%5BTester+C%5D%22)
 
+* **Tools**:
+  * IntelliJ IDEA
+  * Sourcetree
+  * Github

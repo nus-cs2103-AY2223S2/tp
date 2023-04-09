@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/stefanosav.png" width="200px">
 
 [[github](https://github.com/StefanosAv)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/stefanosav.md)]
 
-
-
+* Role: Developer
+* Responsibilities: Implementation/Testing
