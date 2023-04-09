@@ -25,6 +25,8 @@ import seedu.task.model.task.exceptions.TaskNotFoundException;
  *
  * @see Task#isSameTask(Task)
  */
+
+//@@author
 public class UniqueTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
@@ -101,6 +103,7 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.setAll(tasks);
     }
 
+    //@@author lywich
     /**
      * Sorts the contents of this list.
      */
@@ -108,6 +111,7 @@ public class UniqueTaskList implements Iterable<Task> {
         FXCollections.sort(internalList, Task::compareTo);
     }
 
+    //@@author
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -115,6 +119,7 @@ public class UniqueTaskList implements Iterable<Task> {
         return internalUnmodifiableList;
     }
 
+    //@@author joyngjr
     /**
      * Main algorithm that supports the planning function
      * @param workload amount of effort user wants to put in per day in the workplan.
@@ -131,6 +136,7 @@ public class UniqueTaskList implements Iterable<Task> {
         planner.setDailyPlans(plan.getDailyPlans());
     }
 
+    //@@author
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
@@ -163,6 +169,7 @@ public class UniqueTaskList implements Iterable<Task> {
         return true;
     }
 
+    //@@author joyngjr
     private SimpleTaskList filterSimpleTasks(LocalDate d) {
         return new SimpleTaskList(this.internalList, d);
     }
