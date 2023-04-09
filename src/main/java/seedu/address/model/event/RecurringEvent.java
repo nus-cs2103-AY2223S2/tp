@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.event.exceptions.EventConflictException;
 
 /**
  * Represents an {@code Event} that occurs on a weekly basis.
@@ -18,10 +18,12 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
             "The end time should not be earlier than the start time";
     public static final String MESSAGE_CONSTRAINTS_DAYOFWEEK =
             "The day of the week should be either MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY or SUNDAY";
+    public static final String MESSAGE_CONSTRAINTS_CLASH =
+            "Events cannot have conflicts with other events";
 
-    private DayOfWeek dayOfWeek;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private final DayOfWeek dayOfWeek;
+    private final LocalTime startTime;
+    private final LocalTime endTime;
 
     /**
      * Constructor for Recurring events
@@ -102,6 +104,52 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
     }
 
     /**
+     * This function cross-check with the isolated event list to check for any conflicts.
+     * @param isolatedEventList is the event list to be checked with
+     * @throws seedu.address.model.event.exceptions.EventConflictException if there is a conflicted event
+     */
+    public void listConflictedEventWithIsolated(
+            IsolatedEventList isolatedEventList) throws EventConflictException {
+
+        int index = 1;
+        for (IsolatedEvent ie : isolatedEventList.getIsolatedEvents()) {
+            LocalDateTime startPeriod = ie.getStartDate();
+            LocalDateTime endPeriod = ie.getEndDate();
+
+            long count = this.numberOfDaysBetween(startPeriod, endPeriod, this.getDayOfWeek());
+
+            if (count == -1) {
+                continue;
+            }
+
+            LocalDateTime recurringEventDate = startPeriod.plusDays(count);
+
+            LocalDateTime dummyEventStartDate =
+                    LocalDateTime.of(recurringEventDate.toLocalDate(), this.getStartTime());
+
+            LocalDateTime dummyEventEndDate =
+                    LocalDateTime.of(recurringEventDate.toLocalDate(), this.getEndTime());
+
+            boolean isEventBefore = false;
+            boolean isEventAfter = false;
+
+            if (!dummyEventStartDate.isAfter(startPeriod) && !dummyEventEndDate.isAfter(startPeriod)) {
+                isEventBefore = true;
+            }
+
+            if (!dummyEventStartDate.isBefore(endPeriod) && !dummyEventEndDate.isBefore(endPeriod)) {
+                isEventAfter = true;
+            }
+
+            if (!(isEventBefore || isEventAfter)) {
+                throw new EventConflictException(MESSAGE_CONSTRAINTS_CLASH
+                        + "\nIsolated Event List:\n" + index + " " + ie);
+            }
+
+        }
+    }
+
+    /**
      * Returns a {@code boolean} that indicates if the {@code Event} occurs between the
      * given period.
      * @param startPeriod The start of the given period.
@@ -152,11 +200,10 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
 
     /**
      * Checks if the start time and the end time of the event is valid for recurring event.
-     * @throws CommandException if start time is after the end time.
      */
-    public void checkPeriod() throws CommandException {
+    public void checkPeriod() throws EventConflictException {
         if (this.startTime.isAfter(this.endTime) || this.startTime.equals(this.endTime)) {
-            throw new CommandException(RecurringEvent.MESSAGE_CONSTRAINTS_PERIOD);
+            throw new EventConflictException(RecurringEvent.MESSAGE_CONSTRAINTS_PERIOD);
         }
     }
 

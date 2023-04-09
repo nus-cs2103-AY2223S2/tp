@@ -22,6 +22,7 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_GROUP = "Groups list contains duplicate group(s).";
+    public static final String MESSAGE_INCONSISTENT_GROUP = "Groups list is inconsistent with persons.";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
@@ -53,14 +54,6 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            addressBook.addPerson(person);
-        }
-
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
             Group group = jsonAdaptedGroup.toModelType();
             if (addressBook.hasGroup(group)) {
@@ -68,6 +61,20 @@ class JsonSerializableAddressBook {
             }
             addressBook.addGroup(group);
         }
+
+        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            Person person = jsonAdaptedPerson.toModelType();
+            if (addressBook.hasPerson(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            for (Group group : person.getGroups()) {
+                if (!addressBook.hasGroup(group)) {
+                    throw new IllegalValueException(MESSAGE_INCONSISTENT_GROUP);
+                }
+            }
+            addressBook.addPerson(person);
+        }
+
         return addressBook;
     }
 

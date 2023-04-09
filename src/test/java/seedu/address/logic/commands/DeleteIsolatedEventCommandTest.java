@@ -21,7 +21,7 @@ public class DeleteIsolatedEventCommandTest {
     public void execute_success() throws CommandException {
         Person editedPerson = new PersonBuilder().build();
         model.addPerson(editedPerson);
-        model.addIsolatedEvent(editedPerson, SKIING_ISOLATED_EVENT);
+        editedPerson.getIsolatedEventList().insert(SKIING_ISOLATED_EVENT);
 
         DeleteIsolatedEventCommand command = new DeleteIsolatedEventCommand(Index.fromOneBased(1),
                 Index.fromOneBased(1));
