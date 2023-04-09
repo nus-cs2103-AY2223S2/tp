@@ -823,6 +823,8 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 7.4 Deleting a Person:
 
 1. Deleting a `Person` while all persons are being shown:
@@ -863,6 +865,8 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 7.6 Deleting tags from a Person:
 
 1. Deleting tags from a `Person`:
@@ -881,6 +885,8 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 7.7 Searching for a Person:
 
@@ -920,6 +926,8 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 7.9 Opening a social media platform with prefilled message:
 
