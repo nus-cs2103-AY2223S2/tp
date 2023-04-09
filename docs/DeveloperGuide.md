@@ -1177,20 +1177,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
-**UC09: Open a contact's Instagram homepage**
+**UC09: Open a contact's Social Media homepage**
 
 **MSS**
 
 1.  User requests to list persons
 2.  ConnectUS shows a list of persons
-3.  User requests to open the Instagram homepage of a specific person in the list
-4.  ConnectUS opens the desired Instagram homepage
+3.  User requests to open a specified Social Media homepage of a specific person in the list
+4.  ConnectUS opens the desired Social Media homepage
 
     Use case ends
 
 **Extensions**
 
-- 3a. The person has no Instagram record.
+- 3a. The person has no specified Social Media record.
   - 3a1. ConnectUS displays error message.
   
     Use case ends.
@@ -1297,6 +1297,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > **JUnit 5:**
 > JUnit 5 is a unit testing framework for the Java programming language, and is important in the development of test-driven development.
 
+<div style="page-break-after: always"></div>
+
 ### M
 > **Mainstream OS:**
 > Short for Mainstream Operating Systems. This refers to Windows, Linux, Unix, OS-X.
@@ -1309,8 +1311,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 >
 > **Module:**
 > Modules are courses that students take at the National University of Singapore.
-
-<div style="page-break-after: always"></div>
 
 ### N
 > **NUS:**
@@ -1326,6 +1326,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 >
 > **Special Characters:**
 > Characters that are not alphabetic or numeric.
+
+<div style="page-break-after: always"></div>
 
 ### U
 > **Use Case:**
