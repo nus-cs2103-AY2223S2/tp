@@ -36,6 +36,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Merged PRs by teammates
+    * Resolve merge conflict
     * Provided feedback on PRs
     * Assigned issues
     * Point out bugs in conversations
