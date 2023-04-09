@@ -6,43 +6,77 @@ title: Developer Guide
 
 * [About HMHero](#about-hmhero)
 * [How to use this Developer Guide](#how-to-use-this-developer-guide)
-    * [Icons and Hyperlinks](#31-icons-and-hyperlinks)
-    * [Purpose of User Guide](#32-purpose-of-user-guide)
-3. [Installation](#4-installation)
-4. [Quick Start](#5-quick-start)
-    * [User Interface](#51-user-interface)
-    * [Key Definitions](#52-key-definitions)
-        * [Applicant](#521-applicant)
-        * [Notes](#522-notes)
-        * [Flags](#523-flags)
-        * [Placeholders](#524-placeholders)
-    * [Command Format](#53-command-format)
-    * [Trying your First Command](#54-trying-your-first-command)
-5. [Commands](#6-commands)
-    * [Applicant Commands](#61-applicant-commands)
-        * [Create a new applicant `add`](#611-create-a-new-applicant-add)
-        * [Search for an applicant `find`](#612-search-for-an-applicant-find)
-        * [List all applicants `list`](#613-list-all-applicants-list)
-        * [Delete an applicant `delete`](#614-delete-an-applicant-delete)
-        * [Advance an applicant `advance`](#615-advance-an-applicant-advance)
-        * [Reject an applicant `reject`](#616-reject-an-applicant-reject)
-        * [List all interview dates of applicants `interview`](#617-list-all-interview-dates-of-applicants-interview)
-        * [Edit an existing applicant `edit`](#618-edit-an-existing-applicant-edit)
-        * [Remind upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
-    * [Statistic Commands](#62-statistics-commands)
-    * [General Commands](#63-general-commands)
-        * [Receive help during usage `help`](#631-receive-help-during-usage-help)
-        * [Exit HMHero `exit`](#632-exit-hmhero-exit)
-6. [Command summary](#7-command-summary)
-    * [Applicant Commands](#71-applicant-commands)
-    * [Statistics Commands](#72-statistics-commands)
-    * [General Commands](#73-general-commands)
-7. [Troubleshooting](#8-troubleshooting)
-8. [FAQ](#9-faq)
-9. [Acknowledgements](#10-acknowledgements)
-10. [Glossary](#11-glossary)
+    * [Icons and Hyperlinks](#icons-and-hyperlinks)
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+* [Implementation](#implementation)
+    * [Adding an Applicant](#adding-an-applicant)
+        * [Overview](#overview)
+        * [Feature Details](#feature-details)
+        * [Feature Considerations](#feature-considerations)
+    * [Advancing an Applicant](#advancing-an-applicant)
+        * [Overview](#overview-1)
+        * [Feature Details](#feature-details-1)
+        * [Feature Considerations](#feature-considerations-1)
+    * [Rejecting an Applicant](#rejecting-an-applicant)
+        * [Overview](#overview-2)
+        * [Feature Details](#feature-details-2)
+        * [Feature Considerations](#feature-considerations-2)
+    * [Finding an Applicant](#finding-an-applicant)
+        * [Overview](#overview-3)
+        * [Feature Details](#feature-details-3)
+        * [Feature Considerations](#feature-considerations-3)
+    * [Editing an Applicant](#editing-an-applicant)
+        * [Overview](#overview-4)
+        * [Feature Details](#feature-details-4)
+        * [Feature Considerations](#feature-considerations-4)
+    * [Displaying the list](#displaying-the-list)
+        * [Overview](#overview-5)
+        * [Feature Details](#feature-details-5)
+        * [Feature Considerations](#feature-considerations-6)
+    * [Showing all shortlisted applicants](#showing-all-shortlisted-applicants)
+        * [Overview](#overview-6)
+        * [Feature Details](#feature-details-6)
+    * [Filter applicants based on notes](#filter-applicants-based-on-notes)
+        * [Overview](#overview-7)
+        * [Feature Details](#feature-details-7)
+        * [Feature Considerations](#feature-considerations-6)
+* [Documentation, Logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+  * [Product scope](#product-scope)
+  * [User stories](#user-stories)
+  * [Use cases](#use-cases)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch](#launch)
+  * [Adding an applicant](#adding-an-applicant)
+  * [Deleting an applicant](#deleting-an-applicant)
+  * [Advancing an applicant](#advancing-an-applicant-1)
+  * [Rejecting an applicant](#rejecting-an-applicant-1)
+  * [Finding applicants](#finding-applicants)
+  * [Finding applicants with specific skills](#finding-applicants-with-specific-skills)
+  * [Remind upcoming interviews](#remind-upcoming-interviews)
+  * [View all interviews](#view-all-interviews)
+  * [View summary statistics](#view-summary-statistics)
+  * [Help](#help)
+  * [Clear](#clear)
+  * [Exit](#exit)
+* [Effort](#effort)
+  * [Managing Tasks](#managing-tasks)
+  * [Improved UI](#improved-ui)
+  * [Extensive Testing](#extensive-testing)
+* [Planned Enhancements](#planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **About HMHero**
 
@@ -242,9 +276,6 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
-<div>
-    <b>Figure 1.4.2</b> Class diagram for Model Components
-</div>
 
 </div>
 
@@ -273,7 +304,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-#### Adding an Applicant
+#### Adding an Applicant 
 
 ##### Overview
 
@@ -294,14 +325,14 @@ Here is the activity diagram showing the process of the `add` command:
 
 1. The user specifies Applicants details to create. Compulsory fields are name, phone, address, and email. Optional
 fields include application date time and notes about the applicant.
-1. If any of the compulsory fields are not provided, or the provided inputs are in the wrong format, an error message
+2. If any of the compulsory fields are not provided, or the provided inputs are in the wrong format, an error message
    will be displayed. The user will be prompted to enter the command correctly via the error message.
-1. All applicants added will start at the Applied Status.
-1. If application date time was not provided, HMHero would assume the application date time of the Applicant to be now
+3. All applicants added will start at the Applied Status.
+4. If application date time was not provided, HMHero would assume the application date time of the Applicant to be now
    (the current date and time on the user's computer)
-1. The applicant is cross-referenced in the `Model` to check if it already exists. If it does, an error is raised
+5. The applicant is cross-referenced in the `Model` to check if it already exists. If it does, an error is raised
 to inform the user.
-1. If step 5 completes without any exceptions, the new `Person` is created and stored inside HMHero.
+6. If step 5 completes without any exceptions, the new `Person` is created and stored inside HMHero.
 
 ##### Feature Considerations
 
@@ -488,7 +519,7 @@ Here is the activity diagram showing the process of the `list` command:
 ##### Feature Details
 
 1. The user calls the `list` command.
-1. HMHero performs the necessary calculations to obtain the statistics. HMHero displays the result to the user.
+2. HMHero performs the necessary calculations to obtain the statistics. HMHero displays the result to the user.
 
 ##### Feature Considerations
 
@@ -1025,7 +1056,7 @@ These instructions only provide a starting point for testers to work on; testers
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-### Adding a person
+### Adding an applicant
 
 Prerequisites: An applicant with the name Fred and phone number 999 does not exist in HMHero yet.
 
@@ -1042,7 +1073,7 @@ Application date is `01-01-2023 18:00`.
 Test case: `add n/Fred p/999`<br>
 Expected: No applicant is added. Error message for invalid command format.
 
-### Deleting a person
+### Deleting an applicant
 
 Prerequisites: An applicant with the name Fred and phone number 999 exists in HMHero.
 
