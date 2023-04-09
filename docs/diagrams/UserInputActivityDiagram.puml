@@ -1,4 +1,27 @@
 @startuml
+@startuml
+!include style.puml
+skinparam activity {
+BackgroundColor #FFFFD0
+ArrowColor MODEL_COLOR
+}
+start
+
+:User types in text into CLI input \n and press enter;
+:SocketParser parses text;
+if () then ([is valid command] )
+  :Argument passed to command\n parser for further parsing;
+  if () then ([is valid arguments] )
+    :Command object is returned\n               & executed;
+  else ( [else])
+    :Throws ParseException;
+  endif
+else ( [else])
+  :Throws ParseException;
+endif
+
+stop
+@enduml
 
 start
 
