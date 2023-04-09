@@ -529,7 +529,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Deleting an event while events with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
 
-    1. Prerequisites: Find all events with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple events in the list.
+    1. Prerequisites: Find all events with `[KEYWORD]` using the `findevent [KEYWORD]` command. Multiple events in the list.
 
     2. Test case: `delevent 1`<br>
        Expected: First event is deleted from the displayed list. Details of the deleted event shown in the status message.
