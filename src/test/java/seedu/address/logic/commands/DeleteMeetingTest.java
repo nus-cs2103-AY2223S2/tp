@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBooks.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
 
 
 import org.junit.jupiter.api.Test;
@@ -25,6 +23,8 @@ import seedu.address.model.meeting.Meeting;
 public class DeleteMeetingTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    public static final Index INDEX_FIRST_MEETING = Index.fromOneBased(1);
+    public static final Index INDEX_SECOND_MEETING = Index.fromOneBased(2);
 
     @Test
     public void execute_deleteMeeting_success() {
