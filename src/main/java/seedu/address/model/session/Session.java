@@ -31,7 +31,6 @@ public class Session implements Comparable<Session> {
     public static final String MESSAGE_INVALID_DATES = "Invalid Date Input Format (DD-MM-YYYY HH:mm). "
             + "Please input valid digits.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-    private String command;
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final String startDateTime;
     private final String endDateTime;

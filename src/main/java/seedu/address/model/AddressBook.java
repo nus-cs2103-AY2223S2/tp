@@ -172,12 +172,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePersonFromSession(Person person, Session session) {
         requireAllNonNull(person, session);
         String name = person.getName().toString();
-        if (!sessions.contains(session)) {
-            throw new SessionNotFoundException();
-        }
-        if (!session.contains(name)) {
-            throw new PersonNotFoundException();
-        }
         Session newSession = session.copy();
         newSession.removePersonFromSession(name);
         sessions.setSession(session, newSession);
@@ -193,9 +187,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-        for (Session session: sessions) {
-            session.removePersonFromSession(key.getName().formattedName);
-        }
     }
 
     //// util methods

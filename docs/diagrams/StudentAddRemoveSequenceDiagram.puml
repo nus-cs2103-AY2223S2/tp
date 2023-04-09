@@ -1,0 +1,19 @@
+@startuml
+
+
+actor Coach
+
+Coach -> Session: createSession("Hall")
+Session -> Session: initializeAttendanceMap()
+
+alt Add Athlete
+Coach -> Session: addAthleteToSession(athlete: Bob)
+Session -> Session: getAthleteName(athlete)
+Session -> Session: addAthleteToAttendanceMap(athleteName: "Bob", attendance: false)
+else Remove Athlete
+Coach -> Session: removeAthleteFromSession(athlete: Bob)
+Session -> Session: getAthleteName(athlete)
+Session -> Session: removeAthleteFromAttendanceMap(athleteName: "Bob")
+end
+
+@enduml

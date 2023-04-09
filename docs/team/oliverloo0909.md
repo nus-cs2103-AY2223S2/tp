@@ -3,18 +3,11 @@ layout: page
 title: Oliver Loo's Project Portfolio Page
 ---
 
-### Project: Unibook
+## **Project: SportSync**
 
-Unibook is a desktop address book application used for coaching student athletes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+SportSync is a desktop address book application used for coaching student athletes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.
-
-
-* **New Feature**:
-    * What it does: ability to group student's however the coach likes
-    * Justification: for better contact management handling
-    * Highlights:
-    * Credits: Oliver Loo
 
 * **New Feature**:
 * ### Session function [\#29](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/76)
@@ -46,6 +39,10 @@ Added the ability to undo and redo previously entered commands.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=Olive&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=Oliverloo0909&tabRepo=AY2223S2-CS2103T-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
+* Helped with debugging and testing the app to ensure correct functionality.
+* Participated in key team discussions to decide on direction of project.
+* Regularly reviewed and merged pull requests from other team members.
+
 
 * **Enhancements to existing features**:
 
