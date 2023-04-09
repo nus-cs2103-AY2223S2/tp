@@ -32,6 +32,7 @@ import seedu.address.model.event.Tutorial;
 class AddStudentToEventCommandTest {
     private static final String WRONG_TYPE = "tutorial";
     private static final int ARBITRARILY_LARGE_INTEGER = 99999999;
+    private static final int ZEROTH_INDEX = 0;
     private Model model;
     private Index first = INDEX_FIRST_PERSON;
     private Index second = INDEX_SECOND_PERSON;
@@ -52,23 +53,23 @@ class AddStudentToEventCommandTest {
         modifiedModel.addLab(new Lab(SAMPLE_LAB.getName()));
         modifiedModel.addConsultation(new Consultation(SAMPLE_CONSULTATION.getName()));
 
-        Model supposedlySameModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        supposedlySameModel.addStudentToTutorial(first, first);
-
         modifiedModel.addStudentToTutorial(first, first);
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
                 second, first, TUTORIAL_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
+        assert(modifiedModel.getFilteredTutorialList().get(ZEROTH_INDEX).countStudents() == 1);
 
         modifiedModel.addStudentToLab(first, first);
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
                         second, first, LAB_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
+        assert(modifiedModel.getFilteredLabList().get(ZEROTH_INDEX).countStudents() == 1);
 
         modifiedModel.addStudentToConsultation(first, first);
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
                         second, first, CONSULTATION_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
+        assert(modifiedModel.getFilteredConsultationList().get(ZEROTH_INDEX).countStudents() == 1);
 
     }
 

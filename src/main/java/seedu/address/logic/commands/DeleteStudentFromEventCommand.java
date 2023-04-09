@@ -16,14 +16,10 @@ public class DeleteStudentFromEventCommand extends Command {
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "Either you did not enter an "
             + "event type or the event type that you have entered "
             + "cannot be recognized!\n";
-    public static final String MESSAGE_STUDENT_INDEX_TOO_SMALL = "The student index you "
-            + "have entered cannot be 0 or less";
     public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger "
             + "than the size of the student list within the event";
     public static final String MESSAGE_STUDENT_INDEX_INVALID = "The student index "
             + "needs to be a single non-zero integer";
-    public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be "
-            + "0 or less";
     public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be "
             + "bigger than the size of the specified event list";
     public static final String MESSAGE_EVENT_INDEX_INVALID = "The event index "
@@ -64,13 +60,6 @@ public class DeleteStudentFromEventCommand extends Command {
         assert(studentIndex != null);
         assert(eventIndex != null);
         assert(eventType != null);
-
-        if (studentIndex.getZeroBased() < 0) {
-            throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_SMALL);
-        }
-        if (eventIndex.getZeroBased() < 0) {
-            throw new CommandException(MESSAGE_EVENT_INDEX_TOO_SMALL);
-        }
 
         switch (eventType) {
         case TUTORIAL_STRING:
