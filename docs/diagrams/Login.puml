@@ -7,22 +7,22 @@ start
 :ModCheck checks number of times Student visited ModCheck;
 if () then ([Student visited more than once])
     :ModCheck displays default login screen;
+    :ModCheck requests Student to login;
+    :Student enters password;
+    if () then ([password is correct])
+    else ([else])
+        :ModCheck displays error message;
+        :Student re-enters correct password;
+    endif
 else ([else])
     :ModCheck displays welcome screen;
-endif
-:ModCheck requests Student to create a password;
-    if () then ([Student wants to create password])
-        :Student creates password (@rake CreatePasswordActivityDiagram);
-    else ([else])
-        :ModCheck requests Student to login;
-        :Student enters password;
-        if () then ([password is correct])
+    :ModCheck requests Student to create a password;
+        if () then ([Student wants to create password])
+            :Student creates password (@rake CreatePasswordActivityDiagram);
         else ([else])
-            :ModCheck displays error message;
-            :Student re-enters correct password;
         endif
-    endif
-    :ModCheck displays loading screen;
+endif
+        :ModCheck displays loading screen;
 stop
 
 @enduml
