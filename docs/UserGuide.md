@@ -42,21 +42,22 @@ managers to efficiently delegate tasks in an organised manner.
 #### 1.2 Prefixes and parameters used in commands
 Below are the prefixes and parameters we use in commands.
 
-| Prefix     | Parameter    | Parameter Meaning         | Example Usage              | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|------------|--------------|---------------------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **n/**     | NAME         | Name of person            | n/Peter                    | NAME given to persons must be unique, should only contain alphanumeric characters and spaces, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **p/**     | PHONE_NUMBER | Phone number of person    | p/94738484                 | PHONE_NUMBER should only contain numbers, should begin with 6, 8 or 9, should be 8 digits long (without spaces) and should not be blank. It is also assumed the country code (e.g +65) is not necessary.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **e/**     | EMAIL        | Email of person           | e/nancy@gmail.com          | EMAIL should be of the format local-part@domain and should not be blank. The local-part should only contain alphanumeric characters and at most one of these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. The domain name is made up of domain labels separated by periods. The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters and have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| **a/**     | ADDRESS      | Address of person         | a/Sims Avenue 6            | ADDRESS can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **tag/**   | TAG          | Tags given to person      | tag/Logistics              | TAG should be alphanumeric and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **t/**     | TITLE        | Title of task             | t/Work on Project X        | TITLE given to tasks must be unique, should only contain alphanumeric characters and spaces, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                         
-| **c/**     | CONTENT      | Content of task           | c/Complete slides for Mr Y | CONTENT can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **st/**    | STATUS       | Completion status of task | st/true                    | STATUS only takes true or false values, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **dl/**    | DEADLINE     | Deadline set for task     | dl/2023-05-23 20:00:00     | DEADLINE format is given by yyyy-mm-dd HH:MM:SS, time(HH:MM:SS) is optional but cannot be incomplete (i.e if time is included, it must follow HH:MM:SS format). There must be trailing zeros for digits lesser than 10. It should not be blank.                                                                                                                                                                                                                                                                                                                                                          |
-| **ti/**    | INDEX        | Index of task             | ti/2                       | INDEX should be a valid integer, should be more than 0 and should follow the index displayed in displayed task list. It should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **pi/**    | INDEX        | Index of person           | pi/4                       | INDEX should be a valid integer, should be more than 0 and should follow the index displayed in displayed person list. It should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Prefix   | Parameter    | Parameter Meaning         | Example Usage              | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|----------|--------------|---------------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **n/**   | NAME         | Name of person            | n/Peter                    | NAME given to persons must be unique, should only contain alphanumeric characters and spaces, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **p/**   | PHONE_NUMBER | Phone number of person    | p/94738484                 | PHONE_NUMBER should only contain numbers, should begin with 6, 8 or 9, should be 8 digits long (without spaces) and should not be blank. It is also assumed the country code (e.g +65) is not necessary.                                                                                                                                                                                                                                                                                                                                                                                            |
+| **e/**   | EMAIL        | Email of person           | e/nancy@gmail.com          | EMAIL should be of the format local-part@domain and should not be blank. The local-part should only contain alphanumeric characters and at most one of these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. The domain name is made up of domain labels separated by periods. The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters and have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| **a/**   | ADDRESS      | Address of person         | a/Sims Avenue 6            | ADDRESS can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **tag/** | TAG          | Tags given to person      | tag/Logistics              | TAG should be alphanumeric and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **t/**   | TITLE        | Title of task             | t/Work on Project X        | TITLE given to tasks must be unique, should only contain alphanumeric characters and spaces, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                         
+| **c/**   | CONTENT      | Content of task           | c/Complete slides for Mr Y | CONTENT can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **st/**  | STATUS       | Completion status of task | st/true                    | STATUS only takes true or false values, and should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **dl/**  | DEADLINE     | Deadline set for task     | dl/2023-05-23 20:00:00     | DEADLINE format is given by yyyy-mm-dd HH:MM:SS, time (HH:MM:SS) is optional but cannot be incomplete (i.e if time is included, it must follow HH:MM:SS format). There must be trailing zeros for digits lesser than 10. It should not be blank.                                                                                                                                                                                                                                                                                                                                                    |
+| **ti/**  | INDEX        | Index of task             | ti/2                       | INDEX should be a valid integer, should be more than 0 and should follow the index displayed in displayed task list. It should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **pi/**  | INDEX        | Index of person           | pi/4                       | INDEX should be a valid integer, should be more than 0 and should follow the index displayed in displayed person list. It should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-- After entering a Prefix and its Parameter, there should be a space before the next Prefix and its Parameter.  
+
+- After entering a prefix and its parameter, there should be a space before the next prefix and its parameter.  
   (e.g `addp n/Peterp/95748483e/pter@gmail.coma/Sims Drive 6` is an invalid command format. The valid command format should be `addp n/Peter p/95748483 e/pter@gmail.com a/Sims Drive 6`)
 
 
@@ -66,7 +67,7 @@ Below are the prefixes and parameters we use in commands.
 
 Welcome to OfficeConnect! 
 
-This section is designed specifically for newcomers like you who are looking to get started with our platform. 
+This section is designed specifically for newcomers who are looking to get started with our platform. 
 Here, you'll find all the essential information you need to start using OfficeConnect and make the most out of 
 its features.
 
@@ -104,8 +105,8 @@ You may notice that there are progress bars of different
    ![image](https://user-images.githubusercontent.com/99934242/230615373-609f3ec9-fca3-48e9-bbb2-ce1c8d7b048f.png)
 <br>
 <br>The <span style="color:green">**green**</span> colored progress bar indicates that the task is done, and before the deadline.
-<br>The <span style="color:red">**red**</span> colored progress bar indicates that the task is undone, and that the deadline has passed.
-<br>The <span style="color:blue">**blue**</span> colored progress bar indicates that the task is undone, but the deadline has not passed.
+<br>The <span style="color:red">**red**</span> colored progress bar indicates that the task is not done, and that the deadline has passed.
+<br>The <span style="color:blue">**blue**</span> colored progress bar indicates that the task is not done, but the deadline has not passed.
 </div>
 
 If you find yourself forgetting some commands over time, there's no need to worry. Memory leak happens to the best of 
@@ -222,8 +223,9 @@ Edits an existing person in OfficeConnect.
 
 Format: `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
-  The index **must be a positive integer** 1, 2, 3, …
+* Edits the person at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed person list. 
+* The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
@@ -235,18 +237,18 @@ Examples:
 
 #### 3.2.4 Listing all Persons : `listp`
 
-Shows a list of all persons in OfficeConnect.
+Displays a list of all persons in OfficeConnect.
 
 Format: `listp`
 
-#### 3.2.5 Locating Persons by name: `findp`
+#### 3.2.5 Locating Persons by Name: `findp`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose name contains any of the given keywords.
 
 Format: `findp KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
-* Do not require full word to match e.g. `Han` will match `Hans`.
+* Does not require full word to match e.g. `Han` will match `Hans`.
 * Persons whose name contains the input will be returned.
   e.g. `Han` will return `Han Gruber`, `Han Sum`.
 * Input is order-sensitive. e.g. `Han S` will match `Han Sum` but will not match `Han Gruber`.
@@ -282,7 +284,7 @@ Format: `deletet INDEX`
 
 * Deletes the task at the specified INDEX.
 * The INDEX refers to the INDEX shown in the displayed task list.
-* The INDEX must be a positive integer 1, 2, 3...
+* The INDEX must be a positive integer 1, 2, 3, ...
 
 Examples:
 - `listt` followed by `deletet 2` deletes the 2nd task in the task list.
@@ -294,9 +296,9 @@ Edits the specified task from OfficeConnect.
 
 Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE]`
 
-* Edits the task at the specified INDEX.
-* The INDEX refers to the INDEX shown in the displayed task list.
-* The INDEX must be a positive integer 1, 2, 3...
+* Edits the task at the specified `INDEX`. 
+* The index refers to the index shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -306,11 +308,11 @@ Examples:
 
 #### 3.3.4 Listing all Tasks: `listt`
 
-Shows a list of all tasks in OfficeConnect.
+Displays a list of all tasks in OfficeConnect.
 
 Format: `listt`
 
-#### 3.3.5 Locating a specific Task: `findt`
+#### 3.3.5 Locating Tasks by Title: `findt`
 
 Finds the task based on given keyword.
 
@@ -319,15 +321,15 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
 Examples:
 - `findt complete`
 
-#### 3.3.6 Marking a Task as completed: `mark`
+#### 3.3.6 Marking a Task as Completed: `mark`
 
 Marks an existing task in OfficeConnect.
 
 Format: `mark INDEX`
 
-* Changes the status of the task at the specified index to completed.
+* Changes the status of the task at the specified `INDEX` to completed.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 - `mark 2` marks task 2 as completed.
@@ -338,11 +340,11 @@ Unmarks a task in OfficeConnect
 
 Format: `unmark INDEX`
 
-* Changes the status of the task at the specified index to uncompleted.
+* Changes the status of the task at the specified `INDEX` to uncompleted.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 
-### 3.4 Assignment and Marking Commands
+### 3.4 Assignment Commands
 
 #### 3.4.1 Assigning a Task to a Person: `assign`
 
@@ -350,22 +352,22 @@ Assigns an existing task to an existing person in OfficeConnect.
 
 Format: `assign ti/INDEX pi/INDEX`
 
-* Assigns the task at specified index to the person at specified index.
+* Assigns the task at specified `INDEX` to the person at specified `INDEX`.
 * The index refers to the index number shown in the displayed person/task list.
-* The index must be a positive integer 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 - `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
 
 #### 3.4.2 Remove a Task assignment from a Person: `unassign`
 
-Remove assignment of an existing task from an existing person in OfficeConnect.
+Removes the assignment of an existing task from an existing person in OfficeConnect.
 
 Format: `unassign ti/INDEX pi/INDEX`
 
-* Remove assignment of the task at specified index from the person at specified index.
+* Remove assignment of the task at specified `INDEX` from the person at specified `INDEX`.
 * The index refers to the index number shown in the displayed person/task list.
-* The index must be a positive integer 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 - `unassign ti/ 2 pi/ 3` unassigns task 2 from person 3.
@@ -374,7 +376,7 @@ Examples:
 
 #### 3.5.1 List all Persons and Tasks: `listall`
 
-Shows a list of all personals and tasks in OfficeConnect.
+Displays a list of all persons and a list of all tasks in OfficeConnect.
 
 Format: `listall`
 
@@ -384,17 +386,11 @@ Displays a list of all persons who have been assigned to a task.
 
 Format: `viewassignedp`
 
-Example:
-- `viewassignedp` displays a list of all persons who have been assigned to a task.
-
 #### 3.5.3 View Assigned Tasks: `viewassignedt`
 
 Displays a list of all tasks that have been assigned to a person.
 
 Format: `viewassignedt`
-
-Example:
-- `viewassignedt` displays a list of all tasks that have been assigned to a person.
 
 #### 3.5.4 View Unassigned Persons: `viewunassignedp`
 
@@ -402,8 +398,6 @@ Displays a list of all persons who have not been assigned to any task.
 
 Format: `viewunassignedp`
 
-Example:
-- `viewunassignedp` displays a list of all persons who have not been assigned to any task.
 
 #### 3.5.5 View Unassigned Tasks: `viewunassignedt`
 
@@ -411,27 +405,20 @@ Displays a list of all tasks that have not been assigned to any person.
 
 Format: `viewunassignedt`
 
-Example:
-- `viewunassignedt` displays a list of all tasks that have not been assigned to any person.
 
 #### 3.5.6 View Assigned Person and Task: `viewassignedall`
 
-Displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
+Displays a list of all persons who have been assigned to one or more tasks and a list of all tasks that have been 
+assigned to one or more persons.
 
 Format: `viewassignedall`
 
-Example:
-- `viewassignedall` displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
-
 #### 3.5.7 View Unassigned: `viewunassignedall`
 
-Displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
+Displays a list of all persons who have not been assigned to any task and a list of all tasks that have not been 
+assigned to any person.
 
 Format: `viewunassignedall`
-
-Example:
-- `viewunassignedall` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
-
 
 #### 3.5.8 Filter Persons: `filterp`
 
@@ -472,7 +459,7 @@ Example:
 
 #### 3.6.1 Exiting the program : `exit`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The keyboard shortcut for the help function is assigned to the F1 key.
+The keyboard shortcut for the exit function is assigned to the F1 key.
 </div>
 
 Exits the program.
@@ -481,19 +468,21 @@ Format: `exit`
 
 #### 3.6.2 Saving the data
 
-OfficeConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+All OfficeConnect data is saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
 
 #### 3.6.3 Editing the data file
 
-Data for OfficeConnect is stored in JSON format within the `[JAR file location]/data/` directory. Please do not tamper with the data as it might cause corruption of the data, which might cause the app to fail!
+Data for OfficeConnect is stored in JSON format within the `[JAR file location]/data/` directory. 
+Please do not tamper with the data as it might cause corruption of the data, which might cause the app to fail!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, OfficeConnect will discard all data and start with an empty data file at the next run.
 </div>
 
 #### 3.6.4 Light theme support
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The keyboard shortcut for the help function is assigned to the F2 key.
+The keyboard shortcut for the light mode function is assigned to the F2 key.
 </div>
 
 Sets the overall theme of OfficeConnect to light mode. This mode is chosen as the default theme.
@@ -505,7 +494,7 @@ Sets the overall theme of OfficeConnect to light mode. This mode is chosen as th
 
 #### 3.6.5  Dark theme support
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The keyboard shortcut for the help function is assigned to the F3 key.
+The keyboard shortcut for the dark mode function is assigned to the F3 key.
 </div>
 
 Sets the overall theme of OfficeConnect to dark mode.
@@ -538,23 +527,23 @@ _Details coming soon ..._
 |-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Add Person](#321-adding-a-person-addp)                                 | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 tag/friend tag/colleague` |
 | [Add Task](#331-adding-a-task-addt)                                     | `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]` <br> e.g., `addt t/Draft proposal c/Complete proposal by 1st March st/false dl/2024-01-03 23:02:03`                         |
-| [Assign](#341-assigning-a-task-to-a-person-assign)                      | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                                       |
+| [Assign](#341-assigning-a-task-to-a-person-assign)                      | `assign ti/INDEX pi/INDEX`<br>e.g. `assign ti/1 pi/2`                                                                                                                        |
 | [Delete Person](#322-deleting-a-person--deletep)                        | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
-| [Delete Task](#332-deleting-a-task-deletet)                             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
+| [Delete Task](#332-deleting-a-task-deletet)                             | `deletet INDEX`<br> e.g. `deletet 2`                                                                                                                                         |
 | [Edit Person](#323-editing-a-person--editp)                             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
 | [Edit Tasks](#333-editing-a-task-editt)                                 | `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE]`<br> e.g.,`editt 2 t/Submit report st/true`                                                                     |
 | [Exit](#361-exiting-the-program--exit)                                  | `exit`                                                                                                                                                                       |
 | [Filter Person](#358-filter-persons-filterp)                            | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
 | [Find Person](#325-locating-persons-by-name-findp)                      | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |
-| [Find Task](#335-locating-a-specific-task-findt)                        | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                                    |
+| [Find Task](#335-locating-tasks-by-title-findt)                         | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                                    |
 | [Help](#312-viewing-help--help)                                         | `help`                                                                                                                                                                       |
 | [List All](#351-list-all-persons-and-tasks-listall)                     | `listall`                                                                                                                                                                    |
 | [List Persons](#324-listing-all-persons--listp)                         | `listp`                                                                                                                                                                      |
 | [List Tasks](#334-listing-all-tasks-listt)                              | `listt`                                                                                                                                                                      |
-| [Mark Task](#336-marking-a-task-as-completed-mark)                      | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                              |
+| [Mark Task](#336-marking-a-task-as-completed-mark)                      | `mark INDEX`<br> e.g. `mark 3`                                                                                                                                               |
 | [Quick Start](#311-quickstart-guide-quickstart)                         | `quickstart`                                                                                                                                                                 |
-| [Unassign](#342-remove-a-task-assignment-from-a-person-unassign)        | `unassign pi/INDEX ti/INDEX`<br/> e.g. `unassign pi/1 ti/3`                                                                                                                  |
-| [Unmark Task](#337-unmarking-a-task-unmark)                             | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                         |
+| [Unassign](#342-remove-a-task-assignment-from-a-person-unassign)        | `unassign pi/INDEX ti/INDEX`<br> e.g. `unassign pi/1 ti/3`                                                                                                                   |
+| [Unmark Task](#337-unmarking-a-task-unmark)                             | `unmark INDEX` <br> e.g. `unmark 2`                                                                                                                                          |
 | [View Assigned All](#356-view-assigned-person-and-task-viewassignedall) | `viewassignedall`                                                                                                                                                            |
 | [View Assigned Persons](#352-view-assigned-persons-viewassignedp)       | `viewassignedp`                                                                                                                                                              |
 | [View Assigned Tasks](#353-view-assigned-tasks-viewassignedt)           | `viewassignedt`                                                                                                                                                              |
