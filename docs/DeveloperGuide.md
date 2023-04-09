@@ -335,6 +335,7 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
 
 ### 3.5 Editing a Task
 Syntax: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]`
+
 Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 
 #### 3.5.1 Implementation
