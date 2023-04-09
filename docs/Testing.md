@@ -20,7 +20,7 @@ There are two ways to run tests.
 * **Method 2: Using Gradle**
   * Open a console and run the command `gradlew clean test` (Mac/Linux: `./gradlew clean test`)
 
-**:link: Link:**: Read [_[se-edu/guides] Gradle tutorial ](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
+**:link: Link:** Read [_[se-edu/guides] Gradle Tutorial_](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
