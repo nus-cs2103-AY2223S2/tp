@@ -95,13 +95,32 @@ On start, the `UIManager` will display the `MainWindow` that is made up of parts
 
 #### Timetable Window
 
-Timetable Window displays timetable of the specific week - which is specified by user. The "main" timetable window only contains scheduled jobs (jobs that are scheduled and not yet completed). Meanwhile, we also have separated windows for completed and unscheduled jobs. Timetable Window helps users to stay organized and structure their plans for the week.
+Timetable Window displays timetable of the specific week - which is specified by user. The "main" timetable window only contains scheduled jobs (jobs that are scheduled and not yet completed). However, we also have separated windows for completed and unscheduled jobs (`UnscheduleWindow` and `CompleteWindow`). Timetable Window helps users to stay organized and structure their plans for the week.
 
+`Timetable Window`:
+* gets the sorted job list by date and slot using `Logic` component
+* displays the corresponding job list with the correct date and slot
+* returns command execution result.
+* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
 
-For `TimetableWindow`, the structure is a little bit more complicated than other windows - it contains a few more parts such as `CommandBox`, `ResultDisplay`, etc.
+`Unschedule Window`:
+* displays the list of unscheduled jobs
+* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+
+`Complete Window`:
+* displays the list of completed jobs
+* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+
+Structure of `UnscheduleWindow` and `CompleteWindow` can be shown using the Main Window UI Class diagram.
+
+However, for `TimetableWindow`, the structure is more complicated than those 2 - it contains a few more parts such as `CommandBox`, `ResultDisplay`, etc.
+
+Below is the structure of Timetable Window through class diagram:
+
 ![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
 
 
+#### Job System component
 
 The `Job System` component,  
 ![Structure of the Create Job Component](images/UiClassDiagramCreateJob.png)
