@@ -263,11 +263,9 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
-<div style="width:80%;margin:0 10%;text-align:center">
     
-   <b>Figure 1.4.2</b> Class diagram for Model Components
+   **Figure 1.4.2** Class diagram for Model Components
 
-</div>
 
 </div>
 
