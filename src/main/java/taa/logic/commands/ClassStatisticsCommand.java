@@ -75,8 +75,6 @@ public class ClassStatisticsCommand extends Command {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
         }
 
-        CommandResult result;
-
         if (this.field == ChartType.CLASS_ATTENDANCE) {
             return displayAttendanceChart(model);
         } else if (this.field == ChartType.CLASS_GRADES) {
