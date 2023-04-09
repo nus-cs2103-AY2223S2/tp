@@ -46,7 +46,7 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
   - [4.8 Deleting a contact: `delete`](#48-deleting-a-contact-delete)
   - [4.9 Searching for contact information: `search`](#49-searching-for-contact-information-search)
   - [4.10 Opening a social media platform: `open`](#410-opening-a-social-media-platform-open)
-  - [4.11 Sending chats to a contact: `chat`](#411-sending-chats-to-a-contact-chat)
+  - [4.11 Opening a social media platform with prefilled message: `chat`](#411-opening-a-social-media-platform-with-prefilled-message-chat)
   - [4.12 View upcoming birthdays: `upcoming-b`](#412-view-upcoming-birthdays-upcoming-b)
   - [4.13 Exiting the program: `exit`](#413-exiting-the-program-exit)
   - [4.14 Saving the data](#414-saving-the-data)
@@ -312,7 +312,7 @@ ConnectUS has many features to assist you in your contact management needs. The 
 - [4.8 Deleting a contact: `delete`](#48-deleting-a-contact-delete)
 - [4.9 Searching for contact information: `search`](#49-searching-for-contact-information-search)
 - [4.10 Opening a social media platform: `open`](#410-opening-a-social-media-platform-open)
-- [4.11 Sending chats to a contact: `chat`](#411-sending-chats-to-a-contact-chat)
+- [4.11 Open a social media platform with prefilled message: `chat`](#411-opening-a-social-media-platform-with-prefilled-message-chat)
 - [4.12 View upcoming birthdays: `upcoming-b`](#412-view-upcoming-birthdays-upcoming-b)
 - [4.13 Exiting the program: `exit`](#413-exiting-the-program-exit)
 - [4.14 Saving the data](#414-saving-the-data)
@@ -612,7 +612,7 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 * `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
 * `search may blk n\alex` returns all contacts whose name contains the keyword `alex` and which contain the keywords `may` and `blk` in any of the information fields.
 * `search n\lex y`returns all contacts whose name contains the keyword `lex y`
-* `search n\alex n\may` returns all contacts whose name contains the keyword `alex` and whose birthday contains the keyword `may`
+* `search n\alex b\may` returns all contacts whose name contains the keyword `alex` and whose birthday contains the keyword `may`
 * `search mod\cs mod\ma` returns all contacts who have at least one module which contains the keyword `cs` and at least one module which contain the keyword `ma`
 * `search ig\al cca\chess` returns all contacts whose instagram handle contains the keyword `al` and who has at least one cca with the word `chess` in it
 * `search cca\#president` returns all contacts who have a position that contains the keyword `president` in at least one cca
@@ -683,19 +683,23 @@ You'll need to download the desktop applications for <a href="https://desktop.te
 
 <div style="page-break-after: always"></div>
 
-## 4.11 Sending chats to a contact: `chat`
+## 4.11 Opening a social media platform with prefilled message: `chat`
 
-Format: `chat PERSON_INDEX wa/ m/`
+Format: `chat PERSON_INDEX wa/ m/MESSAGE`
 
-> Sends a chat to an existing contact.
+> Opens the respective social media platform of an existing contact with specified message prefilled.
 
 Due to platform constraints, only WhatsApp is supported.
 
 Similar to `open`, if a WhatsApp handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled.
 
+All your existing messages in the text field will be replaced.
+
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**<br>
 
 You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
+
+Note that WhatsApp might not be responsive enough to prefill the message for you. In this case, you can execute the command once again.
 
 </div>
 
@@ -778,7 +782,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 - [5.9 Tags](#59-tags)
   - [5.9.1 Module Tags: `mod/`](#591-module-tags-mod)
   - [5.9.2 CCA Tags: `cca/`](#592-cca-tags-cca)
-  - [5.9.3 Major Tags: `maj`](#593-major-tags-maj)
+  - [5.9.3 Major Tags: `maj/`](#593-major-tags-maj)
   - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 
 <div style="page-break-after: always"></div>
@@ -985,7 +989,7 @@ As of now, using non-English languages (e.g. Chinese, French) as information fie
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | **Add a Contact**      | `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA#CCA_POSITION]…​ [major/MAJOR]…​`                                                                                                 | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
 | **Add Tag**            | `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA[#CCA_POSITION]] [maj/major]`                                                                                                                                                                            | `add-t 1 r/friends mod/CS2103T cca/NUS Hackers#President`                             |
-| **Chat with Contact**  | `chat PERSON_INDEX wa/ m/`                                                                                                                                                                                                                                   | `chat 1 wa/ m/hello world!`                                                           |
+| **Chat with Contact**  | `chat PERSON_INDEX wa/ m/MESSAGE`                                                                                                                                                                                                                            | `chat 1 wa/ m/hello world!`                                                           |
 | **Clear Data**         | `clear`                                                                                                                                                                                                                                                      |                                                                                       |
 | **Delete a Contact**   | `delete PERSON_INDEX`                                                                                                                                                                                                                                        | `delete 3`                                                                            |
 | **Delete Tag**         | `delete-t PERSON_INDEX [r/REMARK_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX] [maj/MAJOR_INDEX]`                                                                                                                                                                | `delete-t 1 mod/1`                                                                    |

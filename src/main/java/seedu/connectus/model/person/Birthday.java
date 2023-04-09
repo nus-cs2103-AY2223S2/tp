@@ -14,6 +14,9 @@ public class Birthday {
     public static final String MESSAGE_CONSTRAINTS = "Birthday should be of the format DD/MM/YYYY\n"
             + "Format: " + PREFIX_BIRTHDAY + "BIRTHDAY";
 
+    public static final String MESSAGE_FUTURE_DATE = "Birthday should be in the past";
+    public static final String MESSAGE_TOO_OLD_DATE = "Birthday must be less than 200 years ago";
+
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/([0-9]{4})$";
 
     private final LocalDate value;
@@ -33,6 +36,9 @@ public class Birthday {
         int year = Integer.parseInt(date[2]);
 
         value = LocalDate.of(year, month, day);
+        checkArgument(isValidDate(value), MESSAGE_FUTURE_DATE);
+        checkArgument(!isTooOldDate(value), MESSAGE_TOO_OLD_DATE);
+
     }
 
     /**
@@ -53,7 +59,7 @@ public class Birthday {
     public boolean isUpcoming() {
         LocalDate today = LocalDate.now();
         int daysUntilBirthday = value.getDayOfYear() - today.getDayOfYear();
-        if (daysUntilBirthday <= 60 && daysUntilBirthday >= 0) {
+        if (daysUntilBirthday <= 61 && daysUntilBirthday >= 0) {
             return true;
         }
         return false;
@@ -64,6 +70,19 @@ public class Birthday {
      */
     public static boolean isValidBirthday(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns if a given date is valid (in the past).
+     */
+    public static boolean isValidDate(LocalDate date) {
+        // birthday is valid only if it is in the past
+        // it can also not be more than 200 years ago
+        return date.isBefore(LocalDate.now());
+    }
+
+    private static boolean isTooOldDate(LocalDate date) {
+        return date.isBefore(LocalDate.now().minusYears(200));
     }
 
     public LocalDate getValue() {

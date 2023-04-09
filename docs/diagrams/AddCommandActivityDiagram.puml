@@ -10,7 +10,7 @@ if () then ( [else])
   stop
  else ( [Person does not exist in Contact List])
 endif
-  :new command successfully executes.;
+  :add command successfully executes.;
 stop
 
 @enduml
