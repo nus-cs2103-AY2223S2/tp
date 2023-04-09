@@ -3,11 +3,11 @@ layout: page
 title: User Guide
 ---
 
-FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command
-Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAid
-can get your client and meeting management tasks done quickly, so you won't ever worry about missing a meeting or
-forgetting about a client!
+FAid is a **client and schedule management** application made for financial advisors!
+Financial advisors can use FAid to easily **save their client information** and **organise meetings**. 
+With FAid, financial advisors will no longer have to worry about missing a meeting or forgetting a client!
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -15,34 +15,30 @@ forgetting about a client!
 
 ## Quick start
 
-1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
-   operating system.
+<!-- 1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
+   operating system. <br> See the [Troubleshooting section](#troubleshooting) if you run into any issues. -->
+FAid requires `Java 11` to function.
+If you do not have `Java 11` or are unsure if you have it, refer to the [Troubleshooting section](#troubleshooting) for help.
+Otherwise, refer to the following steps to get started.
 
-1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
-   command: `java --version`. <br>
-   If java is installed successfully, your output should be similar to the following (Note that it may look slightly
-   different depending on your exact version and operating system): <br>
-   `openjdk 11.0.17 2022-10-18 LTS` <br>
-   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
-   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
-   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
-   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
-   If you see an error message like this even after installing Java `11`, consider restarting your computer or
-   reinstalling Java.
+1. Download the application called `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
-1. Download the latest `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
+1. Double click the `faid.jar` file you downloaded and the app should launch automatically.<br>
+   If this is your first time using a .jar file, see the [Troubleshooting section](#troubleshooting) for help.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FAid application.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar faid.jar` command to
-   run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. An application similar to the below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
+1. Type the command in the command box and press Enter to execute it.
+   ![Ui](images/Ui.png)
 
+
+
+
+   <!-- Some example commands you can try: -->
+
+
+<!-- 
     * `list` : Lists all clients.
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe`
@@ -52,19 +48,22 @@ forgetting about a client!
 
     * `clear` : Deletes all clients.
 
-    * `exit` : Exits the app.
+    * `exit` : Exits the app. -->
 
 1. Refer to the [Features](#features) below for details of each command.
+
+[Back to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+### If this is your first time using FAid, this is what the app provides you with and how to use it
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -90,11 +89,13 @@ forgetting about a client!
 
 * Index must be a positive number
 
-* Meetings displayed when app is opened initially are those meetings for the current day, and user input of 'listMeeting' is required to list all meetings stored in FAid
+* Meetings displayed when app is opened initially are those meetings for the current day, and your input of 'listMeeting' is required to list all meetings stored in FAid
 
-* `ARG1|ARG2` in format means only one ARG1 or ARG2 must be a part of the user input but not both
+* `ARG1|ARG2` in format means only one ARG1 or ARG2 must be a part of your input but not both
 
 * Refer to the [Prefix Masterlist](#prefix masterlist) for the list of prefixes used for the commands below.
+
+</div>
 
 ### Viewing help : `help`
 
@@ -106,9 +107,20 @@ Format: `help`
 
 ### Adding a client : `add`
 
-Adds a client to the FAid.
+Adds a client to FAid.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A client can have any number of tags (including 0)
+</div>
+
+Required Information:
+* `NAME`: Name of a client whose contact is to be stored in FAid
+* `PHONE_NUMBER`: Phone number of a client whose contact is to be stored in FAid, which must be a valid number with 8 digits and starts with 6, 8 or 9
+* `EMAIL`: A valid email of a client whose contact is to be stored in FAid
+* `TAGS`: Optional labels to put for clients, such as tagging which policy they bought or are interested in buying
+
 
 Examples:
 
@@ -124,11 +136,13 @@ Note:
 
 Shows a list of all clients in FAid.
 
+
 Format: `list`
 
 ### Editing a client : `edit`
 
 Edits an existing client in FAid.
+7
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -166,7 +180,7 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from FAid
+Deletes the specified client from FAid.
 
 Format: `delete INDEX`
 
@@ -181,14 +195,15 @@ Examples:
 
 Schedules a meeting with a client in FAid
 
+
 Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
 
 Required Information:
-
-* `client_INDEX`: Index of a client in FAid
+* `CLIENT_INDEX`: Index of a client in FAid
 * `DESC`: Description of the meeting to add
 * `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
+* `TAGS`: Optional labels to put for the meeting
 
 Example:
 
@@ -197,16 +212,16 @@ Example:
 
 Notes:
 * Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
-
-![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
-
-Notes:
-
 * Meeting must not conflict in timing with other meetings scheduled for the day.
+
+* ![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
+
+
 
 ### Remove meeting : `meetingRemove`
 
 Removes meeting from FAid.
+
 
 Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 
@@ -229,6 +244,7 @@ Note:
 ### Updating a meeting : `meetingUpdate`
 
 Updates an existing meeting belonging to a client in FAid
+
 
 Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
 
@@ -263,6 +279,7 @@ Required Information:
 * Date (dd/mm/yyyy)
 * Index of a client that is already stored in FAid.
 
+
 Examples:
 * `meetingFind 11/05/2023` Lists out all meetings that start on 11th May 2023
 * `meetingFind 5` Lists out all meetings with client of index 5 in FAid
@@ -282,7 +299,6 @@ Required information:
 * Region specified should be a valid region
 
 Examples:
-
 * `listRegion Central` lists all clients from the Central region in FAid.
 
 ### Find clients by policy name : `findPolicy`
@@ -324,13 +340,14 @@ manually.
 
 ### Editing the data file
 
-FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
+FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update
 data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, FAid will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -342,6 +359,25 @@ the data of your previous FAid home folder.
 
 **Q**: How do I key in my client's region?<br>
 **A**: FAid automatically detects region based on address keyed in
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Troubleshooting
+
+1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
+   operating system if you haven't installed it. <br>
+   To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
+   command: `java --version`. <br>
+   If java is installed successfully, your output should be similar to the following (Note that it may look slightly
+   different depending on your exact version and operating system): <br>
+   `openjdk 11.0.17 2022-10-18 LTS` <br>
+   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
+   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
+   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
+   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
+   If you see an error message like this even after installing Java `11`, consider restarting your computer or
+   reinstalling Java.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -358,6 +394,7 @@ Prefix | Field
 **ms/** | Start date and time of meeting
 **me/** | End date and Time of meeting
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
