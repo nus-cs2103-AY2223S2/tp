@@ -5,7 +5,7 @@ title: Jer En's Project Portfolio Page
 
 ### Project: SudoHR
 
-SudoHR is a desktop HR management application that aims to consolidate employee information to help HR personnel manage employee information more quickly as compared to doing it manually.
+{% include ppp-summary.html %}
 
 Given below are my contributions to the project.
 
