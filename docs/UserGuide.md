@@ -50,7 +50,7 @@ The user guide will contain certain visuals to aid in conveying information more
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Getting Started
+## **Getting Started**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -91,7 +91,7 @@ The user guide will contain certain visuals to aid in conveying information more
 4. You will be able to find a detailed guide on the list of available commands in the [Commands](#commands) section.
 
 --------------------------------------------------------------------------------------------------------------------
-## Key Definitions
+## **Key Definitions**
 This section provides explanations of important terms that will be used in this User Guide.
 
 ### Bookmark
@@ -128,7 +128,7 @@ The commands to modify your tag list can be found at [Tag Commands](#tag-command
 <div style="page-break-after: always;"></div>
 
 
-## Graphical User Interface<br>
+## **Graphical User Interface** <br>
 This section provides a quick rundown of the various components of MyLib's user interface.
 
    <img width="680" src="images/annotated-UI.png">
@@ -160,7 +160,7 @@ The bookmark in the BookmarkList panel will only contain the:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Commands
+## **Commands**
 This section provides an in-depth explanation of MyLib's commands. For a quick reference of the available commands, use the [Command Summary](#command-summary) table.
 
 <div markdown="block" class="alert alert-info">
@@ -441,7 +441,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MyLib home folder.
@@ -455,7 +455,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Command summary
+## **Command summary**
 
  Action | Format, Examples
 --------|------------------
