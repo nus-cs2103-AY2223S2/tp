@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added `policy` class as an additional parameter to `client` class
   * `Policy` : Represents the particular policy with respect to the client. Takes in the following few classes as parameters. (`PolicyName`, `CustomDate`, `Premium`, `Frequency`)
-  * `PolicyName` : Represents the name of the policy
+  * `PolicyName` : Represents the name of the policy.
   * `CustomDate` : A class that represents a date in the format of dd.mm.yyyy.
   * `Premium` : Represents the amount paid by the client for the policy.
   * `Frequency` : Represents the frequency of payment by the client for the policy
@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-  * Enhanced the `isSameClient` method in the `Client` class, such that it now checks if all client's `Name` AND (`Phone` OR `Email`) of both comparing clients are the same, instead of the original method where it only checks if the client names are the same
+  * Enhanced the `isSameClient` method in the `Client` class, such that it now checks if all client's `Name` AND (`Phone` OR `Email`) of both comparing clients are the same, instead of the original method where it only checks if the client names are the same. (examples : #168)
 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=yzmunchmunch&breakdown=true)
