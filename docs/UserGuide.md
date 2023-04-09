@@ -115,23 +115,23 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add n/LinkedIn`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/COMPANY_NAME [l/LOCATION]` can be used as `n/LinkedIn l/Clementi` or as `n/LinkedIn`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[r/REVIEW]…​` can be used as ` ` (i.e. 0 times), `r/Close to MRT`, `r/Close to MRT t/Kind, inclusive bosses and colleagues` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/COMPANY_NAME j/JOB_TITLE`, `j/JOB_TITLE n/COMPANY_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `l/Clementi l/Changi`, only `l/Changi` will be taken.
 
 * Note that the following are reserved keyword in InternEase, and including these characters in the company name, job title,
   review, and other fields may lead to unspecified behaviour:
-    * `n/`, `j/`, `p/`, `q/`, `l/`, `s/`, `e/`, `t/`, `d/`
+    * `n/`, `j/`, `r/`, `p/`, `q/`, `l/`, `s/`, `note/`, `rate/`, `reflect/`, `e/`, `by/`, `c/`, `d/`, `rs/`, `cl/`, `before/`, `after/`, `from/`, `to/`, 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -160,6 +160,13 @@ Format: `add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q
 Examples:
 * `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
 * `add n/LinkedIn j/Software Engineer s/2000 SGD` adds an application for the Software Engineer role at LinkedIn with salary 2000 SGD.
+
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/add-internship-button.png" alt="Add Internship" height = "25"/> button to add a new internship application.
+2. A popup window similar to the image below will appear. <br/>
+<img align="center" src = "images/ui/popups/add-internship-popup.png" alt="Add Internship Popup">
+3. Fields that are marked with red asterisk are compulsory fields while others are optional fields.
+4. You can fill in the fields accordingly and press the `Add` button to execute the `add` command.
 
 ### Edit an internship application : `edit`
 
