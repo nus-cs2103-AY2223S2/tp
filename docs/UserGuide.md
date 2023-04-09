@@ -15,16 +15,16 @@ PetPal can help get your pet's administrative tasks done without needing to be t
 
 This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet-administrative duties**.
 
-## Table of Contents
+## **Table of Contents**
 
-* **Table of Contents**
+* Table of Contents
   {:toc}
 
 ---
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 2. Download the latest `PetPal.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-2/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for your PetPal.
 4. Double-click the file to start the app. The GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -60,9 +60,9 @@ This user guide will help you get started and understand how PetPal can **seamle
 
 ### **General formatting conventions**
 
-* Text in [blue](#How-to-use-the-user-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
-* Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text.
-* Text in `code snippets such as this` are used to show inputs and their format.
+* Text in [blue](#How-to-use-the-user-guide) are hyperlinks that direct you to the relevant section of the page or other websites.
+* Text in **bold** is used to emphasize important details to look out for or to distinguish headers from the rest of the text.
+* Text in `code snippets such as this` is used to show inputs and their format.
 
 <div markdown="block" class="alert alert-block alert-info">
 
@@ -102,13 +102,13 @@ Information that you need to know
   e.g. `DEADLINE` is an optional parameter in `add o/OWNER_NAME [d/DEADLINE]`, where you can input `add on/John Doe d/Feed dog - 2023-03-27 21:09:09` or just `add n/John Doe`.
 * Items with `...` after them can be used multiple times.<br>
   e.g. `[t/TAG...]` can be used as `t/Pomeranian`, `t/Pomeranian t/Vegetarian` etc.
-* `INDEX` represents the index of a specific pet in PetPal list you are **currently viewing**, which can change based on prior commands executed (e.g. `find`, `remind`)<br>
+* `INDEX` represents the index of a specific pet in the PetPal list you are **currently viewing**, which can change based on prior commands executed (e.g. `find`, `remind`)<br>
   e.g. You can use the command `delete INDEX` as `delete 2`.
 * Parameters can be in **any order**.<br>
   e.g. You can input either `add o/OWNER_NAME p/PHONE_NUMBER` or ` add p/PHONE_NUMBER o/OWNER_NAME`.
 * Only the last occurrence of a parameter that is expected once will be taken **if you specify it more than once.**<br>
   e.g. Given `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear` and `undo`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear` and `undo`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 ---
@@ -119,15 +119,15 @@ Information that you need to know
 
 #### **Viewing help :** `help`
 
-Helpful feature when you forget the commands!.
+Helpful feature when you forget the commands!
 
 Format: `help`, `h` or Press `F1`
 
 ![help](images/UG/help_new.png)
 
-#### Listing your pets : `list`
+#### Listing your pets: `list`
 
-Will help you get back to the original list of pets stored in PetPal after find and remind functions.
+Will help you get back to the original list of pets stored in PetPal after the `find` and `remind` functions.
 
 Format: `list` or `l`
 
@@ -135,9 +135,9 @@ Format: `list` or `l`
 
 ### **Adding**
 
-#### Adding a pet's information : `add`
+#### Adding a pet's information: `add`
 
-If you have new pet client(s) and need to add your new furry friends into PetPal, you can make use of the `add` command.
+If you have new pet client(s) and need to add your new furry friends to PetPal, you can make use of the `add` command.
 
 Format: `add n/PET_NAME o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...] `
 
@@ -148,7 +148,7 @@ Format: `add n/PET_NAME o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_ST
 Note:
 
 1. The field `n/PET_NAME` is **case-sensitive**. That is `n/Doggo` and `n/doggo` will be treated as 2 different pets.
-2. There certain constraints which might differ for each parameter, please refer to **Figure 1** below for details on each constraint.
+2. There are certain constraints which might differ for each parameter, please refer to **Figure 1** below for details on each constraint.
 3. Pets with the `PET_NAME` **cannot** be created.
 4. There can be multiple tags associated with each pet, simply repeat the tag prefix. e.g. `t/Dog t/BichonFrise`
 
@@ -164,7 +164,7 @@ Figure 1 provides a summary of the parameters with their descriptions, prefixes 
 | `PHONE_NUMBER` | The owner's phone number                       | `p/`   | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | COMPULSORY |
 | `EMAIL`        | The owner's email                              | `e/`   | Emails should be of the format local-part@domain and adhere to the following constraints:<br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, ( + SPECIAL_CHARACTERS + ). The local-part may not start or end with any special "characters."<br/>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any | COMPULSORY |
 | `ADDRESS`      | The owner's address                            | `a/`   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | COMPULSORY |
-| `TIMESTAMP`    | The date and time when the pet starts boarding | `ts/`  | Timestamps should be in the`YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | COMPULSORY |
+| `TIMESTAMP`    | The date and time when the pet starts boarding | `ts/`  | Timestamps should be in the`YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09 and in the future                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | COMPULSORY |
 | `DEADLINE`     | A deadline attributed with the pet             | `d/`   | Timestamps given in the deadline should be in the`YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09  and in the future                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | OPTIONAL   |
 | `TAG`          | A label that you can attach to a pet           | `t/`   | Tags should be alphanumeric, and**cannot** include spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | OPTIONAL   |
 
@@ -174,7 +174,7 @@ Figure 1 provides a summary of the parameters with their descriptions, prefixes 
 
 * :heavy_exclamation_mark: **Caution:**
   The format of the timestamp should strictly follow the convention `YYYY-MM-DD HH:MM:SS` eg. `2023-03-27 21:09:09`
-  otherwise you will encounter errors when adding a new pet.
+  otherwise, you will encounter errors when adding a new pet.
 
 </div>
 
@@ -187,13 +187,13 @@ Other examples:
 * `add o/Petricia n/Whiskers p/98746333 e/petricia@petpal.com a/311 Beach Road 2023-03-27 21:09:09 d/Feed cat - 2023-03-27 21:09:09 t/MaineCoon ts/2023-03-27 21:09:09 t/Cat`
 * `add o/Robert n/Fluffy p/98746333 e/rob@bmail.com a/622 Rose Road ts/2023-03-27 21:09:09 d/Feed rabbit - 2023-03-27 21:09:09 t/Vegetarian t/Rabbit`
 
-#### Filtering out reminders that are due soon : `remind`
+#### Filtering out reminders that are due soon: `remind`
 
 Get a filtered list of things you should do soon!
 
 **Constraints**
 
-* The filtering of the list only checks if the deadline of a pet is within 3 days of current date.
+* The filtering of the list only checks if the deadline for a pet is within 3 days of the current date.
 * It does not sort out the list based on the deadline of the pet. (Future implementation)
 * However, currently those reminders that are due within the day are highlighted in bright orange on the GUI as seen in the image given below.
 
@@ -210,7 +210,7 @@ The pets highlighted in bright orange are reminders that are due within a day!<b
 
 ### Retrieving
 
-#### Finding your pet by name : `find`
+#### Finding your pet by name: `find`
 
 Find your pets by their names.
 
@@ -235,7 +235,7 @@ Other examples:
 <div markdown="block" class="alert alert-block alert-success">
 
 :bulb: **Note:**<br>
-`find` command returns a new list. Any commands performed after `find` is based on the new list. You can use the `list` command to return to the original list.
+The `find` command returns a new list. Any commands performed after `find` is based on the new list. You can use the `list` command to return to the original list.
 
 </div>
 <div markdown="block" class="alert alert-block alert-info">
@@ -248,11 +248,11 @@ Format: `f n/PET_NAME`
 
 ### **Updating**
 
-#### Updating your pet information : `edit`
+#### Updating your pet information: `edit`
 
 A pet owner changed their contact information? or did you find out new information about your pet client?
 
-You can edit these changes with the `edit` command. This command can be used to edit: phone number, address, email, and tags.
+You can edit these changes with the `edit` command. This command can be used to edit: phone numbers, addresses, emails, and tags.
 
 If you accidentally invoked this command with the wrong parameters, you can use the `edit` command to re-edit the wrong fields or
 the `undo` command to revert the wrong changes.
@@ -262,8 +262,8 @@ the `undo` command to revert the wrong changes.
 * Edits the pet with the provided index.
 * `INDEX` is the index of the pet in the currently displayed list.
 * You must provide **at least one** of the optional fields.
-* Allows you to update a pet to have same owner name but different phone number or, same number but different owner name as a current pet in the PetPal.
-* Pet profiles are auto saved in PetPal and are reflected in the PetPal list.
+* Allows you to update a pet to have the same owner name but a different phone number or, the same number but a different owner name as a current pet in the PetPal.
+* Pet profiles are auto-saved in PetPal and are reflected in the PetPal list.
 * Cost is constantly being updated in PetPal but the latest information may not be reflected to you. To get the latest information, either click on the pet profile or run a command (e.g. `list` or `l`).
 
 Format: `edit INDEX [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG...]`
@@ -278,7 +278,7 @@ Example given: `edit 6 t/GoldenRetriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-3
 
 If you wish to add tags to the pet, take note to include all previous tags in the edit, or they will be overridden.
 
-Only parameters provided will be changed.
+Only the parameters provided will be changed.
 
 </div>
 
@@ -291,9 +291,9 @@ Other examples:
 
 #### **Amount indication**
 
-Pet Card information indicates the amount of money owed to you for taking good care of their pets!
+Pet Card information indicates the amount of money your customers owe you for taking good care of their pets!
 
-Cost is calculated based on initial timestamp input by user. The cost is updated based on user interaction, clicking the petcard or reopening petpal!
+Cost is calculated based on the initial timestamp input by the user. The cost is updated based on user interaction, clicking the pet card or reopening PetPal!
 
 ![](images/UG/amount_new.png)
 
@@ -302,7 +302,7 @@ Cost is calculated based on initial timestamp input by user. The cost is updated
 Do some pets cost more to board in your daycare than others? You can use the `changecost` command to
 change the parameters for cost calculation for each pet.
 
-Cost is incremented in real time and is calculated based on `FLAT_RATE + (TIMESTAMP - CURR_TIME * RATE)`.
+Cost is incremented in real-time and is calculated based on `FLAT_RATE + (TIMESTAMP - CURR_TIME * RATE)`.
 
 <div markdown="block" class="alert alert-block alert-success">
 
@@ -331,7 +331,7 @@ Additional example:
 
 * `cc 2 1.0 1.5`
 
-### **Marking a deadline as done :** `mark`
+### **Marking a deadline as done:** `mark`
 
 Are you done with a pet's deadline? You can use the `mark` command to mark the deadline as done.
 
@@ -347,13 +347,13 @@ Example given: `mark 1`
 
 You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
 
-Pet deadline status will be automatically saved in the form of `status` field in the `petpal.json` file. `Unmarked` means have not finished yet and `Marked` means already finished.
+Pet deadline status will be automatically saved in the form of a `status` field in the `petpal.json` file. `Unmarked` means have not finished yet and `Marked` means already finished.
 
 </div>
 
 ### **Deletion**
 
-#### **Deleting a pet :** `delete`
+#### **Deleting a pet:** `delete`
 
 Deletes the specified pet from your PetPal.
 
@@ -407,13 +407,13 @@ Format: `clear`
 <div markdown="block" class="alert alert-block alert-warning">
 
 :heavy_exclamation_mark: **Important**
-If you run this command by accident, you can [undo](#undoing-a-previous-command--undo) the command to restore the previous state of PetPal.
+If you run this command by accident, you can [undo](#undoing-a-previous-command-undo) the command to restore the previous state of PetPal.
 
 </div>
 
 ### **Undo**
 
-#### Undoing a previous command : `undo`
+#### **Undoing a previous command:** `undo`
 
 Undo the last command executed, only works for supported commands. You can use this if you
 make a mistake while using PetPal.
@@ -437,17 +437,17 @@ Format: `exit` or `e`
 ### **Saving the data**
 
 Your PetPal and archive data are both automatically saved after executing any command that changes the data.
-This means hassle-free saving.
+This means hassle-free data saving.
 
 ### **Editing the data file**
 
 PetPal data are saved as a JSON file `[JAR file location]/data/PetPal.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
-Archive data is also in a JSON format and can be found `[JAR file location]/data/archive.json`.
+Archive data is also in a JSON format and can be found in `[JAR file location]/data/archive.json`.
 
 <div markdown="block" class="alert alert-block alert-danger">
 
 :exclamation: **Caution:**
-If your changes to either data files makes its format invalid, PetPal will **discard all data** and start with an empty data file at the next run,
+If your changes to either data file make its format invalid, PetPal will **discard all data** and start with an empty data file at the next run,
 which is **IRREVERSIBLE**.
 
 </div>
@@ -485,12 +485,12 @@ which is **IRREVERSIBLE**.
 
 **Q**: Why there are some pets highlighted even though the deadline is already passed?
 
-**A**: If you have already done the task, run `mark` function to mark it as done and remove the highlight.
+**A**: If you have already done the task, run the `mark` function to mark it as done and remove the highlight.
 
 <br><br>
 **Q**: PetPal says the index is invalid even though the pet exists in the PetPal list
 
-**A**: Index of each pet is based on your **currently viewable** pet list index, so if your currently viewable pet list is empty, the index will be invalid<br>
+**A**: The index of each pet is based on your **currently viewable** pet list index, so if your currently viewable pet list is empty, the index will be invalid<br>
 Run `list` or `l` to view all the pets in the list before executing the command again.
 
 <br><br>
@@ -501,7 +501,7 @@ Run `list` or `l` to view all the pets in the list before executing the command 
 
 
 <br><br>
-If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
+If you have additional questions that are not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
 or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/issues)
 
 [Return to Table of Contents](#table-of-contents)
@@ -512,15 +512,15 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 
 
 | Term                     | Definition                                                                                                                                                                                                                                                                                                                       |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                                                                        |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase and the 10 Arabic numerals, 0 to 9.                                                                                                                                                                         |
 | Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                                                                   |
 | YYYY-MM-DD hh:mm:ss      | Date format whereby`YYYY` refers to the year using 4 digits, `MM` refers to the months in 2 digits, `DD` refers to the days in 2 digits, `hh` refers to the 2 digit hours, `mm` refers to the 2 digit minutes, 'ss' refers to the 2 digit seconds. They are each separated by a hyphen: `-` character for date and `:` for time. |
 | Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                                                             |
 | Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                                                                                         |
 | Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                                                                                           |
 | JAR                      | JAR stands for Java ARchive. PetPal uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                                                             |
-| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                                                                                                 |
+| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal data. JSON is a lightweight format for storing and transporting data.                                                                                                                                                                   |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -530,7 +530,7 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                        | Shortcut              |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
 | **Help**        | `help`                                                                                                                                                                                                                                                                  | `h` or **PRESS** `F1` |
 | **List**        | `list`                                                                                                                                                                                                                                                                  | `l`                   |
 | **Add**         | `add o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...]`<br> e.g `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` |                       |

@@ -39,14 +39,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setPetPalFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setPetPalFilePath(Paths.get("pet/pal/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setPetPalFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setPetPalFilePath(Paths.get("new/pet/pal/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -69,7 +69,7 @@ public class ModelManagerTest {
 
     @Test
     public void setPetPalFilePath_validPath_setsPetPalFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("pet/pal/file/path");
         modelManager.setPetPalFilePath(path);
         assertEquals(path, modelManager.getPetPalFilePath());
     }
@@ -88,6 +88,18 @@ public class ModelManagerTest {
     public void hasPet_petInPetPal_returnsTrue() {
         modelManager.addPet(WHISKERS);
         assertTrue(modelManager.hasPet(WHISKERS));
+    }
+
+    @Test
+    public void setPetPalArchiveFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPetPalArchiveFilePath(null));
+    }
+
+    @Test
+    public void setPetPalArchiveFilePath_validPath_setsPetPalFilePath() {
+        Path path = Paths.get("pet/pal/archive/file/path");
+        modelManager.setPetPalArchiveFilePath(path);
+        assertEquals(path, modelManager.getPetPalArchiveFilePath());
     }
 
     @Test
