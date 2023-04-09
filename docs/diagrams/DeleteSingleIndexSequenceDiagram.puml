@@ -1,11 +1,12 @@
 @startuml
 !include style.puml
+hide footbox
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":DengueHotspotTrackerParser" as DengueHotspotTrackerParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -29,6 +30,9 @@ deactivate DeleteCommandParser
 DengueHotspotTrackerParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
+DeleteCommandParser -> DeleteCommandParser : parseIndex("1")
+activate DeleteCommandParser
+
 create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
@@ -36,11 +40,11 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
+DeleteCommandParser --> DeleteCommandParser : d
+deactivate DeleteCommandParser
+
 DeleteCommandParser --> DengueHotspotTrackerParser : d
 deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> DengueHotspotTrackerParser
-destroy DeleteCommandParser
 
 DengueHotspotTrackerParser --> LogicManager : d
 deactivate DengueHotspotTrackerParser
@@ -48,7 +52,10 @@ deactivate DengueHotspotTrackerParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> DeleteCommand : executeIndexes(model, lastShownList)
+activate DeleteCommand
+
+DeleteCommand -> Model : model.setPersons(remainingPersons)
 activate Model
 
 Model --> DeleteCommand
@@ -58,12 +65,16 @@ create CommandResult
 DeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteCommand : result
 deactivate CommandResult
+
+DeleteCommand --> DeleteCommand : result
+deactivate DeleteCommand
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
 
-[<--LogicManager
+LogicManager -->[
 deactivate LogicManager
+
 @enduml

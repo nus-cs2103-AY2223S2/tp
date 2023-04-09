@@ -89,7 +89,7 @@ The `UI` component,
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Here is a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
@@ -101,10 +101,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSingleIndexSequenceDiagram.png)
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -116,24 +113,20 @@ How the parsing works:
   * create an `XYZCommand`.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 * Similarly, all `XYZCommand` classes inherit from the `Command` abstract class and are executable.
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/model/Model.java)
 
+Here is a (partial) class diagram of the `Model` component:
+
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
-The `Model` component,
+The `Model` component
 
 * stores the Dengue Hotspot Tracker data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### Storage component
 
@@ -287,7 +280,6 @@ or age past 200)**
     * Cons: In the case of the input being erroneous, there is no indication that the for the user that it may be due to
       what they keyed in.
 
-
 * **Alternative 2:** Displays a message indicating that the input may be erroneous for each of the available prefix.
     * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their input
       may be unintended.
@@ -347,11 +339,31 @@ Step 4. `DeleteCommand#execute()` will get the most updated list of filtered per
 
 To see how the delete-by-date mechanism works, as well as to understand the design considerations taken, you may refer to the multi-index delete feature’s sequence diagram, as they work largely similarly besides the parsing of dates and the use of the `executeDate` method instead.
 
+**Aspect: What attributes the `delete` command can delete by:**
+
+* **Alternative 1 (current choice):** Allow users to `delete` only by date.
+    * Pros: Provides a convenient shortcut for the most probable use case out of all batch-delete use cases,
+      rather than clogging up the app with features that will likely go unused.
+    * Cons: The user may be confused at the difference in affordances between `delete` and the other commands
+      that similarly allow for prefixes to target a particular attribute, such as `edit` and `find`.
+
+* **Alternative 2:** Allow users to `delete` by all attributes, e.g. delete by name, age, postal, etc.,
+  similar to the `edit` and `find` commands.
+    * Pros: `delete` command would better match the functionality allowed by the other commands that
+      similarly allow for prefixes to target a particular attribute, such as `edit` and `find`.
+    * Cons: Deleting by name, age, etc. are use cases that are much rarer than deleting by date.
+      If necessary, they can be accomplished by `find`ing by the relevant attribute before `clear`ing.
+      Allowing deletion by date provides a handy shortcut for the most probable use case, keeping the app
+      free of less important features.
+
+
 ### Delete-by-date-range feature
 
 #### Implementation
 
-This feature is largely similar to the delete-by-date feature, except that the user can input up to two dates, a start date `sd/` and an end date `ed/`. For instance, `delete sd/2023-03-23 ed/2023-03-25` will delete all cases from 23rd March 2023 to 25th March 2023 inclusively.
+This feature is largely similar to the delete-by-date feature, except that the user can input up to two dates,
+a start date `sd/` and an end date `ed/`. For instance, `delete sd/2023-03-23 ed/2023-03-25` will
+delete all cases from 23rd March 2023 to 25th March 2023 inclusively.
 
 ### Sort feature
 
