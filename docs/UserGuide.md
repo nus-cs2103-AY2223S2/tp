@@ -1,13 +1,13 @@
 ---
 layout: page
-title: ***RIZZ***ipe User Guide
+title: User Guide
 toc: true
 ---
 Are you an _avid chef_ with too many delicious recipes to handle? Or ever just have
 the desire to **store**, **access** and **share** your recipes easily? 
 
 We understand that for brilliant and creative individuals like yourself, it is essential to properly manage your recipes,
-which is why [***RIZZ***ipe](#What-is-***RIZZ***ipe?) is designed and built just for chefs like ***YOU*** to organize your recipes at the touch of a finger!
+which is why [***RIZZ***ipe](#what-is-rizzipe) is designed and built just for chefs like ***YOU*** to organize your recipes at the touch of a finger!
 
 ## Using this Guide
 * If you want to run ***RIZZ***ipe for the first time, check out our handy [Quick Start guide](#quick-start).
@@ -96,6 +96,8 @@ Recipes are the building blocks of RIZZipe! Each recipe comprises multiple field
 | **Ingredients** | `i/`   | `-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED_AMOUNT] [-cn COMMON_NAME] [-r REMARKS]...[-s SUBSTITUTION]...`                                     | No          | Refer to the "Ingredients" section below!                                                                                               |
 | **Steps**       | `s/`   | **`STEP`** <br> `STEP` consists of 2 or more space-separated words, and can contain these characters: `A-Z a-z 0-9 . , : ; ( ) - and space`                 | No          | `Serve well.`, <br>`Bring 3 quarts water to a boil in a 5-qt. pot.`, <br>`Season with salt; add pasta and cook, stirring occasionally.` |
 | **Tags**        | `t/`   | **`TAG`** <br>  `TAG` can contain these characters: `A-Z a-z 0-9 and space`                                                                                 | No          | `Italian`, <br>`Comfort Food`, <br>`Gluten Free`                                                                                        |
+
+Pay close attention to these formats, for they are crucial inputs to some of our [features](#features) mentioned below!
 
 ## What is an ingredient?
 
