@@ -11,8 +11,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Premium {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Premiums should only contain numbers, it can be either integer, or a double";
-    public static final String VALIDATION_REGEX = "^\\d*[1-9]\\d*(\\.\\d{1,2})?$";
+            "Premiums should only contain numbers, it can be either integer, or a double. "
+                    + "These numbers can include decimals, but only up to 2 decimals.";
+    public static final String VALIDATION_REGEX = "^[1-9]\\d*(\\.\\d{1,2})?$";
     public final String value;
 
     /**
