@@ -219,8 +219,8 @@ The 4 types of lead statuses supported are:
 | QUALIFIED   | `Qualified` or `Q`       | The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here.   |
 | UNQUALIFIED | `Unqualified` or `X`     | This status should only be used when it is certain that the customer's intents are not a match for the user's sales, and have no prospects of buying at all. |
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Note that there might be other types of lead statuses definitions (<a href="https://www.varicent.com/blog/6-essential-salesforce-lead-status-options-that-align-sales-and-marketing">examples</a>)
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+There might be other types of lead statuses definitions (<a href="https://www.varicent.com/blog/6-essential-salesforce-lead-status-options-that-align-sales-and-marketing">examples</a>)
 that you might want to use. For this application, we have implemented only 4 types of lead statuses for simplicity's sake.
 </div>
 
@@ -229,7 +229,7 @@ Format:
 
 Examples:  
 `status 1 s/Q` Assigns the status of QUALIFIED to ID `1` in the current list of persons.  
-`status 2 s/Working` Assigns the status of WORKING to ID `1` in the current list of persons.
+`status 2 s/Working` Assigns the status of WORKING to ID `2` in the current list of persons.
 
 ### Finding a contact name: `find`
 
@@ -246,7 +246,7 @@ Format: `find NAME`
 
 Examples:
 
-- `find Dewy ` - returns `Dewy Thompson` or `Majorie Dewy`
+- `find Dewy` will return `Dewy Thompson` or `Majorie Dewy`
 
 ### Finding a contact tag: `findtag`
 
@@ -256,7 +256,7 @@ Format: `findtag TAG`
 
 - The search is case-insensitive. e.g `friends` will match `Friends`
 - Only full tags will be matched e.g. `friend` will not match `friends`
-- Persons matching at least one tag will be returned (i.e. `OR` search).
+- Persons matching at least one tag will be returned (i.e. `OR` search).  
   e.g. `findtag friends` will return `Hans Gruber`, `Bo Yang` if they are associated with having a `friends` tag
 
 Examples:
@@ -292,16 +292,16 @@ Search for a contact based on matching KEYWORD to any attribute of a Person reco
 
 Format: `findall KEYWORD`
 
-\*`TAG` and `STATUS` attributes as they have their own seperate commands for searching.
-\*Does not parse through tasklist and transactions (For future extensions).
+\*`TAG` and `STATUS` attributes as they have their own separate commands for searching.  
+\*Does not parse through tasklist and transactions (For future extensions).  
 
 The user can search for any attribute and if it matches with any Person, that person will be listed.
 
 - The search is case-insensitive. e.g `u` will match `U`
 - The search will match with any attribute
-- Persons matching the search will be returned
-  Example 1: `findall NAME`: `findall John` will return contacts with gender attributes that contains the keyword like `John Doe` and `John The Builder`
-  Example 2: `findall ADDRESS`: `findall Blk 30` will return contacts with address attributes that contains the keyword like `Blk 16 Hello Drive` and `Blk Goodbye Drive`
+- Persons matching the search will be returned:
+  Example 1: `findall NAME`: `findall John` will return contacts with gender attributes that contains the keyword like `John Doe` and `John The Builder`  
+  Example 2: `findall ADDRESS`: `findall Blk 30` will return contacts with address attributes that contains the keyword like `Blk 16 Hello Drive` and `Blk Goodbye Drive`  
   Applicable for all the following attributes in a person's details: `NAME GENDER PHONE_NUMBER EMAIL COMPANY LOCATION OCCUPATION JOBTITLE ADDRESS`
 
 ### Finding a contact and their transactions list: `findtxn`
