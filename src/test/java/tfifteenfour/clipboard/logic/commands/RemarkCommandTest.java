@@ -11,13 +11,10 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
-import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
-import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.StudentBuilder;
@@ -29,22 +26,13 @@ import tfifteenfour.clipboard.testutil.TypicalModel;
 class RemarkCommandTest {
     private static final Remark REMARK_STUB = new Remark("Some remark");
     private Model model;
-    private Course selectedCourse;
-    private Group selectedGroup;
-    private Session selectedSession;
     private Student selectedStudent;
-    private CurrentSelection actualSelection;
 
     @BeforeEach
     public void setUp() {
         this.model = new TypicalModel().getTypicalModel();
         this.model.getCurrentSelection().setCurrentPage(PageType.TASK_STUDENT_PAGE);
-        selectedCourse = model.getCurrentSelection().getSelectedCourse();
-        selectedGroup = model.getCurrentSelection().getSelectedGroup();
-        selectedSession = model.getCurrentSelection().getSelectedSession();
         selectedStudent = model.getCurrentSelection().getSelectedStudent();
-
-        actualSelection = this.model.getCurrentSelection();
     }
 
 

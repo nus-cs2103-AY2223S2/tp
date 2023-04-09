@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.EditCommandParser;
 import tfifteenfour.clipboard.logic.predicates.StudentParticularsContainsPredicate;
@@ -45,7 +44,6 @@ public class CommandTestUtil {
     public static final String STUDENTID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENTID_BOB;
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.\n";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
 
     public static final String STUDENT_COMMAND_PREFIX = " student ";
@@ -53,7 +51,6 @@ public class CommandTestUtil {
     public static final String GROUP_COMMAND_PREFIX = " group ";
     public static final String SESSION_COMMAND_PREFIX = " session ";
     public static final String TASK_COMMAND_PREFIX = " task ";
-    public static final String INVALID_COMMAND_PREFIX = " invalid ";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -65,8 +62,6 @@ public class CommandTestUtil {
 
     public static final EditCommandParser.EditStudentDescriptor DESC_AMY;
     public static final EditCommandParser.EditStudentDescriptor DESC_BOB;
-
-    public static final CurrentSelection TEST_CURRENT_SELECTION = new CurrentSelection();
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)

@@ -13,8 +13,6 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
-import tfifteenfour.clipboard.model.course.Session;
-import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
 public class ClearCommandTest {
@@ -22,8 +20,7 @@ public class ClearCommandTest {
     private Model expectedModel;
     private Course selectedCourse;
     private Group selectedGroup;
-    private Session selectedSession;
-    private Student selectedStudent;
+
     private CurrentSelection actualSelection;
     private String clearedObject;
     private String section;
@@ -34,8 +31,7 @@ public class ClearCommandTest {
         expectedModel = model.copy();
         selectedCourse = model.getCurrentSelection().getSelectedCourse();
         selectedGroup = model.getCurrentSelection().getSelectedGroup();
-        selectedSession = model.getCurrentSelection().getSelectedSession();
-        selectedStudent = model.getCurrentSelection().getSelectedStudent();
+
         clearedObject = "";
         section = "";
 

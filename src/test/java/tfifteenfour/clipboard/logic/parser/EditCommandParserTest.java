@@ -51,7 +51,6 @@ import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
-import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
 import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.testutil.EditStudentDescriptorBuilder;
@@ -63,11 +62,6 @@ public class EditCommandParserTest {
             EditStudentCommand.MESSAGE_USAGE);
     private Model model;
     private CurrentSelection currentSelection;
-    private Course selectedCourse;
-
-    private Group selectedGroup;
-    private Session selectedSession;
-    private Student selectedStudent;
     private CurrentSelection actualSelection;
 
     private EditCommandParser parser;
@@ -77,11 +71,6 @@ public class EditCommandParserTest {
         model = new TypicalModel().getTypicalModel();
         currentSelection = model.getCurrentSelection();
         parser = new EditCommandParser(currentSelection);
-
-        selectedCourse = model.getCurrentSelection().getSelectedCourse();
-        selectedGroup = model.getCurrentSelection().getSelectedGroup();
-        selectedSession = model.getCurrentSelection().getSelectedSession();
-        selectedStudent = model.getCurrentSelection().getSelectedStudent();
 
         actualSelection = this.model.getCurrentSelection();
         actualSelection.setCurrentPage(PageType.SESSION_STUDENT_PAGE);

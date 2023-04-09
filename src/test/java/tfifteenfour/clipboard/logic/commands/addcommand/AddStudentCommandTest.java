@@ -13,7 +13,6 @@ import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
-import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.StudentBuilder;
 import tfifteenfour.clipboard.testutil.TypicalModel;
@@ -34,7 +33,6 @@ public class AddStudentCommandTest {
     private Model model;
     private Model expectedModel;
     private Group selectedGroup;
-    private Session selectedSession;
     private Student selectedStudent;
     private CurrentSelection actualSelection;
 
@@ -43,7 +41,6 @@ public class AddStudentCommandTest {
         this.model = new TypicalModel().getTypicalModel();
         expectedModel = model.copy();
         selectedGroup = model.getCurrentSelection().getSelectedGroup();
-        selectedSession = model.getCurrentSelection().getSelectedSession();
         selectedStudent = model.getCurrentSelection().getSelectedStudent();
 
         actualSelection = this.model.getCurrentSelection();

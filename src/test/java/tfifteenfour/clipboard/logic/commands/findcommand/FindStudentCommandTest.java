@@ -11,12 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
-import tfifteenfour.clipboard.logic.predicates.CourseNameContainsPredicate;
 import tfifteenfour.clipboard.logic.predicates.StudentParticularsContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
-import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
-import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
@@ -25,21 +22,15 @@ class FindStudentCommandTest {
     private static Student secondStudent;
     private Model model;
     private Model expectedModel;
-    private Course selectedCourse;
     private Group selectedGroup;
-    private Session selectedSession;
-    private Student selectedStudent;
+
     private CurrentSelection actualSelection;
-    private CourseNameContainsPredicate predicate;
 
     @BeforeEach
     public void setUp() {
         this.model = new TypicalModel().getTypicalModel();
         expectedModel = model.copy();
-        selectedCourse = model.getCurrentSelection().getSelectedCourse();
         selectedGroup = model.getCurrentSelection().getSelectedGroup();
-        selectedSession = model.getCurrentSelection().getSelectedSession();
-        selectedStudent = model.getCurrentSelection().getSelectedStudent();
 
         actualSelection = this.model.getCurrentSelection();
         actualSelection.setCurrentPage(PageType.COURSE_PAGE);
