@@ -1046,6 +1046,8 @@ Precondition: There are shortlisted applicants in HMHero.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -1224,6 +1226,7 @@ This makes it easier for the user to track the status of their applicants as the
 
 In terms of colour scheme, we thought that the dark theme of AB3 was uninspiring and made use of own blue and light colored theme to give this app a nice, warm and welcoming feel. 
 
+<div style="page-break-after: always;"></div>
 
 ### Extensive Testing
 
@@ -1232,8 +1235,6 @@ The increased number of classes, along with all the commands, means that code co
 Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests for our commands, 
 parsers and model objects. We redesigned how testing is done for commands and manage to cover all commands successfully. 
 We achieved a ~86% code coverage from the original ~72% in AB3, and increased the number of test cases from 248 (in AB3) to 301 (in HMHero).
-
-<div style="page-break-after: always;"></div>
 
 ## **Planned Enhancements**
 
