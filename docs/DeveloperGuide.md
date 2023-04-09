@@ -1018,6 +1018,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. ConnectUS shows an error message.<br>
   Use case ends.
 
+
 - 4a. User requests to add more information to the contact.
   - 4a1. ConnectUS adds the given information to the contact.
   - 4a2. ConnectUS displays confirmation message.
@@ -1060,9 +1061,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2a. The list is empty.<br>
   Use case ends.
 
+
 - 3a. The given index is invalid.
   - 3a1. ConnectUS shows an error message.<br>
     Use case resumes at step 2.
+
 
 - 3b. There is an error in the given information.
   - 3b1. ConnectUS shows an error message.<br>
@@ -1118,6 +1121,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1a. No keywords are provided.
   - 1a1. ConnectUS displays error message.<br>
   Use case ends
+
 
 - 1b. User requests to find a contact by specific tag type and information fields.
   - 1b1. ConnectUS displays confirmation message.
@@ -1189,6 +1193,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 3a. The person has no WhatsApp record.
   - 3a1. ConnectUS displays error message.<br>
     Use case ends.
+
 
 - 4a. WhatsApp is launched, but it does not fill the message.<br>
   Use case resumes from step 3.
