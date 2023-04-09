@@ -3,14 +3,15 @@ layout: page
 title: Jing Jie's Project Portfolio Page
 ---
 
-### Project: SalesPUNCH
+### Project: SalesPunch
 
-SalesPUNCH is a lightweight alternative Customer Relationship Management (CRM)
+SalesPunch is a lightweight alternative Customer Relationship Management (CRM)
 software, inspired by the conventional CRM software, such as SalesForce, but uses
 a CLI-based user interface instead of a GUI, aimed towards enhancing efficiency
 for fast typists.
-  
-* **New Feature**: Status Features - Lead Status and Transaction Status
+
+#### Features Contributed
+* **New Feature**: Status Features – Lead Status and Transaction Status
   * **What it does**: Provides a timestamped attribute to contacts' lead status and transaction statuses. Statuses are
     limited to a number of pre-determined statuses
   * **Justification**: A salesperson managing a long list of contacts and past transactions will find it difficult to find 
@@ -24,7 +25,7 @@ for fast typists.
   time elapsed is refreshed every time the GUI is refreshed. Accessing the statuses and updating them has been added through commands.
     
 
-* **New Feature**: Transactions Feature, relations
+* **New Feature**: Transactions Feature, Transaction-Contact relations
   * Formulated the idea for users to track their sales via transactions, and wrote ([#44](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/42/commits)) 
   the skeletal classes. 
   * Created the GUI for the list of transactions, which is intentionally similar to the person list, for the sake of
@@ -34,29 +35,29 @@ for fast typists.
   to link their sales with their customers.
 
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ajjajjajjajj&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ajjajjajjajj&tabRepo=AY2223S2-CS2103-W16-4/tp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+#### C contributed – [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ajjajjajjajj&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ajjajjajjajj&tabRepo=AY2223S2-CS2103-W16-4/tp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **Project management**:
+#### Project management
   * Managed releases `v1.1` to `v1.4` on GitHub
 
-* **Enhancements to existing features**:
-  * Additional GUI enhancements 
+#### Enhancements to existing features
+  * **GUI contributions:**
+    * Adapted the GUI for the team's product in general ([#141](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/141))
     * Added the transactions list within the GUI ([#67](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/67))
     * Modified the representation of contacts in GUI to accommodate new attributes ([#76](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/76),
-    [#67](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/67))
-    * Adapted the GUI for the team's product in general ([#141](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/141))
+      [#67](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/67))
 
-* **Documentation**:
-  * User Guide:
+#### Documentation
+  * **User Guide:**
     * Added documentation for Status features ([#147](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/147))
     * Contributed to bug fixing and cosmetic changes to UG ([#147](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/147))
-  * Developer Guide:
+  * **Developer Guide:**
     * Added implementation details for the Status features, including all UML diagrams
     ([#66](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/66),
     [#185](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/185))
     * Added user stories and use cases ([#21](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/21))
 
-* **Community/Team**:
+#### Community & Team
   * PRs reviewed (with non-trivial comments): ([#44](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/44), 
   [#47](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/47), [#142](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/142))
   * Created bug reports for internal product testing: (examples: [1](https://github.com/AY2223S2-CS2103-W16-4/tp/issues/164),
