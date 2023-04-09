@@ -1,3 +1,7 @@
+---
+layout: page
+title: Developer Guide
+---
 ## Table of Contents
 
 - **[Acknowledgements](#acknowledgements)**
@@ -24,7 +28,8 @@ albeit involving different implementations and classes.
 
 ## Setting up, Getting started
 
-Coming soon
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
 
 
 <div style="page-break-after: always;"></div>
