@@ -553,6 +553,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information                                     | track my earnings and other statistics                                               |
 | `*`      | delivery driver with many jobs in Duke Driver                   | sort and filter jobs                                               | locate jobs easily and thus increase delivery efficiency                             |
 | `*`      | user                                                            | adjust how my notifications are shown                              | have a clutter free desktop                                                          |
+| `*`      | picky person                                                    | decide on and design how my timetable will look like               | view my timetable more easily and to my liking                                       |
 
 ### Use cases
 
@@ -850,17 +851,17 @@ has been activated.
 
 
 ### Appendix: Effort
-As our application contains different windows and features, such as Timetable Window, Statistics Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on the structure/design of each and every window that we have to maintain good design principles. In order to make sure that Duke Driver is friendly to users who prefer typing, asides from including buttons on GUI mode, we also include commands (typing-preferred) for users to switch to different windows. 
+As our application contains different windows and features, such as Timetable Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on the structure/design of each window to maintain good design principles. To make sure that Duke Driver is friendly to typing-preferred users, asides from including buttons on GUI mode, we also include commands for users to switch between windows. 
 
-Moreover, AB3 code base only consists of features supporting only `Person` class, meanwhile for Duke Driver, we had to work with and update the code base to support different entity types - for example, `Delivery Job` and `Reminder`. With the extensions that we planned to do, we also had to update the Parser to support a much larger set of commands, as we were working with numerous commands from different windows (Timetable, Reminder, Statistics,...).
+Moreover, AB3 code base only consists of features supporting only `Person` class, meanwhile for Duke Driver, we had to support different entity types - for example, `Delivery Job` and `Reminder`. With these extensions, we had to update the codebase (i.e. `Parser`, `Model` and `Logic`) to support a much larger set of commands, as we were working with numerous commands from different windows (Timetable, Reminder, Statistics,...).
 
 For Delivery Job Management System, as the job details were very long and could not be viewed inside a small cell in the job list, we wanted to add a feature for users to use mouse or arrow keys and click on the job to view its detail correspondingly. This was challenging as we need to learn how to make use of the UI and keyboard clicks. 
 
-We also added a GUI mode for our app - to speed up the speed of each command and thus, help to enhance users' experience. Throughout this process, we learn how to use various JavaFX classes and interfaces.
+We also added a GUI mode for our app - to speed up the speed of each command and thus, enhance users' experience. Throughout this process, we learn how to use various JavaFX classes and interfaces.
 
 We wanted to introduce a notification function to the app, so that users could be reminded of their jobs and upcoming tasks more easily. It was challenging to implement this function as JavaFx did not have any native notification feature. Hence, we had to find an external library that did so. We decided to used ControlFX, an open source project for JavaFX that serves to provide high quality UI controls on top of the existing JavaFX distribution. Through abstraction, this feature can be used by other portions of the applications (i.e. reminders, scheduling, etc). Hence, the implementation extended the functionalities and benefits of the application.
 
-For Timetable Window, we wanted users to be able to structure their plans for the week, thus we added a Timetable feature. However, as Timetable is directly linked with the delivery job list, thus changes made in the existing functions could affect the features directly and it required changes to the existing commands. We also had to decide on the design/structure of the Timetable Window, and learn to use the `ListView` class in our timetable.
+Also, we wanted users to be able to structure their plans for the week, thus we added a Timetable feature. However, as Timetable is directly linked with the delivery job list, the feature is closely related to the existing commands and functions. We also had to decide on the design/structure of the Timetable Window, and learn to use the `TitledPane` and `ListView` class in our timetable.
 
 Overall, the Team Project for us was quite challenging, as it requires us to learn to work together and help each other. We had to divide the work among ourselves so that everyone can get a grasp of and understand the code base. Understanding and updating the code base was quite tough at first, due to high levels of abstraction and the amount of classes that AB3 has. We tried to break it down into small tasks and understand it little by little each week. These small improvements day-by-day helped us get used to the codebase and the workload eventually. 
 
