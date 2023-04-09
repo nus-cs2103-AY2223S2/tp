@@ -1,5 +1,7 @@
 package seedu.dengue.model.predicate;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -15,7 +17,12 @@ public class PersonContainsPostalPredicate extends PredicateUtil<Person> {
 
     private final Optional<SubPostal> subPostal;
 
+    /**
+     * Constructs a predicate used to test whether the substring of a postal is a part of a person in the case list.
+     * @param subPostal optional subpostal of the predicate which is used to test with a person.
+     */
     public PersonContainsPostalPredicate(Optional<SubPostal> subPostal) {
+        requireNonNull(subPostal);
         this.subPostal = subPostal;
     }
 

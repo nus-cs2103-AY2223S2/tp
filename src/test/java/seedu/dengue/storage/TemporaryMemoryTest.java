@@ -87,6 +87,17 @@ public class TemporaryMemoryTest {
             i++;
         }
     }
+
+    @Test
+    public void undoAndPushNew_randomFiles_temporaryStorageEmpty()
+            throws CommandException {
+        this.memory.saveNewLatest(inputs.get(0));
+        this.memory.saveNewLatest(inputs.get(1));
+        this.memory.undo();
+        this.memory.saveNewLatest(inputs.get(2));
+        assertEquals(this.memory.getUndoHistory().size(), 0);
+    }
+
     // Saves multiple files into the stack, then perform undo a number of times
     // less than the number of saves.
 
@@ -103,16 +114,6 @@ public class TemporaryMemoryTest {
             this.memory.undo();
         }
         assertEquals(this.memory.loadCurrent(), inputs.get(numFiles - numUndos - 1));
-    }
-
-    @Test
-    public void undoAndPushNew_randomFiles_temporaryStorageEmpty()
-            throws CommandException {
-        this.memory.saveNewLatest(inputs.get(0));
-        this.memory.saveNewLatest(inputs.get(1));
-        this.memory.undo();
-        this.memory.saveNewLatest(inputs.get(2));
-        assertEquals(this.memory.getUndoHistory().size(), 0);
     }
 
     // Negative test cases.

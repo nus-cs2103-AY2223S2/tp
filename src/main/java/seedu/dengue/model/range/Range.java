@@ -70,7 +70,7 @@ public class Range<T> {
      * @return true if it is a valid range, false otherwise.
      */
 
-    public boolean isValidRange(Start<T> start, End<T> end) {
+    public static <T> boolean isValidRange(Start<T> start, End<T> end) {
         boolean isStartValid = start.isValidStart(end);
         boolean isEndValid = end.isValidEnd(start);
         return isStartValid && isEndValid;

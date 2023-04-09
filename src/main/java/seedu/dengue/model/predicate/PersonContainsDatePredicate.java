@@ -1,5 +1,7 @@
 package seedu.dengue.model.predicate;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 
 import seedu.dengue.model.person.Date;
@@ -12,7 +14,12 @@ import seedu.dengue.model.person.Person;
 public class PersonContainsDatePredicate extends PredicateUtil<Person> {
     private final Optional<Date> date;
 
+    /**
+     * Constructs a predicate used to test whether the date is a part of a person in the case list.
+     * @param date optional date of the predicate which is used to test with a person.
+     */
     public PersonContainsDatePredicate(Optional<Date> date) {
+        requireNonNull(date);
         this.date = date;
     }
 

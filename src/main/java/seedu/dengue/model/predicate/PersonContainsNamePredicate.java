@@ -1,5 +1,7 @@
 package seedu.dengue.model.predicate;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -15,7 +17,12 @@ public class PersonContainsNamePredicate extends PredicateUtil<Person> {
 
     private final Optional<Name> name;
 
+    /**
+     * Constructs a predicate used to test whether the name is a part of a person in the case list.
+     * @param name optional name of the predicate which is used to test with a person.
+     */
     public PersonContainsNamePredicate(Optional<Name> name) {
+        requireNonNull(name);
         this.name = name;
     }
 

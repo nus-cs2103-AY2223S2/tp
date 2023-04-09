@@ -1,5 +1,7 @@
 package seedu.dengue.model.predicate;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 import java.util.Set;
 
@@ -37,6 +39,13 @@ public class FindPredicate extends PredicateUtil<Person> {
 
     public FindPredicate(Optional<Name> name, Optional<SubPostal> subPostal, Optional<Age> age, Optional<Date> date,
                          Set<Variant> variants, Range<Date> dateRange, Range<Age> ageRange) {
+        requireNonNull(name);
+        requireNonNull(subPostal);
+        requireNonNull(age);
+        requireNonNull(date);
+        requireNonNull(variants);
+        requireNonNull(dateRange);
+        requireNonNull(ageRange);
         this.name = name;
         this.subPostal = subPostal;
         this.age = age;
@@ -72,5 +81,18 @@ public class FindPredicate extends PredicateUtil<Person> {
         RangeContainsPersonPredicate hasAgeRange = new RangeContainsPersonPredicate(ageRange);
         return andAll(
                 hasName, hasAge, hasDate, hasVariants, hasPostal, hasDateRange, hasAgeRange).test(person);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindPredicate // instanceof handles nulls
+                && name.equals(((FindPredicate) other).name)
+                && age.equals(((FindPredicate) other).age)
+                && subPostal.equals(((FindPredicate) other).subPostal)
+                && date.equals(((FindPredicate) other).date)
+                && variants.equals(((FindPredicate) other).variants)
+                && dateRange.equals(((FindPredicate) other).dateRange)
+                && ageRange.equals(((FindPredicate) other).ageRange)); // state check
     }
 }
