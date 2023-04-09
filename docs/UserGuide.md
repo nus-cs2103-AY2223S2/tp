@@ -353,8 +353,7 @@ After the user checked a student, the respective student's task list and score l
   * That respective student (the latest checked student) is being deleted.
   * That respective student (the latest checked student) is being edited.
   * The student list being cleared.
-  <br>
-**Any of the above actions will alter the status to no student being checked now.**
+** Any of the above actions will alter the status to no student being checked now. **
 </div>
 
 
