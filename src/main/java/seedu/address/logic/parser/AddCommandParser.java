@@ -27,7 +27,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static final Function<Name, String> DEFAULT_EMAIL_MAPPER =
             name -> String.format("%s@gmail.com", name.getValue().toLowerCase().replace(" ", ""));
     private static final Function<Name, String> DEFAULT_TELEGRAM_HANDLE_MAPPER =
-            name -> String.format("@%s", name.getValue().toLowerCase().replace(" ", ""));
+            name -> String.format("@%s00000", name.getValue().toLowerCase().replace(" ", ""));
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

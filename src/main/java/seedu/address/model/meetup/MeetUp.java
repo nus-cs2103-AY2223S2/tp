@@ -10,7 +10,7 @@ import seedu.address.model.time.TimePeriod;
 public class MeetUp implements Comparable<MeetUp> {
     private final TimePeriod timePeriod;
     private final Location location;
-    private final Participants participants;
+    private Participants participants;
     private final MeetUpIndex meetUpIndex;
 
     /**
@@ -61,11 +61,14 @@ public class MeetUp implements Comparable<MeetUp> {
         return participants;
     }
 
+    public void setParticipants(Participants newParticipants) {
+        this.participants = newParticipants;
+    }
+
     @Override
     public int compareTo(MeetUp other) {
         return meetUpIndex.compareTo(other.meetUpIndex);
     }
-
 
     /**
      * Compares two meet ups to check whether the time and location and participants are the same.

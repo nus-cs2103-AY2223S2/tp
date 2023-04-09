@@ -14,9 +14,15 @@ Class EduMateHistory
 Class ModelManager
 Class UserPrefs
 
+Class UniqueMeetUpList
+Class UniqueRecommendationList
 Class UniquePersonList
+
+Class Participants
 Class Person
 Class User
+Class Recommendation
+Class MeetUp
 }
 
 Class HiddenOutside #FFFFFF
@@ -35,10 +41,17 @@ ModelManager -right-> "1" UserPrefs
 ModelManager -left-> "1" EduMateHistory
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+EduMate *--> "1" UniqueMeetUpList
+EduMate *--> "1" UniqueRecommendationList
 EduMate *--> "1" UniquePersonList
 EduMate *--> "1" User
 User --|> Person
 UniquePersonList --> "~* all" Person
+UniqueMeetUpList --> "~* all" MeetUp
+UniqueRecommendationList --> "~* all" Recommendation
+
+Participants --> Person
+MeetUp --> Participants
 
 ModelManager -->"~* filtered" Person
 @enduml

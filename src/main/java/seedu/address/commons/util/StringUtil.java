@@ -76,6 +76,7 @@ public class StringUtil {
         }
     }
 
+
     /**
      * Saves the String input to the specified file.
      * Adds the String to the top of the file.

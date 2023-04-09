@@ -1,15 +1,26 @@
-<details>
+<details xmlns="http://www.w3.org/1999/html">
     <summary><a href="#1-introduction">Introduction</a></summary>
     <ul>
         <li><a href="#software-overview">Software Overview</a></li>
         <li><a href="#intended-audience">Intended Audience</a></li>
-        <li><a href="#using-the-guide">Using the Guide</a></li>
+        <li><details>
+            <summary><a href="#using-the-guide">Using the Guide</a></summary>
+            <ul>
+                <li><a href="#what-do-the-emojis-mean">What Do the Emojis Mean</a></li>
+            </ul>
+        </details></li>
         <li><a href="#content-overview">Content Overview</a></li>
         <li><a href="#about-us">About Us</a></li>
         <li><a href="#getting-help">Getting Help</a></li>
         <li><a href="#core-technologies">Core Technologies</a></li>
         <li><a href="#acknowledgements">Acknowledgements</a></li>
-        <li><a href="#version-control">Version Control</a></li>
+        <li><details>
+            <summary><a href="#version-control">Version Control</a></summary>
+            <ul>
+                <li><a href="#the-master-branch">The Master Branch</a></li>
+                <li><a href="#how-to-make-a-pull-request">How to Make a Pull Request</a></li>
+            </ul>
+        </details></li>
         <li><a href="#issue-tracker">Issue Tracker</a></li>
     </ul>
 </details>
@@ -34,93 +45,153 @@
         </details></li>
 
         <li><a href="#ui-component">UI Component</a></li>
-        <li><a href="#model-component">Model Component</a></li>
+        <li><a href="#key-mapping">Key Mapping</a></li>
 
         <li><details>
-            <summary><a href="#tag">Tag</a></summary>
+            <summary><a href="#model-component">Model Component</a></summary>
             <ul>
-                <li><a href="#group-tag">Group Tag</a></li>
-                <li><a href="#module-tag">Module Tag</a></li>
+                <li><details>
+                    <summary><a href="#person">Person</a></summary>
+                    <ul>
+                        <li><a href="#name">Name</a></li>
+                        <li><a href="#station">Station</a></li>
+                        <li><a href="#phone">Phone</a></li>
+                        <li><a href="#email">Email</a></li>
+                        <li><a href="#telegram-handle">Telegram Handle</a></li>
+                        <li><a href="#group-tag-set">Group Tag Set</a></li>
+                        <li><a href="#module-tag-set">Module Tag Set</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#tag">Tag</a></summary>
+                    <ul>
+                        <li><a href="#group-tag">Group Tag</a></li>
+                        <li><a href="#module-tag">Module Tag</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#time">Time</a></summary>
+                    <ul>
+                        <li><a href="#day">Day</a></li>
+                        <li><a href="#hourblock">HourBlock</a></li>
+                        <li><a href="#timeblock">TimeBlock</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#location">Location</a></summary>
+                    <ul>
+                        <li><a href="#distance-util">DistanceUtil</a></li>
+                        <li><a href="#location-data-util">LocationDataUtil</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#commitment">Commitment</a></summary>
+                    <ul>
+                        <li><a href="#lesson">Lesson</a></li>
+                    </ul>
+                </details></li>
+
+                <li><a href="#timetable">Timetable</a></li>
+
+                <li><details>
+                    <summary><a href="#utils">Utils</a></summary>
+                    <ul><li><a href="#sample-data-util">Sample Data Util</a></li></ul>
+                </details></li>
             </ul>
         </details></li>
 
+
         <li><details>
-            <summary><a href="#person">Person</a></summary>
+            <summary><a href="#logic-component">Logic Component</a></summary>
             <ul>
-                <li><a href="#name">Name</a></li>
-                <li><a href="#address">Station</a></li>
-                <li><a href="#phone">Phone</a></li>
-                <li><a href="#email">Email</a></li>
-                <li><a href="#telegram-handle">Telegram Handle</a></li>
-                <li><a href="#group-tag-set">Group Tag Set</a></li>
-                <li><a href="#module-tag-set">Module Tag Set</a></li>
-            </ul>
-        </details></li>
+                <li><details>
+                    <summary><a href="#commands">Commands</a></summary>
+                    <ul>
+                        <li><a href="#add-command">Add Command</a></li>
+                        <li><a href="#edit-command">Edit Command</a></li>
+                        <li><a href="#delete-command">Delete Command</a></li>
+                        <li><a href="#tag-command">Tag Command</a></li>
+                        <li><a href="#untag-command">Untag Command</a></li>
+                        <li><a href="#view-command">View Command</a></li>
+                        <li><a href="#find-command">Find Command</a></li>
+                        <li><a href="#sort-command">Sort Command</a></li>
+                        <li><a href="#list-command">List Command</a></li>
+                        <li><a href="#exit-command">Exit Command</a></li>
+                        <li><a href="#save-command">Save Command</a></li>
+                        <li><a href="#load-command">Load Command</a></li>
+                        <li><a href="#meet-command">Meet Command</a></li>
+                        <li><a href="#organise-command">Organise Command</a></li>
+                        <li><a href="#sample-command">Sample Command</a></li>
+                    </ul>
+                </details></li>
 
-        <li><details>
-            <summary><a href="#utils">Utils</a></summary>
-            <ul><li><a href="#sample-data-util">Sample Data Util</a></li></ul>
-        </details></li>
+                <li><details>
+                    <summary><a href="#parsers">Parsers</a></summary>
+                    <ul>
+                        <li><a href="#argument-multimap">Argument Multimap</a></li>
+                        <li><a href="#prefix">Prefix</a></li>
+                    </ul>
+                </details></li>
 
-        <li><a href="#logic-component">Logic Component</a></li>
-
-        <li><details>
-            <summary><a href="#commands">Commands</a></summary>
-            <ul>
-                <li><a href="#add-command">Add Command</a></li>
-                <li><a href="#edit-command">Edit Command</a></li>
-                <li><a href="#delete-command">Delete Command</a></li>
-                <li><a href="#tag-command">Tag Command</a></li>
-                <li><a href="#view-command">View Command</a></li>
-                <li><a href="#find-command">Find Command</a></li>
-                <li><a href="#sort-command">Sort Command</a></li>
-                <li><a href="#list-command">List Command</a></li>
-                <li><a href="#exit-command">Exit Command</a></li>
-                <li><a href="#meet-command">Meet Command</a></li>
-            </ul>
-        </details></li>
-
-        <li><details>
-            <summary><a href="#parsers">Parsers</a></summary>
-            <ul>
-                <li><a href="#argument-multimap">Argument Multimap</a></li>
-                <li><a href="#prefix">Prefix</a></li>
-                <li><a href="#add-command-parser">Add Command Parser</a></li>
-                <li><a href="#edit-command-parser">Edit Command Parser</a></li>
-                <li><a href="#view-command-parser">View Command Parser</a></li>
-                <li><a href="#find-command-parser">Find Command Parser</a></li>
-                <li><a href="#tag-command-parser">Tag Command Parser</a></li>
-                <li><a href="#sort-command-parser">Sort Command Parser</a></li>
+                <li><details>
+                    <summary><a href="#recommenders">Recommenders</a></summary>
+                    <ul>
+                        <li><a href="#timing-recommender">Timing Recommender</a></li>
+                        <li><a href="#location-recommender">Location Recommender</a></li>
+                        <li><a href="#location-tracker">Location Tracker</a></li>
+                    </ul>
+                </details></li>
             </ul>
         </details></li>
 
         <li><a href="#storage-component">Storage Component</a></li>
-        <li><a href="#common-classes">Commons Component</a></li>
+        <li><details>
+            <summary><a href="#common-classes">Common Classes</a></summary>
+            <ul>
+                <li><a href="#mathutil">MathUtil</a></li>
+            </ul>
+        </details></li>
     </ul>
 </details>
 
 <details>
     <summary><a href="#5-testing">Testing</a></summary>
     <ul>
-        <li><a href="#unit-tests">Unit Tests</a></li>
-        <li><a href="#testing-models">Testing Models</a></li>
-        <li><a href="#testing-commands">Testing Commands</a></li>
-        <li><a href="#testing-parsers">Testing Parsers</a></li>
-        <li><a href="#measuring-coverage-of-integration-tests">Measuring Coverage of Integration Tests</a></li>
-        <li><a href="#create-code-coverage-report">Create Code Coverage Report</a></li>
-        <li><a href="#read-code-coverage-report">Read Code Coverage Report</a></li>
-        <li><a href="#continuous-integration">Continuous Integration</a></li>
+        <li><details>
+            <summary><a href="#unit-tests">Unit Tests</a></summary>
+            <ul>
+                <li><a href="#testing-models">Testing Models</a></li>
+                <li><a href="#testing-commands">Testing Commands</a></li>
+                <li><a href="#testing-parsers">Testing Parsers</a></li>
+            </ul>
+        </details></li>
+
+        <li><details>
+            <summary><a href="#measuring-coverage-of-integration-tests">Measuring Coverage of Integration Tests</a></summary>
+            <ul>
+                <li><a href="#create-code-coverage-report">Create Code Coverage Report</a></li>
+                <li><a href="#read-code-coverage-report">Read Code Coverage Report</a></li>
+            </ul>
+        </details></li>
     </ul>
 </details>
 
 <details>
     <summary><a href="#6-documentation">Documentation</a></summary>
-    <ul><li><a href="#using-plantuml">Using PlantUML</a></li></ul>
+    <ul>
+        <li><a href="#useful-text-boxes">Useful Text Boxes</a></li>
+        <li><a href="#using-plantuml">Using PlantUML</a></li>
+    </ul>
 </details>
 
 <details>
     <summary><a href="#7-appendix">Appendix</a></summary>
     <ul>
+        <li><a href="#planned-enhancements">Planned Enhancements</a></li>
         <li><a href="#project-requirements">Project Requirements</a></li>
 
         <li><details>
@@ -131,9 +202,29 @@
             </ul>
         </details></li>
 
+        <li><a href="#user-stories">User Stories</a></li>
         <li><a href="#use-cases">Use Cases</a></li>
         <li><a href="#non-functional-requirements">Non-Functional Requirements</a></li>
-        <li><a href="#instructions-for-manual-testing">Instructions for Manual Testing</a></li>
+
+        <li><details>
+            <summary><a href="#instructions-for-manual-testing">Instructions for Manual Testing</a></summary>
+            <ul>
+                <li><a href="#launch-and-shutdown">Launch and shutdown</a></li>
+                <li><a href="#add-a-new-person">Add a new person</a></li>
+                <li><a href="#view-a-person">View a person</a></li>
+                <li><a href="#edit-a-person">Edit a person</a></li>
+                <li><a href="#delete-a-person">Delete a person</a></li>
+                <li><a href="#add-a-tag-to-a-person">Add a tag to a person</a></li>
+                <li><a href="#remove-a-tag-from-a-person">Remove a tag from a person</a></li>
+                <li><a href="#filter-persons-by-keywords">Filter persons by keywords</a></li>
+                <li><a href="#arrange-persons-by-criteria">Arrange persons by criteria</a></li>
+                <li><a href="#generate-a-sample-edumate">Generate a sample EduMate</a></li>
+                <li><a href="#suggest-meetup-locations-and-times">Suggest meetup locations and times</a></li>
+                <li><a href="#organise-and-confirm-meetings">Organise and confirm meetings</a></li>
+                <li><a href="#cancel-scheduled-meetings">Cancel scheduled meetings</a></li>
+            </ul>
+        </details></li>
+
         <li><a href="#glossary">Glossary</a></li>
         <li><a href="#documentation-logging-testing-configuration-dev-ops">Documentation, logging, testing, configuration, dev-ops</a></li>
     </ul>

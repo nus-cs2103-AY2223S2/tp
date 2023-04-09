@@ -43,7 +43,7 @@ public class HourBlock extends TimePeriod {
     }
 
     @Override
-    public TimeBlock merge(TimePeriod timePeriod) {
+    public TimeBlock merge(TimePeriod timePeriod) throws WrongTimeException {
         if (this.isConsecutiveWith(timePeriod) && timePeriod.getSchoolDay().equals(getSchoolDay())) {
             if (this.getStartTime().isBefore(timePeriod.getStartTime())
                     && getSchoolDay().equals(timePeriod.getSchoolDay())) {

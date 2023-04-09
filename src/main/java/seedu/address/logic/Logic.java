@@ -35,6 +35,10 @@ public interface Logic {
 
     String getPreviousCommand(boolean isUp);
 
+    boolean isUpPressedBefore();
+
+    String getCurrentCommand();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getObservablePersonList();
 

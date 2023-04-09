@@ -5,6 +5,7 @@ import org.joda.time.LocalTime;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
 import seedu.address.model.time.Day;
+import seedu.address.model.time.TimePeriod;
 
 /**
  * Builds a lesson.
@@ -86,6 +87,16 @@ public class LessonBuilder {
      */
     public LessonBuilder withDuration(int durationInHours) {
         endTime = startTime.plusHours(durationInHours);
+        return this;
+    }
+
+    /**
+     * Creates a new LessonBuilder with updated time period.
+     */
+    public LessonBuilder withTimePeriod(TimePeriod timePeriod) {
+        startTime = timePeriod.getStartTime();
+        endTime = timePeriod.getEndTime();
+        day = timePeriod.getSchoolDay();
         return this;
     }
 

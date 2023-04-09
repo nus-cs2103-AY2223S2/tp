@@ -9,6 +9,8 @@ import seedu.address.model.person.exceptions.InvalidContactIndexException;
  */
 public class ContactIndex implements Comparable<ContactIndex> {
 
+    public static final ContactIndex USER_CONTACT_INDEX = new ContactIndex(0);
+
     private final int contactIndex;
 
     /**

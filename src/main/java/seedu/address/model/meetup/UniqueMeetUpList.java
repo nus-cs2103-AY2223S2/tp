@@ -74,6 +74,19 @@ public class UniqueMeetUpList implements Iterable<MeetUp> {
     }
 
     /**
+     * Removes meet ups with no more participants.
+     */
+    public void removeEmptyMeetUps() {
+        Iterator<MeetUp> iterator = internalList.iterator();
+        while (iterator.hasNext()) {
+            MeetUp meetUp = iterator.next();
+            if (meetUp.getParticipants().getParticipants().isEmpty()) {
+                iterator.remove();
+            }
+        }
+    }
+
+    /**
      * Replaces the MeetUp with a new one.
      */
     public void setMeetUps(UniqueMeetUpList replacement) {

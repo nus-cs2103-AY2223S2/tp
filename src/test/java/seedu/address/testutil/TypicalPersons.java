@@ -298,7 +298,7 @@ public class TypicalPersons {
             .withStation(PASIR_RIS)
             .withEmail("half@gmail.com")
             .withPhone("91355634")
-            .withTelegramHandle("@half")
+            .withTelegramHandle("@half00000")
             .withGroupTags("Groupmate")
             .withModuleTags(CS2103T_HA, CS2101_HA, CS2109S_HA,
                     CS2108_HA, MA2104_HA, MA3252_HA, CFG1002_F)

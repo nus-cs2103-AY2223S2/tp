@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,8 +11,10 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.commitment.Commitment;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.tag.GroupTag;
@@ -165,13 +168,29 @@ public class Person {
     /**
      * Adds group tags to the {@code GroupTagSet}.
      * @param groupTags Tags to be added to the person.
+     * @return group tags that were successfully added.
      */
-    public void addGroupTags(Set<GroupTag> groupTags) {
-        this.getGroupTags().addAll(groupTags);
+    public Set<GroupTag> addGroupTags(Set<GroupTag> groupTags) {
+        Set<GroupTag> currentGroupTags = getImmutableGroupTags();
+        Set<GroupTag> addableGroupTags = groupTags.stream()
+                .filter(gt -> !currentGroupTags.contains(gt))
+                .collect(Collectors.toSet());
+        this.getGroupTags().addAll(addableGroupTags);
+        return addableGroupTags;
     }
 
-    public void removeGroupTags(Set<GroupTag> groupTags) {
+    /**
+     * Removes group tags from the person.
+     * @param groupTags group tags to remove.
+     * @return group tags that were successfully removed.
+     */
+    public Set<GroupTag> removeGroupTags(Set<GroupTag> groupTags) {
+        Set<GroupTag> currentGroupTags = getImmutableGroupTags();
+        Set<GroupTag> removableGroupTags = groupTags.stream()
+                .filter(currentGroupTags::contains)
+                .collect(Collectors.toSet());
         this.getGroupTags().removeAll(groupTags);
+        return removableGroupTags;
     }
 
     /**
@@ -179,8 +198,9 @@ public class Person {
      * Lessons within the {@code moduleTags} must not clash with each other.
      * They must also not clash with the timetable.
      * @param moduleTags Tags to be added to the person.
+     * @return module tags that were successfully added.
      */
-    public void addModuleTags(Collection<? extends ModuleTag> moduleTags) {
+    public Set<ModuleTag> addModuleTags(Collection<? extends ModuleTag> moduleTags) {
         Set<Lesson> lessons = moduleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
@@ -195,13 +215,15 @@ public class Person {
 
         this.moduleTags.addAll(moduleTags);
         lessons.forEach(timetable::addCommitment);
+
+        return new HashSet<>(moduleTags);
     }
 
     /**
      * Overloaded method for adding module tags.
      */
-    public void addModuleTags(ModuleTag... moduleTags) {
-        addModuleTags(Set.of(moduleTags));
+    public Set<ModuleTag> addModuleTags(ModuleTag... moduleTags) {
+        return addModuleTags(Set.of(moduleTags));
     }
 
     /**
@@ -209,6 +231,24 @@ public class Person {
      */
     public boolean canAddCommitments(Collection<? extends Commitment> commitments) {
         return commitments.stream().allMatch(timetable::canFitCommitment);
+    }
+
+    /**
+     * Checks which commitments in the timetable clash with the ones given.
+     */
+    public String getClashingCommitmentsAsStr(Collection<? extends Commitment> commitments) {
+        List<Commitment> commitmentsList = new ArrayList<>(commitments);
+        List<String> clashingCommitments = commitments.stream()
+                .map(timetable::getClashingCommitments)
+                .filter(s -> !s.isEmpty())
+                .map(socc -> socc.stream()
+                        .map(Commitment::toString)
+                        .collect(Collectors.joining(", ")))
+                .collect(Collectors.toList());
+
+        return CollectionUtil.zip(commitmentsList.stream(), clashingCommitments.stream(), (c, cc)
+                        -> String.format("%s clashes with %s", c, cc))
+                .collect(Collectors.joining("\n"));
     }
 
     private boolean canAddModuleTags(Collection<? extends ModuleTag> moduleTags) {
@@ -229,7 +269,7 @@ public class Person {
      * If it exists, then remove the
      * lesson from both the {@code ModuleTagSet} and {@code Timetable}
      */
-    public void removeModuleTags(Set<ModuleTag> moduleTags) {
+    public Set<ModuleTag> removeModuleTags(Set<ModuleTag> moduleTags) {
         List<ModuleTag> removableModuleTags = moduleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
@@ -250,6 +290,10 @@ public class Person {
         completelyRemovableModuleTags.stream()
                 .map(ModuleTag::getModuleCode)
                 .forEach(this.moduleTags::remove);
+
+        return Stream.of(completelyRemovableModuleTags, removableModuleTags)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet());
     }
 
     public Timetable getTimetable() {

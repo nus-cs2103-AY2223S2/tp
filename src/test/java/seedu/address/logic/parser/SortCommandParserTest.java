@@ -105,6 +105,6 @@ public class SortCommandParserTest {
      */
     private void testSinglePrefix(String prefixWithIsAscending, Comparator<Person> comparator, String description) {
         assertParseSuccess(parser, prefixWithIsAscending,
-                new SortCommand(comparator, description));
+                new SortCommand(comparator, description + "\nIndex: Ascending"));
     }
 }

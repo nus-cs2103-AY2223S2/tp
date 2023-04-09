@@ -81,6 +81,11 @@ public class CommitmentTest {
     }
 
     @Test
+    void equals_differentType_false() {
+        assertNotEquals(COMMITMENT, 5);
+    }
+
+    @Test
     void toString_validLocation_containsLocationName() {
         assertTrue(COMMITMENT.toString().contains(BARTLEY.getName()));
     }

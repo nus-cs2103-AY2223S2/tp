@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -100,7 +101,7 @@ public class UntagCommand extends Command {
                 new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
         Person editedPerson = personToEdit.copy();
 
-        editedPerson.removeModuleTags(moduleTags);
+        Set<ModuleTag> removedModuleTags = editedPerson.removeModuleTags(moduleTags);
 
         // caches the common modules in each ModuleTagSet as running set
         // intersection is expensive if we only use it in the compareTo method
@@ -110,7 +111,12 @@ public class UntagCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateObservablePersonList();
 
-        return new ViewCommandResult(MESSAGE_MODULE_UNTAG_PERSON_SUCCESS, editedPerson);
+        String message = MESSAGE_MODULE_UNTAG_PERSON_SUCCESS
+                + removedModuleTags.stream()
+                .map(ModuleTag::toString)
+                .collect(Collectors.joining("\n"));
+
+        return new ViewCommandResult(message, editedPerson);
     }
 
     private ViewCommandResult untagGroups(Model model) throws CommandException {
@@ -123,20 +129,24 @@ public class UntagCommand extends Command {
                     new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
         }
 
-        personToEdit.removeGroupTags(this.groupTags);
+        Set<GroupTag> removedGroupTags = personToEdit.removeGroupTags(this.groupTags);
 
         model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
         model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
 
+        String message = removedGroupTags.stream()
+                .map(GroupTag::toString)
+                .collect(Collectors.joining("\n"));
+
         return (personToEdit instanceof User)
-                ? new ViewCommandResult(MESSAGE_GROUP_UNTAG_USER_SUCCESS, personToEdit)
-                : new ViewCommandResult(MESSAGE_GROUP_UNTAG_PERSON_SUCCESS, personToEdit);
+                ? new ViewCommandResult(MESSAGE_GROUP_UNTAG_USER_SUCCESS + message, personToEdit)
+                : new ViewCommandResult(MESSAGE_GROUP_UNTAG_PERSON_SUCCESS + message, personToEdit);
     }
     private ViewCommandResult untagUserModules(Model model) throws CommandException {
         User userToEdit = model.getUser();
         User editedUser = userToEdit.copy();
 
-        editedUser.removeModuleTags(moduleTags);
+        Set<ModuleTag> removedModuleTags = editedUser.removeModuleTags(moduleTags);
         model.setUser(editedUser);
 
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
@@ -146,7 +156,12 @@ public class UntagCommand extends Command {
         model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
         model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
 
-        return new ViewCommandResult(MESSAGE_MODULE_UNTAG_USER_SUCCESS, editedUser);
+        String message = MESSAGE_MODULE_UNTAG_USER_SUCCESS
+                + removedModuleTags.stream()
+                .map(ModuleTag::toString)
+                .collect(Collectors.joining("\n"));
+
+        return new ViewCommandResult(message, editedUser);
     }
 
     public ContactIndex getIndex() {

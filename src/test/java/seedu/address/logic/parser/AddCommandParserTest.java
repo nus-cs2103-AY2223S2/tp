@@ -141,7 +141,7 @@ public class AddCommandParserTest {
     public void parse_telegramMissing_default() {
         // Alex
         Person expectedPerson = new PersonBuilder(ALEX).withTelegramHandle("@alexquinn")
-                .withGroupTags().withModuleTags().build();
+            .withTelegramHandle("@alexquinn00000").withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
                         + CommandTestUtil.PHONE_DESC_ALEX
                         + CommandTestUtil.EMAIL_DESC_ALEX
@@ -150,7 +150,7 @@ public class AddCommandParserTest {
 
         // Ben
         expectedPerson = new PersonBuilder(BEN).withTelegramHandle("@benjaminkhoo")
-                .withGroupTags().withModuleTags().build();
+                .withTelegramHandle("@benjaminkhoo00000").withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
                         + CommandTestUtil.PHONE_DESC_BEN
                         + CommandTestUtil.EMAIL_DESC_BEN
@@ -163,14 +163,15 @@ public class AddCommandParserTest {
         // Alex
         Person expectedPerson = new PersonBuilder(ALEX).withEmail("alexquinn@gmail.com")
                 .withStation("Kent Ridge")
+                .withTelegramHandle("@alexquinn00000")
                 .withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
                         + CommandTestUtil.PHONE_DESC_ALEX
-                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX + "00000",
                 new AddCommand(expectedPerson));
 
         expectedPerson = new PersonBuilder(ALEX).withPhone("00000000")
-                .withTelegramHandle("@alexquinn")
+                .withTelegramHandle("@alexquinn00000")
                 .withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
                         + CommandTestUtil.EMAIL_DESC_ALEX
@@ -180,14 +181,15 @@ public class AddCommandParserTest {
         // Ben
         expectedPerson = new PersonBuilder(BEN).withEmail("benjaminkhoo@gmail.com")
                 .withStation("Kent Ridge")
+                .withTelegramHandle("@benjaminkhoo00000")
                 .withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
                         + CommandTestUtil.PHONE_DESC_BEN
-                        + CommandTestUtil.TELEGRAM_DESC_BEN,
+                        + CommandTestUtil.TELEGRAM_DESC_BEN + "00000",
                 new AddCommand(expectedPerson));
 
         expectedPerson = new PersonBuilder(BEN).withPhone("00000000")
-                .withTelegramHandle("@benjaminkhoo")
+                .withTelegramHandle("@benjaminkhoo00000")
                 .withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
                         + CommandTestUtil.EMAIL_DESC_BEN

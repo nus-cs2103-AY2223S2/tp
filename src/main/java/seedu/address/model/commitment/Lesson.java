@@ -62,9 +62,7 @@ public class Lesson extends Commitment {
 
     @Override
     public String toString() {
-        return "Lesson{"
-                + timePeriod.toString()
-                + " at " + location + '}';
+        return String.format("%s: %s", moduleCode, timePeriod.toString());
     }
 
     @Override

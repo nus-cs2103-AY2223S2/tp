@@ -23,6 +23,13 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
+    systemProperties = [
+            'testfx.robot': 'glass',
+            'testfx.headless': 'true',
+            'prism.order': 'sw',
+            'prism.text': 't2k',
+    ]
 }
 
 task coverage(type: JacocoReport) {
@@ -48,6 +55,7 @@ dependencies {
     implementation 'joda-time:joda-time:2.12.2'
     // https://mvnrepository.com/artifact/io.github.p-org.solvers/z3
     //implementation group: 'io.github.p-org.solvers', name: 'z3', version: '4.8.14-v5'
+    String testFxVersion = '4.0.16-alpha'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
@@ -67,7 +75,9 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
+    testImplementation group: 'org.testfx', name: 'testfx-core', version: testFxVersion
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+    testImplementation group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-12.0.1+2'
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }

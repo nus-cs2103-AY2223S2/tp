@@ -44,6 +44,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_END_HOUR = "End hours can only range from 9am to 11pm!";
 
+    public static final String MESSAGE_INVALID_INT = "No integer entered!";
+
     private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
     /**
@@ -59,7 +61,7 @@ public class ParserUtil {
     }
 
     /**
-     * Returns a ContactIndex from the string index.
+     * Returns a non-zero ContactIndex from the string index.
      */
     public static ContactIndex parseContactIndex(String contactIndex) throws ParseException {
         String trimmedIndex = contactIndex.trim();
@@ -78,10 +80,16 @@ public class ParserUtil {
      */
     public static int parseInt(String intString) throws ParseException {
         String trimmedInt = intString.trim();
-        if (trimmedInt.isEmpty() || !StringUtil.isNonZeroUnsignedInteger(trimmedInt)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        if (trimmedInt.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_INT);
         }
-        return Integer.parseInt(trimmedInt);
+        Integer integer;
+        try {
+            integer = Integer.parseInt(trimmedInt);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_INVALID_INT);
+        }
+        return integer;
     }
 
     /**
@@ -215,7 +223,8 @@ public class ParserUtil {
         Day day = parseDay(args.get(1));
         LocalTime startTime = parseLocalTime(args.get(2), true);
         LocalTime endTime = parseLocalTime(args.get(3), false);
-        TimeBlock timeBlock = new TimeBlock(startTime, endTime, day);
+
+        TimeBlock timeBlock = parseTimeBlock(startTime, endTime, day);
 
         Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
 
@@ -236,13 +245,22 @@ public class ParserUtil {
      * MON will output MONDAY.
      */
     public static Day parseDay(String dayAsStr) throws ParseException {
+        if (dayAsStr.isEmpty()) {
+            throw new ParseException("Day is missing!");
+        }
+
         String upperDayAsStr = dayAsStr.toUpperCase();
+
+        if (upperDayAsStr.equals("T")) {
+            throw new ParseException("Did you mean Tuesday or Thursday?");
+        }
+
         for (Day day : Day.values()) {
             if (day.toString().startsWith(upperDayAsStr)) {
                 return day;
             }
         }
-        throw new ParseException("Day is invalid");
+        throw new ParseException("Day is invalid!");
     }
 
     /**
@@ -260,6 +278,14 @@ public class ParserUtil {
         } catch (NumberFormatException nfe) {
             throw new ParseException("Invalid time");
         }
+    }
+
+    private static TimeBlock parseTimeBlock(LocalTime startTime, LocalTime endTime, Day day) throws ParseException {
+        if (startTime.isAfter(endTime) || startTime.isEqual(endTime)) {
+            throw new ParseException("Start Time must be STRICTLY BEFORE End Time!");
+        }
+
+        return new TimeBlock(startTime, endTime, day);
     }
 
     /**

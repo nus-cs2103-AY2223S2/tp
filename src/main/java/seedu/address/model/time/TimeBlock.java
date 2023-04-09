@@ -4,7 +4,6 @@ import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.time.exceptions.WrongTimeException;
-import seedu.address.model.time.util.TimeUtil;
 
 /**
  * Represents a time period of a variable amount.
@@ -45,13 +44,5 @@ public class TimeBlock extends TimePeriod {
     @Override
     public Hours getHoursBetween() {
         return Hours.hoursBetween(getStartTime(), getEndTime());
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s[%s, %s]",
-            getSchoolDay(),
-            TimeUtil.formatLocalTime(getStartTime()),
-            TimeUtil.formatLocalTime(getEndTime()));
     }
 }

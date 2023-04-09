@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import java.util.Arrays;
-
 import org.joda.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -66,12 +64,7 @@ public class JsonAdaptedTimePeriod {
 
         final LocalTime modelEndTime = new LocalTime(endHour, 0);
 
-        if (Arrays.stream(Day.values()).map(Day::name).noneMatch(day::equals)) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName()));
-        }
-
-        final Day modelSchoolDay = Day.valueOf(day);
+        final Day modelSchoolDay = ParserUtil.parseDay(day);
 
         return new TimeBlock(modelStartTime, modelEndTime, modelSchoolDay);
     }

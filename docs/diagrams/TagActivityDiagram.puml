@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+start
+:User enters a tag command;
+
+if () then ([No tags are added])
+    :Error: No Tags;
+
+elseif () then ([Group and Module Tags are added])
+    :Error: Both Tags;
+
+else ()
+    if () then ([Tag Module])
+        :Find clashes with timetable;
+        if () then ([Clashes])
+            :Error: Clash;
+        else ()
+            :Adds tags;
+        endif
+    elseif () then ([Tag Group])
+        :Adds tags;
+    else ()
+        :Do nothing;
+    endif
+endif
+stop
+@enduml

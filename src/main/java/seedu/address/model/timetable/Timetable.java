@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -96,6 +97,13 @@ public class Timetable {
     }
 
     /**
+     * Returns the set of commitments that clash with the one given.
+     */
+    public Set<Commitment> getClashingCommitments(Commitment commitment) {
+        return commitment.getClashingCommitments(schedule.get(commitment.getDay()));
+    }
+
+    /**
      * Merges another timetable together
      */
     public void mergeTimetable(Timetable other) {
@@ -109,7 +117,7 @@ public class Timetable {
                 if (!dayEvents.get(i).isFree()) {
                     Commitment lesson = dayEvents.get(i).getCommitment().orElseGet(() -> null);
                     logger.info(String.format("=============================[ Lesson Added: %s]===="
-                        + "=======================", lesson));
+                            + "=======================", lesson));
                     this.schedule.get(day).get(i).setCommitment(lesson);
                 }
             }

@@ -10,15 +10,6 @@ Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class UserProfilePanel
-Class CommandBox
-}
-
-package Model <<Rectangle>> MODEL_COLOR_BACKGROUND {
 }
 
 package Logic <<Rectangle>> LOGIC_COLOR_BACKGROUND {
@@ -27,34 +18,12 @@ package Logic <<Rectangle>> LOGIC_COLOR_BACKGROUND {
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
-MainWindow *-down-> "1" UserProfilePanel
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow --> "0..1" HelpWindow
+UiManager ..|> Ui
 
-PersonListPanel -down-> "*" PersonCard
+UiManager --> "1" MainWindow
 
-MainWindow --|> UiPart
-
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-UserProfilePanel --|> UiPart
-HelpWindow --|> UiPart
-
-PersonCard ..> Model
-UiManager -right-> Logic
 MainWindow -right-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-UserProfilePanel -[hidden]left- HelpWindow
+MainWindow ..|> UiPart
 
-
-MainWindow -[hidden]-|> UiPart
 @enduml

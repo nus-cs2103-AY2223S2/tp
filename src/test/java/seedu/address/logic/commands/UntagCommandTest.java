@@ -8,6 +8,7 @@ import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_SE;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2103T_SE;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2108_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2109S_HA;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS3245_F;
 import static seedu.address.model.timetable.util.TypicalLesson.CS2101_MON_8AM_2HR;
 import static seedu.address.model.timetable.util.TypicalLesson.CS2101_THU_8AM_2HR;
 import static seedu.address.model.timetable.util.TypicalLesson.CS2105_THU_4PM_2HR;
@@ -40,6 +41,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.tag.util.ModuleTagBuilder;
@@ -64,6 +66,23 @@ public class UntagCommandTest {
         assertFalse(updatedPerson.getImmutableModuleTags().contains(CS2108_HA));
 
         assertEquals(updatedPerson, personToUpdate);
+    }
+
+    @Test
+    void execute_removeNonExistentForUser_success() {
+        Set<ModuleTag> toRemove = Set.of(CS3245_F);
+
+        User userToUpdate = model.getUser();
+
+        assertFalse(userToUpdate.getImmutableModuleTags().contains(CS3245_F));
+
+        UntagCommand untagCommand = new UntagCommand(null, toRemove, TagType.MODULE);
+        assertDoesNotThrow(() -> untagCommand.execute(model));
+
+        User updatedUser = model.getUser();
+        assertFalse(updatedUser.getImmutableModuleTags().contains(CS3245_F));
+
+        assertEquals(updatedUser, userToUpdate);
     }
 
     @Test

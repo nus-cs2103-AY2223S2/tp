@@ -6,6 +6,10 @@ import java.util.ArrayList;
  * View of a command history store.
  */
 public interface ReadOnlyEduMateHistory {
+    String getCurrentCommand();
+
+    boolean isUpPressedBefore();
+
     /**
      * Returns the saved history of the commands keyed by the user previously.
      * @return An arraylist of past commands.

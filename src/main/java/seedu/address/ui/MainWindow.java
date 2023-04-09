@@ -203,6 +203,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            //updates user name in upper left corner
+            userName.setText(logic.getUser().getName().getValue());
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

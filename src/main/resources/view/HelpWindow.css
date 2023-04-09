@@ -45,7 +45,7 @@
     -fx-background-color: rgb(150, 146, 223);
     -fx-padding: 2 5 2 5;
     -fx-background-radius: 5;
-    -fx-font-family: "Inter SemiBold"
+    -fx-font-family: "Inter SemiBold";
     -fx-scale-x: 1;
     -fx-scale-y: 1;
 }
@@ -56,7 +56,7 @@
     -fx-background-color: rgb(227, 211, 238);
     -fx-padding: 2 5 2 5;
     -fx-background-radius: 5;
-    -fx-font-family: "Inter SemiBold"
+    -fx-font-family: "Inter SemiBold";
     -fx-scale-x: 1;
     -fx-scale-y: 1;
 }
@@ -69,8 +69,8 @@
 .prefix-label {
     -fx-text-fill: rgb(150, 146, 223);
     -fx-padding: 2 5 2 5;
-    -fx-font-family: "Inter Bold"
-    -fx-font-size: 18;
+    -fx-font-family: "Inter Bold";
+    -fx-font-size: 12;
     -fx-background-radius: 5;
     -fx-scale-x: 1;
     -fx-scale-y: 1;
@@ -95,8 +95,8 @@
     -fx-background-color: rgb(94, 40, 102);
     -fx-text-fill: white;
     -fx-padding: 2 5 2 5;
-    -fx-font-family: "Inter SemiBold"
-    -fx-font-size: 18;
+    -fx-font-family: "Inter SemiBold";
+    -fx-font-size: 11;
     -fx-background-radius: 5;
     -fx-scale-x: 1;
     -fx-scale-y: 1;
@@ -106,9 +106,8 @@
 .command-explanation {
     -fx-text-fill: rgb(94, 40, 102);
     -fx-padding: 2 5 2 5;
-    -fx-font-size: 12;
-    -fx-font-family: "Inter Regular"
-    -fx-font-size: 18;
+    -fx-font-size: 11;
+    -fx-font-family: "Inter Regular";
 }
 
 .box-pad {

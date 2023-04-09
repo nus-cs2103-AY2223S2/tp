@@ -38,6 +38,10 @@ public class JsonAdaptedGroupTag extends JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public GroupTag toModelType() throws IllegalValueException {
+        if (groupTagName == null) {
+            throw new IllegalValueException("Group Tag name missing!");
+        }
+
         if (!GroupTag.isValidTagName(groupTagName)) {
             throw new IllegalValueException(GroupTag.MESSAGE_CONSTRAINTS);
         }

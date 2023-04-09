@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_BACKGROUND
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SaveCommand" as SaveCommand LOGIC_COLOR
+participant ":SaveCommandResult" as SaveCommandResult LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_BACKGROUND
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+activate LogicManager
+
+LogicManager -> SaveCommand : execute
+activate SaveCommand
+
+create SaveCommandResult
+SaveCommand -> SaveCommandResult
+activate SaveCommandResult
+
+SaveCommandResult --> SaveCommand : filePath
+deactivate SaveCommandResult
+
+SaveCommand --> LogicManager : filePath
+deactivate SaveCommand
+
+LogicManager -> Storage : saveEduMate(filePath)
+activate Storage
+
+@enduml

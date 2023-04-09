@@ -112,7 +112,7 @@ public class Recommendation implements Comparable<Recommendation> {
      * Creates a new recommendation and sets the contact index.
      */
     public Recommendation setContactIndex(ContactIndex contactIndex) {
-        return new Recommendation(location, timePeriod, contactIndex);
+        return new Recommendation(location, timePeriod, contactIndex, isSaved);
     }
 
     @Override

@@ -26,7 +26,8 @@ public class IndexHandler {
      */
     public ContactIndex assignIndex() {
         List<Person> personList = model.getObservablePersonList();
-        if (personList.isEmpty()) {
+        if (personList.isEmpty() || personList.stream()
+                .noneMatch(person -> person.getContactIndex().equals(new ContactIndex(1)))) {
             return new ContactIndex(1);
         }
         OptionalInt takenIndices = IntStream.iterate(1, x -> x + 1)
@@ -54,7 +55,8 @@ public class IndexHandler {
      */
     public ContactIndex assignRecommendationIndex() {
         List<Recommendation> recommendationList = model.getObservableRecommendationList();
-        if (recommendationList.isEmpty()) {
+        if (recommendationList.isEmpty() || recommendationList.stream()
+                .noneMatch(recommendation -> recommendation.getContactIndex().equals(new ContactIndex(1)))) {
             return new ContactIndex(1);
         }
         OptionalInt takenIndices = IntStream.iterate(1, integer -> recommendationList.stream()

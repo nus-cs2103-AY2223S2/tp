@@ -48,10 +48,18 @@ public class UntagCommandParser implements Parser<UntagCommand> {
         }
 
         if (groupsToRemove.isPresent()) {
-            return new UntagCommand(contactIndex, groupsToRemove.get(), TagType.GROUP);
+            Set<GroupTag> groups = groupsToRemove.get();
+            if (groups.isEmpty()) {
+                throw new ParseException((UntagCommand.MESSAGE_NO_TAGS));
+            }
+            return new UntagCommand(contactIndex, groups, TagType.GROUP);
         }
 
-        return new UntagCommand(contactIndex, modulesToRemove.get(), TagType.MODULE);
+        Set<ModuleTag> modules = modulesToRemove.get();
+        if (modules.isEmpty()) {
+            throw new ParseException((UntagCommand.MESSAGE_NO_TAGS));
+        }
+        return new UntagCommand(contactIndex, modules, TagType.MODULE);
     }
 
 }

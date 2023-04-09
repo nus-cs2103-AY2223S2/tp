@@ -22,7 +22,7 @@ title: Developer Guide
      * [Main Components of the Architecture](#main-components-of-the-architecture)
      * [How the Architecture Components Interact with Each Other](#how-the-architecture-components-interact-with-each-other)
    * [UI Component](#ui-component)
-   * [Key_Mapping](#key-mapping)
+   * [Key Mapping](#key-mapping)
    * [Model Component](#model-component)
      * [Person](#person)
          * [Name](#name)
@@ -39,13 +39,13 @@ title: Developer Guide
        * [Day](#day)
        * [HourBlock](#hourblock)
        * [TimeBlock](#timeblock)
+       * [TimePeriod](#timeperiod)
      * [Location](#location)
        * [DistanceUtil](#distance-util)
        * [LocationDataUtil](#location-data-util)
      * [Commitment](#commitment)
        * [Lesson](#lesson)
      * [Timetable](#timetable)
-       * [Module](#module)
      * [Utils](#utils)
        * [Sample Data Util](#sample-data-util)
    * [Logic Component](#logic-component)
@@ -54,12 +54,17 @@ title: Developer Guide
          * [Edit Command](#edit-command)
          * [Delete Command](#delete-command)
          * [Tag Command](#tag-command)
+         * [Untag Command](#untag-command)
          * [View Command](#view-command)
          * [Find Command](#find-command)
          * [Sort Command](#sort-command)
          * [List Command](#list-command)
          * [Exit Command](#exit-command)
+         * [Save Command](#save-command)
+         * [Load Command](#load-command)
          * [Meet Command](#meet-command)
+         * [Organise Command](#organise-command)
+         * [Sample Command](#sample-command)
      * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
@@ -68,8 +73,8 @@ title: Developer Guide
        * [Location Recommender](#location-recommender)
        * [Location Tracker](#location-tracker)
    * [Storage Component](#storage-component)
-   * [Commons Component](#common-classes)
-     * [MathUtil](#math-util)
+   * [Commons Classes](#common-classes)
+     * [MathUtil](#mathutil)
 5. [Testing](#5-testing)
    * [Unit Tests](#unit-tests)
    * [Testing Models](#testing-models)
@@ -78,27 +83,31 @@ title: Developer Guide
    * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
    * [Create Code Coverage Report](#create-code-coverage-report)
    * [Read Code Coverage Report](#read-code-coverage-report)
-   * [Continuous Integration](#continuous-integration)
 6. [Documentation](#6-documentation)
    * [Using PlantUML](#using-plantuml)
 7. [Appendix](#7-appendix)
+   * [Planned Enhancements](#planned-enhancements)
    * [Project Requirements](#project-requirements)
    * [Product Scope](#product-scope)
      * [Target User Profile](#target-user-profile)
      * [Value Proposition](#value-proposition)
+     * [User Stories](#user-stories)
    * [Use Cases](#use-cases)
    * [Non-Functional Requirements](#non-functional-requirements)
    * [Instructions for Manual Testing](#instructions-for-manual-testing)
      * [Launch and shutdown](#launch-and-shutdown)
-     * [Add a new person to EduMate](#add-a-new-person-to-edumate)
-     * [View a person in EduMate](#view-a-person-in-edumate)
-     * [Edit a person in EduMate](#edit-a-person-in-edumate)
-     * [Delete a person in EduMate](#delete-a-person-in-edumate)
+     * [Add a new person](#add-a-new-person)
+     * [View a person](#view-a-person)
+     * [Edit a person](#edit-a-person)
+     * [Delete a person](#delete-a-person)
      * [Add a tag to a person](#add-a-tag-to-a-person)
      * [Remove a tag from a person](#remove-a-tag-from-a-person)
      * [Filter persons by keywords](#filter-persons-by-keywords)
      * [Arrange persons by criteria](#arrange-persons-by-criteria)
      * [Generate a sample EduMate](#generate-a-sample-edumate)
+     * [Suggest meetup locations and times](#suggest-meetup-locations-and-times)
+     * [Organise and confirm meetings](#organise-and-confirm-meetings)
+     * [Cancel scheduled meetings](#cancel-scheduled-meetings)
    * [Glossary](#glossary)
    * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 
@@ -116,7 +125,7 @@ This guide is intended primarily for developers who want to work on the **EduMat
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: To get started, you'll want to set up your [Development Environment](#2-development-environment) and make sure you understand the branching strategy described in the [Version Control](#version-control) section and how to make a pull request. Thorough [testing](#5-testing) is expected for all pull requests, such that all testable methods are amply tested.
+:information_source: **Getting started:** To get started, you'll want to set up your [Development Environment](#2-development-environment) and make sure you understand the branching strategy described in the [Version Control](#version-control) section and how to make a pull request. Thorough [testing](#5-testing) is expected for all pull requests, such that all testable methods are amply tested.
 
 </div>
 
@@ -167,6 +176,7 @@ A member of our core team will attend to you as soon as possible.
 
 ## **Acknowledgements**
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+* This project utilised GUI tests from the [AddressBook Level 4 (AB4)](https://github.com/se-edu/addressbook-level4) project created by the [SE-EDU initiative](https://se-education.org) as well.
 * Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Joda-Time](https://www.joda.org/joda-time/index.html)
 
 ---
@@ -230,7 +240,7 @@ We use GitHub Issues as our issue tracker, and here is how to use the issue labe
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Refer to the guide [_Setting up and getting started_](SettingUp.md) to know what you need to do before you can start writing code.
+:information_source: **Info:** Refer to the guide [_Setting up and getting started_](SettingUp.md) to know what you need to do before you can start writing code.
 
 </div>
 
@@ -244,27 +254,27 @@ Sample data for **EduMate** can be found [here](https://github.com/AY2223S2-CS21
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Each row represents a person's information, with the `|` separating the different fields.
+:information_source: **Info:** Each row represents a person's information, with the `|` separating the different fields.
 
 In order, they are: `name|phone|email|address|telegram|groups|modules`. Note that groups and modules are separated by a space.
 
 </div>
 
-For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CCA|CS3242 BT3101 CS1010E CS3219 CE3165` provides information for a person with the following details:
+For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 BT3101 CS1010E CS3219 CE3165` provides information for a person with the following details:
 
 | Field           | Value                                   |
 |-----------------|-----------------------------------------|
 | Name            | Bee Shan                                |
 | Phone           | 81121128                                |
 | Email           | beeshan@gmail.com                       |
- | Station         | 200 Bishan Road                         |
+ | Station         | Bishan                                  |
  | Telegram Handle | @beeshan                                |
  | Groups          | NS, CCA                                 |
  | Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: These names were chosen so that we can easily extract more information such as Location (as coordinates) for use in future features.
+:information_source: **Info:** These names were chosen so that we can easily extract more information such as Location (as coordinates) for use in future features.
 
 </div>
 
@@ -282,7 +292,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 
 <img src="images/ArchitectureDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
+    <b>Figure 1.1</b> Architecture Diagram for the high-level design of the App
 </div>
 <br>
 
@@ -310,7 +320,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.1.2</b> Sequence Diagram for the command <code>delete 1</code>
+    <b>Figure 1.2</b> Sequence Diagram for the command <code>delete 1</code>
 </div>
 <br>
 
@@ -323,7 +333,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.1.3</b> Class Diagram for Component Managers
+    <b>Figure 1.3</b> Class Diagram for Component Managers
 </div>
 <br>
 
@@ -337,17 +347,23 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <img src="images/UiClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.2.1</b> Class Diagram for UI Components
+    <b>Figure 2.1</b> Class Diagram for UI Controllers
+</div>
+<br>
+
+<img src="images/UiComponentClassDiagram.svg" style="width:90%;margin:0 5%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 2.2</b> Class Diagram for UI Components
 </div>
 <br>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `UserProfilePanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. 
+The `UI` component uses the JavaFx UI framework.
 
 To start making changes to the UI:
 
-- The layout of these UI parts can be found in matching `.fxml` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder. 
+- The layout of these UI parts can be found in matching `.fxml` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder.
 - The controller classes of these UI parts can be found in matching `.java` files in the [`src/main/java/seedu/address/ui`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui)folder.
 - The stylesheets for these UI parts can be found in `Extensions.css` and `MainWindow.css`, except `UserProfilePanel` and `HelpWindow` with separate CSS files in matching `.css` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder.
 - For example, the layout of `UserProfilePanel` is specified in [`UserProfilePanel.fxml`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/UserProfilePanel.fxml), with controller class at [`UserProfilePanel.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/UserProfilePanel.java) and stylesheet at [`UserProfilePanel.css`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/UserProfilePanel.css).
@@ -364,11 +380,12 @@ The `UI` component,
 
 <img src="images/KeyMapActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.3.1</b> Activity Diagram for UP and DOWN keys
+    <b>Figure 2.2</b> Activity Diagram for UP and DOWN keys
 </div>
 
-
-The `UP` and `DOWN` keys have been mapped to return previously typed commands by the user.
+<br>
+The UP and DOWN keys have been mapped to return previously typed commands by the user.<br> <br>
+The above activity diagram does not include the mapping of the UP and DOWN keys to return previously typed commands by the user in order to avoid excessive complexity and maintain clarity. It is important to note that when the user has pre-existing text in the input field or has made edits to previous commands, the UP and DOWN keys will function as expected to prevent accidental deletion of user input.
 
 ---
 
@@ -378,16 +395,17 @@ The `UP` and `DOWN` keys have been mapped to return previously typed commands by
 
 <img src="images/ModelClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.3.1</b> Class Diagram for Model Components
+    <b>Figure 3.1</b> Class Diagram for Model Components
 </div>
+<br>
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the information of the user's contacts i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the command history i.e., all command strings (which are contained in a `ArrayList<String>` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* maintains a _filtered_ and _sorted_ list of currently selected persons, which can be accessed as an unmodifiable `ObservableList<Person>`. This list is observable, allowing for easy UI integration with automatic updates when data changes.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+* does not depend on any of the other three components. This means that it can function independently and make sense on its own, without relying on other components.
 
 ### **Person**
 
@@ -395,7 +413,7 @@ The `Model` component,
 
 <img src="images/PersonClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.3.2</b> Class Diagram for Person Components
+    <b>Figure 3.2</b> Class Diagram for Person Components
 </div>
 
 #### **Name**
@@ -420,15 +438,26 @@ Represents the Telegram Handle of the user or contact.
 
 #### **Group Tag Set**
 
-Represents a collection of **unique** groups that the user or contact belong to.
+Represents a collection of **unique** groups that the user or contact belong to. This class was created to support easy sorting by the group field.
 
 #### **Module Tag Set**
 
-Represents a collection of **unique** modules that the user or contact is enrolled into.
+Represents a collection of **unique** modules that the user or contact is enrolled into. It contains the lessons that the person has, as well as the modules shared with the user. This class was created to support easy sorting by the module field.
 
 ### **Tag**
+
+The following tags are used for adding important pieces of information to the person.
+
 #### **Group Tag**
+
+A group tag represents the relationship between the user and the person. For example, the person may be tagged with the "CCA" tag to indicate that the user and the person are CCA mates.
+
 #### **Module Tag**
+
+A module tag represents a module that the person is currently taking. There are two options for creating a module tag:
+
+* The user can tag a person with just the module code (`CFG1002`). This is typically used for modules that don't have lessons. In other words, this format simply informs EduMate that the person is taking the module, so that the `sort` and `find` commands can use this information.
+* The user can tag a person with the module code and a lesson information (`CS2103T MON 8 10`). This will create a lesson on Monday from 8AM to 10AM, and informs EduMate that the person is busy during this time period. This is used by the `meet` command to recommend meet up timings.
 
 ### **Time**
 
@@ -437,7 +466,7 @@ objects which is then used elsewhere in the codebase.
 
 <img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.3.3</b> Class Diagram for classes in Time Package.
+    <b>Figure 3.3</b> Class Diagram for classes in Time Package.
 </div>
 
 #### **Day**
@@ -451,6 +480,21 @@ objects which is then used elsewhere in the codebase.
 
 #### **TimeBlock**
 `TimeBlock` is an object which can represent any (non-negative) hour of time.
+
+#### **TimePeriod**
+`TimePeriod` is the parent class of both `HourBlock` and `TimeBlock`. Hence, we often use `TimePeriod` when passing arguments around.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:** Notice that `TimePeriod` is an abstract class and hence cannot be instantiated. Instead, we create a new `TimeBlock`, since it achieves the same functionality as the `TimePeriod`.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Info:** The time period is prefixed using `T/` (rather than `t/` which is used by the telegram handle). It follows the format `T/START_TIME END_TIME`, and along with the day, it creates a new time period.
+
+</div>
 
 ### **Location**
 
@@ -491,9 +535,7 @@ The `LocationDataUtil` class deals with reading and parsing location data from f
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tips for using Locations:**
-
-Notice that locations are immutable. This allows us to pass around locations as references, thereby reducing the amount of data we need to store.
+:bulb: **Tips for using Locations:** Notice that locations are immutable. This allows us to pass around locations as references, thereby reducing the amount of data we need to store.
 
 </div>
 
@@ -503,16 +545,16 @@ A `Commitment` is something that a person needs to do at a certain time and plac
 
 <img src="images/CommitmentClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.1</b> Class Diagram for Commitment Components
+    <b>Figure 3.4</b> Class Diagram for Commitment Components
 </div>
 <br>
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **What are commitments used for** <br>
+:information_source: **What are commitments used for:** <br>
 
 * They tell us when the person is unavailable, so that we do not recommend inappropriate timings.
-* They tell us where the person is expected to be at a particular time, so that we can recommend better locations to meet up. 
+* They tell us where the person is expected to be at a particular time, so that we can recommend better locations to meet up.
 
 </div>
 
@@ -522,7 +564,7 @@ A `Commitment` is something that a person needs to do at a certain time and plac
 
 <div markdown="span" class="alert alert-dark">
 
-:construction: **Potential extensions**
+:construction: **Potential extensions:**<br>
 Currently, all `Lessons` are in NUS, but this can be improved upon in the future, by adding additional arguments to the `tag` command.
 
 </div>
@@ -533,7 +575,7 @@ The `Timetable` represents the daily schedule of the user or contact.
 
 <img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes.
+    <b>Figure 3.5</b> Class Diagram for Timetable and related classes.
 </div>
 
 <br>
@@ -545,13 +587,13 @@ For each `Day` in the `Timetable`, there are 15 `HourBlock` objects each represe
 
 The `SampleDataUtil` class deals with reading and parsing persons data from a file. In particular, these are the people that will appear upon first load of EduMate, as well as during the execution of `SampleCommand`. The sample data is stored within [this file](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/data/sampleData.txt).
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips for reading the sample data:**<br>
 
 * Each row of data corresponds to a single person, and their fields are separated by the `|`, also known as the "pipe" character.
 * The attributes are: `NAME|PHONE|EMAIL|ADDRESS|TELEGRAM_HANDLE|GROUP_TAGS|MODULE_TAGS`.
-* Notice that the `MODULE_TAGS` are separated by a comma `,` instead, as its parser uses spaces to separate out the arguments. 
+* Notice that the `MODULE_TAGS` are separated by a comma `,` instead, as its parser uses spaces to separate out the arguments.
 
 </div>
 
@@ -565,7 +607,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.1</b> Class Diagram for Logic Components
+    <b>Figure 4.1</b> Class Diagram for Logic Components
 </div>
 <br>
 
@@ -588,16 +630,15 @@ The `add` command allows users to create a new person and insert them into the a
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:** <br>
+:information_source: **Command Format:** <br>
 
-* `add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
+* `add n/NAME [p/PHONE] [s/STATION] [e/EMAIL] [t/TELEGRAM] [g/GROUP]... [m/MODULE]...`: Adds a contact to EduMate.
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** 
-The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
+:bulb: **Tip:** The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
 
 </div>
 
@@ -612,15 +653,14 @@ The arguments for `AddCommand` are unordered, so the user can type them in any o
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **For Your Information**
-The User has the default `ContactIndex` of 0.
+:information_source: **Info:** The User has the default `ContactIndex` of 0.
 </div>
 
 In summary, the activity diagram is as such:
 
 <img src="images/AddActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.4.2a</b> Activity Diagram for a typical <code>add</code> command
+    <b>Figure 4.2</b> Activity Diagram for a typical <code>add</code> command
 </div>
 
 #### **Edit Command**
@@ -645,8 +685,7 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
-Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
+:bulb: **Tip:** Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
 
 </div>
 
@@ -654,8 +693,7 @@ Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are uno
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**:
-When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
+:information_source: **Info:** When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
 
 </div>
 
@@ -673,7 +711,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/EditActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.4.3a</b> Activity Diagram for a typical <code>edit</code> command
+    <b>Figure 4.3</b> Activity Diagram for a typical <code>edit</code> command
 </div>
 
 #### **Delete Command**
@@ -682,49 +720,77 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/DeleteSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.4</b> Sequence Diagram for a typical <code>delete</code> command
+    <b>Figure 4.4</b> Sequence Diagram for a typical <code>delete</code> command
 </div>
 <br>
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:**
-The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
 #### **Tag Command**
 
-Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/EditCommandParser.java) 
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/TagCommandParser.java)
 
-The `tag` command allows user to tag a ModuleTag and Lessons to an existing contact in EduMate.
+The `tag` command allows user to add `ModuleTag`s or `GroupTag`s to an existing contact in EduMate.
 
-**Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments. The 
-parser will check if there are both groups and modules being tagged in the same command. If so, the parser will throw an
-exception to only allow one type being tagged at once. The parser will also check if the command is intended for the
-user or for another person in the PersonList.
+**Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats**: <br>
+:information_source: **Command Formats:** <br>
 
-* `tag m/MODULE`: Tags a module to user.
+* `tag m/MODULE...`: Tags modules to the user.
 
-* `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
+* `tag INDEX m/MODULE...`: Tags modules to the contact at the specified index.
 
-* `tag m/MODULE DAY START_TIME END_TIME`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+* `tag m/MODULE DAY START END...`: Tags lessons to the user with the specified parameters, and tags the module if not already done so.
 
-* `tag INDEX m/MODULE DAY START_TIME END_TIME`: Tags a lesson to the user with the specified parameters and tags the module if not already done so.
+* `tag g/GROUP...`: Tags groups to the user.
 
-* `tag g/GROUP`: Tags a group to user.
-
-* `tag INDEX g/GROUP`: Tags a group to the contact at specified index.
+* `tag INDEX g/GROUP...`: Tags groups to the contact at the specified index.
 
 </div>
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
 
-{Sequence Diagrams to be filled by Kenny}
+<img src="images/TagActivityDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution
+</div>
+<br>
+
+#### **Untag Command**
+
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/UntagCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/UntagCommandParser.java)
+
+Similar to the `tag` command, the `untag` command allows user to remove `ModuleTag`s and `GroupTag`s from an existing contact in EduMate.
+
+**Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Formats:** <br>
+
+* `untag m/MODULE...`: Untags modules from the user.
+
+* `untag INDEX m/MODULE...`: Untags modules from the contact at the specified index.
+
+* `untag m/MODULE DAY START END...`: Untags lessons from the user with the specified parameters, and untags the module if it is empty.
+
+* `untag g/GROUP...`: Untags groups from the user.
+
+* `untag INDEX g/GROUP...`: Untags groups from the contact at the specified index.
+
+</div>
+
+<img src="images/UntagActivityDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution
+</div>
+<br>
 
 #### **View Command**
 
@@ -735,47 +801,46 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **For Your Information**
-The last viewed profile will remain displayed on the profile panel should there be any exceptions thrown during the parsing process.
+:information_source: **Info:** The last viewed profile will remain displayed on the profile panel should there be any exceptions thrown during the parsing process.
 
 </div>
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats** <br>
+:information_source: **Command Formats:** <br>
 
 * `view` : Displays user's profile on the display panel.
 
 * `view n/XYZ` : Display XYZ's profile on the display panel.
 
-* `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+* `view INDEX` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
 
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
-- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name). 
+- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name).
 - If a name is not present in the arguments, it will search for an index (of `int` type) instead in the preamble. <br>
 
     The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
-<img src="images/ViewParserSequenceDiagram.svg" style="width:60%;margin:0 20%">
+<img src="images/ViewParserSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.4.6a</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
+    <b>Figure 4.7</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
-<img src="images/ViewActivityDiagram.svg" style="width:60%;margin:0 20%">
+<img src="images/ViewActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
+    <b>Figure 4.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution
 </div>
 
 #### **Find Command**
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/FindCommandParser.java)
 
-The `find` command allows users to search for their contacts with partial information. 
+The `find` command allows users to search for their contacts with partial information.
 
 For example, if the user wants to search for a person but does not know the full name, they can simply search the name and get a list of people matching the name. This applies to all information a Person contains. Additionally, it can accept multiple keywords for the search but is limited to the same type of information.
 
@@ -789,10 +854,12 @@ For example, if the user wants to search for a person but does not know the full
 
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
+
 * This command can be used before the other commands to return a list of contacts the user wants to work with.
+
 * The `find` command returns a filtered list, so command operations only work on persons present in the filtered list.<br>
   e.g. If the filtered list does not contain any person with contact index 2, any operation relating to contact index 2 will throw error.
 
@@ -804,7 +871,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/FindActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.4.3a</b> Activity Diagram for a typical <code>find</code> command
+    <b>Figure 4.9</b> Activity Diagram for a typical <code>find</code> command
 </div>
 
 
@@ -812,7 +879,7 @@ In summary, the activity diagram is as such:
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SortCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SortCommandParser.java)
 
-The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties. 
+The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties.
 
 For example, if the user wants to sort by groups, and break ties with name, they can simply type `sort g/ n/`.
 
@@ -822,20 +889,19 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 :information_source: **Command Formats:** <br>
 
-* `sort`: Sorts the contacts by their index.
+* `sort`: Sorts the contacts by their `ContactIndex`.
 
-* `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.
+* `sort [z/a]...`: Sorts the contacts by the `z` field in **ascending** order.
 
-* `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.
+* `sort [z/d]...`: Sorts the contacts by the `z` field in **descending** order.
 
-* `sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.
+* `sort [z/]...`: Sorts the contacts by the `z` field in their **default** order.
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
-Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
+:bulb: **Tip:** Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
 
 </div>
 
@@ -843,8 +909,7 @@ Unlike the other commands, the ordering of the arguments **does matter**. For ex
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tips**:
-JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
+:bulb: **Tip**: JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
 
 </div>
 
@@ -856,7 +921,7 @@ The `list` command will allow users to view all the contacts saved in `EduMate`.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:** <br>
+:information_source: **Command Format:** <br>
 
 * `list`: lists all contacts in the EduMate Application.
 
@@ -870,7 +935,7 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:** <br>
+:information_source: **Command Format:** <br>
 
 * `exit`: Exits the EduMate Application.
 
@@ -878,14 +943,45 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**:
-Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
+:information_source: **Info:** Sets the `isExit` boolean in the `ExitCommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
 
 </div>
 
+#### **Save Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SaveCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SaveCommandParser.java)
 
+The `save` command allows users to save a copy of EduMate. This information is stored within the `data` folder, the same place as where `edumate.json` is kept.
 
-### **Meet Command**
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Saving the Json file:**<br>
+We cannot save the json file directly from the command, because the command only has access to the model. Instead, we pass the file path through a `SaveCommandResult`, which will inform the `LogicManager` to save the information in a particular file.
+
+</div>
+
+<img src="images/SaveSequenceDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.10</b> Sequence Diagram for a typical <code>save</code> command.
+</div>
+
+#### **Load Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/LoadCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/LoadCommandParser.java)
+
+The `save` command allows users to load a previously saved copy of EduMate. This information is retrieved from the `data` folder, the same place as where `edumate.json` is kept.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Loading the Json file:**<br>
+Similar to the Save Command, we pass the file path through a `LoadCommandResult`, which will inform the `LogicManager` to load the information from a particular file.
+
+</div>
+
+<img src="images/LoadSequenceDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.11</b> Sequence Diagram for a typical <code>load</code> command.
+</div>
+
+#### **Meet Command**
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/MeetCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/MeetCommandParser.java)
 
@@ -893,7 +989,7 @@ The `meet` command allows users to get recommendations of optimal meeting timing
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Sub-Commands** <br>
+:information_source: **Sub-Commands:** <br>
 The `meet` command has 2 different sub-commands : `eat`, `study`.
 However, we will be referring to all 3 commands generally as `meet`.
 </div>
@@ -903,30 +999,59 @@ recommendations as certain locations are only appropriate for certain activities
 
 Running `meet` will recommend studying, eating locations and other general locations together with their recommended timings.
 
-This feature is utilises the [`Recommender`](#recommenders)
+This feature is utilises the [`Recommender`](#recommenders).
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
-* `meet 2 7 8 10`: Recommends a meeting time and location for all the participants with contact index of 2, 7, 8, 10 (including the user).
+* `meet CONTACT_INDEX...`: Recommends a meeting time and location for all the participants with the given contact indices (including the user).
 
-* `eat 2 7 8 10` : Recommends a time and eating place where all participants with contact index of 2, 7, 8, 10 (including the user) can have a meal together.
+* `eat CONTACT_INDEX...` : Recommends a time and eating place where all participants with the given contact indices (including the user) can have a meal together.
 
-* `study 2 7 8 10` : Recommends a time and study spot where all participants with contact index of 2, 7, 8, 10 (including the user) can study together.
+* `study CONTACT_INDEX...` : Recommends a time and study spot where all participants with the given contact indices (including the user) can study together.
 
 </div>
 
 
-### **Organise Command**
+#### **Organise Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/OrganiseCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/OrganiseCommandParser.java)
 
-<div markdown="span" class="alert alert-dark">
-    :construction: Slated for release in v1.3b.
+The `organise` command will set a meet up with the time and place for all participants and the user himself/herself. Note that the user's information is automatically added to the list of participants as it is assumed that they will be taking part in the meet up.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Formats:** <br>
+
+* `organise RECOMMENDATION_INDEX` : Takes the recommendation at the specified index and saves it.
+* `organise CONTACT_INDEX... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up for participants with the given contact indices. Note that this list of contact indices should not include that of the user (0).
+
 </div>
 
-The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
+On the other hand, the `unorganise` command will remove the meet up at the specified index.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Format:**<br>
+
+* `unorganise MEET_UP_INDEX`: Removes the scheduled meet up with the specified index.
+
+</div>
 
 The [`TimingRecommender`](#timing-recommender) will check if the timing is a suitable for every participant to meet.
+
+#### **Sample Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SampleCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SampleCommandParser.java)
+
+The `sample` command repopulates the EduMate with a fresh set of contacts. Note that this calls the same function as that called in [Sample Data Util](#sample-data-util).
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Format:**<br>
+
+* `sample NUMBER` : Replaces the EduMate with the specified `NUMBER` of sample persons.
+
+</div>
 
 ## **Parsers**
 
@@ -934,7 +1059,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.x</b> Class Diagram for Parser Components
+    <b>Figure 4.12</b> Class Diagram for Parser Components
 </div>
 <br>
 
@@ -948,7 +1073,7 @@ The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of a
 
 #### **Prefix**
 
-The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Station](#station), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
+The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`, `d/`, `T/`, `l/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Station](#station), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag), [Module Tags](#module-tag), [Day](#day), [Time Period](#timeperiod) and [Location](#location).
 
 ## **Recommenders**
 
@@ -956,7 +1081,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 <img src="images/RecommenderClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.6</b> Class Diagram for Recommender Module
+    <b>Figure 4.13</b> Class Diagram for Recommender Module
 </div>
 <br>
 
@@ -976,7 +1101,7 @@ How the `Recommender` Component works:
 
 <img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.6.1</b> Sequence Diagram for Recommender Module
+    <b>Figure 4.14</b> Sequence Diagram for Recommender Module
 </div>
 <br>
 
@@ -987,14 +1112,14 @@ will be free so that a meetup could be scheduled.
 
 <img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.6.1</b> Activity Diagram for <code>TimingRecommender</code>
+    <b>Figure 4.15</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
 
-:information_source: **Very Important Re-emphasis**
-The `TimingRecommender` will always recommend timeslots and **ranks them in descending time** duration that
+:information_source: **Very important re-emphasis:** The `TimingRecommender` will always recommend timeslots and **ranks them in descending time** duration that
 the participants could meet up.
 </div>
 
@@ -1008,8 +1133,7 @@ The midpoint of these `sources` is calculated, and then we compare the `destinat
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **DistanceUtil**
-As part of abstraction, most of the logic is handled by the `DistanceUtil` class, which calculates distances and finds the nearest destinations.
+:information_source: **Info:** As part of abstraction, most of the logic is handled by the `DistanceUtil` class, which calculates distances and finds the nearest destinations.
 
 </div>
 
@@ -1019,8 +1143,7 @@ The `LocationTracker`'s role is to give an approximate location of a person give
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **How we approximate a location**
-A person is assumed to be travelling gradually between known locations. For example, if the person is in NUS at 9AM and at home at 11AM, they are assumed to be somewhere in the middle at 10AM.
+:information_source: **How we approximate a location:** A person is assumed to be travelling gradually between known locations. For example, if the person is in NUS at 9AM and at home at 11AM, they are assumed to be somewhere in the middle at 10AM.
 
 </div>
 
@@ -1036,9 +1159,9 @@ The process of getting a recommendation is as follows:
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.svg" style="width:80%;margin:0 10%">
+<img src="images/StorageClassDiagram.svg" style="width:100%;margin:0 0%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.5.1</b> Class Diagram for Storage Components
+    <b>Figure 5.1</b> Class Diagram for Storage Components
 </div>
 <br>
 
@@ -1053,46 +1176,111 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
+### **MathUtil**
+
+The `MathUtil` class contains generic functions for mathematical operations such as Cartesian Product and indexing.
+
 # **5. Testing**
 
 ---
 
-## **Unit Tests**
+## **Testing Types**
+
+Types of tests used:
+* Developer Testing
+* Regression Testing
+* Unit Testing
+* Stubs
+* Integration testing
+* Dogfooding
+
+Our organisation made use of different testing types in order to cover multiple grounds. Types of testings also changed 
+with the progress of the product.
+
+### **Developer Testing**
+
+Our organisation opted to use developer testing right from the start with every increment of the product, instead of 
+waiting for the whole product to be ready before conducting more tests.
+
+This type of testing involved the developers trying out the product with the various commands implemented, to 
+discover possible bugs early, and avoid major reworks in future increments and iterations.
+
+### **Regression Testing**
+
+Our organisation continued with regression testing as increments came in, to ensure that previous features were not 
+broken with changes and modifications. This is due to the interconnectedness of certain features implemented, such as 
+commands and the model.
+
+Our organisation did this both with automated unit tests and manual testing, with more emphasis on unit tests, due to 
+the time taken to test extensively manually.
+
+### **Unit Tests**
 
 Our organisation primarily utilizes `JUnit5`for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
 
 Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
-### **Testing Models**
+Unit tests were implemented as new features were added in, to ensure that any new changes will have tests to ensure 
+older features are working as intended. Unit tests were also changed and added on as the product progressed, to ensure
+that the features were tested more thoroughly as the team learned new testing types and techniques.
 
-Models used:
-* Waterfall model
-* Agile model
-* Breadth-first iterative model
 
-We used a mixture of models to suit our needs for different features. We applied the waterfall model to features that required individual work and the agile model for the others that required teamwork. We also had considerations for the time-limit imposed on this project so we applied the breadth-first iterative model to ensure basic functionalities.
+### **Stubs**
+
+Stubs were used to test features and classes in isolation, so that any bugs in dependencies will not affect the tests
+that are in place. This is most common in the testing of commands as well as parsers, to ensure that any bugs in one or
+the other will not result in failing tests in the other, allowing us to quickly ascertain bugs without having to find 
+out where the bug originated from. 
+
+We replaced the parser with stubs to test the commands and vice versa.
+
+### **Integration Testing**
+
+Integration testing were used extensively in the testing of the GUI, as part of CI. Integration testing were also 
+included in unit tests to ensure that our features work well with each other. 
+
+### **Dogfooding**
+
+Towards the completion of our product, our developers used the product on a regular basis in an attempt to use the 
+product how a normal user might use. This helped ensure that our product would be relatively bug-free for a regular use
+case.
+
+### **Model**
+
+Our organisation created dummy values for a model of a simulated list of persons that our product might, and used that
+to carry out testing on. When changes were made to the model in the product, any changes required were reflected in 
+this testing model as well, to ensure that unit tests are testing on a correct simulation of the program.
 
 ### **Testing Commands**
 
-Equivalence partitions and stubs were mainly used to test commands.
+Our organisation tested commands by creating commands with the correct parameters, bypassing the parser, and executed 
+them. Assertions were used to ensure that commands created, when executed performed the correct operations, on the model
+created specifically for tests. 
+
+Our organisation made use of equivalence partitions to tests for the types of commands that can be executed, due to the
+number of variants we have for each command.
 
 ### **Testing Parsers**
 
-Positive and negative test cases were mainly used to test parsers.
+Our organisation opted to use stubs in order to test the parsers, to isolate that the parser is firstly parsing the 
+correct text, and returning the correct corresponding command. 
+
+Negative and positive test cases were used to ensure that invalid inputs throws the correct exceptions, and that valid 
+inputs creates and returns the correct command with correct parameters. This testing ensures that our definitions for 
+commands to be equal were well-defined.
 
 ---
 
 ## **Measuring Coverage of Integration Tests**
-{to be filled}
+We have used `Jacoco` and `Codecev` to monitor the code coverage of integration tests.
+
 ### **Create Code Coverage Report**
-{to be filled}
+Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecev` for setting up on CI/CD.
+
 ### **Read Code Coverage Report**
-{to be filled}
+For more information, check [this](https://github.com/apps/codecov). The above [link](https://docs.codecov.com/docs) also contains information on this.
 
 ---
-
-## **Continuous Integration**
-{to be filled}
 
 # **6. Documentation**
 
@@ -1104,7 +1292,7 @@ Positive and negative test cases were mainly used to test parsers.
 
 :bulb: Use `alert-primary` to show tips for the developer
 
-</div>  
+</div>
 
 <div markdown="span" class="alert alert-success">
 
@@ -1142,14 +1330,21 @@ Positive and negative test cases were mainly used to test parsers.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** <br>
-The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
 # **7. Appendix**
 
 ---
+
+## **Planned Enhancements**
+
+1. To handle cases where the module code provided is not a valid NUS module, we propose the use of the NUSMods API to check whether the module exists. In this way, we can also tag the lessons with a more specific venue to improve recommendation of locations within NUS. This is currently not implemented as EduMate is an offline application, and existing modules will change overtime.
+2. Apart from lessons, people may have commitments outside of NUS. To handle these cases, we propose to modify the `tag` command to take in a time and location to indicate that a person will be at the location at that time. This is currently not implemented as it is considered a new feature.
+3. To better create automated fields, we propose the use of `Optional` in our person fields. They would show "Unknown" if the field is not there, making it clearer that the fields have not been populated yet. This is currently not implemented as it would require major changes to the commands, as well as storage.
+4. The profile panel currently overspills when there are too many modules and groups. This can be solved in the future by converting the profile panel into a scroll pane, thereby allowing longer panels to be shown. This, however, requires us to refactor our UI components, which is not allowed at this phase.
+5. Despite us not allowing it, the application still can enter full screen mode due to the settings on certain devices. This is unintended behaviour, as we intended EduMate to remain at a fixed size. One possible solution would be to re-enable the resizing of the application. However, this would require major changes to the UI, making it more responsive to such resizing events.
 
 ## **Project Requirements**
 
@@ -1171,19 +1366,37 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 ### **User Stories**
 
-Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
+| As a ...  | I want to ...                                                      | So that I can...                                                                 |
+|-----------|--------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| student   | store my friends' contact information                              | easily keep track of their availability for study sessions.                      |
+| student   | store my tutors' contact information                               | easily ask them for consultation sessions when they are available.               |
+| student   | update my profile                                                  | keep my information up to date.                                                  |
+| student   | update the profile of a contact                                    | keep their information up to date.                                               |
+| student   | keep track of what modules I share with my contacts                | quickly find study partners.                                                     |
+| student   | keep track of what groups I share with my contacts                 | quickly find contacts within the same friend group.                              |
+| student   | assign lessons to my contacts                                      | see when they are available for study sessions.                                  |
+| student   | see the availability of my contacts                                | plan my study sessions accordingly.                                              |
+| student   | view the profiles of my contacts                                   | see their availability and contact information.                                  |
+| student   | remove a contact                                                   | free up space for adding other contacts.                                         |
+| student   | find contacts who share the most number of modules with me         | easily form study groups.                                                        |
+| student   | search for contacts based on specific criteria                     | find contacts with shared modules or tags.                                       |
+| student   | search for contacts who live near me                               | meet up with them at a place closer to home.                                     |
+| student   | find the contacts who share the most modules with me this semester | know who are likely to be my close friends this semester.                        |
+| student   | sort my contacts by name                                           | quickly find a specific person in my contact list.                               |
+| student   | get suggestions for where to meet my friends                       | narrow down the search window for meet up locations.                             |
+| student   | get suggestions for when to meet my friends                        | narrow down the search window for meet up timings.                               |
+| student   | get suggestions for where to eat with my friends                   | easily find a place to grab a meal.                                              |
+| student   | get suggestions for when to eat with my friends                    | easily find a time to grab a meal.                                               |
+| student   | get suggestions for where to study with my friends                 | work on assignments with my friends.                                             |
+| student   | get suggestions for when to study with my friends                  | work on assignments with my friends.                                             |
+| student   | see a list view of suggested meet up locations and timings         | compare them easily.                                                             |
+| student   | schedule meetings with my contacts                                 | meet up with my contacts without having to manually coordinate with each person. |
+| student   | backup and restore my data                                         | save my contact information and avoid losing them.                               |
+| student   | keep track of my meet ups                                          | remember who I am supposed to meet.                                              |
+| student   | view the contact details of my tutors and lecturers                | get in touch with them when needed.                                              |
+| student   | run the application on my own operating system                     | safely transfer my data over when using a new device.                            |
+| student   | use a simple interface                                             | use the application without much hassle.                                         |
 
-| Priority | As a …​   | I want to …​                                           | So that I can…​                                             |
-|----------|-----------|--------------------------------------------------------|-------------------------------------------------------------|
-| `***`    | student   | view all my modules in one place                       | be more organised in my work                                |
-| `***`    | student   | decide a meeting place and time with my friends conveniently | plan meetups for social and academic purposes efficiently|
-| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                                     |
-| `***`    | user      | view my personal information                           | share it to whoever needs it                                |
-| `***`    | user      | update my profile                                      | personalise my experience                                   |
-| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking                    |
-| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules                |
-| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me                   |
-| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends                    |
 
 ### **Use Cases**
 
@@ -1203,33 +1416,154 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 * 2a. The list is empty.
 
   Use case ends.
+* 2b. The list has already been filtered or sorted.
+    * 2b1. EduMate resets the filters and sorts.
 
-**Use case: UC02 - Add a contact**
+  Use case resumes from step 2.
+
+**Use case: UC02 - Get a help message using a command**
+
+**MSS**
+
+1. User requests for help.
+2. EduMate shows a help message containing usages for commands.
+
+   Use case ends.
+
+**Use case: UC03 - Get a help message using a button**
+
+**MSS**
+
+1. User clicks the help button.
+2. EduMate shows a help message containing usages for commands.
+
+   Use case ends.
+
+**Use case: UC04 - Clear the list of contacts**
+
+**MSS**
+
+1. User requests to clear the list of contacts.
+2. EduMate shows an empty state.
+
+   Use case ends.
+
+**Use case: UC05 - Create a sample EduMate**
+
+1. User requests to create a sample EduMate.
+2. EduMate resets the person list.
+3. EduMate selects random contacts and adds them to the person list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given number of samples is invalid.
+    * 1a1. EduMate shows an error message.
+
+**Use case: UC06 - Add a contact**
 
 **MSS**
 
 1. User requests to add a person to the contact list with their details.
-2. EduMate shows the list of contacts with the newly added person.
+2. EduMate creates a new person and assigns an index to them.
+3. EduMate shows the list of contacts with the newly added person.
+4. EduMate shows the added person's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given details are invalid.
+* 1a. The given name is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1
-* 1b. The person already exists in the contact list.
+* 1b. The person with the given name already exists in the contact list.
     * 1b1. EduMate shows an error message.
 
-  Use case resumes at step 1
+* 1c. The given station name does not match our data.
+    * 1c1. EduMate shows an error message.
 
-**Use case: UC03 - Edit a contact**
+* 1d. The given phone number does not match our specifications.
+    * 1d1. EduMate shows an error message.
+
+* 1e. The given telegram handle does not match our specifications.
+    * 1e1. EduMate shows an error message.
+
+* 1f. The given email address does not match our specification.
+    * 1f1. EduMate shows an error message.
+
+* 1g. No group tags are given.
+
+  Use case resumes from step 1.
+* 1h. No module tags are given.
+
+  Use case resumes from step 1.
+
+**Use case: UC07 - Add a contact with missing fields**
 
 **MSS**
 
-1. User requests to edit a person's details with new information.
-2. EduMate edits the person's information.
+1. User requests to add a person to the contact list with missing fields.
+2. EduMate creates a new person with default values and assigns an index to them.
+3. EduMate shows the list of contacts with the newly added person.
+4. EduMate shows the added person's information in the profile panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The name is invalid or missing.
+    * 1a1. EduMate shows an error message.
+
+* 1f. The person with the given name already exists in the contact list.
+    * 1f1. EduMate shows an error message.
+
+* 2a. The email field is missing.
+    * 2a1. EduMate assigns an email based on the name.
+
+  Use case resumes from step 2.
+* 2b. The telegram handle field is missing.
+    * 2b1. EduMate assigns a telegram handle based on the name.
+
+  Use case resumes from step 2.
+* 2c. The station field is missing.
+    * 2c1. EduMate assigns a default station "Kent Ridge" to the person.
+
+  Use case resumes from step 2.
+* 2d. The phone field is missing.
+    * 2d1. EduMate assigns a default phone number "00000000" to the person.
+
+  Use case resumes from step 2.
+
+**Use case: UC08 - View user information**
+
+**MSS**
+
+1. User requests to view a profile without an index.
+2. EduMate shows the user's profile in the profile panel.
+
+   Use case ends.
+
+**Use case: UC09 - View a contact's information by name**
+
+**MSS**
+
+1. User requests to view a profile using the contact's full name.
+2. EduMate shows the contact's profile in the profile panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given full name is not found.
+    * 1a1. EduMate shows an error message.
+
+**Use case: UC10 - View a contact's information by index**
+
+**MSS**
+
+1. User requests to view a profile using the contact's index.
+2. EduMate shows the contact's profile in the profile panel.
 
    Use case ends.
 
@@ -1238,103 +1572,201 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
-* 1b. The given details are invalid.
-    * 1b1. EduMate shows an error message.
+**Use case: UC11 - Edit a contact**
 
-  Use case resumes at step 1.
+**MSS**
 
-**Use case: UC04 - Delete a contact**
-
-1. User requests to delete a person from the contact list.
-2. EduMate deletes the person from the contact list.
+1. User requests to <u>view a contact's information by name (UC09)</u>.
+2. User requests to edit a person's details with new information.
+3. EduMate edits the person's information.
+4. EduMate shows the edited person's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+* 2b. The given details are invalid.
+    * 2b1. EduMate shows an error message.
 
-**Use case: UC05 - Tag a module to a contact**
+* 2c. The edited name is already found in the EduMate.
+    * 2c1. EduMate shows an error message.
 
-1. User requests to add a module tag to a contact.
-2. EduMate tags the module to the contact.
+**Use case: UC12 - Delete a contact**
 
-   Use case ends.
+**MSS**
 
-**Extensions**
-
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
-
-  Use case resumes at step 1.
-
-* 1b. The given details is invalid.
-    * 1b1. EduMate shows an error message.
-
-  Use case resumes at step 1.
-
-**Use case: UC06 - Untag a module from a contact**
-
-1. User requests to remove a module tag from a contact.
-2. EduMate untags the module from the contact.
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
+2. User requests to delete a person from the contact list. 
+3. EduMate deletes the person from the contact list.
+4. EduMate shows the user's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+**Use case: UC13 - Tag a basic module to a contact**
 
-* 1b. The given details is invalid.
-    * 1b1. EduMate shows an error message.
+**MSS**
 
-  Use case resumes at step 1.
-
-**Use case: UC07 - Tag a group to a contact**
-
-1. User requests to add a group tag to a contact.
-2. EduMate tags the group to the contact.
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
+2. User requests to add a basic module tag to a contact. 
+3. EduMate tags the module to the contact. 
+4. EduMate displays a list of successfully added modules.
+5. EduMate displays the tagged person's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+* 2b. The given module code is invalid.
+    * 2b1. EduMate shows an error message.
 
-* 1b. The given details is invalid.
-    * 1b1. EduMate shows an error message.
+* 3a. The module code exists in the person's contact.
+    * 3a1. EduMate does not add any tags.
+    * 3b2. EduMate does not show the module in the feedback message.
 
-  Use case resumes at step 1.
+  Use case resumes at step 5.
 
-**Use case: UC08 - Untag a group from a contact**
+**Use case: UC14 - Tag a non-basic module to a contact**
 
-1. User requests to remove a group tag from a contact.
-2. EduMate untags the group from the contact.
+**MSS**
+
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
+2. User requests to add a non-basic module tag to a contact. 
+3. EduMate assigns lessons to the contact. 
+4. EduMate tags the module to the contact. 
+5. EduMate displays a list of successfully added modules.
+6. EduMate displays the tagged person's information in the profile panel.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. The given module information is invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. The lesson clashes with the contact's timetable.
+    * 3a1. EduMate shows an error message with details of clashes.
+
+* 3b. The added lessons clash with each other.
+    * 3b1. EduMate shows an error message.
+
+* 4a. The module does not exist in the contact's module set.
+    * 4a1. EduMate adds the module and lesson to the contact's module set.
+    * 4a2. EduMate displays the added lesson in the feedback message.
+
+  Use case resumes at step 6.
+* 4b. The module exists in the contact's module set but the lesson does not.
+    * 4b1. EduMate adds the module and lesson to the contact's module set.
+    * 4b2. EduMate displays the added lesson in the feedback message.
+
+  Use case resumes at step 6.
+* 4c. The module and lesson exist in the contact's module set.
+    * 4c1. EduMate throws an error message.
+
+**Use case: UC15 - Untag a module from a contact**
+
+**MSS**
+
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
+2. User requests to remove a module tag from a contact. 
+3. EduMate untags the module from the contact. 
+4. EduMate removes the associated lessons from the contact. 
+5. EduMate displays a list of successfully removed module tags.
+6. EduMate displays the untagged person's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+* 2b. The given details are invalid.
+    * 2b1. EduMate shows an error message.
 
-* 1b. The given details is invalid.
-    * 1b1. EduMate shows an error message.
+* 3a. The module does not exist in the contact's module set.
+    * 3a1. EduMate does not remove any module.
 
-  Use case resumes at step 1.
+  Use case resumes at step 6.
+* 3b. The module and lesson exists in EduMate.
+    * 3b1. EduMate removes that lesson.
+    * 3b2. EduMate removes the module from the module set if there are no more lessons.
 
-**Use case: UC09 - Find contacts based on search criteria**
+  Use case resumes at step 5.
+* 3c. The module exists in EduMate, but the lesson does not.
+    * 3c1. EduMate does not remove the module.
+    * 3c2. EduMate does not display the module and lesson in the feedback message.
+
+  Use case resumes at step 6.
+* 3d. The module does not come with a lesson.
+    * 3d1. EduMate removes the entire module from that person's module set.
+
+  Use case resumes at step 6.
+
+**Use case: UC16 - Tag a group to a contact**
+
+**MSS**
+
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
+2. User requests to add a group tag to a contact. 
+3. EduMate tags the group to the contact. 
+4. EduMate displays a list of successfully added groups.
+5. EduMate displays the tagged person's information in the profile panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. The given details are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. The group already exists in the group set.
+    * 3a1. EduMate does not display the group in the feedback message.
+
+  Use case resumes at step 5.
+
+**Use case: UC17 - Untag a group from a contact**
+
+**MSS**
+
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
+2. User requests to remove a group tag from a contact. 
+3. EduMate untags the group from the contact. 
+4. EduMate displays a list of successfully removed groups.
+5. EduMate displays the untagged person's information in the profile panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. The given details are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. The group does not exist in the group set.
+    * 3a1. EduMate does not display the group in the feedback message.
+
+  Use case resumes at step 5.
+
+**Use case: UC18 - Find contacts based on search criteria**
+
+**MSS**
 
 1. User requests to <u>view the list of contacts (UC01)</u>.
 2. User requests to find contacts based on search criteria.
@@ -1347,34 +1779,285 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 * 2a. The given details are invalid.
     * 2a1. EduMate shows an error message.
 
-* 3a. The filtered list is empty.
+* 3a. No contacts satisfy the criteria.
+    * 3a1. EduMate shows no contacts.
+  Use case ends.
 
-  Use case ends
+**Use case: UC19 - Sort contacts based on index**
 
-**Use case: UC10 - Sort contacts based on matching modules**
+**MSS**
 
 1. User requests to <u>view the list of contacts (UC01)</u>.
-2. User requests to sort contacts.
-3. EduMate shows a list of contacts sorted by their number of shared modules.
+2. User requests to sort contacts without using any prefix.
+3. EduMate shows a list of contacts sorted by their index.
 
    Use case ends.
 
 **Extensions**
+
+* 2a. The given details are invalid.
+    * 2a1. EduMate shows an error message.
 
 * 3a. The sorted list is empty.
 
   Use case ends.
 
-**Use case: UC11 - View user profile**
+**Use case: UC20 - Sort contacts based on matching modules**
 
-1. User requests to view their user profile.
-2. EduMate shows the user information.
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to sort contacts based on number of common modules.
+3. EduMate shows a list of contacts sorted by their number of shared modules, followed by their index.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. User information is empty.
+* 2a. The given details are invalid.
+    * 2a1. EduMate shows an error message.
+
+* 3a. The sorted list is empty.
+
+  Use case ends.
+
+**Use case: UC21 - Sort contacts based on multiple search criteria**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to sort contacts based on multiple search criteria.
+3. EduMate shows a list of contacts sorted by the criteria, followed by their index.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given details are invalid.
+    * 2a1. EduMate shows an error message.
+
+* 3a. The sorted list is empty.
+
+  Use case ends.
+
+**Use case: UC22 - Recommend meet up locations and timings**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to meet with a set of contacts.
+3. EduMate shows a list of recommendations of where and when to meet.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The set of contacts is empty.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. There are no available timings to meet up.
+    * 3a1. EduMate shows an empty list.
+
+  Use case ends.
+
+**Use case: UC23 - Recommend places and times to eat**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to eat with a set of contacts.
+3. EduMate shows a list of recommendations of where and when to eat with contacts.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The set of contacts is empty.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. There are no available timings to eat.
+    * 3a1. EduMate shows an empty list.
+
+  Use case ends.
+
+**Use case: UC24 - Recommend study locations and timings**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to study with a set of contacts.
+3. EduMate shows a list of recommendations of where and when to study.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The set of contacts is empty.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. There are no available timings to study.
+    * 3a1. EduMate shows an empty list.
+
+  Use case ends.
+
+**Use case: UC25 - Organise a meet up using recommendation**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to organise a meet up with contacts using a recommendation index.
+3. EduMate creates a meet up and displays it in the meet up panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The recommendation index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some contact indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+**Use case: UC26 - Organise a meet up manually**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to organise a meet up with contacts by typing the day, time and location.
+3. EduMate creates a meet up and displays it in the meet up panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Recommendation index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some contact indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 2c. The details provided are invalid.
+    * 2c1. EduMate shows an error message.
+
+**Use case: UC27 - Unorganise a meet up**
+
+**MSS**
+
+1. User requests to unorganise a meet up by index.
+2. EduMate removes the organised meet up from the meet up panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+
+* 2a. The given index does not exist.
+    * 2a1. EduMate shows an error message.
+
+**Use case: UC28 - Save to a backup file**
+
+**MSS**
+
+1. User requests to save EduMate into a backup file.
+2. EduMate saves the file in the "data" folder.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given file name is invalid.
+    * 1a1. EduMate shows an error message.
+
+* 2a. A file with the name already exists within the folder.
+    * 2a1. EduMate replaces the file in the folder.
+
+  Use case ends.
+
+**Use case: UC29 - Load from a backup file**
+
+**MSS**
+
+1. User requests to load EduMate from a backup file.
+2. EduMate loads the file in the "data" folder.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given file name is invalid.
+    * 1a1. EduMate shows an error message.
+
+* 2a. The given file name does not exist.
+    * 2a1. EduMate shows an error message.
+
+**Use case: UC30 - Exit the application using a command**
+
+**MSS**
+
+1. User requests to exit the application.
+2. EduMate saves its current state.
+3. EduMate closes.
+
+   Use case ends.
+
+**Use case: UC31 - Exit the application using a button**
+
+**MSS**
+
+1. User clicks the exit button.
+2. EduMate saves its current state.
+3. EduMate closes.
+
+   Use case ends.
+
+**Use case: UC32 - View a previous command**
+
+**MSS**
+
+1. User presses the UP button.
+2. EduMate shows a previous command in the command box.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user has already typed in the command box.
+    * 2a1. EduMate does not show a previous command.
+
+  Use case ends.
+* 2b. There are no more previous commands.
+    * 2b1. EduMate does not show a previous command.
+
+  Use case ends.
+
+**Use case: UC33 - View the next command**
+
+**MSS**
+
+1. User presses the DOWN button.
+2. EduMate shows a next command in the command box.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user has already typed in the command box.
+    * 2a1. EduMate does not show the next command.
+
+  Use case ends.
+* 2b. There are no more next commands.
+    * 2b1. EduMate does not show the next command.
 
   Use case ends.
 
@@ -1395,8 +2078,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** <br>
-These instructions only provide a starting point for testers to work on;
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -1409,151 +2091,298 @@ testers are expected to do more *exploratory* testing.
 
     * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-2. Saving window preferences
-
-    * 2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-    * 2b. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
-
 ### **Add a new person**
 
-`add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
+#### **_Scenario 1_**
 
-Expected Output in the Person List: New person added to EduMate.
+Context: There is no contact named "Thomas" in `EduMate`.
 
-`add n/Edward`
+Command executed: `add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
-Expected Output in the Command Output Box: Error message for invalid command format.
+Expected Output in the Person List: New person added to `EduMate`.
+
+#### **_Scenario 2_**
+
+Context: There is a contact named "Edward" in `EduMate`
+
+Command executed: `add n/Edward`
+
+Expected Output in the Command Response Box: `This person already exists in the address book`.
 
 ### **View a person**
-`view`
 
-Expected Output in the Profile Panel: The user's (you) profile is shown.
+#### **_Scenario 1_**
 
-`view 5`
+Context: None needed.
 
-Expected Output in the Profile Panel: The fifth person's profile is shown.
+Command executed: `view`
 
-`view n/Thomas`
+Expected Output in the Profile Panel: The user's profile is shown.
+
+#### **_Scenario 2_**
+
+Context: There exists a `Person` with `ContactIndex 5` in `EduMate`.
+
+Command executed: `view 5`
+
+Expected Output in the Profile Panel: The `Person` with `ContactIndex 5` is shown.
+
+#### **_Scenario 3_**
+
+Context: Thomas' profile is present in `EduMate`.
+
+Command executed: `view n/Thomas`
 
 Expected Output in the Profile Panel: Thomas' profile is shown.
 
 ### **Edit a person**
 
-`edit 3 n/Henry`
+#### **_Scenario 1_**
 
-Expected Output in the Person List: The third person's name is changed to Henry.
+Context: There exists a `Person` with `ContactIndex 3` in `EduMate`.
 
-`edit n/Gordon`
+Command executed: `edit 3 n/Henry`
+
+Expected Output in the Person List: The Person Card with `ContactIndex 3` contains the name "Henry".
+
+#### **_Scenario 2_**
+
+Context: None needed.
+
+Command executed: `edit n/Gordon`
 
 Expected Output in Profile Panel: The user's name is changed to Gordon.
 
 ### **Delete a person**
 
-`delete 4`
+#### **_Scenario 1_**
 
-Expected Output in the Person List: The fourth person has been removed, and there is no fourth index.
+Context: There exists a `Person` with `ContactIndex 4` in `EduMate`.
 
-`delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
+Command executed: `delete 4`
 
-Expected Output in the Person List: New person has been added to EduMate, with an index of 4.
+Expected Output in the Person List: Person Card containing profile of `Person` with `ContactIndex 4` is removed.
 
-`delete`
+#### **_Scenario 2_**
 
-Expected Output in the Command Output Box: Error message for invalid command format.
+Context: There exists a `Person` with `ContactIndex 1, 2, 3` and `4` in `EduMate` and there is no other contact with the name "James".
+
+Command executed: `delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
+
+Expected Output in the Person List: Person Card containing `Person` with `ContactIndex 4` is removed. A new `Person` named James is created and assigned `ContactIndex 4` and appears on Person List.
+
+#### **_Scenario 3_**
+
+Context: None needed.
+
+Command executed: `delete`
+
+Expected Output in the Command Output Box: Invalid command format!
+`delete`: Deletes the person identified by the index number used in the displayed person list.
+
+#### **_Scenario 4_**
+
+Context: None needed.
+
+Command executed: `delete 0`
+
+Expected Output in the Command Response Box: Cannot delete your own profile!
 
 ### **Add a tag to a person**
 
-The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a 
+The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a
 `tag` command results in any `ModuleTag` having a clash, the entire command will be aborted.
 
-`tag 1 m/CS1234`
+#### **_Scenario 1_**
 
-Expected Output in the PersonList: The first person has a new `ModuleTag` added to its 
-`ModuleTagSet` with `tagName` of `CS1234`, if a `ModuleTag` with the same `tagName` does not already exist
-in the person's `ModuleTagSet`.
+Context: `Person` with `ContactIndex 1` exists and does not have CS1234 `ModuleTag`. `User` has CS1234 as `ModuleTag`.
 
-`tag 2 m/CS2345 mon 12 13`
+Command executed: `tag 1 m/CS1234`
 
-Expected Output in the PersonList: The second person has a new `ModuleTag` added to its `ModuleTagSet`
-with `tagName` of `CS1234`, if a `ModuleTag` with the same `TagName` does not already exist in the person's
-`ModuleTagSet`. A `Lesson` is added to the `ModuleTag`. 
+Expected Output in the Person List: CS1234 `ModuleTag` will appear for `Person` with `ContactIndex 1`.
 
-`tag 3 g/Friend`
+#### **_Scenario 2_**
 
-Expected Output in the PersonList: The third person has a new `GroupTag` added to its `GroupTagSet` with a `tagName` of
-`Friend`, if a `GroupTag` with the same `tagName` does not already exist in the person's `GroupTagSet`
+Context: `Person` with `ContactIndex 1` exists and does not have CS1234 `ModuleTag`. `User` does not have CS1234 as `ModuleTag`.
+
+Command executed: `tag 1 m/CS1234`
+
+Expected Output in the Person List: 'Person' with `ContactIndex 1` will still be tagged, but will not appear in Profile Panel.
+
+#### **_Scenario 3_**
+
+Context: `Person` with `ContactIndex 2` exists and does not have CS2345 `ModuleTag`. `User` has CS2345 as `ModuleTag`.
+
+Command executed: `tag 2 m/CS2345 mon 12 13`
+
+Expected Output in the Person List: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will be added.
+
+#### **_Scenario 4_**
+
+Context: `Person` with `ContactIndex 2` exists and has CS2345 `ModuleTag`. `User` has CS2345 as `ModuleTag`.
+
+Context executed: `tag 2 m/CS2345 mon 12 13`
+
+Expected Output in the Person List: Lesson added.
+
+#### **_Scenario 5_**
+
+Context: `Person` with `ContactIndex 3` exists and does not have `Friend` as a `GroupTag`.
+
+Command executed: `tag 3 g/Friend`
+
+Expected Output in the Person List: Friend `GroupTag` will appear on the Person Card containing profile of `Person` with `ContactIndex 3`.
 
 
 ### **Remove a tag from a person**
 
-`untag 1 m/CS1234`
+#### **_Scenario 1_**
 
-Expected Output in the PersonList: The first person has the `ModuleTag` with `tagName` of `CS1234` removed from its 
-`ModuleTagSet`. All lessons belonging to the `ModuleTag` will be dropped.
+Context: `Person` with `ContactIndex 1` exists and has `CS1234` as `ModuleTag`. `User` has CS1234 as `ModuleTag` as well.
 
-`untag 2 m/CS2345 mon 12 13`
+Command executed: `untag 1 m/CS1234`
 
-Expected Output in the PersonList: the second person has the lesson with the corresponding timeslot dropped from 
-`ModuleTag` WITH `tagName` of `CS2345`.
+Expected Output in the Person List: CS1234 `ModuleTag` disappears from Person Card of `Person` with `ContactIndex 1`.
 
-`untag 3 g/Enemy`
+#### **_Scenario 2_**
 
-Expected Output in the PersonList: the third person has the `GroupTag` with `tagName` of `Enemy` removed from its 
-`GroupTagSet`. 
+Context: `Person` with `ContactIndex 2` exists and has CS2345 as `ModuleTag` with a Monday class from 12PM to 1PM and it is his only `Lesson` of CS2345. `User` has CS2345 as `ModuleTag` as well.
+
+Command executed: `untag 2 m/CS2345 mon 12 13`
+
+Expected Output in the Person List: CS2345 12PM - 1PM `Lesson` on Monday is dropped. Moreover, the CS2345 `ModuleTag` is also removed from the Person Card of `Person` with `ContactIndex 2`.
+
+#### **_Scenario 3_**
+
+Context: `Person` with `ContactIndex 3` exists and has Enemy as `GroupTag`.
+
+Command executed: `untag 3 g/Enemy`
+
+Expected Output in the Person List: `Person` with `ContactIndex 3` will have Enemy `GroupTag` removed from its Person Card.
 
 ### **Filter persons by keywords**
 
-`find n/Albert`
+#### **_Scenario 1_**
+
+Context: None needed.
+
+Command executed: `find n/Albert`
 
 Expected Output in Person List: All contacts that have the word 'Albert' in their name.
 
-`find m/CS2103T`
+#### **_Scenario 2_**
+
+Context: None needed.
+
+Command executed: `find m/CS2103T`
 
 Expected Output in Person List: All contacts with CS2103T tag under `Module`.
 
-`find n/Albert m/CS2103T`
+#### **_Scenario 3_**
+
+Context: None needed.
+
+Command executed: `find n/Albert m/CS2103T`
 
 Expected Output in Person List: All contacts that have the word 'Albert' in their name and CS2103T tag under `Module`.
 
 ### **Arrange persons by criteria**
 
-`sort`
+#### **_Scenario 1_**
 
-Expected Output in Person List: Contacts are sorted by index.
+Context: None needed.
 
-`sort n/a`
+Command executed: `sort`
+
+Expected Output in Person List: Contacts are sorted by `ContactIndex` in ascending order.
+
+#### **_Scenario 2_**
+
+Context: None needed.
+
+Command executed: `sort n/a`
 
 Expected Output in Person List: Contacts are sorted by name in ascending order.
 
-`sort g/d n/`
+#### **_Scenario 3_**
+
+Context: None needed.
+
+Command executed: `sort g/d n/`
 
 Expected Output in Person List: Contacts are sorted by number of groups in descending order, with names as tiebreaks.
 
 ### **Generate a sample EduMate**
 
-`sample 50`
+#### **_Scenario 1_**
+
+Context: None needed.
+
+Command executed: `sample 50`
 
 Expected Output in Person List: A random sample of 50 contacts is generated. Running it multiple times should result in different EduMates.
 
-`sample 101`
+#### **_Scenario 2_**
 
-Expected Output in Command Output Box: Error message for Invalid Size.
+Context: None needed.
+
+Command executed: `sample 101`
+
+Expected Output in Command Response Box: Error message for Invalid Size.
 
 ### **Suggest meetup locations and times**
 
-`meet 1 4 5`
+#### **_Scenario 1_**
 
-Expected Output in Command Output Box: Suggestions on where and when to meet.
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
 
-`eat 1 4 5`
+Command executed: `meet 1 4 5`
 
-Expected Output in Command Output Box: Suggestions on where and when to eat.
+Expected Output in Command Response Box: Suggestions on where and when to meet.
 
-`study 1 4 5`
+#### **_Scenario 2_**
 
-Expected Output in Command Output Box: Suggestions on where and when to study.
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
+
+Command executed: `eat 1 4 5`
+
+Expected Output in Command Response Box: Suggestions on where and when to eat.
+
+#### **_Scenario 3_**
+
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
+
+Command executed: `study 1 4 5`
+
+Expected Output in Command Response Box: Suggestions on where and when to study.
+
+### **Organise and confirm meetings**
+
+#### **_Scenario 1_**
+
+Context: `Recommendation` with index 1 exists in Meet Up Recommendation Panel. Scheduled Meet Up Panel has no clashing meet ups with the `Recommendation` with index 1.
+
+Command executed: `organise 1`
+
+Expected Output in Scheduled Meet Up Panel: `Location`, `TimePeriod` and names of contacts with `ContactIndex 1, 4` and `5` will show.
+
+#### **_Scenario 2_**
+
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate` and they do not have any `Commitment` from 4PM - 6PM on Thursday.
+
+Command executed: `organise 1 4 5 d/THURSDAY T/16 18 l/Starbucks`
+
+Expected Output in Scheduled Meet Up Panel: `Location` of Starbucks, `TimePeriod` of 4PM - 6PM and names of contacts with `ContactIndex 1, 4` and `5` will show.
+
+### **Cancel scheduled meetings**
+
+#### **_Scenario 1_**
+
+Context: There is a scheduled `MeetUp` in the Scheduled Meet Up Panel of index 1, 2 and 3.
+
+Command executed: `unorganise 2`
+
+Expected Output in Scheduled Meet Up Panel: `MeetUp` of index 2 disappears, only left with `MeetUps` of index 1 and 3.
 
 ---
 

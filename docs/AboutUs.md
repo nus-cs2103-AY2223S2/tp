@@ -14,8 +14,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/russelltankaimin)]
 [[portfolio](team/russelltankaimin.md)]
 
-* Role: Developer
-* Responsibilities: TBD
+* Role: Developer, Team Lead
+* Responsibilities: `view` command, `TimingRecommender`, Deliverables, Deadlines, Gradle issues
 
 ### Izz Hafeez Bin Zek Hazley
 
@@ -24,7 +24,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/mynameizzhafeez)]
 [[portfolio](team/mynameizzhafeez.md)]
 
-* Role: Developer
+* Role: Lead Developer
 * Responsibilities: TBD
 
 ### Tan Li Thai Sean
@@ -35,7 +35,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/seanfirefox.md)]
 
 * Role: Developer
-* Responsibilities: TBD
+* Responsibilities: UX
 
 ### Wang Zichen
 
@@ -44,8 +44,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/zichen-3974)]
 [[portfolio](team/zichen-3974.md)]
 
-* Role: Developer
-* Responsibilities: TBD
+* Role: Developer, Creative Director
+* Responsibilities: UI
 
 ### Chon Jin Yong Kenny
 
@@ -55,4 +55,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/kennycjy.md)]
 
 * Role: Developer
-* Responsibilities: TBD
+* Responsibilities: Entire tagging/untagging functionality

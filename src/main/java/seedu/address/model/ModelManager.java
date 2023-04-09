@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -19,13 +20,18 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.MeetUpIndexHandler;
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.MeetUpIndex;
 import seedu.address.model.meetup.Participants;
+import seedu.address.model.meetup.exceptions.MeetUpClashException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -143,6 +149,31 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         eduMate.removePerson(target);
+        //check if person is in meetup list, if yes remove
+        updateMeetUpForDeletePerson(target);
+    }
+
+    /**
+     * Updates the scheduled meet up list to remove deleted persons.
+     * @param target The deleted person.
+     */
+    public void updateMeetUpForDeletePerson(Person target) {
+        Iterator<MeetUp> iterator = observableMeetUps.iterator();
+        while (iterator.hasNext()) {
+            MeetUp meetUp = iterator.next();
+            Participants participants = meetUp.getParticipants();
+            List<Person> personList = participants.getParticipants();
+
+            if (personList.contains(target)) {
+                personList.remove(target);
+                meetUp.setParticipants(new Participants(personList));
+            }
+        }
+        removeEmptyMeetUps();
+    }
+
+    public void removeEmptyMeetUps() {
+        this.eduMate.removeEmptyMeetUps();
     }
 
     @Override
@@ -158,8 +189,44 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         eduMate.setPerson(target, editedPerson);
+        updateMeetUpForEditPerson(target, editedPerson);
+        editParticipants(target, editedPerson);
+
+    }
+
+    public void editParticipants(Person target, Person editedPerson) {
+        eduMate.editParticipants(target, editedPerson);
+    }
+
+    /**
+     * Updates scheduled meet up list for participants with edited details.
+     * @param target Person to edit.
+     * @param editedPerson Edited person to replace person to edit.
+     */
+    public void updateMeetUpForEditPerson(Person target, Person editedPerson) {
+        Iterator<MeetUp> iterator = observableMeetUps.iterator();
+        while (iterator.hasNext()) {
+            MeetUp meetUp = iterator.next();
+            Participants participants = meetUp.getParticipants();
+            List<Person> participantsList = participants.getParticipants();
+            updatePersonList(participantsList, target, editedPerson, meetUp);
+        }
+    }
+
+    /**
+     * Updates participant list of a scheduled meet up if person to edit exists.
+     * @param participantsList List of persons participating in the meet up.
+     * @param target Person to be edited.
+     * @param editedPerson Person with edited details.
+     * @param meetUp The meet up to be updated.
+     */
+    public void updatePersonList(List<Person> participantsList, Person target,
+                                 Person editedPerson, MeetUp meetUp) {
+        if (participantsList.remove(target)) {
+            participantsList.add(editedPerson);
+            meetUp.setParticipants(new Participants(participantsList));
+        }
     }
 
     @Override
@@ -233,6 +300,7 @@ public class ModelManager implements Model {
     public Optional<Person> getPersonByIndex(ContactIndex index) {
         return indexHandler.getPersonByIndex(index);
     }
+
     @Override
     public ObservableList<Person> getObservablePersonList() {
         return observablePersons;
@@ -253,6 +321,7 @@ public class ModelManager implements Model {
     @Override
     public void updateObservablePersonList() {
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        observablePersons.setComparator(COMPARATOR_CONTACT_INDEX_PERSON.reversed());
         observablePersons.setComparator(COMPARATOR_CONTACT_INDEX_PERSON);
     }
 
@@ -299,7 +368,8 @@ public class ModelManager implements Model {
 
         return eduMate.equals(other.eduMate)
                 && userPrefs.equals(other.userPrefs)
-                && observablePersons.equals(other.observablePersons);
+                && observablePersons.equals(other.observablePersons)
+                && eduMateHistory.equals(other.eduMateHistory);
     }
 
     @Override
@@ -333,8 +403,64 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateObservableMeetUpList(Comparator<MeetUp> comparator) {
+        requireNonNull(comparator);
+        observableMeetUps.setComparator(comparator.reversed());
+        observableMeetUps.setComparator(comparator);
+    }
+
+    /**
+     * Adds a meet up if there are no schedule clashes.
+     */
     public void addMeetUp(MeetUp meetUp) {
+        //checks if meet up clashes with any scheduled meet ups
+        if (hasClashScheduled(meetUp)) {
+            throw new MeetUpClashException();
+        }
+
+        if (hasClashTimeTable(meetUp)) {
+            throw new MeetUpClashException();
+        }
+
         eduMate.addMeetUp(meetUp);
+    }
+
+    /**
+     * Checks if meet up clashes with already scheduled meet up.
+     * @return true if a clash exists, else false.
+     */
+    public boolean hasClashScheduled(MeetUp meetUp) {
+        List<TimePeriod> timePeriods = new ArrayList<>();
+        for (MeetUp meet : observableMeetUps) {
+            timePeriods.add(meet.getTimePeriod());
+        }
+        timePeriods.add(meetUp.getTimePeriod());
+        return TimeUtil.hasAnyClash(timePeriods);
+    }
+
+    /**
+     * Checks if meet up clashes with lessons
+     * @return true if a clash exists, else false.
+     */
+    public boolean hasClashTimeTable(MeetUp meetUp) {
+        //check if user timetable has clash
+        Timetable userTimeTable = getUser().getTimetable();
+        Commitment commitment = new Commitment(meetUp.getLocation(), meetUp.getTimePeriod());
+        if (!userTimeTable.canFitCommitment(commitment)) {
+            return true;
+        }
+
+        //check if participants timetable have clash
+        Participants participants = meetUp.getParticipants();
+        List<Person> personList = participants.getParticipants();
+
+        for (Person person : personList) {
+            Timetable participantTimetable = person.getTimetable();
+            if (!participantTimetable.canFitCommitment(commitment)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -355,12 +481,6 @@ public class ModelManager implements Model {
     @Override
     public Optional<MeetUp> getMeetUpByIndex(MeetUpIndex meetUpIndex) {
         return meetUpIndexHandler.getMeetUpByIndex(meetUpIndex);
-    }
-
-    @Override
-    public boolean hasMeetUp(MeetUp meetUp) {
-        requireNonNull(meetUp);
-        return eduMate.hasMeetUp(meetUp);
     }
 
 }

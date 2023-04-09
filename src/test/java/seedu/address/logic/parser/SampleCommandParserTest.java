@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -13,20 +12,17 @@ public class SampleCommandParserTest {
 
     @Test
     public void parse_negativeSize_throwsParseException() {
-        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                SampleCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1", String.format(SampleCommandParser.MESSAGE_INVALID_SIZE));
     }
 
     @Test
     public void parse_exceedSize_throwsParseException() {
-        assertParseFailure(parser, "101", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                SampleCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "101", String.format(SampleCommandParser.MESSAGE_INVALID_SIZE));
     }
 
     @Test
     public void parse_nonIntSize_throwsParseException() {
-        assertParseFailure(parser, "em", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                SampleCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "em", String.format(ParserUtil.MESSAGE_INVALID_INT));
     }
 
     @Test
