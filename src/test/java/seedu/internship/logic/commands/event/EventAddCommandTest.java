@@ -1,11 +1,11 @@
-package seedu.internship.logic.commands;
+package seedu.internship.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_LIST;
 import static seedu.internship.testutil.Assert.assertThrows;
+import static seedu.internship.testutil.TypicalInternships.ML1;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -14,77 +14,106 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.internship.commons.core.GuiSettings;
+import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
-import seedu.internship.model.InternshipCatalogue;
+import seedu.internship.model.EventCatalogue;
 import seedu.internship.model.Model;
 import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.ReadOnlyUserPrefs;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
-import seedu.internship.testutil.InternshipBuilder;
-import seedu.internship.testutil.TypicalInternships;
+import seedu.internship.testutil.EventBuilder;
+import seedu.internship.testutil.TypicalEvents;
 
-
-public class AddCommandTest {
-
+public class EventAddCommandTest {
     @Test
-    public void constructor_nullInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new EventAddCommand(null));
     }
 
     @Test
     public void execute_internshipAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingInternshipAdded modelStub = new ModelStubAcceptingInternshipAdded();
-        Internship validInternship = new InternshipBuilder().build();
-        CommandResult commandResult = new AddCommand(validInternship).execute(modelStub);
+        EventAddCommandTest.ModelStubAcceptingEventAdded modelStub =
+                new EventAddCommandTest.ModelStubAcceptingEventAdded();
+        Event validEvent = new EventBuilder().build();
+        CommandResult commandResult = new EventAddCommand(validEvent).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validInternship), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validInternship), modelStub.internshipsAdded);
+        assertEquals(String.format(EventAddCommand.MESSAGE_SUCCESS, validEvent), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validEvent), modelStub.eventsAdded);
     }
 
     @Test
-    public void execute_duplicateInternship_throwsCommandException() {
-        Internship validInternship = new InternshipBuilder().build();
-        AddCommand addCommand = new AddCommand(validInternship);
-        ModelStub modelStub = new ModelStubWithInternship(validInternship);
+    public void execute_duplicateEvent_throwsCommandException() {
+        Event validEvent = new EventBuilder().build();
+        EventAddCommand addCommand = new EventAddCommand(validEvent);
+        EventAddCommandTest.ModelStub modelStub = new EventAddCommandTest.ModelStubWithEvent(validEvent);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP, () ->
+        assertThrows(CommandException.class, EventAddCommand.MESSAGE_DUPLICATE_EVENT, () ->
                 addCommand.execute(modelStub));
     }
 
     @Test
+    public void execute_eventWithoutSelecting_throwsCommandException() {
+        Event validEvent = new EventBuilder().build();
+        EventAddCommand addCommand = new EventAddCommand(validEvent);
+        EventAddCommandTest.ModelStub modelStub = new EventAddCommandTest.ModelStubWithEvent(validEvent);
+        modelStub.clearSelectedInternship();
+        assertThrows(CommandException.class, EventAddCommand.MESSAGE_NO_INTERNSHIP_SELECTED, () ->
+                addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_eventWithEndBeforeStart_throwsCommandException() {
+        Event validEvent = new EventBuilder().build();
+        Event invalidEvent = new EventBuilder()
+                .withStart(validEvent.getEnd().getNumericDateTimeString())
+                .withEnd(validEvent.getStart().getNumericDateTimeString())
+                .build();
+        EventAddCommand addCommand = new EventAddCommand(invalidEvent);
+        EventAddCommandTest.ModelStub modelStub = new EventAddCommandTest.ModelStubWithEvent(invalidEvent);
+
+        assertThrows(CommandException.class, EventAddCommand.MESSAGE_END_BEFORE_START, () ->
+                addCommand.execute(modelStub));
+    }
+
+
+    @Test
     public void equals() {
-        Internship ml2 = TypicalInternships.ML2;
-        Internship se3 = TypicalInternships.SE3;
-        AddCommand addML2Command = new AddCommand(ml2);
-        AddCommand addSE3Command = new AddCommand(se3);
+        Event ml2 = TypicalEvents.EM11;
+        Event se3 = TypicalEvents.EMD1;
+        EventAddCommand addEm11Command = new EventAddCommand(ml2);
+        EventAddCommand addEmd1Command = new EventAddCommand(se3);
 
         // same object -> returns true
-        assertTrue(addML2Command.equals(addML2Command));
+        assertTrue(addEm11Command.equals(addEm11Command));
 
         // same values -> returns true
-        AddCommand addML2CommandCopy = new AddCommand(ml2);
-        assertTrue(addML2Command.equals(addML2CommandCopy));
+        EventAddCommand addEM11CommandCopy = new EventAddCommand(ml2);
+        assertTrue(addEm11Command.equals(addEM11CommandCopy));
 
 
         // different types -> returns false
-        assertFalse(addML2Command.equals(1));
+        assertFalse(addEm11Command.equals(1));
 
 
         // null -> returns false
-        assertFalse(addML2Command.equals(null));
+        assertFalse(addEm11Command.equals(null));
 
         // different internship -> returns false
-        assertFalse(addML2Command.equals(addSE3Command));
+        assertFalse(addEm11Command.equals(addEmd1Command));
     }
 
     /**
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        final ArrayList<Event> eventsAdded = new ArrayList<>();
+        private Internship selectedInternship = ML1;
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -196,7 +225,7 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Event> getFilteredEventList() {
-            throw new AssertionError("This method should not be called.");
+            return FXCollections.observableList(eventsAdded);
         }
 
         @Override
@@ -211,48 +240,48 @@ public class AddCommandTest {
 
         @Override
         public void clearSelectedInternship() {
-            throw new AssertionError("This method should not be called.");
+            this.selectedInternship = null;
         }
 
         @Override
         public boolean hasSelectedInternship() {
-            return false;
+            return this.selectedInternship != null;
         }
 
+        //A Stub that Always returns ML1 Internship
         @Override
         public Internship getSelectedInternship() {
-            return null;
+            return this.selectedInternship;
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single event.
      */
-    private class ModelStubWithInternship extends ModelStub {
-        private final Internship internship;
+    private class ModelStubWithEvent extends EventAddCommandTest.ModelStub {
+        private final Event event;
 
-        ModelStubWithInternship(Internship internship) {
-            requireNonNull(internship);
-            this.internship = internship;
+        ModelStubWithEvent(Event event) {
+            requireNonNull(event);
+            this.event = event;
         }
 
         @Override
-        public boolean hasInternship(Internship internship) {
-            requireNonNull(internship);
-            return this.internship.isSameInternship(internship);
+        public boolean hasEvent(Event event) {
+            requireNonNull(event);
+            return this.event.isSameEvent(event);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingInternshipAdded extends ModelStub {
-        final ArrayList<Internship> internshipsAdded = new ArrayList<>();
+    private class ModelStubAcceptingEventAdded extends EventAddCommandTest.ModelStub {
 
         @Override
-        public boolean hasInternship(Internship internship) {
-            requireNonNull(internship);
-            return internshipsAdded.stream().anyMatch(internship::isSameInternship);
+        public boolean hasEvent(Event event) {
+            requireNonNull(event);
+            return eventsAdded.stream().anyMatch(event::isSameEvent);
         }
 
         @Override
@@ -265,20 +294,15 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Event> getFilteredEventList() {
-            return EMPTY_UNIQUE_EVENTS_LIST;
+        public void addEvent(Event event) {
+            requireNonNull(event);
+            eventsAdded.add(event);
         }
 
         @Override
-        public void addInternship(Internship internship) {
-            requireNonNull(internship);
-            internshipsAdded.add(internship);
-        }
-
-        @Override
-        public ReadOnlyInternshipCatalogue getInternshipCatalogue() {
-            return new InternshipCatalogue();
+        public ReadOnlyEventCatalogue getEventCatalogue() {
+            return new EventCatalogue();
         }
     }
-
 }
+

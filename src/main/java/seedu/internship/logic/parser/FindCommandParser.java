@@ -3,6 +3,7 @@ package seedu.internship.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
@@ -43,6 +44,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             filterInternshipDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            filterInternshipDescriptor.setDescription(
+                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(filterInternshipDescriptor::setTags);
         if (!filterInternshipDescriptor.isAnyFieldEdited()) {

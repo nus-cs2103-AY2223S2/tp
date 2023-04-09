@@ -1,7 +1,17 @@
 package seedu.internship.model;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalEvents.EM11;
+import static seedu.internship.testutil.TypicalEvents.EM21;
+import static seedu.internship.testutil.TypicalEvents.VALID_END_EM11;
+import static seedu.internship.testutil.TypicalEvents.VALID_EVENT_DESCRIPTION_EM11;
+import static seedu.internship.testutil.TypicalEvents.VALID_INTERNSHIP_EM11;
+import static seedu.internship.testutil.TypicalEvents.VALID_NAME_EM11;
+import static seedu.internship.testutil.TypicalEvents.VALID_START_EM11;
 import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
 
 import java.util.Arrays;
@@ -9,7 +19,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -24,7 +33,7 @@ public class EventCatalogueTest {
 
     @Test
     public void constructor() {
-        Assertions.assertEquals(Collections.emptyList(), eventCatalogue.getEventList());
+        assertEquals(Collections.emptyList(), eventCatalogue.getEventList());
     }
 
 
@@ -37,10 +46,24 @@ public class EventCatalogueTest {
     public void resetData_withValidReadOnlyEventCatalogue_replacesData() {
         EventCatalogue newData = getTypicalEventCatalogue();
         eventCatalogue.resetData(newData);
-        Assertions.assertEquals(newData, eventCatalogue);
+        assertEquals(newData, eventCatalogue);
     }
 
     @Test
+    public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
+        // Two events with the same identity fields
+        //Needs to be changed when we have valid event feilds
+        Event editedEM11 = new EventBuilder()
+                .withName(VALID_NAME_EM11)
+                .withStart(VALID_START_EM11)
+                .withEnd(VALID_END_EM11)
+                .withDescription(VALID_EVENT_DESCRIPTION_EM11)
+                .withInternship(VALID_INTERNSHIP_EM11).build();
+
+        List<Event> newEvents = Arrays.asList(EM11, editedEM11);
+        EventCatalogueTest.EventCatalogueStub newData = new EventCatalogueTest.EventCatalogueStub(newEvents);
+    }
+
     public void resetData_withDuplicateInterviewEvents_throwsDuplicateEventException() {
         Event event = new EventBuilder().withName("e1").withStart("14/04/2023 1200").withEnd("14/04/2023 1500")
                 .withDescription("").build();
@@ -50,10 +73,10 @@ public class EventCatalogueTest {
         List<Event> newEvents = Arrays.asList(event, duplicate);
         EventCatalogueStub newData = new EventCatalogueStub(newEvents);
 
+
         assertThrows(DuplicateEventException.class, () -> eventCatalogue.resetData(newData));
     }
 
-    @Test
     public void resetData_withDuplicateDeadlineEvents_throwsDuplicateEventException() {
         Event event = new EventBuilder().withName("d1").withStart("14/04/2023 2359").withEnd("14/04/2023 2359")
                 .withDescription("").build();
@@ -73,13 +96,13 @@ public class EventCatalogueTest {
 
     @Test
     public void hasEvent_eventNotInEventCatalogue_returnsFalse() {
-        Assertions.assertFalse(eventCatalogue.hasEvent(EM11));
+        assertFalse(eventCatalogue.hasEvent(EM11));
     }
 
     @Test
     public void hasEvent_eventInEventCatalogue_returnsTrue() {
-        eventCatalogue.addEvent(EM11);
-        Assertions.assertTrue(eventCatalogue.hasEvent(EM11));
+        eventCatalogue.addEvent(EM21);
+        assertTrue(eventCatalogue.hasEvent(EM21));
     }
 
     @Test
@@ -94,8 +117,8 @@ public class EventCatalogueTest {
                         .withDescription("").build();
         eventCatalogue.addEvent(EM11);
         eventCatalogue.setEvent(EM11, modified);
-        Assertions.assertTrue(eventCatalogue.hasEvent(modified));
-        Assertions.assertTrue(!eventCatalogue.hasEvent(EM11));
+        assertTrue(eventCatalogue.hasEvent(modified));
+        assertTrue(!eventCatalogue.hasEvent(EM11));
     }
 
     @Test

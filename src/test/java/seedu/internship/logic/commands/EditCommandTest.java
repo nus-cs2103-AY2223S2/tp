@@ -58,9 +58,9 @@ public class EditCommandTest {
 
         expectedModel.updateFilteredEventList(new EventByInternship(expectedModel.getSelectedInternship()));
         ObservableList<Event> events = expectedModel.getFilteredEventList();
-        CommandResult expectedCommandResult = new CommandResult(
-                String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
-                ResultType.SHOW_INFO, editedInternship, events);
+        CommandResult expectedCommandResult =
+                new CommandResult(String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS,
+                        editedInternship), ResultType.SHOW_INFO, editedInternship, events);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
@@ -95,7 +95,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noChangesMadeUnfilteredList_failiure() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, new EditInternshipDescriptor());
         Internship editedInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
 
@@ -108,12 +108,8 @@ public class EditCommandTest {
         expectedModel.updateSelectedInternship(editedInternship);
 
         expectedModel.updateFilteredEventList(new EventByInternship(expectedModel.getSelectedInternship()));
-        ObservableList<Event> events = expectedModel.getFilteredEventList();
-        CommandResult expectedCommandResult = new CommandResult(
-                String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
-                ResultType.SHOW_INFO, editedInternship, events);
 
-        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_INTERNSHIP_UNCHANGED);
     }
 
     @Test
@@ -138,9 +134,10 @@ public class EditCommandTest {
 
         expectedModel.updateFilteredEventList(new EventByInternship(expectedModel.getSelectedInternship()));
         ObservableList<Event> events = expectedModel.getFilteredEventList();
-        CommandResult expectedCommandResult = new CommandResult(
-                String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
-                ResultType.SHOW_INFO, editedInternship, events);
+
+        CommandResult expectedCommandResult =
+                new CommandResult(String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
+                        ResultType.SHOW_INFO, editedInternship, events);
 
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
