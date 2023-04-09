@@ -58,8 +58,7 @@ Given below are my contributions to the project.
   [Forum Dashboard](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/forum-activities.html).
   * Reported bugs and suggestions for other teams in the class: [Mock PE](https://github.com/BoAi01/ped/issues).
 
-* **Tools**: NA
 
-[//]: # (  * Integrated a third party library &#40;Natty&#41; to the project &#40;[\#42]&#40;&#41;&#41;)
-[//]: # (  * Integrated a new Github plugin &#40;CircleCI&#41; to the team repo)
+
+
 
