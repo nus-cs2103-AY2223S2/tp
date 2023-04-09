@@ -5,6 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":DengueHotspotTrackerParser" as DengueHotspotTrackerParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "p:FindPredicate" as FindPredicate LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -13,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find n/ Aeron")
+[-> LogicManager : execute("find n/Aeron")
 activate LogicManager
 
-LogicManager -> DengueHotspotTrackerParser : parseCommand("find n/ Aeron")
+LogicManager -> DengueHotspotTrackerParser : parseCommand("find n/Aeron")
 activate DengueHotspotTrackerParser
 
 create FindCommandParser
@@ -26,11 +27,19 @@ activate FindCommandParser
 FindCommandParser --> DengueHotspotTrackerParser
 deactivate FindCommandParser
 
-DengueHotspotTrackerParser -> FindCommandParser : parse("n/ Aeron")
+DengueHotspotTrackerParser -> FindCommandParser : parse("n/Aeron")
 activate FindCommandParser
 
+
+create FindPredicate
+FindCommandParser -> FindPredicate
+activate FindPredicate
+
+FindPredicate  --> FindCommandParser : p
+deactivate FindPredicate
+
 create FindCommand
-FindCommandParser -> FindCommand
+FindCommandParser -> FindCommand : FindCommand(p)
 activate FindCommand
 
 FindCommand --> FindCommandParser : f
@@ -40,7 +49,6 @@ FindCommandParser --> DengueHotspotTrackerParser : f
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FindCommandParser -[hidden]-> DengueHotspotTrackerParser
-destroy FindCommandParser
 
 DengueHotspotTrackerParser --> LogicManager : f
 deactivate DengueHotspotTrackerParser
@@ -48,7 +56,7 @@ deactivate DengueHotspotTrackerParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : updateFilteredPersonList(Predicate)
+FindCommand -> Model : updateFilteredPersonList(p)
 activate Model
 
 Model --> FindCommand

@@ -71,7 +71,7 @@ public class CsvUtil {
      * @param header takes in the String array for the data header
      * @throws IOException if there was an error during writing to the file
      */
-    public static <T> void saveCsvFile(List<String[]> data, Path filePath, String[] header)
+    public static void saveCsvFile(List<String[]> data, Path filePath, String[] header)
             throws IOException {
         requireNonNull(filePath);
         requireNonNull(data);
@@ -169,5 +169,6 @@ public class CsvUtil {
         csvWriter.writeNext(header);
         csvWriter.writeAll(data);
         csvWriter.close();
+        writer.close();
     }
 }

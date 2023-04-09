@@ -1,5 +1,7 @@
 package seedu.dengue.model.predicate;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.range.Range;
@@ -18,6 +20,7 @@ public class RangeContainsPersonPredicate extends PredicateUtil<Person> {
      * @param range A range of {@link ContinuousData}.
      */
     public RangeContainsPersonPredicate(Range<? extends ContinuousData> range) {
+        requireNonNull(range);
         this.range = range;
     }
 

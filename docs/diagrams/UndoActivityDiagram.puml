@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes undo n;
+if () then ([n contains non-digits \nother than whitespaes)])
+    :Displays error message;
+    stop
+else ([else])
+    if () then ([n is not an empty string or whitespace])
+        :Argument is n;
+    else ([else])
+        :Argument is 1;
+    endif
+    if () then ([can undo])
+        :Undo once;
+        if () then ([enough undos available])
+        :Undo argument - 1 number of times;
+        else ([else])
+        :Undo as many times possible (0 inclusive);
+        endif
+        stop
+    else ([else])
+        :Displays error message;
+        stop
+
+
+@enduml

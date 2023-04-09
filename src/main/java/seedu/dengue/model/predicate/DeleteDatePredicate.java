@@ -1,5 +1,7 @@
 package seedu.dengue.model.predicate;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 
 import seedu.dengue.logic.parser.exceptions.ParseException;
@@ -24,6 +26,8 @@ public class DeleteDatePredicate extends PredicateUtil<Person> {
      */
 
     public DeleteDatePredicate(Optional<Date> date, Range<Date> range) {
+        requireNonNull(date);
+        requireNonNull(range);
         this.date = date;
         this.range = range;
     }

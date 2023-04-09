@@ -20,6 +20,7 @@ Class Postal
 Class Date
 Class Variant
 Class Overview
+Class "<<enumeration>>\nDengueVariant" as DengueVariant
 }
 
 Class HiddenOutside #FFFFFF
@@ -41,6 +42,7 @@ Person *--> "1" Age
 Person *--> "1" Postal
 Person *--> "1" Date
 Person *--> "*" Variant
+Variant -up-> "1" DengueVariant
 
 Name -[hidden]right- Age
 Age -[hidden]right- Postal

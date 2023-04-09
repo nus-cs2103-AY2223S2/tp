@@ -9,7 +9,9 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedDengueHotspotTracker" as VersionedDengueHotspotTracker MODEL_COLOR
+end box
+box Storage #6699FF
+participant ":TemporaryMemory" as TemporaryMemory #3987FE
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
@@ -30,15 +32,19 @@ deactivate DengueHotspotTrackerParser
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoDengueHotspotTracker()
+UndoCommand -> Model : undo()
 activate Model
 
-Model -> VersionedDengueHotspotTracker : undo()
-activate VersionedDengueHotspotTracker
+Model -> TemporaryMemory : undo()
+activate TemporaryMemory
 
-VersionedDengueHotspotTracker -> VersionedDengueHotspotTracker :resetData(ReadOnlyDengueHotspotTracker)
-VersionedDengueHotspotTracker --> Model :
-deactivate VersionedDengueHotspotTracker
+TemporaryMemory -> TemporaryMemory :undo()
+activate TemporaryMemory
+
+TemporaryMemory -> TemporaryMemory :temporaryPop()
+deactivate TemporaryMemory
+TemporaryMemory --> Model :
+deactivate TemporaryMemory
 
 Model --> UndoCommand
 deactivate Model
@@ -46,7 +52,7 @@ deactivate Model
 UndoCommand --> LogicManager : result
 deactivate UndoCommand
 UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
+
 
 [<--LogicManager
 deactivate LogicManager

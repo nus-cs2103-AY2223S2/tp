@@ -32,14 +32,27 @@ Given below are my contributions to the project.
     used throughout the rest of the project. Range validation also had to be implemented.
 * **New Feature:** Added the ability to sort cases by name, age, postal code, and date.
   * Justification: This features allows users another avenue to get an overview of the cases by viewing them in a natural sorted order.
+* **New Feature:** Added the ability to clear the displayed list (rather than only the entire list).
+  * Justification: This feature allows users to delete cases in batches, most likely after using the `find` command,
+    rather than having to do so one at a time. To implement this feature, the original `clear` command was modified,
+    as the team felt that the original behaviour of the `clear` command was not useful and could be generalised to
+    clearing the current displayed list, rather than the entire list.
 * **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=valerietanhx)
 * **Project management:**
-  * Managed issue tracking for `v1.3`–`v1.4` on GitHub
+  * Managed issue tracking for `v1.3`–`v1.4` on GitHub, creating and assigning issues to team members and milestones accordingly
+  * Filmed demo video for `v1.2`
+  * Took meeting minutes in team document
 * **Documentation:**
   * User Guide
-    * Added documentation for the multi-index `delete`, `delete`-by-date, `delete`-by-date-range, and `sort` features
+    * Added documentation for the `clear`, multi-index `delete`, `delete`-by-date, `delete`-by-date-range, and `sort` features
     * Improved grammar, organisation, and clarity of documentation ([#243](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/243))
   * Developer Guide
-    * Added implementation details and UML diagrams of the multi-index `delete` and `sort` features
+    * Added implementation details and UML diagrams for the multi-index `delete`, `delete`-by-date, `delete`-by-date-range, and `sort` features
+    * Added Planned Enhancements and Effort appendix
+    * Added user stories
+    * Added use cases for the `add`, `edit`, `delete`, and `sort` commands
+    * Added instructions for manually testing the `delete` command
+    * Updated class diagrams to reflect DengueHotspotTracker architecture
+    * Organised the Developer Guide and added placeholders for team members to easily add their own features' content
 * **Community:**
-  * PRs reviewed (with non-trivial review comments): [#141](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/141)
+  * PRs reviewed (with non-trivial review comments): [#141](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/141), [#255](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/255)

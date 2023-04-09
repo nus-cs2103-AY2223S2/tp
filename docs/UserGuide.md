@@ -22,7 +22,7 @@ The National Environmental Agency (NEA) of Singapore is responsible for monitori
 To aid in this task, a new application called DengueHotspotTracker (DHT) has been developed, which allows NEA to track all reported cases of dengue fever in Singapore.
 
 This application serves as a case tracker, containing the name, postal code, age, date, and (optional) variant type
-of the reported case. The user-friendly interface provides an easy-to-view overview of the cases, enabling NEA to 
+of the reported case. The user-friendly interface provides an easy-to-view overview of the cases, enabling NEA to
 monitor the trends of the disease in different areas, spread in different age groups, and spread of
 different variant types of dengue. Overall, this application would allow NEA to stay informed about the latest trends
 and take proactive measures to prevent the spread of the disease.
@@ -53,24 +53,22 @@ so you can improve your knowledge on the use of DengueHotspotTracker.
 We recommend that you follow along the instructions to download and use DengueHotspotTracker with the commands introduced in this guide.
 2. Do have a glance at [Conventions](#conventions) to understand the symbols and formatting used across this guide.
 3. Now that you have had an initial look at DengueHotspotTracker, we have a detailed listing of how to understand the user interface [here](#navigating-the-user-interface).
-4. Now that you understand how to use the interface of DengueHotspotTracker, you are ready to take a deeper dive into our commands. 
+4. Now that you understand how to use the interface of DengueHotspotTracker, you are ready to take a deeper dive into our commands.
 We have some general guidelines on what user input is considered as valid. You should refer to [commands](#commands) to get a detailed coverage of the available commands.
 
 ### Conventions
 
-Symbols | Meaning
---------|------------------
-:information_source: | This is general information that improves your background understanding of this guide as well as DengueHotspotTracker.
-:bulb: | This is additional information/tips that may help you to use DengueHotspotTracker more effectively.
-:exclamation: | This is something important that you should be aware of.
+| Symbols              | Meaning                                                                                                                |
+|----------------------|------------------------------------------------------------------------------------------------------------------------|
+| :information_source: | This is general information that improves your background understanding of this guide as well as DengueHotspotTracker. |
+| :bulb:               | This is additional information/tips that may help you to use DengueHotspotTracker more effectively.                    |
+| :exclamation:        | This is something important that you should be aware of.                                                               |
 
-
-Formatting | Meaning
---------|------------------
-*italics* | This is used to give slight emphasis to certain words.
-**boldface** | This is used to emphasise certain words. The degree of emphasis is stronger than *italics*.
-`code` | This is used to denote user input or special text.
-
+| Formatting   | Meaning                                                                                     |
+|--------------|---------------------------------------------------------------------------------------------|
+| *italics*    | This is used to give slight emphasis to certain words.                                      |
+| **boldface** | This is used to emphasise certain words. The degree of emphasis is stronger than *italics*. |
+| `code`       | This is used to denote user input or special text.                                          |
 
 ## Quick Start
 
@@ -95,17 +93,17 @@ open the help window.<br>
    * `add n/John Tan p/543299 d/2023 February 13 a/20`: Adds a case named `John Tan` to DengueHotspotTracker.
 
    * `delete 3`: Deletes the third case shown in the current list.
-   
+
    * `find n/John`: Finds all cases whose name contains `John` (non-case sensitive) and shows it in a filtered list.
 
    * `clear`: Deletes all cases shown in the current list.
 
    * `exit`: Exits the app.
 
-   * `undo 5`: Undoes five actions.
+   * `undo 5`: Undoes up to five actions.
 
-   * `redo 5`: Redoes five actions.
-   
+   * `redo 5`: Redoes up to five actions.
+
 6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -153,24 +151,25 @@ Item | Description
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+Please refer to the list of [commands](#Commands) for a full explanation.
 
-| Action       | Format, Examples                                                                                                                                                                                                                                                                            |
-|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                                                                                             |
-| **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                                                                                                  |
-| **Delete**   | `delete INDEX...` or <code>delete { d/DATE &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                                                                                                                         |
-| **Clear**    | `clear`                                                                                                                                                                                                                                                                                     |
-| **List**     | `list`                                                                                                                                                                                                                                                                                      |
-| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \\</code><br><code>; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
-| **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                                                                                              |
-| **Undo**     | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                                                                                          |
-| **Redo**     | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                                                                                          |
-| **Overview** | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                                                                                     |
-| **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                                                                                      |
-| **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                                                                                        |
-| **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                                                                                        |
-| **Help**     | `help`                                                                                                                                                                                                                                                                                      |
-| **Exit**     | `exit`                                                                                                                                                                                                                                                                                      |
+| Action       | Format, Examples                                                                                                                                                                                                       |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                        |
+| **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                             |
+| **Delete**   | `delete INDEX...` or <code>delete d/DATE</code> or <code>delete [sd/START_DATE] [ed/END_DATE] (at least 1)</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                           |
+| **Clear**    | `clear`                                                                                                                                                                                                                |
+| **List**     | `list`                                                                                                                                                                                                                 |
+| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... [a/AGE] [d/DATE] (at least 1, a/ and d/ tags can be replaced by sa/,ea/ or sd/,ed/ tags)</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                         |
+| **Undo**     | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                     |
+| **Redo**     | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                     |
+| **Overview** | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                |
+| **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                 |
+| **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                   |
+| **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                   |
+| **Help**     | `help`                                                                                                                                                                                                                 |
+| **Exit**     | `exit`                                                                                                                                                                                                                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -236,7 +235,7 @@ Aside from Variants, data fields must contain at least one non-whitespace charac
   * Year:
     * 4-digit years `YYYY`
   * Month:
-    * 2-digit months `MM` 
+    * 2-digit months `MM`
     * 3-letter months `MMM`
     * Fully-spelled months `MMMM`
   * Day:
@@ -278,7 +277,7 @@ Adds a dengue patient to DengueHotspotTracker.
 Format: `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`
 
 Examples:
-* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1` 
+* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
   adds a case with the name `John Tan`, postal code `543299`, date `2023-02-13`,
   age `20`, and variant `DENV1` into DengueHotSpotTracker.
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
@@ -493,14 +492,14 @@ Format: `import [FILENAME]`
 
 * The dengue case list imported must be valid. Some criteria are as follows:
     * No duplicates
-    * All data fields must be [valid](#Valid-data-field-inputs)
+    * All data fields must be [valid](#valid-data-field-inputs)
     * No missing fields
 * The CSV must begin with a header that includes the names of each column.
 
 <div markdown="span" class="alert alert-warning">
 
 **:exclamation: Caution:**
-As DengueHotspotTracker does not allow cases with duplicate **names, postal codes, and ages**, 
+As DengueHotspotTracker does not allow cases with duplicate **names, postal codes, and ages**,
 please ensure that the cases you are importing do not conflict with existing data within DengueHotspotTracker.
 This applies to **all** cases, not just those currently displayed.
 
@@ -591,4 +590,5 @@ empty data file at the next run.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous DengueHotspotTracker home folder.
+the data of your previous DengueHotspotTracker home folder. Alternatively, transfer a suitable csv file to the other
+computer and read it in.

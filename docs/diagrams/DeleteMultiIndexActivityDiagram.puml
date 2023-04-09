@@ -1,16 +1,19 @@
 @startuml
+skinparam defaultTextAlignment center
+@startuml
+skinparam defaultTextAlignment center
 
 start
-:User requests to delete multiple indexes;
-:Check validity of each index;
-
+:User enters delete cases\nby multiple indexes command;
+if () then ([indexes and dates\nnot mixed])
 if () then ([all indexes valid])
-    :Delete cases associated with each index;
-    :Display success message;
+    :Deletes cases associated\nwith each index;
+    :Displays\nsuccess message;
     stop
 else ([else])
-    :Throw exception;
-    stop
 endif
-
+else ([else])
+endif
+:Displays error message;
+stop
 @enduml
