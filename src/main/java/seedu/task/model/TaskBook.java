@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
 
+//@@author
 /**
  * Wraps all data at the task-book level
  * Duplicates are not allowed (by .isSameTask comparison)
@@ -94,10 +95,15 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.remove(key);
     }
 
+    //@@author lywich
+    /**
+     * Sorts the {@code TaskBook}.
+     */
     public void sortTask() {
         tasks.sort();
     }
 
+    //@@author joyngjr
     /**
      * Generates a plan from this {@code TaskBook}.
      * {@code Planner} must exist in the task book.
@@ -108,6 +114,7 @@ public class TaskBook implements ReadOnlyTaskBook {
 
     //// util methods
 
+    //@@author
     @Override
     public String toString() {
         return tasks.asUnmodifiableObservableList().size() + " tasks";
