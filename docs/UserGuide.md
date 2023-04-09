@@ -342,7 +342,7 @@ Navigate to the root context from any context.
 
 Navigates from the root context to a module context.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module to navigate to
   - Must belong to an existing module in Le Tracker
 
 #### Navigate from Module Context to Lecture Context
@@ -351,7 +351,7 @@ Navigates from the root context to a module context.
 
 Navigates from a module context to a lecture context.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module of the current working context
 
 #### Navigate Directly
@@ -360,9 +360,9 @@ Navigates from a module context to a lecture context.
 
 Navigates directly to the specified module or lecture context.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module specified in `module_code`
 
 #### Navigate Backwards
