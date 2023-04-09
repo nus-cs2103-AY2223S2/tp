@@ -208,7 +208,6 @@ Required Information:
 * `DESC`: Description of the meeting to add
 * `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
-* `TAGS`: Optional labels to put for the meeting
 
 Example:
 
@@ -218,6 +217,7 @@ Example:
 Notes:
 * Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
 * Meeting must not conflict in timing with other meetings scheduled for the day.
+* Meetings must not be scheduled before the current date and time.
 
 * ![result for meetingAdd 3 md/Meeting with Fariq ms/10-06-2023 12:30 me/10-06-2023 13:30](images/meetingAdd.png)
 
@@ -244,7 +244,7 @@ Note:
 * Doing a meetingFind `CLIENT_INDEX` is necessary to get the meeting index required. Using the meeting index in the initially displayed page or the page after listMeeting may result in an incorrect meeting update.
 
 
-![result for meetingRemove 3 1](images/RemoveMeeting.png)
+![result for meetingRemove 3 1](images/Removemeeting.png)
 
 ### Updating a meeting : `meetingUpdate`
 
