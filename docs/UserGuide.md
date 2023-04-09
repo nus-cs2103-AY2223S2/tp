@@ -304,7 +304,7 @@ For participation, you can make the following calls:
   Except for the special situation where the attendance is not marked, then the participation points will be `-1` <br>
   If users are inserting participation points, only a integer from `0` to `700` (inclusive of both `0` and `700`) is allowed
 * When the attendance of a student for a week is marked (not present -> present for the week) <br>
-  TAA will automatically change the participation points of the student changes from `-1` to `0`
+  TAA will automatically change the participation points of the student from `-1` to `0`
 * Unmarking a student's attendance automatically changes the participation points of a student to `-1`
 * The participation points displayed in Class List portion of the TAA GUI is the average points, which is calculated using `Total participation points` / `Number of weeks present` <br>
   `Total participation points` is the sum of all participation points for weeks when the student is present <br>
