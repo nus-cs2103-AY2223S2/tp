@@ -10,16 +10,9 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
-Class ExportProgressWindow
-Class ExportWindow
-Class ImportWindow
 Class ResultDisplay
-Class StudentListPanel
-Class StudentCard
-Class TaskListPanel
-Class TaskCard
-Class ScoreListPanel
-Class ScoreCard
+Class PersonListPanel
+Class PersonCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -37,51 +30,32 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down-> "1" CommandBox
+MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" StudentListPanel
-MainWindow *-down-> "1" TaskListPanel
-MainWindow *-down-> "1" ScoreListPanel
+MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
-MainWindow --> "0..1" ExportProgressWindow
-MainWindow --> "0..1" ExportWindow
-MainWindow --> "0..1" ImportWindow
 
 PersonListPanel -down-> "*" PersonCard
-TaskListPanel -down-> "*" TaskCard
-ScoreListPanel -down-> "*" ScoreCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-StudentListPanel --|> UiPart
-StudentCard --|> UiPart
-TaskListPanel --|> UiPart
-TaskCard --|> UiPart
-ScoreListPanel --|> UiPart
-ScoreCard --|> UiPart
+PersonListPanel --|> UiPart
+PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-StudentCard ..> Model
-TaskCard ..> Model 
-ScoreCard ..> Model 
+PersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-ScoreListPanel -[hidden]left- TaskListPanel
-TaskListPanel -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- ImportWindow
-ImportWindow -[hidden]left- ExportWindow
-ExportWindow -[hidden]left- ExportProgressWindow
-ExportProgressWindow -[hidden]left- CommandBox
+HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml
-
 
