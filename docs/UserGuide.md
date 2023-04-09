@@ -930,6 +930,7 @@ Unable to exit/save HMHero to data file
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Acknowledgements
 
@@ -948,6 +949,7 @@ Documentation dependencies:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
@@ -988,7 +990,7 @@ Documentation dependencies:
 - [URL](#url)
 
 ---
-
+<div style="page-break-after: always;"></div>
 
 ### A
 > #### ADDRESS Placeholder
