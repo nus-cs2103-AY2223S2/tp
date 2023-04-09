@@ -182,7 +182,7 @@ This command links the location at index 1 to the plane at index 10. The indices
 
 The commands in this section are available across ALL 5 modes.
 
-#### **1. Adding a resource**
+#### **1. Adding a resource: `add`**
 
 Use this command when you wish to add a new resource entity (e.g. a new plane that has been added to your fleet)
 to Wingman, for you to manage the resource.
@@ -316,7 +316,7 @@ Added A380.
 
 <div style="page-break-after: always;"></div>
 
-#### **2. Deleting a resource**
+#### **2. Deleting a resource: `delete`**
 
 Use this command when you wish to remove a resource entity (e.g. a pilot that has retired)
 from Wingman, to keep your database of resources up to date.
@@ -364,7 +364,7 @@ Deleted A380.
 
 The commands in this section are only available in the specified modes.
 
-#### **1. Linking a resource to a location**
+#### **1. Linking a resource to a location: `linklocation`**
 
 Use this command when you wish to link a resource entity to a location. A link means there is some association between the resource to the location.
 For example, a crew may work and reside in some locations, then we can
@@ -455,7 +455,7 @@ Linked A380 to Tokyo.
 
 <div style="page-break-after: always;"></div>
 
-#### **2. Unlinking a resource from a location**
+#### **2. Unlinking a resource from a location: `unlinklocation`**
 
 Use this command when you wish to unlink a resource entity from a location.
 To unlink, the location and the entity should have been linked first, otherwise the program will let you that the command is invalid.
@@ -544,7 +544,7 @@ Unlinked A380 from Tokyo.
 
 After introducing how to link resources to a location, we will next describe how to link resources to a flight.
 
-#### **3. Linking a resource to a flight**
+#### **3. Linking a resource to a flight: `linkflight`**
 
 A flight requires multiple resources, such as crews, pilots, and planes. We have commands that allow users to link them to a flight.
 
@@ -637,7 +637,7 @@ If the command is valid, Wingman will return a response confirming the link that
 
 <div style="page-break-after: always;"></div>
 
-#### **4. Unlinking a resource from a flight**
+#### **4. Unlinking a resource from a flight: `unlinkflight`**
 
 Use this command when you wish to unlink a resource entity from a flight. Similar to `linklocation` and `unlinklocation`, this command is only valid if the source and the flight have been linked before with.
 
@@ -704,7 +704,7 @@ Output:
 Unlinked Cadet Amelia Earhart from SQ230.
 ```
 
-###### Plane mode: `unlink /fl {flight-index} /pl {plane-index}`
+###### Plane mode: `unlinkflight /fl {flight-index} /pl {plane-index}`
 
 Required prefixes:
 
