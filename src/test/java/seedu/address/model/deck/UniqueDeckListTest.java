@@ -77,4 +77,46 @@ public class UniqueDeckListTest {
         assertEquals(expectedUniqueDeckList, uniqueDeckList);
     }
 
+    @Test
+    public void equals_validUniqueDecksList_true() {
+        UniqueDeckList uniqueDeckList1 = new UniqueDeckList();
+        uniqueDeckList1.add(new Deck("Deck A"));
+        uniqueDeckList1.add(new Deck("Deck B"));
+
+        UniqueDeckList uniqueDeckList2 = new UniqueDeckList();
+        uniqueDeckList2.add(new Deck("Deck A"));
+        uniqueDeckList2.add(new Deck("Deck B"));
+
+        assertTrue(uniqueDeckList1.equals(uniqueDeckList2));
+    }
+
+    @Test
+    public void hashCode_validUniqueDecksList_sameHashCode() {
+        UniqueDeckList uniqueDeckList1 = new UniqueDeckList();
+        uniqueDeckList1.add(new Deck("Deck A"));
+        uniqueDeckList1.add(new Deck("Deck B"));
+
+        UniqueDeckList uniqueDeckList2 = new UniqueDeckList();
+        uniqueDeckList2.add(new Deck("Deck A"));
+        uniqueDeckList2.add(new Deck("Deck B"));
+
+        assertEquals(uniqueDeckList1.hashCode(), uniqueDeckList2.hashCode());
+    }
+
+    @Test
+    public void setDecks_validReplacement_replacesInternalList() {
+        UniqueDeckList originalList = new UniqueDeckList();
+        originalList.add(new Deck("Deck 1"));
+        originalList.add(new Deck("Deck 2"));
+
+        UniqueDeckList replacementList = new UniqueDeckList();
+        replacementList.add(new Deck("Deck A"));
+        replacementList.add(new Deck("Deck B"));
+
+        originalList.setDecks(replacementList);
+
+        assertEquals(originalList.asUnmodifiableObservableList(), replacementList.asUnmodifiableObservableList());
+    }
+
+
 }
