@@ -37,4 +37,11 @@ public class ClassStatisticsCommandParserTest {
             CommandTestUtil.PREAMBLE_NON_EMPTY + CommandTestUtil.ASSIGNMENT_NAME_DESC_TEST1,
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClassStatisticsCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidStatType_fails() {
+        CommandParserTestUtil.assertParseFailure(commandParser,
+            CommandTestUtil.INVALID_CLASS_STAT_ASSIGNMENT,
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClassStatisticsCommand.MESSAGE_UNKNOWN_FIELD));
+    }
 }
