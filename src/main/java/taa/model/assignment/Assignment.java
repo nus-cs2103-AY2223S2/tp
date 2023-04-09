@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javafx.collections.transformation.FilteredList;
 import taa.model.assignment.exceptions.InvalidGradeException;
 import taa.model.assignment.exceptions.SubmissionNotFoundException;
+import taa.model.student.Name;
 import taa.model.student.Student;
 
 /**
@@ -137,5 +138,23 @@ public class Assignment {
         if (toDelete != null) { // if student doesn't have submission for that assignment.
             submissions.remove(toDelete);
         }
+    }
+
+    /**
+     * Checks whether an assignment name is valid.
+     * @param name
+     * @return
+     */
+    public static boolean isValidAssignmentName(String name) {
+        return Name.isValidName(name);
+    }
+
+    /**
+     * Checks whether assignment marks are valid.
+     * @param marks
+     * @return
+     */
+    public static boolean isValidAssignmentMarks(int marks) {
+        return marks >= 0;
     }
 }
