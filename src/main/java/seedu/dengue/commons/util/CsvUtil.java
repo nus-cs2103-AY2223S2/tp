@@ -169,5 +169,6 @@ public class CsvUtil {
         csvWriter.writeNext(header);
         csvWriter.writeAll(data);
         csvWriter.close();
+        writer.close();
     }
 }
