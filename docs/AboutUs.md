@@ -22,7 +22,7 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 <img src="images/cloudhill.png" width="200px">
 
 [[github](http://github.com/CloudHill)]
-[[portfolio](team/CloudHill.md)]
+[[portfolio](team/cloudhill.md)]
 
 * Role: Developer
 
@@ -31,7 +31,7 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 <img src="images/infrix.png" width="200px">
 
 [[github](http://github.com/Infrix)]
-[[portfolio](team/Infrix.md)]
+[[portfolio](team/infrix.md)]
 
 * Role: Developer
 
@@ -40,7 +40,7 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 <img src="images/javonteo.png" width="200px">
 
 [[github](http://github.com/JavonTeo)]
-[[portfolio](team/JavonTeo.md)]
+[[portfolio](team/javonteo.md)]
 
 * Role: Developer
 
@@ -49,6 +49,6 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 <img src="images/junyi00.png" width="200px">
 
 [[github](http://github.com/Junyi00)]
-[[portfolio](team/Junyi00.md)]
+[[portfolio](team/junyi00.md)]
 
 * Role: Developer
