@@ -2,9 +2,17 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_EMPLOYEES_FILTERED;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEmployees.*;
+import static seedu.address.testutil.TypicalEmployees.ALICE;
+import static seedu.address.testutil.TypicalEmployees.BENSON;
+import static seedu.address.testutil.TypicalEmployees.CARL;
+import static seedu.address.testutil.TypicalEmployees.DANIEL;
+import static seedu.address.testutil.TypicalEmployees.ELLE;
+import static seedu.address.testutil.TypicalEmployees.FIONA;
+import static seedu.address.testutil.TypicalEmployees.GEORGE;
+import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
 
 import java.util.Arrays;
 import java.util.Collections;
