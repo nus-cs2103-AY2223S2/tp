@@ -228,9 +228,7 @@ Examples:
   integer.
 
 ### Appointment
-
 ### Making Appointment to a patient : `makeApp`
-
 Make an appointment to Medimate through command method:
 
 Format: `makeApp INDEX /from {startTime} /to {endTime}`
@@ -254,6 +252,7 @@ Make an appointement to MediMate through button method:
 1. Click on the **Appointment Button** as shown in the above screenshot.
 
 ![Appointment_Popup](images/userGuide/Appointment_2.png "Appointment Popup")
+
 2. A popup window will appear, as shown in the screenshot above. **Check Availability** with the given date will show a list of patients that have appointment on the given date.
 
 💡Date must be in **YYYY-MM-DD** format and Time must be in the format of 24hr clock.
