@@ -19,12 +19,15 @@ Given below are my contributions to the project.
   * Justification: This is a core functionality of the product as our target audience (student TAs) need to be able to delete students from their events (representing their classes) in case the student has been erroneously added or if the student is somehow not in the event anymore. 
   * This feature was challenging to implement as many additional helper methods needed to be added into the existing code base. There were design aspects to consider as well.
 
+* **Tests**: Added tests to the classes and methods that I wrote, including new methods in existing classes.
+  * Full account of test methods are in the RepoSense Link in the `Code contributed` section.
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=shijiaao&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
 * **Project management**:
-    * Managed releases `v1.3.trial` - `v1.3` (2 releases) on GitHub.
-    * Fixed important bugs pertaining to the JAR file on release.
-    * Contributed code to all releases except `v1.1`.
+    * Published releases `v1.3.trial` - `v1.3` (2 releases) on GitHub.
+    * Fixed important bugs pertaining to the JAR file on the aforementioned releases.
+    * Contributed code to all releases except `v1.1` (`v1.2` to `v1.4`).
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())

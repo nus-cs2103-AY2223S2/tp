@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
@@ -127,7 +128,7 @@ public interface Model {
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
      * @param tutIndex The index of the tutorial that the student will be added into.
      */
-    void addStudentToTutorial(Index toAdd, Index tutIndex) throws ParseException;
+    void addStudentToTutorial(Index toAdd, Index tutIndex) throws CommandException;
 
     /**
      * Deletes a student from an event
@@ -136,7 +137,7 @@ public interface Model {
      * @param eventIndex the index of the event that the student will be deleted from.
      * @param eventType the type of event that the student will be deleted from.
      */
-    void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) throws ParseException;
+    void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
@@ -178,7 +179,7 @@ public interface Model {
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
      * @param labIndex The index of the lab session that the student will be added into.
      */
-    void addStudentToLab(Index toAdd, Index labIndex) throws ParseException;
+    void addStudentToLab(Index toAdd, Index labIndex) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered lab list */
     ObservableList<Lab> getFilteredLabList();
@@ -220,7 +221,7 @@ public interface Model {
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
      * @param consultationIndex The index of the consultation session that the student will be added into.
      */
-    void addStudentToConsultation(Index toAdd, Index consultationIndex) throws ParseException;
+    void addStudentToConsultation(Index toAdd, Index consultationIndex) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered lab list */
     ObservableList<Consultation> getFilteredConsultationList();

@@ -1,9 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,14 +16,10 @@ public class AddStudentToEventCommand extends Command {
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "Either you did not enter an "
             + "event type or the event type that you have entered "
             + "cannot be recognized!\n";
-    public static final String MESSAGE_STUDENT_INDEX_TOO_SMALL = "The student index you "
-            + "have entered cannot be 0 or less";
     public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger "
             + "than the size of the student list within the event";
     public static final String MESSAGE_STUDENT_INDEX_INVALID = "The student index "
             + "needs to be a non-zero integer!";
-    public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be "
-            + "0 or less";
     public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be "
             + "bigger than the size of the specified event list";
     public static final String MESSAGE_EVENT_INDEX_INVALID = "The event index "
@@ -59,17 +52,12 @@ public class AddStudentToEventCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, ParseException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (studentIndex.getZeroBased() < 0) {
-            throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_SMALL);
-        }
         if (studentIndex.getZeroBased() >= model.getFilteredPersonList().size()) {
             throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_BIG);
         }
-        if (eventIndex.getZeroBased() < 0) {
-            throw new CommandException(MESSAGE_EVENT_INDEX_TOO_SMALL);
-        }
+
         switch (eventType) {
         case TUTORIAL_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredTutorialList().size()) {

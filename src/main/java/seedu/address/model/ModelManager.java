@@ -15,6 +15,8 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.comparators.AddressComparator;
 import seedu.address.logic.comparators.EmailComparator;
 import seedu.address.logic.comparators.NameComparator;
@@ -156,13 +158,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToTutorial(Index toAdd, Index tutIndex) throws ParseException {
+    public void addStudentToTutorial(Index toAdd, Index tutIndex) throws CommandException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
         addressBook.addStudentToTutorial(toAddPerson, tutIndex);
     }
 
     @Override
-    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) throws ParseException {
+    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) throws CommandException {
         addressBook.deleteStudentFromEvent(toDel, eventIndex, eventType);
     }
 
@@ -191,7 +193,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToLab(Index toAdd, Index labIndex) throws ParseException {
+    public void addStudentToLab(Index toAdd, Index labIndex) throws CommandException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
         addressBook.addStudentToLab(toAddPerson, labIndex);
     }
@@ -220,7 +222,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToConsultation(Index toAdd, Index consultationIndex) throws ParseException {
+    public void addStudentToConsultation(Index toAdd, Index consultationIndex) throws CommandException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
         addressBook.addStudentToConsultation(toAddPerson, consultationIndex);
     }

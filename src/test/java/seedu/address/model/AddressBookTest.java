@@ -90,13 +90,6 @@ public class AddressBookTest {
     }
 
     @Test
-    void addStudentToTutorial_success() {
-        Tutorial newTut = SAMPLE_TUTORIAL;
-        newTut.addStudent(ALICE);
-        assert(newTut.countStudents() == 1);
-    }
-
-    @Test
     void addStudentToLab_success() {
         Lab newLab = SAMPLE_LAB;
         newLab.addStudent(ALICE);
@@ -108,6 +101,22 @@ public class AddressBookTest {
         Consultation newConsultation = SAMPLE_CONSULTATION;
         newConsultation.addStudent(ALICE);
         assert(newConsultation.countStudents() == 1);
+    }
+
+    @Test
+    void deleteStudentFromTutorial_success() {
+        Tutorial newTut = SAMPLE_TUTORIAL;
+        newTut.addStudent(ALICE);
+        newTut.removeIndexStudent(0);
+        assert(newTut.countStudents() == 0);
+    }
+
+    @Test
+    void deleteStudentFromLab_success() {
+        Lab newLab = SAMPLE_LAB;
+        newLab.addStudent(ALICE);
+        newLab.removeIndexStudent(0);
+        assert(newLab.countStudents() == 0);
     }
 
     /**

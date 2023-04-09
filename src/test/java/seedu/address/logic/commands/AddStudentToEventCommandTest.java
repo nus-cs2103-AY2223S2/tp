@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.AddStudentToEventCommand.CONSULTATION_STRING;
 import static seedu.address.logic.commands.AddStudentToEventCommand.LAB_STRING;
+import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_EVENT_INDEX_TOO_BIG;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED;
+import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_STUDENT_INDEX_INVALID;
+import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_STUDENT_INDEX_TOO_BIG;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_USAGE;
 import static seedu.address.logic.commands.AddStudentToEventCommand.TUTORIAL_STRING;
@@ -19,7 +22,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -29,6 +32,7 @@ import seedu.address.model.event.Tutorial;
 
 class AddStudentToEventCommandTest {
     private static final String WRONG_TYPE = "tutorial";
+    private static final int ARBITRARILY_LARGE_INTEGER = 99999999;
     private Model model;
     private Index first = INDEX_FIRST_PERSON;
     private Index second = INDEX_SECOND_PERSON;
@@ -43,7 +47,7 @@ class AddStudentToEventCommandTest {
     }
 
     @Test
-    void execute_addStudent_success() throws ParseException {
+    void execute_addStudent_success() throws CommandException {
         Model modifiedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         modifiedModel.addTutorial(new Tutorial(SAMPLE_TUTORIAL.getName()));
         modifiedModel.addLab(new Lab(SAMPLE_LAB.getName()));
@@ -73,5 +77,33 @@ class AddStudentToEventCommandTest {
     void execute_eventTypeNotRecognized_throwsCommandException() {
         assertCommandFailure(new AddStudentToEventCommand(first, first, WRONG_TYPE),
                 model, MESSAGE_EVENT_TYPE_NOT_RECOGNIZED  + MESSAGE_USAGE);
+    }
+
+    @Test
+    void execute_studentIndexTooBig_throwsCommandException() {
+        assertCommandFailure(new AddStudentToEventCommand(Index.fromOneBased(ARBITRARILY_LARGE_INTEGER),
+                        first, TUTORIAL_STRING),
+                model, MESSAGE_STUDENT_INDEX_TOO_BIG);
+    }
+
+    @Test
+    void execute_tutorialIndexTooBig_throwsCommandException() {
+        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER)
+                        , TUTORIAL_STRING),
+                model, MESSAGE_EVENT_INDEX_TOO_BIG);
+    }
+
+    @Test
+    void execute_labIndexTooBig_throwsCommandException() {
+        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER)
+                        , LAB_STRING),
+                model, MESSAGE_EVENT_INDEX_TOO_BIG);
+    }
+
+    @Test
+    void execute_consultationIndexTooBig_throwsCommandException() {
+        assertCommandFailure(new AddStudentToEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER)
+                        , CONSULTATION_STRING),
+                model, MESSAGE_EVENT_INDEX_TOO_BIG);
     }
 }
