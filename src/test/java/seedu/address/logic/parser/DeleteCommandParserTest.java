@@ -43,7 +43,13 @@ public class DeleteCommandParserTest {
                 new DeleteByNameCommand(new NameContainsAllKeywordsPredicate(List.of("John", "Doe"))));
     }
     @Test
+    public void parse_negativeIndex_returnsDeleteByNameCommand() {
+        assertParseSuccess(parser, "-1",
+                new DeleteByNameCommand(new NameContainsAllKeywordsPredicate(List.of("-1"))));
+    }
+    @Test
     public void parse_invalidArgs_returnsMessageUsage() {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
+
 }
