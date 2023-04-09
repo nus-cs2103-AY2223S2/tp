@@ -346,7 +346,7 @@ The feature is facilitated by the `FindCommand` class mainly but Predicate class
 `FindCommand` extends `Command` and implements the following operation:
 * `FindCommand#execute()` — Finds and displays the list of persons in the application that contains the given keyword of each respective fields.
 
-The `FindCommandParser` class is used to parse & verify the user input to create the find command.
+The `FindCommandParser` class is used to parse & verify the user input to create the *find* command.
 Once the input is parsed by `FindCommandParser`, a list of keywords for each respective field is then used to create a Predicate class that checks if any keyword matches the given field of a Person.
 
 This list of Predicate classes include:
@@ -358,9 +358,16 @@ This list of Predicate classes include:
 * `FindCommandProfilePredicate`
 * `FindCommandTagPredicate`
 
+Each of the above Predicate class will return True as long as any keyword in the list of keywords matches any word in the respective field.
 All the above Predicate classes will be enclosed inside a `FindCommandPersonPredicate` class.
 This Predicate class will return True as long as any of the Predicate classes inside it returns True.
-The Predicate classes works using an OR search, as long as a keyword matches any word in the respective field, that person will be shown in the resulting list from find command.
+The Predicate classes works using an OR search, as long as a keyword matches any word in the respective field, that person will be shown in the resulting list from *find* command.
+
+`FindCommandPersonPredicate` is used to enclosed all the other Predicate class as the `updateFilteredPersonList` for `ModelManager` class only accepts 1 `Predicate<Person>` class.
+*Find* command now checks on all fields, but we cannot pass in each Predicate class for the different fields into `updateFilteredPersonList` without resetting the previous filtered list.
+While it may be possible to modify `updateFilteredPersonList` to accept the multiple Predicate class without resetting the previous filtered list, we decided against it as:
+1. Heavy modification to `updateFilteredPersonList` is required which is highly likely to cause many unintended bugs and even break the entire program.
+2. Many other commands use `updateFilteredPersonList` as well, changing the behavior of `updateFilteredPersonList` to suit *find* command would mean that we have to also change how the other commands use `updateFilteredPersonList`.
 
 If no argument is provided, an empty list will be shown.
 
@@ -379,7 +386,7 @@ The following sequence diagram shows how the `find` operation works:
 
 **Aspect: Full keyword match or Partial keyword match**
 * We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
-  * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
+  * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for *find* command to function as a way for users to narrow down their search.
 
 <div style="page-break-after: always;"></div>
 
@@ -963,8 +970,28 @@ Similar to **UC04 Sort Contacts**, except,
 <div style="page-break-after: always;"></div>
 
 **Use case: UC20 Assigning a member from a project**
-1. _{ to be added }_
+1. User requests to add a contact to a project.
+2. SOCket adds the contact to the project.
 
+   Use case ends.
+
+**Extensions**
+
+* 2a. The chosen contact is already assigned to the project.
+    * 2a1. SOCket shows an error message.
+
+      Use case ends.
+  
+* 2b. The chosen project does not exist.
+    * 2b1. SOCket shows an error message.
+
+      Use case ends.
+
+* 2c. The chosen contact does not exist.
+    * 2c1. SOCket shows an error message.
+
+      Use case ends.
+  
 **Use case: UC21 Unassigning a member from a project**
 1. User requests to remove a member from a project.
 2. SOCket removes the member from the project.
@@ -977,12 +1004,20 @@ Similar to **UC04 Sort Contacts**, except,
     * 2a1. SOCket shows an error message.
 
       Use case ends.
+  
 * 2b. The chosen project does not exist.
     * 2b1. SOCket shows an error message.
 
       Use case ends.
 
-**Use case: UC22 Delete a project**
+**Use case: UC22 - Add a project**
+
+Similar to **UC01 Add a contact**, except,
+* A projects is added instead of contact.
+* Only meeting date is an optional field, all other fields are compulsory.
+
+
+**Use case: UC23 Delete a project**
 
 Similar to **UC03 Delete a contact**, except,
 * a list of projects is shown instead of contacts.
