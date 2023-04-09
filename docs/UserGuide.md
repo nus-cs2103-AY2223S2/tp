@@ -15,6 +15,7 @@ easy-to-understand explanations and examples.
 ## Table of Contents
 
 - [Quick start](#quick-start)
+- [Overview of AIMS GUI](#overview-of-aims-gui)
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person : `add`](#adding-a-person--add)
@@ -80,6 +81,19 @@ easy-to-understand explanations and examples.
 1. Refer to the [Features](#features) below for details of each command.
 
 ---
+
+## Overview of AIMS GUI
+
+![Overview of AIMS GUI](images/AIMS_GUI_Overview.png)
+
+| UI Component          | Description                                                                                                              |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Menu bar              | You can exit the app through File > Exit, or open the help window located under Help                                     |
+| Command box           | You can enter commands here to interact with AIMS                                                                        |
+| Message box           | You can view the result of your last command here (e.g., command ran successfully, syntax errors, etc.)                  |
+| Favorites list        | You can view all your favorite contacts here                                                                             |
+| Main list             | You can view a list of AIMS contacts here. If you perform a search, this list will update to show you the search results |
+| Location of data file | This shows you the location of the AIMS data file should you ever need to migrate to another device                      |
 
 ## Features
 
