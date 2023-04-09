@@ -5,9 +5,11 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-## 1. Introduction
+## **1. Introduction**
 
-### 1.1 About coNtactUS
+### **1.1 About coNtactUS**
+
+Welcome! <br>
 
 coNtactUS is a **university module tracker and timetable/deadline sorting application**, optimized for use via a
 **Command Line Interface (CLI)** while still having the _benefits_ of a **Graphical User Interface (GUI)**. This
@@ -16,7 +18,16 @@ as its framework.
 
 ### 1.2 About the developer guide
 
-Gonna update this- tingyic.
+This developer guide describes the high-level software architecture and how user inputs are parsed into corresponding
+commands in coNtactUS. 
+
+If you are a beginner that simply wants to use coNtactUS in your daily university life, look no further and jump
+straight into our first-time user-friendly [user guide](https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html). 
+
+If you are an advanced user, or developers who want to understand how the software works, or you want to further
+develop coNtactUS for yourself, you may feel free to proceed with the developer guide.
+
+If at any point you want to understand what some terminologies mean, [glossary](#9-glossary) is your good friend for that.
 
 ------------------------------------------------------------------------------------------------------------------------
 ## **2. Acknowledgements**
@@ -50,14 +61,14 @@ It is responsible for,
 * At software launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#46-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the module tracker consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the module tracker.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the module tracker in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#42-ui-component): The UI of the module tracker.
+* [**`Logic`**](#43-logic-component): The command executor.
+* [**`Model`**](#44-model-component): Holds the data of the module tracker in memory.
+* [**`Storage`**](#45-storage-component): Reads data from, and writes data to, the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -73,7 +84,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class
-* (which follows the corresponding API `interface` mentioned in the previous point.
+* (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
@@ -232,29 +243,35 @@ Below is an example usage scenario and how the find command behaves at each step
 
 **Step 4:** The method sets the predicate to the filtered list, which runs the **NameContainsKeywordsPredicate#test()** method to find the items based on name or type.
 
-### Reminder feature
+### 5.3 Reminder feature
 
 #### Reminder Implementation
-This section explains the implementation of the reminder feature. The reminder allows users to view all the timeslots and deadlines on the current day (based on the system's time).
+This section explains the implementation of the reminder feature. The reminder allows users to view all the timeslots
+and deadlines on the current day (based on the system's time).
 
-The **LogicManager** class is responsible for finding all the modules in the module tracker whose date (timeslot or deadline) matches the current date. The **UiManager** class is responsible for alerting the user of the deadlines and timeslots for today.
+The `LogicManager` class is responsible for finding all the modules in the module tracker whose date (`timeslot` or
+`deadline`) matches the current date. The `UiManager` class is responsible for alerting the user of the deadlines and
+timeslots for today.
 
-There are 3 methods in the **LogicManager** class:
+There are 3 methods in the `LogicManager` class:
 1. A method that deals with finding the timeslots for the day.
 2. A method that deals with finding the deadlines for the day.
 3. A method that combines and parses everything into a string.
 
-The string is then passed to a method in the **UiManager** that handles showing the alert to the user upon launching the application. Exceptions and null values are handled to avoid processing null dates, as they are optional fields.
+The string is then passed to a method in the `UiManager` that handles showing the alert to the user upon launching the
+software. Exceptions and null values are handled to avoid processing null dates, as they are optional fields.
 
 Exceptions and null values are handled to avoid looking at null dates as they are optional.
 
 Below is an example usage scenario of the reminder feature:
 
-**Step 1:** The user launches the application for the first time. The **`ModuleTracker`** will be initialized with the initial module tracker state.
+**Step 1:** The user launches the software for the first time. The **`ModuleTracker`** will be initialized with the
+initial module tracker state.
 
-**Step 2:** An alert pops up, showing the user the timeslots and deadlines for the day, along with the module name and type. The title of the alert is "Work Today."
+**Step 2:** An alert pops up, showing the user the timeslots and deadlines for the day, along with the module name and
+type. The title of the alert is "Work Today."
 
-**Step 3:** The user can now close the alert and continue using the application.
+**Step 3:** The user can now close the alert and continue using the software.
 
 <!--
 #### Design considerations:
@@ -275,14 +292,17 @@ _{more aspects and alternatives to be added}_
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## 6. \[Proposed\] Planned Enhancements
+## **6. \[Proposed\] Planned Enhancements**
 
 ### 6.1 Reminder command.
-We propose extending the reminder feature to allow users to call it at any time, instead of only at the application's launch. Additionally, we plan to enable users to view reminders for a specific day, week, or month.
+We propose extending the reminder feature to allow users to call it at any time, instead of only at the software's
+launch. Additionally, we plan to enable users to view reminders for a specific day, week, or month.
 
-To implement this, we plan to add a new command, similar to the existing commands, by creating a **ReminderCommand** class and a **ReminderCommandParser** class, analogous to the **FindCommand** and **FindCommandParser**.
+To implement this, we plan to add a new command, similar to the existing commands, by creating a `ReminderCommand` class
+and a `ReminderCommandParser` class, analogous to the `FindCommand` and `FindCommandParser`.
 
-These enhancements should provide users with more flexibility in accessing and managing their reminders, leading to an improved user experience.
+These enhancements should provide users with more flexibility in accessing and managing their reminders, leading to an
+improved user experience.
 
 ### 6.2 More checks to teacher, remarks
 
@@ -305,7 +325,7 @@ Bla bla
 
 **Target user profile**
 
-* NUS Computing Students who are more tech savvy than the general population and are also fast typists
+* NUS Computing Students who are more tech-savvy than the general population and are also fast typists
 * computing students would have to refer to these details regularly throughout the course of the semester as they may
 not be able to remember them
 * has a need to manage a significant number of lecture
@@ -554,9 +574,11 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## 9. Glossary
+## **9. Glossary**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+### 9.1 coNtactUS related terminology
+
+* **Module Tracker**: The coNtactUS application
 * **Private module detail**: A module detail that is not meant to be shared with others
 * **Module**: The module to be recorded in coNtactUS
 * **Address**: The location/venue for the class of a module
@@ -567,14 +589,18 @@ be able to accomplish most of the tasks faster using commands than using the mou
 * **Description**: The type of the module (Lecture, Tutorial, Lab, etc.)
 * **Teacher**: The name of the teacher conducting the module
 * **TimeSlot**: The time of the class of a module
-* **XYZCommand**:
-* **Software**:
-* **API**:
-* **CLI**:
-* **GUI**:
-* **Module Tracker**:
-* **UML**:
-* **Parser**:
+
+### 9.2 Miscellaneous
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CLI**: Command-Line Interface
+* **GUI**: Graphics-based User Interface
+* **Software**: The coNtactUS application
+* **XYZCommand**: Represents all commands. E.g: `AddCommand`, `DeleteCommand`
+* **API**: Application Programming Interface
+* **UML**: Unified Modelling Language
+* **Parser**: A class that translates user inputs to machine language to run the corresponding commands.
+* **JAR**: Java ARchive
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -604,8 +630,6 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
-
 ### 10.2 Deleting a module
 
 1. Test case: `delete 1`<br>
@@ -618,28 +642,22 @@ Timestamp in the status bar is updated.
 3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-4. _{ more test cases …​ }_
-
-
 ### 10.3 Adding a module
+ 1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>
+     Expected: A new module is added to the list with name being CS2103T and type being Tutorial. Details of the added
+     module is shown in the status message. Empty optional fields are left as "None.".
 
-1. Adding a module
+ 2. Test case: `add n/CS2101 t/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>
+     Expected:  A new module is added to the list with name being CS2101, type being Lecture, address being COM3,
+     TimeSlot being 210323 10:00, teacher being Mr Ng. Details of the added module is shown in the status message.
 
-     1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>
-   Expected: A new module is added to the list with name being CS2103T and type being Tutorial. Details of the added
-   module is shown in the status message. Empty optional fields are left as "None.".
+ 3. Test case: `add n/CS1101S`<br>
+    Expected: No module is added as type, which is a compulsory field, is missing. Error details shown in the
+    status message.
 
-     2. Test case: `add n/CS2101 t/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>
-   Expected:  A new module is added to the list with name being CS2101, type being Lecture, address being COM3,
-   TimeSlot being 210323 10:00, teacher being Mr Ng. Details of the added module is shown in the status message.
-
-     3. Test case: `add n/CS1101S`<br>
-   Expected: No module is added as type, which is a compulsory field, is missing. Error details shown in the
-   status message.
-
-     4. Other incorrect add commands to try: `add`, `add x`, `...` (where x is the attribute you want to add, without
-   using the prefixes)<br>
-   Expected: Similar to previous.
+ 4. Other incorrect add commands to try: `add`, `add x`, `...` (where x is the attribute you want to add, without
+     using the prefixes)<br>
+     Expected: Similar to previous.
 
 ### 10.4 Editing a module
   1. Test case: `edit 1 n/CS1101S` <br>
