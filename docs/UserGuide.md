@@ -128,9 +128,10 @@ currently stored persons or tasks.
   e.g. if the command specifies `view 123`, it will be interpreted as `view`.
 
 * Note what the status colours denote:
-  * ![blackStatusBar](images/BlackStatusBar.PNG) means the task has not been marked as completed.
-  * ![greenStatusBar](images/GreenStausBar.PNG) means the task has been marked as completed.
-  * ![yellowStatusBar](images/YellowStatusBar.PNG) means the task is approaching the deadline soon(By how long?).
+  * ![blackStatusBar](images/BlackStatusBar.PNG) default colour for status.
+  * ![greenStatusBar](images/GreenStausBar.PNG) task has been marked as completed.
+  * ![yellowStatusBar](images/YellowStatusBar.PNG) today is the deadline for the task.
+  * ![redStatusBar](images/RedStatusBar.PNG) deadline has passed.
 
 [↑ Back to table of contents](#table-of-contents)
 
