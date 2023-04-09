@@ -44,8 +44,8 @@ public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEve
         }
 
         if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {
-            throw new ParseException(String.format(DeleteStudentFromEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED,
-                    DeleteStudentFromEventCommand.MESSAGE_USAGE));
+            throw new ParseException(DeleteStudentFromEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED
+                    + DeleteStudentFromEventCommand.MESSAGE_USAGE);
         }
 
         String eventType = PREFIX_TUTORIAL.getPrefix();
