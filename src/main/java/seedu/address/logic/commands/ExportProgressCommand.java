@@ -65,6 +65,7 @@ public class ExportProgressCommand extends Command {
         }
 
         Path parentDir = Paths.get(this.filePath).toAbsolutePath().getParent();
+
         if (parentDir != null) {
             try {
                 Files.createDirectories(parentDir);
