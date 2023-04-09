@@ -728,6 +728,11 @@ Here are links to other documentation that you might find useful when developing
 #### User Interface
 1. The enter button text gets truncated on some devices. We suspect this to be an OS related issue and plan to fix this in the future.
 
+#### Food's Unit Representation
+It has been recognized that some users prefer to utilize specific unit representations for certain types of food, 
+such as using 1L or 2L to indicate the volume of milk. To accommodate this, future iterations of the system will 
+incorporate alphanumeric representations of `Unit`, enabling users to include such unit specifications.
+
 ## **Appendix: Requirements**
 
 ### Product scope
