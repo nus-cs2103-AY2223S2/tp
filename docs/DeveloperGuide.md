@@ -173,9 +173,9 @@ Hence, it is important to ensure that each entity has a unique ID which is gener
 
 This ID generation is facilitated by the `IdGenerator` class.
 The class consists of `SortedSets` and `PriorityQueues`, one for each entity.
-The `SortedSets` are used to keep track of all the IDs that are in use while the `PriorityQueues` are used to update the `IdGenerator` about all the IDs that are not in use. 
+The `SortedSets` are used to keep track of all the IDs that are in use while the `PriorityQueues` are used to update the `IdGenerator` about all the IDs that are not in use.
 When the `generateXId()` method is called, the `IdGenerator` will first check if the `PriorityQueue` containing unused IDs is empty.
-If it is empty, it will pop off the smallest ID from the `PriorityQueue` and return it. 
+If it is empty, it will pop off the smallest ID from the `PriorityQueue` and return it.
 If it is empty, the `IdGenerator` will check the largest ID in the `SortedSet` of used IDs, return a number one larger than that, and add it to the `SortedSet` of used IDs.
 The API call `setXIdUnused(int)` is used to update the `PriorityQueue` of unused IDs when an entity is deleted.
 
@@ -200,7 +200,7 @@ Above is the activity diagram for adding a vehicle to the `Shop`. Adding other e
 Related entities are updated automatically.
 
 <img src="images/RemoveCustomerInternalActivityDiag.png" height="800">
-<img src="images/RemoveVehicleInternalActivityDiag.png" height="700"> 
+<img src="images/RemoveVehicleInternalActivityDiag.png" height="700">
 <img src="images/RemoveAppointmentInternalActivityDiag.png" height="700">
 <img src="images/RemoveServiceInternalActivityDiag.png" height="1130">
 
@@ -226,7 +226,7 @@ The undo and redo commands call the `revert()` and `redo()` API of the `Shop`. A
 
 * **Alternative 2:** Individual command has an 'inverse' command which will perform the opposite action.
     * Pros: Will use less memory (e.g. No need to save entire shop every update).
-    * Cons: 
+    * Cons:
         * Must ensure that the implementation of each command is correct. Adds a lot of complexity that may not seem justified as it is to only accommodate the undo/redo feature.
         * Difficult to implement for commands that have cascading effects.
 
@@ -241,34 +241,34 @@ The undo and redo commands call the `revert()` and `redo()` API of the `Shop`. A
     * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application.
 
 **Aspect: How to structure and store Entity data**
-* **Current:** 
+* **Current:**
   * Each entity has a unique ID and each entity stores the IDs of the entities that it is related to.
   * The `Shop` class stores all the entities as various Observable Lists.
   * `Shop` class manages all the data modification. It manages all the cascading effects and relationships between entities and ID generation as well as input validation on primitive data input.
-  * Pros: 
+  * Pros:
     * Outer classes (e.g Commands) just have to call the relevant API of `Shop` to modify the data. They do not have to worry about relationships between entities.
-    * `Shop` class has full 'low level' control of the data. It can ensure that the data is consistent and relationships between entities are preserved. 
+    * `Shop` class has full 'low level' control of the data. It can ensure that the data is consistent and relationships between entities are preserved.
     * Isolate all data manipulation bugs to the `Shop` class. This makes it easier to debug and test.
   * Cons:
-    * Shop class has very high responsibility. Relatively long and complex methods. 
-    * Certain constraints of `Shop` have to be violated to support loading data from file. 
+    * Shop class has very high responsibility. Relatively long and complex methods.
+    * Certain constraints of `Shop` have to be violated to support loading data from file.
         `Shop` requires other classes to call its API to modify the data.
-        However, when loading data from file, the `Storage` classes needs to modify the data directly. 
-      Some 'unsafe' methods of `Shop` are public to facilitate this. 
+        However, when loading data from file, the `Storage` classes needs to modify the data directly.
+      Some 'unsafe' methods of `Shop` are public to facilitate this.
       This could be avoided if `Shop` manages storing and loading data as well, but this would violate the Single Responsibility Principle and there was not enough time to implement this.
 * **Alternative:**
   * Each entity stores references to the entities that it is related to.
   * `Shop` class stores all the top level entities (e.g. `Customer` and `Technician`) as various Observable Lists.
   * Commands and entities manage their own data and relationships.
   * Pros:
-    * Commands and entities can freely manipulate the data and relationships. 
-    * `Shop` class has less responsibility. 
+    * Commands and entities can freely manipulate the data and relationships.
+    * `Shop` class has less responsibility.
     * `Shop` class does not need to violate personal constraints to facilitate loading data from file.
   * Cons:
       * Retrieving/modifying bottom level entities (e.g. `Service`) is very complex and hard to manage
       * Commands and entities have to manage the data and relationships themselves. This could lead to bugs and inconsistencies.
-      * `Shop` class has no control over the data. It cannot ensure that the data is consistent and relationships between entities are preserved. 
-      * Bugs could be caused by any of the many commands and entities across different packages. This makes it extremely hard to debug and test. 
+      * `Shop` class has no control over the data. It cannot ensure that the data is consistent and relationships between entities are preserved.
+      * Bugs could be caused by any of the many commands and entities across different packages. This makes it extremely hard to debug and test.
 
 ### Mapping classes
 We use nested integer object ID arrays to establish 1-to-many relationships between entities generated by an ID generator. However, this required multiple mapping classes to retrieve the nested objects by their IDs and display necessary information in the UI.
@@ -286,7 +286,7 @@ Overall, the XDataMap classes provides a convenient way to maintain and access i
 #### Current Implementation
 The List feature shows users the whole list of entities in their respective tabs. We have a specific List command and a global list command. The Find feature helps to find specific entities according to the keyword provided.
 
-Both features are essentially implemented the same way as both will filter the displayed lists to the user thus we will be using the sequence diagram of the Find feature to show how the different components interact with one another to execute the command. 
+Both features are essentially implemented the same way as both will filter the displayed lists to the user thus we will be using the sequence diagram of the Find feature to show how the different components interact with one another to execute the command.
 
 > <b>Note:</b> For List commands `X` can be `Customer/Appointment/Service/Vehicle/Technician/Part`. For Find commands `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
 
@@ -316,7 +316,7 @@ Note: The rest of the sequence diagram of ListCommands are the same as the Find 
 ### Sort Feature
 #### Current Implementation
 
-The Sort feature sorts the respective entities according to some of their entity specific paramaters. 
+The Sort feature sorts the respective entities according to some of their entity specific parameters.
 
 > <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
 
@@ -338,7 +338,7 @@ The Sequence Diagram below illustrates the interactions with the `Logic`, `Model
     * Pros: No need to worry about both original filtered lists and sorted filtered lists staying in sync/both have the same data
     * Cons: More difficulty implementing sort, we will have to implement a sort function that works for filtered lists since filtered lists do not take in comparators.
 
-       
+
 ### Add Feature
 
 #### Current Implementation
@@ -352,11 +352,11 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 
 The `addX(x)` method of `Model` adds the entity into the system via adding the entity into `Shop`.
 
-Limitations of plant UML prevents us from putting an X at the correct spot. 
+Limitations of plant UML prevents us from putting an X at the correct spot.
 
 Omitted from the diagram above is:
 1. How Undo and Redo is implemented
-2. The other relevant add commands. For example, `addvehicle` requires `owner id` which would affect the relevant customer by adding the vehicle to that user. 
+2. The other relevant add commands. For example, `addvehicle` requires `owner id` which would affect the relevant customer by adding the vehicle to that user.
 
 ### Edit Feature
 
@@ -365,7 +365,7 @@ The edit function is facilitated by `EditXCommand` (`X` is a placeholder for the
 
 > <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
 
-The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("editX args*")` API call, where `argks*` represents the various arguments needed for the function to run. 
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("editX args*")` API call, where `argks*` represents the various arguments needed for the function to run.
 
 <img src="images/EditXSequenceDiagram.png"/>
 
@@ -392,7 +392,7 @@ Note: The way ViewXCommand is parsed is the same to how Find/List Commands are p
 
 <img src="images/ViewXSequenceDiagramCropped.png"/>
 
-While the first half of the execution of ViewXCommand is the same as Find/List Command as explained above, a key detail to how ViewXCommand is implemented is extra call of Model#selectX(), where a Function is passed into it as a selector. This Function then calls apply() to the sortedFilteredXs in the Model for the result to return the requested X to the replace the current selectedX object in the model. 
+While the first half of the execution of ViewXCommand is the same as Find/List Command as explained above, a key detail to how ViewXCommand is implemented is extra call of Model#selectX(), where a Function is passed into it as a selector. This Function then calls apply() to the sortedFilteredXs in the Model for the result to return the requested X to the replace the current selectedX object in the model.
 
 ### TotalAppointmentCommand Feature
 
@@ -417,9 +417,9 @@ The `totalAppointmentCommand` feature mainly involves iterating through the appo
 
 **Mitigating the effects of malicious save file edit**
 
-* Issue 1: An malicious user is able to modify the save file 
+* Issue 1: An malicious user is able to modify the save file
   * Proposed solution: encrypting the save file and storing hash
-  
+
 
 * Issue 2: An malicious user is able to modify the save file such that running a command may have adverse effects on other parts of the program.
   * Example: Malicious user edits save file and adds `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
@@ -504,7 +504,7 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 **Use case: UC02 - Listing all vehicles**
 
-similar to use case one. 
+similar to use case one.
 
 **Use case: UC03 - Listing all appointments**
 
@@ -850,7 +850,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all customers using the `listcustomer` command. Multiple persons in the list.
 
    1. Test case: `deletecustomer 1`<br>
-      Expected: Customer with id of 1 is deleted from the list. Details of the deleted customer shown in the status message. 
+      Expected: Customer with id of 1 is deleted from the list. Details of the deleted customer shown in the status message.
 
    1. Test case: `deletecustomer 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -861,7 +861,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files 
+1. Dealing with missing/corrupted data files
    1. Prerequisites: There is an existing data file, in the wrong json format.
    2. User starts the AutoM8 app.
    3. The corrupted data file will be overwritten and sample data generated will be displayed to the user.
@@ -899,10 +899,10 @@ For example, a single customer could have multiple appointments, services, and v
 * Heavy GUI Improvement
   * Significant styling changes from AB3
   * More GUI components explored: SplitPane, Tab, Circle, ImageView, etc
-  * Dealing with the GUI with 6 entities, each entity has its respective tab, details panel and recent command result messages stored 
+  * Dealing with the GUI with 6 entities, each entity has its respective tab, details panel and recent command result messages stored
   * Required lots of trial and error to find the best way to display selected entities in the details panel
   * Lots of effort on state management handling, due to our entities being closely related to one another (one-to-many relationships)
-    * Testing to ensure objects are mapped correctly and are mapped to objects that still exist 
+    * Testing to ensure objects are mapped correctly and are mapped to objects that still exist
     * A lot of time and effort used by multiple AutoM8 developers to debug incorrect mappings/delayed mapping resets to accurately reflect data after a CRUD command was executed
     * Additional Mapping classes implemented to assist in displaying entities and their associated objects in the panels
 

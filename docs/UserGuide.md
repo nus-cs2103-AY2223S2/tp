@@ -270,8 +270,8 @@ Format: `redo`
 
 Examples:
 
-- `deletecustomer 3` 
-  `undo` 
+- `deletecustomer 3`
+  `undo`
   `redo`
 
 After deleting a customer at Index 3 and using `undo` to reverse the deletion of the customer, using `redo` will restore the customer back into the list.
