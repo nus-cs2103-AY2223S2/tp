@@ -41,7 +41,7 @@ For me, i worked on the backend component and fixing bugs. In addition, i worked
     * User Guide:
         * Added my own commands and set up table of commands.
         * `w/www.google` field and `deadline asc` command.
-        * Added UI Images to each commands.
+        * Added UI Images to each command.
     * Developer Guide:
         * Added Sequence diagram and Commit Activity Diagram for `Deadline` Command.
         * Added Sequence diagram, description  for `add` and `edit` Command.
