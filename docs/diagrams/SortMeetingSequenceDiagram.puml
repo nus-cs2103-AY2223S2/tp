@@ -35,9 +35,9 @@ SortMeetingCommandParser -> SortMeetingCommand
 activate SortMeetingCommand
 
 create Comparator
-SortMeetingCommand --> Comparator
+SortMeetingCommand -> Comparator
 activate Comparator
-Comparator --> SortMeetingCommand
+Comparator --> SortMeetingCommand :d
 deactivate Comparator
 SortMeetingCommand --> SortMeetingCommandParser : d
 deactivate SortMeetingCommand
@@ -57,11 +57,12 @@ activate SortMeetingCommand
 SortMeetingCommand -> Model: SortMeeting()
 activate Model
 
-Model --> Comparator
+Model -> Comparator
 activate Comparator
 Comparator --> Model
-Comparator --> SortMeetingCommand
 deactivate Comparator
+Model --> SortMeetingCommand
+
 deactivate Model
 
 create CommandResult
