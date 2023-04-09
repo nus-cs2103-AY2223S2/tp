@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 
+'idea of rake provided @WillySeahh in https://github.com/nus-cs2103-AY1920S2/forum/issues/105
+
 start
 :ModCheck checks number of times Student visited ModCheck;
 if () then ([Student visited more than once])
@@ -10,7 +12,7 @@ else ([else])
 endif
 :ModCheck requests Student to create a password;
     if () then ([Student wants to create password])
-        :Student creates password (rake symbol);
+        :Student creates password (@rake CreatePasswordActivityDiagram);
     else ([else])
         :ModCheck requests Student to login;
         :Student enters password;
