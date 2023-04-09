@@ -12,31 +12,28 @@ Given below are my contributions to the project.
 * **New Feature**: `remove` command [\#88](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/88)
     * What it does: Allows users to remove specific field value based on the input command.
     * Justification: Users are able to remove any field value of the contact information without excess typing.
-    * Highlights: `to be added soon`
+    * Highlights: Ensures that only unwanted field value are removed from contact information.
     * Credits: *{-}*
 
 * **New Feature**: `view` command [\#108](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/108)
   * What it does: Allows users to view a specific contact detail.
   * Justification: Users are able to view detailed information of a contact by `view` command or click on the contact card.
-  * Highlights: `to be added soon`
+  * Highlights: Places the selected contact into the contact detail panel to display all the detailed information.
   * Credits: *{-}*
 
 * **New Feature**: `clearpj` command [\#154](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/154)
     * What it does: Allows users to clear off all the project in the project list
     * Justification: Users are able to clear all projects in a single command.
-    * Highlights: `to be added soon`
+    * Highlights: Ability to delete all the projects.
     * Credits: *{This feature idea was adopted from `clear` command}*
 
 * **New Feature**: Added keyboard shortcut [\#203](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/203)
-  * What it does: Allows users to perform `undo`, `redo` and `exit` command using keyboard shortcut
+  * What it does: Allows users to perform `undo`, `redo` and `exit` command using keyboard shortcut.
   * Justification: Users are able to do undo/redo/exit similar to other commonly used applications.
-  * Highlights: `to be added soon`
+  * Highlights: Make use of well-known keyboard shortcut to perform undo/redo/exit function.
   * Credits: *{This feature idea was adopted from `help` keyboard shortcut of AddressBook-Level3}*
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huanghao1998&breakdown=true)
-
-* **Project management**:
-    * Create issues when things are needed to be refined
 
 * **Enhancements to existing features**:
     * Updated `clear` command to allow users to remove group of contacts associated with the given tag(s) [\#127](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/127)
@@ -56,10 +53,11 @@ Given below are my contributions to the project.
         * Added "GUI of SOCKet" image under Quick start section [\#179](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/179)
         * Added screenshot to `add`, `edit`, `remove`, `find`, `sort`, `addpj`, `editpj`, `removepj`, `sortpj`, `assign`, `unassign` and `help` command [\#255](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/255)
     * Developer Guide:
-        * Added use cases `UC06`, `UC13`, `UC17`.
-        * Updated existing UI class diagram with `ProjectListPanel`, `ProjectCard`, `PersonDetailPanel` and `PersonDetailCard`.
+        * Added use cases `UC06`, `UC13`, `UC17` [\#61](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/61), [\#111](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/111)
+        * Added manual test case for `remove`, `clear`, `view` and `clearpj` [\256](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/256)
+        * Added `remove`feature under implementation [\#179](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/179)
+        * Updated existing UI class diagram with `ProjectListPanel`, `ProjectCard`, `PersonDetailPanel` and `PersonDetailCard` [\#179](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/179)
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#89](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/89)
+    * PRs reviewed (with non-trivial review comments): [\#89](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/89), [\#260](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/260)
     * Contributed to forum discussions: [\#78](https://github.com/nus-cs2103-AY2223S2/forum/issues/78#issuecomment-1406976199).
-
