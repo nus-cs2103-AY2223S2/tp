@@ -16,8 +16,8 @@ Given below are my contributions to the project.
   * `Premium` : Represents the amount paid by the client for the policy.
   * `Frequency` : Represents the frequency of payment by the client for the policy
   * `UniquePolicyList` : Stores a list of policies for the particular client, similar to `UniqueClientList`
-    
-     [\#61](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/61)
+  
+    [\#61](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/61)
 
 
 * **Enhancements to existing features**:
