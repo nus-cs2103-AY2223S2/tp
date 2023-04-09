@@ -27,7 +27,7 @@ You may peruse the libraries we used, and their documentation, at these links:
 * **[Jackson](https://github.com/FasterXML/jackson-docs)** - Library to provide serialization and deserialization of data from JavaScript Object Notation (JSON) format files
 * **[JUnit 5](https://junit.org/junit5/docs/current/user-guide/)** - Library for adding unit tests for new features to validate their behavior against a set of developer-defined behaviors
 
-### Who this is for
+### Who this guide is for
 
 This guide is intended for software developers who wish to work on ***RIZZ***ipe, be it to add new features or to patch
 existing bugs. The source code may be found **[here](https://github.com/AY2223S2-CS2103T-T13-2/tp)**.
@@ -39,7 +39,7 @@ Developers are free to propose changes under any of the following categories, pr
 
 <div markdown="block" class="alert alert-success">
 
-📝**Note**: To get started, you may **[fork](https://github.com/AY2223S2-CS2103T-T13-2/tp/fork)** this repository and create
+:bulb: **Tip**: To get started, you may [fork](https://github.com/AY2223S2-CS2103T-T13-2/tp/fork) this repository and create
 a feature [branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) within your fork. After which, submit a [pull request](https://github.com/AY2223S2-CS2103T-T13-2/tp/compare) to us!
 
 </div>
@@ -65,7 +65,7 @@ Any unfamiliar RIZZipe-specific terms can be found in the [glossary](#glossary) 
 ## **Design**
 
 <div markdown="span" class="alert alert-success">
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. 
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/docs/diagrams/) folder. 
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
@@ -300,12 +300,15 @@ In addition, it implements the following operations:
 
 7. The `RecipeDesriptor` instance is converted to a new `Recipe` instance through `RecipeDesriptor#toRecipe()`  and is added to the model through `Model#addRecipe(recipeToAdd)`. 
 
+<div style="page-break-after: always;"></div>
 ### Feature: "Edit" Form UI
 
-The `EditRecipeForm` allows users to make changes to a recipe details directly over a Graphical User Interface edit form instead of the command box. The following sequence diagram illustrates how the different components interact with one another in the execution of an edit form command.   
+The `EditRecipeForm` allows users to make changes to a recipe details directly over a Graphical User Interface edit form instead of the command box. 
+The following sequence diagram illustrates how the different components interact with one another in the execution of an edit form command.   
 
 <img class="diagram" src="images/EditRecipeFormSequenceDiagram.png" width="1128"/>  
 
+<div style="page-break-after: always;"></div>
 #### Implementation
 
 Likewise, the `EditRecipeForm` also inherits from the `RecipeForm` base class and hence supports a similar set of operations
@@ -333,11 +336,13 @@ Pre-filling of recipe data into the text fields is implemented through the follo
 
 5. The final command text is generated from the `StringBuilder` instance, and along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
 
+<div style="page-break-after: always;"></div>
 #### Activity Diagram
 
-The following activity diagram summarizes the process when a user edits a recipe using the RecipeForm:
+The following activity diagram summarizes the process when a user edits a recipe using the recipe form:
 
-<img class="diagram" src="images/EditRecipeFormActivityDiagram.png" width="1128"/>  
+[//]: # (Diagram width should be 600 when exporting to PDF)
+<img class="diagram" src="images/EditRecipeFormActivityDiagram.png" width="1100"/>  
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>Esc</kbd> key, 
@@ -345,7 +350,6 @@ the form will be closed without saving any changes.
 </div>
 
 <div style="page-break-after: always;"></div>
-
 ### Feature: Find-by-property
 
 #### Overview
@@ -419,7 +423,7 @@ is done by the parse methods in `JsonUtil` class.
 Afterwards, we will check with our own RecipeBook to filter out duplicates and add the remaining non-duplicate recipes.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:**If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer without 
+:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer without 
 selecting a JSON file, the recipe list will remain unchanged.
 </div>
 
@@ -442,7 +446,7 @@ Json file is not found, parsing of the current recipes will be done and exported
 The parsing is done by the parse methods in `JsonUtil` class.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:**If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer 
+:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer 
 without selecting a file path, nothing will be exported.
 </div>
 
@@ -450,6 +454,19 @@ without selecting a file path, nothing will be exported.
 
 <div style="page-break-after: always;"></div>
 ## **Appendix: Requirements**
+
+### Glossary
+
+Defined here are some common terms used throughout the guide, as well as their definitions:
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Main Success Scenario (MSS)**: The main or optimal flow of a use case, representing the successful completion of the user's goal.
+* **Use Case**: A description of a specific user goal or task and the steps required to achieve it.
+* **Chef**: The user or operator of the application.
+* **Recipe**: A set of instructions to prepare and cook a specific dish. Includes dish name, ingredients, serving size, preparation time and any dietary labels.
+* **Book**: Refers to the application or system that manages the storage and retrieval of recipe data.
+* **Storage file**: The file used by the application to store and retrieve recipe data.
+* **Index**: Refers to the position of a specific recipe within a list of recipes, represented by a numerical value.
 
 ### Product scope
 **Target user profile:**
@@ -568,8 +585,6 @@ do modify them to reflect the desired user interaction flows.
 
   Use case resumes from step 2.
 
-<div style="page-break-after: always;"></div>
-
 #### Use case: Delete a recipe
 
 **MSS**
@@ -593,7 +608,6 @@ do modify them to reflect the desired user interaction flows.
   Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
-
 #### Use case: Find a recipe by name
 
 **MSS**
@@ -685,21 +699,6 @@ Here are some non-functional requirements that the app should still maintain, to
 10. The documentation should be up-to-date and accurate.
 11. The documentation should be accessible to all users.
 
-<div style="page-break-after: always;"></div>
-
-### Glossary
-
-Defined here are some common terms used throughout the guide, as well as their definitions:
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Main Success Scenario (MSS)**: The main or optimal flow of a use case, representing the successful completion of the user's goal.
-* **Use Case**: A description of a specific user goal or task and the steps required to achieve it.
-* **Chef**: The user or operator of the application.
-* **Recipe**: A set of instructions to prepare and cook a specific dish. Includes dish name, ingredients, serving size, preparation time and any dietary labels.
-* **Book**: Refers to the application or system that manages the storage and retrieval of recipe data.
-* **Storage file**: The file used by the application to store and retrieve recipe data.
-* **Index**: Refers to the position of a specific recipe within a list of recipes, represented by a numerical value.
-
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -736,7 +735,8 @@ testers are expected to do more *exploratory* testing.
 1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 2. Re-launch the app by double-clicking the jar file.
    <br>**Expected:** The most recent window size and location is retained.
-   
+
+<div style="page-break-after: always;"></div>
 #### Test case 1.3: Shutdown
 **Status**: Accepted _(All expected behaviour is displayed)_
 1. When the app is open, type `exit` into the command bar and press <kbd>Enter</kbd>.
@@ -768,6 +768,7 @@ testers are expected to do more *exploratory* testing.
 6. Press <kbd>P</kbd> to view its details.
    <br>**Expected:** The recipe has been edited, with the new recipe details reflecting the edits made for each field.
 
+<div style="page-break-after: always;"></div>
 ### 3. Commands
 
 **Description:** Verify that commands in the app are executed properly.
@@ -808,7 +809,9 @@ testers are expected to do more *exploratory* testing.
 3. Click the <kbd>Save</kbd> button.
    <br>**Expected:** The file picker window closes, and a file with the given filename is created in the given folder.
 
-## Conclusion
+<br>
+
+## **Conclusion**
 
 We hope that this has given you a sufficient understanding of our product, as well as the design considerations behind it.
 Regardless, if you have any queries, feel free to submit an **issue [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/issues/new/choose)**, and we will do our best to get back to you.
