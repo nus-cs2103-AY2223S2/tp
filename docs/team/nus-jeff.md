@@ -56,8 +56,11 @@ Given below are my contributions to the project.
     * Modified UG to ensure consistency in wordings and grammar format [\#186](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/186)
     * Modified both introduction & features description to be more user-centric, added tips/warning to some features [\#263](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/263)
   * Developer Guide:
-    * Added use cases `UC05`, `UC11`, `UC14` [\#70](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/70)
+    * Added use cases `UC05`, `UC11`, `UC14`, `UC20` & `UC22` [\#70](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/70), [\#278](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/278)
     * Added implementation of `find` [\#166](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/166)
+    * Added sequence diagram for `find` [\#267](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/267)
+    * Added activity diagram for the logic section on how the logic component parses a user input [\#267](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/267)
+    * Added manual test case for `find`, `addpj` & `assign` [\#267](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/267)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#75](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/75), [\#76](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/76), [\#82](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/82), [\#127](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/127), [\#128](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/128), [\#196](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/196)
