@@ -16,4 +16,4 @@ title: Artistic AddressBook
 
 **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [PrettyTime](https://www.ocpsoft.org/prettytime/nlp/)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [PrettyTime](https://github.com/ocpsoft/prettytime)
