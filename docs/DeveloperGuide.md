@@ -416,7 +416,7 @@ The mark/unmark command takes in an `index` and a `YES/NO`, which is demarcated 
 
 The activity diagram below describes how the mark feature works.
 
-![MarkActivityDiagram](images/MarkCommandDiagram.png)
+![MarkActivityDiagram](images/MarkActivityDiagram.png)
 
 Given below
 The following sequence diagram shows how the marking operation works:
