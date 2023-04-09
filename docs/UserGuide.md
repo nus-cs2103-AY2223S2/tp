@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## Table of Contents
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
@@ -26,6 +26,7 @@ all in one place.
 
 **Notable Features**
   * Finding a particular internship application in TinS using keywords: `find`
+  * Finding a particular event in TinS using keywords: `event find`
   * Calendar View: `calendar`
   * Finding all clashing events: `clash`
 
@@ -108,7 +109,6 @@ Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
    ![Ui](images/ug/home_page.png)
 
    <div markdown="span" class="alert alert-success">
-   
         :bulb: **Tip:** The default TinS application contains some sample data. If you are new to TinS, these sample
         data can be useful for trying out the various commands of TinS. To remove all sample data, use the 
         <code>deleteall</code>.
@@ -160,13 +160,12 @@ In TinS, an internship application is stored as an **Internship**. An Internship
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: **Info:** Each Internship is **uniquely identifiable** by a **combination of its `POSITION` and
-`COMPANY`**. `POSITION` and `COMPANY` fields are **case-insensitive**. <br>
+:information_source: **Info:** Each Internship is **uniquely identifiable** by a **combination** of its `POSITION` and
+`COMPANY`. `POSITION` and `COMPANY` fields are **case-insensitive**. <br>
 
 Example: The following internships will be identified as same internship in TinS.
-
-* Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`
-* Internship with `POSITION` as `Software ENGINEER` and `COMPANY` as `GRAB`
+    <ul>Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`</ul>
+    <ul>Internship with `POSITION` as `Software ENGINEER` and `COMPANY` as `GRAB`</ul>
 
 </div>
 
@@ -280,7 +279,7 @@ their associated prefixes.
 pertaining to the associated field. <br>
 
 Example: If you input a `DESCRIPTION` field as `d/This is a my description p/field`, TinS would recognise the 
-sequence ` p/` as an indicator for the `POSITION` field. Hence, the above input would be recognised as an input with
+sequence <code> p/</code> as an indicator for the `POSITION` field. Hence, the above input would be recognised as an input with
 two fields, a `DESCRIPTION` field - `d/This is a description` and a `POSITION` field - `p/field`.
 </div>
 
@@ -316,8 +315,7 @@ two fields, a `DESCRIPTION` field - `d/This is a description` and a `POSITION` f
   <div markdown="span" class="alert alert-danger">
 
   :warning: **Warning:**  If an item without `...` after it is used more than once, TinS will identify the last
-  occurrence of that item as the input for that field.
-
+  occurrence of that item as the input for that field. <br>
   Example: `add p/POSITION c/COMPANY s/STATUS [d/DESCRIPTION] [t/TAG]...` means that the item, `p/POSITION` should only
   be used once. Hence, if 
   `add p/Software Engineer c/Grab s/0 d/This is a description t/IMPORTANT p/Data Analyst p/Machine Learning` is
@@ -419,8 +417,8 @@ internship application to TinS, if there is a pre-existing internship in TinS wi
 Example: If TinS contains an Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`, the commands
 below will not be allowed. <br>
 
-* `add p/Software Engineer c/Grab s/0 d/`
-* `add p/SOFTWARE engineer c/Grab s/3 d/`
+    <ul>`add p/Software Engineer c/Grab s/0 d/`</ul>
+    <ul>`add p/SOFTWARE engineer c/Grab s/3 d/`</ul>
 
 </div>
 
