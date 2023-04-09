@@ -93,17 +93,67 @@ meant to be defeated by player characters.
 `Item` refers to equipment such as armour, and miscellaneous tools. These are mainly dropped by mobs and
 can be used by the player characters.
 
-The definitive list of the different values each entity has:
+## Entity Fields
+The definitive list of the different fields each entity has:
 
-| Character  | Mob              | Item   |
-|----------------------|------------------|--------|
-| Name                 | Name             | Name   | 
-| Strength             | Strength         | Cost   |
-| Dexterity            | Dexterity        | Weight | 
-| Intelligence         | Intelligence     | Tags   |
-| Level                | Challenge Rating |        |
-| XP                   | Legendary        |        |
-| Tags                 | Tags             |        |
+| Character    | Mob              | Item   |
+|--------------|------------------|--------|
+| Name         | Name             | Name   | 
+| Strength     | Strength         | Cost   |
+| Dexterity    | Dexterity        | Weight | 
+| Intelligence | Intelligence     | Tags   |
+| Level        | Challenge Rating |        |
+| XP           | Legendary        |        |
+| Tags         | Tags             |        |
+| Inventory    | Inventory        |        |
+
+Each field accepts a certain type of value, as seen below:
+
+| Field            | Value Type           |
+|------------------|----------------------|
+| Name             | Alphanumeric String  | 
+| Strength         | `int`                |
+| Dexterity        | `int`                | 
+| Intelligence     | `int`                |
+| Level            | `int`                |
+| XP               | `int`                |
+| Challenge Rating | `int`                |
+| Legendary        | `boolean`            |
+| Tags             | Alphanumeric Strings |
+| Inventory        | Items                |
+
+
+Here's a general breakdown of what each field means:
+
+`Name` is the name of the entity, be it the name of a character, or the name of a mob like a gargoyle.
+
+`Strength` is a numerical measure of the physical force that an entity can exert. This then measures actions like 
+if the entity is capable of carrying heavy items, or interacting in scenarios that require lots of 
+physical strength.
+
+`Dexterity` is a numerical measure of physical prowess, mostly related to aspects like agility, reflexes and how fast 
+the entity can move. Like strength, this determines the choices and outcomes of certain events in the game.
+
+`Intelligence` is a numerical measure of magical and fantastical knowledge, often used to determine if an entity
+is able to wield certain spells, use certain magic items, or decipher foreign languages.
+
+`Level` is the numerical measure of the current stage of capability of a character. This increases by one after a 
+certain number of XP points are gained, and usually characters get to increase their stats when they level up.
+
+`XP` stands for Experience Points, which are points gained when a character defeats a mob, or completes quests. These 
+help the character level up.
+
+`Challenge Rating` is a total numerical score used to judge mob. based on a number of different stats. The higher
+the rating, the more difficult it is to fight the mob.
+
+`Legendary` is a boolean value denoting if a mob is legendary, which allows them to have special Legendary Resistances
+or Legendary Actions that normal mobs do not have.
+
+`Tags` are string values used to label entities with extra information you might want to, like if a fish is tasty.
+
+`Inventory` is a list of items that mobs and characters have, basically denoting what items they have on hand currently 
+and can use.
+
 
 ## Templates
 
