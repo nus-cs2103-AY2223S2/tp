@@ -38,13 +38,11 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 - [4. Implementation](#4-implementation)
   - [4.1 Add Command](#41-add-command)
   - [4.2 Edit Command](#42-edit-command)
-  - [4.3 Delete Command](#43-delete-command)
-  - [4.4 Help Command](#44-help-command)
-  - [4.5 Adding Additional Tags Command](#45-adding-additional-tags-command)
-  - [4.6 Deleting Individual Tags Command](#46-deleting-individual-tags-command)
-  - [4.7 Search Command](#47-search-command)
-  - [4.8 Upcoming Birthdays Command](#48-upcoming-birthdays-command)
-  - [4.9 Open Command](#49-open-command)
+  - [4.3 Help Command](#43-help-command)
+  - [4.4 Adding Additional Tags Command](#44-adding-additional-tags-command)
+  - [4.5 Deleting Individual Tags Command](#45-deleting-individual-tags-command)
+  - [4.6 Search Command](#46-search-command)
+  - [4.7 Upcoming Birthdays Command](#47-upcoming-birthdays-command)
 - [5. Planned Enhancements](#5-planned-enhancements)
   - [5.1 Improve Edit Command](#51-improve-edit-command)
   - [5.2 Better Information Field Validation](#52-better-information-field-validation)
@@ -60,14 +58,12 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
   - [7.2 Adding a Person](#72-adding-a-person)
   - [7.3 Editing a Person](#73-editing-a-person)
   - [7.4 Deleting a Person](#74-deleting-a-person)
-  - [7.5 Adding Additional Tags](#75-adding-additional-tags-to-a-person)
-  - [7.6 Deleting Individual Tags](#76-deleting-tags-from-a-person)
+  - [7.5 Adding Additional Tags to a Person](#75-adding-additional-tags-to-a-person)
+  - [7.6 Deleting Tags from a Person](#76-deleting-tags-from-a-person)
   - [7.7 Searching for a Person](#77-searching-for-a-person)
   - [7.8 Opening a Person's social media links in app](#78-opening-a-persons-social-media-links-in-app)
   - [7.9 Opening a social media platform with prefilled message](#79-opening-a-social-media-platform-with-prefilled-message)
   - [7.10 Viewing Upcoming Birthdays](#710-view-upcoming-birthdays)
-
-
 - [8. Requirements](#8-requirements)
   - [8.1 Product Scope](#81-product-scope)
   - [8.2 User Stories](#82-user-stories)
@@ -181,7 +177,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the <u>architecture</u>**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/MainApp.java). It is responsible for:
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -310,7 +306,7 @@ The `Model` component,
 
 An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require either one `Module` object, `CCA` object, `Major` object, or `Remark` object per unique tag, instead of each `Person` needing their own tag type objects. It also ensures that no duplicate tags are created.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="500" />
 
 </div>
 
@@ -356,15 +352,23 @@ Classes used by multiple components are in the `seedu.connectus.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
+- [4.1 Add Command](#41-add-command)
+- [4.2 Edit Command](#42-edit-command)
+- [4.3 Help Command](#43-help-command)
+- [4.4 Adding Addtional Tags Command](#44-adding-additional-tags-command)
+- [4.5 Deleting Individual Tags Command](#45-deleting-individual-tags-command)
+- [4.6 Search Command](#46-search-command)
+- [4.7 Upcoming Birthdays Command](#47-upcoming-birthdays-command)
+
+<div style="page-break-after: always"></div>
+
 ## 4.1 Add Command
 
 **Overview:**
 
 The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as <u><code>Module</code></u>, <u><code>CCA</code></u>, <u><code>Major</code></u> and `Remark` fields.
 
-The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
-
-<div style="page-break-after: always"></div>
+The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#44-adding-a-contact-add).
 
 **Feature Details:**
 
@@ -372,6 +376,8 @@ The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w1
 2. If the person name is not provided, or if invalid command parameters are provided, the user will be prompted to re-enter the command correctly via an error message.
 3. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
 4. If step 3 completes without exceptions, the new `Person` will be successfully added and stored inside the contact list.
+
+<div style="page-break-after: always"></div>
 
 The following activity diagram shows the logic of adding a `Person` into the contact list.
 
@@ -409,8 +415,6 @@ The following sequence diagram shows how `add` works:
 The `edit` command is used to change the information of an existing `Person` in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and `Birthday` fields.
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#45-editing-a-contact-edit).
-
-<div style="page-break-after: always"></div>
 
 **Feature Details:**
 
@@ -455,19 +459,7 @@ The following sequence diagram provides details on how the `informationFields` a
 
 <div style="page-break-after: always"></div>
 
-## 4.3 Delete Command
-
-**Overview:**
-
-**Feature Details:**
-
-[↑ Back to top of section](#4-implementation)
-
-[↑ Back to table of contents](#table-of-contents)
-
-<div style="page-break-after: always"></div>
-
-## 4.4 Help Command
+## 4.3 Help Command
 
 **Overview:**
 
@@ -490,7 +482,7 @@ The following activity diagram shows the logic of the `help` command.
 
 <div style="page-break-after: always"></div>
 
-## 4.5 Adding Additional Tags Command
+## 4.4 Adding Additional Tags Command
 
 **Overview:**
 
@@ -498,19 +490,20 @@ The `add-t` command is used to add additional tags to an existing `Person` in Co
 
 The format for the `add-t` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#46-adding-additional-tags-to-a-contact-add-t).
 
-<div style="page-break-after: always"></div>
-
 **Feature Details:**
 
 1. The user specifies a person index that represents a `Person` to be edited, followed by the tag to be added.
 2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
 3. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
-4. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
-5. If step 5 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
+4. If step 3 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
+
+<div style="page-break-after: always"></div>
 
 The following activity diagram shows the logic of the `add-t` command.
 
 ![AddTagToPersonCommandActivityDiagram](images/AddTagToPersonCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The sequence of the `add-t` command is as follows:
 
@@ -532,7 +525,7 @@ The following sequence diagram shows how `add-t` works:
 
 <div style="page-break-after: always"></div>
 
-## 4.6 Deleting Individual Tags Command
+## 4.5 Deleting Individual Tags Command
 
 **Overview:**
 
@@ -540,19 +533,20 @@ The `delete-t` command is used to delete individual tags from an existing `Perso
 
 The format for the `delete-t` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#47-deleting-tags-from-a-contact-delete-t).
 
-<div style="page-break-after: always"></div>
-
 **Feature Details:**
 
 1. The user specifies a person index that represents a `Person` to be edited, followed by the tag index to be deleted.
 2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
 3. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
-4. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
-5. If step 5 completes without exceptions, the tag of `Person` will be successfully deleted and this change will be stored inside the contact list.
+4. If step 3 completes without exceptions, the tag of `Person` will be successfully deleted and this change will be stored inside the contact list.
+
+<div style="page-break-after: always"></div>
 
 The following activity diagram shows the logic of the `delete-t` command.
 
 ![DeleteTagFromPersonCommandActivityDiagram](images/DeleteTagFromPersonCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The sequence of the `delete-t` command is as follows:
 
@@ -574,11 +568,11 @@ The following sequence diagram shows how `delete-t` works:
 
 <div style="page-break-after: always"></div>
 
-## 4.7 Search Command
+## 4.6 Search Command
 
 **Overview:**
 
-The `search` command is used to search ConnectUS for all `Person`s for whom the specified keyword matches the specified field information in the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday` and `tag` (`Module`, `CCA`, `Major`, `Remarks`) fields. If no field is specified, the command searches ConnectUS for all `Person`s for whom the specified keyword matches any of the information fields.
+The `search` command is used to search ConnectUS for all `Person`s for whom the specified keyword matches the specified field information in the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday` and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) (`Module`, `CCA`, `Major`, `Remarks`) fields. If no field is specified, the command searches ConnectUS for all `Person`s for whom the specified keyword matches any of the information fields.
 
 The format for the `search` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#49-searching-for-contact-information-search).
 
@@ -589,9 +583,13 @@ The format for the `search` command can be found [here](https://ay2223s2-cs2103t
 3. All fields provided must have a keyword associated. If an empty field is provided, an error is thrown. The user is prompted to re-enter the command correctly.
 4. Every `Person` in the `Model` is tested against the specified keywords. If all the keywords with fields match the corresponding information fields, and the keywords without fields match at least one information field, the `Person` is displayed. If any of the keywords do not match, the `Person` is filtered out.
 
+<div style="page-break-after: always"></div>
+
 The following activity diagram shows the logic of searching for in the contact list.
 
 ![SearchCommandActivityDiagram](images/SearchCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The sequence of the `search` command is as follows:
 
@@ -606,6 +604,8 @@ The sequence of the `search` command is as follows:
 The following sequence diagram shows how `search` works:
 ![SearchCommandSequenceDiagram](images/SearchCommandSequenceDiagram.png)
 
+<div style="page-break-after: always"></div>
+
 The following sequence diagram provides details on how the `informationFields` are being parsed by `ParserUtil`:
 ![SearchCommandParseInformationFieldsSequenceDiagram](images/SearchCommandParseInformationFieldsDiagram.png)
 
@@ -615,8 +615,7 @@ The following sequence diagram provides details on how the `informationFields` a
 
 <div style="page-break-after: always"></div>
 
-
-## 4.8 Upcoming Birthdays Command
+## 4.7 Upcoming Birthdays Command
 
 **Overview:**
 The `upcoming-b` command allows the user to view the birthdays of all contacts that are within the next 60 days.
@@ -628,24 +627,17 @@ The `upcoming-b` command allows the user to view the birthdays of all contacts t
 4. If the difference is less than or equal to 60 days, the contact is added to the list of contacts whose birthdays are within the next 60 days.
 5. The list of contacts whose birthdays are within the next 60 days is then displayed to the user.
 
-![UpcomingBirthdaysCommandActivityDiagram](images/UpcomingBirthdayCommandActivityDiagram.png)
-
-
-[↑ Back to top of section](#4-implementation)
-
-[↑ Back to table of contents](#table-of-contents)
-
 <div style="page-break-after: always"></div>
 
-## 4.9 Open Command
+The following activity diagram shows the logic of the upcoming birthdays command.
 
-**Overview:**
-
-**Feature Details:**
+![UpcomingBirthdaysCommandActivityDiagram](images/UpcomingBirthdayCommandActivityDiagram.png)
 
 [↑ Back to top of section](#4-implementation)
 
 [↑ Back to table of contents](#table-of-contents)
+
+---
 
 <div style="page-break-after: always"></div>
 
@@ -782,18 +774,18 @@ testers are expected to do more _exploratory_ testing.
 
 ## 7.1 Launch and shutdown
 
-1. Initial launch
+1. Initial launch:
 
    1. Download the `ConnectUS.jar` file and copy into an empty folder
 
    1. Double-click the `ConnectUS.jar` file Expected: Shows the <u>GUI</u> with a set of sample contacts. The window size may not be optimum.
 
-2. Saving window preferences
+2. Saving window preferences:
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+      **Expected:** The most recent window size and location is retained.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
@@ -801,145 +793,184 @@ testers are expected to do more _exploratory_ testing.
 
 <div style="page-break-after: always"></div>
 
-## 7.2 Adding a `Person`:
+## 7.2 Adding a Person:
 
-1. Adding a `Person` with just name, email and phone
-   1. Test case: `add n/John Doe e/email@example.com p/88291322`<br>
-      Expected: a new `Person` named JohnDoe with given email and phone
-      number is created. Details of the new `Person` shown in the status message. `Person` is visible in contact list.
-   2. Test case: `add n/ e/email@example.com`<br>
-      Expected: No `Person` is created. Error details shown in status message.
+1. Adding a `Person` with just name, email and phone:
+
+   1. **Test case:** `add n/John Doe e/email@example.com p/88291322`<br>
+      **Expected:** a new `Person` named JohnDoe with given email and phone number is created. Details of the new `Person` shown in the status message. `Person` is visible in contact list.
+   
+   2. **Test case:** `add n/ e/email@example.com`<br>
+      **Expected:** No `Person` is created. Error details shown in status message.
+
 2. Adding a `Person` with additional fields such as address, birthday, social medias etc. (For a detailed list see [this](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#5-information-fields--prefixes))
-   1. Test case: `add n/Peter Davis e/peter@example.com p/92849132 b/11/09/1989 a/Road No. 12, Kent Ridge, Singapore ig/peterdavis cca/ICS mod/CS3230`. Expected a new `Person` named Peter Davis with given email, phone number, birthday, address and Instagram handle is created. It also
-   adds two tags showing that he is in the ICS cca and in the CS3230 module.  Details of the new `Person` shown in the status message. `Person` is visible in contact list.
-  
 
-
+   1. **Test case:** `add n/Peter Davis e/peter@example.com p/92849132 b/11/09/1989 a/Road No. 12, Kent Ridge, Singapore ig/peterdavis cca/ICS mod/CS3230`.<br>
+   **Expected:** A new `Person` named Peter Davis with given email, phone number, birthday, address and Instagram handle is created. It also adds two tags showing that he is in the `ICS` CCA and in the `CS3230` module.  Details of the new `Person` shown in the status message. `Person` is visible in the contact list.
+   
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
 
-## 7.3 Editing a `Person`:
+## 7.3 Editing a Person:
+
 1. Editing a `Person`'s details:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
-    2. Test case: `edit 1 b/12/10/2003 tg/example p/88923444`<br>
-        Expected: The first `Person` in the list is edited to have the birthday 12/10/2003, the phone number 88923444. Details of the edited `Person` shown in the status message. If any of these fields were 
-        previously empty, they will be filled with the new information. If any of these fields were previously filled, they will be overwritten with the new information. 
-  2. To see if the `Person`'s details are edited, use the `list` command to verify the details of the edited `Person`.
-  3. For a detailed list of fields that can be edited, see [this](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#5-information-fields--prefixes).
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list.
+   
+    2. **Test case:** `edit 1 b/12/10/2003 tg/example p/88923444`<br>
+        **Expected:** The first `Person` in the list is edited to have the birthday `12/10/2003`, the phone number `88923444`. Details of the edited `Person` shown in the status message. If any of these fields were previously empty, they will be filled with the new information. If any of these fields were previously filled, they will be overwritten with the new information. 
+   
+2. To see if the `Person`'s details are edited, use the `list` command to verify the details of the edited `Person`.
+
+3. For a detailed list of fields that can be edited, see [this](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#5-information-fields--prefixes).
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.4 Deleting a `Person`:
-
-1. Deleting a `Person` while all persons are being shown
-   1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
-   1. Test case: `delete 1`<br>
-      Expected: First `Person` is deleted from the list. Details of the deleted `Person` shown in the status message. Timestamp in the status bar is updated.
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-[↑ Back to top of section](#7-instructions-for-manual-testing)
-
-[↑ Back to table of contents](#table-of-contents)
 <div style="page-break-after: always"></div>
 
-## 7.5 Adding additional tags to a `Person`:
+## 7.4 Deleting a Person:
+
+1. Deleting a `Person` while all persons are being shown:
+
+   1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list.
+
+   2. **Test case:** `delete 1`<br>
+      **Expected:** First `Person` is deleted from the list. Details of the deleted `Person` shown in the status message. Timestamp in the status bar is updated.
+
+   3. **Test case:** `delete 0`<br>
+      **Expected:** No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size).<br>
+      **Expected:** Similar to previous.
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
+
+## 7.5 Adding additional tags to a Person:
+
 1. Adding tags to a `Person`:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
-    2. Test case: `add-t 1 r/friends mod/CS2103T`<br>
-        Expected: The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T`. 
-        Trying the same command again on the same person will still show that
-        the tags have been added but only unique tags are shown.
-    3. Test case: `add-t 1029 r/friends`<br>
-        Expected: No `Person` is edited. Error showing invalid index shown
-        in the status bar. Assuming there are less than 1029 `Persons` in the list.
-    4. Test case `add-t`, `add-t 10`<br>
-        Expected: No `Person` is edited. Error showing invalid command format shown in the status bar.
 
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list.
+   
+    2. **Test case:** `add-t 1 r/friends mod/CS2103T`<br>
+        **Expected:** The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T`. Trying the same command again on the same person will still show that the tags have been added but only unique tags are shown.
 
-[↑ Back to top of section](#7-instructions-for-manual-testing)
+    3. **Test case:** `add-t 1029 r/friends`<br>
+        **Expected:** No `Person` is edited. Error showing invalid index shown in the status bar. Assuming there are less than 1029 `Persons` in the list.
 
-[↑ Back to table of contents](#table-of-contents)
-
-## 7.6 Deleting tags from a `Person`:
-1. Deleting tags from a `Person`:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. Assuming the first
-        `Person` in the list has the remark tag `friends` and module tag `CS2103T`.
-    2. Test case: `delete-t 1 r/1`<br>
-        Expected: The first `Person` in the list is edited to have the remark tag `friends` removed. 
-    3. Test case: `delete-t 1 r/1 m/1`<br>
-        Expected: The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T` removed.
-    4. Test case: `delete-t 1 r/10`<br>
-        Expected: No `Person` is edited. Error showing invalid index shown
-        in the status bar. Assuming there are less than 10 remark tags in the first `Person`'s remark tag list.
-
-[↑ Back to top of section](#7-instructions-for-manual-testing)
-
-[↑ Back to table of contents](#table-of-contents)
-
-## 7.7 Searching for a `Person`:
-1. Searching for a `Person`:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
-    2. Test case: `search cs`<br>.
-        Expected: All `Persons` whose information contains `cs` in any of the fields (name, email, address, telegram etc.).
-        For instance, if a person with a cca tag `ICS` would be shown in the list.
-    3. Test case: `search alex may`<br>
-        Expected: All `Persons` whose information contains `alex` and `may` in any of the fields (name, email, address, telegram etc.).
-        For instance, if a person with a name `Alex May` would be shown in the list.
-    4. Test case: `search r/friends`<br>
-        Expected: All `Persons` whose information contains `friends` in any of the remark tags.
-        For instance, if a person with a remark tag `friends` would be shown in the list.
+    4. **Test case:** `add-t`, `add-t 10`<br>
+        **Expected:** No `Person` is edited. Error showing invalid command format shown in the status bar.
     
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
+
+## 7.6 Deleting tags from a Person:
+
+1. Deleting tags from a `Person`:
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list. Assuming the first `Person` in the list has the remark tag `friends` and module tag `CS2103T`.
+   
+    2. **Test case:** `delete-t 1 r/1`<br>
+        **Expected:** The first `Person` in the list is edited to have the remark tag `friends` removed. 
+   
+    3. **Test case:** `delete-t 1 r/1 m/1`<br>
+        **Expected:** The first `Person` in the list is edited to have the remark tag `friends` and module tag `CS2103T` removed.
+   
+    4. **Test case:** `delete-t 1 r/10`<br>
+        **Expected:** No `Person` is edited. Error showing invalid index shown in the status bar. Assuming there are less than 10 remark tags in the first `Person`'s remark tag list.
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
+
+## 7.7 Searching for a Person:
+
+1. Searching for a `Person`:
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+   
+    2. **Test case:** `search cs`<br>.
+        **Expected:** All `Persons` whose information contains `cs` in any of the fields (name, email, address, Telegram etc.). For instance, if a person with a cca tag `ICS` would be shown in the list.
+
+    3. **Test case:** `search alex may`<br>
+        **Expected:** All `Persons` whose information contains `alex` and `may` in any of the fields (name, email, address, Telegram etc.). For instance, if a person with a name `Alex May` would be shown in the list.
+
+    4. **Test case:** `search r/friends`<br>
+        **Expected:** All `Persons` whose information contains `friends` in any of the remark tags.
+        For instance, if a person with a remark tag `friends` would be shown in the list.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.8 Opening a `Person`'s social media links in app:
+<div style="page-break-after: always"></div>
+
+## 7.8 Opening a Person's social media links in app:
+
 1. Opening a `Person`'s social media links:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
-    2. Test case: `open 1 tg/`<br>
-        Expected: The first `Person`'s telegram account is opened in the app. Assuming the first `Person` telegram field is not empty,
-        is a valid telegram username and the telegram app is installed on the user's computer.
-    3. Test case: `open 1 wa/`<br>
-        Expected: The first `Person`'s whatsapp account is opened in the app. Assuming the first `Person` whatsapp field is not empty,
-        is a valid whatsapp number and the whatsapp app is installed on the user's computer.
-    4. Test case: `open 1 ig/`<br>
-        Expected: Nothing happens. Error showing that the `Person`'s corresponding field is empty. Assuming the first `Person` instagram field is empty.
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+   
+    2. **Test case:** `open 1 tg/` for a `Person` with a valid Telegram account<br>
+        **Expected:** The first `Person`'s Telegram account is opened in the app, assuming the first `Person` telegram field is not empty, is a valid Telegram username and the Telegram app is installed on the user's computer.
+   
+    3. **Test case:** `open 1 wa/` for a `Person` with a valid WhatsApp number<br>
+        **Expected:** The first `Person`'s WhatsApp account is opened in the app, assuming the first `Person` WhatsApp field is not empty, is a valid WhatsApp number and the WhatsApp app is installed on the user's computer.
+   
+    4. **Test case:** `open 1 ig/` for a `Person` with no Instagram<br>
+        **Expected:** Nothing happens. Error showing that the `Person`'s corresponding field is empty, assuming the first `Person` Instagram field is empty.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 7.9 Opening a social media platform with prefilled message:
+
 1. Opening a social media platform with prefilled message:
-    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
-    2. Test case: `open 1 wa/ m/Hello World`<br>
-        Expected: The first `Person`'s WhatsApp account is opened in the app with the message `Hello World`. Assuming the first `Person` WhatsApp field is not empty,
-        is a valid WhatsApp number and the WhatsApp app is installed on the user's computer.
+
+    1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list. 
+   
+    2. **Test case:** `open 1 wa/ m/Hello World`<br>
+        Expected: The first `Person`'s WhatsApp account is opened in the app with the message `Hello World`. Assuming the first `Person` WhatsApp field is not empty, is a valid WhatsApp number and the WhatsApp app is installed on the user's computer.
+   
     3. **Note:** Only WhatsApp is supported right now due to platform limitations.
-
-
+    
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
 
 [↑ Back to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 7.10 View upcoming birthdays:
+
 1. View people whose birthday are in the next 60 days:
-  1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
-  2. Test case: `upcoming-b`<br>
-    Expected: All `Persons` whose birthday is in the next 60 days are shown in the list.
+
+   1. **Prerequisites:** List all `Persons` using the `list` command. Multiple `Persons` in the list.
+   
+   2. **Test case:** `upcoming-b`<br>
+       **Expected:** All `Persons` whose birthday is in the next 60 days are shown in the list.
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
+
+---
+
 <div style="page-break-after: always"></div>
 
 # 8. Requirements
@@ -958,6 +989,8 @@ testers are expected to do more _exploratory_ testing.
 
 **Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends' information, saving time and effort as users can access this information at their fingertips.
 
+[↑ Back to top of section](#8-requirements)
+
 [↑ Back to table of contents](#table-of-contents)
 
 <div style="page-break-after: always"></div>
@@ -969,7 +1002,7 @@ In the user stories, **user** refers to an NUS student unless specified otherwis
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                      | I want to …​                                                            | So that I can…​                                                                           |
-| -------- | -------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+|----------|----------------------------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | `* * *`  | new user                                     | see usage instructions                                                  | refer to instructions when I forget how to use the App                                    |
 | `* * *`  | user                                         | add a new contact                                                       |                                                                                           |
 | `* * *`  | user                                         | delete a contact                                                        | remove entries that I no longer need                                                      |
@@ -999,6 +1032,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                         | receive notifications when my friends change their telegram information | stay up to date with their latest details                                                 |
 | `* *`    | user                                         | search for my friends' telegram information within the app              | don't have to manually go through my contacts list every time I want to reach out to them |
 | `* *`    | user                                         | view a list of upcoming birthdays for my contacts                       | plan ahead for their birthday                                                             |
+| `* *`    | user with friends from different majors      | add major tags                                                          | remember which major they are in                                                          |
+| `* *`    | user with friends from different majors      | find other friends who are taking the same major as me                  | easily form groups with them prior to the start of the module                             |
 | `*`      | user with friends from different years       | add year tags to a contact                                              | remember which year they are in                                                           |
 | `*`      | user                                         | receive notifications for my friends' birthday                          | prepare for it and wish them                                                              |
 | `*`      | user with many contacts saved in the app     | search contacts by specific information fields                          | locate a contact easily                                                                   |
@@ -1023,24 +1058,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a contact by giving name and some contact information.
 2. ConnectUS adds a new contact with given information.
 3. ConnectUS displays confirmation message.
-4. The new contact is visible in the contacts list.
-
+4. The new contact is visible in the contacts list.<br>
    Use case ends.
 
 **Extensions**
 
 - 1a. There is an error in the given information.
-
-  - 1a1. ConnectUS shows an error message.
-
+  - 1a1. ConnectUS shows an error message.<br>
   Use case ends.
 
+
 - 4a. User requests to add more information to the contact.
-
   - 4a1. ConnectUS adds the given information to the contact.
-  - 4a2. ConnectUS displays confirmation message
-  - 4a3. Updated contact is visible in the contacts list
-
+  - 4a2. ConnectUS displays confirmation message.
+  - 4a3. Updated contact is visible in the contacts list.<br>
   Use case ends.
 
 <div style="page-break-after: always"></div>
@@ -1051,21 +1082,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons.
 2.  ConnectUS shows a list of persons.
-3.  User requests to delete a specific person in the list
-4.  ConnectUS deletes the person.
-
+3.  User requests to delete a specific person in the list.
+4.  ConnectUS deletes the person.<br>
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
-
+- 2a. The list is empty.<br>
   Use case ends.
 
 - 3a. The given index is invalid.
-
-  - 3a1. ConnectUS shows an error message.
-
+  - 3a1. ConnectUS shows an error message.<br>
     Use case resumes at step 2.
 
 **UC03: Edit a contact**
@@ -1075,26 +1102,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list persons.
 2. ConnectUS shows a list of persons.
 3. User requests to edit a specific person's information from the list by giving the type of information to be updated, and the updated information.
-4. ConnectUS edits the person's information.
-
+4. ConnectUS edits the person's information.<br>
    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 2a. The list is empty.<br>
+  Use case ends.
 
-  Use case ends
 
 - 3a. The given index is invalid.
-
-  - 3a1. ConnectUS shows an error message.
-
+  - 3a1. ConnectUS shows an error message.<br>
     Use case resumes at step 2.
 
+
 - 3b. There is an error in the given information.
-
-  - 3b1. ConnectUS shows an error message.
-
+  - 3b1. ConnectUS shows an error message.<br>
     Use case resumes at step 2.
 
 <div style="page-break-after: always"></div>
@@ -1106,8 +1129,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list persons.
 2. ConnectUS shows a list of persons.
 3. User requests to add tags to a specific person's information from the list by giving the tag type to be added, and the tag information.
-4. ConnectUS edits the person's tags.
-
+4. ConnectUS adds tags to the person.<br>
    Use case ends.
 
 **Extensions**
@@ -1120,14 +1142,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list persons.
 2. ConnectUS shows a list of persons.
-3. User requests to add tags to a specific person's information from the list by giving the tag type to be added, and the tag information.
-4. ConnectUS edits the person's tags.
-
+3. User requests to delete tags from a specific person's information from the list by giving the tag type to be added, and the tag index.
+4. ConnectUS deletes a tag from the person.<br>
    Use case ends.
 
 **Extensions**
 
-- UC05's extensions are the same as UC03: Edit a contact.
+- UC05's extensions are similar to UC03: Edit a contact, excluding extension 3b.
+
+- 3b. The given tag index is invalid.
+  - 3b1. ConnectUS shows an error message.<br>
+    Use case resumes at step 2.
 
 <div style="page-break-after: always"></div>
 
@@ -1135,50 +1160,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to search for a contact by keywords
-2. ConnectUS displays confirmation message
-3. ConnectUS displays all contacts with keywords in name
-
-   Use case ends
+1. User requests to search for a contact by keywords.
+2. ConnectUS displays confirmation message.
+3. ConnectUS displays all contacts with keywords in name.<br>
+   Use case ends.
 
 **Extensions**
 
-- 1a. No keywords are provided
-
-  - 1a1. ConnectUS displays error message
-
+- 1a. No keywords are provided.
+  - 1a1. ConnectUS displays error message.<br>
   Use case ends
 
-- 1b. User requests to find a contact by specific tag type
 
-  - 1b1. ConnectUS displays confirmation message
-  - 1b2. ConnectUS displays all contacts with given tag type
-
-  Use case ends
-
-- 1c. User requests to find a contact by specific contact information fields
-
-  - 1c1. ConnectUS displays confirmation message
-  - 1c2. ConnectUS displays all contacts with given contact information fields
-
-  Use case ends
+- 1b. User requests to find a contact by specific tag type and information fields.
+  - 1b1. ConnectUS displays confirmation message.
+  - 1b2. ConnectUS displays all contacts with given tag type and information fields.<br>
+  Use case ends.
 
 **UC07: List all contacts**
 
 **MSS**
 
-1. User requests to list all contacts
-2. ConnectUS displays confirmation message
-3. ConnectUS displays all contacts
-
+1. User requests to list all contacts.
+2. ConnectUS displays confirmation message.
+3. ConnectUS displays all contacts.<br>
    Use case ends
 
 **Extensions**
 
-- 1a. There is an error in the request
-
-  - 1a1. ConnectUS displays error message
-
+- 1a. There is an error in the request.
+  - 1a1. ConnectUS displays error message.<br>
   Use case ends
 
 <div style="page-break-after: always"></div>
@@ -1187,35 +1198,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests for help regarding usage format of a specific command
-2. ConnectUS displays confirmation message
-3. ConnectUS displays usage format of the given command
-
+1. User requests for help regarding usage format of a specific command.
+2. ConnectUS displays confirmation message.
+3. ConnectUS displays usage format of the given command.<br>
    Use case ends
 
 **Extensions**
 
-- 1a. No keywords are provided
-
-  - 1a1. ConnectUS displays general help message
-
+- 1a. No keywords are provided.
+  - 1a1. ConnectUS displays general help message.<br>
     Use case ends
 
-**UC09: Open a contact's Instagram homepage**
+**UC09: Open a contact's Social Media homepage**
 
 **MSS**
 
-1.  User requests to list persons
-2.  ConnectUS shows a list of persons
-3.  User requests to open the Instagram homepage of a specific person in the list
-4.  ConnectUS opens the desired Instagram homepage
-
+1.  User requests to list persons.
+2.  ConnectUS shows a list of persons.
+3.  User requests to open a specified Social Media homepage of a specific person in the list.
+4.  ConnectUS opens the desired Social Media homepage.<br>
     Use case ends
 
 **Extensions**
 
-- 3a. The person has no Instagram record.
-  - 3a1. ConnectUS displays error message.
+- 3a. The person has no specified Social Media record.
+  - 3a1. ConnectUS displays error message.<br>
     Use case ends.
 
 <div style="page-break-after: always"></div>
@@ -1224,21 +1231,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list persons
-2. ConnectUS shows a list of persons
-3. User requests to open the WhatsApp page of a specific person in the list with provided message
-4. ConnectUS launches desired WhatsApp with message prefilled
-
+1. User requests to list persons.
+2. ConnectUS shows a list of persons.
+3. User requests to open the WhatsApp page of a specific person in the list with provided message.
+4. ConnectUS launches desired WhatsApp with message prefilled.<br>
    Use case ends.
 
 **Extensions**
 
 - 3a. The person has no WhatsApp record.
-
-  - 3a1. ConnectUS displays error message.
+  - 3a1. ConnectUS displays error message.<br>
     Use case ends.
 
-- 4a. WhatsApp is launched but it does not fill the message.
+
+- 4a. WhatsApp is launched, but it does not fill the message.<br>
   Use case resumes from step 3.
 
 [↑ Back to top of section](#8-requirements)
@@ -1265,12 +1271,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [↑ Back to table of contents](#table-of-contents)
 
+---
+
 <div style="page-break-after: always"></div>
 
 # 9. Glossary
 
 ### A
-
 > **Alphanumeric:**
 > English alphabet letters and numbers only.
 >
@@ -1278,12 +1285,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > The architecture of a system describes its major components, their relationships (structures), and how they interact with each other.
 
 ### B
-
 > **Brownfield:**
 > Brownfield software development refers to the development and deployment of a new software system in the presence of existing or legacy software systems. Brownfield application development usually happens when developing or improving upon an existing application.
 
 ### C
-
 > **CCA:**
 > Co-curricular activities that students participate in.
 >
@@ -1301,17 +1306,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div style="page-break-after: always"></div>
 
 ### F
-
 > **Format:**
 > In this Developer Guide, the format of a command is the correct input usage of a command.
 
 ### G
-
 > **Graphical User Interface (GUI):**
 > A form of user interface that allows users to interact with programs through graphical icons and audio indicators.
 
 ### J
-
 > **Java `11`**: A feature release of the Java SE platform, used to run ConnectUS. The download link for this release can be found <a href="https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html">here</a>.
 >
 > **JavaFX:**
@@ -1323,8 +1325,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > **JUnit 5:**
 > JUnit 5 is a unit testing framework for the Java programming language, and is important in the development of test-driven development.
 
-### M
+<div style="page-break-after: always"></div>
 
+### M
 > **Mainstream OS:**
 > Short for Mainstream Operating Systems. This refers to Windows, Linux, Unix, OS-X.
 >
@@ -1337,28 +1340,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > **Module:**
 > Modules are courses that students take at the National University of Singapore.
 
-<div style="page-break-after: always"></div>
-
 ### N
-
 > **NUS:**
 > Short for the National University of Singapore.
 
 ### P
-
 > **Parameter:**
 > Parameters are user inputs that ConnectUS requires to perform certain commands.
 
 ### S
-
 > **School of Computing:**
 > Also known as SoC. A computing school in the National University of Singapore.
 >
 > **Special Characters:**
 > Characters that are not alphabetic or numeric.
 
-### U
+<div style="page-break-after: always"></div>
 
+### U
 > **Use Case:**
 > A use case describes the interaction between the system and the user for a specific functionality of the system.
 >

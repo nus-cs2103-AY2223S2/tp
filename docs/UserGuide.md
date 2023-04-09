@@ -8,6 +8,7 @@ title: User Guide
 ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising.
 
 We're focused on:
+
 - **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
 - **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
 
@@ -215,8 +216,6 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 * The detailed list of commands and their command formats can be found in [Features](#4-features).
 * You can also find a condensed summary of these commands in the [Command Summary](#7-command-summary).
 
-<div style="page-break-after: always"></div>
-
 <div markdown="block" class="alert alert-info">
 
 **:memo: Notes about the command format:**<br>
@@ -387,9 +386,9 @@ You can add a contact using the `add` command followed by the parameters (as sho
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**<br>
 
-* A contact can have any number of <a href=#59-tags>tags</a>, i.e. <u>modules</u>, <u>CCAs</u>, and <u>remarks</u> (including 0)!
+* A contact can have any number of <u>module</u>, <u>CCA</u>, and <u>remark</u> <a href="#59-tags" class="alert-link">tags</a> (including 0)!
 
-* A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters!
+* A contact can have at most 2 major tags. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters!
 
 </div>
 
@@ -764,8 +763,6 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 [↑ Back to table of contents](#table-of-contents)
 
 ---
-
-<div style="page-break-after: always"></div>
 
 # 5. Information Fields & Prefixes
 
