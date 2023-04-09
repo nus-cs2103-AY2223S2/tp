@@ -37,7 +37,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 Variant -up-> "1" DengueVariant
 
 DengueHotspotTracker *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList -> "~* all" Person
 Person *--> Name
 Person *--> Postal
 Person *--> Date
