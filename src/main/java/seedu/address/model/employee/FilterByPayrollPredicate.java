@@ -37,4 +37,14 @@ public class FilterByPayrollPredicate implements Predicate<Employee> {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+
+        return other == this
+                || (other instanceof FilterByPayrollPredicate
+                && (this.comparisonAmount == ((FilterByPayrollPredicate) other).comparisonAmount
+                && this.isEqualTo == ((FilterByPayrollPredicate) other).isEqualTo
+                && this.isGreaterThan == ((FilterByPayrollPredicate) other).isGreaterThan
+                && this.isLesserThan == ((FilterByPayrollPredicate) other).isLesserThan));
+    }
 }
