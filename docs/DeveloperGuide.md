@@ -62,14 +62,14 @@ Before reading, it is recommended that developers read the [User Guide](https://
     - [Edit a module](#edit-a-module)
     - [Edit a lecture](#edit-a-lecture)
     - [Edit a video](#edit-a-video)
-    - [Mark/Unmark a video](#markunmark-a-video)
-    - [Mark/Unmark multiple videos](#markunmark-multiple-videos)
     - [Delete a Module](#delete-a-module)
     - [Delete multiple Modules](#delete-multiple-modules)
     - [Delete a Lecture](#delete-a-lecture)
     - [Delete multiple Lectures](#delete-multiple-lectures)
     - [Delete a Video](#delete-a-video)
     - [Delete multiple Videos](#delete-multiple-videos)
+    - [Mark/Unmark a video](#markunmark-a-video)
+    - [Mark/Unmark multiple videos](#markunmark-multiple-videos)
     - [Tag a module](#tag-a-module)
     - [Tag a lecture](#tag-a-lecture)
     - [Tag a video](#tag-a-video)
@@ -1528,128 +1528,6 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-#### Mark/Unmark a video
-
-**Preconditions**: User has added a module, a lecture and a video
-
-**MSS**
-
-1. User wants to mark/unmark a video
-2. User specifies the module code, lecture name and video name to mark/unmark the video as watched/unwatched.
-3. LeTracker marks/unmarks the video as watched/unwatched
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. Invalid module code that does not follow module code format is supplied.
-
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. Invalid lecture name that does not follow lecture name format is supplied.
-
-  - 2b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. Invalid video name that does not follow video name format is supplied.
-
-  - 2c1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2d. Module of module code that is supposed to contain the lecture of lecture name does not exist.
-
-  - 2d1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2e. Lecture of lecture name that is supposed to contain the video of video name does not exist in module of module code.
-
-  - 2e1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2f. Video name does not exist in lecture of lecture name in module of module code.
-
-  - 2f1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 3a. Video to mark is already marked as watched.
-
-  - 3a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 3b. Video to unmark is already unmarked.
-
-  - 3b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-#### Mark/Unmark multiple videos
-
-**Preconditions**: User has added a module, a lecture and a few videos
-
-**MSS**
-
-1. User wants to mark/unmark a few videos under the same module lecture as watched/unwatched.
-2. User specifies the module code, lecture name and multiple video names to mark/unmark as watched/unwatched.
-3. LeTracker marks/unmarks the videos as watched/unwatched.
-
-  Use case ends
-
-**Extensions**
-
-- 2a. Invalid module code that does not follow module code format is supplied.
-
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. Invalid lecture name that does not follow lecture name format is supplied.
-
-  - 2b1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. At least one of video names supplied does not follow video name format.
-
-  - 2c1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2d. The video names contain duplicates.
-
-  - 2d1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2e. Module of module code that is supposed to contain the lecture of lecture name does not exist.
-
-  - 2e1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2f. Lecture of lecture name that is supposed to contain the videos of the multiple video name does not exist in module of module code.
-
-  - 2f1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2g. At least one of the videos of video names do not exist in lecture of lecture name in module of module code.
-
-  - 2g1. LeTracker shows an error message.
-
-- 3a. At least one of the videos to mark is already marked as watched.
-
-  - 3a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
 #### Delete a Module
 
 **Preconditions**: User has added a module
@@ -1887,6 +1765,128 @@ with module, lecture and keyword supplied.
 - 2g. At least one of the videos do not exist in the lecture.
 
   - 2g1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Mark/Unmark a video
+
+**Preconditions**: User has added a module, a lecture and a video
+
+**MSS**
+
+1. User wants to mark/unmark a video
+2. User specifies the module code, lecture name and video name to mark/unmark the video as watched/unwatched.
+3. LeTracker marks/unmarks the video as watched/unwatched
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Invalid module code that does not follow module code format is supplied.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Invalid lecture name that does not follow lecture name format is supplied.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. Invalid video name that does not follow video name format is supplied.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Lecture of lecture name that is supposed to contain the video of video name does not exist in module of module code.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. Video name does not exist in lecture of lecture name in module of module code.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 3a. Video to mark is already marked as watched.
+
+  - 3a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 3b. Video to unmark is already unmarked.
+
+  - 3b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Mark/Unmark multiple videos
+
+**Preconditions**: User has added a module, a lecture and a few videos
+
+**MSS**
+
+1. User wants to mark/unmark a few videos under the same module lecture as watched/unwatched.
+2. User specifies the module code, lecture name and multiple video names to mark/unmark as watched/unwatched.
+3. LeTracker marks/unmarks the videos as watched/unwatched.
+
+  Use case ends
+
+**Extensions**
+
+- 2a. Invalid module code that does not follow module code format is supplied.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Invalid lecture name that does not follow lecture name format is supplied.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one of video names supplied does not follow video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The video names contain duplicates.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. Lecture of lecture name that is supposed to contain the videos of the multiple video name does not exist in module of module code.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2g. At least one of the videos of video names do not exist in lecture of lecture name in module of module code.
+
+  - 2g1. LeTracker shows an error message.
+
+- 3a. At least one of the videos to mark is already marked as watched.
+
+  - 3a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
