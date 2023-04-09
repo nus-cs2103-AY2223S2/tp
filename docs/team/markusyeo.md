@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   I had to add a new `CsvUtil` class to handle all the reading and writing from CSV.
 * **New Feature**: Added the ability to import and export data as a csv file
   * Justification: This feature allows users to export, edit, and import csv files into `DengueHotspotTracker`. 
-  Additionally allowing users to export files, edit them offline, then import them back into the DHT, is more convenient for sharing information with those without direct access to the DengueHotspotTracker.
+  Additionally, allowing users to export files, edit them offline, then import them back into the `DengueHotspotTracker` is more convenient for sharing information with those without direct access to the app.
   * This feature also pairs with the `find` function with allows users to filter the data and also export that specific set of data to be shared with others.
 * **New Feature**: Added the ability to checkout overview data as a csv file
   * Justification: This feature allows users store the overviewed data outside of `DengueHotspotTracker` this will mean that they will be able to share a much smaller file as compared to having to send all the persons in the case list.
