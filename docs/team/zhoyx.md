@@ -19,6 +19,10 @@ Given below are my contributions to the project.
   * What it does: Added validation to only allow Genres from that list to be added.
   * Justification: Ensure consistency of Genres and reduce overhead
 
+* **New Feature**: Added command to list valid Genres. [#139](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/139)
+    * What it does: Displays the list of valid Genres
+    * Justification: Allows users to check what are the valid genres available.
+
 * **Enhancements**:
     * Created Progress field when modifying AddressBook to MyLib. [#75](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/75)
     * Updated Test cases for Fixed set of Genres. [#155](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/155)
@@ -31,6 +35,10 @@ Given below are my contributions to the project.
     * Developer Guide:
       * Updated plantUML diagrams to reflect new Fields and classes. [#140](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/140)
       * Added Implementation for Rating Field. [#167](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/167)
-      * Added User Stories for Tag, Sort and Delete
+      * Added User Stories for Tag, Sort and Delete[#328](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/328)
+      * Added to Instructions for Manual testing for Tag related commands
+* **Contributions to team-based tasks**
+  * Created release for V1.3.1.trial
+  * Maintain issue tracker for tasks
 
 
