@@ -198,6 +198,8 @@ Shown below are the activity diagrams of adding a `Vehicle` and removing a `Cust
 
 ![Add Vehicle Activity Diagram](images/AddVehicleInternalActivityDiag.png)
 
+![Remove Customer Activity Diagram](images/RemoveCustomerInternalActivityDiag.png)
+
 ### Add Feature
 
 ### Current Implementation

@@ -1,17 +1,20 @@
 @startuml
-title Add Vehicle API
+skinparam conditionStyle diamond
+title Add Vehicle Activity Diagram
 start
 :addVehicle(ownerId, plateNumber, color, brand, type);
-if (invalidInput(plateNumber, color, brand)) then (invalid)
+:check invalid input;
+if () then ([invalid])
    :throw EmptyInputException;
    stop
-else (valid)
-if (Unused plate number?) then (no)
+else ([valid[)
+:check unused plate number;
+if () then ([used])
     :throw DuplicatePlateNumberException;
     stop
-else (yes)
-    :undoStack.push(this.copy());
-    :redoStack.clear();
+else ([yes])
+    :push copy of current shop to undo stack;
+    :clear redo stack;
     :add vehicle;
     :add vehicle ID to owner;
     :updateVehicleMappings;
