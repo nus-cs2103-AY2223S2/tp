@@ -20,6 +20,7 @@ title: Developer Guide
     * **[User cases](#use-cases)**
     * **[Non-Functional Requirements](#non-functional-requirements)**
     * **[Glossary](#glossary)**
+* **[Appendix: Effort](#appendix-effort)**
 * **[Appendix: Planned Enhancements](#appendix-planned-enhancements)**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -603,6 +604,17 @@ of the student's scores. In future implementation, a student's performance will 
 
 ### Saving data
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+   
+### Difficulty level
+   
+### Challenges faced
+  
+### Effort required
+   
+### Achievements
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
