@@ -977,34 +977,31 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ##### MSS
 
-1. User requests to list appointments.
-2. VMS shows a list of appointments.
-3. User requests to edit a specific appointment in the list using the ID with the args.
-4. VMS edit the appointment.
+1. User enters command to edit an appointment.
+2. VMS edits the appointment.
 
-    Use case ends.
+   Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
 
-  Use case ends.
+      Use case resumes from step 1.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+* 1b. User requested to edit an appointment that does not exist.
+    * 1a1. VMS shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 #### UC-APT-004 - Delete appointment
 
 ##### MSS
 
-1. User requests to list appointments.
-2. VMS shows a list of appointments.
-3. User requests to delete a specific appointment in the list.
-4. VMS deletes the appointment.
+1. User enters command to delete an appointment.
+2. VMS deletes the appointment.
 
-    Use case ends.
+   Use case ends.
 
 ##### Extensions
 
@@ -1013,7 +1010,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
   Use case ends.
 
 * 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+    * 3a1. VMS shows an error message.
 
       Use case resumes at step 1.
 
