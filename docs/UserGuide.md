@@ -102,13 +102,13 @@ Information that you need to know
 * Words in `UPPER_CASE` are the information supplied by you.<br>
   e.g. `OWNER_NAME` is a parameter in `add o/OWNER_NAME`, where you can input `add o/John Doe`.
 * Parameters in `[]` are optional.<br>
-  e.g. `DEADLINE` is an optional parameter in `create o/OWNER_NAME [d/DEADLINE]`, where you can input `add on/John Doe d/Feed dog - 2023-03-27 21:09:09` or just `create n/John Doe`.
+  e.g. `DEADLINE` is an optional parameter in `add o/OWNER_NAME [d/DEADLINE]`, where you can input `add on/John Doe d/Feed dog - 2023-03-27 21:09:09` or just `add n/John Doe`.
 * Items with `...` after them can be used multiple times.<br>
   e.g. `[t/TAG...]` can be used as `t/Pomeranian`, `t/Pomeranian t/Vegetarian` etc.
 * `INDEX` represents the index of a specific pet in PetPal list you are **currently viewing**, which can change based on prior commands executed (e.g. `find`, `remind`)<br>
   e.g. You can use the command `delete INDEX` as `delete 2`.
 * Parameters can be in **any order**.<br>
-  e.g. You can input either `add o/OWNER_NAME p/PHONE_NUMBER` or ` create p/PHONE_NUMBER o/OWNER_NAME`.
+  e.g. You can input either `add o/OWNER_NAME p/PHONE_NUMBER` or ` add p/PHONE_NUMBER o/OWNER_NAME`.
 * Only the last occurrence of a parameter that is expected once will be taken **if you specify it more than once.**<br>
   e.g. Given `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear` and `undo`) will be ignored.<br>
