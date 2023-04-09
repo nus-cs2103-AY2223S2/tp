@@ -135,7 +135,7 @@ The `Model` component,
 
 #### Person
 
-* The `Person` object under the `Model` component, stores information of a generic person 
+* The `Person` object under the `Model` component, stores information of a generic person
 * A `Person` object extends a `Patient` or a `Doctor`, which stores information specific to a patient and a doctor respectively
 * Note that only the `Nric` uniquely identifies each `Person`
 
@@ -219,7 +219,7 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
     * Pros: Easy to implement. No need to worry about multiple people with same name, since everyone has a unique nric number.
     * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
 
-    
+
 ### Display feature
 
 The display feature is to allow the user to view all detailed particulars of a `Patient` or `Doctor`. Note that the `Person` has to exist in `MediConnect`.  This feature is intended to complement the `Edit`, `Appointment` and `Prescription` features, allowing users to access all of the `Person`'s information when updating records.
@@ -235,7 +235,7 @@ The sequence diagram below shows how the DisplayCommand works:
 
 * When the user inputs `display ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the person's `Nric` through `ParserUtil`
     * Any invalid inputs will throw a `ParseException`
-* Otherwise, it creates an `DisplayCommand`. The `LogicManager` then executes the `DisplayCommand`, upon which the `Person` is retrieved by `Nric` before calling `Model#updatePersonView()` to display the detailed view of the retrieved `Person` 
+* Otherwise, it creates an `DisplayCommand`. The `LogicManager` then executes the `DisplayCommand`, upon which the `Person` is retrieved by `Nric` before calling `Model#updatePersonView()` to display the detailed view of the retrieved `Person`
     * `CommandException` is thrown
         * if `Patient` or `Doctor` retrieved by `Nric` does not exist
 
@@ -245,7 +245,7 @@ The sequence diagram below shows how the DisplayCommand works:
 * Patient's `Nric` of the `Patient` scheduled for an appointment
 * `Booking` consisting the date of the appointment
 * Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
-  
+
 #### Adding an appointment
 
 Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
@@ -259,7 +259,7 @@ The sequence diagram below shows how the AppointmentCommand works:
 
 * When the user inputs `appointment ic/[NRIC] d/[DATE] dric/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the patient's `Nric`, `Booking`, and doctor's `Nric` inputs through `ParserUtil`
   * Any invalid inputs will throw a `ParseException`
-* Otherwise, it creates an `AppointmentCommand` with the new `Appointment` created. The `LogicManager` then executes the `AppointmentCommand`, upon which the `Appointment` is added to the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#bookAppointment()`. 
+* Otherwise, it creates an `AppointmentCommand` with the new `Appointment` created. The `LogicManager` then executes the `AppointmentCommand`, upon which the `Appointment` is added to the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#bookAppointment()`.
   * `CommandException` is thrown
     * if `Patient` or `Doctor` retrieved by `Nric` does not exist, or
     * if `Appointment` already exists in `Model`
@@ -515,7 +515,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User chooses to retrieve patient’s information..
 2. MC retrieves the patient’s information
 3. MC displays the patient information that was retrieved..
-   
+
     Use case ends.
 
 **Extensions**
@@ -591,46 +591,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. MC requests for details of the information..
 3. User enters the requested details..
 4. MC displays the updated appointment information for the patient and the doctor.
-   
+
     Use case ends.
 
 **Extensions**
 * 4a. MC detects that the patient already has an appointment scheduled for that appointment slot.
 
   * 4a1. MC informs the user that the appointment has been booked
-  
+
   * 4a2. User enters another appointment slot.
-  
+
     Steps 4a1-4a2 are repeated until the data entered are correct.
-  
+
     Use case resumes from step 4.
-  
+
 * 4b. MC detects that the doctor has already scheduled an appointment with another patient at this particular time slot.
-  
+
   * 4b1. MC informs the user that the appointment has been booked
-  
-  * 4b2. User enters another appointment slot. 
-  
-    Steps 4b1-4b2 are repeated until the data entered are correct. 
-  
+
+  * 4b2. User enters another appointment slot.
+
+    Steps 4b1-4b2 are repeated until the data entered are correct.
+
     Use case resumes from step 4.
 
 * 4c. MC detects that the patient's nric does not exist.
-  
+
   * 4c1. MC informs the user that the patient's nric is invalid
-  
+
   * 4c2. User enters another patient nric
-  
-    Steps 4c1-4c2 are repeated until the data entered are correct. 
-  
+
+    Steps 4c1-4c2 are repeated until the data entered are correct.
+
     Use case resumes from step 4.
-  
+
 * 4d. MC detects that the doctor's nric does not exist.
-  
+
     * 4d1. MC informs the user that the doctor's nric is invalid
-  
-    * 4d2. User enters another doctor nric 
-  
+
+    * 4d2. User enters another doctor nric
+
       Steps 4d1-4d2 are repeated until the data entered are correct.
 
       Use case resumes from step 4.
@@ -644,32 +644,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User chooses to cancel patient’s appointment..
 2. MC requests for details of the information..
 3. User enters the requested details..
-4. MC displays the updated appointment information for the patient and the doctor. 
-   
+4. MC displays the updated appointment information for the patient and the doctor.
+
     Use case ends.
 
 **Extensions**
 
 * 5a. MC detects that an invalid index is entered.
-  
-    * 5a1. MC informs the user that the specified index is invalid
-  
-    * 5a2. User enters another index.
-    
-      Steps 5a1-5a2 are repeated until the data entered are correct. 
 
-      Use case resumes from step 4. 
+    * 5a1. MC informs the user that the specified index is invalid
+
+    * 5a2. User enters another index.
+
+      Steps 5a1-5a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
 
 * 5b. MC detects that the patient's nric does not exist.
-  
+
     * 5b1. MC informs the user that the patient's nric is invalid
-  
+
     * 5b2. User enters another patient nric
-  
+
       Steps 5b1-5b2 are repeated until the data entered are correct.
 
       Use case resumes from step 4.
-  
+
 *{More to be added}*
 
 ### Non-Functional Requirements
