@@ -524,7 +524,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `delevent 0`<br>
       Expected: No event is deleted. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delevent`, `delevent x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 2. Deleting an event while event with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
