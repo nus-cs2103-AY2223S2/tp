@@ -31,7 +31,9 @@ Given below are my contributions to the project.
      * Added implementation details of the `findBook` feature.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#165](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/165)
+    * PRs reviewed (with non-trivial review comments): 
+  [\#165](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/165),
+  [\#31](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/31)
     * Contributed to forum discussions (examples: 
     [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/343), 
     [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/276), 
