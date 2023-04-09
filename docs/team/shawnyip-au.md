@@ -39,13 +39,11 @@ Given below are my contributions to the project.
     * Assigned issues
     * Point out bugs in conversations
     * Manual testing of CoDoc
-
 * **Enhancements to existing features**:
     * Change test cases of storage component to reflect CoDoc's implementation
     * Minor Ui alignments [#124](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/124)
     * Found and resolved bug that crash the program upon clear command [#189](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/198)
     * Clean up code residues and remove magic variables [#227](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/227)
-
 * **Documentation**:
     * User Guide:
         * Created tutorial section
@@ -58,7 +56,6 @@ Given below are my contributions to the project.
         * Created class diagram to reflect changes done for storage component
         * Update storage component text
         * Created sequence diagram for how data is stored and retrieved
-
 * **Tools**:
     * Java
     * Gradle
