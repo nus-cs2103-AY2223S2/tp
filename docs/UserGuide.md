@@ -145,7 +145,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find roy john` returns `Roy Balakrishnan`, `John Doe`<br>
-  ![example usage for find command](images/find.png)
+
+![example usage for find command](images/find.png)
 
 #### Deleting a person : `delete`
 
