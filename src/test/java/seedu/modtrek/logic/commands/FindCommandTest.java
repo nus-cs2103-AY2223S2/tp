@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.model.Model;
@@ -33,6 +34,17 @@ import seedu.modtrek.model.tag.Tag;
 
 class FindCommandTest {
 
+    private Model populatedModel;
+    private Model emptyModel;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        populatedModel = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
+        emptyModel = new ModelManager(getEmptyDegreeProgression(), new UserPrefs());
+        expectedModel = new ModelManager();
+    }
+
     @Test
     public void constructor_nullPredicate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new FindCommand(null, new ArrayList<>()));
@@ -40,8 +52,6 @@ class FindCommandTest {
 
     @Test
     public void execute_findFromEmptyDegreeProgression_success() {
-        Model model = new ModelManager(getEmptyDegreeProgression(), new UserPrefs());
-
         Set<String> codePrefixes = new HashSet<>();
         codePrefixes.add("CS");
 
@@ -52,35 +62,29 @@ class FindCommandTest {
                 new ModuleCodePredicate(false, "", codePrefixes,
                         credits, new HashSet<>(), new HashSet<>(), new HashSet<>());
         FindCommand findCommand = new FindCommand(predicate, new ArrayList<>());
-        findCommand.execute(model);
+        findCommand.execute(emptyModel);
 
-        assertEquals(0, model.getFilteredModuleList().size());
+        assertEquals(0, emptyModel.getFilteredModuleList().size());
     }
 
     @Test
     public void execute_findModule_success() {
-        Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
-
-        Model expectedModel = new ModelManager();
         expectedModel.addModule(CS2100);
 
         ModuleCodePredicate predicate =
                 new ModuleCodePredicate(true, CS2100.getCode().toString(), new HashSet<>(),
                         new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
         FindCommand findCommand = new FindCommand(predicate, new ArrayList<>());
-        findCommand.execute(model);
+        findCommand.execute(populatedModel);
 
-        assertEquals(1, model.getFilteredModuleList().size());
+        assertEquals(1, populatedModel.getFilteredModuleList().size());
 
-        assertEquals(model.getFilteredModuleList().get(0).getCode().toString(),
+        assertEquals(populatedModel.getFilteredModuleList().get(0).getCode().toString(),
                 expectedModel.getDegreeProgression().getModuleList().get(0).getCode().toString());
     }
 
     @Test
     public void execute_findCodePrefixes_success() {
-        Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
-
-        Model expectedModel = new ModelManager();
         expectedModel.addModule(CS2100);
         expectedModel.addModule(CS1231);
         expectedModel.addModule(CS1010R);
@@ -94,12 +98,12 @@ class FindCommandTest {
                 new ModuleCodePredicate(false, "", codePrefixes,
                         new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
         FindCommand findCommand = new FindCommand(predicate, new ArrayList<>());
-        findCommand.execute(model);
+        findCommand.execute(populatedModel);
 
         assertEquals(expectedModel.getDegreeProgression().getModuleList().size(),
-                model.getFilteredModuleList().size());
+                populatedModel.getFilteredModuleList().size());
 
-        for (Module module : model.getFilteredModuleList()) {
+        for (Module module : populatedModel.getFilteredModuleList()) {
             String codePrefix = module.getCodePrefix().toString();
             assertTrue(codePrefix.equals("CS") || codePrefix.equals("IS"));
         }
@@ -107,8 +111,6 @@ class FindCommandTest {
 
     @Test
     public void execute_findCredits_success() {
-        Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
-
         Set<Credit> credits = new HashSet<>();
         credits.add(new Credit("4"));
 
@@ -116,11 +118,11 @@ class FindCommandTest {
                 new ModuleCodePredicate(false, "", new HashSet<>(),
                         credits, new HashSet<>(), new HashSet<>(), new HashSet<>());
         FindCommand findCommand = new FindCommand(predicate, new ArrayList<>());
-        findCommand.execute(model);
+        findCommand.execute(populatedModel);
 
-        assertEquals(6, model.getFilteredModuleList().size());
+        assertEquals(6, populatedModel.getFilteredModuleList().size());
 
-        for (Module module : model.getFilteredModuleList()) {
+        for (Module module : populatedModel.getFilteredModuleList()) {
             String credit = module.getCredit().toString();
             assertEquals("4", credit);
         }
@@ -128,10 +130,9 @@ class FindCommandTest {
 
     @Test
     public void execute_findSemYear_success() {
-        Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
-        model.addModule(CS2109S);
-        model.addModule(CS2102);
-        model.addModule(CS2103T);
+        populatedModel.addModule(CS2109S);
+        populatedModel.addModule(CS2102);
+        populatedModel.addModule(CS2103T);
 
         Set<SemYear> semYears = new HashSet<>();
         semYears.add(new SemYear("Y1S1"));
@@ -141,11 +142,11 @@ class FindCommandTest {
                 new ModuleCodePredicate(false, "", new HashSet<>(),
                         new HashSet<>(), semYears, new HashSet<>(), new HashSet<>());
         FindCommand findCommand = new FindCommand(predicate, new ArrayList<>());
-        findCommand.execute(model);
+        findCommand.execute(populatedModel);
 
-        assertEquals(7, model.getFilteredModuleList().size());
+        assertEquals(7, populatedModel.getFilteredModuleList().size());
 
-        for (Module module : model.getFilteredModuleList()) {
+        for (Module module : populatedModel.getFilteredModuleList()) {
             String moduleSemYear = module.getSemYear().toString();
             assertTrue(moduleSemYear.equals("Y1S1") || moduleSemYear.equals("Y1S2"));
         }
@@ -153,8 +154,6 @@ class FindCommandTest {
 
     @Test
     public void execute_findGrades_success() {
-        Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
-
         Set<Grade> grades = new HashSet<>();
         grades.add(new Grade("A+"));
         grades.add(new Grade("A"));
@@ -163,11 +162,11 @@ class FindCommandTest {
                 new ModuleCodePredicate(false, "", new HashSet<>(),
                         new HashSet<>(), new HashSet<>(), grades, new HashSet<>());
         FindCommand findCommand = new FindCommand(predicate, new ArrayList<>());
-        findCommand.execute(model);
+        findCommand.execute(populatedModel);
 
-        assertEquals(5, model.getFilteredModuleList().size());
+        assertEquals(5, populatedModel.getFilteredModuleList().size());
 
-        for (Module module : model.getFilteredModuleList()) {
+        for (Module module : populatedModel.getFilteredModuleList()) {
             String grade = module.getGrade().toString();
             assertTrue(grade.equals("A+") || grade.equals("A"));
         }
@@ -175,10 +174,9 @@ class FindCommandTest {
 
     @Test
     public void execute_findTags_success() {
-        Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
-        model.addModule(CS2109S);
-        model.addModule(CS2102);
-        model.addModule(CS2103T);
+        populatedModel.addModule(CS2109S);
+        populatedModel.addModule(CS2102);
+        populatedModel.addModule(CS2103T);
 
         /* SINGLE TAG */
         Set<Tag> singleTag = new HashSet<>();
@@ -188,11 +186,11 @@ class FindCommandTest {
                 new ModuleCodePredicate(false, "", new HashSet<>(),
                         new HashSet<>(), new HashSet<>(), new HashSet<>(), singleTag);
         FindCommand singleTagFindCommand = new FindCommand(singleTagPredicate, new ArrayList<>());
-        singleTagFindCommand.execute(model);
+        singleTagFindCommand.execute(populatedModel);
 
-        assertEquals(4, model.getFilteredModuleList().size());
+        assertEquals(4, populatedModel.getFilteredModuleList().size());
 
-        for (Module module : model.getFilteredModuleList()) {
+        for (Module module : populatedModel.getFilteredModuleList()) {
             Set<Tag> moduleTags = module.getTags();
             moduleTags.contains("CSF");
         }
@@ -207,11 +205,11 @@ class FindCommandTest {
                 new ModuleCodePredicate(false, "", new HashSet<>(),
                         new HashSet<>(), new HashSet<>(), new HashSet<>(), multipleTags);
         FindCommand multipleTagsFindCommand = new FindCommand(multipleTagsPredicate, new ArrayList<>());
-        multipleTagsFindCommand.execute(model);
+        multipleTagsFindCommand.execute(populatedModel);
 
-        assertEquals(1, model.getFilteredModuleList().size());
+        assertEquals(1, populatedModel.getFilteredModuleList().size());
 
-        for (Module module : model.getFilteredModuleList()) {
+        for (Module module : populatedModel.getFilteredModuleList()) {
             Set<Tag> moduleTags = module.getTags();
             moduleTags.contains("CSF");
             moduleTags.contains("CSBD");
@@ -220,10 +218,9 @@ class FindCommandTest {
 
     @Test
     public void execute_findMultipleFilters_success() {
-        Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
-        model.addModule(CS2109S);
-        model.addModule(CS2102);
-        model.addModule(CS2103T);
+        populatedModel.addModule(CS2109S);
+        populatedModel.addModule(CS2102);
+        populatedModel.addModule(CS2103T);
 
         Set<String> codePrefixes = new HashSet<>();
         codePrefixes.add("CS");
@@ -241,11 +238,11 @@ class FindCommandTest {
                 new ModuleCodePredicate(false, "", codePrefixes,
                         new HashSet<>(), semYears, grades, tags);
         FindCommand findCommand = new FindCommand(predicate, new ArrayList<>());
-        findCommand.execute(model);
+        findCommand.execute(populatedModel);
 
-        assertEquals(1, model.getFilteredModuleList().size());
+        assertEquals(1, populatedModel.getFilteredModuleList().size());
 
-        assertEquals("CS1231", model.getFilteredModuleList().get(0).getCode().toString());
+        assertEquals("CS1231", populatedModel.getFilteredModuleList().get(0).getCode().toString());
     }
 
     @Test
