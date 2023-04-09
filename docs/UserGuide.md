@@ -14,43 +14,25 @@ With FAid, financial advisors will no longer have to worry about missing a meeti
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-
-<!-- 1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
-   operating system. <br> See the [Troubleshooting section](#troubleshooting) if you run into any issues. -->
 FAid requires `Java 11` to function.
-If you do not have `Java 11` or are unsure if you have it, refer to the [Troubleshooting section](#troubleshooting) for help.
+Unsure if you have `Java 11`, or you don't have it? Refer to the [Troubleshooting section](#troubleshooting) for help!
 Otherwise, refer to the following steps to get started.
 
-1. Download the application called `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
+1. Download the application called `faid.jar` from this [link](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
 1. Double click the `faid.jar` file you downloaded and the app should launch automatically.<br>
    If this is your first time using a .jar file, see the [Troubleshooting section](#troubleshooting) for help.
 
-1. An application similar to the below should appear in a few seconds.<br>
-   ![Ui](images/Ui.png)
+1. The application should look like this. To begin, type in any command in the command box 
+and press Enter to execute it.
+![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it.
-   ![Ui](images/Ui.png)
+<div markdown="block" class="alert alert-info">
 
+**:grey_question: Unsure of what commands there are?:**<br>
+Refer to the [Features](#features) below for details of each command.
 
-
-
-   <!-- Some example commands you can try: -->
-
-
-<!-- 
-    * `list` : Lists all clients.
-
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe`
-      to FAid.
-
-    * `delete 3` : Deletes the 3rd client shown in the current list.
-
-    * `clear` : Deletes all clients.
-
-    * `exit` : Exits the app. -->
-
-1. Refer to the [Features](#features) below for details of each command.
+</div>
 
 [Back to the top](#table-of-contents)
 
@@ -366,19 +348,21 @@ the data of your previous FAid home folder.
 
 ## Troubleshooting
 
-1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
-   operating system if you haven't installed it. <br>
-   To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
-   command: `java --version`. <br>
-   If java is installed successfully, your output should be similar to the following (Note that it may look slightly
-   different depending on your exact version and operating system): <br>
-   `openjdk 11.0.17 2022-10-18 LTS` <br>
-   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
-   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
-   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
-   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
-   If you see an error message like this even after installing Java `11`, consider restarting your computer or
-   reinstalling Java.
+### Installing Java 11
+1. Download `Java 11` using this [link](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)<br>
+2. To check if `Java 11` is installed successfully, first open command prompt. Refer to the following
+   image on how to do this.
+   ![Cmd](images/Cmd.png)
+3. Inside command prompt, type in `java --version` and press enter. Your output should look like this:
+![JavaInstalled](images/JavaInstalled.png)
+4. If your output matches the image above, `Java 11` has been installed successfully!
+5. If java is not installed correctly, you could see an error message like this: <br>
+`'java' is not recognized as an internal or external command, operable program or batch file.` <br>
+Please refer to this [link](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-Not-Recognized-Error-Fix) for more help!
+
+### Checking if Java 11 is installed
+To check if you have Java `11` installed and configured correctly, refer to steps 2-4 of `Installing Java` under
+Troubleshooting!
 
 
 --------------------------------------------------------------------------------------------------------------------
