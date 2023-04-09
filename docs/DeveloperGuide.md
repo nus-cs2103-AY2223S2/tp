@@ -578,7 +578,7 @@ The following sequence diagram shows how `delete-t` works:
 
 **Overview:**
 
-The `search` command is used to search ConnectUS for all `Person`s for whom the specified keyword matches the specified field information in the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and `Birthday` fields. If no field is specified, the command searches ConnectUS for all `Person`s for whom the specified keyword matches any of the information fields.
+The `search` command is used to search ConnectUS for all `Person`s for whom the specified keyword matches the specified field information in the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday` and `tag` (`Module`, `CCA`, `Major`, `Remarks`) fields. If no field is specified, the command searches ConnectUS for all `Person`s for whom the specified keyword matches any of the information fields.
 
 The format for the `search` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#49-searching-for-contact-information-search).
 
