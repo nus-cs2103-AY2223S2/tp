@@ -69,11 +69,11 @@ your best companion to help you get the most out of sprINT.
 ### **2.2 Using the Guide**  
 If you are a new user, we recommend you to check out the 
 **[Configuration and Setup Guide](#31-configuration-and-setup-guide)** to learn how to set up sprINT quickly, before 
-reading through the **[Short Tutorial](#34-short-tutorial)** to pick up a few simple commands. 
+reading through the **[Short Tutorial](#34-short-tutorial)** to pick up a few simple commands.
 
 If you have already used sprINT before, feel free to use the **[Table of Contents](#table-of-contents)** to navigate to 
-the section you are interested in, or skip to a specific command in **[Features](#4-features)** you wish to learn more 
-about.
+the section you are interested in, or skip directly to a specific command in **[Features](#4-features)** that 
+you wish to learn more about.
 
 ### **2.3 Understanding Notations**
 Throughout the rest of this user guide, you may encounter certain notations like the ones below. Here's how you should
@@ -81,10 +81,10 @@ interpret them:
 
 **Tips**
 
-Tips are useful suggestions that will help you become a seasoned sprINT user more quickly.
+Tips are useful suggestions that will help you become a seasoned sprINT user quicker.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Tips are can give you a better experience with sprINT.
+**Tip:** Tips give you a better experience with sprINT.
 </div>
 
 **Notes**
@@ -97,7 +97,7 @@ Notes are important information that you should pay attention to when using sprI
 
 **Caution**
 
-Cautions are in place to warn you of potential pitfalls new users may encounter.
+Cautions are in place to warn you of potential pitfalls you may encounter, especially for new users of sprINT.
 
 <div markdown="span" class="alert alert-warning">:exclamation:
 **Caution:** Stop and read carefully when you see this!
@@ -129,10 +129,12 @@ If it doesn't work, open a [command terminal](#command-terminal), enter `cd` wit
 and type: `java -jar sprINT.jar` to run the application.<br>
 
 <div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** `cd` stands for "change directory". It is a command that allows you to navigate to another folder on your computer.
+**Tip:** `cd` stands for "change directory". As the name suggests, it is a command that allows you to navigate
+to another directory/folder on your computer.
 </div>
 
-An interface similar to the one shown below should appear in a few seconds. Note how the app contains some sample data already.<br>
+An interface similar to the one shown below should appear in a few seconds. If you are using sprINT for the first time
+on your device, the app will contain some sample applications already.<br>
 ![Ui](images/Ui.png)
 
 <div markdown="span" class="alert alert-primary">:bulb:
@@ -143,26 +145,26 @@ An interface similar to the one shown below should appear in a few seconds. Note
 
 ### **3.2 The User Interface**
 
-We understand that using an app for the first time can be a daunting experience. This is why we have an entire 
-section for you to get acquainted with sprINT's user interface.
+We understand that using an app for the first time can be a daunting experience. This is why we created this entire 
+section for you to quickly get acquainted with sprINT's user interface.
 
 The following diagram illustrates the general layout of sprINT's app window. 
 
 ![LabelledUi](images/LabelledUi.png)
 
-The table below describes the function(s) of each component. Don't worry if you can't understand or remember everything;
-sprINT is designed to have an intuitive interface that you should be able to familiarise yourself with in no time. 
-You are also welcome to revisit this section again anytime. 
+The table below describes the function(s) of each component. Don't worry if you're initially confused and cannot
+remember everything; sprINT is designed to have an intuitive interface that should allow you to familiarise yourself
+with in no time. You are also welcome to revisit this section again anytime. 
 
-| No. | Component                | Description                                                                                                                                                                                                                |
-|-----| :------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Toolbar                  | Contains buttons to exit sprINT (using the File button) and view help information quickly.                                                                                                                                 |
-| 2   | Application List Panel   | Displays the list of all/filtered/sorted applications, depending on the command issued.                                                                                                                                    |
-| 3   | Application Card         | Displays information about each application, including the role, company, company email, status and tags or outstanding task (if any).                                                                                     |
-| 4   | Statistics Display Panel | Displays statistics about your internship applications, including a pie chart that will update immediately after every command you execute (so there's no need to worry about updating it manually). _Pretty neat, right?_ |
-| 5   | Command Result Box       | Displays feedback immediately after executing a command, indicating if you have executed it successfully, and if not, what went wrong (e.g. incorrect formatting).                                                         |
-| 6   | Command Box              | This is where you type all your commands; press Enter to execute them.                                                                                                                                                     |
-| 7   | Storage File Path        | Displays the path of your sprINT storage file.                                                                                                                                                                             |
+| No. | Component                | Description                                                                                                                                                                                                              |
+|-----| :------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Toolbar                  | Contains buttons to exit sprINT (access by clicking the File button) and view help information quickly.                                                                                                                  |
+| 2   | Application List Panel   | Displays the list of all/filtered/sorted applications, depending on the issued command.                                                                                                                                  |
+| 3   | Application Card         | Displays information about each application, including the role, company, company email, status and tags or outstanding task (if any).                                                                                   |
+| 4   | Statistics Display Panel | Displays statistics about your internship applications, including a pie chart that updates automatically after every command you execute (so there's no need to worry about updating it manually). _Pretty neat, right?_ |
+| 5   | Command Result Box       | Displays feedback immediately after executing a command, indicating if it executed successfully, or if not, what went wrong (e.g. incorrect command format).                                                             |
+| 6   | Command Box              | This is where you type all your commands; press Enter on your keyboard to execute them.                                                                                                                                  |
+| 7   | Storage File Path        | Displays the path of your sprINT storage file.                                                                                                                                                                           |
 
 <div style="page-break-after: always;"></div>
 
@@ -173,7 +175,8 @@ sprINT:
 
 **:information_source: Notes about the command format:**<br>
 
-* **You cannot add more than 2147483647 applications, and you cannot delete or edit application that have index greater than 2147483647.**<br>
+* **You cannot add more than 2147483647 applications, and you cannot delete or edit applications that have index greater than 2147483647.**
+If you are a normal human being, we do not foresee this to be an issue for you!<br>
 
 * **Commands in sprINT are composed minimally of a [command word](#command-word). Most, but not all, commands also 
     consist of [prefixes](#prefix) and [parameters](#parameter).**<br>
@@ -181,15 +184,15 @@ sprINT:
 * **Words in `UPPER_CASE` are the parameters you need to supply.**<br>
   e.g. in `add c/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add c/Google`.
 
-* **Items encapsulated within square brackets are optional.**<br>
+* **Items encapsulated within square brackets `[]` are optional.**<br>
   e.g. `c/COMPANY_NAME [t/TAG]` can be used as `c/Google t/highsalary` or as `c/Google` only.
 
 * **Items that come with `(s)` means multiple parameters for the same prefix can be added, as long as they are separated by a space.**<br>
   e.g. `[t/TAG(s)]` can be used as `t/creditBearing t/highSalary` or as `t/creditBearing` only.
 
 <div markdown="span" class="alert alert-warning">:exclamation:
-**Caution:** Be aware of the difference between `(s)` and `[]`. The former allows for multiple arguments, the latter represents
-an optional argument.
+**Caution:** Be aware of the difference between `(s)` and `[]`. The former allows for multiple parameters of the
+same prefix, while the latter represents an optional parameter.
 </div>
 
 * **Command words and prefixes are case-sensitive.**<br>
@@ -197,13 +200,16 @@ an optional argument.
   will not be recognised as a valid prefix for the `add-task` command.
 
 * **Parameters can be entered in any order.**<br>
-  e.g. if the command specifies `r/ROLE c/COMPANY_NAME`, `c/COMPANY_NAME r/ROLE` is also acceptable.
+  e.g. if the command specifies the order of `r/ROLE c/COMPANY_NAME`, typing your command in the order of
+`c/COMPANY_NAME r/ROLE` is also acceptable.
 
-* **If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.**<br>
-  e.g. if you specify `r/SWE Intern r/Software Intern`, only `r/Software Intern` will be taken.
+* **If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
+of the parameter will be taken.**<br>
+  e.g. if you specify `r/SWE Intern r/Software Intern`, only `r/Software Intern` will be taken as it is the latest
+occurrence of the prefix `r/`.
 
 * **Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if you specify `help 123` as your command, it will be interpreted as `help`, and the help command executes.
 
 <div style="page-break-after: always;"></div>
 
@@ -219,8 +225,8 @@ Can't wait to try sprINT out? Here is a sample sequence of commands to get the b
     application shown on the Application List Panel. 
 5. `exit`: Exits sprINT. Notice that there is no need to save your data manually, as sprINT does it for you automatically. 
 
-Congratulations on completing the tutorial! For the complete list of commands, you can refer to the 
-**[Command Summary](#7-command-summary)** section. For more details about each command, you can read on for the next
+Congratulations on completing the tutorial! For the complete list of available commands, you may refer to the 
+**[Command Summary](#7-command-summary)** section. For more details about each command, you may read on for the next
 section on **[Features](#4-features)**.
 
 #### *Return to the [Table of Contents](#table-of-contents).*
@@ -245,13 +251,13 @@ Format: `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
 The following table details the [parameters](#parameter) to be used with the `add-app` command:
 
-| Prefix | Parameter      | Compulsory | Constraints                                                                                                     | 
-|--------|----------------|------------|-----------------------------------------------------------------------------------------------------------------|
-| `r/`   | Role           | Yes        | Must be **alphanumeric** characters and **spaces** only.                                                        |
-| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters and **spaces** only.                                                        |
-| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**.                                                                   |
-| `s/`   | Status         | Yes        | Must be one of the four: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive. |
-| `t/`   | Tag            | No         | Must be **alphanumeric** characters only.                                                                       |
+| Prefix | Parameter      | Compulsory | Parameter constraints                                                                                                              | 
+|--------|----------------|------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `r/`   | Role           | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                           |
+| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                           |
+| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**. Cannot be empty.                                                                     |
+| `s/`   | Status         | Yes        | Must be one of the four available statuses: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive. |
+| `t/`   | Tag            | No         | Must be **alphanumeric** characters only. Cannot be empty.                                                                         |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tag is an optional field when adding an application. An application can have multiple tags or none at all. 
