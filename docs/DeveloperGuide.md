@@ -883,7 +883,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findc Amy Bob`<br>
       Expected: Both customers 'Amy Bee' and 'Bob Choo' are shown. Success message with number of listed customers (2) shown in the status message.
 
-1. Finding non-existing customers
+1. Finding non-existent customers
 
    1. Prerequisite: Only the customers 'Amy Bee' and 'Bob Choo' exists in the list.
 
@@ -1184,7 +1184,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `findo Banana Chocolate`<br>
        Expected: Both orders 'Banana Cake' and 'Chocolate Roll' are shown. Success message with number of listed orders (2) shown in the status message.
    
-2. Finding non-existing orders
+2. Finding non-existent orders
 
     1. Prerequisite: Only the orders 'Banana Cake' and 'Chocolate Roll' exists in the order list.
 
