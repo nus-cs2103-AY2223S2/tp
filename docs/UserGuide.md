@@ -469,7 +469,7 @@ Clears all the projects in SOCket.
 
 Format: `clearpj`
 
-### Sorting projects (by other fields): `sortpj`
+#### Sorting projects (by other fields): `sortpj`
 
 Sorts and displays the projects according to the provided category. Sorts the list of projects by deadline if no argument is provided.
 
