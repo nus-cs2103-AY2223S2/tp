@@ -1,17 +1,11 @@
 package tfifteenfour.clipboard.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand.EditStudentDescriptor;
-import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.logic.parser.EditCommandParser.EditStudentDescriptor;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
-import tfifteenfour.clipboard.model.tag.Tag;
 
 /**
  * A utility class to help with building EditStudentDescriptor objects.
@@ -70,26 +64,6 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withStudentId(String address) {
         descriptor.setStudentId(new StudentId(address));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
-     * that we are building.
-     */
-    public EditStudentDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
-     * that we are building.
-     */
-    public EditStudentDescriptorBuilder withModules(String... modules) {
-        Set<Course> modulesSet = Stream.of(modules).map(Course::new).collect(Collectors.toSet());
-        descriptor.setModules(modulesSet);
         return this;
     }
 

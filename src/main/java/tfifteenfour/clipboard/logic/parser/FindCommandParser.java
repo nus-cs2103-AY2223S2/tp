@@ -44,7 +44,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         try {
             findCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException("Find type missing!");
+            throw new ParseException("Find type missing!"
+                    + "Available find commands are: find course, find group, find session, find task, find student");
         }
 
         String trimmedArgs = args.trim();

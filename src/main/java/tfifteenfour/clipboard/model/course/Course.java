@@ -12,7 +12,8 @@ import javafx.collections.ObservableList;
  */
 public class Course {
 
-    public static final String MESSAGE_CONSTRAINTS = "Course codes can only contain alphanumeric and special characters";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Course codes can only contain alphanumeric and special characters";
     public static final String VALIDATION_REGEX = "^[\\p{Alnum}\\p{Punct}]+$";
 
     public final String courseCode;
