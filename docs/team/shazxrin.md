@@ -21,6 +21,7 @@ Given below are my contributions to the project.
       * `failed` for failed delivery
       * `done` for done delivery
       * `return` for return delivery (i.e used when recipient rejects delivery)
+    * Ensure that `done` and `return` deliveries are immutable to mutable commands: `mark`, `edit`, `add_pc`, `mark_pc` 
     * UI will reflect the status with its respective colors
 
 * **New Feature**: Added the ability to view number of delivery attempts
@@ -46,6 +47,10 @@ Given below are my contributions to the project.
     * Added user stories [#23](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/23)
 
 * **Contributions to team-based tasks**:
+  * Gave design suggestions on adding parcel features
+  * Helped with sorting and giving comments on bug reports from PE-D
+  * Helped the team with Git issues
+  * Created demo video
   * Bug fix to existing edit command implementation, conflicting with our requirements
   * Bug fixes on other team commands ensuring that their commands do not mutate deliveries that are done or returned
 
@@ -60,5 +65,6 @@ Given below are my contributions to the project.
 
 * **Contributions beyond the project team**:
   * Helped with CATcher load test
+  * Participated in PE-D and gave feedback to the assigned team
 
 
