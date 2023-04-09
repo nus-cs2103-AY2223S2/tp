@@ -484,6 +484,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
+Here are some use cases we have defined for our app, as well as the user interaction flow within those cases. As features are added or existing features change,
+do modify them to reflect the desired user interaction flows.
+
 (For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
 
 #### Use case: Ask for help
@@ -667,6 +670,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
+Here are some non-functional requirements that the app should still maintain, to ensure a pleasant experience for our target user base.
+
 1. The app should be able to operate on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. The app should be able to hold up to 1000 recipes without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
@@ -683,6 +688,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div style="page-break-after: always;"></div>
 
 ### Glossary
+
+Defined here are some common terms used throughout the guide, as well as their definitions:
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Main Success Scenario (MSS)**: The main or optimal flow of a use case, representing the successful completion of the user's goal.
@@ -800,3 +807,8 @@ testers are expected to do more *exploratory* testing.
 2. Within the file picker window, navigate to a valid folder and enter a valid file name.
 3. Click the <kbd>Save</kbd> button.
    <br>**Expected:** The file picker window closes, and a file with the given filename is created in the given folder.
+
+## Conclusion
+
+We hope that this has given you a sufficient understanding of our product, as well as the design considerations behind it.
+Regardless, if you have any queries, feel free to submit an **issue** **[here](https://github.com/AY2223S2-CS2103T-T13-2/tp/issues/new/choose)**m, and we will do our best to get back to you.
