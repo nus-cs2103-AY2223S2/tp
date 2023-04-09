@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 * Bug fix: Editing name of person up dates the corresponding name in the meeting panel
     * Before the meeting Panel would have the old name, eventhough the person's name was updated
 
-* Help menu: 
+* Help menu:
     * Preliminary help menu improvement
 
 * **Project management**:
@@ -39,7 +39,7 @@ Given below are my contributions to the project.
       * Describe Editm
 
 * **Community**:
-    PR reviewed: 
+    PR reviewed:
     [#178](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/178)
     [#47](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/47)
     [#67](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/67)

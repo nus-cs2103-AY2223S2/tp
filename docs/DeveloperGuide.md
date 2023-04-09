@@ -167,7 +167,7 @@ This section describes some noteworthy details on how certain features are imple
 Without loss of generality the specifications below can be applied to both class of objects.
 
 For example. in the sections we refer to a `UnqiueList` object, In the code there are two of such objects. One that acts on meeting `UniqueMeetingList`
-, and another that acts on person `UniquePersonList`. Depending on which object functionality you are exploring just substitute the general object with the 
+, and another that acts on person `UniquePersonList`. Depending on which object functionality you are exploring just substitute the general object with the
 specific object. We write in a general so that we cover breath first, and so that we may adhere to [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 
 To help, general objects are underlined to indicate that each object has its own implementation of the object.
@@ -191,8 +191,8 @@ Below is the Sequence Diagram
 ![Interactions Inside the Logic Component for the `add n/bob` Command](images/AddSequenceDiagram.png)
 
 ##### Exceptions
-The `AddMeetingCommand` throws a `CommandException` if the object's names is found in the address book (i.e. 
-no person in the address book has a matching name). The name must match exactly (**case-sensitive**) or else the 
+The `AddMeetingCommand` throws a `CommandException` if the object's names is found in the address book (i.e.
+no person in the address book has a matching name). The name must match exactly (**case-sensitive**) or else the
 'CommandException' will be thrown.
 
 #### Editing
@@ -310,9 +310,9 @@ Below is the Sequence Diagram:
 
 ### Difference in Meetings
 #### Implementation
-meetings  has additional functionality of returning meetings between two dates. This is implemented through the use of a 
-`isBetween` function implemented in the `Meeting` class. The program will first gather all the meetings in the 
-corresponding indexes provided, then search for meetings between the start and end dates. If either date is empty, then 
+meetings  has additional functionality of returning meetings between two dates. This is implemented through the use of a
+`isBetween` function implemented in the `Meeting` class. The program will first gather all the meetings in the
+corresponding indexes provided, then search for meetings between the start and end dates. If either date is empty, then
 only the other date is considered.
 
 #### Exceptions
@@ -348,10 +348,10 @@ current command input.
 
 **Alternative 1**: Autocomplete by appending the next relevant `Prefix` that is missing
 
-* This will be easier to implement as all we need is to have a list of `Prefix` that is relevant for the command and 
+* This will be easier to implement as all we need is to have a list of `Prefix` that is relevant for the command and
 cycle through and append those that are missing from the current command input.
 * Checking for missing `Prefix` from the command input can be achieved with the help of `ArgumentTokenizer`.
-* Downside: some commands such as `edit` does not need all the `Prefix` as user might just want to modify two 
+* Downside: some commands such as `edit` does not need all the `Prefix` as user might just want to modify two
 attributes. Simply cycling through and appending missing `Prefix` might require users to backspace some
 unnecessary `Prefix`.
 
@@ -372,7 +372,7 @@ Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/jav
 
 ### DateTime parsing
 
-Storing of `dateTime` (date and/or time) of `Meeting` is facilitated by `DateTime`. 
+Storing of `dateTime` (date and/or time) of `Meeting` is facilitated by `DateTime`.
 
 The `dateTime` of a `Meeting` requires users to input a date, but leaves the time of the meeting to be optional. Internally, `DateTime` stores the date using [`LocalDate`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html) and the time using [`LocalTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html). However, since the time is an optional field, the optionality of the time is implemented by wrapping `LocalTime` with the Java [`Optional`](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html) class.  This brings about various benefits and is further discussed below.
 
@@ -414,8 +414,8 @@ Below is the Sequence Diagram:
 
 
 ### Light Theme
-The current theme is stored as a boolean inside GuiSettings, which is stored inside UserPrefs. Clicking the button 
-toggles the boolean and removes the current stylesheet (eg. LightTheme.css/DarkTheme.css) and adds the opposite 
+The current theme is stored as a boolean inside GuiSettings, which is stored inside UserPrefs. Clicking the button
+toggles the boolean and removes the current stylesheet (eg. LightTheme.css/DarkTheme.css) and adds the opposite
 stylesheet to the scene.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -915,10 +915,11 @@ testers are expected to do more *exploratory* testing.
 | **List all meetings**        | `findm`                                                                                                                                                                                                              |
 | **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                          <br/>                        <br/>                                                                                       |
 | **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                        <br/>            <br/>                                                                                                   |
-| **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
+| **View pending Meetings**    | `pending`                                                                                                                                                                                                            |
 | **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
 | **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
 | **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
 | **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
 | **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
 | **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
+
