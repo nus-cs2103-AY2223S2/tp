@@ -53,6 +53,7 @@ Given below are my contributions to the project.
         * Crafted initial documentation for the features `list` [(#4)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/4)
         * Modified feature description to match newer iterations of TinS [(#102)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/102)
         * Refine feature description to become more user-oriented
+        * Included Diagrams and Screenshots to showcase expected results of features
       * Crafted the "About the User Guide" and "About TinS" Section in User Guide [(#202)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/202)
       * Overall Styling of User Guide [(#233)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/223/)
 
