@@ -199,14 +199,14 @@ How the parsing works:
 The `Model` component,
 
 * stores all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as 
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as
 an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own 
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own
 without depending on other components)
 
 **Note**:
-- Tasks are handled in a similar way in the `TaskBookModel` component. 
+- Tasks are handled in a similar way in the `TaskBookModel` component.
 - It interacts with components like `UniqueTaskList` and is 'observed' as an unmodifiable `ObservableList<Task>`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in Pied Piper, which `Person` references. This allows `Pied Piper` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -599,7 +599,7 @@ testers are expected to do more *exploratory* testing.
 ## 7.4 Editing a person
 
 1. Editing details of person
-    1. Prerequisites: List all persons using the `list` command. Multiple persons on the list. 
+    1. Prerequisites: List all persons using the `list` command. Multiple persons on the list.
 
     1. Test case: `edit 1 n/James Lee e/jameslee@example.com`<br>
        Expected: Person name and email is updated. Status message is shown.
