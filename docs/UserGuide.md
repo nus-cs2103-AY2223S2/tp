@@ -52,6 +52,7 @@ Now it's time to **CONQUER** the semester!
 - [Notes](#notes)
 - [Warning](#warning)
 - [FAQ](#faq)
+- [Command Summary](#command-summary)
 
 ---
 
@@ -1007,13 +1008,39 @@ Exit the application.
 
 ---
 
-<!-- TODO: Update this after user guide is finalised -->
-<!-- ## Command summary
+## Command Summary
 
-| Action            | Format, Examples                                                                                                                                      |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add a Module**  | `add-module /code {module_code} [/name {module_name}]` / e.g., `add-module /code CS2040 /name Data Structures & Algorithms`                           |
-| **Add a Lecture** | `add-lecture /module {module_code}` / e.g., `add-lecture /module CS2040`                                                                              |
-| **Add a Video**   | `add-video /module {module_name} /lecture {lecture_index} /video {video_name}` / e.g., `add-video /module CS2040 /lecture 1 /video lecture-01-part-1` |
-| **Tag a Lecture** | `tag /module {module_code} /lecture {lecture_id} /description {tag_description}` / e.g, `tag /module CS2040 /lecture 1 /description Boohoo`           |
-| **Delete a Tag**  | `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}` / e.g,  `untag /module CS2040 /lecture 1 /tag 1`                                    | -->
+| Action                                              | Format                                                                                                                                                                   |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Navigate to the Root Context**                    | `nav`                                                                                                                                                                    |
+| **Navigate from Root Context to Module Context**    | `nav {module_code}`                                                                                                                                                      |
+| **Navigate from Module Context to Lecture Context** | `nav {lecture_name}`                                                                                                                                                     |
+| **Navigate Directly**                               | `nav /mod {module_code} [/lec {lecture_name}]`                                                                                                                           |
+| **Navigate Backwards**                              | `navb`                                                                                                                                                                   |
+| **List Modules**                                    | `list`                                                                                                                                                                   |
+| **List Lectures**                                   | `list /mod {module_code}`                                                                                                                                                |
+| **List Videos**                                     | `list /mod {module_code} /lec {lecture_name}`                                                                                                                            |
+| **Find Modules**                                    | `find {keywords} [/byTag]`                                                                                                                                               |
+| **Find Lectures**                                   | `find {keywords} /mod {module_code} [/byTag]`                                                                                                                            |
+| **Find Videos**                                     | `find {keywords} /mod {module_code} /lec {lecture_name} [/byTag]`                                                                                                        |
+| **Add a Module**                                    | `add {module_code} [/name {name}] [/tags {tag_1}[, {tag_2}[, ...]]]`                                                                                                     |
+| **Add a Lecture**                                   | `add {lecture_name} /mod {module_code} [/tags {tag_1}[, {tag_2}[, ...]]]`                                                                                                |
+| **Add a Video**                                     | `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/tags {tag_1}[, {tag_2}[, ...]]] [/watch]`                                            |
+| **Edit a Module**                                   | `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}[, {tag_2}[, ...]]]`                                                                     |
+| **Edit a Lecture**                                  | `edit {lecture_name} /mod {module_code} [/name {updated_name}] [/tags {tag_1}[, {tag_2}[, ...]]]`                                                                        |
+| **Edit a Video**                                    | `edit {video_name} /mod {module_code} /lec {lecture_name} [/name {updated_name}] [/timestamp {updated_timestamp}] [/tags {tag_1}[, {tag_2}[, ...]]] [/watch] [/unwatch]` |
+| **Delete Module**                                   | `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`                                                                                                    |
+| **Delete Lecture**                                  | `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] /mod {module_code}`                                                                              |
+| **Delete Video**                                    | `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`                                                                |
+| **Mark Video**                                      | `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`                                                                  |
+| **Unmark Video**                                    | `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`                                                                |
+| **Tag a Module**                                    | `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`                                                                                                           |
+| **Tag a Lecture**                                   | `tag {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`                                                                                       |
+| **Tag a Video**                                     | `tag {video_name} /lec {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`                                                                     |
+| **Untag a Module**                                  | `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`                                                                                                         |
+| **Untag a Lecture**                                 | `untag {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`                                                                                     |
+| **Untag a Video**                                   | `untag {video_name} /lec {lecture_name} /mod {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]`                                                                   |
+| **Export Data**                                     | `export {file_path} [/overwrite]`                                                                                                                                        |
+| **Import Data**                                     | `import {file_path} [/mod {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]] [/overwrite]`                                                                    |
+| **Clear**                                           | `clear`                                                                                                                                                                  |
+| **Exit**                                            | `exit`                                                                                                                                                                   |
