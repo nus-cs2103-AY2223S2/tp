@@ -919,38 +919,38 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 
 
-   2. Test case: `edit 1 n/Bob`
+   2. Test case: `edit 1 n/Bob`<br>
       Expected: First contact is edited from the visible list. List is updated to show edited contact with new name.
 
-   3. Test case: `edit 1 p/98765432`
+   3. Test case: `edit 1 p/98765432`<br>
       Expected: First contact is edited from the visible list. List is updated to show edited contact with new phone number.
 
-   4. Test case: `edit 1 n/Tom p/92223333`
+   4. Test case: `edit 1 n/Tom p/92223333`<br>
    Expected: First contact is edited from the visible list. List is updated to show edited contact with new name and phone number.
 
-   5. Test case: `edit 1 g/`
+   5. Test case: `edit 1 g/`<br>
       Expected: First contact is edited from the visible list. List is updated to show edited contact with no groups.
    
-   6. Test case: `edit 1 g/CS103`
+   6. Test case: `edit 1 g/CS103`<br>
       Expected: First contact is edited from the visible list. List is updated to show edited contact with new group.
    
-   7. Test case: `edit ``m/ g/CS2101`
+   7. Test case: `edit ``m/ g/CS2101`<br>
       Expected: First contact is edited from the visible list. List is updated to show edited contact with new group and existing group.
    
-   8. Test case: `edit 1 t/`
+   8. Test case: `edit 1 t/`<br>
       Expected: First contact is edited from the visible list. List is updated to show edited contact with no tags.
    
-   9. Test case: `edit 1 t/Borrowed my pen`
+   9. Test case: `edit 1 t/Borrowed my pen`<br>
       Expected: First contact is edited from the visible list. List is updated to show edited contact with new tag.
    
-   10. Test case: `edit 1 m/ t/Saw at school today`
-      Expected: First contact is edited from the visible list. List is updated to show edited contact with new tag and existing tag.
+   10. Test case: `edit 1 m/ t/Saw at school today`<br>
+       Expected: First contact is edited from the visible list. List is updated to show edited contact with new tag and existing tag.
    
    11. Test case: `edit 1 g/Somegroup`
-      Expected: No contact is edited. Error details shown in the status message. The group(s) provided does not exist
+       Expected: No contact is edited. Error details shown in the status message. The group(s) provided does not exist
    
-   12. Test case: `edit 0 n/Bob`
-      Expected: No contact is edited. Error details shown in the status message.
+   12. Test case: `edit 0 n/Bob`<br>
+       Expected: No contact is edited. Error details shown in the status message.
 
    13. Test case : `edit 1`
       Expected: No contact is edited. Error details shown in the status message. At least one field to edit must be provided.
@@ -975,13 +975,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Prerequisities: The preloaded data for groups are not modified. (No groups are removed or added)
 
-2. Test case: `group_create g/CS2100`
+2. Test case: `group_create g/CS2100`<br>
    Expected: Group created with name 'CS2100'.
 
-3. Test case: `group_create g/Best friends`
+3. Test case: `group_create g/Best friends`<br>
    Expected: Group not created. Status message indicates that group name can only be alphanumeric
 
-4. Test case: `group_create g/CS2103`
+4. Test case: `group_create g/CS2103`<br>
    Expected: Group not created. Status message indicates that group already exists.
       
 ### Deleting a group
@@ -990,47 +990,68 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisities: List all groups using `group_list` command. The preloaded data for groups are not modified. (No groups are removed or added)
 
-   2. Test case: `group_delete 1`
+   2. Test case: `group_delete 1`<br>
       Expected: Group named CS2103 deleted and all persons removed from that group
    
-   3. Test case: `group_create g/Best friends`
+   3. Test case: `group_create g/Best friends`<br>
       Expected: Group not deleted. Status message indicates invalid command format
 
 ### Finding a group
 
 1. Prerequisities: The preloaded data for groups are not modified. (No groups are removed or added)
 
-2. Test case: `group_find CS2103`
+2. Test case: `group_find CS2103`<br>
    Expected: GroupList will list out 1 group with name 'CS2103' and personList will list out all person in group 'CS2103'. 1 group listed shown in status message.
 
-3. Test case: `group_find Bestfriends`
+3. Test case: `group_find Bestfriends`<br>
    Expected: Group and person list will not display anytrhing
    
    
 ### Export a person
 
 1. Export a person while all persons are being shown
-   1. Prerequisities: List all persons using the `list` command. The preloaded data for groups are not modified. (No groups are removed or added)
+   1. Prerequisities: List all persons using the `list` command. 
    
-   2. Test case: `export 1`
+   2. Test case: `export 1`<br>
       Expected: First person in the personList is exported and details of the person are shown in the status message
    
-   3. Test case: `export 2`
+   3. Test case: `export 2`<br>
       Expected: Second person in the personList is exported and details of the person are shown in the status message
    
-   4. Test case: `export 99`
+   4. Test case: `export 99`<br>
       Expected: No person is exported. Status message indicated person index provided is invalid
 
 2. Export a person while person list is filtered
 
-   1. Prerequisities: List one person using the `find` command (e.g `find Bernice`). The preloaded data for groups are not modified. (No groups are removed or added)
+   1. Prerequisities: List one person using the `find` command (e.g `find Bernice`). 
    
-   2. Test case: `export 1`
+   2. Test case: `export 1`<br>
       Expected: First person in the personList is exported and details of the person are shown in the status message
    
-   3. Test case: `export 2`
+   3. Test case: `export 2`<br>
       Expected: No person is exported. Status message indicated person index provided is invalid
 
+### Find free time slot
+
+1. Find free time slot while all groups are being shown
+   1. Prerequisities: List all groups using the `group_list` command. Add an isolated/events to a person with a group to see different time slots available. The preloaded data for groups are not modified. (No groups are removed or added)
+
+   2. Test case: `free 1`<br>
+      Expected: Free time slots shown for the first group in groupList starting from today's date
+      
+   3. Test case: `free 2`<br>
+      Expected: Free time slots shown for the second group in groupList starting from today's date
+      
+   4. Test case: `free 99`<br>
+      Expected: No free time is shown. Status message indicated group index provided is invalid
+      
+   5. Test case: `free 1 f/20/04/2023`<br>
+      Expected: Free time slots shown for the first group in groupList starting from 09/04/2023.
+      Note: Results may vary depending on when this test case is ran. 
+      
+   6. Test case: `free 1 f/aaaa`<br>
+      Expected: No free time shown. Status message indicated that date format is incorrect.
+      
 
 
 ### Saving data
