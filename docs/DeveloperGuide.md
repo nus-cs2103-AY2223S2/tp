@@ -1187,6 +1187,57 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
+
+#### UC-KEY-001 - Add keyword
+
+##### MSS
+
+1. User enters command to add a keyword.
+2. VMS adds the keyword.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to add a keyword that overrides a main component keyword.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+* 1c. User requested to add a keyword with a main keyword that is not `patient`, 
+`appointment` or `vaccination`.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+#### UC-KEY-002 - Delete keyword
+
+##### MSS
+
+1. User requests to delete a specific keyword in the list.
+2. VMS deletes the keyword.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to delete a keyword that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
