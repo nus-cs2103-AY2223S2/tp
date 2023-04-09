@@ -166,6 +166,26 @@ The following sequence diagram shows how the add event operation works.
 
 This operation is similar to that of adding a person. Adding an event involves calling `Model#addEvent(Event)`, which in turn calls `AddressBook#addEvent(Event)` to add the Event object to the existing `AddressBook`.
 
+### \[Implemented] Sort events feature
+
+#### Current Implementation
+
+Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`.
+The events can be sorted based on their:
+- names in ascending ASCII order (using `sortevent a`)
+- names in descending ASCII order (using `sortevent b`)
+- start date times in ascending order (using `sortevent c`)
+- end date times in ascending order (using `sortevent d`)
+
+The following sequence diagram shows how the sort events operation works.
+
+![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
+
+Sorting a list of events involves calling `Model#sortEventList(SortEventKey)`, which will sort the event list based on the `SortEventKey` object passed into the method.
+
+This sorting feature can only be executed when there are more than 1 event listed on the UI.
+It will only sort the event list based on the last String entered in the user input.
+
 ### \[Implemented] Find event feature
 
 #### Current Implementation
@@ -192,26 +212,6 @@ This operation is similar to that of deleting a person. Deleting an event involv
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
 
 The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
-
-### \[Implemented] Sort events feature
-
-#### Current Implementation
-
-Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`.
-The events can be sorted based on their:
-- names in ascending ASCII order (using `sortevent a`)
-- names in descending ASCII order (using `sortevent b`)
-- start date times in ascending order (using `sortevent c`)
-- end date times in ascending order (using `sortevent d`)
-
-The following sequence diagram shows how the sort events operation works.
-
-![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
-
-Sorting a list of events involves calling `Model#sortEventList(SortEventKey)`, which will sort the event list based on the `SortEventKey` object passed into the method.
-
-This sorting feature can only be executed when there are more than 1 event listed on the UI.
-It will only sort the event list based on the last String entered in the user input.
 
 ### \[Implemented] List persons from an event feature
 
