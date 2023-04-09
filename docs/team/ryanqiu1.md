@@ -7,8 +7,7 @@ title: ryanqiu1's Project Portfolio Page
 
 {{ site.data.techtrack.about.summary }}
 
-For me, i worked on the backend component and fixing bugs. In addition, i worked on the various documentations, UG, DG
-and "About Us" page.
+For me, i worked on the backend component and fixing bugs. In addition, i worked on the various documentations, UG, DG and "About Us" page.
 
 ## Contributions
 * **New Feature**: Add field `Website` to `add` command
@@ -49,21 +48,19 @@ and "About Us" page.
         * Added documentation for `add` and `edit` manual testing appendix.
         * Added NFR section of requirement details.
         * Adjusted and ensure proper formatting of guide.
-
+        
 
 * **Contributions to team-based tasks**:
     * Created priority and type tags in team repository.
-    * Set Goals and Deadlines for teammates.
-    * Managed some releases on GitHub
+    * Set Goals and deadline to complete certain tasks; Finish feature 1 by 20-03-2023 etc.
     * Created and Managed Milestones for 1.2,1.3.
     * Bug Fixes
-        * Fixed deadline that does not allow for current date.
-        * Fixed UG bugs, where commands is not stated clearly.
-        * Fixed bug where error message is not shown.
+        * Fixed UG bugs, where commands descriptions are not stated clearly.
+        * Fixed UG bug where error message is not shown.
         * Fixed sorting bug, where original list is deleted after filtered.
         * Fixed Bugs in the UI (Wrong display format)
         * Fixed Bugs in the EditCommand (Unable to edit website, fixed through the parser)
-
+        
 
 * **Review/mentoring contributions**:
   Offered useful and feedback with issues and reviewing PRs. Examples: [1](https://github.com/AY2223S2-CS2103-W16-2/tp/issues/145), [2](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/52/), [3](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/142)
