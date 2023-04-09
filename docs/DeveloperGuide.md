@@ -830,7 +830,7 @@ Expected Output in the Role List Box: First role is deleted from the list.
 
 2. Test case: `delete 0`<br>
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `edit` command is included.
+Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `delete` command is included.
 
 Expected Output in the Role List Box: No changes.
 
