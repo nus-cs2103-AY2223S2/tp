@@ -61,7 +61,9 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. <br> <div markdown="block" class="alert alert-info"> **:information_source: Finding your java version**: To check the default java version on your device, run `java -version` on your terminal. You should see a line of text with `11.x.x`. For more information, refer to [this guide](https://www.java.com/en/download/help/version_manual.html#cmdline). </div>
+1. Ensure you have Java `11` or above installed in your Computer.
+<br>
+<div markdown="block" class="alert alert-info"> **:information_source: Finding your java version**: To check the default java version on your device, run `java -version` on your terminal. You should see a line of text with `11.x.x`. For more information, refer to [this guide](https://www.java.com/en/download/help/version_manual.html#cmdline). </div>
 
 2. Download the latest `medimeet.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-4/tp/releases/download/v1.2/medimeet.jar).
 
