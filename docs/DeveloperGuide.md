@@ -195,7 +195,7 @@ Aspect: How TAA execute the command.
 * Pros: Student is immutable
 
 * Cons: Less efficient in terms of space and time.
-* 
+
 ## **Unmark Attendance**
 
 Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand` and `Model`
