@@ -210,7 +210,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
     <b>Figure 1.3.2</b> Sequence Diagram for the command <code>delete n/Alex p/91234567</code>
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Info:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -239,7 +239,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Info:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 <div>
@@ -420,7 +420,7 @@ The sequence diagram for `find n/John` in HMHero is as such:
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Note:</strong>
+:information_source: <strong>Info:</strong>
 The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of <strong>PlantUML</strong>, the lifeline reaches the end of the diagram.
 Additionally, take note that interactions with utility classes such as `ArgumentTokenizer`, `ArgumentMultimap`, and `Messages` are excluded as including them would cause the UML diagram to be cluttered and too small to read.
 </div>
@@ -557,7 +557,7 @@ has a length of 45 characters so there is no reason for the keyword to have a le
 
 ### User stories
 
-**Note:** The following legend describes the symbols used in this section:
+**Info:** The following legend describes the symbols used in this section:
 
 | Priority | Symbol  | Meaning          | 
 |----------|---------|------------------|
@@ -1004,7 +1004,7 @@ Precondition: There are shortlisted applicants in HMHero.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Info:** 
 These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
