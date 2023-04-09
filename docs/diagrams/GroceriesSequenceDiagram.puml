@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CookHubParser" as CookHubParser LOGIC_COLOR
+participant ":GroceriesCommandParser" as GroceriesCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "d:GroceriesCommand" as GroceriesCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+[-> LogicManager : execute("delete 1")
+activate LogicManager
+
+LogicManager -> CookHubParser : parseCommand("groceries 1,2,3")
+activate CookHubParser
+
+create GroceriesCommandParser
+CookHubParser -> GroceriesCommandParser
+activate GroceriesCommandParser
+
+GroceriesCommandParser -> ParserUtil : parseIndices("1,2,3")
+activate ParserUtil
+
+ParserUtil --> GroceriesCommandParser : indices
+
+deactivate ParserUtil
+
+GroceriesCommandParser --> CookHubParser
+deactivate GroceriesCommandParser
+
+CookHubParser -> GroceriesCommandParser : new GroceriesCommand(indices)
+activate GroceriesCommandParser
+
+create GroceriesCommand
+GroceriesCommandParser -> GroceriesCommand
+activate GroceriesCommand
+
+GroceriesCommand --> GroceriesCommandParser : d
+deactivate GroceriesCommand
+
+GroceriesCommandParser --> CookHubParser : d
+deactivate GroceriesCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GroceriesCommandParser -[hidden]-> CookHubParser
+destroy GroceriesCommandParser
+
+CookHubParser --> LogicManager : d
+deactivate CookHubParser
+
+LogicManager -> GroceriesCommand : execute()
+activate GroceriesCommand
+
+
+
+create CommandResult
+GroceriesCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GroceriesCommand
+deactivate CommandResult
+
+GroceriesCommand --> LogicManager : result
+deactivate GroceriesCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
