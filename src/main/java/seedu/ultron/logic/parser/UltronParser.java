@@ -86,9 +86,6 @@ public class UltronParser {
         case UpcomingCommand.COMMAND_WORD:
             return new UpcomingCommandParser().parse(arguments);
 
-        // case SortCommand.COMMAND_WORD:
-        //     return new SortCommandParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

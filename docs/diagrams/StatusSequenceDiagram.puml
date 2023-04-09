@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UltronParser" as UltronParser LOGIC_COLOR
+participant ":ContainsStatusPredicate" as ContainsStatusPredicate LOGIC_COLOR
+participant ":StatusCommand" as StatusCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[->MainWindow : executeCommand("status applied")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("status applied")
+activate LogicManager
+
+LogicManager -> UltronParser : parseCommand("status applied")
+activate UltronParser
+
+create ContainsStatusPredicate
+
+UltronParser -> ContainsStatusPredicate : ContainsStatusPredicate()
+activate ContainsStatusPredicate
+
+ContainsStatusPredicate --> UltronParser
+deactivate ContainsStatusPredicate
+
+create StatusCommand
+
+UltronParser -> StatusCommand : StatusCommand(ContainsStatusPredicate)
+activate StatusCommand
+
+StatusCommand --> UltronParser
+deactivate StatusCommand
+
+UltronParser --> LogicManager : command
+deactivate UltronParser
+
+LogicManager -> StatusCommand : execute()
+activate StatusCommand
+
+StatusCommand -> Model : updateFilteredOpeningList(ContainsStatusPredicate))
+activate Model
+
+Model --> StatusCommand
+deactivate Model
+
+StatusCommand --> LogicManager : commandResult
+deactivate StatusCommand
+StatusCommand -[hidden]-> LogicManager : commandResult
+destroy StatusCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

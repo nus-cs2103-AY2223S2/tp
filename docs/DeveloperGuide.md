@@ -216,8 +216,54 @@ A simplified sequence was employed for mouse clicks. The `OpeningListPanel` clas
 
 ### Upcoming keydates feature
 <!-- Anton, Alex -->
-### Filter by status feature
+
+### Status filtering feature
 <!-- Kevin -->
+
+Implementation
+
+The `status` feature command was outlined with an existing command which takes in keywords. It is similar to the `find` command, filtering based on the full list in  the `Ultron` component. Unlike `find`, it only accepts one keyword at a time.
+
+Given below is an example usage scenario and how the status feature's mechanisms behaves in steps.
+
+Step 1. The user launches the application with pre-existing openings added, each with different status values, such as `APPLIED` or `INTERVIEWING`. The user decides to only want to focus on openings that he has only just applied to. The user executes `status applied` to filter the openings to only show openings with `APPLIED` status.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails the exceution, the list will not be updated and remain unchanged.
+</div>
+
+The following sequence diagram shows how the status operation works:
+
+![UI Interaction for the `status applied` Command](images/StatusSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `StatusCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Step 2. The `UltronParser` class parses the user input of `status applied` and returns a `StatusCommand` object with a `ContainsStatusPredicate` representing the `applied` portion of the input.
+
+Step 3. The `LogicManager` then calls the `execute()` of the `StatusCommand` object, which accesses the `Model` component to update the current list of openings to be displayed. This new list will be filtered based on the `ContainsStatusPredicate`, checking through the full list of openings for openings with the status `APPLIED`.
+
+Step 4. The `MainWindow` class receives the `CommandResult` object and the new filtered list is displayed for the user.
+
+#### Design considerations:
+
+**Aspect: How many keywords status command allows:**
+
+* There is not much benefit to allowing more than one keyword at a time and users can avoid needless clutter.
+* **Alternative 1 (current choice):** Only allow one keyword.
+    * Pros:
+      * Easier to implement.
+      * Largely meets needs of users in a typical setting.
+      * Users can avoid needless clutter.
+    * Cons:
+      * Less flexibility for user if they ever want to filter based on two keywords.
+
+* **Alternative 2:** Allow one or more keywords.
+    * Pros:
+      * More flexibility for user.
+    * Cons:
+      * Increased complexity in terms of parsing, validation and logic.
+      * Need to add-on sorting functionality to sort filtered openings by status to prevent disorganisation.
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -578,6 +624,8 @@ This table summarises the difficulty level and effectiveness of each feature on 
 
    3. Input validation was often overlooked and only discovered during testing. Empty or untrimmed keys were initially accepted and dates were not checked for validity. This was fixed by adding additional checks in the parser.
 
+   4. Date validation for certain invalid dates in our keydates, such as 29 February in a non-leap year or 31 November, was missed out due to not realising our implementation would not account for it. Initial implementations of date validation using LocalDate and DateTimeFormatter does not check for such invalid dates. Afterwards, we had find a new method of parsing and validation in the form of SimpleDateFormat that sufficiently validates input dates.
+
 2. Sorting of keydates
 
    1. The initial collection of keydates was implemented using a HashSet, which does not allow for ordering. This was changed an ArrayList, which allowed for ordering of keydates. There are further issues with the logic component and its use of a filtered list which we eventually identified and replaced with an observable list.
@@ -621,3 +669,15 @@ A large part of the project was spent on refactoring the codebase and ensuring p
 1. The current keydate field that can be added to openings only accept dates in the format of YYYY-MM-DD. This means that users cannot add the time of deadlines to keydates. For example, a user might want to include the time of his interview in the keydate.
 
 2. We propose to include the option for keydates to include a time. The format for a keydate, which used to be "Event@YYYY-MM-DD", will now become "Event@YYYY-MM-DD[hh:mm]" Adding a time to a keydate will not be compulsory, meaning that users can continue to add keydates without a timing.
+
+### **Enhancement 3: Position should allow for special characters**
+
+1. The current position field that can be added to openings only accept positions that are alphanumeric with whitespace. This means that users cannot add special characters to their position. For example, a user might want to add a position for `UI/UX designer`.
+
+2. We propose to add additional parsing functionality to allow users to include special characters in the position field when adding or editing an opening, like `edit 1 p/UI/UX designer`. We will also need to adjust our parsing for our prefixes such as `p/`, such that it does not introduce any bugs when the field value also includes the special character `/`.
+
+### **Enhancement 4: Addition of keydates should be accumulative**
+
+1. The current keydates field can be changed using the `edit` command. This change overwrites the current keydates of the opening being edited. This means that users have to re-enter every single past keydate when adding a new one to maintain the history. For example, a user might already have a keydate `OA@2023-11-11` and wants to add `Interview@2023-11-13`, the user will have to enter the command `edit 1 d/OA@2023-11-11 d/Interview@2023-11-13`.
+
+2. We propose to allow edit to still overwrite the keydates, but we add new commands `addkeydate` and `deletekeydate`. These two commands will take in an index and keydates as parameters to add new keydates or delete existing keydates for the indexed opening. Example usages would be `addkeydate 1 Interview@2023-11-13` and `deletekeydate 1 OA@2023-11-11`. It will also be able to take in multiple keydates and function accordingly (all input keydates for `deletekeydate` must be valid, ie if one of them do not exist, command fails).

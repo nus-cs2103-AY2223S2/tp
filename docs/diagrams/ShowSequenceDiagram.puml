@@ -42,6 +42,7 @@ activate ShowCommand
 ShowCommand -> Model : setSelectedIndex(1)
 activate Model
 
+Model --> ShowCommand
 deactivate Model
 
 ShowCommand --> LogicManager : commandResult
