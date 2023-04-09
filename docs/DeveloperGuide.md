@@ -348,11 +348,11 @@ The implementation of this feature is supported by `EditTaskCommand` and `EditTa
 
 **Aspect: Parameters required**
 
-* **Alternative 1 (current choice):** Edit using at least one of the fields of the task
+* **Alternative 1 (current choice):** Edit using at least one of the fields of the task.
   * Pros: More intuitive and convenient for users as they do not have to retype every field.
   * Cons: Users have to keep in mind which task the task index is referring to.
 
-* **Alternative 2:** Edit by retyping all the fields of the task to be edited
+* **Alternative 2:** Edit by retyping all the fields of the task to be edited.
   * Pros: Forces users to be aware of the task to be edited instead of relying on subconscious mapping between index and tasks.
   * Cons: Less intuitive and less user-friendly. Users would be forced to retype all the fields of the task before being able
     to edit a single field.
