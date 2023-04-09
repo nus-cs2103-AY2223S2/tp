@@ -375,7 +375,7 @@ the data of your previous FAid home folder.
    image on how to do this.
    ![Cmd](images/Cmd.png)
 3. Inside command prompt, type in `java --version` and press enter. Your output should look like this:
-![JavaInstalled](images/JavaInstalled.png)
+![JavaInstalled](images/javaInstalled.png)
 4. If your output matches the image above, `Java 11` has been installed successfully!
 5. If java is not installed correctly, you could see an error message like this: <br>
 `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
