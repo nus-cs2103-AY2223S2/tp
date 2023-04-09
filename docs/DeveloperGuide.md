@@ -2463,10 +2463,30 @@ TODO: to be removed
 | Test Case                                                    | Expected Result                             |
 | ------------------------------------------------------------ | ------------------------------------------- |
 | `nav CS2040S`<br/> `nav Week 2`<br/>`find math /byTag` | List should show videos with name [`Vid 2`] |
-| `nav CS2040S`<br/> `find math /lec Week 2 /byTag`        | Same as previous                            |
-| `nav /mod CS2040S /lec Week 2`<br/>`find math /byTag`    | Same as previous                            |
-| `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
-| `nav /mod CS2040S /lec Week 2`<br/>`find`                | Invalid command                             |
+
+### Add a Module
+
+| Test Case                                                                                         | Expected Result                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add CS2103T /name Software Engineering /tags Coding, 4MCs`                                       | Message: `A module named "CS2103T" is added with name "Software Engineering" and tags "Coding" and "4MCs"`<br/>List updates: New entry for "CS2103T" |
+| `nav CS2040S`<br/>`add CS2103T /r /name Software Engineering /tags Coding, 4MCs`                  | Message: `A module named "CS2103T" is added with name "Software Engineering" and tags "Coding" and "4MCs"`<br/>List updates: None                    |
+| `nav /mod CS2040S /lec Week 1`<br/>`add CS2103T /r /name Software Engineering /tags Coding, 4MCs` | Message: `A module named "CS2103T" is added with name "Software Engineering" and tags "Coding" and "4MCs"`<br/>List updates: None                    |
+
+### Add a Lecture
+
+| Test Case                                                                          | Expected Result                                                                                                          |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `add Week 7 /mod CS2040S /tags AVLTree, Census`                                    | Message: `New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`<br/>List updates: None                   |
+| `nav CS2040S`<br/>`add Week 7 /tags AVLTree, Census`                               | Message: `New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`<br/>List updates: New entry for "Week 7" |
+| `nav /mod CS2040S /lec Week 1`<br/>`add Week 7 /mod CS2040S /tags AVLTree, Census` | Message: `New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`<br/>List updates: None                   |
+
+### Add a Video
+
+| Test Case                                                           | Expected Result                                                                                                                                                         |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add Vid 3 /mod CS2040S /lec Week 1 /tags Analysis, BigO`           | Message: `New video added to module CS2040S of lecture Week 1: Vid 3; Not Watched; Timestamp: 00:00:00; Tags: [BigO][Analysis]`<br/>List updates: None                  |
+| `nav CS2040S`<br/>`add Vid 3 /lec Week 1 /tags Analysis, BigO`      | Message: `New video added to module CS2040S of lecture Week 1: Vid 3; Not Watched; Timestamp: 00:00:00; Tags: [BigO][Analysis]`<br/>List updates: None                  |
+| `nav /mod CS2040S /lec Week 1`<br/>`add Vid 3 /tags Analysis, BigO` | Message: `New video added to module CS2040S of lecture Week 1: Vid 3; Not Watched; Timestamp: 00:00:00; Tags: [BigO][Analysis]`<br/>List updates: New entry for "Vid 3" |
 
 ### Delete Module(s)
 
