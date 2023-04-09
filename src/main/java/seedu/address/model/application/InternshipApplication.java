@@ -289,7 +289,7 @@ public class InternshipApplication implements Comparable<InternshipApplication> 
             qualifications.forEach(builder::append);
         }
 
-        if (location !=null && location.value != null && !location.value.isBlank()) {
+        if (location != null && location.value != null && !location.value.isBlank()) {
             builder.append("; Location: ")
                     .append(getLocation());
         }
